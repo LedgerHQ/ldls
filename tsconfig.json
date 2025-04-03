@@ -4,10 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/core-e2e"
+      "path": "./apps/ldls-react"
     },
     {
-      "path": "./apps/core"
+      "path": "./apps/ldls-react-e2e"
     },
     {
       "path": "./libs/shared/ui"

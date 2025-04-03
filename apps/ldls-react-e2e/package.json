@@ -1,10 +1,10 @@
 {
-  "name": "core-e2e",
+  "name": "ldls-react-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "core"
+      "ldls-react"
     ]
   }
 }

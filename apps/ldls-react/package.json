@@ -1,8 +1,8 @@
 {
-  "name": "@ldls/core",
+  "name": "@ldls/react",
   "version": "0.0.1",
   "private": true,
   "nx": {
-    "name": "core"
+    "name": "ldls-react"
   }
 }
