@@ -32,7 +32,8 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      }
+      },
+      "exclude": ["libs/shared/design-tokens/*"]
     },
     {
       "plugin": "@nx/react/router-plugin",
@@ -92,6 +93,15 @@
         "buildIosTargetName": "build-ios",
         "buildAndroidTargetName": "build-android",
         "syncDepsTargetName": "sync-deps"
+      }
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["libs/shared/design-tokens/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
       }
     }
   ],

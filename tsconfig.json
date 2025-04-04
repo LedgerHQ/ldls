@@ -14,6 +14,9 @@
     },
     {
       "path": "./apps/ldls-rnative"
+    },
+    {
+      "path": "./libs/shared/design-tokens"
     }
   ],
   "ts-node": {
