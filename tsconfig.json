@@ -4,19 +4,19 @@
   "files": [],
   "references": [
     {
+      "path": "./libs/ui-rnative"
+    },
+    {
       "path": "./apps/ldls-react"
     },
     {
-      "path": "./apps/ldls-react-e2e"
+      "path": "./libs/ui-react"
     },
     {
-      "path": "./libs/shared/ui"
+      "path": "./libs/design-tokens"
     },
     {
-      "path": "./apps/ldls-rnative"
-    },
-    {
-      "path": "./libs/shared/design-tokens"
+      "path": "./libs/ui-core"
     }
   ],
   "ts-node": {

@@ -1,0 +1,4 @@
+[2m> [22mnpx tsx ./src/lib/design-tokens.ts
+
+[2m> [22mnpx tsc -p tsconfig.lib.json
+

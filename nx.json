@@ -1,9 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "ldls",
-  "affected": {
-    "defaultBase": "main"
-  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -15,10 +11,13 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
+  "nxCloudId": "67f3c278db421d0a6374d282",
   "plugins": [
     {
       "plugin": "@nx/js/typescript",
@@ -32,8 +31,7 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      },
-      "exclude": ["libs/shared/design-tokens/*"]
+      }
     },
     {
       "plugin": "@nx/react/router-plugin",
@@ -67,21 +65,6 @@
       }
     },
     {
-      "plugin": "@nx/playwright/plugin",
-      "options": {
-        "targetName": "e2e"
-      }
-    },
-    {
-      "plugin": "@nx/storybook/plugin",
-      "options": {
-        "serveStorybookTargetName": "storybook",
-        "buildStorybookTargetName": "build-storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook"
-      }
-    },
-    {
       "plugin": "@nx/react-native/plugin",
       "options": {
         "startTargetName": "start",
@@ -96,20 +79,31 @@
       }
     },
     {
-      "plugin": "@nx/js/typescript",
-      "include": ["libs/shared/design-tokens/*"],
+      "plugin": "@nx/rollup/plugin",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        }
+        "buildTargetName": "build",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "serveStorybookTargetName": "serve:storybook",
+        "buildStorybookTargetName": "build:storybook",
+        "testStorybookTargetName": "test-storybook",
+        "staticStorybookTargetName": "static-storybook"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
       }
     }
   ],
   "targetDefaults": {
     "test": {
-      "dependsOn": ["^build"]
-    },
-    "e2e-ci--**/*": {
       "dependsOn": ["^build"]
     }
   },
@@ -127,8 +121,13 @@
       "library": {
         "style": "tailwind",
         "linter": "eslint",
-        "unitTestRunner": "none"
+        "unitTestRunner": "vitest"
       }
+    }
+  },
+  "release": {
+    "version": {
+      "preVersionCommand": "npx nx run-many -t build"
     }
   }
 }

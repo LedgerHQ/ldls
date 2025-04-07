@@ -21,9 +21,17 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
             },
+            {
+              sourceTag: 'scope:react-native',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:react-native'],
+            },
+            {
+              sourceTag: 'scope:react',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:react'],
+            }
           ],
         },
       ],

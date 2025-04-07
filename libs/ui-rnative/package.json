@@ -1,0 +1,29 @@
+{
+  "name": "@ldls/ui-rnative",
+  "version": "0.0.1",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.esm.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "~18.3.1",
+    "react-native": "~0.76.3"
+  },
+  "dependencies": {
+    "nativewind": "^2.0.11"
+  },
+  "nx": {
+    "tags": [
+      "scope:react-native",
+      "type:ui"
+    ]
+  }
+}

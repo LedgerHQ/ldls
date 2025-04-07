@@ -1,0 +1,35 @@
+{
+  "name": "@ldls/ui-rnative",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-rnative/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ui-rnative",
+        "main": "libs/ui-rnative/src/index.ts",
+        "tsConfig": "libs/ui-rnative/tsconfig.lib.json",
+        "assets": [],
+        "project": "libs/ui-rnative/package.json"
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 6007,
+        "configDir": "libs/ui-rnative/.storybook"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/ui-rnative",
+        "configDir": "libs/ui-rnative/.storybook"
+      }
+    }
+  },
+  "tags": ["scope:react-native", "type:ui"]
+}
