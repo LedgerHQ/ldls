@@ -1,1 +1,0 @@
-{"version":3,"file":"Button.d.ts","sourceRoot":"","sources":["../../../../../../../libs/ui-rnative/src/lib/Symbols/Button/Button.tsx"],"names":[],"mappings":"AAKA,MAAM,WAAW,WAAW;IAC1B,OAAO,CAAC,EAAE,MAAM,IAAI,CAAC;IACrB,KAAK,EAAE,MAAM,CAAC;IACd,OAAO,CAAC,EAAE,SAAS,GAAG,WAAW,CAAC;CACnC;AAKD,wBAAgB,MAAM,CAAC,EAAE,OAAO,EAAE,KAAK,EAAE,OAAmB,EAAE,EAAE,WAAW,2CAe1E;AAID,eAAe,MAAM,CAAC"}
