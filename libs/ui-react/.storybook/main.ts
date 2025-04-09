@@ -15,6 +15,14 @@ const config: StorybookConfig = {
   viteFinal: async (config) =>
     mergeConfig(config, {
       plugins: [nxViteTsPaths()],
+      css: {
+        postcss: {
+          plugins: [
+            (await import('tailwindcss')).default,
+            (await import('autoprefixer')).default,
+          ],
+        },
+      },
     }),
   core: {
     disableTelemetry: true,
@@ -25,3 +33,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+function awaitimport(arg0: string): any {
+  throw new Error('Function not implemented.');
+}
+

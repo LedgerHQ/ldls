@@ -16,7 +16,8 @@
       "executor": "@nx/storybook:storybook",
       "options": {
         "port": 6006,
-        "configDir": "libs/ui-react/.storybook"
+        "configDir": "libs/ui-react/.storybook",
+        "styles": "libs/ui-react/src/styles.css"
       }
     },
     "build-storybook": {
