@@ -10,6 +10,12 @@ A cross-platform design system built with Nx, supporting both React and React Na
 - `ui-react`: React-specific components and patterns
 - `ui-rnative`: React Native-specific components and patterns
 
+## Installing Dependencies
+
+```bash
+npm install --legacy-peer-deps
+```
+
 ## Development
 
 ### Running the Libraries
