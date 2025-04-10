@@ -11,8 +11,8 @@ export interface ButtonProps {
 export const Button = ({ children, variant = 'primary', onClick }: ButtonProps) => {
   const baseClasses = 'px-4 py-2 rounded-md font-medium transition-colors';
   const variantClasses = {
-    primary: `${tailwindColors["background-default"]} text-white hover:bg-blue-600`,
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+    primary: `bg-green-500 text-white hover:bg-green-600`,
+    secondary: `${tailwindColors["surface-brand-primary-default"]} text-gray-800 hover:bg-gray-300`,
   };
 
   return (

@@ -15,8 +15,8 @@ const StyledText = styled(Text);
 export function Button({ onPress, title, variant = 'primary' }: ButtonProps) {
   const baseStyles = 'px-4 py-2 rounded-lg';
   const variantStyles = {
-    primary: `${tailwindColors["surface-brand-primary-default"]} active:bg-blue-600`,
-    secondary: 'bg-gray-500 active:bg-gray-600',
+    primary: `bg-green-500 text-white hover:bg-green-600`,
+    secondary: `${tailwindColors["surface-brand-primary-default"]} text-gray-800 hover:bg-gray-300`,
   };
 
   return (

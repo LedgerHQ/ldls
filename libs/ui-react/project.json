@@ -11,22 +11,6 @@
       "options": {
         "outputPath": "dist/libs/ui-react"
       }
-    },
-    "storybook": {
-      "executor": "@nx/storybook:storybook",
-      "options": {
-        "port": 6006,
-        "configDir": "libs/ui-react/.storybook",
-        "styles": "libs/ui-react/src/styles.css"
-      }
-    },
-    "build-storybook": {
-      "executor": "@nx/storybook:build",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/ui-react",
-        "configDir": "libs/ui-react/.storybook"
-      }
     }
   }
 }

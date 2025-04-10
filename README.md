@@ -22,16 +22,16 @@ npm install --legacy-peer-deps
 
 ```bash
 # Start React components in Storybook
-npx nx storybook ui-react
+npx nx run @ldls/ui-react:serve:storybook
 
 # Build React components
-npx nx build ui-react
+npx nx run @ldls/ui-react:build
 
 # Build React Native components
-npx nx build ui-rnative
+npx nx run @ldls/ui-rnative:build
 
 # Build shared core library
-npx nx build ui-core
+npx nx run @ldls/ui-core:build
 ```
 
 ### Writing Component Documentation

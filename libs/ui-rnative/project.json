@@ -14,21 +14,6 @@
         "assets": [],
         "project": "libs/ui-rnative/package.json"
       }
-    },
-    "storybook": {
-      "executor": "@nx/storybook:storybook",
-      "options": {
-        "port": 6007,
-        "configDir": "libs/ui-rnative/.storybook"
-      }
-    },
-    "build-storybook": {
-      "executor": "@nx/storybook:build",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/ui-rnative",
-        "configDir": "libs/ui-rnative/.storybook"
-      }
     }
   },
   "tags": ["scope:react-native", "type:ui"]
