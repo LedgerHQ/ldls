@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+        description: 'An existing tag with a specified semantic version (e.g: v1.3.4)'
+
+env:
+  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-sandbox-green/
+
+jobs:
+  publish:
+    # runs-on: ledgerhq-shared-small
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.version }}
+
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e #v4.3.0
+        with:
+          node-version: '22.14.0'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Login to internal JFrog registry
+        id: jfrog-login
+        uses: LedgerHQ/actions-security/actions/jfrog-login@actions/jfrog-login-1
+
+      - name: Setup npm config for JFrog
+        env:
+          NPM_REGISTRY_TOKEN: ${{ steps.jfrog-login.outputs.oidc-token }}
+        run: |
+          cat << EOF | tee .npmrc
+          provenance=true
+          enable-pre-post-scripts=true
+          registry=https://${NPM_REGISTRY}/
+          //${NPM_REGISTRY}/:_authToken=${NPM_REGISTRY_TOKEN}
+          EOF
+
+      - name: Install dependencies
+        id: install-dependencies
+        run: |
+          npm ci --legacy-peer-deps
+          npm audit signatures
+
+      - name: Print Environment Info
+        run: nx report
+
+      - name: Publish
+        id: publish
+        run: nx release publish

@@ -1,0 +1,35 @@
+name: Release
+permissions:
+  contents: read
+  id-token: write # to enable use of OIDC for npm provenance
+
+on:
+  workflow_call:
+
+env:
+  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/ledgerlive-npm-sandbox-green/
+
+jobs:
+  release:
+    # runs-on: ledgerhq-shared-small
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e #v4.3.0
+        with:
+          node-version: '22.14.0'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install dependencies
+        id: install-dependencies
+        run: |
+          npm ci --legacy-peer-deps
+          npm audit signatures
+
+      - name: Release
+        id: release
+        run: nx release --skip-publish
