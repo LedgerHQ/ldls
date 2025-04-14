@@ -53,4 +53,4 @@ jobs:
 
       - name: Publish
         id: publish
-        run: nx release publish
+        run: nx release publish --dry-run

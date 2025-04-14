@@ -1,7 +1,6 @@
 name: Release
 permissions:
-  contents: read
-  id-token: write # to enable use of OIDC for npm provenance
+  contents: write
 
 on:
   workflow_call:
@@ -32,4 +31,4 @@ jobs:
 
       - name: Release
         id: release
-        run: nx release --skip-publish
+        run: nx release --dry-run
