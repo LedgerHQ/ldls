@@ -16,6 +16,7 @@
     }
   },
   "dependencies": {
+    "@figma/rest-api-spec": "^0.28.0",
     "tslib": "^2.3.0"
   }
 }
