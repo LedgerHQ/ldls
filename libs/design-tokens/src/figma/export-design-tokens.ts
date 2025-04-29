@@ -5,6 +5,7 @@
  */
 
 import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
+import tokenFileNameRenamer from './token-file-name-renamer.js';
 import figmaApi from './api-mock.js';
 import * as fs from 'fs';
 
@@ -12,7 +13,10 @@ async function main() {
   const localVariables = await figmaApi.getMocksFromFileSystem(
     'local-variables-response.json'
   );
-  const tokensFiles = tokenFilesFromLocalVariables(localVariables);
+  const tokensFiles = tokenFilesFromLocalVariables(
+    localVariables,
+    tokenFileNameRenamer
+  );
 
   const outputDir = 'tokens';
 

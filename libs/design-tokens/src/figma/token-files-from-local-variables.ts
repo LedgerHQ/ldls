@@ -7,24 +7,22 @@
 import {
   GetLocalVariablesResponse,
   LocalVariable,
+  LocalVariableCollection,
   RGB,
   RGBA,
 } from '@figma/rest-api-spec';
+import {
+  LocalVariableCollectionMode,
+  Token,
+  TokenFileContent,
+} from './types.js';
 
-interface Token {
-  $type: 'color' | 'number' | 'string' | 'boolean';
-  $value: string | number | boolean;
+function defaultTokenFileNameRenamer(
+  collection: LocalVariableCollection,
+  mode: LocalVariableCollectionMode
+): string {
+  return `${collection.name}.${mode.name}.json`;
 }
-
-type TokenOrTokenGroup =
-  | Token
-  | ({
-      [tokenName: string]: Token;
-    } & { $type?: never; $value?: never });
-
-type TokensFile = {
-  [key: string]: TokenOrTokenGroup;
-};
 
 function tokenTypeFromVariable(variable: LocalVariable) {
   switch (variable.resolvedType) {
@@ -72,9 +70,13 @@ function rgbToHex({ r, g, b, ...rest }: RGB | RGBA) {
 }
 
 export default function tokenFilesFromLocalVariables(
-  localVariablesResponse: GetLocalVariablesResponse
+  localVariablesResponse: GetLocalVariablesResponse,
+  fileNameRenamer: (
+    collection: LocalVariableCollection,
+    mode: LocalVariableCollectionMode
+  ) => string = defaultTokenFileNameRenamer
 ) {
-  const tokenFiles: { [fileName: string]: TokensFile } = {};
+  const tokenFiles: { [fileName: string]: TokenFileContent } = {};
   const localVariableCollections =
     localVariablesResponse.meta.variableCollections;
   const localVariables = localVariablesResponse.meta.variables;
@@ -87,8 +89,7 @@ export default function tokenFilesFromLocalVariables(
     const collection = localVariableCollections[variable.variableCollectionId];
 
     collection.modes.forEach((mode) => {
-      const modeName = mode.name.split(' - ')[0].replace(/\s/g, '');
-      const fileName = `${collection.name}.${modeName}.json`;
+      const fileName = fileNameRenamer(collection, mode);
 
       if (!tokenFiles[fileName]) {
         tokenFiles[fileName] = {};
