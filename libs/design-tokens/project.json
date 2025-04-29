@@ -34,6 +34,13 @@
         "command": "vitest --run",
         "cwd": "libs/design-tokens"
       }
+    },
+    "sd": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx sd.build",
+        "cwd": "libs/design-tokens"
+      }
     }
   },
   "tags": ["scope:shared", "type:util"]
