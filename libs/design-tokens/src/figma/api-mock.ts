@@ -4,7 +4,7 @@ import * as fs from 'fs/promises';
 import { URL } from 'node:url';
 const __dirname = new URL('.', import.meta.url).pathname;
 
-async function getLocalVariables(
+async function getMocksFromFileSystem(
   fileName: string
 ): Promise<GetLocalVariablesResponse> {
   const filePath = path.resolve(__dirname, 'fixtures/', fileName);
@@ -19,5 +19,5 @@ async function getLocalVariables(
 }
 
 export default {
-  getLocalVariables,
+  getMocksFromFileSystem,
 };

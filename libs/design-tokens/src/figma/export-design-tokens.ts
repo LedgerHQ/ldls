@@ -9,7 +9,7 @@ import figmaApi from './api-mock.js';
 import * as fs from 'fs';
 
 async function main() {
-  const localVariables = await figmaApi.getLocalVariables(
+  const localVariables = await figmaApi.getMocksFromFileSystem(
     'local-variables-response.json'
   );
   const tokensFiles = tokenFilesFromLocalVariables(localVariables);
