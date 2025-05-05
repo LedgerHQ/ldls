@@ -105,6 +105,14 @@ export default function tokenFilesFromLocalVariables(
       const token: Token = {
         $type: tokenTypeFromVariable(variable),
         $value: tokenValueFromVariable(variable, mode.modeId, localVariables),
+        $description: variable.description,
+        $extensions: {
+          'com.figma': {
+            hiddenFromPublishing: variable.hiddenFromPublishing,
+            scopes: variable.scopes,
+            codeSyntax: variable.codeSyntax,
+          },
+        },
       };
 
       Object.assign(obj, token);

@@ -4,9 +4,19 @@
  * Copyright 2013 gerard-figma
  */
 
+import { VariableCodeSyntax, VariableScope } from '@figma/rest-api-spec';
+
 export interface Token {
   $type: 'color' | 'number' | 'string' | 'boolean';
   $value: string | number | boolean;
+  $description?: string;
+  $extensions?: {
+    'com.figma'?: {
+      hiddenFromPublishing?: boolean;
+      scopes?: VariableScope[];
+      codeSyntax?: VariableCodeSyntax;
+    };
+  };
 }
 
 type TokenOrTokenGroup =
