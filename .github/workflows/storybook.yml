@@ -38,7 +38,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build Storybook
-        run: npx nx run @ldls/ui-react:build:storybook --parallel=3 --no-cloud
+        run: npx nx run-many --target=build:storybook --parallel=3 --no-cloud
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/storybook/ldls'  # Adjust this path based on your Nx output directory
+          path: 'libs/ui-react/storybook-static'
 
       - name: Deploy to GitHub Pages
         id: deployment
