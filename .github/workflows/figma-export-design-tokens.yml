@@ -23,7 +23,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.19.0'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: Update Design tokens
-          title: Update Design Tokens
+          commit-message: '💄 (design-tokens): Figma Export'
+          title: '💄 (design-tokens): Figma Export'
           body: 'Automatically update design tokens through Figma API Local Variables endpoint'
           branch: figma-export-design-tokens
