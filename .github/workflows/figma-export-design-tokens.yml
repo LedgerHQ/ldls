@@ -3,6 +3,9 @@ name: Export Figma Design Tokens
 on:
   workflow_dispatch:
 
+env:
+  NX_NO_CLOUD: true
+
 jobs:
   export-design-tokens:
     runs-on: ubuntu-latest
@@ -21,9 +24,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.19.0'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm ci --legacy-peer-deps
 
       - name: Export Design Tokens from Figma
         run: npx nx run @ldls/design-tokens:figma-export
