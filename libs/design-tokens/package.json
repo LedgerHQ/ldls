@@ -16,6 +16,9 @@
     }
   },
   "dependencies": {
+    "@figma/rest-api-spec": "^0.28.0",
+    "node-fetch": "^3.3.2",
+    "style-dictionary": "^4.3.3",
     "tslib": "^2.3.0"
   }
 }
