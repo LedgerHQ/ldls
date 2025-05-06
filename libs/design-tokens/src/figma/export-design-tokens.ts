@@ -6,30 +6,64 @@
 
 import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
 import tokenFileNameRenamer from './token-file-name-renamer.js';
-import figmaApi from './api-mock.js';
+import figmaMockApi from './api-mock.js';
+import figmaApi from './api.js';
 import * as fs from 'fs';
 
-async function main() {
-  const localVariables = await figmaApi.getMocksFromFileSystem(
-    'local-variables-response.json'
-  );
-  const tokensFiles = tokenFilesFromLocalVariables(
-    localVariables,
-    tokenFileNameRenamer
-  );
+const outputDir = 'tokens';
 
-  const outputDir = 'tokens';
+function getEnvironmentVariables(): { figmaToken: string; fileKey: string } {
+  const figmaToken = process.env.FIGMA_TOKEN;
+  const fileKey = process.env.FIGMA_FILE_KEY;
 
+  if (!figmaToken || !fileKey) {
+    throw new Error(
+      `Please set the FIGMA_TOKEN (${figmaToken}) and FIGMA_FILE_KEY (${fileKey}) environment variables.`
+    );
+  }
+
+  return { figmaToken, fileKey };
+}
+
+function writeFilesSync<T>(
+  outputDir: string,
+  filesDictionary: Record<string, T>
+) {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir);
   }
 
-  Object.entries(tokensFiles).forEach(([fileName, fileContent]) => {
+  Object.entries(filesDictionary).forEach(([fileName, fileContent]) => {
     fs.writeFileSync(
       `${outputDir}/${fileName}`,
       JSON.stringify(fileContent, null, 2)
     );
   });
+}
+
+async function exportDesignTokens() {
+  const useLocalVariablesMock = process.env.USE_MOCK === 'false' ? false : true;
+  let localVariables;
+
+  if (useLocalVariablesMock) {
+    localVariables = await figmaMockApi.getMocksFromFileSystem(
+      'local-variables-response.json'
+    );
+  } else {
+    const { figmaToken, fileKey } = getEnvironmentVariables();
+    localVariables = await figmaApi.getLocalVariables(fileKey, figmaToken);
+  }
+
+  const tokensFiles = tokenFilesFromLocalVariables(
+    localVariables,
+    tokenFileNameRenamer
+  );
+
+  writeFilesSync(outputDir, tokensFiles);
+}
+
+async function main() {
+  await exportDesignTokens();
 }
 
 main();
