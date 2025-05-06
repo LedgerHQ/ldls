@@ -16,7 +16,7 @@ on:
 
 env:
   NX_NO_CLOUD: true
-  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-sandbox-green
+  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public
   TAG: ${{inputs.tag || github.ref }}
 
 jobs:
