@@ -1,24 +1,33 @@
 name: Export Figma Design Tokens
+
 on:
   workflow_dispatch:
 
 jobs:
   export-design-tokens:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
     permissions:
       contents: write
       pull-requests: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18.19.0'
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
+
       - name: Export Design Tokens from Figma
         run: npx nx run @ldls/design-tokens:figma-export
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
