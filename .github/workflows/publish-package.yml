@@ -22,7 +22,6 @@ env:
 jobs:
   release:
     runs-on: ledgerhq-shared-small
-    # runs-on: ubuntu-latest
     steps:
       - run: env
 
@@ -47,7 +46,7 @@ jobs:
           npm audit signatures
 
       - name: Filter Project
-        id: find_project
+        id: find-project
         run: |
           if [[ "${{env.TAG}}" =~ \@([^[:space:]]*)\@ ]]; then
             echo "project=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
@@ -72,4 +71,4 @@ jobs:
 
       - name: Publish
         id: publish
-        run: npx nx release --projects=${{ steps.find_project.outputs.project }} publish --verbose
+        run: npx nx release --projects=${{ steps.find-project.outputs.project }} publish --verbose
