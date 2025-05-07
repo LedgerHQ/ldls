@@ -5,6 +5,11 @@ permissions:
 
 on:
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Trigger the release in dry-run mode (nx release --dry-run)'
+        required: true
+        type: boolean
 
 env:
   NX_NO_CLOUD: true

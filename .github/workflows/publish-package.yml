@@ -10,9 +10,6 @@ on:
         description: 'Tag representing the package to be published (e.g.: @ldls/ui-rnative@0.0.4)'
         required: true
         type: string
-  push:
-    tags:
-      - '@ldls/**'
 
 env:
   NX_NO_CLOUD: true
