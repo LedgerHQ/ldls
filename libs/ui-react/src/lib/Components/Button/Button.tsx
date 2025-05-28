@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { tailwindColors } from '@ldls/design-tokens';
 
 export interface ButtonProps {

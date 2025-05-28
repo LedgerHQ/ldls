@@ -3,17 +3,21 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: [
+    '../src/lib/**/*.mdx',
+    '../src/lib/**/*.stories.@(js|jsx|ts|tsx)'
+  ],
   addons: [
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions'
+    '@storybook/addon-interactions',
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  viteFinal: async (config) =>
-    mergeConfig(config, {
+  viteFinal: async (viteConfig) =>
+    mergeConfig(viteConfig, {
       plugins: [nxViteTsPaths()],
       css: {
         postcss: {
@@ -23,17 +27,21 @@ const config: StorybookConfig = {
           ],
         },
       },
+      optimizeDeps: {
+        exclude: [
+          '@storybook/blocks',
+          '@storybook/addon-essentials',
+          '@storybook/addon-interactions',
+          '@storybook/addon-docs',
+          '@storybook/react',
+          '@storybook/react-vite',
+        ],
+      },
     }),
   core: {
     disableTelemetry: true,
   },
-  features: {
-    interactionsDebugger: true,
-  },
 };
 
 export default config;
-function awaitimport(arg0: string): any {
-  throw new Error('Function not implemented.');
-}
 

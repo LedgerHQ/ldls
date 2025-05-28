@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} title="Design System/Components/Button" />
+
+# Button Component
+
+Welcome to the documentation for the `Button` component. Buttons are a fundamental part of any user interface,
+allowing users to take actions and make choices with a single tap or click.
+
+Our `Button` component is designed to be versatile, accessible, and easy to integrate. It supports various styles (variants) and sizes to fit different contexts within your application.
+
+## Variants and Sizes
+
+Below are examples of the primary and secondary button variants, showcased in different sizes.
+
+### Primary Buttons
+
+Primary buttons are used for the main call to action on a page.
+
+The `Button` component is essential for all user interactions requiring an action.
+It is available in several variants and sizes.
+
+**Example of a Primary Button:**
+
+<Canvas>
+  <Story of={ButtonStories.Primary} />
+</Canvas>
+
+**Example of a Secondary Button:**
+
+<Canvas>
+  <Story of={ButtonStories.Secondary} />
+</Canvas>
+
