@@ -16,15 +16,15 @@
     },
     "accent": {
       "default": {
-        "value": "{color.background.accent.websites.default}",
+        "value": "{color.background.accent.enterprise.default}",
         "type": "color"
       },
       "hover": {
-        "value": "{color.background.accent.websites.hover}",
+        "value": "{color.background.accent.enterprise.hover}",
         "type": "color"
       },
       "pressed": {
-        "value": "{color.background.accent.websites.pressed}",
+        "value": "{color.background.accent.enterprise.pressed}",
         "type": "color"
       }
     },
@@ -170,21 +170,21 @@
     },
     "active": {
       "default": {
-        "value": "{color.background.accent.websites.default}",
+        "value": "{color.background.accent.enterprise.default}",
         "type": "color"
       },
       "hover": {
-        "value": "{color.background.accent.websites.hover}",
+        "value": "{color.background.accent.enterprise.hover}",
         "type": "color"
       },
       "pressed": {
-        "value": "{color.background.accent.websites.pressed}",
+        "value": "{color.background.accent.enterprise.pressed}",
         "type": "color"
       }
     },
     "active-transparent": {
       "default": {
-        "value": "{color.background.active.websites.transparent.Default}",
+        "value": "{color.background.active.enterprise.transparent.default}",
         "type": "color"
       }
     },
@@ -248,7 +248,7 @@
     },
     "on-accent": {
       "default": {
-        "value": "{color.text.on-accent.websites.default}",
+        "value": "{color.text.on-accent.enterprise.default}",
         "type": "color"
       }
     },
@@ -284,7 +284,7 @@
     },
     "active": {
       "Default": {
-        "value": "{color.text.active.websites.default}",
+        "value": "{color.text.active.enterprise.default}",
         "type": "color"
       }
     }
@@ -384,15 +384,15 @@
     },
     "active": {
       "default": {
-        "value": "{color.border.active.websites.default}",
+        "value": "{color.border.active.enterprise.default}",
         "type": "color"
       },
       "hover": {
-        "value": "{color.border.active.websites.hover}",
+        "value": "{color.border.active.enterprise.pressed}",
         "type": "color"
       },
       "pressed": {
-        "value": "{color.border.active.websites.pressed}",
+        "value": "{color.border.active.enterprise.pressed}",
         "type": "color"
       }
     }
