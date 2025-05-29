@@ -37,7 +37,7 @@ export const WithInteraction: Story = {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button');
  
-    await step('Click on Btton', async () => {
+    await step('Click on Button', async () => {
       await userEvent.click(button);
     });
   },

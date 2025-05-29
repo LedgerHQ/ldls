@@ -1,4 +1,3 @@
-
 import { converted as enterpriseLightThemeConverted } from './lib/enterprise/theme.light.js';
 import { converted as enterpriseDarkThemeConverted } from './lib/enterprise/theme.dark.js';
 
@@ -9,16 +8,18 @@ import { converted as websitesLightThemeConverted } from './lib/websites/theme.l
 import { converted as websitesDarkThemeConverted } from './lib/websites/theme.dark.js';
 
 const enterpriseTheme = {
-  ...(enterpriseLightThemeConverted),...(enterpriseDarkThemeConverted),
+  ...enterpriseLightThemeConverted,
+  ...enterpriseDarkThemeConverted,
 };
 
 const ledgerLiveTheme = {
-  ...(ledgerLiveLightThemeConverted),...(ledgerLiveDarkThemeConverted),
+  ...ledgerLiveLightThemeConverted,
+  ...ledgerLiveDarkThemeConverted,
 };
 
 const websitesTheme = {
-  ...(websitesLightThemeConverted),...(websitesDarkThemeConverted),
+  ...websitesLightThemeConverted,
+  ...websitesDarkThemeConverted,
 };
 
 export { enterpriseTheme, ledgerLiveTheme, websitesTheme };
-

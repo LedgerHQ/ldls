@@ -2,7 +2,6 @@ import StyleDictionary, { TransformedToken } from 'style-dictionary';
 import fs from 'fs';
 import path from 'path';
 
-
 const brands = ['Enterprise', 'Websites', 'LedgerLive'];
 const themes = ['Light', 'Dark']; // Ensure 'Light' is processed to get :root, then 'Dark' for .dark
 const tokensFolder = 'tokens';
@@ -14,37 +13,38 @@ StyleDictionary.registerTransform({
   transform: (token: TransformedToken) => {
     // Joins path segments with '-', converts to lowercase, then prefixes with '--'
     return `--${token.path.join('-').toLowerCase()}`;
-  }
+  },
 });
 
 // Revised custom format to build structure from flat tokens
 StyleDictionary.registerFormat({
   name: 'javascript/custom-nested-object',
-  format: function({ dictionary, platform }) {
+  format: function ({ dictionary, platform }) {
     const currentTheme = platform.options?.currentTheme?.toLowerCase();
-    let mainKey = ":root"; // Default for light theme
+    let mainKey = ':root'; // Default for light theme
 
     if (currentTheme === 'dark') {
-      mainKey = ".dark";
+      mainKey = '.dark';
     }
     const output = { [mainKey]: {} };
 
     dictionary.allTokens.forEach((token: TransformedToken) => {
-      let valueOutput = token.value; 
+      let valueOutput = token.value;
 
       console.log('DEBUG referenceOutput:', valueOutput);
       console.log('DEBUG referenceOutput:', token);
-      
+
       if (token.original.value.startsWith('{')) {
-          const aliasPathString = token.original.value.slice(1, -1);
-          const aliasPathArray = aliasPathString.replace(/\.value$/, '').split('.');
-          const varName = `--${aliasPathArray.join('-').toLowerCase()}`;
-          valueOutput = `var(${varName})`;
-        }
-        else {
-          valueOutput = token.original.value;
-        }
-      
+        const aliasPathString = token.original.value.slice(1, -1);
+        const aliasPathArray = aliasPathString
+          .replace(/\.value$/, '')
+          .split('.');
+        const varName = `--${aliasPathArray.join('-').toLowerCase()}`;
+        valueOutput = `var(${varName})`;
+      } else {
+        valueOutput = token.original.value;
+      }
+
       output[mainKey][token.name] = valueOutput;
     });
 
@@ -52,12 +52,13 @@ StyleDictionary.registerFormat({
     if (Object.keys(output[mainKey]).length === 0) {
       delete output[mainKey]; // Should not happen if tokens exist
     }
-    
-    return `const converted = ${JSON.stringify(output, null, 2)};`;
-  }
+
+    return `export const converted = ${JSON.stringify(output, null, 2)};`;
+  },
 });
 
-function getStyleDictionaryConfig(brand: string, theme: string) { // theme is now 'Light' or 'Dark'
+function getStyleDictionaryConfig(brand: string, theme: string) {
+  // theme is now 'Light' or 'Dark'
   const themeSpecificSources = [
     `${tokensFolder}/1.Primitives.Value.json`,
     `${tokensFolder}/2.Theme.${theme}.json`, // Dynamically uses Light or Dark
@@ -79,7 +80,7 @@ function getStyleDictionaryConfig(brand: string, theme: string) { // theme is no
             },
           },
         ],
-        actions: ['remove-default-suffix']
+        actions: ['remove-default-suffix'],
       },
       // Typescript: {
       //   source: themeSpecificSources,
@@ -99,22 +100,18 @@ function getStyleDictionaryConfig(brand: string, theme: string) { // theme is no
       //     },
       //   ]
       // },
-      JavaScriptThemeObject: { // JS Object is now also theme-specific
+      JavaScriptThemeObject: {
+        // JS Object is now also theme-specific
         source: themeSpecificSources, // Use theme-specific sources
-        transforms: [
-          'attribute/cti',
-          'name/custom/direct-css-var',
-        ],
-        buildPath: `dist/lib/${brand.toLowerCase()}/`, 
+        transforms: ['attribute/cti', 'name/custom/direct-css-var'],
+        buildPath: `dist/lib/${brand.toLowerCase()}/`,
         files: [
           {
             destination: `theme.${theme.toLowerCase()}.js`, // Output theme.light.js or theme.dark.js
             format: 'javascript/custom-nested-object',
           },
         ],
-
-
-      }
+      },
     },
   };
 }
@@ -122,14 +119,15 @@ function getStyleDictionaryConfig(brand: string, theme: string) { // theme is no
 // Build loop adjustment:
 // All platforms (CSS, TS, JavaScriptThemeObject) are now built per brand AND per theme.
 brands.forEach(function (brand) {
-  themes.forEach(function (theme) { // 'Light', then 'Dark'
+  themes.forEach(function (theme) {
+    // 'Light', then 'Dark'
     const currentConfig = getStyleDictionaryConfig(brand, theme);
 
     // CSS Build
     const sdCSS = new StyleDictionary({
       source: currentConfig.platforms.CSS.source,
       platforms: { CSS: currentConfig.platforms.CSS },
-      log: { verbosity: 'verbose' }
+      log: { verbosity: 'verbose' },
     });
     sdCSS.buildPlatform('CSS');
 
@@ -140,19 +138,20 @@ brands.forEach(function (brand) {
     //   log: { verbosity: 'verbose' }
     // });
     // sdTS.buildPlatform('Typescript');
-    
+
     // JavaScriptThemeObject Build (now inside theme loop)
     const sdJSObject = new StyleDictionary({
       source: currentConfig.platforms.JavaScriptThemeObject.source,
       platforms: {
         JavaScriptThemeObject: {
           ...currentConfig.platforms.JavaScriptThemeObject,
-          options: { // Pass currentTheme to the formatter
-            currentTheme: theme
-          }
-        }
+          options: {
+            // Pass currentTheme to the formatter
+            currentTheme: theme,
+          },
+        },
       },
-      log: { verbosity: 'verbose' }
+      log: { verbosity: 'verbose' },
     });
     sdJSObject.buildPlatform('JavaScriptThemeObject');
   });
@@ -160,7 +159,7 @@ brands.forEach(function (brand) {
 
 StyleDictionary.registerAction({
   name: 'remove-default-suffix',
-  do: function(_dictionary, config) {
+  do: function (_dictionary, config) {
     if (!config.buildPath || !config.files || config.files.length === 0) return;
     const buildPath = config.buildPath;
     const destination = config.files[0].destination;
@@ -172,7 +171,7 @@ StyleDictionary.registerAction({
       fs.writeFileSync(filePath, cssContent);
     }
   },
-  undo: function() {
+  undo: function () {
     // No undo operation is necessary for this action.
-  }
+  },
 });
