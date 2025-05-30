@@ -1,24 +1,25 @@
+import { themeTokens as enterpriseLightThemeTokens } from './lib/enterprise/theme.light.js';
+import { themeTokens as enterpriseDarkThemeTokens } from './lib/enterprise/theme.dark.js';
 
-import { converted as enterpriseLightThemeConverted } from './lib/enterprise/theme.light.js';
-import { converted as enterpriseDarkThemeConverted } from './lib/enterprise/theme.dark.js';
+import { themeTokens as ledgerLiveLightThemeTokens } from './lib/ledgerlive/theme.light.js';
+import { themeTokens as ledgerLiveDarkThemeTokens } from './lib/ledgerlive/theme.dark.js';
 
-import { converted as ledgerLiveLightThemeConverted } from './lib/ledgerlive/theme.light.js';
-import { converted as ledgerLiveDarkThemeConverted } from './lib/ledgerlive/theme.dark.js';
-
-import { converted as websitesLightThemeConverted } from './lib/websites/theme.light.js';
-import { converted as websitesDarkThemeConverted } from './lib/websites/theme.dark.js';
+import { themeTokens as websitesLightThemeTokens } from './lib/websites/theme.light.js';
+import { themeTokens as websitesDarkThemeTokens } from './lib/websites/theme.dark.js';
 
 const enterpriseTheme = {
-  ...(enterpriseLightThemeConverted),...(enterpriseDarkThemeConverted),
+  ...enterpriseLightThemeTokens,
+  ...enterpriseDarkThemeTokens,
 };
 
 const ledgerLiveTheme = {
-  ...(ledgerLiveLightThemeConverted),...(ledgerLiveDarkThemeConverted),
+  ...ledgerLiveLightThemeTokens,
+  ...ledgerLiveDarkThemeTokens,
 };
 
 const websitesTheme = {
-  ...(websitesLightThemeConverted),...(websitesDarkThemeConverted),
+  ...websitesLightThemeTokens,
+  ...websitesDarkThemeTokens,
 };
 
 export { enterpriseTheme, ledgerLiveTheme, websitesTheme };
-

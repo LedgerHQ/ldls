@@ -1,10 +1,9 @@
-import type { Config } from 'tailwindcss'
-import { customPlugin } from '../plugins/websites'
+import type { Config } from 'tailwindcss';
+import { websitesTheme } from '@ldls/design-tokens';
+import { createThemePlugin } from '../utils/create-custom-plugin';
 
 export const preset = {
-    content: [],
-    plugins: [customPlugin],
-    darkMode: 'class',
-
-} satisfies Config
-
+  content: [],
+  plugins: [createThemePlugin(websitesTheme)],
+  darkMode: 'class',
+} satisfies Config;
