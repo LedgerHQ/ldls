@@ -72,9 +72,9 @@ function getSDThemeConfig(brand: string, theme: string) {
   ];
 
   return {
+    source: themeSpecificSources,
     platforms: {
       CSS: {
-        source: themeSpecificSources,
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
@@ -93,7 +93,6 @@ function getSDThemeConfig(brand: string, theme: string) {
         actions: ['remove-default-suffix'],
       },
       JavaScriptThemeObject: {
-        source: themeSpecificSources,
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         files: [
@@ -107,15 +106,19 @@ function getSDThemeConfig(brand: string, theme: string) {
           },
         ],
         actions: ['remove-default-suffix'],
+        options: {
+          currentTheme: theme,
+        },
       },
     },
+    log: { verbosity: 'verbose' as const },
   };
 }
 
-const buildPrimitives = () => {
+function getSDPrimitivesConfig() {
   const sources = [`${tokensFolder}/1.Primitives.Value.json`];
 
-  const sd = new StyleDictionary({
+  return {
     source: sources,
     platforms: {
       CSS: {
@@ -144,8 +147,12 @@ const buildPrimitives = () => {
         actions: ['remove-default-suffix'],
       },
     },
-    log: { verbosity: 'verbose' },
-  });
+    log: { verbosity: 'verbose' as const },
+  };
+}
+
+const buildPrimitives = () => {
+  const sd = new StyleDictionary(getSDPrimitivesConfig());
   sd.buildAllPlatforms();
 };
 
@@ -155,26 +162,9 @@ brands.forEach(function (brand) {
   themes.forEach(function (theme) {
     const currentConfig = getSDThemeConfig(brand, theme);
 
-    const sdCSS = new StyleDictionary({
-      source: currentConfig.platforms.CSS.source,
-      platforms: { CSS: currentConfig.platforms.CSS },
-      log: { verbosity: 'verbose' },
-    });
-    sdCSS.buildPlatform('CSS');
+    const sd = new StyleDictionary(currentConfig);
 
-    const sdJSObject = new StyleDictionary({
-      source: currentConfig.platforms.JavaScriptThemeObject.source,
-      platforms: {
-        JavaScriptThemeObject: {
-          ...currentConfig.platforms.JavaScriptThemeObject,
-          options: {
-            currentTheme: theme,
-          },
-        },
-      },
-      log: { verbosity: 'verbose' },
-    });
-    sdJSObject.buildPlatform('JavaScriptThemeObject');
+    sd.buildAllPlatforms();
   });
 });
 
