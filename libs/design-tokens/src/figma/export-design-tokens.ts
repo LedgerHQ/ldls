@@ -62,8 +62,29 @@ async function exportDesignTokens() {
   writeFilesSync(outputDir, tokensFiles);
 }
 
+async function exportStyles() {
+  const { figmaToken, fileKey } = getEnvironmentVariables();
+
+  const stylesMetadata = await figmaApi.getStylesMetadata(fileKey, figmaToken);
+  const stylesNodeIds = stylesMetadata.meta.styles.map(
+    (style) => style.node_id
+  );
+
+  const styleNodes = await figmaApi.getFileNodes(
+    fileKey,
+    figmaToken,
+    stylesNodeIds
+  );
+
+  writeFilesSync(outputDir, {
+    'styles-nodes.json': styleNodes,
+  });
+
+}
+
 async function main() {
   await exportDesignTokens();
+  await exportStyles();
 }
 
 main();
