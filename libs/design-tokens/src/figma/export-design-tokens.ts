@@ -13,12 +13,12 @@ import * as fs from 'fs';
 const outputDir = 'tokens';
 
 function getEnvironmentVariables(): { figmaToken: string; fileKey: string } {
-  const figmaToken = process.env.FIGMA_TOKEN;
+  const figmaToken = process.env.FIGMA_API_TOKEN;
   const fileKey = process.env.FIGMA_FILE_KEY;
 
   if (!figmaToken || !fileKey) {
     throw new Error(
-      `Please set the FIGMA_TOKEN (${figmaToken}) and FIGMA_FILE_KEY (${fileKey}) environment variables.`
+      `Please set the FIGMA_API_TOKEN and FIGMA_FILE_KEY environment variables.`
     );
   }
 
