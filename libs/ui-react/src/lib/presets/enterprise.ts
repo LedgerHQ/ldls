@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { createThemePlugin } from '../utils/create-custom-plugin';
+import { createThemePlugin } from '../utils/create-theme-plugin';
 import { enterpriseTheme } from '@ldls/design-tokens';
 
 export const preset = {

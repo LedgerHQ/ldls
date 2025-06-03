@@ -60,11 +60,11 @@ StyleDictionary.registerFormat({
       delete output[mainKey];
     }
 
-    return `export const themeTokens = ${JSON.stringify(output, null, 2)};`;
+    return `export const tokens = ${JSON.stringify(output, null, 2)};`;
   },
 });
 
-function getStyleDictionaryConfig(brand: string, theme: string) {
+function getSDThemeConfig(brand: string, theme: string) {
   const themeSpecificSources = [
     `${tokensFolder}/1.Primitives.Value.json`,
     `${tokensFolder}/2.Theme.${theme}.json`,
@@ -72,9 +72,9 @@ function getStyleDictionaryConfig(brand: string, theme: string) {
   ];
 
   return {
+    source: themeSpecificSources,
     platforms: {
       CSS: {
-        source: themeSpecificSources,
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
@@ -84,50 +84,85 @@ function getStyleDictionaryConfig(brand: string, theme: string) {
             options: {
               outputReferences: true,
             },
+            filter: (token) => {
+              return !token.filePath.includes('1.Primitives.Value.json');
+            },
           },
         ],
         actions: ['remove-default-suffix'],
       },
       JavaScriptThemeObject: {
-        source: themeSpecificSources,
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         files: [
           {
             destination: `theme.${theme.toLowerCase()}.js`,
             format: 'javascript/custom-nested-object',
+            filter: (token) => {
+              return !token.filePath.includes('1.Primitives.Value.json');
+            },
+          },
+        ],
+        actions: ['remove-default-suffix'],
+        options: {
+          currentTheme: theme,
+        },
+      },
+    },
+    log: { verbosity: 'verbose' as const },
+  };
+}
+
+function getSDPrimitivesConfig() {
+  const sources = [`${tokensFolder}/1.Primitives.Value.json`];
+
+  return {
+    source: sources,
+    platforms: {
+      CSS: {
+        buildPath: `dist/lib/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `variables.primitives.css`,
+            format: 'css/variables',
+            options: {
+              outputReferences: true,
+            },
+          },
+        ],
+        actions: ['remove-default-suffix'],
+      },
+      JavaScriptThemeObject: {
+        transforms: ['attribute/cti', 'name/custom/direct-css-var'],
+        buildPath: `dist/lib/`,
+        files: [
+          {
+            destination: `primitives.js`,
+            format: 'javascript/custom-nested-object',
           },
         ],
         actions: ['remove-default-suffix'],
       },
     },
+    log: { verbosity: 'verbose' as const },
   };
 }
 
+const buildPrimitives = () => {
+  const sd = new StyleDictionary(getSDPrimitivesConfig());
+  sd.buildAllPlatforms();
+};
+
+buildPrimitives();
+
 brands.forEach(function (brand) {
   themes.forEach(function (theme) {
-    const currentConfig = getStyleDictionaryConfig(brand, theme);
+    const currentConfig = getSDThemeConfig(brand, theme);
 
-    const sdCSS = new StyleDictionary({
-      source: currentConfig.platforms.CSS.source,
-      platforms: { CSS: currentConfig.platforms.CSS },
-      log: { verbosity: 'verbose' },
-    });
-    sdCSS.buildPlatform('CSS');
+    const sd = new StyleDictionary(currentConfig);
 
-    const sdJSObject = new StyleDictionary({
-      source: currentConfig.platforms.JavaScriptThemeObject.source,
-      platforms: {
-        JavaScriptThemeObject: {
-          ...currentConfig.platforms.JavaScriptThemeObject,
-          options: {
-            currentTheme: theme,
-          },
-        },
-      },
-      log: { verbosity: 'verbose' },
-    });
-    sdJSObject.buildPlatform('JavaScriptThemeObject');
+    sd.buildAllPlatforms();
   });
 });
 
