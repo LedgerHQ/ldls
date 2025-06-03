@@ -8,12 +8,7 @@
     "@types/lodash": "^4.17.16",
     "ajv": "^8.17.1",
     "invariant": "^2.2.4",
-    "lodash": "^4.17.21",
-    "nativewind": "^4.1.23",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-native": "~0.76.3",
-    "react-router-dom": "6.29.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -83,6 +78,11 @@
     "jsdom": "~22.1.0",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "20.7.1",
+    "nativewind": "^4.1.23",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "~0.76.3",
+    "react-router-dom": "6.29.0",
     "postcss": "^8.4.38",
     "prettier": "^2.6.2",
     "react-native-svg": "~15.8.0",
@@ -122,6 +122,9 @@
     }
   },
   "peerDependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "nativewind": "^4.1.23",
+    "react": "19.0.0",
+    "react-native": "~0.76.3"
   }
 }
