@@ -85,7 +85,6 @@ function getSDThemeConfig(brand: string, theme: string) {
               outputReferences: true,
             },
             filter: (token) => {
-              // Exclude primitive tokens - they should come from the separate primitives file
               return !token.filePath.includes('1.Primitives.Value.json');
             },
           },
@@ -100,7 +99,6 @@ function getSDThemeConfig(brand: string, theme: string) {
             destination: `theme.${theme.toLowerCase()}.js`,
             format: 'javascript/custom-nested-object',
             filter: (token) => {
-              // Exclude primitive tokens - they should come from the separate primitives file
               return !token.filePath.includes('1.Primitives.Value.json');
             },
           },
