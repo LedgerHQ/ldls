@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss';
-import { createThemePlugin } from '@ldls/ui-core';
 import { enterpriseTheme } from '@ldls/design-tokens';
+import { createThemePlugin } from '../utils';
 
-export const preset = {
+export const enterprisePreset = {
   content: [],
   plugins: [createThemePlugin(enterpriseTheme)],
   darkMode: 'class',
