@@ -1,11 +1,3 @@
-declare const enterpriseTheme: {
-    [x: string]: Record<string, string>;
-};
-declare const ledgerLiveTheme: {
-    [x: string]: Record<string, string>;
-};
-declare const websitesTheme: {
-    [x: string]: Record<string, string>;
-};
-export { enterpriseTheme, ledgerLiveTheme, websitesTheme };
+export * from './themes.js';
+export * from './presets/index.js';
 //# sourceMappingURL=index.d.ts.map

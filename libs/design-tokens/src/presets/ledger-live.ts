@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
-import { ledgerLiveTheme } from '@ldls/design-tokens';
-import { createThemePlugin } from '../utils';
+import { ledgerLiveTheme } from '../themes.js';
+import { createThemePlugin } from '../utils/index.js';
 
 export const ledgerLivePreset = {
   content: [],

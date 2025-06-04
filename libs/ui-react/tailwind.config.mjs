@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { preset } from './src/lib/presets/ledger-live';
+import { ledgerLivePreset } from '@ldls/design-tokens';
 
 export default {
   content: [
@@ -7,5 +7,5 @@ export default {
     '.storybook/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.stories.{js,jsx,ts,tsx}',
   ],
-  presets: [preset],
+  presets: [ledgerLivePreset],
 };

@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
-import { websitesTheme } from '@ldls/design-tokens';
-import { createThemePlugin } from '@ldls/ui-core';
+import { websitesTheme } from '../themes.js';
+import { createThemePlugin } from '../utils/index.js';
 
 export const websitesPreset = {
   content: [],

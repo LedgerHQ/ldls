@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
-import { enterpriseTheme } from '@ldls/design-tokens';
-import { createThemePlugin } from '../utils';
+import { enterpriseTheme } from '../themes.js';
+import { createThemePlugin } from '../utils/index.js';
 
 export const enterprisePreset = {
   content: [],
