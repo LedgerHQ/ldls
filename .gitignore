@@ -117,3 +117,7 @@ yarn-error.log
 
 storybook-static
 test-output
+
+.nx/*
+!.nx/version-plans/
+!.nx/version-plans/**

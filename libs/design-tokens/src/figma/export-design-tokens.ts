@@ -6,19 +6,18 @@
 
 import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
 import tokenFileNameRenamer from './token-file-name-renamer.js';
-import figmaMockApi from './api-mock.js';
 import figmaApi from './api.js';
 import * as fs from 'fs';
 
 const outputDir = 'tokens';
 
 function getEnvironmentVariables(): { figmaToken: string; fileKey: string } {
-  const figmaToken = process.env.FIGMA_TOKEN;
+  const figmaToken = process.env.FIGMA_API_TOKEN;
   const fileKey = process.env.FIGMA_FILE_KEY;
 
   if (!figmaToken || !fileKey) {
     throw new Error(
-      `Please set the FIGMA_TOKEN (${figmaToken}) and FIGMA_FILE_KEY (${fileKey}) environment variables.`
+      `Please set the FIGMA_API_TOKEN and FIGMA_FILE_KEY environment variables.`
     );
   }
 
@@ -41,18 +40,9 @@ function writeFilesSync<T>(
   });
 }
 
-async function exportDesignTokens() {
-  const useLocalVariablesMock = process.env.USE_MOCK === 'false' ? false : true;
-  let localVariables;
-
-  if (useLocalVariablesMock) {
-    localVariables = await figmaMockApi.getMocksFromFileSystem(
-      'local-variables-response.json'
-    );
-  } else {
-    const { figmaToken, fileKey } = getEnvironmentVariables();
-    localVariables = await figmaApi.getLocalVariables(fileKey, figmaToken);
-  }
+async function exportDesignTokens() {  
+  const { figmaToken, fileKey } = getEnvironmentVariables();
+  const localVariables = await figmaApi.getLocalVariables(fileKey, figmaToken);
 
   const tokensFiles = tokenFilesFromLocalVariables(
     localVariables,

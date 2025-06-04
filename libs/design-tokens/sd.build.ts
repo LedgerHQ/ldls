@@ -2,8 +2,8 @@ import StyleDictionary, { TransformedToken } from 'style-dictionary';
 import fs from 'fs';
 import path from 'path';
 
-const brands = ['Enterprise', 'Websites', 'LedgerLive'];
-const themes = ['Light', 'Dark'];
+const brands = ['enterprise', 'websites', 'ledger-live'];
+const themes = ['light', 'dark'];
 const tokensFolder = 'tokens';
 const defaultSuffix = '-default';
 
@@ -38,10 +38,14 @@ StyleDictionary.registerFormat({
     dictionary.allTokens.forEach((token: TransformedToken) => {
       const tokenName = sanitizeTokenName(token.name);
       const finalTokenName = tokenName.replace(' ', '-');
-      const tokenOriginalValue = token.original.value;
-      let tokenFinalValue: string;
+      const tokenOriginalValue = token.original.$value;
 
-      if (tokenOriginalValue.startsWith('{')) {
+      let tokenFinalValue: string;
+      if (
+        typeof tokenOriginalValue === 'string' &&
+        tokenOriginalValue.startsWith('{') &&
+        tokenOriginalValue.endsWith('}')
+      ) {
         const aliasPathString = tokenOriginalValue.slice(1, -1);
         const varName = `--${aliasPathString
           .split('.')
@@ -60,21 +64,21 @@ StyleDictionary.registerFormat({
       delete output[mainKey];
     }
 
-    return `export const themeTokens = ${JSON.stringify(output, null, 2)};`;
+    return `export const tokens = ${JSON.stringify(output, null, 2)};`;
   },
 });
 
-function getStyleDictionaryConfig(brand: string, theme: string) {
+function getSDThemeConfig(brand: string, theme: string) {
   const themeSpecificSources = [
-    `${tokensFolder}/1.Primitives.Value.json`,
-    `${tokensFolder}/2.Theme.${theme}.json`,
-    `${tokensFolder}/3.Brand.${brand}.json`,
+    `${tokensFolder}/1.primitives.value.json`,
+    `${tokensFolder}/2.theme.${theme}.json`,
+    `${tokensFolder}/3.brand.${brand}.json`,
   ];
 
   return {
+    source: themeSpecificSources,
     platforms: {
       CSS: {
-        source: themeSpecificSources,
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
@@ -84,50 +88,85 @@ function getStyleDictionaryConfig(brand: string, theme: string) {
             options: {
               outputReferences: true,
             },
+            filter: (token) => {
+              return !token.filePath.includes('1.primitives.value.json');
+            },
           },
         ],
         actions: ['remove-default-suffix'],
       },
       JavaScriptThemeObject: {
-        source: themeSpecificSources,
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
         buildPath: `dist/lib/${brand.toLowerCase()}/`,
         files: [
           {
             destination: `theme.${theme.toLowerCase()}.js`,
             format: 'javascript/custom-nested-object',
+            filter: (token) => {
+              return !token.filePath.includes('1.primitives.value.json');
+            },
+          },
+        ],
+        actions: ['remove-default-suffix'],
+        options: {
+          currentTheme: theme,
+        },
+      },
+    },
+    log: { verbosity: 'verbose' as const },
+  };
+}
+
+function getSDPrimitivesConfig() {
+  const sources = [`${tokensFolder}/1.primitives.value.json`];
+
+  return {
+    source: sources,
+    platforms: {
+      CSS: {
+        buildPath: `dist/lib/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `variables.primitives.css`,
+            format: 'css/variables',
+            options: {
+              outputReferences: true,
+            },
+          },
+        ],
+        actions: ['remove-default-suffix'],
+      },
+      JavaScriptThemeObject: {
+        transforms: ['attribute/cti', 'name/custom/direct-css-var'],
+        buildPath: `dist/lib/`,
+        files: [
+          {
+            destination: `primitives.js`,
+            format: 'javascript/custom-nested-object',
           },
         ],
         actions: ['remove-default-suffix'],
       },
     },
+    log: { verbosity: 'verbose' as const },
   };
 }
 
+const buildPrimitives = () => {
+  const sd = new StyleDictionary(getSDPrimitivesConfig());
+  sd.buildAllPlatforms();
+};
+
+buildPrimitives();
+
 brands.forEach(function (brand) {
   themes.forEach(function (theme) {
-    const currentConfig = getStyleDictionaryConfig(brand, theme);
+    const currentConfig = getSDThemeConfig(brand, theme);
 
-    const sdCSS = new StyleDictionary({
-      source: currentConfig.platforms.CSS.source,
-      platforms: { CSS: currentConfig.platforms.CSS },
-      log: { verbosity: 'verbose' },
-    });
-    sdCSS.buildPlatform('CSS');
+    const sd = new StyleDictionary(currentConfig);
 
-    const sdJSObject = new StyleDictionary({
-      source: currentConfig.platforms.JavaScriptThemeObject.source,
-      platforms: {
-        JavaScriptThemeObject: {
-          ...currentConfig.platforms.JavaScriptThemeObject,
-          options: {
-            currentTheme: theme,
-          },
-        },
-      },
-      log: { verbosity: 'verbose' },
-    });
-    sdJSObject.buildPlatform('JavaScriptThemeObject');
+    sd.buildAllPlatforms();
   });
 });
 

@@ -2,6 +2,10 @@ name: Export Figma Design Tokens
 
 on:
   workflow_dispatch:
+    inputs:
+      figma_file_key:
+        description: 'Figma file key'
+        required: true
 
 env:
   NX_NO_CLOUD: true
@@ -31,6 +35,9 @@ jobs:
 
       - name: Export Design Tokens from Figma
         run: npx nx run @ldls/design-tokens:figma-export
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          FIGMA_FILE_KEY: ${{ github.event.inputs.figma_file_key }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

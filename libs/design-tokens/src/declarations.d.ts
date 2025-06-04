@@ -1,3 +1,3 @@
 declare module '*.js' {
-  export const themeTokens: Record<string, Record<string, string>>;
+  export const tokens: Record<string, Record<string, string>>;
 }
