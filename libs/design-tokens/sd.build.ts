@@ -2,8 +2,8 @@ import StyleDictionary, { TransformedToken } from 'style-dictionary';
 import fs from 'fs';
 import path from 'path';
 
-const brands = ['Enterprise', 'Websites', 'LedgerLive'];
-const themes = ['Light', 'Dark'];
+const brands = ['enterprise', 'websites', 'ledger-live'];
+const themes = ['light', 'dark'];
 const tokensFolder = 'tokens';
 const defaultSuffix = '-default';
 
@@ -38,10 +38,14 @@ StyleDictionary.registerFormat({
     dictionary.allTokens.forEach((token: TransformedToken) => {
       const tokenName = sanitizeTokenName(token.name);
       const finalTokenName = tokenName.replace(' ', '-');
-      const tokenOriginalValue = token.original.value;
-      let tokenFinalValue: string;
+      const tokenOriginalValue = token.original.$value;
 
-      if (tokenOriginalValue.startsWith('{')) {
+      let tokenFinalValue: string;
+      if (
+        typeof tokenOriginalValue === 'string' &&
+        tokenOriginalValue.startsWith('{') &&
+        tokenOriginalValue.endsWith('}')
+      ) {
         const aliasPathString = tokenOriginalValue.slice(1, -1);
         const varName = `--${aliasPathString
           .split('.')
@@ -66,9 +70,9 @@ StyleDictionary.registerFormat({
 
 function getSDThemeConfig(brand: string, theme: string) {
   const themeSpecificSources = [
-    `${tokensFolder}/1.Primitives.Value.json`,
-    `${tokensFolder}/2.Theme.${theme}.json`,
-    `${tokensFolder}/3.Brand.${brand}.json`,
+    `${tokensFolder}/1.primitives.value.json`,
+    `${tokensFolder}/2.theme.${theme}.json`,
+    `${tokensFolder}/3.brand.${brand}.json`,
   ];
 
   return {
@@ -85,7 +89,7 @@ function getSDThemeConfig(brand: string, theme: string) {
               outputReferences: true,
             },
             filter: (token) => {
-              return !token.filePath.includes('1.Primitives.Value.json');
+              return !token.filePath.includes('1.primitives.value.json');
             },
           },
         ],
@@ -99,7 +103,7 @@ function getSDThemeConfig(brand: string, theme: string) {
             destination: `theme.${theme.toLowerCase()}.js`,
             format: 'javascript/custom-nested-object',
             filter: (token) => {
-              return !token.filePath.includes('1.Primitives.Value.json');
+              return !token.filePath.includes('1.primitives.value.json');
             },
           },
         ],
@@ -114,7 +118,7 @@ function getSDThemeConfig(brand: string, theme: string) {
 }
 
 function getSDPrimitivesConfig() {
-  const sources = [`${tokensFolder}/1.Primitives.Value.json`];
+  const sources = [`${tokensFolder}/1.primitives.value.json`];
 
   return {
     source: sources,
