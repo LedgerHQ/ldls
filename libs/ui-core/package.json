@@ -20,6 +20,5 @@
       "scope:shared",
       "type:ui"
     ]
-  },
-  "dependencies": {}
+  }
 }

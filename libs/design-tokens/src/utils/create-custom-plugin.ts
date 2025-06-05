@@ -1,5 +1,5 @@
-import plugin from 'tailwindcss/plugin';
-import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix';
+import plugin from 'tailwindcss/plugin.js';
+import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
 export function createThemePlugin(
   brandTheme: Record<string, Record<string, string>>

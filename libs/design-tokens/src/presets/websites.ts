@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss';
-import { websitesTheme } from '@ldls/design-tokens';
-import { createThemePlugin } from '../utils/create-theme-plugin';
+import { websitesTheme } from '../themes.js';
+import { createThemePlugin } from '../utils/index.js';
 
-export const preset = {
+export const websitesPreset = {
   content: [],
   plugins: [createThemePlugin(websitesTheme)],
   darkMode: 'class',

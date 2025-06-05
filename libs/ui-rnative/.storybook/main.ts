@@ -1,4 +1,6 @@
+import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
@@ -13,10 +15,24 @@ const config: StorybookConfig = {
       ...config.resolve.alias,
       'react-native': 'react-native-web',
     };
-    return config;
+
+    return mergeConfig(config, {
+      plugins: [nxViteTsPaths()],
+      css: {
+        postcss: {
+          plugins: [
+            (await import('tailwindcss')).default,
+            (await import('autoprefixer')).default,
+          ],
+        },
+      },
+    });
   },
   docs: {
     autodocs: true,
+  },
+  core: {
+    disableTelemetry: true,
   },
 };
 
