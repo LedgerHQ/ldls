@@ -8,7 +8,17 @@ export default [
   },
   {
     files: ['**/*.json'],
-    rules: {},
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: [
+            '{projectRoot}/eslint.config.{js,cjs,mjs}',
+            '{projectRoot}/rollup.config.{js,ts,mjs,mts,cjs,cts}',
+          ],
+        },
+      ],
+    },
     languageOptions: {
       parser: await import('jsonc-eslint-parser'),
     },
