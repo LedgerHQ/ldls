@@ -20,18 +20,21 @@ export function codeSyntaxFromVariableNameEndingByDefault(
   }
   cssVariableName = cssVariableName.replace(/\//g, '-').replace(/\s/g, '-');
 
-  return `var(--${cssVariableName})`;
+  return `var(--${cssVariableName});`;
 }
 
 export default function codeSyntaxtUpdatePayload(localVariables: GetLocalVariablesResponse) {
-  return findVariablesEndingByDefault(Object.values(localVariables.meta.variables))
+  const variablesChange = findVariablesEndingByDefault(Object.values(localVariables.meta.variables))
   .map((variable) => {
     return {
-      variableId: variable.id,
+      id: variable.id,
       name: variable.name,
-      codeSyntax: codeSyntaxFromVariableNameEndingByDefault(variable.name),
+      codeSyntax: { 
+        WEB: codeSyntaxFromVariableNameEndingByDefault(variable.name)},
       action: 'UPDATE',
     }
   })
-
+  return {
+  variables: variablesChange,
+  }
 }
