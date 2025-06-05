@@ -25,27 +25,43 @@ describe('transform code syntax', () => {
     ]);
   });
 
-  it('create code syntax by removing default', () => {
+  it('create variable name by removing all /Default', () => {
     expect(
       codeSyntaxFromVariableNameEndingByDefault(
         'Content/Interactive/Inverted/Default'
       )
-    ).toBe('var(--content-interactive-inverted)');
+    ).toBe('var(--content-interactive-inverted);');
+
+    expect(
+      codeSyntaxFromVariableNameEndingByDefault(
+        'Content/Interactive/Inverted/default'
+      )
+    ).toBe('var(--content-interactive-inverted);');
 
     expect(
       codeSyntaxFromVariableNameEndingByDefault(
         'Surface/Default/Default/Default'
       )
-    ).toBe('var(--surface)');
+    ).toBe('var(--surface);');
 
     expect(
       codeSyntaxFromVariableNameEndingByDefault('Border Width/Default')
-    ).toBe('var(--border-width)');
+    ).toBe('var(--border-width);');
 
+  });
+
+  it('doesn\'t Default if part of a wider string', () => {
     expect(
       codeSyntaxFromVariableNameEndingByDefault(
         'Surface/Do Not Remove Default/Default'
       )
-    ).toBe('var(--surface-do-not-remove-default)');
+    ).toBe('var(--surface-do-not-remove-default);');
+
+    expect(
+      codeSyntaxFromVariableNameEndingByDefault(
+        'Surface/Do Not Remove default/Default'
+      )
+    ).toBe('var(--surface-do-not-remove-default);');
   });
+
 });
