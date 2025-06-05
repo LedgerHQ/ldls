@@ -1,4 +1,3 @@
-
 import figmaApi from './api.js';
 import getEnvironmentVariables from './get-environment-variables.js';
 import generateCodeSyntaxUpdatePayload from './local-variables-code-syntax.js';
@@ -22,7 +21,6 @@ async function generateCodeSyntaxPayload() {
 }
 
 async function main() {
-  // await exportDesignTokens();
   await generateCodeSyntaxPayload()
 }
 
