@@ -31,7 +31,7 @@
     "code-syntax": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./src/figma/generate-code-syntax-payload.ts",
+        "command": "npx tsx ./src/figma/update-code-syntax.ts",
         "cwd": "libs/design-tokens"
       }
     },

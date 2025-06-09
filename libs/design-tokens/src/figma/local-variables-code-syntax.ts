@@ -1,13 +1,15 @@
 import {
   LocalVariable,
-  GetLocalVariablesResponse
+  GetLocalVariablesResponse,
+  PostVariablesRequestBody,
+  VariableUpdate,
 } from '@figma/rest-api-spec';
 
 export function findVariablesEndingByDefault(
   variables: LocalVariable[]
 ): LocalVariable[] {
-  return variables.filter(
-    (variable) => variable.name.toLowerCase().endsWith('/default')
+  return variables.filter((variable) =>
+    variable.name.toLowerCase().endsWith('/default')
   );
 }
 
@@ -23,18 +25,28 @@ export function codeSyntaxFromVariableNameEndingByDefault(
   return `var(--${cssVariableName});`;
 }
 
-export default function codeSyntaxtUpdatePayload(localVariables: GetLocalVariablesResponse) {
-  const variablesChange = findVariablesEndingByDefault(Object.values(localVariables.meta.variables))
-  .map((variable) => {
-    return {
-      id: variable.id,
-      name: variable.name,
-      codeSyntax: { 
-        WEB: codeSyntaxFromVariableNameEndingByDefault(variable.name)},
-      action: 'UPDATE',
-    }
-  })
+export default function codeSyntaxUpdateBody(
+  localVariables: GetLocalVariablesResponse
+): PostVariablesRequestBody {
+  const variablesChange: VariableUpdate[] = findVariablesEndingByDefault(
+    Object.values(localVariables.meta.variables)
+  )
+    .filter(
+      (variable) =>
+        variable.codeSyntax?.WEB !==
+        codeSyntaxFromVariableNameEndingByDefault(variable.name)
+    )
+    .map((variable) => {
+      return {
+        id: variable.id,
+        name: variable.name,
+        codeSyntax: {
+          WEB: codeSyntaxFromVariableNameEndingByDefault(variable.name),
+        },
+        action: 'UPDATE',
+      };
+    });
   return {
-  variables: variablesChange,
-  }
+    variables: variablesChange,
+  };
 }
