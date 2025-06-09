@@ -1,11 +1,10 @@
 import { config } from 'dotenv';
 import { mkdirSync } from 'fs';
 import { dirname } from 'path';
+import { ICONS_CANVAS } from 'src/config/symbols.js';
+import { SYMBOLS_FILE_ID } from 'src/config/symbols.js';
 
 config({ path: '../../../../.env' });
-
-const SYMBOLS_FILE_ID = 'zSkvGGiqcnhywp2l3HTHxA';
-const ICONS_CANVAS = '01. Icons';
 
 const downloadSvgs = async () => {
   // `figma-api-exporter` is a CommonJS module, so we need to import it dynamically
