@@ -5,9 +5,7 @@ on:
     inputs:
       figma_file_key:
         description: 'Figma File Key (use default if empty)'
-        type: string
         default: ''
-        required: true
 
 env:
   NX_NO_CLOUD: true
