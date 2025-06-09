@@ -2,6 +2,8 @@ import {
   GetLocalVariablesResponse,
   GetFileStylesResponse,
   GetFileNodesResponse,
+  PostVariablesResponse,
+  PostVariablesRequestBody,
 } from '@figma/rest-api-spec';
 import fetch from 'node-fetch';
 
@@ -9,24 +11,35 @@ interface CallFigmaAPIOptions {
   apiPath: string;
   method?: string;
   token: string;
+  body?: Record<string, unknown>;
 }
 
 async function callFigmaAPI<T>({
   apiPath,
   method = 'GET',
   token,
+  body = undefined,
 }: CallFigmaAPIOptions): Promise<T> {
   const baseURL = 'https://api.figma.com';
   const response = await fetch(`${baseURL}/${apiPath}`, {
     method,
     headers: {
-      Accept: '*/*',
+      ...(method === 'POST'
+        ? {
+            'Content-Type': 'application/json',
+          }
+        : {
+            Accept: '*/*',
+          }),
       'X-Figma-Token': token,
     },
+    ...(method === 'POST' && body && { body: JSON.stringify(body) }),
   });
 
   if (!response.ok) {
-    throw new Error(`Error while calling ${apiPath}: ${response.statusText}`);
+    throw new Error(
+      `Error while calling ${method}: ${apiPath}: ${response.status} ${response.statusText}`
+    );
   }
   return (await response.json()) as T;
 }
@@ -65,8 +78,22 @@ async function getFileNodes(
   });
 }
 
+async function postVariables(
+  fileKey: string,
+  figmaToken: string,
+  body: PostVariablesRequestBody
+): Promise<PostVariablesResponse> {
+  return callFigmaAPI<PostVariablesResponse>({
+    method: 'POST',
+    apiPath: `v1/files/${fileKey}/variables`,
+    token: figmaToken,
+    body,
+  });
+}
+
 export default {
   getLocalVariables,
   getStylesMetadata,
   getFileNodes,
+  postVariables,
 };

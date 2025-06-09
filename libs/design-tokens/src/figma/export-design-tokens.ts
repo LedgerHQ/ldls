@@ -8,21 +8,9 @@ import tokenFilesFromLocalVariables from './token-files-from-local-variables.js'
 import tokenFileNameRenamer from './token-file-name-renamer.js';
 import figmaApi from './api.js';
 import * as fs from 'fs';
+import getEnvironmentVariables from './get-environment-variables.js';
 
 const outputDir = 'tokens';
-
-function getEnvironmentVariables(): { figmaToken: string; fileKey: string } {
-  const figmaToken = process.env.FIGMA_API_TOKEN;
-  const fileKey = process.env.FIGMA_FILE_KEY;
-
-  if (!figmaToken || !fileKey) {
-    throw new Error(
-      `Please set the FIGMA_API_TOKEN and FIGMA_FILE_KEY environment variables.`
-    );
-  }
-
-  return { figmaToken, fileKey };
-}
 
 function writeFilesSync<T>(
   outputDir: string,
@@ -40,7 +28,7 @@ function writeFilesSync<T>(
   });
 }
 
-async function exportDesignTokens() {  
+async function exportDesignTokens() {
   const { figmaToken, fileKey } = getEnvironmentVariables();
   const localVariables = await figmaApi.getLocalVariables(fileKey, figmaToken);
 
