@@ -5,6 +5,7 @@ on:
     inputs:
       figma_file_key:
         description: 'Figma file key'
+        default: ''
         required: true
 
 env:
@@ -37,7 +38,7 @@ jobs:
         run: npx nx run @ldls/design-tokens:figma-export
         env:
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
-          FIGMA_FILE_KEY: ${{ github.event.inputs.figma_file_key }}
+          FIGMA_FILE_KEY: ${{ github.event.inputs.figma_file_key === '' && vars.FIGMA_FOUNDATIONS_FILE_KEY || github.event.inputs.figma_file_key }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
