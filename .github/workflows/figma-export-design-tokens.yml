@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       figma_file_key:
-        description: 'Figma file key'
+        description: 'Figma File Key (use default if empty)'
+        type: string
         default: ''
         required: true
 
