@@ -41,6 +41,13 @@
         "command": "npx tsx sd.build",
         "cwd": "libs/design-tokens"
       }
+    },
+    "download-svgs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx ./src/lib/download-svgs.ts",
+        "cwd": "libs/design-tokens"
+      }
     }
   },
   "tags": ["scope:shared", "type:util"]
