@@ -11,7 +11,9 @@
             "scopes": [
               "FRAME_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-canvas);"
+            }
           }
         }
       },
@@ -56,7 +58,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-white);"
+            }
           }
         }
       }
@@ -73,7 +77,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-black);"
+            }
           }
         }
       }
@@ -91,7 +97,7 @@
               "SHAPE_FILL"
             ],
             "codeSyntax": {
-              "WEB": "background/base"
+              "WEB": "var(--background-base);"
             }
           }
         }
@@ -139,7 +145,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-base-transparent);"
+            }
           }
         }
       },
@@ -186,7 +194,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-disabled);"
+            }
           }
         }
       }
@@ -203,7 +213,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-muted);"
+            }
           }
         }
       },
@@ -250,7 +262,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-muted-on-sheet);"
+            }
           }
         }
       },
@@ -297,7 +311,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-muted-on-muted);"
+            }
           }
         }
       },
@@ -344,7 +360,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-muted-transparent);"
+            }
           }
         }
       },
@@ -406,7 +424,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-muted-strong);"
+            }
           }
         }
       },
@@ -502,7 +522,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-interactive);"
+            }
           }
         }
       },
@@ -549,7 +571,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-error);"
+            }
           }
         }
       }
@@ -567,7 +591,9 @@
               "SHAPE_FILL",
               "EFFECT_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-error-strong);"
+            }
           }
         }
       }
@@ -581,7 +607,9 @@
           "com.figma": {
             "hiddenFromPublishing": true,
             "scopes": [],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-error-transparent);"
+            }
           }
         }
       }
@@ -598,7 +626,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-warning);"
+            }
           }
         }
       }
@@ -615,7 +645,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-warning-strong);"
+            }
           }
         }
       }
@@ -632,7 +664,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-success);"
+            }
           }
         }
       }
@@ -650,12 +684,14 @@
               "SHAPE_FILL",
               "EFFECT_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-success-strong);"
+            }
           }
         }
       }
     },
-    "sucess-transparent": {
+    "success-transparent": {
       "default": {
         "$type": "color",
         "$value": "{color.background.success-transparent.default}",
@@ -664,7 +700,9 @@
           "com.figma": {
             "hiddenFromPublishing": true,
             "scopes": [],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-success-transparent);"
+            }
           }
         }
       }
@@ -681,7 +719,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-active);"
+            }
           }
         }
       },
@@ -728,7 +768,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-active-subtle);"
+            }
           }
         }
       }
@@ -745,7 +787,9 @@
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--background-native);"
+            }
           }
         }
       }
@@ -916,7 +960,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-black);"
+            }
           }
         }
       }
@@ -933,7 +979,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-white);"
+            }
           }
         }
       }
@@ -950,7 +998,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-grey);"
+            }
           }
         }
       }
@@ -968,7 +1018,9 @@
               "TEXT_FILL",
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-base);"
+            }
           }
         }
       },
@@ -1017,7 +1069,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-disabled);"
+            }
           }
         }
       }
@@ -1034,7 +1088,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-muted);"
+            }
           }
         }
       }
@@ -1051,7 +1107,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-muted-subtle);"
+            }
           }
         }
       }
@@ -1068,7 +1126,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-active);"
+            }
           }
         }
       }
@@ -1085,7 +1145,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-error);"
+            }
           }
         }
       }
@@ -1102,7 +1164,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-warning);"
+            }
           }
         }
       }
@@ -1119,7 +1183,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-success);"
+            }
           }
         }
       }
@@ -1136,7 +1202,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-on-accent);"
+            }
           }
         }
       }
@@ -1154,7 +1222,9 @@
               "TEXT_FILL",
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-on-interactive);"
+            }
           }
         }
       }
@@ -1171,7 +1241,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-on-error-strong);"
+            }
           }
         }
       }
@@ -1188,7 +1260,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-on-succes-strong);"
+            }
           }
         }
       }
@@ -1205,7 +1279,9 @@
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--text-native);"
+            }
           }
         }
       }
@@ -1223,7 +1299,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-black);"
+            }
           }
         }
       }
@@ -1239,7 +1317,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-white);"
+            }
           }
         }
       }
@@ -1255,7 +1335,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-disabled);"
+            }
           }
         }
       }
@@ -1271,7 +1353,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-base);"
+            }
           }
         }
       },
@@ -1315,7 +1399,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-muted);"
+            }
           }
         }
       },
@@ -1359,7 +1445,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-muted-subtle);"
+            }
           }
         }
       },
@@ -1403,7 +1491,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-error);"
+            }
           }
         }
       },
@@ -1447,7 +1537,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-active);"
+            }
           }
         }
       },
@@ -1491,7 +1583,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-focus);"
+            }
           }
         }
       }
@@ -1507,7 +1601,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-warning);"
+            }
           }
         }
       }
@@ -1523,7 +1619,9 @@
             "scopes": [
               "STROKE_COLOR"
             ],
-            "codeSyntax": {}
+            "codeSyntax": {
+              "WEB": "var(--border-success);"
+            }
           }
         }
       }
@@ -1540,7 +1638,9 @@
           "scopes": [
             "STROKE_FLOAT"
           ],
-          "codeSyntax": {}
+          "codeSyntax": {
+            "WEB": "var(--border-width);"
+          }
         }
       }
     },
