@@ -34,7 +34,7 @@ export interface ButtonProps
   children: React.ReactNode;
 }
 
-export const Button = ({
+const Button = ({
   children,
   variant,
   size,
@@ -47,3 +47,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button;
