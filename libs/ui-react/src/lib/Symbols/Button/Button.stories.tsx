@@ -4,7 +4,7 @@ import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Components/Button',
+  title: 'React/Components/Button',
   tags: ['autodocs'],
   argTypes: {
     variant: {

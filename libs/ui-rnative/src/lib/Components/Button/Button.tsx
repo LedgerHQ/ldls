@@ -2,28 +2,25 @@ import { Text, TouchableOpacity } from 'react-native';
 import { styled } from 'nativewind';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export interface ButtonProps extends VariantProps<typeof buttonVariants> {
-  children?: React.ReactNode;
-  onPress?: () => void;
-}
-
 const StyledView = styled(TouchableOpacity);
 const StyledText = styled(Text);
 
 const buttonVariants = cva('rounded-full', {
   variants: {
     variant: {
-      primary: 'bg-accent',
+      accent: 'bg-accent',
+      primary: 'bg-interactive',
       secondary: 'bg-muted',
+      'secondary-transparent': 'bg-muted-transparent',
     },
     size: {
-      small: 'px-16 py-8',
+      small: 'py-8 px-16',
       medium: 'p-16',
       large: 'px-32 py-16',
     },
   },
   defaultVariants: {
-    variant: 'primary',
+    variant: 'accent',
     size: 'medium',
   },
 });
@@ -31,8 +28,10 @@ const buttonVariants = cva('rounded-full', {
 const textVariants = cva('text-center', {
   variants: {
     variant: {
-      primary: 'text-on-accent',
-      secondary: 'text-on-muted',
+      accent: 'text-on-accent',
+      primary: 'text-on-interactive',
+      secondary: 'text-base',
+      'secondary-transparent': 'text-base',
     },
     size: {
       small: 'text-sm',
@@ -41,17 +40,22 @@ const textVariants = cva('text-center', {
     },
   },
   defaultVariants: {
-    variant: 'primary',
+    variant: 'accent',
     size: 'medium',
   },
 });
 
-export function Button({
-  onPress,
+export interface ButtonProps extends VariantProps<typeof buttonVariants> {
+  children: React.ReactNode;
+  onPress?: () => void;
+}
+
+const Button = ({
   children,
-  variant = 'primary',
+  variant = 'accent',
   size = 'medium',
-}: ButtonProps) {
+  onPress,
+}: ButtonProps) => {
   return (
     <StyledView onPress={onPress} className={buttonVariants({ variant, size })}>
       <StyledText className={textVariants({ variant, size })}>
@@ -59,6 +63,6 @@ export function Button({
       </StyledText>
     </StyledView>
   );
-}
+};
 
 export default Button;

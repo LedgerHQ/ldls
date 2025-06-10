@@ -11,18 +11,19 @@ const ButtonWrapper = (props: ButtonProps) => (
 );
 
 const meta: Meta<typeof ButtonWrapper> = {
-  title: 'Components/Button',
+  title: 'React Native/Components/Button',
   component: ButtonWrapper,
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
   argTypes: {
     variant: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary'],
+      control: 'select',
+      options: ['accent', 'primary', 'secondary', 'secondary-transparent'],
     },
     size: {
-      control: { type: 'select' },
+      control: 'select',
       options: ['small', 'medium', 'large'],
     },
     children: {
@@ -34,12 +35,17 @@ const meta: Meta<typeof ButtonWrapper> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const Accent: Story = {
+  args: {
+    children: 'Accent Button',
+    variant: 'accent',
+  },
+};
+
 export const Primary: Story = {
   args: {
     children: 'Primary Button',
     variant: 'primary',
-    size: 'medium',
-    onPress: () => console.log('Primary button clicked!'),
   },
 };
 
@@ -47,17 +53,70 @@ export const Secondary: Story = {
   args: {
     children: 'Secondary Button',
     variant: 'secondary',
-    size: 'medium',
-    onPress: () => console.log('Secondary button clicked!'),
   },
+};
+
+export const SecondaryTransparent: Story = {
+  args: {
+    children: 'Secondary Transparent',
+    variant: 'secondary-transparent',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: 'Small Button',
+    variant: 'accent',
+    size: 'small',
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: 'Medium Button',
+    variant: 'accent',
+    size: 'medium',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: 'Large Button',
+    variant: 'accent',
+    size: 'large',
+  },
+};
+
+// All Variants Showcase
+export const AllVariants: Story = {
+  render: () => (
+    <View style={{ padding: 20, gap: 16 }}>
+      <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
+        <Button variant="accent">Accent</Button>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="secondary-transparent">Secondary Transparent</Button>
+      </View>
+      <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
+        <Button variant="accent" size="small">
+          Small
+        </Button>
+        <Button variant="accent" size="medium">
+          Medium
+        </Button>
+        <Button variant="accent" size="large">
+          Large
+        </Button>
+      </View>
+    </View>
+  ),
 };
 
 // Interaction Testing
 export const WithInteraction: Story = {
   args: {
     children: 'Click me',
-    variant: 'primary',
-    size: 'medium',
+    variant: 'accent',
     onPress: () => console.log('Button clicked'),
   },
   play: async ({ canvasElement, step }) => {

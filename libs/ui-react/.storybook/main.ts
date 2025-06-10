@@ -3,14 +3,24 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: [
+    '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../ui-rnative/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+  ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  viteFinal: async (config) =>
-    mergeConfig(config, {
+  viteFinal: async (viteConfig) => {
+    // Add react-native-web alias for React Native components
+    viteConfig.resolve = viteConfig.resolve || {};
+    viteConfig.resolve.alias = {
+      ...viteConfig.resolve.alias,
+      'react-native': 'react-native-web',
+    };
+
+    return mergeConfig(viteConfig, {
       plugins: [nxViteTsPaths()],
       css: {
         postcss: {
@@ -20,12 +30,13 @@ const config: StorybookConfig = {
           ],
         },
       },
-    }),
+    });
+  },
   core: {
     disableTelemetry: true,
   },
-  features: {
-    interactionsDebugger: true,
+  docs: {
+    autodocs: true,
   },
 };
 
