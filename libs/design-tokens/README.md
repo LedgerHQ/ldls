@@ -110,8 +110,8 @@ Using the JavaScript format we also generate a preset per brand.
 
 When a new version of design tokens is published in figma:
 
-1. Update the appropriate JSON source files automatically via the Github Actions(https://github.com/LedgerHQ/ldls/actions/workflows/figma-export-design-tokens.yml) or by running `npx tsx ./src/figma/export-design-tokens.ts`
-2. Run the build process to generate new output files `npx tsx sd.build.ts`
+1. Update the appropriate JSON source files automatically via the [Github Actions](https://github.com/LedgerHQ/ldls/actions/workflows/figma-export-design-tokens.yml) or by running `npx nx run design-tokens:figma-export`
+2. Run the build process to generate new output files `npx nx run @ldls/design-tokens:build`
 3. Test the changes across different themes and platforms
 4. Update documentation as needed
 
