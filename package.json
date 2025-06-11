@@ -5,10 +5,8 @@
   "scripts": {},
   "private": true,
   "dependencies": {
-    "@types/lodash": "^4.17.16",
     "ajv": "^8.17.1",
     "invariant": "^2.2.4",
-    "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
