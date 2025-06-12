@@ -5,15 +5,9 @@
   "scripts": {},
   "private": true,
   "dependencies": {
-    "@types/lodash": "^4.17.16",
     "ajv": "^8.17.1",
     "invariant": "^2.2.4",
-    "lodash": "^4.17.21",
-    "nativewind": "^4.1.23",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-native": "~0.76.3",
-    "react-router-dom": "6.29.0"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -63,6 +57,7 @@
     "@testing-library/react-native": "~12.9.0",
     "@types/invariant": "^2.2.37",
     "@types/jest": "^29.5.12",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.0.0",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
@@ -82,12 +77,17 @@
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",
     "jsonc-eslint-parser": "^2.1.0",
+    "nativewind": "^4.1.23",
     "nx": "20.7.1",
     "postcss": "^8.4.38",
     "prettier": "^2.6.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "~0.76.3",
     "react-native-svg": "~15.8.0",
     "react-native-svg-transformer": "~1.5.0",
     "react-native-web": "^0.20.0",
+    "react-router-dom": "6.29.0",
     "react-test-renderer": "~18.3.1",
     "rollup": "^4.14.0",
     "storybook": "^8.4.6",
@@ -120,5 +120,11 @@
         }
       }
     }
+  },
+  "peerDependencies": {
+    "nativewind": "^4.1.23",
+    "react": "19.0.0",
+    "react-native": "~0.76.3",
+    "tailwindcss": "^3.4.3"
   }
 }

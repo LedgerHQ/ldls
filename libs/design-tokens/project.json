@@ -28,6 +28,13 @@
         "cwd": "libs/design-tokens"
       }
     },
+    "code-syntax": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx ./src/figma/update-code-syntax.ts",
+        "cwd": "libs/design-tokens"
+      }
+    },
     "test": {
       "executor": "nx:run-commands",
       "options": {
@@ -39,6 +46,13 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "npx tsx sd.build",
+        "cwd": "libs/design-tokens"
+      }
+    },
+    "generate-svgs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx ./src/lib/generate-svgs.ts",
         "cwd": "libs/design-tokens"
       }
     }
