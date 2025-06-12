@@ -4,7 +4,10 @@ import {
   GetFileNodesResponse,
   PostVariablesResponse,
   PostVariablesRequestBody,
+  GetFileResponse,
+  GetImagesResponse,
 } from '@figma/rest-api-spec';
+import { mapValues, omitBy } from 'lodash-es';
 import fetch from 'node-fetch';
 
 interface CallFigmaAPIOptions {
@@ -12,6 +15,10 @@ interface CallFigmaAPIOptions {
   method?: string;
   token: string;
   body?: Record<string, unknown>;
+  queryParams?: Record<
+    string,
+    string | number | boolean | undefined | string[]
+  >;
 }
 
 async function callFigmaAPI<T>({
@@ -19,9 +26,19 @@ async function callFigmaAPI<T>({
   method = 'GET',
   token,
   body = undefined,
+  queryParams = undefined,
 }: CallFigmaAPIOptions): Promise<T> {
   const baseURL = 'https://api.figma.com';
-  const response = await fetch(`${baseURL}/${apiPath}`, {
+  const queryString = queryParams
+    ? `?${new URLSearchParams(
+        mapValues(
+          omitBy(queryParams, (value) => value === undefined),
+          (value) => (Array.isArray(value) ? value.join(',') : String(value))
+        )
+      ).toString()}`
+    : '';
+
+  const response = await fetch(`${baseURL}/${apiPath}${queryString}`, {
     method,
     headers: {
       ...(method === 'POST'
@@ -78,6 +95,39 @@ async function getFileNodes(
   });
 }
 
+async function getFile(
+  fileKey: string,
+  figmaToken: string
+): Promise<GetFileResponse> {
+  return callFigmaAPI<GetFileResponse>({
+    apiPath: `v1/files/${fileKey}`,
+    token: figmaToken,
+  });
+}
+
+async function getFileImages(
+  fileKey: string,
+  figmaToken: string,
+  params?: {
+    ids?: string[];
+    scale?: number;
+    format?: 'svg' | 'png' | 'jpg' | 'pdf';
+    svg_outline_text?: boolean;
+    svg_include_id?: boolean;
+    svg_include_node_id?: boolean;
+    svg_simplify_stroke?: boolean;
+    contents_only?: boolean;
+    use_absolute_bounds?: boolean;
+    version?: number;
+  }
+): Promise<GetImagesResponse> {
+  return callFigmaAPI<GetImagesResponse>({
+    apiPath: `v1/images/${fileKey}`,
+    token: figmaToken,
+    queryParams: params,
+  });
+}
+
 async function postVariables(
   fileKey: string,
   figmaToken: string,
@@ -95,5 +145,7 @@ export default {
   getLocalVariables,
   getStylesMetadata,
   getFileNodes,
+  getFile,
+  getFileImages,
   postVariables,
 };

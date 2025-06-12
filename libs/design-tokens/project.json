@@ -49,10 +49,10 @@
         "cwd": "libs/design-tokens"
       }
     },
-    "download-svgs": {
+    "generate-svgs": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./src/lib/download-svgs.ts",
+        "command": "npx tsx ./src/lib/generate-svgs.ts",
         "cwd": "libs/design-tokens"
       }
     }
