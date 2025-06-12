@@ -8,7 +8,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx tsx sd.build.ts",
+          "npx tsx design-tokens-etl.ts",
           "npx tsc -p tsconfig.lib.json"
         ],
         "cwd": "libs/design-tokens"
@@ -38,7 +38,7 @@
     "sd": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx sd.build",
+        "command": "npx tsx design-tokens-etl.ts",
         "cwd": "libs/design-tokens"
       }
     },
