@@ -2,8 +2,7 @@ import { config } from 'dotenv';
 import { mkdirSync } from 'fs';
 import { dirname } from 'path';
 import { Node } from '@figma/rest-api-spec';
-import { ICONS_CANVAS } from '../config/symbols.js';
-import { SYMBOLS_FILE_ID } from '../config/symbols.js';
+import { ICONS_CANVAS, SYMBOLS_FILE_ID } from '../config/symbols.js';
 import { getSvgs } from '../figma/get-svgs.js';
 import { downloadSvgs } from '../figma/download-svgs.js';
 
