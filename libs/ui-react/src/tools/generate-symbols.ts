@@ -6,9 +6,9 @@ import { findFilesByExtension } from '../utils/fs-utils';
 // import iconTemplate from './icon-template'; // Assuming you have the template from the previous example
 
 const CWD = process.cwd();
-const INPUT_DIR = path.join(CWD, 'libs/design-tokens/dist');
-const OUTPUT_DIR = path.join(CWD, 'libs/ui-react/src/lib');
-const BARREL_FILE = path.join(CWD, 'libs/ui-react/src/Symbols/index.ts');
+const INPUT_DIR = path.join(CWD, 'libs/design-tokens/dist/symbols');
+const OUTPUT_DIR = path.join(CWD, 'libs/ui-react/src/lib/Symbols');
+const BARREL_FILE = path.join(CWD, 'libs/ui-react/src/lib/Symbols/index.ts');
 
 const svgrConfig = {
   // template: iconTemplate,
@@ -18,18 +18,24 @@ const svgrConfig = {
     '#000000': 'currentColor',
     'black': 'currentColor',
   },
-  svgo: true,
+  svgProps: {
+    fill: 'currentColor',
+  },
+  ref: true,
+  memo: true,
+  icon: true,
+  jsxRuntime: 'automatic',
+  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
   svgoConfig: {
     plugins: [
       {
         name: 'preset-default',
-        params: { overrides: { removeViewBox: false } },
       } as const,
-      { name: 'removeDimensions' } as const,
+      {
+        name: 'removeDimensions',
+      } as const,
     ],
   },
-  icon: true,
-  ref: true,
 };
 
 function pascalCasePath(relativePath: string): string {
@@ -94,8 +100,8 @@ async function generateIcons() {
     .join('\n');
 
   await fs.writeFile(BARREL_FILE, barrelCode + '\n');
-  console.log('📦 Created barrel file with preserved structure.');
-  console.log('🎉 Icon generation complete!');
+  console.log('📦 Created barrel file.');
+  console.log('🎉 Symbol generation complete!');
 }
 
 try {

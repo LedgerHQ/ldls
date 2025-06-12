@@ -11,6 +11,12 @@
       "options": {
         "outputPath": "dist/libs/ui-react"
       }
+    },
+    "generate-symbols": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx libs/ui-react/src/tools/generate-symbols.ts"
+      }
     }
   }
 }
