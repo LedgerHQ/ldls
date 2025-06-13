@@ -8,16 +8,9 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "npx tsx ./src/lib/design-tokens.ts",
+          "npx tsx design-tokens-etl.ts",
           "npx tsc -p tsconfig.lib.json"
         ],
-        "cwd": "libs/design-tokens"
-      }
-    },
-    "generate-tokens": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx tsx ./src/lib/local-importer.ts {args.file}",
         "cwd": "libs/design-tokens"
       }
     },
@@ -45,7 +38,7 @@
     "sd": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx sd.build",
+        "command": "npx tsx design-tokens-etl.ts",
         "cwd": "libs/design-tokens"
       }
     },

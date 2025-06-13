@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "ajv": "^8.17.1",
+    "class-variance-authority": "^0.7.1",
     "invariant": "^2.2.4",
     "lodash-es": "^4.17.21"
   },
