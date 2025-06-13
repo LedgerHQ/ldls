@@ -1,0 +1,32 @@
+---
+description: tailwind
+globs: 
+alwaysApply: false
+---
+### Tailwind config
+Config is based on a preset to dynamically generated based on the css tokens defined here [primitives.js](mdc:libs/design-tokens/dist/lib/primitives.js) [theme.light.js](mdc:libs/design-tokens/dist/lib/enterprise/theme.light.js) [theme.light.js](mdc:libs/design-tokens/dist/lib/enterprise/theme.light.js)
+as you can see I only define some semantic tokens in the theme [create-custom-plugin.ts](mdc:libs/design-tokens/src/utils/create-custom-plugin.ts)
+all primitives are just added to the base but never exposed in the used classnames 
+
+
+### Don't use props to build class names dynamically
+
+```
+function Button({ color, children }) {
+  return <button className={`bg-${color}-600 hover:bg-${color}-500 ...`}>{children}</button>;
+}
+```
+Instead, map props to complete class names that are statically detectable at build-time:
+
+Always map props to static class names
+
+```
+function Button({ color, children }) {
+  const colorVariants = {
+    blue: "bg-blue-600 hover:bg-blue-500",
+    red: "bg-red-600 hover:bg-red-500",
+  };
+  return <button className={`${colorVariants[color]} ...`}>{children}</button>;
+}
+```
+

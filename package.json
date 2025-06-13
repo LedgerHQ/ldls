@@ -41,6 +41,7 @@
     "@storybook/addon-ondevice-notes": "^8.6.2",
     "@storybook/addon-react-native-web": "^0.0.29",
     "@storybook/blocks": "^8.6.14",
+    "@storybook/addon-themes": "^8.6.14",
     "@storybook/cli": "^8.6.12",
     "@storybook/core-server": "^8.4.6",
     "@storybook/jest": "^0.2.3",

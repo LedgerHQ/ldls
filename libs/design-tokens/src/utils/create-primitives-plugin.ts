@@ -20,6 +20,16 @@ export function createPrimitivesPlugin() {
     '--icon-border-width-'
   );
 
+  const fontSize = getThemeUtilsByPrefix(primitivesTheme, '--font-size-');
+  const fontWeight = getThemeUtilsByPrefix(primitivesTheme, '--font-weight-');
+  const lineHeight = getThemeUtilsByPrefix(primitivesTheme, '--line-height-');
+  const letterSpacing = getThemeUtilsByPrefix(
+    primitivesTheme,
+    '--letter-spacing-'
+  );
+  const fontFamily = getThemeUtilsByPrefix(primitivesTheme, '--font-family-');
+  const fontStyle = getThemeUtilsByPrefix(primitivesTheme, '--font-style-');
+
   return plugin(
     function ({ addBase, theme, addUtilities }) {
       addBase(primitivesTheme);
@@ -51,6 +61,24 @@ export function createPrimitivesPlugin() {
         iconWidth,
         iconHeight,
         iconStrokeWidth,
+        fontSize: {
+          ...fontSize,
+        },
+        fontWeight: {
+          ...fontWeight,
+        },
+        lineHeight: {
+          ...lineHeight,
+        },
+        letterSpacing: {
+          ...letterSpacing,
+        },
+        fontFamily: {
+          ...fontFamily,
+        },
+        fontStyle: {
+          ...fontStyle,
+        },
       },
     }
   );
