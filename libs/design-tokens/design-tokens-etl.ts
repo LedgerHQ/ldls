@@ -18,6 +18,10 @@ StyleDictionary.registerTransform({
 function sanitizeTokenName(tokenName: string): string {
   let newName = tokenName;
 
+  if (newName.endsWith('%')) {
+    newName = newName.substring(0, newName.length - 1);
+  }
+
   if (newName.toLowerCase().endsWith(defaultSuffix)) {
     newName = newName.substring(0, newName.length - defaultSuffix.length);
   }
@@ -47,11 +51,16 @@ StyleDictionary.registerFormat({
         tokenOriginalValue.endsWith('}')
       ) {
         const aliasPathString = tokenOriginalValue.slice(1, -1);
-        const varName = `--${aliasPathString
+        let varName = `--${aliasPathString
           .split('.')
           .join('-')
           .replace(defaultSuffix, '')
           .toLowerCase()}`;
+
+        if (varName.endsWith('%')) {
+          varName = varName.substring(0, varName.length - 1);
+        }
+
         tokenFinalValue = `var(${varName})`;
       } else {
         tokenFinalValue = tokenOriginalValue;

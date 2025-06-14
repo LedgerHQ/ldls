@@ -49,6 +49,9 @@ export function createPrimitivesPlugin() {
         height: {
           ...height,
         },
+        gap: {
+          ...spacing,
+        },
         borderRadius: {
           ...borderRadius,
         },
