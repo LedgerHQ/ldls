@@ -3,13 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta: Meta = {
   title: 'Design System/Design Tokens',
   tags: ['autodocs'],
-  parameters: {
-    darkMode: {
-      darkClass: 'dark',
-      lightClass: 'light',
-      classTarget: 'html',
-    },
-  },
 };
 
 export default meta;
@@ -31,7 +24,7 @@ const ColorSwatch = ({
     switch (category) {
       case 'text':
         return (
-          <div className="bg-base p-16 rounded-lg border border-muted-subtle">
+          <div className="bg-muted p-16 rounded-lg border border-muted-subtle">
             <div className={`text-lg font-medium ${textClassName}`}>Aa</div>
             <div className="text-xs text-muted mt-4">{name}</div>
             <div className="text-xs text-muted font-mono">{textClassName}</div>
@@ -40,7 +33,7 @@ const ColorSwatch = ({
       case 'border':
         return (
           <div
-            className={`bg-base p-16 rounded-lg border-2 ${className.replace(
+            className={`bg- p-16 rounded-lg border-2 ${className.replace(
               'bg-base ',
               ''
             )}`}
@@ -54,7 +47,7 @@ const ColorSwatch = ({
       default:
         return (
           <div
-            className={`p-16 rounded-lg ${className} flex flex-col justify-between`}
+            className={`p-16 rounded-lg ${className} flex flex-col justify-between border border-1`}
           >
             <div className={`text-sm font-medium ${textClassName}`}>{name}</div>
             <div className={`text-xs font-mono ${textClassName} opacity-75`}>
@@ -262,48 +255,350 @@ const TypographyShowcase = () => (
 
 export const Colors: Story = {
   render: () => (
-    <div className="p-24 max-w-7xl  transition-colors duration-300">
+    <div className="p-24 max-w-7xl bg-canvas-sheet transition-colors duration-300">
       <SectionHeader
         title="Color Tokens"
         description="Semantic color tokens for consistent theming across components"
       />
 
       <ColorSection
-        title="Background Colors"
+        title="Canvas Colors"
+        category="background"
+        tokens={[
+          {
+            name: 'Canvas',
+            className: 'bg-canvas',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Canvas Sheet',
+            className: 'bg-canvas-sheet',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Canvas Overlay',
+            className: 'bg-canvas-overlay',
+            textClassName: 'text-base',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Base Colors"
         category="background"
         tokens={[
           { name: 'Base', className: 'bg-base', textClassName: 'text-base' },
+          {
+            name: 'Base Hover',
+            className: 'bg-base-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Base Pressed',
+            className: 'bg-base-pressed',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Base Transparent',
+            className: 'bg-base-transparent',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Base Transparent Hover',
+            className: 'bg-base-transparent-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Base Transparent Pressed',
+            className: 'bg-base-transparent-pressed',
+            textClassName: 'text-base',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Muted Colors"
+        category="background"
+        tokens={[
           { name: 'Muted', className: 'bg-muted', textClassName: 'text-base' },
+          {
+            name: 'Muted Hover',
+            className: 'bg-muted-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted Pressed',
+            className: 'bg-muted-pressed',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Sheet',
+            className: 'bg-muted-on-sheet',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Sheet Hover',
+            className: 'bg-muted-on-sheet-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Sheet Pressed',
+            className: 'bg-muted-on-sheet-pressed',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Muted',
+            className: 'bg-muted-on-muted',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Muted Hover',
+            className: 'bg-muted-on-muted-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted On Muted Pressed',
+            className: 'bg-muted-on-muted-pressed',
+            textClassName: 'text-base',
+          },
           {
             name: 'Muted Transparent',
             className: 'bg-muted-transparent',
             textClassName: 'text-base',
           },
           {
+            name: 'Muted Transparent Hover',
+            className: 'bg-muted-transparent-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted Transparent Pressed',
+            className: 'bg-muted-transparent-pressed',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted Transparent Disabled',
+            className: 'bg-muted-transparent-disabled',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Muted Strong',
+            className: 'bg-muted-strong',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Muted Strong Hover',
+            className: 'bg-muted-strong-hover',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Muted Strong Pressed',
+            className: 'bg-muted-strong-pressed',
+            textClassName: 'text-white',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Accent Colors"
+        category="background"
+        tokens={[
+          {
             name: 'Accent',
             className: 'bg-accent',
             textClassName: 'text-on-accent',
           },
+          {
+            name: 'Accent Hover',
+            className: 'bg-accent-hover',
+            textClassName: 'text-on-accent',
+          },
+          {
+            name: 'Accent Pressed',
+            className: 'bg-accent-pressed',
+            textClassName: 'text-on-accent',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Interactive Colors"
+        category="background"
+        tokens={[
           {
             name: 'Interactive',
             className: 'bg-interactive',
             textClassName: 'text-on-interactive',
           },
           {
-            name: 'Disabled',
-            className: 'bg-disabled',
-            textClassName: 'text-disabled',
+            name: 'Interactive Hover',
+            className: 'bg-interactive-hover',
+            textClassName: 'text-on-interactive',
           },
+          {
+            name: 'Interactive Pressed',
+            className: 'bg-interactive-pressed',
+            textClassName: 'text-on-interactive',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="State Colors - Error"
+        category="background"
+        tokens={[
           { name: 'Error', className: 'bg-error', textClassName: 'text-error' },
+          {
+            name: 'Error Strong',
+            className: 'bg-error-strong',
+            textClassName: 'text-on-error-strong',
+          },
+          {
+            name: 'Error Transparent',
+            className: 'bg-error-transparent',
+            textClassName: 'text-error',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="State Colors - Warning"
+        category="background"
+        tokens={[
           {
             name: 'Warning',
             className: 'bg-warning',
             textClassName: 'text-warning',
           },
           {
+            name: 'Warning Strong',
+            className: 'bg-warning-strong',
+            textClassName: 'text-white',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="State Colors - Success"
+        category="background"
+        tokens={[
+          {
             name: 'Success',
             className: 'bg-success',
             textClassName: 'text-success',
+          },
+          {
+            name: 'Success Strong',
+            className: 'bg-success-strong',
+            textClassName: 'text-on-succes-strong',
+          },
+          {
+            name: 'Success Transparent',
+            className: 'bg-success-transparent',
+            textClassName: 'text-success',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Active Colors"
+        category="background"
+        tokens={[
+          {
+            name: 'Active',
+            className: 'bg-active',
+            textClassName: 'text-on-accent',
+          },
+          {
+            name: 'Active Hover',
+            className: 'bg-active-hover',
+            textClassName: 'text-on-accent',
+          },
+          {
+            name: 'Active Pressed',
+            className: 'bg-active-pressed',
+            textClassName: 'text-on-accent',
+          },
+          {
+            name: 'Active Subtle',
+            className: 'bg-active-subtle',
+            textClassName: 'text-base',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Gradient Colors"
+        category="background"
+        tokens={[
+          {
+            name: 'Gradient 100',
+            className: 'bg-gradient-100',
+            textClassName: 'text-black',
+          },
+          {
+            name: 'Gradient 80',
+            className: 'bg-gradient-80',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Gradient 70',
+            className: 'bg-gradient-70',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Gradient 0',
+            className: 'bg-gradient-0',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient On Interactive 100',
+            className: 'bg-gradient-on-interactive-100',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient On Interactive 0',
+            className: 'bg-gradient-on-interactive-0',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient On Accent 100',
+            className: 'bg-gradient-on-accent-100',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient On Accent 0',
+            className: 'bg-gradient-on-accent-0',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient Muted 100',
+            className: 'bg-gradient-muted-100',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Gradient Muted 0',
+            className: 'bg-gradient-muted-0',
+            textClassName: 'text-base',
+          },
+        ]}
+      />
+
+      <ColorSection
+        title="Special Colors"
+        category="background"
+        tokens={[
+          { name: 'White', className: 'bg-white', textClassName: 'text-black' },
+          { name: 'Black', className: 'bg-black', textClassName: 'text-white' },
+          {
+            name: 'Disabled',
+            className: 'bg-disabled',
+            textClassName: 'text-disabled',
+          },
+          {
+            name: 'Native',
+            className: 'bg-native',
+            textClassName: 'text-base',
           },
         ]}
       />
@@ -380,102 +675,6 @@ export const Typography: Story = {
         title="Typography Tokens"
         description="Font sizes, weights, and styles for consistent typography"
       />
-      <TypographyShowcase />
-    </div>
-  ),
-};
-
-export const AllTokens: Story = {
-  render: () => (
-    <div className="p-24 max-w-7xl  transition-colors duration-300">
-      <div className="mb-40">
-        <h1 className="text-3xl font-bold text-base mb-8">Design Tokens</h1>
-        <p className="text-muted">
-          Complete design token system providing consistent visual language
-          across all components and applications.
-        </p>
-      </div>
-
-      <ColorSection
-        title="Background Colors"
-        category="background"
-        tokens={[
-          { name: 'Base', className: 'bg-base', textClassName: 'text-base' },
-          { name: 'Muted', className: 'bg-muted', textClassName: 'text-base' },
-          {
-            name: 'Muted Transparent',
-            className: 'bg-muted-transparent',
-            textClassName: 'text-base',
-          },
-          {
-            name: 'Accent',
-            className: 'bg-accent',
-            textClassName: 'text-on-accent',
-          },
-          {
-            name: 'Interactive',
-            className: 'bg-interactive',
-            textClassName: 'text-on-interactive',
-          },
-          {
-            name: 'Disabled',
-            className: 'bg-disabled',
-            textClassName: 'text-disabled',
-          },
-          { name: 'Error', className: 'bg-error', textClassName: 'text-error' },
-          {
-            name: 'Warning',
-            className: 'bg-warning',
-            textClassName: 'text-warning',
-          },
-          {
-            name: 'Success',
-            className: 'bg-success',
-            textClassName: 'text-success',
-          },
-        ]}
-      />
-
-      <ColorSection
-        title="Text Colors"
-        category="text"
-        tokens={[
-          { name: 'Base', className: '', textClassName: 'text-base' },
-          { name: 'Muted', className: '', textClassName: 'text-muted' },
-          { name: 'Disabled', className: '', textClassName: 'text-disabled' },
-          { name: 'Error', className: '', textClassName: 'text-error' },
-          { name: 'Warning', className: '', textClassName: 'text-warning' },
-          { name: 'Success', className: '', textClassName: 'text-success' },
-          {
-            name: 'On Accent',
-            className: 'bg-accent',
-            textClassName: 'text-on-accent',
-          },
-          {
-            name: 'On Interactive',
-            className: 'bg-interactive',
-            textClassName: 'text-on-interactive',
-          },
-        ]}
-      />
-
-      <ColorSection
-        title="Border Colors"
-        category="border"
-        tokens={[
-          { name: 'Base', className: 'bg-base border-base' },
-          { name: 'Muted', className: 'bg-base border-muted' },
-          { name: 'Muted Subtle', className: 'bg-base border-muted-subtle' },
-          { name: 'Disabled', className: 'bg-base border-disabled' },
-          { name: 'Error', className: 'bg-base border-error' },
-          { name: 'Warning', className: 'bg-base border-warning' },
-          { name: 'Success', className: 'bg-base border-success' },
-          { name: 'Focus', className: 'bg-base border-focus' },
-        ]}
-      />
-
-      <SpacingShowcase />
-      <BorderRadiusShowcase />
       <TypographyShowcase />
     </div>
   ),

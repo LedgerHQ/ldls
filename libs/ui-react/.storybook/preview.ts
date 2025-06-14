@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import { ModeDecorator } from './ModeDecorator';
 import '../src/styles.css';
 
 const preview: Preview = {
@@ -13,16 +13,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: '',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-      parentSelector: 'html',
-    }),
-  ],
+  decorators: [ModeDecorator],
 };
 
 export default preview;
