@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import cn from '../../../utils/twMerge';
 
 const meta: Meta = {
   title: 'Design System/Design Tokens',
@@ -24,19 +25,28 @@ const ColorSwatch = ({
     switch (category) {
       case 'text':
         return (
-          <div className="bg-muted p-16 rounded-lg border border-muted-subtle">
-            <div className={`text-lg font-medium ${textClassName}`}>Aa</div>
-            <div className="text-xs text-muted mt-4">{name}</div>
-            <div className="text-xs text-muted font-mono">{textClassName}</div>
+          <div
+            className={cn(
+              className,
+              'p-16 rounded-lg border border-muted-subtle'
+            )}
+          >
+            <div className={cn('text-lg font-medium', textClassName)}>Aa</div>
+            <div className={cn('text-xs text-muted mt-4', textClassName)}>
+              {name}
+            </div>
+            <div className={cn('text-xs text-muted font-mono', textClassName)}>
+              {textClassName}
+            </div>
           </div>
         );
       case 'border':
         return (
           <div
-            className={`bg- p-16 rounded-lg border-2 ${className.replace(
-              'bg-base ',
-              ''
-            )}`}
+            className={cn(
+              'bg- p-16 rounded-lg border-2',
+              className.replace('bg-base ', '')
+            )}
           >
             <div className="text-xs text-muted">{name}</div>
             <div className="text-xs text-muted font-mono mt-4">
@@ -47,10 +57,15 @@ const ColorSwatch = ({
       default:
         return (
           <div
-            className={`p-16 rounded-lg ${className} flex flex-col justify-between border border-1`}
+            className={cn(
+              'p-16 rounded-lg flex flex-col justify-between border border-1',
+              className
+            )}
           >
-            <div className={`text-sm font-medium ${textClassName}`}>{name}</div>
-            <div className={`text-xs font-mono ${textClassName} opacity-75`}>
+            <div className={cn('text-sm font-medium', textClassName)}>
+              {name}
+            </div>
+            <div className={cn('text-xs font-mono opacity-75', textClassName)}>
               {className}
             </div>
           </div>
@@ -534,7 +549,7 @@ export const Colors: Story = {
           {
             name: 'Gradient 100',
             className: 'bg-gradient-100',
-            textClassName: 'text-black',
+            textClassName: 'dark:text-black text-white',
           },
           {
             name: 'Gradient 80',
@@ -564,7 +579,7 @@ export const Colors: Story = {
           {
             name: 'Gradient On Accent 100',
             className: 'bg-gradient-on-accent-100',
-            textClassName: 'text-base',
+            textClassName: 'text-white',
           },
           {
             name: 'Gradient On Accent 0',
