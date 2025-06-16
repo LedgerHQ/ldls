@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const brands = ['enterprise', 'websites', 'ledger-live'];
+const breakpoints = ['sm', 'md', 'lg', 'xl'];
 const themes = ['light', 'dark'];
 const tokensFolder = 'tokens';
 const defaultSuffix = '-default';
@@ -77,11 +78,12 @@ StyleDictionary.registerFormat({
   },
 });
 
-function getSDThemeConfig(brand: string, theme: string) {
+function getSDThemeConfig(brand: string, theme: string, breakpoint: string) {
   const themeSpecificSources = [
     `${tokensFolder}/1.primitives.value.json`,
     `${tokensFolder}/2.theme.${theme}.json`,
     `${tokensFolder}/3.brand.${brand}.json`,
+    `${tokensFolder}/4.breakpoint.${breakpoint}.json`,
   ];
 
   return {
@@ -126,6 +128,28 @@ function getSDThemeConfig(brand: string, theme: string) {
   };
 }
 
+// function getSDTypographyConfig(brand: string, breakpoint: string) {
+//   const styles = `${tokensFolder}/styles.json`;
+//   const sources = [styles, `${tokensFolder}/4.breakpoint.${breakpoint}.json`];
+
+//   return {
+//     source: sources,
+//     platforms: {
+//       BreakpointTypography: {
+//         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
+//         buildPath: `dist/lib/${brand.toLowerCase()}/typography/`,
+//         files: [
+//           {
+//             destination: `${breakpoint}.js`,
+//             format: 'javascript/typography-classes',
+//           },
+//         ],
+//       },
+//     },
+//     log: { verbosity: 'verbose' as const },
+//   };
+// }
+
 function getSDPrimitivesConfig() {
   const sources = [`${tokensFolder}/1.primitives.value.json`];
 
@@ -167,33 +191,88 @@ const buildPrimitives = () => {
   sd.buildAllPlatforms();
 };
 
+// const buildTypography = () => {
+//   brands.forEach((brand) => {
+//     breakpoints.forEach((breakpoint) => {
+//       const sd = new StyleDictionary(getSDTypographyConfig(brand, breakpoint));
+//       sd.buildAllPlatforms();
+//     });
+//   });
+// };
+
 buildPrimitives();
+// buildTypography();
 
-brands.forEach(function (brand) {
-  themes.forEach(function (theme) {
-    const currentConfig = getSDThemeConfig(brand, theme);
+breakpoints.forEach(function (breakpoint) {
+  brands.forEach(function (brand) {
+    themes.forEach(function (theme) {
+      const currentConfig = getSDThemeConfig(brand, theme, breakpoint);
 
-    const sd = new StyleDictionary(currentConfig);
+      const sd = new StyleDictionary(currentConfig);
 
-    sd.buildAllPlatforms();
+      sd.buildAllPlatforms();
+    });
   });
-});
 
-StyleDictionary.registerAction({
-  name: 'remove-default-suffix',
-  do: function (_dictionary, config) {
-    if (!config.buildPath || !config.files || config.files.length === 0) return;
-    const buildPath = config.buildPath;
-    const destination = config.files[0].destination;
-    if (!destination) return;
-    const filePath = path.join(buildPath, destination);
-    if (fs.existsSync(filePath)) {
-      let cssContent = fs.readFileSync(filePath, 'utf8');
-      cssContent = cssContent.replace(/(--[\w-]+)-default(\s*:)/g, '$1$2');
-      fs.writeFileSync(filePath, cssContent);
-    }
-  },
-  undo: function () {
-    // No undo operation is necessary for this action.
-  },
+  StyleDictionary.registerAction({
+    name: 'remove-default-suffix',
+    do: function (_dictionary, config) {
+      if (!config.buildPath || !config.files || config.files.length === 0)
+        return;
+      const buildPath = config.buildPath;
+      const destination = config.files[0].destination;
+      if (!destination) return;
+      const filePath = path.join(buildPath, destination);
+      if (fs.existsSync(filePath)) {
+        let cssContent = fs.readFileSync(filePath, 'utf8');
+        cssContent = cssContent.replace(/(--[\w-]+)-default(\s*:)/g, '$1$2');
+        fs.writeFileSync(filePath, cssContent);
+      }
+    },
+    undo: function () {
+      // No undo operation is necessary for this action.
+    },
+  });
+
+  // StyleDictionary.registerFormat({
+  //   name: 'javascript/typography-classes',
+  //   format: function ({ dictionary, platform }) {
+  //     const breakpoint = platform.options?.breakpoint?.toLowerCase();
+  //     const mediaQueries = {
+  //       sm: '(min-width: 640px)',
+  //       md: '(min-width: 768px)',
+  //       lg: '(min-width: 1024px)',
+  //       xl: '(min-width: 1280px)',
+  //     };
+
+  //     const output = {
+  //       [`@media ${mediaQueries[breakpoint]}`]: {},
+  //     };
+
+  //     dictionary.allTokens.forEach((token) => {
+  //       const tokenOriginalValue = token.original.$value;
+
+  //       const tokenFinalValue = tokenOriginalValue;
+
+  //       console.log(token);
+
+  //       const type = token.path[1]; // e.g., 'display', 'heading', 'body'
+  //       const property = token.path[2]; // e.g., 'size', 'weight', 'line-height'
+
+  //       if (type && property) {
+  //         const className = `.${type}-${token.path[3] || '1'}`;
+  //         output[`@media ${mediaQueries[breakpoint]}`][className] =
+  //           output[`@media ${mediaQueries[breakpoint]}`][className] || {};
+  //         output[`@media ${mediaQueries[breakpoint]}`][className][
+  //           `font-${property}`
+  //         ] = tokenFinalValue;
+  //       }
+  //     });
+
+  //     return `export const typographyClasses = ${JSON.stringify(
+  //       output,
+  //       null,
+  //       2
+  //     )};`;
+  //   },
 });

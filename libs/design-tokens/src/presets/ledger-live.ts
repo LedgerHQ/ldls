@@ -7,4 +7,9 @@ export const ledgerLivePreset = {
   content: [],
   plugins: [createPrimitivesPlugin(), createThemePlugin(ledgerLiveTheme)],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;

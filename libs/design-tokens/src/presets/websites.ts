@@ -7,4 +7,9 @@ export const websitesPreset = {
   content: [],
   plugins: [createPrimitivesPlugin(), createThemePlugin(websitesTheme)],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;

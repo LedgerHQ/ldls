@@ -7,4 +7,9 @@ export const enterprisePreset = {
   content: [],
   plugins: [createPrimitivesPlugin(), createThemePlugin(enterpriseTheme)],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;

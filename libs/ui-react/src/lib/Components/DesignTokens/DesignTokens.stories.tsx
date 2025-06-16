@@ -175,93 +175,122 @@ const BorderRadiusShowcase = () => (
   </div>
 );
 
+// Typography Sample Component
+const TypographySample = ({
+  className,
+  title,
+}: {
+  className: string;
+  title: string;
+}) => (
+  <div>
+    <div className={`${className} mb-4`}>{title}</div>
+    <div className={className}>The quick brown fox jumps over the lazy dog</div>
+    <div className="caption mb-4">{className}</div>
+  </div>
+);
+
 // Typography Showcase Component
-const TypographyShowcase = () => (
+const TypographyShowcase = () => {
+  const typographyStyles = [
+    // Display
+    { className: 'display-1', title: 'Display 1' },
+    { className: 'display-2', title: 'Display 2' },
+    { className: 'display-3', title: 'Display 3' },
+    { className: 'display-4', title: 'Display 4' },
+    // Headings
+    { className: 'heading-1', title: 'Heading 1' },
+    { className: 'heading-1-medium', title: 'Heading 1 Medium' },
+    { className: 'heading-2', title: 'Heading 2' },
+    { className: 'heading-2-medium', title: 'Heading 2 Medium' },
+    { className: 'heading-3', title: 'Heading 3' },
+    { className: 'heading-3-medium', title: 'Heading 3 Medium' },
+    // Body text
+    { className: 'body-1', title: 'Body 1' },
+    { className: 'body-1-semi-bold', title: 'Body 1 Semi Bold' },
+    { className: 'body-2', title: 'Body 2' },
+    { className: 'body-2-semi-bold', title: 'Body 2 Semi Bold' },
+    { className: 'body-3', title: 'Body 3' },
+    { className: 'body-3-semi-bold', title: 'Body 3 Semi Bold' },
+    // Caption
+    { className: 'caption', title: 'Caption' },
+    // Small Caption
+    { className: 'small-caption', title: 'Small Caption' },
+  ];
+
+  return (
+    <div className="mb-32">
+      <h3 className="font-medium text-base mb-16">Typography</h3>
+      <div className="space-y-12">
+        {typographyStyles.map((style) => (
+          <TypographySample key={style.className} {...style} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Drop Shadow Showcase Component
+const DropShadowShowcase = () => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">Typography</h3>
-    <div className="space-y-12">
-      {/* Headings */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Heading 1 (text-4xl font-bold)
+    <h3 className="text-lg font-medium text-base mb-16">Drop Shadows</h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+      {[
+        { name: '4px', class: 'shadow-4' },
+        { name: '8px', class: 'shadow-8' },
+        { name: '16px', class: 'shadow-16' },
+        { name: '24px', class: 'shadow-24' },
+        { name: '32px', class: 'shadow-32' },
+      ].map(({ name, class: shadowClass }) => (
+        <div key={name} className="text-center">
+          <div
+            className={`h-64 bg-canvas-sheet rounded-lg ${shadowClass}`}
+          ></div>
+          <div className="text-xs font-mono text-muted mt-8">{name}</div>
         </div>
-        <div className="text-4xl font-bold">
-          The quick brown fox jumps over the lazy dog
+      ))}
+    </div>
+  </div>
+);
+
+// Gradient Showcase Component
+const GradientShowcase = () => (
+  <div className="mb-32">
+    <h3 className="text-lg font-medium text-base mb-16">Gradients</h3>
+    <div className="space-y-32">
+      {/* Directional Gradients */}
+      <div>
+        <h4 className="text-base font-medium mb-16">Directional Gradients</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
+          {[
+            { name: 'Top', class: 'gradient-top' },
+            { name: 'Bottom', class: 'gradient-bottom' },
+          ].map(({ name, class: gradientClass }) => (
+            <div key={name} className="text-center">
+              <div className={`h-96 rounded-lg ${gradientClass}`}></div>
+              <div className="text-xs font-mono text-muted mt-8">{name}</div>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Asset Gradients */}
       <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Heading 2 (text-3xl font-semibold)
-        </div>
-        <div className="text-3xl font-semibold">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Heading 3 (text-2xl font-semibold)
-        </div>
-        <div className="text-2xl font-semibold">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      {/* Body text */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Body Large (text-lg)
-        </div>
-        <div className="text-lg">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Body Base (text-base)
-        </div>
-        <div className="text-base">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Body Small (text-sm)
-        </div>
-        <div className="text-sm">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      {/* Caption */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Caption (text-xs)
-        </div>
-        <div className="text-xs">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      {/* Monospace */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Monospace (font-mono)
-        </div>
-        <div className="font-mono">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      {/* Italic */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">Italic (italic)</div>
-        <div className="italic">
-          The quick brown fox jumps over the lazy dog
-        </div>
-      </div>
-      {/* Bold */}
-      <div>
-        <div className="text-xs text-muted font-mono mb-4">
-          Bold (font-bold)
-        </div>
-        <div className="font-bold">
-          The quick brown fox jumps over the lazy dog
+        <h4 className="text-base font-medium mb-16">Asset Gradients</h4>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-16">
+          {[
+            { name: 'BTC', class: 'gradient-btc' },
+            { name: 'USDT', class: 'gradient-usdt' },
+            { name: 'SOL', class: 'gradient-sol' },
+            { name: 'ETH', class: 'gradient-eth' },
+            { name: 'TRX', class: 'gradient-trx' },
+            { name: 'DOGE', class: 'gradient-doge' },
+          ].map(({ name, class: gradientClass }) => (
+            <div key={name} className="text-center">
+              <div className={`h-64 rounded-lg ${gradientClass}`}></div>
+              <div className="text-xs font-mono text-muted mt-8">{name}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -270,7 +299,7 @@ const TypographyShowcase = () => (
 
 export const Colors: Story = {
   render: () => (
-    <div className="p-24 max-w-7xl bg-canvas-sheet transition-colors duration-300">
+    <div className="p-24 bg-canvas-sheet transition-colors duration-300">
       <SectionHeader
         title="Color Tokens"
         description="Semantic color tokens for consistent theming across components"
@@ -661,7 +690,7 @@ export const Colors: Story = {
 
 export const Spacing: Story = {
   render: () => (
-    <div className="p-24 max-w-4xl">
+    <div className="p-24">
       <SectionHeader
         title="Spacing Tokens"
         description="Consistent spacing scale for padding, margin, and layout"
@@ -673,7 +702,7 @@ export const Spacing: Story = {
 
 export const BorderRadius: Story = {
   render: () => (
-    <div className="p-24 max-w-4xl">
+    <div className="p-24">
       <SectionHeader
         title="Border Radius Tokens"
         description="Border radius values for consistent rounded corners"
@@ -685,12 +714,36 @@ export const BorderRadius: Story = {
 
 export const Typography: Story = {
   render: () => (
-    <div className="p-24 max-w-4xl">
+    <div className="p-24">
       <SectionHeader
         title="Typography Tokens"
-        description="Font sizes, weights, and styles for consistent typography"
+        description="Typography: Display, Heading, Body, Caption, Small Caption"
       />
       <TypographyShowcase />
+    </div>
+  ),
+};
+
+export const Shadows: Story = {
+  render: () => (
+    <div className="p-24">
+      <SectionHeader
+        title="Drop Shadow Tokens"
+        description="Consistent shadow styles for depth and elevation"
+      />
+      <DropShadowShowcase />
+    </div>
+  ),
+};
+
+export const Gradients: Story = {
+  render: () => (
+    <div className="p-24">
+      <SectionHeader
+        title="Gradient Tokens"
+        description="Directional and asset-specific gradients"
+      />
+      <GradientShowcase />
     </div>
   ),
 };
