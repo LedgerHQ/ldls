@@ -11,6 +11,8 @@ type DownloadSvgsConfig = {
   saveDirectory: string;
   clearDirectory?: boolean;
   lastModified: string;
+  prefix?: string;
+  forceDownload?: boolean; // If true, will download svgs even if the last modified date is the same
 };
 
 type DownloadedSvgData = {
@@ -47,14 +49,22 @@ const getDataFromConfig = async (
   });
 };
 
-const downloadSvgsData = (svgsData: SvgData[]): Promise<DownloadedSvgData[]> =>
+const downloadSvgsData = (
+  svgsData: SvgData[],
+  prefix?: string
+): Promise<DownloadedSvgData[]> =>
   Promise.all(
     svgsData.map(async (data): Promise<DownloadedSvgData> => {
       const downloadedSvg = await fetch(data.url).then((r) => r.text());
+      const name =
+        prefix && data.name.startsWith(prefix)
+          ? data.name.replace(prefix, '')
+          : data.name;
 
       return {
         data: downloadedSvg,
-        name: data.name,
+        // Some symbols in Figma don't follow the kebab-case format, so we need to convert them for consistency
+        name: name.replace(/[_ ]+/g, '-').toLowerCase(),
       };
     })
   );
@@ -99,6 +109,7 @@ export const downloadSvgs = async (
   const arraysEqual = (a1: string[], a2: string[]) =>
     a1.length === a2.length && a1.every((item) => a2.includes(item));
   const shouldDownloadSvgs =
+    config.forceDownload ||
     config.lastModified !== dataFromConfig.lastModified ||
     !arraysEqual(componentIds, dataFromConfig.componentIds ?? []);
 
@@ -112,7 +123,10 @@ export const downloadSvgs = async (
 
   await createDir(config.saveDirectory);
 
-  const downloadedSvgsData = await downloadSvgsData(config.svgsData);
+  const downloadedSvgsData = await downloadSvgsData(
+    config.svgsData,
+    config.prefix
+  );
 
   await saveSvgsToFiles(downloadedSvgsData, config.saveDirectory);
 

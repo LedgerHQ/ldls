@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const Pause = createIcon("Pause", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 20 20"><path fill="currentColor" fillRule="evenodd" d="M13.317 15c-.36 0-.65-.56-.65-1.25v-7.5c0-.69.29-1.25.65-1.25.358 0 .65.56.65 1.25v7.5c0 .69-.292 1.25-.65 1.25M6.65 15c-.359 0-.65-.56-.65-1.25v-7.5C6 5.56 6.291 5 6.65 5s.65.56.65 1.25v7.5c0 .69-.291 1.25-.65 1.25" clipRule="evenodd" /></svg>);

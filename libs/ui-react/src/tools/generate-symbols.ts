@@ -3,7 +3,7 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import { toPascalCase } from '../utils/string-utils';
 import { findFilesByExtension } from '../utils/fs-utils';
-// import iconTemplate from './icon-template'; // Assuming you have the template from the previous example
+import iconTemplate from '../utils/icon-template';
 
 const CWD = process.cwd();
 const INPUT_DIR = path.join(CWD, 'libs/design-tokens/dist/symbols');
@@ -11,38 +11,24 @@ const OUTPUT_DIR = path.join(CWD, 'libs/ui-react/src/lib/Symbols');
 const BARREL_FILE = path.join(CWD, 'libs/ui-react/src/lib/Symbols/index.ts');
 
 const svgrConfig = {
-  // template: iconTemplate,
+  template: iconTemplate,
   typescript: true,
   replaceAttrValues: {
     '#000': 'currentColor',
     '#000000': 'currentColor',
-    'black': 'currentColor',
+    black: 'currentColor',
   },
   svgProps: {
     fill: 'currentColor',
   },
-  ref: true,
-  memo: true,
   icon: true,
-  jsxRuntime: 'automatic',
+  jsxRuntime: 'automatic' as const,
+  expandProps: false,
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
-  svgoConfig: {
-    plugins: [
-      {
-        name: 'preset-default',
-      } as const,
-      {
-        name: 'removeDimensions',
-      } as const,
-    ],
-  },
 };
 
 function pascalCasePath(relativePath: string): string {
-  return relativePath
-    .split(path.sep)
-    .map(toPascalCase)
-    .join(path.sep);
+  return relativePath.split(path.sep).map(toPascalCase).join(path.sep);
 }
 
 async function generateIcons() {

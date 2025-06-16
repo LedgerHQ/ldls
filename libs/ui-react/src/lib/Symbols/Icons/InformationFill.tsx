@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const InformationFill = createIcon("InformationFill", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M1.35 8c0-3.68 2.978-6.65 6.65-6.65a6.65 6.65 0 1 1 0 13.3A6.646 6.646 0 0 1 1.35 8m6.643-3.317q.034 0 .067.004a.82.82 0 0 1 .75.813c0 .243-.11.443-.241.575a.82.82 0 0 1-.576.242.82.82 0 0 1-.816-.817.815.815 0 0 1 .81-.817zM8.65 8a.65.65 0 1 0-1.3 0v3.333a.65.65 0 1 0 1.3 0z" clipRule="evenodd" /></svg>);

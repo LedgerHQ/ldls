@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const CheckmarkCircleFill = createIcon("CheckmarkCircleFill", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M1.35 8a6.65 6.65 0 1 1 13.3 0 6.65 6.65 0 0 1-13.3 0m9.434-1.138a.65.65 0 0 0-.92-.92l-2.8 2.8-.975-.976a.65.65 0 0 0-.92.92l1.446 1.444a.65.65 0 0 0 1.002-.102z" clipRule="evenodd" /></svg>);

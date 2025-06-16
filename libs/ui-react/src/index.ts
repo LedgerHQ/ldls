@@ -1,3 +1,3 @@
 export * from './lib/Components';
 export * from './lib/Patterns';
-export * from './lib/Components/Button';
+export * from './lib/Components';

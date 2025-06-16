@@ -35,6 +35,8 @@ const generateSvgs = async () => {
     saveDirectory,
     svgsData: svgsData.svgs,
     lastModified: svgsData.lastModified,
+    prefix: iconsPrefix,
+    forceDownload: true,
   });
 
   console.log('Downloaded icons');

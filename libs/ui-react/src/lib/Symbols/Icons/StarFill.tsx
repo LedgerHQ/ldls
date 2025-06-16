@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const StarFill = createIcon("StarFill", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill="currentColor" d="M8.798 1.576a.9.9 0 0 0-1.61 0L5.525 4.902l-3.643.46a.9.9 0 0 0-.532 1.521l2.596 2.659-.709 3.616a.9.9 0 0 0 1.269.986l3.497-1.658 3.481 1.636a.9.9 0 0 0 1.266-.988l-.709-3.615 2.595-2.648a.9.9 0 0 0-.531-1.523l-3.642-.454z" /></svg>);

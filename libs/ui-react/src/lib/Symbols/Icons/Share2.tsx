@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const Share2 = createIcon("Share2", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M5.702 6.743a1.778 1.778 0 1 1-2.515 2.514 1.778 1.778 0 0 1 2.515-2.514M12.813 3.187a1.778 1.778 0 1 1-2.515 2.515 1.778 1.778 0 0 1 2.515-2.515M12.813 10.298a1.778 1.778 0 1 1-2.515 2.515 1.778 1.778 0 0 1 2.515-2.515M6.027 7.207l3.946-1.974M6.027 8.793l3.946 1.974" /></svg>);

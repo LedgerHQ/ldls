@@ -1,0 +1,2 @@
+import createIcon from '../../Components/Icon/createIcon';
+export const ClockFill = createIcon("ClockFill", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M5.462 1.53a6.65 6.65 0 1 1 5.09 12.287A6.65 6.65 0 0 1 5.461 1.53m2.795 2.817a.65.65 0 1 0-1.3 0V8.08c0 .359.291.65.65.65h3.1a.65.65 0 1 0 0-1.3h-2.45z" clipRule="evenodd" /></svg>);
