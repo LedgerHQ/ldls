@@ -7,8 +7,6 @@ on:
         description: 'Figma File Key (use default if empty)'
       figma_icons_canvas:
         description: 'Figma Icons Canvas (use default if empty)'
-      figma_icons_prefix:
-        description: 'Figma Icons Prefix (use default if empty)'
 
 env:
   NX_NO_CLOUD: true
@@ -41,7 +39,6 @@ jobs:
         env:
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           FIGMA_FILE_KEY: ${{ github.event.inputs.figma_file_key || vars.FIGMA_SYMBOLS_FILE_ID }}
-          FIGMA_ICONS_PREFIX: ${{ github.event.inputs.figma_icons_prefix || vars.FIGMA_ICONS_PREFIX }}
           FIGMA_ICONS_CANVAS: ${{ github.event.inputs.figma_icons_canvas || vars.FIGMA_ICONS_CANVAS }}
 
       - name: Create Pull Request
