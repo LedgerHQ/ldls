@@ -12,7 +12,7 @@ const createIcon = (
   iconName: string,
   iconJsx: React.ReactElement<SVGProps<SVGSVGElement>>
 ) => {
-  const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'iconJsx'>>(
+  const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'children'>>(
     ({ className, ...props }, ref) =>
       createElement(Icon, {
         ref,

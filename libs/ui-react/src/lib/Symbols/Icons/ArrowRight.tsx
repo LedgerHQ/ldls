@@ -1,2 +1,19 @@
 import createIcon from '../../Components/Icon/createIcon';
-export const ArrowRight = createIcon("ArrowRight", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M12.667 8H3.333m9.334 0-3.334 3.333M12.667 8 9.333 4.667" /></svg>);
+export const ArrowRight = createIcon(
+  'ArrowRight',
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M12.667 8H3.333m9.334 0-3.334 3.333M12.667 8 9.333 4.667"
+    />
+  </svg>
+);

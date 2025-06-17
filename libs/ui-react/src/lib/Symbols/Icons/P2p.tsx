@@ -1,2 +1,19 @@
 import createIcon from '../../Components/Icon/createIcon';
-export const P2p = createIcon("P2p", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M14.002 10v-.666a1.965 1.965 0 0 0-2-2h-1.334M8 10v-.667a1.965 1.965 0 0 0-2-2H3.997a1.965 1.965 0 0 0-2 2V10m10.004 3.404v-1.704h-1.73m-6.274 0a4.412 4.412 0 0 0 7.75 0M6.665 3.665a1.667 1.667 0 1 1-3.335 0 1.667 1.667 0 0 1 3.335 0m6.002.333a1.334 1.334 0 1 1-2.667 0 1.334 1.334 0 0 1 2.668 0" /></svg>);
+export const P2p = createIcon(
+  'P2p',
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M14.002 10v-.666a1.965 1.965 0 0 0-2-2h-1.334M8 10v-.667a1.965 1.965 0 0 0-2-2H3.997a1.965 1.965 0 0 0-2 2V10m10.004 3.404v-1.704h-1.73m-6.274 0a4.412 4.412 0 0 0 7.75 0M6.665 3.665a1.667 1.667 0 1 1-3.335 0 1.667 1.667 0 0 1 3.335 0m6.002.333a1.334 1.334 0 1 1-2.667 0 1.334 1.334 0 0 1 2.668 0"
+    />
+  </svg>
+);

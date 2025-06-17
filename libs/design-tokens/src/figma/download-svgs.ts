@@ -63,8 +63,7 @@ const downloadSvgsData = (
 
       return {
         data: downloadedSvg,
-        // Some symbols in Figma don't follow the kebab-case format, so we need to convert them for consistency
-        name: name.replace(/[_ ]+/g, '-').toLowerCase(),
+        name,
       };
     })
   );

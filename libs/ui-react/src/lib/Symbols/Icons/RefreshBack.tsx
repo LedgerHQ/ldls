@@ -1,2 +1,19 @@
 import createIcon from '../../Components/Icon/createIcon';
-export const RefreshBack = createIcon("RefreshBack", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3} d="M3.008 3.093V5.45h2.356m-2.049 0A5.334 5.334 0 1 1 2.666 8" /></svg>);
+export const RefreshBack = createIcon(
+  'RefreshBack',
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M3.008 3.093V5.45h2.357m-2.05 0A5.334 5.334 0 1 1 2.666 8"
+    />
+  </svg>
+);

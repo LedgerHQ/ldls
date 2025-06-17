@@ -1,2 +1,23 @@
 import createIcon from '../../Components/Icon/createIcon';
-export const StarHalf = createIcon("StarHalf", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill="currentColor" fillRule="evenodd" d="M8.574 1.688a.65.65 0 0 0-1.162 0L5.688 5.133l-3.776.476a.65.65 0 0 0-.384 1.1L4.216 9.46l-.735 3.745a.65.65 0 0 0 .917.712L8 12.21l3.589 1.686a.65.65 0 0 0 .914-.713l-.734-3.745 2.687-2.742a.65.65 0 0 0-.384-1.1l-3.775-.47zM8 10.84a.65.65 0 0 1 .276.062l2.705 1.27-.553-2.82a.65.65 0 0 1 .174-.58l2.008-2.05-2.817-.35a.65.65 0 0 1-.5-.354L8 3.443z" clipRule="evenodd" /></svg>);
+export const StarHalf = createIcon(
+  'StarHalf',
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill="currentColor"
+      d="M4.12 13.33 7.5 11.654l.051-8.758-1.439 2.837-4.12.52L4.92 9.25z"
+    />
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M4.12 13.33 8 11.49l3.866 1.817-.8-4.08 2.927-2.987-4.12-.513-1.88-3.747-1.88 3.753M4.12 13.33l.8-4.08-2.926-2.997 4.12-.52M4.12 13.33l3.382-1.676.051-8.758-1.439 2.837"
+    />
+  </svg>
+);

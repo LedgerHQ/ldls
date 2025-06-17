@@ -14,10 +14,41 @@ export function createThemePlugin(
   const borderRadius = getThemeUtilsByPrefix(brandTheme, '--border-radius-');
   const borderWidth = getThemeUtilsByPrefix(brandTheme, '--border-width-');
   const blur = getThemeUtilsByPrefix(brandTheme, '--blur-');
+  const iconWidth = getThemeUtilsByPrefix(brandTheme, '--icon-width-');
+  const iconHeight = getThemeUtilsByPrefix(brandTheme, '--icon-height-');
+  const iconStrokeWidth = getThemeUtilsByPrefix(
+    brandTheme,
+    '--icon-border-width-'
+  );
 
   return plugin(
-    function ({ addBase }) {
+    function ({ addBase, theme, addUtilities }) {
       addBase(brandTheme);
+
+      const newUtilities: Record<string, Record<string, string>> = {};
+      const iconWidths = theme('iconWidth');
+      const iconHeights = theme('iconHeight');
+      const iconStrokeWidths = theme('iconStrokeWidth');
+
+      for (const key in iconWidths) {
+        if (Object.hasOwnProperty.call(iconWidths, key)) {
+          const value = iconWidths[key];
+          newUtilities[`.icon-w-${key}`] = { width: value };
+        }
+      }
+      for (const key in iconHeights) {
+        if (Object.hasOwnProperty.call(iconHeights, key)) {
+          const value = iconHeights[key];
+          newUtilities[`.icon-h-${key}`] = { height: value };
+        }
+      }
+      for (const key in iconStrokeWidths) {
+        if (Object.hasOwnProperty.call(iconStrokeWidths, key)) {
+          const value = iconStrokeWidths[key];
+          newUtilities[`.icon-stroke-${key}`] = { strokeWidth: value };
+        }
+      }
+      addUtilities(newUtilities);
     },
     {
       theme: {
@@ -53,6 +84,9 @@ export function createThemePlugin(
         borderColor: {
           ...borderColors,
         },
+        iconWidth,
+        iconHeight,
+        iconStrokeWidth,
       },
     }
   );

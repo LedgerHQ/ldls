@@ -1,2 +1,24 @@
 import createIcon from '../../Components/Icon/createIcon';
-export const Placeholder = createIcon("Placeholder", <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><g clipPath="url(#prefix__a)"><path stroke="currentColor" strokeWidth={1.3} d="M1.889 1.889 14.11 14.11m-12.222 0L14.11 1.89M1.333 1.333h13.334v13.334H1.333z" /></g><defs><clipPath id="prefix__a"><path fill="#fff" d="M0 0h16v16H0z" /></clipPath></defs></svg>);
+export const Placeholder = createIcon(
+  'Placeholder',
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <g clipPath="url(#prefix__a)">
+      <path
+        stroke="currentColor"
+        strokeWidth={1.3}
+        d="M1.889 1.889 14.11 14.11m-12.222 0L14.11 1.89M1.333 1.333h13.334v13.334H1.333z"
+      />
+    </g>
+    <defs>
+      <clipPath id="prefix__a">
+        <path fill="#fff" d="M0 0h16v16H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);

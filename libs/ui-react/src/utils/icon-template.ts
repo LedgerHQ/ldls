@@ -11,4 +11,4 @@ export const ${variables.componentName} = createIcon('${variables.componentName}
 `;
 };
 
-module.exports = template;
+export default template;

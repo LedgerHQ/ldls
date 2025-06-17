@@ -24,7 +24,7 @@ const svgrConfig = {
   icon: true,
   jsxRuntime: 'automatic' as const,
   expandProps: false,
-  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
 };
 
 function pascalCasePath(relativePath: string): string {
@@ -71,7 +71,7 @@ async function generateIcons() {
       await fs.writeFile(outputFilePath, componentCode);
 
       const barrelExportPath = path
-        .join('./lib', pascalCaseDir, componentName)
+        .join(pascalCaseDir, componentName)
         .replace(/\\/g, '/');
 
       exportPaths.push(barrelExportPath);
@@ -82,7 +82,7 @@ async function generateIcons() {
   console.log(`✅ Processed ${svgFiles.length} icons.`);
 
   const barrelCode = exportPaths
-    .map((exportPath) => `export * from '${exportPath}';`)
+    .map((exportPath) => `export * from './${exportPath}';`)
     .join('\n');
 
   await fs.writeFile(BARREL_FILE, barrelCode + '\n');
