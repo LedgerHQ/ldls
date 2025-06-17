@@ -1770,6 +1770,22 @@
             }
           }
         }
+      },
+      "icon": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.light.grey.950-5%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": false,
+              "scopes": [
+                "STROKE_COLOR"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        }
       }
     },
     "crypto": {
