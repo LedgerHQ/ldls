@@ -1,0 +1,53 @@
+name: Download Figma SVGs
+
+on:
+  workflow_dispatch:
+    inputs:
+      figma_file_key:
+        description: 'Figma File Key (use default if empty)'
+      figma_icons_canvas:
+        description: 'Figma Icons Canvas (use default if empty)'
+      figma_icons_prefix:
+        description: 'Figma Icons Prefix (use default if empty)'
+
+env:
+  NX_NO_CLOUD: true
+
+jobs:
+  export-design-tokens:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Download SVGs from Figma
+        run: npx nx run @ldls/design-tokens:generate-svgs
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          FIGMA_FILE_KEY: ${{ github.event.inputs.figma_file_key || vars.FIGMA_SYMBOLS_FILE_ID }}
+          FIGMA_ICONS_PREFIX: ${{ github.event.inputs.figma_icons_prefix || vars.FIGMA_ICONS_PREFIX }}
+          FIGMA_ICONS_CANVAS: ${{ github.event.inputs.figma_icons_canvas || vars.FIGMA_ICONS_CANVAS }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: '💄 (symbols): Figma SVGs Download'
+          title: '💄 (symbols): Figma SVGs Download'
+          body: 'Download SVGs using Figma API'
+          branch: figma-download-svgs
