@@ -5,6 +5,11 @@ import { themes } from '@storybook/theming';
 
 const preview: Preview = {
   parameters: {
+    order: {
+      storySort: {
+        order: ['Design Tokens', 'Components'],
+      },
+    },
     darkMode: {
       stylePreview: true,
       classTarget: 'html',
@@ -12,7 +17,6 @@ const preview: Preview = {
         ...themes.dark,
       },
     },
-    tags: ['autodocs'],
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
