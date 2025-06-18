@@ -2,14 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 import cn from '../../../utils/twMerge';
 
 const meta: Meta = {
-  title: 'Design System/Design Tokens',
+  title: 'Design Tokens',
   tags: ['autodocs'],
+  globals: {
+    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  },
 };
 
 export default meta;
 type Story = StoryObj;
 
-// Enhanced Color Token Swatch Component
 const ColorSwatch = ({
   name,
   className,
@@ -74,7 +76,6 @@ const ColorSwatch = ({
   return <div className="group">{getSwatchContent()}</div>;
 };
 
-// Section Header Component
 const SectionHeader = ({
   title,
   description,
@@ -88,7 +89,6 @@ const SectionHeader = ({
   </div>
 );
 
-// Color Section Component
 const ColorSection = ({
   title,
   tokens,
@@ -114,12 +114,15 @@ const ColorSection = ({
   </div>
 );
 
-// Spacing Showcase Component
 const SpacingShowcase = () => (
   <div className="mb-32">
-    <h3 className="heading-3 mb-16">Spacing Scale</h3>
+    <h3 className="heading-3 mb-16 text-base">Spacing Scale</h3>
     <div className="space-y-12">
       {[
+        { name: '1px', class: 'w-1', token: 'p-1' },
+        { name: '2px', class: 'w-2', token: 'p-2' },
+        { name: '4px', class: 'w-4', token: 'p-4' },
+        { name: '6px', class: 'w-6', token: 'p-6' },
         { name: '4px', class: 'w-4', token: 'p-4' },
         { name: '8px', class: 'w-8', token: 'p-8' },
         { name: '12px', class: 'w-12', token: 'p-12' },
@@ -138,7 +141,7 @@ const SpacingShowcase = () => (
         { name: '176px', class: 'w-176', token: 'p-176' },
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className="flex items-center gap-16">
-          <div className="w-48 caption">{name}</div>
+          <div className="w-48 caption text-base">{name}</div>
           <div className={`${widthClass} h-16 bg-accent rounded`}></div>
           <div className="body-2 text-muted">{token}</div>
         </div>
@@ -147,10 +150,9 @@ const SpacingShowcase = () => (
   </div>
 );
 
-// Border Radius Showcase Component
 const BorderRadiusShowcase = () => (
   <div className="mb-32">
-    <h3 className="heading-3 mb-16">Border Radius</h3>
+    <h3 className="heading-3 mb-16 text-base">Border Radius</h3>
     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-16">
       {[
         { name: 'none', class: 'rounded-none' },
@@ -162,18 +164,18 @@ const BorderRadiusShowcase = () => (
         { name: '2xl', class: 'rounded-2xl' },
         { name: 'full', class: 'rounded-full' },
       ].map(({ name, class: className }) => (
-        <div key={name} className="text-center">
+        <div key={name} className="">
           <div
             className={`w-48 h-48 bg-accent mx-auto mb-8 ${className}`}
           ></div>
-          <div className="body-2 text-muted">{name}</div>
+          <div className="body-2 text-base">{name}</div>
+          <div className="text-muted caption">{className}</div>
         </div>
       ))}
     </div>
   </div>
 );
 
-// Typography Sample Component
 const TypographySample = ({
   className,
   title,
@@ -182,43 +184,39 @@ const TypographySample = ({
   title: string;
 }) => (
   <div>
-    <div className={`${className} mb-4`}>{title}</div>
-    <div className={className}>The quick brown fox jumps over the lazy dog</div>
-    <div className="caption mb-4">{className}</div>
+    <div className={`${className} mb-4 text-base`}>{title}</div>
+    <div className={`${className} text-base`}>
+      The quick brown fox jumps over the lazy dog
+    </div>
+    <div className="caption mb-4 text-base">{className}</div>
   </div>
 );
 
-// Typography Showcase Component
 const TypographyShowcase = () => {
   const typographyStyles = [
-    // Display
     { className: 'display-1', title: 'Display 1' },
     { className: 'display-2', title: 'Display 2' },
     { className: 'display-3', title: 'Display 3' },
     { className: 'display-4', title: 'Display 4' },
-    // Headings
     { className: 'heading-1', title: 'Heading 1' },
     { className: 'heading-1-medium', title: 'Heading 1 Medium' },
     { className: 'heading-2', title: 'Heading 2' },
     { className: 'heading-2-medium', title: 'Heading 2 Medium' },
     { className: 'heading-3', title: 'Heading 3' },
     { className: 'heading-3-medium', title: 'Heading 3 Medium' },
-    // Body text
     { className: 'body-1', title: 'Body 1' },
     { className: 'body-1-semi-bold', title: 'Body 1 Semi Bold' },
     { className: 'body-2', title: 'Body 2' },
     { className: 'body-2-semi-bold', title: 'Body 2 Semi Bold' },
     { className: 'body-3', title: 'Body 3' },
     { className: 'body-3-semi-bold', title: 'Body 3 Semi Bold' },
-    // Caption
     { className: 'caption', title: 'Caption' },
-    // Small Caption
     { className: 'small-caption', title: 'Small Caption' },
   ];
 
   return (
     <div className="mb-32">
-      <h3 className="heading-3 mb-16">Typography</h3>
+      <h3 className="heading-3 mb-16 text-base">Typography</h3>
       <div className="space-y-12">
         {typographyStyles.map((style) => (
           <TypographySample key={style.className} {...style} />
@@ -231,7 +229,7 @@ const TypographyShowcase = () => {
 // Drop Shadow Showcase Component
 const DropShadowShowcase = () => (
   <div className="mb-32 ">
-    <h3 className="heading-3 mb-16 text-black">Drop Shadows</h3>
+    <h3 className="heading-3 mb-16 text-base">Drop Shadows</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
       {[
         { name: '4px', class: 'drop-shadow-4' },
@@ -240,21 +238,20 @@ const DropShadowShowcase = () => (
         { name: '24px', class: 'drop-shadow-24' },
         { name: '32px', class: 'drop-shadow-32' },
       ].map(({ name, class: shadowClass }) => (
-        <div key={name} className="text-center">
+        <div key={name} className="text-center ">
           <div className={`h-64 rounded-lg ${shadowClass}`}></div>
           <div className="body-2 text-muted mt-8">{name}</div>
+          <div className="caption text-muted mt-8">{shadowClass}</div>
         </div>
       ))}
     </div>
   </div>
 );
 
-// Gradient Showcase Component
 const GradientShowcase = () => (
   <div className="mb-32">
     <h3 className="heading-3 mb-16 text-base">Gradients</h3>
     <div className="space-y-32">
-      {/* Directional Gradients */}
       <div>
         <h4 className="heading-4 mb-16 text-base">Directional Gradients</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
@@ -265,12 +262,12 @@ const GradientShowcase = () => (
             <div key={name} className="text-center">
               <div className={`h-96 rounded-lg ${gradientClass}`}></div>
               <div className="body-2 text-muted mt-8">{name}</div>
+              <div className="caption text-muted mt-8">{gradientClass}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Asset Gradients */}
       <div>
         <h4 className="heading-4 mb-16 text-base">Asset Gradients</h4>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-16">
@@ -303,7 +300,7 @@ const GradientShowcase = () => (
 
 export const Colors: Story = {
   render: () => (
-    <div className="p-24 bg-canvas-sheet transition-colors duration-300">
+    <div className="p-24 transition-colors duration-300">
       <SectionHeader
         title="Color Tokens"
         description="Semantic color tokens for consistent theming across components"
@@ -694,7 +691,7 @@ export const Colors: Story = {
 
 export const CryptoColors: Story = {
   render: () => (
-    <div className="p-24 bg-canvas-sheet">
+    <div className="p-24">
       <SectionHeader
         title="Crypto Colors Tokens"
         description="Crypto colors tokens for different cryptocurrencies"
@@ -703,26 +700,47 @@ export const CryptoColors: Story = {
         title="Crypto Colors"
         category="background"
         tokens={[
+          { name: 'Aion', className: 'bg-aion', textClassName: 'text-white' },
+          {
+            name: 'Algorand',
+            className: 'bg-algorand',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Avalanche',
+            className: 'bg-avax',
+            textClassName: 'text-white',
+          },
+          { name: 'BAT', className: 'bg-bat', textClassName: 'text-white' },
+          { name: 'BGB', className: 'bg-bgb', textClassName: 'text-white' },
           {
             name: 'Bitcoin',
             className: 'bg-bitcoin',
             textClassName: 'text-white',
           },
           {
-            name: 'Ethereum',
-            className: 'bg-ethereum',
+            name: 'Bitcoin Cash',
+            className: 'bg-bitcoin-cash',
             textClassName: 'text-white',
           },
-          { name: 'Solana', className: 'bg-sol', textClassName: 'text-base' },
           {
-            name: 'USDT',
-            className: 'bg-tether-usdt',
+            name: 'Bitcoin Gold',
+            className: 'bg-bitcoin-gold',
             textClassName: 'text-white',
           },
-          { name: 'USDC', className: 'bg-usdc', textClassName: 'text-base' },
+          {
+            name: 'Bitcoin SV',
+            className: 'bg-bitcoin-sv',
+            textClassName: 'text-white',
+          },
           {
             name: 'Binance',
             className: 'bg-binance',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Bytecoin',
+            className: 'bg-bytecoin',
             textClassName: 'text-white',
           },
           {
@@ -731,8 +749,32 @@ export const CryptoColors: Story = {
             textClassName: 'text-white',
           },
           {
-            name: 'Polkadot',
-            className: 'bg-polkadot',
+            name: 'Cosmos',
+            className: 'bg-cosmos',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Compound',
+            className: 'bg-compound',
+            textClassName: 'text-white',
+          },
+          { name: 'Celo', className: 'bg-celo', textClassName: 'text-black' },
+          {
+            name: 'Chainlink',
+            className: 'bg-chainlink',
+            textClassName: 'text-white',
+          },
+          { name: 'CRO', className: 'bg-cro', textClassName: 'text-white' },
+          { name: 'Dash', className: 'bg-dash', textClassName: 'text-white' },
+          { name: 'DAI', className: 'bg-dai', textClassName: 'text-white' },
+          {
+            name: 'Decred',
+            className: 'bg-decred',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Digibyte',
+            className: 'bg-digibyte',
             textClassName: 'text-white',
           },
           {
@@ -740,36 +782,53 @@ export const CryptoColors: Story = {
             className: 'bg-dogecoin',
             textClassName: 'text-white',
           },
-          { name: 'XRP', className: 'bg-xrp', textClassName: 'text-white' },
+          { name: 'dYdX', className: 'bg-dydx', textClassName: 'text-white' },
+          {
+            name: 'Dymension',
+            className: 'bg-dym',
+            textClassName: 'text-black',
+          },
+          {
+            name: 'Elrond',
+            className: 'bg-elrond',
+            textClassName: 'text-white',
+          },
+          { name: 'Enigma', className: 'bg-eng', textClassName: 'text-white' },
+          { name: 'EOS', className: 'bg-eos', textClassName: 'text-white' },
+          {
+            name: 'EtherGem',
+            className: 'bg-ethergem',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Ethereum',
+            className: 'bg-ethereum',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Ethereum Classic',
+            className: 'bg-ethereum-classic',
+            textClassName: 'text-white',
+          },
+          { name: 'Flare', className: 'bg-flr', textClassName: 'text-white' },
+          { name: 'Fantom', className: 'bg-ftm', textClassName: 'text-white' },
+          {
+            name: 'Hedera',
+            className: 'bg-hedera',
+            textClassName: 'text-white',
+          },
+          { name: 'Helium', className: 'bg-hnt', textClassName: 'text-white' },
+          { name: 'Huobi', className: 'bg-huobi', textClassName: 'text-white' },
+          { name: 'IOTA', className: 'bg-iota', textClassName: 'text-white' },
+          {
+            name: 'Komodo',
+            className: 'bg-komodo',
+            textClassName: 'text-white',
+          },
+          { name: 'LEO', className: 'bg-leo', textClassName: 'text-white' },
           {
             name: 'Litecoin',
             className: 'bg-litecoin',
-            textClassName: 'text-white',
-          },
-          {
-            name: 'Polygon',
-            className: 'bg-polygon',
-            textClassName: 'text-white',
-          },
-          {
-            name: 'Cosmos',
-            className: 'bg-cosmos',
-            textClassName: 'text-white',
-          },
-          {
-            name: 'Chainlink',
-            className: 'bg-chainlink',
-            textClassName: 'text-white',
-          },
-          {
-            name: 'Uniswap',
-            className: 'bg-uniswap',
-            textClassName: 'text-white',
-          },
-          { name: 'Tron', className: 'bg-tron', textClassName: 'text-white' },
-          {
-            name: 'Stellar',
-            className: 'bg-stellar',
             textClassName: 'text-white',
           },
           {
@@ -777,8 +836,79 @@ export const CryptoColors: Story = {
             className: 'bg-monero',
             textClassName: 'text-white',
           },
+          {
+            name: 'MultiversX',
+            className: 'bg-multiverse-x',
+            textClassName: 'text-white',
+          },
+          { name: 'Nano', className: 'bg-nano', textClassName: 'text-white' },
           { name: 'Near', className: 'bg-near', textClassName: 'text-white' },
+          { name: 'NEO', className: 'bg-neo', textClassName: 'text-white' },
+          { name: 'Nimiq', className: 'bg-nimiq', textClassName: 'text-white' },
+          {
+            name: 'OMG Network',
+            className: 'bg-omg-network',
+            textClassName: 'text-white',
+          },
+          { name: 'OKB', className: 'bg-okb', textClassName: 'text-white' },
+          {
+            name: 'Osmosis',
+            className: 'bg-osmo',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Peercoin',
+            className: 'bg-peercoin',
+            textClassName: 'text-white',
+          },
+          { name: 'Pirl', className: 'bg-pirl', textClassName: 'text-white' },
+          { name: 'PIVX', className: 'bg-pivx', textClassName: 'text-white' },
+          {
+            name: 'Polkadot',
+            className: 'bg-polkadot',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Polygon',
+            className: 'bg-polygon',
+            textClassName: 'text-white',
+          },
+          { name: 'Sats', className: 'bg-sats', textClassName: 'text-white' },
+          {
+            name: 'Stellar',
+            className: 'bg-stellar',
+            textClassName: 'text-white',
+          },
+          { name: 'Solana', className: 'bg-sol', textClassName: 'text-base' },
+          {
+            name: 'USDT',
+            className: 'bg-tether-usdt',
+            textClassName: 'text-white',
+          },
           { name: 'Tezos', className: 'bg-tezos', textClassName: 'text-white' },
+          { name: 'TKX', className: 'bg-tkx', textClassName: 'text-white' },
+          { name: 'Tron', className: 'bg-tron', textClassName: 'text-white' },
+          {
+            name: 'Uniswap',
+            className: 'bg-uniswap',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'TrueUSD',
+            className: 'bg-tusd',
+            textClassName: 'text-white',
+          },
+          { name: 'USDC', className: 'bg-usdc', textClassName: 'text-base' },
+          { name: 'UNI', className: 'bg-uni', textClassName: 'text-white' },
+          { name: 'Waves', className: 'bg-waves', textClassName: 'text-white' },
+          { name: 'XRP', className: 'bg-xrp', textClassName: 'text-white' },
+          { name: 'Mixin', className: 'bg-xin', textClassName: 'text-white' },
+          {
+            name: 'Yieldly',
+            className: 'bg-yieldly',
+            textClassName: 'text-white',
+          },
+          { name: 'Zcash', className: 'bg-zcash', textClassName: 'text-white' },
         ]}
       />
     </div>
@@ -835,7 +965,7 @@ export const Shadows: Story = {
 
 export const Gradients: Story = {
   render: () => (
-    <div className="p-24 bg-canvas-sheet">
+    <div className="p-24">
       <SectionHeader
         title="Gradient Tokens"
         description="Directional and asset-specific gradients"
