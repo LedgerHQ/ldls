@@ -128,28 +128,6 @@ function getSDThemeConfig(brand: string, theme: string, breakpoint: string) {
   };
 }
 
-// function getSDTypographyConfig(brand: string, breakpoint: string) {
-//   const styles = `${tokensFolder}/styles.json`;
-//   const sources = [styles, `${tokensFolder}/4.breakpoint.${breakpoint}.json`];
-
-//   return {
-//     source: sources,
-//     platforms: {
-//       BreakpointTypography: {
-//         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-//         buildPath: `dist/lib/${brand.toLowerCase()}/typography/`,
-//         files: [
-//           {
-//             destination: `${breakpoint}.js`,
-//             format: 'javascript/typography-classes',
-//           },
-//         ],
-//       },
-//     },
-//     log: { verbosity: 'verbose' as const },
-//   };
-// }
-
 function getSDPrimitivesConfig() {
   const sources = [`${tokensFolder}/1.primitives.value.json`];
 
@@ -191,17 +169,7 @@ const buildPrimitives = () => {
   sd.buildAllPlatforms();
 };
 
-// const buildTypography = () => {
-//   brands.forEach((brand) => {
-//     breakpoints.forEach((breakpoint) => {
-//       const sd = new StyleDictionary(getSDTypographyConfig(brand, breakpoint));
-//       sd.buildAllPlatforms();
-//     });
-//   });
-// };
-
 buildPrimitives();
-// buildTypography();
 
 breakpoints.forEach(function (breakpoint) {
   brands.forEach(function (brand) {
@@ -233,46 +201,4 @@ breakpoints.forEach(function (breakpoint) {
       // No undo operation is necessary for this action.
     },
   });
-
-  // StyleDictionary.registerFormat({
-  //   name: 'javascript/typography-classes',
-  //   format: function ({ dictionary, platform }) {
-  //     const breakpoint = platform.options?.breakpoint?.toLowerCase();
-  //     const mediaQueries = {
-  //       sm: '(min-width: 640px)',
-  //       md: '(min-width: 768px)',
-  //       lg: '(min-width: 1024px)',
-  //       xl: '(min-width: 1280px)',
-  //     };
-
-  //     const output = {
-  //       [`@media ${mediaQueries[breakpoint]}`]: {},
-  //     };
-
-  //     dictionary.allTokens.forEach((token) => {
-  //       const tokenOriginalValue = token.original.$value;
-
-  //       const tokenFinalValue = tokenOriginalValue;
-
-  //       console.log(token);
-
-  //       const type = token.path[1]; // e.g., 'display', 'heading', 'body'
-  //       const property = token.path[2]; // e.g., 'size', 'weight', 'line-height'
-
-  //       if (type && property) {
-  //         const className = `.${type}-${token.path[3] || '1'}`;
-  //         output[`@media ${mediaQueries[breakpoint]}`][className] =
-  //           output[`@media ${mediaQueries[breakpoint]}`][className] || {};
-  //         output[`@media ${mediaQueries[breakpoint]}`][className][
-  //           `font-${property}`
-  //         ] = tokenFinalValue;
-  //       }
-  //     });
-
-  //     return `export const typographyClasses = ${JSON.stringify(
-  //       output,
-  //       null,
-  //       2
-  //     )};`;
-  //   },
 });
