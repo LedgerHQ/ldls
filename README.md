@@ -6,9 +6,9 @@ A cross-platform design system built with Nx, supporting both React and React Na
 
 ## Library Structure
 
-- `ui-core`: Shared utilities and types used across platforms
-- `ui-react`: React-specific components and patterns
-- `ui-rnative`: React Native-specific components and patterns
+- `ui-core`: Shared utilities and types used across platforms.
+- `ui-react`: React-specific components and patterns.
+- `ui-rnative`: React Native-specific components and patterns.
 
 ## Installing Dependencies
 
@@ -90,13 +90,12 @@ Then, run the tests:
 
 ```sh
 # Tests for the ui-react library
-npx nx run @ldls/ui-react:test-storybook 
+npx nx run @ldls/ui-react:test-storybook
 ```
 
 ## Finish your CI setup
 
 [Click here to finish setting up your workspace!](https://cloud.nx.app/connect/Jmd5yDAnlu)
-
 
 ## Run tasks
 
