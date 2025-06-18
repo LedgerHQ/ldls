@@ -11,9 +11,8 @@ const ButtonWrapper = (props: ButtonProps) => (
 );
 
 const meta: Meta<typeof ButtonWrapper> = {
-  title: 'React Native/Components/Button',
+  title: 'Components/Button/React Native',
   component: ButtonWrapper,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

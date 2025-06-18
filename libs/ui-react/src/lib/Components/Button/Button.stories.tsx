@@ -4,8 +4,7 @@ import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'React/Components/Button',
-  tags: ['autodocs'],
+  title: 'Components/Button/React',
   argTypes: {
     variant: {
       control: 'select',
@@ -82,7 +81,6 @@ export const Disabled: Story = {
   },
 };
 
-// All Variants Showcase
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 p-4">
