@@ -202,43 +202,85 @@ export function createTypographyPlugin() {
   });
 }
 
-export function createGradientPlugin() {
+function cryptoGradientStyles(crypto: string) {
+  return {
+    [`.gradient-${crypto}`]: {
+      'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}) 0%, var(--color-crypto-${crypto}-0) 100%)`,
+    },
+    [`.gradient-${crypto}-0`]: {
+      'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}-0) 0%, var(--color-crypto-${crypto}-0) 100%)`,
+    },
+  };
+}
+
+function extractCryptoNames(
+  brandTheme: Record<string, Record<string, string>>
+): string[] {
+  const cryptoNames = new Set<string>();
+
+  for (const themeKey in brandTheme) {
+    if (
+      typeof brandTheme[themeKey] === 'object' &&
+      brandTheme[themeKey] !== null
+    ) {
+      for (const key in brandTheme[themeKey]) {
+        if (key.startsWith('--color-crypto-') && !key.endsWith('-0')) {
+          const cryptoName = key.substring('--color-crypto-'.length);
+          cryptoNames.add(cryptoName);
+        }
+      }
+    }
+  }
+
+  return Array.from(cryptoNames).sort();
+}
+
+export function createGradientPlugin(
+  brandTheme?: Record<string, Record<string, string>>
+) {
   return plugin(function ({ addUtilities }) {
     const gradientStyles = {
       '.gradient-top': {
         'background-image':
-          'linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0) 100%)',
+          'linear-gradient(180deg, var(--background-gradient-80) 0%, var(--background-gradient-70) 60%, var(--background-gradient-0) 100%)',
       },
       '.gradient-bottom': {
         'background-image':
-          'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 100%)',
-      },
-      '.gradient-btc': {
-        'background-image':
-          'linear-gradient(161deg, #f7931a 0%, rgba(247, 147, 26, 0) 100%)',
-      },
-      '.gradient-usdt': {
-        'background-image':
-          'linear-gradient(161deg, #00a478 0%, rgba(0, 164, 120, 0) 100%)',
-      },
-      '.gradient-sol': {
-        'background-image':
-          'linear-gradient(161deg, #9945ff 0%, rgba(153, 69, 255, 0) 100%)',
-      },
-      '.gradient-eth': {
-        'background-image':
-          'linear-gradient(161deg, #454a75 0%, rgba(69, 74, 117, 0) 100%)',
-      },
-      '.gradient-trx': {
-        'background-image':
-          'linear-gradient(161deg, #ff060a 0%, rgba(255, 6, 10, 0) 100%)',
-      },
-      '.gradient-doge': {
-        'background-image':
-          'linear-gradient(161deg, #c3a634 0%, rgba(195, 166, 52, 0) 100%)',
+          'linear-gradient(180deg, var(--background-gradient-0) 0%, var(--background-gradient-70) 40%, var(--background-gradient-80) 100%)',
       },
     };
 
+    if (brandTheme) {
+      const cryptoNames = extractCryptoNames(brandTheme);
+      cryptoNames.forEach((cryptoName) => {
+        Object.assign(gradientStyles, cryptoGradientStyles(cryptoName));
+      });
+    }
+
     addUtilities(gradientStyles);
+  });
+}
+
+export function createDropShadowPlugin() {
+  return plugin(function ({ addUtilities }) {
+    const dropShadowStyles = {
+      '.drop-shadow-4': {
+        boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.16)',
+      },
+      '.drop-shadow-8': {
+        boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.16)',
+      },
+      '.drop-shadow-16': {
+        boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.16)',
+      },
+      '.drop-shadow-24': {
+        boxShadow: '0px 6px 24px 0px rgba(0, 0, 0, 0.16)',
+      },
+      '.drop-shadow-32': {
+        boxShadow: '0px 8px 32px 0px rgba(0, 0, 0, 0.16)',
+      },
+    };
+
+    addUtilities(dropShadowStyles);
   });
 }

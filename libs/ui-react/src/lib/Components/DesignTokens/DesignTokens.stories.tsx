@@ -31,11 +31,11 @@ const ColorSwatch = ({
               'p-16 rounded-lg border border-muted-subtle'
             )}
           >
-            <div className={cn('text-lg font-medium', textClassName)}>Aa</div>
-            <div className={cn('text-xs text-muted mt-4', textClassName)}>
+            <div className={cn('heading-4', textClassName)}>Aa</div>
+            <div className={cn('body-2 text-muted mt-4', textClassName)}>
               {name}
             </div>
-            <div className={cn('text-xs text-muted font-mono', textClassName)}>
+            <div className={cn('body-2 text-muted', textClassName)}>
               {textClassName}
             </div>
           </div>
@@ -48,8 +48,8 @@ const ColorSwatch = ({
               className.replace('bg-base ', '')
             )}
           >
-            <div className="text-xs text-muted">{name}</div>
-            <div className="text-xs text-muted font-mono mt-4">
+            <div className="body-2 text-muted">{name}</div>
+            <div className="body-2 text-muted mt-4">
               {className.replace('bg-base ', '')}
             </div>
           </div>
@@ -62,10 +62,8 @@ const ColorSwatch = ({
               className
             )}
           >
-            <div className={cn('text-sm font-medium', textClassName)}>
-              {name}
-            </div>
-            <div className={cn('text-xs font-mono opacity-75', textClassName)}>
+            <div className={cn('heading-4', textClassName)}>{name}</div>
+            <div className={cn('body-2 opacity-75', textClassName)}>
               {className}
             </div>
           </div>
@@ -85,8 +83,8 @@ const SectionHeader = ({
   description?: string;
 }) => (
   <div className="mb-24">
-    <h2 className="text-xl font-semibold text-base  mb-8">{title}</h2>
-    {description && <p className="text-muted text-sm">{description}</p>}
+    <h2 className="heading-3 text-base mb-8">{title}</h2>
+    {description && <p className="text-muted">{description}</p>}
   </div>
 );
 
@@ -101,7 +99,7 @@ const ColorSection = ({
   category?: 'background' | 'text' | 'border';
 }) => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">{title}</h3>
+    <h3 className="heading-3 text-base mb-16">{title}</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-16">
       {tokens.map(({ name, className, textClassName }) => (
         <ColorSwatch
@@ -119,7 +117,7 @@ const ColorSection = ({
 // Spacing Showcase Component
 const SpacingShowcase = () => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">Spacing Scale</h3>
+    <h3 className="heading-3 mb-16">Spacing Scale</h3>
     <div className="space-y-12">
       {[
         { name: '4px', class: 'w-4', token: 'p-4' },
@@ -140,9 +138,9 @@ const SpacingShowcase = () => (
         { name: '176px', class: 'w-176', token: 'p-176' },
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className="flex items-center gap-16">
-          <div className="w-48 text-sm text-base font-mono">{name}</div>
+          <div className="w-48 caption">{name}</div>
           <div className={`${widthClass} h-16 bg-accent rounded`}></div>
-          <div className="text-xs text-muted font-mono">{token}</div>
+          <div className="body-2 text-muted">{token}</div>
         </div>
       ))}
     </div>
@@ -152,7 +150,7 @@ const SpacingShowcase = () => (
 // Border Radius Showcase Component
 const BorderRadiusShowcase = () => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">Border Radius</h3>
+    <h3 className="heading-3 mb-16">Border Radius</h3>
     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-16">
       {[
         { name: 'none', class: 'rounded-none' },
@@ -168,7 +166,7 @@ const BorderRadiusShowcase = () => (
           <div
             className={`w-48 h-48 bg-accent mx-auto mb-8 ${className}`}
           ></div>
-          <div className="text-xs font-mono text-muted">{name}</div>
+          <div className="body-2 text-muted">{name}</div>
         </div>
       ))}
     </div>
@@ -220,7 +218,7 @@ const TypographyShowcase = () => {
 
   return (
     <div className="mb-32">
-      <h3 className="font-medium text-base mb-16">Typography</h3>
+      <h3 className="heading-3 mb-16">Typography</h3>
       <div className="space-y-12">
         {typographyStyles.map((style) => (
           <TypographySample key={style.className} {...style} />
@@ -233,20 +231,18 @@ const TypographyShowcase = () => {
 // Drop Shadow Showcase Component
 const DropShadowShowcase = () => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">Drop Shadows</h3>
+    <h3 className="heading-3 mb-16">Drop Shadows</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
       {[
-        { name: '4px', class: 'shadow-4' },
-        { name: '8px', class: 'shadow-8' },
-        { name: '16px', class: 'shadow-16' },
-        { name: '24px', class: 'shadow-24' },
-        { name: '32px', class: 'shadow-32' },
+        { name: '4px', class: 'drop-shadow-4' },
+        { name: '8px', class: 'drop-shadow-8' },
+        { name: '16px', class: 'drop-shadow-16' },
+        { name: '24px', class: 'drop-shadow-24' },
+        { name: '32px', class: 'drop-shadow-32' },
       ].map(({ name, class: shadowClass }) => (
         <div key={name} className="text-center">
-          <div
-            className={`h-64 bg-canvas-sheet rounded-lg ${shadowClass}`}
-          ></div>
-          <div className="text-xs font-mono text-muted mt-8">{name}</div>
+          <div className={`h-64 rounded-lg ${shadowClass}`}></div>
+          <div className="body-2 text-muted mt-8">{name}</div>
         </div>
       ))}
     </div>
@@ -256,11 +252,11 @@ const DropShadowShowcase = () => (
 // Gradient Showcase Component
 const GradientShowcase = () => (
   <div className="mb-32">
-    <h3 className="text-lg font-medium text-base mb-16">Gradients</h3>
+    <h3 className="heading-3 mb-16">Gradients</h3>
     <div className="space-y-32">
       {/* Directional Gradients */}
       <div>
-        <h4 className="text-base font-medium mb-16">Directional Gradients</h4>
+        <h4 className="heading-4 mb-16">Directional Gradients</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
           {[
             { name: 'Top', class: 'gradient-top' },
@@ -268,7 +264,7 @@ const GradientShowcase = () => (
           ].map(({ name, class: gradientClass }) => (
             <div key={name} className="text-center">
               <div className={`h-96 rounded-lg ${gradientClass}`}></div>
-              <div className="text-xs font-mono text-muted mt-8">{name}</div>
+              <div className="body-2 text-muted mt-8">{name}</div>
             </div>
           ))}
         </div>
@@ -276,19 +272,27 @@ const GradientShowcase = () => (
 
       {/* Asset Gradients */}
       <div>
-        <h4 className="text-base font-medium mb-16">Asset Gradients</h4>
+        <h4 className="heading-4 mb-16">Asset Gradients</h4>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-16">
           {[
-            { name: 'BTC', class: 'gradient-btc' },
-            { name: 'USDT', class: 'gradient-usdt' },
+            { name: 'BTC', class: 'gradient-bitcoin' },
+            { name: 'USDT', class: 'gradient-tether-usdt' },
             { name: 'SOL', class: 'gradient-sol' },
-            { name: 'ETH', class: 'gradient-eth' },
-            { name: 'TRX', class: 'gradient-trx' },
-            { name: 'DOGE', class: 'gradient-doge' },
+            { name: 'ETH', class: 'gradient-ethereum' },
+            { name: 'TRX', class: 'gradient-tron' },
+            { name: 'DOGE', class: 'gradient-dogecoin' },
+            { name: 'XRP', class: 'gradient-xrp' },
+            { name: 'LTC', class: 'gradient-litecoin' },
+            { name: 'BCH', class: 'gradient-bitcoin-cash' },
+            { name: 'BNB', class: 'gradient-binance' },
+            { name: 'ADA', class: 'gradient-cardano' },
+            { name: 'DOT', class: 'gradient-polkadot' },
+            { name: 'LINK', class: 'gradient-chainlink' },
+            { name: 'UNI', class: 'gradient-uniswap' },
           ].map(({ name, class: gradientClass }) => (
             <div key={name} className="text-center">
               <div className={`h-64 rounded-lg ${gradientClass}`}></div>
-              <div className="text-xs font-mono text-muted mt-8">{name}</div>
+              <div className="body-2 text-muted mt-8">{name}</div>
             </div>
           ))}
         </div>
@@ -629,7 +633,7 @@ export const Colors: Story = {
       />
 
       <ColorSection
-        title="Special Colors"
+        title="Constant Colors"
         category="background"
         tokens={[
           { name: 'White', className: 'bg-white', textClassName: 'text-black' },
@@ -682,6 +686,99 @@ export const Colors: Story = {
           { name: 'Warning', className: 'bg-base border-warning' },
           { name: 'Success', className: 'bg-base border-success' },
           { name: 'Focus', className: 'bg-base border-focus' },
+        ]}
+      />
+    </div>
+  ),
+};
+
+export const CryptoColors: Story = {
+  render: () => (
+    <div className="p-24">
+      <SectionHeader
+        title="Crypto Colors Tokens"
+        description="Crypto colors tokens for different cryptocurrencies"
+      />
+      <ColorSection
+        title="Crypto Colors"
+        category="background"
+        tokens={[
+          {
+            name: 'Bitcoin',
+            className: 'bg-bitcoin',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Ethereum',
+            className: 'bg-ethereum',
+            textClassName: 'text-white',
+          },
+          { name: 'Solana', className: 'bg-sol', textClassName: 'text-base' },
+          {
+            name: 'USDT',
+            className: 'bg-tether-usdt',
+            textClassName: 'text-white',
+          },
+          { name: 'USDC', className: 'bg-usdc', textClassName: 'text-base' },
+          {
+            name: 'Binance',
+            className: 'bg-binance',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Cardano',
+            className: 'bg-cardano',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Polkadot',
+            className: 'bg-polkadot',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Dogecoin',
+            className: 'bg-dogecoin',
+            textClassName: 'text-white',
+          },
+          { name: 'XRP', className: 'bg-xrp', textClassName: 'text-white' },
+          {
+            name: 'Litecoin',
+            className: 'bg-litecoin',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Polygon',
+            className: 'bg-polygon',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Cosmos',
+            className: 'bg-cosmos',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Chainlink',
+            className: 'bg-chainlink',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Uniswap',
+            className: 'bg-uniswap',
+            textClassName: 'text-white',
+          },
+          { name: 'Tron', className: 'bg-tron', textClassName: 'text-white' },
+          {
+            name: 'Stellar',
+            className: 'bg-stellar',
+            textClassName: 'text-white',
+          },
+          {
+            name: 'Monero',
+            className: 'bg-monero',
+            textClassName: 'text-white',
+          },
+          { name: 'Near', className: 'bg-near', textClassName: 'text-white' },
+          { name: 'Tezos', className: 'bg-tezos', textClassName: 'text-white' },
         ]}
       />
     </div>
