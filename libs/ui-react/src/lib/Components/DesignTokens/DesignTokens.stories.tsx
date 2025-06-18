@@ -230,8 +230,8 @@ const TypographyShowcase = () => {
 
 // Drop Shadow Showcase Component
 const DropShadowShowcase = () => (
-  <div className="mb-32">
-    <h3 className="heading-3 mb-16">Drop Shadows</h3>
+  <div className="mb-32 ">
+    <h3 className="heading-3 mb-16 text-black">Drop Shadows</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
       {[
         { name: '4px', class: 'drop-shadow-4' },
@@ -252,11 +252,11 @@ const DropShadowShowcase = () => (
 // Gradient Showcase Component
 const GradientShowcase = () => (
   <div className="mb-32">
-    <h3 className="heading-3 mb-16">Gradients</h3>
+    <h3 className="heading-3 mb-16 text-base">Gradients</h3>
     <div className="space-y-32">
       {/* Directional Gradients */}
       <div>
-        <h4 className="heading-4 mb-16">Directional Gradients</h4>
+        <h4 className="heading-4 mb-16 text-base">Directional Gradients</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-16">
           {[
             { name: 'Top', class: 'gradient-top' },
@@ -272,7 +272,7 @@ const GradientShowcase = () => (
 
       {/* Asset Gradients */}
       <div>
-        <h4 className="heading-4 mb-16">Asset Gradients</h4>
+        <h4 className="heading-4 mb-16 text-base">Asset Gradients</h4>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-16">
           {[
             { name: 'BTC', class: 'gradient-bitcoin' },
@@ -694,7 +694,7 @@ export const Colors: Story = {
 
 export const CryptoColors: Story = {
   render: () => (
-    <div className="p-24">
+    <div className="p-24 bg-canvas-sheet">
       <SectionHeader
         title="Crypto Colors Tokens"
         description="Crypto colors tokens for different cryptocurrencies"
@@ -835,7 +835,7 @@ export const Shadows: Story = {
 
 export const Gradients: Story = {
   render: () => (
-    <div className="p-24">
+    <div className="p-24 bg-canvas-sheet">
       <SectionHeader
         title="Gradient Tokens"
         description="Directional and asset-specific gradients"
