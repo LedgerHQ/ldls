@@ -7,12 +7,10 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "npx tsx design-tokens-etl.ts",
-          "npx tsc -p tsconfig.lib.json"
-        ],
+        "command": "npx tsc -p tsconfig.lib.json",
         "cwd": "libs/design-tokens"
-      }
+      },
+      "dependsOn": ["design-tokens-etl", "generate-svgs"]
     },
     "figma-export": {
       "executor": "nx:run-commands",
@@ -35,7 +33,7 @@
         "cwd": "libs/design-tokens"
       }
     },
-    "sd": {
+    "design-tokens-etl": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx tsx design-tokens-etl.ts",
