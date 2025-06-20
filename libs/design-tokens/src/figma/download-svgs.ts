@@ -11,6 +11,7 @@ type DownloadSvgsConfig = {
   saveDirectory: string;
   clearDirectory?: boolean;
   lastModified: string;
+  forceDownload?: boolean; // If true, will download svgs even if the last modified date is the same
 };
 
 type DownloadedSvgData = {
@@ -99,6 +100,7 @@ export const downloadSvgs = async (
   const arraysEqual = (a1: string[], a2: string[]) =>
     a1.length === a2.length && a1.every((item) => a2.includes(item));
   const shouldDownloadSvgs =
+    config.forceDownload ||
     config.lastModified !== dataFromConfig.lastModified ||
     !arraysEqual(componentIds, dataFromConfig.componentIds ?? []);
 

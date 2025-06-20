@@ -43,7 +43,7 @@
     "generate-svgs": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./src/lib/generate-svgs.ts",
+        "command": "npx tsx generate-svgs.ts",
         "cwd": "libs/design-tokens"
       }
     }

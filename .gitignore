@@ -5,6 +5,10 @@ dist
 tmp
 out-tsc
 
+# generated symbols
+libs/ui-react/src/lib/Symbols/**/*.tsx
+libs/ui-react/src/lib/Symbols/**/*.ts
+
 # dependencies
 node_modules
 

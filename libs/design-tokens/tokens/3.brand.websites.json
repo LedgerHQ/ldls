@@ -25,6 +25,7 @@
           "com.figma": {
             "hiddenFromPublishing": false,
             "scopes": [
+              "FRAME_FILL",
               "SHAPE_FILL"
             ],
             "codeSyntax": {}
@@ -39,6 +40,7 @@
           "com.figma": {
             "hiddenFromPublishing": false,
             "scopes": [
+              "FRAME_FILL",
               "SHAPE_FILL"
             ],
             "codeSyntax": {}
@@ -1086,7 +1088,8 @@
             "hiddenFromPublishing": false,
             "scopes": [
               "SHAPE_FILL",
-              "TEXT_FILL"
+              "TEXT_FILL",
+              "STROKE_COLOR"
             ],
             "codeSyntax": {
               "WEB": "var(--text-muted);"
