@@ -5,6 +5,10 @@ export function createThemePlugin(
   brandTheme: Record<string, Record<string, string>>
 ) {
   const cryptoColors = getThemeUtilsByPrefix(brandTheme, '--color-crypto-');
+  const discoveryColors = getThemeUtilsByPrefix(
+    brandTheme,
+    '--color-discover-'
+  );
   const backgroundColors = getThemeUtilsByPrefix(brandTheme, '--background-');
   const textColors = getThemeUtilsByPrefix(brandTheme, '--text-');
   const borderColors = getThemeUtilsByPrefix(brandTheme, '--border-');
@@ -18,10 +22,10 @@ export function createThemePlugin(
         backgroundColor: {
           ...backgroundColors,
           ...cryptoColors,
+          ...discoveryColors,
         },
         textColor: {
           ...textColors,
-          ...cryptoColors,
         },
         borderColor: {
           ...borderColors,
@@ -180,20 +184,6 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-body-4-line-height)',
         'letter-spacing': 'var(--font-style-body-4-letter-spacing)',
       },
-      '.caption': {
-        'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-body-3-size)',
-        'font-weight': 'var(--font-style-body-3-weight-medium)',
-        'line-height': 'var(--font-style-body-3-line-height)',
-        'letter-spacing': 'var(--font-style-body-3-letter-spacing)',
-      },
-      '.small-caption': {
-        'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-body-4-size)',
-        'font-weight': 'var(--font-style-body-4-weight-medium)',
-        'line-height': 'var(--font-style-body-4-line-height)',
-        'letter-spacing': 'var(--font-style-body-4-letter-spacing)',
-      },
     };
 
     addUtilities(displayStyles);
@@ -204,10 +194,10 @@ export function createTypographyPlugin() {
 
 function cryptoGradientStyles(crypto: string) {
   return {
-    [`.gradient-${crypto}`]: {
+    [`.bg-gradient-${crypto}`]: {
       'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}) 0%, var(--color-crypto-${crypto}-0) 100%)`,
     },
-    [`.gradient-${crypto}-0`]: {
+    [`.bg-gradient-${crypto}-0`]: {
       'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}-0) 0%, var(--color-crypto-${crypto}-0) 100%)`,
     },
   };
@@ -240,11 +230,11 @@ export function createGradientPlugin(
 ) {
   return plugin(function ({ addUtilities }) {
     const gradientStyles = {
-      '.gradient-top': {
+      '.bg-gradient-top': {
         'background-image':
           'linear-gradient(180deg, var(--background-gradient-80) 0%, var(--background-gradient-70) 60%, var(--background-gradient-0) 100%)',
       },
-      '.gradient-bottom': {
+      '.bg-gradient-bottom': {
         'background-image':
           'linear-gradient(180deg, var(--background-gradient-0) 0%, var(--background-gradient-70) 40%, var(--background-gradient-80) 100%)',
       },

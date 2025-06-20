@@ -78,12 +78,11 @@ StyleDictionary.registerFormat({
   },
 });
 
-function getSDThemeConfig(brand: string, theme: string, breakpoint: string) {
+function getSDThemeConfig(brand: string, theme: string) {
   const themeSpecificSources = [
     `${tokensFolder}/1.primitives.value.json`,
     `${tokensFolder}/2.theme.${theme}.json`,
     `${tokensFolder}/3.brand.${brand}.json`,
-    `${tokensFolder}/4.breakpoint.${breakpoint}.json`,
   ];
 
   return {
@@ -129,7 +128,13 @@ function getSDThemeConfig(brand: string, theme: string, breakpoint: string) {
 }
 
 function getSDPrimitivesConfig() {
-  const sources = [`${tokensFolder}/1.primitives.value.json`];
+  const sources = [
+    `${tokensFolder}/1.primitives.value.json`,
+    `${tokensFolder}/4.breakpoint.sm.json`,
+    `${tokensFolder}/4.breakpoint.md.json`,
+    `${tokensFolder}/4.breakpoint.lg.json`,
+    `${tokensFolder}/4.breakpoint.xl.json`,
+  ];
 
   return {
     source: sources,
@@ -171,15 +176,13 @@ const buildPrimitives = () => {
 
 buildPrimitives();
 
-breakpoints.forEach(function (breakpoint) {
-  brands.forEach(function (brand) {
-    themes.forEach(function (theme) {
-      const currentConfig = getSDThemeConfig(brand, theme, breakpoint);
+brands.forEach(function (brand) {
+  themes.forEach(function (theme) {
+    const currentConfig = getSDThemeConfig(brand, theme);
 
-      const sd = new StyleDictionary(currentConfig);
+    const sd = new StyleDictionary(currentConfig);
 
-      sd.buildAllPlatforms();
-    });
+    sd.buildAllPlatforms();
   });
 
   StyleDictionary.registerAction({
