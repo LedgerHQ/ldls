@@ -7,7 +7,7 @@ const preview: Preview = {
   parameters: {
     order: {
       storySort: {
-        order: ['Design Tokens', 'Components'],
+        order: ['Foundations', 'Symbols', 'Components'],
       },
     },
     darkMode: {

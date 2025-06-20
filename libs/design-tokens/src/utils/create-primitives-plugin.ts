@@ -52,6 +52,9 @@ export function createPrimitivesPlugin() {
         gap: {
           ...spacing,
         },
+        space: {
+          ...spacing,
+        },
         borderRadius: {
           ...borderRadius,
         },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import cn from '../../../utils/twMerge';
 
 const meta: Meta = {
-  title: 'Design Tokens',
+  title: 'Foundations/Design Tokens',
   tags: ['autodocs'],
   globals: {
     backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
@@ -118,7 +118,7 @@ const ColorSection = ({
 
 const SpacingShowcase = () => (
   <div className="mb-32">
-    <div className="space-y-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-16 justify-items-start items-start">
       {[
         { name: '2px', class: 'p-2', token: 'p-2' },
         { name: '4px', class: 'p-4', token: 'p-4' },
@@ -139,12 +139,25 @@ const SpacingShowcase = () => (
         { name: '160px', class: 'p-160', token: 'p-160' },
         { name: '256px', class: 'p-256', token: 'p-256' },
       ].map(({ name, class: widthClass, token }) => (
-        <div key={name} className="flex items-center gap-16">
-          <div className="w-48 body-4 text-base">{name}</div>
-          <div className={`${widthClass}  bg-accent rounded-md`}>
-            <div className="body-2 w-56 h-56 text-muted bg-muted-transparent-pressed rounded-sm"></div>
+        <div key={name} className="flex items-center gap-8">
+          <div>
+            <div className="w-48 body-2 text-base">{name}</div>
+            <div className="body-4 text-muted">{token}</div>
           </div>
-          <div className="body-2 text-muted">{token}</div>
+          <div
+            className={`${widthClass}  border border-1 border-muted-subtle rounded-md bg-[repeating-linear-gradient(45deg,var(--border-muted-subtle)_2px,var(--border-muted-subtle)_4px,transparent_4px,transparent_12px)]`}
+            //         style={{
+            //           backgroundImage: `repeating-linear-gradient(
+            //   45deg,
+            //   var(--background-canvas-sheet) 2px,
+            //   var(--background-canvas-sheet) 4px,
+            //   transparent 4px,
+            //   transparent 12px
+            // )`,
+            //         }}
+          >
+            <div className="body-2 w-56 h-56 text-muted bg-accent rounded-sm"></div>
+          </div>
         </div>
       ))}
     </div>
@@ -153,7 +166,7 @@ const SpacingShowcase = () => (
 
 const WidthShowcase = () => (
   <div className="mb-32">
-    <div className="space-y-12">
+    <div className="space-y-16">
       {[
         { name: '208px', class: 'w-208', token: 'w-208' },
         { name: '176px', class: 'w-176', token: 'w-176' },
@@ -176,7 +189,7 @@ const WidthShowcase = () => (
         { name: '2px', class: 'w-2', token: 'p-2' },
         { name: '1px', class: 'w-1', token: 'w-1' },
       ].map(({ name, class: widthClass, token }) => (
-        <div key={name} className="flex items-center gap-16">
+        <div key={name} className="flex items-center gap-8">
           <div>
             <div className="w-48 body-2 text-base">{name}</div>
             <div className="body-4 text-muted">{token}</div>
@@ -230,17 +243,19 @@ const BorderRadiusShowcase = () => (
     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-16">
       {[
         { name: 'none', class: 'rounded-none' },
+        { name: 'xs', class: 'rounded-xs' },
         { name: 'sm', class: 'rounded-sm' },
         // { name: 'base', class: 'rounded' }, //to be added ?
+        //  rounded default ?
         { name: 'md', class: 'rounded-md' },
         { name: 'lg', class: 'rounded-lg' },
         { name: 'xl', class: 'rounded-xl' },
-        { name: '2xl', class: 'rounded-2xl' },
+        { name: '2xl', class: 'rounded-xxl' }, //to be updated to 2xl
         { name: 'full', class: 'rounded-full' },
       ].map(({ name, class: className }) => (
         <div key={name} className="">
           <div
-            className={`w-48 h-48 bg-accent mx-auto mb-8 ${className}`}
+            className={`w-80 h-80 bg-accent mx-auto mb-8 ${className}`}
           ></div>
           <div></div>
           <div className="body-2 text-base">{name}</div>
@@ -253,18 +268,19 @@ const BorderRadiusShowcase = () => (
 
 const BorderWidthShowcase = () => (
   <div className="mb-32">
-    <h3 className="heading-3 mb-16 text-base">Border Width</h3>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-16">
       {[
         { name: '1px', class: 'border-1', token: 'border-1' },
         { name: '2px', class: 'border-2', token: 'border-2' },
       ].map(({ name, class: borderWidthClass, token }) => (
         <div key={name} className="flex items-center gap-16">
-          <div className="w-48 body-4 text-base">{name}</div>
+          <div>
+            <div className="w-48 body-2 text-base">{name}</div>
+            <div className="body-4 text-muted">{token}</div>
+          </div>
           <div
-            className={`${borderWidthClass} border w-16 border-muted-subtle rounded`}
+            className={`${borderWidthClass} border w-80 h-80 border-active rounded-sm`}
           ></div>
-          <div className="body-2 text-muted">{token}</div>
         </div>
       ))}
     </div>
@@ -279,11 +295,13 @@ const TypographySample = ({
   title: string;
 }) => (
   <div>
-    <div className={`${className} mb-4 text-base`}>{title}</div>
-    <div className={`${className} text-base`}>
+    <div
+      className={`${className} text-base border border-1 p-24 max-w-fit rounded-lg border-muted-subtle`}
+    >
       The quick brown fox jumps over the lazy dog
     </div>
-    <div className="body-4 mb-4 text-base">{className}</div>
+    <div className="mb-4 mt-16 body-2 text-base">{title}</div>
+    <div className="body-4 mb-32 text-muted">{className}</div>
   </div>
 );
 
@@ -311,7 +329,6 @@ const TypographyShowcase = () => {
 
   return (
     <div className="mb-32">
-      <h3 className="heading-3 mb-16 text-base">Typography</h3>
       <div className="space-y-12">
         {typographyStyles.map((style) => (
           <TypographySample key={style.className} {...style} />
@@ -324,8 +341,7 @@ const TypographyShowcase = () => {
 // Drop Shadow Showcase Component
 const DropShadowShowcase = () => (
   <div className="mb-32 ">
-    <h3 className="heading-3 mb-16 text-base">Drop Shadows</h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 gap-y-40">
       {[
         { name: '4px', class: 'drop-shadow-4' },
         { name: '8px', class: 'drop-shadow-8' },
@@ -333,9 +349,11 @@ const DropShadowShowcase = () => (
         { name: '24px', class: 'drop-shadow-24' },
         { name: '32px', class: 'drop-shadow-32' },
       ].map(({ name, class: shadowClass }) => (
-        <div key={name} className="text-center ">
-          <div className={`h-64 rounded-lg ${shadowClass}`}></div>
-          <div className="body-2 text-muted mt-8">{name}</div>
+        <div key={name}>
+          <div className="dark:bg-muted-on-muted text-center flex items-center justify-center w-192 h-192 border border-1 border-muted-subtle rounded-lg">
+            <div className={`h-80 w-80 rounded-lg ${shadowClass}`}></div>
+          </div>
+          <div className="body-2 text-base mt-8">{name}</div>
           <div className="body-4 text-muted mt-8">{shadowClass}</div>
         </div>
       ))}
@@ -345,7 +363,6 @@ const DropShadowShowcase = () => (
 
 const GradientShowcase = () => (
   <div className="mb-32">
-    <h3 className="heading-3 mb-16 text-base">Gradients</h3>
     <div className="space-y-32">
       <div>
         <h4 className="heading-4 mb-16 text-base">Directional Gradients</h4>
@@ -354,9 +371,11 @@ const GradientShowcase = () => (
             { name: 'Top', class: 'bg-gradient-top' },
             { name: 'Bottom', class: 'bg-gradient-bottom' },
           ].map(({ name, class: gradientClass }) => (
-            <div key={name} className="text-center">
-              <div className={`h-96 rounded-lg ${gradientClass}`}></div>
-              <div className="body-2 text-muted mt-8">{name}</div>
+            <div key={name}>
+              <div
+                className={`h-96 rounded-lg border border-1 border-muted-subtle ${gradientClass}`}
+              ></div>
+              <div className="body-2 text-base mt-8">{name}</div>
               <div className="body-4 text-muted mt-8">{gradientClass}</div>
             </div>
           ))}
@@ -383,9 +402,11 @@ const GradientShowcase = () => (
             { name: 'UNI', class: 'bg-gradient-uniswap' },
             { name: 'USDC', class: 'bg-gradient-usdc' },
           ].map(({ name, class: gradientClass }) => (
-            <div key={name} className="text-center">
-              <div className={`h-64 rounded-lg ${gradientClass}`}></div>
-              <div className="body-2 text-muted mt-8">{name}</div>
+            <div key={name}>
+              <div
+                className={`h-64 rounded-lg border border-1 border-muted-subtle ${gradientClass}`}
+              ></div>
+              <div className="body-2 text-base mt-8">{name}</div>
             </div>
           ))}
         </div>
@@ -892,15 +913,14 @@ export const Colors: Story = {
   ),
 };
 
-export const DiscoveryColors: Story = {
+export const DiscoverColors: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Discovery Colors Tokens"
+        title="Discover Colors Tokens"
         description="Brand colors for discover services and platform integrations"
       />
       <ColorSection
-        title="Discovery Colors"
         category="background"
         tokens={[
           { name: '1inch', className: 'bg-1inch', textClassName: 'text-base' },
@@ -991,7 +1011,6 @@ export const CryptoColors: Story = {
         description="Crypto colors tokens for different cryptocurrencies"
       />
       <ColorSection
-        title="Crypto Colors"
         category="background"
         tokens={[
           { name: 'Aion', className: 'bg-aion' },
