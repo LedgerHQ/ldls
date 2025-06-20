@@ -19,7 +19,7 @@ const createIcon = (
         className,
         viewBox: iconJsx.props.viewBox,
         ...props,
-        children: iconJsx.props.children as React.ReactElement,
+        children: iconJsx.props.children,
       })
   );
 

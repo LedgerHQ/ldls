@@ -31,7 +31,7 @@ function pascalCasePath(relativePath: string): string {
   return relativePath.split(path.sep).map(toPascalCase).join(path.sep);
 }
 
-async function generateIcons() {
+async function generateSymbols() {
   console.log('🔥 Starting symbol generation...');
 
   await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
@@ -91,7 +91,7 @@ async function generateIcons() {
 }
 
 try {
-  generateIcons();
+  generateSymbols();
 } catch (error) {
   console.error('An unexpected error occurred:', error);
   process.exit(1);

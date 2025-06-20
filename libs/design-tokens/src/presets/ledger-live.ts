@@ -1,9 +1,10 @@
 import type { Config } from 'tailwindcss';
 import { ledgerLiveTheme } from '../themes.js';
 import { createThemePlugin } from '../utils/index.js';
+import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 
 export const ledgerLivePreset = {
   content: [],
-  plugins: [createThemePlugin(ledgerLiveTheme)],
+  plugins: [createPrimitivesPlugin(), createThemePlugin(ledgerLiveTheme)],
   darkMode: 'class',
 } satisfies Config;

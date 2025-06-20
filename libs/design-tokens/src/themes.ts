@@ -1,4 +1,3 @@
-import { merge } from 'lodash';
 import { tokens as enterpriseLightThemeTokens } from '../dist/lib/enterprise/theme.light.js';
 import { tokens as enterpriseDarkThemeTokens } from '../dist/lib/enterprise/theme.dark.js';
 
@@ -10,17 +9,19 @@ import { tokens as websitesDarkThemeTokens } from '../dist/lib/websites/theme.da
 
 import { tokens as primitivesTokens } from '../dist/lib/primitives.js';
 
+export const primitivesTheme = primitivesTokens;
+
 export const enterpriseTheme = {
-  ...merge(enterpriseLightThemeTokens, primitivesTokens),
+  ...enterpriseLightThemeTokens,
   ...enterpriseDarkThemeTokens,
 };
 
 export const ledgerLiveTheme = {
-  ...merge(ledgerLiveLightThemeTokens, primitivesTokens),
+  ...ledgerLiveLightThemeTokens,
   ...ledgerLiveDarkThemeTokens,
 };
 
 export const websitesTheme = {
-  ...merge(websitesLightThemeTokens, primitivesTokens),
+  ...websitesLightThemeTokens,
   ...websitesDarkThemeTokens,
 };

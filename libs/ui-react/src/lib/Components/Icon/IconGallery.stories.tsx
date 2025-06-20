@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { IconGallery, IconItem } from '@storybook/blocks';
+import { IconSize } from './Icon';
 import * as Icons from '../../Symbols';
 
 const meta: Meta = {
@@ -21,10 +22,12 @@ const meta: Meta = {
 
 export default meta;
 
+const sizes: IconSize[] = [16, 20, 24, 40, 48];
+
 export const IconSizes: StoryObj = {
   render: () => (
     <div className="space-y-6">
-      {[16, 20, 24, 40, 48].map((size) => (
+      {sizes.map((size) => (
         <div key={size}>
           <h3 className="text-lg font-semibold mb-4">Size {size}px</h3>
           <div className="flex flex-wrap gap-4">
@@ -38,7 +41,7 @@ export const IconSizes: StoryObj = {
                     key={iconName}
                     className="flex flex-col items-center p-2"
                   >
-                    <IconComponent size={size as 16 | 20 | 24 | 40 | 48} />
+                    <IconComponent size={size} />
                     <span className="text-xs mt-1">{iconName}</span>
                   </div>
                 );
