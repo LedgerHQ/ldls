@@ -27,9 +27,9 @@ export const websitesTheme = {
 };
 
 export const allBrandsTheme = {
-  ':root, .ledger-live': ledgerLiveLightThemeTokens[':root'],
+  '.ledger-live': ledgerLiveLightThemeTokens[':root'],
 
-  '.dark, .ledger-live.dark': ledgerLiveDarkThemeTokens['.dark'],
+  '.ledger-live.dark': ledgerLiveDarkThemeTokens['.dark'],
 
   '.enterprise': enterpriseLightThemeTokens[':root'],
   '.enterprise.dark': enterpriseDarkThemeTokens['.dark'],
