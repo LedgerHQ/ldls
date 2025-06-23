@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import '../src/styles.css';
+import { withThemeByClassName } from '@storybook/addon-themes';
 
 const preview: Preview = {
   parameters: {
@@ -12,6 +13,18 @@ const preview: Preview = {
       },
     },
   },
+
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        'ledger-live': 'ledger-live',
+        enterprise: 'enterprise',
+        websites: 'websites',
+      },
+      defaultTheme: 'ledger-live',
+      parentSelector: 'html',
+    }),
+  ],
 };
 
 export default preview;

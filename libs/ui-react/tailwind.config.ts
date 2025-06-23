@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-tokens';
+import { allBrandsPreset } from '@ldls/design-tokens';
 
 const config = {
   content: [
@@ -7,7 +7,7 @@ const config = {
     '.storybook/**/*.{js,jsx,ts,tsx}',
     './lib/**/*.stories.{js,jsx,ts,tsx}',
   ],
-  presets: [ledgerLivePreset],
+  presets: [allBrandsPreset],
 } satisfies Config;
 
 export default config;
