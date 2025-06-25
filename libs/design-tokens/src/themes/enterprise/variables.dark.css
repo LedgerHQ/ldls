@@ -87,6 +87,8 @@
   --color-text-base-pressed: var(--color-dark-grey-800);
   --color-text-disabled: var(--color-dark-grey-400);
   --color-text-muted: var(--color-dark-grey-700);
+  --color-text-muted-hover: var(--color-dark-grey-800);
+  --color-text-muted-pressed: var(--color-dark-grey-900);
   --color-text-muted-subtle: var(--color-dark-grey-300);
   --color-text-active-ledger-live: var(--color-dark-purple-500);
   --color-text-active-enterprise: var(--color-dark-blue-500);
@@ -99,6 +101,7 @@
   --color-text-on-accent-websites: var(--color-dark-grey-950);
   --color-text-on-interactive: var(--color-dark-grey-050);
   --color-text-on-error-strong: var(--color-dark-grey-050);
+  --color-text-on-warning-strong: var(--color-dark-grey-050);
   --color-text-on-success-strong: var(--color-dark-grey-050);
   --color-border-black: var(--color-dark-constant-950);
   --color-border-white: var(--color-dark-constant-050);
@@ -121,12 +124,15 @@
   --color-border-active-websites: var(--color-dark-orange-400);
   --color-border-active-websites-hover: var(--color-dark-orange-500);
   --color-border-active-websites-pressed: var(--color-dark-orange-600);
-  --color-border-focus: var(--color-dark-purple-800);
+  --color-border-focus-ledger-live: var(--color-dark-purple-800);
+  --color-border-focus-entreprise: var(--color-dark-blue-800);
+  --color-border-focus-websites: var(--color-dark-orange-800);
   --color-border-error: var(--color-dark-red-600);
   --color-border-error-hover: var(--color-dark-red-700);
   --color-border-error-pressed: var(--color-dark-red-800);
   --color-border-warning: var(--color-dark-yellow-600);
   --color-border-success: var(--color-dark-green-600);
+  --color-border-icon: var(--color-dark-grey-950-5);
   --color-crypto-aion: var(--color-dark-crypto-aion);
   --color-crypto-aion-0: var(--color-dark-crypto-aion-0);
   --color-crypto-algorand: var(--color-dark-crypto-algorand);
@@ -157,6 +163,8 @@
   --color-crypto-compound-0: var(--color-dark-crypto-compound-0);
   --color-crypto-celo: var(--color-dark-crypto-celo);
   --color-crypto-celo-0: var(--color-dark-crypto-celo-0);
+  --color-crypto-celo-2: var(--color-dark-crypto-celo-2);
+  --color-crypto-celo-2-0: var(--color-dark-crypto-celo-2-0);
   --color-crypto-chainlink: var(--color-dark-crypto-chainlink);
   --color-crypto-chainlink-0: var(--color-dark-crypto-chainlink-0);
   --color-crypto-cro: var(--color-dark-crypto-cro);
@@ -233,6 +241,8 @@
   --color-crypto-polkadot-0: var(--color-dark-crypto-polkadot-0);
   --color-crypto-polygon: var(--color-dark-crypto-polygon);
   --color-crypto-polygon-0: var(--color-dark-crypto-polygon-0);
+  --color-crypto-qnt: var(--color-dark-crypto-qnt);
+  --color-crypto-qnt-0: var(--color-dark-crypto-qnt-0);
   --color-crypto-sats: var(--color-dark-crypto-sats);
   --color-crypto-sats-0: var(--color-dark-crypto-sats-0);
   --color-crypto-stellar: var(--color-dark-crypto-stellar);
@@ -352,6 +362,8 @@
   --text-base-pressed: var(--color-text-base-pressed);
   --text-disabled: var(--color-text-disabled-default);
   --text-muted: var(--color-text-muted-default);
+  --text-muted-hover: var(--color-text-muted-hover);
+  --text-muted-pressed: var(--color-text-muted-pressed);
   --text-muted-subtle: var(--color-text-muted-subtle-default);
   --text-active: var(--color-text-active-enterprise-default);
   --text-error: var(--color-text-error-default);
@@ -360,7 +372,8 @@
   --text-on-accent: var(--color-text-on-accent-enterprise-default);
   --text-on-interactive: var(--color-text-on-interactive-default);
   --text-on-error-strong: var(--color-text-on-error-strong-default);
-  --text-on-succes-strong: var(--color-text-on-success-strong-default);
+  --text-on-warning-strong: var(--color-text-on-warning-strong-default);
+  --text-on-success-strong: var(--color-text-on-success-strong-default);
   --border-black: var(--color-border-black-default);
   --border-white: var(--color-border-white-default);
   --border-disabled: var(--color-border-disabled-default);
@@ -376,10 +389,10 @@
   --border-error: var(--color-border-error-default);
   --border-error-hover: var(--color-border-error-hover);
   --border-error-pressed: var(--color-border-error-pressed);
+  --border-warning: var(--color-border-warning-default);
+  --border-success: var(--color-border-success-default);
   --border-active: var(--color-border-active-enterprise-default);
   --border-active-hover: var(--color-border-active-enterprise-pressed);
   --border-active-pressed: var(--color-border-active-enterprise-pressed);
-  --border-focus: var(--color-border-focus-default);
-  --border-warning: var(--color-border-warning-default);
-  --border-success: var(--color-border-success-default);
+  --border-focus: var(--color-border-focus-entreprise-default);
 }
