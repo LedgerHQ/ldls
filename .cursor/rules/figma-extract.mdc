@@ -1,0 +1,11 @@
+---
+description: implement a figma component
+globs: 
+alwaysApply: false
+---
+- Use the figma mcp server
+- Semantic css tokens located at [theme.light.js](mdc:libs/design-tokens/dist/lib/enterprise/theme.light.js) and the primitives are located here [primitives.js](mdc:libs/design-tokens/dist/lib/primitives.js)
+- map the semantic tokens with the style values you see in figma: Do not directly use the primitives to style the component, use the semantic values you find here  [theme.light.js](mdc:libs/design-tokens/dist/lib/enterprise/theme.light.js)
+- Use tailwind config to apply the correct classnames in the components [tailwind.config.js](mdc:apps/ldls-react/tailwind.config.js) the tailwind config is based on a preset defined here [enterprise.ts](mdc:libs/design-tokens/src/presets/enterprise.ts)
+- Use the NX mcp server to resolve imports inside the monorepo
+- Although we're using Tailwind CSS v3, we've aligned some of our spacing utilities with Tailwind v4 — for example, spacing-1 maps to 1px, spacing-2 to 2px, etc. You can see these custom values defined in our Tailwind config [tailwind.config.js](mdc:apps/ldls-react/tailwind.config.js)
