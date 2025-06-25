@@ -119,8 +119,8 @@
   --color-light-red-600-10: rgba(194, 66, 68, 0.1);
   --color-light-crypto-aion: #212529;
   --color-light-crypto-aion-0: rgba(33, 37, 41, 0);
-  --color-light-crypto-algorand: #00a478;
-  --color-light-crypto-algorand-0: rgba(0, 164, 120, 0);
+  --color-light-crypto-algorand: #000000;
+  --color-light-crypto-algorand-0: rgba(0, 0, 0, 0);
   --color-light-crypto-avax: #e84142;
   --color-light-crypto-avax-0: rgba(232, 65, 66, 0);
   --color-light-crypto-bat: #ff5000;
@@ -147,6 +147,8 @@
   --color-light-crypto-compound-0: rgba(0, 211, 149, 0);
   --color-light-crypto-celo: #fcff52;
   --color-light-crypto-celo-0: rgba(252, 255, 82, 0);
+  --color-light-crypto-celo-2: #4cdd91;
+  --color-light-crypto-celo-2-0: rgba(76, 221, 145, 0);
   --color-light-crypto-chainlink: #2a5ada;
   --color-light-crypto-chainlink-0: rgba(42, 90, 218, 0);
   --color-light-crypto-cro: #002d74;
@@ -223,6 +225,8 @@
   --color-light-crypto-polkadot-0: rgba(230, 0, 122, 0);
   --color-light-crypto-polygon: #8247e5;
   --color-light-crypto-polygon-0: rgba(130, 71, 229, 0);
+  --color-light-crypto-qnt: #ef4f1f;
+  --color-light-crypto-qnt-0: rgba(239, 79, 31, 0);
   --color-light-crypto-sats: #ff8b00;
   --color-light-crypto-sats-0: rgba(255, 139, 0, 0);
   --color-light-crypto-stellar: #000000;
@@ -241,8 +245,8 @@
   --color-light-crypto-uniswap-0: rgba(255, 0, 122, 0);
   --color-light-crypto-tusd: #1a5aff;
   --color-light-crypto-tusd-0: rgba(26, 90, 255, 0);
-  --color-light-crypto-usdc: #f04086;
-  --color-light-crypto-usdc-0: rgba(240, 64, 134, 0);
+  --color-light-crypto-usdc: #2775ca;
+  --color-light-crypto-usdc-0: rgba(39, 117, 202, 0);
   --color-light-crypto-uni: #f04086;
   --color-light-crypto-uni-0: rgba(240, 64, 134, 0);
   --color-light-crypto-waves: #0055ff;
@@ -387,8 +391,8 @@
   --color-dark-red-600-10: rgba(248, 114, 116, 0.1);
   --color-dark-crypto-aion: #212529;
   --color-dark-crypto-aion-0: rgba(33, 37, 41, 0);
-  --color-dark-crypto-algorand: #00a478;
-  --color-dark-crypto-algorand-0: rgba(0, 164, 120, 0);
+  --color-dark-crypto-algorand: #000000;
+  --color-dark-crypto-algorand-0: rgba(0, 0, 0, 0);
   --color-dark-crypto-avax: #e84142;
   --color-dark-crypto-avax-0: rgba(232, 65, 66, 0);
   --color-dark-crypto-bat: #ff5000;
@@ -415,6 +419,8 @@
   --color-dark-crypto-compound-0: rgba(0, 211, 149, 0);
   --color-dark-crypto-celo: #fcff52;
   --color-dark-crypto-celo-0: rgba(252, 255, 82, 0);
+  --color-dark-crypto-celo-2: #4cdd91;
+  --color-dark-crypto-celo-2-0: rgba(76, 221, 145, 0);
   --color-dark-crypto-chainlink: #2a5ada;
   --color-dark-crypto-chainlink-0: rgba(42, 90, 218, 0);
   --color-dark-crypto-cro: #002d74;
@@ -491,6 +497,8 @@
   --color-dark-crypto-near-0: rgba(28, 29, 31, 0);
   --color-dark-crypto-nano: #5d8eb2;
   --color-dark-crypto-nano-0: rgba(93, 142, 178, 0);
+  --color-dark-crypto-qnt: #ef4f1f;
+  --color-dark-crypto-qnt-0: rgba(239, 79, 31, 0);
   --color-dark-crypto-sats: #ff8b00;
   --color-dark-crypto-sats-0: rgba(255, 139, 0, 0);
   --color-dark-crypto-stellar: #000000;
@@ -509,8 +517,8 @@
   --color-dark-crypto-tron-0: rgba(255, 6, 10, 0);
   --color-dark-crypto-uni: #f04086;
   --color-dark-crypto-uni-0: rgba(240, 64, 134, 0);
-  --color-dark-crypto-usdc: #f04086;
-  --color-dark-crypto-usdc-0: rgba(240, 64, 134, 0);
+  --color-dark-crypto-usdc: #2775ca;
+  --color-dark-crypto-usdc-0: rgba(39, 117, 202, 0);
   --color-dark-crypto-uniswap: #ff007a;
   --color-dark-crypto-uniswap-0: rgba(255, 0, 122, 0);
   --color-dark-crypto-waves: #0055ff;
@@ -554,6 +562,7 @@
   --spacing-56: 56;
   --spacing-64: 64;
   --spacing-80: 80;
+  --spacing-96: 96;
   --spacing-112: 112;
   --spacing-128: 128;
   --spacing-144: 144;
@@ -595,8 +604,10 @@
   --icon-width-16: 16;
   --icon-width-20: 20;
   --icon-width-24: 24;
+  --icon-width-32: 32;
   --icon-width-40: 40;
   --icon-width-48: 48;
+  --icon-width-56: 56;
   --height-0: 0;
   --height-1: 1;
   --height-2: 2;
@@ -633,15 +644,17 @@
   --icon-height-16: 16;
   --icon-height-20: 20;
   --icon-height-24: 24;
+  --icon-height-32: 32;
   --icon-height-40: 40;
   --icon-height-48: 48;
+  --icon-height-56: 56;
   --border-radius-none: 0;
   --border-radius-xs: 4;
   --border-radius-sm: 8;
   --border-radius-md: 12;
   --border-radius-lg: 16;
   --border-radius-xl: 24;
-  --border-radius-xxl: 32;
+  --border-radius-2xl: 32;
   --border-radius-full: 10000;
   --font-family-font: Inter;
   --border-width-1: 1;
@@ -649,8 +662,10 @@
   --icon-border-width-16: 1.2999999523162842;
   --icon-border-width-20: 1.5;
   --icon-border-width-24: 1.7999999523162842;
+  --icon-border-width-32: 2;
   --icon-border-width-40: 2.200000047683716;
   --icon-border-width-48: 2.5;
+  --icon-border-width-56: 2.799999952316284;
   --font-weight-bold: bold;
   --font-weight-semi-bold: semi-bold;
   --font-weight-medium: medium;

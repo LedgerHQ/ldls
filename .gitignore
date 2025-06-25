@@ -4,6 +4,7 @@
 dist
 tmp
 out-tsc
+*.tsbuildinfo
 
 # generated symbols
 libs/ui-react/src/lib/Symbols/**/*.tsx
