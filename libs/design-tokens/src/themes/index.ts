@@ -25,3 +25,15 @@ export const websitesTheme = {
   ...websitesLightThemeTokens,
   ...websitesDarkThemeTokens,
 };
+
+export const allBrandsTheme = {
+  '.ledger-live': ledgerLiveLightThemeTokens[':root'],
+
+  '.ledger-live.dark': ledgerLiveDarkThemeTokens['.dark'],
+
+  '.enterprise': enterpriseLightThemeTokens[':root'],
+  '.enterprise.dark': enterpriseDarkThemeTokens['.dark'],
+
+  '.websites': websitesLightThemeTokens[':root'],
+  '.websites.dark': websitesDarkThemeTokens['.dark'],
+};
