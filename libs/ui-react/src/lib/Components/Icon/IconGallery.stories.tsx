@@ -5,6 +5,9 @@ import * as Icons from '../../Symbols';
 
 const meta: Meta = {
   title: 'React/Symbols/IconGallery',
+  globals: {
+    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  },
   parameters: {
     docs: {
       page: () => (
@@ -26,7 +29,7 @@ const sizes: IconSize[] = [16, 20, 24, 40, 48];
 
 export const IconSizes: StoryObj = {
   render: () => (
-    <div className="space-y-6">
+    <div className="space-y-6 text-base">
       {sizes.map((size) => (
         <div key={size}>
           <h3 className="text-lg font-semibold mb-4">Size {size}px</h3>

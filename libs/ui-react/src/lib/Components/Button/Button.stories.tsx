@@ -6,6 +6,9 @@ const meta: Meta<typeof Button> = {
   component: Button,
   title: 'React/Components/Button',
   tags: ['autodocs'],
+  globals: {
+    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  },
   argTypes: {
     variant: {
       control: 'select',
