@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { websitesTheme } from '../themes.js';
+import { websitesTheme } from '../themes/index.js';
 import { createThemePlugin } from '../utils/index.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 

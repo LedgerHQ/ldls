@@ -9,8 +9,7 @@
       "options": {
         "command": "npx tsc -p tsconfig.lib.json",
         "cwd": "libs/design-tokens"
-      },
-      "dependsOn": ["design-tokens-etl"]
+      }
     },
     "figma-export": {
       "executor": "nx:run-commands",
