@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
-import { allBrandsTheme } from '../themes.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 import { createThemePlugin } from '../utils/index.js';
+import { allBrandsTheme } from 'src/themes/index.js';
 
 export const allBrandsPreset = {
   content: [],
