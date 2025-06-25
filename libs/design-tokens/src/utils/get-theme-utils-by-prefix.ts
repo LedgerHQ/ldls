@@ -1,5 +1,5 @@
 export const getThemeUtilsByPrefix = (
-  themeObject: Record<string, Record<string, string>>,
+  themeObject: Record<string, Record<string, string | number>>,
   prefix: string
 ) => {
   const themeUtils: Record<string, string> = {};

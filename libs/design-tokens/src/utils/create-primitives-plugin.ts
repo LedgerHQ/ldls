@@ -1,7 +1,8 @@
 import plugin from 'tailwindcss/plugin.js';
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 import { createIconUtilities } from './create-icon-utilities.js';
-import { primitivesTheme } from '../themes.js';
+import { primitivesTheme } from '../themes/index.js';
+import { CSSRuleObject } from 'tailwindcss/types/config.js';
 
 export function createPrimitivesPlugin() {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');
@@ -22,7 +23,8 @@ export function createPrimitivesPlugin() {
 
   return plugin(
     function ({ addBase, theme, addUtilities }) {
-      addBase(primitivesTheme);
+      // TODO: Remove type cast after exporting all values as strings from Figma
+      addBase(primitivesTheme as CSSRuleObject);
       addUtilities(createIconUtilities(theme));
     },
     {
