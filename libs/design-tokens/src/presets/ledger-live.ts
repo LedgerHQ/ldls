@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { ledgerLiveTheme } from '../themes.js';
+import { ledgerLiveTheme } from '../themes/index.js';
 import { createThemePlugin } from '../utils/index.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 

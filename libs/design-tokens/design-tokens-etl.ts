@@ -64,7 +64,15 @@ StyleDictionary.registerFormat({
       delete output[mainKey];
     }
 
-    return `export const tokens = ${JSON.stringify(output, null, 2)};`;
+    const tokensType = currentTheme
+      ? 'Record<string, Record<string, string>>'
+      : 'Record<string, Record<string, string | number>>';
+
+    return `/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+export const tokens: ${tokensType} = ${JSON.stringify(output, null, 2)};`;
   },
 });
 
@@ -79,7 +87,7 @@ function getSDThemeConfig(brand: string, theme: string) {
     source: themeSpecificSources,
     platforms: {
       CSS: {
-        buildPath: `dist/lib/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
           {
@@ -97,10 +105,10 @@ function getSDThemeConfig(brand: string, theme: string) {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `dist/lib/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/${brand.toLowerCase()}/`,
         files: [
           {
-            destination: `theme.${theme.toLowerCase()}.js`,
+            destination: `theme.${theme.toLowerCase()}.ts`,
             format: 'javascript/custom-nested-object',
             filter: (token) => {
               return !token.filePath.includes('1.primitives.value.json');
@@ -124,7 +132,7 @@ function getSDPrimitivesConfig() {
     source: sources,
     platforms: {
       CSS: {
-        buildPath: `dist/lib/`,
+        buildPath: `src/themes/`,
         transformGroup: 'css',
         files: [
           {
@@ -139,10 +147,10 @@ function getSDPrimitivesConfig() {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `dist/lib/`,
+        buildPath: `src/themes/`,
         files: [
           {
-            destination: `primitives.js`,
+            destination: `primitives.ts`,
             format: 'javascript/custom-nested-object',
           },
         ],
