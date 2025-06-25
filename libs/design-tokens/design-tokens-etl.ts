@@ -64,6 +64,7 @@ StyleDictionary.registerFormat({
       delete output[mainKey];
     }
 
+    // TODO: use CSSRuleObject type from Tailwind after exporting all values as strings from Figma
     const tokensType = currentTheme
       ? 'Record<string, Record<string, string>>'
       : 'Record<string, Record<string, string | number>>';
