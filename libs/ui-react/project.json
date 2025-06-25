@@ -11,7 +11,13 @@
       "options": {
         "outputPath": "libs/ui-react/dist"
       },
-      "dependsOn": ["generate-symbols"]
+      "dependsOn": [
+        "generate-symbols",
+        {
+          "projects": ["@ldls/design-tokens"],
+          "target": "build"
+        }
+      ]
     },
     "generate-symbols": {
       "executor": "nx:run-commands",

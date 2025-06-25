@@ -64,17 +64,29 @@ const saveSvgsToFiles = async (
   downloadedSvgsData: DownloadedSvgData[],
   saveDirectory: string
 ): Promise<void> => {
+  const names = downloadedSvgsData.map((svg) => svg.name);
+  const duplicates = names.filter(
+    (name, index) => names.indexOf(name) !== index
+  );
+
+  if (duplicates.length > 0) {
+    console.warn('⚠️ Duplicate icon names found:', duplicates);
+  }
+
   await Promise.all(
-    downloadedSvgsData.map(
-      (svgData) =>
-        new Promise((resolve) =>
-          fs.writeFile(
-            path.join(saveDirectory, `${svgData.name}.svg`),
-            svgData.data,
-            resolve
-          )
+    downloadedSvgsData.map((svgData, index) => {
+      if (names.indexOf(svgData.name) !== index) {
+        return Promise.resolve();
+      }
+
+      return new Promise((resolve) =>
+        fs.writeFile(
+          path.join(saveDirectory, `${svgData.name}.svg`),
+          svgData.data,
+          resolve
         )
-    )
+      );
+    })
   );
 };
 
