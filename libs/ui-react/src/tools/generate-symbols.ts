@@ -6,7 +6,7 @@ import { findFilesByExtension } from '../utils/fs-utils';
 import iconTemplate from '../utils/icon-template';
 
 const CWD = process.cwd();
-const INPUT_DIR = path.join(CWD, 'libs/design-tokens/dist/symbols');
+const INPUT_DIR = path.join(CWD, 'libs/design-tokens/symbols');
 const OUTPUT_DIR = path.join(CWD, 'libs/ui-react/src/lib/Symbols');
 const BARREL_FILE = path.join(CWD, 'libs/ui-react/src/lib/Symbols/index.ts');
 

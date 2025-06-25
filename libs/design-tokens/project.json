@@ -9,8 +9,7 @@
       "options": {
         "command": "npx tsc -p tsconfig.lib.json",
         "cwd": "libs/design-tokens"
-      },
-      "dependsOn": ["design-tokens-etl", "generate-svgs"]
+      }
     },
     "figma-export": {
       "executor": "nx:run-commands",
@@ -40,10 +39,10 @@
         "cwd": "libs/design-tokens"
       }
     },
-    "generate-svgs": {
+    "figma-download-svgs": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx generate-svgs.ts",
+        "command": "npx tsx figma-download-svgs.ts",
         "cwd": "libs/design-tokens"
       }
     }

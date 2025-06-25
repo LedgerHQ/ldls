@@ -15,7 +15,7 @@ if (!fileKey || !iconsCanvas) {
   );
 }
 
-const generateSvgs = async () => {
+const figmaDownloadSvgs = async () => {
   const svgsData = await getSvgs({
     fileId: fileKey,
     canvas: iconsCanvas,
@@ -23,7 +23,7 @@ const generateSvgs = async () => {
 
   console.log(`🔎 Found ${svgsData.svgs.length} icons`);
 
-  const saveDirectory = './dist/symbols/icons';
+  const saveDirectory = './symbols/icons';
   mkdirSync(dirname(saveDirectory), { recursive: true });
 
   await downloadSvgs({
@@ -38,7 +38,7 @@ const generateSvgs = async () => {
 };
 
 try {
-  await generateSvgs();
+  await figmaDownloadSvgs();
 } catch (error) {
   console.error(error);
 }
