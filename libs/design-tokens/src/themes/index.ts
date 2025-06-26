@@ -8,8 +8,20 @@ import { tokens as websitesLightThemeTokens } from './websites/theme.light.js';
 import { tokens as websitesDarkThemeTokens } from './websites/theme.dark.js';
 
 import { tokens as primitivesTokens } from './primitives.js';
+import { tokens as typographyLgTokens } from './typography.lg.js';
+import { tokens as typographyMdTokens } from './typography.md.js';
+import { tokens as typographySmTokens } from './typography.sm.js';
+import { tokens as typographyXlTokens } from './typography.xl.js';
 
-export const primitivesTheme = primitivesTokens;
+export const primitivesTheme = {
+  ':root': {
+    ...primitivesTokens[':root'],
+    ...typographySmTokens[':root'],
+    ...typographyLgTokens,
+    ...typographyMdTokens,
+    ...typographyXlTokens,
+  },
+};
 
 export const enterpriseTheme = {
   ...enterpriseLightThemeTokens,
