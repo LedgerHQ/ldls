@@ -16,4 +16,9 @@ export const websitesPreset = {
     createGradientPlugin(websitesTheme),
   ],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;

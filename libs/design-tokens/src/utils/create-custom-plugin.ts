@@ -41,6 +41,12 @@ export function createThemePlugin(
         boxShadowColor: {
           ...backgroundColors,
         },
+        fill: {
+          ...backgroundColors,
+        },
+        stroke: {
+          ...borderColors,
+        },
         caretColor: {
           ...borderColors,
         },
@@ -60,6 +66,9 @@ export function createThemePlugin(
           ...textColors,
         },
         borderColor: {
+          ...borderColors,
+        },
+        textDecorationColor: {
           ...borderColors,
         },
       },

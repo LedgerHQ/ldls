@@ -16,4 +16,9 @@ export const enterprisePreset = {
     createGradientPlugin(enterpriseTheme),
   ],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;

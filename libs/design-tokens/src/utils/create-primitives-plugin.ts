@@ -29,16 +29,17 @@ export function createPrimitivesPlugin() {
     },
     {
       theme: {
-        margin: {
-          ...spacing,
-        },
-        padding: {
+        spacing: {
           ...spacing,
         },
         width: {
           ...width,
         },
         height: {
+          ...height,
+        },
+        size: {
+          ...width,
           ...height,
         },
         minHeight: {
@@ -52,9 +53,6 @@ export function createPrimitivesPlugin() {
         },
         maxWidth: {
           ...width,
-        },
-        gap: {
-          ...spacing,
         },
         space: {
           ...spacing,

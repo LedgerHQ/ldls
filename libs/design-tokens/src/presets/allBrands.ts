@@ -16,4 +16,9 @@ export const allBrandsPreset = {
     createGradientPlugin(allBrandsTheme),
   ],
   darkMode: 'class',
+  corePlugins: {
+    fontSize: false,
+    fontWeight: false,
+    lineHeight: false,
+  },
 } satisfies Config;
