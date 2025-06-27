@@ -36,16 +36,14 @@ export default function codeSyntaxUpdateBody(
         variable.codeSyntax?.WEB !==
         codeSyntaxFromVariableNameEndingByDefault(variable.name)
     )
-    .map((variable) => {
-      return {
-        id: variable.id,
-        name: variable.name,
-        codeSyntax: {
-          WEB: codeSyntaxFromVariableNameEndingByDefault(variable.name),
-        },
-        action: 'UPDATE',
-      };
-    });
+    .map((variable) => ({
+      id: variable.id,
+      name: variable.name,
+      codeSyntax: {
+        WEB: codeSyntaxFromVariableNameEndingByDefault(variable.name),
+      },
+      action: 'UPDATE',
+    }));
   return {
     variables: variablesChange,
   };
