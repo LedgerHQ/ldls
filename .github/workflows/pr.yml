@@ -34,4 +34,6 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
 
-      - run: npx nx affected -t lint test --passWithNoTests build
+      - run: npx nx affected -t lint
+      - run: npx nx affected -t test --passWithNoTests
+      - run: npx nx affected -t build
