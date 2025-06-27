@@ -29,10 +29,7 @@ export function createPrimitivesPlugin() {
     },
     {
       theme: {
-        margin: {
-          ...spacing,
-        },
-        padding: {
+        spacing: {
           ...spacing,
         },
         width: {
@@ -41,10 +38,50 @@ export function createPrimitivesPlugin() {
         height: {
           ...height,
         },
+        size: {
+          ...width,
+          ...height,
+        },
+        minHeight: {
+          ...height,
+        },
+        minWidth: {
+          ...width,
+        },
+        maxHeight: {
+          ...height,
+        },
+        maxWidth: {
+          ...width,
+        },
+        space: {
+          ...spacing,
+        },
+        inset: {
+          ...spacing,
+        },
+        translate: {
+          ...spacing,
+        },
         borderRadius: {
           ...borderRadius,
         },
         borderWidth: {
+          ...borderWidth,
+        },
+        divideWidth: {
+          ...borderWidth,
+        },
+        ringOffsetWidth: {
+          ...borderWidth,
+        },
+        ringWidth: {
+          ...borderWidth,
+        },
+        strokeWidth: {
+          ...iconStrokeWidth,
+        },
+        outlineWidth: {
           ...borderWidth,
         },
         blur: {

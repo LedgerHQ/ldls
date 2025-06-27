@@ -13,6 +13,8 @@ describe('getThemeUtilsByPrefix', () => {
         '--spacing-xs': '4px',
         '--spacing-s': '8px',
         '--spacing-m': '16px',
+        '--color-crypto-bitcoin': 'var(--color-crypto-bitcoin)',
+        '--color-crypto-ethereum': 'var(--color-crypto-ethereum)',
       },
     };
 
@@ -22,6 +24,11 @@ describe('getThemeUtilsByPrefix', () => {
     );
     const textColors = getThemeUtilsByPrefix(realWorldTheme, '--color-text-');
     const spacing = getThemeUtilsByPrefix(realWorldTheme, '--spacing-');
+    const cryptoTokens = getThemeUtilsByPrefix(
+      realWorldTheme,
+      '--color-crypto-',
+      'crypto-'
+    );
 
     expect(backgroundColors).toEqual({
       canvas: 'var(--color-background-canvas)',
@@ -38,6 +45,11 @@ describe('getThemeUtilsByPrefix', () => {
       xs: 'var(--spacing-xs)',
       s: 'var(--spacing-s)',
       m: 'var(--spacing-m)',
+    });
+
+    expect(cryptoTokens).toEqual({
+      'crypto-bitcoin': 'var(--color-crypto-bitcoin)',
+      'crypto-ethereum': 'var(--color-crypto-ethereum)',
     });
   });
 });

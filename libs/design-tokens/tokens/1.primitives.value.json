@@ -6788,7 +6788,7 @@
         "com.figma": {
           "hiddenFromPublishing": false,
           "scopes": [
-            "ALL_SCOPES"
+            "GAP"
           ],
           "codeSyntax": {}
         }

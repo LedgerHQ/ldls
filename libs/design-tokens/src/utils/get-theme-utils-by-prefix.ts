@@ -1,6 +1,10 @@
 export const getThemeUtilsByPrefix = (
-  themeObject: Record<string, Record<string, string | number>>,
-  prefix: string
+  themeObject: Record<
+    string,
+    Record<string, string | number | Record<string, string | number>>
+  >,
+  prefix: string,
+  customPrefix = ''
 ) => {
   const themeUtils: Record<string, string> = {};
   for (const themeKey in themeObject) {
@@ -11,7 +15,10 @@ export const getThemeUtilsByPrefix = (
       for (const key in themeObject[themeKey]) {
         if (key.startsWith(prefix)) {
           const utilityName = key.substring(prefix.length).toLowerCase();
-          themeUtils[utilityName] = `var(${key})`;
+          const prefixedUtilityName = customPrefix
+            ? `${customPrefix}${utilityName}`
+            : utilityName;
+          themeUtils[prefixedUtilityName] = `var(${key})`;
         }
       }
     }
