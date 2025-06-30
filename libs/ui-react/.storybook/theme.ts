@@ -3,7 +3,7 @@ import { ThemeVars } from '@storybook/theming';
 import logoUrl from './genesis.png';
 
 const theme: ThemeVars = create({
-  base: 'dark',
+  base: 'light',
   brandTarget: '_self',
   brandImage: logoUrl,
 });

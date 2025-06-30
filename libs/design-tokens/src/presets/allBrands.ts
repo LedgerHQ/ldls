@@ -4,6 +4,7 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
+  createDropShadowPlugin,
 } from '../utils/index.js';
 import { allBrandsTheme } from '../themes/index.js';
 
@@ -14,6 +15,7 @@ export const allBrandsPreset = {
     createThemePlugin(allBrandsTheme),
     createTypographyPlugin(),
     createGradientPlugin(allBrandsTheme),
+    createDropShadowPlugin(),
   ],
   darkMode: 'class',
   corePlugins: {

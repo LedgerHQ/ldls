@@ -42,7 +42,6 @@ export function createThemePlugin(
         ringColor: borderColor,
         outlineColor: borderColor,
         ringOffsetColor: borderColor,
-
         textDecorationColor: borderColor,
       },
     },
