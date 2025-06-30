@@ -48,7 +48,7 @@ export const IconSizes: StoryObj = {
                     <span className="text-xs mt-1">{iconName}</span>
                   </div>
                 );
-              }
+              },
             )}
           </div>
         </div>
