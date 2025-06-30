@@ -1,4 +1,5 @@
-import StyleDictionary, { TransformedToken } from 'style-dictionary';
+import StyleDictionary from 'style-dictionary';
+import type { TransformedToken } from 'style-dictionary';
 import fs from 'fs';
 import path from 'path';
 
@@ -29,7 +30,7 @@ function sanitizeTokenName(tokenName: string): string {
   return newName;
 }
 
-const filterPrimitives = () => (token: TransformedToken) =>
+const filterPrimitives = (token: TransformedToken) =>
   !token.filePath.includes('1.primitives.value.json');
 
 StyleDictionary.registerFormat({
@@ -43,7 +44,7 @@ StyleDictionary.registerFormat({
       mainKey = '.dark';
     }
 
-    if (currentBreakpoint && currentBreakpoint !== 'sm') {
+    if (!currentTheme && currentBreakpoint && currentBreakpoint !== 'sm') {
       mainKey = `@media (min-width: theme("screens.${currentBreakpoint}"))`;
     }
 
@@ -112,7 +113,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
           {
             destination: `typography.${breakpoint}.css`,
             format: 'css/variables',
-            filter: filterPrimitives(),
+            filter: filterPrimitives,
             options: {
               outputReferences: true,
             },
@@ -131,7 +132,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
           {
             destination: `typography.${breakpoint}.ts`,
             format: 'javascript/custom-nested-object',
-            filter: filterPrimitives(),
+            filter: filterPrimitives,
           },
         ],
         options: {
@@ -163,7 +164,7 @@ function getSDThemeConfig(brand: string, theme: string) {
             options: {
               outputReferences: true,
             },
-            filter: filterPrimitives(),
+            filter: filterPrimitives,
           },
         ],
         actions: ['remove-default-suffix'],
@@ -175,7 +176,7 @@ function getSDThemeConfig(brand: string, theme: string) {
           {
             destination: `theme.${theme.toLowerCase()}.ts`,
             format: 'javascript/custom-nested-object',
-            filter: filterPrimitives(),
+            filter: filterPrimitives,
           },
         ],
         actions: ['remove-default-suffix'],
@@ -242,7 +243,7 @@ brands.forEach(function (brand) {
 
   breakpoints.forEach(function (bp) {
     const sdTypography = new StyleDictionary(
-      getSDTypographyConfigForBreakpoint(bp)
+      getSDTypographyConfigForBreakpoint(bp),
     );
     sdTypography.buildAllPlatforms();
   });
