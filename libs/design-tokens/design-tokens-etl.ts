@@ -42,9 +42,7 @@ StyleDictionary.registerFormat({
 
     if (currentTheme === 'dark') {
       mainKey = '.dark';
-    }
-
-    if (!currentTheme && currentBreakpoint && currentBreakpoint !== 'sm') {
+    } else if (currentBreakpoint && currentBreakpoint !== 'sm') {
       mainKey = `@media (min-width: theme("screens.${currentBreakpoint}"))`;
     }
 
