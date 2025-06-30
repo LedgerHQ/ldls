@@ -2,21 +2,21 @@ import plugin from 'tailwindcss/plugin.js';
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
 export function createThemePlugin(
-  brandTheme: Record<string, Record<string, string>>
+  brandTheme: Record<string, Record<string, string>>,
 ) {
-  const cryptoColors = getThemeUtilsByPrefix(
+  const cryptoColor = getThemeUtilsByPrefix(
     brandTheme,
     '--color-crypto-',
-    'crypto-'
+    'crypto-',
   );
-  const discoveryColors = getThemeUtilsByPrefix(
+  const discoveryColor = getThemeUtilsByPrefix(
     brandTheme,
     '--color-discover-',
-    'discover-'
+    'discover-',
   );
-  const backgroundColors = getThemeUtilsByPrefix(brandTheme, '--background-');
-  const textColors = getThemeUtilsByPrefix(brandTheme, '--text-');
-  const borderColors = getThemeUtilsByPrefix(brandTheme, '--border-');
+  const backgroundColor = getThemeUtilsByPrefix(brandTheme, '--background-');
+  const textColor = getThemeUtilsByPrefix(brandTheme, '--text-');
+  const borderColor = getThemeUtilsByPrefix(brandTheme, '--border-');
 
   return plugin(
     function ({ addBase }) {
@@ -24,55 +24,28 @@ export function createThemePlugin(
     },
     {
       theme: {
+        textColor,
+        borderColor,
         backgroundColor: {
-          ...backgroundColors,
-          ...cryptoColors,
-          ...discoveryColors,
+          ...backgroundColor,
+          ...cryptoColor,
+          ...discoveryColor,
         },
-        gradientColorStops: {
-          ...backgroundColors,
-        },
-        accentColor: {
-          ...backgroundColors,
-        },
-        selectionColor: {
-          ...backgroundColors,
-        },
-        boxShadowColor: {
-          ...backgroundColors,
-        },
-        fill: {
-          ...backgroundColors,
-        },
-        stroke: {
-          ...borderColors,
-        },
-        caretColor: {
-          ...borderColors,
-        },
-        placeholderColor: {
-          ...textColors,
-        },
-        ringColor: {
-          ...borderColors,
-        },
-        outlineColor: {
-          ...borderColors,
-        },
-        ringOffsetColor: {
-          ...borderColors,
-        },
-        textColor: {
-          ...textColors,
-        },
-        borderColor: {
-          ...borderColors,
-        },
-        textDecorationColor: {
-          ...borderColors,
-        },
+        gradientColorStops: backgroundColor,
+        accentColor: backgroundColor,
+        selectionColor: backgroundColor,
+        boxShadowColor: backgroundColor,
+        fill: backgroundColor,
+        stroke: borderColor,
+        caretColor: borderColor,
+        placeholderColor: textColor,
+        ringColor: borderColor,
+        outlineColor: borderColor,
+        ringOffsetColor: borderColor,
+
+        textDecorationColor: borderColor,
       },
-    }
+    },
   );
 }
 
@@ -236,13 +209,13 @@ export function createTypographyPlugin() {
 function cryptoGradientStyles(crypto: string) {
   return {
     [`.bg-gradient-${crypto}`]: {
-      'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}) 0%, var(--color-crypto-${crypto}) 100%)`,
+      'background-image': `linear-gradient(161deg, var(--color-crypto-${crypto}) 0%, var(--color-crypto-${crypto}-0) 100%)`,
     },
   };
 }
 
 function extractCryptoNames(
-  brandTheme: Record<string, Record<string, string>>
+  brandTheme: Record<string, Record<string, string>>,
 ): string[] {
   const cryptoNames = new Set<string>();
 
@@ -264,7 +237,7 @@ function extractCryptoNames(
 }
 
 export function createGradientPlugin(
-  brandTheme?: Record<string, Record<string, string>>
+  brandTheme?: Record<string, Record<string, string>>,
 ) {
   return plugin(function ({ addUtilities }) {
     const gradientStyles = {
@@ -292,19 +265,19 @@ export function createGradientPlugin(
 export function createDropShadowPlugin() {
   return plugin(function ({ addUtilities }) {
     const dropShadowStyles = {
-      '.drop-shadow-4': {
+      '.drop-shadow-sm': {
         boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.16)',
       },
-      '.drop-shadow-8': {
+      '.drop-shadow-md': {
         boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.16)',
       },
-      '.drop-shadow-16': {
+      '.drop-shadow-lg': {
         boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.16)',
       },
-      '.drop-shadow-24': {
+      '.drop-shadow-xl': {
         boxShadow: '0px 6px 24px 0px rgba(0, 0, 0, 0.16)',
       },
-      '.drop-shadow-32': {
+      '.drop-shadow-2xl': {
         boxShadow: '0px 8px 32px 0px rgba(0, 0, 0, 0.16)',
       },
     };
