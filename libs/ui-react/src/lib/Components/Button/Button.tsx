@@ -2,7 +2,7 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'rounded-full transition-colors body-1-semi-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
       variant: {
@@ -16,16 +16,16 @@ const buttonVariants = cva(
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
       },
       size: {
-        small: 'py-8 px-16 text-sm',
-        medium: 'p-16 text-base',
-        large: 'px-32 py-16 text-lg',
+        small: 'px-16 py-8 body-2-semi-bold',
+        medium: 'p-16',
+        large: 'px-32 py-16',
       },
     },
     defaultVariants: {
       variant: 'accent',
       size: 'medium',
     },
-  }
+  },
 );
 
 export interface ButtonProps

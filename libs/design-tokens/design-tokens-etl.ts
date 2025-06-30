@@ -1,8 +1,10 @@
-import StyleDictionary, { TransformedToken } from 'style-dictionary';
+import StyleDictionary from 'style-dictionary';
+import type { TransformedToken } from 'style-dictionary';
 import fs from 'fs';
 import path from 'path';
 
 const brands = ['enterprise', 'websites', 'ledger-live'];
+const breakpoints = ['sm', 'md', 'lg', 'xl'];
 const themes = ['light', 'dark'];
 const tokensFolder = 'tokens';
 const defaultSuffix = '-default';
@@ -28,15 +30,22 @@ function sanitizeTokenName(tokenName: string): string {
   return newName;
 }
 
+const filterPrimitives = (token: TransformedToken) =>
+  !token.filePath.includes('1.primitives.value.json');
+
 StyleDictionary.registerFormat({
   name: 'javascript/custom-nested-object',
   format: function ({ dictionary, platform }) {
     const currentTheme = platform.options?.currentTheme?.toLowerCase();
+    const currentBreakpoint = platform.options?.currentBreakpoint;
     let mainKey = ':root';
 
     if (currentTheme === 'dark') {
       mainKey = '.dark';
+    } else if (currentBreakpoint && currentBreakpoint !== 'sm') {
+      mainKey = `@media (min-width: theme("screens.${currentBreakpoint}"))`;
     }
+
     const output = { [mainKey]: {} };
 
     dictionary.allTokens.forEach((token: TransformedToken) => {
@@ -86,6 +95,53 @@ export const tokens: ${tokensType} = ${JSON.stringify(output, null, 2)};`;
   },
 });
 
+function getSDTypographyConfigForBreakpoint(breakpoint: string) {
+  const sources = [
+    `${tokensFolder}/1.primitives.value.json`,
+    `${tokensFolder}/4.breakpoint.${breakpoint}.json`,
+  ];
+
+  return {
+    source: sources,
+    platforms: {
+      CSS: {
+        buildPath: `src/themes/`,
+        transformGroup: 'css',
+        files: [
+          {
+            destination: `typography.${breakpoint}.css`,
+            format: 'css/variables',
+            filter: filterPrimitives,
+            options: {
+              outputReferences: true,
+            },
+          },
+        ],
+        options: {
+          currentBreakpoint: breakpoint,
+        },
+        actions: ['remove-default-suffix'],
+      },
+      JavaScriptThemeObject: {
+        buildPath: `src/themes/`,
+        transformGroup: 'js',
+        transforms: ['attribute/cti', 'name/custom/direct-css-var'],
+        files: [
+          {
+            destination: `typography.${breakpoint}.ts`,
+            format: 'javascript/custom-nested-object',
+            filter: filterPrimitives,
+          },
+        ],
+        options: {
+          currentBreakpoint: breakpoint,
+        },
+        actions: ['remove-default-suffix'],
+      },
+    },
+  };
+}
+
 function getSDThemeConfig(brand: string, theme: string) {
   const themeSpecificSources = [
     `${tokensFolder}/1.primitives.value.json`,
@@ -106,9 +162,7 @@ function getSDThemeConfig(brand: string, theme: string) {
             options: {
               outputReferences: true,
             },
-            filter: (token: TransformedToken) => {
-              return !token.filePath.includes('1.primitives.value.json');
-            },
+            filter: filterPrimitives,
           },
         ],
         actions: ['remove-default-suffix'],
@@ -120,9 +174,7 @@ function getSDThemeConfig(brand: string, theme: string) {
           {
             destination: `theme.${theme.toLowerCase()}.ts`,
             format: 'javascript/custom-nested-object',
-            filter: (token) => {
-              return !token.filePath.includes('1.primitives.value.json');
-            },
+            filter: filterPrimitives,
           },
         ],
         actions: ['remove-default-suffix'],
@@ -146,7 +198,7 @@ function getSDPrimitivesConfig() {
         transformGroup: 'css',
         files: [
           {
-            destination: `variables.primitives.css`,
+            destination: 'primitives.css',
             format: 'css/variables',
             options: {
               outputReferences: true,
@@ -160,7 +212,7 @@ function getSDPrimitivesConfig() {
         buildPath: `src/themes/`,
         files: [
           {
-            destination: `primitives.ts`,
+            destination: 'primitives.ts',
             format: 'javascript/custom-nested-object',
           },
         ],
@@ -186,23 +238,31 @@ brands.forEach(function (brand) {
 
     sd.buildAllPlatforms();
   });
-});
 
-StyleDictionary.registerAction({
-  name: 'remove-default-suffix',
-  do: function (_dictionary, config) {
-    if (!config.buildPath || !config.files || config.files.length === 0) return;
-    const buildPath = config.buildPath;
-    const destination = config.files[0].destination;
-    if (!destination) return;
-    const filePath = path.join(buildPath, destination);
-    if (fs.existsSync(filePath)) {
-      let cssContent = fs.readFileSync(filePath, 'utf8');
-      cssContent = cssContent.replace(/(--[\w-]+)-default(\s*:)/g, '$1$2');
-      fs.writeFileSync(filePath, cssContent);
-    }
-  },
-  undo: function () {
-    // No undo operation is necessary for this action.
-  },
+  breakpoints.forEach(function (bp) {
+    const sdTypography = new StyleDictionary(
+      getSDTypographyConfigForBreakpoint(bp),
+    );
+    sdTypography.buildAllPlatforms();
+  });
+
+  StyleDictionary.registerAction({
+    name: 'remove-default-suffix',
+    do: function (_dictionary, config) {
+      if (!config.buildPath || !config.files || config.files.length === 0)
+        return;
+      const buildPath = config.buildPath;
+      const destination = config.files[0].destination;
+      if (!destination) return;
+      const filePath = path.join(buildPath, destination);
+      if (fs.existsSync(filePath)) {
+        let cssContent = fs.readFileSync(filePath, 'utf8');
+        cssContent = cssContent.replace(/(--[\w-]+)-default(\s*:)/g, '$1$2');
+        fs.writeFileSync(filePath, cssContent);
+      }
+    },
+    undo: function () {
+      // No undo operation is necessary for this action.
+    },
+  });
 });

@@ -32,7 +32,7 @@ export const IconSizes: StoryObj = {
     <div className="space-y-6 text-base">
       {sizes.map((size) => (
         <div key={size}>
-          <h3 className="text-lg font-semibold mb-4">Size {size}px</h3>
+          <h3 className="mb-4 display-4">Size {size}px</h3>
           <div className="flex flex-wrap gap-4">
             {['ArrowUp', 'Home', 'Settings', 'Heart', 'Star'].map(
               (iconName) => {
@@ -45,10 +45,10 @@ export const IconSizes: StoryObj = {
                     className="flex flex-col items-center p-2"
                   >
                     <IconComponent size={size} />
-                    <span className="text-xs mt-1">{iconName}</span>
+                    <span className="mt-1 body-3">{iconName}</span>
                   </div>
                 );
-              }
+              },
             )}
           </div>
         </div>

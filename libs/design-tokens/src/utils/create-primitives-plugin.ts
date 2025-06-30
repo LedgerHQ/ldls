@@ -10,7 +10,7 @@ export function createPrimitivesPlugin() {
   const height = getThemeUtilsByPrefix(primitivesTheme, '--height-');
   const borderRadius = getThemeUtilsByPrefix(
     primitivesTheme,
-    '--border-radius-'
+    '--border-radius-',
   );
   const borderWidth = getThemeUtilsByPrefix(primitivesTheme, '--border-width-');
   const blur = getThemeUtilsByPrefix(primitivesTheme, '--blur-');
@@ -18,7 +18,7 @@ export function createPrimitivesPlugin() {
   const iconHeight = getThemeUtilsByPrefix(primitivesTheme, '--icon-height-');
   const iconStrokeWidth = getThemeUtilsByPrefix(
     primitivesTheme,
-    '--icon-border-width-'
+    '--icon-border-width-',
   );
 
   return plugin(
@@ -29,31 +29,26 @@ export function createPrimitivesPlugin() {
     },
     {
       theme: {
-        margin: {
-          ...spacing,
-        },
-        padding: {
-          ...spacing,
-        },
-        width: {
+        spacing,
+        width,
+        height,
+        // TODO: use --size instead of --width and --height
+        size: {
           ...width,
-        },
-        height: {
           ...height,
         },
-        borderRadius: {
-          ...borderRadius,
-        },
-        borderWidth: {
-          ...borderWidth,
-        },
-        blur: {
-          ...blur,
-        },
+        borderRadius,
+        borderWidth,
+        blur,
+        divideWidth: borderWidth,
+        ringOffsetWidth: borderWidth,
+        ringWidth: borderWidth,
+        strokeWidth: iconStrokeWidth,
+        outlineWidth: borderWidth,
         iconWidth,
         iconHeight,
         iconStrokeWidth,
       },
-    }
+    },
   );
 }
