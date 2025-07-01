@@ -118,9 +118,9 @@ export const Text: Story = {
             textClassName: 'text-black',
           },
           {
-            name: 'Gray',
-            className: 'bg-gray',
-            textClassName: 'text-gray',
+            name: 'Grey',
+            className: 'bg-grey',
+            textClassName: 'text-grey',
           },
         ]}
       />
