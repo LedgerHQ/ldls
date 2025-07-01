@@ -28,7 +28,7 @@ npx nx generate-symbols-react-native @ldls/design-tokens
 // ✅ GOOD - Only imports what you need (tree-shakeable)
 import { ArrowUp, Home } from '@ldls/ui-react/Symbols';
 
-<Home size={24} color="red" className="my-icon" />
+<Home size={24} className="text-base" />
 ```
 
 ## Tree-Shaking Best Practices
