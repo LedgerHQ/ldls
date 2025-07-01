@@ -26,12 +26,20 @@ export default [
             },
             {
               sourceTag: 'scope:react-native',
-              onlyDependOnLibsWithTags: ['scope:shared', 'scope:react-native'],
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'scope:react-native',
+                'scope:ui-shared',
+              ],
             },
             {
               sourceTag: 'scope:react',
-              onlyDependOnLibsWithTags: ['scope:shared', 'scope:react'],
-            }
+              onlyDependOnLibsWithTags: [
+                'scope:shared',
+                'scope:react',
+                'scope:ui-shared',
+              ],
+            },
           ],
         },
       ],

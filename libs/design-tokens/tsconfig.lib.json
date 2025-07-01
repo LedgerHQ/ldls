@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": false,
@@ -11,6 +11,10 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
-  "references": []
+  "include": ["src/**/*.ts", "generate-symbols.ts"],
+  "references": [
+    {
+      "path": "../utils-shared/tsconfig.lib.json"
+    }
+  ]
 }

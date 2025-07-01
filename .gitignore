@@ -6,10 +6,6 @@ tmp
 out-tsc
 *.tsbuildinfo
 
-# generated symbols
-libs/ui-react/src/lib/Symbols/**/*.tsx
-libs/ui-react/src/lib/Symbols/**/*.ts
-
 # dependencies
 node_modules
 

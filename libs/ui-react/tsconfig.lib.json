@@ -47,6 +47,9 @@
   "references": [
     {
       "path": "../design-tokens/tsconfig.lib.json"
+    },
+    {
+      "path": "../utils-shared/tsconfig.lib.json"
     }
   ]
 }

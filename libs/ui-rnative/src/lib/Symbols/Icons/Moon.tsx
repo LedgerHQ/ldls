@@ -1,0 +1,16 @@
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
+export const Moon = createIcon(
+  "Moon",
+  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+    <Path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M13.1333 10C11.4666 10.5334 9.5333 10.2 8.19997 8.86669C6.5333 7.20002 6.39997 4.53335 7.7333 2.66669C4.99997 2.93335 2.86664 5.20002 2.86664 8.00002C2.86664 10.9334 5.26664 13.3334 8.19997 13.3334C10.4 13.3334 12.3333 11.9334 13.1333 10Z"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
