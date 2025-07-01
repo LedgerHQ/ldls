@@ -1,6 +1,0 @@
-export default {
-  "singleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./libs/ui-react/tailwind.config.ts",
-  "tailwindFunctions": ["cva"]
-}
