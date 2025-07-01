@@ -30,13 +30,6 @@ export function createPrimitivesPlugin() {
     {
       theme: {
         spacing,
-        width,
-        height,
-        // TODO: use --size instead of --width and --height
-        size: {
-          ...width,
-          ...height,
-        },
         borderRadius,
         borderWidth,
         blur,
@@ -48,6 +41,19 @@ export function createPrimitivesPlugin() {
         iconWidth,
         iconHeight,
         iconStrokeWidth,
+        extend: {
+          height: height,
+          width: width,
+          // TODO: use --size instead of --width and --height
+          size: {
+            ...width,
+            ...height,
+          },
+          maxHeight: height,
+          maxWidth: width,
+          minHeight: height,
+          minWidth: width,
+        },
       },
     },
   );

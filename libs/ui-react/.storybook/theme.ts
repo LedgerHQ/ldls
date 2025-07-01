@@ -1,9 +1,9 @@
 import { create } from '@storybook/theming/create';
 import { ThemeVars } from '@storybook/theming';
-import logoUrl from './genesis.png';
+import logoUrl from './genesis.svg';
 
 const theme: ThemeVars = create({
-  base: 'dark',
+  base: 'light',
   brandTarget: '_self',
   brandImage: logoUrl,
 });

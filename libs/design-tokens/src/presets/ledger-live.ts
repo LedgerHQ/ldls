@@ -4,7 +4,8 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
-} from '../utils/index.js';
+  createDropShadowPlugin,
+  } from '../utils/index.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 
 export const ledgerLivePreset = {
@@ -13,7 +14,8 @@ export const ledgerLivePreset = {
     createPrimitivesPlugin(),
     createThemePlugin(ledgerLiveTheme),
     createTypographyPlugin(),
-    createGradientPlugin(ledgerLiveTheme),
+    createGradientPlugin(ledgerLiveTheme),  
+    createDropShadowPlugin(),
   ],
   darkMode: 'class',
   corePlugins: {
