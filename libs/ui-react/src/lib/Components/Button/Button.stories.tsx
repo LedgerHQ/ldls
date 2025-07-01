@@ -4,7 +4,7 @@ import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'React/Components/Button',
+  title: 'Components/Button/React',
   tags: ['autodocs'],
   globals: {
     backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
@@ -89,13 +89,13 @@ export const Disabled: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 p-4">
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <Button variant="accent">Accent</Button>
         <Button variant="primary">Primary</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="secondary-transparent">Secondary Transparent</Button>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <Button variant="accent" size="small">
           Small
         </Button>
@@ -106,7 +106,7 @@ export const AllVariants: Story = {
           Large
         </Button>
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <Button variant="accent" disabled>
           Disabled
         </Button>

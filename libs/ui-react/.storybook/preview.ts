@@ -2,9 +2,15 @@ import type { Preview } from '@storybook/react';
 import '../src/styles.css';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { themes } from '@storybook/theming';
+import './font.css';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['Foundations', 'Symbols', 'Components'],
+      },
+    },
     darkMode: {
       stylePreview: true,
       classTarget: 'html',
@@ -12,7 +18,6 @@ const preview: Preview = {
         ...themes.dark,
       },
     },
-    tags: ['autodocs'],
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {

@@ -10,7 +10,7 @@ const buttonVariants = cva('rounded-full', {
       'secondary-transparent': 'bg-muted-transparent',
     },
     size: {
-      small: 'py-8 px-16',
+      small: 'px-16 py-8',
       medium: 'p-16',
       large: 'px-32 py-16',
     },
@@ -30,9 +30,9 @@ const textVariants = cva('text-center', {
       'secondary-transparent': 'text-base',
     },
     size: {
-      small: 'text-sm',
-      medium: 'text-base',
-      large: 'text-lg',
+      small: 'body-2-semi-bold',
+      medium: 'body-1-semi-bold',
+      large: 'body-1-semi-bold',
     },
   },
   defaultVariants: {
