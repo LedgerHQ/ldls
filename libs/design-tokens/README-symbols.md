@@ -9,17 +9,17 @@ Automated system to convert SVG files from Figma into React/React Native icon co
 SVGs are automatically downloaded from Figma using the design tokens pipeline:
 
 ```bash
-nx download-svgs @ldls/design-tokens
+npx nx download-svgs @ldls/design-tokens
 ```
 
 ### 2. Generate Components
 
 ```bash
 # React
-nx generate-symbols-react @ldls/design-tokens
+npx nx generate-symbols-react @ldls/design-tokens
 
 # React Native
-nx generate-symbols-react-native @ldls/design-tokens
+npx nx generate-symbols-react-native @ldls/design-tokens
 ```
 
 ### 3. Use Icons (Tree-Shakeable)
@@ -102,6 +102,6 @@ Icons use `currentColor` by default, so you can style them using Tailwind's `tex
 
 ```bash
 # Re-download from Figma and regenerate
-nx download-svgs @ldls/design-tokens
-nx generate-symbols-react @ldls/design-tokens
+npx nx download-svgs @ldls/design-tokens
+npx nx generate-symbols-react @ldls/design-tokens
 ```

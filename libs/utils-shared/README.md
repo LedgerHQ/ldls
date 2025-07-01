@@ -1,11 +1,34 @@
 # utils-shared
 
-This library was generated with [Nx](https://nx.dev).
+Shared utility functions for the LDLS design system.
 
-## Building
+## Contributing
 
-Run `nx build utils-shared` to build the library.
+### Adding New Utilities
 
-## Running unit tests
+1. Create your utility function in `src/lib/`
+2. Export it from `src/index.ts`
+3. Add tests in the corresponding `.spec.ts` file
+4. Update this README with usage examples
 
-Run `nx test utils-shared` to execute the unit tests via [Vitest](https://vitest.dev/).
+### Development Commands
+
+```bash
+# Build the library
+npx nx build utils-shared
+
+# Run tests
+npx nx test utils-shared
+
+# Lint code
+npx nx lint utils-shared
+```
+
+### Guidelines
+
+- Keep utilities pure and side-effect free
+- Add comprehensive tests for all functions
+- Use TypeScript for type safety
+- Follow existing naming conventions
+
+
