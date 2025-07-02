@@ -1,10 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
   title: 'Foundations/Design Tokens/Colors/Text',
-  globals: {
-    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  globals: { backgrounds: { grid: true } },
+  parameters: {
+    backgrounds: {
+      grid: {
+        cellSize: 20,
+        opacity: 0.2,
+        cellAmount: 5,
+      },
+    },
   },
 };
 
@@ -12,7 +19,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Text: Story = {
-  name: 'Text',
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader

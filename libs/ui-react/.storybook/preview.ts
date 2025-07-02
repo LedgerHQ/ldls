@@ -1,21 +1,49 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
+import { withBrandDecorator, withModeDecorator } from './Decorator';
 import '../src/styles.css';
-import { withThemeByClassName } from '@storybook/addon-themes';
-import { themes } from '@storybook/theming';
 import './font.css';
 
 const preview: Preview = {
+  globalTypes: {
+    brand: {
+      name: 'Brand',
+      description: 'Global brand theme for components',
+      defaultValue: 'ledger-live',
+      toolbar: {
+        icon: 'paintbrush',
+        title: 'Brand',
+        items: ['ledger-live', 'enterprise', 'websites'],
+
+        dynamicTitle: true,
+      },
+    },
+    mode: {
+      name: 'Mode',
+      description: 'Color scheme for components',
+      defaultValue: 'light',
+      toolbar: {
+        icon: 'sun',
+        title: 'Mode',
+        items: ['light', 'dark'],
+        dynamicTitle: true,
+      },
+    },
+  },
+
   parameters: {
+    backgrounds: {
+      options: {
+        dark: { name: 'Dark', value: '#191919' },
+        light: { name: 'Light', value: '#fafafa' },
+      },
+    },
+    initialGlobals: {
+      backgrounds: { value: 'light' },
+    },
+
     options: {
       storySort: {
         order: ['Foundations', 'Symbols', 'Components'],
-      },
-    },
-    darkMode: {
-      stylePreview: true,
-      classTarget: 'html',
-      dark: {
-        ...themes.dark,
       },
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -27,17 +55,7 @@ const preview: Preview = {
     },
   },
 
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        'ledger-live': 'ledger-live',
-        enterprise: 'enterprise',
-        websites: 'websites',
-      },
-      defaultTheme: 'ledger-live',
-      parentSelector: 'html',
-    }),
-  ],
+  decorators: [withBrandDecorator, withModeDecorator],
 };
 
 export default preview;

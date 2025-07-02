@@ -19,7 +19,7 @@ import {
 
 function defaultTokenFileNameRenamer(
   collection: LocalVariableCollection,
-  mode: LocalVariableCollectionMode
+  mode: LocalVariableCollectionMode,
 ): string {
   return `${collection.name}.${mode.name}.json`;
 }
@@ -40,7 +40,7 @@ function tokenTypeFromVariable(variable: LocalVariable) {
 function tokenValueFromVariable(
   variable: LocalVariable,
   modeId: string,
-  localVariables: { [id: string]: LocalVariable }
+  localVariables: { [id: string]: LocalVariable },
 ) {
   const value = variable.valuesByMode[modeId];
   if (typeof value === 'object') {
@@ -73,8 +73,8 @@ export default function tokenFilesFromLocalVariables(
   localVariablesResponse: GetLocalVariablesResponse,
   fileNameRenamer: (
     collection: LocalVariableCollection,
-    mode: LocalVariableCollectionMode
-  ) => string = defaultTokenFileNameRenamer
+    mode: LocalVariableCollectionMode,
+  ) => string = defaultTokenFileNameRenamer,
 ) {
   const tokenFiles: { [fileName: string]: TokenFileContent } = {};
   const localVariableCollections =

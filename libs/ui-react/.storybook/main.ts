@@ -1,22 +1,27 @@
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
     '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
     '../../ui-rnative/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
+
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-themes',
-    'storybook-dark-mode',
+    getAbsolutePath('@storybook/addon-themes'),
+    getAbsolutePath('@storybook/addon-docs'),
   ],
+
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
+
   viteFinal: async (viteConfig) => {
     // Add react-native-web alias for React Native components
     viteConfig.resolve = viteConfig.resolve || {};
@@ -37,12 +42,14 @@ const config: StorybookConfig = {
       },
     });
   },
+
   core: {
     disableTelemetry: true,
-  },
-  docs: {
-    autodocs: false,
   },
 };
 
 export default config;
+
+function getAbsolutePath(value: string): string {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

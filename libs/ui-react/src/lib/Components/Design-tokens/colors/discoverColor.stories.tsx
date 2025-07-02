@@ -1,10 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
   title: 'Foundations/Design Tokens/Colors/Discover background',
-  globals: {
-    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  globals: { backgrounds: { grid: true } },
+  parameters: {
+    backgrounds: {
+      grid: {
+        cellSize: 20,
+        opacity: 0.2,
+        cellAmount: 5,
+      },
+    },
   },
 };
 
@@ -14,7 +21,7 @@ type Story = StoryObj;
 export const Discover: Story = {
   name: 'Discover background',
   render: () => (
-    <div className="p-24">
+    <div className="border-width p-24">
       <SectionHeader
         title="Discover Colors Tokens"
         description="Brand colors for discover services and platform integrations"

@@ -1,10 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
   title: 'Foundations/Design Tokens/Colors/Crypto background',
-  globals: {
-    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
+  globals: { backgrounds: { grid: true } },
+  parameters: {
+    backgrounds: {
+      grid: {
+        cellSize: 20,
+        opacity: 0.2,
+        cellAmount: 5,
+      },
+    },
   },
 };
 

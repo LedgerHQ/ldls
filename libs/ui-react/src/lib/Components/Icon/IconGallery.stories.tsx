@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconGallery, IconItem } from '@storybook/blocks';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconGallery, IconItem } from '@storybook/addon-docs/blocks';
 import { IconSize } from './Icon';
 import * as Icons from '../../Symbols';
 
