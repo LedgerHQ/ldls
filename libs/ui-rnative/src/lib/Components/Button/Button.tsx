@@ -1,9 +1,5 @@
 import { Text, TouchableOpacity } from 'react-native';
-import { styled } from 'nativewind';
 import { cva, type VariantProps } from 'class-variance-authority';
-
-const StyledView = styled(TouchableOpacity);
-const StyledText = styled(Text);
 
 const buttonVariants = cva('rounded-full', {
   variants: {
@@ -57,11 +53,11 @@ const Button = ({
   onPress,
 }: ButtonProps) => {
   return (
-    <StyledView onPress={onPress} className={buttonVariants({ variant, size })}>
-      <StyledText className={textVariants({ variant, size })}>
+    <TouchableOpacity onPress={onPress} className={buttonVariants({ variant, size })}>
+      <Text className={textVariants({ variant, size })}>
         {children}
-      </StyledText>
-    </StyledView>
+      </Text>
+    </TouchableOpacity>
   );
 };
 

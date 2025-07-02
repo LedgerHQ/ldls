@@ -11,7 +11,7 @@ const iconsCanvas = process.env.FIGMA_ICONS_CANVAS;
 
 if (!fileKey || !iconsCanvas) {
   throw new Error(
-    `Please set the FIGMA_SYMBOLS_FILE_ID and FIGMA_ICONS_CANVAS environment variables.`
+    `Please set the FIGMA_SYMBOLS_FILE_ID and FIGMA_ICONS_CANVAS environment variables.`,
   );
 }
 

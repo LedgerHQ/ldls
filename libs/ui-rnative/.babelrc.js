@@ -10,9 +10,7 @@ module.exports = function (api) {
           useBuiltIns: 'usage',
         },
       ],
-    ],
-    plugins: [
-      ["nativewind/babel", { mode: "transformOnly" }]
+      'nativewind/babel',
     ],
     env: {
       test: {

@@ -1,0 +1,19 @@
+import createIcon from "../../Components/Icon/createIcon";
+export const Slideshow = createIcon(
+  "Slideshow",
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="m6.667 3.333-1.334-.666v10.666l1.334-.666m-4-9.334-1.334-.666v10.666l1.334-.666m12-1.334-5.334 2V2.667l5.334 2z"
+    />
+  </svg>
+);

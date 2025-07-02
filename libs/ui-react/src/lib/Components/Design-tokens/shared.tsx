@@ -1,4 +1,4 @@
-import cn from '../../../utils/cn';
+import { cn } from '@ldls/utils-shared';
 
 export const ColorSwatch = ({
   name,

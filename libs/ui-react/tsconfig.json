@@ -6,6 +6,9 @@
       "path": "../design-tokens"
     },
     {
+      "path": "../utils-shared"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

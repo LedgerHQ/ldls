@@ -17,6 +17,9 @@
     },
     {
       "path": "./libs/ui-core"
+    },
+    {
+      "path": "./libs/utils-shared"
     }
   ],
   "ts-node": {

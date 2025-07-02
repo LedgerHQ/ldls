@@ -1,0 +1,19 @@
+import createIcon from "../../Components/Icon/createIcon";
+export const Expand = createIcon(
+  "Expand",
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M11.333 2H14m0 0v2.667M14 2l-4 4M2.667 7.333V4c0-.737.596-1.333 1.333-1.333h3.333M4.667 14H2m0 0v-2.667M2 14l4-4m7.333-1.333V12c0 .737-.596 1.333-1.333 1.333H8"
+    />
+  </svg>
+);
