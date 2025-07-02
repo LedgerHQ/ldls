@@ -1,0 +1,52 @@
+import { Markdown, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import spacingExample from './token-spacing-exemple.png';
+import * as Spacing from './spacing.stories';
+
+<Meta title="Foundations/Design Tokens/Dimensions/Spacing" of={Spacing} />
+
+# Spacing
+
+Spacing defines the distance between elements—including margins, paddings, and gaps—to create structure, clarity, and rhythm throughout our interfaces.
+
+## Taxonomy
+
+All spacing tokens follow the structure: `spacing-size`
+
+Example: `spacing-8`
+
+<Markdown>
+  {`
+| Element  | Definition | Example |
+| -------- | ---------- | ------- |
+| Property | spacing specifies the dimensional values applied as margins, padding, or gaps | spacing |
+| Size     | define the value | 0, 4, 8, 12, 16, 24, 32, 40 |
+`}
+</Markdown>
+
+## Spacing Tokens
+
+<Canvas></Canvas>
+
+The table below lists our spacing tokens, showing their typical usage to help maintain visual consistency across the interface.
+
+<Markdown>
+  {`
+| Token | Pixel value | Typical usage |
+| ----- | ----------- | ------------- |
+| spacing-0 | 0 | No spacing; used to reset or remove margin/padding |
+| spacing-4 | 4 | Tiny gap, e.g., between icon and text |
+| spacing-8 | 8 | Space between a label and an input field |
+| spacing-12 | 12 | Internal padding inside small components like cards |
+| spacing-16 | 16 | Most commonly used; often for button padding |
+| spacing-24 | 24 | Gap between title and his content |
+| spacing-32 | 32 | Gap between section |
+| spacing-40 | 40 | Large gap between major section |
+| spacing-48 | 48 | Large gap between major section |
+| spacing-56 | 56 | Extra spacing for increased clarity in complex layouts |
+| spacing-64 → spacing-256 | 64 → 256 | Mainly used on a medium and large screen |
+`}
+</Markdown>
+
+## Example spacing token
+
+<img src={spacingExample} alt="A description of the image" />

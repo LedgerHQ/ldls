@@ -1,0 +1,48 @@
+import { Markdown, Meta } from '@storybook/addon-docs/blocks';
+import heightTaxonomy from './height-taxonomy.png';
+import heightExample from './token-height-exemple.png';
+
+<Meta title="Foundations/Design Tokens/Dimensions/Height" />
+
+# Height
+
+Height sets the vertical fixed size of elements, supporting consistency throughout the design language system.
+
+## Taxonomy
+
+All height tokens follow the structure: `height-size`
+
+Example: `height-8`
+
+<img src={heightTaxonomy} alt="Height token taxonomy structure" />
+
+<Markdown>
+  {`
+| Element  | Definition | Example |
+| -------- | ---------- | ------- |
+| Property | define fixed height of element | height |
+| Size     | define the value | 0, 1, 2, 4, 6, 8, 10, 12, 14 |
+`}
+</Markdown>
+
+## Height Tokens
+
+<Markdown>
+  {`
+| Token | Pixel value | Typical usage |
+| ----- | ----------- | ------------- |
+| height-0 | 0 | No height; used to reset or remove height |
+| height-1 | 1px | Thin lines, borders |
+| height-2 | 2px | Thicker lines, selected states |
+| height-4 | 4px | Small decorative elements |
+| height-6 | 6px | Progress bars, indicators |
+| height-8 | 8px | Small UI elements |
+| height-10 | 10px | Medium UI elements |
+| height-12 | 12px | Standard UI elements |
+| height-14 | 14px | Large UI elements |
+`}
+</Markdown>
+
+## Example height tokens
+
+<img src={heightExample} alt="Examples of height tokens in use" />
