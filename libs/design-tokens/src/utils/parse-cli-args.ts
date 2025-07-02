@@ -1,4 +1,4 @@
-export const parseArgs = (args: string[]): Record<string, string> => {
+export const parseCliArgs = (args: string[]): Record<string, string> => {
   const params: { [key: string]: string } = {};
   for (let i = 0; i < args.length; i++) {
     if (args[i].startsWith('--')) {

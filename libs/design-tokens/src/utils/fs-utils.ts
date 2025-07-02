@@ -9,7 +9,7 @@ import { promises as fs } from 'fs';
  */
 export async function findFilesByExtension(
   dir: string,
-  ext: string
+  ext: string,
 ): Promise<string[]> {
   try {
     const directoryEntries = await fs.readdir(dir, { withFileTypes: true });
@@ -20,7 +20,7 @@ export async function findFilesByExtension(
           return findFilesByExtension(resolvedPath, ext);
         }
         return resolvedPath.endsWith(ext) ? [resolvedPath] : [];
-      })
+      }),
     );
     return files.flat();
   } catch (error) {
