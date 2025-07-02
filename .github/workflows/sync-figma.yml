@@ -1,0 +1,222 @@
+name: Sync Figma
+
+on:
+  workflow_dispatch:
+    inputs:
+      figma_foundations_file_key:
+        description: 'Figma Foundations File Key (use default if empty)'
+      figma_symbols_file_key:
+        description: 'Figma Symbols File Key (use default if empty)'
+      figma_icons_canvas:
+        description: 'Figma Icons Canvas (use default if empty)'
+      dry_run:
+        description: 'Dry run mode (skip PR creation)'
+        type: boolean
+        default: false
+
+env:
+  NX_NO_CLOUD: true
+
+jobs:
+  figma-export-design-tokens:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Export Design Tokens from Figma
+        run: npx nx run @ldls/design-tokens:figma-export
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          FIGMA_FOUNDATIONS_FILE_KEY: ${{ github.event.inputs.figma_foundations_file_key || vars.FIGMA_FOUNDATIONS_FILE_KEY }}
+
+      - name: Upload design tokens artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-tokens
+          path: libs/design-tokens/tokens/
+
+  figma-download-svgs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Download SVGs from Figma
+        run: npx nx run @ldls/design-tokens:figma-download-svgs
+        env:
+          FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
+          FIGMA_SYMBOLS_FILE_KEY: ${{ github.event.inputs.figma_symbols_file_key || vars.FIGMA_SYMBOLS_FILE_KEY }}
+          FIGMA_ICONS_CANVAS: ${{ github.event.inputs.figma_icons_canvas || vars.FIGMA_ICONS_CANVAS }}
+
+      - name: Upload SVG artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: svg-symbols
+          path: libs/design-tokens/symbols/
+
+  design-tokens-etl:
+    needs: figma-export-design-tokens
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Download design tokens artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: design-tokens
+          path: libs/design-tokens/
+
+      - name: Run Design Tokens ETL
+        run: npx nx run @ldls/design-tokens:design-tokens-etl
+
+      - name: Upload processed tokens artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-design-tokens
+          path: libs/design-tokens/src/themes/
+
+  generate-symbols-react:
+    needs: figma-download-svgs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Download SVG artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: svg-symbols
+          path: libs/design-tokens/symbols/
+
+      - name: Generate React Symbol Components
+        run: npx nx run @ldls/design-tokens:generate-symbols-react
+
+      - name: Upload React symbols artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-symbols
+          path: libs/ui-react/src/lib/Symbols/
+
+  generate-symbols-react-native:
+    needs: figma-download-svgs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Download SVG artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: svg-symbols
+          path: libs/design-tokens/symbols/
+
+      - name: Generate React Native Symbol Components
+        run: npx nx run @ldls/design-tokens:generate-symbols-react-native
+
+      - name: Upload React Native symbols artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-native-symbols
+          path: libs/ui-rnative/src/lib/Symbols/
+
+  create-pull-request:
+    needs:
+      [design-tokens-etl, generate-symbols-react, generate-symbols-react-native]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*'
+          merge-multiple: true
+
+      - name: Create Pull Request
+        if: ${{ !github.event.inputs.dry_run }}
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: '💄 (figma): Sync Figma Design Tokens & Symbols'
+          title: '💄 (figma): Sync Figma Design Tokens & Symbols'
+          body: |
+            Automatically sync design tokens and symbol components from Figma:
+
+            - ✅ Export design tokens from Figma API Local Variables
+            - ✅ Process design tokens through ETL pipeline  
+            - ✅ Download SVG symbols from Figma
+            - ✅ Generate React symbol components
+            - ✅ Generate React Native symbol components
+          branch: sync-figma
