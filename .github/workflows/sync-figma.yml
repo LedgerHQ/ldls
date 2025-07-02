@@ -200,11 +200,35 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download all artifacts
+      - name: Download design tokens artifacts
         uses: actions/download-artifact@v4
         with:
-          pattern: '*'
-          merge-multiple: true
+          name: design-tokens
+          path: libs/design-tokens/tokens/
+
+      - name: Download processed design tokens artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: processed-design-tokens
+          path: libs/design-tokens/src/themes/
+
+      - name: Download SVG symbols artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: svg-symbols
+          path: libs/design-tokens/symbols/
+
+      - name: Download React symbols artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: react-symbols
+          path: libs/ui-react/src/lib/Symbols/
+
+      - name: Download React Native symbols artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: react-native-symbols
+          path: libs/ui-rnative/src/lib/Symbols/
 
       - name: Create Pull Request
         if: ${{ !github.event.inputs.dry_run }}
