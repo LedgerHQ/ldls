@@ -7,7 +7,7 @@
       "path": "../design-tokens"
     },
     {
-      "path": "../ui-core"
+      "path": "../utils-shared"
     },
     {
       "path": "./tsconfig.lib.json"

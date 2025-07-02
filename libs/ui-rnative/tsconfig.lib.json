@@ -5,7 +5,8 @@
     "types": ["node"],
     "rootDir": "src",
     "jsx": "react-jsx",
-    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "baseUrl": ".",
   },
   "exclude": [
     "out-tsc",
@@ -29,7 +30,7 @@
       "path": "../design-tokens/tsconfig.lib.json"
     },
     {
-      "path": "../ui-core/tsconfig.lib.json"
+      "path": "../utils-shared/tsconfig.lib.json"
     }
   ]
 }

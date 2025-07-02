@@ -1,0 +1,19 @@
+import createIcon from "../../Components/Icon/createIcon";
+export const Medal1 = createIcon(
+  "Medal1",
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M4.667 9.333v4.66c0 .18.146.327.333.327a.4.4 0 0 0 .133-.033l2.86-1.307 2.86 1.3c.167.073.36 0 .44-.167.014-.046.027-.093.027-.14v-4.74M8 1.333a4.667 4.667 0 1 0 0 9.334 4.667 4.667 0 0 0 0-9.334"
+    />
+  </svg>
+);

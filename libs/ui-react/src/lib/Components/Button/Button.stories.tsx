@@ -4,7 +4,7 @@ import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'React/Components/Button',
+  title: 'Components/Button/React',
   tags: ['autodocs'],
   globals: {
     backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },

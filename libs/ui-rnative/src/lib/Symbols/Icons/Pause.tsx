@@ -1,0 +1,13 @@
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
+export const Pause = createIcon(
+  "Pause",
+  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+    <Path
+      d="M4.75861 3.89264L4.75861 11.8926M11.2414 3.89264L11.2414 11.8926"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      strokeLinecap="round"
+    />
+  </Svg>
+);

@@ -4,6 +4,7 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
+  createDropShadowPlugin,
 } from '../utils/index.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 
@@ -14,6 +15,7 @@ export const enterprisePreset = {
     createThemePlugin(enterpriseTheme),
     createTypographyPlugin(),
     createGradientPlugin(enterpriseTheme),
+    createDropShadowPlugin(),
   ],
   darkMode: 'class',
   corePlugins: {

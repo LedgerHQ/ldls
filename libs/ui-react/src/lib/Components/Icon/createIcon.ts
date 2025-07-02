@@ -1,6 +1,6 @@
 import { createElement, forwardRef, SVGProps } from 'react';
 import { Icon, IconProps } from './Icon';
-import { toPascalCase } from '../../../utils/string-utils';
+import { toPascalCase } from '@ldls/utils-shared';
 
 /**
  * Create an Icon component

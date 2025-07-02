@@ -45,6 +45,18 @@
         "command": "npx tsx figma-download-svgs.ts",
         "cwd": "libs/design-tokens"
       }
+    },
+    "generate-symbols-react": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx libs/design-tokens/generate-symbols.mts --templatePath libs/ui-react/src/utils/icon-template.ts --outputPath libs/ui-react/src/lib/Symbols"
+      }
+    },
+    "generate-symbols-react-native": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx libs/design-tokens/generate-symbols.mts --templatePath libs/ui-rnative/src/utils/icon-template.ts --outputPath libs/ui-rnative/src/lib/Symbols --isReactNative true"
+      }
     }
   },
   "tags": ["scope:shared", "type:util"]
