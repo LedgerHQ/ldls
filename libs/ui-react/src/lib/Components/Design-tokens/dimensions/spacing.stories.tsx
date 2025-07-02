@@ -1,11 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../shared';
 
 const meta: Meta = {
   title: 'Foundations/Design Tokens/Dimensions/Spacing',
-  globals: {
-    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
-  },
 };
 
 export default meta;

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { within, userEvent } from '@storybook/testing-library';
 import Button from './Button';
 
@@ -6,9 +6,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Components/Button/React',
   tags: ['autodocs'],
-  globals: {
-    backgrounds: { value: 'var(--background-canvas-sheet)', grid: false },
-  },
+
   argTypes: {
     variant: {
       control: 'select',
