@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
-import { dirname, join } from "node:path";
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
@@ -8,10 +8,10 @@ const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: [getAbsolutePath("@storybook/addon-docs")],
+  addons: [getAbsolutePath('@storybook/addon-docs')],
 
   framework: {
-    name: getAbsolutePath("@storybook/react-vite"),
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
 
@@ -37,11 +37,11 @@ const config: StorybookConfig = {
 
   core: {
     disableTelemetry: true,
-  }
+  },
 };
 
 export default config;
 
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
+function getAbsolutePath(value: string): string {
+  return dirname(require.resolve(join(value, 'package.json')));
 }
