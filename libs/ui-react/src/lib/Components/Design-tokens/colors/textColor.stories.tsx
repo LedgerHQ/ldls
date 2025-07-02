@@ -19,7 +19,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Text: Story = {
-  name: 'Text',
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader

@@ -19,7 +19,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Background: Story = {
-  name: 'Background',
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader
