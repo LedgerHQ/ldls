@@ -106,7 +106,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: design-tokens
-          path: libs/design-tokens/
+          path: libs/design-tokens/tokens/
 
       - name: Run Design Tokens ETL
         run: npx nx run @ldls/design-tokens:design-tokens-etl
