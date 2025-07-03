@@ -15,11 +15,11 @@ export const tokens: Record<string, Record<string, string | number>> = {
     "--font-style-display-3-size": "var(--font-size-36)",
     "--font-style-display-3-weight": "var(--font-weight-semi-bold)",
     "--font-style-display-3-line-height": "var(--font-line-height-36)",
-    "--font-style-display-3-letter-spacing": "var(--font-letter-spacing-40)",
+    "--font-style-display-3-letter-spacing": "var(--font-letter-spacing-36)",
     "--font-style-display-4-size": "var(--font-size-32)",
     "--font-style-display-4-weight": "var(--font-weight-semi-bold)",
     "--font-style-display-4-line-height": "var(--font-line-height-32)",
-    "--font-style-display-4-letter-spacing": "var(--font-letter-spacing-28)",
+    "--font-style-display-4-letter-spacing": "var(--font-letter-spacing-32)",
     "--font-style-heading-1-size": "var(--font-size-28)",
     "--font-style-heading-1-weight-semi-bold": "var(--font-weight-semi-bold)",
     "--font-style-heading-1-weight-medium": "var(--font-weight-medium)",
@@ -58,7 +58,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     "--font-style-body-4-size": "var(--font-size-10)",
     "--font-style-body-4-weight-semi-bold": "var(--font-weight-semi-bold)",
     "--font-style-body-4-weight-medium": "var(--font-weight-medium)",
-    "--font-style-body-4-line-height": "var(--font-line-height-11)",
-    "--font-style-body-4-letter-spacing": "var(--font-letter-spacing-11)"
+    "--font-style-body-4-line-height": "var(--font-line-height-10)",
+    "--font-style-body-4-letter-spacing": "var(--font-letter-spacing-10)"
   }
 };

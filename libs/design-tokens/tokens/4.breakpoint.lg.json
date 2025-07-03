@@ -786,7 +786,7 @@
         },
         "line-height": {
           "$type": "number",
-          "$value": "{font.line-height.11}",
+          "$value": "{font.line-height.10}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -800,7 +800,7 @@
         },
         "letter-spacing": {
           "$type": "number",
-          "$value": "{font.letter-spacing.11}",
+          "$value": "{font.letter-spacing.10}",
           "$description": "",
           "$extensions": {
             "com.figma": {

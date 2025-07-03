@@ -1682,7 +1682,7 @@
   "border-width": {
     "default": {
       "$type": "number",
-      "$value": "{border-width.1}",
+      "$value": "{stroke.1}",
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -1698,7 +1698,7 @@
     },
     "active": {
       "$type": "number",
-      "$value": "{border-width.2}",
+      "$value": "{stroke.2}",
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -1712,7 +1712,7 @@
     },
     "focus": {
       "$type": "number",
-      "$value": "{border-width.2}",
+      "$value": "{stroke.2}",
       "$description": "",
       "$extensions": {
         "com.figma": {

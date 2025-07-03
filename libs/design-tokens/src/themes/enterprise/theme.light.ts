@@ -294,9 +294,6 @@ export const tokens: Record<string, Record<string, string>> = {
     "--color-discover-mercuryo": "var(--color-light-discover-mercuryo)",
     "--color-discover-juno": "var(--color-light-discover-juno)",
     "--color-discover-sardine": "var(--color-light-discover-sardine)",
-    "--border-width": "var(--border-width-1)",
-    "--border-width-active": "var(--border-width-2)",
-    "--border-width-focus": "var(--border-width-2)",
     "--background-canvas": "var(--color-background-canvas)",
     "--background-canvas-sheet": "var(--color-background-canvas-sheet)",
     "--background-canvas-overlay": "var(--color-background-canvas-overlay)",
@@ -395,6 +392,9 @@ export const tokens: Record<string, Record<string, string>> = {
     "--border-active": "var(--color-border-active-enterprise)",
     "--border-active-hover": "var(--color-border-active-enterprise-pressed)",
     "--border-active-pressed": "var(--color-border-active-enterprise-pressed)",
-    "--border-focus": "var(--color-border-focus-entreprise)"
+    "--border-focus": "var(--color-border-focus-entreprise)",
+    "--border-width": "var(--stroke-1)",
+    "--border-width-active": "var(--stroke-2)",
+    "--border-width-focus": "var(--stroke-2)"
   }
 };

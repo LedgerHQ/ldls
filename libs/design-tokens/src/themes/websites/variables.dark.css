@@ -293,11 +293,11 @@
   --color-discover-mercuryo: var(--color-dark-discover-mercuryo);
   --color-discover-juno: var(--color-dark-discover-juno);
   --color-discover-sardine: var(--color-dark-discover-sardine);
-  --border-width: var(--border-width-1);
-  --border-width-active: var(--border-width-2);
-  --border-width-focus: var(--border-width-2);
   --background-native: var(--color-background-native-default);
   --text-native: var(--color-text-native-default);
+  --border-width: var(--stroke-1);
+  --border-width-active: var(--stroke-2);
+  --border-width-focus: var(--stroke-2);
   --background-canvas: var(--color-background-canvas-default);
   --background-canvas-sheet: var(--color-background-canvas-sheet);
   --background-canvas-overlay: var(--color-background-canvas-overlay);
