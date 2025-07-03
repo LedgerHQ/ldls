@@ -1,3 +1,4 @@
+export { Airplane } from './Icons/Airplane';
 export { AlarmClock } from './Icons/AlarmClock';
 export { Android } from './Icons/Android';
 export { Apple } from './Icons/Apple';
