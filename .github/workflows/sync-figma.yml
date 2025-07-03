@@ -13,7 +13,6 @@ on:
         description: 'Dry run mode (skip PR creation)'
         type: boolean
         default: false
-  push:
 
 env:
   NX_NO_CLOUD: true
