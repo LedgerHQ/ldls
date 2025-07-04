@@ -8,7 +8,6 @@ import {
   GetImagesResponse,
 } from '@figma/rest-api-spec';
 import { mapValues, omitBy } from 'lodash-es';
-import fetch from 'node-fetch';
 
 interface CallFigmaAPIOptions {
   apiPath: string;
@@ -33,8 +32,8 @@ async function callFigmaAPI<T>({
     ? `?${new URLSearchParams(
         mapValues(
           omitBy(queryParams, (value) => value === undefined),
-          (value) => (Array.isArray(value) ? value.join(',') : String(value))
-        )
+          (value) => (Array.isArray(value) ? value.join(',') : String(value)),
+        ),
       ).toString()}`
     : '';
 
@@ -55,7 +54,7 @@ async function callFigmaAPI<T>({
 
   if (!response.ok) {
     throw new Error(
-      `Error while calling ${method}: ${apiPath}: ${response.status} ${response.statusText}`
+      `Error while calling ${method}: ${apiPath}: ${response.status} ${response.statusText}`,
     );
   }
   return (await response.json()) as T;
@@ -63,7 +62,7 @@ async function callFigmaAPI<T>({
 
 async function getLocalVariables(
   fileKey: string,
-  figmaToken: string
+  figmaToken: string,
 ): Promise<GetLocalVariablesResponse> {
   return callFigmaAPI<GetLocalVariablesResponse>({
     apiPath: `v1/files/${fileKey}/variables/local`,
@@ -73,7 +72,7 @@ async function getLocalVariables(
 
 async function getStylesMetadata(
   fileKey: string,
-  figmaToken: string
+  figmaToken: string,
 ): Promise<GetFileStylesResponse> {
   return callFigmaAPI<GetFileStylesResponse>({
     apiPath: `v1/files/${fileKey}/styles`,
@@ -84,7 +83,7 @@ async function getStylesMetadata(
 async function getFileNodes(
   fileKey: string,
   figmaToken: string,
-  nodes: string[]
+  nodes: string[],
 ): Promise<GetFileNodesResponse> {
   if (!nodes.length) {
     throw new Error('No nodes provided to fetch styles metadata.');
@@ -97,7 +96,7 @@ async function getFileNodes(
 
 async function getFile(
   fileKey: string,
-  figmaToken: string
+  figmaToken: string,
 ): Promise<GetFileResponse> {
   return callFigmaAPI<GetFileResponse>({
     apiPath: `v1/files/${fileKey}`,
@@ -119,7 +118,7 @@ async function getFileImages(
     contents_only?: boolean;
     use_absolute_bounds?: boolean;
     version?: number;
-  }
+  },
 ): Promise<GetImagesResponse> {
   return callFigmaAPI<GetImagesResponse>({
     apiPath: `v1/images/${fileKey}`,
@@ -131,7 +130,7 @@ async function getFileImages(
 async function postVariables(
   fileKey: string,
   figmaToken: string,
-  body: PostVariablesRequestBody
+  body: PostVariablesRequestBody,
 ): Promise<PostVariablesResponse> {
   return callFigmaAPI<PostVariablesResponse>({
     method: 'POST',

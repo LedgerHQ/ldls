@@ -1,6 +1,6 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 export const Airplane = createIcon(
-  "Airplane",
+  'Airplane',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -22,5 +22,5 @@ export const Airplane = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>
+  </svg>,
 );
