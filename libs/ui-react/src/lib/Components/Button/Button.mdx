@@ -1,0 +1,136 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+import Button from './Button';
+
+<Meta title="Components/Button/Docs" of={ButtonStories} />
+
+# 🔘 Button
+
+## Introduction
+
+Buttons are key interactive elements that trigger actions and guide users through the interface. They come in various styles and states to reflect hierarchy, intent, and context.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9-28&m=dev)
+
+## Anatomy
+
+<Canvas of={ButtonStories.IconText} />
+
+- **Label**: describes the action that occurs when the button is tapped
+- **Icon (optional)**: visually communicate the button's action, and helps draw attention
+
+## Properties
+
+### Overview
+
+<Canvas of={ButtonStories.Base} />
+<Controls of={ButtonStories.Base} />
+
+### Appearance
+
+There are five button appearances, which indicate its emphasis. From strongest to weakest:
+
+- accent
+- base (default)
+- gray
+- transparent
+- no-background
+
+<Canvas of={ButtonStories.AppearanceShowcase} />
+
+### Content
+
+Buttons' contents can be of three types:
+
+- text (default)
+- icon-text
+- icon
+
+<Canvas of={ButtonStories.ContentTypesShowcase} />
+
+> Note: Buttons of the smallest size XS can't have a label, so they default to an icon only.
+
+### Size
+
+Buttons come in four different sizes:
+
+- XS (**32 px** tall)
+- S (**44 px** tall)
+- M (default, **48 px** tall)
+- L (**56 px** tall)
+
+<Canvas of={ButtonStories.SizesShowcase} />
+
+### States
+
+<Canvas of={ButtonStories.StatesShowcase} />
+
+## Responsive Layout
+
+Buttons dynamically adapt their width to the size of their content, while keeping the default paddings:
+
+<Canvas of={ButtonStories.ResponsiveLayout} />
+
+When a label is too long, it's truncated to 2 lines, with a maximum width of 384 px:
+
+<Canvas of={ButtonStories.ResponsiveLayout2} />
+
+> The Button must dynamically resize to its container constraints.
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast
+- Text zoom
+- Keyboard navigation
+- Semantic labeling
+
+### Interactive Examples
+
+<Canvas of={ButtonStories.WithInteraction} />
+
+## Implementation
+
+```tsx
+import { Button } from '@ldls/ui-react';
+
+// Base Button (default)
+<Button appearance="base">Click me</Button>
+
+// Accent Button
+<Button appearance="accent">Submit</Button>
+
+// Gray Button
+<Button appearance="gray">Cancel</Button>
+
+// Icon + Text Button
+<Button
+  appearance="base"
+  contentType="icon-text"
+  icon={<Plus size={24} />}
+>
+  Add Item
+</Button>
+
+// Icon Only Button
+<Button
+  appearance="base"
+  contentType="icon"
+  icon={<Settings size={24} />}
+  aria-label="Settings"
+/>
+
+// Extra Small Icon Button
+<Button
+  appearance="base"
+  size="xs"
+  icon={<Settings size={16} />}
+  aria-label="Settings"
+/>
+
+// Disabled Button
+<Button appearance="base" disabled>
+  Not available
+</Button>
+```

@@ -1,49 +1,90 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@ldls/utils-shared';
 
 const buttonVariants = cva(
-  'rounded-full transition-colors body-1-semi-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex w-fit max-w-[384px] items-center justify-center gap-8 rounded-full transition-colors body-1-semi-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
-      variant: {
+      appearance: {
+        base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
+        gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
         accent:
           'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
-        primary:
-          'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        secondary:
-          'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
-        'secondary-transparent':
+        transparent:
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
+        'no-background':
+          'bg-transparent text-base hover:bg-muted-subtle active:bg-muted-pressed',
       },
       size: {
-        small: 'px-16 py-8 body-2-semi-bold',
-        medium: 'p-16',
-        large: 'px-32 py-16',
+        xs: 'size-32 body-2-semi-bold',
+        s: 'px-16 py-8 body-2-semi-bold',
+        m: 'p-16',
+        l: 'px-32 py-16',
+      },
+      hasIcon: {
+        true: '',
+        false: '',
+      },
+      loading: {
+        true: 'cursor-wait',
+        false: '',
       },
     },
     defaultVariants: {
-      variant: 'accent',
-      size: 'medium',
+      appearance: 'base',
+      size: 'm',
+      hasIcon: false,
+      loading: false,
     },
   },
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  children: React.ReactNode;
+    Omit<VariantProps<typeof buttonVariants>, 'hasIcon'> {
+  children?: React.ReactNode;
+  icon?: React.ReactNode;
+  loading?: boolean;
 }
 
 const Button = ({
   children,
-  variant,
+  appearance,
   size,
   className,
+  icon,
+  loading = false,
+  disabled,
   ...props
 }: ButtonProps) => {
+  const isIconOnly = Boolean(icon && !children);
+
   return (
-    <button className={buttonVariants({ variant, size, className })} {...props}>
-      {children}
+    <button
+      className={cn(
+        className,
+        buttonVariants({
+          appearance,
+          size,
+          hasIcon: Boolean(icon),
+          loading,
+        }),
+        isIconOnly && 'p-0',
+      )}
+      disabled={disabled || loading}
+      {...props}
+    >
+      {isIconOnly ? (
+        icon
+      ) : icon ? (
+        <>
+          {icon}
+          <span className="line-clamp-2">{children}</span>
+        </>
+      ) : (
+        <span className="line-clamp-2">{children}</span>
+      )}
     </button>
   );
 };
