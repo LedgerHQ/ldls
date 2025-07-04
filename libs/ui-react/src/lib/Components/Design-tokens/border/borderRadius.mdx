@@ -1,0 +1,57 @@
+import { Markdown, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import borderRadiusTaxonomy from '../images/border-radius-Taxonomy.png';
+import radiusExample from '../images/token-radius-exemple.png';
+import * as BorderRadius from './borderRadius.stories';
+
+<Meta title="Foundations/Border/Radius" of={BorderRadius} />
+
+# 🔲 Border Radius
+
+Border radius defines the curvature of UI elements, ensuring consistency and visual harmony across our products.
+
+## ⚡ Structure
+
+All radius tokens follow the structure: `border-radius-size`
+
+Example:
+
+- `border-radius-md`
+- `border-radius-lg`
+
+<img src={borderRadiusTaxonomy} alt="Border radius token taxonomy structure" />
+
+<Markdown>
+  {`
+| Element  | Definition | Example |
+| -------- | ---------- | ------- |
+| Property | border-radius token determining the curvature of elements | border-radius |
+| Size     | defines the curvature of an element's corners | none, xs, sm, md, lg, xl, 2xl, full |
+`}
+</Markdown>
+
+## 📏 Border Radius Sizes
+
+Radius tokens variants are divided in 8 sizes:
+
+<Canvas></Canvas>
+
+The table below lists our border-radius tokens, showing their typical usage to help maintain visual consistency across the interface.
+
+<Markdown>
+  {`
+| Size | Usage |
+| ---- | ----- |
+| none | no rounding; for sharp, rectangular corners |
+| xs   | very slight rounding; suitable for compact tags or checkbox |
+| sm   | light rounding on inputs, search, or small components |
+| md   | standard rounding on small components like segmented control |
+| lg   | standard rounding on larger surfaces like feature cards or containers |
+| xl   | soft corner for larger surfaces |
+| 2xl  | extra-soft corner for larger surfaces |
+| full | fully rounded (pill shape); used for all buttons, chips and circular elements |
+`}
+</Markdown>
+
+## Implementation
+
+<img src={radiusExample} alt="Examples of border radius tokens in use" />

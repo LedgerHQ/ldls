@@ -1,0 +1,40 @@
+import { Markdown, Meta, Canvas } from '@storybook/addon-docs/blocks';
+import borderWidthTaxonomy from '../images/border-width-Taxonomy.png';
+import * as BorderWidth from './borderWidth.stories';
+
+<Meta title="Foundations/Border/Width" of={BorderWidth} />
+
+# 📏 Border Width
+
+Border thickness is controlled by border width token, providing a consistent and scalable way to define stroke weight across a design language system.
+
+## ⚡ Structure
+
+All width tokens follow the structure: `border-width-state`
+
+Example: `border-width-active`
+
+<img src={borderWidthTaxonomy} alt="Border width token taxonomy structure" />
+
+<Markdown>
+  {`
+| Element  | Definition | Example |
+| -------- | ---------- | ------- |
+| Property | define width of the border of element | border-width |
+| State    | define the different state of the token | default, active, focus |
+`}
+</Markdown>
+
+## 🔄 States
+
+<Canvas></Canvas>
+
+<Markdown>
+  {`
+| Token | Value | State | Usage |
+| ----- | ----- | ----- | ----- |
+| border-width-default | 1px | Default | Standard border width for elements in their normal state |
+| border-width-active | 2px | Active | Enhanced border width for active or selected elements |
+| border-width-focus | 3px | Focus | Prominent border width for focused elements |
+`}
+</Markdown>

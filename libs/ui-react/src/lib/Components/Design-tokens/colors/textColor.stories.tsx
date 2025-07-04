@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Design Tokens/Colors/Text',
+  title: 'Foundations/Colors/Text',
   globals: { backgrounds: { grid: true } },
   parameters: {
     backgrounds: {
@@ -26,7 +26,6 @@ export const Text: Story = {
         description="Semantic text color tokens for consistent theming across components"
       />
       <ColorSection
-        title="Base"
         category="text"
         tokens={[
           { name: 'Base', className: '', textClassName: 'text-base' },
@@ -44,7 +43,6 @@ export const Text: Story = {
       />
 
       <ColorSection
-        title="Muted"
         category="text"
         tokens={[
           { name: 'Muted', className: '', textClassName: 'text-muted' },
@@ -67,7 +65,6 @@ export const Text: Story = {
       />
 
       <ColorSection
-        title="Alerts"
         category="text"
         tokens={[
           { name: 'Error', className: '', textClassName: 'text-error' },
@@ -77,7 +74,6 @@ export const Text: Story = {
       />
 
       <ColorSection
-        title="On solid backgrounds"
         category="text"
         tokens={[
           {
@@ -109,10 +105,8 @@ export const Text: Story = {
       />
 
       <ColorSection
-        title="Primitives"
         category="text"
         tokens={[
-          { name: 'Disabled', className: '', textClassName: 'text-disabled' },
           {
             name: 'White',
             className: 'bg-black',
@@ -128,6 +122,13 @@ export const Text: Story = {
             className: 'bg-grey',
             textClassName: 'text-grey',
           },
+        ]}
+      />
+
+      <ColorSection
+        category="text"
+        tokens={[
+          { name: 'Disabled', className: '', textClassName: 'text-disabled' },
         ]}
       />
     </div>

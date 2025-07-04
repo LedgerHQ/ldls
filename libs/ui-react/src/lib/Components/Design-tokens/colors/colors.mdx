@@ -1,0 +1,103 @@
+import { Meta, Markdown } from '@storybook/addon-docs/blocks';
+import taxonomy from '../images/colors-taxonomy.png';
+import tokenProperty from '../images/tokens-property.png';
+import tokenVariant from '../images/tokens-variants.png';
+import tokenState from '../images/tokens-states.png';
+import tokenExample from '../images/exemple.png';
+
+<Meta title="Foundations/Colors" />
+
+# 🎨 Colors
+
+Our color system relies on semantic tokens, simplifying design decisions and enabling dark theme support.
+
+## Color Taxonomy
+
+All colors tokens follow the structure: property-variant-state
+
+<img src={taxonomy} alt="Color taxonomy diagram" />
+
+Example:
+
+- `background-accent-hover`
+- `border-muted-pressed`
+
+## ⚡ Element Structure
+
+<Markdown>
+  {`
+| Element | Definition | Example |
+| ------- | ---------- | ------- |
+| property | Broad category of usage for the color | background, border, text |
+| variant  | Property by specifying a contextual usage | base, muted, interactive |
+| state    | Interaction-based adjustment of the token | default, hover, pressed |
+`}
+</Markdown>
+
+## 📊 Color Token Properties
+
+<img src={tokenProperty} alt="Token properties diagram" />
+
+The property defines the broad categories of usage for the colors.
+Tokens property are divided in 5 categories.
+
+Here's how our color tokens properties help maintain visual consistency:
+
+<Markdown>
+  {`
+| Properties | Usage |
+| ---------- | ----- |
+| background | Appears behind content, serving as the visual foundation |
+| border | Used for borders around elements and structure |
+| text | Applied to textual content and icons |
+| crypto | Covers cryptocurrency-related elements |
+| discover | Cover discover and provider elements |
+`}
+</Markdown>
+
+## Token Variants
+
+Variant property refines Property by specifying a contextual usage.
+Token variants are divided into these categories:
+
+<img src={tokenVariant} alt="Token variants diagram" />
+
+<Markdown>
+  {`
+| Variants | Usage |
+| -------- | ----- |
+| base | Color by default |
+| constant | Constant colors in light and dark mode |
+| muted | Less attention grabbing colors |
+| accent | Draw attention, highlight elements |
+| status | Success, error, warning colors |
+| interactive | Colors for interactive elements |
+| active | Currently selected elements |
+| focus | Keyboard navigation selected elements |
+| on-accent | Colors used on accent colors |
+| on-interactive | Colors used on interactive colors |
+| on-status | Colors used on status colors |
+`}
+</Markdown>
+
+## 🔄 Token States
+
+The state represents an interaction-based adjustment of the token.
+Token states come in 4 categories:
+
+<img src={tokenState} alt="Token states diagram" />
+
+<Markdown>
+  {`
+| States | Usage |
+| ------ | ----- |
+| default | Default color without interaction |
+| hover | Colors for cursor hover state |
+| pressed | Colors for click/tap state |
+| disabled | Colors for inactive state |
+`}
+</Markdown>
+
+## Example Implementation
+
+<img src={tokenExample} alt="Token example diagram" />

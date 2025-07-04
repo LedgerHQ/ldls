@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Design Tokens/Colors/Border',
+  title: 'Foundations/Colors/Border',
   globals: { backgrounds: { grid: true } },
   parameters: {
     backgrounds: {
@@ -26,7 +26,6 @@ export const Border: Story = {
         description="Semantic border color tokens for consistent theming across components"
       />
       <ColorSection
-        title="Base"
         category="border"
         tokens={[
           { name: 'Base', className: 'bg-base border-base' },
@@ -36,7 +35,6 @@ export const Border: Story = {
       />
 
       <ColorSection
-        title="Muted"
         category="border"
         tokens={[
           { name: 'Muted', className: 'bg-base border-muted' },
@@ -47,7 +45,6 @@ export const Border: Story = {
       />
 
       <ColorSection
-        title="Alerts"
         category="border"
         tokens={[
           { name: 'Error', className: 'bg-base border-error' },
@@ -57,7 +54,6 @@ export const Border: Story = {
       />
 
       <ColorSection
-        title="Active"
         category="border"
         tokens={[
           { name: 'Focus', className: 'bg-base border-focus' },
@@ -66,13 +62,16 @@ export const Border: Story = {
       />
 
       <ColorSection
-        title="Primitives"
         category="border"
         tokens={[
-          { name: 'Disabled', className: 'bg-base border-disabled' },
           { name: 'Black', className: 'bg-base border-black' },
           { name: 'White', className: 'bg-base border-white' },
         ]}
+      />
+
+      <ColorSection
+        category="border"
+        tokens={[{ name: 'Disabled', className: 'bg-base border-disabled' }]}
       />
     </div>
   ),
