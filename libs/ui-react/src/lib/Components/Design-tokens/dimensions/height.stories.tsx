@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Design Tokens/Dimensions/Height',
+  title: 'Foundations/Dimensions/Height',
 };
 
 export default meta;
