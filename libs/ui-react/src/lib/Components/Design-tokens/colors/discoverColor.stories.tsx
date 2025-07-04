@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Design Tokens/Colors/Discover background',
+  title: 'Foundations/Colors/Discover background',
   globals: { backgrounds: { grid: true } },
   parameters: {
     backgrounds: {
