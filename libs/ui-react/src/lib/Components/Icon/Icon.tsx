@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 import { createElement, forwardRef } from 'react';
 import { cn } from '@ldls/utils-shared';
 
-export type IconSize = 16 | 20 | 24 | 40 | 48;
+export type IconSize = 16 | 20 | 24 | 40 | 48 | 56;
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: IconSize;
@@ -18,6 +18,7 @@ const iconVariants = cva('inline-block', {
       24: 'icon-w-24 icon-h-24 icon-stroke-24',
       40: 'icon-w-40 icon-h-40 icon-stroke-40',
       48: 'icon-w-48 icon-h-48 icon-stroke-48',
+      56: 'icon-w-56 icon-h-56 icon-stroke-56',
     },
   },
   defaultVariants: {
@@ -38,9 +39,9 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
         className: cn(iconVariants({ size }), 'inline-block', className),
         ...props,
       },
-      children
+      children,
     );
-  }
+  },
 );
 
 Icon.displayName = 'Icon';

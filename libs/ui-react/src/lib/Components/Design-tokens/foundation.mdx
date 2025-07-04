@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokenStructure from './images/token-structure.png';
+import tokenLevels from './images/tokens-levels.png';
+
+<Meta title="Foundations/Docs" />
+
+# 🏗️ Foundation
+
+**Design tokens are variables that contain all the foundations with the design values needed to build a scalable Design Language System**
+
+Design tokens are small, reusable design decisions that replace static values with self-explanatory names, storing design-related values—such as color, typography, spacing, and other UI properties—in a design system to ensure consistency, scalability, and a unified visual style across different platforms and technologies.
+
+## 🎨 Design Tokens
+
+### Figma Library
+
+Here is the Figma library Link: [Figma Library](https://www.figma.com/design/1234567890/Design-Tokens?node-id=1234567890%3A1234567890)
+
+### Primitives Tokens
+
+A primitive token is an agnostic token that is not tied to a meaning or usage. These tokens are used to enumerate all the parameters available for design systems. These can be hexadecimal, spacings, fonts, size fonts, etc...
+
+Example: `color-light-purple050`
+
+### Semantic Tokens
+
+A semantic token is a specific token tied to a particular use case. Specific tokens are derived from primitive tokens but are explicitly defined for a particular UI element, ensuring a more tailored design while still maintaining consistency across the system.
+
+Example: `background-accent`
+
+## ⚡ Token Structure
+
+<figure>
+  <img src={tokenStructure} alt="Token structure diagram" />
+  <figcaption style={{ textAlign: 'center' }}>
+    Fig. 1: Design tokens from raw values to structured, reusable elements.
+  </figcaption>
+</figure>
+
+Design tokens follow a nested structure. All semantic tokens are constructed from a primitive, which in turn is constructed from a raw value. This structured approach ensures scalability, consistency, and flexibility, making it easier to manage and update design systems efficiently.
+
+## 📊 Token Levels
+
+<img src={tokenLevels} alt="Token levels diagram" />
+
+The hierarchy of tokens is categorized into five key levels:
+
+**1. Primitives** are the foundational, agnostic tokens that define core design parameters such as colors, typography, and spacing. These tokens are neutral and not tied to a specific usage.
+
+**2. Theme** tokens enable switching between light and dark themes, while maintaining consistency across components.
+
+**3. Brand** tokens introduce brand-specific styling, allowing components to adapt their design based on different brand identities.
+
+**4. Breakpoint** tokens help adjust component behaviour based on screen sizes, ensuring responsive design.
+
+**5. Icon** tokens allow adjustment of icon UI regarding its size.
+
+This structure makes design systems flexible, scalable, and easy to maintain, allowing UI elements to be customized dynamically without altering the underlying primitives.

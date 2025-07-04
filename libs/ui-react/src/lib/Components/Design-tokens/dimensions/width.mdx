@@ -1,0 +1,48 @@
+import { Markdown, Meta } from '@storybook/addon-docs/blocks';
+import widthTaxonomy from '../images/width-Taxonomy.png';
+import widthExample from '../images/Token-width-exemple.png';
+
+<Meta title="Foundations/Dimensions/Width" />
+
+# 📏 Width
+
+Width defines the horizontal fixed size of element, controlling the span of elements and contributing to layout consistency.
+
+## ⚡ Structure
+
+All width tokens follow the structure: `width-size`
+
+Example: `width-44`
+
+<img src={widthTaxonomy} alt="Width token taxonomy structure" />
+
+<Markdown>
+  {`
+| Element  | Definition | Example |
+| -------- | ---------- | ------- |
+| Property | define fixed width of element | width |
+| Size     | define the value | 0, 1, 2, 4, 6, 8, 10, 12, 14 |
+`}
+</Markdown>
+
+## 📐 Width Scale
+
+<Markdown>
+  {`
+| Token | Pixel value | Typical usage |
+| ----- | ----------- | ------------- |
+| width-0 | 0 | No width; used to reset or remove width |
+| width-1 | 1px | Thin vertical lines, borders |
+| width-2 | 2px | Thicker vertical lines, selected states |
+| width-4 | 4px | Small decorative elements |
+| width-6 | 6px | Vertical indicators, separators |
+| width-8 | 8px | Small UI elements |
+| width-10 | 10px | Medium UI elements |
+| width-12 | 12px | Standard UI elements |
+| width-14 | 14px | Large UI elements |
+`}
+</Markdown>
+
+## Implementation
+
+<img src={widthExample} alt="Examples of width tokens in use" />

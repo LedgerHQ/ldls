@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader, ColorSection } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Design Tokens/Colors/Background',
+  title: 'Foundations/Colors/Background',
   globals: { backgrounds: { grid: true } },
   parameters: {
     backgrounds: {
@@ -27,7 +27,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Canvas"
         category="background"
         tokens={[
           {
@@ -49,7 +48,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Base"
         category="background"
         tokens={[
           { name: 'Base', className: 'bg-base', textClassName: 'text-base' },
@@ -67,7 +65,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Base Transparent"
         category="background"
         tokens={[
           {
@@ -89,7 +86,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Muted"
         category="background"
         tokens={[
           { name: 'Muted', className: 'bg-muted', textClassName: 'text-base' },
@@ -107,7 +103,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Muted on Sheet"
         category="background"
         tokens={[
           {
@@ -129,7 +124,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Muted on Muted"
         category="background"
         tokens={[
           {
@@ -151,7 +145,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Muted Transparent"
         category="background"
         tokens={[
           {
@@ -178,7 +171,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Muted Strong"
         category="background"
         tokens={[
           {
@@ -200,7 +192,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Accent"
         category="background"
         tokens={[
           {
@@ -222,7 +213,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Interactive"
         category="background"
         tokens={[
           {
@@ -244,7 +234,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Alerts"
         category="background"
         tokens={[
           { name: 'Error', className: 'bg-error', textClassName: 'text-base' },
@@ -287,7 +276,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Active"
         category="background"
         tokens={[
           {
@@ -314,7 +302,6 @@ export const Background: Story = {
       />
 
       <ColorSection
-        title="Primitives"
         category="background"
         tokens={[
           { name: 'White', className: 'bg-white', textClassName: 'text-base' },

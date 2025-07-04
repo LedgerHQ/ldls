@@ -43,7 +43,21 @@ const preview: Preview = {
 
     options: {
       storySort: {
-        order: ['Foundations', 'Symbols', 'Components'],
+        order: [
+          'Getting Started',
+          ['Welcome'],
+          'Foundations',
+          [
+            'Docs',
+            'Colors',
+            ['Docs', 'Background', 'Text', 'Border'],
+            'Border',
+            'Dimensions',
+            ['Spacing', 'Height', 'Width'],
+          ],
+          'Symbols',
+          'Components',
+        ],
       },
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
