@@ -13,7 +13,7 @@ A cross-platform design system built with Nx, supporting both React and React Na
 ## Installing Dependencies
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
 ## Development
