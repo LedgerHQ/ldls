@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { allBrandsPreset } from '@ldls/design-tokens';
+import { allBrandsPreset } from '@ldls/design-core';
 
 const config = {
   content: [

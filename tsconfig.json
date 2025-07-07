@@ -13,7 +13,7 @@
       "path": "./libs/ui-react"
     },
     {
-      "path": "./libs/design-tokens"
+      "path": "./libs/design-core"
     },
     {
       "path": "./libs/ui-core"
