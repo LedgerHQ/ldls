@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
@@ -37,6 +36,7 @@ export const App = () => {
               style={[styles.textXL, styles.appTitleText]}
               testID="heading"
               role="heading"
+              className="text-2xl font-bold text-primary"
             >
               Welcome ReactNative 👋
             </Text>
