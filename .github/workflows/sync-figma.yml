@@ -31,7 +31,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Export Design Tokens from Figma
         run: npx nx run @ldls/design-core:figma-export
@@ -62,7 +62,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Download SVGs from Figma
         run: npx nx run @ldls/design-core:figma-download-svgs
@@ -95,7 +95,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Download design tokens artifacts
         uses: actions/download-artifact@v4
@@ -130,7 +130,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Download SVG artifacts
         uses: actions/download-artifact@v4
@@ -165,7 +165,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Download SVG artifacts
         uses: actions/download-artifact@v4
