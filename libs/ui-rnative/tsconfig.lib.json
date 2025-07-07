@@ -6,7 +6,7 @@
     "rootDir": "src",
     "jsx": "react-jsx",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "exclude": [
     "out-tsc",
@@ -27,7 +27,7 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../design-tokens/tsconfig.lib.json"
+      "path": "../design-core/tsconfig.lib.json"
     },
     {
       "path": "../utils-shared/tsconfig.lib.json"
