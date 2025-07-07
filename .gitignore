@@ -132,3 +132,4 @@ mise.toml
 **/chromatic.log
 **/chromatic-diagnostics.json
 **/build-storybook.log
+!.nx/version-plans/**
