@@ -78,7 +78,7 @@ LDLS is built with Nx, supporting both React and React Native development. Here'
 1. Clone and install dependencies:
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
 2. Start development environment:
