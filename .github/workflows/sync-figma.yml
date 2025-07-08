@@ -244,3 +244,4 @@ jobs:
             - ✅ Generate React symbol components
             - ✅ Generate React Native symbol components
           branch: sync-figma
+          base: main
