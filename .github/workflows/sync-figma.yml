@@ -229,6 +229,19 @@ jobs:
           name: react-native-symbols
           path: libs/ui-rnative/src/lib/Symbols/
 
+      - name: Check for changes (temporary)
+        run: |
+          echo "=== Git status ==="
+          git status
+          echo "=== Git diff ==="
+          git diff --name-only
+          echo "=== Files in artifacts directories ==="
+          find libs/design-core/tokens/ -type f | head -10
+          find libs/design-core/src/themes/ -type f | head -10
+          find libs/design-core/symbols/ -type f | head -10
+          find libs/ui-react/src/lib/Symbols/ -type f | head -10
+          find libs/ui-rnative/src/lib/Symbols/ -type f | head -10
+
       - name: Create Pull Request
         if: ${{ !github.event.inputs.dry_run }}
         uses: peter-evans/create-pull-request@v7
