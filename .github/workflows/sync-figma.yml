@@ -104,7 +104,7 @@ jobs:
       - name: Download design tokens artifacts
         uses: actions/download-artifact@v4
         with:
-          name: design-core
+          name: design-tokens
           path: libs/design-core/tokens/
 
       - name: Run Design Tokens ETL
