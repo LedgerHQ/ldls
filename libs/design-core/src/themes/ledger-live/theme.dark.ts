@@ -70,6 +70,8 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-active-subtle-enterprise': 'var(--color-dark-blue-050)',
     '--color-background-active-subtle-website': 'var(--color-dark-orange-050)',
     '--color-background-error': 'var(--color-dark-red-600-10)',
+    '--color-background-error-hover': 'var(--color-dark-red-600-20)',
+    '--color-background-error-pressed': 'var(--color-dark-red-600-30)',
     '--color-background-error-strong': 'var(--color-dark-red-600)',
     '--color-background-error-transparent': 'var(--color-dark-red-600-0)',
     '--color-background-warning': 'var(--color-dark-yellow-600-10)',
@@ -114,7 +116,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-text-active-ledger-live': 'var(--color-dark-purple-500)',
     '--color-text-active-enterprise': 'var(--color-dark-blue-500)',
     '--color-text-active-websites': 'var(--color-dark-orange-500)',
-    '--color-text-error': 'var(--color-dark-red-600)',
+    '--color-text-error': 'var(--color-dark-red-700)',
     '--color-text-warning': 'var(--color-dark-yellow-700)',
     '--color-text-success': 'var(--color-dark-green-600)',
     '--color-text-on-accent-ledger-live': 'var(--color-dark-grey-050)',
@@ -371,6 +373,8 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-interactive-pressed':
       'var(--color-background-interactive-pressed)',
     '--background-error': 'var(--color-background-error)',
+    '--background-error-hover': 'var(--color-background-error-hover)',
+    '--background-error-pressed': 'var(--color-background-error-pressed)',
     '--background-error-strong': 'var(--color-background-error-strong)',
     '--background-error-transparent':
       'var(--color-background-error-transparent)',
