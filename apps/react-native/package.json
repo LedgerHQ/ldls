@@ -19,6 +19,7 @@
     "react-native-svg": "~15.8.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.28.0",
     "@babel/plugin-syntax-decorators": "^7.27.1",
     "@react-native-community/cli": "~15.0.1",
     "@react-native-community/cli-platform-android": "~15.0.1",

@@ -15,6 +15,7 @@ module.exports = function (api) {
         ],
         'nativewind/babel',
       ],
+      plugins: [['@babel/plugin-proposal-decorators', { version: '2023-11' }]],
     };
   }
 
@@ -23,5 +24,6 @@ module.exports = function (api) {
       ['module:@react-native/babel-preset', { useTransformReactJSX: true }],
       'nativewind/babel',
     ],
+    plugins: [['@babel/plugin-proposal-decorators', { version: '2023-11' }]],
   };
 };
