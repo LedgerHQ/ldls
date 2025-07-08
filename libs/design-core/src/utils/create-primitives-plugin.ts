@@ -6,8 +6,7 @@ import { CSSRuleObject } from 'tailwindcss/types/config.js';
 
 export function createPrimitivesPlugin() {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');
-  const width = getThemeUtilsByPrefix(primitivesTheme, '--width-');
-  const height = getThemeUtilsByPrefix(primitivesTheme, '--height-');
+  const size = getThemeUtilsByPrefix(primitivesTheme, '--size-');
   const borderRadius = getThemeUtilsByPrefix(
     primitivesTheme,
     '--border-radius-',
@@ -42,17 +41,13 @@ export function createPrimitivesPlugin() {
         iconHeight,
         iconStrokeWidth,
         extend: {
-          height: height,
-          width: width,
-          // TODO: use --size instead of --width and --height
-          size: {
-            ...width,
-            ...height,
-          },
-          maxHeight: height,
-          maxWidth: width,
-          minHeight: height,
-          minWidth: width,
+          height: size,
+          width: size,
+          size,
+          maxHeight: size,
+          maxWidth: size,
+          minHeight: size,
+          minWidth: size,
         },
       },
     },
