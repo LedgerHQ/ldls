@@ -68,7 +68,7 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-orange-800)',
     '--color-background-active-subtle-ledger-live':
       'var(--color-light-purple-050)',
-    '--color-background-active-subtle-entreprise':
+    '--color-background-active-subtle-enterprise':
       'var(--color-light-blue-050)',
     '--color-background-active-subtle-website': 'var(--color-light-orange-050)',
     '--color-background-error': 'var(--color-light-red-600-10)',
@@ -92,9 +92,9 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-grey-950)',
     '--color-background-gradient-on-accent-ledger-live-0':
       'var(--color-light-grey-950-0)',
-    '--color-background-gradient-on-accent-entreprise-100':
+    '--color-background-gradient-on-accent-enterprise-100':
       'var(--color-light-grey-050)',
-    '--color-background-gradient-on-accent-entreprise-0':
+    '--color-background-gradient-on-accent-enterprise-0':
       'var(--color-light-grey-050-0)',
     '--color-background-gradient-on-accent-website-100':
       'var(--color-light-grey-050)',
@@ -150,7 +150,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-border-active-websites-hover': 'var(--color-light-orange-700)',
     '--color-border-active-websites-pressed': 'var(--color-light-orange-800)',
     '--color-border-focus-ledger-live': 'var(--color-light-purple-800)',
-    '--color-border-focus-entreprise': 'var(--color-light-blue-800)',
+    '--color-border-focus-enterprise': 'var(--color-light-blue-800)',
     '--color-border-focus-websites': 'var(--color-light-orange-800)',
     '--color-border-error': 'var(--color-light-red-600)',
     '--color-border-error-hover': 'var(--color-light-red-700)',
@@ -323,9 +323,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-discover-mercuryo': 'var(--color-light-discover-mercuryo)',
     '--color-discover-juno': 'var(--color-light-discover-juno)',
     '--color-discover-sardine': 'var(--color-light-discover-sardine)',
-    '--border-width': 'var(--border-width-1)',
-    '--border-width-active': 'var(--border-width-2)',
-    '--border-width-focus': 'var(--border-width-2)',
     '--background-canvas': 'var(--color-background-canvas)',
     '--background-canvas-sheet': 'var(--color-background-canvas-sheet)',
     '--background-canvas-overlay': 'var(--color-background-canvas-overlay)',
@@ -451,5 +448,8 @@ export const tokens: Record<string, Record<string, string>> = {
     '--border-active-hover': 'var(--color-border-active-websites-hover)',
     '--border-active-pressed': 'var(--color-border-active-websites-pressed)',
     '--border-focus': 'var(--color-border-focus-websites)',
+    '--border-width': 'var(--stroke-1)',
+    '--border-width-active': 'var(--stroke-2)',
+    '--border-width-focus': 'var(--stroke-2)',
   },
 };

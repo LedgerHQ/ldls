@@ -682,7 +682,7 @@
             }
           }
         },
-        "entreprise": {
+        "enterprise": {
           "default": {
             "$type": "color",
             "$value": "{color.light.blue.050}",
@@ -692,7 +692,7 @@
                 "hiddenFromPublishing": true,
                 "scopes": [],
                 "codeSyntax": {
-                  "WEB": "var(--color-background-active-subtle-entreprise);"
+                  "WEB": "var(--color-background-active-subtle-enterprise);"
                 }
               }
             }
@@ -962,7 +962,7 @@
             }
           }
         },
-        "entreprise": {
+        "enterprise": {
           "100%": {
             "$type": "color",
             "$value": "{color.light.grey.050}",
@@ -1738,7 +1738,7 @@
             }
           }
         },
-        "entreprise": {
+        "enterprise": {
           "default": {
             "$type": "color",
             "$value": "{color.light.blue.800}",

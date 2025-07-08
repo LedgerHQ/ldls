@@ -1,5 +1,6 @@
 import StyleDictionary from 'style-dictionary';
 import type { TransformedToken } from 'style-dictionary';
+import prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
 
@@ -120,7 +121,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
         options: {
           currentBreakpoint: breakpoint,
         },
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
       },
       JavaScriptThemeObject: {
         buildPath: `src/themes/`,
@@ -136,7 +137,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
         options: {
           currentBreakpoint: breakpoint,
         },
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
       },
     },
   };
@@ -165,7 +166,7 @@ function getSDThemeConfig(brand: string, theme: string) {
             filter: filterPrimitives,
           },
         ],
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
@@ -177,7 +178,7 @@ function getSDThemeConfig(brand: string, theme: string) {
             filter: filterPrimitives,
           },
         ],
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
         options: {
           currentTheme: theme,
         },
@@ -205,7 +206,7 @@ function getSDPrimitivesConfig() {
             },
           },
         ],
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
@@ -216,7 +217,7 @@ function getSDPrimitivesConfig() {
             format: 'javascript/custom-nested-object',
           },
         ],
-        actions: ['remove-default-suffix'],
+        actions: ['remove-default-suffix', 'prettier'],
       },
     },
     log: { verbosity: 'verbose' as const },
@@ -262,6 +263,37 @@ brands.forEach(function (brand) {
       }
     },
     undo: function () {
+      // No undo operation is necessary for this action.
+    },
+  });
+  StyleDictionary.registerAction({
+    name: 'prettier',
+    do: async (_dictionary, config) => {
+      if (!config.buildPath || !config.files || config.files.length === 0)
+        return;
+      const { buildPath } = config;
+      console.log(`\nRunning Prettier action on files in: ${buildPath}`);
+      const prettierConfig = await prettier.resolveConfig(process.cwd());
+
+      config.files.forEach(async (file) => {
+        if (
+          file.destination?.endsWith('.ts') ||
+          file.destination?.endsWith('.css')
+        ) {
+          const filePath = path.join(buildPath, file.destination);
+          if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf8');
+            const formatted = await prettier.format(content, {
+              ...prettierConfig,
+              parser: file.destination.endsWith('.ts') ? 'typescript' : 'css',
+            });
+            fs.writeFileSync(filePath, formatted);
+            console.log(` ✓ Formatted ${filePath}`);
+          }
+        }
+      });
+    },
+    undo: () => {
       // No undo operation is necessary for this action.
     },
   });
