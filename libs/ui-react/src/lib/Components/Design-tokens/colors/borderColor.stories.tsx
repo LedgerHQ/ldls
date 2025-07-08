@@ -30,7 +30,10 @@ export const Border: Story = {
         tokens={[
           { name: 'Base', className: 'bg-base border-base' },
           { name: 'Base Hover', className: 'bg-base border-base-hover' },
-          { name: 'Base Pressed', className: 'bg-base border-base-pressed' },
+          {
+            name: 'Base Pressed',
+            className: 'bg-base border-base-pressed',
+          },
         ]}
       />
 
@@ -38,9 +41,18 @@ export const Border: Story = {
         category="border"
         tokens={[
           { name: 'Muted', className: 'bg-base border-muted' },
-          { name: 'Muted Hover', className: 'bg-base border-muted-hover' },
-          { name: 'Muted Pressed', className: 'bg-base border-muted-pressed' },
-          { name: 'Muted Subtle', className: 'bg-base border-muted-subtle' },
+          {
+            name: 'Muted Hover',
+            className: 'bg-base border-muted-hover',
+          },
+          {
+            name: 'Muted Pressed',
+            className: 'bg-base border-muted-pressed',
+          },
+          {
+            name: 'Muted Subtle',
+            className: 'bg-base border-muted-subtle',
+          },
         ]}
       />
 

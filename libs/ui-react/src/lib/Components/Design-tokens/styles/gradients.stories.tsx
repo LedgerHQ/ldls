@@ -20,7 +20,7 @@ const GradientShowcase = () => (
           ].map(({ name, class: gradientClass }) => (
             <div key={name}>
               <div
-                className={`border h-96 rounded-lg border-1 border-muted-subtle ${gradientClass}`}
+                className={`border h-96 rounded-lg border-muted-subtle ${gradientClass}`}
               ></div>
               <div className="mt-8 text-base body-2">{name}</div>
               <div className="mt-8 text-muted body-4">{gradientClass}</div>
@@ -51,7 +51,7 @@ const GradientShowcase = () => (
           ].map(({ name, class: gradientClass }) => (
             <div key={name}>
               <div
-                className={`border h-64 rounded-lg border-1 border-muted-subtle ${gradientClass}`}
+                className={`border h-64 rounded-lg border-muted-subtle ${gradientClass}`}
               ></div>
               <div className="mt-8 text-base body-2">{name}</div>
             </div>

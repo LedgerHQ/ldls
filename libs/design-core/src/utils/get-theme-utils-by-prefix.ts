@@ -5,6 +5,7 @@ export const getThemeUtilsByPrefix = (
   >,
   prefix: string,
   customPrefix = '',
+  exclude?: string[],
 ) => {
   const themeUtils: Record<string, string> = {};
   for (const themeKey in themeObject) {
@@ -14,11 +15,17 @@ export const getThemeUtilsByPrefix = (
     ) {
       for (const key in themeObject[themeKey]) {
         if (key.startsWith(prefix)) {
-          const utilityName = key.substring(prefix.length).toLowerCase();
-          const prefixedUtilityName = customPrefix
-            ? `${customPrefix}${utilityName}`
-            : utilityName;
-          themeUtils[prefixedUtilityName] = `var(${key})`;
+          const isExcluded = exclude?.some((excludePrefix) =>
+            key.startsWith(excludePrefix),
+          );
+
+          if (!isExcluded) {
+            const utilityName = key.substring(prefix.length).toLowerCase();
+            const prefixedUtilityName = customPrefix
+              ? `${customPrefix}${utilityName}`
+              : utilityName;
+            themeUtils[prefixedUtilityName] = `var(${key})`;
+          }
         }
       }
     }

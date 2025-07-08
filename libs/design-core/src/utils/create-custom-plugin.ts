@@ -16,7 +16,9 @@ export function createThemePlugin(
   );
   const backgroundColor = getThemeUtilsByPrefix(brandTheme, '--background-');
   const textColor = getThemeUtilsByPrefix(brandTheme, '--text-');
-  const borderColor = getThemeUtilsByPrefix(brandTheme, '--border-');
+  const borderColor = getThemeUtilsByPrefix(brandTheme, '--border-', '', [
+    '--border-width',
+  ]);
 
   return plugin(
     function ({ addBase }) {

@@ -19,7 +19,7 @@ export const ColorSwatch = ({
             <div
               className={cn(
                 className,
-                'border h-64 rounded-lg border-1 border-muted p-16',
+                'border h-64 rounded-lg border-muted p-16',
               )}
             >
               <div className={cn('heading-4', textClassName)}>Aa</div>
@@ -48,7 +48,7 @@ export const ColorSwatch = ({
           <>
             <div
               className={cn(
-                'border flex h-64 flex-col justify-between rounded-lg border-1 border-muted-subtle p-16',
+                'border flex h-64 flex-col justify-between rounded-lg border-muted-subtle p-16',
                 className,
               )}
             ></div>

@@ -17,7 +17,7 @@ const TypographySample = ({
 }) => (
   <div>
     <div
-      className={`${className} border toto max-w-fit rounded-lg border-1 border-muted-subtle p-24 text-base`}
+      className={`${className} border toto max-w-fit rounded-lg border-muted-subtle p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
     </div>

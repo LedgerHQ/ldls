@@ -11,7 +11,7 @@ export function createPrimitivesPlugin() {
     primitivesTheme,
     '--border-radius-',
   );
-  const borderWidth = getThemeUtilsByPrefix(primitivesTheme, '--border-width-');
+
   const blur = getThemeUtilsByPrefix(primitivesTheme, '--blur-');
   const iconWidth = getThemeUtilsByPrefix(primitivesTheme, '--icon-width-');
   const iconHeight = getThemeUtilsByPrefix(primitivesTheme, '--icon-height-');
@@ -30,13 +30,7 @@ export function createPrimitivesPlugin() {
       theme: {
         spacing,
         borderRadius,
-        borderWidth,
         blur,
-        divideWidth: borderWidth,
-        ringOffsetWidth: borderWidth,
-        ringWidth: borderWidth,
-        strokeWidth: iconStrokeWidth,
-        outlineWidth: borderWidth,
         iconWidth,
         iconHeight,
         iconStrokeWidth,

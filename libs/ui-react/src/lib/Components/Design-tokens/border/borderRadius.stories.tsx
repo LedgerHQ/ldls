@@ -15,8 +15,6 @@ const BorderRadiusShowcase = () => (
         { name: 'none', class: 'rounded-none' },
         { name: 'xs', class: 'rounded-xs' },
         { name: 'sm', class: 'rounded-sm' },
-        // { name: 'base', class: 'rounded' }, //to be added ?
-        //  rounded default ?
         { name: 'md', class: 'rounded-md' },
         { name: 'lg', class: 'rounded-lg' },
         { name: 'xl', class: 'rounded-xl' },
