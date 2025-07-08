@@ -761,7 +761,7 @@
     "active-subtle": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.active-subtle.entreprise.default}",
+        "$value": "{color.background.active-subtle.enterprise.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -889,7 +889,7 @@
     "gradient-on-accent": {
       "100%": {
         "$type": "color",
-        "$value": "{color.background.gradient-on-accent.entreprise.100%}",
+        "$value": "{color.background.gradient-on-accent.enterprise.100%}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -903,7 +903,7 @@
       },
       "0%": {
         "$type": "color",
-        "$value": "{color.background.gradient-on-accent.entreprise.0%}",
+        "$value": "{color.background.gradient-on-accent.enterprise.0%}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1663,7 +1663,7 @@
     "focus": {
       "default": {
         "$type": "color",
-        "$value": "{color.border.focus.entreprise.default}",
+        "$value": "{color.border.focus.enterprise.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
