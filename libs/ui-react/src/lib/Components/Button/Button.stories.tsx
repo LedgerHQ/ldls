@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { within, userEvent } from '@storybook/testing-library';
 import Button from './Button';
 import { Settings, Plus } from '../../Symbols';
 
