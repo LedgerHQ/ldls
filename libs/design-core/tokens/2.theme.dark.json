@@ -718,7 +718,7 @@
       "error": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.red.600-10%}",
+          "$value": "{color.dark.red.600-20%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -732,7 +732,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.dark.red.600-20%}",
+          "$value": "{color.dark.red.600-30%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -744,7 +744,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.dark.red.600-30%}",
+          "$value": "{color.dark.red.600-40%}",
           "$description": "",
           "$extensions": {
             "com.figma": {

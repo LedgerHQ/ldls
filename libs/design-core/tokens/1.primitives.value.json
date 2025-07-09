@@ -4717,6 +4717,18 @@
               "codeSyntax": {}
             }
           }
+        },
+        "600-40%": {
+          "$type": "color",
+          "$value": "#f8727466",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
         }
       },
       "crypto": {

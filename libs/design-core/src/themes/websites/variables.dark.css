@@ -57,9 +57,9 @@
   --color-background-active-subtle-ledger-live: var(--color-dark-purple-050);
   --color-background-active-subtle-enterprise: var(--color-dark-blue-050);
   --color-background-active-subtle-website: var(--color-dark-orange-050);
-  --color-background-error: var(--color-dark-red-600-10);
-  --color-background-error-hover: var(--color-dark-red-600-20);
-  --color-background-error-pressed: var(--color-dark-red-600-30);
+  --color-background-error: var(--color-dark-red-600-20);
+  --color-background-error-hover: var(--color-dark-red-600-30);
+  --color-background-error-pressed: var(--color-dark-red-600-40);
   --color-background-error-strong: var(--color-dark-red-600);
   --color-background-error-transparent: var(--color-dark-red-600-0);
   --color-background-warning: var(--color-dark-yellow-600-10);
