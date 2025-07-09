@@ -65,7 +65,7 @@ export const Icon: StoryObj<IconStoryProps> = {
   args: {
     size: 24,
     name: 'Home',
-    className: 'text-accent',
+    className: 'text-base',
   },
   argTypes: {
     size: {
@@ -89,7 +89,7 @@ export const Icon: StoryObj<IconStoryProps> = {
       <div className="p-8">
         <div className="flex flex-col items-center gap-4">
           <IconComponent size={args.size} className={args.className} />
-          <span className="text-sm text-muted-c-primary">{args.name}</span>
+          <span className="text-base">{args.name}</span>
         </div>
       </div>
     );

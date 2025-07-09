@@ -48,7 +48,7 @@ export const Height: Story = {
     <div className="p-24">
       <SectionHeader
         title="Height Tokens"
-        description="Height values for consistent height"
+        description="Height tokens use the size token values to ensure consistent vertical dimensions across the design system. These tokens follow the size-* pattern and can be applied using the h-* utility class."
       />
       <HeightShowcase />
     </div>
