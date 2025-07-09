@@ -23,7 +23,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-style-heading-1-size': 'var(--font-size-36)',
     '--font-style-heading-1-weight-semi-bold': 'var(--font-weight-semi-bold)',
     '--font-style-heading-1-weight-medium': 'var(--font-weight-medium)',
-    '--font-style-heading-1-line-height': 'var(--font-letter-spacing-36)',
+    '--font-style-heading-1-line-height': 'var(--font-line-height-36)',
     '--font-style-heading-1-letter-spacing': 'var(--font-letter-spacing-36)',
     '--font-style-heading-2-size': 'var(--font-size-32)',
     '--font-style-heading-2-weight-semi-bold': 'var(--font-weight-semi-bold)',
