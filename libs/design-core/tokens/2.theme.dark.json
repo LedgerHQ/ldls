@@ -729,6 +729,30 @@
               }
             }
           }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.dark.red.600-20%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.dark.red.600-30%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
         }
       },
       "error-strong": {
@@ -1256,7 +1280,7 @@
       "error": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.red.600}",
+          "$value": "{color.dark.red.700}",
           "$description": "",
           "$extensions": {
             "com.figma": {
