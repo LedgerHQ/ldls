@@ -35,6 +35,7 @@ There are five button appearances, which indicate its emphasis. From strongest t
 - gray
 - transparent
 - no-background
+- error
 
 <Canvas of={ButtonStories.AppearanceShowcase} />
 
@@ -54,12 +55,22 @@ Buttons' contents can be of three types:
 
 Buttons come in four different sizes:
 
-- XS (**32 px** tall)
+- XS (**32 px** tall) **[ICON ONLY]**
 - S (**44 px** tall)
 - M (default, **48 px** tall)
 - L (**56 px** tall)
 
 <Canvas of={ButtonStories.SizesShowcase} />
+
+> **⚠️ Important**: Icon sizes are automatically managed by the Button component based on the selected size. Never override the icon size using className or style props, as this will break the visual consistency of the design system. The Button component ensures proper scaling and alignment of icons across all sizes.
+>
+> ```tsx
+> // ✅ Correct: Let Button handle icon sizing
+> <Button size="xs" icon={Settings} aria-label="Settings" />
+>
+> // ❌ Wrong: Don't override icon size [it's not gonna work even if you try]
+> <Button size="xs" icon={Settings} className="w-6 h-6" aria-label="Settings" />
+> ```
 
 ### States
 
@@ -71,7 +82,7 @@ Buttons dynamically adapt their width to the size of their content, while keepin
 
 <Canvas of={ButtonStories.ResponsiveLayout} />
 
-When a label is too long, it's truncated to 2 lines, with a maximum width of 384 px:
+When a label is too long, it's truncated to 2 lines, with a maximum width of the button's container:
 
 <Canvas of={ButtonStories.ResponsiveLayout2} />
 
@@ -90,13 +101,18 @@ To be implemented:
 
 <Canvas of={ButtonStories.WithInteraction} />
 
-## Implementation
+### Interactive Loading States
+
+<Canvas of={ButtonStories.InteractiveLoadingStates} />
+
+## Example of Implementation
 
 ```tsx
 import { Button } from '@ldls/ui-react';
+import { Plus, Settings } from '@ldls/ui-react/symbols';
 
 // Base Button (default)
-<Button appearance="base">Click me</Button>
+<Button >Click me</Button>
 
 // Accent Button
 <Button appearance="accent">Submit</Button>
@@ -108,7 +124,7 @@ import { Button } from '@ldls/ui-react';
 <Button
   appearance="base"
   contentType="icon-text"
-  icon={<Plus size={24} />}
+  icon={Plus}
 >
   Add Item
 </Button>
@@ -117,7 +133,7 @@ import { Button } from '@ldls/ui-react';
 <Button
   appearance="base"
   contentType="icon"
-  icon={<Settings size={24} />}
+  icon={Settings}
   aria-label="Settings"
 />
 
@@ -125,7 +141,7 @@ import { Button } from '@ldls/ui-react';
 <Button
   appearance="base"
   size="xs"
-  icon={<Settings size={16} />}
+  icon={Settings}
   aria-label="Settings"
 />
 
@@ -133,4 +149,138 @@ import { Button } from '@ldls/ui-react';
 <Button appearance="base" disabled>
   Not available
 </Button>
+```
+
+## Do's and Don'ts
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use children for content composition
+<Button>
+  Accept <em>Terms and Conditions</em>
+</Button>
+
+// Pass icon as a component reference
+import { Plus } from '@ldls/ui-react/symbols';
+<Button icon={Plus}>Add Item</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use text prop
+<Button text="Accept Terms and Conditions" />
+
+// Don't pass icon as a string
+<Button icon="Plus">Add Item</Button>
+
+// Don't include icon in children
+<Button>
+  <Plus /> Add Item
+</Button>
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Button className="mt-4 ml-2">Submit</Button>
+
+// Use className for positioning
+<Button className="absolute top-0 right-0">Close</Button>
+
+// Use className for margins and spacing in layout
+<Button className="mx-auto my-4">Centered</Button>
+
+// Use className for different positions between mobile and desktop
+<Button className="hidden md:block">Desktop Only</Button>
+<Button className="md:hidden">Mobile Only</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override button's core styling
+<Button className="bg-black">Custom Background</Button>
+
+// Don't modify internal spacing/padding
+<Button className="gap-4 p-6">Wrong Spacing</Button>
+
+// Don't override typography - use size prop instead
+<Button className="heading-2">Wrong Typography</Button>
+
+// Don't modify hover/focus states
+<Button className="hover:bg-interactive-hover">Custom Hover</Button>
+
+// Don't override button's border styling
+<Button className="border-2 border-interactive">Custom Border</Button>
+
+// Don't override button's radius
+<Button className="rounded-full">Custom Radius</Button>
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The button's core styling (colors, padding, gap, hover states, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency. Typography classes are handled automatically based on the button's `size` prop.
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { Settings, Plus } from '@ldls/ui-react/symbols';
+
+// Use icon prop for consistent sizing
+<Button icon={Settings} contentType="icon" aria-label="Settings" />
+
+// Let Button handle icon sizing
+<Button icon={Plus} size="xs">Add</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ldls/ui-react/symbols';
+
+// Don't modify icon size directly
+<Button>
+  <Settings style={{ width: '24px' }} />
+  Settings
+</Button>
+
+// Don't use string-based icon names
+<Button icon="settings">Settings</Button>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Plus } from '@ldls/ui-react/symbols';
+
+// Use appropriate size variant
+<Button size="xs" icon={Plus} aria-label="Add" />
+
+// Use semantic labels for accessibility
+<Button icon={Settings} contentType="icon" aria-label="Open Settings" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ldls/ui-react/symbols';
+
+// Don't use custom sizes when standard ones exist
+<Button className="h-[52px]">Custom Height</Button>
+
+// Don't omit aria-label for icon-only buttons
+<Button icon={Settings} contentType="icon" />
 ```

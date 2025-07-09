@@ -1,7 +1,8 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { within, userEvent } from '@storybook/testing-library';
 import Button from './Button';
-import { Settings, Plus, ArrowRight as Loader } from '../../Symbols';
+import { Settings, Plus } from '../../Symbols';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -9,7 +10,14 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     appearance: {
       control: 'select',
-      options: ['base', 'gray', 'accent', 'transparent', 'no-background'],
+      options: [
+        'base',
+        'gray',
+        'accent',
+        'transparent',
+        'no-background',
+        'error',
+      ],
       description: 'The visual style appearance of the button',
     },
     size: {
@@ -26,7 +34,14 @@ const meta: Meta<typeof Button> = {
       description: 'Whether the button is in loading state',
     },
     icon: {
-      description: 'Optional icon element to display',
+      control: 'select',
+      description: 'Optional icon component to display',
+      options: ['None', 'Plus', 'Settings'],
+      mapping: {
+        None: undefined,
+        Plus: Plus,
+        Settings: Settings,
+      },
     },
     children: {
       control: 'text',
@@ -42,9 +57,9 @@ type ButtonAppearance =
   | 'gray'
   | 'accent'
   | 'transparent'
-  | 'no-background';
+  | 'no-background'
+  | 'error';
 
-// Appearance showcase
 export const AppearanceShowcase: Story = {
   render: () => {
     const appearances: Array<{ name: string; appearance: ButtonAppearance }> = [
@@ -53,10 +68,11 @@ export const AppearanceShowcase: Story = {
       { name: 'Gray', appearance: 'gray' },
       { name: 'Transparent', appearance: 'transparent' },
       { name: 'No Background', appearance: 'no-background' },
+      { name: 'Error', appearance: 'error' },
     ];
 
     return (
-      <div className="flex gap-4 p-8">
+      <div className="flex gap-16 p-8">
         {appearances.map(({ name, appearance }) => (
           <Button key={appearance} appearance={appearance}>
             {name}
@@ -67,32 +83,30 @@ export const AppearanceShowcase: Story = {
   },
 };
 
-// Content types showcase
 export const ContentTypesShowcase: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <Button appearance="base">Text Only</Button>
-      <Button appearance="base" icon={<Plus size={24} />}>
+      <Button appearance="base" icon={Plus}>
         With Icon
       </Button>
       <Button
         appearance="base"
         size="xs"
-        icon={<Settings size={16} />}
+        icon={Settings}
         aria-label="Settings"
       />
     </div>
   ),
 };
 
-// Sizes showcase
 export const SizesShowcase: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <Button
         appearance="base"
         size="xs"
-        icon={<Settings size={16} />}
+        icon={Settings}
         aria-label="Settings"
       />
       <Button appearance="base" size="s">
@@ -101,14 +115,13 @@ export const SizesShowcase: Story = {
       <Button appearance="base" size="m">
         Medium
       </Button>
-      <Button appearance="base" size="l">
+      <Button appearance="base" size="l" icon={Settings}>
         Large
       </Button>
     </div>
   ),
 };
 
-// States showcase
 export const StatesShowcase: Story = {
   render: () => (
     <div className="flex items-center gap-4">
@@ -116,26 +129,21 @@ export const StatesShowcase: Story = {
       <Button appearance="base" disabled>
         Disabled
       </Button>
-      <Button
-        appearance="base"
-        loading
-        icon={<Loader className="animate-spin" />}
-      >
+      <Button appearance="base" loading>
         Loading
       </Button>
     </div>
   ),
 };
 
-// Responsive Layout showcase
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className="flex flex-col gap-8 p-8">
-      <Button appearance="base" className="w-full bg-white lg:w-fit">
+      <Button appearance="base" className="w-full lg:w-fit">
         Short
       </Button>
       <Button appearance="base">Medium length button</Button>
-      <Button appearance="base">
+      <Button appearance="base" icon={Plus}>
         This is a longer button text to show dynamic width
       </Button>
     </div>
@@ -144,19 +152,12 @@ export const ResponsiveLayout: Story = {
 
 export const ResponsiveLayout2: Story = {
   render: () => (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4">
-        <Button appearance="base">
-          This is a very long button text that will be truncated to two lines
-          maximum because it exceeds the maximum width of 384 pixels. You can
-          see how it handles overflow elegantly.
-        </Button>
-      </div>
+    <div className="w-224 bg-muted-pressed p-8">
+      <Button>This button has a fixed width container of 224px.</Button>
     </div>
   ),
 };
 
-// Individual examples for docs
 export const Base: Story = {
   args: {
     appearance: 'base',
@@ -164,38 +165,10 @@ export const Base: Story = {
   },
 };
 
-export const Gray: Story = {
-  args: {
-    appearance: 'gray',
-    children: 'Gray Button',
-  },
-};
-
-export const Accent: Story = {
-  args: {
-    appearance: 'accent',
-    children: 'Accent Button',
-  },
-};
-
-export const Transparent: Story = {
-  args: {
-    appearance: 'transparent',
-    children: 'Transparent Button',
-  },
-};
-
-export const NoBackground: Story = {
-  args: {
-    appearance: 'no-background',
-    children: 'No Background Button',
-  },
-};
-
 export const IconOnly: Story = {
   args: {
     appearance: 'base',
-    icon: <Settings size={24} />,
+    icon: Settings,
     'aria-label': 'Settings',
   },
 };
@@ -204,11 +177,18 @@ export const IconText: Story = {
   args: {
     appearance: 'base',
     children: 'Add Item',
-    icon: <Plus size={24} />,
+    icon: Plus,
   },
 };
 
-// Interaction Testing
+export const Loading: Story = {
+  args: {
+    appearance: 'base',
+    children: 'Loading...',
+    loading: true,
+  },
+};
+
 export const WithInteraction: Story = {
   args: {
     children: 'Click me',
@@ -222,5 +202,58 @@ export const WithInteraction: Story = {
     await step('Click on Button', async () => {
       await userEvent.click(button);
     });
+  },
+};
+
+export const InteractiveLoadingStates: Story = {
+  render: () => {
+    const [states, setStates] = React.useState<
+      Record<'text' | 'withIcon' | 'iconOnly', 'idle' | 'loading' | 'error'>
+    >({
+      text: 'idle',
+      withIcon: 'idle',
+      iconOnly: 'idle',
+    });
+
+    const handleClick = async (key: keyof typeof states) => {
+      setStates((prev) => ({ ...prev, [key]: 'loading' }));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setStates((prev) => ({ ...prev, [key]: 'error' }));
+      setTimeout(() => setStates((prev) => ({ ...prev, [key]: 'idle' })), 2000);
+    };
+
+    return (
+      <div className="flex items-center gap-4">
+        <Button
+          appearance={states.text === 'error' ? 'error' : 'base'}
+          loading={states.text === 'loading'}
+          onClick={() => handleClick('text')}
+          disabled={states.text === 'loading'}
+        >
+          {states.text === 'error' ? 'Error!' : 'Text Only'}
+        </Button>
+
+        <Button
+          appearance={states.withIcon === 'error' ? 'error' : 'base'}
+          loading={states.withIcon === 'loading'}
+          onClick={() => handleClick('withIcon')}
+          disabled={states.withIcon === 'loading'}
+          icon={Settings}
+        >
+          {states.withIcon === 'error' ? 'Settings Error!' : 'With Icon'}
+        </Button>
+
+        <Button
+          appearance={states.iconOnly === 'error' ? 'error' : 'base'}
+          loading={states.iconOnly === 'loading'}
+          onClick={() => handleClick('iconOnly')}
+          disabled={states.iconOnly === 'loading'}
+          icon={Settings}
+          aria-label={
+            states.iconOnly === 'error' ? 'Settings Error' : 'Settings'
+          }
+        />
+      </div>
+    );
   },
 };

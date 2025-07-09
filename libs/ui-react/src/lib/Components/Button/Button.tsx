@@ -1,9 +1,11 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
+import { Spinner } from '../../Symbols';
+import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = cva(
-  'inline-flex w-fit max-w-[384px] items-center justify-center gap-8 rounded-full transition-colors body-1-semi-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
       appearance: {
@@ -14,79 +16,135 @@ const buttonVariants = cva(
         transparent:
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
-          'bg-transparent text-base hover:bg-muted-subtle active:bg-muted-pressed',
+          'bg-transparent hover:bg-muted-subtle text-base active:bg-muted-pressed',
+        error:
+          'hover:bg-error-hover active:bg-error-pressed bg-error text-error',
       },
       size: {
-        xs: 'size-32 body-2-semi-bold',
+        xs: 'body-2-semi-bold',
         s: 'px-16 py-8 body-2-semi-bold',
         m: 'p-16',
         l: 'px-32 py-16',
       },
-      hasIcon: {
-        true: '',
-        false: '',
+      isFull: {
+        true: 'w-full',
       },
       loading: {
         true: 'cursor-wait',
+      },
+      iconOnly: {
+        true: '',
         false: '',
       },
     },
+    compoundVariants: [
+      {
+        size: 'xs',
+        iconOnly: true,
+        className: 'size-32 p-8',
+      },
+      {
+        size: 's',
+        iconOnly: true,
+        className: 'p-12',
+      },
+      {
+        size: 'm',
+        iconOnly: true,
+        className: 'p-12',
+      },
+      {
+        size: 'l',
+        iconOnly: true,
+        className: 'p-16',
+      },
+      {
+        iconOnly: false,
+        className: 'gap-8',
+      },
+    ],
     defaultVariants: {
       appearance: 'base',
       size: 'm',
-      hasIcon: false,
+      isFull: false,
       loading: false,
+      iconOnly: false,
     },
   },
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    Omit<VariantProps<typeof buttonVariants>, 'hasIcon'> {
-  children?: React.ReactNode;
-  icon?: React.ReactNode;
-  loading?: boolean;
+    VariantProps<typeof buttonVariants> {
+  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
 
-const Button = ({
-  children,
-  appearance,
-  size,
-  className,
-  icon,
-  loading = false,
-  disabled,
-  ...props
-}: ButtonProps) => {
-  const isIconOnly = Boolean(icon && !children);
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      children,
+      appearance,
+      size = 'm',
+      isFull,
+      loading,
+      icon,
+      ...props
+    },
+    ref,
+  ) => {
+    const iconOnly = Boolean(icon && !children);
 
-  return (
-    <button
-      className={cn(
-        className,
-        buttonVariants({
-          appearance,
-          size,
-          hasIcon: Boolean(icon),
-          loading,
-        }),
-        isIconOnly && 'p-0',
-      )}
-      disabled={disabled || loading}
-      {...props}
-    >
-      {isIconOnly ? (
-        icon
-      ) : icon ? (
-        <>
-          {icon}
-          <span className="line-clamp-2">{children}</span>
-        </>
-      ) : (
-        <span className="line-clamp-2">{children}</span>
-      )}
-    </button>
-  );
-};
+    const iconSizeMap: { [key: string]: IconSize } = {
+      xs: 16,
+      s: 20,
+      m: 24,
+      l: 24,
+    };
+
+    const calculatedIconSize = size ? iconSizeMap[size] : 24;
+    const IconComponent = icon;
+
+    return (
+      <button
+        ref={ref}
+        className={cn(
+          className,
+          buttonVariants({
+            appearance,
+            size,
+            isFull,
+            loading,
+            iconOnly,
+          }),
+        )}
+        disabled={!!(props.disabled || loading)}
+        {...props}
+      >
+        {loading ? (
+          <>
+            <Spinner
+              size={calculatedIconSize}
+              className="flex-shrink-0 animate-spin"
+              aria-label="Loading"
+            />
+            {children && <span>{children}</span>}
+          </>
+        ) : (
+          <>
+            {IconComponent && (
+              <IconComponent
+                size={calculatedIconSize}
+                className="flex-shrink-0"
+              />
+            )}
+            {children && <span className="line-clamp-2">{children}</span>}
+          </>
+        )}
+      </button>
+    );
+  },
+);
+Button.displayName = 'Button';
 
 export default Button;
