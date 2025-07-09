@@ -11,7 +11,6 @@ export function createThemePlugin(
     brandTheme,
     '--color-discover-',
     {
-      exclude: ['--color-discover-0'],
       customPrefix: 'discover-',
     },
   );
