@@ -225,31 +225,28 @@ export const InteractiveLoadingStates: Story = {
     return (
       <div className="flex items-center gap-4">
         <Button
-          appearance={states.text === 'red' ? 'red' : 'base'}
+          appearance="red"
           loading={states.text === 'loading'}
           onClick={() => handleClick('text')}
-          disabled={states.text === 'loading'}
         >
           {states.text === 'red' ? 'Error!' : 'Text Only'}
         </Button>
 
         <Button
-          appearance={states.withIcon === 'red' ? 'red' : 'base'}
+          appearance="base"
           loading={states.withIcon === 'loading'}
           onClick={() => handleClick('withIcon')}
-          disabled={states.withIcon === 'loading'}
           icon={Settings}
         >
           {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
         </Button>
 
         <Button
-          appearance={states.iconOnly === 'red' ? 'red' : 'base'}
+          appearance="accent"
           loading={states.iconOnly === 'loading'}
           onClick={() => handleClick('iconOnly')}
-          disabled={states.iconOnly === 'loading'}
           icon={Settings}
-          aria-label={states.iconOnly === 'red' ? 'Settings Error' : 'Settings'}
+          aria-label="Settings"
         />
       </div>
     );

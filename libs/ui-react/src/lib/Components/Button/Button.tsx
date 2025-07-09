@@ -20,10 +20,10 @@ const buttonVariants = cva(
         red: 'hover:bg-error-hover active:bg-error-pressed bg-error text-error',
       },
       size: {
-        xs: 'body-2-semi-bold',
+        xs: 'px-12 py-8 body-2-semi-bold',
         s: 'px-16 py-8 body-2-semi-bold',
-        m: 'p-16',
-        l: 'px-32 py-16',
+        m: 'px-16 py-12',
+        l: 'p-16',
       },
       isFull: {
         true: 'w-full',
@@ -40,7 +40,7 @@ const buttonVariants = cva(
       {
         size: 'xs',
         iconOnly: true,
-        className: 'size-32 p-8',
+        className: 'p-8',
       },
       {
         size: 's',
@@ -117,7 +117,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             iconOnly,
           }),
         )}
-        disabled={!!(props.disabled || loading)}
+        disabled={props.disabled}
         {...props}
       >
         {loading ? (
