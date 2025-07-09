@@ -5,7 +5,7 @@ import { Spinner } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
       appearance: {
@@ -128,7 +128,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               className="flex-shrink-0 animate-spin"
               aria-label="Loading"
             />
-            {children && <span>{children}</span>}
+            {children && <span className="line-clamp-2">{children}</span>}
           </>
         ) : (
           <>
