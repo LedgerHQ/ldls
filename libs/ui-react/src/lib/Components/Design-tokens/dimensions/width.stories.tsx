@@ -50,7 +50,7 @@ export const Width: Story = {
     <div className="p-24">
       <SectionHeader
         title="Width Tokens"
-        description="Width values for consistent width"
+        description="Width tokens use the size token values to ensure consistent horizontal dimensions across the design system. These tokens follow the size-* pattern and can be applied using the w-* utility class."
       />
       <WidthShowcase />
     </div>
