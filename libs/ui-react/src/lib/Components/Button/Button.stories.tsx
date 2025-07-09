@@ -16,7 +16,7 @@ const meta: Meta<typeof Button> = {
         'accent',
         'transparent',
         'no-background',
-        'error',
+        'red',
       ],
       description: 'The visual style appearance of the button',
     },
@@ -58,7 +58,7 @@ type ButtonAppearance =
   | 'accent'
   | 'transparent'
   | 'no-background'
-  | 'error';
+  | 'red';
 
 export const AppearanceShowcase: Story = {
   render: () => {
@@ -68,7 +68,7 @@ export const AppearanceShowcase: Story = {
       { name: 'Gray', appearance: 'gray' },
       { name: 'Transparent', appearance: 'transparent' },
       { name: 'No Background', appearance: 'no-background' },
-      { name: 'Error', appearance: 'error' },
+      { name: 'Red', appearance: 'red' },
     ];
 
     return (
@@ -208,7 +208,7 @@ export const WithInteraction: Story = {
 export const InteractiveLoadingStates: Story = {
   render: () => {
     const [states, setStates] = React.useState<
-      Record<'text' | 'withIcon' | 'iconOnly', 'idle' | 'loading' | 'error'>
+      Record<'text' | 'withIcon' | 'iconOnly', 'idle' | 'loading' | 'red'>
     >({
       text: 'idle',
       withIcon: 'idle',
@@ -218,40 +218,38 @@ export const InteractiveLoadingStates: Story = {
     const handleClick = async (key: keyof typeof states) => {
       setStates((prev) => ({ ...prev, [key]: 'loading' }));
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      setStates((prev) => ({ ...prev, [key]: 'error' }));
+      setStates((prev) => ({ ...prev, [key]: 'red' }));
       setTimeout(() => setStates((prev) => ({ ...prev, [key]: 'idle' })), 2000);
     };
 
     return (
       <div className="flex items-center gap-4">
         <Button
-          appearance={states.text === 'error' ? 'error' : 'base'}
+          appearance={states.text === 'red' ? 'red' : 'base'}
           loading={states.text === 'loading'}
           onClick={() => handleClick('text')}
           disabled={states.text === 'loading'}
         >
-          {states.text === 'error' ? 'Error!' : 'Text Only'}
+          {states.text === 'red' ? 'Error!' : 'Text Only'}
         </Button>
 
         <Button
-          appearance={states.withIcon === 'error' ? 'error' : 'base'}
+          appearance={states.withIcon === 'red' ? 'red' : 'base'}
           loading={states.withIcon === 'loading'}
           onClick={() => handleClick('withIcon')}
           disabled={states.withIcon === 'loading'}
           icon={Settings}
         >
-          {states.withIcon === 'error' ? 'Settings Error!' : 'With Icon'}
+          {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
         </Button>
 
         <Button
-          appearance={states.iconOnly === 'error' ? 'error' : 'base'}
+          appearance={states.iconOnly === 'red' ? 'red' : 'base'}
           loading={states.iconOnly === 'loading'}
           onClick={() => handleClick('iconOnly')}
           disabled={states.iconOnly === 'loading'}
           icon={Settings}
-          aria-label={
-            states.iconOnly === 'error' ? 'Settings Error' : 'Settings'
-          }
+          aria-label={states.iconOnly === 'red' ? 'Settings Error' : 'Settings'}
         />
       </div>
     );
