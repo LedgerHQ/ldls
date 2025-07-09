@@ -29,7 +29,10 @@ export const Crypto: Story = {
       <ColorSection
         category="background"
         tokens={[
-          { name: 'Aion', className: 'bg-crypto-aion' },
+          {
+            name: 'Aion',
+            className: 'bg-crypto-aion',
+          },
           {
             name: 'Algorand',
             className: 'bg-crypto-algorand',

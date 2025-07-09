@@ -53,7 +53,7 @@ const preview: Preview = {
             ['Docs', 'Background', 'Text', 'Border'],
             'Border',
             'Dimensions',
-            ['Spacing', 'Height', 'Width'],
+            ['Spacing', 'Size', 'Height', 'Width'],
           ],
           'Symbols',
           'Components',
