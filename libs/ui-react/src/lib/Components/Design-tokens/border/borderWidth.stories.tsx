@@ -12,7 +12,7 @@ const BorderWidthShowcase = () => (
   <div className="mb-32">
     <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {[
-        { name: '1px', class: 'border-1', token: 'border-1' },
+        { name: '1px', class: 'border', token: 'border' },
         { name: '2px', class: 'border-2', token: 'border-2' },
       ].map(({ name, class: borderWidthClass, token }) => (
         <div key={name} className="flex items-center gap-16">
@@ -21,7 +21,7 @@ const BorderWidthShowcase = () => (
             <div className="text-muted body-4">{token}</div>
           </div>
           <div
-            className={`${borderWidthClass} border h-80 w-80 rounded-sm border-active`}
+            className={`${borderWidthClass} border border-color-active h-80 w-80 rounded-sm`}
           ></div>
         </div>
       ))}

@@ -47,7 +47,7 @@ const IconCard = ({
   return (
     <div
       key={name}
-      className="border relative flex cursor-pointer flex-col items-center gap-2 rounded-lg border-muted-subtle p-4 transition-colors hover:bg-muted-subtle"
+      className="relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors hover:bg-muted-pressed"
       onClick={handleClick}
     >
       <IconComponent size={size} className={className} />
@@ -102,7 +102,7 @@ export const IconSizes: StoryObj = {
       {sizes.map((size) => (
         <div key={size}>
           <h3 className="font-semibold mb-16 heading-3">Size {size}px</h3>
-          <div className="border flex max-w-fit flex-wrap gap-16 rounded-lg border-1 border-muted-subtle p-16">
+          <div className="border flex max-w-fit flex-wrap gap-16 rounded-lg border-muted-subtle p-16">
             {[
               'Home',
               'Settings',
