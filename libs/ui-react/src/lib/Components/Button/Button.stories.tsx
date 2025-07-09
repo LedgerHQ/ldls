@@ -186,22 +186,6 @@ export const Loading: Story = {
   },
 };
 
-export const WithInteraction: Story = {
-  args: {
-    children: 'Click me',
-    appearance: 'accent',
-    onClick: () => alert('Button clicked'),
-  },
-  play: async ({ canvasElement, step }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
-
-    await step('Click on Button', async () => {
-      await userEvent.click(button);
-    });
-  },
-};
-
 export const InteractiveLoadingStates: Story = {
   render: () => {
     const [states, setStates] = React.useState<
