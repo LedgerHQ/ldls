@@ -4,21 +4,22 @@ import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 export function createThemePlugin(
   brandTheme: Record<string, Record<string, string>>,
 ) {
-  const cryptoColor = getThemeUtilsByPrefix(
-    brandTheme,
-    '--color-crypto-',
-    'crypto-',
-  );
+  const cryptoColor = getThemeUtilsByPrefix(brandTheme, '--color-crypto-', {
+    customPrefix: 'crypto-',
+  });
   const discoveryColor = getThemeUtilsByPrefix(
     brandTheme,
     '--color-discover-',
-    'discover-',
+    {
+      exclude: ['--color-discover-0'],
+      customPrefix: 'discover-',
+    },
   );
   const backgroundColor = getThemeUtilsByPrefix(brandTheme, '--background-');
   const textColor = getThemeUtilsByPrefix(brandTheme, '--text-');
-  const borderColor = getThemeUtilsByPrefix(brandTheme, '--border-', '', [
-    '--border-width',
-  ]);
+  const borderColor = getThemeUtilsByPrefix(brandTheme, '--border-', {
+    exclude: ['--border-width'],
+  });
 
   return plugin(
     function ({ addBase }) {

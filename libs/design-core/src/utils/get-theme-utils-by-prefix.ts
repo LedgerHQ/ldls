@@ -1,12 +1,17 @@
+interface ThemeUtilsOptions {
+  customPrefix?: string;
+  exclude?: string[];
+}
+
 export const getThemeUtilsByPrefix = (
   themeObject: Record<
     string,
     Record<string, string | number | Record<string, string | number>>
   >,
   prefix: string,
-  customPrefix = '',
-  exclude?: string[],
+  options: ThemeUtilsOptions = {},
 ) => {
+  const { customPrefix = '', exclude } = options;
   const themeUtils: Record<string, string> = {};
   for (const themeKey in themeObject) {
     if (

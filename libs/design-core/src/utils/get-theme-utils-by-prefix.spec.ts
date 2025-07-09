@@ -27,11 +27,9 @@ describe('getThemeUtilsByPrefix', () => {
   });
 
   it('should replace the search prefix with a custom prefix', () => {
-    const textColors = getThemeUtilsByPrefix(
-      realWorldTheme,
-      '--color-text-',
-      'text-',
-    );
+    const textColors = getThemeUtilsByPrefix(realWorldTheme, '--color-text-', {
+      customPrefix: 'text-',
+    });
     expect(textColors).toEqual({
       'text-primary': 'var(--color-text-primary)',
       'text-secondary': 'var(--color-text-secondary)',
@@ -39,16 +37,25 @@ describe('getThemeUtilsByPrefix', () => {
   });
 
   it('should exclude specified prefixes from the result', () => {
-    const borderColors = getThemeUtilsByPrefix(
-      realWorldTheme,
-      '--border-',
-      '',
-      ['--border-width-'],
-    );
+    const borderColors = getThemeUtilsByPrefix(realWorldTheme, '--border-', {
+      exclude: ['--border-width-'],
+    });
 
     expect(borderColors).toEqual({
       base: 'var(--border-base)',
       muted: 'var(--border-muted)',
+    });
+  });
+
+  it('should support both customPrefix and exclude options', () => {
+    const borderColors = getThemeUtilsByPrefix(realWorldTheme, '--border-', {
+      customPrefix: 'border-',
+      exclude: ['--border-width-'],
+    });
+
+    expect(borderColors).toEqual({
+      'border-base': 'var(--border-base)',
+      'border-muted': 'var(--border-muted)',
     });
   });
 
