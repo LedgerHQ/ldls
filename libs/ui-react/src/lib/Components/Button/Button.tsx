@@ -126,7 +126,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               className="flex-shrink-0 animate-spin"
               aria-label="Loading"
             />
-            {children && <span className="line-clamp-2">{children}</span>}
+            {children && (
+              <span className="line-clamp-2 text-left">{children}</span>
+            )}
           </>
         ) : (
           <>
@@ -136,7 +138,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 className="flex-shrink-0"
               />
             )}
-            {children && <span className="line-clamp-2">{children}</span>}
+            {children && (
+              <span className="line-clamp-2 text-left">{children}</span>
+            )}
           </>
         )}
       </button>

@@ -90,12 +90,7 @@ export const ContentTypesShowcase: Story = {
       <Button appearance="base" icon={Plus}>
         With Icon
       </Button>
-      <Button
-        appearance="base"
-        size="xs"
-        icon={Settings}
-        aria-label="Settings"
-      />
+      <Button appearance="base" icon={Settings} aria-label="Settings" />
     </div>
   ),
 };
@@ -153,7 +148,9 @@ export const ResponsiveLayout: Story = {
 export const ResponsiveLayout2: Story = {
   render: () => (
     <div className="w-224 bg-muted-pressed p-8">
-      <Button>This button has a fixed width container of 224px.</Button>
+      <Button icon={Plus}>
+        This button has a fixed width container of 224px.
+      </Button>
     </div>
   ),
 };
