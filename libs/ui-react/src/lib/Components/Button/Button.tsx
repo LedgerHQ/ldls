@@ -29,7 +29,7 @@ const buttonVariants = cva(
         true: 'w-full',
       },
       loading: {
-        true: 'cursor-wait',
+        true: '',
       },
       iconOnly: {
         true: '',
@@ -66,7 +66,6 @@ const buttonVariants = cva(
       appearance: 'base',
       size: 'm',
       isFull: false,
-      loading: false,
       iconOnly: false,
     },
   },
