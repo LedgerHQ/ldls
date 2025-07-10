@@ -394,6 +394,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--color-dark-red-600-10': '#f872741a',
     '--color-dark-red-600-20': '#f8727433',
     '--color-dark-red-600-30': '#f872744d',
+    '--color-dark-red-600-40': '#f8727466',
     '--color-dark-crypto-aion': '#212529',
     '--color-dark-crypto-aion-0': '#21252900',
     '--color-dark-crypto-algorand': '#000000',
