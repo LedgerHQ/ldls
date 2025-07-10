@@ -6,6 +6,15 @@ import { Settings, Plus } from '../../Symbols';
 const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Components/Button/React',
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        format: true,
+        type: 'code',
+      },
+    },
+  },
   argTypes: {
     appearance: {
       control: 'select',
@@ -58,6 +67,68 @@ type ButtonAppearance =
   | 'transparent'
   | 'no-background'
   | 'red';
+
+export const Base: Story = {
+  args: {
+    appearance: 'base',
+    children: 'Base Button',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button appearance="base">
+  Base Button
+</Button>
+`,
+      },
+    },
+  },
+};
+
+export const IconText: Story = {
+  args: {
+    appearance: 'base',
+    children: 'Add Item',
+    icon: Plus,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button
+  appearance="base"
+  icon={Plus}
+>
+  Add Item
+</Button>
+`,
+      },
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    appearance: 'base',
+    children: 'Loading...',
+    loading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button
+  appearance="base"
+  loading
+>
+  Loading...
+</Button>
+`,
+      },
+    },
+  },
+};
 
 export const AppearanceShowcase: Story = {
   render: () => {
@@ -158,37 +229,6 @@ export const ResponsiveLayout2: Story = {
       </div>
     </>
   ),
-};
-
-export const Base: Story = {
-  args: {
-    appearance: 'base',
-    children: 'Base Button',
-  },
-};
-
-export const IconOnly: Story = {
-  args: {
-    appearance: 'base',
-    icon: Settings,
-    'aria-label': 'Settings',
-  },
-};
-
-export const IconText: Story = {
-  args: {
-    appearance: 'base',
-    children: 'Add Item',
-    icon: Plus,
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    appearance: 'base',
-    children: 'Loading...',
-    loading: true,
-  },
 };
 
 export const InteractiveLoadingStates: Story = {
