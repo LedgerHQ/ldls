@@ -1,4 +1,4 @@
-# LDLS Design System Documentation
+# LDLS Design System User Guide
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45" alt="Nx logo">
@@ -9,15 +9,12 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Architecture](#architecture)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Configuration](#configuration)
 - [Design Tokens](#design-tokens)
 - [Components](#components)
 - [Theming](#theming)
-- [Development](#development)
-- [Contributing](#contributing)
 - [Alpha Release Information](#alpha-release-information)
 
 ## Introduction
@@ -31,27 +28,33 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 - **Flexible theming**: Support for multiple brands and themes
 - **Modern development workflow**: Built with Nx, Storybook, and other modern tools
 
-## Architecture
-
-The LDLS Design System is structured as a monorepo using Nx, with the following key libraries:
-
-- **ui-core**: Shared utilities and types used across platforms
-- **ui-react**: React-specific components and patterns
-- **ui-rnative**: React Native-specific components and patterns
-- **design-core**: Design tokens and symbols for the design system
-- **design-tokens**: Token definitions and configurations
-- **utils-shared**: Shared utility functions
-
 ### Technology Stack
 
-- **Monorepo Management**: [Nx](https://nx.dev/)
 - **UI Development**: [React](https://reactjs.org/) & [React Native](https://reactnative.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [NativeWind](https://nativewind.dev/)
-- **Documentation & Testing**: [Storybook](https://storybook.js.org/) & [Chromatic](https://www.chromatic.com/)
-- **Building & Bundling**: [Rollup](https://rollupjs.org/) & [Vite](https://vitejs.dev/)
 - **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
 - **Component Variants**: [class-variance-authority](https://cva.style/docs)
 - **Utility Libraries**: clsx, tailwind-merge, lodash-es
+
+> [!WARNING] Alpha Release Information
+> The LDLS Design System is currently in alpha, with the following limitations:
+>
+> - **React Support Only**: The alpha version is only available for React applications. React Native support will be added in future releases.
+> - **Limited Component Set**: The initial release includes a small set of core components. More will be added in future releases.
+> - **API Changes**: Component APIs may change between alpha and stable releases based on feedback.
+> - **Documentation**: Documentation is still being developed and will be expanded in future releases.
+>
+> ### Installation for Alpha Testers
+>
+> The design system packages are published to the public npm registry. To install the alpha version:
+>
+> ```bash
+> npm install @ldls/ui-react@alpha @ldls/design-core@alpha
+> ```
+>
+> ### Feedback
+>
+> We welcome feedback from alpha testers! Please share your experiences, suggestions, and any issues you encounter to help us improve the design system.
 
 ## Getting Started
 
@@ -80,10 +83,7 @@ Add the LDLS Design System preset to your Tailwind configuration:
 import { ledgerLivePreset } from '@ldls/design-core';
 
 const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset], // Choose the preset that matches your brand
 };
 
@@ -91,6 +91,7 @@ export default config;
 ```
 
 Available presets:
+
 - `ledgerLivePreset`: Optimized for Ledger Live applications
 - `enterprisePreset`: Optimized for enterprise applications
 - `websitesPreset`: Optimized for websites
@@ -127,8 +128,8 @@ The design system uses a hierarchical token structure:
 #### With Tailwind Classes
 
 ```jsx
-<div className="bg-background text-base p-16 rounded-lg">
-  <h2 className="heading-3 text-accent mb-8">Hello World</h2>
+<div className="bg-background rounded-lg p-16 text-base">
+  <h2 className="text-accent mb-8 heading-3">Hello World</h2>
   <p className="body-1">This is using design tokens via Tailwind classes</p>
 </div>
 ```
@@ -164,94 +165,3 @@ The design system supports multiple themes and brands:
 
 - **Light and Dark modes**: All components support both light and dark themes
 - **Brand variations**: Support for different brand styles (Ledger Live, Enterprise, Websites)
-
-## Development
-
-### Running the Libraries
-
-```bash
-# Start React components in Storybook
-npx nx run @ldls/ui-react:serve:storybook
-
-# Build React components
-npx nx run @ldls/ui-react:build
-
-# Build React Native components
-npx nx run @ldls/ui-rnative:build
-
-# Build shared core library
-npx nx run @ldls/ui-core:build
-```
-
-### Writing Component Documentation
-
-Components are documented using Storybook stories. Create a `.stories.tsx` file next to your component:
-
-```typescript
-import type { Meta, StoryObj } from '@storybook/react';
-import { YourComponent } from './YourComponent';
-
-const meta: Meta<typeof YourComponent> = {
-  component: YourComponent,
-  title: 'Components/YourComponent',
-  tags: ['autodocs'], // Enables automatic documentation
-};
-
-export default meta;
-type Story = StoryObj<typeof YourComponent>;
-
-// Basic usage example
-export const Primary: Story = {
-  args: {
-    // Component props
-  },
-};
-```
-
-### Writing Interaction Tests
-
-Add interaction tests in your stories using the `play` function:
-
-```typescript
-export const WithInteraction: Story = {
-  args: {
-    // Component props
-  },
-  play: async ({ canvasElement, step }) => {
-    // Test steps are automatically documented
-    await step('Click the button', async () => {
-      const button = canvasElement.querySelector('button');
-      button?.click();
-    });
-  },
-};
-```
-
-## Contributing
-
-For teams interested in contributing to the design system during the alpha phase:
-
-1. Report any issues or bugs you encounter
-2. Provide feedback on component APIs and usability
-3. Suggest new components or features that would be valuable
-
-## Alpha Release Information
-
-The LDLS Design System is currently in alpha, with the following limitations:
-
-- **React Support Only**: The alpha version is only available for React applications. React Native support will be added in future releases.
-- **Limited Component Set**: The initial release includes a small set of core components. More will be added in future releases.
-- **API Changes**: Component APIs may change between alpha and stable releases based on feedback.
-- **Documentation**: Documentation is still being developed and will be expanded in future releases.
-
-### Installation for Alpha Testers
-
-The design system packages are published to the public npm registry. To install the alpha version:
-
-```bash
-npm install @ldls/ui-react@alpha @ldls/design-core@alpha
-```
-
-### Feedback
-
-We welcome feedback from alpha testers! Please share your experiences, suggestions, and any issues you encounter to help us improve the design system.
