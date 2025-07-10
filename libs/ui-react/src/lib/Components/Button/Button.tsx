@@ -16,8 +16,8 @@ const buttonVariants = cva(
         transparent:
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
-          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed',
-        red: 'hover:bg-error-hover active:bg-error-pressed bg-error text-error',
+          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
+        red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {
         xs: 'px-12 py-8 body-2-semi-bold',

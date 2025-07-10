@@ -30,18 +30,18 @@ Create or update your `tailwind.config.ts` (or `tailwind.config.js`) to use our 
 Available presets are: `ledgerLivePreset`, `websitesPreset`, `enterprisePreset`.
 
 ```typescript
-import { createConfig } from '@ldls/ui-react/tailwind';
+import type { Config } from 'tailwindcss';
 import { ledgerLivePreset } from '@ldls/design-core';
 
-export default createConfig({
+const config = {
   content: [
-    // Add paths to your project's files
-    './src/**/*.{js,jsx,ts,tsx}',
-    // Include the ui-react package components
-    './node_modules/@ldls/ui-react/**/*.{js,jsx,ts,tsx}'
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
-});
+} satisfies Config;
+
+export default config;
 ```
 
 ## Developer Experience
