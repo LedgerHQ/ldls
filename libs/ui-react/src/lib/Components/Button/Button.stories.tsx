@@ -1,134 +1,280 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { within, userEvent } from '@storybook/testing-library';
 import Button from './Button';
+import { Settings, Plus } from '../../Symbols';
 
 const meta: Meta<typeof Button> = {
   component: Button,
   title: 'Components/Button/React',
-  tags: ['autodocs'],
-
+  parameters: {
+    docs: {
+      source: {
+        language: 'tsx',
+        format: true,
+        type: 'code',
+      },
+    },
+  },
   argTypes: {
-    variant: {
+    appearance: {
       control: 'select',
-      options: ['accent', 'primary', 'secondary', 'secondary-transparent'],
+      options: [
+        'base',
+        'gray',
+        'accent',
+        'transparent',
+        'no-background',
+        'red',
+      ],
+      description: 'The visual style appearance of the button',
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['xs', 's', 'm', 'l'],
+      description: 'The size of the button',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the button is disabled',
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Whether the button is in loading state',
+    },
+    icon: {
+      control: 'select',
+      description: 'Optional icon component to display',
+      options: ['None', 'Plus', 'Settings'],
+      mapping: {
+        None: undefined,
+        Plus: Plus,
+        Settings: Settings,
+      },
+    },
+    children: {
+      control: 'text',
+      description: 'The content to be displayed inside the button',
     },
   },
 };
 
-// Story Definition
 export default meta;
 type Story = StoryObj<typeof Button>;
+type ButtonAppearance =
+  | 'base'
+  | 'gray'
+  | 'accent'
+  | 'transparent'
+  | 'no-background'
+  | 'red';
 
-export const Accent: Story = {
+export const Base: Story = {
   args: {
-    children: 'Accent Button',
-    variant: 'accent',
+    appearance: 'base',
+    children: 'Base Button',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button appearance="base">
+  Base Button
+</Button>
+`,
+      },
+    },
   },
 };
 
-export const Primary: Story = {
+export const IconText: Story = {
   args: {
-    children: 'Primary Button',
-    variant: 'primary',
+    appearance: 'base',
+    children: 'Add Item',
+    icon: Plus,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button
+  appearance="base"
+  icon={Plus}
+>
+  Add Item
+</Button>
+`,
+      },
+    },
   },
 };
 
-export const Secondary: Story = {
+export const Loading: Story = {
   args: {
-    children: 'Secondary Button',
-    variant: 'secondary',
+    appearance: 'base',
+    children: 'Loading...',
+    loading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Button
+  appearance="base"
+  loading
+>
+  Loading...
+</Button>
+`,
+      },
+    },
   },
 };
 
-export const SecondaryTransparent: Story = {
-  args: {
-    children: 'Secondary Transparent',
-    variant: 'secondary-transparent',
+export const AppearanceShowcase: Story = {
+  render: () => {
+    const appearances: Array<{ name: string; appearance: ButtonAppearance }> = [
+      { name: 'Accent', appearance: 'accent' },
+      { name: 'Base', appearance: 'base' },
+      { name: 'Gray', appearance: 'gray' },
+      { name: 'Transparent', appearance: 'transparent' },
+      { name: 'No Background', appearance: 'no-background' },
+      { name: 'Red', appearance: 'red' },
+    ];
+
+    return (
+      <div className="flex gap-16 p-8">
+        {appearances.map(({ name, appearance }) => (
+          <Button key={appearance} appearance={appearance}>
+            {name}
+          </Button>
+        ))}
+      </div>
+    );
   },
 };
 
-export const Small: Story = {
-  args: {
-    children: 'Small Button',
-    variant: 'accent',
-    size: 'small',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    children: 'Medium Button',
-    variant: 'accent',
-    size: 'medium',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    children: 'Large Button',
-    variant: 'accent',
-    size: 'large',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    children: 'Disabled Button',
-    variant: 'accent',
-    disabled: true,
-  },
-};
-
-// All Variants Showcase
-export const AllVariants: Story = {
+export const ContentTypesShowcase: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="flex items-center gap-4">
-        <Button variant="accent">Accent</Button>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="secondary-transparent">Secondary Transparent</Button>
-      </div>
-      <div className="flex items-center gap-4">
-        <Button variant="accent" size="small">
-          Small
-        </Button>
-        <Button variant="accent" size="medium">
-          Medium
-        </Button>
-        <Button variant="accent" size="large">
-          Large
-        </Button>
-      </div>
-      <div className="flex items-center gap-4">
-        <Button variant="accent" disabled>
-          Disabled
-        </Button>
-        <Button variant="primary" disabled>
-          Disabled Primary
-        </Button>
-      </div>
+    <div className="flex items-center gap-4">
+      <Button appearance="base">Text Only</Button>
+      <Button appearance="base" icon={Plus}>
+        With Icon
+      </Button>
+      <Button appearance="base" icon={Settings} aria-label="Settings" />
     </div>
   ),
 };
 
-// Interaction Testing
-export const WithInteraction: Story = {
-  args: {
-    children: 'Click me',
-    variant: 'accent',
-    onClick: () => alert('Button clicked'),
-  },
-  play: async ({ canvasElement, step }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button');
+export const SizesShowcase: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Button
+        appearance="base"
+        size="xs"
+        icon={Settings}
+        aria-label="Settings"
+      />
+      <Button appearance="base" size="s">
+        Small
+      </Button>
+      <Button appearance="base" size="m">
+        Medium
+      </Button>
+      <Button appearance="base" size="l" icon={Settings}>
+        Large
+      </Button>
+    </div>
+  ),
+};
 
-    await step('Click on Button', async () => {
-      await userEvent.click(button);
+export const StatesShowcase: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Button appearance="base">Default</Button>
+      <Button appearance="base" disabled>
+        Disabled
+      </Button>
+      <Button appearance="base" loading>
+        Loading
+      </Button>
+    </div>
+  ),
+};
+
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8 p-8">
+      <Button appearance="base" className="w-full lg:w-fit">
+        Short
+      </Button>
+      <Button appearance="base">Medium length button</Button>
+      <Button appearance="base" icon={Plus}>
+        This is a longer button text to show dynamic width
+      </Button>
+    </div>
+  ),
+};
+
+export const ResponsiveLayout2: Story = {
+  render: () => (
+    <>
+      <p className="text-muted body-4-semi-bold">
+        This container has a width of 384px.
+      </p>
+      <div className="w-384 bg-muted-pressed p-16">
+        <Button icon={Plus}>
+          This Base button has a fixed width container of 384px that should
+          content should be fir .
+        </Button>
+      </div>
+    </>
+  ),
+};
+
+export const InteractiveLoadingStates: Story = {
+  render: () => {
+    const [states, setStates] = React.useState<
+      Record<'text' | 'withIcon' | 'iconOnly', 'idle' | 'loading' | 'red'>
+    >({
+      text: 'idle',
+      withIcon: 'idle',
+      iconOnly: 'idle',
     });
+
+    const handleClick = async (key: keyof typeof states) => {
+      setStates((prev) => ({ ...prev, [key]: 'loading' }));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setStates((prev) => ({ ...prev, [key]: 'red' }));
+      setTimeout(() => setStates((prev) => ({ ...prev, [key]: 'idle' })), 2000);
+    };
+
+    return (
+      <div className="flex items-center gap-4">
+        <Button
+          appearance="red"
+          loading={states.text === 'loading'}
+          onClick={() => handleClick('text')}
+        >
+          {states.text === 'red' ? 'Error!' : 'Text Only'}
+        </Button>
+
+        <Button
+          appearance="base"
+          loading={states.withIcon === 'loading'}
+          onClick={() => handleClick('withIcon')}
+          icon={Settings}
+        >
+          {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
+        </Button>
+
+        <Button
+          appearance="accent"
+          loading={states.iconOnly === 'loading'}
+          onClick={() => handleClick('iconOnly')}
+          icon={Settings}
+          aria-label="Settings"
+        />
+      </div>
+    );
   },
 };
