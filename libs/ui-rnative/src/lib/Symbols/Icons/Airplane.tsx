@@ -1,7 +1,7 @@
-import Svg, { G, Path, Defs, ClipPath, Rect } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { G, Path, Defs, ClipPath, Rect } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 export const Airplane = createIcon(
-  'Airplane',
+  "Airplane",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <G clipPath="url(#clip0_436_164)">
       <Path
@@ -17,5 +17,5 @@ export const Airplane = createIcon(
         <Rect width={16} height={16} fill="white" />
       </ClipPath>
     </Defs>
-  </Svg>,
+  </Svg>
 );
