@@ -1,84 +1,90 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import genesisLogo from '../../.storybook/genesis.svg';
 
-<Meta title="Getting Started/Welcome" />
+<Meta title="Getting Started/Introduction" />
 
-<div style={{ marginBottom: '2rem' }}>
-  <img
-    src={genesisLogo}
-    alt="Genesis Logo"
-    width="114"
-    height="25"
-    style={{
-      display: 'block',
-      maxWidth: '100%',
-      height: 'auto',
-    }}
-  />
-</div>
+# 👋 Welcome to LDLS
 
-# 👋 Welcome to Genesis!
+The Ledger Design Language System (LDLS) is a comprehensive design system that provides a unified set of principles, components, and tools for building consistent Ledger applications.
 
-Hey there! We're excited to have you here! This guide will help you navigate through our design system and get you up to speed with all the awesome resources we have. Let's make building beautiful, consistent interfaces fun and easy! 🚀
+## 🎯 Core Principles
 
-## 📚 What's Inside?
+- **Consistency**: Unified design language across all Ledger products
+- **Efficiency**: Focus on what matters - use proven solutions for common patterns
+- **Speed**: Fast development with ready-to-use components and utilities
+- **Flexibility**: Adaptable components that work across different contexts
+- **Accessibility**: Built with accessibility in mind from the ground up
 
-- [🎨 Design Resources](#design-resources)
-  - [🖼️ Figma](#figma)
-  - [📐 UI/UX Guidelines](#uiux-design-guidelines)
-  - [🎯 Design Assets](#design-assets)
+## 📚 Documentation Structure
 
-- [💻 Development Resources](#development-resources)
-  - [📝 Coding Standards](#coding-standards)
-  - [🌳 Version Control](#version-control)
-  - [🛠️ Development Tools](#development-tools)
+### 1. Foundations
 
----
+- [Design Tokens](/docs/foundations-docs--docs) - Our design tokens
+- [Colors](/docs/foundations-colors--docs) - Our semantic color system
+- [Spacing](/docs/foundations-dimensions-spacing--docs) - Layout and spacing system
+- [Size](/docs/foundations-dimensions-size--docs) - Size tokens
+- [Border Radius](/docs/foundations-border-radius--docs) - Border radius tokens
+- [Border width](/docs/foundations-border-width--docs) - Border width tokens
+- [Typography](/story/foundations-styles-typography--typography) - Text styles and scales
+- [Shadows](/story/foundations-styles-shadows--shadows) - Elevation and depth
+- [Icons](/docs/symbols-interface-icons-docs--docs) - Comprehensive icon library
 
-## 🎨 Design Resources
+### 2. Components
 
-### 🖼️ Figma
+Our components are built with:
 
-[Figma](https://www.figma.com/files/849318572667742552/project/298908247/Design-Language-System-Libraries?fuid=1096033214261525803) is where the magic happens! It's our collaborative design playground where ideas come to life.
+- React + TypeScript
+- Tailwind CSS for styling
+- Storybook for documentation
+- Comprehensive test coverage
 
-- **🔑 Get Access**: New here? Request access from the project lead, and join the fun!
+### 3. Development Setup
 
-### 📐 UI/UX Design Guidelines
+#### Required Tools
 
-Before diving into the creative process, check out our UI/UX guidelines. They're packed with insights that'll help you create amazing experiences! 🌟
+- Node.js 18+
+- npm or yarn
+- React 18+
 
-- [📖 UI/UX Guidelines Document](https://your-design-guidelines-link.com) --TBD
+**Quick Start**
 
-### 🎯 Design Assets
+1 . Install the package:
 
-Everything you need is right here in our Figma project - logos, icons, and brand guidelines. It's like a treasure chest of design goodies! 💎
+```bash
+npm install @ldls/ui-react
+```
 
----
+2 . Configure Tailwind:
+See our [Tailwind Setup Guide](/docs/tailwind-setup--docs)
 
-## 💻 Development Resources
+3 . Start using components:
 
-### 📝 Coding Standards
+```tsx
+import { Button } from '@ldls/ui-react';
 
-Clean code is happy code! Our coding standards will help you write beautiful, maintainable code that makes everyone's life easier. 🧹
+function App() {
+  return (
+    <Button appearance="base">
+      Get Started
+    </Button>
+  );
+}
+```
 
-- [📚 Coding Standards Document](https://your-coding-standards-link.com) --TBD
+## 🔧 Tools & Resources
 
-### 🌳 Version Control
+### Design Resources
 
-We use Git to keep track of our code journey. Make sure you have Git installed and ready to roll! 🚂
+- [Component Library](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?m=dev) - Design tokens, components, and patterns
+- [Symbols Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=0-1&p=f&m=dev) - Comprehensive icon library
 
-### 🛠️ Development Tools
+### Developer Tools
 
-Let's set up your workspace with these awesome tools:
+- [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) - User guide for the UI Kit
+- [GitHub Repository](https://github.com/LedgerHQ/ldls) - Source code and documentation
 
-- **👨‍💻 Code Editor**: [Visual Studio Code](https://code.visualstudio.com/) is our editor of choice. It's like a Swiss Army knife for coding!
+## 🤝 Contributing
 
-- **📦 Package Manager**: [npm](https://www.npmjs.com/) helps us manage all our JavaScript goodies. Think of it as your code's personal assistant!
+We welcome contributions! Please check our:
 
----
-
-## 🌈 Need Help?
-
-Got questions? Don't hesitate to reach out! We're all here to help each other create amazing things together. Happy coding! 🎉
-
----
+- [Contribution Guidelines](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md)
