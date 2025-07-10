@@ -1,9 +1,5 @@
 # Contributing to LDLS Design System
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45" alt="Nx logo">
-</p>
-
 <h3 align="center">Development and Contribution Guidelines</h3>
 
 ## Table of Contents

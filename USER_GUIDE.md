@@ -1,9 +1,5 @@
 # LDLS Design System User Guide
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45" alt="Nx logo">
-</p>
-
 <h3 align="center">A cross-platform design system for React and React Native applications</h3>
 
 ## Table of Contents
