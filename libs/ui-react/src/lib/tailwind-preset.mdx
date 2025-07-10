@@ -1,0 +1,187 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tailwind/Configuration" />
+
+# 🛠 Ledger Design System Tailwind Preset
+
+The Ledger Design System leverages Tailwind CSS's powerful utility-first approach while maintaining our design consistency through custom presets. Instead of overriding Tailwind's default configuration directly, we use the preset system to:
+
+- Ensure consistent design tokens across all our applications
+- Maintain a standardized spacing system with 1:1 pixel mapping
+- Provide semantic color tokens that work seamlessly in light and dark modes
+- Keep our typography system aligned with our design guidelines
+
+This approach allows teams to use familiar Tailwind syntax while automatically adhering to Ledger's design language.
+
+### 🧩 Custom Utilities
+
+#### 1. Spacing & Sizing
+
+Our spacing scale uses a 1:1 pixel mapping, where each number directly corresponds to its pixel value. For example, m-4 equals 4px of margin. [Learn more about our spacing system](/docs/foundations-dimensions-spacing--docs).
+
+```tsx
+// Spacing Examples
+<div className="p-1">        {/* padding: 1px */}
+<div className="m-2">        {/* margin: 2px */}
+<div className="gap-3">      {/* gap: 3px */}
+<div className="p-4">        {/* padding: 4px */}
+<div className="m-8">        {/* margin: 8px */}
+
+// Sizing Examples
+<div className="w-4">        {/* width: 4px */}
+<div className="h-8">        {/* height: 8px */}
+<div className="max-w-16">   {/* max-width: 16px */}
+```
+
+#### 2. Colors & Backgrounds
+
+Our color system uses semantic tokens. [Explore our color system](/docs/foundations-colors--docs).
+[background colors](/docs/foundations-colors-backgrounds--docs).
+[text colors](/story/foundations-colors-text--text).
+[border colors](/story/foundations-colors-border--border).
+[Crypto colors](/story/foundations-colors-crypto-background--crypto).
+[Discover colors](/story/foundations-colors-discover-background--discover).
+
+```tsx
+// Background Colors
+<div className="bg-canvas">          {/* Main background */}
+<div className="bg-canvas-subtle">   {/* Subtle background variation */}
+
+// Text Colors
+<div className="text-base">       {/* Default base color */}
+<div className="text-muted">         {/* Muted text color */}
+<div className="text-accent">        {/* Accent text color */}
+
+// Border Colors
+<div className="border-base">     {/* Default border */}
+<div className="border-accent">      {/* Accent border */}
+
+// Interactive Colors
+<button className="bg-interactive hover:bg-interactive-hover">
+<div className="text-interactive-focus">
+
+```
+
+#### 3. Typography
+
+Our preset carefully **overrides** specific Tailwind core plugins to ensure design consistency.
+
+```typescript
+corePlugins: {
+  fontSize: false,    // Controlled by our typography system
+  fontWeight: false,  // Controlled by our typography system
+  lineHeight: false,  // Controlled by our typography system
+}
+```
+
+Pre-configured typography classes that handle font family, size, weight, line height, and letter spacing. [View typography guidelines](/story/foundations-styles-typography--typography).
+
+```tsx
+// Display Text
+<h1 className="display-1">Large Title</h1>
+<h2 className="display-2">Medium Title</h2>
+
+// Headings
+<h2 className="heading-1">Main Heading</h2>
+<h3 className="heading-2-medium">Section Title</h3>
+
+// Body Text
+<p className="body-1">Regular paragraph text</p>
+<p className="body-2-semi-bold">Emphasized text</p>
+
+// ❌ These are not valid typography classes
+<div className="text-2xl font-semibold">Title</div>
+```
+
+#### 4. Gradients
+
+[See gradient examples](/story/foundations-styles-gradients--gradients).
+
+```tsx
+// Directional Gradients
+<div className="bg-gradient-top" />      {/* Top to bottom fade */}
+<div className="bg-gradient-bottom" />   {/* Bottom to top fade */}
+
+// Crypto Asset Gradients
+<div className="bg-gradient-bitcoin" />  {/* Bitcoin theme gradient */}
+<div className="bg-gradient-ethereum" /> {/* Ethereum theme gradient */}
+```
+
+#### 5. Shadows
+
+[View shadow system](/story/foundations-styles-shadows--shadows).
+
+```tsx
+<div className="drop-shadow-sm">   {/* Subtle elevation */}
+<div className="drop-shadow-md">   {/* Medium elevation */}
+<div className="drop-shadow-lg">   {/* Large elevation */}
+<div className="drop-shadow-xl">   {/* Extra large elevation */}
+<div className="drop-shadow-2xl">  {/* Maximum elevation */}
+```
+
+#### 6. Border Radius
+
+[Explore border radius tokens](/docs/foundations-border-radius--docs).
+
+```tsx
+<div className="rounded-sm">      {/* Small radius */}
+<div className="rounded-md">      {/* Medium radius */}
+<div className="rounded-lg">      {/* Large radius */}
+<div className="rounded-full">    {/* Circular radius */}
+```
+
+## 🌓 Dark Mode
+
+Use the `dark:` prefix to specify dark mode variants. [See our foundation principles](/docs/foundations-colors--docs).
+
+```tsx
+<div className="bg-canvas dark:bg-canvas-dark">
+  <p className="text-default dark:text-default-dark">
+    Automatically switches in dark mode
+  </p>
+</div>
+```
+
+## ✅ Best Practices
+
+1. **Use Semantic Color Tokens**
+
+   ```tsx
+   // ✅ Do
+   <div className="bg-canvas text-base">
+
+   // ❌ Don't
+   <div className="bg-[#ffffff] text-[#000000]">
+   ```
+
+2. **Follow the 4px Grid**
+
+   ```tsx
+   // ✅ Do
+   <div className="p-4 gap-2">    {/* 4px padding, 2px gap */}
+
+   // ❌ Don't
+   <div className="p-[5px] gap-[7px]">
+   ```
+
+3. **Use Typography System**
+
+   ```tsx
+   // ✅ Do
+   <h1 className="heading-1">Title</h1>
+
+   // ❌ Don't
+   <h1 className="text-2xl font-semibold">Title</h1>
+   ```
+
+4. **Leverage Dark Mode**
+
+   ```tsx
+   // ✅ Do
+   <div className="bg-canvas dark:bg-canvas-dark">
+
+   // ❌ Don't
+   <div style={{
+     backgroundColor: isDark ? 'var(--color-canvas-dark)' : 'var(--color-canvas)'
+   }}>
+   ```

@@ -46,6 +46,8 @@ const preview: Preview = {
         order: [
           'Getting Started',
           ['Welcome'],
+          'Tailwind',
+          ['Introduction', 'Setup', 'Configuration'],
           'Foundations',
           [
             'Docs',
