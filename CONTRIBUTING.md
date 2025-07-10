@@ -19,7 +19,6 @@ The LDLS Design System is structured as a monorepo using Nx, with the following 
 - **ui-react**: React-specific components and patterns
 - **ui-rnative**: React Native-specific components and patterns
 - **design-core**: Design tokens and symbols for the design system
-- **design-tokens**: Token definitions and configurations
 - **utils-shared**: Shared utility functions
 
 ### Technology Stack
@@ -152,7 +151,7 @@ export const WithInteraction: Story = {
 
 1. Unit tests for all components
 2. Interaction tests for complex components
-3. Visual regression tests via Chromatic
+3. Visual regression tests via **Chromatic**
 4. Accessibility tests
 5. Cross-browser testing
 
