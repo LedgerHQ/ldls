@@ -39,7 +39,7 @@
         "command": "npx tsx design-tokens-etl.ts",
         "cwd": "libs/design-core"
       },
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
     },
     "figma-download-svgs": {
       "executor": "nx:run-commands",
