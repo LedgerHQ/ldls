@@ -65,8 +65,7 @@ While the component comes with predefined styles, you can extend them using Tail
 The Button component supports icons with automatic size adjustment based on the button size:
 
 ```tsx
-import { Button } from '@ldls/ui-react';
-import { ArrowRight } from '@ldls/ui-react/icons';
+import { Button, ArrowRight } from '@ldls/ui-react';
 
 function MyComponent() {
   return (
@@ -100,7 +99,7 @@ Use the `isFull` prop to make the button take the full width of its container:
 </Button>
 
 // Pass icon as a component reference
-import { Plus } from '@ldls/ui-react/symbols';
+import { Plus } from '@ldls/ui-react';
 <Button icon={Plus}>Add Item</Button>
 ```
 
@@ -168,7 +167,7 @@ import { Plus } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import icons explicitly
-import { Settings, Plus } from '@ldls/ui-react/symbols';
+import { Settings, Plus } from '@ldls/ui-react';
 
 // Use icon prop for consistent sizing
 <Button icon={Settings} contentType="icon" aria-label="Settings" />
@@ -181,7 +180,7 @@ import { Settings, Plus } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ldls/ui-react';
 
 // Don't modify icon size directly
 <Button>
@@ -199,7 +198,7 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { Plus } from '@ldls/ui-react/symbols';
+import { Plus } from '@ldls/ui-react';
 
 // Use appropriate size variant
 <Button size="xs" icon={Plus} aria-label="Add" />
@@ -212,7 +211,7 @@ import { Plus } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import all icons
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ldls/ui-react';
 
 // Don't use custom sizes when standard ones exist
 <Button className="h-[52px]">Custom Height</Button>
