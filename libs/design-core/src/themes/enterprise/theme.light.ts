@@ -72,6 +72,8 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-blue-050)',
     '--color-background-active-subtle-website': 'var(--color-light-orange-050)',
     '--color-background-error': 'var(--color-light-red-600-10)',
+    '--color-background-error-hover': 'var(--color-light-red-600-20)',
+    '--color-background-error-pressed': 'var(--color-light-red-600-30)',
     '--color-background-error-strong': 'var(--color-light-red-600)',
     '--color-background-error-transparent': 'var(--color-light-red-600-0)',
     '--color-background-warning': 'var(--color-light-yellow-600-10)',
@@ -116,7 +118,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-text-active-ledger-live': 'var(--color-light-purple-800)',
     '--color-text-active-enterprise': 'var(--color-light-blue-800)',
     '--color-text-active-websites': 'var(--color-light-orange-800)',
-    '--color-text-error': 'var(--color-light-red-600)',
+    '--color-text-error': 'var(--color-light-red-700)',
     '--color-text-warning': 'var(--color-light-yellow-700)',
     '--color-text-success': 'var(--color-light-green-600)',
     '--color-text-on-accent-ledger-live': 'var(--color-light-grey-950)',
@@ -374,6 +376,8 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-interactive-pressed':
       'var(--color-background-interactive-pressed)',
     '--background-error': 'var(--color-background-error)',
+    '--background-error-hover': 'var(--color-background-error-hover)',
+    '--background-error-pressed': 'var(--color-background-error-pressed)',
     '--background-error-strong': 'var(--color-background-error-strong)',
     '--background-error-transparent':
       'var(--color-background-error-transparent)',

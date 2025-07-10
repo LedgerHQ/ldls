@@ -1383,6 +1383,30 @@
               "codeSyntax": {}
             }
           }
+        },
+        "600-20%": {
+          "$type": "color",
+          "$value": "#c2424433",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "600-30%": {
+          "$type": "color",
+          "$value": "#c242444d",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
         }
       },
       "crypto": {
@@ -4661,6 +4685,42 @@
         "600-10%": {
           "$type": "color",
           "$value": "#f872741a",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "600-20%": {
+          "$type": "color",
+          "$value": "#f8727433",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "600-30%": {
+          "$type": "color",
+          "$value": "#f872744d",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "600-40%": {
+          "$type": "color",
+          "$value": "#f8727466",
           "$description": "",
           "$extensions": {
             "com.figma": {

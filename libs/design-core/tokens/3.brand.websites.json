@@ -578,6 +578,36 @@
             }
           }
         }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.background.error.hover}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.background.error.pressed}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
       }
     },
     "error-strong": {
@@ -1377,7 +1407,7 @@
       }
     },
     "disabled": {
-      "Default": {
+      "default": {
         "$type": "color",
         "$value": "{color.border.disabled.default}",
         "$description": "",
@@ -1691,7 +1721,7 @@
             "STROKE_FLOAT"
           ],
           "codeSyntax": {
-            "WEB": "var(--border-width);"
+            "WEB": "var(--border);"
           }
         }
       }
@@ -1706,7 +1736,9 @@
           "scopes": [
             "STROKE_FLOAT"
           ],
-          "codeSyntax": {}
+          "codeSyntax": {
+            "WEB": "var(--border-2)"
+          }
         }
       }
     },
@@ -1720,7 +1752,9 @@
           "scopes": [
             "STROKE_FLOAT"
           ],
-          "codeSyntax": {}
+          "codeSyntax": {
+            "WEB": "var(--border-2)"
+          }
         }
       }
     }

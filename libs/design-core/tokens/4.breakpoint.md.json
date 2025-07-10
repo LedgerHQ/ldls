@@ -642,7 +642,7 @@
         },
         "line-height": {
           "$type": "number",
-          "$value": "{font.letter-spacing.14}",
+          "$value": "{font.line-height.14}",
           "$description": "",
           "$extensions": {
             "com.figma": {

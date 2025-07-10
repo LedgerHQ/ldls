@@ -718,7 +718,7 @@
       "error": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.red.600-10%}",
+          "$value": "{color.dark.red.600-20%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -727,6 +727,30 @@
               "codeSyntax": {
                 "WEB": "var(--color-background-error);"
               }
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.dark.red.600-30%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.dark.red.600-40%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
             }
           }
         }
@@ -1256,7 +1280,7 @@
       "error": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.red.600}",
+          "$value": "{color.dark.red.700}",
           "$description": "",
           "$extensions": {
             "com.figma": {

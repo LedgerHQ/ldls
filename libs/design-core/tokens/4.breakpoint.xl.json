@@ -280,7 +280,7 @@
         },
         "line-height": {
           "$type": "number",
-          "$value": "{font.letter-spacing.36}",
+          "$value": "{font.line-height.36}",
           "$description": "",
           "$extensions": {
             "com.figma": {
