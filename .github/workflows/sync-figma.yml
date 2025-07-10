@@ -256,4 +256,4 @@ jobs:
             - ✅ Download SVG symbols from Figma
             - ✅ Generate React symbol components
             - ✅ Generate React Native symbol components
-          branch: sync-figma
+          branch: sync-figma-2
