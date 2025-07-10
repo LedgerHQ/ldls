@@ -1,0 +1,157 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tailwind/Setup" />
+
+# Tailwind CSS Setup
+
+## Prerequisites
+
+This UI kit is built on top of a custom Tailwind CSS preset that provides consistent styling across the Ledger Design System. Before you can use the components, you'll need to set up Tailwind CSS in your project.
+
+### Required Dependencies
+
+The following package is required as a peer dependency:
+
+```json
+{
+  "tailwindcss": "^3.4.0",
+  "react": "^18.3.1"
+}
+```
+
+Install tailwindcss and react using your package manager.
+
+## Configuration
+
+### 1. Tailwind Config
+
+Create or update your `tailwind.config.ts` (or `tailwind.config.js`) to use our preset.
+
+Available presets are: `ledgerLivePreset`, `websitesPreset`, `enterprisePreset`.
+
+```typescript
+import { createConfig } from '@ldls/ui-react/tailwind';
+import { ledgerLivePreset } from '@ldls/design-core';
+
+export default createConfig({
+  content: [
+    // Add paths to your project's files
+    './src/**/*.{js,jsx,ts,tsx}',
+    // Include the ui-react package components
+    './node_modules/@ldls/ui-react/**/*.{js,jsx,ts,tsx}'
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+});
+```
+
+## Developer Experience
+
+### VSCode Extensions
+
+For the best development experience, we recommend installing the following VSCode extensions:
+
+1. **Tailwind CSS IntelliSense** ([bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss))
+   - Provides autocomplete for Tailwind classes
+   - Shows class definitions on hover
+   - Syntax highlighting for Tailwind classes
+   - Linting for class order and conflicts
+
+2. **Prettier Plugin Tailwind** ([prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss))
+   - Automatically sorts Tailwind classes in a consistent order
+   - Install with:
+     ```bash
+     npm install -D prettier prettier-plugin-tailwindcss
+     ```
+
+### Utility Functions
+
+We recommend creating a utility function to help you work with Tailwind classes. Here's how to create a powerful class names utility that handles both conditional classes and Tailwind class conflicts:
+
+#### Creating a Class Names Utility
+
+First, install the required packages:
+
+```bash
+npm install clsx tailwind-merge
+# or
+yarn add clsx tailwind-merge
+# or
+pnpm add clsx tailwind-merge
+```
+
+Then create a utility file (e.g., `utils/cn.ts`):
+
+```typescript
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+This utility combines the power of two popular libraries:
+
+- `clsx`: Handles conditional class names
+- `tailwind-merge`: Intelligently handles Tailwind CSS class conflicts
+
+Example usage:
+
+```typescript
+import { cn } from '../utils/cn';
+
+// Basic usage
+<div className={cn(
+  "base-class",
+  isActive && "active-class",
+  variant === "large" && "large-class"
+)}>
+
+// With conditional objects
+<div className={cn(
+  "px-4 py-2 rounded",
+  {
+    "bg-accent": isAccent,
+    "bg-base": !isAccent,
+    "bg-disabled": isDisabled
+  }
+)}>
+
+// Merging with component classes - handles Tailwind conflicts!
+<Component
+  className={cn(
+    "body-1 md:body-2", // Base styles
+    "body-2 md:body-3"  // Override - properly merges breakpoints
+  )}
+/>
+```
+
+### IntelliSense Setup
+
+To get the best autocomplete experience, add this to your VSCode settings:
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.classFunctions": ["cva", "cn"]
+}
+```
+
+This enables:
+
+- String-based class suggestions
+- Autocomplete in template literals
+- Autocomplete in `cn()` function calls
+
+## Support
+
+If you encounter any issues with the setup:
+
+1. Check that all dependencies are correctly installed
+2. Verify your configuration matches the examples above
+3. Ensure your IDE extensions are properly configured
+4. Reach out to our Design System team if issues persist
+
+## Next Steps
+
+Once you have everything configured, check out our component documentation for usage examples and best practices.
