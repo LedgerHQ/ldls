@@ -13,6 +13,7 @@ on:
         description: 'Dry run mode (skip PR creation)'
         type: boolean
         default: false
+  push:
 
 env:
   NX_NO_CLOUD: true
@@ -243,7 +244,6 @@ jobs:
           find libs/ui-rnative/src/lib/Symbols/ -type f | head -10
 
       - name: Create Pull Request
-        if: ${{ !github.event.inputs.dry_run }}
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: '💄 (figma): Sync Figma Design Tokens & Symbols'
