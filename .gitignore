@@ -126,3 +126,4 @@ test-output
 .nx/*
 !.nx/version-plans/
 !.nx/version-plans/**
+mise.toml

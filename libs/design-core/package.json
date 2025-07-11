@@ -1,7 +1,6 @@
 {
   "name": "@ldls/design-core",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -16,8 +15,6 @@
     }
   },
   "dependencies": {
-    "@figma/rest-api-spec": "^0.28.0",
-    "style-dictionary": "^4.3.3",
     "tslib": "^2.3.0"
   }
 }
