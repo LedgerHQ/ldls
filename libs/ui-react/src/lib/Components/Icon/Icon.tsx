@@ -36,7 +36,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
         'aria-hidden': 'true',
         xmlns,
         viewBox,
-        className: cn(iconVariants({ size }), 'inline-block', className),
+        className: cn(className, iconVariants({ size }), 'inline-block'),
         ...props,
       },
       children,
