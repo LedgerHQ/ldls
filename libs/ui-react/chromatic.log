@@ -1,0 +1,606 @@
+13:22:59.131 Chromatic CLI v13.1.2
+             https://www.chromatic.com/docs/cli 
+ 
+13:22:59.230 Authenticating with Chromatic 
+13:22:59.231     → Connecting to https://index.chromatic.com
+13:22:59.645 Authenticated with Chromatic
+                 → Using project token '****************218a'
+13:22:59.646 Retrieving git information
+13:22:59.646 execGitCommand: git --version
+13:22:59.665 execGitCommand result: 'git version 2.39.5 (Apple Git-154)'
+13:22:59.666 execGitCommand: git --no-pager log -n 1 --format="%H ## %ct ## %ae ## %an"
+13:22:59.682 execGitCommand result: '83c887703f189fe1ca41793fea7031f34021407b ## 1751976240 ## abla.ammami@ledger.fr ## Abla Ammami'
+13:22:59.682 execGitCommand: git branch --show-current
+13:22:59.695 execGitCommand result: 'main'
+13:22:59.716 execGitCommand: git --no-pager log -n 1 --skip=1 --format="%H"
+13:22:59.729 execGitCommand result: '5635741209f172f67b52865bc250435ce54c1673'
+13:22:59.729 git info: {"commit":{"commit":"83c887703f189fe1ca41793fea7031f34021407b","committedAt":1751976240000,"committerEmail":"abla.ammami@ledger.fr","committerName":"Abla Ammami"},"branch":"main","fromCI":false}
+13:22:59.730 execGitCommand: git config user.email
+13:22:59.741 execGitCommand result: 'bogdan.brezuica-ext@ledger.fr'
+13:22:59.741 execGitCommand: (git diff --name-only --no-relative --diff-filter=d --cached;git diff --name-only --no-relative --diff-filter=d;git ls-files --others --exclude-standard) | git hash-object --stdin-paths | git hash-object --stdin
+13:22:59.777 execGitCommand result: 'fatal: could not open 'build-storybook.log' for reading: No such file or directory
+             7aee85ed205f79581d15fb5f92f5af556c1aa72a'
+13:22:59.777 execGitCommand: git rev-parse --show-toplevel
+13:22:59.788 execGitCommand result: '/Users/bogdan/Projects/ledger/ldls'
+13:22:59.789 execGitCommandOneLine: git log --reverse --format=%cd --date=iso
+13:22:59.812 execGitCommandOneLine: git log --follow --reverse --format=%cd --date=iso -- .storybook
+13:22:59.827 execGitCommandCountLines: git shortlog -sn --all --since="6 months ago"
+13:22:59.861 execGitCommandCountLines: git ls-files -- "*page*.js" "*page*.jsx" "*page*.ts" "*page*.tsx" "*Page*.js" "*Page*.jsx" "*Page*.ts" "*Page*.tsx" "*screen*.js" "*screen*.jsx" "*screen*.ts" "*screen*.tsx" "*Screen*.js" "*Screen*.jsx" "*Screen*.ts" "*Screen*.tsx"
+13:22:59.873 execGitCommand: git config --get remote.origin.url
+13:22:59.908 execGitCommand result: 'git@github.com-softeng99:LedgerHQ/ldls.git'
+13:23:00.299 App firstBuild: %o, lastBuild: %o null null
+13:23:00.300 App has no builds, returning []
+13:23:00.300 Found parentCommits:
+13:23:00.698 Retrieved git information
+                 → Commit '83c8877' on branch 'main'; no ancestor found
+13:23:00.699 Collecting Storybook metadata
+13:23:00.701 Collected Storybook metadata
+                 → ; using the @storybook/builder-vite builder (undefined); no supported addons found
+13:23:00.701 Initializing build
+13:23:00.701 Got environment:
+             {}
+13:23:01.214 Initialized build
+                 → Build 10 initialized
+13:23:01.215 Prepare your built Storybook
+13:23:01.215     → Validating Storybook files
+13:23:01.222 Prepare your built Storybook
+13:23:01.222     → Calculating file hashes
+13:23:01.248 Calculated file hashes in 26ms
+13:23:01.248 Preparation complete
+                 → Storybook files validated and prepared for upload
+13:23:01.248 Publishing your built Storybook
+13:23:01.249     → Starting publish
+13:23:01.251 Running uploadBuild batch 1 / 1
+13:23:02.432 Adding to zip archive: addon-visual-tests-assets/visual-test-illustration.mp4
+13:23:02.434 Adding to zip archive: assets/Button.stories-RRIpILDe.js
+13:23:02.434 Adding to zip archive: assets/Color-AVL7NMMY-CKA9AxrL.js
+13:23:02.434 Adding to zip archive: assets/DocsRenderer-PQXLIZUC-XmmQIGMR.js
+13:23:02.435 Adding to zip archive: assets/Icons.stories-SGS03emc.js
+13:23:02.435 Adding to zip archive: assets/background.stories-C8-go5OJ.js
+13:23:02.435 Adding to zip archive: assets/borderColor.stories-COMDcRdj.js
+13:23:02.435 Adding to zip archive: assets/borderRadius.stories-CwRTWn2T.js
+13:23:02.436 Adding to zip archive: assets/borderWidth.stories-iJKDHdug.js
+13:23:02.436 Adding to zip archive: assets/clsx-B-dksMZM.js
+13:23:02.437 Adding to zip archive: assets/cn-CKXzwFwe.js
+13:23:02.437 Adding to zip archive: assets/cryptoColor.stories-BMVExE_2.js
+13:23:02.437 Adding to zip archive: assets/discoverColor.stories-ZscAWEyP.js
+13:23:02.437 Adding to zip archive: assets/gradients.stories-BygwbDmw.js
+13:23:02.438 Adding to zip archive: assets/height.stories-BUHeYnoR.js
+13:23:02.438 Adding to zip archive: assets/iframe-CFHxNx-f.css
+13:23:02.438 Adding to zip archive: assets/iframe-D5KP8HZA.js
+13:23:02.439 Adding to zip archive: assets/index-Dp3B9jqt.js
+13:23:02.439 Adding to zip archive: assets/index-DrFu-skq.js
+13:23:02.439 Adding to zip archive: assets/index-_boaPYrG.js
+13:23:02.439 Adding to zip archive: assets/react-18-Bx3jwkMn.js
+13:23:02.440 Adding to zip archive: assets/shadows.stories-BKIzAuhR.js
+13:23:02.440 Adding to zip archive: assets/shared-E6nHsZhd.js
+13:23:02.440 Adding to zip archive: assets/spacing.stories-D6QNQLt4.js
+13:23:02.440 Adding to zip archive: assets/textColor.stories-BRVZJ6zg.js
+13:23:02.440 Adding to zip archive: assets/typography.stories-D1_FDRMa.js
+13:23:02.441 Adding to zip archive: assets/width.stories-BP12F_mV.js
+13:23:02.441 Adding to zip archive: favicon.svg
+13:23:02.441 Adding to zip archive: iframe.html
+13:23:02.441 Adding to zip archive: index.d.ts
+13:23:02.441 Adding to zip archive: index.d.ts.map
+13:23:02.441 Adding to zip archive: index.html
+13:23:02.442 Adding to zip archive: index.json
+13:23:02.442 Adding to zip archive: lib/Components/Button/Button.d.ts
+13:23:02.442 Adding to zip archive: lib/Components/Button/Button.d.ts.map
+13:23:02.442 Adding to zip archive: lib/Components/Button/index.d.ts
+13:23:02.442 Adding to zip archive: lib/Components/Button/index.d.ts.map
+13:23:02.443 Adding to zip archive: lib/Components/Design-tokens/shared.d.ts
+13:23:02.443 Adding to zip archive: lib/Components/Design-tokens/shared.d.ts.map
+13:23:02.443 Adding to zip archive: lib/Components/Icon/Icon.d.ts
+13:23:02.443 Adding to zip archive: lib/Components/Icon/Icon.d.ts.map
+13:23:02.443 Adding to zip archive: lib/Components/Icon/createIcon.d.ts
+13:23:02.444 Adding to zip archive: lib/Components/Icon/createIcon.d.ts.map
+13:23:02.444 Adding to zip archive: lib/Components/index.d.ts
+13:23:02.444 Adding to zip archive: lib/Components/index.d.ts.map
+13:23:02.444 Adding to zip archive: lib/Patterns/index.d.ts
+13:23:02.444 Adding to zip archive: lib/Patterns/index.d.ts.map
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/Airplane.d.ts
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/Airplane.d.ts.map
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/AlarmClock.d.ts
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/AlarmClock.d.ts.map
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/Android.d.ts
+13:23:02.445 Adding to zip archive: lib/Symbols/Icons/Android.d.ts.map
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Apple.d.ts
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Apple.d.ts.map
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Apps.d.ts
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Apps.d.ts.map
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Ar.d.ts
+13:23:02.446 Adding to zip archive: lib/Symbols/Icons/Ar.d.ts.map
+13:23:02.447 Adding to zip archive: lib/Symbols/Icons/ArrowDown.d.ts
+13:23:02.447 Adding to zip archive: lib/Symbols/Icons/ArrowDown.d.ts.map
+13:23:02.447 Adding to zip archive: lib/Symbols/Icons/ArrowDownRight.d.ts
+13:23:02.447 Adding to zip archive: lib/Symbols/Icons/ArrowDownRight.d.ts.map
+13:23:02.447 Adding to zip archive: lib/Symbols/Icons/ArrowLeft.d.ts
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowLeft.d.ts.map
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowRight.d.ts
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowRight.d.ts.map
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowUp.d.ts
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowUp.d.ts.map
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowUpRight.d.ts
+13:23:02.448 Adding to zip archive: lib/Symbols/Icons/ArrowUpRight.d.ts.map
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/At.d.ts
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/At.d.ts.map
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/AutoLock.d.ts
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/AutoLock.d.ts.map
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/Bank.d.ts
+13:23:02.449 Adding to zip archive: lib/Symbols/Icons/Bank.d.ts.map
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/Bell.d.ts
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/Bell.d.ts.map
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/BellNotification.d.ts
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/BellNotification.d.ts.map
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/BitcoinComputer.d.ts
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/BitcoinComputer.d.ts.map
+13:23:02.450 Adding to zip archive: lib/Symbols/Icons/BitcoinVoucher.d.ts
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/BitcoinVoucher.d.ts.map
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/Bluetooth.d.ts
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/Bluetooth.d.ts.map
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/Bolt.d.ts
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/Bolt.d.ts.map
+13:23:02.451 Adding to zip archive: lib/Symbols/Icons/BookOpen.d.ts
+13:23:02.452 Adding to zip archive: lib/Symbols/Icons/BookOpen.d.ts.map
+13:23:02.452 Adding to zip archive: lib/Symbols/Icons/Bug.d.ts
+13:23:02.452 Adding to zip archive: lib/Symbols/Icons/Bug.d.ts.map
+13:23:02.452 Adding to zip archive: lib/Symbols/Icons/Calendar.d.ts
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Calendar.d.ts.map
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Cart.d.ts
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Cart.d.ts.map
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Charon.d.ts
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Charon.d.ts.map
+13:23:02.453 Adding to zip archive: lib/Symbols/Icons/Chart1.d.ts
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart1.d.ts.map
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart2.d.ts
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart2.d.ts.map
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart3.d.ts
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart3.d.ts.map
+13:23:02.454 Adding to zip archive: lib/Symbols/Icons/Chart4.d.ts
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/Chart4.d.ts.map
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/ChartPie.d.ts
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/ChartPie.d.ts.map
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/Check.d.ts
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/Check.d.ts.map
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/CheckmarkCircle.d.ts
+13:23:02.455 Adding to zip archive: lib/Symbols/Icons/CheckmarkCircle.d.ts.map
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/CheckmarkCircleFill.d.ts
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/CheckmarkCircleFill.d.ts.map
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/ChevronBigBottom.d.ts
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/ChevronBigBottom.d.ts.map
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/ChevronBigLeft.d.ts
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/ChevronBigLeft.d.ts.map
+13:23:02.456 Adding to zip archive: lib/Symbols/Icons/ChevronBigRight.d.ts
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronBigRight.d.ts.map
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronBigTop.d.ts
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronBigTop.d.ts.map
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronDown.d.ts
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronDown.d.ts.map
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronLeft.d.ts
+13:23:02.457 Adding to zip archive: lib/Symbols/Icons/ChevronLeft.d.ts.map
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/ChevronRight.d.ts
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/ChevronRight.d.ts.map
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/ChevronUp.d.ts
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/ChevronUp.d.ts.map
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/Circles.d.ts
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/Circles.d.ts.map
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/Clear.d.ts
+13:23:02.458 Adding to zip archive: lib/Symbols/Icons/Clear.d.ts.map
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/Clip.d.ts
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/Clip.d.ts.map
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/Clock.d.ts
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/Clock.d.ts.map
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/ClockFill.d.ts
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/ClockFill.d.ts.map
+13:23:02.459 Adding to zip archive: lib/Symbols/Icons/Close.d.ts
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/Close.d.ts.map
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/CloudDownload.d.ts
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/CloudDownload.d.ts.map
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/CloudUpload.d.ts
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/CloudUpload.d.ts.map
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/Code.d.ts
+13:23:02.460 Adding to zip archive: lib/Symbols/Icons/Code.d.ts.map
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/CoinAlert.d.ts
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/CoinAlert.d.ts.map
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/CoinPercent.d.ts
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/CoinPercent.d.ts.map
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/Coins.d.ts
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/Coins.d.ts.map
+13:23:02.461 Adding to zip archive: lib/Symbols/Icons/CoinsAddPlus.d.ts
+13:23:02.462 Adding to zip archive: lib/Symbols/Icons/CoinsAddPlus.d.ts.map
+13:23:02.462 Adding to zip archive: lib/Symbols/Icons/CoinsCheck.d.ts
+13:23:02.462 Adding to zip archive: lib/Symbols/Icons/CoinsCheck.d.ts.map
+13:23:02.462 Adding to zip archive: lib/Symbols/Icons/CoinsCross.d.ts
+13:23:02.462 Adding to zip archive: lib/Symbols/Icons/CoinsCross.d.ts.map
+13:23:02.463 Adding to zip archive: lib/Symbols/Icons/CoinsCrypto.d.ts
+13:23:02.463 Adding to zip archive: lib/Symbols/Icons/CoinsCrypto.d.ts.map
+13:23:02.463 Adding to zip archive: lib/Symbols/Icons/CoinsEye.d.ts
+13:23:02.463 Adding to zip archive: lib/Symbols/Icons/CoinsEye.d.ts.map
+13:23:02.463 Adding to zip archive: lib/Symbols/Icons/Compass.d.ts
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/Compass.d.ts.map
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/ComputerMobile.d.ts
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/ComputerMobile.d.ts.map
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/Copy.d.ts
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/Copy.d.ts.map
+13:23:02.464 Adding to zip archive: lib/Symbols/Icons/CreditCard.d.ts
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/CreditCard.d.ts.map
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/CryptoBitcoinCoin.d.ts
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/CryptoBitcoinCoin.d.ts.map
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/CursorTouch.d.ts
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/CursorTouch.d.ts.map
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/DatabaseLock.d.ts
+13:23:02.465 Adding to zip archive: lib/Symbols/Icons/DatabaseLock.d.ts.map
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteCircle.d.ts
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteCircle.d.ts.map
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteCircleFill.d.ts
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteCircleFill.d.ts.map
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteStop.d.ts
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/DeleteStop.d.ts.map
+13:23:02.466 Adding to zip archive: lib/Symbols/Icons/Desktop.d.ts
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/Desktop.d.ts.map
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/Devices.d.ts
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/Devices.d.ts.map
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/Discord.d.ts
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/Discord.d.ts.map
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/DocumentCode.d.ts
+13:23:02.467 Adding to zip archive: lib/Symbols/Icons/DocumentCode.d.ts.map
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/Dollar.d.ts
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/Dollar.d.ts.map
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/DollarConvert.d.ts
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/DollarConvert.d.ts.map
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/Download.d.ts
+13:23:02.468 Adding to zip archive: lib/Symbols/Icons/Download.d.ts.map
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/Duplicate.d.ts
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/Duplicate.d.ts.map
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/Exchange.d.ts
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/Exchange.d.ts.map
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/ExitLogout.d.ts
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/ExitLogout.d.ts.map
+13:23:02.469 Adding to zip archive: lib/Symbols/Icons/Expand.d.ts
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/Expand.d.ts.map
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/Experiment.d.ts
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/Experiment.d.ts.map
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/Experiment2.d.ts
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/Experiment2.d.ts.map
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/ExternalLink.d.ts
+13:23:02.470 Adding to zip archive: lib/Symbols/Icons/ExternalLink.d.ts.map
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/Eye.d.ts
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/Eye.d.ts.map
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/EyeCross.d.ts
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/EyeCross.d.ts.map
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/Facebook.d.ts
+13:23:02.471 Adding to zip archive: lib/Symbols/Icons/Facebook.d.ts.map
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/FileDownload.d.ts
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/FileDownload.d.ts.map
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/FilterSort.d.ts
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/FilterSort.d.ts.map
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/Flex.d.ts
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/Flex.d.ts.map
+13:23:02.472 Adding to zip archive: lib/Symbols/Icons/Folder.d.ts
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Folder.d.ts.map
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Gift.d.ts
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Gift.d.ts.map
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Github.d.ts
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Github.d.ts.map
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Globe.d.ts
+13:23:02.473 Adding to zip archive: lib/Symbols/Icons/Globe.d.ts.map
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/Grid.d.ts
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/Grid.d.ts.map
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/GroupUsers.d.ts
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/GroupUsers.d.ts.map
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/GroupUsersAdd.d.ts
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/GroupUsersAdd.d.ts.map
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/HandCard.d.ts
+13:23:02.474 Adding to zip archive: lib/Symbols/Icons/HandCard.d.ts.map
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/HandCoins.d.ts
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/HandCoins.d.ts.map
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/HatSchool.d.ts
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/HatSchool.d.ts.map
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/Heart.d.ts
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/Heart.d.ts.map
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/Home.d.ts
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/Home.d.ts.map
+13:23:02.475 Adding to zip archive: lib/Symbols/Icons/IdCard.d.ts
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/IdCard.d.ts.map
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/Incognito.d.ts
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/Incognito.d.ts.map
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/Information.d.ts
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/Information.d.ts.map
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/InformationFill.d.ts
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/InformationFill.d.ts.map
+13:23:02.476 Adding to zip archive: lib/Symbols/Icons/Instagram.d.ts
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Instagram.d.ts.map
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Ios.d.ts
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Ios.d.ts.map
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Label.d.ts
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Label.d.ts.map
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Language.d.ts
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/Language.d.ts.map
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/LedgerDevices.d.ts
+13:23:02.477 Adding to zip archive: lib/Symbols/Icons/LedgerDevices.d.ts.map
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/LedgerLogo.d.ts
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/LedgerLogo.d.ts.map
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/Legal.d.ts
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/Legal.d.ts.map
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/LifeRing.d.ts
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/LifeRing.d.ts.map
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/Link.d.ts
+13:23:02.478 Adding to zip archive: lib/Symbols/Icons/Link.d.ts.map
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Linkedin.d.ts
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Linkedin.d.ts.map
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Linux.d.ts
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Linux.d.ts.map
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/ListEye.d.ts
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/ListEye.d.ts.map
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Lock.d.ts
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/Lock.d.ts.map
+13:23:02.479 Adding to zip archive: lib/Symbols/Icons/LockCheckSuccess.d.ts
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/LockCheckSuccess.d.ts.map
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Macos.d.ts
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Macos.d.ts.map
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Magnet.d.ts
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Magnet.d.ts.map
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Mail.d.ts
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Mail.d.ts.map
+13:23:02.480 Adding to zip archive: lib/Symbols/Icons/Maths.d.ts
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/Maths.d.ts.map
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/Medal1.d.ts
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/Medal1.d.ts.map
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/Medal2.d.ts
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/Medal2.d.ts.map
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/MenuBurger.d.ts
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/MenuBurger.d.ts.map
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/MessageChat.d.ts
+13:23:02.481 Adding to zip archive: lib/Symbols/Icons/MessageChat.d.ts.map
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/Minus.d.ts
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/Minus.d.ts.map
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/MinusCircle.d.ts
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/MinusCircle.d.ts.map
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/MinusCircleFill.d.ts
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/MinusCircleFill.d.ts.map
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/Mobile.d.ts
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/Mobile.d.ts.map
+13:23:02.482 Adding to zip archive: lib/Symbols/Icons/MobileArrow.d.ts
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MobileArrow.d.ts.map
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MonitorPassword.d.ts
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MonitorPassword.d.ts.map
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/Moon.d.ts
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/Moon.d.ts.map
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MoreHorizontal.d.ts
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MoreHorizontal.d.ts.map
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MoreVertical.d.ts
+13:23:02.483 Adding to zip archive: lib/Symbols/Icons/MoreVertical.d.ts.map
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nano.d.ts
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nano.d.ts.map
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/NetworkWarning.d.ts
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/NetworkWarning.d.ts.map
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nfc.d.ts
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nfc.d.ts.map
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nft.d.ts
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/Nft.d.ts.map
+13:23:02.484 Adding to zip archive: lib/Symbols/Icons/NftHide.d.ts
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/NftHide.d.ts.map
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Note.d.ts
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Note.d.ts.map
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/P2p.d.ts
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/P2p.d.ts.map
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Paste.d.ts
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Paste.d.ts.map
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Pause.d.ts
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/Pause.d.ts.map
+13:23:02.485 Adding to zip archive: lib/Symbols/Icons/PenEdit.d.ts
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PenEdit.d.ts.map
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/Percentage.d.ts
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/Percentage.d.ts.map
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PictureImage.d.ts
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PictureImage.d.ts.map
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PiggyBank.d.ts
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PiggyBank.d.ts.map
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PinLocation.d.ts
+13:23:02.486 Adding to zip archive: lib/Symbols/Icons/PinLocation.d.ts.map
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Placeholder.d.ts
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Placeholder.d.ts.map
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Planet.d.ts
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Planet.d.ts.map
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Plus.d.ts
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/Plus.d.ts.map
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/PlusCircle.d.ts
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/PlusCircle.d.ts.map
+13:23:02.487 Adding to zip archive: lib/Symbols/Icons/PlusCircleFill.d.ts
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/PlusCircleFill.d.ts.map
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/Printer.d.ts
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/Printer.d.ts.map
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/QrCode.d.ts
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/QrCode.d.ts.map
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/QrCodeScanner.d.ts
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/QrCodeScanner.d.ts.map
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/Question.d.ts
+13:23:02.488 Adding to zip archive: lib/Symbols/Icons/Question.d.ts.map
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Range.d.ts
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Range.d.ts.map
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Reddit.d.ts
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Reddit.d.ts.map
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Refresh.d.ts
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Refresh.d.ts.map
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/RefreshBack.d.ts
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/RefreshBack.d.ts.map
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Repair.d.ts
+13:23:02.489 Adding to zip archive: lib/Symbols/Icons/Repair.d.ts.map
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/Screens.d.ts
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/Screens.d.ts.map
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/Search.d.ts
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/Search.d.ts.map
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/ServerDatabaseFail.d.ts
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/ServerDatabaseFail.d.ts.map
+13:23:02.490 Adding to zip archive: lib/Symbols/Icons/Settings.d.ts
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/Settings.d.ts.map
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/SettingsAlt.d.ts
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/SettingsAlt.d.ts.map
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/SettingsAlt2.d.ts
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/SettingsAlt2.d.ts.map
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/Shapes.d.ts
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/Shapes.d.ts.map
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/Share.d.ts
+13:23:02.491 Adding to zip archive: lib/Symbols/Icons/Share.d.ts.map
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/Share2.d.ts
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/Share2.d.ts.map
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldCheck.d.ts
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldCheck.d.ts.map
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldCheckNotification.d.ts
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldCheckNotification.d.ts.map
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldLock.d.ts
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldLock.d.ts.map
+13:23:02.492 Adding to zip archive: lib/Symbols/Icons/ShieldMore.d.ts
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/ShieldMore.d.ts.map
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Signature.d.ts
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Signature.d.ts.map
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Slideshow.d.ts
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Slideshow.d.ts.map
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Snow.d.ts
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/Snow.d.ts.map
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/SoftRepair.d.ts
+13:23:02.493 Adding to zip archive: lib/Symbols/Icons/SoftRepair.d.ts.map
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/Spacerocket.d.ts
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/Spacerocket.d.ts.map
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SparksFill.d.ts
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SparksFill.d.ts.map
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SpeedFast.d.ts
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SpeedFast.d.ts.map
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SpeedLow.d.ts
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SpeedLow.d.ts.map
+13:23:02.494 Adding to zip archive: lib/Symbols/Icons/SpeedMedium.d.ts
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/SpeedMedium.d.ts.map
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/Spinner.d.ts
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/Spinner.d.ts.map
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/Star.d.ts
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/Star.d.ts.map
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/StarFill.d.ts
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/StarFill.d.ts.map
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/StarHalf.d.ts
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/StarHalf.d.ts.map
+13:23:02.495 Adding to zip archive: lib/Symbols/Icons/Stax.d.ts
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Stax.d.ts.map
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Sun.d.ts
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Sun.d.ts.map
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Support.d.ts
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Support.d.ts.map
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Switch.d.ts
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Switch.d.ts.map
+13:23:02.496 Adding to zip archive: lib/Symbols/Icons/Switch2.d.ts
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Switch2.d.ts.map
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Tablet.d.ts
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Tablet.d.ts.map
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Telegram.d.ts
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Telegram.d.ts.map
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Theme.d.ts
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/Theme.d.ts.map
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/ThemeFill.d.ts
+13:23:02.497 Adding to zip archive: lib/Symbols/Icons/ThemeFill.d.ts.map
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Threads.d.ts
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Threads.d.ts.map
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Tiktok.d.ts
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Tiktok.d.ts.map
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Tools.d.ts
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/Tools.d.ts.map
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/TransferHorizontal.d.ts
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/TransferHorizontal.d.ts.map
+13:23:02.498 Adding to zip archive: lib/Symbols/Icons/TransferVertical.d.ts
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/TransferVertical.d.ts.map
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Trash.d.ts
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Trash.d.ts.map
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Truck.d.ts
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Truck.d.ts.map
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Twitter.d.ts
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Twitter.d.ts.map
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Unlock.d.ts
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Unlock.d.ts.map
+13:23:02.499 Adding to zip archive: lib/Symbols/Icons/Usb.d.ts
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/Usb.d.ts.map
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/UsbC.d.ts
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/UsbC.d.ts.map
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/User.d.ts
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/User.d.ts.map
+13:23:02.500 Adding to zip archive: lib/Symbols/Icons/UserAdd.d.ts
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserAdd.d.ts.map
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserArrowRight.d.ts
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserArrowRight.d.ts.map
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserCheck.d.ts
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserCheck.d.ts.map
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserCircle.d.ts
+13:23:02.501 Adding to zip archive: lib/Symbols/Icons/UserCircle.d.ts.map
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserDelete.d.ts
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserDelete.d.ts.map
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserLock.d.ts
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserLock.d.ts.map
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserShield.d.ts
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/UserShield.d.ts.map
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/Wallet.d.ts
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/Wallet.d.ts.map
+13:23:02.502 Adding to zip archive: lib/Symbols/Icons/WalletInput.d.ts
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/WalletInput.d.ts.map
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/WalletSearch.d.ts
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/WalletSearch.d.ts.map
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/Warning.d.ts
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/Warning.d.ts.map
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/WarningFill.d.ts
+13:23:02.503 Adding to zip archive: lib/Symbols/Icons/WarningFill.d.ts.map
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/Windows.d.ts
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/Windows.d.ts.map
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/WirelessCharging.d.ts
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/WirelessCharging.d.ts.map
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/Youtube.d.ts
+13:23:02.504 Adding to zip archive: lib/Symbols/Icons/Youtube.d.ts.map
+13:23:02.504 Adding to zip archive: lib/Symbols/index.d.ts
+13:23:02.504 Adding to zip archive: lib/Symbols/index.d.ts.map
+13:23:02.504 Adding to zip archive: nunito-sans-bold-italic.woff2
+13:23:02.505 Adding to zip archive: nunito-sans-bold.woff2
+13:23:02.505 Adding to zip archive: nunito-sans-italic.woff2
+13:23:02.505 Adding to zip archive: nunito-sans-regular.woff2
+13:23:02.505 Adding to zip archive: project.json
+13:23:02.505 Adding to zip archive: sb-addons/chromatic-com-storybook-3/manager-bundle.js
+13:23:02.505 Adding to zip archive: sb-addons/chromatic-com-storybook-3/manager-bundle.js.LEGAL.txt
+13:23:02.505 Adding to zip archive: sb-addons/docs-2/manager-bundle.js
+13:23:02.505 Adding to zip archive: sb-addons/storybook-4/manager-bundle.js
+13:23:02.506 Adding to zip archive: sb-addons/storybook-core-server-presets-0/common-manager-bundle.js
+13:23:02.506 Adding to zip archive: sb-addons/themes-1/manager-bundle.js
+13:23:02.506 Adding to zip archive: sb-common-assets/favicon.svg
+13:23:02.506 Adding to zip archive: sb-common-assets/nunito-sans-bold-italic.woff2
+13:23:02.506 Adding to zip archive: sb-common-assets/nunito-sans-bold.woff2
+13:23:02.506 Adding to zip archive: sb-common-assets/nunito-sans-italic.woff2
+13:23:02.506 Adding to zip archive: sb-common-assets/nunito-sans-regular.woff2
+13:23:02.506 Adding to zip archive: sb-manager/globals-module-info.js
+13:23:02.506 Adding to zip archive: sb-manager/globals-runtime.js
+13:23:02.506 Adding to zip archive: sb-manager/globals.js
+13:23:02.507 Adding to zip archive: sb-manager/runtime.js
+13:23:02.507 Adding to zip archive: utils/icon-template.d.ts
+13:23:02.507 Adding to zip archive: utils/icon-template.d.ts.map
+13:23:02.507 Finalizing zip archive
+13:23:02.812 Compression reduced upload size by 67%
+13:23:02.812 Uploading /.chromatic/storybook.zip (2.33 MB)
+13:23:02.816     → [=                   ] 3%
+13:23:04.930 Uploaded /.chromatic/storybook.zip (2.33 MB)
+13:23:04.932 Publishing your built Storybook
+13:23:04.933     → Finalizing upload
+13:23:04.934 Waiting for 'zip-unpacked.txt' sentinel file to appear at https://chromatic-builds.s3.us-west-2.amazonaws.com/686d208a59f4b48546ccc520-lkdjkdmctn/.chromatic/zip-unpacked.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAJVVEQEOBEEPXSNNQ%2F20250709%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250709T102302Z&X-Amz-Expires=1980&X-Amz-Signature=010161799e1381ad88651de666f6f8c679a0920ac5d50b9012db7175a1302269&X-Amz-SignedHeaders=host&x-id=GetObject
+13:23:08.861 Sentinel file 'zip-unpacked.txt' OK.
+13:23:08.866 Publish complete in 8 seconds
+                 → Uploaded 523 files (2.33 MB)
+13:23:08.867 Verifying your Storybook
+13:23:08.867     → This may take a few minutes
+13:23:08.868     → [*                   ]
+13:23:09.865 Starting partial build
+13:23:09.865     → Snapshots will be limited to stories matching 'Components/Button/React'
+13:23:14.870 ✔ Storybook published
+             We found 15 components with 26 stories.
+             ℹ View your Storybook at https://686d208a59f4b48546ccc520-lkdjkdmctn.chromatic.com/
+13:23:14.872 Started build 10
+                 → View build details at https://www.chromatic.com/build?appId=686d208a59f4b48546ccc520&number=10
+13:23:14.873 Finalizing build
+13:23:14.873     → No tests run
+13:23:15.278 ✔ Build 10 passed!
+             No changes were found in this build.
+             ℹ View build details at https://www.chromatic.com/build?appId=686d208a59f4b48546ccc520&number=10
+13:23:15.280 Build 10 passed!
+                 → Tested 26 stories across 15 components; captured 0 snapshots in 0 seconds
+13:23:15.280 Tasks completed
+13:23:15.291 ℹ Wrote Chromatic diagnostics report to chromatic-diagnostics.json
