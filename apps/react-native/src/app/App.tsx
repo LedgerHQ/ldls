@@ -1,4 +1,3 @@
-import '../../global.css';
 import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
@@ -34,10 +33,9 @@ export const App = () => {
           <View style={styles.section}>
             <Text style={styles.textLg}>Hello there,</Text>
             <Text
-              style={[styles.textXL, styles.appTitleText]}
               testID="heading"
               role="heading"
-              className="text-2xl font-bold text-primary uppercase"
+              className="text-sm font-bold text-yellow-300 uppercase"
             >
               Welcome ReactNative 👋
             </Text>
