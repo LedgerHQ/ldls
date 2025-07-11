@@ -127,3 +127,7 @@ test-output
 !.nx/version-plans/
 !.nx/version-plans/**
 mise.toml
+
+**/chromatic.log
+**/chromatic-diagnostics.json
+**/build-storybook.log
