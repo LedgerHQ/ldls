@@ -1,6 +1,6 @@
 {
   "name": "@ldls/ui-react",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,6 +12,12 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./symbols": {
+      "development": "./src/lib/Symbols/index.ts",
+      "types": "./dist/lib/Symbols/index.d.ts",
+      "import": "./dist/lib/Symbols/index.js",
+      "default": "./dist/lib/Symbols/index.js"
     }
   },
   "files": [
