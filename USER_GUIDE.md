@@ -124,7 +124,7 @@ The design system uses a hierarchical token structure:
 #### With Tailwind Classes
 
 ```jsx
-<div className="bg-background rounded-lg p-16 text-base">
+<div className="rounded-lg bg-base p-16 text-base">
   <h2 className="text-accent mb-8 heading-3">Hello World</h2>
   <p className="body-1">This is using design tokens via Tailwind classes</p>
 </div>

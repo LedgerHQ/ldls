@@ -24,17 +24,18 @@ npm install @ldls/ui-react @ldls/design-core
 2. Configure Tailwind:
 
 ```typescript
-// tailwind.config.ts
-import { createConfig } from '@ldls/ui-react/tailwind';
+import type { Config } from 'tailwindcss';
 import { ledgerLivePreset } from '@ldls/design-core';
 
-export default createConfig({
+const config = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    './node_modules/@ldls/ui-react/**/*.{js,jsx,ts,tsx}'
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
-  presets: [ledgerLivePreset],
-});
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
 ```
 
 3. Use components:
@@ -115,5 +116,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.
 ---
 
 <p align="center">
-  Built with ❤️ by the Ledger Team
+  Built with ❤️ by the LDS Team.
 </p>
