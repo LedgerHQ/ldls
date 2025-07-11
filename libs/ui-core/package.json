@@ -17,9 +17,8 @@
   },
   "nx": {
     "tags": [
-      "scope:shared",
+      "scope:ui-shared",
       "type:ui"
     ]
-  },
-  "dependencies": {}
+  }
 }

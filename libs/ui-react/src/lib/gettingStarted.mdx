@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import genesisLogo from '../../.storybook/genesis.svg';
+
+<Meta title="Getting Started/Introduction" />
+
+# 👋 Welcome to LDLS
+
+The Ledger Design Language System (LDLS) is a comprehensive design system that provides a unified set of principles, components, and tools for building consistent Ledger applications.
+
+## 🎯 Core Principles
+
+- **Consistency**: Unified design language across all Ledger products
+- **Efficiency**: Focus on what matters - use proven solutions for common patterns
+- **Speed**: Fast development with ready-to-use components and utilities
+- **Flexibility**: Adaptable components that work across different contexts
+- **Accessibility**: Built with accessibility in mind from the ground up
+
+## 📚 Documentation Structure
+
+### 1. Foundations
+
+- [Design Tokens](/docs/foundations-docs--docs) - Our design tokens
+- [Colors](/docs/foundations-colors--docs) - Our semantic color system
+- [Spacing](/docs/foundations-dimensions-spacing--docs) - Layout and spacing system
+- [Size](/docs/foundations-dimensions-size--docs) - Size tokens
+- [Border Radius](/docs/foundations-border-radius--docs) - Border radius tokens
+- [Border width](/docs/foundations-border-width--docs) - Border width tokens
+- [Typography](/story/foundations-styles-typography--typography) - Text styles and scales
+- [Shadows](/story/foundations-styles-shadows--shadows) - Elevation and depth
+- [Icons](/docs/symbols-interface-icons-docs--docs) - Comprehensive icon library
+
+### 2. Components
+
+Our components are built with:
+
+- React + TypeScript
+- Tailwind CSS for styling
+- Storybook for documentation
+- Comprehensive test coverage
+
+### 3. Development Setup
+
+#### Required Tools
+
+- Node.js 18+
+- npm or yarn
+- React 18+
+
+**Quick Start**
+
+1 . Install the package:
+
+```bash
+npm install @ldls/ui-react
+```
+
+2 . Configure Tailwind:
+See our [Tailwind Setup Guide](/docs/tailwind-setup--docs)
+
+3 . Start using components:
+
+```tsx
+import { Button } from '@ldls/ui-react';
+
+function App() {
+  return (
+    <Button appearance="base">
+      Get Started
+    </Button>
+  );
+}
+```
+
+## 🔧 Tools & Resources
+
+### Design Resources
+
+- [Component Library](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?m=dev) - Design tokens, components, and patterns
+- [Symbols Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=0-1&p=f&m=dev) - Comprehensive icon library
+
+### Developer Tools
+
+- [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) - User guide for the UI Kit
+- [GitHub Repository](https://github.com/LedgerHQ/ldls) - Source code and documentation
+
+## 🤝 Contributing
+
+We welcome contributions! Please check our:
+
+- [Contribution Guidelines](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md)

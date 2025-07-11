@@ -3,13 +3,13 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ui-react/src",
   "projectType": "library",
-  "tags": ["scope:shared", "type:ui"],
+  "tags": ["scope:react", "type:ui"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/ui-react"
+        "outputPath": "libs/ui-react/dist"
       }
     }
   }

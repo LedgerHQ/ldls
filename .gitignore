@@ -4,9 +4,14 @@
 dist
 tmp
 out-tsc
+*.tsbuildinfo
 
 # dependencies
 node_modules
+
+# Environment variables
+.env
+.env.*
 
 # IDEs and editors
 /.idea

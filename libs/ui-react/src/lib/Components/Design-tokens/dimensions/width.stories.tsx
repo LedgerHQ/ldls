@@ -1,0 +1,58 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { SectionHeader } from '../shared';
+
+const meta: Meta = {
+  title: 'Foundations/Dimensions/Width',
+};
+
+export default meta;
+type Story = StoryObj;
+
+const WidthShowcase = () => (
+  <div className="mb-32">
+    <div className="space-y-16">
+      {[
+        { name: '208px', class: 'w-208', token: 'w-208' },
+        { name: '176px', class: 'w-176', token: 'w-176' },
+        { name: '144px', class: 'w-144', token: 'w-144' },
+        { name: '128px', class: 'w-128', token: 'w-128' },
+        { name: '112px', class: 'w-112', token: 'w-112' },
+        { name: '96px', class: 'w-96', token: 'w-96' },
+        { name: '80px', class: 'w-80', token: 'w-80' },
+        { name: '64px', class: 'w-64', token: 'w-64' },
+        { name: '48px', class: 'w-48', token: 'w-48' },
+        { name: '40px', class: 'w-40', token: 'w-40' },
+        { name: '32px', class: 'w-32', token: 'w-32' },
+        { name: '24px', class: 'w-24', token: 'w-24' },
+        { name: '20px', class: 'w-20', token: 'w-20' },
+        { name: '16px', class: 'w-16', token: 'w-16' },
+        { name: '12px', class: 'w-12', token: 'w-12' },
+        { name: '8px', class: 'w-8', token: 'w-8' },
+        { name: '6px', class: 'w-6', token: 'w-6' },
+        { name: '4px', class: 'w-4', token: 'w-4' },
+        { name: '2px', class: 'w-2', token: 'p-2' },
+        { name: '1px', class: 'w-1', token: 'w-1' },
+      ].map(({ name, class: widthClass, token }) => (
+        <div key={name} className="flex items-center gap-8">
+          <div>
+            <div className="w-48 text-base body-2">{name}</div>
+            <div className="text-muted body-4">{token}</div>
+          </div>
+          <div className={`${widthClass} h-24 rounded-xs bg-accent`}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+export const Width: Story = {
+  render: () => (
+    <div className="p-24">
+      <SectionHeader
+        title="Width Tokens"
+        description="Width tokens use the size token values to ensure consistent horizontal dimensions across the design system. These tokens follow the size-* pattern and can be applied using the w-* utility class."
+      />
+      <WidthShowcase />
+    </div>
+  ),
+};
