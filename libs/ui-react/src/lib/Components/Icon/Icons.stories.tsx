@@ -129,9 +129,13 @@ export const Gallery: StoryObj = {
   render: () => (
     <div className="p-8">
       <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8">
-        {Object.entries(Icons).map(([name]) => (
-          <IconCard key={name} name={name} />
-        ))}
+        {/**
+         * TODO: We're currently rendering the Spinner icon first because it's not rendered correctly in the gallery for some reason.
+         */}
+        <IconCard name="Spinner" />
+        {Object.entries(Icons).map(
+          ([name]) => name !== 'Spinner' && <IconCard key={name} name={name} />,
+        )}
       </div>
     </div>
   ),
