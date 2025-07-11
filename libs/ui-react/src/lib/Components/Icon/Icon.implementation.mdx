@@ -36,7 +36,7 @@ export default config;
 Import and use specific icons from the symbols library:
 
 ```tsx
-import { ArrowUp, Settings, Plus } from '@ldls/ui-react';
+import { ArrowUp, Settings, Plus } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -54,7 +54,7 @@ function MyComponent() {
 Icons support predefined size variants that ensure consistent visual hierarchy:
 
 ```tsx
-import { ArrowUp } from '@ldls/ui-react';
+import { ArrowUp } from '@ldls/ui-react/symbols';
 
 function IconSizes() {
   return (
@@ -75,7 +75,8 @@ function IconSizes() {
 The Button component supports icons with automatic size adjustment based on the button size:
 
 ```tsx
-import { Button, ArrowRight } from '@ldls/ui-react';
+import { Button } from '@ldls/ui-react';
+import { ArrowRight } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -89,7 +90,8 @@ function MyComponent() {
 The Button component can accept an icon and no label:
 
 ```tsx
-import { Settings } from '@ldls/ui-react';
+import { Button } from '@ldls/ui-react';
+import { Settings } from '@ldls/ui-react/symbols';
 <Button icon={Settings} />
 ```
 
@@ -98,7 +100,7 @@ import { Settings } from '@ldls/ui-react';
 Always provide proper accessibility attributes for interactive icons:
 
 ```tsx
-import { Information } from '@ldls/ui-react';
+import { Information } from '@ldls/ui-react/symbols';
 
 function AccessibleIcon() {
   return (
@@ -112,7 +114,7 @@ function AccessibleIcon() {
 Icons inherit the current text color and can be styled with semantic color utilities:
 
 ```tsx
-import { CheckmarkCircle, DeleteCircle, Clock } from '@ldls/ui-react';
+import { CheckmarkCircle, DeleteCircle, Clock } from '@ldls/ui-react/symbols';
 
 function SemanticIcons() {
   return (
@@ -133,14 +135,14 @@ function SemanticIcons() {
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { ArrowUp, Settings, Plus } from '@ldls/ui-react';
+import { ArrowUp, Settings, Plus } from '@ldls/ui-react/symbols';
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't import all icons (impacts bundle size)
-import * as Icons from '@ldls/ui-react';
+import * as Icons from '@ldls/ui-react/symbols';
 
 // Don't use dynamic icon selection
 const iconName = 'ArrowUp';
