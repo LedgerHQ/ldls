@@ -1,7 +1,6 @@
 {
   "name": "@ldls/design-core",
   "version": "0.0.2",
-  "private": true,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
