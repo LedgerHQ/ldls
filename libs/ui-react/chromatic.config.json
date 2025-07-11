@@ -3,6 +3,5 @@
   "projectId": "Project:686d208a59f4b48546ccc520",
   "storybookBaseDir": "libs/ui-react",
   "zip": true,
-  "storybookBuildDir": "./storybook-static",
   "outputDir": "./storybook-static"
 }

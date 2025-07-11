@@ -6,7 +6,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build-storybook": "npx nx build:storybook ui-react --skip-nx-cache"
+    "build-storybook": "npx nx build:storybook ui-react --skip-nx-cache --stats-json"
   },
   "exports": {
     "./package.json": "./package.json",
