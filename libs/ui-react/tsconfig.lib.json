@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
+    "emitDeclarationOnly": false,
     "types": [
       "node",
       "@nx/react/typings/cssmodule.d.ts",

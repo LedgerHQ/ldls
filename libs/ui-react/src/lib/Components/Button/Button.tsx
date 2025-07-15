@@ -17,7 +17,7 @@ const buttonVariants = cva(
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
           'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
-        red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
+        red: 'hover:bg-error-hover active:bg-error-pressed bg-error text-error',
       },
       size: {
         xs: 'px-12 py-8 body-2-semi-bold',
@@ -77,7 +77,7 @@ export interface ButtonProps
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -148,5 +148,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 Button.displayName = 'Button';
-
-export default Button;
