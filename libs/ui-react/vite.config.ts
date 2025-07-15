@@ -34,8 +34,11 @@ export default defineConfig(() => ({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: {
-        index: 'src/index.ts',
-        'lib/Symbols/index': 'src/lib/Symbols/index.ts',
+        index: path.resolve(__dirname, 'src/index.ts'),
+        'lib/Symbols/index': path.resolve(
+          __dirname,
+          'src/lib/Symbols/index.ts',
+        ),
       },
       name: '@ldls/ui-react',
       fileName: (_format) => 'index.js',
@@ -49,7 +52,7 @@ export default defineConfig(() => ({
       preserveEntrySignatures: 'strict' as const,
       output: {
         preserveModules: true,
-        preserveModulesRoot: 'src',
+        preserveModulesRoot: path.resolve(__dirname, 'src'),
         entryFileNames: '[name].js',
       },
     },
