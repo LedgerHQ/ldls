@@ -8,13 +8,11 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./symbols": {
-      "development": "./src/lib/Symbols/index.ts",
       "types": "./dist/lib/Symbols/index.d.ts",
       "import": "./dist/lib/Symbols/index.js",
       "default": "./dist/lib/Symbols/index.js"
