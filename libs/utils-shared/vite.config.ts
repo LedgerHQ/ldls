@@ -1,13 +1,19 @@
 import { defineConfig } from 'vite';
+import { join } from 'path';
+import type { LibraryFormats } from 'vite';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/utils-shared',
   plugins: [],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  build: {
+    lib: {
+      entry: join(__dirname, 'src/index.ts'),
+      name: 'utils-shared',
+      fileName: 'index',
+      formats: ['es' as LibraryFormats],
+    },
+  },
   test: {
     watch: false,
     globals: true,
