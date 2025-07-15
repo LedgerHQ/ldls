@@ -38,7 +38,7 @@ export default defineConfig(() => ({
         'lib/Symbols/index': 'src/lib/Symbols/index.ts',
       },
       name: '@ldls/ui-react',
-      fileName: (format) => 'index.js',
+      fileName: (_format) => 'index.js',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
