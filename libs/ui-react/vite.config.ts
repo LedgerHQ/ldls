@@ -33,9 +33,12 @@ export default defineConfig(() => ({
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.ts',
+      entry: {
+        index: 'src/index.ts',
+        'lib/Symbols/index': 'src/lib/Symbols/index.ts',
+      },
       name: '@ldls/ui-react',
-      fileName: 'index',
+      fileName: (_format) => 'index.js',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
@@ -43,6 +46,12 @@ export default defineConfig(() => ({
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      preserveEntrySignatures: 'strict' as const,
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
+      },
     },
   },
   test: {

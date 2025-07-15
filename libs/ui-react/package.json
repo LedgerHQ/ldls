@@ -18,7 +18,8 @@
       "types": "./dist/lib/Symbols/index.d.ts",
       "import": "./dist/lib/Symbols/index.js",
       "default": "./dist/lib/Symbols/index.js"
-    }
+    },
+    "./*": "./dist/lib/Components/*/index.js"
   },
   "files": [
     "dist",

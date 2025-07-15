@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
-import { Spinner } from '../../Symbols';
+import { Spinner } from '../../Symbols/Icons/Spinner';
 import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = cva(
@@ -77,7 +77,7 @@ export interface ButtonProps
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -148,5 +148,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 Button.displayName = 'Button';
-
-export default Button;

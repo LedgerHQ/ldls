@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Button from './Button';
+import { Button } from './Button';
 import { Settings } from '../../Symbols';
 
 describe('Button Component', () => {
