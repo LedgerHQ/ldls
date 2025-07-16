@@ -16,7 +16,7 @@ export default defineConfig(() => ({
     }),
   ],
   resolve: {
-    preserveSymlinks: true,
+    preserveSymlinks: false,
   },
   // Uncomment this if you are using workers.
   // worker: {
@@ -48,7 +48,14 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'class-variance-authority',
+        'tailwind-merge',
+        'clsx',
+      ],
       preserveEntrySignatures: 'strict' as const,
       output: {
         preserveModules: true,
