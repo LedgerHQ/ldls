@@ -11,8 +11,15 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    }
+    },
+    "./symbols/*": "./symbols/icons/*"
   },
+  "files": [
+    "dist",
+    "symbols",
+    "!**/*.tsbuildinfo",
+    "!dist/figma/*"
+  ],
   "dependencies": {
     "tslib": "^2.3.0"
   }
