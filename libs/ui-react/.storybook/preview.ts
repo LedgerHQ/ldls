@@ -47,7 +47,7 @@ const preview: Preview = {
           'Getting Started',
           ['Welcome'],
           'Tailwind',
-          ['Introduction', 'Setup', 'Configuration'],
+          ['Introduction', 'Setup guide', 'Configuration'],
           'Foundations',
           [
             'Docs',

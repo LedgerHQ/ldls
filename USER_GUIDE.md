@@ -45,7 +45,7 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 > The design system packages are published to the public npm registry. To install the alpha version:
 >
 > ```bash
-> npm install @ldls/ui-react@alpha @ldls/design-core@alpha
+> npm install @ldls/ui-react @ldls/design-core
 > ```
 >
 > ### Feedback
@@ -58,15 +58,31 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 
 > **Note**: The alpha version is currently only available for React applications. React Native support will be added in future releases.
 
-To install the LDLS Design System in your React project:
+Before installing the LDLS Design System, ensure you:
+
+1. Have VPN access to Ledger's network
+2. Create a `.npmrc` file in your project root:
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then install the packages:
 
 ```bash
 # Using npm
-npm install @ldls/ui-react @ldls/design-core
+npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
 
 # Using yarn
-yarn add @ldls/ui-react @ldls/design-core
+yarn add @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
 ```
+
+The LDLS Design System requires the following peer dependencies:
+
+- `clsx`: For conditional class name composition
+- `tailwind-merge`: For merging Tailwind CSS classes without conflicts
+- `class-variance-authority`: For type-safe component variants
 
 ### Configuration
 

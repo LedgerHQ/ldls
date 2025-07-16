@@ -42,16 +42,26 @@ The Ledger Design Language System (LDLS) is a comprehensive design system that p
 
 ## 🚀 Quick Start
 
-Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.
+1 . Configure Tailwind:
+See our [Tailwind Setup Guide](/docs/tailwind-setup-guide--docs) and [Tailwind Configuration](/docs/tailwind-configuration--docs) for more information.
 
-1 . Install the package:
+2 . Install `ui-react` package:
+
+Before installing the UI kit, ensure you:
+
+- Have VPN access to Ledger's network
+- Create a `.npmrc` file in your project root:
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+And then you can safely install the package:
 
 ```bash
 npm install @ldls/ui-react
 ```
-
-2 . Configure Tailwind:
-See our [Tailwind Setup Guide](/docs/tailwind-setup--docs) and [Tailwind Configuration](/docs/tailwind-configuration--docs) for more information.
 
 3 . Start using components:
 
@@ -66,6 +76,8 @@ function App() {
   );
 }
 ```
+
+**Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
 
 ### 4. Design Resources
 

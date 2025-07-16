@@ -6,10 +6,21 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you have the required dependencies installed:
+First, ensure you have VPN access and create a `.npmrc` file in your project root:
 
 ```bash
-npm install @ldls/ui-react
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ldls/ui-react @ldls/design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
 
 ### Tailwind Configuration
@@ -23,7 +34,7 @@ import { ledgerLivePreset } from '@ldls/design-core';
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
