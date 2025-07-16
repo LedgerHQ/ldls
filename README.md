@@ -15,13 +15,21 @@ LDLS is a comprehensive design system that provides consistent UI components for
 
 ### Quick Start
 
-1. Install the packages:
+1. Ensure you have VPN access and create a `.npmrc` file in your project root:
 
 ```bash
-npm install @ldls/ui-react @ldls/design-core
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
 ```
 
-2. Configure Tailwind:
+2. Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit and required peer dependencies
+npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
+```
+
+3. Configure Tailwind:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -30,7 +38,7 @@ import { ledgerLivePreset } from '@ldls/design-core';
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -38,7 +46,7 @@ const config = {
 export default config;
 ```
 
-3. Use components:
+4. Use components:
 
 ```tsx
 import { Button } from '@ldls/ui-react';

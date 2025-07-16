@@ -32,21 +32,13 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 - **Component Variants**: [class-variance-authority](https://cva.style/docs)
 - **Utility Libraries**: clsx, tailwind-merge, lodash-es
 
-> [!WARNING] Alpha Release Information
+> Alpha Release Information
 > The LDLS Design System is currently in alpha, with the following limitations:
 >
 > - **React Support Only**: The alpha version is only available for React applications. React Native support will be added in future releases.
 > - **Limited Component Set**: The initial release includes a small set of core components. More will be added in future releases.
 > - **API Changes**: Component APIs may change between alpha and stable releases based on feedback.
 > - **Documentation**: Documentation is still being developed and will be expanded in future releases.
->
-> ### Installation for Alpha Testers
->
-> The design system packages are published to the public npm registry. To install the alpha version:
->
-> ```bash
-> npm install @ldls/ui-react@alpha @ldls/design-core@alpha
-> ```
 >
 > ### Feedback
 >
@@ -58,15 +50,31 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 
 > **Note**: The alpha version is currently only available for React applications. React Native support will be added in future releases.
 
-To install the LDLS Design System in your React project:
+Before installing the LDLS Design System, ensure you:
+
+1. Have VPN access to Ledger's network
+2. Create a `.npmrc` file in your project root:
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then install the packages:
 
 ```bash
 # Using npm
-npm install @ldls/ui-react @ldls/design-core
+npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
 
 # Using yarn
-yarn add @ldls/ui-react @ldls/design-core
+yarn add @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
 ```
+
+The LDLS Design System requires the following peer dependencies:
+
+- `clsx`: For conditional class name composition
+- `tailwind-merge`: For merging Tailwind CSS classes without conflicts
+- `class-variance-authority`: For type-safe component variants
 
 ### Configuration
 
