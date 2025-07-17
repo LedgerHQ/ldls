@@ -52,8 +52,14 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 
 Before installing the LDLS Design System, ensure you:
 
-1. Have VPN access to Ledger's network
-2. Create a `.npmrc` file in your project root:
+1. Connect to the Ledger's VPN
+2. Login to npm
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+3. Create a `.npmrc` file in your project root:
 
 ```bash
 # .npmrc

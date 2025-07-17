@@ -15,7 +15,11 @@ Before installing the packages, make sure to configure your `.npmrc` file with t
 @ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
 ```
 
-**Note: You'll need to be connected to the Ledger VPN to access the registry.**
+**Note: You'll need to be connected to the Ledger VPN and logged in npm to access the registry.**
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
 
 Then you can install `design-core` package:
 

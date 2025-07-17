@@ -15,7 +15,11 @@ LDLS is a comprehensive design system that provides consistent UI components for
 
 ### Quick Start
 
-1. Ensure you have VPN access and create a `.npmrc` file in your project root:
+1. Ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
 
 ```bash
 # .npmrc
