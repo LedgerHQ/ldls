@@ -31,5 +31,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "nx": {
+    "tags": [
+      "scope:react-native"
+    ]
   }
 }

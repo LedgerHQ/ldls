@@ -10,6 +10,7 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
+import { Button } from '@ldls/ui-rnative';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -35,7 +36,7 @@ export const App = () => {
             <Text
               testID="heading"
               role="heading"
-              className="text-sm font-bold text-yellow-300 uppercase"
+              className="text-sm font-bold bg-accent uppercase text-warning"
             >
               Welcome ReactNative 👋
             </Text>

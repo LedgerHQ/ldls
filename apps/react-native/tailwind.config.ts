@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-// import { allBrandsPreset } from '@ldls/design-tokens';
+import { ledgerLivePreset } from '@ldls/design-core';
 
 const config = {
   content: [
@@ -7,14 +7,7 @@ const config = {
     './.storybook/**/*.{js,jsx,ts,tsx}',
     './src/**/*.stories.{js,jsx,ts,tsx}',
   ],
-  presets: [require('nativewind/preset')],
-  theme: {
-    extend: {
-      colors: {
-        primary: 'red',
-      },
-    },
-  },
+  presets: [require('nativewind/preset'), ledgerLivePreset],
 } satisfies Config;
 
 export default config;
