@@ -8,6 +8,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 This UI kit is built on top of a custom Tailwind CSS preset that provides consistent styling across the Ledger Design System. Before you can use the components, you'll need to set up Tailwind CSS in your project.
 
+> **Note:** This guide assumes you already have Tailwind CSS v3.x installed in your project. Our Design System is built and tested with Tailwind CSS v3. If you haven't installed Tailwind CSS yet, please follow the [official Tailwind CSS installation guide](https://v3.tailwindcss.com/docs/installation) first. This documentation focuses on integrating our Design System with your existing Tailwind setup.
+
 Before installing the packages, make sure to configure your `.npmrc` file with the Ledger registry:
 
 ```bash
@@ -21,10 +23,11 @@ Before installing the packages, make sure to configure your `.npmrc` file with t
 npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
 ```
 
-Then you can install `design-core` package:
+Then you can install `design-core` and `ui-react` packages:
 
 ```bash
 npm install @ldls/design-core
+npm install @ldls/ui-react
 ```
 
 ## Configuration
@@ -172,4 +175,4 @@ If you encounter any issues with the setup:
 
 ## Next Steps
 
-Once you have everything configured, check out our component documentation for usage examples and best practices.
+Once you have everything configured, check out our [Button component](?path=/docs/components-button-implementation--docs) documentation for usage examples and best practices on how to use it.
