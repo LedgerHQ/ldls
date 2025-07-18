@@ -1,7 +1,6 @@
 {
   "name": "@ldls/design-core",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.8",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -9,15 +8,19 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    }
+    },
+    "./symbols/*": "./symbols/icons/*"
   },
+  "files": [
+    "dist",
+    "symbols",
+    "!**/*.tsbuildinfo",
+    "!dist/figma/*"
+  ],
   "dependencies": {
-    "@figma/rest-api-spec": "^0.28.0",
-    "style-dictionary": "^4.3.3",
     "tslib": "^2.3.0"
   }
 }

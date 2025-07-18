@@ -16,7 +16,7 @@ export default defineConfig(() => ({
     }),
   ],
   resolve: {
-    preserveSymlinks: true,
+    preserveSymlinks: false,
   },
   // Uncomment this if you are using workers.
   // worker: {
@@ -33,16 +33,35 @@ export default defineConfig(() => ({
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.ts',
+      entry: {
+        index: path.resolve(__dirname, 'src/index.ts'),
+        'lib/Symbols/index': path.resolve(
+          __dirname,
+          'src/lib/Symbols/index.ts',
+        ),
+      },
       name: '@ldls/ui-react',
-      fileName: 'index',
+      fileName: (_format) => 'index.js',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'class-variance-authority',
+        'tailwind-merge',
+        'clsx',
+      ],
+      preserveEntrySignatures: 'strict' as const,
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: path.resolve(__dirname, 'src'),
+        entryFileNames: '[name].js',
+      },
     },
   },
   test: {

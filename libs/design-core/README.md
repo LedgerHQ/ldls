@@ -18,14 +18,14 @@ This library provides design tokens in both JavaScript and CSS formats, generate
 
 ```js
 // Import tailwind preset - works in both React and React Native
-import { ledgerLivePreset, websitesPreset, enterprisePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ldls/design-core';
 
 /* Example */
 
 const config = {
   content: [
   "./src/**/*.{js,ts,jsx,tsx}", // App's own content (e.g., Ledger Live's specific screens/components)
-  "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Path to the installed Ledger UI Kit components
+  "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Path to the installed Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;

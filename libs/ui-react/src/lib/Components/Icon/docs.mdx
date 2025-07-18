@@ -37,9 +37,18 @@ The thickness of each icon is automatically managed by our token system when you
 Here's a preview of all the icons available in our design system. To use an icon, just reference its name.
 
 <IconGallery>
-  {Object.entries(Icons).map(([name, IconComponent]) => (
-    <IconItem key={name} name={name}>
-      <IconComponent size={24} />
-    </IconItem>
-  ))}
+  {/**
+   * TODO: We're currently rendering the Spinner icon first because it's not rendered correctly in the gallery for some reason.
+   */}
+  <IconItem name="Spinner">
+    <Icons.Spinner size={24} />
+  </IconItem>
+  {Object.entries(Icons).map(
+    ([name, IconComponent]) =>
+      name !== 'Spinner' && (
+        <IconItem key={name} name={name}>
+          <IconComponent size={24} />
+        </IconItem>
+      ),
+  )}
 </IconGallery>

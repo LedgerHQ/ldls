@@ -1,13 +1,28 @@
 import { defineConfig } from 'vite';
+import { join } from 'path';
+import dts from 'vite-plugin-dts';
+import type { LibraryFormats } from 'vite';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/utils-shared',
-  plugins: [],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  plugins: [
+    dts({
+      entryRoot: 'src',
+      tsconfigPath: join(__dirname, 'tsconfig.lib.json'),
+    }),
+  ],
+  build: {
+    lib: {
+      entry: join(__dirname, 'src/index.ts'),
+      name: 'utils-shared',
+      fileName: 'index',
+      formats: ['es' as LibraryFormats],
+    },
+    rollupOptions: {
+      external: ['clsx', 'tailwind-merge'],
+    },
+  },
   test: {
     watch: false,
     globals: true,

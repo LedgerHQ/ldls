@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Tailwind/Setup" />
+<Meta title="Tailwind/Setup guide" />
 
 # Tailwind CSS Setup
 
@@ -8,18 +8,27 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 This UI kit is built on top of a custom Tailwind CSS preset that provides consistent styling across the Ledger Design System. Before you can use the components, you'll need to set up Tailwind CSS in your project.
 
-### Required Dependencies
+> **Note:** This guide assumes you already have Tailwind CSS v3.x installed in your project. Our Design System is built and tested with Tailwind CSS v3. If you haven't installed Tailwind CSS yet, please follow the [official Tailwind CSS installation guide](https://v3.tailwindcss.com/docs/installation) first. This documentation focuses on integrating our Design System with your existing Tailwind setup.
 
-The following package is required as a peer dependency:
+Before installing the packages, make sure to configure your `.npmrc` file with the Ledger registry:
 
-```json
-{
-  "tailwindcss": "^3.4.0",
-  "react": "^18.3.1"
-}
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
 ```
 
-Install tailwindcss and react using your package manager.
+**Note: You'll need to be connected to the Ledger VPN and logged in npm to access the registry.**
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then you can install `design-core` and `ui-react` packages:
+
+```bash
+npm install @ldls/design-core
+npm install @ldls/ui-react
+```
 
 ## Configuration
 
@@ -36,7 +45,7 @@ import { ledgerLivePreset } from '@ldls/design-core';
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -46,15 +55,25 @@ export default config;
 
 ## Developer Experience
 
-### VSCode Extensions
+### VSCode Extensions and Setup
 
-For the best development experience, we recommend installing the following VSCode extensions:
+For the best development experience, we recommend the following setup:
 
 1. **Tailwind CSS IntelliSense** ([bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss))
    - Provides autocomplete for Tailwind classes
    - Shows class definitions on hover
    - Syntax highlighting for Tailwind classes
    - Linting for class order and conflicts
+   - Add to your VSCode settings:
+     ```json
+     {
+       "editor.defaultFormatter": "esbenp.prettier-vscode",
+       "tailwindCSS.classFunctions": ["cva", "cn"],
+       "tailwindCSS.experimental.classRegex": [
+         ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+       ]
+     }
+     ```
 
 2. **Prettier Plugin Tailwind** ([prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss))
    - Automatically sorts Tailwind classes in a consistent order
@@ -65,9 +84,9 @@ For the best development experience, we recommend installing the following VSCod
 
 ### Utility Functions
 
-We recommend creating a utility function to help you work with Tailwind classes. Here's how to create a powerful class names utility that handles both conditional classes and Tailwind class conflicts:
+We recommend creating utility functions to help you work with Tailwind classes. Here's how to create powerful utilities that handle conditional classes, Tailwind class conflicts, and type-safe variants:
 
-#### Creating a Class Names Utility
+**Creating Class Names Utility**
 
 First, install the required packages:
 
@@ -79,7 +98,7 @@ yarn add clsx tailwind-merge
 pnpm add clsx tailwind-merge
 ```
 
-Then create a utility file (e.g., `utils/cn.ts`):
+Then create your class names utility file (e.g., `utils/cn.ts`):
 
 ```typescript
 import { ClassValue, clsx } from 'clsx';
@@ -95,7 +114,7 @@ This utility combines the power of two popular libraries:
 - `clsx`: Handles conditional class names
 - `tailwind-merge`: Intelligently handles Tailwind CSS class conflicts
 
-Example usage:
+Example usage of cn utility:
 
 ```typescript
 import { cn } from '../utils/cn';
@@ -126,32 +145,34 @@ import { cn } from '../utils/cn';
 />
 ```
 
-### IntelliSense Setup
+**Creating Component Variants Utility**
 
-To get the best autocomplete experience, add this to your VSCode settings:
+For type-safe component variants, we use class-variance-authority. First, install the package:
 
-```json
-{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "tailwindCSS.classFunctions": ["cva", "cn"]
-}
+```bash
+npm install class-variance-authority
+# or
+yarn add class-variance-authority
+# or
+pnpm add class-variance-authority
 ```
 
-This enables:
+`class-variance-authority` provides:
 
-- String-based class suggestions
-- Autocomplete in template literals
-- Autocomplete in `cn()` function calls
+- Simple way to define component variants
+- Type-safe variant options
+- Default values for variants
+- Easy composition with other classes
 
 ## Support
 
 If you encounter any issues with the setup:
 
-1. Check that all dependencies are correctly installed
-2. Verify your configuration matches the examples above
-3. Ensure your IDE extensions are properly configured
-4. Reach out to our Design System team if issues persist
+- Check that all dependencies are correctly installed
+- Verify your configuration matches the examples above
+- Ensure your IDE extensions are properly configured
+- Reach out to our Design System team if issues persist
 
 ## Next Steps
 
-Once you have everything configured, check out our component documentation for usage examples and best practices.
+Once you have everything configured, check out our [Button component](?path=/docs/components-button-implementation--docs) documentation for usage examples and best practices on how to use it.

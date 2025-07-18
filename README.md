@@ -1,142 +1,132 @@
-# LDLS Design System
+# Ledger Design System [Genesis]
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+<h3 align="center">A cross-platform design system for React and React Native applications</h3>
 
-A cross-platform design system built with Nx, supporting both React and React Native applications.
+<p align="center">
+  <a href="https://your-storybook-url.com" target="_blank">📚 View Storybook</a> |
+  <a href="https://your-changelog-url.com">📋 Changelog</a>
+</p>
 
-## Library Structure
+---
 
-- `ui-core`: Shared utilities and types used across platforms.
-- `ui-react`: React-specific components and patterns.
-- `ui-rnative`: React Native-specific components and patterns.
+## 👩‍💻 Using LDLS in Your Project
 
-## Installing Dependencies
+LDLS is a comprehensive design system that provides consistent UI components for both web and mobile applications.
+
+### Quick Start
+
+1. Ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+2. Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit and required peer dependencies
+npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
+```
+
+3. Configure Tailwind:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ldls/design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+4. Use components:
+
+```tsx
+import { Button } from '@ldls/ui-react';
+
+function App() {
+  return <Button appearance="accent">Get Started</Button>;
+}
+```
+
+### Learn More
+
+- [📖 Full User Guide](./USER_GUIDE.md) - Comprehensive guide for using LDLS
+- [🎨 Design Guidelines](./USER_GUIDE.md#design-tokens) - Learn about our design tokens and principles
+- [🧩 Component Library](https://your-storybook-url.com) - Explore available components
+- [⚙️ Configuration Guide](./USER_GUIDE.md#configuration) - Advanced configuration options
+
+---
+
+## 🛠 Contributing to LDLS
+
+LDLS is built with Nx, supporting both React and React Native development. Here's how to get started with development:
+
+### Setup Development Environment
+
+1. Clone and install dependencies:
 
 ```bash
 npm install --legacy-peer-deps
 ```
 
-## Development
-
-### Running the Libraries
+2. Start development environment:
 
 ```bash
-# Start React components in Storybook
+# Start React Storybook
 npx nx run @ldls/ui-react:serve:storybook
 
-# Build React components
-npx nx run @ldls/ui-react:build
-
-# Build React Native components
-npx nx run @ldls/ui-rnative:build
-
-# Build shared core library
-npx nx run @ldls/ui-core:build
+# Build all libraries
+npx nx run-many --target=build --all
 ```
 
-### Writing Component Documentation
+### Project Structure
 
-Components are documented using Storybook stories. Create a `.stories.tsx` file next to your component:
-
-```typescript
-import type { Meta, StoryObj } from '@storybook/react';
-import { YourComponent } from './YourComponent';
-
-const meta: Meta<typeof YourComponent> = {
-  component: YourComponent,
-  title: 'Components/YourComponent',
-  tags: ['autodocs'], // Enables automatic documentation
-};
-
-export default meta;
-type Story = StoryObj<typeof YourComponent>;
-
-// Basic usage example
-export const Primary: Story = {
-  args: {
-    // Component props
-  },
-};
+```
+ldls/
+├── libs/
+│   ├── ui-core/       # Shared utilities and types
+│   ├── ui-react/      # React components
+│   ├── ui-rnative/    # React Native components
+│   ├── design-core/   # Design tokens and themes
+│   └── utils-shared/  # Shared utilities
+└── apps/
+    └── ldls-react/    # Demo React application
 ```
 
-### Writing Interaction Tests
+### Development Workflow
 
-Add interaction tests in your stories using the `play` function:
+1. Create a new branch from main
+2. Make your changes
+3. Add tests and stories
+4. Submit a pull request
 
-```typescript
-export const WithInteraction: Story = {
-  args: {
-    // Component props
-  },
-  play: async ({ canvasElement, step }) => {
-    // Test steps are automatically documented
-    await step('Click the button', async () => {
-      const button = canvasElement.querySelector('button');
-      button?.click();
-    });
-  },
-};
-```
+### Learn More About Contributing
 
-### Running Tests
+- [🔧 Development Guide](./CONTRIBUTING.md) - Detailed development setup and guidelines
+- [📝 Coding Standards](./CONTRIBUTING.md#coding-standards) - Our coding conventions
+- [🧪 Testing Guide](./CONTRIBUTING.md#testing) - How to write and run tests
+- [📚 Documentation Guide](./CONTRIBUTING.md#documentation) - How to document your changes
 
-First, a storybook instance must be running:
+---
 
-```sh
-npx nx storybook ui-react
-```
+## 📄 License
 
-Then, run the tests:
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
 
-```sh
-# Tests for the ui-react library
-npx nx run @ldls/ui-react:test-storybook
-```
+---
 
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/Jmd5yDAnlu)
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve ldls
-```
-
-To create a production bundle:
-
-```sh
-npx nx build ldls
-```
-
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project ldls
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+<p align="center">
+  Built with ❤️ by the LDS Team.
+</p>
