@@ -639,9 +639,9 @@
   --icon-border-width-40: 2.200000047683716;
   --icon-border-width-48: 2.5;
   --icon-border-width-56: 2.799999952316284;
-  --font-weight-bold: bold;
-  --font-weight-semi-bold: semi-bold;
-  --font-weight-medium: medium;
+  --font-weight-bold: 700;
+  --font-weight-semi-bold: 600;
+  --font-weight-medium: 500;
   --font-size-10: 10;
   --font-size-12: 12;
   --font-size-14: 14;

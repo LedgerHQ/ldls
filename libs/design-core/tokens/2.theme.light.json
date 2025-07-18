@@ -680,6 +680,30 @@
                 }
               }
             }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.light.purple.100}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.light.purple.200}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
           }
         },
         "enterprise": {
@@ -696,10 +720,34 @@
                 }
               }
             }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.light.blue.100}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.light.blue.200}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
           }
         },
         "website": {
-          "Default": {
+          "default": {
             "$type": "color",
             "$value": "{color.light.orange.050}",
             "$description": "",
@@ -710,6 +758,30 @@
                 "codeSyntax": {
                   "WEB": "var(--color-background-active-subtle-website);"
                 }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.light.orange.100}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.light.orange.200}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
               }
             }
           }

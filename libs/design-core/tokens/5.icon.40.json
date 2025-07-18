@@ -100,5 +100,21 @@
         }
       }
     }
+  },
+  "payment": {
+    "payment-radius": {
+      "$type": "number",
+      "$value": 3.5,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    }
   }
 }

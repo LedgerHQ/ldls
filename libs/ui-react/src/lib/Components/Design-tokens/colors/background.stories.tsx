@@ -293,9 +293,25 @@ export const Background: Story = {
             className: 'bg-active-pressed',
             textClassName: 'text-base',
           },
+        ]}
+      />
+
+      <ColorSection
+        category="background"
+        tokens={[
           {
             name: 'Active Subtle',
             className: 'bg-active-subtle',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Active Subtle Hover',
+            className: 'bg-active-subtle-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Active Subtle Pressed',
+            className: 'bg-active-subtle-pressed',
             textClassName: 'text-base',
           },
         ]}
