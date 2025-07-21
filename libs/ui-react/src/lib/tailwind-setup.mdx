@@ -26,8 +26,14 @@ npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-p
 Then you can install `design-core` and `ui-react` packages:
 
 ```bash
+# Install the Design Core package where the tailwind preset lives
 npm install @ldls/design-core
+
+# Install the React UI Kit package where the components lives
 npm install @ldls/ui-react
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
 
 ## Configuration
