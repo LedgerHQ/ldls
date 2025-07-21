@@ -68,9 +68,21 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-orange-800)',
     '--color-background-active-subtle-ledger-live':
       'var(--color-light-purple-050)',
+    '--color-background-active-subtle-ledger-live-hover':
+      'var(--color-light-purple-100)',
+    '--color-background-active-subtle-ledger-live-pressed':
+      'var(--color-light-purple-200)',
     '--color-background-active-subtle-enterprise':
       'var(--color-light-blue-050)',
+    '--color-background-active-subtle-enterprise-hover':
+      'var(--color-light-blue-100)',
+    '--color-background-active-subtle-enterprise-pressed':
+      'var(--color-light-blue-200)',
     '--color-background-active-subtle-website': 'var(--color-light-orange-050)',
+    '--color-background-active-subtle-website-hover':
+      'var(--color-light-orange-100)',
+    '--color-background-active-subtle-website-pressed':
+      'var(--color-light-orange-200)',
     '--color-background-error': 'var(--color-light-red-600-10)',
     '--color-background-error-hover': 'var(--color-light-red-600-20)',
     '--color-background-error-pressed': 'var(--color-light-red-600-30)',
@@ -394,6 +406,10 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-background-active-ledger-live-pressed)',
     '--background-active-subtle':
       'var(--color-background-active-subtle-ledger-live)',
+    '--background-active-subtle-hover':
+      'var(--color-background-active-subtle-ledger-live-hover)',
+    '--background-active-subtle-pressed':
+      'var(--color-background-active-subtle-ledger-live-pressed)',
     '--background-native': 'var(--color-background-native)',
     '--background-gradient-100': 'var(--color-background-gradient-100)',
     '--background-gradient-80': 'var(--color-background-gradient-80)',

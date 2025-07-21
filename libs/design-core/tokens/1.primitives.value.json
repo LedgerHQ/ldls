@@ -7823,7 +7823,7 @@
     "weight": {
       "bold": {
         "$type": "string",
-        "$value": "bold",
+        "$value": "700",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -7837,7 +7837,7 @@
       },
       "semi-bold": {
         "$type": "string",
-        "$value": "semi-bold",
+        "$value": "600",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -7851,7 +7851,7 @@
       },
       "medium": {
         "$type": "string",
-        "$value": "medium",
+        "$value": "500",
         "$description": "",
         "$extensions": {
           "com.figma": {

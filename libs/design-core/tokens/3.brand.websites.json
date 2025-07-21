@@ -791,7 +791,7 @@
     "active-subtle": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.active-subtle.website.Default}",
+        "$value": "{color.background.active-subtle.website.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -803,6 +803,36 @@
             "codeSyntax": {
               "WEB": "var(--background-active-subtle);"
             }
+          }
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.background.active-subtle.website.hover}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.background.active-subtle.website.pressed}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
           }
         }
       }
