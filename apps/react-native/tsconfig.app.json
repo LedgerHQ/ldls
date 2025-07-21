@@ -23,5 +23,13 @@
     "src/**/*.spec.jsx",
     "src/test-setup.ts"
   ],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
+  "references": [
+    {
+      "path": "../../libs/design-core/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/ui-rnative/tsconfig.lib.json"
+    }
+  ]
 }

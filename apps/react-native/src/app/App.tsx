@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
 import { Button } from '@ldls/ui-rnative';
+import { ArrowUp } from '@ldls/ui-rnative/symbols';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -40,6 +41,18 @@ export const App = () => {
             >
               Welcome ReactNative 👋
             </Text>
+            <Text testID="heading" role="heading" className="text-warning">
+              Warning
+            </Text>
+            <Button
+              appearance="accent"
+              onPress={() => {
+                console.log('Button pressed');
+              }}
+            >
+              Click me
+            </Button>
+            {/* <ArrowUp /> */}
           </View>
           <View style={styles.section}>
             <View style={styles.hero}>
