@@ -29,6 +29,9 @@
       "path": "../../libs/design-core/tsconfig.lib.json"
     },
     {
+      "path": "../../libs/utils-shared/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/ui-rnative/tsconfig.lib.json"
     }
   ]

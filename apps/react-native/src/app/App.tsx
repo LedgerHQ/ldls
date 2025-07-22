@@ -10,8 +10,9 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
-import { Button } from '@ldls/ui-rnative';
-import { ArrowUp } from '@ldls/ui-rnative/symbols';
+import { Button, CustomText } from '@ldls/ui-rnative';
+import { ArrowUp } from './ArrowUp';
+import { Button as ButtonUI } from './Button';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -44,15 +45,24 @@ export const App = () => {
             <Text testID="heading" role="heading" className="text-warning">
               Warning
             </Text>
+            <CustomText className="text-warning">Custom Text</CustomText>
             <Button
               appearance="accent"
               onPress={() => {
-                console.log('Button pressed');
+                console.log('Button pressed 2');
               }}
             >
               Click me
             </Button>
-            {/* <ArrowUp /> */}
+            <ButtonUI
+              appearance="accent"
+              onPress={() => {
+                console.log('Button pressed 2');
+              }}
+            >
+              Click me
+            </ButtonUI>
+            <ArrowUp />
           </View>
           <View style={styles.section}>
             <View style={styles.hero}>

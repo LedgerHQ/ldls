@@ -7,6 +7,9 @@
       "path": "../../libs/design-core"
     },
     {
+      "path": "../../libs/utils-shared"
+    },
+    {
       "path": "../../libs/ui-rnative"
     },
     {

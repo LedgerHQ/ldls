@@ -6,7 +6,8 @@ const config = {
     './src/**/*.{js,jsx,ts,tsx}',
     './.storybook/**/*.{js,jsx,ts,tsx}',
     './src/**/*.stories.{js,jsx,ts,tsx}',
-    '../../node_modules/@ldls/ui-rnative/**/*.{js,jsx,ts,tsx}',
+    '../../libs/ui-rnative/dist/**/*.{js,jsx,ts,tsx}',
+    '../../libs/ui-rnative/src/**/*.{js,jsx,ts,tsx}',
   ],
   presets: [require('nativewind/preset'), ledgerLivePreset],
 } satisfies Config;
