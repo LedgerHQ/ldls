@@ -862,7 +862,7 @@
       "warning": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.yellow.600-10%}",
+          "$value": "{color.dark.yellow.600-20%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -894,7 +894,7 @@
       "success": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.green.600-10%}",
+          "$value": "{color.dark.green.600-20%}",
           "$description": "",
           "$extensions": {
             "com.figma": {

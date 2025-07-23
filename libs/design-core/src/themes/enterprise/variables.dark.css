@@ -76,9 +76,9 @@
   --color-background-error-pressed: var(--color-dark-red-600-40);
   --color-background-error-strong: var(--color-dark-red-600);
   --color-background-error-transparent: var(--color-dark-red-600-0);
-  --color-background-warning: var(--color-dark-yellow-600-10);
+  --color-background-warning: var(--color-dark-yellow-600-20);
   --color-background-warning-strong: var(--color-dark-yellow-600);
-  --color-background-success: var(--color-dark-green-600-10);
+  --color-background-success: var(--color-dark-green-600-20);
   --color-background-success-strong: var(--color-dark-green-600);
   --color-background-success-transparent: var(--color-dark-green-600-0);
   --color-background-gradient-100: var(--color-dark-grey-950);
