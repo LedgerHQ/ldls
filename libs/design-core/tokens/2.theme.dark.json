@@ -130,7 +130,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.dark.grey.950-5%}",
+          "$value": "{color.dark.grey.950-10%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -142,7 +142,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.dark.grey.950-10%}",
+          "$value": "{color.dark.grey.950-20%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -156,7 +156,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.200}",
+          "$value": "{color.dark.grey.100}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -1602,7 +1602,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.100}",
+          "$value": "{color.dark.grey.300}",
           "$description": "",
           "$extensions": {
             "com.figma": {

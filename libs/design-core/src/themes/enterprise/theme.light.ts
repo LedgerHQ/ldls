@@ -17,7 +17,7 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-grey-950-5)',
     '--color-background-base-transparent-pressed':
       'var(--color-light-grey-950-10)',
-    '--color-background-disabled': 'var(--color-light-grey-200)',
+    '--color-background-disabled': 'var(--color-light-grey-100)',
     '--color-background-muted': 'var(--color-light-grey-100)',
     '--color-background-muted-hover': 'var(--color-light-grey-200)',
     '--color-background-muted-pressed': 'var(--color-light-grey-300)',
