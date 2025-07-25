@@ -2,7 +2,9 @@
   "name": "@ldls/source",
   "version": "0.0.0",
   "license": "Apache-2.0",
-  "scripts": {},
+  "scripts": {
+    "build-storybook": "npx nx build-storybook ui-react --output-dir=storybook-static --skip-nx-cache"
+  },
   "private": true,
   "dependencies": {
     "ajv": "^8.17.1",
