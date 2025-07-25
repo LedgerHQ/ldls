@@ -57,13 +57,13 @@ export const AllVariants: Story = {
         <Button appearance="accent" size="xs">
           Extra Small
         </Button>
-        <Button appearance="accent" size="s">
+        <Button appearance="accent" size="sm">
           Small
         </Button>
-        <Button appearance="accent" size="m">
+        <Button appearance="accent" size="md">
           Medium
         </Button>
-        <Button appearance="accent" size="l">
+        <Button appearance="accent" size="lg">
           Large
         </Button>
       </View>
