@@ -127,3 +127,4 @@ test-output
 !.nx/version-plans/
 !.nx/version-plans/**
 mise.toml
+release_output.txt
