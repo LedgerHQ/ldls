@@ -116,7 +116,7 @@ import { Button } from '@ldls/ui-react';
 
 function MyComponent() {
   return (
-    <Button variant="accent" size="medium">
+    <Button appearance="accent" size="md">
       Click Me
     </Button>
   );

@@ -30,7 +30,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 's', 'm', 'l'],
+      options: ['xs', 'sm', 'md', 'lg'],
       description: 'The size of the button',
     },
     disabled: {
@@ -174,13 +174,13 @@ export const SizesShowcase: Story = {
         icon={Settings}
         aria-label="Settings"
       />
-      <Button appearance="base" size="s">
+      <Button appearance="base" size="sm">
         Small
       </Button>
-      <Button appearance="base" size="m">
+      <Button appearance="base" size="md">
         Medium
       </Button>
-      <Button appearance="base" size="l" icon={Settings}>
+      <Button appearance="base" size="lg" icon={Settings}>
         Large
       </Button>
     </div>

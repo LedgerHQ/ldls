@@ -21,9 +21,9 @@ const buttonVariants = cva(
       },
       size: {
         xs: 'px-12 py-8 body-2-semi-bold',
-        s: 'px-16 py-8 body-2-semi-bold',
-        m: 'px-16 py-12',
-        l: 'p-16',
+        sm: 'px-16 py-8 body-2-semi-bold',
+        md: 'px-16 py-12',
+        lg: 'p-16',
       },
       isFull: {
         true: 'w-full',
@@ -43,17 +43,17 @@ const buttonVariants = cva(
         className: 'p-8',
       },
       {
-        size: 's',
+        size: 'sm',
         iconOnly: true,
         className: 'p-12',
       },
       {
-        size: 'm',
+        size: 'md',
         iconOnly: true,
         className: 'p-12',
       },
       {
-        size: 'l',
+        size: 'lg',
         iconOnly: true,
         className: 'p-16',
       },
@@ -64,7 +64,7 @@ const buttonVariants = cva(
     ],
     defaultVariants: {
       appearance: 'base',
-      size: 'm',
+      size: 'md',
       isFull: false,
       iconOnly: false,
     },
@@ -83,7 +83,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       children,
       appearance,
-      size = 'm',
+      size = 'md',
       isFull,
       loading,
       icon,
@@ -95,11 +95,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const iconSizeMap: { [key: string]: IconSize } = {
       xs: 16,
-      s: 20,
-      m: 24,
-      l: 40,
-      xl: 48,
-      xxl: 56,
+      sm: 20,
+      md: 24,
+      lg: 24,
     };
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
