@@ -4,6 +4,10 @@ permissions:
   id-token: write
 
 on:
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
     inputs:
       dry-run:
@@ -42,16 +46,30 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx nx release --verbose --skip-publish
+        run: |
+          # Run nx release and capture output
+          npx nx release --verbose --skip-publish > release_output.txt 2>&1
+
+          # Check if any versions were changed
+          if grep -q "Successfully released" release_output.txt || grep -q "version" release_output.txt; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+          # Display the output
+          cat release_output.txt
 
       - name: Print Environment Info
         run: npx nx report
 
       - name: Login to internal JFrog registry
         id: jfrog-login
+        if: steps.release.outputs.changes == 'true'
         uses: LedgerHQ/actions-security/actions/jfrog-login@actions/jfrog-login-1
 
       - name: Setup npm config for JFrog
+        if: steps.release.outputs.changes == 'true'
         env:
           NPM_REGISTRY_TOKEN: ${{ steps.jfrog-login.outputs.oidc-token }}
         run: |
@@ -62,5 +80,6 @@ jobs:
           EOF
 
       - name: Publish
+        if: steps.release.outputs.changes == 'true'
         id: publish
         run: npx nx release publish --verbose
