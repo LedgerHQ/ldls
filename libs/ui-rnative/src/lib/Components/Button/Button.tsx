@@ -98,9 +98,7 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
       xs: 16,
       sm: 20,
       md: 24,
-      lg: 40,
-      xl: 48,
-      xxl: 56,
+      lg: 24,
     };
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
