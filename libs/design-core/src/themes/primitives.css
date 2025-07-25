@@ -365,6 +365,7 @@
   --color-dark-green-050: #142b12;
   --color-dark-green-600-0: rgba(110, 200, 92, 0);
   --color-dark-green-600-10: rgba(110, 200, 92, 0.1);
+  --color-dark-green-600-20: rgba(110, 200, 92, 0.2);
   --color-dark-yellow-100: #63420f;
   --color-dark-yellow-200: #885a14;
   --color-dark-yellow-300: #ae731a;
@@ -378,6 +379,7 @@
   --color-dark-yellow-050: #3e2909;
   --color-dark-yellow-600-0: rgba(255, 189, 66, 0);
   --color-dark-yellow-600-10: rgba(255, 189, 66, 0.1);
+  --color-dark-yellow-600-20: rgba(255, 189, 66, 0.2);
   --color-dark-red-100: #702e2f;
   --color-dark-red-200: #852e2f;
   --color-dark-red-300: #a43234;

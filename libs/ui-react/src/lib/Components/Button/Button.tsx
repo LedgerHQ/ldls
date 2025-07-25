@@ -97,7 +97,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       xs: 16,
       s: 20,
       m: 24,
-      l: 24,
+      l: 40,
+      xl: 48,
+      xxl: 56,
     };
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;

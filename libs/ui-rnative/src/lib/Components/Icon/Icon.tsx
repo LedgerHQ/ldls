@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import { View } from 'react-native';
 import { Svg, SvgProps } from 'react-native-svg';
 
-export type IconSize = 16 | 20 | 24 | 40 | 48;
+export type IconSize = 16 | 20 | 24 | 40 | 48 | 56;
 
 export interface IconProps extends SvgProps {
   size?: IconSize;
@@ -20,6 +20,7 @@ const iconVariants = cva('inline-block', {
       24: 'icon-w-24 icon-h-24 icon-stroke-24',
       40: 'icon-w-40 icon-h-40 icon-stroke-40',
       48: 'icon-w-48 icon-h-48 icon-stroke-48',
+      56: 'icon-w-56 icon-h-56 icon-stroke-56',
     },
   },
   defaultVariants: {
@@ -28,31 +29,21 @@ const iconVariants = cva('inline-block', {
 });
 
 export const Icon = forwardRef<Svg, IconProps>(
-  (
-    {
-      size = 24,
-      className = '',
-      children,
-      viewBox,
-      fill = 'currentColor',
-      ...props
-    },
-    ref
-  ) => {
+  ({ size = 24, className = '', children, viewBox, ...props }, ref) => {
     return (
       <View>
         <Svg
           ref={ref}
-          className={cn(iconVariants({ size }), 'inline-block', className)}
+          className={cn(className, iconVariants({ size }), 'inline-block')}
           viewBox={viewBox}
-          fill={fill}
+          fill="none"
           {...props}
         >
           {children}
         </Svg>
       </View>
     );
-  }
+  },
 );
 
 Icon.displayName = 'Icon';
