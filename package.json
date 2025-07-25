@@ -10,9 +10,9 @@
     "clsx": "^2.1.1",
     "invariant": "^2.2.4",
     "lodash-es": "^4.17.21",
-    "react-native-reanimated": "~3.17.4",
+    "react-native-reanimated": "~4.0.0",
     "react-native-safe-area-context": "^5.4.0",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
