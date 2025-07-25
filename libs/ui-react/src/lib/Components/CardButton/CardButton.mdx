@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CardButtonStories from './CardButton.stories';
+import { CardButton } from './CardButton';
+
+<Meta title="Components/CardButton/Docs" of={CardButtonStories} />
+
+# 🃏 CardButton
+
+## Introduction
+
+CardButtons are interactive elements designed for presenting options, settings, or navigation items in a card-like format. They provide a structured way to display a title and optional description, icon, and navigation caret, making them ideal for menus, settings panels, and option lists.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=89-525&m=dev).
+
+## Anatomy
+
+<Canvas of={CardButtonStories.FullFeatures} />
+
+- **Icon (optional)**: visually communicates the card's purpose or category
+- **Title**: the main label describing the action or option
+- **Description (optional)**: provides additional context or explanation
+- **Caret (optional)**: indicates that the action leads to navigation or expansion
+
+## Properties
+
+### Overview
+
+<Canvas of={CardButtonStories.Base} />
+<Controls of={CardButtonStories.Base} />
+
+### Appearance
+
+There are two CardButton appearances, indicating different visual emphasis:
+
+- **base** (default): solid background for primary options
+- **outline**: dashed outline for secondary or alternative options
+
+<Canvas of={CardButtonStories.AppearanceShowcase} />
+
+### Content Variations
+
+CardButtons support flexible content combinations to suit different use cases:
+
+- **Title only**: minimal card for simple options
+- **Title + Icon**: adds visual context to the option
+- **Title + Description**: provides additional explanation
+- **Title + Caret**: indicates navigation or expansion
+- **Complete card**: combines all elements for rich, informative options
+
+<Canvas of={CardButtonStories.ContentVariations} />
+
+> **Note**: The title is required, while icon, description, and caret are all optional and can be combined as needed.
+
+### States
+
+CardButtons support standard interactive states for both appearance variants:
+
+<Canvas of={CardButtonStories.StatesShowcase} />
+
+## Responsive Layout
+
+CardButtons automatically adapt their width to fit their container while maintaining proper content layout:
+
+<Canvas of={CardButtonStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Default width adapts to content
+> - Use `isFull` prop for full container width
+> - Long titles and descriptions automatically wrap and truncate as needed
+> - Icons and carets maintain fixed sizes for visual consistency
+
+## Accessibility
+
+To be implemented:
+
+- **Color contrast**: ensure sufficient contrast for all appearance variants
+- **Text zoom**: maintain usability when text is enlarged
+- **Keyboard navigation**: full keyboard accessibility support
+- **Semantic labeling**: proper ARIA attributes for screen readers
+- **Focus management**: clear focus indicators and logical tab order
