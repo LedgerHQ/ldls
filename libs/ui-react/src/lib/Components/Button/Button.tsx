@@ -88,7 +88,7 @@ export interface ButtonProps
  * @param {boolean} [isFull=false] - If true, the button expands to full width of its container.
  * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
  * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
- *   The icon component should accept `size` (IconSize) and `className` props.
+ *   The icon styles are defined by the button. Please do not override them.
  * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
  * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, `type`).
