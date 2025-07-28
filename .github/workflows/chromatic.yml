@@ -30,9 +30,6 @@ jobs:
           NODE_OPTIONS: '--max-old-space-size=6144'
         run: npx nx build-storybook ui-react --output-dir=storybook-static --skip-nx-cache --verbose
 
-      - name: Verify build output
-        run: ls -l ./libs/ui-react/storybook-static
-
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:

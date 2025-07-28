@@ -10,7 +10,7 @@ const config: StorybookConfig = {
   stories: [
     '../src/lib/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
-    // '../../ui-rnative/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../../ui-rnative/src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)',
   ],
 
   addons: [
