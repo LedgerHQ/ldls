@@ -29,7 +29,7 @@ export interface CardButtonProps
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
   title: string;
   description?: string;
-  noChevron?: boolean;
+  hideChevron?: boolean;
   isFull?: boolean;
 }
 
@@ -41,7 +41,7 @@ export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
       icon,
       title,
       description,
-      noChevron,
+      hideChevron,
       isFull,
       ...props
     },
@@ -69,7 +69,7 @@ export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
             <div className="line-clamp-2 min-w-0 body-2">{description}</div>
           )}
         </div>
-        {!noChevron && <ChevronRight size={24} className="flex-shrink-0" />}
+        {!hideChevron && <ChevronRight size={24} className="flex-shrink-0" />}
       </button>
     );
   },

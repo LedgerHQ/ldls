@@ -39,7 +39,7 @@ const meta: Meta<typeof CardButton> = {
         Settings: Settings,
       },
     },
-    noChevron: {
+    hideChevron: {
       control: 'boolean',
       description: 'Whether to hide the chevron right icon on the right side',
     },
@@ -119,7 +119,7 @@ export const WithoutChevron: Story = {
   args: {
     appearance: 'base',
     title: 'Navigate Forward',
-    noChevron: true,
+    hideChevron: true,
   },
   parameters: {
     docs: {
@@ -128,7 +128,7 @@ export const WithoutChevron: Story = {
 <CardButton
   appearance="base"
   title="Navigate Forward"
-  noChevron
+  hideChevron
 />
 `,
       },
@@ -188,13 +188,13 @@ export const AppearanceShowcase: Story = {
 export const ContentVariations: Story = {
   render: () => (
     <div className="flex flex-col gap-16 p-8">
-      <CardButton appearance="base" title="Title Only" noChevron />
-      <CardButton appearance="base" title="With Icon" icon={Plus} noChevron />
+      <CardButton appearance="base" title="Title Only" hideChevron />
+      <CardButton appearance="base" title="With Icon" icon={Plus} hideChevron />
       <CardButton
         appearance="base"
         title="With Description"
         description="This card has a description below the title"
-        noChevron
+        hideChevron
       />
       <CardButton appearance="base" title="With Chevron" />
       <CardButton
@@ -202,7 +202,7 @@ export const ContentVariations: Story = {
         title="Icon and Description"
         description="This card has both an icon and description"
         icon={Settings}
-        noChevron
+        hideChevron
       />
       <CardButton
         appearance="base"
