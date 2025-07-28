@@ -36,7 +36,7 @@ export const Placeholder = createIcon(
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <G clipPath="url(#clip0_5625_429)">
       <Path
-        d="M1.88883 1.88878L14.1111 14.111M1.88883 14.1111L14.1111 1.88883M1.33337 1.33325H14.6667V14.6666H1.33337V1.33325Z"
+        d="M1.88883 1.88884L14.1111 14.1111M1.88883 14.1111L14.1111 1.88889M1.33337 1.33331H14.6667V14.6666H1.33337V1.33331Z"
         stroke="currentColor"
         strokeWidth={1.3}
       />

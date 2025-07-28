@@ -2,7 +2,7 @@ import Svg, { Path } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
- * ClockFill icon component for React Native.
+ * Bundle icon component for React Native.
  *
  * This icon component is automatically generated from SVG files and uses the createIcon utility
  * to create a consistent icon interface. It supports all standard SVG props (from react-native-svg)
@@ -15,39 +15,30 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ClockFill } from '@ldls/ui-rnative/symbols';
+ * import { Bundle } from '@ldls/ui-rnative/symbols';
  *
- * <ClockFill />
+ * <Bundle />
  *
  * @example
  * // With custom size and className (NativeWind)
- * <ClockFill size={40} className="text-warning" />
+ * <Bundle size={40} className="text-warning" />
  *
  * @example
  * // Used within a Button component
  * import { Button } from '@ldls/ui-rnative';
  *
- * <Button icon={ClockFill} size="md">
+ * <Button icon={Bundle} size="md">
  *   Click me
  * </Button>
  */
-export const ClockFill = createIcon(
-  "ClockFill",
+export const Bundle = createIcon(
+  "Bundle",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M1.5 8C1.5 4.40353 4.41018 1.5 8 1.5C11.5901 1.5 14.5 4.40986 14.5 8C14.5 11.5901 11.5901 14.5 8 14.5C4.40353 14.5 1.5 11.5898 1.5 8Z"
-      fill="currentColor"
-    />
-    <Path d="M11.1 8H8H11.1Z" fill="currentColor" />
-    <Path d="M8 8V4.26666V8Z" fill="currentColor" />
-    <Path
-      d="M11.1 8H8V4.26666"
-      stroke="white"
+      d="M9.59998 3.20001H10.4C10.8418 3.20001 11.2 3.55818 11.2 4.00001V12C11.2 12.4418 10.8418 12.8 10.4 12.8H9.59998M13.2 3.20001H14C14.4418 3.20001 14.8 3.55818 14.8 4.00001V12C14.8 12.4418 14.4418 12.8 14 12.8H13.2M2.39998 12.8H6.79998C7.2418 12.8 7.59998 12.4418 7.59998 12V4.00001C7.59998 3.55818 7.2418 3.20001 6.79998 3.20001H2.39998C1.95815 3.20001 1.59998 3.55818 1.59998 4.00001V12C1.59998 12.4418 1.95815 12.8 2.39998 12.8Z"
+      stroke="currentColor"
       strokeWidth={1.3}
       strokeLinecap="round"
-      strokeLinejoin="round"
     />
   </Svg>
 );

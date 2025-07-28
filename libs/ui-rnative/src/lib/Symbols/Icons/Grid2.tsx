@@ -2,7 +2,7 @@ import Svg, { Path } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
- * FilterSort icon component for React Native.
+ * Grid2 icon component for React Native.
  *
  * This icon component is automatically generated from SVG files and uses the createIcon utility
  * to create a consistent icon interface. It supports all standard SVG props (from react-native-svg)
@@ -15,41 +15,51 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { FilterSort } from '@ldls/ui-rnative/symbols';
+ * import { Grid2 } from '@ldls/ui-rnative/symbols';
  *
- * <FilterSort />
+ * <Grid2 />
  *
  * @example
  * // With custom size and className (NativeWind)
- * <FilterSort size={40} className="text-warning" />
+ * <Grid2 size={40} className="text-warning" />
  *
  * @example
  * // Used within a Button component
  * import { Button } from '@ldls/ui-rnative';
  *
- * <Button icon={FilterSort} size="md">
+ * <Button icon={Grid2} size="md">
  *   Click me
  * </Button>
  */
-export const FilterSort = createIcon(
-  "FilterSort",
+export const Grid2 = createIcon(
+  "Grid2",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M9.66663 9.00002L13.138 5.52869C13.2633 5.40335 13.3333 5.23402 13.3333 5.05735V3.33335C13.3333 2.96535 13.0346 2.66669 12.6666 2.66669H3.33329C2.96529 2.66669 2.66663 2.96535 2.66663 3.33335V5.05735C2.66663 5.23402 2.73663 5.40402 2.86196 5.52869L6.33329 9.00002"
+      d="M5.16667 6.49999H3.33333C2.59667 6.49999 2 5.89999 2 5.16665V3.33332C2 2.59665 2.59667 1.99999 3.33333 1.99999H5.16667C5.9 1.99999 6.5 2.59665 6.5 3.33332V5.16665C6.5 5.89999 5.9 6.49999 5.16667 6.49999Z"
       stroke="currentColor"
       strokeWidth={1.3}
-      strokeLinecap="round"
       strokeLinejoin="round"
     />
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M6.33329 9.00002V13.166C6.33329 13.708 6.84263 14.106 7.36863 13.9747L9.03529 13.558C9.40596 13.4654 9.66663 13.132 9.66663 12.7494V9.00002"
+      d="M5.16667 14H3.33333C2.59667 14 2 13.4 2 12.6667V10.8333C2 10.0933 2.59667 9.49999 3.33333 9.49999H5.16667C5.9 9.49999 6.5 10.0933 6.5 10.8333V12.6667C6.5 13.4 5.9 14 5.16667 14Z"
       stroke="currentColor"
       strokeWidth={1.3}
-      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M14.3 4.29999C14.3 5.6807 13.1808 6.79999 11.8 6.79999C10.4193 6.79999 9.30005 5.6807 9.30005 4.29999C9.30005 2.91928 10.4193 1.79999 11.8 1.79999C13.1808 1.79999 14.3 2.91928 14.3 4.29999Z"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M10 14H14.5L10 9.49999V14Z"
+      stroke="currentColor"
+      strokeWidth={1.3}
       strokeLinejoin="round"
     />
   </Svg>

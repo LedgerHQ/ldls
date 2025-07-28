@@ -35,7 +35,7 @@ export const ArrowLeft = createIcon(
   "ArrowLeft",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
-      d="M3.33331 7.99996H12.6666M3.33331 7.99996L6.66665 4.66663M3.33331 7.99996L6.66665 11.3333"
+      d="M3.33331 8.00002H12.6666M3.33331 8.00002L6.66665 4.66669M3.33331 8.00002L6.66665 11.3334"
       stroke="currentColor"
       strokeWidth={1.3}
       strokeLinecap="round"

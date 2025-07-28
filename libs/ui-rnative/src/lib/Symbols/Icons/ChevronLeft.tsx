@@ -35,7 +35,7 @@ export const ChevronLeft = createIcon(
   "ChevronLeft",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
-      d="M9.33329 5.33337L6.66663 8.00004L9.33329 10.6667"
+      d="M9.33329 5.33331L6.66663 7.99998L9.33329 10.6666"
       stroke="currentColor"
       strokeWidth={1.3}
       strokeLinecap="round"

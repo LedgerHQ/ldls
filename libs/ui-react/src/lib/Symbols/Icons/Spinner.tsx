@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Spinner icon component.
@@ -31,7 +31,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Spinner = createIcon(
-  "Spinner",
+  'Spinner',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -48,12 +48,12 @@ export const Spinner = createIcon(
         transform="rotate(90.184 .013 7.987)scale(.0056)"
       >
         <div
-          xmlns="http://www.w3.org/1999/xhtml"
           style={{
+            // this is a temporary fix, please keep currentColor.
             background:
-              "conic-gradient(from 90deg,transparent 0deg,#000 360deg)",
-            height: "100%",
-            width: "100%",
+              'conic-gradient(from 90deg,transparent 0deg,currentColor 360deg)',
+            height: '100%',
+            width: '100%',
             opacity: 1,
           }}
         />
@@ -68,5 +68,5 @@ export const Spinner = createIcon(
         <path d="M8.844 12.878a.65.65 0 0 0 .222 1.28zm3.549-1.405.51.403zM8.272 2.407l.032-.65zM3.291 11.03l.547-.352zm3.05 2.995a.65.65 0 0 0 .346-1.253zm2.614-.508.11.64a6.25 6.25 0 0 0 3.838-2.281l-.51-.404-.51-.403a4.95 4.95 0 0 1-3.04 1.807zm3.438-2.045.51.403a6.25 6.25 0 0 0 1.335-4.26l-.649.04-.648.04a4.95 4.95 0 0 1-1.058 3.374zm1.196-3.816.65-.04a6.25 6.25 0 0 0-1.848-4.065l-.457.463-.456.463a4.95 4.95 0 0 1 1.463 3.218zm-1.655-3.642.457-.463a6.25 6.25 0 0 0-4.087-1.795l-.032.65-.032.649a4.95 4.95 0 0 1 3.238 1.422zM8.272 2.407l.032-.65a6.25 6.25 0 0 0-4.243 1.39l.41.505.41.505a4.95 4.95 0 0 1 3.36-1.101zM4.471 3.652l-.41-.505a6.25 6.25 0 0 0-2.233 3.866l.642.103.642.102A4.95 4.95 0 0 1 4.88 4.157zm-2 3.464-.643-.103a6.25 6.25 0 0 0 .916 4.37l.547-.352.547-.352a4.95 4.95 0 0 1-.726-3.46zm.82 3.915-.547.352a6.25 6.25 0 0 0 3.598 2.643l.172-.627.173-.626a4.95 4.95 0 0 1-2.85-2.094z" />
       </clipPath>
     </defs>
-  </svg>
+  </svg>,
 );

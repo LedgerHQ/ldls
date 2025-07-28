@@ -35,7 +35,7 @@ export const Plus = createIcon(
   "Plus",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
-      d="M3.33337 8.00004H12.6667M8.00004 12.6667V3.33337"
+      d="M3.33337 7.99998H12.6667M8.00004 12.6666V3.33331"
       stroke="currentColor"
       strokeWidth={1.3}
       strokeLinecap="round"
