@@ -3,7 +3,6 @@ import { Template } from '@svgr/babel-plugin-transform-svg-component';
 const template: Template = (variables, { tpl }) => {
   const componentName = variables.componentName;
 
-  // Build the JSDoc comment string with component name substitution
   const jsDocComment = `
 /**
  * ${componentName} icon component.
