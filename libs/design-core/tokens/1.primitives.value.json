@@ -4377,6 +4377,18 @@
               "codeSyntax": {}
             }
           }
+        },
+        "600-20%": {
+          "$type": "color",
+          "$value": "#6ec85c33",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
         }
       },
       "yellow": {
@@ -4527,6 +4539,18 @@
         "600-10%": {
           "$type": "color",
           "$value": "#ffbd421a",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "600-20%": {
+          "$type": "color",
+          "$value": "#ffbd4233",
           "$description": "",
           "$extensions": {
             "com.figma": {

@@ -156,7 +156,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.light.grey.200}",
+          "$value": "{color.light.grey.100}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -344,7 +344,7 @@
       "muted-strong": {
         "default": {
           "$type": "color",
-          "$value": "{color.light.grey.500}",
+          "$value": "{color.light.grey.600}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -358,7 +358,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.light.grey.600}",
+          "$value": "{color.light.grey.700}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -370,7 +370,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.light.grey.700}",
+          "$value": "{color.light.grey.800}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -1618,7 +1618,7 @@
       "muted": {
         "default": {
           "$type": "color",
-          "$value": "{color.light.grey.500}",
+          "$value": "{color.light.grey.600}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -1632,7 +1632,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.light.grey.600}",
+          "$value": "{color.light.grey.700}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -1644,7 +1644,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.light.grey.700}",
+          "$value": "{color.light.grey.800}",
           "$description": "",
           "$extensions": {
             "com.figma": {

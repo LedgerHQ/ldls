@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { within, userEvent } from '@storybook/testing-library';
 import { View } from 'react-native';
 
-import Button, { ButtonProps } from './Button';
+import { Button, ButtonProps } from './Button';
 
 const ButtonWrapper = (props: ButtonProps) => (
   <View style={{ padding: 20 }}>
@@ -17,13 +17,20 @@ const meta: Meta<typeof ButtonWrapper> = {
     layout: 'centered',
   },
   argTypes: {
-    variant: {
+    appearance: {
       control: 'select',
-      options: ['accent', 'primary', 'secondary', 'secondary-transparent'],
+      options: [
+        'accent',
+        'base',
+        'gray',
+        'transparent',
+        'no-background',
+        'red',
+      ],
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['xs', 's', 'm', 'l', 'xl', 'xxl'],
     },
     children: {
       control: 'text',
@@ -39,19 +46,24 @@ export const AllVariants: Story = {
   render: () => (
     <View style={{ padding: 20, gap: 16 }}>
       <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
-        <Button variant="accent">Accent</Button>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="secondary-transparent">Secondary Transparent</Button>
+        <Button appearance="accent">Accent</Button>
+        <Button appearance="base">Base</Button>
+        <Button appearance="gray">Gray</Button>
+        <Button appearance="transparent">Transparent</Button>
+        <Button appearance="no-background">No Background</Button>
+        <Button appearance="red">Red</Button>
       </View>
       <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
-        <Button variant="accent" size="small">
+        <Button appearance="accent" size="xs">
+          Extra Small
+        </Button>
+        <Button appearance="accent" size="sm">
           Small
         </Button>
-        <Button variant="accent" size="medium">
+        <Button appearance="accent" size="md">
           Medium
         </Button>
-        <Button variant="accent" size="large">
+        <Button appearance="accent" size="lg">
           Large
         </Button>
       </View>
@@ -63,7 +75,7 @@ export const AllVariants: Story = {
 export const WithInteraction: Story = {
   args: {
     children: 'Click me',
-    variant: 'accent',
+    appearance: 'accent',
     onPress: () => console.log('Button clicked'),
   },
   play: async ({ canvasElement, step }) => {

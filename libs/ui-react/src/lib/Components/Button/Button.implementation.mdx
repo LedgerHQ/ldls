@@ -53,7 +53,7 @@ import { Button } from '@ldls/ui-react';
 
 function MyComponent() {
   return (
-    <Button size="m" appearance="base">
+    <Button size="md" appearance="base">
       Click me
     </Button>
   );
@@ -66,7 +66,7 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Button
-  size="m"
+  size="md"
   appearance="base"
   className="md:hidden" // Custom responsive width
 >
@@ -84,7 +84,7 @@ import { ArrowRight } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
-    <Button size="m" appearance="base" icon={ArrowRight}>
+    <Button size="md" appearance="base" icon={ArrowRight}>
       Continue
     </Button>
   );
@@ -96,7 +96,7 @@ function MyComponent() {
 Use the `isFull` prop to make the button take the full width of its container:
 
 ```tsx
-<Button size="m" appearance="base" isFull>
+<Button size="md" appearance="base" isFull>
   Full Width Button
 </Button>
 ```
