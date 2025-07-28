@@ -22,8 +22,8 @@ export const Border: Story = {
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader
-        title="Border Color Tokens"
-        description="Semantic border color tokens for consistent theming across components"
+        title="Border Colors"
+        description="Tailwind classes for controlling the border color of an element."
       />
       <ColorSection
         category="border"

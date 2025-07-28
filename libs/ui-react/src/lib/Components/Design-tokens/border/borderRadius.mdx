@@ -35,6 +35,71 @@ Radius tokens variants are divided in 8 sizes:
 
 <Canvas></Canvas>
 
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="font-medium p-12 text-left text-on-accent body-3">
+          Tailwind class (utilities)
+        </th>
+        <th className="font-medium p-12 text-left text-on-accent body-3">
+          styles
+        </th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-none</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-none); /* 0px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-xs</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-xs); /* 4px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-sm</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-sm); /* 8px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-md</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-md); /* 12px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-lg</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-lg); /* 16px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-xl</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-xl); /* 24px */
+        </td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 font-mono body-4">rounded-2xl</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-2xl); /* 32px */
+        </td>
+      </tr>
+      <tr>
+        <td className="text-accent p-12 font-mono body-4">rounded-full</td>
+        <td className="p-12 font-mono text-muted body-4">
+          border-radius: var(--border-radius-full); /* fully rounded */
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 The table below lists our border-radius tokens, showing their typical usage to help maintain visual consistency across the interface.
 
 <Markdown>

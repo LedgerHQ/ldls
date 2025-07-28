@@ -22,8 +22,8 @@ export const Background: Story = {
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader
-        title="Background Color Tokens"
-        description="Semantic background color tokens for consistent theming across components"
+        title="Background Colors"
+        description="Tailwind classes for controlling the background color of an element."
       />
 
       <ColorSection

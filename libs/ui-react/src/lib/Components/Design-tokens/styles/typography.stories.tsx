@@ -17,7 +17,7 @@ const TypographySample = ({
 }) => (
   <div>
     <div
-      className={`${className} border toto max-w-fit rounded-lg border-muted-subtle p-24 text-base`}
+      className={`${className} toto max-w-fit rounded-lg border border-muted-subtle p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
     </div>
@@ -63,8 +63,8 @@ export const Typography: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Typography Tokens"
-        description="Typography: Display, Heading, Body, body-4, Small body-4"
+        title="Typography"
+        description="Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `display-1`, `heading-1`... for the display text."
       />
       <TypographyShowcase />
     </div>
