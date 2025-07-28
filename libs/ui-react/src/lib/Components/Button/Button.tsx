@@ -89,9 +89,16 @@ export interface ButtonProps
  * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
  * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
  *   The icon component should accept `size` (IconSize) and `className` props.
- * @param {string} [className] - Additional custom CSS classes to apply.
+ * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
  * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, `type`).
+ *
+ * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Do's and Don'ts}
  *
  * @example
  * // Basic primary button
@@ -108,7 +115,7 @@ export interface ButtonProps
  * <Button icon={ArrowRight} size="sm" loading={isLoading} disabled={isLoading} />
  *
  * // Full-width button with custom class
- * <Button appearance="accent" isFull={true} className="my-custom-class">
+ * <Button appearance="accent" isFull={true} className="ml-16">
  *   Submit
  * </Button>
  */

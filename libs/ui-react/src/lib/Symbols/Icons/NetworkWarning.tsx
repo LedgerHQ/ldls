@@ -12,6 +12,8 @@ import createIcon from "../../Components/Icon/createIcon";
  * @param {string} [className] - Additional CSS classes to apply to the icon.
  * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
  *
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:NetworkWarning Storybook}
+ *
  * @example
  * // Basic usage with default size (24px)
  * import { NetworkWarning } from '@ldls/ui-react/symbols';
@@ -21,14 +23,6 @@ import createIcon from "../../Components/Icon/createIcon";
  * @example
  * // With custom size and className
  * <NetworkWarning size={40} className="text-warning" />
- *
- * @example
- * // Used within a Button component
- * import { Button } from '@ldls/ui-react';
- *
- * <Button icon={NetworkWarning} size="md">
- *   Click me
- * </Button>
  */
 export const NetworkWarning = createIcon(
   "NetworkWarning",

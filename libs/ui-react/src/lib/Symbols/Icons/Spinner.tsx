@@ -1,3 +1,7 @@
+// this Icon has an issue with the gradient color, it's not correctly set. So we're manually setting it to currentColor.
+// This is a temporary fix. Please do not revert this.
+// TODO: fix this in the future.
+
 import createIcon from '../../Components/Icon/createIcon';
 
 /**

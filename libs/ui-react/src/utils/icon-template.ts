@@ -16,6 +16,8 @@ const template: Template = (variables, { tpl }) => {
  * @param {string} [className] - Additional CSS classes to apply to the icon.
  * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
  * 
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:${componentName} Storybook}
+ * 
  * @example
  * // Basic usage with default size (24px)
  * import { ${componentName} } from '@ldls/ui-react/symbols';
@@ -25,14 +27,6 @@ const template: Template = (variables, { tpl }) => {
  * @example
  * // With custom size and className
  * <${componentName} size={40} className="text-warning" />
- * 
- * @example
- * // Used within a Button component
- * import { Button } from '@ldls/ui-react';
- * 
- * <Button icon={${componentName}} size="md">
- *   Click me
- * </Button>
  */
 `;
 
