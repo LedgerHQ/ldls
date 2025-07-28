@@ -44,12 +44,12 @@ CardButtons support flexible content combinations to suit different use cases:
 - **Title only**: minimal card for simple options
 - **Title + Icon**: adds visual context to the option
 - **Title + Description**: provides additional explanation
-- **Title + Caret**: indicates navigation or expansion
+- **Title + Chevron**: indicates navigation or expansion
 - **Complete card**: combines all elements for rich, informative options
 
 <Canvas of={CardButtonStories.ContentVariations} />
 
-> **Note**: The title is required, while icon, description, and caret are all optional and can be combined as needed.
+> **Note**: The title is required, while icon, description, and noChevron are all optional and can be combined as needed.
 
 ### States
 
@@ -68,7 +68,7 @@ CardButtons automatically adapt their width to fit their container while maintai
 > - Default width adapts to content
 > - Use `isFull` prop for full container width
 > - Long titles and descriptions automatically wrap and truncate as needed
-> - Icons and carets maintain fixed sizes for visual consistency
+> - Icons (including the chevron) maintain fixed sizes for visual consistency
 
 ## Accessibility
 

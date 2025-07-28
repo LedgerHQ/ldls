@@ -30,21 +30,20 @@ describe('CardButton Component', () => {
     expect(screen.getByText('Settings Card')).toBeInTheDocument();
   });
 
-  it('should render with caret when caret prop is true', () => {
-    render(<CardButton title="Navigation Card" caret />);
+  it('should render without chevron when noChevron prop is true', () => {
+    render(<CardButton title="Navigation Card" noChevron />);
 
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
     expect(screen.getByText('Navigation Card')).toBeInTheDocument();
   });
 
-  it('should render with all props: icon, title, description, and caret', () => {
+  it('should render with all props: icon, title, description, and noChevron', () => {
     render(
       <CardButton
         title="Complete Card"
         description="This card has everything"
         icon={Wallet}
-        caret
       />,
     );
 

@@ -39,9 +39,9 @@ const meta: Meta<typeof CardButton> = {
         Settings: Settings,
       },
     },
-    caret: {
+    noChevron: {
       control: 'boolean',
-      description: 'Whether to show the chevron right icon on the right side',
+      description: 'Whether to hide the chevron right icon on the right side',
     },
     disabled: {
       control: 'boolean',
@@ -115,11 +115,11 @@ export const WithDescription: Story = {
   },
 };
 
-export const WithCaret: Story = {
+export const WithoutChevron: Story = {
   args: {
     appearance: 'base',
     title: 'Navigate Forward',
-    caret: true,
+    noChevron: true,
   },
   parameters: {
     docs: {
@@ -128,7 +128,7 @@ export const WithCaret: Story = {
 <CardButton
   appearance="base"
   title="Navigate Forward"
-  caret
+  noChevron
 />
 `,
       },
@@ -142,7 +142,6 @@ export const FullFeatures: Story = {
     title: 'Account Settings',
     description: 'Manage your account preferences and security',
     icon: Settings,
-    caret: true,
   },
   parameters: {
     docs: {
@@ -153,7 +152,6 @@ export const FullFeatures: Story = {
   title="Account Settings"
   description="Manage your account preferences and security"
   icon={Settings}
-  caret
 />
 `,
       },
@@ -180,7 +178,6 @@ export const AppearanceShowcase: Story = {
             title={`${name} Appearance`}
             description="This demonstrates the appearance variation"
             icon={Coins}
-            caret
           />
         ))}
       </div>
@@ -191,32 +188,32 @@ export const AppearanceShowcase: Story = {
 export const ContentVariations: Story = {
   render: () => (
     <div className="flex flex-col gap-16 p-8">
-      <CardButton appearance="base" title="Title Only" />
-      <CardButton appearance="base" title="With Icon" icon={Plus} />
+      <CardButton appearance="base" title="Title Only" noChevron />
+      <CardButton appearance="base" title="With Icon" icon={Plus} noChevron />
       <CardButton
         appearance="base"
         title="With Description"
         description="This card has a description below the title"
+        noChevron
       />
-      <CardButton appearance="base" title="With Caret" caret />
+      <CardButton appearance="base" title="With Chevron" />
       <CardButton
         appearance="base"
         title="Icon and Description"
         description="This card has both an icon and description"
         icon={Settings}
+        noChevron
       />
       <CardButton
         appearance="base"
-        title="Description and Caret"
-        description="This card has description and caret"
-        caret
+        title="Description and Chevron"
+        description="This card has description and chevron"
       />
       <CardButton
         appearance="base"
         title="Complete Card"
         description="This card has all optional features"
         icon={CreditCard}
-        caret
       />
     </div>
   ),
@@ -230,14 +227,12 @@ export const StatesShowcase: Story = {
         title="Base Default"
         description="This is the normal interactive state"
         icon={Settings}
-        caret
       />
       <CardButton
         appearance="base"
         title="Base Disabled"
         description="This card button is disabled"
         icon={Settings}
-        caret
         disabled
       />
       <CardButton
@@ -245,14 +240,12 @@ export const StatesShowcase: Story = {
         title="Outline Default"
         description="This is the outline appearance"
         icon={Bank}
-        caret
       />
       <CardButton
         appearance="outline"
         title="Outline Disabled"
         description="This is the disabled outline appearance"
         icon={Bank}
-        caret
         disabled
       />
     </div>
@@ -268,14 +261,12 @@ export const ResponsiveLayout: Story = {
         title="Short Title"
         description="Short description"
         icon={Plus}
-        caret
       />
       <CardButton
         appearance="base"
         title="Full Width"
         description="Short description"
         icon={Plus}
-        caret
         isFull
       />
       <CardButton
@@ -283,7 +274,6 @@ export const ResponsiveLayout: Story = {
         title="Longer Title That Might Overflow When Container is Smaller"
         description="This is a longer description that demonstrates how the card handles longer content within its constraints"
         icon={Settings}
-        caret
       />
     </div>
   ),
