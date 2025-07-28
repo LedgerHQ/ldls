@@ -82,15 +82,15 @@ function MyComponent() {
 }
 ```
 
-### With Caret
+### Without Chevron
 
-Use the `caret` prop to show a chevron indicating navigation:
+By default, a ChevronRight icon will be rendered on the right side. Use the `noChevron` prop to hide it:
 
 ```tsx
 <CardButton
   title="Settings"
   description="Configure your account preferences"
-  caret
+  noChevron
   appearance="base"
 />
 ```
@@ -178,7 +178,7 @@ The following guidelines ensure consistent usage of the CardButton component and
 <CardButton
   title="Wrong"
   description="Don't do this"
-  className="gap-8 p-6" 
+  className="gap-8 p-6"
 />
 
 // Don't override typography classes
