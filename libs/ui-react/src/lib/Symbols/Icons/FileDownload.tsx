@@ -1,4 +1,35 @@
 import createIcon from "../../Components/Icon/createIcon";
+
+/**
+ * FileDownload icon component.
+ *
+ * This icon component is automatically generated from SVG files and uses the createIcon utility
+ * to create a consistent icon interface. It supports all standard SVG props and additional
+ * size variants defined in the Icon component.
+ *
+ * @component
+ * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
+ * @param {string} [className] - Additional CSS classes to apply to the icon.
+ * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
+ *
+ * @example
+ * // Basic usage with default size (24px)
+ * import { FileDownload } from '@ldls/ui-react/symbols';
+ *
+ * <FileDownload />
+ *
+ * @example
+ * // With custom size and className
+ * <FileDownload size={40} className="text-warning" />
+ *
+ * @example
+ * // Used within a Button component
+ * import { Button } from '@ldls/ui-react';
+ *
+ * <Button icon={FileDownload} size="md">
+ *   Click me
+ * </Button>
+ */
 export const FileDownload = createIcon(
   "FileDownload",
   <svg

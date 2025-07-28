@@ -1,4 +1,35 @@
 import createIcon from "../../Components/Icon/createIcon";
+
+/**
+ * P2p icon component.
+ *
+ * This icon component is automatically generated from SVG files and uses the createIcon utility
+ * to create a consistent icon interface. It supports all standard SVG props and additional
+ * size variants defined in the Icon component.
+ *
+ * @component
+ * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
+ * @param {string} [className] - Additional CSS classes to apply to the icon.
+ * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
+ *
+ * @example
+ * // Basic usage with default size (24px)
+ * import { P2p } from '@ldls/ui-react/symbols';
+ *
+ * <P2p />
+ *
+ * @example
+ * // With custom size and className
+ * <P2p size={40} className="text-warning" />
+ *
+ * @example
+ * // Used within a Button component
+ * import { Button } from '@ldls/ui-react';
+ *
+ * <Button icon={P2p} size="md">
+ *   Click me
+ * </Button>
+ */
 export const P2p = createIcon(
   "P2p",
   <svg
