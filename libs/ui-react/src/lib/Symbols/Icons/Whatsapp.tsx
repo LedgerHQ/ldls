@@ -1,7 +1,7 @@
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
- * Shapes icon component.
+ * Whatsapp icon component.
  *
  * This icon component is automatically generated from SVG files and uses the createIcon utility
  * to create a consistent icon interface. It supports all standard SVG props and additional
@@ -14,24 +14,24 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Shapes } from '@ldls/ui-react/symbols';
+ * import { Whatsapp } from '@ldls/ui-react/symbols';
  *
- * <Shapes />
+ * <Whatsapp />
  *
  * @example
  * // With custom size and className
- * <Shapes size={40} className="text-warning" />
+ * <Whatsapp size={40} className="text-warning" />
  *
  * @example
  * // Used within a Button component
  * import { Button } from '@ldls/ui-react';
  *
- * <Button icon={Shapes} size="md">
+ * <Button icon={Whatsapp} size="md">
  *   Click me
  * </Button>
  */
-export const Shapes = createIcon(
-  "Shapes",
+export const Whatsapp = createIcon(
+  "Whatsapp",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,18 +40,9 @@ export const Shapes = createIcon(
     viewBox="0 0 16 16"
   >
     <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4.377 9.623c0-.427.346-.773.773-.773h.988c.427 0 .773.346.773.773v.988a.773.773 0 0 1-.773.773H5.15a.773.773 0 0 1-.773-.773zM11.713 10.118a1.417 1.417 0 1 1-2.833 0 1.417 1.417 0 0 1 2.833 0"
-    />
-    <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m7.737 4.562-1.085 1.88a.367.367 0 0 0 .317.55h2.17a.367.367 0 0 0 .318-.55l-1.085-1.88a.367.367 0 0 0-.635 0"
+      fill="currentColor"
+      fillRule="evenodd"
+      d="M7.285 7.288a4.4 4.4 0 0 0 1.427 1.427l.548-.328a.67.67 0 0 1 .76.05l1.063.851a.667.667 0 0 1 .051.996l-.48.473a2 2 0 0 1-2.474.267A10.8 10.8 0 0 1 4.976 7.82a2 2 0 0 1 .267-2.473l.473-.481a.667.667 0 0 1 .996.05l.85 1.064c.174.218.195.52.051.76z"
       clipRule="evenodd"
     />
     <path
@@ -59,7 +50,8 @@ export const Shapes = createIcon(
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.3}
-      d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.333H5.331a3.333 3.333 0 0 1-3.333-3.333z"
+      d="m4.578 13.324-1.798.3a.352.352 0 0 1-.405-.404l.3-1.798a6.345 6.345 0 1 1 1.903 1.902"
+      clipRule="evenodd"
     />
   </svg>
 );

@@ -1,7 +1,7 @@
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
- * Clip icon component.
+ * RecoveryKey icon component.
  *
  * This icon component is automatically generated from SVG files and uses the createIcon utility
  * to create a consistent icon interface. It supports all standard SVG props and additional
@@ -14,24 +14,24 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Clip } from '@ldls/ui-react/symbols';
+ * import { RecoveryKey } from '@ldls/ui-react/symbols';
  *
- * <Clip />
+ * <RecoveryKey />
  *
  * @example
  * // With custom size and className
- * <Clip size={40} className="text-warning" />
+ * <RecoveryKey size={40} className="text-warning" />
  *
  * @example
  * // Used within a Button component
  * import { Button } from '@ldls/ui-react';
  *
- * <Button icon={Clip} size="md">
+ * <Button icon={RecoveryKey} size="md">
  *   Click me
  * </Button>
  */
-export const Clip = createIcon(
-  "Clip",
+export const RecoveryKey = createIcon(
+  "RecoveryKey",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -39,12 +39,19 @@ export const Clip = createIcon(
     fill="currentColor"
     viewBox="0 0 16 16"
   >
-    <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.967 6.253 5.28 9.94a1.083 1.083 0 0 0 0 1.547h-.007c.427.427 1.12.427 1.547 0l5.747-5.75a2.197 2.197 0 0 0 0-3.1l-.007-.007a2.19 2.19 0 0 0-3.1-.007h-.007L3.7 8.369a3.276 3.276 0 0 0-.007 4.639 3.283 3.283 0 0 0 4.64 0v-.007l4.2-4.2"
-    />
+    <g clipPath="url(#prefix__a)">
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.3}
+        d="M6.333 4.667H4.667v1m1.666 5.666H4.667v-1m5-5.666h1.666v1m-1.666 5.666h1.666v-1m-8 4.334h9.334a2 2 0 0 0 2-2V3.333a2 2 0 0 0-2-2H3.333a2 2 0 0 0-2 2v9.334a2 2 0 0 0 2 2"
+      />
+    </g>
+    <defs>
+      <clipPath id="prefix__a">
+        <path fill="#fff" d="M0 0h16v16H0z" />
+      </clipPath>
+    </defs>
   </svg>
 );

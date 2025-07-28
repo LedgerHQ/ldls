@@ -1,7 +1,7 @@
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
- * Shapes icon component.
+ * Grid2 icon component.
  *
  * This icon component is automatically generated from SVG files and uses the createIcon utility
  * to create a consistent icon interface. It supports all standard SVG props and additional
@@ -14,24 +14,24 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Shapes } from '@ldls/ui-react/symbols';
+ * import { Grid2 } from '@ldls/ui-react/symbols';
  *
- * <Shapes />
+ * <Grid2 />
  *
  * @example
  * // With custom size and className
- * <Shapes size={40} className="text-warning" />
+ * <Grid2 size={40} className="text-warning" />
  *
  * @example
  * // Used within a Button component
  * import { Button } from '@ldls/ui-react';
  *
- * <Button icon={Shapes} size="md">
+ * <Button icon={Grid2} size="md">
  *   Click me
  * </Button>
  */
-export const Shapes = createIcon(
-  "Shapes",
+export const Grid2 = createIcon(
+  "Grid2",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -41,25 +41,16 @@ export const Shapes = createIcon(
   >
     <path
       stroke="currentColor"
-      strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.3}
-      d="M4.377 9.623c0-.427.346-.773.773-.773h.988c.427 0 .773.346.773.773v.988a.773.773 0 0 1-.773.773H5.15a.773.773 0 0 1-.773-.773zM11.713 10.118a1.417 1.417 0 1 1-2.833 0 1.417 1.417 0 0 1 2.833 0"
-    />
-    <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m7.737 4.562-1.085 1.88a.367.367 0 0 0 .317.55h2.17a.367.367 0 0 0 .318-.55l-1.085-1.88a.367.367 0 0 0-.635 0"
+      d="M5.167 6.5H3.333C2.597 6.5 2 5.9 2 5.167V3.333C2 2.597 2.597 2 3.333 2h1.834C5.9 2 6.5 2.597 6.5 3.333v1.834C6.5 5.9 5.9 6.5 5.167 6.5ZM5.167 14H3.333C2.597 14 2 13.4 2 12.667v-1.834c0-.74.597-1.333 1.333-1.333h1.834c.733 0 1.333.593 1.333 1.333v1.834C6.5 13.4 5.9 14 5.167 14Z"
       clipRule="evenodd"
     />
     <path
       stroke="currentColor"
-      strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.3}
-      d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.333H5.331a3.333 3.333 0 0 1-3.333-3.333z"
+      d="M14.3 4.3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 14h4.5L10 9.5z"
     />
   </svg>
 );
