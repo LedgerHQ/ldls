@@ -56,11 +56,19 @@ const svgrConfig = {
   expandProps: false,
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
   native: isReactNative,
-  ...(isReactNative && {
-    svgoConfig: {
-      plugins: ['removeXMLNS' as const],
-    },
-  }),
+  svgoConfig: {
+    plugins: [
+      {
+        name: 'preset-default' as const,
+        params: {
+          overrides: {
+            cleanupIds: false as const,
+          },
+        },
+      },
+      ...(isReactNative ? ['removeXMLNS' as const] : []),
+    ],
+  },
 };
 
 function pascalCasePath(relativePath: string): string {
