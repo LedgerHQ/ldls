@@ -5,6 +5,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "scripts": {
+    "build-storybook": "npx nx build-storybook ui-react --output-dir=storybook-static --skip-nx-cache"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
