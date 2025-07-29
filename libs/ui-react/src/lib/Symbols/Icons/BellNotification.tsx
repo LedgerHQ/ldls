@@ -7,12 +7,12 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:BellNotification Storybook}
+ *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
  * @param {string} [className] - Additional CSS classes to apply to the icon.
  * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
- *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:BellNotification Storybook}
  *
  * @example
  * // Basic usage with default size (24px)

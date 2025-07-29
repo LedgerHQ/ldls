@@ -82,6 +82,9 @@ export interface ButtonProps
  *
  * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
  *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Guidelines}
+ *
  * @component
  * @param {'base' | 'gray' | 'accent' | 'transparent' | 'no-background' | 'red'} [appearance='base'] - The visual style of the button.
  * @param {'xs' | 'sm' | 'md' | 'lg'} [size='md'] - The size variant of the button.
@@ -95,10 +98,6 @@ export interface ButtonProps
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Do's and Don'ts}
  *
  * @example
  * // Basic primary button
