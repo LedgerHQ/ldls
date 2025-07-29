@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Dimensions/Width',
+  title: 'Foundations/Dimensions/Size/Width',
 };
 
 export default meta;
@@ -49,8 +49,8 @@ export const Width: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Width Tokens"
-        description="Width tokens use the size token values to ensure consistent horizontal dimensions across the design system. These tokens follow the size-* pattern and can be applied using the w-* utility class."
+        title="Width"
+        description="Tailwind classes for controlling the width of an element. Use the `w-*` prefix followed by the size value."
       />
       <WidthShowcase />
     </div>

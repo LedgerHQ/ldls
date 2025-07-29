@@ -37,8 +37,8 @@ export const BorderRadius: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Border Radius Tokens"
-        description="Border radius values for consistent rounded corners"
+        title="Border Radius"
+        description="Tailwind classes for controlling the border radius of an element."
       />
       <BorderRadiusShowcase />
     </div>
