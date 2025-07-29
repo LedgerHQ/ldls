@@ -102,7 +102,7 @@ export const IconSizes: StoryObj = {
       {sizes.map((size) => (
         <div key={size}>
           <h3 className="font-semibold mb-16 heading-3">Size {size}px</h3>
-          <div className="border flex max-w-fit flex-wrap gap-16 rounded-lg border-muted-subtle p-16">
+          <div className="flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16">
             {[
               'Home',
               'Settings',
@@ -129,13 +129,9 @@ export const Gallery: StoryObj = {
   render: () => (
     <div className="p-8">
       <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8">
-        {/**
-         * TODO: We're currently rendering the Spinner icon first because it's not rendered correctly in the gallery for some reason.
-         */}
-        <IconCard name="Spinner" />
-        {Object.entries(Icons).map(
-          ([name]) => name !== 'Spinner' && <IconCard key={name} name={name} />,
-        )}
+        {Object.entries(Icons).map(([name]) => (
+          <IconCard key={name} name={name} />
+        ))}
       </div>
     </div>
   ),
