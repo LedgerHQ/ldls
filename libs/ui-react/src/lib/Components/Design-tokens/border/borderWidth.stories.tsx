@@ -34,8 +34,8 @@ export const BorderWidth: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Border Width Tokens"
-        description="Border width values for consistent border widths"
+        title="Border Width"
+        description="Tailwind classes for controlling the border width of an element."
       />
       <BorderWidthShowcase />
     </div>

@@ -23,8 +23,8 @@ export const Crypto: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Crypto Colors Tokens"
-        description="Crypto colors tokens for different cryptocurrencies"
+        title="Crypto Colors"
+        description="Tailwind classes for crypto colors tokens for different cryptocurrencies"
       />
       <ColorSection
         category="background"

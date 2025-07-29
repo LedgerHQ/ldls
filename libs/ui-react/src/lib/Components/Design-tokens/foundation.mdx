@@ -14,19 +14,43 @@ Design tokens are small, reusable design decisions that replace static values wi
 
 ### Figma Library
 
-Here is the Figma library Link: [Figma Library](https://www.figma.com/design/1234567890/Design-Tokens?node-id=1234567890%3A1234567890)
+Here is the Figma library Link: [Figma Library](https://www.figma.com/design/OfWotFqWbBVlNu7v0VaKha/0.Foundations-Library?node-id=2281-610&m=dev)
 
 ### Primitives Tokens
 
 A primitive token is an agnostic token that is not tied to a meaning or usage. These tokens are used to enumerate all the parameters available for design systems. These can be hexadecimal, spacings, fonts, size fonts, etc...
 
-Example: `color-light-purple050`
+Example: `color-light-purple-050`
+
+**These tokens are used under the hood as CSS variables** by the `@ldls/design-core` library (e.g., `var(--color-light-purple-050)`) and **should not be used directly by developers**. They serve as the foundation for semantic tokens.
 
 ### Semantic Tokens
 
 A semantic token is a specific token tied to a particular use case. Specific tokens are derived from primitive tokens but are explicitly defined for a particular UI element, ensuring a more tailored design while still maintaining consistency across the system.
 
 Example: `background-accent`
+
+**These are the tokens developers should use** as Tailwind utility classes in their applications (e.g., `bg-accent`, `text-on-accent`, `border-muted`).
+
+## 👨‍💻 Developer Usage
+
+**✅ DO: Use Semantic Tokens**
+
+- Use Tailwind utility classes like `bg-accent`, `text-on-accent`, `p-16`, `rounded-md`
+- These map to semantic tokens and provide meaningful, context-aware styling
+- Example: `<div className="bg-accent text-on-accent p-16 rounded-md">Content</div>`
+
+**❌ DON'T: Use Primitive Tokens**
+
+- Avoid using CSS variables directly like `var(--color-light-purple-050)` or `var(--spacing-16)`
+- These are implementation details managed by the design system
+- They may change without notice and don't provide semantic meaning
+
+**Why this matters:**
+
+- Semantic tokens ensure your UI adapts correctly to theme changes (light/dark mode)
+- They provide consistent behavior across different brand contexts
+- They're easier to understand and maintain in your codebase
 
 ## ⚡ Token Structure
 

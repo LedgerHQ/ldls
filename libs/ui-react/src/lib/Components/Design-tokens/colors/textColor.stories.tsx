@@ -22,8 +22,8 @@ export const Text: Story = {
   render: () => (
     <div className="p-24 transition-colors duration-300">
       <SectionHeader
-        title="Text Color Tokens"
-        description="Semantic text color tokens for consistent theming across components"
+        title="Text Colors"
+        description="Tailwind classes for controlling the text color of an element."
       />
       <ColorSection
         category="text"

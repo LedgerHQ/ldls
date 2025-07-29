@@ -121,8 +121,8 @@ export const Gradients: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Gradient Tokens"
-        description="Directional and asset-specific gradients"
+        title="Gradients"
+        description="Tailwind classes for controlling the gradient of an element."
       />
       <GradientShowcase />
     </div>

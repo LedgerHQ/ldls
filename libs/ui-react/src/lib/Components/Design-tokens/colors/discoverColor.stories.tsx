@@ -23,8 +23,8 @@ export const Discover: Story = {
   render: () => (
     <div className="border-width p-24">
       <SectionHeader
-        title="Discover Colors Tokens"
-        description="Brand colors for discover services and platform integrations"
+        title="Discover Colors"
+        description="Tailwind classes for brand colors for discover services and platform integrations"
       />
       <ColorSection
         category="background"
