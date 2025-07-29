@@ -188,15 +188,12 @@ export const AppearanceShowcase: Story = {
 export const ContentVariations: Story = {
   render: () => (
     <div className="flex flex-col gap-16 p-8">
-      <CardButton appearance="base" title="Title Only" hideChevron />
-      <CardButton appearance="base" title="With Icon" icon={Plus} hideChevron />
       <CardButton
         appearance="base"
         title="With Description"
         description="This card has a description below the title"
         hideChevron
       />
-      <CardButton appearance="base" title="With Chevron" />
       <CardButton
         appearance="base"
         title="Icon and Description"
@@ -215,6 +212,8 @@ export const ContentVariations: Story = {
         description="This card has all optional features"
         icon={CreditCard}
       />
+      <CardButton appearance="base" title="With Icon" icon={Plus} hideChevron />
+      <CardButton appearance="base" title="With Chevron" />
     </div>
   ),
 };
