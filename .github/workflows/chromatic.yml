@@ -28,7 +28,7 @@ jobs:
         env:
           NX_NO_CLOUD: true
           NODE_OPTIONS: '--max-old-space-size=6144'
-        run: npx nx run-many --target=build:storybook --parallel=3 --no-cloud
+        run: npx nx run-many --target=build:storybook --parallel=3 --no-cloud --webpack-stats-json
 
       - name: Run Chromatic
         uses: chromaui/action@latest
