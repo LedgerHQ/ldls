@@ -12,8 +12,8 @@ const SizeShowcase = () => (
   <div className="space-y-24">
     <div className="space-y-14">
       <div className="text-base body-2">
-        Use utilities like `size-px`, `size-1`, and `size-64` to set an element
-        to a fixed width and height at the same time.
+        Use utilities like `size-1`, and `size-64` to set an element to a fixed
+        width and height at the same time.
         <br />
       </div>
 
