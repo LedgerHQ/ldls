@@ -1,4 +1,29 @@
 import createIcon from "../../Components/Icon/createIcon";
+
+/**
+ * Shapes icon component.
+ *
+ * This icon component is automatically generated from SVG files and uses the createIcon utility
+ * to create a consistent icon interface. It supports all standard SVG props and additional
+ * size variants defined in the Icon component.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Shapes Storybook}
+ *
+ * @component
+ * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
+ * @param {string} [className] - Additional CSS classes to apply to the icon.
+ * @param {React.SVGProps<SVGSVGElement>} [...props] - All standard SVG element props.
+ *
+ * @example
+ * // Basic usage with default size (24px)
+ * import { Shapes } from '@ldls/ui-react/symbols';
+ *
+ * <Shapes />
+ *
+ * @example
+ * // With custom size and className
+ * <Shapes size={40} className="text-warning" />
+ */
 export const Shapes = createIcon(
   "Shapes",
   <svg
@@ -28,7 +53,7 @@ export const Shapes = createIcon(
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.3}
-      d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.334H5.331a3.333 3.333 0 0 1-3.333-3.334z"
+      d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.333H5.331a3.333 3.333 0 0 1-3.333-3.333z"
     />
   </svg>
 );

@@ -1,10 +1,41 @@
 import Svg, { Path } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
+
+/**
+ * ChevronRight icon component for React Native.
+ *
+ * This icon component is automatically generated from SVG files and uses the createIcon utility
+ * to create a consistent icon interface. It supports all standard SVG props (from react-native-svg)
+ * and additional size variants defined in the Icon component.
+ *
+ * @component
+ * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
+ * @param {string} [className] - Additional CSS classes to apply to the icon (via NativeWind).
+ * @param {SVGProps} [...props] - All standard SVG element props (from react-native-svg).
+ *
+ * @example
+ * // Basic usage with default size (24px)
+ * import { ChevronRight } from '@ldls/ui-rnative/symbols';
+ *
+ * <ChevronRight />
+ *
+ * @example
+ * // With custom size and className (NativeWind)
+ * <ChevronRight size={40} className="text-warning" />
+ *
+ * @example
+ * // Used within a Button component
+ * import { Button } from '@ldls/ui-rnative';
+ *
+ * <Button icon={ChevronRight} size="md">
+ *   Click me
+ * </Button>
+ */
 export const ChevronRight = createIcon(
   "ChevronRight",
   <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
     <Path
-      d="M6.66663 10.6667L9.33329 8.00004L6.66663 5.33337"
+      d="M6.66663 10.6666L9.33329 7.99998L6.66663 5.33331"
       stroke="currentColor"
       strokeWidth={1.3}
       strokeLinecap="round"

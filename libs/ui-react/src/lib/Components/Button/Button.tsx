@@ -77,6 +77,47 @@ export interface ButtonProps
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
 
+/**
+ * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.
+ *
+ * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Guidelines}
+ *
+ * @component
+ * @param {'base' | 'gray' | 'accent' | 'transparent' | 'no-background' | 'red'} [appearance='base'] - The visual style of the button.
+ * @param {'xs' | 'sm' | 'md' | 'lg'} [size='md'] - The size variant of the button.
+ * @param {boolean} [isFull=false] - If true, the button expands to full width of its container.
+ * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
+ * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
+ *   The icon styles are defined by the button. Please do not override them.
+ * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
+ * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
+ * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, `type`).
+ *
+ * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ *
+ * @example
+ * // Basic primary button
+ * import { Button } from '@ldls/ui-react';
+ *
+ * <Button appearance="base" size="md" onClick={() => console.log('Clicked!')}>
+ *   Click Me
+ * </Button>
+ *
+ * // Icon-only button with loading state
+ * import { Button } from '@ldls/ui-react';
+ * import { ArrowRight } from '@ldls/ui-react/symbols';
+ *
+ * <Button icon={ArrowRight} size="sm" loading={isLoading} disabled={isLoading} />
+ *
+ * // Full-width button with custom class
+ * <Button appearance="accent" isFull={true} className="ml-16">
+ *   Submit
+ * </Button>
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
