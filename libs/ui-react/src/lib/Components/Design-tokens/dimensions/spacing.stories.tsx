@@ -33,11 +33,11 @@ const SpacingShowcase = () => (
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className="flex items-center gap-8">
           <div>
-            <div className="w-48 text-base body-2">{name}</div>
-            <div className="text-muted body-4">{token}</div>
+            <div className="text-muted body-2">{token}</div>
+            <div className="w-48 text-base body-4">{name}</div>
           </div>
           <div
-            className={`${widthClass} border rounded-md border-muted-subtle bg-[repeating-linear-gradient(45deg,var(--border-muted-subtle)_2px,var(--border-muted-subtle)_4px,transparent_4px,transparent_12px)]`}
+            className={`${widthClass} rounded-md border border-muted-subtle bg-[repeating-linear-gradient(45deg,var(--border-muted-subtle)_2px,var(--border-muted-subtle)_4px,transparent_4px,transparent_12px)]`}
           >
             <div className="h-56 w-56 rounded-sm bg-accent text-muted body-2"></div>
           </div>
@@ -51,8 +51,8 @@ export const Spacing: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
-        title="Spacing Tokens"
-        description="Consistent spacing scale for padding, margin, and layout"
+        title="Spacing"
+        description="Tailwind classes for controlling the spacing of an element. Includes padding, margin, and gap."
       />
       <SpacingShowcase />
     </div>
