@@ -100,9 +100,9 @@ export interface ButtonProps
  * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * // Basic primary button
  * import { Button } from '@ldls/ui-react';
  *
+ * // Basic primary button
  * <Button appearance="base" size="md" onClick={() => console.log('Clicked!')}>
  *   Click Me
  * </Button>

@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner } from './Banner';
-import { Settings } from '../../Symbols';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -109,10 +108,16 @@ export const WithActions: Story = {
   },
 };
 
-export const WithClose: Story = {
+export const WithFullFeatures: Story = {
   args: {
     appearance: 'info',
-    title: 'Dismissible Banner',
+    title: 'Banner with Full Features',
+    description: 'This is additional information about the banner.',
+    primaryActionLabel: 'Primary',
+    secondaryActionLabel: 'Secondary',
+    onPrimaryActionClick: () => console.log('Primary clicked'),
+    onSecondaryActionClick: () => console.log('Secondary clicked'),
+    onCloseClick: () => console.log('Closed'),
   },
   parameters: {
     docs: {
@@ -120,8 +125,13 @@ export const WithClose: Story = {
         code: `
 <Banner
   appearance="info"
-  title="Dismissible Banner"
-  onCloseClick={() => {}}
+  title="Banner with Full Features"
+  description="This is additional information about the banner."
+  primaryActionLabel="Primary"
+  secondaryActionLabel="Secondary"
+  onPrimaryActionClick={() => console.log('Primary clicked')}
+  onSecondaryActionClick={() => console.log('Secondary clicked')}
+  onCloseClick={() => console.log('Closed')}
 />
 `,
       },
@@ -145,6 +155,8 @@ export const AppearanceShowcase: Story = {
             key={appearance}
             appearance={appearance}
             title={`${name} Banner`}
+            description={`${name} Banner Description`}
+            onCloseClick={() => console.log('Closed')}
           />
         ))}
       </div>
@@ -152,7 +164,7 @@ export const AppearanceShowcase: Story = {
   },
 };
 
-export const ContentTypesShowcase: Story = {
+export const ContentVariations: Story = {
   render: () => (
     <div className="flex flex-col gap-16 p-8">
       <Banner title="Title Only" />
@@ -163,6 +175,11 @@ export const ContentTypesShowcase: Story = {
         onPrimaryActionClick={() => console.log('Primary clicked')}
       />
       <Banner
+        title="With Close"
+        description="Can be dismissed"
+        onCloseClick={() => console.log('Closed')}
+      />
+      <Banner
         title="With Actions and Description"
         description="Details"
         primaryActionLabel="Primary"
@@ -170,7 +187,40 @@ export const ContentTypesShowcase: Story = {
         onPrimaryActionClick={() => console.log('Primary clicked')}
         onSecondaryActionClick={() => console.log('Secondary clicked')}
       />
-      <Banner title="With Close" onCloseClick={() => console.log('Closed')} />
+      <Banner
+        appearance="info"
+        title="Banner with Full Features"
+        description="This is additional information about the banner."
+        primaryActionLabel="Primary"
+        secondaryActionLabel="Secondary"
+        onPrimaryActionClick={() => console.log('Primary clicked')}
+        onSecondaryActionClick={() => console.log('Secondary clicked')}
+        onCloseClick={() => console.log('Closed')}
+      />
+    </div>
+  ),
+};
+
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div className="grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16">
+      <div className="text-muted body-4-semi-bold">Container: 384px wide</div>
+      <Banner
+        title="Short Title"
+        description="Short description"
+        onCloseClick={() => console.log('Closed')}
+      />
+      <Banner
+        title="Full Width"
+        description="Short description"
+        isFull
+        onCloseClick={() => console.log('Closed')}
+      />
+      <Banner
+        title="Longer Title That Might Overflow When Container is Smaller"
+        description="This is a longer description that demonstrates how the banner handles longer content within its constraints. It should be truncated at 5 lines with an ellipsis, so this line should not be visible."
+        onCloseClick={() => console.log('Closed')}
+      />
     </div>
   ),
 };
@@ -195,21 +245,32 @@ export const InteractiveActions: Story = {
   render: (args) => {
     const [state, setState] = React.useState('idle');
 
-    const handlePrimary = () => {
-      setState('loading');
-      setTimeout(() => setState('success'), 2000);
+    const handleAccept = () => {
+      setState('success');
+    };
+
+    const handleReject = () => {
+      setState('error');
     };
 
     return (
       <Banner
         {...args}
-        appearance={state === 'success' ? 'success' : 'info'}
-        title={
-          state === 'success' ? 'Action Successful!' : 'Banner with Action'
+        appearance={
+          state === 'success' ? 'success' : state === 'error' ? 'error' : 'info'
         }
-        description={state === 'loading' ? 'Processing...' : undefined}
-        primaryActionLabel={state === 'idle' ? 'Perform Action' : undefined}
-        onPrimaryActionClick={state === 'idle' ? handlePrimary : undefined}
+        title={
+          state === 'success'
+            ? 'Accepted!'
+            : state === 'error'
+              ? 'Rejected!'
+              : 'Banner with Action'
+        }
+        primaryActionLabel={state === 'idle' ? 'Accept' : undefined}
+        onPrimaryActionClick={state === 'idle' ? handleAccept : undefined}
+        secondaryActionLabel={state === 'idle' ? 'Reject' : undefined}
+        onSecondaryActionClick={state === 'idle' ? handleReject : undefined}
+        onCloseClick={() => setState('idle')}
       />
     );
   },

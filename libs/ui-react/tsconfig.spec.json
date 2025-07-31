@@ -9,6 +9,7 @@
       "node",
       "vitest"
     ],
+    "lib": ["es2022", "dom"],
     "jsx": "react-jsx"
   },
   "include": [
