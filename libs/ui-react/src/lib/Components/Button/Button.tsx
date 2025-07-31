@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       appearance: {
-        base: 'bg-interactive text-black hover:bg-interactive-hover active:bg-interactive-pressed',
+        base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
         gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
         accent:
           'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
@@ -20,9 +20,9 @@ const buttonVariants = cva(
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {
-        xs: 'px-20 py-8 body-2-semi-bold',
+        xs: 'px-12 py-8 body-2-semi-bold',
         sm: 'px-16 py-8 body-2-semi-bold',
-        md: 'p-12',
+        md: 'px-16 py-12',
         lg: 'p-16',
       },
       isFull: {
