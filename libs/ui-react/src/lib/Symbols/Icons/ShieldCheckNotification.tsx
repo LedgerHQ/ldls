@@ -33,9 +33,9 @@ export const ShieldCheckNotification = createIcon(
     fill="currentColor"
     viewBox="0 0 16 16"
   >
-    <g clipPath="url(#prefix__a)">
+    <g clipPath="url(#clip0_3_369)">
       <mask
-        id="prefix__b"
+        id="mask0_3_369"
         width={16}
         height={16}
         x={0}
@@ -47,7 +47,7 @@ export const ShieldCheckNotification = createIcon(
       >
         <path fill="#D9D9D9" d="M9.505 0A4.666 4.666 0 0 0 16 6.495V16H0V0z" />
       </mask>
-      <g mask="url(#prefix__b)">
+      <g mask="url(#mask0_3_369)">
         <path
           stroke="currentColor"
           strokeLinecap="round"
@@ -59,7 +59,7 @@ export const ShieldCheckNotification = createIcon(
       <circle cx={13.333} cy={2.667} r={2.667} fill="#D4A0FF" />
     </g>
     <defs>
-      <clipPath id="prefix__a">
+      <clipPath id="clip0_3_369">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>

@@ -33,24 +33,22 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Label = createIcon(
   "Label",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M5.54204 5.17262C5.64332 5.2739 5.64332 5.4381 5.54204 5.53938C5.44076 5.64065 5.27656 5.64065 5.17529 5.53938C5.07401 5.4381 5.07401 5.2739 5.17529 5.17262C5.27656 5.07135 5.44076 5.07135 5.54204 5.17262Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M5.542 5.173a.26.26 0 1 1-.367.366.26.26 0 0 1 .367-.366"
+      clipRule="evenodd"
     />
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M4.82933 2.01666L6.72867 2C7.08267 1.99666 7.42333 2.13666 7.674 2.38666L13.61 8.32533C14.1307 8.846 14.1307 9.69066 13.61 10.2113L10.214 13.6093C9.69333 14.1307 8.848 14.1307 8.32733 13.6093L2.38667 7.66666C2.13933 7.41933 2 7.08333 2 6.73266V4.858C2 4.50733 2.13933 4.17133 2.38667 3.924L3.90667 2.40333C4.152 2.158 4.48333 2.01933 4.82933 2.01666Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M4.83 2.017 6.728 2c.354-.003.694.137.945.387l5.936 5.938c.52.521.52 1.366 0 1.886l-3.396 3.398a1.333 1.333 0 0 1-1.887 0l-5.94-5.942A1.32 1.32 0 0 1 2 6.733V4.858c0-.35.14-.687.387-.934l1.52-1.52a1.32 1.32 0 0 1 .922-.387"
+      clipRule="evenodd"
     />
   </Svg>
 );

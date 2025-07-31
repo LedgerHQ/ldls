@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const MobileArrow = createIcon(
   "MobileArrow",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M6.33337 2V3.33333C6.33337 3.51333 6.48671 3.66667 6.66671 3.66667H9.33337C9.52004 3.66667 9.66671 3.51333 9.66671 3.33333V2M4.00004 11.3333V12.6667C4.00004 13.4 4.60004 14 5.33337 14H10.6667C11.4067 14 12 13.4 12 12.6667V3.33333C12 2.59333 11.4067 2 10.6667 2H5.33337C4.60004 2 4.00004 2.59333 4.00004 3.33333V4.66667M1.33337 8H4.66671M4.66671 8L3.33337 6.66667M4.66671 8L3.33337 9.33333"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M6.333 2v1.333c0 .18.154.334.334.334h2.666a.334.334 0 0 0 .334-.334V2M4 11.333v1.334C4 13.4 4.6 14 5.333 14h5.334c.74 0 1.333-.6 1.333-1.333V3.333C12 2.593 11.407 2 10.667 2H5.333C4.6 2 4 2.593 4 3.333v1.334M1.333 8h3.334m0 0L3.333 6.667M4.667 8 3.333 9.333"
     />
   </Svg>
 );
