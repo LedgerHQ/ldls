@@ -91,7 +91,7 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
       },
-      '.heading-1-medium': {
+      '.heading-1-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-1-size)',
         'font-weight': 'var(--font-style-heading-1-weight-medium)',
@@ -101,42 +101,42 @@ export function createTypographyPlugin() {
       '.heading-2': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-2-size)',
-        'font-weight': 'var(--font-style-heading-2-weight-semi-bold)',
+        'font-weight': 'var(--font-style-heading-2-weight-medium)',
         'line-height': 'var(--font-style-heading-2-line-height)',
         'letter-spacing': 'var(--font-style-heading-2-letter-spacing)',
       },
-      '.heading-2-medium': {
+      '.heading-2-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-2-size)',
-        'font-weight': 'var(--font-style-heading-2-weight-medium)',
+        'font-weight': 'var(--font-style-heading-2-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-2-line-height)',
         'letter-spacing': 'var(--font-style-heading-2-letter-spacing)',
       },
       '.heading-3': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-3-size)',
-        'font-weight': 'var(--font-style-heading-3-weight-semi-bold)',
+        'font-weight': 'var(--font-style-heading-3-weight-medium)',
         'line-height': 'var(--font-style-heading-3-line-height)',
         'letter-spacing': 'var(--font-style-heading-3-letter-spacing)',
       },
-      '.heading-3-medium': {
+      '.heading-3-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-3-size)',
-        'font-weight': 'var(--font-style-heading-3-weight-medium)',
+        'font-weight': 'var(--font-style-heading-3-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-3-line-height)',
         'letter-spacing': 'var(--font-style-heading-3-letter-spacing)',
       },
       '.heading-4': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-4-size)',
-        'font-weight': 'var(--font-style-heading-4-weight-semi-bold)',
+        'font-weight': 'var(--font-style-heading-4-weight-medium)',
         'line-height': 'var(--font-style-heading-4-line-height)',
         'letter-spacing': 'var(--font-style-heading-4-letter-spacing)',
       },
-      '.heading-4-medium': {
+      '.heading-4-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-4-size)',
-        'font-weight': 'var(--font-style-heading-4-weight-medium)',
+        'font-weight': 'var(--font-style-heading-4-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-4-line-height)',
         'letter-spacing': 'var(--font-style-heading-4-letter-spacing)',
       },
