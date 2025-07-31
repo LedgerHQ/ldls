@@ -70,7 +70,7 @@ For the best development experience, we recommend the following setup:
    - Shows class definitions on hover
    - Syntax highlighting for Tailwind classes
    - Linting for class order and conflicts
-   - Add to your VSCode settings:
+   - Add to your VSCode settings (in your `.vscode/settings.json` file):
      ```json
      {
        "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -87,22 +87,25 @@ For the best development experience, we recommend the following setup:
      ```bash
      npm install -D prettier prettier-plugin-tailwindcss
      ```
+   - Add to your prettier settings (in your `.prettierrc.json` file):
+     ```json
+     {
+       "plugins": ["prettier-plugin-tailwindcss"]
+     }
+     ```
+
+3. **ESLint Plugin Tailwind** ([eslint-plugin-tailwindcss](https://github.com/tailwindlabs/eslint-plugin-tailwindcss))
+   - Lints Tailwind classes in a consistent order
+   - Install with:
+     ```bash
+     npm install -D eslint-plugin-tailwindcss
+     ```
 
 ### Utility Functions
 
 We recommend creating utility functions to help you work with Tailwind classes. Here's how to create powerful utilities that handle conditional classes, Tailwind class conflicts, and type-safe variants:
 
 **Creating Class Names Utility**
-
-First, install the required packages:
-
-```bash
-npm install clsx tailwind-merge
-# or
-yarn add clsx tailwind-merge
-# or
-pnpm add clsx tailwind-merge
-```
 
 Then create your class names utility file (e.g., `utils/cn.ts`):
 
@@ -117,8 +120,8 @@ export function cn(...inputs: ClassValue[]) {
 
 This utility combines the power of two popular libraries:
 
-- `clsx`: Handles conditional class names
-- `tailwind-merge`: Intelligently handles Tailwind CSS class conflicts
+- [clsx](https://www.npmjs.com/package/clsx): Handles conditional class names
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): Intelligently handles Tailwind CSS class conflicts
 
 Example usage of cn utility:
 
@@ -155,15 +158,7 @@ import { cn } from '../utils/cn';
 
 For type-safe component variants, we use class-variance-authority. First, install the package:
 
-```bash
-npm install class-variance-authority
-# or
-yarn add class-variance-authority
-# or
-pnpm add class-variance-authority
-```
-
-`class-variance-authority` provides:
+[class-variance-authority](https://www.npmjs.com/package/class-variance-authority) provides:
 
 - Simple way to define component variants
 - Type-safe variant options
