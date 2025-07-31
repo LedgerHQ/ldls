@@ -31,7 +31,6 @@ export const Ar = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 17 16"
   >
     <path
       fill="currentColor"

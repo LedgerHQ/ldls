@@ -1,4 +1,4 @@
-import Svg, { G, Path, Defs, ClipPath, Rect } from "react-native-svg";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -33,19 +33,19 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const MessageChat = createIcon(
   "MessageChat",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <G clipPath="url(#clip0_805_1619)">
       <Path
-        d="M4.71861 14.5387C6.51861 14.5387 7.98528 13.072 7.98528 11.2693C7.97995 9.464 6.51328 8 4.71328 8C2.90661 8 1.44395 9.46 1.44395 11.2693M4.72195 14.542C4.22861 14.542 3.76195 14.4287 3.34195 14.2353L1.32861 14.662L1.74861 12.642C1.54861 12.222 1.44195 11.7487 1.44195 11.2553M4.37128 8.01333C4.13128 7.46 3.99795 6.86666 3.99795 6.24C3.99795 3.56 6.39128 1.41333 9.33128 1.41333C12.2646 1.41333 14.6646 3.56 14.6646 6.24C14.6646 7.82 13.8179 9.216 12.5313 10.0947C12.5313 10.5947 12.5246 11.2747 12.5246 11.988L10.4313 10.9547C10.0713 11.0213 9.69795 11.0547 9.31795 11.0547C8.84461 11.0547 8.38461 10.9947 7.95128 10.888"
         stroke="currentColor"
-        strokeWidth={1.3}
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth={1.3}
+        d="M4.719 14.539c1.8 0 3.266-1.467 3.266-3.27A3.28 3.28 0 0 0 4.713 8a3.266 3.266 0 0 0-3.269 3.27m3.278 3.272c-.493 0-.96-.113-1.38-.307l-2.013.427.42-2.02c-.2-.42-.307-.893-.307-1.387m2.93-3.242a4.4 4.4 0 0 1-.374-1.773c0-2.68 2.393-4.827 5.333-4.827 2.934 0 5.334 2.147 5.334 4.827 0 1.58-.847 2.976-2.134 3.855 0 .5-.006 1.18-.006 1.893l-2.094-1.033q-.541.1-1.113.1c-.473 0-.933-.06-1.367-.167"
       />
     </G>
     <Defs>
       <ClipPath id="clip0_805_1619">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>

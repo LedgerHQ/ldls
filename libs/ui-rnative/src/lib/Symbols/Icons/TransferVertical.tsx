@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const TransferVertical = createIcon(
   "TransferVertical",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M6.66687 5.33328L4.66687 3.33328M4.66687 3.33328L2.66687 5.33328M4.66687 3.33328V12.6666M9.33354 10.6666L11.3335 12.6666M11.3335 12.6666L13.3335 10.6666M11.3335 12.6666L11.3335 3.33328"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="m6.667 5.333-2-2m0 0-2 2m2-2v9.334m4.667-2 2 2m0 0 2-2m-2 2V3.333"
     />
   </Svg>
 );

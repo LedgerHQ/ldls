@@ -31,12 +31,11 @@ export const BellNotification = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
   >
-    <g clipPath="url(#prefix__a)">
-      <g clipPath="url(#prefix__b)">
+    <g clipPath="url(#clip0_3_362)">
+      <g clipPath="url(#clip1_3_362)">
         <mask
-          id="prefix__c"
+          id="mask0_3_362"
           width={16}
           height={16}
           x={0}
@@ -51,7 +50,7 @@ export const BellNotification = createIcon(
             d="M16 16H0V0h7.759a4.5 4.5 0 1 0 7.482 0H16z"
           />
         </mask>
-        <g mask="url(#prefix__c)">
+        <g mask="url(#mask0_3_362)">
           <path
             stroke="currentColor"
             strokeLinecap="round"
@@ -64,10 +63,10 @@ export const BellNotification = createIcon(
       <circle cx={11.5} cy={2.5} r={2.5} fill="#C24244" />
     </g>
     <defs>
-      <clipPath id="prefix__a">
+      <clipPath id="clip0_3_362">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
-      <clipPath id="prefix__b">
+      <clipPath id="clip1_3_362">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>

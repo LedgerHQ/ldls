@@ -33,14 +33,14 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const StarFill = createIcon(
   "StarFill",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M8.00001 11.49L4.11935 13.33L4.91935 9.25001L1.99335 6.25334L6.11335 5.73334L7.99335 1.98001L9.87335 5.72668L13.9927 6.24001L11.066 9.22668L11.866 13.3067L8.00001 11.49Z"
       fill="currentColor"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="m8 11.49-3.88 1.84.8-4.08-2.927-2.997 4.12-.52 1.88-3.753 1.88 3.747 4.12.513-2.927 2.987.8 4.08z"
     />
   </Svg>
 );

@@ -33,17 +33,17 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const StarHalf = createIcon(
   "StarHalf",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M4.11935 13.33L7.50114 11.6542L7.55236 2.89636L6.11335 5.73334L1.99335 6.25334L4.91935 9.25001L4.11935 13.33Z"
       fill="currentColor"
+      d="M4.12 13.33 7.5 11.654l.051-8.758-1.439 2.837-4.12.52L4.92 9.25z"
     />
     <Path
-      d="M4.11935 13.33L8.00001 11.49L11.866 13.3067L11.066 9.22668L13.9927 6.24001L9.87335 5.72668L7.99335 1.98001L6.11335 5.73334M4.11935 13.33L4.91935 9.25001L1.99335 6.25334L6.11335 5.73334M4.11935 13.33L7.50114 11.6542L7.55236 2.89636L6.11335 5.73334"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M4.12 13.33 8 11.49l3.866 1.817-.8-4.08 2.927-2.987-4.12-.513-1.88-3.747-1.88 3.753M4.12 13.33l.8-4.08-2.926-2.997 4.12-.52M4.12 13.33l3.382-1.676.051-8.758-1.439 2.837"
     />
   </Svg>
 );

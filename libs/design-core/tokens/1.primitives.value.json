@@ -7961,6 +7961,18 @@
           }
         }
       },
+      "22": {
+        "$type": "number",
+        "$value": 22,
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": true,
+            "scopes": [],
+            "codeSyntax": {}
+          }
+        }
+      },
       "24": {
         "$type": "number",
         "$value": 24,
@@ -8143,6 +8155,18 @@
           }
         }
       },
+      "22": {
+        "$type": "number",
+        "$value": 30,
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": true,
+            "scopes": [],
+            "codeSyntax": {}
+          }
+        }
+      },
       "24": {
         "$type": "number",
         "$value": 32,
@@ -8314,6 +8338,18 @@
         }
       },
       "20": {
+        "$type": "number",
+        "$value": -1,
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": true,
+            "scopes": [],
+            "codeSyntax": {}
+          }
+        }
+      },
+      "22": {
         "$type": "number",
         "$value": -1,
         "$description": "",

@@ -33,12 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Percentage = createIcon(
   "Percentage",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M14.0001 1.99997L2.00005 14M13.6 11.6C13.6 12.7046 12.7046 13.6 11.6 13.6C10.4955 13.6 9.60003 12.7046 9.60003 11.6C9.60003 10.4954 10.4955 9.6 11.6 9.6C12.7046 9.6 13.6 10.4954 13.6 11.6ZM6.40002 4.39999C6.40002 5.50456 5.50459 6.39999 4.40002 6.39999C3.29545 6.39999 2.40002 5.50456 2.40002 4.39999C2.40002 3.29542 3.29545 2.39999 4.40002 2.39999C5.50459 2.39999 6.40002 3.29542 6.40002 4.39999Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
+      strokeWidth={1.3}
+      d="M14 2 2 14m11.6-2.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM6.4 4.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
     />
   </Svg>
 );

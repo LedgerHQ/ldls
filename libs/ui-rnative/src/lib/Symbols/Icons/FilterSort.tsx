@@ -33,24 +33,14 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const FilterSort = createIcon(
   "FilterSort",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M9.66663 9.00002L13.138 5.52869C13.2633 5.40335 13.3333 5.23402 13.3333 5.05735V3.33335C13.3333 2.96535 13.0346 2.66669 12.6666 2.66669H3.33329C2.96529 2.66669 2.66663 2.96535 2.66663 3.33335V5.05735C2.66663 5.23402 2.73663 5.40402 2.86196 5.52869L6.33329 9.00002"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
-    />
-    <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M6.33329 9.00002V13.166C6.33329 13.708 6.84263 14.106 7.36863 13.9747L9.03529 13.558C9.40596 13.4654 9.66663 13.132 9.66663 12.7494V9.00002"
-      stroke="currentColor"
       strokeWidth={1.3}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      d="m9.667 9 3.471-3.471a.67.67 0 0 0 .195-.472V3.333a.667.667 0 0 0-.666-.666H3.333a.667.667 0 0 0-.666.666v1.724c0 .177.07.347.195.472L6.333 9M6.333 9v4.166c0 .542.51.94 1.036.809l1.666-.417a.834.834 0 0 0 .632-.809V9"
+      clipRule="evenodd"
     />
   </Svg>
 );

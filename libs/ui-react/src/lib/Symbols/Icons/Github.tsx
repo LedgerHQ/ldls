@@ -31,9 +31,8 @@ export const Github = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
   >
-    <g clipPath="url(#prefix__a)">
+    <g clipPath="url(#clip0_3_426)">
       <path
         fill="currentColor"
         fillRule="evenodd"
@@ -42,7 +41,7 @@ export const Github = createIcon(
       />
     </g>
     <defs>
-      <clipPath id="prefix__a">
+      <clipPath id="clip0_3_426">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>

@@ -33,10 +33,10 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Twitter = createIcon(
   "Twitter",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M9.3319 6.92804L14.5437 1H13.3087L8.78327 6.14724L5.16883 1H1L6.46574 8.78354L1 15H2.2351L7.01406 9.56434L10.8312 15H15L9.3316 6.92804H9.3319ZM7.64026 8.85211L7.08647 8.07705L2.68013 1.90978H4.57717L8.13314 6.88696L8.68693 7.66202L13.3093 14.1316H11.4122L7.64026 8.85241V8.85211Z"
       fill="currentColor"
+      d="M9.332 6.928 14.544 1h-1.235L8.783 6.147 5.17 1H1l5.466 7.784L1 15h1.235l4.78-5.436L10.83 15H15zM7.64 8.852l-.554-.775L2.68 1.91h1.897l3.556 4.977.554.775 4.622 6.47h-1.897z"
     />
   </Svg>
 );

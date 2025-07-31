@@ -1,4 +1,4 @@
-import Svg, { G, Path, Defs, ClipPath, Rect } from "react-native-svg";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -33,19 +33,19 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const RecoveryKey = createIcon(
   "RecoveryKey",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <G clipPath="url(#clip0_7062_10)">
       <Path
-        d="M6.33337 4.66668H4.66671V5.66668M6.33337 11.3333H4.66671V10.3333M9.66671 4.66668H11.3334V5.66668M9.66671 11.3333H11.3334V10.3333M3.33337 14.6667H12.6667C13.7713 14.6667 14.6667 13.7712 14.6667 12.6667V3.33334C14.6667 2.22877 13.7713 1.33334 12.6667 1.33334H3.33337C2.2288 1.33334 1.33337 2.22877 1.33337 3.33334V12.6667C1.33337 13.7712 2.2288 14.6667 3.33337 14.6667Z"
         stroke="currentColor"
-        strokeWidth={1.3}
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth={1.3}
+        d="M6.333 4.667H4.667v1m1.666 5.666H4.667v-1m5-5.666h1.666v1m-1.666 5.666h1.666v-1m-8 4.334h9.334a2 2 0 0 0 2-2V3.333a2 2 0 0 0-2-2H3.333a2 2 0 0 0-2 2v9.334a2 2 0 0 0 2 2"
       />
     </G>
     <Defs>
       <ClipPath id="clip0_7062_10">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>

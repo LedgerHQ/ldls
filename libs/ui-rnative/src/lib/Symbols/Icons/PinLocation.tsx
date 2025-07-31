@@ -33,20 +33,20 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const PinLocation = createIcon(
   "PinLocation",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M8.00004 8.66667C6.89537 8.66667 6.00004 7.77133 6.00004 6.66667C6.00004 5.562 6.89537 4.66667 8.00004 4.66667C9.10471 4.66667 10 5.562 10 6.66667C10 7.77133 9.10471 8.66667 8.00004 8.66667Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M8 8.667a2 2 0 1 1 0-4 2 2 0 0 1 0 4"
     />
     <Path
-      d="M8.00004 14C8.00004 14 3.33337 10.1667 3.33337 6.66667C3.33337 4.08667 5.42004 2 8.00004 2C10.5734 2 12.6667 4.08667 12.6667 6.66667C12.6667 10.1667 8.00004 14 8.00004 14Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M8 14s-4.667-3.833-4.667-7.333a4.667 4.667 0 0 1 9.333 0C12.667 10.167 8 14 8 14"
     />
   </Svg>
 );

@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Language = createIcon(
   "Language",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M5.00004 2.66669V4.66669M13.6667 13.3334L11 7.33335L8.33337 13.3334M8.92671 12H13.0734M2.33337 10C5.06337 9.78002 7.45071 7.39335 7.66737 4.66669H2.33404M7.66671 10C5.96004 9.86002 4.46804 8.36669 4.33337 6.66669"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M5 2.667v2m8.667 8.666-2.667-6-2.667 6M8.927 12h4.146m-10.74-2c2.73-.22 5.118-2.607 5.334-5.333H2.334M7.667 10C5.96 9.86 4.468 8.367 4.333 6.667"
     />
   </Svg>
 );

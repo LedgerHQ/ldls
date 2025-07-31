@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Charon = createIcon(
   "Charon",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M11.7133 10H8.66667M12 12.6667H4C2.89533 12.6667 2 11.7713 2 10.6667V5.33334C2 4.22868 2.89533 3.33334 4 3.33334H12C13.1047 3.33334 14 4.22868 14 5.33334V10.6667C14 11.7713 13.1047 12.6667 12 12.6667Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M11.713 10H8.667M12 12.667H4a2 2 0 0 1-2-2V5.333a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.334a2 2 0 0 1-2 2"
     />
   </Svg>
 );

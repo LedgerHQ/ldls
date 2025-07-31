@@ -33,34 +33,19 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Grid2 = createIcon(
   "Grid2",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      fillRule="evenodd"
+      stroke="currentColor"
+      strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M5.167 6.5H3.333C2.597 6.5 2 5.9 2 5.167V3.333C2 2.597 2.597 2 3.333 2h1.834C5.9 2 6.5 2.597 6.5 3.333v1.834C6.5 5.9 5.9 6.5 5.167 6.5ZM5.167 14H3.333C2.597 14 2 13.4 2 12.667v-1.834c0-.74.597-1.333 1.333-1.333h1.834c.733 0 1.333.593 1.333 1.333v1.834C6.5 13.4 5.9 14 5.167 14Z"
       clipRule="evenodd"
-      d="M5.16667 6.49999H3.33333C2.59667 6.49999 2 5.89999 2 5.16665V3.33332C2 2.59665 2.59667 1.99999 3.33333 1.99999H5.16667C5.9 1.99999 6.5 2.59665 6.5 3.33332V5.16665C6.5 5.89999 5.9 6.49999 5.16667 6.49999Z"
-      stroke="currentColor"
-      strokeWidth={1.3}
-      strokeLinejoin="round"
     />
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M5.16667 14H3.33333C2.59667 14 2 13.4 2 12.6667V10.8333C2 10.0933 2.59667 9.49999 3.33333 9.49999H5.16667C5.9 9.49999 6.5 10.0933 6.5 10.8333V12.6667C6.5 13.4 5.9 14 5.16667 14Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinejoin="round"
-    />
-    <Path
-      d="M14.3 4.29999C14.3 5.6807 13.1808 6.79999 11.8 6.79999C10.4193 6.79999 9.30005 5.6807 9.30005 4.29999C9.30005 2.91928 10.4193 1.79999 11.8 1.79999C13.1808 1.79999 14.3 2.91928 14.3 4.29999Z"
-      stroke="currentColor"
       strokeWidth={1.3}
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M10 14H14.5L10 9.49999V14Z"
-      stroke="currentColor"
-      strokeWidth={1.3}
-      strokeLinejoin="round"
+      d="M14.3 4.3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 14h4.5L10 9.5z"
     />
   </Svg>
 );

@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Snow = createIcon(
   "Snow",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M7.99996 2V14M9.44529 2.94733L7.99863 4.38733L6.55196 2.94067M13.3333 4.92L2.66663 11.08M13.0933 6.72533L11.1133 6.192L11.64 4.212M2.90196 9.27333L4.87529 9.8L4.34196 11.7733M2.66663 4.92L13.3333 11.08M2.90196 6.72533L4.87529 6.192L4.34196 4.212M13.0933 9.27333L11.1133 9.8L11.64 11.7733M6.55463 13.0467L7.99463 11.6L9.43463 13.04"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M8 2v12M9.445 2.947 8 4.387 6.552 2.941m6.781 1.979L2.667 11.08m10.426-4.355-1.98-.533.527-1.98M2.902 9.273l1.973.527-.533 1.973M2.667 4.92l10.666 6.16M2.902 6.725l1.973-.533-.533-1.98m8.751 5.061-1.98.527.527 1.973m-5.085 1.274 1.44-1.447 1.44 1.44"
     />
   </Svg>
 );

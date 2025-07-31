@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Refresh = createIcon(
   "Refresh",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <Path
-      d="M13.328 8.02132C13.3226 9.37932 12.8073 10.7353 11.7713 11.7713C9.68864 13.854 6.31131 13.854 4.22864 11.7713C3.85798 11.4007 3.55664 10.988 3.31798 10.5507M2.66931 7.91332C2.69064 6.57732 3.20931 5.24799 4.22864 4.22866C6.31131 2.14599 9.68864 2.14599 11.7713 4.22866C12.142 4.59932 12.4433 5.01199 12.682 5.44932M10.6353 5.44999H12.992V3.09266M5.36464 10.55H3.00798V12.9073"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M13.328 8.021a5.3 5.3 0 0 1-1.557 3.75 5.334 5.334 0 0 1-8.453-1.22m-.649-2.638A5.334 5.334 0 0 1 12.682 5.45m-2.047.001h2.357V3.093M5.365 10.55H3.008v2.357"
     />
   </Svg>
 );

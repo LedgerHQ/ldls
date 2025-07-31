@@ -1,4 +1,4 @@
-import Svg, { G, Path, Defs, ClipPath, Rect } from "react-native-svg";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -33,17 +33,17 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Placeholder = createIcon(
   "Placeholder",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor">
     <G clipPath="url(#clip0_5625_429)">
       <Path
-        d="M1.88883 1.88884L14.1111 14.1111M1.88883 14.1111L14.1111 1.88889M1.33337 1.33331H14.6667V14.6666H1.33337V1.33331Z"
         stroke="currentColor"
         strokeWidth={1.3}
+        d="M1.889 1.889 14.11 14.11m-12.222 0L14.11 1.89M1.333 1.333h13.334v13.334H1.333z"
       />
     </G>
     <Defs>
       <ClipPath id="clip0_5625_429">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>
