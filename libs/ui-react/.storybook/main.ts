@@ -16,6 +16,7 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@chromatic-com/storybook'),
   ],
 
   framework: {

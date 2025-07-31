@@ -33,6 +33,45 @@ export interface CardButtonProps
   isFull?: boolean;
 }
 
+/**
+ * A customizable card button component that displays an optional icon, a required title, an optional description, and an optional chevron arrow.
+ *
+ * It supports different appearances and can be set to full width. The chevron can be hidden if needed.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-implementation--docs#dos-and-donts Guidelines}
+ *
+ * @component
+ * @param {'base' | 'outline'} [appearance='base'] - The visual style of the card button.
+ * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render on the left side.
+ *   The icon styles are defined by the card button. Please do not override them.
+ * @param {string} title - The main title of the card button.
+ * @param {string} [description] - Optional descriptive text displayed below the title.
+ * @param {boolean} [hideChevron=false] - If true, hides the chevron arrow on the right side.
+ * @param {boolean} [isFull=false] - If true, the card button expands to the full width of its container.
+ * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
+ * @param {Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>} [...] - All standard button props except children (e.g., `disabled`, `onClick`, `type`).
+ *
+ * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * Do not use it to modify the card button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ *
+ * @example
+ * // Basic card button
+ * import { CardButton } from '@ldls/ui-react';
+ *
+ * <CardButton title="Click Me" onClick={() => console.log('Clicked!')} />
+ *
+ * // Card button with icon and description
+ * import { CardButton } from '@ldls/ui-react';
+ * import { Info } from '@ldls/ui-react/symbols';
+ *
+ * <CardButton
+ *   icon={Info}
+ *   title="Information"
+ *   description="Additional details here"
+ *   appearance="outline"
+ * />
+ */
 export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
   (
     {

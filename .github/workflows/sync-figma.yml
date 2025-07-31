@@ -225,6 +225,20 @@ jobs:
           name: react-native-symbols
           path: libs/ui-rnative/src/lib/Symbols/
 
+      - name: Add release plan
+        run: |
+          mkdir -p .nx/version-plans
+          TIMESTAMP=$(node -e "console.log(Date.now())")
+          cat << EOF > .nx/version-plans/version-plan-$TIMESTAMP.md
+          ---
+          '@ldls/design-core': patch
+          '@ldls/ui-rnative': patch
+          '@ldls/ui-react': patch
+          ---
+
+          Sync Figma Design Tokens & Symbols
+          EOF
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
