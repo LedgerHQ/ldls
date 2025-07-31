@@ -63,6 +63,7 @@ const svgrConfig = {
         params: {
           overrides: {
             cleanupIds: false as const,
+            removeViewBox: false as const,
           },
         },
       },
