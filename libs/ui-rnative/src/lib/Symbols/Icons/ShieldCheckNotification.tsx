@@ -1,12 +1,4 @@
-import Svg, {
-  G,
-  Mask,
-  Path,
-  Circle,
-  Defs,
-  ClipPath,
-  Rect,
-} from "react-native-svg";
+import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -41,38 +33,35 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const ShieldCheckNotification = createIcon(
   "ShieldCheckNotification",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_3_369)">
       <Mask
         id="mask0_3_369"
+        width={16}
+        height={16}
+        x={0}
+        y={0}
+        maskUnits="userSpaceOnUse"
         style={{
           maskType: "alpha",
         }}
-        maskUnits="userSpaceOnUse"
-        x={0}
-        y={0}
-        width={16}
-        height={16}
       >
-        <Path
-          d="M9.50488 0C8.97728 0.756045 8.66699 1.67513 8.66699 2.66699C8.66717 5.24406 10.7559 7.33283 13.333 7.33301C14.3249 7.33301 15.244 7.02272 16 6.49512V16H0V0H9.50488Z"
-          fill="#D9D9D9"
-        />
+        <Path fill="#D9D9D9" d="M9.505 0A4.666 4.666 0 0 0 16 6.495V16H0V0z" />
       </Mask>
       <G mask="url(#mask0_3_369)">
         <Path
-          d="M10.1666 6.75002L7.66663 9.25002L6.16663 7.75002M13.3333 7.45468C13.3333 10.482 11.0533 13.3127 7.99996 14C4.94196 13.3067 2.66663 10.48 2.66663 7.45468V5.07668C2.66663 4.53002 2.99329 4.04335 3.49329 3.83668L6.82663 2.47002C7.57329 2.15668 8.41863 2.15668 9.16663 2.47002L12.5 3.83002C13 4.03002 13.3266 4.51668 13.3266 5.06335V7.44135L13.3333 7.45468Z"
           stroke="currentColor"
-          strokeWidth={1.3}
           strokeLinecap="round"
           strokeLinejoin="round"
+          strokeWidth={1.3}
+          d="m10.167 6.75-2.5 2.5-1.5-1.5m7.166-.295c0 3.027-2.28 5.858-5.333 6.545-3.058-.693-5.333-3.52-5.333-6.545V5.077c0-.547.326-1.034.826-1.24L6.827 2.47a3.03 3.03 0 0 1 2.34 0L12.5 3.83c.5.2.827.687.827 1.233v2.378z"
         />
       </G>
-      <Circle cx={13.3333} cy={2.66667} r={2.66667} fill="#D4A0FF" />
+      <Circle cx={13.333} cy={2.667} r={2.667} fill="#D4A0FF" />
     </G>
     <Defs>
       <ClipPath id="clip0_3_369">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>

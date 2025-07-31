@@ -454,7 +454,7 @@
       "4": {
         "size": {
           "$type": "number",
-          "$value": "{font.size.24}",
+          "$value": "{font.size.22}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -496,7 +496,7 @@
         },
         "line-height": {
           "$type": "number",
-          "$value": "{font.line-height.24}",
+          "$value": "{font.line-height.22}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -510,7 +510,7 @@
         },
         "letter-spacing": {
           "$type": "number",
-          "$value": "{font.letter-spacing.24}",
+          "$value": "{font.letter-spacing.22}",
           "$description": "",
           "$extensions": {
             "com.figma": {

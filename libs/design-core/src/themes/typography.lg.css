@@ -34,11 +34,11 @@
   --font-style-heading-3-weight-medium: var(--font-weight-medium);
   --font-style-heading-3-line-height: var(--font-line-height-28);
   --font-style-heading-3-letter-spacing: var(--font-letter-spacing-28);
-  --font-style-heading-4-size: var(--font-size-24);
+  --font-style-heading-4-size: var(--font-size-22);
   --font-style-heading-4-weight-semi-bold: var(--font-weight-semi-bold);
   --font-style-heading-4-weight-medium: var(--font-weight-medium);
-  --font-style-heading-4-line-height: var(--font-line-height-24);
-  --font-style-heading-4-letter-spacing: var(--font-letter-spacing-24);
+  --font-style-heading-4-line-height: var(--font-line-height-22);
+  --font-style-heading-4-letter-spacing: var(--font-letter-spacing-22);
   --font-style-body-1-size: var(--font-size-16);
   --font-style-body-1-weight-semi-bold: var(--font-weight-semi-bold);
   --font-style-body-1-weight-medium: var(--font-weight-medium);

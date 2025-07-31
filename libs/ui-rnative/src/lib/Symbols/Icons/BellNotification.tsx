@@ -1,12 +1,4 @@
-import Svg, {
-  G,
-  Mask,
-  Path,
-  Circle,
-  Defs,
-  ClipPath,
-  Rect,
-} from "react-native-svg";
+import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -41,32 +33,32 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const BellNotification = createIcon(
   "BellNotification",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_3_362)">
       <G clipPath="url(#clip1_3_362)">
         <Mask
           id="mask0_3_362"
+          width={16}
+          height={16}
+          x={0}
+          y={0}
+          maskUnits="userSpaceOnUse"
           style={{
             maskType: "alpha",
           }}
-          maskUnits="userSpaceOnUse"
-          x={0}
-          y={0}
-          width={16}
-          height={16}
         >
           <Path
-            d="M16 16H0V0H7.75879C7.27996 0.715142 7 1.57472 7 2.5C7 4.98528 9.01472 7 11.5 7C13.9853 7 16 4.98528 16 2.5C16 1.57472 15.72 0.715142 15.2412 0H16V16Z"
             fill="currentColor"
+            d="M16 16H0V0h7.759a4.5 4.5 0 1 0 7.482 0H16z"
           />
         </Mask>
         <G mask="url(#mask0_3_362)">
           <Path
-            d="M6.00016 12V12.1667C6.00016 13.2667 6.89349 14.1667 8.00016 14.1667C9.10016 14.1667 10.0002 13.2667 10.0002 12.1667V12M12.0002 9.16669L13.1335 10.3C13.2535 10.42 13.3268 10.5934 13.3268 10.7667V11.32C13.3268 11.6867 13.0268 11.9867 12.6602 11.9867H7.99349H3.32682C2.95349 11.9867 2.66016 11.6867 2.66016 11.32V10.76C2.66016 10.58 2.72682 10.4134 2.85349 10.2867L3.98682 9.14669V6.31335C3.98682 4.10002 5.77349 2.31335 7.98682 2.31335C10.1935 2.31269 11.9868 4.10002 11.9868 6.31335L12.0002 9.16669Z"
             stroke="currentColor"
-            strokeWidth={1.3}
             strokeLinecap="round"
             strokeLinejoin="round"
+            strokeWidth={1.3}
+            d="M6 12v.167c0 1.1.893 2 2 2 1.1 0 2-.9 2-2V12m2-2.833 1.133 1.133c.12.12.194.293.194.467v.553c0 .367-.3.667-.667.667H3.327a.664.664 0 0 1-.667-.667v-.56a.66.66 0 0 1 .193-.473l1.134-1.14V6.313c0-2.213 1.786-4 4-4 2.207 0 4 1.787 4 4z"
           />
         </G>
       </G>
@@ -74,10 +66,10 @@ export const BellNotification = createIcon(
     </G>
     <Defs>
       <ClipPath id="clip0_3_362">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
       <ClipPath id="clip1_3_362">
-        <Rect width={16} height={16} fill="white" />
+        <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
   </Svg>

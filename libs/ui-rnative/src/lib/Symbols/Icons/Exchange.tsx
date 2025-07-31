@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Exchange = createIcon(
   "Exchange",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M8.66669 12.6666H6.66669C4.82602 12.6666 3.33335 11.174 3.33335 9.33331V3.33331M3.33335 3.33331L5.00002 4.99998M3.33335 3.33331L1.66669 4.99998M7.33335 3.33331H9.33335C11.174 3.33331 12.6667 4.82598 12.6667 6.66665V12.6666M12.6667 12.6666L10.6667 10.6666M12.6667 12.6666L14.6667 10.6666"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M8.667 12.667h-2a3.334 3.334 0 0 1-3.334-3.334v-6m0 0L5 5M3.333 3.333 1.667 5m5.666-1.667h2a3.334 3.334 0 0 1 3.334 3.334v6m0 0-2-2m2 2 2-2"
     />
   </Svg>
 );
