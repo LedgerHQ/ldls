@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const UsbC = createIcon(
   "UsbC",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M6.66667 12.6667V14.6667M5.33333 6V2.66667C5.33333 2.29333 5.62667 2 6 2H10C10.3667 2 10.6667 2.29333 10.6667 2.66667V6M9.33333 12.6667V14.6667M5 6H11C11.5467 6 12 6.44667 12 7V10.6667C12 11.7667 11.1 12.6667 10 12.6667H6C4.89333 12.6667 4 11.7667 4 10.6667V7C4 6.44667 4.44667 6 5 6Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M6.667 12.667v2M5.333 6V2.667A.66.66 0 0 1 6 2h4c.367 0 .667.293.667.667V6m-1.334 6.667v2M5 6h6c.547 0 1 .447 1 1v3.667c0 1.1-.9 2-2 2H6c-1.107 0-2-.9-2-2V7c0-.553.447-1 1-1"
     />
   </Svg>
 );

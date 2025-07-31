@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const ShieldCheck = createIcon(
   "ShieldCheck",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M10.1666 6.74999L7.66663 9.24999L6.16663 7.74999M13.3333 7.45465C13.3333 10.482 11.0533 13.3127 7.99996 14C4.94196 13.3067 2.66663 10.48 2.66663 7.45465V5.07665C2.66663 4.52999 2.99329 4.04332 3.49329 3.83665L6.82663 2.46999C7.57329 2.15665 8.41863 2.15665 9.16663 2.46999L12.5 3.82999C13 4.02999 13.3266 4.51665 13.3266 5.06332V7.44132L13.3333 7.45465Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="m10.167 6.75-2.5 2.5-1.5-1.5m7.166-.295c0 3.027-2.28 5.858-5.333 6.545-3.058-.693-5.333-3.52-5.333-6.545V5.077c0-.547.326-1.034.826-1.24L6.827 2.47a3.03 3.03 0 0 1 2.34 0L12.5 3.83c.5.2.827.687.827 1.233v2.378z"
     />
   </Svg>
 );

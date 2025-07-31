@@ -74,7 +74,7 @@
   "icon-multiple": {
     "icon-multiple-spacing": {
       "$type": "number",
-      "$value": -10,
+      "$value": -4,
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -86,15 +86,15 @@
         }
       }
     },
-    "icon-multiple-circle": {
+    "icon-multiple-radius": {
       "$type": "number",
-      "$value": "{size.64}",
+      "$value": 20,
       "$description": "",
       "$extensions": {
         "com.figma": {
           "hiddenFromPublishing": false,
           "scopes": [
-            "ALL_SCOPES"
+            "CORNER_RADIUS"
           ],
           "codeSyntax": {}
         }
@@ -111,6 +111,50 @@
           "hiddenFromPublishing": false,
           "scopes": [
             "CORNER_RADIUS"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    }
+  },
+  "sub-network": {
+    "sub-network-radius": {
+      "$type": "number",
+      "$value": "{border-radius.sm}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "sub-network-width": {
+      "$type": "number",
+      "$value": "{icon-width.24}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "sub-network-height": {
+      "$type": "number",
+      "$value": "{icon-height.24}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "WIDTH_HEIGHT"
           ],
           "codeSyntax": {}
         }

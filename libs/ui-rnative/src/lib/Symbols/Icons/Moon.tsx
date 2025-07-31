@@ -33,15 +33,14 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Moon = createIcon(
   "Moon",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M13.1333 9.99999C11.4666 10.5333 9.5333 10.2 8.19997 8.86666C6.5333 7.19999 6.39997 4.53332 7.7333 2.66666C4.99997 2.93332 2.86664 5.19999 2.86664 7.99999C2.86664 10.9333 5.26664 13.3333 8.19997 13.3333C10.4 13.3333 12.3333 11.9333 13.1333 9.99999Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M13.133 10c-1.666.533-3.6.2-4.933-1.133-1.667-1.667-1.8-4.334-.467-6.2C5 2.933 2.867 5.2 2.867 8c0 2.933 2.4 5.333 5.333 5.333 2.2 0 4.133-1.4 4.933-3.333"
+      clipRule="evenodd"
     />
   </Svg>
 );

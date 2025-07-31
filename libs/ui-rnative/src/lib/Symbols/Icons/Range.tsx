@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Range = createIcon(
   "Range",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M2 13.3333H7.33333M2 10.6667H6M2 7.99999H7.33333M2 5.33332H6M2 2.66666H7.33333M12 13.3333V2.66666M12 13.3333L13.6667 11.6667M12 13.3333L10.3333 11.6667M12 2.66666L10.3333 4.33332M12 2.66666L13.6667 4.33332"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M2 13.333h5.333M2 10.667h4M2 8h5.333M2 5.333h4M2 2.667h5.333M12 13.333V2.667m0 10.666 1.667-1.666M12 13.333l-1.667-1.666m1.667-9-1.667 1.666M12 2.667l1.667 1.666"
     />
   </Svg>
 );

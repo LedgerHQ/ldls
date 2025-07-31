@@ -382,7 +382,7 @@
       "3": {
         "size": {
           "$type": "number",
-          "$value": "{font.size.24}",
+          "$value": "{font.size.22}",
           "$description": "",
           "$extensions": {
             "com.figma": {

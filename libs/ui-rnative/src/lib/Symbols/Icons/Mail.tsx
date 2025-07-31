@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Mail = createIcon(
   "Mail",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M2 4.66665V11.3333C2 12.0666 2.6 12.6666 3.33333 12.6666H12.6667C13.4 12.6666 14 12.0666 14 11.3333V4.66665M2 4.53331C2 4.93331 2.2 5.26665 2.53333 5.53331L6.53333 8.26665C7.46667 8.86665 8.6 8.86665 9.53333 8.26665L13.5333 5.59998C13.8 5.26665 14 4.93331 14 4.53331C14 3.86665 13.4667 3.33331 12.8 3.33331H3.2C2.53333 3.33331 2 3.86665 2 4.53331Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M2 4.667v6.666c0 .734.6 1.334 1.333 1.334h9.334c.733 0 1.333-.6 1.333-1.334V4.667M2 4.533c0 .4.2.734.533 1l4 2.734c.934.6 2.067.6 3 0l4-2.667c.267-.333.467-.667.467-1.067 0-.666-.533-1.2-1.2-1.2H3.2c-.667 0-1.2.534-1.2 1.2"
     />
   </Svg>
 );
