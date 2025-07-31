@@ -30,27 +30,98 @@ A semantic token is a specific token tied to a particular use case. Specific tok
 
 Example: `background-accent`
 
-**These are the tokens developers should use** as Tailwind utility classes in their applications (e.g., `bg-accent`, `text-on-accent`, `border-muted`).
+**These are the tokens developers should use** in their applications. The design system provides these semantic tokens through **Tailwind CSS utility classes**.
 
-## 👨‍💻 Developer Usage
+Our design system automatically converts semantic tokens into Tailwind utility classes following these patterns:
 
-**✅ DO: Use Semantic Tokens**
+<table>
+  <thead>
+    <tr>
+      <th>Token Type</th>
+      <th>Semantic Token</th>
+      <th>Tailwind Class</th>
+      <th>Usage Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Background</td>
+      <td>
+        <code>background-accent</code>
+      </td>
+      <td>
+        <code>bg-accent</code>
+      </td>
+      <td>
+        <code>&lt;div className="bg-accent"&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Text Color</td>
+      <td>
+        <code>text-on-accent</code>
+      </td>
+      <td>
+        <code>text-on-accent</code>
+      </td>
+      <td>
+        <code>&lt;span className="text-on-accent"&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Border</td>
+      <td>
+        <code>border-muted</code>
+      </td>
+      <td>
+        <code>border-muted</code>
+      </td>
+      <td>
+        <code>&lt;div className="border-muted"&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Spacing</td>
+      <td>
+        <code>spacing-16</code>
+      </td>
+      <td>
+        <code>p-16</code>, <code>m-16</code>, <code>gap-16</code>
+      </td>
+      <td>
+        <code>&lt;div className="p-16"&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Border Radius</td>
+      <td>
+        <code>radius-md</code>
+      </td>
+      <td>
+        <code>rounded-md</code>
+      </td>
+      <td>
+        <code>&lt;div className="rounded-md"&gt;</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- Use Tailwind utility classes like `bg-accent`, `text-on-accent`, `p-16`, `rounded-md`
-- These map to semantic tokens and provide meaningful, context-aware styling
-- Example: `<div className="bg-accent text-on-accent p-16 rounded-md">Content</div>`
+**Complete component example:**
 
-**❌ DON'T: Use Primitive Tokens**
+```jsx
+// ✅ Using semantic tokens via Tailwind classes
+<button className="rounded-md border-muted bg-accent p-16 text-on-accent">
+  Click me
+</button>
+```
 
-- Avoid using CSS variables directly like `var(--color-light-purple-050)` or `var(--spacing-16)`
-- These are implementation details managed by the design system
-- They may change without notice and don't provide semantic meaning
+**What happens under the hood:**
 
-**Why this matters:**
-
-- Semantic tokens ensure your UI adapts correctly to theme changes (light/dark mode)
-- They provide consistent behavior across different brand contexts
-- They're easier to understand and maintain in your codebase
+- `bg-accent` → uses `var(--background-accent)` CSS variable
+- `text-on-accent` → uses `var(--text-on-accent)` CSS variable
+- `p-16` → uses `var(--spacing-16)` for padding
+- `rounded-md` → uses `var(--border-radius-md)` for border-radius
 
 ## ⚡ Token Structure
 
