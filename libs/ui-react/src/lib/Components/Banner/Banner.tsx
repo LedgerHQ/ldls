@@ -142,22 +142,22 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           </div>
           {(hasPrimaryAction || hasSecondaryAction) && (
             <div className="flex gap-4">
-              {hasSecondaryAction && (
-                <Button
-                  appearance="transparent"
-                  size="sm"
-                  onClick={onSecondaryActionClick}
-                >
-                  {secondaryActionLabel}
-                </Button>
-              )}
               {hasPrimaryAction && (
                 <Button
-                  appearance="no-background"
+                  appearance="transparent"
                   size="sm"
                   onClick={onPrimaryActionClick}
                 >
                   {primaryActionLabel}
+                </Button>
+              )}
+              {hasSecondaryAction && (
+                <Button
+                  appearance="no-background"
+                  size="sm"
+                  onClick={onSecondaryActionClick}
+                >
+                  {secondaryActionLabel}
                 </Button>
               )}
             </div>
