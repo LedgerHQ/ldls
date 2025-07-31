@@ -118,12 +118,17 @@ yarn-error.log
 # testing
 /coverage
 
-
-
+# Storybook
 storybook-static
 test-output
 
+#nx
 .nx/*
 !.nx/version-plans/
 !.nx/version-plans/**
 mise.toml
+
+# Chromatic
+**/chromatic.log
+**/chromatic-diagnostics.json
+**/build-storybook.log
