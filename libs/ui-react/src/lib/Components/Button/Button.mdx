@@ -100,3 +100,23 @@ To be implemented:
 ### Interactive States
 
 <Canvas of={ButtonStories.InteractiveLoadingStates} />
+
+### As Child
+
+<Canvas of={ButtonStories.AsChild} />
+
+<div className="rounded-8 mt-8 bg-muted p-12">
+  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
+  <ul className="space-y-2 body-2">
+    <li>When using asChild, the child element receives all button styles</li>
+    <li>
+      Icon and loading props are ignored with asChild - handle these in the
+      child element
+    </li>
+    <li>Perfect for navigation links that should look like buttons</li>
+    <li>
+      Maintains semantic HTML (e.g., &lt;a&gt; for links, &lt;button&gt; for
+      actions)
+    </li>
+  </ul>
+</div>
