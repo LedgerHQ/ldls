@@ -17,12 +17,13 @@ const TypographySample = ({
 }) => (
   <div>
     <div
-      className={`${className} toto max-w-fit rounded-lg border border-muted-subtle p-24 text-base`}
+      className={`${className} max-w-fit rounded-lg border border-muted-subtle bg-base p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
+      <div className="mt-24 bg-muted-pressed p-[0.5px]" />
+      <div className="mb-4 mt-16 text-base body-2"> {title} </div>
+      <div className="text-muted body-4">{className}</div>
     </div>
-    <div className="mb-4 mt-16 text-base body-2">{title}</div>
-    <div className="mb-32 text-muted body-4">{className}</div>
   </div>
 );
 
@@ -33,11 +34,13 @@ const TypographyShowcase = () => {
     { className: 'display-3', title: 'Display 3' },
     { className: 'display-4', title: 'Display 4' },
     { className: 'heading-1', title: 'Heading 1' },
-    { className: 'heading-1-medium', title: 'Heading 1 Medium' },
+    { className: 'heading-1-semi-bold', title: 'Heading 1 Semi Bold' },
     { className: 'heading-2', title: 'Heading 2' },
-    { className: 'heading-2-medium', title: 'Heading 2 Medium' },
+    { className: 'heading-2-semi-bold', title: 'Heading 2 Semi Bold' },
     { className: 'heading-3', title: 'Heading 3' },
-    { className: 'heading-3-medium', title: 'Heading 3 Medium' },
+    { className: 'heading-3-semi-bold', title: 'Heading 3 Semi Bold' },
+    { className: 'heading-4', title: 'Heading 4' },
+    { className: 'heading-4-semi-bold', title: 'Heading 4 Semi Bold' },
     { className: 'body-1', title: 'Body 1' },
     { className: 'body-1-semi-bold', title: 'Body 1 Semi Bold' },
     { className: 'body-2', title: 'Body 2' },

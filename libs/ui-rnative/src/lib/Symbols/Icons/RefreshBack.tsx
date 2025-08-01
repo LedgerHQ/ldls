@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const RefreshBack = createIcon(
   "RefreshBack",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M3.00786 3.09266V5.44999H5.36452M3.31519 5.44999C4.21986 3.79199 5.97852 2.66666 7.99986 2.66666C10.9452 2.66666 13.3332 5.05466 13.3332 7.99999C13.3332 10.9453 10.9452 13.3333 7.99986 13.3333C5.05452 13.3333 2.66652 10.9453 2.66652 7.99999"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M3.008 3.093V5.45h2.357m-2.05 0A5.334 5.334 0 1 1 2.666 8"
     />
   </Svg>
 );

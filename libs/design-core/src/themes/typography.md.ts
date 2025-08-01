@@ -30,7 +30,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-style-heading-2-weight-medium': 'var(--font-weight-medium)',
     '--font-style-heading-2-line-height': 'var(--font-line-height-28)',
     '--font-style-heading-2-letter-spacing': 'var(--font-letter-spacing-28)',
-    '--font-style-heading-3-size': 'var(--font-size-24)',
+    '--font-style-heading-3-size': 'var(--font-size-22)',
     '--font-style-heading-3-weight-semi-bold': 'var(--font-weight-semi-bold)',
     '--font-style-heading-3-weight-medium': 'var(--font-weight-medium)',
     '--font-style-heading-3-line-height': 'var(--font-line-height-24)',

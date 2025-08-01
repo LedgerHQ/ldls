@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Download = createIcon(
   "Download",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M10.3707 7.40735L8.00002 9.77802M8.00002 9.77802L5.62935 7.40735M8.00002 9.77802V2.66669M13.3334 10.9627C13.3334 11.5914 13.0836 12.1944 12.639 12.639C12.1944 13.0836 11.5914 13.3334 10.9627 13.3334H5.03735C4.40861 13.3334 3.80563 13.0836 3.36104 12.639C2.91645 12.1944 2.66669 11.5914 2.66669 10.9627"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M10.37 7.407 8 9.778m0 0-2.37-2.37M8 9.777V2.667m5.333 8.296a2.37 2.37 0 0 1-2.37 2.37H5.037a2.37 2.37 0 0 1-2.37-2.37"
     />
   </Svg>
 );

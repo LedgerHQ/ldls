@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const CreditCard = createIcon(
   "CreditCard",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M2 5.99998H14M6.38 8.66665H4.66667M12 12.6666H4C2.89533 12.6666 2 11.7713 2 10.6666V5.33331C2 4.22865 2.89533 3.33331 4 3.33331H12C13.1047 3.33331 14 4.22865 14 5.33331V10.6666C14 11.7713 13.1047 12.6666 12 12.6666Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M2 6h12M6.38 8.667H4.667m7.333 4H4a2 2 0 0 1-2-2V5.333a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.334a2 2 0 0 1-2 2"
     />
   </Svg>
 );

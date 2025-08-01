@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Share = createIcon(
   "Share",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M5.33341 6.66667H4.00008C3.26341 6.66667 2.66675 7.26333 2.66675 8V12.6667C2.66675 13.4033 3.26341 14 4.00008 14H12.0001C12.7367 14 13.3334 13.4033 13.3334 12.6667V8C13.3334 7.26333 12.7367 6.66667 12.0001 6.66667H10.6667M8.00008 2V9.33333M8.00008 2L6.00075 4M8.00008 2L10.0001 4"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="M5.333 6.667H4c-.737 0-1.333.596-1.333 1.333v4.667C2.667 13.403 3.263 14 4 14h8c.737 0 1.333-.597 1.333-1.333V8c0-.737-.596-1.333-1.333-1.333h-1.333M8 2v7.333M8 2 6 4m2-2 2 2"
     />
   </Svg>
 );

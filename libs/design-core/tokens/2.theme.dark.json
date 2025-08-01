@@ -1303,7 +1303,7 @@
         "ledger-live": {
           "default": {
             "$type": "color",
-            "$value": "{color.dark.purple.500}",
+            "$value": "{color.dark.purple.400}",
             "$description": "",
             "$extensions": {
               "com.figma": {
@@ -1335,7 +1335,7 @@
         "websites": {
           "default": {
             "$type": "color",
-            "$value": "{color.dark.orange.500}",
+            "$value": "{color.dark.orange.400}",
             "$description": "",
             "$extensions": {
               "com.figma": {
@@ -1344,6 +1344,128 @@
                 "codeSyntax": {
                   "WEB": "var(--color-text-active-websites);"
                 }
+              }
+            }
+          }
+        }
+      },
+      "interactive": {
+        "ledger-live": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.dark.purple.400}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {
+                  "WEB": "var(--color-text-active-ledger-live);"
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.dark.purple.500}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.dark.purple.600}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          }
+        },
+        "enterprise": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.dark.blue.500}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {
+                  "WEB": "var(--color-text-active-enterprise);"
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.dark.blue.600}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.dark.blue.700}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          }
+        },
+        "websites": {
+          "default": {
+            "$type": "color",
+            "$value": "{color.dark.orange.400}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {
+                  "WEB": "var(--color-text-active-websites);"
+                }
+              }
+            }
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{color.dark.orange.500}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
+              }
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{color.dark.orange.600}",
+            "$description": "",
+            "$extensions": {
+              "com.figma": {
+                "hiddenFromPublishing": true,
+                "scopes": [],
+                "codeSyntax": {}
               }
             }
           }

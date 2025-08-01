@@ -33,12 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Search = createIcon(
   "Search",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M14 14L10.6664 10.6666M11.8667 6.93333C11.8667 9.65794 9.65794 11.8667 6.93333 11.8667C4.20873 11.8667 2 9.65794 2 6.93333C2 4.20873 4.20873 2 6.93333 2C9.65794 2 11.8667 4.20873 11.8667 6.93333Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
+      strokeWidth={1.3}
+      d="m14 14-3.334-3.333m1.2-3.734a4.933 4.933 0 1 1-9.866 0 4.933 4.933 0 0 1 9.867 0Z"
     />
   </Svg>
 );
