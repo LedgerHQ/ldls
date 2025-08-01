@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { within, userEvent } from '@storybook/testing-library';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { Button, ButtonProps } from './Button';
 
@@ -46,6 +46,10 @@ export const AllVariants: Story = {
   render: () => (
     <View style={{ padding: 20, gap: 16 }}>
       <View style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}>
+        <View className="flex-1">
+          <Text className="text-warning">Warning</Text>
+          <Text className="text-base">Base</Text>
+        </View>
         <Button appearance="accent">Accent</Button>
         <Button appearance="base">Base</Button>
         <Button appearance="gray">Gray</Button>
