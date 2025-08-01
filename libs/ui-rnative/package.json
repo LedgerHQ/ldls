@@ -7,11 +7,16 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/index.esm.d.ts",
-      "import": "./dist/index.esm.js",
-      "default": "./dist/index.cjs.js"
-    }
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./symbols": {
+      "types": "./src/lib/Symbols/index.ts",
+      "import": "./src/lib/Symbols/index.ts",
+      "default": "./src/lib/Symbols/index.ts"
+    },
+    "./*": "./src/lib/Components/*/index.ts"
   },
   "peerDependencies": {
     "react": "~18.3.1",

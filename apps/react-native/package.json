@@ -1,0 +1,40 @@
+{
+  "name": "@ldls/react-native",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/main.tsx",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "nativewind": "^4.1.23",
+    "react": "18.3.1",
+    "react-native": "~0.76.3",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "^5.4.0",
+    "react-native-svg": "~15.8.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.28.0",
+    "@babel/plugin-syntax-decorators": "^7.27.1",
+    "@react-native-community/cli": "~15.0.1",
+    "@react-native-community/cli-platform-android": "~15.0.1",
+    "@react-native-community/cli-platform-ios": "~15.0.1",
+    "@react-native/babel-preset": "~0.76.3",
+    "@react-native/metro-config": "~0.76.3",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.17"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "nx": {
+    "tags": [
+      "scope:react-native"
+    ]
+  }
+}
