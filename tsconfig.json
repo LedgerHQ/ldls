@@ -20,6 +20,9 @@
     },
     {
       "path": "./libs/utils-shared"
+    },
+    {
+      "path": "./apps/react-native"
     }
   ],
   "ts-node": {
