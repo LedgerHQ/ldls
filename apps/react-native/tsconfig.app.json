@@ -2,20 +2,33 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["node"],
+    "types": ["node", "react-native", "nativewind/types"],
     "rootDir": "src",
     "jsx": "react-jsx",
-    "lib": ["es2017", "dom"],
+    "lib": ["dom"],
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
       "react-native": [
         "../../node_modules/react-native",
-        "../../node_modules/nativewind/dist/index.d.ts" // Point directly to the type definition file
+        "../../node_modules/nativewind/dist/index.d.ts"
       ]
     }
   },
   "files": ["../../node_modules/@nx/react-native/typings/svg.d.ts"],
+  "exclude": [
+    "out-tsc",
+    "dist",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/test-setup.ts"
+  ],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
   "references": [
     {
