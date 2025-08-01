@@ -5,31 +5,21 @@
     "types": ["node"],
     "rootDir": "src",
     "jsx": "react-jsx",
-    "noUnusedLocals": false,
-    "lib": ["dom"],
-    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo"
+    "lib": ["es2017", "dom"],
+    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "react-native": [
+        "../../node_modules/react-native",
+        "../../node_modules/nativewind/dist/index.d.ts" // Point directly to the type definition file
+      ]
+    }
   },
   "files": ["../../node_modules/@nx/react-native/typings/svg.d.ts"],
-  "exclude": [
-    "out-tsc",
-    "dist",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
-    "src/test-setup.ts"
-  ],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
   "references": [
     {
       "path": "../../libs/design-core/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/utils-shared/tsconfig.lib.json"
     },
     {
       "path": "../../libs/ui-rnative/tsconfig.lib.json"
