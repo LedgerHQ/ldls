@@ -33,7 +33,7 @@ export const Placeholder = createIcon(
     fill="currentColor"
     viewBox="0 0 16 16"
   >
-    <g clipPath="url(#prefix__a)">
+    <g clipPath="url(#clip0_5625_429)">
       <path
         stroke="currentColor"
         strokeWidth={1.3}
@@ -41,7 +41,7 @@ export const Placeholder = createIcon(
       />
     </g>
     <defs>
-      <clipPath id="prefix__a">
+      <clipPath id="clip0_5625_429">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>

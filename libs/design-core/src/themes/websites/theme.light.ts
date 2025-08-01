@@ -128,8 +128,21 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-text-muted-pressed': 'var(--color-light-grey-900)',
     '--color-text-muted-subtle': 'var(--color-light-grey-300)',
     '--color-text-active-ledger-live': 'var(--color-light-purple-800)',
-    '--color-text-active-enterprise': 'var(--color-light-blue-800)',
+    '--color-text-active-enterprise': 'var(--color-light-blue-700)',
     '--color-text-active-websites': 'var(--color-light-orange-800)',
+    '--color-text-interactive-ledger-live': 'var(--color-light-purple-800)',
+    '--color-text-interactive-ledger-live-hover':
+      'var(--color-light-purple-900)',
+    '--color-text-interactive-ledger-live-pressed':
+      'var(--color-light-purple-950)',
+    '--color-text-interactive-enterprise': 'var(--color-light-blue-700)',
+    '--color-text-interactive-enterprise-hover': 'var(--color-light-blue-800)',
+    '--color-text-interactive-enterprise-pressed':
+      'var(--color-light-blue-900)',
+    '--color-text-interactive-websites': 'var(--color-light-orange-800)',
+    '--color-text-interactive-websites-hover': 'var(--color-light-orange-900)',
+    '--color-text-interactive-websites-pressed':
+      'var(--color-light-orange-950)',
     '--color-text-error': 'var(--color-light-red-700)',
     '--color-text-warning': 'var(--color-light-yellow-700)',
     '--color-text-success': 'var(--color-light-green-600)',
@@ -438,6 +451,10 @@ export const tokens: Record<string, Record<string, string>> = {
     '--text-muted-pressed': 'var(--color-text-muted-pressed)',
     '--text-muted-subtle': 'var(--color-text-muted-subtle)',
     '--text-active': 'var(--color-text-active-websites)',
+    '--text-interactive': 'var(--color-text-interactive-websites)',
+    '--text-interactive-hover': 'var(--color-text-interactive-websites-hover)',
+    '--text-interactive-pressed':
+      'var(--color-text-interactive-websites-pressed)',
     '--text-error': 'var(--color-text-error)',
     '--text-warning': 'var(--color-text-warning)',
     '--text-success': 'var(--color-text-success)',

@@ -33,13 +33,13 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Slideshow = createIcon(
   "Slideshow",
-  <Svg width={24} height={24} viewBox="0 0 16 16" fill="currentColor">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
-      d="M6.66671 3.33332L5.33337 2.66666V13.3333L6.66671 12.6667M2.66671 3.33332L1.33337 2.66666V13.3333L2.66671 12.6667M14.6667 11.3333L9.33337 13.3333V2.66666L14.6667 4.66666V11.3333Z"
       stroke="currentColor"
-      strokeWidth={1.3}
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth={1.3}
+      d="m6.667 3.333-1.334-.666v10.666l1.334-.666m-4-9.334-1.334-.666v10.666l1.334-.666m12-1.334-5.334 2V2.667l5.334 2z"
     />
   </Svg>
 );

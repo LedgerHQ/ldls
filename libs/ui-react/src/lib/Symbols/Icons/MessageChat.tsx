@@ -33,7 +33,7 @@ export const MessageChat = createIcon(
     fill="currentColor"
     viewBox="0 0 16 16"
   >
-    <g clipPath="url(#prefix__a)">
+    <g clipPath="url(#clip0_805_1619)">
       <path
         stroke="currentColor"
         strokeLinecap="round"
@@ -43,7 +43,7 @@ export const MessageChat = createIcon(
       />
     </g>
     <defs>
-      <clipPath id="prefix__a">
+      <clipPath id="clip0_805_1619">
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
