@@ -3,6 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 import { Spinner } from '../../Symbols/Icons/Spinner';
 import { IconSize } from '../Icon/Icon';
+import { Slot } from '@radix-ui/react-slot';
 
 const buttonVariants = cva(
   'inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
@@ -29,7 +30,7 @@ const buttonVariants = cva(
         true: 'w-full',
       },
       loading: {
-        true: '',
+        true: 'pointer-events-none',
       },
       iconOnly: {
         true: '',
@@ -75,6 +76,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  asChild?: boolean;
 }
 
 /**
@@ -92,6 +94,8 @@ export interface ButtonProps
  * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
  * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
  *   The icon styles are defined by the button. Please do not override them.
+ * @param {boolean} [asChild=false] - If true, renders the child element directly with button styles instead of wrapping in a button element.
+ *   Useful for creating link buttons or other semantic elements with button appearance.
  * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
  * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, `type`).
@@ -117,6 +121,24 @@ export interface ButtonProps
  * <Button appearance="accent" isFull={true} className="ml-16">
  *   Submit
  * </Button>
+ *
+ * // Button as a link (asChild pattern)
+ * import { Link } from 'react-router-dom';
+ *
+ * <Button asChild appearance="base" size="md">
+ *   <Link to="/dashboard">Go to Dashboard</Link>
+ * </Button>
+ *
+ * // Button as an anchor tag
+ * <Button asChild appearance="accent" size="sm">
+ *   <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+ *     External Link
+ *   </a>
+ * </Button>
+ *
+ * // Note: When using asChild, the child element is responsible for its own content.
+ * // Icons, loading states, and other Button props like 'icon' and 'loading' are ignored
+ * // when asChild is true - you should handle these in the child element if needed.
  */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -128,6 +150,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isFull,
       loading,
       icon,
+      asChild = false,
       ...props
     },
     ref,
@@ -144,8 +167,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
     const IconComponent = icon;
 
+    const Comp = asChild ? Slot : 'button';
+
     return (
-      <button
+      <Comp
         ref={ref}
         className={cn(
           className,
@@ -160,31 +185,37 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={props.disabled}
         {...props}
       >
-        {loading ? (
-          <>
-            <Spinner
-              size={calculatedIconSize}
-              className="flex-shrink-0 animate-spin"
-              aria-label="Loading"
-            />
-            {children && (
-              <span className="line-clamp-2 text-left">{children}</span>
-            )}
-          </>
+        {asChild ? (
+          children
         ) : (
           <>
-            {IconComponent && (
-              <IconComponent
-                size={calculatedIconSize}
-                className="flex-shrink-0"
-              />
-            )}
-            {children && (
-              <span className="line-clamp-2 text-left">{children}</span>
+            {loading ? (
+              <>
+                <Spinner
+                  size={calculatedIconSize}
+                  className="flex-shrink-0 animate-spin"
+                  aria-label="Loading"
+                />
+                {children && (
+                  <span className="line-clamp-2 text-left">{children}</span>
+                )}
+              </>
+            ) : (
+              <>
+                {IconComponent && (
+                  <IconComponent
+                    size={calculatedIconSize}
+                    className="flex-shrink-0"
+                  />
+                )}
+                {children && (
+                  <span className="line-clamp-2 text-left">{children}</span>
+                )}
+              </>
             )}
           </>
         )}
-      </button>
+      </Comp>
     );
   },
 );

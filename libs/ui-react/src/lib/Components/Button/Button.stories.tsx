@@ -55,6 +55,15 @@ const meta: Meta<typeof Button> = {
       control: 'text',
       description: 'The content to be displayed inside the button',
     },
+    isFull: {
+      control: 'boolean',
+      description: 'Whether the button is full width',
+    },
+    asChild: {
+      control: 'boolean',
+      description:
+        'Render as child element instead of button (useful for links)',
+    },
   },
 };
 
@@ -276,5 +285,62 @@ export const InteractiveLoadingStates: Story = {
         />
       </div>
     );
+  },
+};
+
+export const AsChild: Story = {
+  render: () => {
+    // Mock Link component for demonstration
+    const Link = ({
+      to,
+      children,
+      ...props
+    }: {
+      to: string;
+      children: React.ReactNode;
+    } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <a href={to} {...props}>
+        {children}
+      </a>
+    );
+
+    return (
+      <div className="flex flex-col gap-16 p-8">
+        <div className="flex gap-8">
+          <Button asChild appearance="base">
+            <Link to="#">Open Button documentation</Link>
+          </Button>
+
+          <Button asChild appearance="accent">
+            <a
+              href="https://shop.ledger.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              External Link to Ledger Shop
+            </a>
+          </Button>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+// Button as a router link
+<Button asChild appearance="base" size="md">
+  <Link to="/dashboard">Go to Dashboard</Link>
+</Button>
+
+// Button as an external link
+<Button asChild appearance="accent" size="sm">
+  <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+    External Link
+  </a>
+</Button>
+`,
+      },
+    },
   },
 };
