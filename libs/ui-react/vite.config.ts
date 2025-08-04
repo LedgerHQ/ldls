@@ -55,6 +55,7 @@ export default defineConfig(() => ({
         'class-variance-authority',
         'tailwind-merge',
         'clsx',
+        '@radix-ui/react-slot',
       ],
       preserveEntrySignatures: 'strict' as const,
       output: {
