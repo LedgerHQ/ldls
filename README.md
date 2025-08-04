@@ -1,10 +1,10 @@
-# Ledger Design System [Genesis]
+# Ledger Design System
 
 <h3 align="center">A cross-platform design system for React and React Native applications</h3>
 
 <p align="center">
-  <a href="https://your-storybook-url.com" target="_blank">📚 View Storybook</a> |
-  <a href="https://your-changelog-url.com">📋 Changelog</a>
+  <a href="https://ldls.vercel.app" target="_blank">📚 View Storybook</a> |
+  <a href="https://github.com/LedgerHQ/ldls/releases">📋 Changelog</a>
 </p>
 
 ---
