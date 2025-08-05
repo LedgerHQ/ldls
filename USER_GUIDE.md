@@ -109,6 +109,13 @@ Available presets:
 
 #### Using Components
 
+```bash
+# Install peer dependency related to the button component
+npm install @radix-ui/react-slot
+```
+
+`@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
+
 Import and use components in your React application:
 
 ```jsx
