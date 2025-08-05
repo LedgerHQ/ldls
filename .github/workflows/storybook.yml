@@ -38,7 +38,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build Storybook
-        run: npx nx build:storybook ui-rnative
+        run: npx nx build:storybook ui-rnative --no-cloud
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
