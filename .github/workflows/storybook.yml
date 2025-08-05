@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
+      - name: Build Design Core
+        run: npx nx build design-core --no-cloud
+
       - name: Build Storybook
         run: npx nx build:storybook ui-rnative --no-cloud
 
