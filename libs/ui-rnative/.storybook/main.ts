@@ -1,18 +1,20 @@
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from '@storybook/react-native-web-vite';
 import { mergeConfig } from 'vite';
 
 const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: [getAbsolutePath('@storybook/addon-docs')],
-
   framework: {
-    name: getAbsolutePath('@storybook/react-vite'),
-    options: {},
+    name: getAbsolutePath('@storybook/react-native-web-vite'),
+    options: {
+      pluginReactOptions: {
+        jsxImportSource: 'nativewind',
+      },
+    },
   },
 
   viteFinal: async (config) => {
