@@ -3,8 +3,8 @@ name: Deploy Storybook to GitHub Pages
 on:
   push:
     branches:
-      - main  # or your default branch
-  workflow_dispatch:  # Allows manual triggering
+      - main # or your default branch
+  workflow_dispatch: # Allows manual triggering
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -14,7 +14,7 @@ permissions:
 
 # Allow only one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build Storybook
-        run: npx nx run-many --target=build:storybook --parallel=3 --no-cloud
+        run: npx nx build:storybook ui-rnative
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'libs/ui-react/storybook-static'
+          path: 'libs/ui-rnative/storybook-static'
 
       - name: Deploy to GitHub Pages
         id: deployment
