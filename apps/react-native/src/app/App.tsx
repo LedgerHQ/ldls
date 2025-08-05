@@ -40,6 +40,7 @@ export const App = () => {
               onPress={() => {
                 console.log('Button pressed');
               }}
+              disabled
             >
               Click me
             </Button>
