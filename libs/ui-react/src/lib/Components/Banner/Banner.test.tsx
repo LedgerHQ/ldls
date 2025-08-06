@@ -41,8 +41,7 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Primary"
-        primaryActionLabel="Primary"
-        onPrimaryActionClick={handlePrimary}
+        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
       />,
     );
 
@@ -57,8 +56,7 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Secondary"
-        secondaryActionLabel="Secondary"
-        onSecondaryActionClick={handleSecondary}
+        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
       />,
     );
 
@@ -74,10 +72,8 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Both Actions"
-        primaryActionLabel="Primary"
-        secondaryActionLabel="Secondary"
-        onPrimaryActionClick={handlePrimary}
-        onSecondaryActionClick={handleSecondary}
+        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
+        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
       />,
     );
 
@@ -91,7 +87,9 @@ describe('Banner Component', () => {
 
   it('should render close button and handle click', () => {
     const handleClose = vi.fn();
-    render(<Banner title="Closable Banner" onCloseClick={handleClose} />);
+    render(
+      <Banner title="Closable Banner" closeAction={{ onClick: handleClose }} />,
+    );
 
     const closeButton = screen.getByRole('button'); // assuming it's the only button
     expect(closeButton).toBeInTheDocument();
@@ -136,44 +134,33 @@ describe('Banner Component', () => {
     expect(ref).toHaveBeenCalled();
   });
 
-  it('should not render primary action if only label is provided', () => {
-    render(<Banner title="Banner" primaryActionLabel="Primary" />);
-    expect(
-      screen.queryByRole('button', { name: /primary/i }),
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not render primary action if only handler is provided', () => {
-    const handlePrimary = vi.fn();
-    render(<Banner title="Banner" onPrimaryActionClick={handlePrimary} />);
-    expect(
-      screen.queryByRole('button', { name: /primary/i }),
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not render secondary action if only label is provided', () => {
-    render(<Banner title="Banner" secondaryActionLabel="Secondary" />);
-    expect(
-      screen.queryByRole('button', { name: /secondary/i }),
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not render secondary action if only handler is provided', () => {
-    const handleSecondary = vi.fn();
-    render(<Banner title="Banner" onSecondaryActionClick={handleSecondary} />);
-    expect(
-      screen.queryByRole('button', { name: /secondary/i }),
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not render close button if onCloseClick is not provided', () => {
+  it('should not render close button if closeAction is not provided', () => {
     render(<Banner title="Banner" />);
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
-  it('should render close button when onCloseClick is provided', () => {
+  it('should render close button when closeAction is provided', () => {
     const handleClose = vi.fn();
-    render(<Banner title="Banner" onCloseClick={handleClose} />);
+    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('should apply default aria-label to close button when ariaLabel is not provided', () => {
+    const handleClose = vi.fn();
+    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    const closeButton = screen.getByRole('button');
+    expect(closeButton).toHaveAttribute('aria-label', 'Close');
+  });
+
+  it('should apply custom aria-label to close button when provided', () => {
+    const handleClose = vi.fn();
+    render(
+      <Banner
+        title="Banner"
+        closeAction={{ onClick: handleClose, ariaLabel: 'Close notification' }}
+      />,
+    );
+    const closeButton = screen.getByRole('button');
+    expect(closeButton).toHaveAttribute('aria-label', 'Close notification');
   });
 });

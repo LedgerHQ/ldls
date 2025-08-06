@@ -34,9 +34,19 @@ const bannerVariants = cva(
   },
 );
 
-type BannerAppearance = NonNullable<
+export type BannerAppearance = NonNullable<
   VariantProps<typeof bannerVariants>['appearance']
 >;
+
+export type BannerAction = {
+  label: string;
+  onClick: () => void;
+};
+
+export type BannerCloseAction = {
+  onClick: () => void;
+  ariaLabel?: string;
+};
 
 export interface BannerProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -45,11 +55,9 @@ export interface BannerProps
   title: string;
   description?: string;
   isFull?: boolean;
-  primaryActionLabel?: string;
-  secondaryActionLabel?: string;
-  onPrimaryActionClick?: () => void;
-  onSecondaryActionClick?: () => void;
-  onCloseClick?: () => void;
+  primaryAction?: BannerAction;
+  secondaryAction?: BannerAction;
+  closeAction?: BannerCloseAction;
 }
 
 /**
@@ -65,11 +73,9 @@ export interface BannerProps
  * @param {string} title - The main title of the banner.
  * @param {string} [description] - Optional descriptive text.
  * @param {boolean} [isFull=false] - If true, the banner expands to full width of its container.
- * @param {string} [primaryActionLabel] - Label for the primary action button. Must be used in conjunction with `onPrimaryActionClick`.
- * @param {string} [secondaryActionLabel] - Label for the secondary action button. Must be used in conjunction with `onSecondaryActionClick`.
- * @param {() => void} [onPrimaryActionClick] - Callback for primary action. Must be used in conjunction with `primaryActionLabel`.
- * @param {() => void} [onSecondaryActionClick] - Callback for secondary action. Must be used in conjunction with `secondaryActionLabel`.
- * @param {() => void} [onCloseClick] - Callback for close button. Controls the visibility of the close button.
+ * @param {BannerAction} [primaryAction] - Optional primary action with label and onClick handler.
+ * @param {BannerAction} [secondaryAction] - Optional secondary action with label and onClick handler.
+ * @param {BannerCloseAction} [closeAction] - Optional close action with onClick handler and optional ariaLabel. Controls the visibility of the close button.
  * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {React.HTMLAttributes<HTMLDivElement>} [...] - Standard div props.
  *
@@ -87,8 +93,7 @@ export interface BannerProps
  *   title="Success"
  *   appearance="success"
  *   description="Your action was successful."
- *   primaryActionLabel="Undo"
- *   onPrimaryActionClick={() => console.log('Undo')}
+ *   primaryAction={{ label: "Undo", onClick: () => console.log('Undo') }}
  * />
  *
  * // Full-width error banner with close
@@ -96,7 +101,7 @@ export interface BannerProps
  *   title="Error"
  *   appearance="error"
  *   isFull={true}
- *   onCloseClick={() => console.log('Close')}
+ *   closeAction={{ onClick: () => console.log('Close'), ariaLabel: 'Close banner' }}
  * />
  */
 export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
@@ -105,20 +110,16 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       appearance = 'info',
       title,
       description,
-      primaryActionLabel,
-      secondaryActionLabel,
+      primaryAction,
+      secondaryAction,
       isFull,
       className,
-      onPrimaryActionClick,
-      onSecondaryActionClick,
-      onCloseClick,
+      closeAction,
       ...props
     },
     ref,
   ) => {
     const icon = iconMap[appearance];
-    const hasPrimaryAction = primaryActionLabel && onPrimaryActionClick;
-    const hasSecondaryAction = secondaryActionLabel && onSecondaryActionClick;
 
     return (
       <div
@@ -140,35 +141,36 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               <div className="line-clamp-5 body-2">{description}</div>
             )}
           </div>
-          {(hasPrimaryAction || hasSecondaryAction) && (
+          {(primaryAction || secondaryAction) && (
             <div className="flex gap-4">
-              {hasPrimaryAction && (
+              {primaryAction && (
                 <Button
                   appearance="transparent"
                   size="sm"
-                  onClick={onPrimaryActionClick}
+                  onClick={primaryAction.onClick}
                 >
-                  {primaryActionLabel}
+                  {primaryAction.label}
                 </Button>
               )}
-              {hasSecondaryAction && (
+              {secondaryAction && (
                 <Button
                   appearance="no-background"
                   size="sm"
-                  onClick={onSecondaryActionClick}
+                  onClick={secondaryAction.onClick}
                 >
-                  {secondaryActionLabel}
+                  {secondaryAction.label}
                 </Button>
               )}
             </div>
           )}
         </div>
-        {onCloseClick && (
+        {closeAction && (
           <Button
             appearance="transparent"
             size="xs"
             icon={Close}
-            onClick={onCloseClick}
+            onClick={closeAction.onClick}
+            aria-label={closeAction.ariaLabel || 'Close'}
           />
         )}
       </div>

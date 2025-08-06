@@ -10,7 +10,7 @@ import { Banner } from './Banner';
 
 Banners are prominent message containers used to communicate system status, alerts, or informational notices to users. They support different appearance types to indicate the severity or type of message and can include optional descriptions, action buttons, and a dismissal option.
 
-> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?m=dev).
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=85-227&p=f&m=dev).
 
 ## Anatomy
 
@@ -19,8 +19,8 @@ Banners are prominent message containers used to communicate system status, aler
 - **Icon**: Automatically displays based on appearance (info, success, warning, error)
 - **Title**: The main message or heading (required)
 - **Description (optional)**: Additional details or explanation
-- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Provide a label and a click handler for an action to be displayed (eg. `primaryActionLabel` and `onPrimaryActionClick`).
-- **Close (optional)**: Button to dismiss the banner. Provide the `onCloseClick` handler for the close button to be displayed.
+- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Provide an object with label and onClick for an action to be displayed (e.g. `primaryAction={{ label: 'Action', onClick: () => {} }}`).
+- **Close (optional)**: Button to dismiss the banner. Provide the `closeAction` object with onClick handler and optional ariaLabel for the close button to be displayed.
 
 ## Properties
 

@@ -125,10 +125,8 @@ function ActionableBanner() {
       appearance="warning"
       title="Terms of Service Updated"
       description="Please review and accept the updated terms of service to continue using our platform"
-      primaryActionLabel="Accept"
-      secondaryActionLabel="Review Later"
-      onPrimaryActionClick={handleAccept}
-      onSecondaryActionClick={handleDecline}
+      primaryAction={{ label: "Accept", onClick: handleAccept }}
+      secondaryAction={{ label: "Review Later", onClick: handleDecline }}
     />
   );
 }
@@ -152,7 +150,10 @@ function DismissibleBanner() {
       appearance="info"
       title="Welcome!"
       description="Thanks for joining our platform. Here are some tips to get started."
-      onCloseClick={() => setIsVisible(false)}
+      closeAction={{
+        onClick: () => setIsVisible(false),
+        ariaLabel: 'Close welcome banner'
+      }}
     />
   );
 }
@@ -168,7 +169,7 @@ Use the `isFull` prop to make the banner take the full width of its container:
   description="Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST"
   appearance="warning"
   isFull
-  onCloseClick={() => handleDismiss()}
+  closeAction={{ onClick: () => handleDismiss(), ariaLabel: 'Dismiss' }}
 />
 ```
 
@@ -220,11 +221,12 @@ function NotificationCenter() {
           title={notification.title}
           description={notification.description}
           isFull
-          onCloseClick={notification.dismissible ? () => dismissNotification(notification.id) : undefined}
-          primaryActionLabel={notification.actions ? "Verify Now" : undefined}
-          secondaryActionLabel={notification.actions ? "Later" : undefined}
-          onPrimaryActionClick={notification.actions ? handleVerify : undefined}
-          onSecondaryActionClick={notification.actions ? handleLater : undefined}
+          closeAction={notification.dismissible ? {
+            onClick: () => dismissNotification(notification.id),
+            ariaLabel: 'Close notification'
+          } : undefined}
+          primaryAction={notification.actions ? { label: "Verify Now", onClick: handleVerify } : undefined}
+          secondaryAction={notification.actions ? { label: "Later", onClick: handleLater } : undefined}
         />
       ))}
     </div>
@@ -316,8 +318,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
 <Banner
   title="Confirm Action"
   description="This action cannot be undone"
-  primaryActionLabel="Confirm"
-  onPrimaryActionClick={handleConfirm}
+  primaryAction={{ label: "Confirm", onClick: handleConfirm }}
   appearance="warning"
 />
 ```
@@ -329,8 +330,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
 <Banner
   title="Broken Action"
   description="This won't work properly"
-  primaryActionLabel="Submit"
-  // Missing onPrimaryActionClick
+  primaryAction={{ label: "Submit" }}
   appearance="error"
 />
 ```
