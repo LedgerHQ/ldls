@@ -4,7 +4,7 @@ import * as Icons from '../../Symbols';
 import { useState } from 'react';
 
 const meta: Meta = {
-  title: 'Symbols/Interface Icons/React',
+  title: 'Symbols/Interface Icons',
 };
 
 export default meta;

@@ -20,6 +20,13 @@ const config: StorybookConfig = {
     options: {},
   },
 
+  refs: {
+    'react-native': {
+      title: 'React Native',
+      url: 'https://ledgerhq.github.io/ldls/',
+    },
+  },
+
   viteFinal: async (viteConfig) => {
     // Add react-native-web alias for React Native components
     viteConfig.resolve = viteConfig.resolve || {};
