@@ -22,7 +22,7 @@ const buttonVariants = cva(
       },
       size: {
         xs: 'px-12 py-8 body-2-semi-bold',
-        sm: 'px-16 py-8 body-2-semi-bold',
+        sm: 'px-16 py-12 body-2-semi-bold',
         md: 'px-16 py-12',
         lg: 'p-16',
       },
