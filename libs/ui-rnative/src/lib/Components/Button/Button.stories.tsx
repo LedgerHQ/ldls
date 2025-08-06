@@ -5,7 +5,7 @@ import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Components/Button/React',
+  title: 'Components/Button',
   parameters: {
     docs: {
       source: {
