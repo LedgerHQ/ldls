@@ -37,11 +37,11 @@ export interface TagProps
 export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
   ({ className, appearance, size, icon, label, ...props }, ref) => {
     const iconSizeMap: { [key: string]: IconSize } = {
-      lg: 20,
-      sm: 16,
+      lg: 16,
+      sm: 12,
     };
 
-    const calculatedIconSize = size ? iconSizeMap[size] : 20;
+    const calculatedIconSize = size ? iconSizeMap[size] : 16;
     const IconComponent = icon;
 
     return (
