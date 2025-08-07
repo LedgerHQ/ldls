@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 /* Reset React Native Web Text defaults to allow inheritance */
-[class*='css-text'] {
+.css-146c3p1,
+.css-text-146c3p1 {
   font-family: inherit !important;
   font-size: inherit !important;
   font-weight: inherit !important;

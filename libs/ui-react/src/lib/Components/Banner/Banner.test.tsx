@@ -1,0 +1,166 @@
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
+import { Banner } from './Banner';
+
+describe('Banner Component', () => {
+  it('should render correctly with minimal props', () => {
+    render(<Banner title="Basic Banner" />);
+    const bannerElement = screen.getByText('Basic Banner');
+    expect(bannerElement).toBeInTheDocument();
+  });
+
+  it('should render with title and description', () => {
+    render(
+      <Banner title="Banner Title" description="Banner description text" />,
+    );
+
+    expect(screen.getByText('Banner Title')).toBeInTheDocument();
+    expect(screen.getByText('Banner description text')).toBeInTheDocument();
+  });
+
+  it('should render with different appearances', () => {
+    const { container, rerender } = render(
+      <Banner title="Info Banner" appearance="info" />,
+    );
+    expect(container.firstChild).toHaveClass('bg-muted');
+
+    rerender(<Banner title="Success Banner" appearance="success" />);
+    expect(container.firstChild).toHaveClass('bg-success');
+
+    rerender(<Banner title="Warning Banner" appearance="warning" />);
+    expect(container.firstChild).toHaveClass('bg-warning');
+
+    rerender(<Banner title="Error Banner" appearance="error" />);
+    expect(container.firstChild).toHaveClass('bg-error');
+  });
+
+  it('should render primary action button', () => {
+    const handlePrimary = vi.fn();
+    render(
+      <Banner
+        title="Banner with Primary"
+        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
+      />,
+    );
+
+    const primaryButton = screen.getByRole('button', { name: /primary/i });
+    expect(primaryButton).toBeInTheDocument();
+    fireEvent.click(primaryButton);
+    expect(handlePrimary).toHaveBeenCalledTimes(1);
+  });
+
+  it('should render secondary action button', () => {
+    const handleSecondary = vi.fn();
+    render(
+      <Banner
+        title="Banner with Secondary"
+        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
+      />,
+    );
+
+    const secondaryButton = screen.getByRole('button', { name: /secondary/i });
+    expect(secondaryButton).toBeInTheDocument();
+    fireEvent.click(secondaryButton);
+    expect(handleSecondary).toHaveBeenCalledTimes(1);
+  });
+
+  it('should render both action buttons', () => {
+    const handlePrimary = vi.fn();
+    const handleSecondary = vi.fn();
+    render(
+      <Banner
+        title="Banner with Both Actions"
+        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
+        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
+      />,
+    );
+
+    expect(
+      screen.getByRole('button', { name: /primary/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /secondary/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('should render close button and handle click', () => {
+    const handleClose = vi.fn();
+    render(
+      <Banner title="Closable Banner" closeAction={{ onClick: handleClose }} />,
+    );
+
+    const closeButton = screen.getByRole('button'); // assuming it's the only button
+    expect(closeButton).toBeInTheDocument();
+    fireEvent.click(closeButton);
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('should apply isFull prop', () => {
+    const { container } = render(<Banner title="Full Width Banner" isFull />);
+
+    expect(container.firstChild).toHaveClass('w-full');
+  });
+
+  it('should apply custom className', () => {
+    const { container } = render(
+      <Banner title="Custom Banner" className="mb-16" />,
+    );
+    expect(container.firstChild).toHaveClass('mb-16');
+  });
+
+  it('should handle long title text with line clamping', () => {
+    const longTitle =
+      'This is a very long title that should be clamped to 2 lines when it exceeds the available space';
+    render(<Banner title={longTitle} />);
+
+    const titleElement = screen.getByText(longTitle);
+    expect(titleElement).toHaveClass('line-clamp-2');
+  });
+
+  it('should handle long description text with line clamping', () => {
+    const longDescription =
+      'This is a very long description that should be clamped to 5 lines when it exceeds the available space in the banner component';
+    render(<Banner title="Title" description={longDescription} />);
+
+    const descriptionElement = screen.getByText(longDescription);
+    expect(descriptionElement).toHaveClass('line-clamp-5');
+  });
+
+  it('should forward ref correctly', () => {
+    const ref = vi.fn();
+    render(<Banner title="Ref Test" ref={ref} />);
+    expect(ref).toHaveBeenCalled();
+  });
+
+  it('should not render close button if closeAction is not provided', () => {
+    render(<Banner title="Banner" />);
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
+  it('should render close button when closeAction is provided', () => {
+    const handleClose = vi.fn();
+    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('should apply default aria-label to close button when ariaLabel is not provided', () => {
+    const handleClose = vi.fn();
+    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    const closeButton = screen.getByRole('button');
+    expect(closeButton).toHaveAttribute('aria-label', 'Close');
+  });
+
+  it('should apply custom aria-label to close button when provided', () => {
+    const handleClose = vi.fn();
+    render(
+      <Banner
+        title="Banner"
+        closeAction={{ onClick: handleClose, ariaLabel: 'Close notification' }}
+      />,
+    );
+    const closeButton = screen.getByRole('button');
+    expect(closeButton).toHaveAttribute('aria-label', 'Close notification');
+  });
+});

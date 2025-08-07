@@ -1,0 +1,78 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BannerStories from './Banner.stories';
+import { Banner } from './Banner';
+
+<Meta title="Components/Banner/Docs" of={BannerStories} />
+
+# 🃏 Banner
+
+## Introduction
+
+Banners are prominent message containers used to communicate system status, alerts, or informational notices to users. They support different appearance types to indicate the severity or type of message and can include optional descriptions, action buttons, and a dismissal option.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=85-227&p=f&m=dev).
+
+## Anatomy
+
+<Canvas of={BannerStories.WithFullFeatures} />
+
+- **Icon**: Automatically displays based on appearance (info, success, warning, error)
+- **Title**: The main message or heading (required)
+- **Description (optional)**: Additional details or explanation
+- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Provide an object with label and onClick for an action to be displayed (e.g. `primaryAction={{ label: 'Action', onClick: () => {} }}`).
+- **Close (optional)**: Button to dismiss the banner. Provide the `closeAction` object with onClick handler and optional ariaLabel for the close button to be displayed.
+
+## Properties
+
+### Overview
+
+<Canvas of={BannerStories.Base} />
+<Controls of={BannerStories.Base} />
+
+### Appearance
+
+Banners have four appearances to convey different types of messages:
+
+- **info** (default): General information
+- **success**: Positive outcomes or confirmations
+- **warning**: Caution or important notices
+- **error**: Problems or failures
+
+<Canvas of={BannerStories.AppearanceShowcase} />
+
+### Content Variations
+
+Banners support various content configurations:
+
+- **Title only**: Basic message
+- **Title + Description**: Detailed information
+- **With Actions**: Includes primary and/or secondary buttons
+- **With Close**: Dismissible banner
+- **Complete**: All elements combined
+
+<Canvas of={BannerStories.ContentVariations} />
+
+> **Note**: The title is required. Description, actions, and close are optional and can be combined as needed. Actions require both label and onClick handler.
+
+### Responsive Layout
+
+Banners adapt to their container:
+
+<Canvas of={BannerStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Default width fits content
+> - Use `isFull` prop for full container width
+> - Title limited to 2 lines, description to 5 lines with truncation
+> - Icons and buttons maintain consistent sizing
+
+## Accessibility
+
+To be implemented:
+
+- **Color contrast**: Ensure readable text on all background colors
+- **Text zoom**: Maintain layout integrity
+- **Keyboard navigation**: Tab order for actions and close
+- **Semantic labeling**: Proper ARIA roles for alerts
+- **Focus management**: Visible focus indicators on interactive elements
