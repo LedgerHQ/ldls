@@ -21,13 +21,13 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.28.0",
     "@babel/plugin-syntax-decorators": "^7.27.1",
-    "@react-native-community/cli": "~15.0.1",
-    "@react-native-community/cli-platform-android": "~15.0.1",
-    "@react-native-community/cli-platform-ios": "~15.0.1",
-    "@react-native/babel-preset": "~0.77.3",
-    "@react-native/metro-config": "~0.77.3",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.17"
+    "@react-native-community/cli": "~19.1.1",
+    "@react-native-community/cli-platform-android": "~18.0.0",
+    "@react-native-community/cli-platform-ios": "~18.0.0",
+    "@react-native/babel-preset": "~0.80.2",
+    "@react-native/metro-config": "~0.80.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.11"
   },
   "jest": {
     "preset": "react-native"
