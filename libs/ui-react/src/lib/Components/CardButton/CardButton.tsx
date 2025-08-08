@@ -38,7 +38,7 @@ export interface CardButtonProps
  *
  * It supports different appearances and can be set to full width. The chevron can be hidden if needed.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
