@@ -1,0 +1,50 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TagStories from './Tag.stories';
+
+<Meta title="Components/Tag/Docs" of={TagStories} />
+
+# 🏷️ Tag
+
+View in Figma: [link](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=722-5547&m=dev)
+
+## Anatomy
+
+- **Label:** The text content of the tag.
+- **Icon (optional):** An optional icon displayed before the label.
+
+## Properties
+
+### Overview
+
+<Canvas of={TagStories.Default} />
+<Controls of={TagStories.Default} />
+
+### Appearance
+
+<Canvas of={TagStories.Showcase} />
+
+---
+
+### Size
+
+Tags come in two different sizes:
+
+- **lg** (default)
+- **sm**
+
+<Canvas of={TagStories.SizesShowcase} />
+
+### Icon
+
+Tags can be displayed with or without an icon.
+
+<Canvas of={TagStories.ContentTypesShowcase} />
+
+### Accessibility
+
+To be implemented:
+
+- **Color contrast**
+- **Text zoom**
+- **Keyboard navigation**
+- **Semantic labeling**
