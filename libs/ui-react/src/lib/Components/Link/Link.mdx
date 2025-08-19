@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as LinkStories from './Link.stories';
+import { Link } from './Link';
+
+<Meta title="Components/Link/Docs" of={LinkStories} />
+
+# 🔗 Link
+
+## Introduction
+
+Links are essential navigation elements that direct users to internal pages or external resources. They support underlined and accent appearances for different emphases and contexts.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=770-11743&p=f).
+
+## Anatomy
+
+<Canvas of={LinkStories.ExternalLinkWithIcon} />
+
+- **Label**: Describes the destination or action of the link
+- **Icon (optional)**: Leading icon to enhance visual communication
+- **External indicator (optional)**: Appears when the link opens in a new tab
+
+## Properties
+
+### Overview
+
+<Canvas of={LinkStories.Base} />
+<Controls of={LinkStories.Base} />
+
+### Appearance
+
+There are two link appearances, indicating emphasis:
+
+- underlined (default)
+- accent
+
+<Canvas of={LinkStories.AppearanceShowcase} />
+
+### Size
+
+Links come in two sizes:
+
+- sm (**body-2** typography)
+- md (default, **body-1** typography)
+
+<Canvas of={LinkStories.SizesShowcase} />
+
+## Responsive Layout
+
+Links adapt to their container, truncating long text to prevent overflow:
+
+<Canvas of={LinkStories.ResponsiveLayout} />
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast
+- Text zoom
+- Keyboard navigation
+- Semantic labeling
+
+### As Child
+
+<Canvas of={LinkStories.AsChild} />
+
+<div className="rounded-8 mt-8 bg-muted p-12">
+  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
+  <ul className="space-y-2 body-2">
+    <li>When using asChild, the child element receives all link styles</li>
+    <li>
+      Icon and isExternal props are ignored with asChild - handle these in the
+      child element if needed
+    </li>
+    <li>Perfect for router links that should look like links</li>
+  </ul>
+</div>
