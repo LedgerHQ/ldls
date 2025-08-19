@@ -39,7 +39,8 @@ export interface LinkProps
 /**
  * A customizable link component that supports underlined text and accent button-like appearances, sizes, optional icons, and external link handling.
  *
- * @see {@link https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=770-11982&t=eH4u50Kp2TsicfTq-4 Figma Design}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
  * @param {'underlined' | 'accent'} [appearance='underlined'] - The visual style of the link (text underlined or button-like).
@@ -51,7 +52,7 @@ export interface LinkProps
  *   Useful for creating router links or other semantic elements with link appearance.
  * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {React.ReactNode} [children] - The link's content, typically text.
- * @param {React.AnchorHTMLAttributes<HTMLAnchorElement>} [...] - All standard anchor props (e.g., `href`, `onClick`, `disabled`).
+ * @param {React.AnchorHTMLAttributes<HTMLAnchorElement>} [...] - All standard anchor props (e.g., `href`, `onClick` etc.).
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` prop instead.
