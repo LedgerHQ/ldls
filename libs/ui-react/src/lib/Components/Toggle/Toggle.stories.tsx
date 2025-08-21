@@ -31,38 +31,23 @@ export default meta;
 type Story = StoryObj<typeof Toggle>;
 
 export const Base: Story = {
-  args: {
-    appearance: 'base',
-  },
+  args: {},
   parameters: {
     docs: {
       source: {
-        code: `<Toggle appearance="base" />`,
+        code: `<Toggle />`,
       },
     },
-  },
-};
-
-export const AppearanceShowcase: Story = {
-  render: () => {
-    const appearances = ['base', 'accent'] as const;
-    return (
-      <div className="flex gap-16 p-8">
-        {appearances.map((appearance) => (
-          <Toggle key={appearance} appearance={appearance} />
-        ))}
-      </div>
-    );
   },
 };
 
 export const StatesShowcase: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Toggle defaultSelected={false} />
-      <Toggle defaultSelected={true} />
+      <Toggle selected={false} />
+      <Toggle selected={true} />
       <Toggle disabled />
-      <Toggle disabled defaultSelected={true} />
+      <Toggle disabled selected={true} />
     </div>
   ),
 };

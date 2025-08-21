@@ -1,29 +1,23 @@
 import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 
-const toggleVariants = cva(
-  'group relative flex h-24 max-h-24 w-40 max-w-40 items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-[disabled]:bg-disabled',
-  {
-    variants: {
-      appearance: {
-        base: 'bg-muted-strong hover:bg-muted-strong-hover active:bg-muted-strong-pressed',
-        accent: 'bg-active hover:bg-active-hover active:bg-active-pressed',
-      },
-    },
-    defaultVariants: {
-      appearance: 'base',
-    },
-  },
+const defaultClassName = cn(
+  'group flex h-24 max-h-24 w-40 max-w-40 items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+  // On state
+  '[&[data-state=off]:not([data-disabled])]:bg-muted-strong [&[data-state=off]:not([data-disabled])]:hover:bg-muted-strong-hover [&[data-state=off]:not([data-disabled])]:active:bg-muted-strong-pressed',
+  // Off state
+  '[&[data-state=on]:not([data-disabled])]:bg-active [&[data-state=on]:not([data-disabled])]:hover:bg-active-hover [&[data-state=on]:not([data-disabled])]:active:bg-active-pressed',
+  // Disabled state
+  'data-[disabled]:bg-disabled',
 );
 
-export interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>,
-    VariantProps<typeof toggleVariants> {}
+export type ToggleProps = React.ComponentPropsWithoutRef<
+  typeof TogglePrimitive.Root
+>;
 
 /**
- * A customizable toggle switch component that supports various appearances and sizes.
+ * A customizable toggle switch component.
  *
  * When disabled, it shows disabled styles for both track and thumb.
  *
@@ -31,7 +25,6 @@ export interface ToggleProps
  * @see {@link https://ldls.vercel.app/?path=/docs/components-toggle-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
- * @param {'base' | 'accent'} [appearance='base'] - The visual style of the toggle for checked state.
  * @param {string} [className] - Additional custom CSS classes to apply to the label. Do not use this prop to modify the component's core appearance.
  * @param {boolean} [defaultSelected] - The default selected state of the toggle (uncontrolled).
  * @param {boolean} [selected] - The controlled selected state of the toggle.
@@ -73,19 +66,12 @@ export const Toggle = React.forwardRef<
   }
 >(
   (
-    {
-      className,
-      appearance,
-      selected,
-      defaultSelected,
-      onSelectedChange,
-      ...props
-    },
+    { className, selected, defaultSelected, onSelectedChange, ...props },
     ref,
   ) => (
     <TogglePrimitive.Root
       ref={ref}
-      className={cn(toggleVariants({ appearance }), className)}
+      className={cn(defaultClassName, className)}
       pressed={selected}
       defaultPressed={defaultSelected}
       onPressedChange={onSelectedChange}

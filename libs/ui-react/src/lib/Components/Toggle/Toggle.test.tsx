@@ -26,14 +26,6 @@ describe('Toggle Component', () => {
     expect(toggleElement).toHaveAttribute('aria-pressed', 'true');
   });
 
-  it('should render with different appearance variants', () => {
-    const { container, rerender } = render(<Toggle appearance="base" />);
-    expect(container.firstChild).toHaveClass('bg-muted-strong');
-
-    rerender(<Toggle appearance="accent" />);
-    expect(container.firstChild).toHaveClass('bg-active');
-  });
-
   it('should be disabled when the disabled prop is true', () => {
     render(<Toggle disabled />);
     const toggleElement = screen.getByRole('button');
