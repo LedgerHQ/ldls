@@ -1,0 +1,46 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ToggleStories from './Toggle.stories';
+import { Toggle } from './Toggle';
+
+<Meta title="Components/Toggle/Docs" of={ToggleStories} />
+
+# 🔘 Toggle
+
+## Introduction
+
+Toggle switches allow users to activate or deactivate an option instantly.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=802-186).
+
+## Anatomy
+
+<Canvas of={ToggleStories.Base} />
+
+- **Track**: The background slider that changes color when toggled.
+- **Thumb**: The circular indicator that moves when the state changes.
+
+## Properties
+
+### Overview
+
+<Canvas of={ToggleStories.Base} />
+<Controls of={ToggleStories.Base} />
+
+### Appearance
+
+Different appearances change the color of the track when checked.
+
+<Canvas of={ToggleStories.AppearanceShowcase} />
+
+### States
+
+Includes unchecked, checked, and disabled states.
+
+<Canvas of={ToggleStories.StatesShowcase} />
+
+## Accessibility
+
+- Toggles automatically include proper ARIA attributes via Radix UI
+- Provide descriptive labels for screen readers
+- Ensure sufficient color contrast in all states
+- Support keyboard navigation (Space or Enter to toggle)
