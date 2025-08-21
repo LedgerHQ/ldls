@@ -15,11 +15,6 @@ const meta: Meta<typeof Toggle> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['base', 'accent'],
-      description: 'The visual style for checked state',
-    },
     disabled: {
       control: 'boolean',
       description: 'Whether the toggle is disabled',
