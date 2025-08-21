@@ -28,7 +28,7 @@ export type ToggleProps = React.ComponentPropsWithoutRef<
  * @param {string} [className] - Additional custom CSS classes to apply to the label. Do not use this prop to modify the component's core appearance.
  * @param {boolean} [defaultSelected] - The default selected state of the toggle (uncontrolled).
  * @param {boolean} [selected] - The controlled selected state of the toggle.
- * @param {(event: React.ChangeEvent<HTMLInputElement>) => void} [onSelectedChange] - Event handler called when the selected state changes.
+ * @param {(event: React.ChangeEvent<HTMLInputElement>) => void} [onChange] - Event handler called when the selected state changes.
  * @param {boolean} [disabled] - If true, disables the toggle.
  * @param {React.InputHTMLAttributes<HTMLInputElement>} [...] - All standard input props (e.g., `name`, `value`, `id`).
  *
@@ -46,7 +46,7 @@ export type ToggleProps = React.ComponentPropsWithoutRef<
  * // Controlled toggle with disabled state
  * import { useState } from 'react';
  * const [selected, setSelected] = useState(false);
- * <Toggle selected={selected} onSelectedChange={(selected) => setSelected(selected)} disabled={someCondition} />
+ * <Toggle selected={selected} onChange={(selected) => setSelected(selected)} disabled={someCondition} />
  */
 export const Toggle = React.forwardRef<
   React.ElementRef<typeof TogglePrimitive.Root>,
@@ -62,23 +62,18 @@ export const Toggle = React.forwardRef<
   > & {
     selected?: boolean;
     defaultSelected?: boolean;
-    onSelectedChange?: (selected: boolean) => void;
+    onChange?: (selected: boolean) => void;
   }
->(
-  (
-    { className, selected, defaultSelected, onSelectedChange, ...props },
-    ref,
-  ) => (
-    <TogglePrimitive.Root
-      ref={ref}
-      className={cn(defaultClassName, className)}
-      pressed={selected}
-      defaultPressed={defaultSelected}
-      onPressedChange={onSelectedChange}
-      {...props}
-    >
-      <span className="h-20 w-20 translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[state=on]:translate-x-16" />
-    </TogglePrimitive.Root>
-  ),
-);
+>(({ className, selected, defaultSelected, onChange, ...props }, ref) => (
+  <TogglePrimitive.Root
+    ref={ref}
+    className={cn(defaultClassName, className)}
+    pressed={selected}
+    defaultPressed={defaultSelected}
+    onPressedChange={onChange}
+    {...props}
+  >
+    <span className="h-20 w-20 translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[state=on]:translate-x-16" />
+  </TogglePrimitive.Root>
+));
 Toggle.displayName = 'Toggle';

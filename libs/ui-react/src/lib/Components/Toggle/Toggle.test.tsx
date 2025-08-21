@@ -33,9 +33,9 @@ describe('Toggle Component', () => {
     expect(toggleElement).toHaveAttribute('data-disabled');
   });
 
-  it('should call the onSelectedChange handler when clicked', () => {
+  it('should call the onChange handler when clicked', () => {
     const handleSelectedChange = vi.fn();
-    render(<Toggle onSelectedChange={handleSelectedChange} />);
+    render(<Toggle onChange={handleSelectedChange} />);
 
     const toggleElement = screen.getByRole('button');
     fireEvent.click(toggleElement);
@@ -44,9 +44,9 @@ describe('Toggle Component', () => {
     expect(handleSelectedChange).toHaveBeenCalledWith(true);
   });
 
-  it('should call onSelectedChange with false when toggling from selected state', () => {
+  it('should call onChange with false when toggling from selected state', () => {
     const handleSelectedChange = vi.fn();
-    render(<Toggle selected={true} onSelectedChange={handleSelectedChange} />);
+    render(<Toggle selected={true} onChange={handleSelectedChange} />);
 
     const toggleElement = screen.getByRole('button');
     fireEvent.click(toggleElement);
@@ -55,9 +55,9 @@ describe('Toggle Component', () => {
     expect(handleSelectedChange).toHaveBeenCalledWith(false);
   });
 
-  it('should not call the onSelectedChange handler when disabled', () => {
+  it('should not call the onChange handler when disabled', () => {
     const handleSelectedChange = vi.fn();
-    render(<Toggle onSelectedChange={handleSelectedChange} disabled />);
+    render(<Toggle onChange={handleSelectedChange} disabled />);
 
     const toggleElement = screen.getByRole('button');
     fireEvent.click(toggleElement);
@@ -98,7 +98,7 @@ describe('Toggle Component', () => {
 
   it('should handle uncontrolled usage correctly', () => {
     const handleSelectedChange = vi.fn();
-    render(<Toggle onSelectedChange={handleSelectedChange} />);
+    render(<Toggle onChange={handleSelectedChange} />);
 
     const toggleElement = screen.getByRole('button');
 

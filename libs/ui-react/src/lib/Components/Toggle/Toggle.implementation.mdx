@@ -67,7 +67,7 @@ function MyComponent() {
 
 ### Controlled Usage
 
-Use the `selected` and `onSelectedChange` props for full control:
+Use the `selected` and `onChange` props for full control:
 
 ```tsx
 import { useState } from 'react';
@@ -79,7 +79,7 @@ function MyComponent() {
   return (
     <Toggle
       selected={selected}
-      onSelectedChange={(selected) => setSelected(selected)}
+      onChange={(selected) => setSelected(selected)}
     />
   );
 }
@@ -162,7 +162,7 @@ The following guidelines ensure consistent usage of the Toggle component and mai
 ```tsx
 // Use controlled components for form state
 const [isSelected, setIsSelected] = useState(false);
-<Toggle selected={isSelected} onSelectedChange={setIsSelected} />
+<Toggle selected={isSelected} onChange={setIsSelected} />
 // Use defaultSelected for simple uncontrolled cases
 <Toggle defaultSelected={false} />
 ```
