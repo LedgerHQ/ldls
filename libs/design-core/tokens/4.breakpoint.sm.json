@@ -1,6 +1,6 @@
 {
   "font-style": {
-    "display": {
+    "responsive-display": {
       "1": {
         "size": {
           "$type": "number",
@@ -235,6 +235,78 @@
       }
     },
     "heading": {
+      "0": {
+        "size": {
+          "$type": "number",
+          "$value": "{font.size.48}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_SIZE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "weight-semi-bold": {
+          "$type": "string",
+          "$value": "{font.weight.semi-bold}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_STYLE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "weight-medium": {
+          "$type": "string",
+          "$value": "{font.weight.medium}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_STYLE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{font.line-height.48}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "LINE_HEIGHT"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "letter-spacing": {
+          "$type": "number",
+          "$value": "{font.letter-spacing.48}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "LETTER_SPACING"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        }
+      },
       "1": {
         "size": {
           "$type": "number",
@@ -310,7 +382,21 @@
       "2": {
         "size": {
           "$type": "number",
-          "$value": "{font.size.22}",
+          "$value": "{font.size.24}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_SIZE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "size 2": {
+          "$type": "number",
+          "$value": "{font.size.24}",
           "$description": "",
           "$extensions": {
             "com.figma": {

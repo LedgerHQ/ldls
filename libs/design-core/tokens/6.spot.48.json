@@ -1,0 +1,72 @@
+{
+  "spot-width": {
+    "$type": "number",
+    "$value": "{spot-width.48}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  },
+  "spot-height": {
+    "$type": "number",
+    "$value": "{spot-height.48}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  },
+  "spot-icon-width": {
+    "$type": "number",
+    "$value": "{icon-width.20}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  },
+  "spot-icon-height": {
+    "$type": "number",
+    "$value": "{icon-height.20}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  },
+  "icon-border-width": {
+    "$type": "number",
+    "$value": "{icon-border-width.20}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "STROKE_FLOAT"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  }
+}
