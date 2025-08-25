@@ -14,7 +14,6 @@ const checkboxStyles = [
   'data-[state=unchecked]:active:bg-base-pressed',
   'data-[state=unchecked]:disabled:border-disabled data-[state=unchecked]:disabled:bg-base',
 
-  // Checked states
   'data-[state=checked]:bg-active data-[state=checked]:text-on-accent',
   'data-[state=checked]:hover:bg-active-hover',
   'data-[state=checked]:active:bg-active-pressed',
