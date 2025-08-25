@@ -4,11 +4,8 @@ import * as TogglePrimitive from '@radix-ui/react-toggle';
 
 const defaultClassName = cn(
   'group flex h-24 max-h-24 w-40 max-w-40 items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-  // On state
   '[&[data-state=off]:not([data-disabled])]:bg-muted-strong [&[data-state=off]:not([data-disabled])]:hover:bg-muted-strong-hover [&[data-state=off]:not([data-disabled])]:active:bg-muted-strong-pressed',
-  // Off state
   '[&[data-state=on]:not([data-disabled])]:bg-active [&[data-state=on]:not([data-disabled])]:hover:bg-active-hover [&[data-state=on]:not([data-disabled])]:active:bg-active-pressed',
-  // Disabled state
   'data-[disabled]:bg-disabled',
 );
 
