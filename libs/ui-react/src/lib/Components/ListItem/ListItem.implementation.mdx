@@ -1,0 +1,347 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/ListItem/Implementation" />
+
+# ListItem Component Implementation
+
+## Installation
+
+First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ldls/ui-react @ldls/design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-toggle
+```
+
+#### About @radix-ui/react-toggle
+
+The `@radix-ui/react-toggle` dependency is used internally by the Toggle component (which is a dependency of ListItem)
+to provide accessible, unstyled toggle functionality with proper keyboard navigation,
+focus management, and screen reader support. It handles the core toggle behavior including
+pressed/unpressed states and accessibility features, while our component adds the visual styling and design system tokens.
+
+### Tailwind Configuration
+
+To use the ListItem component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ldls/design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { ListItem } from '@ldls/ui-react';
+
+function MyComponent() {
+  return (
+    <ListItem
+      trailingContentVariant="caret"
+      title="Settings"
+    />
+  );
+}
+```
+
+### With Description
+
+Add a description below the title for additional context:
+
+```tsx
+import { ListItem } from '@ldls/ui-react';
+
+function MyComponent() {
+  return (
+    <ListItem
+      trailingContentVariant="caret"
+      title="Account Settings"
+      description="Manage your profile and preferences"
+    />
+  );
+}
+```
+
+### With Leading Icon
+
+Include a leading icon for visual identification. Icons are automatically sized to 24px:
+
+```tsx
+import { ListItem } from '@ldls/ui-react';
+import { Settings } from '@ldls/ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      trailingContentVariant="caret"
+      title="Settings"
+      description="Manage your profile and preferences"
+      leadingIcon={Settings}
+    />
+  );
+}
+```
+
+### Trailing Content Variants
+
+The ListItem supports multiple trailing content variants. Each variant changes the right-side content and behavior:
+
+```tsx
+import { ListItem } from '@ldls/ui-react';
+import { useState } from 'react';
+import { Settings, Check, Bolt } from '@ldls/ui-react/symbols';
+
+function ListVariants() {
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-2 max-w-md">
+      {/* Caret - For navigation items */}
+      <ListItem
+        trailingContentVariant="caret"
+        title="Navigation Item"
+        description="Leads to another page"
+        leadingIcon={Settings}
+      />
+
+      {/* Toggle - For switchable options */}
+      <ListItem
+        trailingContentVariant="toggle"
+        title="Enable Feature"
+        description="Toggle this setting on/off"
+        leadingIcon={Bolt}
+        selected={selected}
+        onClick={() => setSelected(!selected)}
+      />
+
+      {/* Value - For displaying values */}
+      <ListItem
+        trailingContentVariant="value"
+        title="Account Balance"
+        description="Current available funds"
+        value="1,234.56"
+        subValue="USD"
+      />
+
+      {/* Tag - For status indicators */}
+      <ListItem
+        trailingContentVariant="tag"
+        title="New Feature"
+        description="Recently added functionality"
+        tagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+      />
+
+      {/* Icon - For trailing icons */}
+      <ListItem
+        trailingContentVariant="icon"
+        title="Edit Profile"
+        description="Modify your information"
+        trailingIcon={Check}
+      />
+
+      {/* None - No trailing content */}
+      <ListItem
+        trailingContentVariant="none"
+        title="Simple Item"
+        description="No trailing elements"
+      />
+    </div>
+  );
+}
+```
+
+### With Description Tag
+
+Add a tag to the description for additional status information:
+
+```tsx
+import { ListItem } from '@ldls/ui-react';
+import { Bolt } from '@ldls/ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      trailingContentVariant="caret"
+      title="New Item"
+      description="Recently added"
+      descriptionTagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+    />
+  );
+}
+```
+
+### Disabled State
+
+Disable the ListItem to prevent interaction:
+
+```tsx
+<ListItem
+  trailingContentVariant="toggle"
+  title="Disabled Option"
+  description="Cannot be changed"
+  disabled
+/>
+```
+
+### Responsive Layout
+
+ListItem handles truncation responsively. Use container widths to control behavior:
+
+```tsx
+<div className="w-240 bg-base p-4">
+  <ListItem
+    trailingContentVariant="caret"
+    title="Very Long Title That Will Truncate"
+    description="Very long description that will also truncate appropriately"
+    leadingIcon={Settings}
+  />
+</div>
+```
+
+### Custom Styling
+
+Use `className` for layout purposes only, such as maximum width:
+
+```tsx
+<ListItem
+  trailingContentVariant="caret"
+  title="Constrained Width"
+  description="This item has a maximum width applied"
+  className="max-w-md"
+/>
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout constraints
+<ListItem
+  title="Item"
+  className="max-w-md"
+/>
+
+// Use in lists with proper grouping
+<div className="flex flex-col max-w-320">
+  <ListItem title="Item 1" />
+  <ListItem title="Item 2" />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<ListItem
+  title="Custom"
+  className="bg-base text-active"
+/>
+
+// Don't modify internal spacing
+<ListItem
+  title="Wrong"
+  className="gap-2 p-2"
+/>
+
+// Don't override typography
+<ListItem
+  title="Bad"
+  className="heading-3"
+/>
+
+// Don't use for non-list contexts
+<ListItem title="Standalone" className="m-4 border" />
+```
+
+### Icon and Variant Usage
+
+✅ **Do**
+
+```tsx
+// Import specific icons
+import { Settings } from '@ldls/ui-react/symbols';
+
+// Use appropriate variant for purpose
+<ListItem
+  trailingContentVariant="value"
+  value="42"
+  subValue="points"
+/>
+
+// Let ListItem handle icon sizing
+<ListItem leadingIcon={Settings} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as Icons from '@ldls/ui-react/symbols';
+
+// Don't customize icon size
+<ListItem leadingIcon={() => <Settings size={20} />} />
+
+// Don't mix incompatible props
+<ListItem
+  trailingContentVariant="caret"
+  value="Should not be here"
+/>
+
+// Don't use toggle without state management
+<ListItem trailingContentVariant="toggle" selected={true} />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for tree-shaking
+import { Check } from '@ldls/ui-react/symbols';
+
+// Use proper event handlers
+<ListItem onClick={handleClick} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon set
+import * as AllIcons from '@ldls/ui-react/symbols';
+
+// Don't use complex inline handlers
+<ListItem
+  onClick={() => {
+    // Complex logic...
+  }}
+/>
+```

@@ -46,7 +46,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
 
     return (
       <div
-        className={cn(tagVariants({ appearance, size }), className)}
+        className={cn(className, tagVariants({ appearance, size }))}
         ref={ref}
         {...props}
       >
