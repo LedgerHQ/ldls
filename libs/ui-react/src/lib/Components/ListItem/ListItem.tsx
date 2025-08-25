@@ -60,8 +60,7 @@ export type ListItemProps =
     } & ListItemBaseProps)
   | ({
       trailingContentVariant: 'none';
-    } & ListItemBaseProps)
-  | ListItemBaseProps;
+    } & ListItemBaseProps);
 
 /**
  * A flexible list item component that displays a required title, optional description (with possible tag), optional leading icon,
@@ -235,7 +234,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
         ref={ref}
         type="button"
         className={cn(
-          'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12',
+          'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base',
           'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
           'disabled:cursor-default disabled:bg-base-transparent disabled:text-disabled',
           className,
