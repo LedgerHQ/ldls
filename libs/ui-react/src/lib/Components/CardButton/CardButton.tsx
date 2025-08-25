@@ -5,7 +5,7 @@ import { IconSize } from '../Icon/Icon';
 import { ChevronRight } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit max-w-full cursor-pointer items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:text-disabled',
+  'inline-flex h-fit w-fit max-w-full cursor-pointer items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:pointer-events-none disabled:text-disabled',
   {
     variants: {
       appearance: {

@@ -107,6 +107,25 @@ Use the `isFull` prop to make the button take the full width of its container:
 </Button>
 ```
 
+### Using with Routers (asChild)
+
+The `asChild` prop allows integration with routing libraries by merging Button styles with child elements:
+
+```tsx
+import { Button } from '@ldls/ui-react';
+import { Link } from 'react-router-dom';
+
+function MyComponent() {
+  return (
+    <Button asChild appearance="accent" size="md">
+      <Link to="/dashboard">Dashboard</RouterLink>
+    </Link>
+  );
+}
+```
+
+Note: When using asChild, the child element handles its own content. Props like 'icon' and 'loading' are ignored - implement equivalent functionality in the child if needed.
+
 ## Do's and Don'ts
 
 The following guidelines are based on our [Button Component API Design ADR](https://ledgerhq.atlassian.net/wiki/spaces/DLS/pages/6003949581/ADR-001+Button+Component+API+Design). These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
@@ -164,7 +183,7 @@ import { Plus } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't override button's core styling
-<Button className="bg-black">Custom Background</Button>
+<Button className="bg-base">Custom Background</Button>
 
 // Don't modify internal spacing/padding
 <Button className="gap-4 p-6">Wrong Spacing</Button>
@@ -207,7 +226,7 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 // Don't modify icon size directly
 <Button>
-  <Settings style={{ width: '24px' }} />
+  <Settings size={24} />
   Settings
 </Button>
 
