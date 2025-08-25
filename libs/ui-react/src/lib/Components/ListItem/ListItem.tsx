@@ -152,82 +152,74 @@ export type ListItemProps =
  *   trailingIcon={Settings}
  * />
  */
-export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
+export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
   (props, ref) => {
     const {
       title,
       description,
       descriptionTagProps,
       leadingIcon: LeadingIcon,
-      trailingContentVariant = 'none',
       className,
       ...rest
     } = props;
 
     const trailingContent = useMemo(() => {
-      switch (trailingContentVariant) {
-        case 'caret':
-          return (
-            <ChevronRight
-              size={24}
-              className={props.disabled ? 'text-disabled' : 'text-muted'}
-            />
-          );
-        case 'toggle':
-          return <Toggle selected={props.selected} disabled={props.disabled} />;
-        case 'value':
-          return (
-            <div className="text-right">
-              <span className="body-2">{props.value}</span>
-              {props.subValue && (
-                <span
-                  className={cn(
-                    'block text-muted body-3',
-                    props.disabled && 'text-disabled',
-                  )}
-                >
-                  {props.subValue}
-                </span>
-              )}
-            </div>
-          );
-        case 'tag':
-          return (
-            <Tag
-              {...props.tagProps}
-              className={cn(
-                props.tagProps.className,
-                props.disabled && '!bg-muted-transparent !text-disabled',
-              )}
-            />
-          );
-        case 'icon':
-          return <props.trailingIcon size={24} />;
-        case 'none':
-          return null;
-        default:
-          return null;
+      if (props.trailingContentVariant === 'caret') {
+        return (
+          <ChevronRight
+            size={24}
+            className={props.disabled ? 'text-disabled' : 'text-muted'}
+          />
+        );
+      } else if (props.trailingContentVariant === 'toggle') {
+        return <Toggle selected={props.selected} disabled={props.disabled} />;
+      } else if (props.trailingContentVariant === 'value') {
+        return (
+          <div className="text-right">
+            <span className="body-2">{props.value}</span>
+            {props.subValue && (
+              <span
+                className={cn(
+                  'block text-muted body-3',
+                  props.disabled && 'text-disabled',
+                )}
+              >
+                {props.subValue}
+              </span>
+            )}
+          </div>
+        );
+      } else if (props.trailingContentVariant === 'tag') {
+        return (
+          <Tag
+            {...props.tagProps}
+            className={cn(
+              props.tagProps.className,
+              props.disabled && '!bg-muted-transparent !text-disabled',
+            )}
+          />
+        );
+      } else if (props.trailingContentVariant === 'icon') {
+        return <props.trailingIcon size={24} />;
+      } else if (props.trailingContentVariant === 'none') {
+        return null;
       }
-    }, [props, trailingContentVariant]);
+      return null;
+    }, [props]);
 
     const buttonProps: React.ButtonHTMLAttributes<HTMLButtonElement> =
       useMemo(() => {
-        switch (trailingContentVariant) {
-          case 'caret':
-          case 'none':
-            return rest;
-          case 'toggle':
-            return omit(rest, 'selected');
-          case 'value':
-            return omit(rest, 'value', 'subValue');
-          case 'tag':
-            return omit(rest, 'tagProps');
-          case 'icon':
-            return omit(rest, 'trailingIcon');
-          default:
-            return rest;
+        if (props.trailingContentVariant === 'toggle') {
+          return omit(rest, 'selected');
+        } else if (props.trailingContentVariant === 'value') {
+          return omit(rest, 'value', 'subValue');
+        } else if (props.trailingContentVariant === 'tag') {
+          return omit(rest, 'tagProps');
+        } else if (props.trailingContentVariant === 'icon') {
+          return omit(rest, 'trailingIcon');
         }
-      }, [trailingContentVariant, rest]);
+        return rest;
+      }, [props, rest]);
 
     return (
       <button
