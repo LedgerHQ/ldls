@@ -130,7 +130,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
                 className="flex-shrink-0"
               />
             )}
-            {children && <span className="min-w-0 truncate">{children}</span>}
+            <span className="min-w-0 truncate">{children}</span>
             {isExternal && (
               <ExternalLink
                 size={calculatedIconSize}
