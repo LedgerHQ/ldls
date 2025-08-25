@@ -46,6 +46,11 @@ type Story = StoryObj<typeof meta>;
  */
 export const Base: Story = {
   args: {},
+  render: () => (
+    <div className="flex h-80 w-80 items-center justify-center">
+      <Checkbox />
+    </div>
+  ),
 };
 
 /**
@@ -53,7 +58,7 @@ export const Base: Story = {
  */
 export const AllStates: Story = {
   render: () => (
-    <div className="grid grid-cols-2 gap-16 p-16">
+    <div className="grid grid-cols-2 gap-16 p-16 text-base">
       <div className="space-y-16">
         <h3 className="heading-4">Enabled</h3>
         <div className="space-y-8">
@@ -89,7 +94,7 @@ export const AllStates: Story = {
  */
 export const FormExample: Story = {
   render: () => (
-    <form className="space-y-16 p-16">
+    <form className="space-y-16 p-16 text-base">
       <div className="space-y-12">
         <h3 className="body-1">Subscribe to newsletters</h3>
         <div className="space-y-8">
