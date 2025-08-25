@@ -29,10 +29,10 @@ const TypographySample = ({
 
 const TypographyShowcase = () => {
   const typographyStyles = [
-    { className: 'display-1', title: 'Display 1' },
-    { className: 'display-2', title: 'Display 2' },
-    { className: 'display-3', title: 'Display 3' },
-    { className: 'display-4', title: 'Display 4' },
+    { className: 'responsive-display-1', title: 'Responsive Display 1' },
+    { className: 'responsive-display-2', title: 'Responsive Display 2' },
+    { className: 'responsive-display-3', title: 'Responsive Display 3' },
+    { className: 'responsive-display-4', title: 'Responsive Display 4' },
     { className: 'heading-1', title: 'Heading 1' },
     { className: 'heading-1-semi-bold', title: 'Heading 1 Semi Bold' },
     { className: 'heading-2', title: 'Heading 2' },
@@ -67,7 +67,7 @@ export const Typography: Story = {
     <div className="p-24">
       <SectionHeader
         title="Typography"
-        description="Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `display-1`, `heading-1`... for the display text."
+        description="Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `responsive-display-1`, `heading-1`... for the display text."
       />
       <TypographyShowcase />
     </div>
