@@ -4,7 +4,6 @@ import { cn } from '@ldls/utils-shared';
 import { Check } from '../../Symbols/Icons/Check';
 
 const checkboxStyles = [
-  // Base styles
   'h-20 w-20 shrink-0 rounded-xs transition-colors',
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
 
