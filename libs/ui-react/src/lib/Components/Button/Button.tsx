@@ -84,7 +84,7 @@ export interface ButtonProps
  *
  * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
