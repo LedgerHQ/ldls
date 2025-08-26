@@ -132,10 +132,15 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
             )}
             <span className="min-w-0 truncate">{children}</span>
             {isExternal && (
-              <ExternalLink
-                size={calculatedIconSize}
-                className="flex-shrink-0"
-              />
+              <>
+				<ExternalLink
+				size={calculatedIconSize}
+				className="flex-shrink-0"
+				aria-hidden="true"
+				/>
+				{/* Hidden text for screen readers */}
+				<span className="sr-only">(opens in a new tab)</span>
+              </>
             )}
           </>
         )}
