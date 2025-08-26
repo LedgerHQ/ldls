@@ -25,7 +25,7 @@ export type ToggleProps = React.ComponentPropsWithoutRef<
  * @param {string} [className] - Additional custom CSS classes to apply to the label. Do not use this prop to modify the component's core appearance.
  * @param {boolean} [defaultSelected] - The default selected state of the toggle (uncontrolled).
  * @param {boolean} [selected] - The controlled selected state of the toggle.
- * @param {(event: React.ChangeEvent<HTMLInputElement>) => void} [onChange] - Event handler called when the selected state changes.
+ * @param {(selected: boolean) => void} [onChange] - Event handler called when the selected state changes.
  * @param {boolean} [disabled] - If true, disables the toggle.
  * @param {React.InputHTMLAttributes<HTMLInputElement>} [...] - All standard input props (e.g., `name`, `value`, `id`).
  *
