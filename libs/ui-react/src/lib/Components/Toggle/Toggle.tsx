@@ -1,17 +1,15 @@
 import React from 'react';
 import { cn } from '@ldls/utils-shared';
-import * as TogglePrimitive from '@radix-ui/react-toggle';
+import * as Switch from '@radix-ui/react-switch';
 
 const defaultClassName = cn(
   'group flex h-24 max-h-24 w-40 max-w-40 items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-  '[&[data-state=off]:not([data-disabled])]:bg-muted-strong [&[data-state=off]:not([data-disabled])]:hover:bg-muted-strong-hover [&[data-state=off]:not([data-disabled])]:active:bg-muted-strong-pressed',
-  '[&[data-state=on]:not([data-disabled])]:bg-active [&[data-state=on]:not([data-disabled])]:hover:bg-active-hover [&[data-state=on]:not([data-disabled])]:active:bg-active-pressed',
+  '[&[data-state=unchecked]:not([data-disabled])]:bg-muted-strong [&[data-state=unchecked]:not([data-disabled])]:hover:bg-muted-strong-hover [&[data-state=unchecked]:not([data-disabled])]:active:bg-muted-strong-pressed',
+  '[&[data-state=checked]:not([data-disabled])]:bg-active [&[data-state=checked]:not([data-disabled])]:hover:bg-active-hover [&[data-state=checked]:not([data-disabled])]:active:bg-active-pressed',
   'data-[disabled]:bg-disabled',
 );
 
-export type ToggleProps = React.ComponentPropsWithoutRef<
-  typeof TogglePrimitive.Root
->;
+export type ToggleProps = React.ComponentPropsWithoutRef<typeof Switch.Root>;
 
 /**
  * A customizable toggle switch component.
@@ -36,41 +34,28 @@ export type ToggleProps = React.ComponentPropsWithoutRef<
  * <Toggle />
  *
  * @example
- * // Small toggle with accent appearance
- * <Toggle appearance="accent" />
- *
- * @example
  * // Controlled toggle with disabled state
  * import { useState } from 'react';
  * const [selected, setSelected] = useState(false);
  * <Toggle selected={selected} onChange={(selected) => setSelected(selected)} disabled={someCondition} />
  */
 export const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  Omit<
-    ToggleProps,
-    | 'pressed'
-    | 'defaultPressed'
-    | 'onPressedChange'
-    | 'defaultChecked'
-    | 'defaultValue'
-    | 'checked'
-    | 'value'
-  > & {
+  React.ElementRef<typeof Switch.Root>,
+  Omit<ToggleProps, 'checked' | 'defaultChecked' | 'onCheckedChange'> & {
     selected?: boolean;
     defaultSelected?: boolean;
     onChange?: (selected: boolean) => void;
   }
 >(({ className, selected, defaultSelected, onChange, ...props }, ref) => (
-  <TogglePrimitive.Root
+  <Switch.Root
     ref={ref}
     className={cn(defaultClassName, className)}
-    pressed={selected}
-    defaultPressed={defaultSelected}
-    onPressedChange={onChange}
+    checked={selected}
+    defaultChecked={defaultSelected}
+    onCheckedChange={onChange}
     {...props}
   >
-    <span className="h-20 w-20 translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[state=on]:translate-x-16" />
-  </TogglePrimitive.Root>
+    <Switch.Thumb className="h-20 w-20 translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[state=checked]:translate-x-16 group-data-[disabled]:bg-base" />
+  </Switch.Root>
 ));
 Toggle.displayName = 'Toggle';

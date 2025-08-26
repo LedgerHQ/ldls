@@ -56,6 +56,7 @@ export default defineConfig(() => ({
         'tailwind-merge',
         'clsx',
         '@radix-ui/react-slot',
+        '@radix-ui/react-switch',
       ],
       preserveEntrySignatures: 'strict' as const,
       output: {
