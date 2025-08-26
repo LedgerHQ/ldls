@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Toggle } from './Toggle';
+import { Switch } from './Switch';
 
-const meta: Meta<typeof Toggle> = {
-  component: Toggle,
-  title: 'Components/Toggle/Overview',
+const meta: Meta<typeof Switch> = {
+  component: Switch,
+  title: 'Components/Switch/Overview',
   parameters: {
     docs: {
       source: {
@@ -17,20 +17,20 @@ const meta: Meta<typeof Toggle> = {
   argTypes: {
     disabled: {
       control: 'boolean',
-      description: 'Whether the toggle is disabled',
+      description: 'Whether the switch is disabled',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Toggle>;
+type Story = StoryObj<typeof Switch>;
 
 export const Base: Story = {
   args: {},
   parameters: {
     docs: {
       source: {
-        code: `<Toggle />`,
+        code: `<Switch />`,
       },
     },
   },
@@ -39,10 +39,10 @@ export const Base: Story = {
 export const StatesShowcase: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Toggle selected={false} />
-      <Toggle selected={true} />
-      <Toggle disabled />
-      <Toggle disabled selected={true} />
+      <Switch selected={false} />
+      <Switch selected={true} />
+      <Switch disabled />
+      <Switch disabled selected={true} />
     </div>
   ),
 };

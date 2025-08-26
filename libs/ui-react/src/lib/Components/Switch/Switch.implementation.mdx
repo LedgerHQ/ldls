@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Components/Toggle/Implementation" />
+<Meta title="Components/Switch/Implementation" />
 
-# Toggle Component Implementation
+# Switch Component Implementation
 
 ## Installation
 
@@ -24,19 +24,19 @@ Then install the packages and their peer dependencies:
 npm install @ldls/ui-react @ldls/design-core
 
 # Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-toggle
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-switch
 ```
 
-#### About @radix-ui/react-toggle
+#### About @radix-ui/react-switch
 
-The `@radix-ui/react-toggle` dependency is used internally by the Toggle component
-to provide accessible, unstyled toggle functionality with proper keyboard navigation,
-focus management, and screen reader support. It handles the core toggle behavior including
+The `@radix-ui/react-switch` dependency is used internally by the Switch component
+to provide accessible, unstyled switch functionality with proper keyboard navigation,
+focus management, and screen reader support. It handles the core switch behavior including
 pressed/unpressed states and accessibility features, while our component adds the visual styling and design system tokens.
 
 ### Tailwind Configuration
 
-To use the Toggle component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+To use the Switch component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -56,10 +56,10 @@ export default config;
 ## Basic Usage
 
 ```tsx
-import { Toggle } from '@ldls/ui-react';
+import { Switch } from '@ldls/ui-react';
 
 function MyComponent() {
-  return <Toggle />;
+  return <Switch />;
 }
 ```
 
@@ -71,13 +71,13 @@ Use the `selected` and `onChange` props for full control:
 
 ```tsx
 import { useState } from 'react';
-import { Toggle } from '@ldls/ui-react';
+import { Switch } from '@ldls/ui-react';
 
 function MyComponent() {
   const [selected, setSelected] = useState(false);
 
   return (
-    <Toggle
+    <Switch
       selected={selected}
       onChange={(selected) => setSelected(selected)}
     />
@@ -90,7 +90,7 @@ function MyComponent() {
 Use `defaultSelected` for simple cases:
 
 ```tsx
-<Toggle defaultSelected={true} />
+<Switch defaultSelected={true} />
 ```
 
 ## Accessibility Best Practices
@@ -100,16 +100,16 @@ Use `defaultSelected` for simple cases:
 ```tsx
 // ✅ Associated label
 <div className="flex items-center space-x-8">
-  <Toggle id="my-toggle" />
-  <label htmlFor="my-toggle">Enabled</label>
+  <Switch id="my-switch" />
+  <label htmlFor="my-switch">Enabled</label>
 </div>
 
-// ✅ ARIA label for standalone toggle
-<Toggle aria-label="Select all items" />
+// ✅ ARIA label for standalone switch
+<Switch aria-label="Select all items" />
 
 // ✅ ARIA described by for complex descriptions
 <div>
-  <Toggle
+  <Switch
     id="marketing"
     aria-describedby="marketing-description"
   />
@@ -122,14 +122,14 @@ Use `defaultSelected` for simple cases:
 
 ### Keyboard Navigation
 
-The Toggle component automatically supports:
+The Switch component automatically supports:
 
-- **Tab**: Navigate to the Toggle
-- **Space** or **Enter**: Toggle selected/unselected state
+- **Tab**: Navigate to the Switch
+- **Space** or **Enter**: Switch selected/unselected state
 
 ## Do's and Don'ts
 
-The following guidelines ensure consistent usage of the Toggle component and maintain design system principles.
+The following guidelines ensure consistent usage of the Switch component and maintain design system principles.
 
 ### Layout and Styling
 
@@ -137,23 +137,23 @@ The following guidelines ensure consistent usage of the Toggle component and mai
 
 ````tsx
 // Use className for responsive behavior
-<Toggle className="hidden md:block" />
+<Switch className="hidden md:block" />
 
 // Use className for margins and positioning
-<Toggle className="mt-2 mr-4" />
+<Switch className="mt-2 mr-4" />
 
 ❌ **Don't**
 
 ```tsx
 // Don't override the core styling
-<Toggle className="bg-base border-muted" />
+<Switch className="bg-base border-muted" />
 // Don't modify the appearance
-<Toggle className="w-32 h-20 rounded-lg" />
+<Switch className="w-32 h-20 rounded-lg" />
 // Don't modify internal spacing or padding
-<Toggle className="p-4" />
+<Switch className="p-4" />
 ````
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The toggle's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
 
 ### State Management
 
@@ -162,18 +162,18 @@ The following guidelines ensure consistent usage of the Toggle component and mai
 ```tsx
 // Use controlled components for form state
 const [isSelected, setIsSelected] = useState(false);
-<Toggle selected={isSelected} onChange={setIsSelected} />
+<Switch selected={isSelected} onChange={setIsSelected} />
 // Use defaultSelected for simple uncontrolled cases
-<Toggle defaultSelected={false} />
+<Switch defaultSelected={false} />
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't mix controlled and uncontrolled patterns
-<Toggle selected={isSelected} defaultSelected={true} />
+<Switch selected={isSelected} defaultSelected={true} />
 // Don't ignore state change handlers
-<Toggle selected={isSelected} />
+<Switch selected={isSelected} />
 // Don't use string values for selected state
-<Toggle selected="true" />
+<Switch selected="true" />
 ```
