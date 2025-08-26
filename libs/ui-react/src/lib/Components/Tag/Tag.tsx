@@ -14,6 +14,7 @@ const tagVariants = cva(
         success: 'bg-success text-success',
         error: 'bg-error text-error',
         warning: 'bg-warning text-warning',
+        disabled: 'bg-disabled text-disabled',
       },
       size: {
         lg: 'px-8 py-4 body-3',

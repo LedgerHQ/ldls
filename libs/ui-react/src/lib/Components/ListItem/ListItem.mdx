@@ -8,7 +8,7 @@ import { ListItem } from './ListItem';
 
 ## Introduction
 
-ListItems are flexible interactive elements designed for lists, menus, settings, and option selections. They provide a structured way to display a title with optional description, leading icon, description tag, and various trailing content types.
+ListItems are flexible interactive elements designed for lists, menus, settings, and option selections. They provide a structured way to display a title with optional description, leading icon, description tag, and flexible trailing content.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2255-4155).
 
@@ -16,11 +16,11 @@ ListItems are flexible interactive elements designed for lists, menus, settings,
 
 <Canvas of={ListItemStories.WithLeadingIconAndDescription} />
 
-- **Leading Icon (optional)**: Visually represents the item's category or action
 - **Title**: The main label of the item (required)
+- **Leading Icon (optional)**: Visually represents the item's category or action
 - **Description (optional)**: Provides additional context
 - **Description Tag (optional)**: Small tag next to description for status or labels
-- **Trailing Content**: Varies based on variant (caret, toggle, value, tag, icon, or none)
+- **Trailing Content (optional)**: Arbitrary content to be displayed on the right side
 
 ## Properties
 
@@ -31,14 +31,13 @@ ListItems are flexible interactive elements designed for lists, menus, settings,
 
 ### Trailing Content Variants
 
-ListItems support six trailing content variants to suit different interaction patterns:
+ListItems support arbitrary trailing content to suit different interaction patterns:
 
 - **caret**: Navigation indicator (chevron right)
 - **toggle**: Switch for on/off states (requires `selected` prop)
 - **value**: Displays a primary value with optional subvalue
 - **tag**: Shows a tag for status or category
 - **icon**: Custom trailing icon
-- **none** (default): No trailing content
 
 <Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
 
@@ -52,7 +51,7 @@ ListItems support various content combinations:
 - **With leading icon**: Visual identifier
 - **With leading icon and description**: Combined for richer items
 
-Note: These can be combined with any trailing variant.
+Note: These can be combined with the arbitrary trailing content.
 
 <Canvas of={ListItemStories.OnlyTitle} />
 <Canvas of={ListItemStories.WithDescription} />
@@ -62,7 +61,7 @@ Note: These can be combined with any trailing variant.
 
 ### States
 
-ListItems support standard states including hover, active, disabled, and for toggle variant, selected/unselected.
+ListItems support standard states including hover, active and disabled.
 
 <Canvas of={ListItemStories.StateShowcase} />
 
@@ -77,7 +76,7 @@ ListItems adapt to their container width, truncating long titles and description
 > - Automatically fits container width
 > - Title truncates to one line
 > - Description truncates to one line
-> - Icons and trailing elements maintain fixed sizes
+> - Icons and trailing content maintain fixed sizes
 
 ## Accessibility
 

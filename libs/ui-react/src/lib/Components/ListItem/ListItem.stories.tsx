@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ListItem } from './ListItem';
+import { Tag } from '../Tag/Tag';
 import {
   Settings,
   Plus,
-  Check,
   User,
   PenEdit,
   Wallet,
@@ -12,7 +12,40 @@ import {
   Apps,
   Chart1,
   Bolt,
+  ChevronRight,
 } from '../../Symbols';
+
+// Simple Switch component for stories
+const Switch = ({
+  selected,
+  disabled,
+  onClick,
+}: {
+  selected: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    disabled={disabled}
+    className={`relative inline-flex h-24 w-44 items-center rounded-full transition-colors ${
+      selected
+        ? disabled
+          ? 'bg-disabled'
+          : 'bg-primary'
+        : disabled
+          ? 'bg-disabled'
+          : 'bg-neutral-300'
+    }`}
+  >
+    <span
+      className={`inline-block h-20 w-20 transform rounded-full bg-white transition-transform ${
+        selected ? 'translate-x-20' : 'translate-x-2'
+      }`}
+    />
+  </button>
+);
 
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
@@ -27,11 +60,6 @@ const meta: Meta<typeof ListItem> = {
     },
   },
   argTypes: {
-    trailingContentVariant: {
-      control: 'select',
-      options: ['caret', 'toggle', 'value', 'tag', 'icon', 'none'],
-      description: 'The variant of the trailing content of the list item',
-    },
     title: {
       control: 'text',
       description: 'The main title of the list item',
@@ -54,32 +82,11 @@ const meta: Meta<typeof ListItem> = {
       },
       description: 'Optional leading icon',
     },
+    trailingContent: {
+      control: false,
+      description: 'Optional trailing content to display on the right side',
+    },
     onClick: { action: 'clicked' },
-    selected: {
-      control: 'boolean',
-      if: { arg: 'trailingContentVariant', eq: 'toggle' },
-    },
-    value: {
-      control: 'text',
-      if: { arg: 'trailingContentVariant', eq: 'value' },
-    },
-    subValue: {
-      control: 'text',
-      if: { arg: 'trailingContentVariant', eq: 'value' },
-    },
-    tagProps: {
-      control: 'object',
-      if: { arg: 'trailingContentVariant', eq: 'tag' },
-    },
-    trailingIcon: {
-      control: 'select',
-      options: ['None', 'Check'],
-      mapping: {
-        None: undefined,
-        Check: Check,
-      },
-      if: { arg: 'trailingContentVariant', eq: 'icon' },
-    },
   },
 };
 
@@ -88,7 +95,6 @@ type Story = StoryObj<typeof ListItem>;
 
 export const OnlyTitle: Story = {
   args: {
-    trailingContentVariant: 'none',
     title: 'Only Title',
     className: 'max-w-256',
   },
@@ -96,7 +102,6 @@ export const OnlyTitle: Story = {
 
 export const WithDescription: Story = {
   args: {
-    trailingContentVariant: 'none',
     title: 'Item with Description',
     description: 'Additional information',
     className: 'max-w-256',
@@ -105,7 +110,6 @@ export const WithDescription: Story = {
 
 export const WithDescriptionTag: Story = {
   args: {
-    trailingContentVariant: 'none',
     title: 'Item with Description Tag',
     description: 'Additional information',
     descriptionTagProps: { label: 'New', appearance: 'accent', icon: Bolt },
@@ -115,7 +119,6 @@ export const WithDescriptionTag: Story = {
 
 export const WithLeadingIcon: Story = {
   args: {
-    trailingContentVariant: 'none',
     title: 'Item with Leading Icon',
     leadingIcon: Settings,
     className: 'max-w-256',
@@ -124,7 +127,6 @@ export const WithLeadingIcon: Story = {
 
 export const WithLeadingIconAndDescription: Story = {
   args: {
-    trailingContentVariant: 'none',
     title: 'Item with Icon and Description',
     leadingIcon: Settings,
     description: 'Additional information',
@@ -139,43 +141,42 @@ export const TrailingContentVariantsShowcase: Story = {
     return (
       <div className="flex max-w-256 flex-col">
         <ListItem
-          trailingContentVariant="caret"
           title="Caret Variant"
           description="With description"
           leadingIcon={User}
+          trailingContent={<ChevronRight size={24} />}
         />
         <ListItem
-          trailingContentVariant="toggle"
-          title="Toggle Variant"
+          title="Switch Variant"
           description="With description"
           leadingIcon={Wallet}
-          selected={selected}
           onClick={() => setSelected(!selected)}
+          trailingContent={<Switch selected={selected} />}
         />
         <ListItem
-          trailingContentVariant="value"
           title="Value Variant"
           description="With description"
-          value="42.00"
-          subValue="USD"
           leadingIcon={Cart}
+          trailingContent={
+            <div className="text-right">
+              <div className="body-2-semi-bold">42.00</div>
+              <div className="text-muted body-3">USD</div>
+            </div>
+          }
         />
         <ListItem
-          trailingContentVariant="tag"
           title="Tag Variant"
           description="With description"
-          tagProps={{ label: 'New', appearance: 'accent' }}
           leadingIcon={Apps}
+          trailingContent={<Tag label="New" appearance="accent" />}
         />
         <ListItem
-          trailingContentVariant="icon"
           title="Icon Variant"
           description="With description"
           leadingIcon={Settings}
-          trailingIcon={PenEdit}
+          trailingContent={<PenEdit size={24} />}
         />
         <ListItem
-          trailingContentVariant="none"
           title="None Variant"
           description="With description"
           leadingIcon={Chart1}
@@ -193,43 +194,42 @@ export const StateShowcase: Story = {
       <div className="flex gap-32">
         <div className="flex max-w-256 flex-col">
           <ListItem
-            trailingContentVariant="caret"
             title="Caret Variant"
             description="With description"
             leadingIcon={User}
+            trailingContent={<ChevronRight size={24} className="text-muted" />}
           />
           <ListItem
-            trailingContentVariant="toggle"
-            title="Toggle Variant"
+            title="Switch Variant"
             description="With description"
             leadingIcon={Wallet}
-            selected={selected}
             onClick={() => setSelected(!selected)}
+            trailingContent={<Switch selected={selected} />}
           />
           <ListItem
-            trailingContentVariant="value"
             title="Value Variant"
             description="With description"
-            value="42.00"
-            subValue="USD"
             leadingIcon={Cart}
+            trailingContent={
+              <div className="text-right">
+                <div className="body-2-semi-bold">42.00</div>
+                <div className="text-muted body-3">USD</div>
+              </div>
+            }
           />
           <ListItem
-            trailingContentVariant="tag"
             title="Tag Variant"
             description="With description"
-            tagProps={{ label: 'New', appearance: 'accent' }}
             leadingIcon={Apps}
+            trailingContent={<Tag label="New" appearance="accent" />}
           />
           <ListItem
-            trailingContentVariant="icon"
             title="Icon Variant"
             description="With description"
             leadingIcon={Settings}
-            trailingIcon={PenEdit}
+            trailingContent={<PenEdit size={24} />}
           />
           <ListItem
-            trailingContentVariant="none"
             title="None Variant"
             description="With description"
             leadingIcon={Chart1}
@@ -237,48 +237,55 @@ export const StateShowcase: Story = {
         </div>
         <div className="flex max-w-256 flex-col">
           <ListItem
-            trailingContentVariant="caret"
             title="Caret Variant"
             description="With description"
             leadingIcon={User}
             disabled
+            trailingContent={
+              <ChevronRight size={24} className="text-disabled" />
+            }
           />
           <ListItem
-            trailingContentVariant="toggle"
-            title="Toggle Variant"
+            title="Switch Variant"
             description="With description"
             leadingIcon={Wallet}
-            selected={selected}
             onClick={() => setSelected(!selected)}
             disabled
+            trailingContent={<Switch selected={selected} disabled />}
           />
           <ListItem
-            trailingContentVariant="value"
             title="Value Variant"
             description="With description"
-            value="42.00"
-            subValue="USD"
             leadingIcon={Cart}
             disabled
+            trailingContent={
+              <div className="text-right">
+                <div className="body-2-semi-bold">42.00</div>
+                <div className="text-disabled body-3">USD</div>
+              </div>
+            }
           />
           <ListItem
-            trailingContentVariant="tag"
             title="Tag Variant"
             description="With description"
-            tagProps={{ label: 'New', appearance: 'accent' }}
             leadingIcon={Apps}
             disabled
+            trailingContent={
+              <Tag
+                label="New"
+                appearance="accent"
+                className="!bg-muted-transparent !text-disabled"
+              />
+            }
           />
           <ListItem
-            trailingContentVariant="icon"
             title="Icon Variant"
             description="With description"
             leadingIcon={Settings}
-            trailingIcon={PenEdit}
             disabled
+            trailingContent={<PenEdit size={24} className="text-disabled" />}
           />
           <ListItem
-            trailingContentVariant="none"
             title="None Variant"
             description="With description"
             leadingIcon={Chart1}
@@ -296,23 +303,23 @@ export const ResponsiveLayout: Story = {
       <div className="text-muted body-4-semi-bold">Container: 320px wide</div>
       <div>
         <ListItem
-          trailingContentVariant="caret"
           title="Short Title"
           description="Short description"
           leadingIcon={Plus}
+          trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
-          trailingContentVariant="caret"
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
           leadingIcon={Plus}
+          trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
-          trailingContentVariant="caret"
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
           descriptionTagProps={{ label: 'New', appearance: 'accent' }}
           leadingIcon={Plus}
+          trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
       </div>
     </div>

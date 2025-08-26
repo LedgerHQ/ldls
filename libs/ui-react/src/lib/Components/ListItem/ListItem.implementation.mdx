@@ -24,15 +24,8 @@ Then install the packages and their peer dependencies:
 npm install @ldls/ui-react @ldls/design-core
 
 # Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-toggle
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
-
-#### About @radix-ui/react-toggle
-
-The `@radix-ui/react-toggle` dependency is used internally by the Toggle component (which is a dependency of ListItem)
-to provide accessible, unstyled toggle functionality with proper keyboard navigation,
-focus management, and screen reader support. It handles the core toggle behavior including
-pressed/unpressed states and accessibility features, while our component adds the visual styling and design system tokens.
 
 ### Tailwind Configuration
 
@@ -57,12 +50,13 @@ export default config;
 
 ```tsx
 import { ListItem } from '@ldls/ui-react';
+import { ChevronRight } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
     <ListItem
-      trailingContentVariant="caret"
       title="Settings"
+      trailingContent={<ChevronRight size={24} />}
     />
   );
 }
@@ -74,13 +68,14 @@ Add a description below the title for additional context:
 
 ```tsx
 import { ListItem } from '@ldls/ui-react';
+import { ChevronRight } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
     <ListItem
-      trailingContentVariant="caret"
       title="Account Settings"
       description="Manage your profile and preferences"
+      trailingContent={<ChevronRight size={24} />}
     />
   );
 }
@@ -92,80 +87,79 @@ Include a leading icon for visual identification. Icons are automatically sized 
 
 ```tsx
 import { ListItem } from '@ldls/ui-react';
-import { Settings } from '@ldls/ui-react/symbols';
+import { Settings, ChevronRight } from '@ldls/ui-react/symbols';
 
 function MyComponent() {
   return (
     <ListItem
-      trailingContentVariant="caret"
       title="Settings"
       description="Manage your profile and preferences"
       leadingIcon={Settings}
+      trailingContent={<ChevronRight size={24} />}
     />
   );
 }
 ```
 
-### Trailing Content Variants
+### Trailing Content
 
-The ListItem supports multiple trailing content variants. Each variant changes the right-side content and behavior:
+The ListItem supports arbitrary trailing content variants. Below are some examples:
 
 ```tsx
-import { ListItem } from '@ldls/ui-react';
+import { ListItem, Switch, Tag } from '@ldls/ui-react';
 import { useState } from 'react';
-import { Settings, Check, Bolt } from '@ldls/ui-react/symbols';
+import { Settings, Check, Bolt, ChevronRight } from '@ldls/ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
 
   return (
     <div className="flex flex-col gap-2 max-w-md">
-      {/* Caret - For navigation items */}
+      {/* Chevron - For navigation items */}
       <ListItem
-        trailingContentVariant="caret"
-        title="Navigation Item"
-        description="Leads to another page"
-        leadingIcon={Settings}
+        title="Chevron Variant"
+        description="With description"
+        leadingIcon={User}
+        trailingContent={<ChevronRight size={24} />}
       />
 
       {/* Toggle - For switchable options */}
       <ListItem
-        trailingContentVariant="toggle"
         title="Enable Feature"
         description="Toggle this setting on/off"
         leadingIcon={Bolt}
-        selected={selected}
         onClick={() => setSelected(!selected)}
+        trailingContent={<Switch selected={selected} />}
       />
 
       {/* Value - For displaying values */}
       <ListItem
-        trailingContentVariant="value"
         title="Account Balance"
         description="Current available funds"
-        value="1,234.56"
-        subValue="USD"
+        trailingContent={
+          <div className="text-right">
+            <div className="body-2-semi-bold">42.00</div>
+            <div className="text-muted body-3">USD</div>
+          </div>
+        }
       />
 
       {/* Tag - For status indicators */}
       <ListItem
-        trailingContentVariant="tag"
         title="New Feature"
         description="Recently added functionality"
-        tagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+        trailingContent={<Tag label="New" appearance="accent" />}
       />
 
       {/* Icon - For trailing icons */}
       <ListItem
-        trailingContentVariant="icon"
         title="Edit Profile"
         description="Modify your information"
-        trailingIcon={Check}
+        trailingContent={<Check />}
       />
 
       {/* None - No trailing content */}
       <ListItem
-        trailingContentVariant="none"
         title="Simple Item"
         description="No trailing elements"
       />
@@ -280,44 +274,6 @@ The following guidelines ensure consistent usage of the ListItem component and m
 
 // Don't use for non-list contexts
 <ListItem title="Standalone" className="m-4 border" />
-```
-
-### Icon and Variant Usage
-
-✅ **Do**
-
-```tsx
-// Import specific icons
-import { Settings } from '@ldls/ui-react/symbols';
-
-// Use appropriate variant for purpose
-<ListItem
-  trailingContentVariant="value"
-  value="42"
-  subValue="points"
-/>
-
-// Let ListItem handle icon sizing
-<ListItem leadingIcon={Settings} />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as Icons from '@ldls/ui-react/symbols';
-
-// Don't customize icon size
-<ListItem leadingIcon={() => <Settings size={20} />} />
-
-// Don't mix incompatible props
-<ListItem
-  trailingContentVariant="caret"
-  value="Should not be here"
-/>
-
-// Don't use toggle without state management
-<ListItem trailingContentVariant="toggle" selected={true} />
 ```
 
 ### Performance Considerations
