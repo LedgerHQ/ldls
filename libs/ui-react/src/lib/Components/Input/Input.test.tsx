@@ -7,7 +7,9 @@ import { Input } from './Input';
 // Helper function to create controlled input props
 const createControlledProps = (overrides = {}) => ({
   value: '',
-  onChange: () => {},
+  onChange: () => {
+    console.log('onChange');
+  },
   ...overrides,
 });
 
