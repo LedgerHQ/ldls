@@ -15,6 +15,11 @@ const meta: Meta<typeof Switch> = {
     },
   },
   argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'lg'],
+      description: 'The size of the switch',
+    },
     disabled: {
       control: 'boolean',
       description: 'Whether the switch is disabled',
