@@ -6,7 +6,7 @@ import { IconSize } from '../Icon/Icon';
 import { Slot } from '@radix-ui/react-slot';
 
 const buttonVariants = cva(
-  'dis inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
       appearance: {
