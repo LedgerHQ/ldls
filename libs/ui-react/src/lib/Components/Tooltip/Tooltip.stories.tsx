@@ -1,12 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from './Tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from './Tooltip';
 import { Information } from '../../Symbols';
+import { Button } from '../Button';
 
 const meta: Meta = {
   title: 'Components/Tooltip/Overview',
@@ -27,10 +23,10 @@ type Story = StoryObj;
 
 export const Basic: Story = {
   render: () => (
-    <div className="h-200 flex items-center justify-center">
+    <div className="flex h-256 items-center justify-center">
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className="rounded border p-8">Hover me</button>
+          <Button>Hover me</Button>
         </TooltipTrigger>
         <TooltipContent>This is a basic tooltip</TooltipContent>
       </Tooltip>
@@ -42,7 +38,7 @@ export const Basic: Story = {
         code: `
 <Tooltip>
   <TooltipTrigger asChild>
-    <button>Hover me</button>
+    <Button>Hover me</Button>
   </TooltipTrigger>
   <TooltipContent>
     This is a basic tooltip
@@ -64,7 +60,7 @@ export const PlacementsShowcase: Story = {
             <p className="capitalize">{placement}</p>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button className="rounded border p-8">Hover</button>
+                <Button>Hover</Button>
               </TooltipTrigger>
               <TooltipContent side={placement}>
                 Tooltip on {placement}
@@ -79,12 +75,10 @@ export const PlacementsShowcase: Story = {
 
 export const WithIconTrigger: Story = {
   render: () => (
-    <div className="h-200 flex items-center justify-center">
+    <div className="flex h-256 items-center justify-center">
       <Tooltip>
         <TooltipTrigger asChild>
-          <button aria-label="Info">
-            <Information size={20} />
-          </button>
+          <Information size={20} />
         </TooltipTrigger>
         <TooltipContent>Additional information</TooltipContent>
       </Tooltip>
@@ -94,10 +88,10 @@ export const WithIconTrigger: Story = {
 
 export const LongContent: Story = {
   render: () => (
-    <div className="h-200 flex items-center justify-center">
+    <div className="flex h-256 items-center justify-center">
       <Tooltip>
         <TooltipTrigger asChild>
-          <button className="rounded border p-8">Hover for details</button>
+          <Button>Hover for details</Button>
         </TooltipTrigger>
         <TooltipContent className="max-w-192">
           This is a longer tooltip content that spans multiple lines to
@@ -111,18 +105,13 @@ export const LongContent: Story = {
 
 export const WithDelay: Story = {
   render: () => (
-    <div className="h-200 flex items-center justify-center">
-      <Tooltip>
+    <div className="flex h-256 flex-col items-center justify-center gap-8">
+      <Tooltip delayDuration={500}>
         <TooltipTrigger asChild>
-          <button className="rounded border p-8">
-            Hover (with 500ms delay)
-          </button>
+          <Button>Hover (with 500ms delay)</Button>
         </TooltipTrigger>
         <TooltipContent>Tooltip with delay</TooltipContent>
       </Tooltip>
     </div>
   ),
-  decorators: [
-    (Story) => <TooltipProvider delayDuration={500}>{Story()}</TooltipProvider>,
-  ],
 };
