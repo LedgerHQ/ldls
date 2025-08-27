@@ -53,48 +53,66 @@ export function createThemePlugin(
 export function createTypographyPlugin() {
   return plugin(function ({ addUtilities }) {
     const displayStyles = {
-      '.display-1': {
+      '.responsive-display-1': {
         'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-display-1-size)',
-        'font-weight': 'var(--font-style-display-1-weight)',
-        'line-height': 'var(--font-style-display-1-line-height)',
-        'letter-spacing': 'var(--font-style-display-1-letter-spacing)',
+        'font-size': 'var(--font-style-responsive-display-1-size)',
+        'font-weight': 'var(--font-style-responsive-display-1-weight)',
+        'line-height': 'var(--font-style-responsive-display-1-line-height)',
+        'letter-spacing':
+          'var(--font-style-responsive-display-1-letter-spacing)',
       },
-      '.display-2': {
+      '.responsive-display-2': {
         'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-display-2-size)',
-        'font-weight': 'var(--font-style-display-2-weight)',
-        'line-height': 'var(--font-style-display-2-line-height)',
-        'letter-spacing': 'var(--font-style-display-2-letter-spacing)',
+        'font-size': 'var(--font-style-responsive-display-2-size)',
+        'font-weight': 'var(--font-style-responsive-display-2-weight)',
+        'line-height': 'var(--font-style-responsive-display-2-line-height)',
+        'letter-spacing':
+          'var(--font-style-responsive-display-2-letter-spacing)',
       },
-      '.display-3': {
+      '.responsive-display-3': {
         'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-display-3-size)',
-        'font-weight': 'var(--font-style-display-3-weight)',
-        'line-height': 'var(--font-style-display-3-line-height)',
-        'letter-spacing': 'var(--font-style-display-3-letter-spacing)',
+        'font-size': 'var(--font-style-responsive-display-3-size)',
+        'font-weight': 'var(--font-style-responsive-display-3-weight)',
+        'line-height': 'var(--font-style-responsive-display-3-line-height)',
+        'letter-spacing':
+          'var(--font-style-responsive-display-3-letter-spacing)',
       },
-      '.display-4': {
+      '.responsive-display-4': {
         'font-family': 'var(--font-family-font)',
-        'font-size': 'var(--font-style-display-4-size)',
-        'font-weight': 'var(--font-style-display-4-weight)',
-        'line-height': 'var(--font-style-display-4-line-height)',
-        'letter-spacing': 'var(--font-style-display-4-letter-spacing)',
+        'font-size': 'var(--font-style-responsive-display-4-size)',
+        'font-weight': 'var(--font-style-responsive-display-4-weight)',
+        'line-height': 'var(--font-style-responsive-display-4-line-height)',
+        'letter-spacing':
+          'var(--font-style-responsive-display-4-letter-spacing)',
       },
     };
 
     const headingStyles = {
+      '.heading-0': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-0-size)',
+        'font-weight': 'var(--font-style-heading-0-weight-medium)',
+        'line-height': 'var(--font-style-heading-0-line-height)',
+        'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+      },
+      '.heading-0-semi-bold': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-0-size)',
+        'font-weight': 'var(--font-style-heading-0-weight-semi-bold)',
+        'line-height': 'var(--font-style-heading-0-line-height)',
+        'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+      },
       '.heading-1': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-1-size)',
-        'font-weight': 'var(--font-style-heading-1-weight-semi-bold)',
+        'font-weight': 'var(--font-style-heading-1-weight-medium)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
       },
       '.heading-1-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-1-size)',
-        'font-weight': 'var(--font-style-heading-1-weight-medium)',
+        'font-weight': 'var(--font-style-heading-1-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
       },

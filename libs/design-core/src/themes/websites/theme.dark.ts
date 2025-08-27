@@ -5,6 +5,7 @@
 export const tokens: Record<string, Record<string, string>> = {
   '.dark': {
     '--color-background-canvas': 'var(--color-dark-grey-050)',
+    '--color-background-canvas-muted': 'var(--color-dark-grey-050)',
     '--color-background-canvas-sheet': 'var(--color-dark-grey-100)',
     '--color-background-canvas-overlay': 'var(--color-dark-grey-050-30)',
     '--color-background-white': 'var(--color-dark-constant-050)',
@@ -17,7 +18,7 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-dark-grey-950-10)',
     '--color-background-base-transparent-pressed':
       'var(--color-dark-grey-950-20)',
-    '--color-background-disabled': 'var(--color-dark-grey-100)',
+    '--color-background-disabled': 'var(--color-dark-grey-300)',
     '--color-background-muted': 'var(--color-dark-grey-100)',
     '--color-background-muted-hover': 'var(--color-dark-grey-200)',
     '--color-background-muted-pressed': 'var(--color-dark-grey-300)',
@@ -34,9 +35,9 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-dark-grey-950-30)',
     '--color-background-muted-transparent-disabled':
       'var(--color-dark-grey-950-10)',
-    '--color-background-muted-strong': 'var(--color-dark-grey-500)',
-    '--color-background-muted-strong-hover': 'var(--color-dark-grey-600)',
-    '--color-background-muted-strong-pressed': 'var(--color-dark-grey-700)',
+    '--color-background-muted-strong': 'var(--color-dark-grey-600)',
+    '--color-background-muted-strong-hover': 'var(--color-dark-grey-700)',
+    '--color-background-muted-strong-pressed': 'var(--color-dark-grey-800)',
     '--color-background-accent-ledger-live': 'var(--color-dark-purple-400)',
     '--color-background-accent-ledger-live-hover':
       'var(--color-dark-purple-500)',
@@ -93,10 +94,10 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-success-strong': 'var(--color-dark-green-600)',
     '--color-background-success-transparent': 'var(--color-dark-green-600-0)',
     '--color-background-native': '#c3c3c3',
-    '--color-background-gradient-100': 'var(--color-dark-grey-950)',
-    '--color-background-gradient-80': 'var(--color-dark-grey-950-80)',
-    '--color-background-gradient-70': 'var(--color-dark-grey-950-70)',
-    '--color-background-gradient-0': 'var(--color-dark-grey-950-0)',
+    '--color-background-gradient-100': 'var(--color-dark-grey-050)',
+    '--color-background-gradient-80': 'var(--color-dark-grey-050-80)',
+    '--color-background-gradient-70': 'var(--color-dark-grey-050-70)',
+    '--color-background-gradient-0': 'var(--color-dark-grey-050-0)',
     '--color-background-gradient-on-interactive-100':
       'var(--color-dark-grey-050)',
     '--color-background-gradient-on-interactive-0':
@@ -121,7 +122,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-text-base': 'var(--color-dark-grey-950)',
     '--color-text-base-hover': 'var(--color-dark-grey-900)',
     '--color-text-base-pressed': 'var(--color-dark-grey-800)',
-    '--color-text-disabled': 'var(--color-dark-grey-400)',
+    '--color-text-disabled': 'var(--color-dark-grey-500)',
     '--color-text-muted': 'var(--color-dark-grey-700)',
     '--color-text-muted-hover': 'var(--color-dark-grey-800)',
     '--color-text-muted-pressed': 'var(--color-dark-grey-900)',
@@ -347,6 +348,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-discover-juno': 'var(--color-dark-discover-juno)',
     '--color-discover-sardine': 'var(--color-dark-discover-sardine)',
     '--background-canvas': 'var(--color-background-canvas)',
+    '--background-canvas-muted': 'var(--color-background-canvas-muted)',
     '--background-canvas-sheet': 'var(--color-background-canvas-sheet)',
     '--background-canvas-overlay': 'var(--color-background-canvas-overlay)',
     '--background-white': 'var(--color-background-white)',

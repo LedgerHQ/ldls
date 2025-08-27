@@ -6,7 +6,7 @@ import { IconSize } from '../Icon/Icon';
 import { Slot } from '@radix-ui/react-slot';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
   {
     variants: {
       appearance: {
@@ -84,7 +84,7 @@ export interface ButtonProps
  *
  * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-button-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
