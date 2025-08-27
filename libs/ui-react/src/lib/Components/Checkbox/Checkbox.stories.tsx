@@ -99,32 +99,39 @@ export const FormExample: Story = {
         <h3 className="body-1">Subscribe to newsletters</h3>
         <div className="space-y-8">
           <div className="flex items-center space-x-8">
-            <Checkbox name="newsletter" value="weekly" />
-            <span className="body-2">Weekly newsletter</span>
+            <Checkbox id="weekly" name="newsletter" value="weekly" />
+            <label htmlFor="weekly" className="cursor-pointer body-2">
+              Weekly newsletter
+            </label>
           </div>
           <div className="flex items-center space-x-8">
-            <Checkbox name="newsletter" value="monthly" />
-            <span className="body-2">Monthly newsletter</span>
+            <Checkbox id="monthly" name="newsletter" value="monthly" />
+            <label htmlFor="monthly" className="cursor-pointer body-2">
+              Monthly newsletter
+            </label>
           </div>
           <div className="flex items-center space-x-8">
             <Checkbox
+              id="product-updates"
               name="newsletter"
               value="product-updates"
               defaultChecked
             />
-            <span className="body-2">Product updates</span>
+            <label htmlFor="product-updates" className="cursor-pointer body-2">
+              Product updates
+            </label>
           </div>
         </div>
       </div>
       <div className="flex items-center space-x-8">
-        <Checkbox name="terms" required />
-        <span className="body-2">
+        <Checkbox id="terms" name="terms" required />
+        <label htmlFor="terms" className="cursor-pointer body-2">
           I agree to the{' '}
           <a href="#" onClick={(e) => e.preventDefault()} className="underline">
             terms and conditions
           </a>{' '}
           *
-        </span>
+        </label>
       </div>
     </form>
   ),
