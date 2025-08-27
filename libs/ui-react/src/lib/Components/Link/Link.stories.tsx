@@ -113,8 +113,7 @@ export const External: Story = {
     appearance: 'underlined',
     children: 'External Link',
     isExternal: true,
-    href: 'https://example.com',
-    onClick,
+    href: 'https://ledger.com',
   },
   parameters: {
     docs: {
@@ -123,7 +122,7 @@ export const External: Story = {
 <Link
   appearance="underlined"
   isExternal
-  href="https://example.com"
+  href="https://ledger.com"
 >
   External Link
 </Link>
@@ -139,8 +138,7 @@ export const ExternalLinkWithIcon: Story = {
     children: 'External Link with Icon',
     icon: Information,
     isExternal: true,
-    href: 'https://example.com',
-    onClick,
+    href: 'https://ledger.com',
   },
   parameters: {
     docs: {
@@ -150,7 +148,7 @@ export const ExternalLinkWithIcon: Story = {
     appearance="underlined"
     icon={Information}
     isExternal
-    href="https://example.com"
+    href="https://ledger.com"
   >
     External Link with Icon
   </Link>
