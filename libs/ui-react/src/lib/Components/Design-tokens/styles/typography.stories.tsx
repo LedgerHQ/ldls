@@ -33,6 +33,8 @@ const TypographyShowcase = () => {
     { className: 'responsive-display-2', title: 'Responsive Display 2' },
     { className: 'responsive-display-3', title: 'Responsive Display 3' },
     { className: 'responsive-display-4', title: 'Responsive Display 4' },
+    { className: 'heading-0', title: 'Heading 0' },
+    { className: 'heading-0-semi-bold', title: 'Heading 0 Semi Bold' },
     { className: 'heading-1', title: 'Heading 1' },
     { className: 'heading-1-semi-bold', title: 'Heading 1 Semi Bold' },
     { className: 'heading-2', title: 'Heading 2' },

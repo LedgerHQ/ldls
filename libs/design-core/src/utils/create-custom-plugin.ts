@@ -88,17 +88,31 @@ export function createTypographyPlugin() {
     };
 
     const headingStyles = {
+      '.heading-0': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-0-size)',
+        'font-weight': 'var(--font-style-heading-0-weight-medium)',
+        'line-height': 'var(--font-style-heading-0-line-height)',
+        'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+      },
+      '.heading-0-semi-bold': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-0-size)',
+        'font-weight': 'var(--font-style-heading-0-weight-semi-bold)',
+        'line-height': 'var(--font-style-heading-0-line-height)',
+        'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+      },
       '.heading-1': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-1-size)',
-        'font-weight': 'var(--font-style-heading-1-weight-semi-bold)',
+        'font-weight': 'var(--font-style-heading-1-weight-medium)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
       },
       '.heading-1-semi-bold': {
         'font-family': 'var(--font-family-font)',
         'font-size': 'var(--font-style-heading-1-size)',
-        'font-weight': 'var(--font-style-heading-1-weight-medium)',
+        'font-weight': 'var(--font-style-heading-1-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
       },
