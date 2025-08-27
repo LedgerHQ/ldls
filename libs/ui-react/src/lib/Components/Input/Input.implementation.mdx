@@ -1,0 +1,278 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Input/Implementation" />
+
+# Input Component Implementation
+
+## Installation
+
+First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
+
+```bash
+npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+```bash
+# .npmrc
+@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
+```
+
+Then install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ldls/ui-react @ldls/design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+```
+
+### Tailwind Configuration
+
+To use the Input component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ldls/design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Input } from '@ldls/ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
+```
+
+### With Clear Button
+
+The Input component supports a clear button that appears when content is present:
+
+```tsx
+import { Input } from '@ldls/ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Search"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => setValue('')}
+    />
+  );
+}
+```
+
+### With Custom Right Element
+
+You can add custom elements to the right side of the input. Define reusable components for better organization and performance:
+
+```tsx
+import { Input } from '@ldls/ui-react';
+import { InformationFill, SparksFill } from '@ldls/ui-react/symbols';
+
+
+// Action button component
+const GeneratePasswordButton = () => (
+  <button
+    type="button"
+    onClick={() => alert('Generate password')}
+    className="rounded-full p-2 transition-colors hover:bg-muted-hover"
+    aria-label="Generate random password"
+  >
+    <SparksFill size={20} className="text-muted" />
+  </button>
+);
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <div className="space-y-16">
+      <Input
+        label="Password"
+        type="password"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        renderRightElement={GeneratePasswordButton}
+      />
+    </div>
+  );
+}
+```
+
+### With Error State
+
+The Input component supports error states and messages:
+
+```tsx
+import { Input } from '@ldls/ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    setError(newValue.length < 3);
+  };
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={handleChange}
+      aria-invalid={error}
+      errorMessage={error ? 'Must be at least 3 characters' : undefined}
+    />
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern
+const [value, setValue] = useState('');
+<Input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+
+// Use onClear for clear button functionality
+<Input
+  value={value}
+  onChange={handleChange}
+  onClear={() => setValue('')}
+/>
+
+// Use aria-invalid for error states
+<Input
+  value={value}
+  onChange={handleChange}
+  aria-invalid={hasError}
+  errorMessage={hasError ? 'Invalid input' : undefined}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use uncontrolled inputs
+<Input defaultValue="initial" />
+
+// Don't handle clear button manually
+<Input
+  value={value}
+  onChange={handleChange}
+  renderRightElement={() => (
+    <button onClick={() => setValue('')}>Clear</button>
+  )}
+/>
+
+// Don't use custom error props
+<Input error={true} errorText="Invalid input" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Input className="mt-4" />
+
+// Use className for width control
+<Input className="w-64" />
+
+// Use className for responsive design
+<Input className="w-full md:w-64" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core input styling
+<Input className="bg-white border-gray-300" />
+
+// Don't modify internal padding/spacing
+<Input className="px-6 py-4" />
+
+// Don't override typography
+<Input className="text-lg" />
+
+// Don't modify hover/focus states
+<Input className="hover:border-blue-500" />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons
+import { InformationFill } from '@ldls/ui-react/symbols';
+
+// Memoize complex right elements
+const InfoButton = React.memo(() => (
+  <button
+    type="button"
+    aria-label="Show information"
+    className="rounded-full p-2 hover:bg-muted-hover"
+  >
+    <InformationFill size={20} className="text-muted" />
+  </button>
+));
+
+<Input renderRightElement={InfoButton} />
+
+// Use stable callbacks
+const handleClear = useCallback(() => setValue(''), [setValue]);
+<Input onClear={handleClear} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as Icons from '@ldls/ui-react/symbols';
+
+// Don't create new functions in render
+<Input onClear={() => setValue('')} />
+
+// Don't create complex elements inline
+<Input
+  renderRightElement={() => (
+    <ComplexComponent>
+      <NestedComponents />
+    </ComplexComponent>
+  )}
+/>
+```

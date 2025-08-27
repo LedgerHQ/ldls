@@ -4,5 +4,6 @@ export * from './CardButton';
 export * from './Checkbox';
 export * from './Link';
 export * from './Switch';
+export * from './Input';
 export * from './Tag';
 export * from './Tooltip';

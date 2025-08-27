@@ -1,0 +1,149 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+import { Input } from './Input';
+
+<Meta title="Components/Input/Docs" of={InputStories} />
+
+# ⌨️ Input
+
+## Introduction
+
+Input fields are essential form elements that enable users to enter and edit text. This component features a floating label, error states, and a clear button for enhanced user experience.
+It also provides the ability to add custom elements on the right side of the input.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
+
+## Anatomy
+
+<Canvas of={InputStories.Default} />
+<Controls of={InputStories.Default} />
+
+### Clear Button
+
+A clear button (×) appears when:
+
+- **onClear** is provided
+- Input has content
+
+<Canvas of={InputStories.WithContent} />
+
+### Error State
+
+The input supports error handling through:
+
+- `aria-invalid`: Controls the error state styling
+- `errorMessage`: Displays an error message below the input
+- Error styling includes a red ring and text color
+- Clear button turns red when in error state -- appears when onClear is provided
+
+<Canvas of={InputStories.WithError} />
+
+### Custom Right Element
+
+The input supports custom interactive elements on the right side through the `renderRightElement` prop:
+
+<Canvas of={InputStories.WithCustomElement} />
+
+You can add: Tooltips, Action buttons, Custom icons, Any interactive element
+
+Example with reusable component:
+
+```tsx
+
+const GeneratePasswordButton = () => (
+  <button
+    type="button"
+    onClick={() => alert('Generate password')}
+    className="rounded-full p-2 transition-colors hover:bg-muted-hover"
+    aria-label="Generate random password"
+  >
+    <SparksFill size={20} className="text-muted" />
+  </button>
+);
+
+<Input
+  label="Password"
+  type="password"
+  renderRightElement={GeneratePasswordButton}
+/>
+```
+
+### States
+
+<Canvas of={InputStories.Interactive} />
+
+## Input Types
+
+The component supports various HTML input types:
+
+- text (default)
+- email
+- password
+- number
+- tel
+- url
+
+<Canvas of={InputStories.EmailType} />
+<Canvas of={InputStories.PasswordType} />
+
+## Accessibility
+
+The Input component follows accessibility best practices:
+
+- Uses semantic HTML with proper ARIA attributes
+- Supports keyboard navigation
+- Labels are properly associated with inputs using htmlFor
+- Error messages are linked to inputs using aria-describedby
+- Clear button has an accessible label
+- Error states are communicated through aria-invalid
+
+### Error Message Pattern
+
+```tsx
+<Input
+  id="email"
+  label="Email"
+  aria-invalid={!isValid}
+  errorMessage={!isValid ? "Please enter a valid email" : undefined}
+/>
+```
+
+The error message will be automatically:
+
+- Connected to the input using aria-describedby
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
+
+## Controlled vs Uncontrolled
+
+The Input component supports both controlled and uncontrolled usage:
+
+### Uncontrolled (with defaultValue)
+
+```tsx
+<Input
+  label="Username"
+  defaultValue="Initial value"
+/>
+```
+
+### Controlled (with value and onChange)
+
+```tsx
+const [value, setValue] = useState('');
+
+<Input
+  label="Username"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+```
+
+## Best Practices
+
+1. **Labels**: Always provide clear, descriptive labels
+2. **Error Messages**: Make error messages helpful and actionable
+3. **Validation**: Validate on blur or submit, not on every keystroke
+4. **Clear Button**: Use for optional fields where clearing is helpful
+5. **Types**: Use the appropriate input type for the data being collected
