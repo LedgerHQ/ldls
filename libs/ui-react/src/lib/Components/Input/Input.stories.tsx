@@ -59,7 +59,9 @@ const meta: Meta<typeof Input> = {
       defaultValue: undefined,
       mapping: {
         undefined: undefined,
-        Clear: () => {},
+        Clear: () => {
+          console.log('Clear');
+        },
       },
       description: 'Function to clear the input via a clear button',
     },
@@ -170,7 +172,16 @@ export const WithError: Story = {
 export const Disabled: Story = {
   render: () => {
     const [value] = React.useState('Disabled content');
-    return <Input label="Title" value={value} onChange={() => {}} disabled />;
+    return (
+      <Input
+        label="Title"
+        value={value}
+        onChange={() => {
+          console.log('onChange');
+        }}
+        disabled
+      />
+    );
   },
 };
 
