@@ -5,6 +5,7 @@
 export const tokens: Record<string, Record<string, string>> = {
   ':root': {
     '--color-background-canvas': 'var(--color-light-grey-050)',
+    '--color-background-canvas-muted': 'var(--color-light-grey-100)',
     '--color-background-canvas-sheet': 'var(--color-light-grey-050)',
     '--color-background-canvas-overlay': 'var(--color-light-grey-950-60)',
     '--color-background-white': 'var(--color-light-constant-050)',
@@ -17,7 +18,7 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-grey-950-5)',
     '--color-background-base-transparent-pressed':
       'var(--color-light-grey-950-10)',
-    '--color-background-disabled': 'var(--color-light-grey-100)',
+    '--color-background-disabled': 'var(--color-light-grey-200)',
     '--color-background-muted': 'var(--color-light-grey-100)',
     '--color-background-muted-hover': 'var(--color-light-grey-200)',
     '--color-background-muted-pressed': 'var(--color-light-grey-300)',
@@ -27,13 +28,13 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-muted-on-muted': 'var(--color-light-grey-200)',
     '--color-background-muted-on-muted-hover': 'var(--color-light-grey-300)',
     '--color-background-muted-on-muted-pressed': 'var(--color-light-grey-400)',
-    '--color-background-muted-transparent': 'var(--color-light-grey-950-3)',
+    '--color-background-muted-transparent': 'var(--color-light-grey-950-5)',
     '--color-background-muted-transparent-hover':
-      'var(--color-light-grey-950-5)',
-    '--color-background-muted-transparent-pressed':
       'var(--color-light-grey-950-10)',
+    '--color-background-muted-transparent-pressed':
+      'var(--color-light-grey-950-20)',
     '--color-background-muted-transparent-disabled':
-      'var(--color-light-grey-950-3)',
+      'var(--color-light-grey-950-5)',
     '--color-background-muted-strong': 'var(--color-light-grey-600)',
     '--color-background-muted-strong-hover': 'var(--color-light-grey-700)',
     '--color-background-muted-strong-pressed': 'var(--color-light-grey-800)',
@@ -351,6 +352,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-discover-juno': 'var(--color-light-discover-juno)',
     '--color-discover-sardine': 'var(--color-light-discover-sardine)',
     '--background-canvas': 'var(--color-background-canvas)',
+    '--background-canvas-muted': 'var(--color-background-canvas-muted)',
     '--background-canvas-sheet': 'var(--color-background-canvas-sheet)',
     '--background-canvas-overlay': 'var(--color-background-canvas-overlay)',
     '--background-white': 'var(--color-background-white)',

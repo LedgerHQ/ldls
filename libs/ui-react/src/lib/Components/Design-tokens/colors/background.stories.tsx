@@ -35,6 +35,11 @@ export const Background: Story = {
             textClassName: 'text-base',
           },
           {
+            name: 'Canvas Muted',
+            className: 'bg-canvas-muted',
+            textClassName: 'text-base',
+          },
+          {
             name: 'Canvas Sheet',
             className: 'bg-canvas-sheet',
             textClassName: 'text-base',
