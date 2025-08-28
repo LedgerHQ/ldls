@@ -40,35 +40,15 @@ The input supports error handling through:
 
 ### Custom Right Element
 
-The input supports custom interactive elements on the right side through the `renderRightElement` prop:
+The input supports custom interactive elements on the right side through the `rightElement` prop:
 
 <Canvas of={InputStories.WithCustomElement} />
 
 You can add: Tooltips, Action buttons, Custom icons, Any interactive element
 
-Example with reusable component:
+> **Important note:** if onClear is provided, the clear button will take over your right element once user starts typing.
 
-```tsx
-
-const GeneratePasswordButton = () => (
-  <button
-    type="button"
-    onClick={() => alert('Generate password')}
-    className="rounded-full p-2 transition-colors hover:bg-muted-hover"
-    aria-label="Generate random password"
-  >
-    <SparksFill size={20} className="text-muted" />
-  </button>
-);
-
-<Input
-  label="Password"
-  type="password"
-  renderRightElement={GeneratePasswordButton}
-/>
-```
-
-### States
+### Interactive in a Form
 
 <Canvas of={InputStories.Interactive} />
 
@@ -140,10 +120,54 @@ const [value, setValue] = useState('');
 />
 ```
 
+## Label vs Placeholder
+
+> ⚠️ **Important:** Do not combine `label` and `placeholder` props together. They will visually overlap and create a poor user experience.
+
+The Input component uses **floating labels** that animate from inside the input field. Using both label and placeholder simultaneously will cause them to overlap and interfere with each other.
+
+### ✅ Use Label (Recommended)
+
+```tsx
+<Input
+  label="Email Address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
+### ✅ Use Placeholder (Alternative)
+
+```tsx
+<Input
+  placeholder="Enter your email address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
+### ❌ Don't Combine Both
+
+```tsx
+{/* This will cause visual overlap - DON'T DO THIS */}
+<Input
+  label="Email Address"
+  placeholder="Enter your email address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
 ## Best Practices
 
-1. **Labels**: Always provide clear, descriptive labels
-2. **Error Messages**: Make error messages helpful and actionable
-3. **Validation**: Validate on blur or submit, not on every keystroke
-4. **Clear Button**: Use for optional fields where clearing is helpful
-5. **Types**: Use the appropriate input type for the data being collected
+**Labels**: Always provide clear, descriptive labels
+
+**Error Messages**: Make error messages helpful and actionable
+
+**Validation**: Validate on blur or submit, not on every keystroke
+
+**Clear Button**: Use for optional fields where clearing is helpful
+
+**Types**: Use the appropriate input type for the data being collected
+
+**Label vs Placeholder**: Choose one approach - don't mix floating labels with placeholders

@@ -66,7 +66,7 @@ function MyComponent() {
 
 ### With Clear Button
 
-The Input component supports a clear button that appears when content is present:
+The Input component supports a clear button that appears when content is present and onClear is provided:
 
 ```tsx
 import { Input } from '@ldls/ui-react';
@@ -87,19 +87,19 @@ function MyComponent() {
 
 ### With Custom Right Element
 
-You can add custom elements to the right side of the input. Define reusable components for better organization and performance:
+You can add custom elements to the right side of the input.
+
+> **Note:** Define reusable components for better organization and performance:
 
 ```tsx
 import { Input } from '@ldls/ui-react';
 import { InformationFill, SparksFill } from '@ldls/ui-react/symbols';
-
 
 // Action button component
 const GeneratePasswordButton = () => (
   <button
     type="button"
     onClick={() => alert('Generate password')}
-    className="rounded-full p-2 transition-colors hover:bg-muted-hover"
     aria-label="Generate random password"
   >
     <SparksFill size={20} className="text-muted" />
@@ -116,12 +116,14 @@ function MyComponent() {
         type="password"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        renderRightElement={GeneratePasswordButton}
+        rightElement={<GeneratePasswordButton />}
       />
     </div>
   );
 }
 ```
+
+> ⚠️ **Important:** If you provide both `rightElement` and `onClear`, the clear button will take priority and replace your custom element when the input has content! 🔄
 
 ### With Error State
 
@@ -152,7 +154,45 @@ function MyComponent() {
 }
 ```
 
+## ⚠️ Label vs Placeholder
+
+**Important:** Do not combine `label` and `placeholder` props together. They will visually overlap and create a poor user experience.
+
+The Input component uses floating labels that animate from inside the input field. Using both simultaneously causes visual conflicts.
+
+### ✅ Correct Usage
+
+```tsx
+// Use floating label (recommended approach)
+<Input
+  label="Email Address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+
+// OR use placeholder (alternative approach)
+<Input
+  placeholder="Enter your email address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
+### ❌ Incorrect Usage
+
+```tsx
+// DON'T DO THIS - causes visual overlap
+<Input
+  label="Email Address"
+  placeholder="Enter your email address"  // This will overlap with the label
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
 ## Do's and Don'ts
+
+With Custom Right Element
 
 ### Value Management
 
@@ -192,9 +232,9 @@ const [value, setValue] = useState('');
 <Input
   value={value}
   onChange={handleChange}
-  renderRightElement={() => (
-    <button onClick={() => setValue('')}>Clear</button>
-  )}
+  rightElement={
+    <Button onClick={() => setValue('')}>Clear</Button>
+  }
 />
 
 // Don't use custom error props
@@ -251,7 +291,7 @@ const InfoButton = React.memo(() => (
   </button>
 ));
 
-<Input renderRightElement={InfoButton} />
+<Input rightElement={<InfoButton />} />
 
 // Use stable callbacks
 const handleClear = useCallback(() => setValue(''), [setValue]);
@@ -269,10 +309,10 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 // Don't create complex elements inline
 <Input
-  renderRightElement={() => (
+  rightElement={
     <ComplexComponent>
       <NestedComponents />
     </ComplexComponent>
-  )}
+  }
 />
 ```

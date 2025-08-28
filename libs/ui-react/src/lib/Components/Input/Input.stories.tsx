@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Input } from './Input';
+import { Button } from '../Button';
 import { InformationFill, SparksFill } from '../../Symbols';
 
 const meta: Meta<typeof Input> = {
@@ -39,19 +40,18 @@ const meta: Meta<typeof Input> = {
       description: 'Error message to display below the input',
     },
     value: {
-      control: 'text',
+      control: false,
       description: 'Controlled value of the input',
     },
-    renderRightElement: {
+    rightElement: {
       control: 'select',
       options: [undefined, 'Information'],
       defaultValue: undefined,
       mapping: {
         undefined: undefined,
-        Information: () => <InformationFill size={20} className="text-muted" />,
+        Information: <InformationFill size={20} className="text-muted" />,
       },
-      description:
-        'Function to render custom content on the right side of the input',
+      description: 'Custom content to render on the right side of the input',
     },
     onClear: {
       control: 'select',
@@ -78,24 +78,25 @@ type Story = StoryObj<typeof Input>;
 export const Default: Story = {
   render: (args) => {
     const [value, setValue] = React.useState(args.value || '');
+
     return (
       <Input
         {...args}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onClear={args.onClear}
-        renderRightElement={args.renderRightElement}
+        onClear={args.onClear ? () => setValue('') : undefined}
+        rightElement={args.rightElement}
       />
     );
   },
   args: {
-    label: 'Title',
+    label: 'Label',
     type: 'text',
     disabled: false,
     'aria-invalid': false,
     value: '',
     onClear: undefined,
-    renderRightElement: undefined,
+    rightElement: undefined,
   },
 };
 
@@ -107,7 +108,7 @@ export const WithContent: Story = {
     const [value, setValue] = React.useState('Initial content');
     return (
       <Input
-        label="Title"
+        label="Label"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onClear={() => setValue('')}
@@ -124,7 +125,7 @@ export const Focused: Story = {
     const [value, setValue] = React.useState('');
     return (
       <Input
-        label="Title"
+        label="Label"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onClear={() => setValue('')}
@@ -145,7 +146,7 @@ export const WithError: Story = {
       email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     return (
-      <div className="space-y-16">
+      <>
         <Input
           label="Email"
           type="email"
@@ -157,11 +158,11 @@ export const WithError: Story = {
             !isValidEmail ? 'Please enter a valid email address' : undefined
           }
         />
-        <div className="text-muted body-3">
+        <div className="mt-12 text-muted body-3">
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
-      </div>
+      </>
     );
   },
 };
@@ -174,7 +175,7 @@ export const Disabled: Story = {
     const [value] = React.useState('Disabled content');
     return (
       <Input
-        label="Title"
+        label="Label"
         value={value}
         onChange={() => {
           console.log('onChange');
@@ -230,15 +231,16 @@ const InfoTooltip = () => {
 
   return (
     <>
-      <button
-        type="button"
-        className="rounded-full p-2 transition-colors hover:bg-muted-hover"
+      <Button
+        appearance="no-background"
+        size="xs"
+        iconOnly
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         aria-label="Username requirements"
       >
         <InformationFill size={20} className="text-muted" />
-      </button>
+      </Button>
       {showTooltip && (
         <div className="absolute bottom-full right-0 mb-8 w-64 rounded-md bg-base p-8 shadow-lg">
           <p className="body-3">
@@ -251,80 +253,224 @@ const InfoTooltip = () => {
 };
 
 const GeneratePasswordButton = () => (
-  <button
-    type="button"
+  <Button
+    appearance="no-background"
+    size="xs"
+    iconOnly
     onClick={() => alert('Generate password')}
-    className="rounded-full p-2 transition-colors hover:bg-muted-hover"
     aria-label="Generate random password"
   >
     <SparksFill size={20} className="text-muted" />
-  </button>
+  </Button>
 );
 
 export const WithCustomElement: Story = {
   render: () => {
+    const [value, setValue] = React.useState('');
     return (
-      <div className="space-y-16">
+      <>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
-          {/* Example with tooltip */}
+          {/* Example with tooltip and clear button */}
           <div>
-            <h3 className="mb-8 body-1-semi-bold">With Tooltip</h3>
-            <Input label="Username" renderRightElement={InfoTooltip} />
+            <h3 className="mb-8 body-1-semi-bold">
+              With Tooltip and Clear Button
+            </h3>
+            <Input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              label="Username"
+              rightElement={<InfoTooltip />}
+              onClear={() => {
+                setValue('');
+              }}
+              id="tooltip-input"
+            />
           </div>
 
-          {/* Example with action button */}
+          {/* Example with action button and no clear button */}
           <div>
-            <h3 className="mb-8 body-1-semi-bold">With Action Button</h3>
+            <h3 className="mb-8 body-1-semi-bold">
+              With Action Button and No Clear Button
+            </h3>
             <Input
               label="Generate Password"
               type="password"
-              renderRightElement={GeneratePasswordButton}
+              rightElement={<GeneratePasswordButton />}
             />
           </div>
         </div>
-        <div className="text-muted body-3">
-          The renderRightElement prop allows you to add custom interactive
-          elements like tooltips, clear buttons, or action buttons
+        <div className="mt-16 text-muted body-3">
+          The rightElement prop allows you to add custom interactive elements
+          like tooltips, or action buttons
         </div>
-      </div>
+        <div className="mt-16 text-error body-3">
+          **Important note:** if onClear is provided, the clear button will take
+          over your right element once user starts typing.
+        </div>
+      </>
     );
   },
 };
 
 /**
- * Interactive example showing how the input behaves with user interaction and external error handling.
+ * Interactive form example showing how Input components work together in a real form with validation and submission.
  */
 export const Interactive: Story = {
   render: () => {
-    const [value, setValue] = React.useState('');
-    const [hasError, setHasError] = React.useState(false);
+    const [formData, setFormData] = React.useState({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
+    const [errors, setErrors] = React.useState<Record<string, string>>({});
+    const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setValue(newValue);
+    const handleChange =
+      (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setFormData((prev) => ({ ...prev, [field]: value }));
 
-      // Simple validation example
-      setHasError(newValue.length > 0 && newValue.length < 3);
+        // Clear error when user starts typing
+        if (errors[field]) {
+          setErrors((prev) => ({ ...prev, [field]: '' }));
+        }
+      };
+
+    const handleClear = (field: string) => () => {
+      setFormData((prev) => ({ ...prev, [field]: '' }));
+      setErrors((prev) => ({ ...prev, [field]: '' }));
     };
 
+    const validateForm = () => {
+      const newErrors: Record<string, string> = {};
+
+      if (!formData.username) {
+        newErrors.username = 'Username is required';
+      } else if (formData.username.length < 3) {
+        newErrors.username = 'Username must be at least 3 characters';
+      }
+
+      if (!formData.email) {
+        newErrors.email = 'Email is required';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = 'Please enter a valid email address';
+      }
+
+      if (!formData.password) {
+        newErrors.password = 'Password is required';
+      } else if (formData.password.length < 6) {
+        newErrors.password = 'Password must be at least 6 characters';
+      }
+
+      if (!formData.confirmPassword) {
+        newErrors.confirmPassword = 'Please confirm your password';
+      } else if (formData.password !== formData.confirmPassword) {
+        newErrors.confirmPassword = 'Passwords do not match';
+      }
+
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (validateForm()) {
+        setIsSubmitted(true);
+        // Reset form after success
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          });
+        }, 2000);
+      }
+    };
+
+    if (isSubmitted) {
+      return (
+        <div className="bg-success/10 rounded-md p-16 text-center">
+          <div className="text-success body-1-semi-bold">
+            ✓ Form submitted successfully!
+          </div>
+          <div className="mt-4 text-muted body-3">Resetting form...</div>
+        </div>
+      );
+    }
+
     return (
-      <div className="space-y-16">
-        <div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-16">
+        <div className="flex flex-col gap-16">
           <Input
             label="Username"
-            value={value}
-            onChange={handleChange}
-            aria-invalid={hasError}
-            errorMessage={
-              hasError ? 'Must be at least 3 characters' : undefined
-            }
+            value={formData.username}
+            onChange={handleChange('username')}
+            onClear={handleClear('username')}
+            aria-invalid={!!errors.username}
+            errorMessage={errors.username}
+            rightElement={<InformationFill size={20} className="text-muted" />}
+          />
+
+          <Input
+            label="Email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange('email')}
+            onClear={handleClear('email')}
+            aria-invalid={!!errors.email}
+            errorMessage={errors.email}
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange('password')}
+            onClear={handleClear('password')}
+            aria-invalid={!!errors.password}
+            errorMessage={errors.password}
+          />
+
+          <Input
+            label="Confirm Password"
+            type="password"
+            value={formData.confirmPassword}
+            onChange={handleChange('confirmPassword')}
+            onClear={handleClear('confirmPassword')}
+            aria-invalid={!!errors.confirmPassword}
+            errorMessage={errors.confirmPassword}
           />
         </div>
-        <div className="text-muted body-3">
-          Try typing to see the clear button appear. Click the X to clear the
-          input. Validation requires minimum 3 characters.
+
+        <div className="flex gap-12">
+          <Button type="submit" appearance="base">
+            Create Account
+          </Button>
+          <Button
+            type="button"
+            appearance="gray"
+            onClick={() => {
+              setFormData({
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+              });
+              setErrors({});
+            }}
+          >
+            Reset
+          </Button>
         </div>
-      </div>
+
+        <div className="text-muted body-3">
+          This example demonstrates form validation, error handling, clear
+          buttons, and right elements working together.
+        </div>
+      </form>
     );
   },
 };
