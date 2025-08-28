@@ -14,38 +14,7 @@ import {
   Bolt,
   ChevronRight,
 } from '../../Symbols';
-
-// Simple Switch component for stories
-const Switch = ({
-  selected,
-  disabled,
-  onClick,
-}: {
-  selected: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-}) => (
-  <button
-    type="button"
-    onClick={onClick}
-    disabled={disabled}
-    className={`relative inline-flex h-24 w-44 items-center rounded-full transition-colors ${
-      selected
-        ? disabled
-          ? 'bg-disabled'
-          : 'bg-primary'
-        : disabled
-          ? 'bg-disabled'
-          : 'bg-neutral-300'
-    }`}
-  >
-    <span
-      className={`inline-block h-20 w-20 transform rounded-full bg-white transition-transform ${
-        selected ? 'translate-x-20' : 'translate-x-2'
-      }`}
-    />
-  </button>
-);
+import { Switch } from '../Switch';
 
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
@@ -151,7 +120,7 @@ export const TrailingContentVariantsShowcase: Story = {
           description="With description"
           leadingIcon={Wallet}
           onClick={() => setSelected(!selected)}
-          trailingContent={<Switch selected={selected} />}
+          trailingContent={<Switch tabIndex={-1} selected={selected} />}
         />
         <ListItem
           title="Value Variant"
