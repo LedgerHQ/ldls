@@ -48,8 +48,8 @@ export const TooltipContent = ({
         )}
         {...props}
       >
-        {children}
-        <TooltipPrimitive.Arrow className="z-50 size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive" />
+        <TooltipPrimitive.Arrow className="z-40 size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive" />
+        <div className="relative z-50">{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );
