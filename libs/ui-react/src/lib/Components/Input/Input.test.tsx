@@ -136,7 +136,8 @@ describe('Input Component', () => {
       />,
     );
     const inputElement = screen.getByRole('textbox');
-    expect(inputElement).toHaveClass('custom-class');
+    const containerElement = inputElement.parentElement;
+    expect(containerElement).toHaveClass('custom-class');
   });
 
   it('should render label with correct htmlFor attribute when id is provided', () => {
@@ -233,7 +234,7 @@ describe('Input Component', () => {
       <Input
         label="Username"
         {...createControlledProps()}
-        renderRightElement={() => <CustomElement />}
+        rightElement={<CustomElement />}
       />,
     );
     expect(screen.getByTestId('custom-element')).toBeInTheDocument();
