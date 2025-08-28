@@ -5,7 +5,7 @@ import { IconSize } from '../Icon/Icon';
 import { ChevronRight } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit max-w-full cursor-pointer items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:text-disabled',
+  'inline-flex h-fit w-fit max-w-full cursor-pointer items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:pointer-events-none disabled:text-disabled',
   {
     variants: {
       appearance: {
@@ -38,7 +38,7 @@ export interface CardButtonProps
  *
  * It supports different appearances and can be set to full width. The chevron can be hidden if needed.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-implementation--docs#dos-and-donts Guidelines}
  *
  * @component

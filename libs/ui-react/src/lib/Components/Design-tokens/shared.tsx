@@ -19,7 +19,7 @@ export const ColorSwatch = ({
             <div
               className={cn(
                 className,
-                'border h-64 rounded-lg border-muted p-16',
+                'h-64 rounded-lg border border-muted p-16',
               )}
             >
               <div className={cn('heading-4', textClassName)}>Aa</div>
@@ -48,7 +48,7 @@ export const ColorSwatch = ({
           <>
             <div
               className={cn(
-                'border flex h-64 flex-col justify-between rounded-lg border-muted-subtle p-16',
+                'flex h-64 flex-col justify-between rounded-lg border border-muted-subtle p-16',
                 className,
               )}
             ></div>
@@ -74,7 +74,7 @@ export const SectionHeader = ({
   description?: string;
 }) => (
   <div className="mb-48">
-    <h2 className="mb-8 text-base display-4">{title}</h2>
+    <h2 className="responsive-display-4 mb-8 text-base">{title}</h2>
     {description && <p className="text-muted">{description}</p>}
   </div>
 );

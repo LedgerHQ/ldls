@@ -120,7 +120,7 @@
   "sub-network": {
     "sub-network-radius": {
       "$type": "number",
-      "$value": "{border-radius.xs}",
+      "$value": 6,
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -155,6 +155,34 @@
           "hiddenFromPublishing": false,
           "scopes": [
             "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "sub-network-path": {
+      "$type": "number",
+      "$value": "{size.24}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "sub-network-path-radius": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "CORNER_RADIUS"
           ],
           "codeSyntax": {}
         }
