@@ -65,7 +65,7 @@ export interface BannerProps
  *
  * The appearance determines the color scheme and icon used.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-react--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-implementation--docs#dos-and-donts Guidelines}
  *
  * @component
