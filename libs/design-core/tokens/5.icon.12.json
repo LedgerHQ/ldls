@@ -58,7 +58,7 @@
     },
     "icon-radius-square": {
       "$type": "number",
-      "$value": "{border-radius.lg}",
+      "$value": "{border-radius.xs}",
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -88,7 +88,7 @@
     },
     "icon-multiple-radius": {
       "$type": "number",
-      "$value": 20,
+      "$value": 2,
       "$description": "",
       "$extensions": {
         "com.figma": {
@@ -104,7 +104,7 @@
   "payment": {
     "payment-radius": {
       "$type": "number",
-      "$value": 4.5,
+      "$value": 2,
       "$description": "",
       "$extensions": {
         "com.figma": {
