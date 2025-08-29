@@ -123,7 +123,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             });
           }}
         >
-          {leftElement && !showClearButton && (
+          {leftElement && (
             <div data-side="left" className="ml-16">
               {leftElement}
             </div>
