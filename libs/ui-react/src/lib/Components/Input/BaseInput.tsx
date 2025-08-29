@@ -102,7 +102,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     return (
       <div>
         <div
-          className={cn(baseRootStyles, className)}
+          className={cn(className, baseRootStyles)}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
