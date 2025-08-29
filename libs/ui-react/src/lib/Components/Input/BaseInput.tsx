@@ -80,7 +80,11 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         ? true
         : undefined;
 
-    const hasContent = !!props.value && props.value.toString().length > 0;
+    const isControlled = props.value !== undefined;
+    const hasContent = isControlled
+      ? !!props.value && props.value.toString().length > 0
+      : !!inputRef.current?.value;
+
     const showClearButton = hasContent && !disabled && onClear;
 
     const errorId = `${inputId}-error`;
