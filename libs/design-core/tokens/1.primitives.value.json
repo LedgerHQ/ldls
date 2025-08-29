@@ -3388,7 +3388,7 @@
       "grey": {
         "100": {
           "$type": "color",
-          "$value": "#191919",
+          "$value": "#151515",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -3400,7 +3400,7 @@
         },
         "200": {
           "$type": "color",
-          "$value": "#272727",
+          "$value": "#1f1f1f",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -3664,7 +3664,7 @@
         },
         "100-0%": {
           "$type": "color",
-          "$value": "#19191900",
+          "$value": "#15151500",
           "$description": "",
           "$extensions": {
             "com.figma": {

@@ -283,8 +283,8 @@
   --color-dark-constant-400: #c3c3c3;
   --color-dark-constant-950: #000000;
   --color-dark-constant-050: #ffffff;
-  --color-dark-grey-100: #191919;
-  --color-dark-grey-200: #272727;
+  --color-dark-grey-100: #151515;
+  --color-dark-grey-200: #1f1f1f;
   --color-dark-grey-300: #3c3c3c;
   --color-dark-grey-400: #565656;
   --color-dark-grey-500: #717070;
@@ -306,7 +306,7 @@
   --color-dark-grey-050-80: rgba(0, 0, 0, 0.8);
   --color-dark-grey-050-90: rgba(0, 0, 0, 0.9);
   --color-dark-grey-050: #000000;
-  --color-dark-grey-100-0: rgba(25, 25, 25, 0);
+  --color-dark-grey-100-0: rgba(21, 21, 21, 0);
   --color-dark-grey-950-0: rgba(255, 255, 255, 0);
   --color-dark-grey-950-3: rgba(255, 255, 255, 0.03);
   --color-dark-grey-950-5: rgba(255, 255, 255, 0.05);

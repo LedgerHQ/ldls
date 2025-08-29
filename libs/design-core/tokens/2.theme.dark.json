@@ -168,7 +168,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.300}",
+          "$value": "{color.dark.grey.200}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -184,7 +184,7 @@
       "muted": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.100}",
+          "$value": "{color.dark.grey.200}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -198,46 +198,6 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.dark.grey.200}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "pressed": {
-          "$type": "color",
-          "$value": "{color.dark.grey.300}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        }
-      },
-      "muted-on-sheet": {
-        "default": {
-          "$type": "color",
-          "$value": "{color.dark.grey.200}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {
-                "WEB": "var(--color-background-muted-on-sheet);"
-              }
-            }
-          }
-        },
-        "hover": {
-          "$type": "color",
           "$value": "{color.dark.grey.300}",
           "$description": "",
           "$extensions": {
@@ -251,98 +211,6 @@
         "pressed": {
           "$type": "color",
           "$value": "{color.dark.grey.400}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        }
-      },
-      "muted-on-muted": {
-        "default": {
-          "$type": "color",
-          "$value": "{color.dark.grey.200}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {
-                "WEB": "var(--color-background-muted-on-muted);"
-              }
-            }
-          }
-        },
-        "hover": {
-          "$type": "color",
-          "$value": "{color.dark.grey.300}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "pressed": {
-          "$type": "color",
-          "$value": "{color.dark.grey.400}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        }
-      },
-      "muted-transparent": {
-        "default": {
-          "$type": "color",
-          "$value": "{color.dark.grey.950-10%}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {
-                "WEB": "var(--color-background-muted-transparent);"
-              }
-            }
-          }
-        },
-        "hover": {
-          "$type": "color",
-          "$value": "{color.dark.grey.950-20%}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "pressed": {
-          "$type": "color",
-          "$value": "{color.dark.grey.950-30%}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "disabled": {
-          "$type": "color",
-          "$value": "{color.dark.grey.950-10%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -383,6 +251,58 @@
         "pressed": {
           "$type": "color",
           "$value": "{color.dark.grey.800}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        }
+      },
+      "muted-transparent": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-5%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-background-muted-transparent);"
+              }
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.light.grey.050-10%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.light.grey.050-20%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-5%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
