@@ -84,6 +84,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
 
     const errorId = `${inputId}-error`;
 
+    /** TODO: move to ui-core */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
       return (node: T) => {
         refs.forEach((ref) => {
