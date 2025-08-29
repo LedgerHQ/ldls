@@ -152,6 +152,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
           )}
 
           {showClearButton && (
+            /** TODO: extract to a new component IconButton */
             <button
               type="button"
               onClick={onClear}
