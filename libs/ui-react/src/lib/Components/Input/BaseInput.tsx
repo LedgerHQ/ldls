@@ -159,7 +159,16 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             /** TODO: extract to a new component IconButton */
             <button
               type="button"
-              onClick={onClear}
+              onClick={() => {
+                if (isControlled) {
+                  onClear?.();
+                } else if (inputRef.current) {
+                  inputRef.current.value = '';
+                  const event = new Event('input', { bubbles: true });
+                  inputRef.current.dispatchEvent(event);
+                  onClear?.();
+                }
+              }}
               className="mr-16 cursor-pointer rounded-full"
               aria-label="Clear input"
               data-side="right"
