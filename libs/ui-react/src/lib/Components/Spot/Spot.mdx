@@ -1,0 +1,65 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SpotStories from './Spot.stories';
+import { Spot } from './Spot';
+
+<Meta title="Components/Spot/Docs" of={SpotStories} />
+
+# 🔵 Spot
+
+## Introduction
+
+Spots are circular status indicators that provide visual feedback about different states, actions, or information. They come in various predefined appearances and can display custom icons or numbers to convey specific meanings in the interface.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6786-4738).
+
+## Anatomy
+
+<Canvas of={SpotStories.Base} />
+
+- **Circular Container**: 48px diameter circular background
+- **Content**: Icon, number, or loading indicator based on appearance type
+
+## Properties
+
+### Overview
+
+<Canvas of={SpotStories.Base} />
+<Controls of={SpotStories.Base} />
+
+### Appearance Types
+
+There are 8 predefined spot appearances, each serving different purposes:
+
+- **icon**: Custom icon display
+- **bluetooth**: Bluetooth connectivity indicator
+- **check**: Success/completion state
+- **error**: Error or failure state
+- **warning**: Warning or caution state
+- **info**: Information state
+- **loader**: Loading or processing state
+- **number**: Numeric display (0-9)
+
+<Canvas of={SpotStories.AppearanceShowcase} />
+
+### States
+
+The Spot component has an optional disabled state.
+
+<Canvas of={SpotStories.StatesShowcase} />
+
+### Discriminated Union Types
+
+The Spot component uses TypeScript's discriminated union pattern to ensure type safety:
+
+- `appearance: 'icon'` requires an `icon` prop
+- `appearance: 'number'` requires a `number` prop (0-9)
+- All other appearances are self-contained
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast verification
+- Screen reader support for status descriptions
+- Keyboard navigation considerations
+- Semantic labeling for different states
