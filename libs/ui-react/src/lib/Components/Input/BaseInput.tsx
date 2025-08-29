@@ -70,7 +70,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
 
-    const inputId = id || `input-${Math.random().toString(36).slice(2, 11)}`;
+    const reactId = React.useId();
+    const inputId = id || `input-${reactId}`;
 
     // Handle aria-invalid properly - use provided value or derive from errorMessage
     const ariaInvalid = props['aria-invalid']
