@@ -65,6 +65,8 @@ const preview: Preview = {
             ['Implementation', 'Docs', '*'],
             'CardButton',
             ['Implementation', 'Docs', '*'],
+            'Input',
+            ['Implementation', 'Docs', '*'],
           ],
         ],
       },
