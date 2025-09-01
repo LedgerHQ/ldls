@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 import { IconSize } from '../Icon/Icon';
 import { HTMLAttributes, useMemo } from 'react';
 import {
-  Bluetooth,
+  BluetoothCircleFill,
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
@@ -130,7 +130,7 @@ export const Spot = (props: SpotProps) => {
         return props.number;
       }
       case 'bluetooth':
-        return <Bluetooth size={20} />;
+        return <BluetoothCircleFill size={20} />;
       case 'check':
         return <CheckmarkCircleFill size={20} />;
       case 'error':
