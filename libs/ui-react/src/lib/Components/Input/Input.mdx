@@ -8,7 +8,7 @@ import { Input } from './Input';
 
 ## Introduction
 
-Input fields are essential form elements that enable users to enter and edit text. This component features a floating label, error states, and a clear button for enhanced user experience.
+Input fields are essential form elements that enable users to enter and edit text. This component features a floating label, error states, and an automatic clear button for enhanced user experience.
 It also provides the ability to add custom elements on the right side of the input.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
@@ -20,12 +20,27 @@ It also provides the ability to add custom elements on the right side of the inp
 
 ### Clear Button
 
-A clear button (×) appears when:
+A clear button (×) appears **automatically** when:
 
-- **onClear** is provided
 - Input has content
+- Input is not disabled
+- `hideClearButton` is not set to `true`
+
+The clear button provides default functionality for both controlled and uncontrolled inputs. You can override this behavior by providing a custom `onClear` function.
 
 <Canvas of={InputStories.WithContent} />
+
+#### Default Clear Behavior
+
+The clear button works automatically without requiring an `onClear` prop:
+
+<Canvas of={InputStories.DefaultClearBehavior} />
+
+#### Hiding the Clear Button
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+<Canvas of={InputStories.HiddenClearButton} />
 
 ### Error State
 
@@ -34,7 +49,7 @@ The input supports error handling through:
 - `aria-invalid`: Controls the error state styling
 - `errorMessage`: Displays an error message below the input
 - Error styling includes a red ring and text color
-- Clear button turns red when in error state -- appears when onClear is provided
+- Clear button turns red when in error state and appears automatically
 
 <Canvas of={InputStories.WithError} />
 
@@ -46,7 +61,7 @@ The input supports custom interactive elements on the right side through the `ri
 
 You can add: Tooltips, Action buttons, Custom icons, Any interactive element
 
-> **Important note:** if onClear is provided, the clear button will take over your right element once user starts typing.
+> **Important note:** The clear button automatically appears when input has content and will take priority over your `rightElement`. Use `hideClearButton` to prevent this if you need persistent right-side content.
 
 ### Interactive in a Form
 

@@ -63,7 +63,12 @@ const meta: Meta<typeof Input> = {
           console.log('Clear');
         },
       },
-      description: 'Function to clear the input via a clear button',
+      description: 'Optional function to override the default clear behavior',
+    },
+    hideClearButton: {
+      control: 'boolean',
+      description:
+        'Hide the clear button (shown by default when input has content)',
     },
   },
   // Default args moved to Default story
@@ -80,13 +85,15 @@ export const Default: Story = {
     const [value, setValue] = React.useState(args.value || '');
 
     return (
-      <Input
-        {...args}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClear={args.onClear ? () => setValue('') : undefined}
-        rightElement={args.rightElement}
-      />
+      <div className="max-w-md">
+        <Input
+          {...args}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={args.onClear ? () => setValue('') : undefined}
+          rightElement={args.rightElement}
+        />
+      </div>
     );
   },
   args: {
@@ -97,6 +104,7 @@ export const Default: Story = {
     value: '',
     onClear: undefined,
     rightElement: undefined,
+    hideClearButton: false,
   },
 };
 
@@ -107,12 +115,87 @@ export const WithContent: Story = {
   render: () => {
     const [value, setValue] = React.useState('Initial content');
     return (
+      <div className="max-w-md">
+        <Input
+          label="Label"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue('')}
+        />
+      </div>
+    );
+  },
+};
+
+/**
+ * Input with default clear button behavior (no onClear provided).
+ * Shows how the clear button appears automatically and handles clearing.
+ */
+export const DefaultClearBehavior: Story = {
+  render: () => {
+    return (
+      <div className="max-w-4xl">
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+          <ControlledInputExample />
+          <UncontrolledInputExample />
+          <div className="col-span-full text-muted body-3">
+            Clear buttons appear automatically when input has content. No
+            onClear prop needed - default behavior handles both controlled and
+            uncontrolled inputs.
+          </div>
+        </div>
+      </div>
+    );
+  },
+};
+
+// Separate components to avoid state interference
+const ControlledInputExample = () => {
+  const [value, setValue] = React.useState(
+    'Type here to see default clear button',
+  );
+  return (
+    <div className="max-w-md">
       <Input
-        label="Label"
+        label="Controlled Input (Default Clear)"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue('')}
+        id="controlled-input"
       />
+    </div>
+  );
+};
+
+const UncontrolledInputExample = () => {
+  return (
+    <div className="max-w-md">
+      <Input
+        label="Uncontrolled Input (Default Clear)"
+        defaultValue="Default content"
+        id="uncontrolled-input"
+      />
+    </div>
+  );
+};
+
+/**
+ * Input with hidden clear button using hideClearButton prop.
+ */
+export const HiddenClearButton: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('Content with no clear button');
+    return (
+      <div className="max-w-md space-y-16">
+        <Input
+          label="Clear Button Hidden"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          hideClearButton
+        />
+        <div className="text-muted body-3">
+          Use hideClearButton to prevent the clear button from appearing.
+        </div>
+      </div>
     );
   },
 };
@@ -124,13 +207,15 @@ export const Focused: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     return (
-      <Input
-        label="Label"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue('')}
-        autoFocus
-      />
+      <div className="max-w-md">
+        <Input
+          label="Label"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue('')}
+          autoFocus
+        />
+      </div>
     );
   },
 };
@@ -146,7 +231,7 @@ export const WithError: Story = {
       email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     return (
-      <>
+      <div className="max-w-md">
         <Input
           label="Email"
           type="email"
@@ -162,7 +247,7 @@ export const WithError: Story = {
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
-      </>
+      </div>
     );
   },
 };
@@ -174,14 +259,16 @@ export const Disabled: Story = {
   render: () => {
     const [value] = React.useState('Disabled content');
     return (
-      <Input
-        label="Label"
-        value={value}
-        onChange={() => {
-          console.log('onChange');
-        }}
-        disabled
-      />
+      <div className="max-w-md">
+        <Input
+          label="Label"
+          value={value}
+          onChange={() => {
+            console.log('onChange');
+          }}
+          disabled
+        />
+      </div>
     );
   },
 };
@@ -193,13 +280,15 @@ export const EmailType: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     return (
-      <Input
-        label="Email"
-        type="email"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue('')}
-      />
+      <div className="max-w-md">
+        <Input
+          label="Email"
+          type="email"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue('')}
+        />
+      </div>
     );
   },
 };
@@ -208,13 +297,15 @@ export const PasswordType: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     return (
-      <Input
-        label="Password"
-        type="password"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue('')}
-      />
+      <div className="max-w-md">
+        <Input
+          label="Password"
+          type="password"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue('')}
+        />
+      </div>
     );
   },
 };
@@ -268,7 +359,7 @@ export const WithCustomElement: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     return (
-      <>
+      <div className="max-w-4xl">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
           {/* Example with tooltip and clear button */}
           <div>
@@ -307,7 +398,7 @@ export const WithCustomElement: Story = {
           **Important note:** if onClear is provided, the clear button will take
           over your right element once user starts typing.
         </div>
-      </>
+      </div>
     );
   },
 };
@@ -402,75 +493,79 @@ export const Interactive: Story = {
     }
 
     return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-16">
-        <div className="flex flex-col gap-16">
-          <Input
-            label="Username"
-            value={formData.username}
-            onChange={handleChange('username')}
-            onClear={handleClear('username')}
-            aria-invalid={!!errors.username}
-            errorMessage={errors.username}
-            rightElement={<InformationFill size={20} className="text-muted" />}
-          />
+      <div className="max-w-md">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-16">
+          <div className="flex flex-col gap-16">
+            <Input
+              label="Username"
+              value={formData.username}
+              onChange={handleChange('username')}
+              onClear={handleClear('username')}
+              aria-invalid={!!errors.username}
+              errorMessage={errors.username}
+              rightElement={
+                <InformationFill size={20} className="text-muted" />
+              }
+            />
 
-          <Input
-            label="Email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange('email')}
-            onClear={handleClear('email')}
-            aria-invalid={!!errors.email}
-            errorMessage={errors.email}
-          />
+            <Input
+              label="Email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange('email')}
+              onClear={handleClear('email')}
+              aria-invalid={!!errors.email}
+              errorMessage={errors.email}
+            />
 
-          <Input
-            label="Password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange('password')}
-            onClear={handleClear('password')}
-            aria-invalid={!!errors.password}
-            errorMessage={errors.password}
-          />
+            <Input
+              label="Password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange('password')}
+              onClear={handleClear('password')}
+              aria-invalid={!!errors.password}
+              errorMessage={errors.password}
+            />
 
-          <Input
-            label="Confirm Password"
-            type="password"
-            value={formData.confirmPassword}
-            onChange={handleChange('confirmPassword')}
-            onClear={handleClear('confirmPassword')}
-            aria-invalid={!!errors.confirmPassword}
-            errorMessage={errors.confirmPassword}
-          />
-        </div>
+            <Input
+              label="Confirm Password"
+              type="password"
+              value={formData.confirmPassword}
+              onChange={handleChange('confirmPassword')}
+              onClear={handleClear('confirmPassword')}
+              aria-invalid={!!errors.confirmPassword}
+              errorMessage={errors.confirmPassword}
+            />
+          </div>
 
-        <div className="flex gap-12">
-          <Button type="submit" appearance="base">
-            Create Account
-          </Button>
-          <Button
-            type="button"
-            appearance="gray"
-            onClick={() => {
-              setFormData({
-                username: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-              });
-              setErrors({});
-            }}
-          >
-            Reset
-          </Button>
-        </div>
+          <div className="flex gap-12">
+            <Button type="submit" appearance="base">
+              Create Account
+            </Button>
+            <Button
+              type="button"
+              appearance="gray"
+              onClick={() => {
+                setFormData({
+                  username: '',
+                  email: '',
+                  password: '',
+                  confirmPassword: '',
+                });
+                setErrors({});
+              }}
+            >
+              Reset
+            </Button>
+          </div>
 
-        <div className="text-muted body-3">
-          This example demonstrates form validation, error handling, clear
-          buttons, and right elements working together.
-        </div>
-      </form>
+          <div className="text-muted body-3">
+            This example demonstrates form validation, error handling, clear
+            buttons, and right elements working together.
+          </div>
+        </form>
+      </div>
     );
   },
 };

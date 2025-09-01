@@ -42,12 +42,15 @@ export interface BaseInputProps
    * @example leftElement={<Icon />}
    */
   leftElement?: React.ReactNode;
-  /** Function to clear the input via a clear button */
+  /** Optional function to override the default clear behavior */
   onClear?: () => void;
+  /** Hide the clear button (shown by default when input has content) */
+  hideClearButton?: boolean;
 }
 
 /**
- * Base input component with floating label and error state styling.
+ * Base input component with floating label, error state styling, and clear button functionality.
+ * Shows a clear button by default when input has content. Use hideClearButton to hide it.
  * This is an internal component used to build other input components.
  *
  * @internal
@@ -64,6 +67,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
       rightElement,
       leftElement,
       onClear,
+      hideClearButton = false,
       ...props
     },
     ref,
@@ -81,13 +85,52 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         : undefined;
 
     const isControlled = props.value !== undefined;
+
+    const [uncontrolledValue, setUncontrolledValue] = React.useState(
+      props.defaultValue?.toString() || '',
+    );
+
+    const handleInput = React.useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Track uncontrolled input value changes
+        if (!isControlled) {
+          setUncontrolledValue(e.target.value);
+        }
+        // Always call the original onChange if provided
+        props.onChange?.(e);
+      },
+      [isControlled, props.onChange],
+    );
+
     const hasContent = isControlled
       ? !!props.value && props.value.toString().length > 0
-      : !!inputRef.current?.value;
+      : uncontrolledValue.length > 0;
 
-    const showClearButton = hasContent && !disabled && onClear;
+    const showClearButton = hasContent && !disabled && !hideClearButton;
 
     const errorId = `${inputId}-error`;
+
+    const handleClear = () => {
+      if (!inputRef.current) return;
+
+      // Default clear behavior
+      if (isControlled && props.onChange) {
+        // Controlled → trigger onChange with empty value
+        props.onChange({
+          target: { value: '' },
+          currentTarget: { value: '' },
+        } as React.ChangeEvent<HTMLInputElement>);
+      } else {
+        // Uncontrolled → update state and DOM
+        inputRef.current.value = '';
+        setUncontrolledValue('');
+        const event = new Event('input', { bubbles: true });
+        inputRef.current.dispatchEvent(event);
+      }
+      inputRef.current.focus();
+      // Call onClear if provided
+      onClear?.();
+    };
 
     /** TODO: move to ui-core */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
@@ -146,7 +189,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
               rightElement && 'pr-8',
               leftElement && 'pl-8',
             )}
-            {...(({ 'aria-invalid': _, ...rest }) => rest)(props)}
+            onChange={handleInput}
+            {...(({ 'aria-invalid': _, onChange: __, ...rest }) => rest)(props)}
           />
 
           {label && (
@@ -160,23 +204,13 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             <button
               type="button"
               onClick={() => {
-                if (isControlled) {
-                  onClear?.();
-                } else if (inputRef.current) {
-                  inputRef.current.value = '';
-                  const event = new Event('input', { bubbles: true });
-                  inputRef.current.dispatchEvent(event);
-                  onClear?.();
-                }
+                handleClear();
               }}
               className="mr-16 cursor-pointer rounded-full"
               aria-label="Clear input"
               data-side="right"
             >
-              <DeleteCircleFill
-                size={20}
-                className={cn('text-muted', ariaInvalid && 'text-error')}
-              />
+              <DeleteCircleFill size={20} className="text-muted" />
             </button>
           )}
 

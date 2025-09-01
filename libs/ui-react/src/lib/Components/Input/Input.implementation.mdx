@@ -66,7 +66,7 @@ function MyComponent() {
 
 ### With Clear Button
 
-The Input component supports a clear button that appears when content is present and onClear is provided:
+The Input component automatically shows a clear button when content is present:
 
 ```tsx
 import { Input } from '@ldls/ui-react';
@@ -79,7 +79,52 @@ function MyComponent() {
       label="Search"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      onClear={() => setValue('')}
+    />
+  );
+}
+```
+
+#### Custom Clear Behavior
+
+Provide `onClear` to override the default clear behavior:
+
+```tsx
+import { Input } from '@ldls/ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Search"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => {
+        setValue('');
+        // Additional custom logic
+        analytics.track('search_cleared');
+      }}
+    />
+  );
+}
+```
+
+#### Hiding the Clear Button
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+```tsx
+import { Input } from '@ldls/ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      hideClearButton // Clear button will not appear
     />
   );
 }
@@ -123,7 +168,7 @@ function MyComponent() {
 }
 ```
 
-> ⚠️ **Important:** If you provide both `rightElement` and `onClear`, the clear button will take priority and replace your custom element when the input has content! 🔄
+> ⚠️ **Important:** The clear button appears automatically when input has content and will take priority over your `rightElement`. Use `hideClearButton={true}` if you need persistent right-side content! 🔄
 
 ### With Error State
 
@@ -206,11 +251,27 @@ const [value, setValue] = useState('');
   onChange={(e) => setValue(e.target.value)}
 />
 
-// Use onClear for clear button functionality
+// Clear button appears automatically - hideClearButton is false by default
 <Input
   value={value}
   onChange={handleChange}
-  onClear={() => setValue('')}
+/>
+
+// Use onClear only for custom clear behavior
+<Input
+  value={value}
+  onChange={handleChange}
+  onClear={() => {
+    setValue('');
+    customClearLogic();
+  }}
+/>
+
+// Hide clear button when needed
+<Input
+  value={value}
+  onChange={handleChange}
+  hideClearButton
 />
 
 // Use aria-invalid for error states
@@ -228,13 +289,20 @@ const [value, setValue] = useState('');
 // Don't use uncontrolled inputs
 <Input defaultValue="initial" />
 
-// Don't handle clear button manually
+// Don't create custom clear buttons - use the built-in one
 <Input
   value={value}
   onChange={handleChange}
   rightElement={
     <Button onClick={() => setValue('')}>Clear</Button>
   }
+/>
+
+// Don't provide onClear just to clear the value
+<Input
+  value={value}
+  onChange={handleChange}
+  onClear={() => setValue('')} // Unnecessary - this is default behavior
 />
 
 // Don't use custom error props
@@ -293,9 +361,12 @@ const InfoButton = React.memo(() => (
 
 <Input rightElement={<InfoButton />} />
 
-// Use stable callbacks
-const handleClear = useCallback(() => setValue(''), [setValue]);
-<Input onClear={handleClear} />
+// Use stable callbacks only for custom clear behavior
+const handleCustomClear = useCallback(() => {
+  setValue('');
+  customClearLogic();
+}, [setValue]);
+<Input onClear={handleCustomClear} />
 ```
 
 ❌ **Don't**
@@ -304,8 +375,11 @@ const handleClear = useCallback(() => setValue(''), [setValue]);
 // Don't import all icons
 import * as Icons from '@ldls/ui-react/symbols';
 
-// Don't create new functions in render
-<Input onClear={() => setValue('')} />
+// Don't provide onClear for basic clearing (it's automatic now)
+<Input onClear={() => setValue('')} /> // Unnecessary
+
+// Don't create new functions in render for custom behavior
+<Input onClear={() => { setValue(''); customLogic(); }} />
 
 // Don't create complex elements inline
 <Input
