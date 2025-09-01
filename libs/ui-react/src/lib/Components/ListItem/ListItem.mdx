@@ -14,7 +14,7 @@ ListItems are flexible interactive elements designed for lists, menus, settings,
 
 ## Anatomy
 
-<Canvas of={ListItemStories.WithLeadingIconAndDescription} />
+<Canvas of={ListItemStories.Base} />
 
 - **Title**: The main label of the item (required)
 - **Leading Icon (optional)**: Visually represents the item's category or action
@@ -26,8 +26,8 @@ ListItems are flexible interactive elements designed for lists, menus, settings,
 
 ### Overview
 
-<Canvas of={ListItemStories.OnlyTitle} />
-<Controls of={ListItemStories.OnlyTitle} />
+<Canvas of={ListItemStories.Base} />
+<Controls of={ListItemStories.Base} />
 
 ### Trailing Content Variants
 
@@ -40,24 +40,6 @@ ListItems support arbitrary trailing content to suit different interaction patte
 - **icon**: Custom trailing icon
 
 <Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
-
-### Content Variations
-
-ListItems support various content combinations:
-
-- **Title only**: Basic configuration
-- **With description**: Adds context
-- **With description tag**: Highlights additional info
-- **With leading icon**: Visual identifier
-- **With leading icon and description**: Combined for richer items
-
-Note: These can be combined with the arbitrary trailing content.
-
-<Canvas of={ListItemStories.OnlyTitle} />
-<Canvas of={ListItemStories.WithDescription} />
-<Canvas of={ListItemStories.WithDescriptionTag} />
-<Canvas of={ListItemStories.WithLeadingIcon} />
-<Canvas of={ListItemStories.WithLeadingIconAndDescription} />
 
 ### States
 

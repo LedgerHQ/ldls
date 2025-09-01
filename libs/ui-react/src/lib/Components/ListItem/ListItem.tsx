@@ -5,9 +5,23 @@ import { Tag, type TagProps } from '../Tag/Tag';
 
 export interface ListItemProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+  /**
+   * The main title of the list item.
+   */
   title: string;
+  /**
+   * Optional descriptive text below the title.
+   */
   description?: string;
+  /**
+   * Optional props for a tag displayed next to the description.
+   * @example descriptionTagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+   */
   descriptionTagProps?: TagProps;
+  /**
+   * Optional icon to display on the left.
+   * @example leadingIcon={Bolt}
+   */
   leadingIcon?: React.ComponentType<{ size?: IconSize; className?: string }>;
   /**
    * Custom content to render on the right side of the List-item.
@@ -23,16 +37,6 @@ export interface ListItemProps
  * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-implementation--docs#dos-and-donts Guidelines}
  *
- * @component
- * @param {string} title - The main title of the list item.
- * @param {string} [description] - Optional descriptive text below the title.
- * @param {TagProps} [descriptionTagProps] - Optional props for a tag displayed next to the description.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [leadingIcon] - Optional icon to display on the left.
- *   The icon styles are defined by the list item. Please do not override them.
- * @param {React.ReactNode} [trailingContent] - Optional trailing content to display on the right side of the list item.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, etc.).
- *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
  *
@@ -46,19 +50,14 @@ export interface ListItemProps
  *   onClick={() => console.log('Clicked!')}
  * />
  *
- * // Value trailing content with leading icon
+ * // Icon trailing content with leading icon
  * import { ListItem } from '@ldls/ui-react';
- * import { Wallet } from '@ldls/ui-react/symbols';
+ * import { Wallet, Settings } from '@ldls/ui-react/symbols';
  *
  * <ListItem
  *   title="Balance"
  *   leadingIcon={Wallet}
- *   trailingContent={
- *     <div className="flex flex-col items-end gap-2">
- *       <div className="body-2-semi-bold">1,234.56</div>
- *       <div className="text-muted body-3">USD</div>
- *     </div>
- *   }
+ *   trailingContent={<Settings />}
  * />
  *
  * // Chevron trailing content

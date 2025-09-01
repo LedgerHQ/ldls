@@ -15,6 +15,18 @@ import {
   ChevronRight,
 } from '../../Symbols';
 import { Switch } from '../Switch';
+import { cn } from '@ldls/utils-shared';
+
+const Balance = ({ disabled }: { disabled?: boolean }) => {
+  return (
+    <div className="text-right">
+      <div className="body-2-semi-bold">42.00</div>
+      <div className={cn('text-muted body-3', disabled && 'text-disabled')}>
+        USD
+      </div>
+    </div>
+  );
+};
 
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
@@ -62,43 +74,21 @@ const meta: Meta<typeof ListItem> = {
 export default meta;
 type Story = StoryObj<typeof ListItem>;
 
-export const OnlyTitle: Story = {
+export const Base: Story = {
   args: {
-    title: 'Only Title',
-    className: 'max-w-256',
-  },
-};
-
-export const WithDescription: Story = {
-  args: {
-    title: 'Item with Description',
+    title: 'Item with Icon and Description',
+    leadingIcon: Settings,
     description: 'Additional information',
-    className: 'max-w-256',
+    className: 'max-w-320',
   },
 };
 
 export const WithDescriptionTag: Story = {
   args: {
     title: 'Item with Description Tag',
+    leadingIcon: Settings,
     description: 'Additional information',
     descriptionTagProps: { label: 'New', appearance: 'accent', icon: Bolt },
-    className: 'max-w-256',
-  },
-};
-
-export const WithLeadingIcon: Story = {
-  args: {
-    title: 'Item with Leading Icon',
-    leadingIcon: Settings,
-    className: 'max-w-256',
-  },
-};
-
-export const WithLeadingIconAndDescription: Story = {
-  args: {
-    title: 'Item with Icon and Description',
-    leadingIcon: Settings,
-    description: 'Additional information',
     className: 'max-w-320',
   },
 };
@@ -126,12 +116,7 @@ export const TrailingContentVariantsShowcase: Story = {
           title="Value Variant"
           description="With description"
           leadingIcon={Cart}
-          trailingContent={
-            <div className="text-right">
-              <div className="body-2-semi-bold">42.00</div>
-              <div className="text-muted body-3">USD</div>
-            </div>
-          }
+          trailingContent={<Balance />}
         />
         <ListItem
           title="Tag Variant"
@@ -179,12 +164,7 @@ export const StateShowcase: Story = {
             title="Value Variant"
             description="With description"
             leadingIcon={Cart}
-            trailingContent={
-              <div className="text-right">
-                <div className="body-2-semi-bold">42.00</div>
-                <div className="text-muted body-3">USD</div>
-              </div>
-            }
+            trailingContent={<Balance />}
           />
           <ListItem
             title="Tag Variant"
@@ -227,12 +207,7 @@ export const StateShowcase: Story = {
             description="With description"
             leadingIcon={Cart}
             disabled
-            trailingContent={
-              <div className="text-right">
-                <div className="body-2-semi-bold">42.00</div>
-                <div className="text-disabled body-3">USD</div>
-              </div>
-            }
+            trailingContent={<Balance disabled />}
           />
           <ListItem
             title="Tag Variant"
