@@ -234,7 +234,7 @@ describe('Input Component', () => {
       <Input
         label="Username"
         {...createControlledProps()}
-        rightElement={<CustomElement />}
+        suffix={<CustomElement />}
       />,
     );
     expect(screen.getByTestId('custom-element')).toBeInTheDocument();

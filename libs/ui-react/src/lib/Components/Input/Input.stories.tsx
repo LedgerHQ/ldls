@@ -43,7 +43,7 @@ const meta: Meta<typeof Input> = {
       control: false,
       description: 'Controlled value of the input',
     },
-    rightElement: {
+    suffix: {
       control: 'select',
       options: [undefined, 'Information'],
       defaultValue: undefined,
@@ -51,7 +51,8 @@ const meta: Meta<typeof Input> = {
         undefined: undefined,
         Information: <InformationFill size={20} className="text-muted" />,
       },
-      description: 'Custom content to render on the right side of the input',
+      description:
+        'Custom content to render after the input (right side in LTR)',
     },
     onClear: {
       control: 'select',
@@ -91,7 +92,7 @@ export const Default: Story = {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onClear={args.onClear ? () => setValue('') : undefined}
-          rightElement={args.rightElement}
+          suffix={args.suffix}
         />
       </div>
     );
@@ -103,7 +104,7 @@ export const Default: Story = {
     'aria-invalid': false,
     value: '',
     onClear: undefined,
-    rightElement: undefined,
+    suffix: undefined,
     hideClearButton: false,
   },
 };
@@ -370,7 +371,7 @@ export const WithCustomElement: Story = {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               label="Username"
-              rightElement={<InfoTooltip />}
+              suffix={<InfoTooltip />}
               onClear={() => {
                 setValue('');
               }}
@@ -386,17 +387,18 @@ export const WithCustomElement: Story = {
             <Input
               label="Generate Password"
               type="password"
-              rightElement={<GeneratePasswordButton />}
+              suffix={<GeneratePasswordButton />}
             />
           </div>
         </div>
         <div className="mt-16 text-muted body-3">
-          The rightElement prop allows you to add custom interactive elements
-          like tooltips, or action buttons
+          The suffix prop allows you to add custom interactive elements like
+          tooltips, or action buttons
         </div>
         <div className="mt-16 text-error body-3">
-          **Important note:** if onClear is provided, the clear button will take
-          over your right element once user starts typing.
+          **Important note:** The clear button automatically appears when input
+          has content and will take priority over your suffix element. Use
+          hideClearButton to prevent this if you need persistent suffix content.
         </div>
       </div>
     );
@@ -503,9 +505,7 @@ export const Interactive: Story = {
               onClear={handleClear('username')}
               aria-invalid={!!errors.username}
               errorMessage={errors.username}
-              rightElement={
-                <InformationFill size={20} className="text-muted" />
-              }
+              suffix={<InformationFill size={20} className="text-muted" />}
             />
 
             <Input

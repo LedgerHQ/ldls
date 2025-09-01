@@ -25,7 +25,7 @@ const baseLabelStyles = cn(
 );
 
 export interface BaseInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /** The label text that floats above the input when focused or filled */
   label?: string;
   /** Additional class names to apply to the input */
@@ -33,15 +33,15 @@ export interface BaseInputProps
   /** An optional error message displayed below the input */
   errorMessage?: string;
   /**
-   * Custom content to render on the right side of the input.
-   * @example rightElement={<Icon />}
+   * Custom content to render after the input (right side in LTR).
+   * @example suffix={<Icon />}
    */
-  rightElement?: React.ReactNode;
+  suffix?: React.ReactNode;
   /**
-   * Custom content to render on the left side of the input.
-   * @example leftElement={<Icon />}
+   * Custom content to render before the input (left side in LTR).
+   * @example prefix={<Icon />}
    */
-  leftElement?: React.ReactNode;
+  prefix?: React.ReactNode;
   /** Optional function to override the default clear behavior */
   onClear?: () => void;
   /** Hide the clear button (shown by default when input has content) */
@@ -64,8 +64,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
       id,
       disabled,
       errorMessage,
-      rightElement,
-      leftElement,
+      suffix,
+      prefix,
       onClear,
       hideClearButton = false,
       ...props
@@ -157,8 +157,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             const input = inputRef.current;
             if (!input) return;
 
-            const isRightElement = target.closest('[data-side="right"]');
-            const cursorPosition = isRightElement ? input.value.length : 0;
+            const isSuffix = target.closest('[data-side="right"]');
+            const cursorPosition = isSuffix ? input.value.length : 0;
 
             window.requestAnimationFrame(() => {
               try {
@@ -170,9 +170,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             });
           }}
         >
-          {leftElement && (
+          {prefix && (
             <div data-side="left" className="ml-16">
-              {leftElement}
+              {prefix}
             </div>
           )}
 
@@ -186,8 +186,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             className={cn(
               baseInputStyles,
               label && 'pt-16',
-              rightElement && 'pr-8',
-              leftElement && 'pl-8',
+              suffix && 'pr-8',
+              prefix && 'pl-8',
             )}
             onChange={handleInput}
             {...(({ 'aria-invalid': _, onChange: __, ...rest }) => rest)(props)}
@@ -214,9 +214,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             </button>
           )}
 
-          {rightElement && !showClearButton && (
+          {suffix && !showClearButton && (
             <div className="mr-16" data-side="right">
-              {rightElement}
+              {suffix}
             </div>
           )}
         </div>

@@ -161,14 +161,14 @@ function MyComponent() {
         type="password"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        rightElement={<GeneratePasswordButton />}
+        suffix={<GeneratePasswordButton />}
       />
     </div>
   );
 }
 ```
 
-> ⚠️ **Important:** The clear button appears automatically when input has content and will take priority over your `rightElement`. Use `hideClearButton={true}` if you need persistent right-side content! 🔄
+> ⚠️ **Important:** The clear button appears automatically when input has content and will take priority over your `suffix`. Use `hideClearButton={true}` if you need persistent right-side content! 🔄
 
 ### With Error State
 
@@ -293,7 +293,7 @@ const [value, setValue] = useState('');
 <Input
   value={value}
   onChange={handleChange}
-  rightElement={
+  suffix={
     <Button onClick={() => setValue('')}>Clear</Button>
   }
 />
@@ -359,7 +359,7 @@ const InfoButton = React.memo(() => (
   </button>
 ));
 
-<Input rightElement={<InfoButton />} />
+<Input suffix={<InfoButton />} />
 
 // Use stable callbacks only for custom clear behavior
 const handleCustomClear = useCallback(() => {
@@ -383,7 +383,7 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 // Don't create complex elements inline
 <Input
-  rightElement={
+  suffix={
     <ComplexComponent>
       <NestedComponents />
     </ComplexComponent>
