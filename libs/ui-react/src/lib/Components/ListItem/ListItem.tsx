@@ -9,6 +9,10 @@ export interface ListItemProps
   description?: string;
   descriptionTagProps?: TagProps;
   leadingIcon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * Custom content to render on the right side of the List-item.
+   * @example trailingContent={<Icon />}
+   */
   trailingContent?: React.ReactNode;
 }
 
