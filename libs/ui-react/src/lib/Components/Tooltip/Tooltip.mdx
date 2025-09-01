@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
+
+<Meta title="Components/Tooltip/Docs" of={TooltipStories} />
+
+# 💬 Tooltip
+
+## Introduction
+
+Tooltips provide contextual information on hover or focus, helping users understand interface elements without cluttering the main UI.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6387-409).
+
+## Anatomy
+
+<Canvas of={TooltipStories.Basic} />
+
+- **Trigger**: The element that activates the tooltip on hover or focus
+- **Content**: The informational text or content displayed
+- **Arrow**: Visual connector pointing to the trigger
+
+## Properties
+
+### Placement
+
+Tooltips can appear on different sides of the trigger:
+
+- top (default)
+- bottom
+- left
+- right
+
+<Canvas of={TooltipStories.PlacementsShowcase} />
+
+### Content
+
+Tooltips can have short or long content. For longer content, use appropriate width classes.
+
+<Canvas of={TooltipStories.LongContent} />
+
+### Trigger Types
+
+Can be used with buttons, icons, or any element.
+
+<Canvas of={TooltipStories.WithIconTrigger} />
+
+### Delay
+
+Control the appearance delay using delayDuration prop.
+
+<Canvas of={TooltipStories.WithDelay} />
+
+## Accessibility
+
+To be implemented:
+
+- Proper ARIA attributes
+- Keyboard navigation (focus to show)
+- Color contrast for text
+- Screen reader support
+
+<div className="rounded-8 mt-8 bg-muted p-12">
+  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
+  <ul className="space-y-2 body-2">
+    <li>Wrap your app in TooltipProvider for global configuration</li>
+    <li>Use asChild on Trigger for composing with other components</li>
+    <li>Content automatically handles positioning</li>
+    <li>
+      Avoid using for critical information - use for supplementary info only
+    </li>
+  </ul>
+</div>
