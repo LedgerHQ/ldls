@@ -1,4 +1,4 @@
-import Svg, { Path } from "react-native-svg";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 import createIcon from "../../Components/Icon/createIcon";
 
 /**
@@ -33,13 +33,19 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const AutoLock = createIcon(
   "AutoLock",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
-    <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.26 4.667V8.26H5.327m8.633-.927a6.01 6.01 0 0 0-6.633-5.3 5.996 5.996 0 0 0-.007 11.92M11.5 12h2.334M11.5 12a.833.833 0 0 0-.833.833v1c0 .46.373.834.833.834h2.334c.46 0 .833-.373.833-.834v-1a.833.833 0 0 0-.833-.833M11.5 12v-.833a1.168 1.168 0 0 1 2.333 0V12"
-    />
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
+    <G clipPath="url(#clip0_3_152)">
+      <Path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6.195 3.5v2.695h-2.2M10.47 5.5a4.51 4.51 0 0 0-4.975-3.975 4.497 4.497 0 0 0-.005 8.94M8.625 9h1.75m-1.75 0A.625.625 0 0 0 8 9.625v.75c0 .345.28.625.625.625h1.75c.345 0 .625-.28.625-.625v-.75A.625.625 0 0 0 10.375 9m-1.75 0v-.625a.876.876 0 0 1 1.75 0V9"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="clip0_3_152">
+        <Path fill="#fff" d="M0 0h12v12H0z" />
+      </ClipPath>
+    </Defs>
   </Svg>
 );

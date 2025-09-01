@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Magnet Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Magnet Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Magnet = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M10 2.666v3.333m0 4v3.333M12.333 10H8a2 2 0 1 1 0-4h4.333a1 1 0 0 0 1-1V3.667a1 1 0 0 0-1-1H8a5.333 5.333 0 1 0 0 10.666h4.333a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1"
+      d="M7.5 2v2.5m0 3V10m1.75-2.5H6a1.5 1.5 0 1 1 0-3h3.25a.75.75 0 0 0 .75-.75v-1A.75.75 0 0 0 9.25 2H6a4 4 0 0 0 0 8h3.25a.75.75 0 0 0 .75-.75v-1a.75.75 0 0 0-.75-.75"
     />
   </svg>
 );

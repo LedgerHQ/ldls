@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:CloudUpload Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:CloudUpload Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const CloudUpload = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4.933 11.333H4.66A3.33 3.33 0 0 1 1.327 8a3.32 3.32 0 0 1 2.879-3.293V4.7a3.98 3.98 0 0 1 3.78-2.713c2.207 0 4 1.786 4 4a2.67 2.67 0 0 1 2.667 2.666c0 1.467-1.2 2.667-2.667 2.667h-.94M9.333 12 8 10.667m0 0L6.667 12M8 10.667V14"
+      d="M3.7 8.5h-.205a2.498 2.498 0 0 1-.34-4.97v-.005A2.985 2.985 0 0 1 5.99 1.49a3 3 0 0 1 3 3c1.1 0 2 .895 2 2 0 1.1-.9 2-2 2h-.706M7 9 6 8m0 0L5 9m1-1v2.5"
     />
   </svg>
 );

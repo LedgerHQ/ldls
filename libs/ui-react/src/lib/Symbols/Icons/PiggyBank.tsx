@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:PiggyBank Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:PiggyBank Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const PiggyBank = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.313 2.68a2.334 2.334 0 0 1 0 3.293 2.34 2.34 0 0 1-3.3 0 2.33 2.33 0 0 1 0-3.3 2.32 2.32 0 0 1 3.293 0m2.047 5.3c.007.007.007.027 0 .04a.06.06 0 0 1-.046 0 .03.03 0 0 1 0-.046c.006-.014.026-.014.04 0m-1.36-3.394c.213-.06.42-.14.613-.26.307-.2.667-.314 1.06-.314h.667v1.7a3.9 3.9 0 0 1 1.08 1.587h.58c.366 0 .666.293.666.667v2.04c0 .366-.3.666-.666.666h-.88c-.354.6-.86 1.107-1.46 1.46v1.2c0 .367-.3.667-.666.667H9.647a.664.664 0 0 1-.666-.667v-.666H6.647v.573c0 .367-.3.667-.666.667H4.647a.664.664 0 0 1-.666-.667v-1.607a3.98 3.98 0 0 1-1.334-2.98 4.005 4.005 0 0 1 2.727-3.793M1.52 6.666c-.313.18-.525.514-.525.9 0 .58.466 1.052 1.046 1.052h.616m3.01-1.951h4"
+      d="M6.985 2.01c.68.68.68 1.79 0 2.47-.685.68-1.795.68-2.475 0a1.75 1.75 0 0 1 0-2.475 1.74 1.74 0 0 1 2.47 0M8.514 5.98c.005.005.005.02 0 .03a.04.04 0 0 1-.035 0 .024.024 0 0 1 0-.035c.005-.01.02-.01.03 0M7.49 3.43c.16-.045.315-.105.46-.195.23-.15.5-.235.795-.235h.5v1.275c.359.32.64.725.81 1.19h.435c.275 0 .5.22.5.5v1.53c0 .275-.225.5-.5.5h-.66c-.265.45-.645.83-1.095 1.095v.9c0 .274-.225.5-.5.5h-1c-.28 0-.5-.226-.5-.5v-.5h-1.75v.43c0 .274-.225.5-.5.5h-1c-.28 0-.5-.226-.5-.5V8.715c-.615-.55-1-1.345-1-2.235 0-1.325.86-2.446 2.045-2.845M1.14 5a.78.78 0 0 0-.394.675c0 .435.35.789.785.789h.461M4.25 5h3"
     />
   </svg>
 );

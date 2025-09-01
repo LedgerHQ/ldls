@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:HandCard Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:HandCard Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const HandCard = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m1.33 9.334 1.702-2.835a2 2 0 0 1 .82-.76l.39-.196a2 2 0 0 1 .896-.21h9.532m-12.006 8.67 3.843-1.39a2.67 2.67 0 0 0 1.313-1.028l1.996-2.993a1.098 1.098 0 0 0-1.689-1.385l-1.46 1.46m0 0H5.331m1.334 0V4.932a1.573 1.573 0 0 1 1.545-1.6h4.914c.868.015 1.56.732 1.544 1.6v2.801a1.573 1.573 0 0 1-1.544 1.6H9.32"
+      d="m.998 7 1.276-2.126a1.5 1.5 0 0 1 .615-.57l.293-.146a1.5 1.5 0 0 1 .671-.159h7.15m-9.005 6.503L4.88 9.46a2 2 0 0 0 .985-.771l1.497-2.245a.823.823 0 0 0-1.267-1.04L5 6.5m0 0H4m1 0V3.7a1.18 1.18 0 0 1 1.158-1.2h3.686a1.18 1.18 0 0 1 1.158 1.2v2.1A1.18 1.18 0 0 1 9.844 7H6.99"
     />
   </svg>
 );

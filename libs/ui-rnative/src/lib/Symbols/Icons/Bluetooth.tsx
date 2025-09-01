@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Bluetooth = createIcon(
   "Bluetooth",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4 11.333 11.333 5l-4-3v12l4-3L4 4.667"
+      d="m3 8.5 5.5-4.75-3-2.25v9l3-2.25L3 3.5"
     />
   </Svg>
 );

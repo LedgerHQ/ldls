@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Chart3 = createIcon(
   "Chart3",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9 7.673v2.994M7 5.333v5.334M5 8.84v1.827M11 6.5v4.167M5.333 2h5.334A3.333 3.333 0 0 1 14 5.333v5.334A3.333 3.333 0 0 1 10.667 14H5.333A3.333 3.333 0 0 1 2 10.667V5.333A3.333 3.333 0 0 1 5.333 2"
+      d="M6.75 5.755V8m-1.5-4v4m-1.5-1.37V8m4.5-3.125V8M4 1.5h4A2.5 2.5 0 0 1 10.5 4v4A2.5 2.5 0 0 1 8 10.5H4A2.5 2.5 0 0 1 1.5 8V4A2.5 2.5 0 0 1 4 1.5"
     />
   </Svg>
 );

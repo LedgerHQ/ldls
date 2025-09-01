@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Bolt = createIcon(
   "Bolt",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.64 2 3.16 9.333h4.833L7.347 14l5.473-7.333H7.987z"
+      d="M6.48 1.5 2.37 7h3.625l-.485 3.5L9.615 5H5.99z"
     />
   </Svg>
 );

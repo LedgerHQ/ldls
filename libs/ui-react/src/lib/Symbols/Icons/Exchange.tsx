@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Exchange Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Exchange Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Exchange = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.667 12.667h-2a3.334 3.334 0 0 1-3.334-3.334v-6m0 0L5 5M3.333 3.333 1.667 5m5.666-1.667h2a3.334 3.334 0 0 1 3.334 3.334v6m0 0-2-2m2 2 2-2"
+      d="M6.5 9.5H5A2.5 2.5 0 0 1 2.5 7V2.5m0 0 1.25 1.25M2.5 2.5 1.25 3.75M5.5 2.5H7A2.5 2.5 0 0 1 9.5 5v4.5m0 0L8 8m1.5 1.5L11 8"
     />
   </svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:BookOpen Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:BookOpen Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const BookOpen = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M12.667 3.333h.666c.734 0 1.334.594 1.334 1.334v8c0 .733-.6 1.333-1.334 1.333H2.667c-.737 0-1.334-.6-1.334-1.333v-8c0-.74.597-1.334 1.334-1.334h.666M8 4a2 2 0 0 0-2-2H4a.66.66 0 0 0-.667.667v8.666c0 .367.294.667.667.667h2a2 2 0 0 1 2 2M8 4a2 2 0 0 1 2-2h2c.367 0 .667.299.667.667v8.666c0 .367-.3.667-.667.667h-2a2 2 0 0 0-2 2M8 4v10"
+      d="M9.5 2.5h.5a1 1 0 0 1 1 1v6c0 .55-.45 1-1 1H2c-.552 0-1-.45-1-1v-6c0-.555.448-1 1-1h.5M6 3a1.5 1.5 0 0 0-1.5-1.5H3c-.28 0-.5.22-.5.5v6.5c0 .275.22.5.5.5h1.5A1.5 1.5 0 0 1 6 10.5M6 3a1.5 1.5 0 0 1 1.5-1.5H9a.5.5 0 0 1 .5.5v6.5c0 .275-.225.5-.5.5H7.5A1.5 1.5 0 0 0 6 10.5M6 3v7.5"
     />
   </svg>
 );

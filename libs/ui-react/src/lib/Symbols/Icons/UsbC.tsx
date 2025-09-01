@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UsbC Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UsbC Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const UsbC = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6.667 12.667v2M5.333 6V2.667A.66.66 0 0 1 6 2h4c.367 0 .667.293.667.667V6m-1.334 6.667v2M5 6h6c.547 0 1 .447 1 1v3.667c0 1.1-.9 2-2 2H6c-1.107 0-2-.9-2-2V7c0-.553.447-1 1-1"
+      d="M5 9.5V11M4 4.5V2c0-.28.22-.5.5-.5h3c.275 0 .5.22.5.5v2.5m-1 5V11M3.75 4.5h4.5c.41 0 .75.335.75.75V8c0 .825-.675 1.5-1.5 1.5h-3C3.67 9.5 3 8.825 3 8V5.25c0-.415.335-.75.75-.75"
     />
   </svg>
 );

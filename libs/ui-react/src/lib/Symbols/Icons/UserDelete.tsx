@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UserDelete Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UserDelete Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,15 +31,14 @@ export const UserDelete = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit={10}
-      strokeWidth={1.3}
-      d="M2.667 13.333c0-1.66 1.34-3 3-3h1.722m3.098 2.847 2.36-2.36m-2.36 0 2.36 2.36M8 2.667a2.833 2.833 0 1 0 0 5.666 2.833 2.833 0 0 0 0-5.666"
+      d="M2 10a2.247 2.247 0 0 1 2.25-2.25h1.292m2.323 2.135 1.77-1.77m-1.77 0 1.77 1.77M6 2a2.125 2.125 0 1 0 0 4.25A2.125 2.125 0 0 0 6 2"
     />
   </svg>
 );

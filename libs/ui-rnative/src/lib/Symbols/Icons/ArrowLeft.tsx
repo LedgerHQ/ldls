@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const ArrowLeft = createIcon(
   "ArrowLeft",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M3.333 8h9.334M3.333 8l3.334-3.333M3.333 8l3.334 3.333"
+      d="M2.5 6h7m-7 0L5 3.5M2.5 6 5 8.5"
     />
   </Svg>
 );

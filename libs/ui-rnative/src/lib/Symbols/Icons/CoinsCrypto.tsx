@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const CoinsCrypto = createIcon(
   "CoinsCrypto",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6.453 3.295a4.42 4.42 0 0 1 6.252 0 4.42 4.42 0 0 1 0 6.252m-7.572.02V7.7h1.882c.513 0 .926.413.926.927a.93.93 0 0 1-.933.926m-.695-2.386v.534m0 4.286v-.607m4.53-1.801c0 2.44-1.98 4.421-4.422 4.421A4.42 4.42 0 0 1 2 9.579a4.414 4.414 0 0 1 4.421-4.422 4.42 4.42 0 0 1 4.422 4.422m-3.596 1.799H5.133V9.565h2.11c.494 0 .9.4.9.9 0 .493-.406.9-.906.9z"
+      d="M4.84 2.471A3.315 3.315 0 1 1 9.529 7.16m-5.679.015v-1.4h1.411c.385 0 .695.31.695.695a.7.7 0 0 1-.7.695m-.521-1.79v.4m0 3.215v-.455m3.397-1.351a3.317 3.317 0 1 1-6.634-.002 3.317 3.317 0 0 1 6.634.002m-2.697 1.35H3.85v-1.36h1.583a.675.675 0 1 1-.005 1.35z"
     />
   </Svg>
 );

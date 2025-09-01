@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const ChevronBigTop = createIcon(
   "ChevronBigTop",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M14 11 7.993 5 2 11"
+      d="m10.5 8.25-4.505-4.5L1.5 8.25"
     />
   </Svg>
 );

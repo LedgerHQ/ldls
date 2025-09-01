@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Trash = createIcon(
   "Trash",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M12.333 4.333v8.334A1.334 1.334 0 0 1 11 14H5a1.334 1.334 0 0 1-1.333-1.333V4.333m9.666 0H2.667m6.666 7v-4m-2.666 4v-4m-1-3V3a1 1 0 0 1 1-1h2.666a1 1 0 0 1 1 1v1"
+      d="M9.25 3.25V9.5a1 1 0 0 1-1 1h-4.5a1 1 0 0 1-1-1V3.25m7.25 0H2M7 8.5v-3m-2 3v-3m-.75-2.25v-1A.75.75 0 0 1 5 1.5h2a.75.75 0 0 1 .75.75V3"
     />
   </Svg>
 );

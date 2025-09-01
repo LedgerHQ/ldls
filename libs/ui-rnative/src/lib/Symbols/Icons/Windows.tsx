@@ -33,10 +33,10 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Windows = createIcon(
   "Windows",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       fill="currentColor"
-      d="M7.504 7.76H13.6V2.4l-6.096.848zM2.4 12.064l4.608.624V8.304H2.4zm0-4.304h4.608V3.312L2.4 3.936zm5.104 4.992 6.096.848V8.304H7.504z"
+      d="M5.628 5.82H10.2V1.8l-4.572.636zM1.8 9.048l3.456.468V6.228H1.8zm0-3.228h3.456V2.484L1.8 2.952zm3.828 3.744 4.572.636V6.228H5.628z"
     />
   </Svg>
 );

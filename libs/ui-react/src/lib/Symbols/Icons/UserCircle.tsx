@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UserCircle Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UserCircle Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const UserCircle = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4 12a6.66 6.66 0 0 1 8 0M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 2.667a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
+      d="M3 9a4.994 4.994 0 0 1 6 0M6 1.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9m0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"
     />
   </svg>
 );

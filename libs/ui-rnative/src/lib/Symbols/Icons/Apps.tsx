@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Apps = createIcon(
   "Apps",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M11.667 10v3.333m1.666-1.666H10m-4.667-5h-2C2.597 6.667 2 6.067 2 5.333v-2C2 2.597 2.597 2 3.333 2h2c.734 0 1.334.597 1.334 1.333v2c0 .734-.6 1.334-1.334 1.334m7.334 0h-2c-.74 0-1.334-.6-1.334-1.334v-2A1.33 1.33 0 0 1 10.667 2h2C13.4 2 14 2.597 14 3.333v2c0 .734-.6 1.334-1.333 1.334M5.333 14h-2C2.597 14 2 13.4 2 12.667v-2c0-.74.597-1.334 1.333-1.334h2c.734 0 1.334.594 1.334 1.334v2c0 .733-.6 1.333-1.334 1.333"
+      d="M8.75 7.5V10M10 8.75H7.5M4 5H2.5c-.552 0-1-.45-1-1V2.5a1 1 0 0 1 1-1H4c.55 0 1 .448 1 1V4c0 .55-.45 1-1 1m5.5 0H8a1 1 0 0 1-1-1V2.5c0-.552.445-1 1-1h1.5c.55 0 1 .448 1 1V4c0 .55-.45 1-1 1M4 10.5H2.5c-.552 0-1-.45-1-1V8c0-.555.448-1 1-1H4a1 1 0 0 1 1 1v1.5c0 .55-.45 1-1 1"
     />
   </Svg>
 );

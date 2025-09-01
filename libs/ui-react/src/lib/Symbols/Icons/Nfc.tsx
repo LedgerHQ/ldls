@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Nfc Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Nfc Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Nfc = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6 4.827a2.83 2.83 0 0 1 4 0m-6.244 6.75a6.003 6.003 0 1 1 8.488 0M7 6.414a1.415 1.415 0 0 1 2 0M7.5 13.17h1m-1.634 1.5h2.268a1.2 1.2 0 0 0 1.2-1.2V9.867a1.2 1.2 0 0 0-1.2-1.2H6.866a1.2 1.2 0 0 0-1.2 1.2v3.602a1.2 1.2 0 0 0 1.2 1.2"
+      d="M4.5 3.62a2.12 2.12 0 0 1 3 0M2.817 8.683a4.502 4.502 0 1 1 6.366 0M5.25 4.81a1.06 1.06 0 0 1 1.5 0M5.625 9.877h.75M5.15 11.002h1.702a.9.9 0 0 0 .9-.9V7.4a.9.9 0 0 0-.9-.9H5.149a.9.9 0 0 0-.9.9v2.702a.9.9 0 0 0 .9.9"
     />
   </svg>
 );

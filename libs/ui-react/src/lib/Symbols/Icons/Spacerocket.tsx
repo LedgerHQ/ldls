@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Spacerocket Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Spacerocket Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Spacerocket = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M10.668 8.667v2.922a.67.67 0 0 1-.369.597l-1.611.806a.667.667 0 0 1-.931-.386l-.424-1.271M4.665 8.667l-1.271-.424a.667.667 0 0 1-.386-.93L3.814 5.7a.67.67 0 0 1 .596-.369h2.923m4.066 2.75-3.6 2.88a.667.667 0 0 1-.888-.05L5.087 9.09a.667.667 0 0 1-.049-.888l2.88-3.6a6.94 6.94 0 0 1 5.418-2.603c.368 0 .666.298.666.666a6.94 6.94 0 0 1-2.604 5.418m-7.567 5.645-1.834.275.275-1.834a1.37 1.37 0 1 1 1.559 1.559"
+      d="M8 6.5v2.192a.5.5 0 0 1-.276.448l-1.208.604a.5.5 0 0 1-.698-.29L5.5 8.502m-2.001-2-.954-.319a.5.5 0 0 1-.289-.698l.605-1.208a.5.5 0 0 1 .447-.277H5.5m3.049 2.063-2.7 2.16a.5.5 0 0 1-.666-.038L3.816 6.817a.5.5 0 0 1-.037-.666l2.16-2.7a5.2 5.2 0 0 1 4.063-1.953.5.5 0 0 1 .5.5c0 1.581-.719 3.076-1.953 4.064m-5.675 4.233-1.376.207.207-1.376a1.028 1.028 0 1 1 1.169 1.17"
     />
   </svg>
 );

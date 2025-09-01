@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Clip = createIcon(
   "Clip",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.967 6.253 5.28 9.94a1.083 1.083 0 0 0 0 1.547h-.007c.427.427 1.12.427 1.547 0l5.747-5.75a2.197 2.197 0 0 0 0-3.1l-.007-.007a2.19 2.19 0 0 0-3.1-.007h-.007L3.7 8.369a3.276 3.276 0 0 0-.007 4.639 3.283 3.283 0 0 0 4.64 0v-.007l4.2-4.2"
+      d="M6.725 4.69 3.96 7.455a.81.81 0 0 0 0 1.16h-.005c.32.32.84.32 1.16 0l4.31-4.313c.64-.645.64-1.685 0-2.325L9.42 1.97a1.643 1.643 0 0 0-2.325-.005H7.09l-4.315 4.31a2.457 2.457 0 0 0-.005 3.48c.96.96 2.52.96 3.48 0v-.005l3.15-3.15"
     />
   </Svg>
 );

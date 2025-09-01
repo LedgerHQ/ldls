@@ -33,12 +33,11 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Pause = createIcon(
   "Pause",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
-      strokeWidth={1.3}
-      d="M4.759 3.893v8m6.482-8v8"
+      d="M3.569 2.92v6m4.862-6v6"
     />
   </Svg>
 );

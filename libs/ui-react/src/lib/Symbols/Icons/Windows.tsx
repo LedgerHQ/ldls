@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Windows Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Windows Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,11 +31,11 @@ export const Windows = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       fill="currentColor"
-      d="M7.504 7.76H13.6V2.4l-6.096.848zM2.4 12.064l4.608.624V8.304H2.4zm0-4.304h4.608V3.312L2.4 3.936zm5.104 4.992 6.096.848V8.304H7.504z"
+      d="M5.628 5.82H10.2V1.8l-4.572.636zM1.8 9.048l3.456.468V6.228H1.8zm0-3.228h3.456V2.484L1.8 2.952zm3.828 3.744 4.572.636V6.228H5.628z"
     />
   </svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Tools Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Tools Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Tools = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m7.887 10 3.333 3.333a1.424 1.424 0 0 0 2 0 1.425 1.425 0 0 0 0-2L9.887 8M4.56 4.667 6.893 7m7.047-3.107a.2.2 0 0 1 .033.054 3.04 3.04 0 0 1-.76 3.04 3.05 3.05 0 0 1-3.08.74l-5.564 5.56c-.547.54-1.427.58-1.987.06a1.414 1.414 0 0 1-.04-2.04l5.587-5.594a3.04 3.04 0 0 1 .74-3.08c.82-.825 2-1.073 3.04-.76.02.007.04.014.053.034l.107.106c.046.047.046.134 0 .187l-1.762 1.753L11.853 5.5l1.754-1.76c.046-.053.133-.053.186 0l.107.107zM1.953 2.86 2.4 4.207a.66.66 0 0 0 .627.453h1.519V3.14a.67.67 0 0 0-.46-.633l-1.353-.453a.34.34 0 0 0-.347.08l-.38.374a.31.31 0 0 0-.08.34z"
+      d="m5.915 7.5 2.5 2.5c.41.41 1.085.41 1.5 0 .41-.415.41-1.09 0-1.5L7.415 6M3.42 3.5l1.75 1.75m5.285-2.33q.016.016.025.04a2.28 2.28 0 0 1-.57 2.28c-.63.625-1.52.805-2.31.555l-4.174 4.17c-.41.405-1.07.435-1.49.045a1.06 1.06 0 0 1-.03-1.53l4.19-4.195c-.25-.79-.07-1.685.555-2.31a2.28 2.28 0 0 1 2.28-.57c.015.005.03.01.04.025l.08.08c.035.035.035.1 0 .14L7.73 2.965l1.16 1.16 1.315-1.32c.035-.04.1-.04.14 0l.08.08zm-8.99-.775.335 1.01c.065.2.255.34.47.34h1.14v-1.14a.5.5 0 0 0-.346-.474L2.05 1.54a.25.25 0 0 0-.26.06l-.285.28a.23.23 0 0 0-.06.255z"
     />
   </svg>
 );

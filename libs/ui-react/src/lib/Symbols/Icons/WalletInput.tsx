@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:WalletInput Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:WalletInput Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const WalletInput = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M1.998 4.665h10.67c.737 0 1.335.598 1.335 1.334v6.336c0 .921-.747 1.667-1.668 1.667H8.667m2.668-9.337v-.667c0-.736-.597-1.334-1.334-1.334H3.665c-.92 0-1.667.747-1.667 1.668V10m4.668 2.668H1.998m4.668 0-1.334 1.333m1.334-1.333-1.334-1.334m6.002-2.001h-.666"
+      d="M1.498 3.499h8.003a1 1 0 0 1 1 1v4.752c0 .691-.559 1.25-1.25 1.25h-2.75m2-7.002v-.5a1 1 0 0 0-1-1H2.749c-.691 0-1.25.56-1.25 1.25V7.5m3.5 2H1.5m3.5 0-1 1m1-1-1-1m4.502-1.5H8"
     />
   </svg>
 );

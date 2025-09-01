@@ -33,19 +33,18 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Whatsapp = createIcon(
   "Whatsapp",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       fill="currentColor"
       fillRule="evenodd"
-      d="M7.285 7.288a4.4 4.4 0 0 0 1.427 1.427l.548-.328a.67.67 0 0 1 .76.05l1.063.851a.667.667 0 0 1 .051.996l-.48.473a2 2 0 0 1-2.474.267A10.8 10.8 0 0 1 4.976 7.82a2 2 0 0 1 .267-2.473l.473-.481a.667.667 0 0 1 .996.05l.85 1.064c.174.218.195.52.051.76z"
+      d="M5.464 5.466c.268.435.635.802 1.07 1.07l.411-.246a.5.5 0 0 1 .57.038l.797.638a.5.5 0 0 1 .038.747l-.36.355a1.5 1.5 0 0 1-1.855.2 8.1 8.1 0 0 1-2.403-2.403 1.5 1.5 0 0 1 .2-1.855l.355-.36a.5.5 0 0 1 .747.038l.638.797a.5.5 0 0 1 .038.57z"
       clipRule="evenodd"
     />
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m4.578 13.324-1.798.3a.352.352 0 0 1-.405-.404l.3-1.798a6.345 6.345 0 1 1 1.903 1.902"
+      d="m3.434 9.993-1.349.226a.264.264 0 0 1-.303-.304l.225-1.349a4.759 4.759 0 1 1 1.427 1.427"
       clipRule="evenodd"
     />
   </Svg>

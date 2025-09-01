@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Bell Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Bell Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Bell = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6 12v.167c0 1.1.893 2 2 2 1.1 0 2-.9 2-2V12m2-2.833 1.133 1.133c.12.12.194.293.194.467v.553c0 .367-.3.667-.667.667H3.327a.664.664 0 0 1-.667-.667v-.56a.66.66 0 0 1 .193-.473l1.134-1.14V6.313c0-2.213 1.786-4 4-4 2.206 0 4 1.787 4 4z"
+      d="M4.5 9v.125c0 .825.67 1.5 1.5 1.5.825 0 1.5-.675 1.5-1.5V9M9 6.875l.85.85c.09.09.145.22.145.35v.415c0 .275-.225.5-.5.5h-7c-.28 0-.5-.225-.5-.5v-.42c0-.135.05-.26.145-.355l.85-.855V4.735c0-1.66 1.34-3 3-3 1.655 0 3 1.34 3 3z"
     />
   </svg>
 );

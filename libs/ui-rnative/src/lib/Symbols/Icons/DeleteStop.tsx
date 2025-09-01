@@ -33,20 +33,18 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const DeleteStop = createIcon(
   "DeleteStop",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m12.243 3.757-8.487 8.48 8.48-8.486z"
+      d="m9.182 2.818-6.365 6.36 6.36-6.365z"
     />
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 2C4.68 2 2 4.686 2 8a6 6 0 1 0 12 0c0-3.32-2.686-6-6-6"
+      d="M6 1.5A4.5 4.5 0 1 0 10.5 6c0-2.49-2.014-4.5-4.5-4.5"
     />
   </Svg>
 );

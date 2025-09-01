@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Compass Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Compass Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Compass = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M12.243 3.753a6 6 0 0 1 0 8.48 6.007 6.007 0 0 1-8.487 0 5.996 5.996 0 0 1 0-8.486 5.99 5.99 0 0 1 8.48-.001m-2.69 5.787L6.454 6.467m0 .002 4.214-1.142-1.12 4.193-4.214 1.133z"
+      d="M9.182 2.815a4.5 4.5 0 0 1 0 6.36 4.506 4.506 0 0 1-6.365 0 4.497 4.497 0 0 1 0-6.365 4.49 4.49 0 0 1 6.36 0M7.16 7.15l-2.32-2.3m0 .001L8 3.995 7.16 7.14 4 7.99z"
     />
   </svg>
 );

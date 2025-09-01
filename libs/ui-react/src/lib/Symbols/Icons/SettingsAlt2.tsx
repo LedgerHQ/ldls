@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:SettingsAlt2 Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:SettingsAlt2 Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const SettingsAlt2 = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M14 4.667h-2.04m-3.333 0H2m9.473-1.18a1.67 1.67 0 0 1 0 2.353 1.68 1.68 0 0 1-2.36 0 1.666 1.666 0 0 1 0-2.36 1.66 1.66 0 0 1 2.354 0m-4.094 7.853H14m-12 0h2.04m2.84-1.17a1.67 1.67 0 0 1 0 2.354 1.68 1.68 0 0 1-2.36 0 1.666 1.666 0 0 1 0-2.36 1.66 1.66 0 0 1 2.353 0"
+      d="M10.5 3.5H8.97m-2.5 0H1.5m7.105-.885a1.25 1.25 0 0 1 0 1.765c-.49.485-1.28.485-1.77 0a1.25 1.25 0 0 1 0-1.77 1.243 1.243 0 0 1 1.765 0M5.53 8.5h4.97m-9 0h1.53m2.13-.878a1.25 1.25 0 0 1 0 1.765c-.49.486-1.28.486-1.77 0a1.25 1.25 0 0 1 0-1.77 1.243 1.243 0 0 1 1.765 0"
     />
   </svg>
 );

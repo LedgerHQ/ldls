@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:CryptoBitcoinCoin Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:CryptoBitcoinCoin Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,11 +31,11 @@ export const CryptoBitcoinCoin = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       fill="currentColor"
-      d="M14.65 8a.65.65 0 1 0-1.3 0zM8 2.65a.65.65 0 0 0 0-1.3zM11.033.683a.65.65 0 1 0 0 1.3zM14.01 4.96a.65.65 0 1 0 1.3 0zm-2.977-2.277a.65.65 0 1 0 0 1.3zm.977 2.277a.65.65 0 1 0 1.3 0zM6.667 10h-.65c0 .359.29.65.65.65zm.65-4a.65.65 0 0 0-1.3 0zm1.373-.667a.65.65 0 0 0-1.3 0zM7.39 6a.65.65 0 0 0 1.3 0zm1.3 4a.65.65 0 0 0-1.3 0zm-1.3.667a.65.65 0 1 0 1.3 0zM6.667 8v-.65a.65.65 0 0 0-.65.65zM6.66 6v-.65a.65.65 0 0 0-.65.65zm0 2h-.65c0 .359.291.65.65.65zM14 8h-.65A5.35 5.35 0 0 1 8 13.35v1.3A6.65 6.65 0 0 0 14.65 8zm-6 6v-.65A5.35 5.35 0 0 1 2.65 8h-1.3A6.65 6.65 0 0 0 8 14.65zM2 8h.65A5.35 5.35 0 0 1 8 2.65v-1.3A6.65 6.65 0 0 0 1.35 8zm9.033-6.667v.65A2.976 2.976 0 0 1 14.01 4.96h1.3A4.276 4.276 0 0 0 11.033.683zm0 2v.65c.541 0 .977.436.977.977h1.3a2.275 2.275 0 0 0-2.277-2.277zM6.667 10h.65V6h-1.3v4zM8.04 5.333h-.65V6h1.3v-.667zm0 4.667h-.65v.667h1.3V10zM6.667 8v.65H9v-1.3H6.667zM9 8v.65c.19 0 .35.158.35.35h1.3c0-.915-.747-1.65-1.65-1.65zm1 1h-.65c0 .188-.162.35-.35.35v1.3c.906 0 1.65-.744 1.65-1.65zm-1 1v-.65H6.667v1.3H9zm-2.333 0h.65V8h-1.3v2zM6.66 6v.65h2.1v-1.3h-2.1zm2.1 0v.65c.19 0 .35.158.35.35h1.3c0-.915-.747-1.65-1.65-1.65zm1 1h-.65c0 .188-.162.35-.35.35v1.3c.906 0 1.65-.744 1.65-1.65zm-1 1v-.65h-2.1v1.3h2.1zm-2.1 0h.65V6h-1.3v2z"
+      d="M11 6a.5.5 0 0 0-1 0h1M6 2a.5.5 0 0 0 0-1v1M8.275.5a.5.5 0 0 0 0 1v-1m2.22 3.22a.5.5 0 0 0 1 0h-1M8.275 2a.5.5 0 0 0 0 1V2m.72 1.72a.5.5 0 0 0 1 0h-1M5 7.5h-.5A.5.5 0 0 0 5 8zm.5-3a.5.5 0 0 0-1 0h1M6.53 4a.5.5 0 0 0-1 0h1m-1 .5a.5.5 0 0 0 1 0h-1m1 3a.5.5 0 0 0-1 0h1m-1 .5a.5.5 0 0 0 1 0h-1M5 6v-.5a.5.5 0 0 0-.5.5zm-.005-1.5V4a.5.5 0 0 0-.5.5zm0 1.5h-.5a.5.5 0 0 0 .5.5zM10.5 6H10a4 4 0 0 1-4 4v1a5 5 0 0 0 5-5zM6 10.5V10a4 4 0 0 1-4-4H1a5 5 0 0 0 5 5zM1.5 6H2a4 4 0 0 1 4-4V1a5 5 0 0 0-5 5zm6.775-5v.5a2.22 2.22 0 0 1 2.22 2.22h1A3.22 3.22 0 0 0 8.275.5zm0 1.5V3c.399 0 .72.321.72.72h1c0-.951-.769-1.72-1.72-1.72zM5 7.5h.5v-3h-1v3zM6.03 4h-.5v.5h1V4zm0 3.5h-.5V8h1v-.5zM5 6v.5h1.75v-1H5zm1.75 0v.5c.136 0 .25.113.25.25h1c0-.693-.566-1.25-1.25-1.25zm.75.75H7c0 .134-.116.25-.25.25v1C7.436 8 8 7.436 8 6.75zm-.75.75V7H5v1h1.75zM5 7.5h.5V6h-1v1.5zm-.005-3V5H6.57V4H4.995zm1.575 0V5c.136 0 .25.113.25.25h1C7.82 4.557 7.254 4 6.57 4zm.75.75h-.5c0 .134-.116.25-.25.25v1c.686 0 1.25-.564 1.25-1.25zM6.57 6v-.5H4.995v1H6.57zM4.995 6h.5V4.5h-1V6z"
     />
   </svg>
 );

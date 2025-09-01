@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Dollar Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Dollar Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,20 @@ export const Dollar = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
-    <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 5v.667M8 11v-.667M6.567 9.5c.26.54.826.867 1.426.833.726.08 1.393-.44 1.5-1.166 0-.507-.36-.94-.854-1.04L7.333 7.86c-.5-.1-.854-.533-.854-1.04.1-.733.767-1.253 1.5-1.167.6-.04 1.16.287 1.427.834M8 1.66a6.333 6.333 0 1 0 0 12.667A6.333 6.333 0 0 0 8 1.66"
-    />
+    <g clipPath="url(#clip0_3_300)">
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 3.75v.5m0 4v-.5m-1.075-.625c.195.405.62.65 1.07.625a1.03 1.03 0 0 0 1.125-.875c0-.38-.27-.705-.64-.78l-.98-.2a.79.79 0 0 1-.64-.78c.074-.55.574-.94 1.124-.875.45-.03.87.215 1.07.625M6 1.245a4.75 4.75 0 1 0 0 9.5 4.75 4.75 0 0 0 0-9.5"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_3_300">
+        <path fill="#fff" d="M0 0h12v12H0z" />
+      </clipPath>
+    </defs>
   </svg>
 );

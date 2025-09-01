@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const ArrowUp = createIcon(
   "ArrowUp",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 3.333v9.334m-3.334-6L8 3.327l3.333 3.333"
+      d="M6 2.5v7M3.5 5 6 2.495l2.5 2.5"
     />
   </Svg>
 );

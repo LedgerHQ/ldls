@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:WirelessCharging Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:WirelessCharging Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const WirelessCharging = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9 11.333v1.334c0 .366-.3.666-.667.666h-.666A.664.664 0 0 1 7 12.667v-1.334m1 3.334v-1.334M7.835 5l-.84 1.667h2l-.84 1.666M3.333 2h9.334C13.403 2 14 2.597 14 3.333V10c0 .736-.597 1.333-1.333 1.333H3.333A1.333 1.333 0 0 1 2 10V3.333C2 2.597 2.597 2 3.333 2"
+      d="M6.75 8.5v1c0 .275-.225.5-.5.5h-.5c-.28 0-.5-.225-.5-.5v-1M6 11v-1m-.124-6.25L5.246 5h1.5l-.63 1.25M2.5 1.5h7a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1"
     />
   </svg>
 );

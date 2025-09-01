@@ -19,22 +19,16 @@
   --color-background-base-transparent-hover: var(--color-light-grey-950-5);
   --color-background-base-transparent-pressed: var(--color-light-grey-950-10);
   --color-background-disabled: var(--color-light-grey-200);
-  --color-background-muted: var(--color-light-grey-100);
-  --color-background-muted-hover: var(--color-light-grey-200);
-  --color-background-muted-pressed: var(--color-light-grey-300);
-  --color-background-muted-on-sheet: var(--color-light-grey-100);
-  --color-background-muted-on-sheet-hover: var(--color-light-grey-200);
-  --color-background-muted-on-sheet-pressed: var(--color-light-grey-300);
-  --color-background-muted-on-muted: var(--color-light-grey-200);
-  --color-background-muted-on-muted-hover: var(--color-light-grey-300);
-  --color-background-muted-on-muted-pressed: var(--color-light-grey-400);
+  --color-background-muted: var(--color-light-grey-200);
+  --color-background-muted-hover: var(--color-light-grey-300);
+  --color-background-muted-pressed: var(--color-light-grey-400);
+  --color-background-muted-strong: var(--color-light-grey-600);
+  --color-background-muted-strong-hover: var(--color-light-grey-700);
+  --color-background-muted-strong-pressed: var(--color-light-grey-800);
   --color-background-muted-transparent: var(--color-light-grey-950-5);
   --color-background-muted-transparent-hover: var(--color-light-grey-950-10);
   --color-background-muted-transparent-pressed: var(--color-light-grey-950-20);
   --color-background-muted-transparent-disabled: var(--color-light-grey-950-5);
-  --color-background-muted-strong: var(--color-light-grey-600);
-  --color-background-muted-strong-hover: var(--color-light-grey-700);
-  --color-background-muted-strong-pressed: var(--color-light-grey-800);
   --color-background-accent-ledger-live: var(--color-light-purple-600);
   --color-background-accent-ledger-live-hover: var(--color-light-purple-700);
   --color-background-accent-ledger-live-pressed: var(--color-light-purple-800);
@@ -363,20 +357,6 @@
   --background-muted: var(--color-background-muted-default);
   --background-muted-hover: var(--color-background-muted-hover);
   --background-muted-pressed: var(--color-background-muted-pressed);
-  --background-muted-on-sheet: var(--color-background-muted-on-sheet-default);
-  --background-muted-on-sheet-hover: var(
-    --color-background-muted-on-sheet-hover
-  );
-  --background-muted-on-sheet-pressed: var(
-    --color-background-muted-on-sheet-pressed
-  );
-  --background-muted-on-muted: var(--color-background-muted-on-muted-default);
-  --background-muted-on-muted-hover: var(
-    --color-background-muted-on-muted-hover
-  );
-  --background-muted-on-muted-pressed: var(
-    --color-background-muted-on-muted-pressed
-  );
   --background-muted-transparent: var(
     --color-background-muted-transparent-default
   );

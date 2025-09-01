@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const Home = createIcon(
   "Home",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2.667 5.733V14h10.666V5.733m-12 .934L8 2l6.667 4.667M10 14v-4c0-.74-.6-1.333-1.333-1.333H7.333C6.593 8.667 6 9.26 6 10v4"
+      d="M2 4.3v6.2h8V4.3M1 5l5-3.5L11 5m-3.5 5.5v-3a1 1 0 0 0-1-1h-1c-.555 0-1 .445-1 1v3"
     />
   </Svg>
 );

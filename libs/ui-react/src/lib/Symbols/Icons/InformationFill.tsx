@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:InformationFill Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:InformationFill Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,11 +31,11 @@ export const InformationFill = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       fill="currentColor"
-      d="M8 1.35a6.65 6.65 0 0 1 0 13.3A6.646 6.646 0 0 1 1.35 8c0-3.679 2.978-6.65 6.65-6.65m0 6a.65.65 0 0 0-.65.65v3.333a.65.65 0 1 0 1.3 0V8A.65.65 0 0 0 8 7.35m-.01-2.666-.003-.001-.009.001a.814.814 0 0 0-.797.732l-.005.084.005.08c.04.395.373.737.813.737.242 0 .443-.11.575-.241A.82.82 0 0 0 8.81 5.5.82.82 0 0 0 8 4.684l-.006-.001zm-.003 1.3L7.9 5.975l-.002-.001c.03.004.059.01.089.01"
+      d="M6 1.012A4.988 4.988 0 1 1 6 10.988 4.988 4.988 0 0 1 6 1.012M6 5.5a.5.5 0 0 0-.5.5v2.5a.5.5 0 0 0 1 0V6a.5.5 0 0 0-.5-.5m-.008-1.999H5.99a.622.622 0 0 0-.62.625c0 .327.266.624.625.624a.626.626 0 0 0 .625-.625.624.624 0 0 0-.625-.625z"
     />
   </svg>
 );

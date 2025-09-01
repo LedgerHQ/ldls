@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const BitcoinComputer = createIcon(
   "BitcoinComputer",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.333 11.333 9.667 14m-3-2.667L6.333 14m-.906 0h5.146M6.707 6.653V4.847h1.82a.901.901 0 1 1-.006 1.802m-.673-2.316v.514m0 4.153v-.583m4.438 2.916H3.713c-.946 0-1.72-.773-1.72-1.72V3.707c0-.947.767-1.72 1.714-1.72h8.571c.947 0 1.713.766 1.713 1.713v5.9c0 .947-.773 1.713-1.72 1.713zM8.75 8.407H6.703V6.653h2.04c.48 0 .874.387.874.874 0 .48-.394.873-.88.873z"
+      d="m7 8.5.25 2M5 8.5l-.25 2m-.68 0h3.86m-2.9-5.51V3.635h1.366a.676.676 0 1 1-.005 1.352M5.886 3.25v.385m0 3.115v-.438M9.214 8.5H2.785c-.71 0-1.29-.58-1.29-1.29V2.78c0-.71.575-1.29 1.285-1.29h6.429c.71 0 1.284.575 1.284 1.285V7.2c0 .71-.58 1.285-1.29 1.285zM6.562 6.305H5.027V4.99h1.53a.654.654 0 1 1-.005 1.31z"
     />
   </Svg>
 );

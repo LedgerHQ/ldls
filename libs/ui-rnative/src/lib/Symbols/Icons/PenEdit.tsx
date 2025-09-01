@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const PenEdit = createIcon(
   "PenEdit",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m9.167 4.773 2.06 2.06m-7.7 3.574 6.88-6.887c.26-.26.68-.26.94 0l1.113 1.113c.26.26.26.68 0 .94L5.573 12.46a.7.7 0 0 1-.473.194H3.313v-1.787a.66.66 0 0 1 .194-.473z"
+      d="M6.875 3.58 8.42 5.125m-5.775 2.68 5.16-5.165a.5.5 0 0 1 .705 0l.835.835a.5.5 0 0 1 0 .705L4.18 9.345a.53.53 0 0 1-.355.145h-1.34V8.15c0-.135.05-.26.145-.355z"
     />
   </Svg>
 );

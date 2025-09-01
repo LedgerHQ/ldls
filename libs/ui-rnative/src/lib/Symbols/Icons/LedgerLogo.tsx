@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const LedgerLogo = createIcon(
   "LedgerLogo",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2 4.667V3a1 1 0 0 1 1-1h3m3.333 8H7.667a1 1 0 0 1-1-1V6M14 4.667V3a1 1 0 0 0-1-1h-3m-8 9.333V13a1 1 0 0 0 1 1h3m8-2.667V13a1 1 0 0 1-1 1h-3"
+      d="M1.5 3.5V2.25a.75.75 0 0 1 .75-.75H4.5m2.5 6H5.75A.75.75 0 0 1 5 6.75V4.5m5.5-1V2.25a.75.75 0 0 0-.75-.75H7.5m-6 7v1.25c0 .414.336.75.75.75H4.5m6-2v1.25a.75.75 0 0 1-.75.75H7.5"
     />
   </Svg>
 );

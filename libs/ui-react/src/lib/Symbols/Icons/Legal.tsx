@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Legal Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Legal Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Legal = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6 14H3.333C2.593 14 2 13.4 2 12.667V3.333C2 2.593 2.593 2 3.333 2h8c.734 0 1.334.593 1.334 1.333V6m-8-.667h4M4.667 8H6m2.667 6H14m-4.667 0v-3.053m2 3.053v-3.053m2 3.053v-3.053m-4.666 0H14V9.753L11.333 8.66 8.667 9.747z"
+      d="M4.5 10.5h-2a1 1 0 0 1-1-1v-7c0-.555.445-1 1-1h6a1 1 0 0 1 1 1v2m-6-.5h3m-3 2h1m2 4.5h4m-3.5 0V8.21m1.5 2.29V8.21M10 10.5V8.21m-3.5 0h4v-.895l-2-.82-2 .815z"
     />
   </svg>
 );

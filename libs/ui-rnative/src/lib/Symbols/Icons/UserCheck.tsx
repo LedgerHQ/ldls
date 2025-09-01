@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const UserCheck = createIcon(
   "UserCheck",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2.667 13.333c0-1.66 1.34-3 3-3h1.722m5.278.959-2 2-1.2-1.2M8 2.667a2.833 2.833 0 1 0 0 5.666 2.833 2.833 0 0 0 0-5.666"
+      d="M2 10a2.247 2.247 0 0 1 2.25-2.25h1.292m3.958.719L8 9.969l-.9-.9M6 2a2.125 2.125 0 1 0 0 4.25A2.125 2.125 0 0 0 6 2"
     />
   </Svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:ShieldLock Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:ShieldLock Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const ShieldLock = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.018 7.417v-.9c0-.562-.46-1.02-1.02-1.02-.562 0-1.02.453-1.02 1.013v.893m2.189.01H6.833a.66.66 0 0 0-.666.667v1.413c0 .367.293.667.666.667h2.334c.366 0 .666-.3.666-.667v-1.42c0-.373-.3-.666-.666-.666zm4.166.08c0 2.912-2.104 5.64-4.986 6.454-.227.06-.468.06-.694 0-2.886-.82-4.986-3.547-4.986-6.46V4.8c0-.547.326-1.033.826-1.234l3.24-1.327a3.3 3.3 0 0 1 2.52 0l3.24 1.327c.5.2.827.687.827 1.234v2.685z"
+      d="M6.764 5.563v-.675a.767.767 0 0 0-.766-.766.763.763 0 0 0-.764.76v.67m1.641.008h-1.75c-.28 0-.5.22-.5.5v1.06c0 .275.22.5.5.5h1.75c.275 0 .5-.225.5-.5V6.055c0-.28-.225-.5-.5-.5zM10 5.62c0 2.184-1.578 4.23-3.74 4.84-.17.045-.351.045-.52 0C3.575 9.845 2 7.8 2 5.615V3.6c0-.41.245-.775.62-.925l2.43-.995a2.48 2.48 0 0 1 1.89 0l2.43.995c.375.15.62.515.62.925v2.014z"
     />
   </svg>
 );

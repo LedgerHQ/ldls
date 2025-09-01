@@ -33,13 +33,12 @@ import createIcon from "../../Components/Icon/createIcon";
  */
 export const AlarmClock = createIcon(
   "AlarmClock",
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M3.113 11.473c.39.546.868 1.024 1.414 1.414M2.09 7A6 6 0 0 0 2 8c0 .341.035.674.09 1m1.023-4.473a6 6 0 0 1 1.414-1.414M7 13.91c.326.055.659.09 1 .09A6 6 0 1 0 8 2a6 6 0 0 0-1 .09m3.667 4.577L7.333 10l-2-2"
+      d="M2.335 8.605c.292.41.65.768 1.06 1.06M1.568 5.25A4.5 4.5 0 0 0 1.5 6c0 .256.026.505.067.75m.768-3.354c.292-.411.65-.769 1.06-1.061m1.855 8.097c.245.041.494.068.75.068a4.5 4.5 0 1 0 0-9c-.256 0-.505.026-.75.067M8 5 5.5 7.5 4 6"
     />
   </Svg>
 );

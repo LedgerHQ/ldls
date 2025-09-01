@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:CoinPercent Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:CoinPercent Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const CoinPercent = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m7.86 6.133 2.273-2.28m-2.42-.086c0-.034.02-.061.054-.061.026 0 .053.02.053.053-.007.027-.027.054-.06.054-.033-.007-.06-.027-.06-.06v-.007m-2.367.92V3.534c0-1.22.98-2.2 2.2-2.2h2.934c1.213 0 2.2.98 2.2 2.2v2.934c0 1.213-.987 2.2-2.2 2.2H10m.283-2.44c-.006.026-.026.053-.06.053-.033-.007-.06-.027-.06-.06s.02-.06.054-.06c.026 0 .053.02.053.053M2 8.4v4.533C2 13.52 3.193 14 4.667 14c1.466 0 2.66-.48 2.666-1.067V8.4M2 10.667c0 .586 1.187 1.066 2.66 1.066 1.467 0 2.667-.48 2.667-1.066m0-2.267c0 .587-1.2 1.067-2.667 1.067-1.473 0-2.667-.48-2.667-1.067 0-.593 1.194-1.067 2.667-1.067s2.66.474 2.667 1.067"
+      d="M5.895 4.6 7.6 2.89m-1.815-.065c0-.025.015-.046.04-.046.02 0 .04.016.04.04-.005.02-.02.04-.045.04-.025-.005-.045-.02-.045-.045V2.81M4 3.5v-.85C4 1.735 4.735 1 5.65 1h2.2c.91 0 1.65.735 1.65 1.65v2.2c0 .91-.74 1.65-1.65 1.65H7.5m.213-1.83c-.006.02-.02.04-.046.04-.025-.005-.045-.02-.045-.045s.016-.045.04-.045c.02 0 .04.015.04.04M1.5 6.3v3.4c0 .44.895.8 2 .8 1.1 0 1.995-.36 2-.8V6.3M1.5 8c0 .44.89.8 1.995.8 1.1 0 2-.36 2-.8m0-1.7c0 .44-.9.8-2 .8-1.105 0-2-.36-2-.8 0-.445.895-.8 2-.8s1.995.355 2 .8"
     />
   </svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Placeholder Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Placeholder Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,18 +31,17 @@ export const Placeholder = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <g clipPath="url(#clip0_5625_429)">
       <path
         stroke="currentColor"
-        strokeWidth={1.3}
-        d="M1.889 1.889 14.11 14.11m-12.222 0L14.11 1.89M1.333 1.333h13.334v13.334H1.333z"
+        d="m1.417 1.417 9.166 9.166m-9.166 0 9.166-9.166M1 1h10v10H1z"
       />
     </g>
     <defs>
       <clipPath id="clip0_5625_429">
-        <path fill="#fff" d="M0 0h16v16H0z" />
+        <path fill="#fff" d="M0 0h12v12H0z" />
       </clipPath>
     </defs>
   </svg>

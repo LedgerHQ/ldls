@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Search Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Search Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,13 +31,12 @@ export const Search = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
-      strokeWidth={1.3}
-      d="m14 14-3.334-3.333m1.2-3.734a4.933 4.933 0 1 1-9.866 0 4.933 4.933 0 0 1 9.867 0Z"
+      d="M10.5 10.5 8 8m.9-2.8a3.7 3.7 0 1 1-7.4 0 3.7 3.7 0 0 1 7.4 0Z"
     />
   </svg>
 );
