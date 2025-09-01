@@ -6,3 +6,4 @@ export * from './Link';
 export * from './Switch';
 export * from './Tag';
 export * from './Tooltip';
+export * from './VerticalListItem';
