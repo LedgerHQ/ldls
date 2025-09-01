@@ -3,7 +3,7 @@ import { cn } from '@ldls/utils-shared';
 import { DeleteCircleFill } from '../../Symbols';
 
 const baseRootStyles = cn(
-  'group relative flex h-48 w-full items-center rounded-md bg-muted transition-colors',
+  'group relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
   'hover:bg-muted-hover focus-within:ring-2 focus-within:ring-active',
   'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
   'has-[:invalid]:ring-1 has-[:invalid]:ring-error has-[:invalid]:border-error',
@@ -11,7 +11,7 @@ const baseRootStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 bg-transparent pl-16 text-base outline-none body-2 transition-colors bg-muted rounded-md',
+  'peer flex-1 bg-transparent w-full text-base outline-none body-2 transition-colors bg-muted ',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
   'placeholder:text-transparent',
@@ -170,11 +170,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             });
           }}
         >
-          {prefix && (
-            <div data-side="left" className="ml-16">
-              {prefix}
-            </div>
-          )}
+          {prefix && <div data-side="left">{prefix}</div>}
 
           <input
             ref={composeRefs(ref, inputRef)}
@@ -183,12 +179,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=" "
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(
-              baseInputStyles,
-              label && 'pt-16',
-              suffix && 'pr-8',
-              prefix && 'pl-8',
-            )}
+            className={cn(baseInputStyles, label && 'pt-16')}
             onChange={handleInput}
             {...(({ 'aria-invalid': _, onChange: __, ...rest }) => rest)(props)}
           />
@@ -206,7 +197,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
               onClick={() => {
                 handleClear();
               }}
-              className="mr-16 cursor-pointer rounded-full"
+              className="cursor-pointer rounded-full"
               aria-label="Clear input"
               data-side="right"
             >
@@ -214,11 +205,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             </button>
           )}
 
-          {suffix && !showClearButton && (
-            <div className="mr-16" data-side="right">
-              {suffix}
-            </div>
-          )}
+          {suffix && !showClearButton && <div data-side="right">{suffix}</div>}
         </div>
         {errorMessage && (
           <div
