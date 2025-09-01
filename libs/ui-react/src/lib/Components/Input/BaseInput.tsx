@@ -28,8 +28,12 @@ export interface BaseInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /** The label text that floats above the input when focused or filled */
   label?: string;
-  /** Additional class names to apply to the input */
+  /** Additional class names to apply to the input element */
   className?: string;
+  /** Additional class names to apply to the container element */
+  containerClassName?: string;
+  /** Additional class names to apply to the label element */
+  labelClassName?: string;
   /** An optional error message displayed below the input */
   errorMessage?: string;
   /**
@@ -53,6 +57,11 @@ export interface BaseInputProps
  * Shows a clear button by default when input has content. Use hideClearButton to hide it.
  * This is an internal component used to build other input components.
  *
+ * Supports className customization for different elements:
+ * - `className`: Applied to the input element
+ * - `containerClassName`: Applied to the container/root element
+ * - `labelClassName`: Applied to the floating label element
+ *
  * @internal
  */
 
@@ -60,6 +69,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (
     {
       className,
+      containerClassName,
+      labelClassName,
       label,
       id,
       disabled,
@@ -149,7 +160,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     return (
       <div>
         <div
-          className={cn(className, baseRootStyles)}
+          className={cn(containerClassName, baseRootStyles)}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
@@ -179,13 +190,16 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=" "
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(baseInputStyles, label && 'pt-16')}
+            className={cn(baseInputStyles, label && 'pt-16', className)}
             onChange={handleInput}
             {...(({ 'aria-invalid': _, onChange: __, ...rest }) => rest)(props)}
           />
 
           {label && (
-            <label htmlFor={inputId} className={baseLabelStyles}>
+            <label
+              htmlFor={inputId}
+              className={cn(baseLabelStyles, labelClassName)}
+            >
               {label}
             </label>
           )}
