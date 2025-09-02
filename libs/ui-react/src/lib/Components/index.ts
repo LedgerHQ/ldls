@@ -4,6 +4,7 @@ export * from './CardButton';
 export * from './Checkbox';
 export * from './Link';
 export * from './ListItem';
+export * from './Spot';
 export * from './Switch';
 export * from './Input';
 export * from './Tag';

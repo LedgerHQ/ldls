@@ -18,6 +18,7 @@ export { BellNotification } from './Icons/BellNotification';
 export { BitcoinComputer } from './Icons/BitcoinComputer';
 export { BitcoinVoucher } from './Icons/BitcoinVoucher';
 export { Bluetooth } from './Icons/Bluetooth';
+export { BluetoothCircleFill } from './Icons/BluetoothCircleFill';
 export { Bolt } from './Icons/Bolt';
 export { BookOpen } from './Icons/BookOpen';
 export { Bug } from './Icons/Bug';
