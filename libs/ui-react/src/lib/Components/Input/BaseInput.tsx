@@ -106,6 +106,12 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
 
     const isControlled = props.value !== undefined;
 
+    // For uncontrolled inputs, we need state to track value changes for UI reactivity.
+    // We can't use inputRef.current.value directly because:
+    // 1. On first render, inputRef.current is null (so we fallback to defaultValue)
+    // 2. When clearing the input, DOM value changes but React doesn't re-render
+    //    to recalculate hasContent, causing clear button to stay visible
+    // This state is only for UI reactivity (clear button visibility), not controlling the input
     const [uncontrolledValue, setUncontrolledValue] = React.useState(
       props.defaultValue?.toString() || '',
     );
