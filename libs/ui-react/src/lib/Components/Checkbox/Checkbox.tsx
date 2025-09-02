@@ -54,7 +54,7 @@ export interface CheckboxProps
  * Do not use it to modify the checkbox's core appearance.
  *
  * @example
- * import { Checkbox } from '@ldls/ui-react';
+ * import { Checkbox } from '@ledgerhq/ldls-ui-react';
  *
  * // Basic controlled checkbox
  * const [checked, setChecked] = useState(false);

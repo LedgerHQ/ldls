@@ -18,7 +18,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Spinner } from '@ldls/ui-react/symbols';
+ * import { Spinner } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Spinner />
  *
@@ -28,7 +28,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-react';
+ * import { Button } from '@ledgerhq/ldls-ui-react';
  *
  * <Button icon={Spinner} size="md">
  *   Click me

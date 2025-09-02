@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Facebook } from '@ldls/ui-react/symbols';
+ * import { Facebook } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Facebook />
  *

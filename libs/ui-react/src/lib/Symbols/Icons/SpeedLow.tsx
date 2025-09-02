@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { SpeedLow } from '@ldls/ui-react/symbols';
+ * import { SpeedLow } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <SpeedLow />
  *

@@ -1,5 +1,5 @@
 {
-  "name": "@ldls/ui-react",
+  "name": "@ledgerhq/ldls-ui-react",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ui-react/src",
   "projectType": "library",

@@ -7,7 +7,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import { Button } from '@ldls/ui-rnative';
+import { Button } from '@ledgerhq/ui-rnative';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);

@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Medal1 } from '@ldls/ui-react/symbols';
+ * import { Medal1 } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Medal1 />
  *

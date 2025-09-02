@@ -1,5 +1,5 @@
 {
-  "name": "@ldls/ui-rnative",
+  "name": "@ledgerhq/ui-rnative",
   "version": "0.0.13",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",

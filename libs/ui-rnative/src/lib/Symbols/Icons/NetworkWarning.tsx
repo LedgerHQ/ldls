@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { NetworkWarning } from '@ldls/ui-rnative/symbols';
+ * import { NetworkWarning } from '@ledgerhq/ui-rnative/symbols';
  *
  * <NetworkWarning />
  *
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ui-rnative';
  *
  * <Button icon={NetworkWarning} size="md">
  *   Click me

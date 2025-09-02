@@ -104,7 +104,7 @@ export interface ButtonProps
  * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Button } from '@ldls/ui-react';
+ * import { Button } from '@ledgerhq/ldls-ui-react';
  *
  * // Basic primary button
  * <Button appearance="base" size="md" onClick={() => console.log('Clicked!')}>
@@ -112,8 +112,8 @@ export interface ButtonProps
  * </Button>
  *
  * // Icon-only button with loading state
- * import { Button } from '@ldls/ui-react';
- * import { ArrowRight } from '@ldls/ui-react/symbols';
+ * import { Button } from '@ledgerhq/ldls-ui-react';
+ * import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Button icon={ArrowRight} size="sm" loading={isLoading} disabled={isLoading} />
  *

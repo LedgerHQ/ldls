@@ -1,13 +1,13 @@
-# @ldls/design-core
+# @ledgerhq/ldls-design-core
 
 Design tokens and symbols for the Ledger Design System.
 
 ## Installation
 
 ```bash
-npm install @ldls/design-core
+npm install @ledgerhq/ldls-design-core
 # or
-yarn add @ldls/design-core
+yarn add @ledgerhq/ldls-design-core
 ```
 
 ## Usage
@@ -18,14 +18,14 @@ This library provides design tokens in both JavaScript and CSS formats, generate
 
 ```js
 // Import tailwind preset - works in both React and React Native
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 /* Example */
 
 const config = {
   content: [
   "./src/**/*.{js,ts,jsx,tsx}", // App's own content (e.g., Ledger Live's specific screens/components)
-  "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Path to the installed Ledger UI Kit components
+  "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Path to the installed Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -111,7 +111,7 @@ Using the JavaScript format we also generate a preset per brand.
 When a new version of design tokens and/or symbols is published in figma:
 
 1. Update the appropriate JSON source files automatically via the [Github Actions](https://github.com/LedgerHQ/ldls/actions/workflows/sync-figma.yml)
-2. Run the build process to generate new output files `npx nx run @ldls/design-core:build`
+2. Run the build process to generate new output files `npx nx run @ledgerhq/ldls-design-core:build`
 3. Test the changes across different themes and platforms
 4. Update documentation as needed
 

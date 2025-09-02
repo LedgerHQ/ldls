@@ -34,7 +34,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Export Design Tokens from Figma
-        run: npx nx run @ldls/design-core:figma-export
+        run: npx nx run @ledgerhq/ldls-design-core:figma-export
         env:
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           FIGMA_FOUNDATIONS_FILE_KEY: ${{ github.event.inputs.figma_foundations_file_key || vars.FIGMA_FOUNDATIONS_FILE_KEY }}
@@ -65,7 +65,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Download SVGs from Figma
-        run: npx nx run @ldls/design-core:figma-download-svgs
+        run: npx nx run @ledgerhq/ldls-design-core:figma-download-svgs
         env:
           FIGMA_API_TOKEN: ${{ secrets.FIGMA_API_TOKEN }}
           FIGMA_SYMBOLS_FILE_KEY: ${{ github.event.inputs.figma_symbols_file_key || vars.FIGMA_SYMBOLS_FILE_KEY }}
@@ -104,7 +104,7 @@ jobs:
           path: libs/design-core/tokens/
 
       - name: Run Design Tokens ETL
-        run: npx nx run @ldls/design-core:design-tokens-etl
+        run: npx nx run @ledgerhq/ldls-design-core:design-tokens-etl
 
       - name: Upload processed tokens artifacts
         uses: actions/upload-artifact@v4
@@ -139,7 +139,7 @@ jobs:
           path: libs/design-core/symbols/
 
       - name: Generate React Symbol Components
-        run: npx nx run @ldls/design-core:generate-symbols-react
+        run: npx nx run @ledgerhq/ldls-design-core:generate-symbols-react
 
       - name: Upload React symbols artifacts
         uses: actions/upload-artifact@v4
@@ -174,7 +174,7 @@ jobs:
           path: libs/design-core/symbols/
 
       - name: Generate React Native Symbol Components
-        run: npx nx run @ldls/design-core:generate-symbols-react-native
+        run: npx nx run @ledgerhq/ldls-design-core:generate-symbols-react-native
 
       - name: Upload React Native symbols artifacts
         uses: actions/upload-artifact@v4
@@ -231,9 +231,9 @@ jobs:
           TIMESTAMP=$(node -e "console.log(Date.now())")
           cat << EOF > .nx/version-plans/version-plan-$TIMESTAMP.md
           ---
-          '@ldls/design-core': patch
-          '@ldls/ui-rnative': patch
-          '@ldls/ui-react': patch
+          '@ledgerhq/ldls-design-core': patch
+          '@ledgerhq/ui-rnative': patch
+          '@ledgerhq/ldls-ui-react': patch
           ---
 
           Sync Figma Design Tokens & Symbols

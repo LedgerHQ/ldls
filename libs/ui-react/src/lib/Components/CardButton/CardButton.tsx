@@ -57,13 +57,13 @@ export interface CardButtonProps
  *
  * @example
  * // Basic card button
- * import { CardButton } from '@ldls/ui-react';
+ * import { CardButton } from '@ledgerhq/ldls-ui-react';
  *
  * <CardButton title="Click Me" onClick={() => console.log('Clicked!')} />
  *
  * // Card button with icon and description
- * import { CardButton } from '@ldls/ui-react';
- * import { Info } from '@ldls/ui-react/symbols';
+ * import { CardButton } from '@ledgerhq/ldls-ui-react';
+ * import { Info } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <CardButton
  *   icon={Info}

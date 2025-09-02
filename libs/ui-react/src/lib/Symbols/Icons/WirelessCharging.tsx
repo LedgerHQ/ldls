@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { WirelessCharging } from '@ldls/ui-react/symbols';
+ * import { WirelessCharging } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <WirelessCharging />
  *

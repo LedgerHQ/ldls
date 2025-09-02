@@ -1,5 +1,5 @@
 {
-  "name": "@ldls/design-core",
+  "name": "@ledgerhq/ldls-design-core",
   "version": "0.0.12",
   "type": "module",
   "main": "./dist/index.js",
