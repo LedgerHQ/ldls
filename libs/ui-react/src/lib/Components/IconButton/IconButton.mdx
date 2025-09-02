@@ -1,0 +1,79 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconButtonStories from './IconButton.stories';
+import { IconButton } from './IconButton';
+
+<Meta title="Components/IconButton/Docs" of={IconButtonStories} />
+
+# 🎯 IconButton
+
+## Introduction
+
+IconButtons are specialized interactive elements designed exclusively for icon-based actions. They provide a compact way to trigger actions while maintaining clear visual hierarchy through two distinct styles optimized for different icon types.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6975-2571).
+
+## Anatomy
+
+<Canvas of={IconButtonStories.IconTypeShowcase} />
+
+- **Icon**: The visual representation of the action, displayed as a single icon element from the design system
+- **Container**: A circular touch target that provides the interactive area and visual feedback
+
+## Properties
+
+### Overview
+
+<Canvas of={IconButtonStories.Filled} />
+<Controls of={IconButtonStories.Filled} />
+
+### Icon Types
+
+IconButtons come in two visual styles, each optimized for specific use cases:
+
+- **filled**: Best for filled/solid icons. Features a transparent background with colored icon that changes on interaction
+- **stroked**: Best for outlined icons. Features a subtle background that appears on hover with colored icon states
+
+<Canvas of={IconButtonStories.IconTypeShowcase} />
+
+### Icon Sizes
+
+IconButtons support various icon sizes to accommodate different use cases and screen densities:
+
+<Canvas of={IconButtonStories.SizesShowcase} />
+
+Common sizes include:
+
+- **16px**: Compact actions in dense interfaces
+- **20px**: Standard size for most icon buttons
+- **24px**: Prominent actions in toolbars
+- **40px**: Large touch targets for mobile interfaces
+
+> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through CSS classes. Always use the `size` prop on your icon component (e.g., `<Settings size={20} />`) to ensure proper scaling and visual consistency.
+
+### Icon States
+
+IconButtons have enabled or disabled states:
+
+<Canvas of={IconButtonStories.StatesShowcase} />
+
+## Accessibility
+
+IconButtons require special attention for accessibility since they contain only visual icons without text:
+
+### Screen Reader Support
+
+**Always provide an `aria-label` prop** that clearly describes the button's action:
+
+```tsx
+<IconButton iconType="filled" aria-label="Delete item">
+  <DeleteCircleFill size={20} />
+</IconButton>
+```
+
+### Keyboard Navigation
+
+IconButtons support full keyboard navigation:
+
+- **Tab**: Moves focus to the button
+- **Enter/Space**: Activates the button
+- **Focus ring**: Visible outline for keyboard users
