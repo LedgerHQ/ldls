@@ -2,6 +2,7 @@ export * from './Banner';
 export * from './Button';
 export * from './CardButton';
 export * from './Checkbox';
+export * from './IconButton';
 export * from './Link';
 export * from './Switch';
 export * from './Tag';
