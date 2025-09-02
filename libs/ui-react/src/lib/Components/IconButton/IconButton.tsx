@@ -1,20 +1,65 @@
-import { cva } from "class-variance-authority";
+import { cva } from 'class-variance-authority';
+import { cn } from '@ldls/utils-shared';
 
 const buttonVariants = cva(
-  'inline-flex  items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
   {
     variants: {
       iconType: {
-        filled: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        stroked: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
+        filled: 'text-muted hover:text-muted-hover active:text-muted-pressed',
+        stroked:
+          'bg-base-transparent text-muted hover:bg-base-transparent-hover hover:text-muted-hover active:bg-base-transparent-pressed active:text-muted-pressed',
       },
     },
   },
 );
 
-export const IconButton = () => {
-  return <button className={cn(className, 'rounded-full')} {...props}>
-    <IconComponent size={24} />
-  </button>
+export interface IconButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** The visual style of the icon button. Choose 'filled' for icons with solid backgrounds or 'stroked' for outlined icons. */
+  iconType: 'filled' | 'stroked';
+  /** The icon component to display inside the button. Should be a single icon element from the design system. */
+  children: React.ReactNode;
+}
+
+/**
+ * A specialized button component designed specifically for displaying icons.
+ *
+ * The IconButton provides two visual styles - 'filled' and 'stroked' - optimized for different icon types and use cases.
+ * It ensures proper focus states, hover effects, and accessibility features while maintaining a minimal footprint.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-iconbutton-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-iconbutton-implementation--docs#dos-and-donts Guidelines}
+ *
+ * @component
+ *
+ * @warning Always provide an `aria-label` prop to ensure screen reader accessibility, as the button contains only an icon without visible text.
+ * @warning The icon size should be controlled by the icon component itself, not through CSS. Use the appropriate size prop on the icon component (e.g., `size={20}`).
+ * @warning The `className` prop should only be used for layout adjustments like margins or positioning. Do not use it to modify the button's core appearance (colors, padding, etc).
+ *
+ * @example
+ * import { IconButton } from '@ldls/ui-react';
+ * import { DeleteCircleFill, Settings } from '@ldls/ui-react/symbols';
+ *
+ * // Filled icon button for destructive actions
+ * <IconButton iconType="filled" aria-label="Delete item" onClick={handleDelete}>
+ *   <DeleteCircleFill size={20} />
+ * </IconButton>
+ *
+ * // Stroked icon button for secondary actions
+ * <IconButton iconType="stroked" aria-label="Open settings" onClick={handleSettings}>
+ *   <Settings size={20} />
+ * </IconButton>
+ */
+export const IconButton = ({
+  className,
+  iconType,
+  ...props
+}: IconButtonProps) => {
+  return (
+    <button
+      className={cn(className, buttonVariants({ iconType }))}
+      {...props}
+    />
   );
 };
