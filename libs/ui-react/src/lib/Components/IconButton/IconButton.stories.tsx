@@ -120,3 +120,36 @@ export const SizesShowcase: Story = {
     );
   },
 };
+
+export const StatesShowcase: Story = {
+  render: () => {
+    return (
+      <div className="flex gap-16 bg-base p-8">
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-sm text-muted">Filled enabled</span>
+          <IconButton iconType="filled" aria-label="Delete">
+            <DeleteCircleFill />
+          </IconButton>
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-sm text-muted">Stroked enabled</span>
+          <IconButton iconType="stroked" aria-label="More actions">
+            <MoreVertical />
+          </IconButton>
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-sm text-muted">Filled disabled</span>
+          <IconButton iconType="filled" aria-label="Delete" disabled>
+            <DeleteCircleFill />
+          </IconButton>
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-sm text-muted">Stroked disabled</span>
+          <IconButton iconType="stroked" aria-label="More actions" disabled>
+            <MoreVertical />
+          </IconButton>
+        </div>
+      </div>
+    );
+  },
+};

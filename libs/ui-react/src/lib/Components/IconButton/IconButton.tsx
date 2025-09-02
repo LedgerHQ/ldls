@@ -2,13 +2,13 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+  'inline-flex h-fit w-fit items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',
   {
     variants: {
       iconType: {
-        filled: 'text-muted hover:text-muted-hover active:text-muted-pressed',
+        filled: '',
         stroked:
-          'bg-base-transparent text-muted hover:bg-base-transparent-hover hover:text-muted-hover active:bg-base-transparent-pressed active:text-muted-pressed',
+          'bg-base-transparent hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-disabled',
       },
     },
   },
