@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '@ldls/utils-shared';
-import { IconSize } from '../Icon/Icon';
-import { Tag, type TagProps } from '../Tag/Tag';
+import { Tag } from '../Tag';
 
 export interface ListItemProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
@@ -14,15 +13,15 @@ export interface ListItemProps
    */
   description?: string;
   /**
-   * Optional props for a tag displayed next to the description.
-   * @example descriptionTagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+   * Optional content to display on the left.
+   * @example leadingContent={<Settings />}
    */
-  descriptionTagProps?: TagProps;
+  leadingContent?: React.ReactNode;
   /**
-   * Optional icon to display on the left.
-   * @example leadingIcon={Bolt}
+   * Optional Tag component displayed next to the description.
+   * @example descriptionTag={<Tag label="New" appearance="accent" size="sm" />}
    */
-  leadingIcon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  descriptionTag?: React.ReactElement<typeof Tag>;
   /**
    * Custom content to render on the right side of the List-item.
    * @example trailingContent={<Icon />}
@@ -56,7 +55,7 @@ export interface ListItemProps
  *
  * <ListItem
  *   title="Balance"
- *   leadingIcon={Wallet}
+ *   leadingContent={<Wallet />}
  *   trailingContent={<Settings />}
  * />
  *
@@ -74,8 +73,8 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
     const {
       title,
       description,
-      descriptionTagProps,
-      leadingIcon: LeadingIcon,
+      leadingContent,
+      descriptionTag,
       trailingContent,
       className,
       ...buttonProps
@@ -94,7 +93,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
         {...buttonProps}
       >
         <div className="flex min-w-0 flex-1 items-center gap-12">
-          {LeadingIcon && <LeadingIcon size={48} className="shrink-0" />}
+          {leadingContent}
           <div className="flex min-w-0 flex-1 flex-col gap-4 text-left">
             <div className="truncate body-2-semi-bold">{title}</div>
             {description && (
@@ -107,17 +106,10 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
                 >
                   {description}
                 </div>
-                {descriptionTagProps && (
-                  <Tag
-                    {...descriptionTagProps}
-                    appearance={
-                      props.disabled
-                        ? 'disabled'
-                        : descriptionTagProps.appearance
-                    }
-                    className={cn(descriptionTagProps.className, '-my-2')}
-                    size="sm"
-                  />
+                {descriptionTag && (
+                  <div className="flex h-16 shrink-0 items-center">
+                    {descriptionTag}
+                  </div>
                 )}
               </div>
             )}

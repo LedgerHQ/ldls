@@ -49,25 +49,41 @@ const meta: Meta<typeof ListItem> = {
       control: 'text',
       description: 'Optional description',
     },
-    descriptionTagProps: {
-      control: 'object',
+    descriptionTag: {
+      control: 'select',
+      options: ['None', 'Tag'],
+      mapping: {
+        None: undefined,
+        Tag: <Tag label="New" appearance="accent" icon={Bolt} size="sm" />,
+      },
       if: { arg: 'description', exists: true },
     },
-    leadingIcon: {
+    leadingContent: {
       control: 'select',
       options: ['None', 'Settings', 'Plus'],
       mapping: {
         None: undefined,
-        Settings: Settings,
-        Plus: Plus,
+        Settings: <Settings />,
+        Plus: <Plus />,
       },
-      description: 'Optional leading icon',
+      description: 'Optional leading content',
     },
     trailingContent: {
-      control: false,
+      control: 'select',
       description: 'Optional trailing content to display on the right side',
+      options: ['icon', 'switch', 'value', 'tag', 'none'],
+      mapping: {
+        icon: <PenEdit size={24} />,
+        switch: <Switch selected={false} />,
+        value: <Balance />,
+        tag: <Tag label="New" appearance="accent" />,
+        none: undefined,
+      },
     },
-    onClick: { action: 'clicked' },
+    onClick: {
+      action: 'clicked',
+      description: 'The function to be called when the list item is clicked',
+    },
   },
 };
 
@@ -77,7 +93,7 @@ type Story = StoryObj<typeof ListItem>;
 export const Base: Story = {
   args: {
     title: 'Item with Icon and Description',
-    leadingIcon: Settings,
+    leadingContent: <Settings />,
     description: 'Additional information',
     className: 'max-w-320',
   },
@@ -86,9 +102,11 @@ export const Base: Story = {
 export const WithDescriptionTag: Story = {
   args: {
     title: 'Item with Description Tag',
-    leadingIcon: Settings,
+    leadingContent: <Settings />,
     description: 'Additional information',
-    descriptionTagProps: { label: 'New', appearance: 'accent', icon: Bolt },
+    descriptionTag: (
+      <Tag label="New" appearance="accent" icon={Bolt} size="sm" />
+    ),
     className: 'max-w-320',
   },
 };
@@ -102,38 +120,38 @@ export const TrailingContentVariantsShowcase: Story = {
         <ListItem
           title="Caret Variant"
           description="With description"
-          leadingIcon={User}
+          leadingContent={<User />}
           trailingContent={<ChevronRight size={24} />}
         />
         <ListItem
           title="Switch Variant"
           description="With description"
-          leadingIcon={Wallet}
+          leadingContent={<Wallet />}
           onClick={() => setSelected(!selected)}
           trailingContent={<Switch tabIndex={-1} selected={selected} />}
         />
         <ListItem
           title="Value Variant"
           description="With description"
-          leadingIcon={Cart}
+          leadingContent={<Cart />}
           trailingContent={<Balance />}
         />
         <ListItem
           title="Tag Variant"
           description="With description"
-          leadingIcon={Apps}
+          leadingContent={<Apps />}
           trailingContent={<Tag label="New" appearance="accent" />}
         />
         <ListItem
           title="Icon Variant"
           description="With description"
-          leadingIcon={Settings}
+          leadingContent={<Settings />}
           trailingContent={<PenEdit size={24} />}
         />
         <ListItem
           title="None Variant"
           description="With description"
-          leadingIcon={Chart1}
+          leadingContent={<Chart1 />}
         />
       </div>
     );
@@ -150,45 +168,45 @@ export const StateShowcase: Story = {
           <ListItem
             title="Caret Variant"
             description="With description"
-            leadingIcon={User}
+            leadingContent={<User />}
             trailingContent={<ChevronRight size={24} className="text-muted" />}
           />
           <ListItem
             title="Switch Variant"
             description="With description"
-            leadingIcon={Wallet}
+            leadingContent={<Wallet />}
             onClick={() => setSelected(!selected)}
             trailingContent={<Switch selected={selected} />}
           />
           <ListItem
             title="Value Variant"
             description="With description"
-            leadingIcon={Cart}
+            leadingContent={<Cart />}
             trailingContent={<Balance />}
           />
           <ListItem
             title="Tag Variant"
             description="With description"
-            leadingIcon={Apps}
+            leadingContent={<Apps />}
             trailingContent={<Tag label="New" appearance="accent" />}
           />
           <ListItem
             title="Icon Variant"
             description="With description"
-            leadingIcon={Settings}
+            leadingContent={<Settings />}
             trailingContent={<PenEdit size={24} />}
           />
           <ListItem
             title="None Variant"
             description="With description"
-            leadingIcon={Chart1}
+            leadingContent={<Chart1 />}
           />
         </div>
         <div className="flex max-w-256 flex-col">
           <ListItem
             title="Caret Variant"
             description="With description"
-            leadingIcon={User}
+            leadingContent={<User />}
             disabled
             trailingContent={
               <ChevronRight size={24} className="text-disabled" />
@@ -197,7 +215,7 @@ export const StateShowcase: Story = {
           <ListItem
             title="Switch Variant"
             description="With description"
-            leadingIcon={Wallet}
+            leadingContent={<Wallet />}
             onClick={() => setSelected(!selected)}
             disabled
             trailingContent={<Switch selected={selected} disabled />}
@@ -205,14 +223,14 @@ export const StateShowcase: Story = {
           <ListItem
             title="Value Variant"
             description="With description"
-            leadingIcon={Cart}
+            leadingContent={<Cart />}
             disabled
             trailingContent={<Balance disabled />}
           />
           <ListItem
             title="Tag Variant"
             description="With description"
-            leadingIcon={Apps}
+            leadingContent={<Apps />}
             disabled
             trailingContent={
               <Tag
@@ -225,14 +243,14 @@ export const StateShowcase: Story = {
           <ListItem
             title="Icon Variant"
             description="With description"
-            leadingIcon={Settings}
+            leadingContent={<Settings />}
             disabled
             trailingContent={<PenEdit size={24} className="text-disabled" />}
           />
           <ListItem
             title="None Variant"
             description="With description"
-            leadingIcon={Chart1}
+            leadingContent={<Chart1 />}
             disabled
           />
         </div>
@@ -249,20 +267,20 @@ export const ResponsiveLayout: Story = {
         <ListItem
           title="Short Title"
           description="Short description"
-          leadingIcon={Plus}
+          leadingContent={<Plus />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
-          leadingIcon={Plus}
+          leadingContent={<Plus />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
-          descriptionTagProps={{ label: 'New', appearance: 'accent' }}
-          leadingIcon={Plus}
+          descriptionTag={<Tag label="New" appearance="accent" size="sm" />}
+          leadingContent={<Plus />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
       </div>

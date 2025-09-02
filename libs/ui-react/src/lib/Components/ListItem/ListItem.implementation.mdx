@@ -83,7 +83,7 @@ function MyComponent() {
 
 ### With Leading Icon
 
-Include a leading icon for visual identification. Icons are automatically sized to 24px:
+Include a leading icon for visual identification:
 
 ```tsx
 import { ListItem } from '@ldls/ui-react';
@@ -94,7 +94,7 @@ function MyComponent() {
     <ListItem
       title="Settings"
       description="Manage your profile and preferences"
-      leadingIcon={Settings}
+      leadingContent={<Settings size={24} />}
       trailingContent={<ChevronRight size={24} />}
     />
   );
@@ -119,7 +119,7 @@ function ListVariants() {
       <ListItem
         title="Chevron Variant"
         description="With description"
-        leadingIcon={User}
+        leadingContent={<User />}
         trailingContent={<ChevronRight size={24} />}
       />
 
@@ -127,7 +127,7 @@ function ListVariants() {
       <ListItem
         title="Enable Feature"
         description="Toggle this setting on/off"
-        leadingIcon={Bolt}
+        leadingContent={<User />}
         onClick={() => setSelected(!selected)}
         trailingContent={<Switch selected={selected} />}
       />
@@ -182,7 +182,7 @@ function MyComponent() {
       trailingContentVariant="caret"
       title="New Item"
       description="Recently added"
-      descriptionTagProps={{ label: 'New', appearance: 'accent', icon: Bolt }}
+      descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} />}
     />
   );
 }
@@ -211,7 +211,7 @@ ListItem handles truncation responsively. Use container widths to control behavi
     trailingContentVariant="caret"
     title="Very Long Title That Will Truncate"
     description="Very long description that will also truncate appropriately"
-    leadingIcon={Settings}
+    leadingContent={<User />}
   />
 </div>
 ```
