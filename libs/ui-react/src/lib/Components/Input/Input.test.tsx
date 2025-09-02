@@ -127,17 +127,16 @@ describe('Input Component', () => {
     expect(inputElement).toHaveAttribute('autoComplete', 'username');
   });
 
-  it('should apply custom className', () => {
+  it('should apply custom className to input element', () => {
     render(
       <Input
         label="Username"
-        className="custom-class"
+        className="custom-input-class"
         {...createControlledProps()}
       />,
     );
     const inputElement = screen.getByRole('textbox');
-    const containerElement = inputElement.parentElement;
-    expect(containerElement).toHaveClass('custom-class');
+    expect(inputElement).toHaveClass('custom-input-class');
   });
 
   it('should render label with correct htmlFor attribute when id is provided', () => {
@@ -173,13 +172,11 @@ describe('Input Component', () => {
     expect(handleBlur).toHaveBeenCalledTimes(1);
   });
 
-  it('should show clear button when input has content and onClear is provided', () => {
-    const handleClear = vi.fn();
+  it('should show clear button when input has content by default', () => {
     render(
       <Input
         label="Username"
         {...createControlledProps({ value: 'test content' })}
-        onClear={handleClear}
       />,
     );
     const clearButton = screen.getByRole('button', { name: /clear input/i });
@@ -187,25 +184,16 @@ describe('Input Component', () => {
   });
 
   it('should not show clear button when input is empty', () => {
-    const handleClear = vi.fn();
-    render(
-      <Input
-        label="Username"
-        {...createControlledProps()}
-        onClear={handleClear}
-      />,
-    );
+    render(<Input label="Username" {...createControlledProps()} />);
     const clearButton = screen.queryByRole('button', { name: /clear input/i });
     expect(clearButton).not.toBeInTheDocument();
   });
 
   it('should not show clear button when input is disabled', () => {
-    const handleClear = vi.fn();
     render(
       <Input
         label="Username"
         {...createControlledProps({ value: 'test content' })}
-        onClear={handleClear}
         disabled
       />,
     );
@@ -213,22 +201,29 @@ describe('Input Component', () => {
     expect(clearButton).not.toBeInTheDocument();
   });
 
-  it('should call onClear when clear button is clicked', () => {
+  it('should call onClear after default clearing when clear button is clicked', () => {
     const handleClear = vi.fn();
+    const handleChange = vi.fn();
     render(
       <Input
         label="Username"
-        {...createControlledProps({ value: 'test content' })}
+        {...createControlledProps({
+          value: 'test content',
+          onChange: handleChange,
+        })}
         onClear={handleClear}
       />,
     );
 
     const clearButton = screen.getByRole('button', { name: /clear input/i });
     fireEvent.click(clearButton);
+
+    // Both default clearing (onChange) and custom onClear should be called
+    expect(handleChange).toHaveBeenCalled();
     expect(handleClear).toHaveBeenCalledTimes(1);
   });
 
-  it('should render custom right element when provided', () => {
+  it('should render custom suffix element when provided', () => {
     const CustomElement = () => <div data-testid="custom-element">Custom</div>;
     render(
       <Input
@@ -238,5 +233,103 @@ describe('Input Component', () => {
       />,
     );
     expect(screen.getByTestId('custom-element')).toBeInTheDocument();
+  });
+
+  it('should hide clear button when hideClearButton is true', () => {
+    render(
+      <Input
+        label="Username"
+        {...createControlledProps({ value: 'test content' })}
+        hideClearButton={true}
+      />,
+    );
+    const clearButton = screen.queryByRole('button', { name: /clear input/i });
+    expect(clearButton).not.toBeInTheDocument();
+  });
+
+  it('should clear input with default behavior when no onClear provided', () => {
+    const handleChange = vi.fn();
+    render(
+      <Input
+        label="Username"
+        {...createControlledProps({
+          value: 'test content',
+          onChange: handleChange,
+        })}
+      />,
+    );
+
+    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    fireEvent.click(clearButton);
+
+    // Default clearing should trigger onChange with empty value
+    expect(handleChange).toHaveBeenCalled();
+  });
+
+  it('should apply containerClassName to container element', () => {
+    render(
+      <Input
+        label="Username"
+        containerClassName="custom-container-class"
+        {...createControlledProps()}
+      />,
+    );
+    const inputElement = screen.getByRole('textbox');
+    const containerElement = inputElement.closest(
+      '[class*="custom-container-class"]',
+    );
+    expect(containerElement).toBeInTheDocument();
+  });
+
+  it('should apply labelClassName to label element', () => {
+    render(
+      <Input
+        label="Username"
+        labelClassName="custom-label-class"
+        {...createControlledProps()}
+      />,
+    );
+    const labelElement = screen.getByText('Username');
+    expect(labelElement).toHaveClass('custom-label-class');
+  });
+
+  it('should hide suffix when clear button is shown', () => {
+    const CustomElement = () => <div data-testid="custom-suffix">Suffix</div>;
+    render(
+      <Input
+        label="Username"
+        {...createControlledProps({ value: 'test content' })}
+        suffix={<CustomElement />}
+      />,
+    );
+
+    // Suffix should be hidden when clear button is present
+    expect(screen.queryByTestId('custom-suffix')).not.toBeInTheDocument();
+
+    // Clear button should be visible
+    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    expect(clearButton).toBeInTheDocument();
+  });
+
+  it('should focus input after clearing', () => {
+    const handleChange = vi.fn();
+    render(
+      <Input
+        label="Username"
+        {...createControlledProps({
+          value: 'test content',
+          onChange: handleChange,
+        })}
+      />,
+    );
+
+    const inputElement = screen.getByRole('textbox');
+    const clearButton = screen.getByRole('button', { name: /clear input/i });
+
+    // Clear the input
+    fireEvent.click(clearButton);
+
+    // Input should be focused after clearing
+    expect(inputElement).toHaveFocus();
   });
 });
