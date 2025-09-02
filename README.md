@@ -135,5 +135,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.
 ---
 
 <p align="center">
-  Built with ❤️ by the LDS Team.
+  Built with ❤️ by the LDS Team
 </p>
