@@ -1,3 +1,4 @@
+import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 
@@ -51,15 +52,15 @@ export interface IconButtonProps
  *   <Settings size={20} />
  * </IconButton>
  */
-export const IconButton = ({
-  className,
-  iconType,
-  ...props
-}: IconButtonProps) => {
-  return (
-    <button
-      className={cn(className, buttonVariants({ iconType }))}
-      {...props}
-    />
-  );
-};
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  ({ className, iconType, ...props }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={cn(className, buttonVariants({ iconType }))}
+        {...props}
+      />
+    );
+  },
+);
+IconButton.displayName = 'IconButton';
