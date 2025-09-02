@@ -86,7 +86,7 @@ function MyComponent() {
 
 #### Custom Clear Behavior
 
-Provide `onClear` to override the default clear behavior:
+Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
 import { Input } from '@ldls/ui-react';
@@ -100,8 +100,8 @@ function MyComponent() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onClear={() => {
-        setValue('');
-        // Additional custom logic
+        // Default clearing happens automatically
+        // Add your custom logic here
         analytics.track('search_cleared');
       }}
     />
@@ -251,18 +251,25 @@ const [value, setValue] = useState('');
   onChange={(e) => setValue(e.target.value)}
 />
 
+// Or use uncontrolled inputs (also valid)
+<Input defaultValue="initial value" />
+
+// Uncontrolled with ref access
+const inputRef = useRef<HTMLInputElement>(null);
+<Input ref={inputRef} defaultValue="" />
+
 // Clear button appears automatically - hideClearButton is false by default
 <Input
   value={value}
   onChange={handleChange}
 />
 
-// Use onClear only for custom clear behavior
+// Use onClear to extend default clear behavior with custom logic
 <Input
   value={value}
   onChange={handleChange}
   onClear={() => {
-    setValue('');
+    // Default clearing happens automatically
     customClearLogic();
   }}
 />
@@ -286,26 +293,24 @@ const [value, setValue] = useState('');
 ❌ **Don't**
 
 ```tsx
-// Don't use uncontrolled inputs
-<Input defaultValue="initial" />
-
 // Don't create custom clear buttons - use the built-in one
+
 <Input
   value={value}
   onChange={handleChange}
-  suffix={
-    <Button onClick={() => setValue('')}>Clear</Button>
-  }
+  suffix={<Button onClick={() => setValue('')}>Clear</Button>}
 />
 
-// Don't provide onClear just to clear the value
+// Don't manually clear the value in onClear - it happens automatically
+
 <Input
   value={value}
   onChange={handleChange}
-  onClear={() => setValue('')} // Unnecessary - this is default behavior
+  onClear={() => setValue('')} // Redundant - clearing happens by default
 />
 
 // Don't use custom error props
+
 <Input error={true} errorText="Invalid input" />
 ```
 
@@ -361,11 +366,11 @@ const InfoButton = React.memo(() => (
 
 <Input suffix={<InfoButton />} />
 
-// Use stable callbacks only for custom clear behavior
+// Use stable callbacks for extending clear behavior
 const handleCustomClear = useCallback(() => {
-  setValue('');
+  // Default clearing happens automatically
   customClearLogic();
-}, [setValue]);
+}, []);
 <Input onClear={handleCustomClear} />
 ```
 
@@ -375,11 +380,11 @@ const handleCustomClear = useCallback(() => {
 // Don't import all icons
 import * as Icons from '@ldls/ui-react/symbols';
 
-// Don't provide onClear for basic clearing (it's automatic now)
-<Input onClear={() => setValue('')} /> // Unnecessary
+// Don't manually clear in onClear - it's automatic
+<Input onClear={() => setValue('')} /> // Redundant
 
-// Don't create new functions in render for custom behavior
-<Input onClear={() => { setValue(''); customLogic(); }} />
+// Don't create new functions in render for extending behavior
+<Input onClear={() => { customLogic(); }} /> // Use useCallback instead
 
 // Don't create complex elements inline
 <Input
