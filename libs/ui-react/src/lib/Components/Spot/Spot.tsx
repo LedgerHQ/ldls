@@ -119,10 +119,10 @@ export type SpotProps = DiscriminatedSpotProps &
  * Do not use it to modify the spot's core appearance (colors, size, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Spot } from '@ldls/ui-react';
+ * import { Spot } from '@ledgerhq/ldls-ui-react';
  *
  * // Custom icon spot
- * import { Settings } from '@ldls/ui-react/symbols';
+ * import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Spot appearance="icon" icon={Settings} />
  *
