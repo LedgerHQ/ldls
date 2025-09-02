@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@ldls/utils-shared';
 import { DeleteCircleFill } from '../../Symbols';
 
-const baseRootStyles = cn(
+const baseContainerStyles = cn(
   'group relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
   'hover:bg-muted-hover focus-within:ring-2 focus-within:ring-active',
   'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
@@ -119,7 +119,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         // Always call the original onChange if provided
         onChangeProp?.(e);
       },
-      [isControlled, this, onChangeProp],
+      [isControlled, onChangeProp],
     );
 
     const hasContent = isControlled
@@ -170,7 +170,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     return (
       <div>
         <div
-          className={cn(containerClassName, baseRootStyles)}
+          className={cn(containerClassName, baseContainerStyles)}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
