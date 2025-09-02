@@ -58,16 +58,22 @@ CardButtons support standard interactive states for both appearance variants:
 
 <Canvas of={CardButtonStories.StatesShowcase} />
 
+### Width Behavior
+
+CardButtons naturally flow within their containers and adapt their width based on content:
+
+<Canvas of={CardButtonStories.NaturalWidth} />
+
 ## Responsive Layout
 
-CardButtons automatically adapt their width to fit their container while maintaining proper content layout:
+CardButtons automatically adapt to their container constraints while maintaining proper content layout:
 
 <Canvas of={CardButtonStories.ResponsiveLayout} />
 
 > **Key behaviors:**
 >
-> - Default width adapts to content
-> - Use `isFull` prop for full container width
+> - CardButtons flow naturally to fit their parent container width
+> - Container elements control the button width, not the component itself
 > - Long titles and descriptions automatically wrap and truncate as needed
 > - Icons (including the chevron) maintain fixed sizes for visual consistency
 

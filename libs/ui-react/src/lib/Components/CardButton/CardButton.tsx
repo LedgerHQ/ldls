@@ -5,16 +5,13 @@ import { IconSize } from '../Icon/Icon';
 import { ChevronRight } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit max-w-full cursor-pointer items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:pointer-events-none disabled:text-disabled',
+  'inline-flex h-fit items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:text-disabled',
   {
     variants: {
       appearance: {
         base: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed disabled:bg-disabled',
         outline:
           'bg-base-transparent text-base outline-dashed outline-1 outline-muted-subtle hover:bg-base-transparent-hover hover:outline-muted-subtle-hover focus-visible:outline-none focus-visible:outline-offset-0 active:bg-base-transparent-pressed active:outline-muted-subtle-pressed disabled:bg-base-transparent disabled:outline-disabled',
-      },
-      isFull: {
-        true: 'w-full',
       },
     },
     defaultVariants: {
@@ -30,13 +27,12 @@ export interface CardButtonProps
   title: string;
   description?: string;
   hideChevron?: boolean;
-  isFull?: boolean;
 }
 
 /**
  * A customizable card button component that displays an optional icon, a required title, an optional description, and an optional chevron arrow.
  *
- * It supports different appearances and can be set to full width. The chevron can be hidden if needed.
+ * It supports different appearances. takes full width by default. The chevron can be hidden if needed.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-implementation--docs#dos-and-donts Guidelines}
@@ -48,7 +44,6 @@ export interface CardButtonProps
  * @param {string} title - The main title of the card button.
  * @param {string} [description] - Optional descriptive text displayed below the title.
  * @param {boolean} [hideChevron=false] - If true, hides the chevron arrow on the right side.
- * @param {boolean} [isFull=false] - If true, the card button expands to the full width of its container.
  * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
  * @param {Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>} [...] - All standard button props except children (e.g., `disabled`, `onClick`, `type`).
  *
@@ -74,16 +69,7 @@ export interface CardButtonProps
  */
 export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
   (
-    {
-      className,
-      appearance,
-      icon,
-      title,
-      description,
-      hideChevron,
-      isFull,
-      ...props
-    },
+    { className, appearance, icon, title, description, hideChevron, ...props },
     ref,
   ) => {
     const IconComponent = icon;
@@ -95,7 +81,6 @@ export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
           className,
           buttonVariants({
             appearance,
-            isFull,
           }),
         )}
         disabled={props.disabled}
