@@ -58,6 +58,7 @@ export default defineConfig(() => ({
         '@radix-ui/react-checkbox',
         '@radix-ui/react-slot',
         '@radix-ui/react-switch',
+        '@radix-ui/react-tooltip',
       ],
       preserveEntrySignatures: 'strict' as const,
       output: {
