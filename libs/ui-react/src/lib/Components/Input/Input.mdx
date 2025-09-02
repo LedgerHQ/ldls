@@ -30,17 +30,23 @@ The clear button provides default functionality for both controlled and uncontro
 
 <Canvas of={InputStories.WithContent} />
 
-#### Default Clear Behavior
+#### **Default Clear Behavior**
 
 The clear button works automatically without requiring an `onClear` prop:
 
 <Canvas of={InputStories.DefaultClearBehavior} />
 
-#### Hiding the Clear Button
+#### **Hiding the Clear Button**
 
 Use `hideClearButton` to prevent the clear button from appearing:
 
 <Canvas of={InputStories.HiddenClearButton} />
+
+#### **Extending the Clear Behavior**
+
+Use `onClear` to extend the default clear behavior with custom logic:
+
+<Canvas of={InputStories.ExtendedClearBehavior} />
 
 ### Error State
 
@@ -49,9 +55,15 @@ The input supports error handling through:
 - `aria-invalid`: Controls the error state styling
 - `errorMessage`: Displays an error message below the input
 - Error styling includes a red ring and text color
-- Clear button turns red when in error state and appears automatically
 
 <Canvas of={InputStories.WithError} />
+
+The error message will be automatically:
+
+- Connected to the input using aria-describedby
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
 
 ### Custom Right Element
 
@@ -92,86 +104,23 @@ The Input component follows accessibility best practices:
 - Clear button has an accessible label
 - Error states are communicated through aria-invalid
 
-### Error Message Pattern
-
-```tsx
-<Input
-  id="email"
-  label="Email"
-  aria-invalid={!isValid}
-  errorMessage={!isValid ? "Please enter a valid email" : undefined}
-/>
-```
-
-The error message will be automatically:
-
-- Connected to the input using aria-describedby
-- Displayed with a warning icon
-- Styled in the error color
-- Announced by screen readers
-
 ## Controlled vs Uncontrolled
 
 The Input component supports both controlled and uncontrolled usage:
 
 ### Uncontrolled (with defaultValue)
 
-```tsx
-<Input
-  label="Username"
-  defaultValue="Initial value"
-/>
-```
+<Canvas of={InputStories.UncontrolledInputExample} />
 
 ### Controlled (with value and onChange)
 
-```tsx
-const [value, setValue] = useState('');
-
-<Input
-  label="Username"
-  value={value}
-  onChange={(e) => setValue(e.target.value)}
-/>
-```
+<Canvas of={InputStories.ControlledInputExample} />
 
 ## Label vs Placeholder
 
 > ⚠️ **Important:** Do not combine `label` and `placeholder` props together. They will visually overlap and create a poor user experience.
 
 The Input component uses **floating labels** that animate from inside the input field. Using both label and placeholder simultaneously will cause them to overlap and interfere with each other.
-
-### ✅ Use Label (Recommended)
-
-```tsx
-<Input
-  label="Email Address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
-
-### ✅ Use Placeholder (Alternative)
-
-```tsx
-<Input
-  placeholder="Enter your email address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
-
-### ❌ Don't Combine Both
-
-```tsx
-{/* This will cause visual overlap - DON'T DO THIS */}
-<Input
-  label="Email Address"
-  placeholder="Enter your email address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
 
 ## Best Practices
 

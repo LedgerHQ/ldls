@@ -64,9 +64,11 @@ function MyComponent() {
 }
 ```
 
-### With Clear Button
+> **Note:** Clear button appears automatically when input has content. Use `hideClearButton` to hide it.
 
-The Input component automatically shows a clear button when content is present:
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
 import { Input } from '@ldls/ui-react';
@@ -76,15 +78,16 @@ function MyComponent() {
 
   return (
     <Input
-      label="Search"
+      label="Username"
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      hideClearButton // Clear button will not appear
     />
   );
 }
 ```
 
-#### Custom Clear Behavior
+#### **Extending the Clear Behavior**
 
 Provide `onClear` to extend the default clear behavior with additional logic:
 
@@ -104,27 +107,6 @@ function MyComponent() {
         // Add your custom logic here
         analytics.track('search_cleared');
       }}
-    />
-  );
-}
-```
-
-#### Hiding the Clear Button
-
-Use `hideClearButton` to prevent the clear button from appearing:
-
-```tsx
-import { Input } from '@ldls/ui-react';
-
-function MyComponent() {
-  const [value, setValue] = React.useState('');
-
-  return (
-    <Input
-      label="Username"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      hideClearButton // Clear button will not appear
     />
   );
 }
@@ -198,6 +180,8 @@ function MyComponent() {
   );
 }
 ```
+
+> **Note:** Error message are optional. Use `errorMessage` to display an error message below the input.
 
 ## ⚠️ Label vs Placeholder
 

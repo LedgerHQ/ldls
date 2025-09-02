@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Input } from './Input';
 import { Button } from '../Button';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip';
 import { InformationFill, SparksFill } from '../../Symbols';
 
 const meta: Meta<typeof Input> = {
@@ -150,8 +151,21 @@ export const DefaultClearBehavior: Story = {
   },
 };
 
+export const ExtendedClearBehavior = () => {
+  return (
+    <div className="max-w-md">
+      <Input
+        label="Extended Clear Behavior"
+        onClear={() => {
+          alert('Extended clear behavior');
+        }}
+      />
+    </div>
+  );
+};
+
 // Separate components to avoid state interference
-const ControlledInputExample = () => {
+export const ControlledInputExample = () => {
   const [value, setValue] = React.useState(
     'Type here to see default clear button',
   );
@@ -167,7 +181,7 @@ const ControlledInputExample = () => {
   );
 };
 
-const UncontrolledInputExample = () => {
+export const UncontrolledInputExample = () => {
   return (
     <div className="max-w-md">
       <Input
@@ -238,7 +252,6 @@ export const WithError: Story = {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onClear={() => setEmail('')}
           aria-invalid={!isValidEmail}
           errorMessage={
             !isValidEmail ? 'Please enter a valid email address' : undefined
@@ -287,7 +300,6 @@ export const EmailType: Story = {
           type="email"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onClear={() => setValue('')}
         />
       </div>
     );
@@ -304,7 +316,6 @@ export const PasswordType: Story = {
           type="password"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onClear={() => setValue('')}
         />
       </div>
     );
@@ -319,41 +330,28 @@ export const PasswordType: Story = {
  */
 // Custom right elements
 const InfoTooltip = () => {
-  const [showTooltip, setShowTooltip] = React.useState(false);
-
   return (
-    <>
-      <Button
-        appearance="no-background"
-        size="xs"
-        iconOnly
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-        aria-label="Username requirements"
-      >
-        <InformationFill size={20} className="text-muted" />
-      </Button>
-      {showTooltip && (
-        <div className="absolute bottom-full right-0 mb-8 w-64 rounded-md bg-base p-8 shadow-lg">
-          <p className="body-3">
-            Username must be unique and at least 3 characters long
-          </p>
-        </div>
-      )}
-    </>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button type="button" aria-label="Username requirements">
+          <InformationFill size={20} className="text-muted" />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent side="top">
+        Username must be unique and at least 3 characters long
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
 const GeneratePasswordButton = () => (
-  <Button
-    appearance="no-background"
-    size="xs"
-    iconOnly
+  <button
+    type="button"
     onClick={() => alert('Generate password')}
     aria-label="Generate random password"
   >
     <SparksFill size={20} className="text-muted" />
-  </Button>
+  </button>
 );
 
 export const WithCustomElement: Story = {
@@ -372,9 +370,6 @@ export const WithCustomElement: Story = {
               onChange={(e) => setValue(e.target.value)}
               label="Username"
               suffix={<InfoTooltip />}
-              onClear={() => {
-                setValue('');
-              }}
               id="tooltip-input"
             />
           </div>
@@ -387,6 +382,7 @@ export const WithCustomElement: Story = {
             <Input
               label="Generate Password"
               type="password"
+              hideClearButton
               suffix={<GeneratePasswordButton />}
             />
           </div>
@@ -394,11 +390,6 @@ export const WithCustomElement: Story = {
         <div className="mt-16 text-muted body-3">
           The suffix prop allows you to add custom interactive elements like
           tooltips, or action buttons
-        </div>
-        <div className="mt-16 text-error body-3">
-          **Important note:** The clear button automatically appears when input
-          has content and will take priority over your suffix element. Use
-          hideClearButton to prevent this if you need persistent suffix content.
         </div>
       </div>
     );
@@ -431,7 +422,6 @@ export const Interactive: Story = {
       };
 
     const handleClear = (field: string) => () => {
-      setFormData((prev) => ({ ...prev, [field]: '' }));
       setErrors((prev) => ({ ...prev, [field]: '' }));
     };
 
