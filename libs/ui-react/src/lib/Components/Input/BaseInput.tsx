@@ -46,7 +46,7 @@ export interface BaseInputProps
    * @example prefix={<Icon />}
    */
   prefix?: React.ReactNode;
-  /** Optional function to override the default clear behavior */
+  /** Optional function to extend the default clear behavior with custom logic */
   onClear?: () => void;
   /** Hide the clear button (shown by default when input has content) */
   hideClearButton?: boolean;
@@ -56,6 +56,13 @@ export interface BaseInputProps
  * Base input component with floating label, error state styling, and clear button functionality.
  * Shows a clear button by default when input has content. Use hideClearButton to hide it.
  * This is an internal component used to build other input components.
+ *
+ * Features:
+ * - Automatic clear button that works with both controlled and uncontrolled inputs
+ * - Native-like clear behavior using HTMLInputElement.prototype.value setter
+ * - Proper event dispatching that React can intercept for controlled components
+ * - Floating label with smooth transitions
+ * - Error state styling and accessibility
  *
  * Supports className customization for different elements:
  * - `className`: Applied to the input element
@@ -79,6 +86,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
       prefix,
       onClear,
       hideClearButton = false,
+      'aria-invalid': ariaInvalidProp,
+      onChange: onChangeProp,
       ...props
     },
     ref,
@@ -89,8 +98,8 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     const inputId = id || `input-${reactId}`;
 
     // Handle aria-invalid properly - use provided value or derive from errorMessage
-    const ariaInvalid = props['aria-invalid']
-      ? props['aria-invalid']
+    const ariaInvalid = ariaInvalidProp
+      ? ariaInvalidProp
       : errorMessage
         ? true
         : undefined;
@@ -108,9 +117,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
           setUncontrolledValue(e.target.value);
         }
         // Always call the original onChange if provided
-        props.onChange?.(e);
+        onChangeProp?.(e);
       },
-      [isControlled, props.onChange],
+      [isControlled, this, onChangeProp],
     );
 
     const hasContent = isControlled
@@ -124,22 +133,23 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     const handleClear = () => {
       if (!inputRef.current) return;
 
-      // Default clear behavior
-      if (isControlled && props.onChange) {
-        // Controlled → trigger onChange with empty value
-        props.onChange({
-          target: { value: '' },
-          currentTarget: { value: '' },
-        } as React.ChangeEvent<HTMLInputElement>);
-      } else {
-        // Uncontrolled → update state and DOM
-        inputRef.current.value = '';
+      // programmatically trigger an onChange for controlled components.
+      // It simulates a user action more closely by setting the value natively and dispatching a real event.
+      const valueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value',
+      )?.set;
+      valueSetter?.call(inputRef.current, '');
+
+      if (!isControlled) {
         setUncontrolledValue('');
-        const event = new Event('input', { bubbles: true });
-        inputRef.current.dispatchEvent(event);
       }
+
+      const event = new Event('input', { bubbles: true });
+      inputRef.current.dispatchEvent(event);
+
       inputRef.current.focus();
-      // Call onClear if provided
+
       onClear?.();
     };
 
@@ -192,7 +202,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             aria-describedby={errorMessage ? errorId : undefined}
             className={cn(baseInputStyles, label && 'pt-16', className)}
             onChange={handleInput}
-            {...(({ 'aria-invalid': _, onChange: __, ...rest }) => rest)(props)}
+            {...props}
           />
 
           {label && (
