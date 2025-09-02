@@ -185,7 +185,12 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             if (!input) return;
 
             const isSuffix = target.closest('[data-side="right"]');
-            const cursorPosition = isSuffix ? input.value.length : 0;
+            // Smart cursor positioning for better UX:
+            // - Suffix clicks: always end (natural for right-side elements)
+            // - Label/container clicks with content: end (user likely wants to continue typing)
+            // - Label/container clicks on empty input: start (natural starting point)
+            const cursorPosition =
+              isSuffix || input.value.length > 0 ? input.value.length : 0;
 
             window.requestAnimationFrame(() => {
               try {
