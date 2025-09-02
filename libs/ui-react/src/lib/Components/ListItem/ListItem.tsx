@@ -41,7 +41,7 @@ export interface ListItemProps
  *
  * @example
  * // Basic item
- * import { ListItem } from '@ldls/ui-react';
+ * import { ListItem } from '@ledgerhq/ldls-ui-react';
  *
  * <ListItem
  *   title="Basic Item"
@@ -50,8 +50,8 @@ export interface ListItemProps
  * />
  *
  * // Icon trailing content with leading icon
- * import { ListItem } from '@ldls/ui-react';
- * import { Wallet, Settings } from '@ldls/ui-react/symbols';
+ * import { ListItem } from '@ledgerhq/ldls-ui-react';
+ * import { Wallet, Settings } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <ListItem
  *   title="Balance"
@@ -60,8 +60,8 @@ export interface ListItemProps
  * />
  *
  * // Chevron trailing content
- * import { ListItem } from '@ldls/ui-react';
- * import { ChevronRight } from '@ldls/ui-react/symbols';
+ * import { ListItem } from '@ledgerhq/ldls-ui-react';
+ * import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <ListItem
  *   title="Settings"

@@ -83,7 +83,7 @@ export interface BannerProps
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Banner } from '@ldls/ui-react';
+ * import { Banner } from '@ledgerhq/ldls-ui-react';
  *
  * // Basic info banner
  * <Banner title="Information" appearance="info" />

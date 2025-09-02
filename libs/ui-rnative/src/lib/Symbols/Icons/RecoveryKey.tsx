@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { RecoveryKey } from '@ldls/ui-rnative/symbols';
+ * import { RecoveryKey } from '@ledgerhq/ui-rnative/symbols';
  *
  * <RecoveryKey />
  *
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ui-rnative';
  *
  * <Button icon={RecoveryKey} size="md">
  *   Click me

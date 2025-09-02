@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Chart4 } from '@ldls/ui-rnative/symbols';
+ * import { Chart4 } from '@ledgerhq/ui-rnative/symbols';
  *
  * <Chart4 />
  *
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ui-rnative';
  *
  * <Button icon={Chart4} size="md">
  *   Click me

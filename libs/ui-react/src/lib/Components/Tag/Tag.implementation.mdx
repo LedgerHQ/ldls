@@ -21,7 +21,7 @@ Then install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -33,12 +33,12 @@ To use the Tag component with our custom Tailwind preset, you need to configure 
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,7 +49,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Tag } from '@ldls/ui-react';
+import { Tag } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -76,8 +76,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Tag component supports icons with automatic size adjustment based on the tag size:
 
 ```tsx
-import { Tag } from '@ldls/ui-react';
-import { Check } from '@ldls/ui-react/symbols';
+import { Tag } from '@ledgerhq/ldls-ui-react';
+import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -97,7 +97,7 @@ function MyComponent() {
 <Tag label="My Tag" />
 
 // Pass icon as a component reference
-import { Plus } from '@ldls/ui-react/symbols';
+import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
 <Tag icon={Plus} label="Add Item" />
 ```
 
@@ -141,7 +141,7 @@ import { Plus } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import icons explicitly
-import { Check } from '@ldls/ui-react/symbols';
+import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use icon prop for consistent sizing
 <Tag icon={Check} label="Success" />
@@ -151,7 +151,7 @@ import { Check } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use string-based icon names
 <Tag icon="check" label="Success" />
@@ -163,7 +163,7 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { Check } from '@ldls/ui-react/symbols';
+import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use appropriate size variant
 <Tag size="sm" icon={Check} label="Success" />
@@ -173,7 +173,7 @@ import { Check } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import all icons
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use custom sizes when standard ones exist
 <Tag className="h-[52px]" label="Custom Height" />

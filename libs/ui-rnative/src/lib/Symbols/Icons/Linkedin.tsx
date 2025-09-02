@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Linkedin } from '@ldls/ui-rnative/symbols';
+ * import { Linkedin } from '@ledgerhq/ui-rnative/symbols';
  *
  * <Linkedin />
  *
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ui-rnative';
  *
  * <Button icon={Linkedin} size="md">
  *   Click me

@@ -46,7 +46,7 @@ npm install --legacy-peer-deps
 
 ```bash
 # Start React Storybook
-npx nx run @ldls/ui-react:serve:storybook
+npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 
 # Build all libraries
 npx nx run-many --target=build --all
@@ -72,13 +72,13 @@ ldls/
 
 ```bash
 # Start React components in Storybook
-npx nx run @ldls/ui-react:serve:storybook
+npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 
 # Build React components
-npx nx run @ldls/ui-react:build
+npx nx run @ledgerhq/ldls-ui-react:build
 
 # Build React Native components
-npx nx run @ldls/ui-rnative:build
+npx nx run @ledgerhq/ui-rnative:build
 
 # Build shared core library
 npx nx run @ldls/ui-core:build

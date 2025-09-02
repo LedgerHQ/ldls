@@ -16,7 +16,7 @@ import { cn } from '@ldls/utils-shared';
  * @param {React.ComponentProps<typeof TooltipPrimitive.Provider>} [...] - All other props are passed to the underlying Radix UI Provider.
  *
  * @example
- * import { TooltipProvider } from '@ldls/ui-react';
+ * import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
  *
  * function App() {
  *   return (
@@ -55,7 +55,7 @@ export const TooltipProvider = ({
  * @param {React.ComponentProps<typeof TooltipPrimitive.Root>} [...] - All other props are passed to the underlying Radix UI Root.
  *
  * @example
- * import { Tooltip, TooltipTrigger, TooltipContent } from '@ldls/ui-react';
+ * import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
  *
  * function MyComponent() {
  *   return (
@@ -95,7 +95,7 @@ export const Tooltip = ({
  * @param {React.ComponentProps<typeof TooltipPrimitive.Trigger>} [...] - All other props are passed to the underlying Radix UI Trigger.
  *
  * @example
- * import { TooltipTrigger } from '@ldls/ui-react';
+ * import { TooltipTrigger } from '@ledgerhq/ldls-ui-react';
  *
  * <TooltipTrigger>
  *   <button>Hover me for a tooltip</button>
@@ -132,7 +132,7 @@ export const TooltipTrigger = ({
  * Do not use it to modify the tooltip's core appearance (colors, padding, etc).
  *
  * @example
- * import { TooltipContent } from '@ldls/ui-react';
+ * import { TooltipContent } from '@ledgerhq/ldls-ui-react';
  *
  * <TooltipContent sideOffset={8}>
  *   <p className="text-sm">This tooltip provides helpful information</p>

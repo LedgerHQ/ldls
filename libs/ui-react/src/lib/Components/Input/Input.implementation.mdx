@@ -21,7 +21,7 @@ Then install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
@@ -33,12 +33,12 @@ To use the Input component with our custom Tailwind preset, you need to configur
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,7 +49,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Input } from '@ldls/ui-react';
+import { Input } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -71,7 +71,7 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Input } from '@ldls/ui-react';
+import { Input } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -92,7 +92,7 @@ function MyComponent() {
 Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
-import { Input } from '@ldls/ui-react';
+import { Input } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -119,8 +119,8 @@ You can add custom elements to the right side of the input.
 > **Note:** Define reusable components for better organization and performance:
 
 ```tsx
-import { Input } from '@ldls/ui-react';
-import { InformationFill, SparksFill } from '@ldls/ui-react/symbols';
+import { Input } from '@ledgerhq/ldls-ui-react';
+import { InformationFill, SparksFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Action button component
 const GeneratePasswordButton = () => (
@@ -157,7 +157,7 @@ function MyComponent() {
 The Input component supports error states and messages:
 
 ```tsx
-import { Input } from '@ldls/ui-react';
+import { Input } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -335,7 +335,7 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 ```tsx
 // Import specific icons
-import { InformationFill } from '@ldls/ui-react/symbols';
+import { InformationFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Memoize complex right elements
 const InfoButton = React.memo(() => (
@@ -362,7 +362,7 @@ const handleCustomClear = useCallback(() => {
 
 ```tsx
 // Don't import all icons
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't manually clear in onClear - it's automatic
 <Input onClear={() => setValue('')} /> // Redundant

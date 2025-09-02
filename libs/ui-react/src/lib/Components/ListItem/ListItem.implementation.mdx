@@ -21,7 +21,7 @@ Then install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -33,12 +33,12 @@ To use the ListItem component with our custom Tailwind preset, you need to confi
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,8 +49,8 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { ListItem } from '@ldls/ui-react';
-import { ChevronRight } from '@ldls/ui-react/symbols';
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -67,8 +67,8 @@ function MyComponent() {
 Add a description below the title for additional context:
 
 ```tsx
-import { ListItem } from '@ldls/ui-react';
-import { ChevronRight } from '@ldls/ui-react/symbols';
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -86,8 +86,8 @@ function MyComponent() {
 Include a leading icon for visual identification:
 
 ```tsx
-import { ListItem } from '@ldls/ui-react';
-import { Settings, ChevronRight } from '@ldls/ui-react/symbols';
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { Settings, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -106,9 +106,9 @@ function MyComponent() {
 The ListItem supports arbitrary trailing content variants. Below are some examples:
 
 ```tsx
-import { ListItem, Switch, Tag } from '@ldls/ui-react';
+import { ListItem, Switch, Tag } from '@ledgerhq/ldls-ui-react';
 import { useState } from 'react';
-import { Settings, Check, Bolt, ChevronRight } from '@ldls/ui-react/symbols';
+import { Settings, Check, Bolt, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
@@ -173,8 +173,8 @@ function ListVariants() {
 Add a tag to the description for additional status information:
 
 ```tsx
-import { ListItem } from '@ldls/ui-react';
-import { Bolt } from '@ldls/ui-react/symbols';
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { Bolt } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -282,7 +282,7 @@ The following guidelines ensure consistent usage of the ListItem component and m
 
 ```tsx
 // Import specific icons for tree-shaking
-import { Check } from '@ldls/ui-react/symbols';
+import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use proper event handlers
 <ListItem onClick={handleClick} />
@@ -292,7 +292,7 @@ import { Check } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon set
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use complex inline handlers
 <ListItem

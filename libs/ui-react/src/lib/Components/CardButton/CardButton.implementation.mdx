@@ -21,7 +21,7 @@ Then install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -33,12 +33,12 @@ To use the CardButton component with our custom Tailwind preset, you need to con
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,7 +49,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { CardButton } from '@ldls/ui-react';
+import { CardButton } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -67,8 +67,8 @@ function MyComponent() {
 The CardButton component supports icons that automatically scale to 24px size:
 
 ```tsx
-import { CardButton } from '@ldls/ui-react';
-import { CreditCard } from '@ldls/ui-react/symbols';
+import { CardButton } from '@ledgerhq/ldls-ui-react';
+import { CreditCard } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -203,7 +203,7 @@ The following guidelines ensure consistent usage of the CardButton component and
 
 ```tsx
 // Import icons explicitly for better tree-shaking
-import { Settings, CreditCard, Shield } from '@ldls/ui-react/symbols';
+import { Settings, CreditCard, Shield } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use semantically appropriate icons
 <CardButton
@@ -224,7 +224,7 @@ import { Settings, CreditCard, Shield } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't try to customize icon size
 <CardButton
@@ -247,7 +247,7 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { CreditCard } from '@ldls/ui-react/symbols';
+import { CreditCard } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use proper event handlers
 <CardButton
@@ -261,7 +261,7 @@ import { CreditCard } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import all icons
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use inline functions for complex operations
 <CardButton

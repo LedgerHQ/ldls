@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ChevronDown } from '@ldls/ui-rnative/symbols';
+ * import { ChevronDown } from '@ledgerhq/ui-rnative/symbols';
  *
  * <ChevronDown />
  *
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ui-rnative';
  *
  * <Button icon={ChevronDown} size="md">
  *   Click me
