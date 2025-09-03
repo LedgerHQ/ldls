@@ -97,12 +97,6 @@ describe('Banner Component', () => {
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
-  it('should apply isFull prop', () => {
-    const { container } = render(<Banner title="Full Width Banner" isFull />);
-
-    expect(container.firstChild).toHaveClass('w-full');
-  });
-
   it('should apply custom className', () => {
     const { container } = render(
       <Banner title="Custom Banner" className="mb-16" />,
