@@ -180,7 +180,7 @@ export const NaturalWidth: Story = {
 <CardButton
   appearance="base"
   title="Natural Width Example"
-  description="This card button demonstrates natural width behavior"
+  description="This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints"
   icon={CreditCard}
 />
 `,
