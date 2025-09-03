@@ -6,7 +6,7 @@ import { IconSize } from '../Icon/Icon';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,
-  title: 'Components/Spot/Overview',
+  title: 'Media & Graphics/Spot/Overview',
   parameters: {
     docs: {
       source: {
@@ -127,7 +127,7 @@ export const IconVariants: Story = {
     return (
       <div className="flex gap-8 p-8">
         {icons.map(({ name, component: Icon }) => (
-          <Spot key={name} appearance="icon" icon={Icon} />
+          <Spot key={name} appearance="number" number={'1' as any} />
         ))}
       </div>
     );
