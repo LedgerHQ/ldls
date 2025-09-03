@@ -2,7 +2,7 @@ import React from 'react';
 import { BaseInput, type BaseInputProps } from '../Input/BaseInput';
 import { Search as SearchIcon } from '../../Symbols';
 
-export interface SearchProps extends Omit<BaseInputProps, 'prefix' | 'label'> {}
+export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>
 
 /**
  * A search input component with a built-in search icon and automatic clear button.

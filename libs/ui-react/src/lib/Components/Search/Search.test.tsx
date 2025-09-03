@@ -1,5 +1,7 @@
-import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { Search } from './Search';
 
 describe('Search', () => {
@@ -22,7 +24,7 @@ describe('Search', () => {
   });
 
   it('handles controlled input', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <Search
         placeholder="Search"
@@ -59,7 +61,7 @@ describe('Search', () => {
   });
 
   it('clears input when clear button is clicked', () => {
-    const handleClear = jest.fn();
+    const handleClear = vi.fn();
     render(
       <Search
         placeholder="Search"
@@ -85,7 +87,10 @@ describe('Search', () => {
 
     const errorMessage = screen.getByText('Search failed');
     expect(errorMessage).toBeInTheDocument();
-    expect(errorMessage).toHaveAttribute('role', 'alert');
+
+    // The role="alert" is on the error container, not the text span
+    const errorContainer = screen.getByRole('alert');
+    expect(errorContainer).toBeInTheDocument();
   });
 
   it('handles disabled state', () => {
