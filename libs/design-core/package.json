@@ -1,6 +1,12 @@
 {
   "name": "@ledgerhq/ldls-design-core",
   "version": "0.0.13",
+  "license": "Apache-2.0",
+  "keywords": [
+    "design-system",
+    "tailwind",
+    "figma"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
