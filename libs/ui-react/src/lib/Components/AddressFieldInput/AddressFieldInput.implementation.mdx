@@ -1,0 +1,190 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AddressFieldInput/Implementation" />
+
+# AddressFieldInput Implementation
+
+Technical implementation guide for the AddressFieldInput component.
+
+## Architecture
+
+AddressFieldInput extends BaseInput with Web3-specific functionality:
+
+```tsx
+import { AddressFieldInput } from '@ledgerhq/ldls-ui-react';
+
+// Basic usage
+<AddressFieldInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+/>
+```
+
+## Key Features
+
+### Fixed "To:" Prefix
+
+The component always displays "To:" as a prefix label to clearly indicate its purpose in transaction contexts.
+
+```tsx
+// The "To:" label is built-in and cannot be customized
+<AddressFieldInput placeholder="Enter address or ENS" />
+```
+
+### Context-Aware Suffix Icons
+
+- **Empty state**: Shows IconButton QR code scanner for easy address scanning
+- **With content**: Shows clear button for quick content removal
+
+```tsx
+// IconButton QR code scanner appears automatically when empty
+<AddressFieldInput
+  placeholder="Enter address or ENS"
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Clear button appears automatically when there's content
+<AddressFieldInput defaultValue="0x742d35cc..." />
+```
+
+### Address Validation
+
+Implement custom validation for different address formats:
+
+```tsx
+const [address, setAddress] = React.useState('');
+const [error, setError] = React.useState('');
+
+React.useEffect(() => {
+  if (address.length > 0) {
+    const isValidEthereumAddress = address.startsWith('0x') && address.length === 42;
+    const isValidENS = address.endsWith('.eth');
+
+    if (!isValidEthereumAddress && !isValidENS) {
+      setError('Please enter a valid Ethereum address or ENS name');
+    } else {
+      setError('');
+    }
+  }
+}, [address]);
+
+<AddressFieldInput
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+  errorMessage={error}
+  aria-invalid={!!error}
+/>
+```
+
+### Custom Clear Behavior
+
+Handle clearing logic with additional state management:
+
+```tsx
+<AddressFieldInput
+  value={walletAddress}
+  onChange={(e) => setWalletAddress(e.target.value)}
+  onClear={() => {
+    setWalletAddress('');
+    setError(''); // Clear error state
+    analytics.track('address_cleared');
+  }}
+/>
+```
+
+> **Note:** The clear button only clears the input value. Error states must be cleared separately in your `onClear` handler.
+
+## Best Practices
+
+### Address Format Support
+
+- **Ethereum addresses**: 42-character hexadecimal strings starting with '0x'
+- **ENS names**: Human-readable names ending with '.eth'
+- **Validation**: Implement real-time validation for better UX
+
+### QR Code Integration
+
+```tsx
+const handleQrScan = () => {
+  // Open QR scanner modal/camera
+  openQrScanner()
+    .then((scannedAddress) => {
+      setAddress(scannedAddress);
+      validateAddress(scannedAddress);
+    })
+    .catch((error) => {
+      console.error('QR scan failed:', error);
+    });
+};
+
+<AddressFieldInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+  onQrCodeClick={handleQrScan}
+/>
+```
+
+### Error Handling
+
+- Use clear, actionable error messages
+- Distinguish between format errors and network validation errors
+- Provide suggestions for common mistakes
+
+### Accessibility
+
+- Always include proper ARIA attributes for validation states
+- Ensure error messages are announced to screen readers
+- Maintain focus management during state transitions
+
+## Common Patterns
+
+### Transaction Forms
+
+```tsx
+<form>
+  <AddressFieldInput
+    placeholder="Enter address or ENS"
+    value={recipientAddress}
+    onChange={(e) => setRecipientAddress(e.target.value)}
+    errorMessage={addressError}
+    aria-invalid={!!addressError}
+  />
+  {/* Other transaction fields */}
+</form>
+```
+
+### Address Book Integration
+
+```tsx
+<AddressFieldInput
+  placeholder="Enter address or ENS"
+  value={selectedAddress}
+  onChange={(e) => setSelectedAddress(e.target.value)}
+  onQrCodeClick={() => openQrScanner()}
+  suffix={
+    selectedAddress ? (
+      <button onClick={openAddressBook}>
+        <ContactsIcon size={20} />
+      </button>
+    ) : undefined
+  }
+/>
+```
+
+## Performance Considerations
+
+- Debounce validation for real-time address checking
+- Use React.memo for expensive validation computations
+- Consider lazy loading for ENS resolution
+
+## Testing
+
+The component includes comprehensive test coverage for:
+
+- **Prefix rendering**: "To:" label always visible
+- **IconButton QR code**: Proper IconButton integration with accessibility
+- **Icon switching**: QR code ↔ clear button based on content
+- **Validation states**: Error messages and ARIA attributes
+- **Interaction handling**: onChange, onClear, onQrCodeClick, focus states
