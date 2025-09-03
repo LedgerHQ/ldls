@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PlusCircle icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { PlusCircle } from '@ledgerhq/ui-rnative/symbols';
+ * import { PlusCircle } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <PlusCircle />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={PlusCircle} size="md">
  *   Click me
  * </Button>
  */
 export const PlusCircle = createIcon(
-  "PlusCircle",
+  'PlusCircle',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const PlusCircle = createIcon(
       strokeWidth={1.3}
       d="M8 5.333v5.334M10.667 8H5.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12"
     />
-  </Svg>
+  </Svg>,
 );

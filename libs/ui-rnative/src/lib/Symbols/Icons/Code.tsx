@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Code icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Code } from '@ledgerhq/ui-rnative/symbols';
+ * import { Code } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Code />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Code} size="md">
  *   Click me
  * </Button>
  */
 export const Code = createIcon(
-  "Code",
+  'Code',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Code = createIcon(
       strokeWidth={1.3}
       d="M6 9.333 4.667 8 6 6.667m4 0L11.333 8 10 9.333M8.52 6l-1.113 4M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2"
     />
-  </Svg>
+  </Svg>,
 );

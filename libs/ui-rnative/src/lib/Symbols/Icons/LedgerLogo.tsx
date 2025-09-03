@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * LedgerLogo icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { LedgerLogo } from '@ledgerhq/ui-rnative/symbols';
+ * import { LedgerLogo } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <LedgerLogo />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={LedgerLogo} size="md">
  *   Click me
  * </Button>
  */
 export const LedgerLogo = createIcon(
-  "LedgerLogo",
+  'LedgerLogo',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const LedgerLogo = createIcon(
       strokeWidth={1.3}
       d="M2 4.667V3a1 1 0 0 1 1-1h3m3.333 8H7.667a1 1 0 0 1-1-1V6M14 4.667V3a1 1 0 0 0-1-1h-3m-8 9.333V13a1 1 0 0 0 1 1h3m8-2.667V13a1 1 0 0 1-1 1h-3"
     />
-  </Svg>
+  </Svg>,
 );

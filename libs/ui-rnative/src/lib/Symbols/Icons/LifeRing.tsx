@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * LifeRing icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { LifeRing } from '@ledgerhq/ui-rnative/symbols';
+ * import { LifeRing } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <LifeRing />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={LifeRing} size="md">
  *   Click me
  * </Button>
  */
 export const LifeRing = createIcon(
-  "LifeRing",
+  'LifeRing',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const LifeRing = createIcon(
       strokeWidth={1.3}
       d="M9.647 6.353 12.24 3.76m-8.48 8.48 2.593-2.593m0-3.294L3.76 3.76m8.48 8.48L9.647 9.647M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 3.667a2.333 2.333 0 1 0 0 4.666 2.333 2.333 0 0 0 0-4.666"
     />
-  </Svg>
+  </Svg>,
 );

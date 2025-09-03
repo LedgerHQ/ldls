@@ -78,7 +78,7 @@ npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 npx nx run @ledgerhq/ldls-ui-react:build
 
 # Build React Native components
-npx nx run @ledgerhq/ui-rnative:build
+npx nx run @ledgerhq/ldls-ui-rnative:build
 
 # Build shared core library
 npx nx run @ldls/ui-core:build

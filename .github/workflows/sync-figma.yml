@@ -232,7 +232,7 @@ jobs:
           cat << EOF > .nx/version-plans/version-plan-$TIMESTAMP.md
           ---
           '@ledgerhq/ldls-design-core': patch
-          '@ledgerhq/ui-rnative': patch
+          '@ledgerhq/ldls-ui-rnative': patch
           '@ledgerhq/ldls-ui-react': patch
           ---
 

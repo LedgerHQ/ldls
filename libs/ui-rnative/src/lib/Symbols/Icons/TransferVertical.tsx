@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * TransferVertical icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { TransferVertical } from '@ledgerhq/ui-rnative/symbols';
+ * import { TransferVertical } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <TransferVertical />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={TransferVertical} size="md">
  *   Click me
  * </Button>
  */
 export const TransferVertical = createIcon(
-  "TransferVertical",
+  'TransferVertical',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const TransferVertical = createIcon(
       strokeWidth={1.3}
       d="m6.667 5.333-2-2m0 0-2 2m2-2v9.334m4.667-2 2 2m0 0 2-2m-2 2V3.333"
     />
-  </Svg>
+  </Svg>,
 );

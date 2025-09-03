@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * CheckmarkCircleFill icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { CheckmarkCircleFill } from '@ledgerhq/ui-rnative/symbols';
+ * import { CheckmarkCircleFill } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <CheckmarkCircleFill />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={CheckmarkCircleFill} size="md">
  *   Click me
  * </Button>
  */
 export const CheckmarkCircleFill = createIcon(
-  "CheckmarkCircleFill",
+  'CheckmarkCircleFill',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
@@ -45,5 +45,5 @@ export const CheckmarkCircleFill = createIcon(
       strokeWidth={1.3}
       d="m5.63 8.226 1.444 1.445m-.01-.01 3.26-3.259"
     />
-  </Svg>
+  </Svg>,
 );

@@ -1,5 +1,5 @@
-import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ShieldCheckNotification icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ShieldCheckNotification } from '@ledgerhq/ui-rnative/symbols';
+ * import { ShieldCheckNotification } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <ShieldCheckNotification />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={ShieldCheckNotification} size="md">
  *   Click me
  * </Button>
  */
 export const ShieldCheckNotification = createIcon(
-  "ShieldCheckNotification",
+  'ShieldCheckNotification',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_3_369)">
       <Mask
@@ -43,7 +43,7 @@ export const ShieldCheckNotification = createIcon(
         y={0}
         maskUnits="userSpaceOnUse"
         style={{
-          maskType: "alpha",
+          maskType: 'alpha',
         }}
       >
         <Path fill="#D9D9D9" d="M9.505 0A4.666 4.666 0 0 0 16 6.495V16H0V0z" />
@@ -64,5 +64,5 @@ export const ShieldCheckNotification = createIcon(
         <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
-  </Svg>
+  </Svg>,
 );

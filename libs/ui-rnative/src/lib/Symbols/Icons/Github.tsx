@@ -1,5 +1,5 @@
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Github icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Github } from '@ledgerhq/ui-rnative/symbols';
+ * import { Github } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Github />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Github} size="md">
  *   Click me
  * </Button>
  */
 export const Github = createIcon(
-  "Github",
+  'Github',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_3_426)">
       <Path
@@ -47,5 +47,5 @@ export const Github = createIcon(
         <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
-  </Svg>
+  </Svg>,
 );

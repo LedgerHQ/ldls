@@ -96,15 +96,15 @@ export interface ButtonProps
  *
  * @example
  * // Basic primary button
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button appearance="base" size="md" onPress={() => console.log('Clicked!')}>
  *   Click Me
  * </Button>
  *
  * // Icon-only button with loading state
- * import { Button } from '@ledgerhq/ui-rnative';
- * import { ArrowRight } from '@ledgerhq/ui-rnative/symbols';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Button icon={ArrowRight} size="sm" loading={isLoading} disabled={isLoading} />
  *

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Chart3 icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Chart3 } from '@ledgerhq/ui-rnative/symbols';
+ * import { Chart3 } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Chart3 />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Chart3} size="md">
  *   Click me
  * </Button>
  */
 export const Chart3 = createIcon(
-  "Chart3",
+  'Chart3',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Chart3 = createIcon(
       strokeWidth={1.3}
       d="M9 7.673v2.994M7 5.333v5.334M5 8.84v1.827M11 6.5v4.167M5.333 2h5.334A3.333 3.333 0 0 1 14 5.333v5.334A3.333 3.333 0 0 1 10.667 14H5.333A3.333 3.333 0 0 1 2 10.667V5.333A3.333 3.333 0 0 1 5.333 2"
     />
-  </Svg>
+  </Svg>,
 );

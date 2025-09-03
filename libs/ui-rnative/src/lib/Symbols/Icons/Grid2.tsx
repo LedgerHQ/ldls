@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Grid2 icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Grid2 } from '@ledgerhq/ui-rnative/symbols';
+ * import { Grid2 } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Grid2 />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Grid2} size="md">
  *   Click me
  * </Button>
  */
 export const Grid2 = createIcon(
-  "Grid2",
+  'Grid2',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -47,5 +47,5 @@ export const Grid2 = createIcon(
       strokeWidth={1.3}
       d="M14.3 4.3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 14h4.5L10 9.5z"
     />
-  </Svg>
+  </Svg>,
 );
