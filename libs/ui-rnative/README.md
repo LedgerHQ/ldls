@@ -1,10 +1,5 @@
 # @ledgerhq/ldls-ui-rnative
 
-<p align="center">
-  <img src="https://img.shields.io/npm/v/@ledgerhq/ldls-ui-rnative" alt="npm version" />
-  <img src="https://img.shields.io/npm/l/@ledgerhq/ldls-ui-rnative" alt="license" />
-</p>
-
 **React Native UI component library for Ledger Design System** - Native mobile components built with NativeWind and design tokens.
 
 ## 📦 Installation
@@ -86,12 +81,14 @@ export default function App() {
 ## 🔧 Icon Usage
 
 ```tsx
-import { Icon } from '@ledgerhq/ldls-ui-rnative';
 import { Settings, ArrowRight, CheckCircle } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-<Icon component={Settings} size="md" />
-<Icon component={ArrowRight} className="text-accent" />
-<Icon component={CheckCircle} size="lg" />
+// Use icons directly as components with size prop
+<Settings size={24} />
+<ArrowRight size={20} className="text-accent" />
+<CheckCircle size={16} />
+
+// Available sizes: 16, 20, 24, 40, 48, 56
 ```
 
 ---
@@ -100,4 +97,3 @@ import { Settings, ArrowRight, CheckCircle } from '@ledgerhq/ldls-ui-rnative/sym
 
 - [📱 React Native Setup Guide](https://nativewind.dev/getting-started/react-native)
 - [🏠 Main Repository](https://github.com/LedgerHQ/ldls)
-- [🎨 Design System Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md)

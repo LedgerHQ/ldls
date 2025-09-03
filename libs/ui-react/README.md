@@ -91,12 +91,7 @@ Add the `dark` class to your root element or use CSS media queries:
   </body>
 </html>
 
-// System preference detection
-<html className="dark:bg-base">
-  <body className="bg-base text-base transition-colors">
-    <App />
-  </body>
-</html>
+
 ```
 
 ---
@@ -113,25 +108,22 @@ All components are built with accessibility in mind:
 
 ---
 
-## 🔧 Advanced Usage
+## 🎨 Icon System
 
-### Icon System
-
-Import icons from the symbols export:
+Import icons directly from the symbols export:
 
 ```tsx
-import { Icon } from '@ledgerhq/ldls-ui-react';
-import {
-  ArrowRight,
-  CheckCircle,
-  AlertTriangle
-} from '@ledgerhq/ldls-ui-react/symbols';
+import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/symbols';
 
-<Icon component={ArrowRight} size="md" />
-<Icon component={CheckCircle} className="text-success" />
+// Use icons as components with size prop
+<ArrowRight size={24} />
+<CheckCircle size={20} className="text-success" />
+<AlertTriangle size={16} />
+
+// Available sizes: 16, 20, 24, 40, 48, 56
 ```
 
-### TypeScript Support
+## 🔷 TypeScript Support
 
 Full TypeScript support with comprehensive type definitions:
 
