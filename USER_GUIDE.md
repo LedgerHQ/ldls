@@ -50,23 +50,7 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 
 > **Note**: The alpha version is currently only available for React applications. React Native support will be added in future releases.
 
-Before installing the LDLS Design System, ensure you:
-
-1. Connect to the Ledger's VPN
-2. Login to npm
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-3. Create a `.npmrc` file in your project root:
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages:
+Install the packages:
 
 ```bash
 # Using npm

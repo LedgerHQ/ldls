@@ -6,22 +6,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages and their peer dependencies:
+Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -33,12 +22,12 @@ To use the Spot component with our custom Tailwind preset, you need to configure
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,7 +38,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Spot } from '@ldls/ui-react';
+import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -75,8 +64,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Spot component supports custom icons through the discriminated union type system:
 
 ```tsx
-import { Spot } from '@ldls/ui-react';
-import { Settings, Heart, Star } from '@ldls/ui-react/symbols';
+import { Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings, Heart, Star } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -94,7 +83,7 @@ function MyComponent() {
 The Spot component can display numeric values from 0-9:
 
 ```tsx
-import { Spot } from '@ldls/ui-react';
+import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -112,7 +101,7 @@ function MyComponent() {
 Spot is designed for status indication with predefined appearances:
 
 ```tsx
-import { Spot } from '@ldls/ui-react';
+import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function StatusIndicators() {
   return (
@@ -147,7 +136,7 @@ function StatusIndicators() {
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { Settings, Heart } from '@ldls/ui-react/symbols';
+import { Settings, Heart } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use icon prop for custom icons
 <Spot appearance="icon" icon={Settings} />
@@ -163,7 +152,7 @@ import { Settings, Heart } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't pass invalid number values
 <Spot appearance="number" number={10} /> // Invalid: only 0-9 allowed
@@ -231,14 +220,14 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import specific symbols for better tree-shaking
-import { Settings, Bluetooth } from '@ldls/ui-react/symbols';
+import { Settings, Bluetooth } from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't import all symbols
-import * as AllSymbols from '@ldls/ui-react/symbols';
+import * as AllSymbols from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
 ### TypeScript Usage
