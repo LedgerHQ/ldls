@@ -20,6 +20,8 @@ npm install @radix-ui/react-checkbox @radix-ui/react-slot @radix-ui/react-switch
 npm install react react-dom
 ```
 
+→ [View @ledgerhq/ldls-design-core on npm](https://www.npmjs.com/package/@ledgerhq/ldls-design-core?activeTab=readme)
+
 ## ⚡ Quick Setup
 
 ### 1. Configure Tailwind CSS
@@ -137,25 +139,6 @@ import type {
 const CustomButton = (props: ButtonProps) => {
   return <Button {...props} className="custom-button" />;
 };
-```
-
----
-
-## 🧪 Testing
-
-Components are thoroughly tested and provide helpful test utilities:
-
-```tsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from '@ledgerhq/ldls-ui-react';
-
-test('button handles click', () => {
-  const handleClick = jest.fn();
-  render(<Button onClick={handleClick}>Click me</Button>);
-
-  fireEvent.click(screen.getByRole('button'));
-  expect(handleClick).toHaveBeenCalled();
-});
 ```
 
 ---

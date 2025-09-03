@@ -11,6 +11,9 @@ npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
 npm install react-native-svg nativewind
 ```
 
+→ [View @ledgerhq/ldls-ui-rnative on npm](https://www.npmjs.com/package/@ledgerhq/ldls-ui-rnative?activeTab=readme)  
+→ [View @ledgerhq/ldls-design-core on npm](https://www.npmjs.com/package/@ledgerhq/ldls-design-core?activeTab=readme)
+
 ## ⚡ Setup
 
 ### 1. Configure NativeWind
@@ -39,6 +42,8 @@ const config = {
 
 export default config;
 ```
+
+_Using [@ledgerhq/ldls-design-core](https://www.npmjs.com/package/@ledgerhq/ldls-design-core?activeTab=readme) preset_
 
 ### 2. Start Using Components
 
