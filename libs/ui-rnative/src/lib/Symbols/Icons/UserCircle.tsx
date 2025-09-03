@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * UserCircle icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { UserCircle } from '@ledgerhq/ui-rnative/symbols';
+ * import { UserCircle } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <UserCircle />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={UserCircle} size="md">
  *   Click me
  * </Button>
  */
 export const UserCircle = createIcon(
-  "UserCircle",
+  'UserCircle',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const UserCircle = createIcon(
       strokeWidth={1.3}
       d="M4 12a6.66 6.66 0 0 1 8 0M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 2.667a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
     />
-  </Svg>
+  </Svg>,
 );

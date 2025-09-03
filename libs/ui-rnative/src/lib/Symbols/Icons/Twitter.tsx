@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Twitter icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Twitter } from '@ledgerhq/ui-rnative/symbols';
+ * import { Twitter } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Twitter />
  *
@@ -25,18 +25,18 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Twitter} size="md">
  *   Click me
  * </Button>
  */
 export const Twitter = createIcon(
-  "Twitter",
+  'Twitter',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
       d="M9.332 6.928 14.544 1h-1.235L8.783 6.147 5.17 1H1l5.466 7.784L1 15h1.235l4.78-5.436L10.83 15H15zM7.64 8.852l-.554-.775L2.68 1.91h1.897l3.556 4.977.554.775 4.622 6.47h-1.897z"
     />
-  </Svg>
+  </Svg>,
 );

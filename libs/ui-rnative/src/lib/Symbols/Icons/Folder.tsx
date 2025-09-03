@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Folder icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Folder } from '@ledgerhq/ui-rnative/symbols';
+ * import { Folder } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Folder />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Folder} size="md">
  *   Click me
  * </Button>
  */
 export const Folder = createIcon(
-  "Folder",
+  'Folder',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Folder = createIcon(
       strokeWidth={1.3}
       d="M14 6V4.667c0-.74-.6-1.334-1.333-1.334h-5.5m.96 1.927L7.193 3.4A1.34 1.34 0 0 0 6 2.66H3.32v-.007c-.74 0-1.333.594-1.333 1.334v8c0 .733.593 1.333 1.333 1.333h9.333c.734 0 1.334-.6 1.334-1.333v-6h-4.68c-.507 0-.974-.287-1.194-.74z"
     />
-  </Svg>
+  </Svg>,
 );

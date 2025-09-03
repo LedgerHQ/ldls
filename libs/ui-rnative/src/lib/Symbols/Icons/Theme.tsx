@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Theme icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Theme } from '@ledgerhq/ui-rnative/symbols';
+ * import { Theme } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Theme />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Theme} size="md">
  *   Click me
  * </Button>
  */
 export const Theme = createIcon(
-  "Theme",
+  'Theme',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -48,5 +48,5 @@ export const Theme = createIcon(
       strokeWidth={1.3}
       d="M8 11.667V4.333c2.02 0 3.667 1.64 3.667 3.667A3.673 3.673 0 0 1 8 11.667"
     />
-  </Svg>
+  </Svg>,
 );

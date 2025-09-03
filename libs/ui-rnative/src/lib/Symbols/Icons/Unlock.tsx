@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Unlock icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Unlock } from '@ledgerhq/ui-rnative/symbols';
+ * import { Unlock } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Unlock />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Unlock} size="md">
  *   Click me
  * </Button>
  */
 export const Unlock = createIcon(
-  "Unlock",
+  'Unlock',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Unlock = createIcon(
       strokeWidth={1.3}
       d="M14.667 4.013A2.66 2.66 0 0 0 12.087 2 2.67 2.67 0 0 0 9.42 4.667v2M10.667 14H4c-.74 0-1.333-.6-1.333-1.333V8c0-.74.593-1.333 1.333-1.333h6.667C11.4 6.667 12 7.26 12 8v4.667C12 13.4 11.4 14 10.667 14"
     />
-  </Svg>
+  </Svg>,
 );

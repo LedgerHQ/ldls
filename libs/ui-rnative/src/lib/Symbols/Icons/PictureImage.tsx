@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PictureImage icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { PictureImage } from '@ledgerhq/ui-rnative/symbols';
+ * import { PictureImage } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <PictureImage />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={PictureImage} size="md">
  *   Click me
  * </Button>
  */
 export const PictureImage = createIcon(
-  "PictureImage",
+  'PictureImage',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const PictureImage = createIcon(
       strokeWidth={1.3}
       d="m1.998 8.667.863-.864a1.61 1.61 0 0 1 2.274 0L8 10.668m-3.333 3.335 4.199-4.199a1.61 1.61 0 0 1 2.274 0l2.627 2.627m.236-1.096a2.67 2.67 0 0 1-2.668 2.667h-6.67a2.67 2.67 0 0 1-2.667-2.667v-6.67a2.67 2.67 0 0 1 2.667-2.667h6.67a2.67 2.67 0 0 1 2.668 2.667z"
     />
-  </Svg>
+  </Svg>,
 );

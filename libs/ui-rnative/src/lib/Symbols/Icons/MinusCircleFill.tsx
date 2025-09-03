@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MinusCircleFill icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { MinusCircleFill } from '@ledgerhq/ui-rnative/symbols';
+ * import { MinusCircleFill } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <MinusCircleFill />
  *
@@ -25,18 +25,18 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={MinusCircleFill} size="md">
  *   Click me
  * </Button>
  */
 export const MinusCircleFill = createIcon(
-  "MinusCircleFill",
+  'MinusCircleFill',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
       d="M8 1.35a6.65 6.65 0 0 1 0 13.3A6.646 6.646 0 0 1 1.35 8c0-3.679 2.978-6.65 6.65-6.65m-2.666 6a.65.65 0 0 0 0 1.3h5.333l.13-.013a.65.65 0 0 0 0-1.273l-.13-.014z"
     />
-  </Svg>
+  </Svg>,
 );

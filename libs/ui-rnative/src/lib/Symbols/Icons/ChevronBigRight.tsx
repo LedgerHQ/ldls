@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ChevronBigRight icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ChevronBigRight } from '@ledgerhq/ui-rnative/symbols';
+ * import { ChevronBigRight } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <ChevronBigRight />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={ChevronBigRight} size="md">
  *   Click me
  * </Button>
  */
 export const ChevronBigRight = createIcon(
-  "ChevronBigRight",
+  'ChevronBigRight',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const ChevronBigRight = createIcon(
       strokeWidth={1.3}
       d="m5.003 2 5.994 6.018-6 5.982"
     />
-  </Svg>
+  </Svg>,
 );

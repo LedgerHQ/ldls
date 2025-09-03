@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Clear icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Clear } from '@ledgerhq/ui-rnative/symbols';
+ * import { Clear } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Clear />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Clear} size="md">
  *   Click me
  * </Button>
  */
 export const Clear = createIcon(
-  "Clear",
+  'Clear',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Clear = createIcon(
       strokeWidth={1.3}
       d="M5.667 14.667v-1.334m4.666 1.334v-1.334M8 14.667v-1.334m3.173 1.334H4.82c-.74 0-1.34-.6-1.34-1.334-.007-.053 0-.1.007-.153l.233-2.147A2.656 2.656 0 0 1 6.367 8.66h3.226a2.67 2.67 0 0 1 2.654 2.372l.233 2.147a1.33 1.33 0 0 1-1.18 1.467c-.053 0-.107.006-.153.006zM8 1.333c.547 0 1 .447 1 1v4c0 .18-.153.334-.333.334H7.333A.334.334 0 0 1 7 6.333v-4c0-.553.447-1 1-1m1.5 7.334h-3A.67.67 0 0 1 5.827 8a.6.6 0 0 1 .046-.26l.274-.667c.1-.253.34-.413.613-.413H9.2a.66.66 0 0 1 .613.407l.274.666a.664.664 0 0 1-.36.867.7.7 0 0 1-.26.047z"
     />
-  </Svg>
+  </Svg>,
 );

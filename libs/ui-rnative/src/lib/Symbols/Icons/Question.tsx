@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Question icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Question } from '@ledgerhq/ui-rnative/symbols';
+ * import { Question } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Question />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Question} size="md">
  *   Click me
  * </Button>
  */
 export const Question = createIcon(
-  "Question",
+  'Question',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Question = createIcon(
       strokeWidth={1.3}
       d="M6.453 6.453a1.444 1.444 0 0 1 1.474-1.126 1.42 1.42 0 0 1 1.5 1.333c0 1-1.434 1.333-1.434 2M8 10.4a.083.083 0 0 0-.083.083c0 .045.036.084.083.084a.085.085 0 0 0 .083-.084.084.084 0 0 0-.085-.083M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2"
     />
-  </Svg>
+  </Svg>,
 );

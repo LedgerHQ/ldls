@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Moon icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Moon } from '@ledgerhq/ui-rnative/symbols';
+ * import { Moon } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Moon />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Moon} size="md">
  *   Click me
  * </Button>
  */
 export const Moon = createIcon(
-  "Moon",
+  'Moon',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -42,5 +42,5 @@ export const Moon = createIcon(
       d="M13.133 10c-1.666.533-3.6.2-4.933-1.133-1.667-1.667-1.8-4.334-.467-6.2C5 2.933 2.867 5.2 2.867 8c0 2.933 2.4 5.333 5.333 5.333 2.2 0 4.133-1.4 4.933-3.333"
       clipRule="evenodd"
     />
-  </Svg>
+  </Svg>,
 );

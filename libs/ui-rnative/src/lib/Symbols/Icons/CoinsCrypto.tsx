@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * CoinsCrypto icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { CoinsCrypto } from '@ledgerhq/ui-rnative/symbols';
+ * import { CoinsCrypto } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <CoinsCrypto />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={CoinsCrypto} size="md">
  *   Click me
  * </Button>
  */
 export const CoinsCrypto = createIcon(
-  "CoinsCrypto",
+  'CoinsCrypto',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const CoinsCrypto = createIcon(
       strokeWidth={1.3}
       d="M6.453 3.295a4.42 4.42 0 0 1 6.252 0 4.42 4.42 0 0 1 0 6.252m-7.572.02V7.7h1.882c.513 0 .926.413.926.927a.93.93 0 0 1-.933.926m-.695-2.386v.534m0 4.286v-.607m4.53-1.801c0 2.44-1.98 4.421-4.422 4.421A4.42 4.42 0 0 1 2 9.579a4.414 4.414 0 0 1 4.421-4.422 4.42 4.42 0 0 1 4.422 4.422m-3.596 1.799H5.133V9.565h2.11c.494 0 .9.4.9.9 0 .493-.406.9-.906.9z"
     />
-  </Svg>
+  </Svg>,
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Share2 icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Share2 } from '@ledgerhq/ui-rnative/symbols';
+ * import { Share2 } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Share2 />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Share2} size="md">
  *   Click me
  * </Button>
  */
 export const Share2 = createIcon(
-  "Share2",
+  'Share2',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Share2 = createIcon(
       strokeWidth={1.3}
       d="m6.027 7.207 3.946-1.974m-3.946 3.56 3.946 1.974M5.702 6.743a1.778 1.778 0 1 1-2.515 2.514 1.778 1.778 0 0 1 2.515-2.514m7.11-3.556a1.778 1.778 0 1 1-2.514 2.515 1.778 1.778 0 0 1 2.515-2.515m0 7.111a1.778 1.778 0 1 1-2.514 2.515 1.778 1.778 0 0 1 2.515-2.515"
     />
-  </Svg>
+  </Svg>,
 );

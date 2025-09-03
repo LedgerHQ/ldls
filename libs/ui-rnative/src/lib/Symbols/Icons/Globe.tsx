@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Globe icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Globe } from '@ledgerhq/ui-rnative/symbols';
+ * import { Globe } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Globe />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Globe} size="md">
  *   Click me
  * </Button>
  */
 export const Globe = createIcon(
-  "Globe",
+  'Globe',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Globe = createIcon(
       strokeWidth={1.3}
       d="M2.34 6h11.32M2.34 10h11.32M8 2.067c2.889 0 2.889 11.866 0 11.866S5.111 2.067 8 2.067M8 2c3.32 0 6 2.679 6 6 0 3.32-2.68 6-6 6-3.321 0-6-2.68-6-6 0-3.321 2.679-6 6-6"
     />
-  </Svg>
+  </Svg>,
 );

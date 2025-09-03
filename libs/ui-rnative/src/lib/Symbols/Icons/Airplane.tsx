@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Airplane } from '@ledgerhq/ui-rnative/symbols';
+ * import { Airplane } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Airplane />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Airplane} size="md">
  *   Click me

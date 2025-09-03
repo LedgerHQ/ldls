@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Nfc icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Nfc } from '@ledgerhq/ui-rnative/symbols';
+ * import { Nfc } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Nfc />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Nfc} size="md">
  *   Click me
  * </Button>
  */
 export const Nfc = createIcon(
-  "Nfc",
+  'Nfc',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Nfc = createIcon(
       strokeWidth={1.3}
       d="M6 4.827a2.83 2.83 0 0 1 4 0m-6.244 6.75a6.003 6.003 0 1 1 8.488 0M7 6.414a1.415 1.415 0 0 1 2 0M7.5 13.17h1m-1.634 1.5h2.268a1.2 1.2 0 0 0 1.2-1.2V9.867a1.2 1.2 0 0 0-1.2-1.2H6.866a1.2 1.2 0 0 0-1.2 1.2v3.602a1.2 1.2 0 0 0 1.2 1.2"
     />
-  </Svg>
+  </Svg>,
 );
