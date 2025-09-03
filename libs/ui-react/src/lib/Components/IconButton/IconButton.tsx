@@ -39,8 +39,8 @@ export interface IconButtonProps
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning. Do not use it to modify the button's core appearance (colors, padding, etc).
  *
  * @example
- * import { IconButton } from '@ldls/ui-react';
- * import { DeleteCircleFill, Settings } from '@ldls/ui-react/symbols';
+ * import { IconButton } from '@ledgerhq/ldls-ui-react';
+ * import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * // Filled icon button for destructive actions
  * <IconButton iconType="filled" aria-label="Delete item" onClick={handleDelete}>

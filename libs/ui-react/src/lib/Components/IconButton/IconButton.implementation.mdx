@@ -6,22 +6,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages and their peer dependencies:
+Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -33,12 +22,12 @@ To use the IconButton component with our custom Tailwind preset, you need to con
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -51,8 +40,8 @@ export default config;
 ### Basic usage
 
 ```tsx
-import { IconButton } from '@ldls/ui-react';
-import { Settings, DeleteCircleFill } from '@ldls/ui-react/symbols';
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings, DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -74,8 +63,8 @@ function MyComponent() {
 ### With Event Handlers
 
 ```tsx
-import { IconButton } from '@ldls/ui-react';
-import { CheckmarkCircle, CheckmarkCircleFill } from '@ldls/ui-react/symbols';
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { CheckmarkCircle, CheckmarkCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 function LikeButton({ isSelected, onToggle }) {
   return (
@@ -93,8 +82,8 @@ function LikeButton({ isSelected, onToggle }) {
 ### Different Icon Sizes
 
 ```tsx
-import { IconButton } from '@ldls/ui-react';
-import { Settings } from '@ldls/ui-react/symbols';
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 function SizeExamples() {
   return (
@@ -133,7 +122,7 @@ The following guidelines are based on our design system principles and accessibi
 
 ```tsx
 // Use appropriate icon types for each variant
-import { DeleteCircleFill, Settings } from '@ldls/ui-react/symbols';
+import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Filled icons work best with filled variant
 <IconButton iconType="filled" aria-label="Delete">
@@ -274,12 +263,12 @@ import { DeleteCircleFill, Settings } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import only the icons you need for better tree-shaking
-import { Settings } from '@ldls/ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't import entire icon library
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 ```

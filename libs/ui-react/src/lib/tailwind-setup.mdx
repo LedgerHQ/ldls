@@ -10,20 +10,7 @@ This UI kit is built on top of a custom Tailwind CSS preset that provides consis
 
 > **Note:** This guide assumes you already have Tailwind CSS v3.x installed in your project. Our Design System is built and tested with Tailwind CSS v3. If you haven't installed Tailwind CSS yet, please follow the [official Tailwind CSS installation guide](https://v3.tailwindcss.com/docs/installation) first. This documentation focuses on integrating our Design System with your existing Tailwind setup.
 
-Before installing the packages, make sure to configure your `.npmrc` file with the Ledger registry:
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-**Note: You'll need to be connected to the Ledger VPN and logged in npm to access the registry.**
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then you can install `design-core` and `ui-react` packages:
+Install `design-core` and `ui-react` packages:
 
 ```bash
 # Install the Design Core package where the tailwind preset lives

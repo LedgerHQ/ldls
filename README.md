@@ -15,25 +15,14 @@ LDLS is a comprehensive design system that provides consistent UI components for
 
 ### Quick Start
 
-1. Ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-2. Install the packages and their peer dependencies:
+1. Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit and required peer dependencies
 npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
 ```
 
-3. Configure Tailwind:
+2. Configure Tailwind:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -50,7 +39,7 @@ const config = {
 export default config;
 ```
 
-4. Use components:
+3. Use components:
 
 ```bash
 # Install peer dependency related to the button component
