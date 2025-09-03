@@ -69,6 +69,11 @@ const preview: Preview = {
             ['Implementation', '*'],
             'Link',
             ['Implementation', '*'],
+            ['Implementation', 'Docs', '*'],
+            'Input',
+            ['Implementation', 'Docs', '*'],
+            'Search',
+            ['Implementation', 'Docs', '*'],
           ],
           'Communication',
           [
