@@ -85,6 +85,7 @@ import { Input } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState('');
 
   return (
     <Input
@@ -95,11 +96,15 @@ function MyComponent() {
         // Default clearing happens automatically
         // Add your custom logic here
         analytics.track('search_cleared');
+        // Clear error state if needed
+        setError('');
       }}
     />
   );
 }
 ```
+
+> **Note:** The clear button only clears the input value. Error states must be cleared separately in your `onClear` handler.
 
 ### With Custom Right Element
 
