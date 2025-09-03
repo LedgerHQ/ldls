@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { SettingsAlt2 } from '@ldls/ui-react/symbols';
+ * import { SettingsAlt2 } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <SettingsAlt2 />
  *

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Bluetooth icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Bluetooth } from '@ldls/ui-rnative/symbols';
+ * import { Bluetooth } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Bluetooth />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Bluetooth} size="md">
  *   Click me
  * </Button>
  */
 export const Bluetooth = createIcon(
-  "Bluetooth",
+  'Bluetooth',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Bluetooth = createIcon(
       strokeWidth={1.3}
       d="M4 11.333 11.333 5l-4-3v12l4-3L4 4.667"
     />
-  </Svg>
+  </Svg>,
 );

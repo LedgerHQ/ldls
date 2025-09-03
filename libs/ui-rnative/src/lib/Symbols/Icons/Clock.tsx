@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Clock icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Clock } from '@ldls/ui-rnative/symbols';
+ * import { Clock } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Clock />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Clock} size="md">
  *   Click me
  * </Button>
  */
 export const Clock = createIcon(
-  "Clock",
+  'Clock',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Clock = createIcon(
       strokeWidth={1.3}
       d="M10.707 8.08h-3.1V4.347m.4-2.674a6 6 0 1 0 0 12 6 6 0 0 0 0-12"
     />
-  </Svg>
+  </Svg>,
 );

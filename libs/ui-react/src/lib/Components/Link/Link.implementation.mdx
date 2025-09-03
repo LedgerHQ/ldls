@@ -6,28 +6,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages and their peer dependencies:
+Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
 ```
 
-#### About @radix-ui/react-slot
+#### **About @radix-ui/react-slot**
 
 The `@radix-ui/react-slot` dependency is used internally by the Link component
 to enable flexible composition patterns. It allows the Link to merge its props with child
@@ -39,12 +28,12 @@ To use the Link component with our custom Tailwind preset, you need to configure
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -55,7 +44,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Link } from '@ldls/ui-react';
+import { Link } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -86,8 +75,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Link component supports icons with automatic size adjustment based on the link size:
 
 ```tsx
-import { Link } from '@ldls/ui-react';
-import { ArrowRight } from '@ldls/ui-react/symbols';
+import { Link } from '@ledgerhq/ldls-ui-react';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -113,7 +102,7 @@ Use the `isExternal` prop to automatically add target="\_blank" and an external 
 The `asChild` prop allows integration with routing libraries by merging Link styles with child elements:
 
 ```tsx
-import { Link } from '@ldls/ui-react';
+import { Link } from '@ledgerhq/ldls-ui-react';
 import { Link as RouterLink } from 'react-router-dom';
 
 function MyComponent() {
@@ -142,7 +131,7 @@ These guidelines ensure consistency, maintainability, and proper implementation 
 </Link>
 
 // Pass icon as a component reference
-import { ArrowRight } from '@ldls/ui-react/symbols';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 <Link icon={ArrowRight}>Next</Link>
 ```
 
@@ -204,7 +193,7 @@ import { ArrowRight } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import icons explicitly
-import { ArrowRight } from '@ldls/ui-react/symbols';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use icon prop for consistent sizing
 <Link icon={ArrowRight} appearance="accent" />
@@ -217,7 +206,7 @@ import { ArrowRight } from '@ldls/ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ldls/ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't modify icon size directly
 <Link>
@@ -235,12 +224,12 @@ import * as Icons from '@ldls/ui-react/symbols';
 
 ```tsx
 // Import specific icons for better tree-shaking
-import { ArrowRight } from '@ldls/ui-react/symbols';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't import all icons
-import * as AllIcons from '@ldls/ui-react/symbols';
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 ```

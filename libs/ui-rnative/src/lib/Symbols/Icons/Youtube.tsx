@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Youtube icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Youtube } from '@ldls/ui-rnative/symbols';
+ * import { Youtube } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Youtube />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Youtube} size="md">
  *   Click me
  * </Button>
  */
 export const Youtube = createIcon(
-  "Youtube",
+  'Youtube',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
@@ -40,5 +40,5 @@ export const Youtube = createIcon(
       d="M13.47 3.299a1.77 1.77 0 0 1 1.238 1.263C15 5.675 15 8 15 8s0 2.325-.293 3.438a1.77 1.77 0 0 1-1.238 1.263C12.38 13 8 13 8 13s-4.378 0-5.47-.299a1.77 1.77 0 0 1-1.237-1.263C1 10.325 1 8 1 8s0-2.325.293-3.438A1.77 1.77 0 0 1 2.53 3.299C3.622 3 8 3 8 3s4.378 0 5.47.299M10.239 8 6.6 5.857v4.286z"
       clipRule="evenodd"
     />
-  </Svg>
+  </Svg>,
 );

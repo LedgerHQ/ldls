@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Download icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Download } from '@ldls/ui-rnative/symbols';
+ * import { Download } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Download />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Download} size="md">
  *   Click me
  * </Button>
  */
 export const Download = createIcon(
-  "Download",
+  'Download',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Download = createIcon(
       strokeWidth={1.3}
       d="M10.37 7.407 8 9.778m0 0-2.37-2.37M8 9.777V2.667m5.333 8.296a2.37 2.37 0 0 1-2.37 2.37H5.037a2.37 2.37 0 0 1-2.37-2.37"
     />
-  </Svg>
+  </Svg>,
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Ar icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Ar } from '@ldls/ui-rnative/symbols';
+ * import { Ar } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Ar />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Ar} size="md">
  *   Click me
  * </Button>
  */
 export const Ar = createIcon(
-  "Ar",
+  'Ar',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 17 16">
     <Path
       fill="currentColor"
@@ -42,5 +42,5 @@ export const Ar = createIcon(
       fill="currentColor"
       d="m3.364 7-.29-.581a.65.65 0 0 0-.36.581zm9 0h.65a.65.65 0 0 0-.342-.572zM8.03 14.667l-.29.581a.65.65 0 0 0 .599-.009zM8.013 1.349l.46-.46-.46-.459-.46.46zm-1.843.924a.65.65 0 1 0 .92.919zm2.766.919a.65.65 0 1 0 .92-.92zM.775 13.966l-.635-.14-.14.634.635.14zm1.77 1.056a.65.65 0 0 0 .28-1.27zm-.714-2.826a.65.65 0 1 0-1.27-.28zm13.116 1.77.14.634.635-.14-.14-.634zm-2.05-.214a.65.65 0 0 0 .28 1.27zm2.263-1.836a.65.65 0 0 0-1.27.28zm-11.796.417h.65V7h-1.3v5.333zm0-5.333.29.581 4.667-2.333-.29-.581-.291-.582L3.073 6.42zM8.03 4.667l-.308.572 4.334 2.333.308-.572.308-.572-4.333-2.334zM12.364 7h-.65v5.333h1.3V7zm0 5.333-.308-.572-4.334 2.333.308.573.309.572 4.333-2.333zM8.03 14.667l.291-.582-4.667-2.333-.29.581-.29.582 4.666 2.333zM12.364 7l-.327-.562L7.73 8.94l.326.562.327.562 4.308-2.502zM8.055 9.502h-.65v5.172h1.3V9.502zm0 0 .306-.573L3.67 6.426 3.364 7l-.306.574 4.691 2.502zM8.03 4.667l.65-.004-.017-3.317-.65.003-.65.004.017 3.317zm-1.4-1.935.46.46 1.382-1.383-.46-.46-.459-.46L6.17 2.274zM8.013 1.35l-.46.46 1.383 1.383.46-.46.46-.46L8.471.89zm-4.65 10.984-.346-.55-2.589 1.633.347.55.346.55 2.59-1.633zm-.678 2.054.14-.635-1.91-.421-.14.635-.14.634 1.91.422zm-1.91-.421.635.14.42-1.91-.634-.14-.635-.14-.421 1.91zm11.589-1.633-.348.55 2.584 1.632.347-.55.347-.549-2.583-1.632zm.673 2.054.14.635 1.91-.422-.14-.634-.14-.635-1.91.421zm1.91-.421.635-.14-.422-1.91-.634.14-.635.14.421 1.91z"
     />
-  </Svg>
+  </Svg>,
 );

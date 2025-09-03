@@ -1,0 +1,370 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Input/Implementation" />
+
+# Input Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+```
+
+### Tailwind Configuration
+
+To use the Input component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Input } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
+```
+
+> **Note:** Clear button appears automatically when input has content. Use `hideClearButton` to hide it.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+```tsx
+import { Input } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      hideClearButton // Clear button will not appear
+    />
+  );
+}
+```
+
+#### **Extending the Clear Behavior**
+
+Provide `onClear` to extend the default clear behavior with additional logic:
+
+```tsx
+import { Input } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Search"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => {
+        // Default clearing happens automatically
+        // Add your custom logic here
+        analytics.track('search_cleared');
+      }}
+    />
+  );
+}
+```
+
+### With Custom Right Element
+
+You can add custom elements to the right side of the input.
+
+> **Note:** Define reusable components for better organization and performance:
+
+```tsx
+import { Input } from '@ledgerhq/ldls-ui-react';
+import { InformationFill, SparksFill } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Action button component
+const GeneratePasswordButton = () => (
+  <button
+    type="button"
+    onClick={() => alert('Generate password')}
+    aria-label="Generate random password"
+  >
+    <SparksFill size={20} className="text-muted" />
+  </button>
+);
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <div className="space-y-16">
+      <Input
+        label="Password"
+        type="password"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        suffix={<GeneratePasswordButton />}
+      />
+    </div>
+  );
+}
+```
+
+> ⚠️ **Important:** The clear button appears automatically when input has content and will take priority over your `suffix`. Use `hideClearButton={true}` if you need persistent right-side content! 🔄
+
+### With Error State
+
+The Input component supports error states and messages:
+
+```tsx
+import { Input } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    setError(newValue.length < 3);
+  };
+
+  return (
+    <Input
+      label="Username"
+      value={value}
+      onChange={handleChange}
+      aria-invalid={error}
+      errorMessage={error ? 'Must be at least 3 characters' : undefined}
+    />
+  );
+}
+```
+
+> **Note:** Error message are optional. Use `errorMessage` to display an error message below the input.
+
+## ⚠️ Label vs Placeholder
+
+**Important:** Do not combine `label` and `placeholder` props together. They will visually overlap and create a poor user experience.
+
+The Input component uses floating labels that animate from inside the input field. Using both simultaneously causes visual conflicts.
+
+### ✅ Correct Usage
+
+```tsx
+// Use floating label (recommended approach)
+<Input
+  label="Email Address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+
+// OR use placeholder (alternative approach)
+<Input
+  placeholder="Enter your email address"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
+### ❌ Incorrect Usage
+
+```tsx
+// DON'T DO THIS - causes visual overlap
+<Input
+  label="Email Address"
+  placeholder="Enter your email address"  // This will overlap with the label
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+/>
+```
+
+## Do's and Don'ts
+
+With Custom Right Element
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern
+const [value, setValue] = useState('');
+<Input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+
+// Or use uncontrolled inputs (also valid)
+<Input defaultValue="initial value" />
+
+// Uncontrolled with ref access
+const inputRef = useRef<HTMLInputElement>(null);
+<Input ref={inputRef} defaultValue="" />
+
+// Clear button appears automatically - hideClearButton is false by default
+<Input
+  value={value}
+  onChange={handleChange}
+/>
+
+// Use onClear to extend default clear behavior with custom logic
+<Input
+  value={value}
+  onChange={handleChange}
+  onClear={() => {
+    // Default clearing happens automatically
+    customClearLogic();
+  }}
+/>
+
+// Hide clear button when needed
+<Input
+  value={value}
+  onChange={handleChange}
+  hideClearButton
+/>
+
+// Use aria-invalid for error states
+<Input
+  value={value}
+  onChange={handleChange}
+  aria-invalid={hasError}
+  errorMessage={hasError ? 'Invalid input' : undefined}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't create custom clear buttons - use the built-in one
+
+<Input
+  value={value}
+  onChange={handleChange}
+  suffix={<Button onClick={() => setValue('')}>Clear</Button>}
+/>
+
+// Don't manually clear the value in onClear - it happens automatically
+
+<Input
+  value={value}
+  onChange={handleChange}
+  onClear={() => setValue('')} // Redundant - clearing happens by default
+/>
+
+// Don't use custom error props
+
+<Input error={true} errorText="Invalid input" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Input className="mt-4" />
+
+// Use className for width control
+<Input className="w-64" />
+
+// Use className for responsive design
+<Input className="w-full md:w-64" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core input styling
+<Input className="bg-white border-gray-300" />
+
+// Don't modify internal padding/spacing
+<Input className="px-6 py-4" />
+
+// Don't override typography
+<Input className="text-lg" />
+
+// Don't modify hover/focus states
+<Input className="hover:border-blue-500" />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons
+import { InformationFill } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Memoize complex right elements
+const InfoButton = React.memo(() => (
+  <button
+    type="button"
+    aria-label="Show information"
+    className="rounded-full p-2 hover:bg-muted-hover"
+  >
+    <InformationFill size={20} className="text-muted" />
+  </button>
+));
+
+<Input suffix={<InfoButton />} />
+
+// Use stable callbacks for extending clear behavior
+const handleCustomClear = useCallback(() => {
+  // Default clearing happens automatically
+  customClearLogic();
+}, []);
+<Input onClear={handleCustomClear} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't manually clear in onClear - it's automatic
+<Input onClear={() => setValue('')} /> // Redundant
+
+// Don't create new functions in render for extending behavior
+<Input onClear={() => { customLogic(); }} /> // Use useCallback instead
+
+// Don't create complex elements inline
+<Input
+  suffix={
+    <ComplexComponent>
+      <NestedComponents />
+    </ComplexComponent>
+  }
+/>
+```

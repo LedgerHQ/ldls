@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Calendar icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Calendar } from '@ldls/ui-rnative/symbols';
+ * import { Calendar } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Calendar />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Calendar} size="md">
  *   Click me
  * </Button>
  */
 export const Calendar = createIcon(
-  "Calendar",
+  'Calendar',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Calendar = createIcon(
       strokeWidth={1.3}
       d="M5 2v2m6-2v2m3 2.667H2m2-3.668h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2"
     />
-  </Svg>
+  </Svg>,
 );

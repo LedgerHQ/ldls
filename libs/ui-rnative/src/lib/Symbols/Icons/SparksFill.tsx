@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * SparksFill icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { SparksFill } from '@ldls/ui-rnative/symbols';
+ * import { SparksFill } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <SparksFill />
  *
@@ -25,18 +25,18 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={SparksFill} size="md">
  *   Click me
  * </Button>
  */
 export const SparksFill = createIcon(
-  "SparksFill",
+  'SparksFill',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
       d="M8 1.333a.333.333 0 0 0-.667 0v.223c0 .39-.145.76-.398 1.029A1.28 1.28 0 0 1 6 3a.333.333 0 1 0 0 .667c.346 0 .683.146.935.415.253.27.398.64.398 1.03v.221a.333.333 0 1 0 .667 0v-.222c0-.39.145-.76.398-1.029.252-.269.589-.415.935-.415a.333.333 0 1 0 0-.667c-.346 0-.683-.147-.935-.415A1.5 1.5 0 0 1 8 1.555zM12 5.267a.333.333 0 1 0-.667 0c0 .55-.213 1.077-.589 1.464a1.97 1.97 0 0 1-1.41.602.333.333 0 0 0 0 .667c.527 0 1.034.215 1.41.602s.59.914.59 1.465a.333.333 0 0 0 .666 0c0-.551.213-1.078.59-1.465A1.97 1.97 0 0 1 14 8a.333.333 0 0 0 0-.667 1.97 1.97 0 0 1-1.41-.602A2.1 2.1 0 0 1 12 5.267M6 7.333a.333.333 0 0 0-.667 0A3.333 3.333 0 0 1 2 10.667a.333.333 0 1 0 0 .666 3.333 3.333 0 0 1 3.333 3.334.333.333 0 0 0 .667 0 3.334 3.334 0 0 1 3.333-3.334.333.333 0 1 0 0-.666A3.333 3.333 0 0 1 6 7.333"
     />
-  </Svg>
+  </Svg>,
 );

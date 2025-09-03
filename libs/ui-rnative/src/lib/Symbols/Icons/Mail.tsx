@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Mail icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Mail } from '@ldls/ui-rnative/symbols';
+ * import { Mail } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Mail />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Mail} size="md">
  *   Click me
  * </Button>
  */
 export const Mail = createIcon(
-  "Mail",
+  'Mail',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Mail = createIcon(
       strokeWidth={1.3}
       d="M2 4.667v6.666c0 .734.6 1.334 1.333 1.334h9.334c.733 0 1.333-.6 1.333-1.334V4.667M2 4.533c0 .4.2.734.533 1l4 2.734c.934.6 2.067.6 3 0l4-2.667c.267-.333.467-.667.467-1.067 0-.666-.533-1.2-1.2-1.2H3.2c-.667 0-1.2.534-1.2 1.2"
     />
-  </Svg>
+  </Svg>,
 );

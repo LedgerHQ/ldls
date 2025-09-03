@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [

@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { PlusCircleFill } from '@ldls/ui-react/symbols';
+ * import { PlusCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <PlusCircleFill />
  *

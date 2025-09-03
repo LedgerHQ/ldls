@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * UserLock icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { UserLock } from '@ldls/ui-rnative/symbols';
+ * import { UserLock } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <UserLock />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={UserLock} size="md">
  *   Click me
  * </Button>
  */
 export const UserLock = createIcon(
-  "UserLock",
+  'UserLock',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const UserLock = createIcon(
       strokeWidth={1.3}
       d="M10.38 10.947v-.954a1.333 1.333 0 1 1 2.666 0v.947M7.333 10H4.667A2.666 2.666 0 0 0 2 12.667v.666m8.38-2.381h2.667c.526 0 .952.426.952.952v1.143a.95.95 0 0 1-.952.952H10.38a.95.95 0 0 1-.952-.952v-1.143c0-.526.426-.952.952-.952M7.333 2a2.667 2.667 0 1 0 0 5.333 2.667 2.667 0 0 0 0-5.333"
     />
-  </Svg>
+  </Svg>,
 );

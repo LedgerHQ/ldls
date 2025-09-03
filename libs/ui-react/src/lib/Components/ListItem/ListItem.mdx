@@ -1,0 +1,71 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ListItemStories from './ListItem.stories';
+import { ListItem } from './ListItem';
+
+<Meta title="Components/ListItem/Docs" of={ListItemStories} />
+
+# 📋 ListItem
+
+## Introduction
+
+ListItems are flexible interactive elements designed for lists, menus, settings, and option selections. They provide a structured way to display a title with optional description, leading icon, description tag, and flexible trailing content.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2255-4155).
+
+## Anatomy
+
+<Canvas of={ListItemStories.Base} />
+
+- **Title**: The main label of the item (required)
+- **Leading Icon (optional)**: Visually represents the item's category or action
+- **Description (optional)**: Provides additional context
+- **Description Tag (optional)**: Small tag next to description for status or labels
+- **Trailing Content (optional)**: Arbitrary content to be displayed on the right side
+
+## Properties
+
+### Overview
+
+<Canvas of={ListItemStories.Base} />
+<Controls of={ListItemStories.Base} />
+
+### Trailing Content Variants
+
+ListItems support arbitrary trailing content to suit different interaction patterns:
+
+- **caret**: Navigation indicator (chevron right)
+- **switch**: Switch for on/off states (requires `selected` prop)
+- **value**: Displays a primary value with optional subvalue
+- **tag**: Shows a tag for status or category
+- **icon**: Custom trailing icon
+
+<Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
+
+### States
+
+ListItems support standard states including hover, active and disabled.
+
+<Canvas of={ListItemStories.StateShowcase} />
+
+## Responsive Layout
+
+ListItems adapt to their container width, truncating long titles and descriptions as needed.
+
+<Canvas of={ListItemStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Automatically fits container width
+> - Title truncates to one line
+> - Description truncates to one line
+> - Icons and trailing content maintain fixed sizes
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast for all elements and states
+- Text zoom support
+- Keyboard navigation and focus management
+- Semantic ARIA attributes (e.g., role="menuitem")
+- Proper labeling for screen readers

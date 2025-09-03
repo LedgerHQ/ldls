@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ExitLogout icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ExitLogout } from '@ldls/ui-rnative/symbols';
+ * import { ExitLogout } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <ExitLogout />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={ExitLogout} size="md">
  *   Click me
  * </Button>
  */
 export const ExitLogout = createIcon(
-  "ExitLogout",
+  'ExitLogout',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const ExitLogout = createIcon(
       strokeWidth={1.3}
       d="M7.333 8H14m0 0-2.333 2.333M14 8l-2.333-2.333M8 2H4c-1.107 0-2 .893-2 2v8c0 1.1.893 2 2 2h4"
     />
-  </Svg>
+  </Svg>,
 );

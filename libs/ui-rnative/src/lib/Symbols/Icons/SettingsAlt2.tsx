@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * SettingsAlt2 icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { SettingsAlt2 } from '@ldls/ui-rnative/symbols';
+ * import { SettingsAlt2 } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <SettingsAlt2 />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={SettingsAlt2} size="md">
  *   Click me
  * </Button>
  */
 export const SettingsAlt2 = createIcon(
-  "SettingsAlt2",
+  'SettingsAlt2',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const SettingsAlt2 = createIcon(
       strokeWidth={1.3}
       d="M14 4.667h-2.04m-3.333 0H2m9.473-1.18a1.67 1.67 0 0 1 0 2.353 1.68 1.68 0 0 1-2.36 0 1.666 1.666 0 0 1 0-2.36 1.66 1.66 0 0 1 2.354 0m-4.094 7.853H14m-12 0h2.04m2.84-1.17a1.67 1.67 0 0 1 0 2.354 1.68 1.68 0 0 1-2.36 0 1.666 1.666 0 0 1 0-2.36 1.66 1.66 0 0 1 2.353 0"
     />
-  </Svg>
+  </Svg>,
 );

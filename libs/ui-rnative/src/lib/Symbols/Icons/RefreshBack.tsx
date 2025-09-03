@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * RefreshBack icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { RefreshBack } from '@ldls/ui-rnative/symbols';
+ * import { RefreshBack } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <RefreshBack />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={RefreshBack} size="md">
  *   Click me
  * </Button>
  */
 export const RefreshBack = createIcon(
-  "RefreshBack",
+  'RefreshBack',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const RefreshBack = createIcon(
       strokeWidth={1.3}
       d="M3.008 3.093V5.45h2.357m-2.05 0A5.334 5.334 0 1 1 2.666 8"
     />
-  </Svg>
+  </Svg>,
 );

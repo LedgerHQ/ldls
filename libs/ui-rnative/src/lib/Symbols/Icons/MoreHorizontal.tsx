@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MoreHorizontal icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { MoreHorizontal } from '@ldls/ui-rnative/symbols';
+ * import { MoreHorizontal } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <MoreHorizontal />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={MoreHorizontal} size="md">
  *   Click me
  * </Button>
  */
 export const MoreHorizontal = createIcon(
-  "MoreHorizontal",
+  'MoreHorizontal',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const MoreHorizontal = createIcon(
       strokeWidth={1.3}
       d="M11.66 8a.33.33 0 0 0 .333.333c.18 0 .334-.146.334-.333a.34.34 0 0 0-.334-.333.336.336 0 0 0-.333.34M7.66 8a.33.33 0 0 0 .333.333c.18 0 .334-.146.334-.333a.34.34 0 0 0-.334-.333.336.336 0 0 0-.333.34M3.66 8a.33.33 0 0 0 .333.333c.18 0 .334-.146.334-.333a.34.34 0 0 0-.334-.333.336.336 0 0 0-.333.34"
     />
-  </Svg>
+  </Svg>,
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PenEdit icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { PenEdit } from '@ldls/ui-rnative/symbols';
+ * import { PenEdit } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <PenEdit />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={PenEdit} size="md">
  *   Click me
  * </Button>
  */
 export const PenEdit = createIcon(
-  "PenEdit",
+  'PenEdit',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const PenEdit = createIcon(
       strokeWidth={1.3}
       d="m9.167 4.773 2.06 2.06m-7.7 3.574 6.88-6.887c.26-.26.68-.26.94 0l1.113 1.113c.26.26.26.68 0 .94L5.573 12.46a.7.7 0 0 1-.473.194H3.313v-1.787a.66.66 0 0 1 .194-.473z"
     />
-  </Svg>
+  </Svg>,
 );

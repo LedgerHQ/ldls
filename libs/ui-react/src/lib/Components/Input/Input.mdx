@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+import { Input } from './Input';
+
+<Meta title="Components/Input/Docs" of={InputStories} />
+
+# ⌨️ Input
+
+## Introduction
+
+Input fields are essential form elements that enable users to enter and edit text. This component features a floating label, error states, and an automatic clear button for enhanced user experience.
+It also provides the ability to add custom elements on the right side of the input.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
+
+## Anatomy
+
+<Canvas of={InputStories.Default} />
+<Controls of={InputStories.Default} />
+
+### Clear Button
+
+A clear button (×) appears **automatically** when:
+
+- Input has content
+- Input is not disabled
+- `hideClearButton` is not set to `true`
+
+The clear button provides default functionality for both controlled and uncontrolled inputs. You can override this behavior by providing a custom `onClear` function.
+
+<Canvas of={InputStories.WithContent} />
+
+#### **Default Clear Behavior**
+
+The clear button works automatically without requiring an `onClear` prop:
+
+<Canvas of={InputStories.DefaultClearBehavior} />
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+<Canvas of={InputStories.HiddenClearButton} />
+
+#### **Extending the Clear Behavior**
+
+Use `onClear` to extend the default clear behavior with custom logic:
+
+<Canvas of={InputStories.ExtendedClearBehavior} />
+
+### Error State
+
+The input supports error handling through:
+
+- `aria-invalid`: Controls the error state styling
+- `errorMessage`: Displays an error message below the input
+- Error styling includes a red ring and text color
+
+<Canvas of={InputStories.WithError} />
+
+The error message will be automatically:
+
+- Connected to the input using aria-describedby
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
+
+### Custom Right Element
+
+The input supports custom interactive elements on the right side through the `suffix` prop:
+
+<Canvas of={InputStories.WithCustomElement} />
+
+You can add: Tooltips, Action buttons, Custom icons, Any interactive element
+
+> **Important note:** The clear button automatically appears when input has content and will take priority over your `suffix`. Use `hideClearButton` to prevent this if you need persistent right-side content.
+
+### Interactive in a Form
+
+<Canvas of={InputStories.Interactive} />
+
+## Input Types
+
+The component supports various HTML input types:
+
+- text (default)
+- email
+- password
+- number
+- tel
+- url
+
+<Canvas of={InputStories.EmailType} />
+<Canvas of={InputStories.PasswordType} />
+
+## Accessibility
+
+The Input component follows accessibility best practices:
+
+- Uses semantic HTML with proper ARIA attributes
+- Supports keyboard navigation
+- Labels are properly associated with inputs using htmlFor
+- Error messages are linked to inputs using aria-describedby
+- Clear button has an accessible label
+- Error states are communicated through aria-invalid
+
+## Controlled vs Uncontrolled
+
+The Input component supports both controlled and uncontrolled usage:
+
+### Uncontrolled (with defaultValue)
+
+<Canvas of={InputStories.UncontrolledInputExample} />
+
+### Controlled (with value and onChange)
+
+<Canvas of={InputStories.ControlledInputExample} />
+
+## Label vs Placeholder
+
+> ⚠️ **Important:** Do not combine `label` and `placeholder` props together. They will visually overlap and create a poor user experience.
+
+The Input component uses **floating labels** that animate from inside the input field. Using both label and placeholder simultaneously will cause them to overlap and interfere with each other.
+
+## Best Practices
+
+**Labels**: Always provide clear, descriptive labels
+
+**Error Messages**: Make error messages helpful and actionable
+
+**Validation**: Validate on blur or submit, not on every keystroke
+
+**Clear Button**: Use for optional fields where clearing is helpful
+
+**Types**: Use the appropriate input type for the data being collected
+
+**Label vs Placeholder**: Choose one approach - don't mix floating labels with placeholders

@@ -6,22 +6,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages and their peer dependencies:
+Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
@@ -39,12 +28,12 @@ To use the Banner component with our custom Tailwind preset, you need to configu
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -55,7 +44,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Banner } from '@ldls/ui-react';
+import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -73,7 +62,7 @@ function MyComponent() {
 The Banner component supports four different appearances, each with its own semantic meaning and visual styling:
 
 ```tsx
-import { Banner } from '@ldls/ui-react';
+import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function NotificationSystem() {
   return (
@@ -115,7 +104,7 @@ function NotificationSystem() {
 Banners can include primary and secondary action buttons to allow user interaction:
 
 ```tsx
-import { Banner } from '@ldls/ui-react';
+import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function ActionableBanner() {
   const handleAccept = () => {
@@ -143,7 +132,7 @@ function ActionableBanner() {
 Add a close button to make banners dismissible by the user:
 
 ```tsx
-import { Banner } from '@ldls/ui-react';
+import { Banner } from '@ledgerhq/ldls-ui-react';
 import { useState } from 'react';
 
 function DismissibleBanner() {
@@ -184,7 +173,7 @@ Use the `isFull` prop to make the banner take the full width of its container:
 Here's a comprehensive example showing all Banner features:
 
 ```tsx
-import { Banner } from '@ldls/ui-react';
+import { Banner } from '@ledgerhq/ldls-ui-react';
 import { useState } from 'react';
 
 function NotificationCenter() {

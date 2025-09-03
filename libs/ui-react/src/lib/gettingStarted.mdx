@@ -47,26 +47,10 @@ See our [Tailwind Setup Guide](/docs/tailwind-setup-guide--docs) and [Tailwind C
 
 2 . Install `ui-react` package:
 
-Before installing the UI kit, ensure you:
-
-- Connect to the Ledger's VPN
-- Login to the npm registry:
+Install the package:
 
 ```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-- Create a `.npmrc` file in your project root:
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-And then you can safely install the package:
-
-```bash
-npm install @ldls/ui-react
+npm install @ledgerhq/ldls-ui-react
 ```
 
 And its peer dependencies:
@@ -85,7 +69,7 @@ npm install @radix-ui/react-slot
 `@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
 
 ```tsx
-import { Button } from '@ldls/ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
 
 function App() {
   return (

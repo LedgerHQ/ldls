@@ -1,0 +1,274 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/IconButton/Implementation" />
+
+# IconButton Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+```
+
+## Tailwind Configuration
+
+To use the IconButton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+## Usage examples
+
+### Basic usage
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings, DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <div>
+      {/* Stroked icon button */}
+      <IconButton iconType="stroked" aria-label="Open settings" onClick={handleSettings}>
+        <Settings size={20} />
+      </IconButton>
+
+      {/* Filled icon button */}
+      <IconButton iconType="filled" aria-label="Delete item" onClick={handleDelete}>
+        <DeleteCircleFill size={20} />
+      </IconButton>
+    </div>
+  );
+}
+```
+
+### With Event Handlers
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { CheckmarkCircle, CheckmarkCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+
+function LikeButton({ isSelected, onToggle }) {
+  return (
+    <IconButton
+      iconType={isSelected ? "filled" : "stroked"}
+      aria-label={isSelected ? "Deselect" : "Select"}
+      onClick={onToggle}
+    >
+      {isSelected ? <CheckmarkCircleFill size={20} /> : <CheckmarkCircle size={20} />}
+    </IconButton>
+  );
+}
+```
+
+### Different Icon Sizes
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function SizeExamples() {
+  return (
+    <div className="flex items-center gap-4">
+      {/* Compact size for dense interfaces */}
+      <IconButton iconType="stroked" aria-label="Settings">
+        <Settings size={16} />
+      </IconButton>
+
+      {/* Standard size */}
+      <IconButton iconType="stroked" aria-label="Settings">
+        <Settings size={20} />
+      </IconButton>
+
+      {/* Prominent size */}
+      <IconButton iconType="stroked" aria-label="Settings">
+        <Settings size={24} />
+      </IconButton>
+
+      {/* Large touch target for mobile */}
+      <IconButton iconType="stroked" aria-label="Settings">
+        <Settings size={40} />
+      </IconButton>
+    </div>
+  );
+}
+```
+
+## Do's and Don'ts
+
+The following guidelines are based on our design system principles and accessibility best practices for icon-only interactive elements.
+
+### Icon Selection and Usage
+
+✅ **Do**
+
+```tsx
+// Use appropriate icon types for each variant
+import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Filled icons work best with filled variant
+<IconButton iconType="filled" aria-label="Delete">
+  <DeleteCircleFill size={20} />
+</IconButton>
+
+// Outlined icons work best with stroked variant
+<IconButton iconType="stroked" aria-label="Settings">
+  <Settings size={20} />
+</IconButton>
+
+// Use consistent icon sizes within the same context
+<div className="flex gap-2">
+  <IconButton iconType="stroked" aria-label="Edit">
+    <PenEdit size={20} />
+  </IconButton>
+  <IconButton iconType="stroked" aria-label="Delete">
+    <DeleteCircle size={20} />
+  </IconButton>
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't mix filled icons with stroked variant (creates visual inconsistency)
+<IconButton iconType="stroked" aria-label="Delete">
+  <DeleteCircleFill size={20} />
+</IconButton>
+
+// Don't use inconsistent sizes in the same context
+<div className="flex gap-2">
+  <IconButton iconType="stroked" aria-label="Edit">
+    <PenEdit size={16} />
+  </IconButton>
+  <IconButton iconType="stroked" aria-label="Delete">
+    <DeleteCircle size={24} />
+  </IconButton>
+</div>
+```
+
+### Accessibility
+
+✅ **Do**
+
+```tsx
+// Always provide descriptive aria-label
+<IconButton iconType="stroked" aria-label="Download PDF document">
+  <Download size={20} />
+</IconButton>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit aria-label (breaks accessibility)
+<IconButton iconType="stroked">
+  <Settings size={20} />
+</IconButton>
+
+// Don't use generic labels
+<IconButton iconType="stroked" aria-label="Click here">
+  <Settings size={20} />
+</IconButton>
+
+// Don't use icon names as labels
+<IconButton iconType="stroked" aria-label="Settings icon">
+  <Settings size={20} />
+</IconButton>
+```
+
+### Styling and Layout
+
+✅ **Do**
+
+```tsx
+// Use className for positioning and layout
+<IconButton
+  iconType="stroked"
+  className="absolute top-4 right-4"
+  aria-label="Close"
+>
+  <Close size={20} />
+</IconButton>
+
+// Use className for responsive behavior
+<IconButton
+  iconType="stroked"
+  className="md:hidden"
+  aria-label="Menu"
+>
+  <MenuBurger size={20} />
+</IconButton>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't modify button's core appearance
+<IconButton iconType="stroked" className="bg-interactive text-on-interactive">
+  <Settings size={20} />
+</IconButton>
+
+// Don't override button's size constraints
+<IconButton iconType="stroked" className="w-32 h-32">
+  <Settings size={20} />
+</IconButton>
+
+// Don't modify button's padding
+<IconButton iconType="stroked" className="pl-8">
+  <Settings size={20} />
+</IconButton>
+```
+
+### Component Composition
+
+✅ **Do**
+
+```tsx
+// Only render icon components as children
+<IconButton iconType="stroked" aria-label="More actions">
+  <MoreVertical size={20} />
+</IconButton>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't render arbitrary content as children
+<IconButton iconType="stroked" aria-label="More actions">
+  Settings
+</IconButton>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import only the icons you need for better tree-shaking
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
+```

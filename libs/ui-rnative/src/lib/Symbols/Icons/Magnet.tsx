@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Magnet icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Magnet } from '@ldls/ui-rnative/symbols';
+ * import { Magnet } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Magnet />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Magnet} size="md">
  *   Click me
  * </Button>
  */
 export const Magnet = createIcon(
-  "Magnet",
+  'Magnet',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Magnet = createIcon(
       strokeWidth={1.3}
       d="M10 2.666v3.333m0 4v3.333M12.333 10H8a2 2 0 1 1 0-4h4.333a1 1 0 0 0 1-1V3.667a1 1 0 0 0-1-1H8a5.333 5.333 0 1 0 0 10.666h4.333a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1"
     />
-  </Svg>
+  </Svg>,
 );

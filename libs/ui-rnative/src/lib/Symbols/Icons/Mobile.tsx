@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Mobile icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Mobile } from '@ldls/ui-rnative/symbols';
+ * import { Mobile } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Mobile />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Mobile} size="md">
  *   Click me
  * </Button>
  */
 export const Mobile = createIcon(
-  "Mobile",
+  'Mobile',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Mobile = createIcon(
       strokeWidth={1.3}
       d="M6.333 2v1.2a.37.37 0 0 0 .334.4h2.666a.38.38 0 0 0 .333-.4V2m-3 10h2.667m1.334 2H5.333C4.593 14 4 13.4 4 12.667V3.333C4 2.593 4.593 2 5.333 2h5.334C11.4 2 12 2.593 12 3.333v9.334C12 13.4 11.4 14 10.667 14"
     />
-  </Svg>
+  </Svg>,
 );

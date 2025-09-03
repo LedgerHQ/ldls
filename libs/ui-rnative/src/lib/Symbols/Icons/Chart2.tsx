@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Chart2 icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Chart2 } from '@ldls/ui-rnative/symbols';
+ * import { Chart2 } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Chart2 />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Chart2} size="md">
  *   Click me
  * </Button>
  */
 export const Chart2 = createIcon(
-  "Chart2",
+  'Chart2',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Chart2 = createIcon(
       strokeWidth={1.3}
       d="m3.333 10.587 3.38-3.381a.65.65 0 0 1 .94 0l1.428 1.427c.26.26.68.26.94 0l3.973-3.974m-1.774.008h1.773V6.44M14 13.953H1.28V2.147"
     />
-  </Svg>
+  </Svg>,
 );

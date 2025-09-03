@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * SpeedFast icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { SpeedFast } from '@ldls/ui-rnative/symbols';
+ * import { SpeedFast } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <SpeedFast />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={SpeedFast} size="md">
  *   Click me
  * </Button>
  */
 export const SpeedFast = createIcon(
-  "SpeedFast",
+  'SpeedFast',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const SpeedFast = createIcon(
       strokeWidth={1.3}
       d="m8.94 7.727 3.393-3.394m1.12 1.874a5.95 5.95 0 0 1-1.693 7.12m-1.307-10.12a5.9 5.9 0 0 0-2.46-.547h0c-3.314-.007-6 2.68-6.007 5.993a5.99 5.99 0 0 0 2.227 4.666M8 7.327a1.333 1.333 0 1 0 0 2.666 1.333 1.333 0 0 0 0-2.666"
     />
-  </Svg>
+  </Svg>,
 );

@@ -50,30 +50,14 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 
 > **Note**: The alpha version is currently only available for React applications. React Native support will be added in future releases.
 
-Before installing the LDLS Design System, ensure you:
-
-1. Connect to the Ledger's VPN
-2. Login to npm
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-3. Create a `.npmrc` file in your project root:
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages:
+Install the packages:
 
 ```bash
 # Using npm
-npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
 
 # Using yarn
-yarn add @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
+yarn add @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
 ```
 
 The LDLS Design System requires the following peer dependencies:
@@ -90,10 +74,10 @@ Add the LDLS Design System preset to your Tailwind configuration:
 
 ```js
 // tailwind.config.js or tailwind.config.ts
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ldls/ui-react/dist/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset], // Choose the preset that matches your brand
 };
 
@@ -119,7 +103,7 @@ npm install @radix-ui/react-slot
 Import and use components in your React application:
 
 ```jsx
-import { Button } from '@ldls/ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (

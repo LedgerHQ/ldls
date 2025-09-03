@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * User icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { User } from '@ldls/ui-rnative/symbols';
+ * import { User } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <User />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={User} size="md">
  *   Click me
  * </Button>
  */
 export const User = createIcon(
-  "User",
+  'User',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const User = createIcon(
       strokeWidth={1.3}
       d="M3.333 13.333A2.916 2.916 0 0 1 6.267 10.4h3.4a2.916 2.916 0 0 1 2.933 2.933M10 3.467c1.133 1.133 1.133 2.933 0 4-1.133 1.066-2.933 1.133-4 0s-1.133-2.934 0-4a2.9 2.9 0 0 1 4 0"
     />
-  </Svg>
+  </Svg>,
 );

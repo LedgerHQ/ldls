@@ -6,28 +6,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Installation
 
-First, ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-Then install the packages and their peer dependencies:
+Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ldls/ui-react @ldls/design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies (including for Tooltip)
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-tooltip
 ```
 
-#### About @radix-ui/react-tooltip
+#### **About @radix-ui/react-tooltip**
 
 The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip behavior, with custom styling applied.
 
@@ -37,12 +26,12 @@ To use the Tooltip component with our custom Tailwind preset, configure your `ta
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -53,7 +42,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Tooltip, TooltipTrigger, TooltipContent, Button } from '@ldls/ui-react';
+import { Tooltip, TooltipTrigger, TooltipContent, Button } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -83,7 +72,7 @@ function MyComponent() {
 ### With Icon Trigger
 
 ```tsx
-import { Information } from '@ldls/ui-react/symbols';
+import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 <Tooltip>
   <TooltipTrigger asChild>
@@ -111,7 +100,7 @@ import { Information } from '@ldls/ui-react/symbols';
 For app-wide configuration:
 
 ```tsx
-import { TooltipProvider } from '@ldls/ui-react';
+import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
 
 function App() {
   return (

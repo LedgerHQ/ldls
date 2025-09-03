@@ -16,7 +16,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { P2p } from '@ldls/ui-react/symbols';
+ * import { P2p } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <P2p />
  *

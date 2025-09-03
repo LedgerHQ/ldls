@@ -58,7 +58,7 @@ export interface LinkProps
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Link } from '@ldls/ui-react';
+ * import { Link } from '@ledgerhq/ldls-ui-react';
  *
  * // Basic underlined link
  * <Link appearance="underlined" size="md" href="/page">
@@ -66,7 +66,7 @@ export interface LinkProps
  * </Link>
  *
  * // Accent button-like link with icon
- * import { ArrowRight } from '@ldls/ui-react/symbols';
+ * import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Link appearance="accent" size="sm" href="https://example.com" isExternal icon={ArrowRight}>
  *   External Site

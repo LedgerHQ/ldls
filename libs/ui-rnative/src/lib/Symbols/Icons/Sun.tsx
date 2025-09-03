@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Sun icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Sun } from '@ldls/ui-rnative/symbols';
+ * import { Sun } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Sun />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Sun} size="md">
  *   Click me
  * </Button>
  */
 export const Sun = createIcon(
-  "Sun",
+  'Sun',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Sun = createIcon(
       strokeWidth={1.3}
       d="M8 2.667V1.333m0 13.334v-1.334m4.24-9.573.473-.473m-9.426 9.426.473-.473M13.333 8h1.334M1.333 8h1.334m9.573 4.24.473.473M3.287 3.287l.473.473m6.597 1.883a3.333 3.333 0 1 1-4.714 4.714 3.333 3.333 0 0 1 4.714-4.714"
     />
-  </Svg>
+  </Svg>,
 );

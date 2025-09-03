@@ -15,34 +15,23 @@ LDLS is a comprehensive design system that provides consistent UI components for
 
 ### Quick Start
 
-1. Ensure you are connected to the VPN, login to the npm registry and create a `.npmrc` file in your project root:
-
-```bash
-npm login --registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-```bash
-# .npmrc
-@ldls:registry=https://jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public/
-```
-
-2. Install the packages and their peer dependencies:
+1. Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit and required peer dependencies
-npm install @ldls/ui-react @ldls/design-core clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
 ```
 
-3. Configure Tailwind:
+2. Configure Tailwind:
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ldls/design-core';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ldls/ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -50,7 +39,7 @@ const config = {
 export default config;
 ```
 
-4. Use components:
+3. Use components:
 
 ```bash
 # Install peer dependency related to the button component
@@ -60,7 +49,7 @@ npm install @radix-ui/react-slot
 `@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
 
 ```tsx
-import { Button } from '@ldls/ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
 
 function App() {
   return <Button appearance="accent">Get Started</Button>;
@@ -92,7 +81,7 @@ npm install --legacy-peer-deps
 
 ```bash
 # Start React Storybook
-npx nx run @ldls/ui-react:serve:storybook
+npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 
 # Build all libraries
 npx nx run-many --target=build --all
@@ -135,5 +124,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.
 ---
 
 <p align="center">
-  Built with ❤️ by the LDS Team.
+  Built with ❤️ by the LDS Team
 </p>

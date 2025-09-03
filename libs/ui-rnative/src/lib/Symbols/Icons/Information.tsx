@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Information icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Information } from '@ldls/ui-rnative/symbols';
+ * import { Information } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Information />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Information} size="md">
  *   Click me
  * </Button>
  */
 export const Information = createIcon(
-  "Information",
+  'Information',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Information = createIcon(
       strokeWidth={1.3}
       d="M7.993 5.333a.165.165 0 0 0-.166.167.17.17 0 0 0 .166.167c.087 0 .167-.08.167-.167a.17.17 0 0 0-.173-.167M8 8v3.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12"
     />
-  </Svg>
+  </Svg>,
 );

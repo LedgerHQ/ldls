@@ -1,5 +1,5 @@
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MessageChat icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { MessageChat } from '@ldls/ui-rnative/symbols';
+ * import { MessageChat } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <MessageChat />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={MessageChat} size="md">
  *   Click me
  * </Button>
  */
 export const MessageChat = createIcon(
-  "MessageChat",
+  'MessageChat',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_805_1619)">
       <Path
@@ -48,5 +48,5 @@ export const MessageChat = createIcon(
         <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
-  </Svg>
+  </Svg>,
 );

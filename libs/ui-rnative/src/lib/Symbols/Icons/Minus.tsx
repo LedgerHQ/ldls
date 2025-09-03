@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Minus icon component for React Native.
@@ -15,7 +15,7 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Minus } from '@ldls/ui-rnative/symbols';
+ * import { Minus } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Minus />
  *
@@ -25,14 +25,14 @@ import createIcon from "../../Components/Icon/createIcon";
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ldls/ui-rnative';
+ * import { Button } from '@ledgerhq/ldls-ui-rnative';
  *
  * <Button icon={Minus} size="md">
  *   Click me
  * </Button>
  */
 export const Minus = createIcon(
-  "Minus",
+  'Minus',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Minus = createIcon(
       strokeWidth={1.3}
       d="M3.333 8h9.334"
     />
-  </Svg>
+  </Svg>,
 );
