@@ -2,8 +2,6 @@
   "name": "@ledgerhq/ldls-design-core",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/design-core/src",
-  "license": "Apache-2.0",
-  "keywords": ["design-system", "tailwind", "figma"],
   "projectType": "library",
   "tags": ["scope:shared", "type:util"],
   "targets": {
