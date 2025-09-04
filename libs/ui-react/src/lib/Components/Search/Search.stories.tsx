@@ -139,12 +139,16 @@ export const Error: Story = {
 };
 
 /**
- * Search component with debounced functionality to avoid excessive filtering.
+ * Search component with properly debounced search operation.
+ * The search query is debounced, not just the results rendering.
+ * This prevents excessive API calls in real applications.
  */
 export const DebouncedSearch: Story = {
   render: () => {
-    const [searchValue, setSearchValue] = React.useState('');
+    const [inputValue, setInputValue] = React.useState(''); // Display value (updates immediately)
+    const [searchQuery, setSearchQuery] = React.useState(''); // Debounced search query
     const [filteredResults, setFilteredResults] = React.useState<string[]>([]);
+    const [isSearching, setIsSearching] = React.useState(false);
 
     const items = [
       'Apple',
@@ -154,49 +158,94 @@ export const DebouncedSearch: Story = {
       'Elderberry',
       'Fig',
       'Grape',
+      'Blueberry',
+      'Orange',
+      'Pineapple',
     ];
 
-    // Debounce search and filter results
-    React.useEffect(() => {
-      const timer = setTimeout(() => {
-        if (searchValue.trim() === '') {
-          setFilteredResults([]);
-        } else {
-          const results = items.filter((item) =>
-            item.toLowerCase().includes(searchValue.toLowerCase()),
-          );
-          setFilteredResults(results);
-        }
-      }, 300);
+    const debounce = React.useCallback(
+      (callback: (...args: any[]) => void, wait: number) => {
+        let timeoutId: number | null = null;
+        return (...args: any[]) => {
+          if (timeoutId !== null) {
+            window.clearTimeout(timeoutId);
+          }
+          timeoutId = window.setTimeout(() => {
+            callback.apply(null, args);
+          }, wait);
+        };
+      },
+      [],
+    );
 
-      return () => clearTimeout(timer);
-    }, [searchValue]);
+    const debouncedSearch = React.useMemo(
+      () =>
+        debounce((query: string) => {
+          console.log('🔍 Performing search for:', query); // This would be your API call
+          setIsSearching(false);
+          setSearchQuery(query);
+        }, 500),
+      [debounce],
+    );
+
+    // Handle input change (updates display immediately)
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setInputValue(value);
+      setIsSearching(value.trim().length > 0);
+      debouncedSearch(value);
+    };
+
+    // Filter results when search query changes (this would be your API response)
+    React.useEffect(() => {
+      if (searchQuery.trim() === '') {
+        setFilteredResults([]);
+      } else {
+        const results = items.filter((item) =>
+          item.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
+        setFilteredResults(results);
+      }
+    }, [searchQuery]);
+
+    const handleClear = () => {
+      setSearchQuery('');
+      setFilteredResults([]);
+      setIsSearching(false);
+    };
 
     return (
-      <div className="space-y-4">
+      <div className="max-w-md space-y-16">
         <Search
-          placeholder="Search fruits (debounced)"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          onClear={() => {
-            setFilteredResults([]);
-          }}
-          containerClassName="max-w-md"
+          placeholder="Search fruits (properly debounced)"
+          value={inputValue}
+          onChange={handleInputChange}
+          onClear={handleClear}
         />
-
-        {searchValue.length > 0 && (
+        {/* Search status indicator */}
+        {isSearching && (
+          <div className="italic text-muted body-3">Searching...</div>
+        )}
+        {/* Results */}
+        {inputValue.length > 0 && !isSearching && (
           <div className="rounded-md bg-muted p-16">
             {filteredResults.length > 0 ? (
-              <div className="space-y-4">
-                {filteredResults.map((result) => (
-                  <ListItem key={result} title={result} />
-                ))}
+              <div>
+                <p className="mb-8 text-muted body-3">
+                  Found {filteredResults.length} result
+                  {filteredResults.length !== 1 ? 's' : ''} for "{searchQuery}"
+                </p>
+                <div className="space-y-4">
+                  {filteredResults.map((result) => (
+                    <ListItem key={result} title={result} />
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="text-center">
                 <p className="text-muted-contrast body-2">Nothing found</p>
                 <p className="text-muted-contrast mt-4 body-3">
-                  Try searching for different keywords
+                  No fruits match "{searchQuery}"
                 </p>
               </div>
             )}

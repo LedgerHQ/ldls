@@ -62,7 +62,7 @@ For better performance, especially when dealing with API calls or expensive filt
 
 <Canvas of={SearchStories.DebouncedSearch} />
 
-This pattern waits 300ms after the user stops typing before filtering results, reducing unnecessary computations and API calls.
+> For developers: Check the console to see that the search operation is debounced. The input updates immediately, but the actual "search" (console.log) only fires after you stop typing for 500ms.
 
 ## Usage
 
