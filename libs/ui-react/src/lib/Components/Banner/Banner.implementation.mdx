@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Components/Banner/Implementation" />
+<Meta title="Communication/Banner/Implementation" />
 
 # Banner Component Implementation
 
@@ -154,18 +154,34 @@ function DismissibleBanner() {
 }
 ```
 
-### Full Width Banner
+### Natural Width Behavior
 
-Use the `isFull` prop to make the banner take the full width of its container:
+Banners automatically flow to fill their parent container width. No additional props are needed:
 
 ```tsx
 <Banner
   title="System Maintenance"
   description="Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST"
   appearance="warning"
-  isFull
   closeAction={{ onClick: () => handleDismiss(), ariaLabel: 'Dismiss' }}
 />
+```
+
+To control banner width, use container elements:
+
+```tsx
+{/* Full viewport width */}
+<Banner title="Full Width" description="This banner fills the viewport width" />
+
+{/* Constrained width */}
+<div className="max-w-4xl mx-auto">
+  <Banner title="Constrained" description="This banner is limited by its container" />
+</div>
+
+{/* Responsive width */}
+<div className="w-full lg:max-w-2xl">
+  <Banner title="Responsive" description="Width adapts based on screen size" />
+</div>
 ```
 
 ### Complete Example
@@ -215,7 +231,7 @@ function NotificationCenter() {
           appearance={notification.type as any}
           title={notification.title}
           description={notification.description}
-          isFull
+
           closeAction={notification.dismissible ? {
             onClick: () => dismissNotification(notification.id),
             ariaLabel: 'Close notification'
@@ -267,13 +283,14 @@ The following guidelines ensure consistent usage of the Banner component and mai
   appearance="info"
 />
 
-// Use isFull for full-width layouts
-<Banner
-  title="System Notice"
-  description="Maintenance scheduled for tonight"
-  isFull
-  appearance="warning"
-/>
+// Use container elements to control banner width
+<div className="w-full">
+  <Banner
+    title="System Notice"
+    description="Maintenance scheduled for tonight"
+    appearance="warning"
+  />
+</div>
 ```
 
 ❌ **Don't**

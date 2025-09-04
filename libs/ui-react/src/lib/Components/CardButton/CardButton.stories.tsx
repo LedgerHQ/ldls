@@ -5,7 +5,7 @@ import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
 
 const meta: Meta<typeof CardButton> = {
   component: CardButton,
-  title: 'Components/CardButton/Overview',
+  title: 'Action/CardButton/Overview',
   parameters: {
     docs: {
       source: {
@@ -159,6 +159,36 @@ export const FullFeatures: Story = {
   },
 };
 
+export const NaturalWidth: Story = {
+  render: () => (
+    <div className="w-full bg-muted-pressed p-16">
+      <div className="mb-16 text-muted body-4-semi-bold">
+        CardButton naturally flows to fill parent container width
+      </div>
+      <CardButton
+        appearance="base"
+        title="Natural Width Example"
+        description="This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints"
+        icon={CreditCard}
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<CardButton
+  appearance="base"
+  title="Natural Width Example"
+  description="This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints"
+  icon={CreditCard}
+/>
+`,
+      },
+    },
+  },
+};
+
 export const AppearanceShowcase: Story = {
   render: () => {
     const appearances: Array<{
@@ -170,7 +200,7 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex flex-col gap-16 p-8">
+      <div className="flex max-w-md flex-col gap-16 p-8">
         {appearances.map(({ name, appearance }) => (
           <CardButton
             key={appearance}
@@ -187,7 +217,7 @@ export const AppearanceShowcase: Story = {
 
 export const ContentVariations: Story = {
   render: () => (
-    <div className="flex flex-col gap-16 p-8">
+    <div className="flex max-w-md flex-col gap-16 p-8">
       <CardButton
         appearance="base"
         title="With Description"
@@ -220,7 +250,7 @@ export const ContentVariations: Story = {
 
 export const StatesShowcase: Story = {
   render: () => (
-    <div className="flex flex-col gap-16 p-8">
+    <div className="flex max-w-md flex-col gap-16 p-8">
       <CardButton
         appearance="base"
         title="Base Default"
@@ -266,7 +296,6 @@ export const ResponsiveLayout: Story = {
         title="Full Width"
         description="Short description"
         icon={Plus}
-        isFull
       />
       <CardButton
         appearance="base"

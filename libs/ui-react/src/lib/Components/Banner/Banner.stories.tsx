@@ -4,7 +4,7 @@ import { Banner } from './Banner';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
-  title: 'Components/Banner/Overview',
+  title: 'Communication/Banner/Overview',
   parameters: {
     docs: {
       source: {
@@ -46,12 +46,19 @@ const meta: Meta<typeof Banner> = {
 export default meta;
 type Story = StoryObj<typeof Banner>;
 type BannerAppearance = 'info' | 'success' | 'warning' | 'error';
+type BannerProps = React.ComponentProps<typeof Banner>;
 
 export const Base: Story = {
   args: {
     appearance: 'info',
     title: 'Information Banner',
   },
+  render: (args: BannerProps) => (
+    // max-w-md container for visual presentation - not required for Banner component
+    <div className="max-w-md">
+      <Banner {...args} />
+    </div>
+  ),
   parameters: {
     docs: {
       source: {
@@ -69,6 +76,11 @@ export const WithDescription: Story = {
     title: 'Banner with Description',
     description: 'This is additional information about the banner.',
   },
+  render: (args: BannerProps) => (
+    <div className="max-w-md">
+      <Banner {...args} />
+    </div>
+  ),
   parameters: {
     docs: {
       source: {
@@ -97,6 +109,11 @@ export const WithActions: Story = {
       onClick: () => console.log('Secondary clicked'),
     },
   },
+  render: (args: BannerProps) => (
+    <div className="max-w-md">
+      <Banner {...args} />
+    </div>
+  ),
   parameters: {
     docs: {
       source: {
@@ -131,6 +148,11 @@ export const WithFullFeatures: Story = {
       ariaLabel: 'Close banner',
     },
   },
+  render: (args: BannerProps) => (
+    <div className="max-w-md">
+      <Banner {...args} />
+    </div>
+  ),
   parameters: {
     docs: {
       source: {
@@ -159,7 +181,8 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex flex-col gap-16 p-8">
+      // max-w-md container for visual presentation - not required for Banner component
+      <div className="flex max-w-md flex-col gap-16 p-8">
         {appearances.map(({ name, appearance }) => (
           <Banner
             key={appearance}
@@ -179,7 +202,8 @@ export const AppearanceShowcase: Story = {
 
 export const ContentVariations: Story = {
   render: () => (
-    <div className="flex flex-col gap-16 p-8">
+    // max-w-md container for visual presentation - not required for Banner component
+    <div className="flex max-w-md flex-col gap-16 p-8">
       <Banner title="Title Only" />
       <Banner title="With Description" description="Additional details here." />
       <Banner
@@ -230,6 +254,28 @@ export const ContentVariations: Story = {
   ),
 };
 
+export const NaturalWidth: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <p className="text-muted body-3">
+        Banner without container constraints - takes full parent width:
+      </p>
+      <Banner
+        title="Full Width Banner"
+        description="This banner demonstrates natural width behavior - it fills the full width of its parent container."
+        primaryAction={{
+          label: 'Action',
+          onClick: () => console.log('Action clicked'),
+        }}
+        closeAction={{
+          onClick: () => console.log('Closed'),
+          ariaLabel: 'Close full width banner',
+        }}
+      />
+    </div>
+  ),
+};
+
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className="grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16">
@@ -243,12 +289,11 @@ export const ResponsiveLayout: Story = {
         }}
       />
       <Banner
-        title="Full Width"
-        description="Short description"
-        isFull
+        title="Constrained Width"
+        description="Banner width is controlled by this 384px container"
         closeAction={{
           onClick: () => console.log('Closed'),
-          ariaLabel: 'Close full width banner',
+          ariaLabel: 'Close constrained width banner',
         }}
       />
       <Banner
@@ -264,26 +309,28 @@ export const ResponsiveLayout: Story = {
 };
 
 export const InteractiveDismiss: Story = {
-  render: (args) => {
+  render: (args: BannerProps) => {
     const [visible, setVisible] = React.useState(true);
 
     if (!visible) return <p>Banner dismissed</p>;
 
     return (
-      <Banner
-        {...args}
-        title="Click close to dismiss"
-        closeAction={{
-          onClick: () => setVisible(false),
-          ariaLabel: 'Dismiss interactive banner',
-        }}
-      />
+      <div className="max-w-md">
+        <Banner
+          {...args}
+          title="Click close to dismiss"
+          closeAction={{
+            onClick: () => setVisible(false),
+            ariaLabel: 'Dismiss interactive banner',
+          }}
+        />
+      </div>
     );
   },
 };
 
 export const InteractiveActions: Story = {
-  render: (args) => {
+  render: (args: BannerProps) => {
     const [state, setState] = React.useState('idle');
 
     const handleAccept = () => {
@@ -295,33 +342,39 @@ export const InteractiveActions: Story = {
     };
 
     return (
-      <Banner
-        {...args}
-        appearance={
-          state === 'success' ? 'success' : state === 'error' ? 'error' : 'info'
-        }
-        title={
-          state === 'success'
-            ? 'Accepted!'
-            : state === 'error'
-              ? 'Rejected!'
-              : 'Banner with Action'
-        }
-        primaryAction={
-          state === 'idle'
-            ? { label: 'Accept', onClick: handleAccept }
-            : undefined
-        }
-        secondaryAction={
-          state === 'idle'
-            ? { label: 'Reject', onClick: handleReject }
-            : undefined
-        }
-        closeAction={{
-          onClick: () => setState('idle'),
-          ariaLabel: 'Reset banner state',
-        }}
-      />
+      <div className="max-w-md">
+        <Banner
+          {...args}
+          appearance={
+            state === 'success'
+              ? 'success'
+              : state === 'error'
+                ? 'error'
+                : 'info'
+          }
+          title={
+            state === 'success'
+              ? 'Accepted!'
+              : state === 'error'
+                ? 'Rejected!'
+                : 'Banner with Action'
+          }
+          primaryAction={
+            state === 'idle'
+              ? { label: 'Accept', onClick: handleAccept }
+              : undefined
+          }
+          secondaryAction={
+            state === 'idle'
+              ? { label: 'Reject', onClick: handleReject }
+              : undefined
+          }
+          closeAction={{
+            onClick: () => setState('idle'),
+            ariaLabel: 'Reset banner state',
+          }}
+        />
+      </div>
     );
   },
 };

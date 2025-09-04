@@ -7,6 +7,7 @@ export * from './Link';
 export * from './ListItem';
 export * from './Spot';
 export * from './Switch';
+export * from './BaseInput';
 export * from './Input';
 export * from './Tag';
 export * from './Tooltip';
