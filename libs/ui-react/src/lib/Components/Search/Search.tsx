@@ -1,12 +1,11 @@
 import React from 'react';
-import { BaseInput, type BaseInputProps } from '../Input/BaseInput';
+import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { Search as SearchIcon } from '../../Symbols';
 
-export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>
+export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
 
 /**
  * A search input component with a built-in search icon and automatic clear button.
- * Built on top of BaseInput but without labels for better search UX.
  *
  * ## Key Features
  * - **Search icon prefix** automatically positioned on the left (fixed 20px size, muted color)
@@ -48,7 +47,6 @@ export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>
  *   onChange={(e) => setUserQuery(e.target.value)}
  *   onClear={() => {
  *     analytics.track('search_cleared');
- *     setUserQuery('');
  *   }}
  * />
  */

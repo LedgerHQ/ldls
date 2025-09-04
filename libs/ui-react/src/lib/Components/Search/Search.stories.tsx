@@ -64,21 +64,15 @@ export const Default: Story = {
 export const Empty: Story = {
   args: {
     placeholder: 'Search text',
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" />',
+        code: '<Search placeholder="Search text" containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -88,21 +82,15 @@ export const WithContent: Story = {
   args: {
     placeholder: 'Search text',
     defaultValue: 'Search text',
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" defaultValue="Search text" />',
+        code: '<Search placeholder="Search text" defaultValue="Search text" containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -113,21 +101,15 @@ export const Disabled: Story = {
     placeholder: 'Search text',
     disabled: true,
     defaultValue: 'Disabled input',
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" disabled defaultValue="Disabled input" />',
+        code: '<Search placeholder="Search text" disabled defaultValue="Disabled input" containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -139,6 +121,7 @@ export const Error: Story = {
     defaultValue: 'Invalid search',
     errorMessage: 'Search term is invalid',
     'aria-invalid': true,
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -148,17 +131,11 @@ export const Error: Story = {
   defaultValue="Invalid search"
   errorMessage="Search term is invalid"
   aria-invalid={true}
+  containerClassName="max-w-md"
 />`,
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -196,7 +173,7 @@ export const DebouncedSearch: Story = {
     }, [searchValue]);
 
     return (
-      <div className="max-w-md space-y-4">
+      <div className="space-y-4">
         <Search
           placeholder="Search fruits (debounced)"
           value={searchValue}
@@ -204,6 +181,7 @@ export const DebouncedSearch: Story = {
           onClear={() => {
             setFilteredResults([]);
           }}
+          containerClassName="max-w-md"
         />
 
         {searchValue.length > 0 && (

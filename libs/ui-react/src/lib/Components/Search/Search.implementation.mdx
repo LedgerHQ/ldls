@@ -57,15 +57,21 @@ function MyComponent() {
 
 ### Layout & Styling
 
-The Search component takes the **full width** of its parent container by default. To control the width, wrap it in a container with the desired width constraints:
+The Search component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
 
 ```tsx
-// With width constraint
+// ✅ Preferred: Direct width control
+<Search placeholder="Search..." containerClassName="max-w-md" />
+
+// ✅ Responsive width control
+<Search placeholder="Search..." containerClassName="w-full md:max-w-md" />
+
+// Alternative: Container wrapper
 <div className="max-w-md">
   <Search placeholder="Search..." />
 </div>
 
-// Full width in form
+// Full width in form (default behavior)
 <form>
   <Search placeholder="Search products..." />
 </form>
@@ -148,6 +154,12 @@ function MyComponent() {
 // Use controlled components
 const [query, setQuery] = useState('');
 <Search value={query} onChange={(e) => setQuery(e.target.value)} />
+
+// Use containerClassName for layout and width control (preferred)
+<Search placeholder="Search..." containerClassName="max-w-md" />
+
+// Use containerClassName for responsive design
+<Search placeholder="Search..." containerClassName="w-full md:max-w-lg" />
 
 // Provide clear placeholder text
 <Search placeholder="Search by name or email" />
