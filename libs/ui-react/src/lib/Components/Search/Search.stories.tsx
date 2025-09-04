@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Search } from './Search';
+import { ListItem } from '../ListItem';
 
 const meta: Meta<typeof Search> = {
   component: Search,
@@ -161,55 +162,66 @@ export const Error: Story = {
 };
 
 /**
- * Search component with controlled state demonstrating the clear functionality.
+ * Search component with debounced functionality to avoid excessive filtering.
  */
-export const Controlled: Story = {
+export const DebouncedSearch: Story = {
   render: () => {
     const [searchValue, setSearchValue] = React.useState('');
-    const [searchResults, setSearchResults] = React.useState<string[]>([]);
+    const [filteredResults, setFilteredResults] = React.useState<string[]>([]);
 
-    // Simulate search results
+    const items = [
+      'Apple',
+      'Banana',
+      'Cherry',
+      'Date',
+      'Elderberry',
+      'Fig',
+      'Grape',
+    ];
+
+    // Debounce search and filter results
     React.useEffect(() => {
-      if (searchValue.length > 0) {
-        const mockResults = [
-          'Apple',
-          'Banana',
-          'Cherry',
-          'Date',
-          'Elderberry',
-        ].filter((item) =>
-          item.toLowerCase().includes(searchValue.toLowerCase()),
-        );
-        setSearchResults(mockResults);
-      } else {
-        setSearchResults([]);
-      }
+      const timer = setTimeout(() => {
+        if (searchValue.trim() === '') {
+          setFilteredResults([]);
+        } else {
+          const results = items.filter((item) =>
+            item.toLowerCase().includes(searchValue.toLowerCase()),
+          );
+          setFilteredResults(results);
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
     }, [searchValue]);
 
     return (
       <div className="max-w-md space-y-4">
         <Search
-          placeholder="Search fruits"
+          placeholder="Search fruits (debounced)"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           onClear={() => {
-            setSearchValue('');
-            console.log('Search cleared');
+            setFilteredResults([]);
           }}
         />
 
-        {searchResults.length > 0 && (
-          <div className="border-gray-200 rounded-md border p-4">
-            <h4 className="font-medium mb-2">
-              Results ({searchResults.length}):
-            </h4>
-            <ul className="space-y-1">
-              {searchResults.map((result) => (
-                <li key={result} className="text-sm text-gray-600">
-                  {result}
-                </li>
-              ))}
-            </ul>
+        {searchValue.length > 0 && (
+          <div className="rounded-md bg-muted p-16">
+            {filteredResults.length > 0 ? (
+              <div className="space-y-4">
+                {filteredResults.map((result) => (
+                  <ListItem key={result} title={result} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center">
+                <p className="text-muted-contrast body-2">Nothing found</p>
+                <p className="text-muted-contrast mt-4 body-3">
+                  Try searching for different keywords
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -55,6 +55,22 @@ function MyComponent() {
 
 > **Note:** Clear button appears automatically when input has content. Use `hideClearButton` to hide it.
 
+### Layout & Styling
+
+The Search component takes the **full width** of its parent container by default. To control the width, wrap it in a container with the desired width constraints:
+
+```tsx
+// With width constraint
+<div className="max-w-md">
+  <Search placeholder="Search..." />
+</div>
+
+// Full width in form
+<form>
+  <Search placeholder="Search products..." />
+</form>
+```
+
 #### **Controlled Search**
 
 ```tsx

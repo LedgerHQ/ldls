@@ -17,6 +17,8 @@ The Search component is a specialized input field designed specifically for sear
 <Canvas of={SearchStories.Default} />
 <Controls of={SearchStories.Default} />
 
+> **Layout:** The Search component takes the full width of its container by default. Use wrapper containers to control the desired width.
+
 ### Search Icon
 
 Fixed 20px search icon positioned on the left with muted color styling.
@@ -51,6 +53,16 @@ Supports `aria-invalid` and `errorMessage` props for error handling with proper 
 - Keyboard navigation support (Tab, Enter, Escape)
 - Screen reader compatible with accessible labels
 - Focus management and error state communication
+
+## Advanced Usage
+
+### Debounced Search
+
+For better performance, especially when dealing with API calls or expensive filtering operations, implement debounced search to delay execution until the user stops typing.
+
+<Canvas of={SearchStories.DebouncedSearch} />
+
+This pattern waits 300ms after the user stops typing before filtering results, reducing unnecessary computations and API calls.
 
 ## Usage
 
