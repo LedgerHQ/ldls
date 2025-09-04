@@ -8,13 +8,15 @@ import * as AddressFieldInputStories from './AddressFieldInput.stories';
 
 # AddressFieldInput
 
-The AddressFieldInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a fixed "To:" prefix label and context-aware suffix icons.
+The AddressFieldInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons.
+
+> **Layout:** The AddressFieldInput component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
 
 ## Introduction
 
 AddressFieldInput is designed specifically where users need to enter wallet addresses or ENS names. It combines the reliability of BaseInput with domain-specific UX enhancements:
 
-- **Fixed "To:" prefix** - Immediately identifies the input's purpose
+- **Customizable prefix label** - defaults to "To:" but can be overridden via prefix prop
 - **IconButton QR code scanner** - Easy address scanning when empty using consistent IconButton styling
 - **Smart clear button** - Appears automatically when content is entered
 - **ENS support** - Placeholder indicates support for both address formats
@@ -51,6 +53,21 @@ Prevents interaction while maintaining visual consistency.
 Displays validation errors with proper ARIA attributes for accessibility.
 
 <Canvas of={AddressFieldInputStories.Error} />
+
+## Customizable Prefix
+
+The component uses "To:" as the default prefix, but you can customize it for different use cases:
+
+```tsx
+// Default "To:" prefix
+<AddressFieldInput placeholder="Enter recipient address" />
+
+// Custom "From:" prefix
+<AddressFieldInput
+  prefix={<span className="font-medium text-nowrap text-base">From:</span>}
+  placeholder="Enter sender address"
+/>
+```
 
 ## Clear Button
 

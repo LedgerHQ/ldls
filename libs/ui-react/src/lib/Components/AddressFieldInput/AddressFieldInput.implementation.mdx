@@ -23,13 +23,25 @@ import { AddressFieldInput } from '@ledgerhq/ldls-ui-react';
 
 ## Key Features
 
-### Fixed "To:" Prefix
+### Customizable Prefix
 
-The component always displays "To:" as a prefix label to clearly indicate its purpose in transaction contexts.
+The component displays "To:" as the default prefix label, but this can be customized via the `prefix` prop for different use cases.
 
 ```tsx
-// The "To:" label is built-in and cannot be customized
+// Default "To:" prefix
 <AddressFieldInput placeholder="Enter address or ENS" />
+
+// Custom "From:" prefix for sender address input
+<AddressFieldInput
+  prefix={<span className="text-nowrap text-base group-has-[:disabled]:text-disabled">From:</span>}
+  placeholder="Enter address or ENS"
+/>
+
+// Icon prefix
+<AddressFieldInput
+  prefix={<WalletIcon size={20} className="text-muted group-has-[:disabled]:text-disabled" />}
+  placeholder="Enter address or ENS"
+/>
 ```
 
 ### Context-Aware Suffix Icons
@@ -86,7 +98,7 @@ Handle clearing logic with additional state management:
   value={walletAddress}
   onChange={(e) => setWalletAddress(e.target.value)}
   onClear={() => {
-    setWalletAddress('');
+    // BaseInput already handles clearing the input value
     setError(''); // Clear error state
     analytics.track('address_cleared');
   }}
@@ -95,7 +107,27 @@ Handle clearing logic with additional state management:
 
 > **Note:** The clear button only clears the input value. Error states must be cleared separately in your `onClear` handler.
 
-## Best Practices
+### Layout & Styling
+
+The AddressFieldInput component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+
+```tsx
+// ✅ Preferred: Direct width control
+<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+
+// ✅ Responsive width control
+<AddressFieldInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-md" />
+
+// Alternative: Container wrapper
+<div className="max-w-md">
+  <AddressFieldInput placeholder="Enter address or ENS" />
+</div>
+
+// Full width in form (default behavior)
+<form>
+  <AddressFieldInput placeholder="Enter address or ENS" />
+</form>
+```
 
 ### Address Format Support
 
@@ -126,18 +158,6 @@ const handleQrScan = () => {
 />
 ```
 
-### Error Handling
-
-- Use clear, actionable error messages
-- Distinguish between format errors and network validation errors
-- Provide suggestions for common mistakes
-
-### Accessibility
-
-- Always include proper ARIA attributes for validation states
-- Ensure error messages are announced to screen readers
-- Maintain focus management during state transitions
-
 ## Common Patterns
 
 ### Transaction Forms
@@ -150,6 +170,7 @@ const handleQrScan = () => {
     onChange={(e) => setRecipientAddress(e.target.value)}
     errorMessage={addressError}
     aria-invalid={!!addressError}
+    containerClassName="max-w-md"
   />
   {/* Other transaction fields */}
 </form>
@@ -165,9 +186,13 @@ const handleQrScan = () => {
   onQrCodeClick={() => openQrScanner()}
   suffix={
     selectedAddress ? (
-      <button onClick={openAddressBook}>
+      <IconButton
+        iconType="stroked"
+        onClick={openAddressBook}
+        aria-label="Open address book"
+      >
         <ContactsIcon size={20} />
-      </button>
+      </IconButton>
     ) : undefined
   }
 />
@@ -183,8 +208,48 @@ const handleQrScan = () => {
 
 The component includes comprehensive test coverage for:
 
-- **Prefix rendering**: "To:" label always visible
+- **Prefix rendering**: Default "To:" label or custom prefix element
 - **IconButton QR code**: Proper IconButton integration with accessibility
 - **Icon switching**: QR code ↔ clear button based on content
 - **Validation states**: Error messages and ARIA attributes
 - **Interaction handling**: onChange, onClear, onQrCodeClick, focus states
+
+## Best Practices
+
+✅ **Do**
+
+```tsx
+// Use containerClassName for layout and width control (preferred)
+<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+
+// Use containerClassName for responsive design
+<AddressFieldInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-lg" />
+
+// Use custom prefix for different contexts
+<AddressFieldInput
+  prefix={<span className="font-medium text-nowrap text-base">From:</span>}
+  placeholder="Enter sender address"
+/>
+
+// Implement proper validation for address formats
+const validateAddress = (address) => {
+  const isEthereumAddress = address.startsWith('0x') && address.length === 42;
+  const isENS = address.endsWith('.eth');
+  return isEthereumAddress || isENS;
+};
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use generic wrapper divs when containerClassName is available
+<div className="max-w-md">
+  <AddressFieldInput placeholder="Enter address or ENS" />
+</div>
+
+// Don't disable QR code functionality without good reason
+<AddressFieldInput onQrCodeClick={undefined} />
+
+// Don't use complex elements as prefix without proper styling
+<AddressFieldInput prefix={<ComplexComponent />} />
+```

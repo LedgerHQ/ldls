@@ -11,6 +11,11 @@ export interface AddressFieldInputProps
    */
   suffix?: React.ReactNode;
   /**
+   * Custom prefix element to show instead of the "To:" prefix.
+   * When provided, the "To:" prefix will not be shown.
+   */
+  prefix?: React.ReactNode;
+  /**
    * Whether to hide the clear button that appears when input has content.
    * @default false
    */
@@ -23,67 +28,65 @@ export interface AddressFieldInputProps
 }
 
 /**
- * An address field input component for entering cryptocurrency addresses or ENS names.
- * Built on top of BaseInput with a fixed "To:" prefix label and context-aware suffix icons.
+ * A customizable address field input component for cryptocurrency addresses with fixed "To:" prefix, QR code scanner, automatic clear button, error states, and focus/hover effects.
  *
  * ## Key Features
- * - **Fixed "To:" prefix** - Always visible inline label
- * - **Clickable QR code scanner icon** - Appears when input is empty for easy scanning
- * - **Automatic clear button** - Appears when input has content (unless hideClearButton is true)
- * - **ENS support** - Placeholder indicates support for both addresses and ENS names
- * - **Error state styling** - Full BaseInput error handling support
- * - **All BaseInput features** - Including controlled/uncontrolled modes, validation, etc.
+ * - **Fixed "To:" prefix label** always visible on the left
+ * - **Context-aware suffix icons** - QR code scanner when empty, clear button when content
+ * - **Automatic clear button** appears when input has content
+ * - **Clickable QR code scanner** for easy address scanning when input is empty
+ * - **ENS and address support** optimized for cryptocurrency address entry
+ * - **Error state styling** with aria-invalid and errorMessage support
+ * - **Flexible styling** via className, containerClassName props
  *
- * ## Design System Compliance
- * Matches the design system specifications:
- * - "To:" prefix label positioned on the left
- * - IconButton with QR code icon (20px) when empty for address scanning
- * - Clear button on the right when typing (using BaseInput's built-in functionality)
- * - Proper focus, hover, and active states with purple accent colors
- * - Consistent spacing and typography
+ * ## Clear Button Behavior
+ * - Shows automatically when input has content and is not disabled
+ * - Works with both controlled and uncontrolled inputs using native value setter
+ * - Can be hidden with `hideClearButton={true}`
+ * - Extended behavior via optional `onClear` prop
  *
- * @example
- * // Basic address field input
- * <AddressFieldInput
- *   placeholder="Enter address or ENS"
- *   value={address}
- *   onChange={(e) => setAddress(e.target.value)}
- * />
+ * ## Layout & Spacing
+ * Uses container-based spacing (px-16 padding + gap-8) for consistent element positioning.
+ * Prefix (default "To:") is visible on the left, QR code icon appears when empty, clear button takes precedence when input has content.
+ *
  *
  * @example
- * // Address field with error handling
+ * // Basic address field with automatic clear button
+ * <AddressFieldInput value={address} onChange={(e) => setAddress(e.target.value)} />
+ *
+ * // Address field with error state
  * <AddressFieldInput
- *   placeholder="Enter address or ENS"
  *   value={invalidAddress}
  *   onChange={(e) => setInvalidAddress(e.target.value)}
- *   errorMessage={addressError}
- *   aria-invalid={!!addressError}
+ *   aria-invalid={!isValid}
+ *   errorMessage="Please enter a valid address or ENS name"
  * />
  *
- * @example
- * // Address field with QR code scanning and clear behavior
+ * // Address field with QR scanner
  * <AddressFieldInput
- *   placeholder="Enter address or ENS"
  *   value={walletAddress}
  *   onChange={(e) => setWalletAddress(e.target.value)}
- *   onQrCodeClick={() => {
- *     // Open QR code scanner modal/camera
- *     openQrScanner();
- *   }}
+ *   onQrCodeClick={() => openQrScanner()}
+ * />
+ *
+ * // Extend clear behavior with analytics
+ * <AddressFieldInput
+ *   value={recipientAddress}
+ *   onChange={(e) => setRecipientAddress(e.target.value)}
+ *   onQrCodeClick={() => openQrScanner()}
  *   onClear={() => {
  *     analytics.track('address_cleared');
- *     setWalletAddress('');
- *     setAddressError('');
  *   }}
  * />
  */
 export const AddressFieldInput = React.forwardRef<
   HTMLInputElement,
   AddressFieldInputProps
->(({ suffix, onQrCodeClick, ...props }, ref) => {
-  const prefixLabel = (
+>(({ prefix, suffix, onQrCodeClick, ...props }, ref) => {
+  // Use custom prefix if provided, otherwise default "To:" prefix
+  const effectivePrefix = prefix || (
     <span
-      className="font-medium text-nowrap text-base group-has-[:disabled]:text-disabled"
+      className="text-nowrap text-base group-has-[:disabled]:text-disabled"
       aria-hidden="true"
     >
       To:
@@ -107,7 +110,7 @@ export const AddressFieldInput = React.forwardRef<
   return (
     <BaseInput
       ref={ref}
-      prefix={prefixLabel}
+      prefix={effectivePrefix}
       suffix={effectiveSuffix}
       {...props}
     />

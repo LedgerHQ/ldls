@@ -69,21 +69,15 @@ export const Empty: Story = {
   args: {
     placeholder: 'Enter address or ENS',
     onQrCodeClick: () => console.log('QR code clicked!'),
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} />',
+        code: '<AddressFieldInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -93,21 +87,15 @@ export const WithContent: Story = {
   args: {
     placeholder: 'Enter address or ENS',
     defaultValue: '0x95f980s5ag77xe7csuz',
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" />',
+        code: '<AddressFieldInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -118,21 +106,15 @@ export const Disabled: Story = {
     placeholder: 'Enter address or ENS',
     disabled: true,
     defaultValue: '0x95f980s5ag77xe7csuz',
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" />',
+        code: '<AddressFieldInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -144,6 +126,7 @@ export const Error: Story = {
     defaultValue: 'invalid-address-format',
     errorMessage: 'Invalid address format',
     'aria-invalid': true,
+    containerClassName: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -153,17 +136,11 @@ export const Error: Story = {
   defaultValue="invalid-address-format"
   errorMessage="Invalid address format"
   aria-invalid={true}
+  containerClassName="max-w-md"
 />`,
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 /**
@@ -199,31 +176,34 @@ export const Controlled: Story = {
     };
 
     return (
-      <div className="max-w-md space-y-4">
+      <div className="space-y-4">
         <AddressFieldInput
           placeholder="Enter address or ENS"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           onQrCodeClick={handleQrCodeScan}
           onClear={() => {
-            setAddress('');
-            setError('');
+            // BaseInput already handles clearing the input value
+            setError(''); // Clear error state
             console.log('Address cleared');
           }}
           errorMessage={error}
           aria-invalid={!!error}
+          containerClassName="max-w-md"
         />
 
-        <div className="text-sm text-gray-600">
+        <div className="text-muted body-3">
           <p>
             Click the QR code icon when the field is empty to scan an address.
           </p>
         </div>
 
         {address && !error && (
-          <div className="border-gray-200 bg-green-50 rounded-md border p-4">
-            <h4 className="font-medium text-green-800 mb-1">Valid Address</h4>
-            <p className="text-sm text-green-700 break-all">{address}</p>
+          <div className="bg-success/10 rounded-md border border-muted p-16">
+            <h4 className="mb-4 text-success body-2-semi-bold">
+              Valid Address
+            </h4>
+            <p className="break-all text-success body-3">{address}</p>
           </div>
         )}
       </div>
@@ -236,17 +216,17 @@ export const Controlled: Story = {
  */
 export const CustomStyling: Story = {
   render: () => (
-    <div className="max-w-md space-y-4">
-      <div>
-        <h3 className="font-medium mb-2">Custom container styling</h3>
+    <div className="space-y-16">
+      <div className="max-w-md">
+        <h3 className="mb-8 body-2-semi-bold">Custom container styling</h3>
         <AddressFieldInput
           placeholder="Enter wallet address"
           containerClassName="border-2 border-purple-200 bg-purple-50 hover:bg-purple-100"
         />
       </div>
 
-      <div>
-        <h3 className="font-medium mb-2">Hidden clear button</h3>
+      <div className="max-w-md">
+        <h3 className="mb-8 body-2-semi-bold">Hidden clear button</h3>
         <AddressFieldInput
           placeholder="Enter address or ENS"
           defaultValue="0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434"
