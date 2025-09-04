@@ -78,9 +78,9 @@ function MyComponent() {
 }
 ```
 
-### With Secondary Button
+### With Secondary Action
 
-Include a secondary button for additional actions:
+Include a secondary action for additional actions:
 
 ```tsx
 import { VerticalListItem, Spot, IconButton } from '@ledgerhq/ldls-ui-react';
@@ -102,7 +102,7 @@ function MyComponent() {
       title="Settings"
       subtitle="Manage preferences"
       spot={<Spot appearance="icon" icon={Settings} />}
-      secondaryButton={<MoreActionsButton />}
+      secondaryAction={<MoreActionsButton />}
     />
   );
 }

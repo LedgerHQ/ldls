@@ -20,7 +20,7 @@ export interface VerticalListItemProps
    * The IconButton component to display on the top right side of the list item.
    * The button is rendered when the user hovers over the list item or navigates with the keyboard.
    */
-  secondaryButton?: React.ReactNode;
+  secondaryAction?: React.ReactNode;
   /**
    * The Tag component to display on the bottom of the list item.
    */
@@ -30,7 +30,7 @@ export interface VerticalListItemProps
 /**
  * A vertical list item component that displays a spot icon at the top, title and optional subtitle,
  * and optional tag at the bottom. It functions as a clickable button with hover and active states,
- * and can optionally display a secondary button that appears on hover or focus.
+ * and can optionally display a secondary action that appears on hover or focus.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-verticallistitem-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-verticallistitem-implementation--docs#dos-and-donts Guidelines}
@@ -61,7 +61,7 @@ export interface VerticalListItemProps
  *   tag={<Tag label="Active" appearance="success" size="sm" />}
  * />
  *
- * // With secondary button
+ * // With secondary action
  * import { VerticalListItem } from '@ledgerhq/ldls-ui-react';
  * import { IconButton } from '@ledgerhq/ldls-ui-react';
  * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
@@ -70,7 +70,7 @@ export interface VerticalListItemProps
  *   title="Ethereum"
  *   subtitle="ETH"
  *   spot={<Spot appearance="icon" icon={Ethereum} />}
- *   secondaryButton={
+ *   secondaryAction={
  *     <IconButton
  *       iconType="stroked"
  *       onClick={() => console.log('More actions clicked!')}
@@ -85,7 +85,7 @@ export const VerticalListItem = ({
   title,
   subtitle,
   spot,
-  secondaryButton,
+  secondaryAction,
   tag,
   onMouseDown,
   onMouseUp,
@@ -94,7 +94,7 @@ export const VerticalListItem = ({
 }: VerticalListItemProps) => {
   const [isActive, setIsActive] = useState(false);
 
-  const onSecondaryButtonClickHandler = useCallback(
+  const onSecondaryActionClickHandler = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       event.preventDefault();
@@ -104,7 +104,7 @@ export const VerticalListItem = ({
 
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      // Only set parent as active if the click is not on the secondary button container
+      // Only set parent as active if the click is not on the secondary action container
       if (
         !(event.target as HTMLElement).closest(
           '[data-secondary-button-container]',
@@ -152,12 +152,12 @@ export const VerticalListItem = ({
           {tag}
         </div>
       </button>
-      {secondaryButton && (
+      {secondaryAction && (
         <div
           className="absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100"
           data-secondary-button-container
         >
-          <Slot onClick={onSecondaryButtonClickHandler}>{secondaryButton}</Slot>
+          <Slot onClick={onSecondaryActionClickHandler}>{secondaryAction}</Slot>
         </div>
       )}
     </div>

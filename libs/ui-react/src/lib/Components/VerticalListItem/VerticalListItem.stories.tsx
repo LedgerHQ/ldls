@@ -15,11 +15,11 @@ import {
 import { IconButton } from '../IconButton/IconButton';
 import { Tag } from '../Tag/Tag';
 
-const secondaryButton = (
+const secondaryAction = (
   <IconButton
     iconType="stroked"
     aria-label="More actions"
-    onClick={() => console.log('secondary button clicked')}
+    onClick={() => console.log('secondary action clicked')}
   >
     <MoreVertical />
   </IconButton>
@@ -60,12 +60,12 @@ const meta: Meta<typeof VerticalListItem> = {
       action: 'clicked',
       description: 'Function called when the item is clicked',
     },
-    secondaryButton: {
+    secondaryAction: {
       control: 'select',
       options: ['None', 'MoreVertical'],
       mapping: {
         None: undefined,
-        MoreVertical: secondaryButton,
+        MoreVertical: secondaryAction,
       },
       description: 'Function called when the more actions button is clicked',
     },
@@ -92,7 +92,7 @@ export const Base: Story = {
     subtitle: 'Additional information',
     spot: <Spot appearance="icon" icon={Settings} />,
     className: 'max-w-256',
-    secondaryButton,
+    secondaryAction,
   },
 };
 
@@ -101,7 +101,7 @@ export const WithoutSubtitle: Story = {
     title: 'Item without Subtitle',
     spot: <Spot appearance="icon" icon={Plus} />,
     className: 'max-w-256',
-    secondaryButton,
+    secondaryAction,
   },
 };
 
@@ -111,12 +111,12 @@ export const WithTag: Story = {
     subtitle: 'Additional information',
     spot: <Spot appearance="icon" icon={Settings} />,
     tag: <Tag label="New" appearance="base" />,
-    secondaryButton,
+    secondaryAction,
     className: 'max-w-256',
   },
 };
 
-export const WithoutSecondaryButton: Story = {
+export const WithoutSecondaryAction: Story = {
   args: {
     title: 'Item with Tag',
     subtitle: 'Additional information',
@@ -132,35 +132,35 @@ export const SpotVariantsShowcase: Story = {
         title="User"
         subtitle="With subtitle"
         spot={<Spot appearance="icon" icon={User} />}
-        secondaryButton={secondaryButton}
+        secondaryAction={secondaryAction}
         className="max-w-128"
       />
       <VerticalListItem
         title="Wallet"
         subtitle="With subtitle"
         spot={<Spot appearance="icon" icon={Wallet} />}
-        secondaryButton={secondaryButton}
+        secondaryAction={secondaryAction}
         className="max-w-128"
       />
       <VerticalListItem
         title="Cart"
         subtitle="With subtitle"
         spot={<Spot appearance="icon" icon={Cart} />}
-        secondaryButton={secondaryButton}
+        secondaryAction={secondaryAction}
         className="max-w-128"
       />
       <VerticalListItem
         title="Apps"
         subtitle="With subtitle"
         spot={<Spot appearance="icon" icon={Apps} />}
-        secondaryButton={secondaryButton}
+        secondaryAction={secondaryAction}
         className="max-w-128"
       />
       <VerticalListItem
         title="Chart"
         subtitle="With subtitle"
         spot={<Spot appearance="icon" icon={Chart1} />}
-        secondaryButton={secondaryButton}
+        secondaryAction={secondaryAction}
         className="max-w-128"
       />
     </div>
@@ -176,13 +176,13 @@ export const ResponsiveLayout: Story = {
           title="Short Title"
           subtitle="Short subtitle"
           spot={<Spot appearance="icon" icon={Plus} />}
-          secondaryButton={secondaryButton}
+          secondaryAction={secondaryAction}
         />
         <VerticalListItem
           title="Long Title that should truncate appropriately"
           subtitle="Long subtitle that should truncate appropriately"
           spot={<Spot appearance="icon" icon={Plus} />}
-          secondaryButton={secondaryButton}
+          secondaryAction={secondaryAction}
         />
       </div>
     </div>
@@ -199,7 +199,7 @@ export const List: Story = {
             title={`Item ${i + 1}`}
             subtitle={`Subtitle ${i + 1}`}
             spot={<Spot appearance="icon" icon={Apps} />}
-            secondaryButton={secondaryButton}
+            secondaryAction={secondaryAction}
           />
         ))}
       </div>
@@ -218,7 +218,7 @@ export const List: Story = {
                 : `Subtitle ${i + 1}`
             }
             spot={<Spot appearance="icon" icon={Apps} />}
-            secondaryButton={secondaryButton}
+            secondaryAction={secondaryAction}
             className="w-128 shrink-0"
           />
         ))}

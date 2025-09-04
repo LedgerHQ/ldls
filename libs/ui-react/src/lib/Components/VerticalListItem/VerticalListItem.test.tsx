@@ -40,8 +40,8 @@ describe('VerticalListItem Component', () => {
     expect(screen.getByText(tagText)).toBeInTheDocument();
   });
 
-  it('should render secondary button when provided', () => {
-    const mockSecondaryButton = (
+  it('should render secondary action when provided', () => {
+    const mockSecondaryAction = (
       <IconButton iconType="stroked" aria-label="Test Action">
         <Settings />
       </IconButton>
@@ -50,11 +50,11 @@ describe('VerticalListItem Component', () => {
       <VerticalListItem
         spot={mockSpot}
         title={mockTitle}
-        secondaryButton={mockSecondaryButton}
+        secondaryAction={mockSecondaryAction}
       />,
     );
-    const secondaryButton = screen.getByLabelText(/test action/i);
-    expect(secondaryButton).toBeInTheDocument();
+    const secondaryAction = screen.getByLabelText(/test action/i);
+    expect(secondaryAction).toBeInTheDocument();
   });
 
   it('should call onClick handler when main button is clicked', () => {
@@ -115,9 +115,9 @@ describe('VerticalListItem Component', () => {
     expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
   });
 
-  it('should prevent parent activation when clicking secondary button', () => {
+  it('should prevent parent activation when clicking secondary action', () => {
     const handleClick = vi.fn();
-    const mockSecondaryButton = (
+    const mockSecondaryAction = (
       <IconButton iconType="stroked" aria-label="Test Action">
         <Settings />
       </IconButton>
@@ -128,11 +128,11 @@ describe('VerticalListItem Component', () => {
         spot={mockSpot}
         title={mockTitle}
         onClick={handleClick}
-        secondaryButton={mockSecondaryButton}
+        secondaryAction={mockSecondaryAction}
       />,
     );
 
-    const secondaryButton = screen.getByLabelText(/test action/i);
+    const secondaryAction = screen.getByLabelText(/test action/i);
     const mainButton = screen.getByText(mockTitle).closest('button');
 
     if (!mainButton) {
@@ -141,8 +141,8 @@ describe('VerticalListItem Component', () => {
 
     const containerElement = mainButton.parentElement;
 
-    // Click on secondary button
-    fireEvent.click(secondaryButton);
+    // Click on secondary action
+    fireEvent.click(secondaryAction);
 
     // Parent should not be activated
     expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
