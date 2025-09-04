@@ -5,6 +5,7 @@ export * from './Checkbox';
 export * from './IconButton';
 export * from './Link';
 export * from './ListItem';
+export * from './Search';
 export * from './Spot';
 export * from './Switch';
 export * from './BaseInput';

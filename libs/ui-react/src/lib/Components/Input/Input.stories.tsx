@@ -233,6 +233,7 @@ export const HiddenClearButton: Story = {
     },
   },
 };
+
 /**
  * Input in an error state with visual indicators.
  */

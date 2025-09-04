@@ -39,7 +39,7 @@ export function createThemePlugin(
         boxShadowColor: backgroundColor,
         fill: backgroundColor,
         stroke: borderColor,
-        caretColor: borderColor,
+        caretColor: textColor,
         placeholderColor: textColor,
         ringColor: borderColor,
         outlineColor: borderColor,
