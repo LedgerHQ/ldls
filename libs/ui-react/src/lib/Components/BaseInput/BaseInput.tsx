@@ -1,6 +1,7 @@
 import React from 'react';
 import { cn } from '@ldls/utils-shared';
 import { DeleteCircleFill } from '../../Symbols';
+import { IconButton } from '../IconButton/IconButton';
 
 const baseContainerStyles = cn(
   'group relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
@@ -11,10 +12,10 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 bg-transparent w-full text-base outline-none body-2 transition-colors bg-muted ',
+  'peer flex-1 bg-transparent w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
-  'placeholder:text-transparent',
+  'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
 );
 
 const baseLabelStyles = cn(
@@ -184,13 +185,11 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             const input = inputRef.current;
             if (!input) return;
 
-            const isSuffix = target.closest('[data-side="right"]');
             // Smart cursor positioning for better UX:
-            // - Suffix clicks: always end (natural for right-side elements)
-            // - Label/container clicks with content: end (user likely wants to continue typing)
-            // - Label/container clicks on empty input: start (natural starting point)
+            // - Container/label clicks with content: end (user likely wants to continue typing)
+            // - Container/label clicks on empty input: start (natural starting point)
             const cursorPosition =
-              isSuffix || input.value.length > 0 ? input.value.length : 0;
+              input.value.length > 0 ? input.value.length : 0;
 
             window.requestAnimationFrame(() => {
               try {
@@ -202,7 +201,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             });
           }}
         >
-          {prefix && <div data-side="left">{prefix}</div>}
+          {prefix}
 
           <input
             ref={composeRefs(ref, inputRef)}
@@ -211,7 +210,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=" "
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(baseInputStyles, label && 'pt-16', className)}
+            className={cn(baseInputStyles, label && 'pt-16 body-2', className)}
             onChange={handleInput}
             {...props}
           />
@@ -226,21 +225,16 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
           )}
 
           {showClearButton && (
-            /** TODO: extract to a new component IconButton */
-            <button
-              type="button"
-              onClick={() => {
-                handleClear();
-              }}
-              className="cursor-pointer rounded-full"
+            <IconButton
+              iconType="filled"
+              onClick={handleClear}
               aria-label="Clear input"
-              data-side="right"
             >
-              <DeleteCircleFill size={20} className="text-muted" />
-            </button>
+              <DeleteCircleFill size={20} />
+            </IconButton>
           )}
 
-          {suffix && !showClearButton && <div data-side="right">{suffix}</div>}
+          {!showClearButton && suffix}
         </div>
         {errorMessage && (
           <div

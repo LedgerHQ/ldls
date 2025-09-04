@@ -65,7 +65,7 @@ const meta: Meta<typeof Input> = {
           console.log('Clear');
         },
       },
-      description: 'Optional function to override the default clear behavior',
+      description: 'Optional function to extend the default clear behavior',
     },
     hideClearButton: {
       control: 'boolean',
@@ -87,15 +87,13 @@ export const Default: Story = {
     const [value, setValue] = React.useState(args.value || '');
 
     return (
-      <div className="max-w-md">
-        <Input
-          {...args}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onClear={args.onClear ? () => setValue('') : undefined}
-          suffix={args.suffix}
-        />
-      </div>
+      <Input
+        {...args}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onClear={args.onClear ? () => console.log('Clear') : undefined}
+        suffix={args.suffix}
+      />
     );
   },
   args: {
@@ -108,6 +106,16 @@ export const Default: Story = {
     suffix: undefined,
     hideClearButton: false,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Input 
+  label="Label" 
+  type="text" 
+/>`,
+      },
+    },
+  },
 };
 
 /**
@@ -117,51 +125,52 @@ export const WithContent: Story = {
   render: () => {
     const [value, setValue] = React.useState('Initial content');
     return (
-      <div className="max-w-md">
-        <Input
-          label="Label"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onClear={() => setValue('')}
-        />
-      </div>
+      <Input
+        label="Label"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        containerClassName="max-w-md"
+      />
     );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Input 
+  label="Label"
+  value="Initial content"
+  onChange={(e) => setValue(e.target.value)}
+/>`,
+      },
+    },
   },
 };
 
-/**
- * Input with default clear button behavior (no onClear provided).
- * Shows how the clear button appears automatically and handles clearing.
- */
-export const DefaultClearBehavior: Story = {
+export const ExtendedClearBehavior: Story = {
   render: () => {
     return (
-      <div className="max-w-4xl">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
-          <ControlledInputExample />
-          <UncontrolledInputExample />
-          <div className="col-span-full text-muted body-3">
-            Clear buttons appear automatically when input has content. No
-            onClear prop needed - default behavior handles both controlled and
-            uncontrolled inputs.
-          </div>
-        </div>
-      </div>
-    );
-  },
-};
-
-export const ExtendedClearBehavior = () => {
-  return (
-    <div className="max-w-md">
       <Input
         label="Extended Clear Behavior"
         onClear={() => {
           alert('Extended clear behavior');
         }}
+        containerClassName="max-w-md"
       />
-    </div>
-  );
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Input 
+  label="Extended Clear Behavior"
+  onClear={() => {
+    alert('Extended clear behavior');
+  }}
+  containerClassName="max-w-md"
+/>`,
+      },
+    },
+  },
 };
 
 // Separate components to avoid state interference
@@ -170,26 +179,24 @@ export const ControlledInputExample = () => {
     'Type here to see default clear button',
   );
   return (
-    <div className="max-w-md">
-      <Input
-        label="Controlled Input (Default Clear)"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        id="controlled-input"
-      />
-    </div>
+    <Input
+      label="Controlled Input (Default Clear)"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      id="controlled-input"
+      containerClassName="max-w-md"
+    />
   );
 };
 
 export const UncontrolledInputExample = () => {
   return (
-    <div className="max-w-md">
-      <Input
-        label="Uncontrolled Input (Default Clear)"
-        defaultValue="Default content"
-        id="uncontrolled-input"
-      />
-    </div>
+    <Input
+      label="Uncontrolled Input (Default Clear)"
+      defaultValue="Default content"
+      id="uncontrolled-input"
+      containerClassName="max-w-md"
+    />
   );
 };
 
@@ -213,28 +220,19 @@ export const HiddenClearButton: Story = {
       </div>
     );
   },
-};
-
-/**
- * Input in a focused state showing the accent border and ring.
- */
-export const Focused: Story = {
-  render: () => {
-    const [value, setValue] = React.useState('');
-    return (
-      <div className="max-w-md">
-        <Input
-          label="Label"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onClear={() => setValue('')}
-          autoFocus
-        />
-      </div>
-    );
+  parameters: {
+    docs: {
+      source: {
+        code: `<Input 
+  label="Clear Button Hidden" 
+  value="Content with no clear button"
+  onChange={(e) => setValue(e.target.value)}
+  hideClearButton
+/>`,
+      },
+    },
   },
 };
-
 /**
  * Input in an error state with visual indicators.
  */
@@ -273,52 +271,29 @@ export const Disabled: Story = {
   render: () => {
     const [value] = React.useState('Disabled content');
     return (
-      <div className="max-w-md">
-        <Input
-          label="Label"
-          value={value}
-          onChange={() => {
-            console.log('onChange');
-          }}
-          disabled
-        />
-      </div>
+      <Input
+        label="Label"
+        value={value}
+        onChange={() => {
+          console.log('onChange');
+        }}
+        disabled
+        containerClassName="max-w-md"
+      />
     );
   },
-};
-
-/**
- * Input with different types.
- */
-export const EmailType: Story = {
-  render: () => {
-    const [value, setValue] = React.useState('');
-    return (
-      <div className="max-w-md">
-        <Input
-          label="Email"
-          type="email"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </div>
-    );
-  },
-};
-
-export const PasswordType: Story = {
-  render: () => {
-    const [value, setValue] = React.useState('');
-    return (
-      <div className="max-w-md">
-        <Input
-          label="Password"
-          type="password"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </div>
-    );
+  parameters: {
+    docs: {
+      source: {
+        code: `<Input 
+  label="Label" 
+  value="Disabled content"
+  onChange={handleChange}
+  disabled
+  containerClassName="max-w-md"
+/>`,
+      },
+    },
   },
 };
 
