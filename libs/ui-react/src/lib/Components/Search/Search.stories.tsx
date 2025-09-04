@@ -5,7 +5,7 @@ import { ListItem } from '../ListItem';
 
 const meta: Meta<typeof Search> = {
   component: Search,
-  title: 'Components/Search/Overview',
+  title: 'Text Input/Search/Overview',
   parameters: {
     docs: {
       source: {
@@ -171,7 +171,7 @@ export const DebouncedSearch: Story = {
             window.clearTimeout(timeoutId);
           }
           timeoutId = window.setTimeout(() => {
-            callback.apply(null, args);
+            callback(...args);
           }, wait);
         };
       },
