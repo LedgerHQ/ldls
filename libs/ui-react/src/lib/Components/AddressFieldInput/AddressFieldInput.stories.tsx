@@ -4,7 +4,7 @@ import { AddressFieldInput } from './AddressFieldInput';
 
 const meta: Meta<typeof AddressFieldInput> = {
   component: AddressFieldInput,
-  title: 'Components/AddressFieldInput/Overview',
+  title: 'Text Input/AddressFieldInput/Overview',
   parameters: {
     docs: {
       source: {
