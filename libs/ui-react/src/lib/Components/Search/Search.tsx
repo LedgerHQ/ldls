@@ -5,42 +5,50 @@ import { Search as SearchIcon } from '../../Symbols';
 export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
 
 /**
- * A search input component with a built-in search icon and automatic clear button.
+ * A customizable search input component with built-in search icon, automatic clear button, error states, and focus/hover effects.
  *
  * ## Key Features
- * - **Search icon prefix** automatically positioned on the left (fixed 20px size, muted color)
- * - **Automatic clear button** appears when input has content (unless hideClearButton is true)
- * - **No label** - uses placeholder text for better search UX
+ * - **Built-in search icon prefix** automatically positioned on the left (fixed 20px size, muted color)
+ * - **Automatic clear button** appears when input has content
+ * - **No label support** - uses placeholder text for optimal search UX
+ * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with aria-invalid and errorMessage support
- * - **All BaseInput features** including suffix elements, controlled/uncontrolled modes
+ * - **Flexible styling** via className, containerClassName props
  *
- * ## Design System Compliance
- * Matches the design system specifications:
- * - Search icon positioned on the left (fixed 20px size with muted color)
- * - Clear button on the right when typing (using BaseInput's built-in clear functionality)
- * - Proper focus, hover, and active states
- * - Consistent spacing and typography
+ * ## Clear Button Behavior
+ * - Shows automatically when input has content and is not disabled
+ * - Works with both controlled and uncontrolled inputs using native value setter
+ * - Can be hidden with `hideClearButton={true}`
+ * - Extended behavior via optional `onClear` prop
  *
- * @example
- * // Basic search input
- * <Search
- *   placeholder="Search"
- *   value={query}
- *   onChange={(e) => setQuery(e.target.value)}
- * />
+ * ## Layout & Spacing
+ * Uses container-based spacing (px-16 padding + gap-8) for consistent element positioning.
+ * Search icon is always visible on the left, suffix elements are automatically hidden when clear button appears.
+ *
  *
  * @example
- * // Search with error handling
+ * // Basic search with automatic clear button
+ * <Search placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
+ *
+ * // Search with error state
  * <Search
  *   placeholder="Search products"
  *   value={searchTerm}
  *   onChange={(e) => setSearchTerm(e.target.value)}
- *   errorMessage={error}
- *   aria-invalid={!!error}
+ *   aria-invalid={!isValid}
+ *   errorMessage="Search failed. Please try again."
  * />
  *
- * @example
- * // Search with custom clear behavior
+ * // Search with suffix element
+ * <Search
+ *   placeholder="Search with filter"
+ *   value={query}
+ *   onChange={(e) => setQuery(e.target.value)}
+ *   suffix={<FilterIcon size={20} className="text-muted" />}
+ *   hideClearButton={true} // Keep suffix visible
+ * />
+ *
+ * // Extend clear behavior with analytics
  * <Search
  *   placeholder="Search users"
  *   value={userQuery}
