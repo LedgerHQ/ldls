@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseInput, type BaseInputProps } from '../Input/BaseInput';
+import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { IconButton } from '../IconButton/IconButton';
 import { QrCode as QrCodeIcon } from '../../Symbols';
 
