@@ -80,7 +80,12 @@ const preview: Preview = {
             ['Implementation', '*'],
           ],
           'Containment',
-          ['ListItem', ['Implementation', '*']],
+          [
+            'ListItem',
+            ['Implementation', '*'],
+            'VerticalListItem',
+            ['Implementation', '*'],
+          ],
           'Navigation and Search',
           [],
           'Selection',

@@ -27,7 +27,7 @@ const secondaryButton = (
 
 const meta: Meta<typeof VerticalListItem> = {
   component: VerticalListItem,
-  title: 'Components/VerticalListItem/Overview',
+  title: 'Containment/VerticalListItem/Overview',
   parameters: {
     docs: {
       source: {
