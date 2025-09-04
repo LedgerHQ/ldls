@@ -234,6 +234,26 @@ export const HiddenClearButton: Story = {
   },
 };
 /**
+ * Input in a focused state showing the accent border and ring.
+ */
+export const Focused: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('');
+    return (
+      <div className="max-w-md">
+        <Input
+          label="Label"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onClear={() => setValue('')}
+          autoFocus
+        />
+      </div>
+    );
+  },
+};
+
+/**
  * Input in an error state with visual indicators.
  */
 export const WithError: Story = {
@@ -294,6 +314,41 @@ export const Disabled: Story = {
 />`,
       },
     },
+  },
+};
+
+/**
+ * Input with different types.
+ */
+export const EmailType: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('');
+    return (
+      <div className="max-w-md">
+        <Input
+          label="Email"
+          type="email"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </div>
+    );
+  },
+};
+
+export const PasswordType: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('');
+    return (
+      <div className="max-w-md">
+        <Input
+          label="Password"
+          type="password"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </div>
+    );
   },
 };
 
