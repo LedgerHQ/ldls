@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseInput, type BaseInputProps } from './BaseInput';
+import { BaseInput, type BaseInputProps } from '../BaseInput';
 
 export type InputProps = Omit<BaseInputProps, 'prefix'>;
 
