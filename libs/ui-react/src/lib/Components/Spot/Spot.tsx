@@ -12,7 +12,7 @@ import {
 import { cn } from '@ldls/utils-shared';
 
 const spotVariants = cva(
-  'flex size-48 items-center justify-center rounded-full bg-muted-transparent',
+  'flex items-center justify-center rounded-full bg-muted-transparent',
   {
     variants: {
       appearance: {
@@ -27,6 +27,11 @@ const spotVariants = cva(
       },
       disabled: {
         true: 'text-disabled',
+      },
+      size: {
+        48: 'spot-w-48 spot-h-48',
+        56: 'spot-w-56 spot-h-56',
+        72: 'spot-w-72 spot-h-72',
       },
     },
   },
@@ -98,9 +103,20 @@ type DiscriminatedSpotProps =
       appearance: Exclude<SpotAppearance, 'icon' | 'number'>;
     };
 
+export type SpotSize = 48 | 56 | 72;
+
 export type SpotProps = DiscriminatedSpotProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * Whether the spot is disabled.
+     * @default false
+     */
     disabled?: boolean;
+    /**
+     * The size of the spot.
+     * @default 48
+     */
+    size?: SpotSize;
   };
 
 /**
@@ -140,35 +156,52 @@ export type SpotProps = DiscriminatedSpotProps &
  * <Spot appearance="bluetooth" disabled />
  */
 export const Spot = (props: SpotProps) => {
-  const { appearance, className, disabled, ...rest } = props;
+  const { appearance, className, disabled, size = 48, ...rest } = props;
+
+  const sizeMap: Record<SpotSize, IconSize> = {
+    48: 20,
+    56: 24,
+    72: 40,
+  };
+
+  const numberTypographyMap: Record<SpotSize, string> = {
+    48: 'heading-4',
+    56: 'heading-3',
+    72: 'heading-1',
+  };
+
+  const calculatedIconSize = sizeMap[size] ?? 20;
+  const calculatedNumberTypography = numberTypographyMap[size] ?? 'heading-4';
 
   const content = useMemo(() => {
     switch (props.appearance) {
       case 'icon': {
         const { icon: Icon } = props;
-        return <Icon size={20} />;
+        return <Icon size={calculatedIconSize} />;
       }
       case 'number': {
-        return props.number;
+        return (
+          <span className={calculatedNumberTypography}>{props.number}</span>
+        );
       }
       case 'bluetooth':
-        return <BluetoothCircleFill size={20} />;
+        return <BluetoothCircleFill size={calculatedIconSize} />;
       case 'check':
-        return <CheckmarkCircleFill size={20} />;
+        return <CheckmarkCircleFill size={calculatedIconSize} />;
       case 'error':
-        return <DeleteCircleFill size={20} />;
+        return <DeleteCircleFill size={calculatedIconSize} />;
       case 'warning':
-        return <WarningFill size={20} />;
+        return <WarningFill size={calculatedIconSize} />;
       case 'info':
-        return <InformationFill size={20} />;
+        return <InformationFill size={calculatedIconSize} />;
       case 'loader':
-        return <Spinner size={20} />;
+        return <Spinner size={calculatedIconSize} />;
     }
-  }, [props]);
+  }, [props, calculatedIconSize, calculatedNumberTypography]);
 
   return (
     <div
-      className={cn(className, spotVariants({ appearance, disabled }))}
+      className={cn(className, spotVariants({ appearance, disabled, size }))}
       {...rest}
     >
       {content}

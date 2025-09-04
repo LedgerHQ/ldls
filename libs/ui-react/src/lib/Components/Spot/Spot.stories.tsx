@@ -31,6 +31,11 @@ const meta: Meta<typeof Spot> = {
       ],
       description: 'The visual appearance and behavior of the spot',
     },
+    size: {
+      control: 'select',
+      options: [48, 56, 72],
+      description: 'The size of the spot',
+    },
     disabled: {
       control: 'boolean',
       description: 'Whether the spot looks disabled',
@@ -142,6 +147,54 @@ export const NumberVariants: Story = {
       <div className="flex flex-wrap gap-8 p-8">
         {numbers.map((num) => (
           <Spot key={num} appearance="number" number={num} />
+        ))}
+      </div>
+    );
+  },
+};
+
+export const SizesShowcase: Story = {
+  render: () => {
+    const appearances: Array<{
+      name: string;
+      appearance: SpotAppearance;
+      icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+      number?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+    }> = [
+      { name: 'Icon', appearance: 'icon', icon: Settings },
+      { name: 'Bluetooth', appearance: 'bluetooth' },
+      { name: 'Check', appearance: 'check' },
+      { name: 'Error', appearance: 'error' },
+      { name: 'Warning', appearance: 'warning' },
+      { name: 'Info', appearance: 'info' },
+      { name: 'Loader', appearance: 'loader' },
+      { name: 'Number', appearance: 'number', number: 5 },
+    ];
+
+    const sizes = [48, 56, 72] as const;
+
+    return (
+      <div className="flex flex-col gap-16 p-8">
+        {sizes.map((size) => (
+          <div key={size} className="flex flex-col gap-4">
+            <h3 className="text-lg font-semibold">Size {size}px</h3>
+            <div className="flex flex-wrap gap-16">
+              {appearances.map(({ name, appearance, icon, number }) => (
+                <div
+                  key={`${appearance}-${size}`}
+                  className="flex flex-col items-center gap-4"
+                >
+                  <Spot
+                    appearance={appearance as any}
+                    icon={icon}
+                    number={number as any}
+                    size={size}
+                  />
+                  <span className="text-xs text-center text-muted">{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     );

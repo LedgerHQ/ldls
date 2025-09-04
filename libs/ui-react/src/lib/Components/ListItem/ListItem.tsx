@@ -13,8 +13,8 @@ export interface ListItemProps
    */
   description?: string;
   /**
-   * Optional content to display on the left.
-   * @example leadingContent={<Settings />}
+   * Optional content to display on the left, usually a Spot component.
+   * @example leadingContent={<Spot appearance="icon" icon={Settings} />}
    */
   leadingContent?: React.ReactNode;
   /**
@@ -30,8 +30,8 @@ export interface ListItemProps
 }
 
 /**
- * A flexible list item component that displays a required title, optional description (with possible tag), optional leading icon,
- * and optional trailing content. It functions as a clickable button with hover and active states.
+ * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
+ * It functions as a clickable button with hover and active states.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-implementation--docs#dos-and-donts Guidelines}
@@ -49,13 +49,13 @@ export interface ListItemProps
  *   onClick={() => console.log('Clicked!')}
  * />
  *
- * // Icon trailing content with leading icon
- * import { ListItem } from '@ledgerhq/ldls-ui-react';
+ * // Icon trailing content with leading Spot
+ * import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Wallet, Settings } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <ListItem
  *   title="Balance"
- *   leadingContent={<Wallet />}
+ *   leadingContent={<Spot appearance="icon" icon={Wallet} />}
  *   trailingContent={<Settings />}
  * />
  *

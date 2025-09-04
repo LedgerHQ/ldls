@@ -70,12 +70,12 @@ function MyComponent() {
 }
 ```
 
-### With Leading Icon
+### With Leading Content
 
-Include a leading icon for visual identification:
+Include a Spot component as leading icon for visual identification:
 
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
 import { Settings, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
@@ -83,7 +83,7 @@ function MyComponent() {
     <ListItem
       title="Settings"
       description="Manage your profile and preferences"
-      leadingContent={<Settings size={24} />}
+      leadingContent={<Spot appearance="icon" icon={Settings} />}
       trailingContent={<ChevronRight size={24} />}
     />
   );
@@ -95,9 +95,9 @@ function MyComponent() {
 The ListItem supports arbitrary trailing content variants. Below are some examples:
 
 ```tsx
-import { ListItem, Switch, Tag } from '@ledgerhq/ldls-ui-react';
 import { useState } from 'react';
-import { Settings, Check, Bolt, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Switch, Tag } from '@ledgerhq/ldls-ui-react';
+import { Settings, Check, Bolt, ChevronRight, User } from '@ledgerhq/ldls-ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
@@ -108,7 +108,7 @@ function ListVariants() {
       <ListItem
         title="Chevron Variant"
         description="With description"
-        leadingContent={<User />}
+        leadingContent={<Spot appearance="icon" icon={User} />}
         trailingContent={<ChevronRight size={24} />}
       />
 
@@ -116,7 +116,7 @@ function ListVariants() {
       <ListItem
         title="Enable Feature"
         description="Toggle this setting on/off"
-        leadingContent={<User />}
+        leadingContent={<Spot appearance="icon" icon={User} />}
         onClick={() => setSelected(!selected)}
         trailingContent={<Switch selected={selected} />}
       />
@@ -125,6 +125,7 @@ function ListVariants() {
       <ListItem
         title="Account Balance"
         description="Current available funds"
+        leadingContent={<Spot appearance="icon" icon={User} />}
         trailingContent={
           <div className="text-right">
             <div className="body-2-semi-bold">42.00</div>
@@ -137,6 +138,7 @@ function ListVariants() {
       <ListItem
         title="New Feature"
         description="Recently added functionality"
+        leadingContent={<Spot appearance="icon" icon={User} />}
         trailingContent={<Tag label="New" appearance="accent" />}
       />
 
@@ -144,6 +146,7 @@ function ListVariants() {
       <ListItem
         title="Edit Profile"
         description="Modify your information"
+        leadingContent={<Spot appearance="icon" icon={User} />}
         trailingContent={<Check />}
       />
 
@@ -151,6 +154,7 @@ function ListVariants() {
       <ListItem
         title="Simple Item"
         description="No trailing elements"
+        leadingContent={<Spot appearance="icon" icon={User} />}
       />
     </div>
   );
@@ -200,7 +204,7 @@ ListItem handles truncation responsively. Use container widths to control behavi
     trailingContentVariant="caret"
     title="Very Long Title That Will Truncate"
     description="Very long description that will also truncate appropriately"
-    leadingContent={<User />}
+    leadingContent={<Spot appearance="icon" icon={User} />}
   />
 </div>
 ```
