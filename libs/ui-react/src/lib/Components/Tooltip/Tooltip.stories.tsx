@@ -5,7 +5,7 @@ import { Information } from '../../Symbols';
 import { Button } from '../Button';
 
 const meta: Meta = {
-  title: 'Components/Tooltip/Overview',
+  title: 'Communication/Tooltip/Overview',
   parameters: {
     docs: {
       source: {
