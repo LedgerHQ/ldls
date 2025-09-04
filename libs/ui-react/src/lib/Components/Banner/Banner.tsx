@@ -17,22 +17,16 @@ const iconMap = {
   error: <DeleteCircleFill className="text-error" />,
 };
 
-const bannerVariants = cva(
-  'align-start flex w-fit max-w-full gap-8 rounded-md p-16 text-base',
-  {
-    variants: {
-      appearance: {
-        info: 'bg-muted',
-        success: 'bg-success',
-        warning: 'bg-warning',
-        error: 'bg-error',
-      },
-      isFull: {
-        true: 'w-full',
-      },
+const bannerVariants = cva('align-start flex gap-8 rounded-md p-16 text-base', {
+  variants: {
+    appearance: {
+      info: 'bg-muted',
+      success: 'bg-success',
+      warning: 'bg-warning',
+      error: 'bg-error',
     },
   },
-);
+});
 
 export type BannerAppearance = NonNullable<
   VariantProps<typeof bannerVariants>['appearance']
@@ -54,7 +48,6 @@ export interface BannerProps
   appearance?: BannerAppearance;
   title: string;
   description?: string;
-  isFull?: boolean;
   primaryAction?: BannerAction;
   secondaryAction?: BannerAction;
   closeAction?: BannerCloseAction;
@@ -72,7 +65,6 @@ export interface BannerProps
  * @param {'info' | 'success' | 'warning' | 'error'} [appearance='info'] - The type of banner which affects color and icon.
  * @param {string} title - The main title of the banner.
  * @param {string} [description] - Optional descriptive text.
- * @param {boolean} [isFull=false] - If true, the banner expands to full width of its container.
  * @param {BannerAction} [primaryAction] - Optional primary action with label and onClick handler.
  * @param {BannerAction} [secondaryAction] - Optional secondary action with label and onClick handler.
  * @param {BannerCloseAction} [closeAction] - Optional close action with onClick handler and optional ariaLabel. Controls the visibility of the close button.
@@ -96,11 +88,10 @@ export interface BannerProps
  *   primaryAction={{ label: "Undo", onClick: () => console.log('Undo') }}
  * />
  *
- * // Full-width error banner with close
+ * // Error banner with close
  * <Banner
  *   title="Error"
  *   appearance="error"
- *   isFull={true}
  *   closeAction={{ onClick: () => console.log('Close'), ariaLabel: 'Close banner' }}
  * />
  */
@@ -112,7 +103,6 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       description,
       primaryAction,
       secondaryAction,
-      isFull,
       className,
       closeAction,
       ...props
@@ -124,13 +114,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          className,
-          bannerVariants({
-            appearance,
-            isFull,
-          }),
-        )}
+        className={cn(className, bannerVariants({ appearance }))}
         {...props}
       >
         <div className="flex flex-shrink-0 items-start py-4">{icon}</div>

@@ -84,17 +84,33 @@ By default, a ChevronRight icon will be rendered on the right side. Use the `hid
 />
 ```
 
-### Full Width
+### Natural Width Behavior
 
-Use the `isFull` prop to make the card button take the full width of its container:
+CardButtons automatically flow to fit their parent container width. No additional props are needed:
 
 ```tsx
 <CardButton
   title="Continue Setup"
   description="Complete your account configuration"
-  isFull
   appearance="base"
 />
+```
+
+To control card button width, use container elements:
+
+```tsx
+{/* Full container width */}
+<CardButton title="Full Width" description="This button fills the container width" />
+
+{/* Constrained width */}
+<div className="max-w-md">
+  <CardButton title="Constrained" description="This button is limited by its container" />
+</div>
+
+{/* Responsive width */}
+<div className="w-full lg:max-w-lg">
+  <CardButton title="Responsive" description="Width adapts based on screen size" />
+</div>
 ```
 
 ### Outline Appearance
@@ -145,12 +161,13 @@ The following guidelines ensure consistent usage of the CardButton component and
   className="hidden md:block"
 />
 
-// Use isFull for full-width layouts
-<CardButton
-  title="Continue"
-  description="Proceed to the next step"
-  isFull
-/>
+// Use container elements to control button width
+<div className="w-full">
+  <CardButton
+    title="Continue"
+    description="Proceed to the next step"
+  />
+</div>
 ```
 
 ❌ **Don't**

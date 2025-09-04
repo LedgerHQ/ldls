@@ -54,16 +54,22 @@ Banners support various content configurations:
 
 > **Note**: The title is required. Description, actions, and close are optional and can be combined as needed. Actions require both label and onClick handler.
 
+### Width Behavior
+
+Banners naturally flow within their containers and take the full width by default:
+
+<Canvas of={BannerStories.NaturalWidth} />
+
 ### Responsive Layout
 
-Banners adapt to their container:
+Banners adapt to their container constraints:
 
 <Canvas of={BannerStories.ResponsiveLayout} />
 
 > **Key behaviors:**
 >
-> - Default width fits content
-> - Use `isFull` prop for full container width
+> - Banners flow naturally to fill their parent container width
+> - Container elements control the banner width, not the banner itself
 > - Title limited to 2 lines, description to 5 lines with truncation
 > - Icons and buttons maintain consistent sizing
 
