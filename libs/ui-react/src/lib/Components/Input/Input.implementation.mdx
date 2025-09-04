@@ -289,6 +289,20 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 ### Layout and Styling
 
+The Input component takes the **full width** of its parent container by default. To control the width, use wrapper containers:
+
+```tsx
+// With width constraint container
+<div className="max-w-md">
+  <Input label="Email" />
+</div>
+
+// Full width in form
+<form>
+  <Input label="Search products..." />
+</form>
+```
+
 ✅ **Do**
 
 ```tsx
