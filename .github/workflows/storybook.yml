@@ -38,10 +38,10 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build Design Core
-        run: npx nx build design-core --no-cloud
+        run: npx nx build ldls-design-core --no-cloud
 
       - name: Build Storybook
-        run: npx nx build:storybook ui-rnative --no-cloud
+        run: npx nx build:storybook ldls-ui-rnative --no-cloud
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
