@@ -3,6 +3,7 @@ import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 import { createIconUtilities } from './create-icon-utilities.js';
 import { primitivesTheme } from '../themes/index.js';
 import { CSSRuleObject } from 'tailwindcss/types/config.js';
+import { createSpotUtilities } from './create-spot-utilities.js';
 
 export function createPrimitivesPlugin() {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');
@@ -15,6 +16,8 @@ export function createPrimitivesPlugin() {
   const blur = getThemeUtilsByPrefix(primitivesTheme, '--blur-');
   const iconWidth = getThemeUtilsByPrefix(primitivesTheme, '--icon-width-');
   const iconHeight = getThemeUtilsByPrefix(primitivesTheme, '--icon-height-');
+  const spotWidth = getThemeUtilsByPrefix(primitivesTheme, '--spot-width-');
+  const spotHeight = getThemeUtilsByPrefix(primitivesTheme, '--spot-height-');
   const iconStrokeWidth = getThemeUtilsByPrefix(
     primitivesTheme,
     '--icon-border-width-',
@@ -25,6 +28,7 @@ export function createPrimitivesPlugin() {
       // TODO: Remove type cast after exporting all values as strings from Figma
       addBase(primitivesTheme as CSSRuleObject);
       addUtilities(createIconUtilities(theme));
+      addUtilities(createSpotUtilities(theme));
     },
     {
       theme: {
@@ -33,6 +37,8 @@ export function createPrimitivesPlugin() {
         blur,
         iconWidth,
         iconHeight,
+        spotWidth,
+        spotHeight,
         iconStrokeWidth,
         extend: {
           height: size,

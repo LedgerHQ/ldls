@@ -16,6 +16,7 @@ import {
 } from '../../Symbols';
 import { Switch } from '../Switch';
 import { cn } from '@ldls/utils-shared';
+import { Spot } from '../Spot/Spot';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
@@ -63,8 +64,8 @@ const meta: Meta<typeof ListItem> = {
       options: ['None', 'Settings', 'Plus'],
       mapping: {
         None: undefined,
-        Settings: <Settings />,
-        Plus: <Plus />,
+        Settings: <Spot appearance="icon" icon={Settings} />,
+        Plus: <Spot appearance="icon" icon={Plus} />,
       },
       description: 'Optional leading content',
     },
@@ -93,7 +94,7 @@ type Story = StoryObj<typeof ListItem>;
 export const Base: Story = {
   args: {
     title: 'Item with Icon and Description',
-    leadingContent: <Settings />,
+    leadingContent: <Spot appearance="icon" icon={Settings} />,
     description: 'Additional information',
     className: 'max-w-320',
   },
@@ -102,7 +103,7 @@ export const Base: Story = {
 export const WithDescriptionTag: Story = {
   args: {
     title: 'Item with Description Tag',
-    leadingContent: <Settings />,
+    leadingContent: <Spot appearance="icon" icon={Settings} />,
     description: 'Additional information',
     descriptionTag: (
       <Tag label="New" appearance="accent" icon={Bolt} size="sm" />
@@ -120,38 +121,38 @@ export const TrailingContentVariantsShowcase: Story = {
         <ListItem
           title="Caret Variant"
           description="With description"
-          leadingContent={<User />}
+          leadingContent={<Spot appearance="icon" icon={User} />}
           trailingContent={<ChevronRight size={24} />}
         />
         <ListItem
           title="Switch Variant"
           description="With description"
-          leadingContent={<Wallet />}
+          leadingContent={<Spot appearance="icon" icon={Wallet} />}
           onClick={() => setSelected(!selected)}
           trailingContent={<Switch tabIndex={-1} selected={selected} />}
         />
         <ListItem
           title="Value Variant"
           description="With description"
-          leadingContent={<Cart />}
+          leadingContent={<Spot appearance="icon" icon={Cart} />}
           trailingContent={<Balance />}
         />
         <ListItem
           title="Tag Variant"
           description="With description"
-          leadingContent={<Apps />}
+          leadingContent={<Spot appearance="icon" icon={Apps} />}
           trailingContent={<Tag label="New" appearance="accent" />}
         />
         <ListItem
           title="Icon Variant"
           description="With description"
-          leadingContent={<Settings />}
+          leadingContent={<Spot appearance="icon" icon={Settings} />}
           trailingContent={<PenEdit size={24} />}
         />
         <ListItem
           title="None Variant"
           description="With description"
-          leadingContent={<Chart1 />}
+          leadingContent={<Spot appearance="icon" icon={Chart1} />}
         />
       </div>
     );
@@ -168,45 +169,45 @@ export const StateShowcase: Story = {
           <ListItem
             title="Caret Variant"
             description="With description"
-            leadingContent={<User />}
+            leadingContent={<Spot appearance="icon" icon={User} />}
             trailingContent={<ChevronRight size={24} className="text-muted" />}
           />
           <ListItem
             title="Switch Variant"
             description="With description"
-            leadingContent={<Wallet />}
+            leadingContent={<Spot appearance="icon" icon={Wallet} />}
             onClick={() => setSelected(!selected)}
             trailingContent={<Switch selected={selected} />}
           />
           <ListItem
             title="Value Variant"
             description="With description"
-            leadingContent={<Cart />}
+            leadingContent={<Spot appearance="icon" icon={Cart} />}
             trailingContent={<Balance />}
           />
           <ListItem
             title="Tag Variant"
             description="With description"
-            leadingContent={<Apps />}
+            leadingContent={<Spot appearance="icon" icon={Apps} />}
             trailingContent={<Tag label="New" appearance="accent" />}
           />
           <ListItem
             title="Icon Variant"
             description="With description"
-            leadingContent={<Settings />}
+            leadingContent={<Spot appearance="icon" icon={Settings} />}
             trailingContent={<PenEdit size={24} />}
           />
           <ListItem
             title="None Variant"
             description="With description"
-            leadingContent={<Chart1 />}
+            leadingContent={<Spot appearance="icon" icon={Chart1} />}
           />
         </div>
         <div className="flex max-w-256 flex-col">
           <ListItem
             title="Caret Variant"
             description="With description"
-            leadingContent={<User />}
+            leadingContent={<Spot appearance="icon" icon={User} disabled />}
             disabled
             trailingContent={
               <ChevronRight size={24} className="text-disabled" />
@@ -215,7 +216,7 @@ export const StateShowcase: Story = {
           <ListItem
             title="Switch Variant"
             description="With description"
-            leadingContent={<Wallet />}
+            leadingContent={<Spot appearance="icon" icon={Wallet} disabled />}
             onClick={() => setSelected(!selected)}
             disabled
             trailingContent={<Switch selected={selected} disabled />}
@@ -223,14 +224,14 @@ export const StateShowcase: Story = {
           <ListItem
             title="Value Variant"
             description="With description"
-            leadingContent={<Cart />}
+            leadingContent={<Spot appearance="icon" icon={Cart} disabled />}
             disabled
             trailingContent={<Balance disabled />}
           />
           <ListItem
             title="Tag Variant"
             description="With description"
-            leadingContent={<Apps />}
+            leadingContent={<Spot appearance="icon" icon={Apps} disabled />}
             disabled
             trailingContent={
               <Tag
@@ -243,14 +244,14 @@ export const StateShowcase: Story = {
           <ListItem
             title="Icon Variant"
             description="With description"
-            leadingContent={<Settings />}
+            leadingContent={<Spot appearance="icon" icon={Settings} disabled />}
             disabled
             trailingContent={<PenEdit size={24} className="text-disabled" />}
           />
           <ListItem
             title="None Variant"
             description="With description"
-            leadingContent={<Chart1 />}
+            leadingContent={<Spot appearance="icon" icon={Chart1} disabled />}
             disabled
           />
         </div>
@@ -267,20 +268,20 @@ export const ResponsiveLayout: Story = {
         <ListItem
           title="Short Title"
           description="Short description"
-          leadingContent={<Plus />}
+          leadingContent={<Spot appearance="icon" icon={Plus} />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
-          leadingContent={<Plus />}
+          leadingContent={<Spot appearance="icon" icon={Plus} />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
         <ListItem
           title="Long Title that should truncate appropriately"
           description="Long description that should truncate appropriately"
           descriptionTag={<Tag label="New" appearance="accent" size="sm" />}
-          leadingContent={<Plus />}
+          leadingContent={<Spot appearance="icon" icon={Plus} />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
       </div>
