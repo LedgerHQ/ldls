@@ -18,23 +18,15 @@ It also provides the ability to add custom elements on the right side of the inp
 <Canvas of={InputStories.Default} />
 <Controls of={InputStories.Default} />
 
+> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+
 ### Clear Button
 
-A clear button (×) appears **automatically** when:
-
-- Input has content
-- Input is not disabled
-- `hideClearButton` is not set to `true`
-
-The clear button provides default functionality for both controlled and uncontrolled inputs. You can override this behavior by providing a custom `onClear` function.
+A clear button (×) appears **automatically** when input has content.
 
 <Canvas of={InputStories.WithContent} />
 
-#### **Default Clear Behavior**
-
-The clear button works automatically without requiring an `onClear` prop:
-
-<Canvas of={InputStories.DefaultClearBehavior} />
+> **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
 #### **Hiding the Clear Button**
 
@@ -89,9 +81,6 @@ The component supports various HTML input types:
 - number
 - tel
 - url
-
-<Canvas of={InputStories.EmailType} />
-<Canvas of={InputStories.PasswordType} />
 
 ## Accessibility
 

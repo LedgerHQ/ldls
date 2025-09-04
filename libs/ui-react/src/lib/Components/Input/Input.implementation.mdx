@@ -289,17 +289,37 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 ### Layout and Styling
 
+The Input component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+
+```tsx
+// ✅ Preferred: Direct width control
+<Input label="Email" containerClassName="max-w-md" />
+
+// ✅ Responsive width control
+<Input label="Email" containerClassName="w-full md:max-w-md" />
+
+// Alternative: Container wrapper
+<div className="max-w-md">
+  <Input label="Email" />
+</div>
+
+// Full width in form (default behavior)
+<form>
+  <Input label="Search products..." />
+</form>
+```
+
 ✅ **Do**
 
 ```tsx
-// Use className for layout positioning
-<Input className="mt-4" />
+// Use className for input-specific styling
+<Input className="text-lg" label="Title" />
 
-// Use className for width control
-<Input className="w-64" />
+// Use containerClassName for layout and width control (preferred)
+<Input label="Email" containerClassName="mt-4 max-w-md" />
 
-// Use className for responsive design
-<Input className="w-full md:w-64" />
+// Use containerClassName for responsive design
+<Input label="Email" containerClassName="w-full md:max-w-lg" />
 ```
 
 ❌ **Don't**
