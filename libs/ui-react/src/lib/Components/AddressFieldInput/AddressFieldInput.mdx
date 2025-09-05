@@ -1,0 +1,73 @@
+import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
+import * as AddressFieldInputStories from './AddressFieldInput.stories';
+
+<Meta
+  of={AddressFieldInputStories}
+  title="Text Input/AddressFieldInput/Overview"
+/>
+
+# AddressFieldInput
+
+The AddressFieldInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons.
+
+> **Layout:** The AddressFieldInput component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+
+## Introduction
+
+AddressFieldInput is designed specifically where users need to enter wallet addresses or ENS names. It combines the reliability of BaseInput with domain-specific UX enhancements:
+
+- **Customizable prefix label** - defaults to "To:" but can be overridden via prefix prop
+- **Conditional QR code scanner** - Appears only when onQrCodeClick handler is provided, using consistent IconButton styling
+- **Smart clear button** - Appears automatically when content is entered
+- **Error handling** - Supports error states and error messages
+
+<Canvas of={AddressFieldInputStories.Default} />
+
+## Properties
+
+<Controls />
+
+## States
+
+### Empty State
+
+Shows the IconButton QR code scanner when onQrCodeClick is provided, indicating users can scan addresses directly. Without onQrCodeClick, no QR code icon appears.
+
+<Canvas of={AddressFieldInputStories.Empty} />
+
+### With Content
+
+When an address is entered, the QR code icon (if present) is replaced with a clear button for easy content removal.
+
+<Canvas of={AddressFieldInputStories.WithContent} />
+
+### Disabled State
+
+Prevents interaction while maintaining visual consistency.
+
+<Canvas of={AddressFieldInputStories.Disabled} />
+
+### Error State
+
+Displays validation errors with proper ARIA attributes for accessibility.
+
+<Canvas of={AddressFieldInputStories.Error} />
+
+## Clear Button
+
+The clear button automatically appears when content is entered, allowing users to quickly reset the field. The QR code scanner icon (if onQrCodeClick is provided) returns when the field becomes empty.
+
+> **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
+
+## Without QR Code Scanner
+
+When onQrCodeClick is not provided, no QR code icon appears.
+
+<Canvas of={AddressFieldInputStories.WithoutQrCode} />
+
+## Accessibility
+
+- **ARIA Labels**: Proper labeling for screen readers
+- **Error States**: Full ARIA support for validation messages
+- **Keyboard Navigation**: Complete keyboard accessibility
+- **Focus Management**: Clear focus indicators and logical tab order
