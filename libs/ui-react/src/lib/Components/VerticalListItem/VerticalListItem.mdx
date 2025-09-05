@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as VerticalListItemStories from './VerticalListItem.stories';
+import { VerticalListItem } from './VerticalListItem';
+
+<Meta title="Components/VerticalListItem/Docs" of={VerticalListItemStories} />
+
+# 📋 VerticalListItem
+
+## Introduction
+
+VerticalListItems are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
+
+## Anatomy
+
+<Canvas of={VerticalListItemStories.Base} />
+
+- **Spot**: Visual icon or element at the top
+- **Title**: The main label of the item (required)
+- **Subtitle (optional)**: Provides additional context
+- **Tag (optional)**: Small tag at the bottom for status or labels
+- **Secondary Action (optional)**: Action button in the top right corner, visible on hover
+
+## Properties
+
+### Overview
+
+<Canvas of={VerticalListItemStories.Base} />
+<Controls of={VerticalListItemStories.Base} />
+
+### Spot Variants
+
+VerticalListItems support various spot icons to categorize or visualize the content.
+
+<Canvas of={VerticalListItemStories.SpotVariantsShowcase} />
+
+### Tag Variants
+
+Optional tags can be added at the bottom with different appearances.
+
+<Canvas of={VerticalListItemStories.WithTag} />
+
+### Without Secondary Action
+
+The secondary action is optional and can be omitted.
+
+<Canvas of={VerticalListItemStories.WithoutSecondaryAction} />
+
+## Responsive Layout
+
+VerticalListItems adapt to their container width, truncating long titles and subtitles as needed.
+
+<Canvas of={VerticalListItemStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Automatically fits container width
+> - Title truncates to one line
+> - Subtitle truncates to one line
+> - Spot and secondary action maintain fixed sizes
+
+## List Usage
+
+VerticalListItems are designed for horizontal arrangements, such as in lists or carousels.
+
+<Canvas of={VerticalListItemStories.List} />
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast for all elements and states
+- Text zoom support
+- Keyboard navigation and focus management
+- Semantic ARIA attributes (e.g., role="listitem")
+- Proper labeling for screen readers

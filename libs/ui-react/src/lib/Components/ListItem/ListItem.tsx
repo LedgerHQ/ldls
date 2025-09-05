@@ -85,7 +85,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
         ref={ref}
         type="button"
         className={cn(
-          'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base',
+          'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base transition-colors',
           'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
           'disabled:cursor-default disabled:bg-base-transparent disabled:text-disabled',
           className,

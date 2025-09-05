@@ -12,3 +12,4 @@ export * from './BaseInput';
 export * from './Input';
 export * from './Tag';
 export * from './Tooltip';
+export * from './VerticalListItem';
