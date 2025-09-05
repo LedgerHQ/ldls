@@ -7,14 +7,14 @@ export interface AddressFieldInputProps
   extends Omit<BaseInputProps, 'prefix' | 'label'> {
   /**
    * Custom suffix element to show instead of the QR code icon.
-   * When provided, the QR code icon will not be shown.
+   * @default QrCodeIcon
    */
   suffix?: React.ReactNode;
   /**
-   * Custom prefix element to show instead of the "To:" prefix.
-   * When provided, the "To:" prefix will not be shown.
+   * Custom prefix text to show instead of the "To:" prefix.
+   * @default "To:"
    */
-  prefix?: React.ReactNode;
+  prefix?: string;
   /**
    * Whether to hide the clear button that appears when input has content.
    * @default false
@@ -31,7 +31,7 @@ export interface AddressFieldInputProps
  * A customizable address field input component for cryptocurrency addresses with fixed "To:" prefix, QR code scanner, automatic clear button, error states, and focus/hover effects.
  *
  * ## Key Features
- * - **Fixed "To:" prefix label** always visible on the left
+ * - **Customizable prefix text** - defaults to "To:" but can be overridden via prefix prop
  * - **Context-aware suffix icons** - QR code scanner when empty, clear button when content
  * - **Automatic clear button** appears when input has content
  * - **Clickable QR code scanner** for easy address scanning when input is empty
@@ -69,6 +69,13 @@ export interface AddressFieldInputProps
  *   onQrCodeClick={() => openQrScanner()}
  * />
  *
+ * // Address field with custom prefix
+ * <AddressFieldInput
+ *   prefix="From:"
+ *   value={senderAddress}
+ *   onChange={(e) => setSenderAddress(e.target.value)}
+ * />
+ *
  * // Extend clear behavior with analytics
  * <AddressFieldInput
  *   value={recipientAddress}
@@ -82,14 +89,14 @@ export interface AddressFieldInputProps
 export const AddressFieldInput = React.forwardRef<
   HTMLInputElement,
   AddressFieldInputProps
->(({ prefix, suffix, onQrCodeClick, ...props }, ref) => {
+>(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
   // Use custom prefix if provided, otherwise default "To:" prefix
-  const effectivePrefix = prefix || (
+  const effectivePrefix = (
     <span
-      className="text-nowrap text-base group-has-[:disabled]:text-disabled"
+      className="text-nowrap text-base body-1 group-has-[:disabled]:text-disabled"
       aria-hidden="true"
     >
-      To:
+      {prefix}
     </span>
   );
 

@@ -5,7 +5,14 @@ import '@testing-library/jest-dom';
 import { AddressFieldInput } from './AddressFieldInput';
 
 describe('AddressFieldInput', () => {
-  it('renders with "To:" prefix label', () => {
+  it('uses default prefix when none provided', () => {
+    render(<AddressFieldInput placeholder="Enter address or ENS" />);
+
+    // Should use default "To:" prefix
+    const defaultPrefix = screen.getByText('To:');
+    expect(defaultPrefix).toBeInTheDocument();
+  });
+  it('renders with default "To:" prefix label', () => {
     render(<AddressFieldInput placeholder="Enter address or ENS" />);
 
     const input = screen.getByRole('textbox');
@@ -14,6 +21,34 @@ describe('AddressFieldInput', () => {
     // Check that the "To:" prefix is present
     const prefixLabel = screen.getByText('To:');
     expect(prefixLabel).toBeInTheDocument();
+  });
+
+  it('renders with custom prefix when provided', () => {
+    render(
+      <AddressFieldInput prefix="From:" placeholder="Enter address or ENS" />,
+    );
+
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
+
+    // Check that the custom prefix is present
+    const prefixLabel = screen.getByText('From:');
+    expect(prefixLabel).toBeInTheDocument();
+
+    // Check that the default "To:" prefix is not present
+    const defaultPrefix = screen.queryByText('To:');
+    expect(defaultPrefix).not.toBeInTheDocument();
+  });
+
+  it('renders with empty prefix when provided', () => {
+    render(<AddressFieldInput prefix="" placeholder="Enter address or ENS" />);
+
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
+
+    // Check that no prefix text is rendered (empty span should still exist for consistency)
+    const defaultPrefix = screen.queryByText('To:');
+    expect(defaultPrefix).not.toBeInTheDocument();
   });
 
   it('renders with QR code icon when empty', () => {
@@ -220,5 +255,39 @@ describe('AddressFieldInput', () => {
     // And the clear button should be visible instead
     const clearButton = screen.getByLabelText('Clear input');
     expect(clearButton).toBeInTheDocument();
+  });
+
+  it('works with custom prefix and other features', () => {
+    const handleQrClick = vi.fn();
+    const handleChange = vi.fn();
+    render(
+      <AddressFieldInput
+        prefix="Send to:"
+        placeholder="Enter destination address"
+        onQrCodeClick={handleQrClick}
+        onChange={handleChange}
+      />,
+    );
+
+    // Check custom prefix
+    const prefixLabel = screen.getByText('Send to:');
+    expect(prefixLabel).toBeInTheDocument();
+
+    // Check input functionality
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute('placeholder', 'Enter destination address');
+
+    // Check QR code button
+    const qrButton = screen.getByLabelText('Scan QR code');
+    expect(qrButton).toBeInTheDocument();
+    expect(qrButton).not.toBeDisabled();
+
+    // Test interactions
+    fireEvent.click(qrButton);
+    expect(handleQrClick).toHaveBeenCalled();
+
+    fireEvent.change(input, { target: { value: '0x123' } });
+    expect(handleChange).toHaveBeenCalled();
   });
 });

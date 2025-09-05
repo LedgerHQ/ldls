@@ -54,21 +54,6 @@ Displays validation errors with proper ARIA attributes for accessibility.
 
 <Canvas of={AddressFieldInputStories.Error} />
 
-## Customizable Prefix
-
-The component uses "To:" as the default prefix, but you can customize it for different use cases:
-
-```tsx
-// Default "To:" prefix
-<AddressFieldInput placeholder="Enter recipient address" />
-
-// Custom "From:" prefix
-<AddressFieldInput
-  prefix={<span className="font-medium text-nowrap text-base">From:</span>}
-  placeholder="Enter sender address"
-/>
-```
-
 ## Clear Button
 
 The clear button automatically appears when content is entered, allowing users to quickly reset the field. The QR code scanner icon returns when the field becomes empty.

@@ -25,7 +25,7 @@ import { AddressFieldInput } from '@ledgerhq/ldls-ui-react';
 
 ### Customizable Prefix
 
-The component displays "To:" as the default prefix label, but this can be customized via the `prefix` prop for different use cases.
+The component displays "To:" as the default prefix text, but this can be customized via the `prefix` prop for different use cases.
 
 ```tsx
 // Default "To:" prefix
@@ -33,14 +33,20 @@ The component displays "To:" as the default prefix label, but this can be custom
 
 // Custom "From:" prefix for sender address input
 <AddressFieldInput
-  prefix={<span className="text-nowrap text-base group-has-[:disabled]:text-disabled">From:</span>}
+  prefix="From:"
   placeholder="Enter address or ENS"
 />
 
-// Icon prefix
+// Custom prefix for other contexts
 <AddressFieldInput
-  prefix={<WalletIcon size={20} className="text-muted group-has-[:disabled]:text-disabled" />}
-  placeholder="Enter address or ENS"
+  prefix="Withdraw to:"
+  placeholder="Enter withdrawal address"
+/>
+
+// Short prefix
+<AddressFieldInput
+  prefix=">"
+  placeholder="Enter destination"
 />
 ```
 
@@ -208,7 +214,7 @@ const handleQrScan = () => {
 
 The component includes comprehensive test coverage for:
 
-- **Prefix rendering**: Default "To:" label or custom prefix element
+- **Prefix rendering**: Default "To:" text or custom prefix string
 - **IconButton QR code**: Proper IconButton integration with accessibility
 - **Icon switching**: QR code ↔ clear button based on content
 - **Validation states**: Error messages and ARIA attributes
@@ -227,7 +233,7 @@ The component includes comprehensive test coverage for:
 
 // Use custom prefix for different contexts
 <AddressFieldInput
-  prefix={<span className="font-medium text-nowrap text-base">From:</span>}
+  prefix="From:"
   placeholder="Enter sender address"
 />
 
@@ -250,6 +256,6 @@ const validateAddress = (address) => {
 // Don't disable QR code functionality without good reason
 <AddressFieldInput onQrCodeClick={undefined} />
 
-// Don't use complex elements as prefix without proper styling
-<AddressFieldInput prefix={<ComplexComponent />} />
+// Don't use overly long prefix text that affects readability
+<AddressFieldInput prefix="This is a very long prefix that takes up too much space:" />
 ```

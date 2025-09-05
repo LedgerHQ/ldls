@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AddressFieldInput } from './AddressFieldInput';
+import { InformationFill, QrCode, QrCodeScanner } from '../../Symbols';
 
 const meta: Meta<typeof AddressFieldInput> = {
   component: AddressFieldInput,
@@ -15,6 +16,21 @@ const meta: Meta<typeof AddressFieldInput> = {
     },
   },
   argTypes: {
+    prefix: {
+      control: 'text',
+      description:
+        'Custom prefix text to show instead of the default "To:" prefix',
+    },
+    suffix: {
+      control: 'select',
+      options: ['QrCode', 'Information'],
+      description:
+        'Custom suffix Element to show instead of the default "To:" suffix',
+      mapping: {
+        QrCode: <QrCode size={20} className="text-muted" />,
+        Information: <InformationFill size={20} className="text-muted" />,
+      },
+    },
     placeholder: {
       control: 'text',
       description: 'The placeholder text for the address input',
@@ -208,49 +224,5 @@ export const Controlled: Story = {
         )}
       </div>
     );
-  },
-};
-
-/**
- * Address field with custom styling and hidden clear button.
- */
-export const CustomStyling: Story = {
-  render: () => (
-    <div className="space-y-16">
-      <div className="max-w-md">
-        <h3 className="mb-8 body-2-semi-bold">Custom container styling</h3>
-        <AddressFieldInput
-          placeholder="Enter wallet address"
-          containerClassName="border-2 border-purple-200 bg-purple-50 hover:bg-purple-100"
-        />
-      </div>
-
-      <div className="max-w-md">
-        <h3 className="mb-8 body-2-semi-bold">Hidden clear button</h3>
-        <AddressFieldInput
-          placeholder="Enter address or ENS"
-          defaultValue="0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434"
-          hideClearButton={true}
-        />
-      </div>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `// Custom container styling
-<AddressFieldInput
-  placeholder="Enter wallet address"
-  containerClassName="border-2 border-purple-200 bg-purple-50 hover:bg-purple-100"
-/>
-
-// Hidden clear button
-<AddressFieldInput
-  placeholder="Enter address or ENS"
-  defaultValue="0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434"
-  hideClearButton={true}
-/>`,
-      },
-    },
   },
 };
