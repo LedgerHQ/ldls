@@ -55,7 +55,9 @@ describe('AddressFieldInput', () => {
     const { container } = render(
       <AddressFieldInput
         placeholder="Enter address or ENS"
-        onQrCodeClick={() => {}}
+        onQrCodeClick={() => {
+          console.log('QR code clicked');
+        }}
       />,
     );
 
@@ -317,7 +319,9 @@ describe('AddressFieldInput', () => {
     rerender(
       <AddressFieldInput
         placeholder="Enter address or ENS"
-        onQrCodeClick={() => {}}
+        onQrCodeClick={() => {
+          console.log('QR code clicked');
+        }}
       />,
     );
 
