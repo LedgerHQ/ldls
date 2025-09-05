@@ -106,7 +106,7 @@ export const AddressFieldInput = React.forwardRef<
     suffix ||
     (onQrCodeClick ? (
       <IconButton
-        iconType="stroked"
+        iconType="filled"
         onClick={onQrCodeClick}
         aria-label="Scan QR code"
         className="group-has-[:disabled]:text-disabled"

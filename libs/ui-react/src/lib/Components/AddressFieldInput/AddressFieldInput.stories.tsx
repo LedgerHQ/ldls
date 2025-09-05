@@ -237,11 +237,12 @@ export const WithoutQrCode: Story = {
   args: {
     placeholder: 'Enter address or ENS',
     containerClassName: 'max-w-md',
+    onQrCodeClick: undefined,
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />',
+        code: '<AddressFieldInput  containerClassName="max-w-md" />',
       },
     },
   },
