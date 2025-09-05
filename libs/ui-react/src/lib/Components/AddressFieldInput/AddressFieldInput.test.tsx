@@ -51,9 +51,12 @@ describe('AddressFieldInput', () => {
     expect(defaultPrefix).not.toBeInTheDocument();
   });
 
-  it('renders with QR code icon when empty', () => {
+  it('renders with QR code icon when onQrCodeClick is provided', () => {
     const { container } = render(
-      <AddressFieldInput placeholder="Enter address or ENS" />,
+      <AddressFieldInput
+        placeholder="Enter address or ENS"
+        onQrCodeClick={() => {}}
+      />,
     );
 
     const input = screen.getByRole('textbox');
@@ -66,6 +69,23 @@ describe('AddressFieldInput', () => {
     // Check that the QR code icon is present (it should be in the DOM as an SVG)
     const qrIcon = container.querySelector('svg');
     expect(qrIcon).toBeInTheDocument();
+  });
+
+  it('does not render QR code icon when onQrCodeClick is not provided', () => {
+    const { container } = render(
+      <AddressFieldInput placeholder="Enter address or ENS" />,
+    );
+
+    const input = screen.getByRole('textbox');
+    expect(input).toBeInTheDocument();
+
+    // Check that the QR code button is NOT present
+    const qrButton = screen.queryByLabelText('Scan QR code');
+    expect(qrButton).not.toBeInTheDocument();
+
+    // Check that no SVG icon is present
+    const qrIcon = container.querySelector('svg');
+    expect(qrIcon).not.toBeInTheDocument();
   });
 
   it('displays placeholder correctly', () => {
@@ -104,7 +124,7 @@ describe('AddressFieldInput', () => {
     expect(clearButton).toBeInTheDocument();
   });
 
-  it('hides QR code icon when input has content', () => {
+  it('shows clear button when input has content (no QR code when no handler)', () => {
     render(
       <AddressFieldInput
         placeholder="Enter address or ENS"
@@ -112,12 +132,11 @@ describe('AddressFieldInput', () => {
       />,
     );
 
-    // When there's content, the QR code icon should be hidden
-    // and the clear button should be visible instead
+    // When there's content, the clear button should be visible
     const clearButton = screen.getByLabelText('Clear input');
     expect(clearButton).toBeInTheDocument();
 
-    // QR button should not be visible when there's content
+    // QR button should not be visible (no onQrCodeClick provided)
     const qrButton = screen.queryByLabelText('Scan QR code');
     expect(qrButton).not.toBeInTheDocument();
   });
@@ -218,14 +237,7 @@ describe('AddressFieldInput', () => {
     expect(handleQrClick).toHaveBeenCalled();
   });
 
-  it('disables QR code button when no click handler is provided', () => {
-    render(<AddressFieldInput placeholder="Enter address or ENS" />);
-
-    const qrButton = screen.getByLabelText('Scan QR code');
-    expect(qrButton).toBeDisabled();
-  });
-
-  it('enables QR code button when click handler is provided', () => {
+  it('enables QR code button when onQrCodeClick handler is provided', () => {
     const handleQrClick = vi.fn();
     render(
       <AddressFieldInput
@@ -235,10 +247,11 @@ describe('AddressFieldInput', () => {
     );
 
     const qrButton = screen.getByLabelText('Scan QR code');
+    expect(qrButton).toBeInTheDocument();
     expect(qrButton).not.toBeDisabled();
   });
 
-  it('hides QR code button when input has content', () => {
+  it('hides QR code button when input has content (shows clear button instead)', () => {
     const handleQrClick = vi.fn();
     render(
       <AddressFieldInput
@@ -289,5 +302,26 @@ describe('AddressFieldInput', () => {
 
     fireEvent.change(input, { target: { value: '0x123' } });
     expect(handleChange).toHaveBeenCalled();
+  });
+
+  it('conditionally shows QR code based on onQrCodeClick prop', () => {
+    const { rerender } = render(
+      <AddressFieldInput placeholder="Enter address or ENS" />,
+    );
+
+    // Without onQrCodeClick, no QR code button
+    let qrButton = screen.queryByLabelText('Scan QR code');
+    expect(qrButton).not.toBeInTheDocument();
+
+    // With onQrCodeClick, QR code button appears
+    rerender(
+      <AddressFieldInput
+        placeholder="Enter address or ENS"
+        onQrCodeClick={() => {}}
+      />,
+    );
+
+    qrButton = screen.getByLabelText('Scan QR code');
+    expect(qrButton).toBeInTheDocument();
   });
 });

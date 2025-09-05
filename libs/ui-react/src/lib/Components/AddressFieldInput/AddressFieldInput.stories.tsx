@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AddressFieldInput } from './AddressFieldInput';
-import { InformationFill, QrCode, QrCodeScanner } from '../../Symbols';
+import { InformationFill, QrCode } from '../../Symbols';
 
 const meta: Meta<typeof AddressFieldInput> = {
   component: AddressFieldInput,
@@ -104,6 +104,7 @@ export const WithContent: Story = {
     placeholder: 'Enter address or ENS',
     defaultValue: '0x95f980s5ag77xe7csuz',
     containerClassName: 'max-w-md',
+    onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
     docs: {
@@ -123,6 +124,7 @@ export const Disabled: Story = {
     disabled: true,
     defaultValue: '0x95f980s5ag77xe7csuz',
     containerClassName: 'max-w-md',
+    onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
     docs: {
@@ -143,6 +145,7 @@ export const Error: Story = {
     errorMessage: 'Invalid address format',
     'aria-invalid': true,
     containerClassName: 'max-w-md',
+    onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
     docs: {
@@ -224,5 +227,22 @@ export const Controlled: Story = {
         )}
       </div>
     );
+  },
+};
+
+/**
+ * Address field without QR code scanner (no onQrCodeClick handler provided).
+ */
+export const WithoutQrCode: Story = {
+  args: {
+    placeholder: 'Enter address or ENS',
+    containerClassName: 'max-w-md',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />',
+      },
+    },
   },
 };

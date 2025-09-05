@@ -22,7 +22,8 @@ export interface AddressFieldInputProps
   hideClearButton?: boolean;
   /**
    * Callback fired when the QR code scanner icon is clicked.
-   * Only available when the input is empty and no custom suffix is provided.
+   * When provided, the QR code scanner icon will be displayed when input is empty.
+   * When not provided, no QR code scanner icon will be shown.
    */
   onQrCodeClick?: () => void;
 }
@@ -32,9 +33,9 @@ export interface AddressFieldInputProps
  *
  * ## Key Features
  * - **Customizable prefix text** - defaults to "To:" but can be overridden via prefix prop
- * - **Context-aware suffix icons** - QR code scanner when empty, clear button when content
+ * - **Context-aware suffix icons** - QR code scanner when empty (if onQrCodeClick provided), clear button when content
  * - **Automatic clear button** appears when input has content
- * - **Clickable QR code scanner** for easy address scanning when input is empty
+ * - **Conditional QR code scanner** appears only when onQrCodeClick handler is provided
  * - **ENS and address support** optimized for cryptocurrency address entry
  * - **Error state styling** with aria-invalid and errorMessage support
  * - **Flexible styling** via className, containerClassName props
@@ -100,19 +101,20 @@ export const AddressFieldInput = React.forwardRef<
     </span>
   );
 
-  // Show QR code icon only when no custom suffix is provided
+  // Show QR code icon only when no custom suffix is provided AND onQrCodeClick exists
   // BaseInput will handle showing/hiding based on content via its clear button logic
-  const effectiveSuffix = suffix || (
-    <IconButton
-      iconType="stroked"
-      onClick={onQrCodeClick}
-      aria-label="Scan QR code"
-      disabled={!onQrCodeClick}
-      className="group-has-[:disabled]:text-disabled"
-    >
-      <QrCodeIcon size={20} />
-    </IconButton>
-  );
+  const effectiveSuffix =
+    suffix ||
+    (onQrCodeClick ? (
+      <IconButton
+        iconType="stroked"
+        onClick={onQrCodeClick}
+        aria-label="Scan QR code"
+        className="group-has-[:disabled]:text-disabled"
+      >
+        <QrCodeIcon size={20} />
+      </IconButton>
+    ) : undefined);
 
   return (
     <BaseInput

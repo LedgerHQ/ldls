@@ -52,18 +52,24 @@ The component displays "To:" as the default prefix text, but this can be customi
 
 ### Context-Aware Suffix Icons
 
-- **Empty state**: Shows IconButton QR code scanner for easy address scanning
+- **Empty state**: Shows IconButton QR code scanner only if onQrCodeClick handler is provided
 - **With content**: Shows clear button for quick content removal
+- **No handler**: No suffix icon appears if onQrCodeClick is not provided
 
 ```tsx
-// IconButton QR code scanner appears automatically when empty
+// QR code scanner appears when onQrCodeClick is provided
 <AddressFieldInput
   placeholder="Enter address or ENS"
   onQrCodeClick={() => openQrScanner()}
 />
 
-// Clear button appears automatically when there's content
-<AddressFieldInput defaultValue="0x742d35cc..." />
+// No QR code scanner when onQrCodeClick is not provided
+<AddressFieldInput
+  placeholder="Enter address or ENS"
+/>
+
+// Clear button appears automatically when there's content (regardless of QR code)
+<AddressFieldInput defaultValue="0x742d35cc..." onQrCodeClick={() => openQrScanner()} />
 ```
 
 ### Address Validation
