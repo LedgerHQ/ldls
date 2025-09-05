@@ -42,7 +42,11 @@
     "**/*.stories.ts",
     "**/*.stories.js",
     "**/*.stories.jsx",
-    "**/*.stories.tsx"
+    "**/*.stories.tsx",
+    "**/*.figma.ts",
+    "**/*.figma.js",
+    "**/*.figma.jsx",
+    "**/*.figma.tsx"
   ],
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
