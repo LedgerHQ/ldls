@@ -129,7 +129,7 @@ export const VerticalListItem = ({
       className={cn(
         'w-full', // Default styles that can be overridden by the className prop
         className,
-        'group relative rounded-sm bg-base-transparent text-base',
+        'group relative rounded-sm bg-base-transparent text-base transition-colors',
         isActive && 'bg-base-transparent-pressed',
         !isActive && 'hover:bg-base-transparent-hover',
       )}

@@ -94,6 +94,29 @@ export const Base: Story = {
     className: 'max-w-256',
     secondaryAction,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<VerticalListItem
+  title="Item with Spot and Subtitle"
+  subtitle="Additional information"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  secondaryAction={(
+    <IconButton
+      iconType="stroked"
+      aria-label="More actions"
+      onClick={() => console.log('secondary action clicked')}
+    >
+      <MoreVertical />
+    </IconButton>
+  )}
+  className="max-w-256"
+/>
+`,
+      },
+    },
+  },
 };
 
 export const WithoutSubtitle: Story = {
@@ -102,6 +125,28 @@ export const WithoutSubtitle: Story = {
     spot: <Spot appearance="icon" icon={Plus} />,
     className: 'max-w-256',
     secondaryAction,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<VerticalListItem
+  title="Item without Subtitle"
+  spot={<Spot appearance="icon" icon={Plus} />}
+  secondaryAction={(
+    <IconButton
+      iconType="stroked"
+      aria-label="More actions"
+      onClick={() => console.log('secondary action clicked')}
+    >
+      <MoreVertical />
+    </IconButton>
+  )}
+  className="max-w-256"
+/>
+`,
+      },
+    },
   },
 };
 
@@ -114,14 +159,52 @@ export const WithTag: Story = {
     secondaryAction,
     className: 'max-w-256',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<VerticalListItem
+  title="Item with Tag"
+  subtitle="Additional information"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  tag={<Tag label="New" appearance="base" />}
+  secondaryAction={(
+    <IconButton
+      iconType="stroked"
+      aria-label="More actions"
+      onClick={() => console.log('secondary action clicked')}
+    >
+      <MoreVertical />
+    </IconButton>
+  )}
+  className="max-w-256"
+/>
+`,
+      },
+    },
+  },
 };
 
 export const WithoutSecondaryAction: Story = {
   args: {
-    title: 'Item with Tag',
+    title: 'Item without secondary action',
     subtitle: 'Additional information',
     spot: <Spot appearance="icon" icon={Settings} />,
     className: 'max-w-256',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<VerticalListItem
+  title="Item without secondary action"
+  subtitle="Additional information"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="max-w-256"
+/>
+`,
+      },
+    },
   },
 };
 
