@@ -7,6 +7,9 @@ export interface AddressFieldInputProps
   extends Omit<BaseInputProps, 'prefix' | 'label'> {
   /**
    * Custom suffix element to show instead of the QR code icon.
+   * Default suffix is a QR code scanner when empty (if onQrCodeClick provided), clear button when content.
+   * — both can be overridden with a custom suffix.
+   *
    * @default QrCodeIcon
    */
   suffix?: React.ReactNode;
@@ -45,10 +48,6 @@ export interface AddressFieldInputProps
  * - Works with both controlled and uncontrolled inputs using native value setter
  * - Can be hidden with `hideClearButton={true}`
  * - Extended behavior via optional `onClear` prop
- *
- * ## Layout & Spacing
- * Uses container-based spacing (px-16 padding + gap-8) for consistent element positioning.
- * Prefix (default "To:") is visible on the left, QR code icon appears when empty, clear button takes precedence when input has content.
  *
  *
  * @example
