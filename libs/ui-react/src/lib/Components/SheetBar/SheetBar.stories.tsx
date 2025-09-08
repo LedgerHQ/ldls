@@ -80,8 +80,12 @@ export const SizeShowcase: Story = {
           size="sm"
           title="Small Sheet Title"
           description="Description"
-          onBack={() => {}}
-          onClose={() => {}}
+          onBack={() => {
+            console.log('back');
+          }}
+          onClose={() => {
+            console.log('close');
+          }}
         />
       </Container>
       <div className="heading-4-semi-bold">Large Size</div>
@@ -90,8 +94,12 @@ export const SizeShowcase: Story = {
           size="lg"
           title="Large Title"
           description="Description"
-          onBack={() => {}}
-          onClose={() => {}}
+          onBack={() => {
+            console.log('back');
+          }}
+          onClose={() => {
+            console.log('close');
+          }}
         />
       </Container>
     </div>
@@ -107,8 +115,12 @@ export const ContentVariations: Story = {
           <SheetBar
             size="sm"
             title="With Title Only"
-            onBack={() => {}}
-            onClose={() => {}}
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
           />
         </Container>
         <Container>
@@ -116,15 +128,33 @@ export const ContentVariations: Story = {
             size="sm"
             title="With Title and Description"
             description="Additional info"
-            onBack={() => {}}
-            onClose={() => {}}
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
           />
         </Container>
         <Container>
-          <SheetBar size="sm" title="Without Back Button" onClose={() => {}} />
+          <SheetBar
+            size="sm"
+            title="Without Back Button"
+            onClose={() => {
+              console.log('close');
+            }}
+          />
         </Container>
         <Container>
-          <SheetBar size="sm" onBack={() => {}} onClose={() => {}} />
+          <SheetBar
+            size="sm"
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
+          />
         </Container>
       </div>
       <div className="flex flex-col gap-32">
@@ -133,8 +163,12 @@ export const ContentVariations: Story = {
           <SheetBar
             size="lg"
             title="With Title Only"
-            onBack={() => {}}
-            onClose={() => {}}
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
           />
         </Container>
         <Container>
@@ -142,15 +176,33 @@ export const ContentVariations: Story = {
             size="lg"
             title="With Title and Description"
             description="Additional info"
-            onBack={() => {}}
-            onClose={() => {}}
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
           />
         </Container>
         <Container>
-          <SheetBar size="lg" title="Without Back Button" onClose={() => {}} />
+          <SheetBar
+            size="lg"
+            title="Without Back Button"
+            onClose={() => {
+              console.log('close');
+            }}
+          />
         </Container>
         <Container>
-          <SheetBar size="lg" onBack={() => {}} onClose={() => {}} />
+          <SheetBar
+            size="lg"
+            onBack={() => {
+              console.log('back');
+            }}
+            onClose={() => {
+              console.log('close');
+            }}
+          />
         </Container>
       </div>
     </div>
@@ -168,8 +220,12 @@ export const ResponsiveLayout: Story = {
           size="sm"
           title="Long Title That Should Truncate In Narrow Container"
           description="Long description that should also truncate appropriately in narrow width"
-          onBack={() => {}}
-          onClose={() => {}}
+          onBack={() => {
+            console.log('back');
+          }}
+          onClose={() => {
+            console.log('close');
+          }}
         />
       </div>
       <div className="grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16">
@@ -180,8 +236,12 @@ export const ResponsiveLayout: Story = {
           size="lg"
           title="Long Title That Should Wrap"
           description="Long description that should wrap"
-          onBack={() => {}}
-          onClose={() => {}}
+          onBack={() => {
+            console.log('back');
+          }}
+          onClose={() => {
+            console.log('close');
+          }}
         />
       </div>
     </div>

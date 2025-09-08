@@ -11,7 +11,9 @@ describe('SheetBar', () => {
         size="sm"
         title="Test Title"
         description="Test Desc"
-        onClose={() => {}}
+        onClose={() => {
+          console.log('close');
+        }}
       />,
     );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -45,7 +47,9 @@ describe('SheetBar', () => {
         size="lg"
         title="Test Title"
         description="Test Desc"
-        onClose={() => {}}
+        onClose={() => {
+          console.log('close');
+        }}
       />,
     );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
