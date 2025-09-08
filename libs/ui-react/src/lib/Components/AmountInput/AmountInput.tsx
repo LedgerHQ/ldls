@@ -12,7 +12,7 @@ export interface AmountInputProps
 }
 
 const baseInputStyles = cn(
-  'w-full min-w-0 bg-transparent outline-none heading-0 transition-colors caret-active py-12',
+  'bg-transparent outline-none heading-0 transition-colors caret-active py-12',
   'placeholder:text-muted-subtle',
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
   '[&[aria-invalid="true"]]:text-error',
