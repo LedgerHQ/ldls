@@ -1,0 +1,71 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SheetBarStories from './SheetBar.stories';
+import { SheetBar } from './SheetBar';
+
+<Meta title="Containment/SheetBar/Docs" of={SheetBarStories} />
+
+# 📑 SheetBar
+
+## Introduction
+
+SheetBar is a navigation component used at the top of sheet modals. It provides optional back navigation, title, description, and a close button. It supports small and large size variants with different layouts and responsive behavior.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2135-3079).
+
+## Anatomy
+
+<Canvas of={SheetBarStories.WithDescription} />
+
+- **Back Button (optional)**: Shown when `onBack` handler is provided. Uses ArrowLeft icon.
+- **Title (optional)**: Main heading text, centered in small size, left-aligned in large size.
+- **Description (optional)**: Supporting text below or beside title.
+- **Close Button**: Always present, requires `onClose` handler. Uses Close icon.
+
+## Properties
+
+### Overview
+
+<Canvas of={SheetBarStories.Base} />
+<Controls of={SheetBarStories.Base} />
+
+### Size
+
+SheetBar supports two sizes:
+
+- **sm** (default): Single-row layout with centered content.
+- **lg**: Two-row layout with buttons on top and content below.
+
+<Canvas of={SheetBarStories.SizeShowcase} />
+
+### Content Variations
+
+SheetBar can be configured with different combinations of title, description, and buttons.
+
+<Canvas of={SheetBarStories.ContentVariations} />
+
+> **Note**: The `onClose` prop is required. `title`, `description`, and `onBack` are optional.
+
+### Responsive Layout
+
+SheetBar adapts to container width:
+
+- In small size, text truncates.
+- In large size, text wraps.
+
+<Canvas of={SheetBarStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Always takes full width of container.
+> - Title and description truncate or wrap based on size and available space.
+> - Buttons maintain fixed size.
+
+## Accessibility
+
+To be implemented:
+
+- **Keyboard navigation**: Ensure back and close buttons are focusable and operable via keyboard.
+- **ARIA attributes**: Provide appropriate roles and labels for buttons (e.g., aria-label for icon-only buttons).
+- **Color contrast**: Verify text and icons meet contrast requirements.
+- **Screen reader support**: Test reading order and announcements.
+- **Focus management**: Visible focus indicators on interactive elements.

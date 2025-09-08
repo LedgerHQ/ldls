@@ -1,0 +1,84 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+import { Dialog, DialogContent, DialogTrigger } from './Dialog';
+
+<Meta title="Components/Dialog/Docs" of={DialogStories} />
+
+# 🪟 Dialog
+
+## Introduction
+
+Dialogs are modal windows that interrupt the normal workflow to grab the user's attention, typically for critical information, confirmation, or additional input.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6345-2641&m=dev).
+
+## Anatomy
+
+<Canvas of={DialogStories.Base} />
+
+- **Trigger**: The element that opens the dialog when interacted with
+- **Overlay**: Dimmed background that covers the underlying content
+- **Content**: The main container for dialog content
+- **Header**: Use SheetBar component for a consistent dialog header with title, description, and controls
+
+## Properties
+
+### Basic Usage
+
+Dialogs are composed using Radix UI primitives. Wrap your content in DialogContent and use DialogTrigger for the opening element.
+
+### Header Configuration
+
+Always use the SheetBar component as the header for dialogs to maintain consistency. SheetBar provides:
+
+- Title and optional description
+- Close button
+- Optional back button
+- Two sizes: small (sm) and large (lg)
+
+<Canvas of={DialogStories.WithDescription} />
+
+### Size Variants
+
+Use SheetBar's size prop to adjust the header layout:
+
+- sm: Compact layout with centered title
+- lg: Larger layout with left-aligned title and more space
+
+<Canvas of={DialogStories.Large} />
+
+### With Back Button
+
+Add navigation with SheetBar's onBack prop.
+
+<Canvas of={DialogStories.WithBack} />
+
+### Content Area
+
+The content area after the SheetBar can contain any components. Ensure proper padding and scrolling if needed.
+
+## Accessibility
+
+To be implemented:
+
+- Proper ARIA roles (dialog, etc.)
+- Keyboard navigation (focus trapping, ESC to close)
+- Screen reader support for content
+- Focus management on open/close
+
+<div className="rounded-8 mt-8 bg-muted p-12">
+  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
+  <ul className="space-y-2 body-2">
+    <li>
+      Always include SheetBar as the first child of DialogContent for consistent
+      UX
+    </li>
+    <li>Handle onClose in SheetBar to properly close the dialog</li>
+    <li>Use DialogPortal for correct positioning in the DOM</li>
+    <li>
+      Avoid using for non-critical information - prefer tooltips or other UI
+      elements
+    </li>
+    <li>Ensure content is responsive and works on mobile devices</li>
+  </ul>
+</div>
