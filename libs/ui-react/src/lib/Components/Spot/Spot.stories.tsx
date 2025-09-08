@@ -177,7 +177,7 @@ export const SizesShowcase: Story = {
       <div className="flex flex-col gap-16 p-8">
         {sizes.map((size) => (
           <div key={size} className="flex flex-col gap-4">
-            <h3 className="text-lg font-semibold">Size {size}px</h3>
+            <h3>Size {size}px</h3>
             <div className="flex flex-wrap gap-16">
               {appearances.map(({ name, appearance, icon, number }) => (
                 <div
