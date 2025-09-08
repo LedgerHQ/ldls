@@ -1,0 +1,184 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { AmountInput } from './AmountInput';
+
+<Meta title="Text Input/AmountInput/Implementation" component={AmountInput} />
+
+# AmountInput Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+```
+
+### Tailwind Configuration
+
+To use the AmountInput component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <AmountInput
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      fiatText="USD"
+    />
+  );
+}
+```
+
+### With Fiat Position
+
+The fiat text can be positioned on either side of the input:
+
+```tsx
+// Left position (default)
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  fiatText="USD"
+  fiatPosition="left"
+/>
+
+// Right position
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  fiatText="USD"
+  fiatPosition="right"
+/>
+```
+
+### With Error State
+
+The AmountInput component supports error states through the `aria-invalid` prop:
+
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    // Example validation: ensure it's a valid number
+    setError(isNaN(parseFloat(newValue)));
+  };
+
+  return (
+    <AmountInput
+      value={value}
+      onChange={handleChange}
+      fiatText="USD"
+      aria-invalid={error}
+    />
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern
+const [value, setValue] = useState('');
+<AmountInput
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  fiatText="USD"
+/>
+
+// Or use uncontrolled inputs (also valid)
+<AmountInput defaultValue="0.00" fiatText="USD" />
+
+// Uncontrolled with ref access
+const inputRef = useRef<HTMLInputElement>(null);
+<AmountInput ref={inputRef} defaultValue="0.00" fiatText="USD" />
+
+// Use aria-invalid for error states
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  fiatText="USD"
+  aria-invalid={hasError}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use custom error props
+<AmountInput error={true} errorText="Invalid amount" />
+
+// Don't try to modify the fiat text styling directly
+<AmountInput fiatText={<span className="custom-style">USD</span>} />
+```
+
+### Layout and Styling
+
+The AmountInput component takes the **full width** of its parent container by default.
+
+✅ **Do**
+
+```tsx
+// Use className for input-specific styling
+<AmountInput className="text-lg" fiatText="USD" />
+
+// Use container wrapper for width control
+<div className="max-w-md">
+  <AmountInput fiatText="USD" />
+</div>
+
+// Use responsive design
+<div className="w-full md:max-w-lg">
+  <AmountInput fiatText="USD" />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core input styling
+<AmountInput className="bg-white border-gray-300" />
+
+// Don't modify internal padding/spacing
+<AmountInput className="px-6 py-4" />
+
+// Don't override typography
+<AmountInput className="text-lg" />
+
+// Don't modify hover/focus states
+<AmountInput className="hover:border-blue-500" />
+```

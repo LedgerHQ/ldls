@@ -1,0 +1,41 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AmountInputStories from './AmountInput.stories';
+
+<Meta title="Text Input/AmountInput/Overview/Docs" />
+
+# 💰 AmountInput
+
+## Introduction
+
+AmountInput is a specialized input component designed for handling numeric values with fiat currency display. It features configurable fiat text positioning, error states, and proper numeric input handling.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6245-2067&m=dev).
+
+## Anatomy
+
+<Canvas of={AmountInputStories.Default} />
+<Controls of={AmountInputStories.Default} />
+
+> **Layout:** The AmountInput component takes the full width of its container by default. You can control the width by wrapping it in a container.
+
+### Fiat Text Position
+
+The fiat text can be positioned on either the left (default) or right side of the input:
+
+<Canvas of={AmountInputStories.Default} />
+<Canvas of={AmountInputStories.WithRightFiat} />
+
+### Error State
+
+The input supports error handling through:
+
+- `aria-invalid`: Controls the error state styling
+- Error styling includes text color changes for both input and fiat text
+
+<Canvas of={AmountInputStories.Error} />
+
+### Disabled State
+
+The component supports disabled state with appropriate visual feedback:
+
+<Canvas of={AmountInputStories.Disabled} />

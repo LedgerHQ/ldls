@@ -14,3 +14,4 @@ export * from './Input';
 export * from './Tag';
 export * from './Tooltip';
 export * from './VerticalListItem';
+export * from './AmountInput';
