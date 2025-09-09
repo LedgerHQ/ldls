@@ -12,10 +12,11 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 bg-transparent w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
+  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
   'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
+  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
 );
 
 const baseLabelStyles = cn(

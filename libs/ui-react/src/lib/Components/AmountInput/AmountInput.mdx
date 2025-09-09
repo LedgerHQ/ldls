@@ -7,7 +7,7 @@ import * as AmountInputStories from './AmountInput.stories';
 
 ## Introduction
 
-AmountInput is a specialized input component designed for handling numeric values with fiat currency display. It features configurable fiat text positioning, error states, and proper numeric input handling.
+AmountInput is a specialized input component designed for handling numeric values with currency display. It features configurable currency text positioning, error states, and proper numeric input handling.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6245-2067&m=dev).
 
@@ -18,12 +18,12 @@ AmountInput is a specialized input component designed for handling numeric value
 
 > **Layout:** The AmountInput component takes the full width of its container by default. You can control the width by wrapping it in a container.
 
-### Fiat Text Position
+### Currency Text Position
 
-The fiat text can be positioned on either the left (default) or right side of the input:
+The currency text can be positioned on either the left (default) or right side of the input:
 
 <Canvas of={AmountInputStories.Default} />
-<Canvas of={AmountInputStories.WithRightFiat} />
+<Canvas of={AmountInputStories.WithRightCurrency} />
 
 ### Error State
 

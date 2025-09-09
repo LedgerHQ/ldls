@@ -3,10 +3,10 @@ import { cn } from '@ldls/utils-shared';
 
 export interface AmountInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
-  /** The fiat currency text (e.g. USD, EUR) */
-  fiatText?: string;
-  /** Position of the fiat text. Defaults to 'left' */
-  fiatPosition?: 'left' | 'right';
+  /** The currency text (e.g. USD, EUR) */
+  currencyText?: string;
+  /** Position of the currency text. Defaults to 'left' */
+  currencyPosition?: 'left' | 'right';
   /** Additional class names to apply to the input element */
   className?: string;
 }
@@ -16,9 +16,10 @@ const baseInputStyles = cn(
   'placeholder:text-muted-subtle',
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
   '[&[aria-invalid="true"]]:text-error',
+  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
 );
 
-const fiatStyles = cn(
+const currencyStyles = cn(
   'heading-0 pointer-events-none',
   'text-base',
   'group-has-[input:placeholder-shown]:text-muted-subtle',
@@ -34,8 +35,8 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
   (
     {
       className,
-      fiatText,
-      fiatPosition = 'left',
+      currencyText,
+      currencyPosition = 'left',
       disabled,
       'aria-invalid': ariaInvalid,
       ...props
@@ -43,30 +44,26 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     ref,
   ) => {
     return (
-      <div
-        className={cn('bg-transparent group relative flex w-full items-center')}
-      >
-        {fiatText && fiatPosition === 'left' && (
-          <span className={cn(fiatStyles, 'shrink-0')}>{fiatText}</span>
+      <div className={cn('bg-transparent group relative flex items-center')}>
+        {currencyText && currencyPosition === 'left' && (
+          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
         )}
 
         <input
           ref={ref}
-          type="text"
-          inputMode="decimal"
+          type="number"
           disabled={disabled}
           aria-invalid={ariaInvalid}
           className={cn(
             baseInputStyles,
-            fiatPosition === 'right' && 'text-right',
+            currencyPosition === 'right' && 'text-right',
             className,
           )}
-          placeholder=" "
           {...props}
         />
 
-        {fiatText && fiatPosition === 'right' && (
-          <span className={cn(fiatStyles, 'shrink-0')}>{fiatText}</span>
+        {currencyText && currencyPosition === 'right' && (
+          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
         )}
       </div>
     );

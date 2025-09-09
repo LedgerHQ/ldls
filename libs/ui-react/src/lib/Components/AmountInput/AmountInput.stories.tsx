@@ -15,30 +15,30 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: '0',
-    fiatText: '$',
+    currencyText: '$',
   },
 };
 
-export const WithRightFiat: Story = {
+export const WithRightCurrency: Story = {
   args: {
     placeholder: '0',
-    fiatText: 'USD',
-    fiatPosition: 'right',
+    currencyText: 'USD',
+    currencyPosition: 'right',
   },
 };
 
 export const WithValue: Story = {
   args: {
     value: '1234.56',
-    fiatText: '$',
+    currencyText: '$',
   },
 };
 
 export const Disabled: Story = {
   args: {
     value: '1234.56',
-    fiatText: 'USD',
-    fiatPosition: 'right',
+    currencyText: 'USD',
+    currencyPosition: 'right',
     disabled: true,
   },
 };
@@ -46,7 +46,7 @@ export const Disabled: Story = {
 export const Error: Story = {
   args: {
     value: '1234.56',
-    fiatText: '$',
+    currencyText: '$',
     'aria-invalid': true,
   },
 };

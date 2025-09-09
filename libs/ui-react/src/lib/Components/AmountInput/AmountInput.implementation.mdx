@@ -48,15 +48,15 @@ function MyComponent() {
     <AmountInput
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      fiatText="USD"
+      currencyText="USD"
     />
   );
 }
 ```
 
-### With Fiat Position
+### With Currency Position
 
-The fiat text can be positioned on either side of the input:
+The currency text can be positioned on either side of the input:
 
 ```tsx
 // Left position (default)
@@ -64,7 +64,7 @@ The fiat text can be positioned on either side of the input:
   value={value}
   onChange={handleChange}
   fiatText="USD"
-  fiatPosition="left"
+  currencyPosition="left"
 />
 
 // Right position
@@ -72,7 +72,7 @@ The fiat text can be positioned on either side of the input:
   value={value}
   onChange={handleChange}
   fiatText="USD"
-  fiatPosition="right"
+  currencyPosition="right"
 />
 ```
 
@@ -98,7 +98,7 @@ function MyComponent() {
     <AmountInput
       value={value}
       onChange={handleChange}
-      fiatText="USD"
+      currencyText="USD"
       aria-invalid={error}
     />
   );
