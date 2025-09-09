@@ -22,6 +22,7 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
       icon={ArrowLeft}
       onClick={onBack}
       className="flex-shrink-0"
+      aria-label="Go back"
     />
   );
 };
@@ -35,6 +36,7 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
       icon={Close}
       onClick={onClose}
       className="flex-shrink-0"
+      aria-label="Close"
     />
   );
 };

@@ -117,7 +117,10 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
-      className={cn('fixed inset-0 z-50 bg-canvas-overlay', className)}
+      className={cn(
+        className,
+        'fixed inset-0 z-50 bg-canvas-overlay transition-opacity data-[state=open]:animate-overlayShow',
+      )}
       {...props}
     />
   );
@@ -165,7 +168,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          'fixed left-[50%] top-[50%] z-50 w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet',
+          'fixed left-[50%] top-[50%] z-50 w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet data-[state=open]:animate-contentShow',
           className,
         )}
         {...props}
