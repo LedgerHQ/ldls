@@ -8,7 +8,8 @@ import { cn } from '@ldls/utils-shared';
  * This component wraps the Radix UI Dialog Root. It manages the dialog's visibility
  * state and coordinates between the trigger and content components.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-dialog-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ * ```
  *
  * @component
  * @param {boolean} [defaultOpen] - The initial open state of the dialog when uncontrolled.
