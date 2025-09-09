@@ -49,9 +49,38 @@ function MyComponent() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       currencyText="USD"
+      maxLength={12} // Maximum number of digits
+      allowDecimals={true} // Allow decimal points
     />
   );
 }
+```
+
+### Input Validation
+
+The AmountInput component provides two ways to control input validation:
+
+1. `maxLength`: Limits the number of digits (default: 12)
+2. `allowDecimals`: Controls whether decimal points are allowed (default: true)
+
+```tsx
+// Integer-only input limited to 8 digits
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="USD"
+  maxLength={8}
+  allowDecimals={false}
+/>
+
+// Decimal input with custom length
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="USD"
+  maxLength={5} // Only allow 5 digits
+  allowDecimals={true}
+/>
 ```
 
 ### With Currency Position
