@@ -56,6 +56,15 @@ export const Base: Story = {
       <SheetBar {...args} />
     </Container>
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<SheetBar title="Sheet Title" onBack={() => {}} onClose={() => {}} />
+        `,
+      },
+    },
+  },
 };
 
 export const WithDescription: Story = {
@@ -69,6 +78,15 @@ export const WithDescription: Story = {
       <SheetBar {...args} />
     </Container>
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<SheetBar title="Sheet Title" description="Additional information" onBack={() => {}} onClose={() => {}} />
+        `,
+      },
+    },
+  },
 };
 
 export const SizeShowcase: Story = {

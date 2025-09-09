@@ -52,6 +52,23 @@ export const Base: Story = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent className="w-[500px]">
+    <SheetBar title="Sheet Title" onClose={() => setOpen(false)} />
+    <div className="h-256" />
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
 };
 
 export const WithDescription: Story = {
@@ -64,6 +81,23 @@ export const WithDescription: Story = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent className="w-[500px]">
+    <SheetBar title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
+    <div className="h-256" />
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
 };
 
 export const WithBack: Story = {
@@ -76,6 +110,23 @@ export const WithBack: Story = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent className="w-[500px]">
+    <SheetBar title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
+    <div className="h-256" />
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
 };
 
 export const Large: Story = {
@@ -87,6 +138,23 @@ export const Large: Story = {
       }}
     />
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent className="w-[500px]">
+    <SheetBar title="Large Sheet Title" onClose={() => setOpen(false)} />
+    <div className="h-256" />
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
 };
 
 export const LargeWithDescription: Story = {
