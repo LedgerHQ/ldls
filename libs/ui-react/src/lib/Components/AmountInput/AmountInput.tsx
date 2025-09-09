@@ -121,6 +121,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         <input
           ref={inputRef}
           type="text"
+          inputMode="decimal"
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}
