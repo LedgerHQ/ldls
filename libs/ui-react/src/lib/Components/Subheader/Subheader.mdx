@@ -1,0 +1,64 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SubheaderStories from './Subheader.stories';
+import { Subheader } from './Subheader';
+
+<Meta title="Misc/Subheader/Docs" of={SubheaderStories} />
+
+# 🃏 Subheader
+
+## Introduction
+
+Subheaders are section headers used to title content areas in the UI. They provide a clear heading with optional informational tooltip and action elements.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5609-1117&m=dev).
+
+## Anatomy
+
+<Canvas of={SubheaderStories.WithFullFeatures} />
+
+- **Title**: The main heading (required)
+- **Info Tooltip (optional)**: Information icon that shows a tooltip on hover
+- **Action (optional)**: Element for user interaction, such as a link or button
+
+## Properties
+
+### Overview
+
+<Canvas of={SubheaderStories.Base} />
+<Controls of={SubheaderStories.Base} />
+
+### Content Variations
+
+Subheaders support various content configurations:
+
+- **Title only**: Basic heading
+- **With Tooltip**: Includes information tooltip
+- **With Action**: Includes action element
+- **Complete**: All elements combined
+
+<Canvas of={SubheaderStories.ContentVariations} />
+
+> **Note**: The title is required. Tooltip and action are optional and can be combined as needed.
+
+### Responsive Layout
+
+Subheaders adapt to their container constraints:
+
+<Canvas of={SubheaderStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Subheaders flow naturally to fill their parent container width
+> - Title truncates with ellipsis when too long for the available space
+> - Tooltip icon and action maintain their positions
+> - Uses flex layout for responsive arrangement
+
+## Accessibility
+
+To be implemented:
+
+- **Color contrast**: Ensure readable text
+- **Text zoom**: Maintain layout integrity
+- **Keyboard navigation**: Proper tab order for interactive elements
+- **Semantic labeling**: Appropriate ARIA attributes for tooltip
+- **Focus management**: Visible focus indicators on interactive elements

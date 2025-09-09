@@ -1,0 +1,230 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Misc/Subheader/Implementation" />
+
+# Subheader Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-tooltip
+```
+
+#### About @radix-ui/react-tooltip
+
+The `@radix-ui/react-tooltip` is used for the info tooltip feature.
+
+### Tailwind Configuration
+
+To use the Subheader component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Subheader } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Subheader title="Section Title" />
+  );
+}
+```
+
+### With Info Tooltip
+
+Add an informational tooltip to provide additional context:
+
+```tsx
+import { Subheader } from '@ledgerhq/ldls-ui-react';
+
+function TooltipExample() {
+  return (
+    <Subheader
+      title="Section Title"
+      infoTooltip="This is additional information about the section"
+    />
+  );
+}
+```
+
+### With Action
+
+Include an action element, such as a link or button:
+
+```tsx
+import { Subheader, Link } from '@ledgerhq/ldls-ui-react';
+
+function ActionExample() {
+  return (
+    <Subheader
+      title="Section Title"
+      action={
+        <Link
+          href="https://ledger.com"
+          appearance="accent"
+          size="sm"
+          isExternal
+        >
+          View More
+        </Link>
+      }
+    />
+  );
+}
+```
+
+### With Both Tooltip and Action
+
+Combine both features for a fully featured subheader:
+
+```tsx
+import { Subheader } from '@ledgerhq/ldls-ui-react';
+import { Link } from '@ledgerhq/ldls-ui-react';
+
+function FullExample() {
+  return (
+    <Subheader
+      title="Section Title"
+      infoTooltip="Additional info"
+      action={
+        <Link
+          href="https://example.com"
+          appearance="accent"
+          size="sm"
+          isExternal
+        >
+          Action
+        </Link>
+      }
+    />
+  );
+}
+```
+
+### Natural Width Behavior
+
+Subheaders automatically adjust to their parent container's width. No additional props are needed:
+
+```tsx
+<Subheader title="Section Title" />
+```
+
+To control width, use container elements:
+
+```tsx
+{/* Full viewport width */}
+<Subheader title="Full Width" />
+
+{/* Constrained width */}
+<div className="max-w-4xl mx-auto">
+  <Subheader title="Constrained" />
+</div>
+
+{/* Responsive width */}
+<div className="w-full lg:max-w-2xl">
+  <Subheader title="Responsive" />
+</div>
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+
+```tsx
+<Subheader
+  title="Styled Subheader"
+  className="mb-4" // Custom margin
+/>
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the Subheader component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Subheader
+  title="Section Title"
+  className="mb-6"
+/>
+
+// Use className for responsive behavior
+<Subheader
+  title="Desktop Section"
+  className="hidden lg:flex"
+/>
+
+// Use container elements to control width
+<div className="w-full">
+  <Subheader title="Full Width" />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<Subheader
+  title="Custom Colors"
+  className="bg-base text-active"
+/>
+
+// Don't modify internal spacing
+<Subheader
+  title="Wrong Spacing"
+  className="gap-2 p-2"
+/>
+
+// Don't override typography classes
+<Subheader
+  title="Bad Typography"
+  className="body-3"
+/>
+```
+
+### Prop Usage
+
+✅ **Do**
+
+```tsx
+// Provide complete action components
+<Subheader
+  title="With Action"
+  action={<Link href="#">Link</Link>}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't provide incomplete props
+<Subheader
+  title="Broken"
+  action="Just a string" // Must be an action element
+/>
+```
