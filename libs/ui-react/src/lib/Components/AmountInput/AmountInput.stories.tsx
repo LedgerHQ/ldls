@@ -21,6 +21,8 @@ export const Default: Story = {
     currencyText: '$',
     maxLength: 12,
     allowDecimals: true,
+    value: '1234.56',
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -31,6 +33,8 @@ export const WithRightCurrency: Story = {
     currencyPosition: 'right',
     maxLength: 12,
     allowDecimals: true,
+    value: '',
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -40,6 +44,7 @@ export const WithValue: Story = {
     currencyText: '$',
     maxLength: 12,
     allowDecimals: true,
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -51,6 +56,7 @@ export const Disabled: Story = {
     disabled: true,
     maxLength: 12,
     allowDecimals: true,
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -61,6 +67,7 @@ export const Error: Story = {
     'aria-invalid': true,
     maxLength: 12,
     allowDecimals: true,
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -70,6 +77,7 @@ export const IntegerOnly: Story = {
     currencyText: '$',
     allowDecimals: false,
     maxLength: 8,
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
@@ -79,10 +87,16 @@ export const CustomMaxLength: Story = {
     currencyText: '$',
     maxLength: 3, // Only allow 3 digits
     allowDecimals: true,
+    onChange: () => console.log('onChange triggered'),
   },
 };
 
 export const LargeAmountDisplay: Story = {
+  args: {
+    // This story uses its own state management, so we provide placeholder args
+    value: '',
+    onChange: () => console.log('onChange triggered'),
+  },
   render: () => {
     const [isEth, setIsEth] = React.useState(true);
     const [value, setValue] = React.useState('');

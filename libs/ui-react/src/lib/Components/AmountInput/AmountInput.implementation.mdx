@@ -38,6 +38,8 @@ export default config;
 
 ### Basic Usage
 
+AmountInput is a **controlled component only**. You must provide both `value` and `onChange` props.
+
 ```tsx
 import { AmountInput } from '@ledgerhq/ldls-ui-react';
 
@@ -191,10 +193,12 @@ function MyComponent() {
 
 ### Value Management
 
+AmountInput is a **controlled component only** - it requires both `value` and `onChange` props.
+
 ✅ **Do**
 
 ```tsx
-// Use controlled input pattern
+// Always use controlled input pattern
 const [value, setValue] = useState('');
 <AmountInput
   value={value}
@@ -202,26 +206,43 @@ const [value, setValue] = useState('');
   currencyText="USD"
 />
 
-// Or use uncontrolled inputs (also valid)
-<AmountInput defaultValue="0.00" currencyText="USD" />
 
-// Uncontrolled with ref access
-const inputRef = useRef<HTMLInputElement>(null);
-<AmountInput ref={inputRef} defaultValue="0.00" currencyText="USD" />
-
-// Use aria-invalid for error states
+// Use with validation state
+const [value, setValue] = useState('');
+const [hasError, setHasError] = useState(false);
 <AmountInput
   value={value}
-  onChange={handleChange}
+  onChange={(e) => {
+    setValue(e.target.value);
+    setHasError(!e.target.value || isNaN(Number(e.target.value)));
+  }}
   currencyText="USD"
   aria-invalid={hasError}
+/>
+
+// Access the input element via ref
+const inputRef = useRef<HTMLInputElement>(null);
+<AmountInput
+  ref={inputRef}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  currencyText="USD"
 />
 ```
 
 ❌ **Don't**
 
 ```tsx
-// Don't use custom error props
+// Don't use uncontrolled patterns - not supported
+<AmountInput defaultValue="0.00" currencyText="USD" />
+
+// Don't use without value prop
+<AmountInput onChange={handleChange} currencyText="USD" />
+
+// Don't use without onChange prop
+<AmountInput value="100" currencyText="USD" />
+
+// Don't use custom error props - use aria-invalid instead
 <AmountInput error={true} errorText="Invalid amount" />
 
 // Don't try to modify the currency text styling directly

@@ -8,7 +8,10 @@ import React, {
 import { cn } from '@ldls/utils-shared';
 
 export interface AmountInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'size' | 'prefix' | 'value' | 'onChange'
+  > {
   /** The currency text (e.g. USD, EUR) */
   currencyText?: string;
   /** Position of the currency text. Defaults to 'left' */
@@ -21,6 +24,10 @@ export interface AmountInputProps
   allowDecimals?: boolean;
   /** Additional class names */
   className?: string;
+  /** The controlled value of the input (required) */
+  value: string | number;
+  /** Change handler (required) */
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const baseInputStyles = cn(
@@ -40,8 +47,9 @@ const currencyStyles = cn(
 );
 
 /**
- * AmountInput component for handling numeric input with fiat currency display.
- * The fiat text can be positioned either on the left or right side of the input.
+ * AmountInput component for handling numeric input with currency display.
+ * This is a controlled component - both `value` and `onChange` props are required.
+ * The currency text can be positioned either on the left or right side of the input.
  */
 export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
   (
@@ -60,7 +68,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
   ) => {
     const spanRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [inputValue, setInputValue] = useState(value?.toString() ?? '');
+    const [inputValue, setInputValue] = useState(value.toString());
 
     // Forward the internal ref properly with types
     useImperativeHandle<HTMLInputElement | null, HTMLInputElement>(
@@ -79,9 +87,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [inputValue]);
 
     useEffect(() => {
-      if (value !== undefined && value !== null) {
-        setInputValue(value.toString());
-      }
+      setInputValue(value.toString());
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +97,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         : raw.replace(/\D/g, '');
       if (cleaned.replace(/\D/g, '').length <= maxLength) {
         setInputValue(cleaned);
-        onChange?.({ ...e, target: { ...e.target, value: cleaned } });
+        onChange({ ...e, target: { ...e.target, value: cleaned } });
       }
     };
 
