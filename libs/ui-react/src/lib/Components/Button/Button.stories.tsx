@@ -5,7 +5,7 @@ import { Settings, Plus } from '../../Symbols';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Action/Button/Overview',
+  title: 'Action/Button',
   parameters: {
     docs: {
       source: {

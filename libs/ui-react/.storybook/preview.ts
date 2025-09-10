@@ -61,8 +61,6 @@ const preview: Preview = {
           ['Interface Icons', ['Implementation', 'Docs', '*']],
           'Action',
           [
-            'Button',
-            ['Implementation', '*'],
             'CardButton',
             ['Implementation', '*'],
             'IconButton',
