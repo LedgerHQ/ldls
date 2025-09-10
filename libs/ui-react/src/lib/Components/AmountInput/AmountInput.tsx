@@ -32,7 +32,7 @@ export interface AmountInputProps
 
 const baseInputStyles = cn(
   'bg-transparent outline-none heading-0 transition-colors caret-active',
-  'placeholder:text-muted-subtle',
+  'placeholder:text-muted-subtle text-base',
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
   '[&[aria-invalid="true"]]:text-error',
   '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',

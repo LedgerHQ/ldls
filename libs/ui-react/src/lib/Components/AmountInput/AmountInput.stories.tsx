@@ -20,8 +20,8 @@ export const Default: Story = {
     placeholder: '0',
     currencyText: '$',
     maxLength: 12,
+    value: '',
     allowDecimals: true,
-    value: '1234.56',
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -32,7 +32,6 @@ export const WithRightCurrency: Story = {
     currencyText: 'USD',
     currencyPosition: 'right',
     maxLength: 12,
-    allowDecimals: true,
     value: '',
     onChange: () => console.log('onChange triggered'),
   },
@@ -43,7 +42,6 @@ export const WithValue: Story = {
     value: '1234.56',
     currencyText: '$',
     maxLength: 12,
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -55,7 +53,6 @@ export const Disabled: Story = {
     currencyPosition: 'right',
     disabled: true,
     maxLength: 12,
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -66,7 +63,6 @@ export const Error: Story = {
     currencyText: '$',
     'aria-invalid': true,
     maxLength: 12,
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -75,9 +71,26 @@ export const IntegerOnly: Story = {
   args: {
     value: '1234',
     currencyText: '$',
-    allowDecimals: false,
+    allowDecimals: false, // Important: disables decimal input
     maxLength: 8,
     onChange: () => console.log('onChange triggered'),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Integer-only input with allowDecimals set to false to prevent decimal values.',
+      },
+      source: {
+        code: `<AmountInput
+  value="1234"
+  currencyText="$"
+  allowDecimals={false} // Important: disables decimal input
+  maxLength={8}
+  onChange={() => console.log('onChange triggered')}
+/>`,
+      },
+    },
   },
 };
 
@@ -86,7 +99,6 @@ export const CustomMaxLength: Story = {
     value: '123',
     currencyText: '$',
     maxLength: 3, // Only allow 3 digits
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };
