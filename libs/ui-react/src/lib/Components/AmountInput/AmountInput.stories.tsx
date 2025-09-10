@@ -102,7 +102,9 @@ export const LargeAmountDisplay: Story = {
           <AmountInput
             value={value}
             placeholder="0"
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setValue(e.target.value)
+            }
             currencyText={currentCurrency}
             currencyPosition={isEth ? 'right' : 'left'}
             maxLength={6}
