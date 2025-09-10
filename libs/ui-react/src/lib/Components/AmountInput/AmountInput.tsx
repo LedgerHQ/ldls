@@ -70,12 +70,19 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const [inputValue, setInputValue] = useState(value.toString());
 
-    // Forward the internal ref properly with types
-    useImperativeHandle<HTMLInputElement | null, HTMLInputElement>(
-      ref,
-      () => inputRef.current!,
-      [],
-    );
+    /** TODO: move to ui-core */
+    function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
+      return (node: T) => {
+        refs.forEach((ref) => {
+          if (!ref) return;
+          if (typeof ref === 'function') {
+            ref(node);
+          } else {
+            (ref as React.MutableRefObject<T | null>).current = node;
+          }
+        });
+      };
+    }
 
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
@@ -126,7 +133,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         </span>
 
         <input
-          ref={inputRef}
+          ref={composeRefs(ref, inputRef)}
           type="text"
           inputMode="decimal"
           disabled={disabled}
