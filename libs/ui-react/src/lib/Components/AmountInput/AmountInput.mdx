@@ -20,17 +20,35 @@ AmountInput is a specialized input component designed for handling numeric value
 
 ### Currency Text Position
 
-The currency text can be positioned on either the left (default) or right side of the input:
+The currency text can be positioned on either the **left** (default) or **right** side of the input:
 
 <Canvas of={AmountInputStories.Default} />
 <Canvas of={AmountInputStories.WithRightCurrency} />
+
+### Input Validation
+
+The AmountInput provides built-in validation controls:
+
+#### **Integer Only**
+
+`allowDecimals` is set to `true` by default, the input accepts decimal values.
+set it to `false` to only accept whole numbers:
+
+<Canvas of={AmountInputStories.IntegerOnly} />
+
+#### **Custom Max Length**
+
+`maxLength` is set to `12` by default.
+You can limit the number of digits using the `maxLength` prop.
+
+<Canvas of={AmountInputStories.CustomMaxLength} />
 
 ### Error State
 
 The input supports error handling through:
 
 - `aria-invalid`: Controls the error state styling
-- Error styling includes text color changes for both input and fiat text
+- Error styling includes text color changes for both input and currency text
 
 <Canvas of={AmountInputStories.Error} />
 
@@ -39,3 +57,9 @@ The input supports error handling through:
 The component supports disabled state with appropriate visual feedback:
 
 <Canvas of={AmountInputStories.Disabled} />
+
+### Usage with Currency Toggle
+
+Example of a large amount display interface with currency toggle:
+
+<Canvas of={AmountInputStories.LargeAmountDisplay} />
