@@ -122,7 +122,7 @@ export const LargeAmountDisplay: Story = {
     const errorMessage = hasError ? 'Insufficient balance' : '';
 
     return (
-      <div className="relative h-128 w-384 rounded-lg bg-canvas-sheet">
+      <div className="relative h-128 w-384 rounded-lg">
         {/* Large amount input */}
         <div className="flex-col items-center justify-center">
           <AmountInput
@@ -136,12 +136,14 @@ export const LargeAmountDisplay: Story = {
             maxLength={6}
             aria-invalid={hasError}
           />
-          <div className="text-center text-muted">{convertedValue}</div>
+          <div className="mt-16 text-center text-muted body-2">
+            {convertedValue}
+          </div>
 
-          {hasError ? (
-            <div className="text-sm text-center text-error">{errorMessage}</div>
-          ) : (
-            <div className="text-center text-base">Label</div>
+          {hasError && (
+            <div className="text-sm mt-8 text-center text-error">
+              {errorMessage}
+            </div>
           )}
         </div>
         <Button
@@ -149,7 +151,7 @@ export const LargeAmountDisplay: Story = {
           size="sm"
           appearance="gray"
           aria-label="Toggle currency"
-          className="absolute right-8 top-16"
+          className="absolute right-8 top-4"
           onClick={() => setIsEth(!isEth)}
         />
       </div>
