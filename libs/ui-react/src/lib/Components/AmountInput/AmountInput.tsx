@@ -14,8 +14,10 @@ export interface AmountInputProps
   /** Position of the currency text. Defaults to 'left' */
   currencyPosition?: 'left' | 'right';
   /** Maximum character length */
+  /** @default 12 */
   maxLength?: number;
   /** Allow decimal values */
+  /** @default true */
   allowDecimals?: boolean;
   /** Additional class names */
   className?: string;
@@ -71,7 +73,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     useLayoutEffect(() => {
       if (spanRef.current && inputRef.current) {
         const width = spanRef.current.offsetWidth;
-        console.log('width', width);
         const pxToAdd = inputValue === '' ? 33 : 8;
         inputRef.current.style.width = `${width + pxToAdd}px`;
       }
