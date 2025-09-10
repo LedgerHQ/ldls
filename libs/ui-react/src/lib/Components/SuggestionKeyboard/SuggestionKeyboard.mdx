@@ -1,0 +1,61 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SuggestionKeyboardStories from './SuggestionKeyboard.stories';
+import {
+  SuggestionKeyboard,
+  SuggestionKeyboardItem,
+} from './SuggestionKeyboard';
+
+<Meta title="Action/SuggestionKeyboard/Docs" of={SuggestionKeyboardStories} />
+
+# ⌨️ Suggestion Keyboard
+
+## Introduction
+
+The Suggestion Keyboard is a component that displays a row of quick suggestion buttons, typically used below input fields to provide common value options like percentages or amounts. It helps users quickly select predefined values without manual entry.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6495-22228&m=dev).
+
+## Anatomy
+
+<Canvas of={SuggestionKeyboardStories.Base} />
+
+- **Container**: A flexible row that spaces out the suggestion items
+- **Items**: Individual buttons representing suggestions, with text labels
+
+## Properties
+
+### Overview
+
+<Canvas of={SuggestionKeyboardStories.Base} />
+<Controls of={SuggestionKeyboardStories.Base} />
+
+### Content Variations
+
+The Suggestion Keyboard adapts to different numbers of suggestion items (2-4 recommended for best layout):
+
+<Canvas of={SuggestionKeyboardStories.ContentShowcase} />
+
+### Layout Variations
+
+Control the alignment and spacing of suggestions:
+
+- Space Between (default): Evenly spaces items across the container
+- Centered: Centers items with custom gap
+
+<Canvas of={SuggestionKeyboardStories.LayoutShowcase} />
+
+### Disabled State
+
+Individual suggestions can be disabled when not applicable:
+
+<Canvas of={SuggestionKeyboardStories.WithDisabledSuggestions} />
+
+## Accessibility
+
+To be implemented:
+
+- **Color contrast**: Ensure readable text on button backgrounds
+- **Text zoom**: Maintain layout integrity
+- **Keyboard navigation**: Tab order for interactive buttons
+- **Semantic labeling**: Proper ARIA roles for buttons
+- **Focus management**: Visible focus indicators on items

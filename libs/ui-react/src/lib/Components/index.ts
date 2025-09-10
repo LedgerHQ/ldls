@@ -8,6 +8,7 @@ export * from './ListItem';
 export * from './Search';
 export * from './AddressFieldInput';
 export * from './Spot';
+export * from './SuggestionKeyboard';
 export * from './Switch';
 export * from './BaseInput';
 export * from './Input';
