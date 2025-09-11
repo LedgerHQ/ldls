@@ -13,7 +13,7 @@ const Container = ({
 
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
-  title: 'Misc/Subheader/Overview',
+  title: 'Components/Subheader/Overview',
   parameters: {
     docs: {
       source: {

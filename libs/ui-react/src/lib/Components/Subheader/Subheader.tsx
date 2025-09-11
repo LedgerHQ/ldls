@@ -53,11 +53,15 @@ export const Subheader = ({
       {...props}
     >
       <div className="flex min-w-0 items-center gap-4">
-        <div className="min-w-0 truncate heading-4-semi-bold">{title}</div>
+        <h2 className="min-w-0 truncate heading-4-semi-bold">{title}</h2>
         {infoTooltip && (
           <Tooltip>
             <TooltipTrigger asChild>
-              <Information size={12} className="shrink-0 text-muted" />
+              <Information
+                size={12}
+                className="shrink-0 text-muted"
+                aria-label="More information"
+              />
             </TooltipTrigger>
             <TooltipContent>{infoTooltip}</TooltipContent>
           </Tooltip>
