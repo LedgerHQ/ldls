@@ -86,7 +86,11 @@ const preview: Preview = {
           ],
           'Containment',
           [
+            'Dialog',
+            ['Implementation', '*'],
             'ListItem',
+            ['Implementation', '*'],
+            'SheetBar',
             ['Implementation', '*'],
             'VerticalListItem',
             ['Implementation', '*'],

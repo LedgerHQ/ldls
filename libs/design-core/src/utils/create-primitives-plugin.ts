@@ -23,6 +23,12 @@ export function createPrimitivesPlugin() {
     '--icon-border-width-',
   );
 
+  const zIndex = {
+    dialogOverlay: '90',
+    dialogContent: '100',
+    tooltip: '110',
+  };
+
   return plugin(
     function ({ addBase, theme, addUtilities }) {
       // TODO: Remove type cast after exporting all values as strings from Figma
@@ -40,6 +46,7 @@ export function createPrimitivesPlugin() {
         spotWidth,
         spotHeight,
         iconStrokeWidth,
+        zIndex,
         extend: {
           height: size,
           width: size,

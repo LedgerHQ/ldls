@@ -7,6 +7,7 @@ import {
   createDropShadowPlugin,
 } from '../utils/index.js';
 import { allBrandsTheme } from '../themes/index.js';
+import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 
 export const allBrandsPreset = {
   content: [],
@@ -16,6 +17,7 @@ export const allBrandsPreset = {
     createTypographyPlugin(),
     createGradientPlugin(allBrandsTheme),
     createDropShadowPlugin(),
+    createAnimationsPlugin(),
   ],
   darkMode: 'class',
   corePlugins: {
