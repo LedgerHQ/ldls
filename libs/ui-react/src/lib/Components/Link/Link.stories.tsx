@@ -9,7 +9,7 @@ const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
 
 const meta: Meta<typeof Link> = {
   component: Link,
-  title: 'Action/Link/Overview',
+  title: 'Action/Link',
   parameters: {
     docs: {
       source: {

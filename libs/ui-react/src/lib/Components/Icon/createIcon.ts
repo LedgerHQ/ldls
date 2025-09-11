@@ -10,7 +10,7 @@ import { toPascalCase } from '@ldls/utils-shared';
  */
 const createIcon = (
   iconName: string,
-  iconJsx: React.ReactElement<SVGProps<SVGSVGElement>>
+  iconJsx: React.ReactElement<SVGProps<SVGSVGElement>>,
 ) => {
   const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'children'>>(
     ({ className, ...props }, ref) =>
@@ -20,7 +20,7 @@ const createIcon = (
         viewBox: iconJsx.props.viewBox,
         ...props,
         children: iconJsx.props.children,
-      })
+      }),
   );
 
   Component.displayName = toPascalCase(iconName);

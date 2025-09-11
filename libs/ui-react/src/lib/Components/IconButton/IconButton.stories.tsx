@@ -10,7 +10,7 @@ import {
 
 const meta: Meta<typeof IconButton> = {
   component: IconButton,
-  title: 'Action/IconButton/Overview',
+  title: 'Action/IconButton',
   parameters: {
     docs: {
       source: {

@@ -1,10 +1,14 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as LinkStories from './Link.stories';
 import { Link } from './Link';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Link/Docs" of={LinkStories} />
+<Meta title="Components/Link" of={LinkStories} />
 
 # 🔗 Link
+
+<CustomTabs>
+  <Tab label="Overview">
 
 ## Introduction
 
@@ -75,3 +79,239 @@ To be implemented:
     <li>Perfect for router links that should look like links</li>
   </ul>
 </div>
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+```
+
+#### **About @radix-ui/react-slot**
+
+The `@radix-ui/react-slot` dependency is used internally by the Link component
+to enable flexible composition patterns. It allows the Link to merge its props with child
+elements when needed.
+
+### Tailwind Configuration
+
+To use the Link component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Link appearance="underlined" size="md" href="/page">
+      Go to Page
+    </Link>
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+
+```tsx
+<Link
+  appearance="underlined"
+  size="md"
+  href="/page"
+  className="md:hidden" // Custom responsive behavior
+>
+  Link for small screen
+</Link>
+```
+
+### With Icons
+
+The Link component supports icons with automatic size adjustment based on the link size:
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-react';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <Link appearance="accent" size="sm" href="/next" icon={ArrowRight}>
+      Continue
+    </Link>
+  );
+}
+```
+
+### External Links
+
+Use the `isExternal` prop to automatically add target="\_blank" and an external link icon:
+
+```tsx
+<Link appearance="underlined" size="md" href="https://example.com" isExternal>
+  Visit External Site
+</Link>
+```
+
+### Using with Routers (asChild)
+
+The `asChild` prop allows integration with routing libraries by merging Link styles with child elements:
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-react';
+import { Link as RouterLink } from 'react-router-dom';
+
+function MyComponent() {
+  return (
+    <Link asChild appearance="underlined" size="md">
+      <RouterLink to="/dashboard">Dashboard</RouterLink>
+    </Link>
+  );
+}
+```
+
+Note: When using asChild, the child element handles its own content. Props like 'icon' and 'isExternal' are ignored - implement equivalent functionality in the child if needed.
+
+## Do's and Don'ts
+
+These guidelines ensure consistency, maintainability, and proper implementation of our design system principles.
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use children for content composition
+<Link>
+  See <em>Terms and Conditions</em>
+</Link>
+
+// Pass icon as a component reference
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+<Link icon={ArrowRight}>Next</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use text prop
+<Link text="Accept Terms and Conditions" />
+
+// Don't pass icon as a string
+<Link icon="ArrowRight">Next</Link>
+
+// Don't include icon in children
+<Link>
+  <ArrowRight /> Next
+</Link>
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Link className="mt-4 ml-2">Dashboard</Link>
+
+// Use className for positioning
+<Link className="absolute top-0 right-0" isExternal>Go to shop</Link>
+
+// Use className for margins and spacing in layout
+<Link className="mx-auto my-4">Centered</Link>
+
+// Use className for different positions between mobile and desktop
+<Link className="hidden md:block">Desktop Only</Link>
+<Link className="md:hidden">Mobile Only</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override link's core styling
+<Link className="text-base no-underline rounded-full">Custom</Link>
+
+// Don't modify internal spacing/gap
+<Link className="gap-4">Wrong Spacing</Link>
+
+// Don't override typography - use size prop instead
+<Link className="heading-2">Wrong Typography</Link>
+
+// Don't modify hover/focus states
+<Link className="hover:text-interactive-hover">Custom Hover</Link>
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The link's core styling (colors, underline, gap, hover states, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Use icon prop for consistent sizing
+<Link icon={ArrowRight} appearance="accent" />
+
+// Let Link handle icon sizing
+<Link icon={ArrowRight} size="sm">Small</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't modify icon size directly
+<Link>
+  <ArrowRight size={24} />
+  Next
+</Link>
+
+// Don't use string-based icon names
+<Link icon="arrow-right">Next</Link>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
+```
+
+</Tab>
+</CustomTabs>

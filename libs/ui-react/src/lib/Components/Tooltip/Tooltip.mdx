@@ -1,10 +1,14 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TooltipStories from './Tooltip.stories';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Tooltip/Docs" of={TooltipStories} />
+<Meta title="Components/Tooltip" of={TooltipStories} />
 
 # 💬 Tooltip
+
+<CustomTabs>
+  <Tab label="Overview">
 
 ## Introduction
 
@@ -71,3 +75,196 @@ To be implemented:
     </li>
   </ul>
 </div>
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies (including for Tooltip)
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-tooltip
+```
+
+#### **About @radix-ui/react-tooltip**
+
+The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip behavior, with custom styling applied.
+
+### Tailwind Configuration
+
+To use the Tooltip component with our custom Tailwind preset, configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipContent, Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button>Hover me</Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        Tooltip content
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+```
+
+### With Custom Placement
+
+```tsx
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent side="right">
+    Right-aligned tooltip
+  </TooltipContent>
+</Tooltip>
+```
+
+### With Icon Trigger
+
+```tsx
+import { Information } from '@ledgerhq/ldls-ui-react/symbols';
+
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Information size={20} />
+  </TooltipTrigger>
+  <TooltipContent>
+    Info
+  </TooltipContent>
+</Tooltip>
+```
+
+### With Delay
+
+```tsx
+<Tooltip delayDuration={300}>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    Delayed tooltip
+  </TooltipContent>
+</Tooltip>
+```
+
+### Global Provider
+
+For app-wide configuration:
+
+```tsx
+import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
+
+function App() {
+  return (
+    <TooltipProvider delayDuration={150}>
+      {/* Your app content */}
+    </TooltipProvider>
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Composition
+
+✅ **Do**
+
+```tsx
+// Use asChild for trigger composition
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button>Hover</Button>
+  </TooltipTrigger>
+  <TooltipContent>Info</TooltipContent>
+</Tooltip>
+
+// Use children for content
+<TooltipContent>
+  <p>Multiple</p>
+  <p>Lines</p>
+</TooltipContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use without Trigger and Content
+<Tooltip>Invalid</Tooltip>
+```
+
+### Styling
+
+✅ **Do**
+
+```tsx
+// Use className for width control
+<TooltipContent className="max-w-256">
+  Long content
+</TooltipContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't change core styles
+<TooltipContent className="bg-base text-muted">Custom bg</TooltipContent>
+```
+
+> **Note**: Use `className` primarily for content layout (like max-width). The tooltip's core styling (colors, padding etc.) should not be overridden to maintain design system consistency.
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use global provider for consistent delays
+<TooltipProvider delayDuration={150}>
+  <App />
+</TooltipProvider>
+
+// Keep content simple
+<TooltipContent>Short text</TooltipContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't nest tooltips
+<Tooltip>
+  <TooltipTrigger>
+    <Tooltip> {/* Invalid nesting */}
+    </Tooltip>
+  </TooltipTrigger>
+</Tooltip>
+
+// Don't put heavy content
+<TooltipContent>
+  <ComplexComponent />
+</TooltipContent>
+```
+
+</Tab>
+</CustomTabs>

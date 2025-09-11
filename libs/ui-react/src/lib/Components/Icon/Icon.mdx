@@ -1,8 +1,58 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  Meta,
+  Canvas,
+  Controls,
+  IconGallery,
+  IconItem,
+} from '@storybook/addon-docs/blocks';
+import * as Icons from '../../Symbols';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import * as IconsStories from './Icon.stories';
 
-<Meta title="Symbols/Interface Icons/Implementation" />
+<Meta title="Symbols/Interface Icons/Docs" of={IconsStories} />
 
-# Icon Component Implementation
+# 🎨 Icons
+
+<CustomTabs>
+  <Tab label="Overview">
+
+Icons are essential elements that communicate meaning quickly and visually. They support navigation, clarify actions, and enhance the overall user experience. A well-designed icon set ensures clarity, consistency, and scalability across platforms.
+
+---
+
+## Figma Library
+
+All icons are designed and managed in our Figma Foundations library. This is the single source of truth for our icon set.
+
+- 🔗 **[Figma - Icons Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=50-5110&m=dev)**
+
+---
+
+## Interactive Example
+
+<Canvas of={IconsStories.Icon} />
+<Controls of={IconsStories.Icon} />
+
+## 📏 Sizing
+
+Our icons are designed to be scalable and are available in 7 standard sizes to fit various contexts within the UI.
+
+The available sizes are: **16px, 20px, 24px, 32px, 40px, 48px, and 56px**
+
+The thickness of each icon is automatically managed by our token system when you apply a size variable, ensuring visual consistency at any scale.
+
+<Canvas of={IconsStories.IconSizes} />
+
+---
+
+## Icon Gallery
+
+Here's a preview of all the icons available in our design system. To use an icon, just reference its name.
+
+<Canvas of={IconsStories.Gallery} />
+
+</Tab>
+<Tab label="Implementation">
 
 ## Installation
 
@@ -251,3 +301,6 @@ const Icon = Icons[iconName]; // Prevents tree-shaking
 // Don't use non-semantic color classes
 <Settings className="text-blue-500" />
 ```
+
+</Tab>
+</CustomTabs>

@@ -8,7 +8,7 @@ const Container = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => (
 
 const meta: Meta<typeof SheetBar> = {
   component: SheetBar,
-  title: 'Containment/SheetBar/Overview',
+  title: 'Containment/SheetBar',
   parameters: {
     docs: {
       source: {
