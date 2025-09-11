@@ -5,7 +5,7 @@ import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
 
 const meta: Meta<typeof CardButton> = {
   component: CardButton,
-  title: 'Action/CardButton/Overview',
+  title: 'Action/CardButton',
   parameters: {
     docs: {
       source: {

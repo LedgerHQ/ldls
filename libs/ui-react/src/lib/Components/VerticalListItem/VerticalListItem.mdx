@@ -1,10 +1,14 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as VerticalListItemStories from './VerticalListItem.stories';
 import { VerticalListItem } from './VerticalListItem';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/VerticalListItem/Docs" of={VerticalListItemStories} />
+<Meta title="Components/VerticalListItem" of={VerticalListItemStories} />
 
 # 📋 VerticalListItem
+
+<CustomTabs>
+  <Tab label="Overview">
 
 ## Introduction
 
@@ -75,3 +79,223 @@ To be implemented:
 - Keyboard navigation and focus management
 - Semantic ARIA attributes (e.g., role="listitem")
 - Proper labeling for screen readers
+
+</Tab>
+<Tab label="Implementation">
+
+# VerticalListItem Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+```
+
+#### **About @radix-ui/react-slot**
+
+The `@radix-ui/react-slot` dependency is used internally by the VerticalListItem component
+to enable flexible composition patterns.
+
+### Tailwind Configuration
+
+To use the VerticalListItem component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { VerticalListItem } from '@ledgerhq/ldls-ui-react';
+import { Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <VerticalListItem
+      title="Settings"
+      subtitle="Manage preferences"
+      spot={<Spot appearance="icon" icon={Settings} />}
+    />
+  );
+}
+```
+
+### With Tag
+
+Add a tag at the bottom for additional status information:
+
+```tsx
+import { VerticalListItem, Tag, Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <VerticalListItem
+      title="New Feature"
+      subtitle="Recently added"
+      spot={<Spot appearance="icon" icon={Settings} />}
+      tag={<Tag label="New" appearance="accent" />}
+    />
+  );
+}
+```
+
+### With Secondary Action
+
+Include a secondary action for additional actions:
+
+```tsx
+import { VerticalListItem, Spot, IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
+
+const MoreActionsButton = () => (
+  <IconButton
+    iconType="stroked"
+    aria-label="More actions"
+    onClick={() => console.log('more actions')}
+  >
+    <MoreVertical />
+  </IconButton>
+);
+
+function MyComponent() {
+  return (
+    <VerticalListItem
+      title="Settings"
+      subtitle="Manage preferences"
+      spot={<Spot appearance="icon" icon={Settings} />}
+      secondaryAction={<MoreActionsButton />}
+    />
+  );
+}
+```
+
+### Spot Variants
+
+The VerticalListItem supports different spot icons. Below are some examples:
+
+```tsx
+import { VerticalListItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { User, Wallet, Cart, Apps, Chart1 } from '@ledgerhq/ldls-ui-react/symbols';
+
+function SpotVariants() {
+  return (
+    <div className="flex">
+      <VerticalListItem
+        title="User"
+        subtitle="Profile"
+        spot={<Spot appearance="icon" icon={User} />}
+        className="max-w-128"
+      />
+      <VerticalListItem
+        title="Wallet"
+        subtitle="Balance"
+        spot={<Spot appearance="icon" icon={Wallet} />}
+        className="max-w-128"
+      />
+      // Add more variants...
+    </div>
+  );
+}
+```
+
+### Usage in Horizontal List
+
+VerticalListItem is designed for horizontal lists:
+
+```tsx
+<div className="flex w-[450px] rounded-sm bg-base">
+  {Array.from({ length: 3 }).map((_, i) => (
+    <VerticalListItem
+      key={i}
+      title={`Item ${i + 1}`}
+      subtitle={`Subtitle ${i + 1}`}
+      spot={<Spot appearance="icon" icon={Apps} />}
+      className="w-128 shrink-0"
+    />
+  ))}
+</div>
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the VerticalListItem component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout constraints
+<VerticalListItem
+  title="Item"
+  className="max-w-128"
+/>
+
+// Use in horizontal lists with proper grouping
+<div className="flex max-w-450">
+  <VerticalListItem title="Item 1" />
+  <VerticalListItem title="Item 2" />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<VerticalListItem
+  title="Custom"
+  className="bg-base text-active"
+/>
+
+// Don't modify internal spacing
+<VerticalListItem
+  title="Wrong"
+  className="gap-2 p-2"
+/>
+
+// Don't use for non-list contexts
+<VerticalListItem title="Standalone" className="m-4 border" />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use proper event handlers
+<VerticalListItem onClick={handleClick} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use complex inline handlers
+<VerticalListItem
+  onClick={() => {
+    // Complex logic...
+  }}
+/>
+```
+
+</Tab>
+</CustomTabs>

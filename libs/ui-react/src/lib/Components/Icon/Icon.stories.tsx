@@ -94,6 +94,15 @@ export const Icon: StoryObj<IconStoryProps> = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Information size={24} className="text-base" />
+      `,
+      },
+    },
+  },
 };
 
 export const IconSizes: StoryObj = {
