@@ -1,0 +1,285 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { AmountInput } from './AmountInput';
+
+<Meta title="Text Input/AmountInput/Implementation" component={AmountInput} />
+
+# AmountInput Component Implementation
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+```
+
+### Tailwind Configuration
+
+To use the AmountInput component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+AmountInput is a **controlled component only**. You must provide both `value` and `onChange` props.
+
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <AmountInput
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      currencyText="USD"
+      maxLength={12} // Maximum number of digits
+      allowDecimals={true} // Allow decimal points
+    />
+  );
+}
+```
+
+### Input Validation
+
+The AmountInput component provides two ways to control input validation:
+
+1. `maxLength`: Limits the number of digits (default: 12)
+2. `allowDecimals`: Controls whether decimal points are allowed (default: true)
+
+```tsx
+// Integer-only input limited to 8 digits
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="$"
+  maxLength={8}
+  allowDecimals={false}
+/>
+
+// Short input with custom length (useful for codes or small amounts)
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="$"
+  maxLength={3} // Only allow 3 digits
+/>
+
+// Large number input with decimal support
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="USD"
+  maxLength={15} // Allow larger amounts
+/>
+```
+
+### With Currency Position
+
+The currency text can be positioned on either side of the input:
+
+```tsx
+// Left position (default)
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="USD"
+  currencyPosition="left"
+/>
+
+// Right position
+<AmountInput
+  value={value}
+  onChange={handleChange}
+  currencyText="USD"
+  currencyPosition="right"
+/>
+```
+
+### With Error State
+
+The AmountInput component supports error states through the `aria-invalid` prop:
+
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState(false);
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    // Example validation: ensure it's a valid number
+    setError(isNaN(parseFloat(newValue)));
+  };
+
+  return (
+    <AmountInput
+      value={value}
+      onChange={handleChange}
+      currencyText="USD"
+      aria-invalid={error}
+    />
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Input Validation
+
+✅ **Do**
+
+```tsx
+// Use integer-only for whole number scenarios (quantity, age, etc.)
+<AmountInput
+  value={quantity}
+  onChange={handleQuantityChange}
+  currencyText="items"
+  allowDecimals={false}
+  maxLength={4}
+/>
+
+// Use custom max length for specific use cases
+<AmountInput
+  value={pin}
+  onChange={handlePinChange}
+  currencyText=""
+  maxLength={4} // PIN code
+  allowDecimals={false}
+/>
+
+// Use appropriate length for currency amounts
+<AmountInput
+  value={amount}
+  onChange={handleAmountChange}
+  currencyText="$"
+  maxLength={12} // Reasonable for most currencies
+  allowDecimals={true}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use overly restrictive lengths for currency
+<AmountInput maxLength={2} currencyText="$" /> // Too short for real amounts
+
+// Don't allow decimals for count-based inputs
+<AmountInput currencyText="items" allowDecimals={true} /> // Items should be whole numbers
+
+// Don't use extremely long lengths without good reason
+<AmountInput maxLength={50} currencyText="$" /> // Unnecessarily long
+```
+
+### Value Management
+
+AmountInput is a **controlled component only** - it requires both `value` and `onChange` props.
+
+✅ **Do**
+
+```tsx
+// Always use controlled input pattern
+const [value, setValue] = useState('');
+<AmountInput
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  currencyText="USD"
+/>
+
+
+// Use with validation state
+const [value, setValue] = useState('');
+const [hasError, setHasError] = useState(false);
+<AmountInput
+  value={value}
+  onChange={(e) => {
+    setValue(e.target.value);
+    setHasError(!e.target.value || isNaN(Number(e.target.value)));
+  }}
+  currencyText="USD"
+  aria-invalid={hasError}
+/>
+
+// Access the input element via ref
+const inputRef = useRef<HTMLInputElement>(null);
+<AmountInput
+  ref={inputRef}
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  currencyText="USD"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use uncontrolled patterns - not supported
+<AmountInput defaultValue="0.00" currencyText="USD" />
+
+// Don't use without value prop
+<AmountInput onChange={handleChange} currencyText="USD" />
+
+// Don't use without onChange prop
+<AmountInput value="100" currencyText="USD" />
+
+// Don't use custom error props - use aria-invalid instead
+<AmountInput error={true} errorText="Invalid amount" />
+
+// Don't try to modify the currency text styling directly
+<AmountInput currencyText={<span className="custom-style">USD</span>} />
+```
+
+### Layout and Styling
+
+The AmountInput component takes the **full width** of its parent container by default.
+
+✅ **Do**
+
+```tsx
+
+// Use container wrapper for width control
+<div className="max-w-md">
+  <AmountInput currencyText="USD" />
+</div>
+
+// Use responsive design
+<div className="w-full md:max-w-lg">
+  <AmountInput currencyText="USD" />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core input styling
+<AmountInput className="bg-white border-gray-300" />
+
+// Don't modify internal padding/spacing
+<AmountInput className="px-6 py-4" />
+
+// Don't override typography
+<AmountInput className="body-4" />
+
+// Don't modify hover/focus states
+<AmountInput className="hover:border-accent" />
+```

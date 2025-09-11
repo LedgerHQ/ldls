@@ -312,11 +312,9 @@ The Input component takes the **full width** of its parent container by default.
 ✅ **Do**
 
 ```tsx
-// Use className for input-specific styling
-<Input className="text-lg" label="Title" />
 
 // Use containerClassName for layout and width control (preferred)
-<Input label="Email" containerClassName="mt-4 max-w-md" />
+<Input label="Email" containerClassName="max-w-md" />
 
 // Use containerClassName for responsive design
 <Input label="Email" containerClassName="w-full md:max-w-lg" />
@@ -332,10 +330,10 @@ The Input component takes the **full width** of its parent container by default.
 <Input className="px-6 py-4" />
 
 // Don't override typography
-<Input className="text-lg" />
+<Input className="body-4" />
 
 // Don't modify hover/focus states
-<Input className="hover:border-blue-500" />
+<Input className="hover:border-accent" />
 ```
 
 ### Performance Considerations

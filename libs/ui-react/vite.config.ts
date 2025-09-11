@@ -78,5 +78,6 @@ export default defineConfig(() => ({
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,
     },
+    setupFiles: ['./src/test-setup.ts'],
   },
 }));

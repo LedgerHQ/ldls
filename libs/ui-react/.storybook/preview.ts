@@ -104,6 +104,8 @@ const preview: Preview = {
           ['Input', ['Implementation', '*']],
           'Media & Graphics',
           ['Spot', ['Implementation', '*']],
+          'Amount Input',
+          ['AmountInput', ['Implementation', '*']],
         ],
       },
     },
