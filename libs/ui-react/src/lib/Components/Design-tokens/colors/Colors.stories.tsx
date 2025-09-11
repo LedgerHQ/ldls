@@ -383,6 +383,26 @@ export const Text: Story = {
           },
         ]}
       />
+      <ColorSection
+        category="text"
+        tokens={[
+          {
+            name: 'interactive',
+            className: '',
+            textClassName: 'text-interactive',
+          },
+          {
+            name: 'interactive Hover',
+            className: '',
+            textClassName: 'text-interactive-hover',
+          },
+          {
+            name: 'interactive Pressed',
+            className: '',
+            textClassName: 'text-interactive-pressed',
+          },
+        ]}
+      />
 
       <ColorSection
         category="text"
@@ -449,6 +469,16 @@ export const Text: Story = {
         category="text"
         tokens={[
           { name: 'Disabled', className: '', textClassName: 'text-disabled' },
+        ]}
+      />
+      <ColorSection
+        category="text"
+        tokens={[
+          {
+            name: 'active',
+            className: '',
+            textClassName: 'text-active',
+          },
         ]}
       />
     </div>
