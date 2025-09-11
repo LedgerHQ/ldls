@@ -28,7 +28,7 @@ const DialogTemplate = ({
 
 const meta: Meta<typeof Dialog> = {
   component: Dialog,
-  title: 'Containment/Dialog/Overview',
+  title: 'Containment/Dialog',
   parameters: {
     docs: {
       source: {
