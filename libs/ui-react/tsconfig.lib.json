@@ -55,6 +55,9 @@
     },
     {
       "path": "../utils-shared/tsconfig.lib.json"
+    },
+    {
+      "path": "../ui-core/tsconfig.lib.json"
     }
   ]
 }

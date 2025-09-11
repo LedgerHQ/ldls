@@ -1,4 +1,5 @@
 import React from 'react';
+import { composeRefs } from '@ldls/ui-core';
 import { cn } from '@ldls/utils-shared';
 import { DeleteCircleFill } from '../../Symbols';
 import { IconButton } from '../IconButton/IconButton';
@@ -160,20 +161,6 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
 
       onClear?.();
     };
-
-    /** TODO: move to ui-core */
-    function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
-      return (node: T) => {
-        refs.forEach((ref) => {
-          if (!ref) return;
-          if (typeof ref === 'function') {
-            ref(node);
-          } else {
-            (ref as React.MutableRefObject<T | null>).current = node;
-          }
-        });
-      };
-    }
 
     return (
       <div>

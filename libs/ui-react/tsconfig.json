@@ -9,6 +9,9 @@
       "path": "../utils-shared"
     },
     {
+      "path": "../ui-core"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {
