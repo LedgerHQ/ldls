@@ -119,6 +119,7 @@ function DialogOverlay({
       data-slot="dialog-overlay"
       className={cn(
         className,
+        // TODO: Fix animation for closing the dialog
         'z-dialogOverlay data-[state=closed]:animate-overlayHide fixed inset-0 bg-canvas-overlay transition-opacity duration-200 data-[state=open]:animate-overlayShow',
       )}
       {...props}
@@ -168,6 +169,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
+          // TODO: Fix animation for closing the dialog
           'z-dialogContent data-[state=closed]:animate-contentHide fixed left-[50%] top-[50%] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet data-[state=open]:animate-contentShow',
           className,
         )}
