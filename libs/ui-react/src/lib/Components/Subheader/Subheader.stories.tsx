@@ -34,7 +34,7 @@ const ActionLink = () => (
 
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
-  title: 'Communication/Subheader/Overview',
+  title: 'Communication/Subheader',
   parameters: {
     docs: {
       source: {
