@@ -193,27 +193,20 @@ export const LayoutShowcase: Story = {
     docs: {
       source: {
         code: `
-// Showcase different numbers of SuggestionKeyboardItem children
+// Showcase different layouts of the SuggestionKeyboard
 
-// 2 Suggestions
-<SuggestionKeyboard>
-  <SuggestionKeyboardItem>500$</SuggestionKeyboardItem>
-  <SuggestionKeyboardItem>1000$</SuggestionKeyboardItem>
-</SuggestionKeyboard>
-
-// 3 Suggestions
+// Space Between (default)
 <SuggestionKeyboard>
   <SuggestionKeyboardItem>250$</SuggestionKeyboardItem>
   <SuggestionKeyboardItem>500$</SuggestionKeyboardItem>
   <SuggestionKeyboardItem>1000$</SuggestionKeyboardItem>
 </SuggestionKeyboard>
 
-// 4 Suggestions
-<SuggestionKeyboard>
-  <SuggestionKeyboardItem>25%</SuggestionKeyboardItem>
-  <SuggestionKeyboardItem>50%</SuggestionKeyboardItem>
-  <SuggestionKeyboardItem>75%</SuggestionKeyboardItem>
-  <SuggestionKeyboardItem>Max</SuggestionKeyboardItem>
+// Centered
+<SuggestionKeyboard className="justify-center gap-24">
+  <SuggestionKeyboardItem>250$</SuggestionKeyboardItem>
+  <SuggestionKeyboardItem>500$</SuggestionKeyboardItem>
+  <SuggestionKeyboardItem>1000$</SuggestionKeyboardItem>
 </SuggestionKeyboard>
 `,
       },
