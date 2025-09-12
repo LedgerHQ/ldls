@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Quick Start" />
+
+## 🚀 Quick Start
+
+1 . Configure Tailwind:
+See our [Tailwind Setup Guide](/docs/tailwind-setup-guide--docs) and [Tailwind Configuration](/docs/tailwind-configuration--docs) for more information.
+
+2 . Install `ui-react` package:
+
+Install the package:
+
+```bash
+npm install @ledgerhq/ldls-ui-react
+```
+
+And its peer dependencies:
+
+```bash
+npm install clsx tailwind-merge class-variance-authority
+```
+
+3 . Start using components:
+
+```bash
+# Install peer dependency related to the button component
+npm install @radix-ui/react-slot
+```
+
+`@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function App() {
+  return (
+    <Button appearance="base">
+      Get Started
+    </Button>
+  );
+}
+```
+
+**Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
+
+### 4. Design Resources
+
+- [Figma Component Library](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?m=dev) - Design tokens, components, and patterns
+- [Figma Symbols Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=0-1&p=f&m=dev) - Comprehensive icon library
+
+## 🤝 Contributing
+
+We welcome contributions! Please check our:
+
+- [Contribution Guidelines](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md) - Contribution guidelines
+- [GitHub Repository](https://github.com/LedgerHQ/ldls) - Source code and documentation
+
+> ⚠️ **Private Design System Notice**
+>
+> The Ledger Design Language System (LDLS) is a private design system for internal Ledger products and authorized partners.
+> It is not intended for public use at this time. Access to this system requires proper authorization.

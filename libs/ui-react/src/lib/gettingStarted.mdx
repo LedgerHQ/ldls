@@ -1,5 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import lumenLogo from '../../.storybook/lumen.svg';
+import {
+  ComponentCard,
+  ComponentCardGrid,
+} from '../../.storybook/ComponentCard';
 
 <Meta title="Getting Started/Introduction" />
 
@@ -7,94 +11,215 @@ import lumenLogo from '../../.storybook/lumen.svg';
 
 The Ledger Design Language System (LDLS) is a comprehensive design system that provides a unified set of principles, components, and tools for building consistent Ledger applications.
 
-## 🎯 Core Principles
+---
 
-- **Consistency**: Unified design language across all Ledger products
-- **Efficiency**: Focus on what matters - use proven solutions for common patterns
-- **Speed**: Fast development with ready-to-use components and utilities
-- **Flexibility**: Adaptable components that work across different contexts
-- **Accessibility**: Built with accessibility in mind from the ground up
+🚀 **[Get Started with Quick Start Guide →](?path=/docs/getting-started-quickstart--docs)**
 
-## 📚 Documentation Structure
+---
 
-### 1. Foundations
+## 1. Foundations
 
-- [Foundations](/docs/foundations-docs--docs) - Our design tokens
-- [Colors](/docs/foundations-colors--docs) - Our semantic color system
-- [Spacing](/docs/foundations-dimensions-spacing--docs) - Layout and spacing system
-- [Size](/docs/foundations-dimensions-size--docs) - Size tokens
-- [Border Radius](/docs/foundations-border-radius--docs) - Border radius tokens
-- [Border width](/docs/foundations-border-width--docs) - Border width tokens
-- [Typography](/story/foundations-styles-typography--typography) - Text styles and scales
-- [Shadows](/story/foundations-styles-shadows--shadows) - Elevation and depth
-- [Gradients](/story/foundations-styles-gradients--gradients) - Gradients
+<ComponentCardGrid>
+  <ComponentCard
+    title="Colors"
+    description="Semantic color system with background, text, border, and status colors for consistent theming."
+    href="?path=/docs/foundations-colors--docs"
+    emoji="🎨"
+  />
 
-### 2. Symbols
+<ComponentCard
+  title="Typography"
+  description="Text styles, scales, and typography tokens for consistent content hierarchy."
+  href="?path=/story/foundations-styles-typography--typography"
+  emoji="📝"
+/>
 
-- [Interface Icons](/docs/symbols-interface-icons-docs--docs) - Comprehensive icon library
+<ComponentCard
+  title="Spacing"
+  description="Spacing tokens and layout system for consistent spacing and positioning."
+  href="?path=/docs/foundations-spacing--docs"
+  emoji="📐"
+/>
 
-### 3. Components
+<ComponentCard
+  title="Height"
+  description="Height tokens for consistent height and spacing."
+  href="?path=/docs/foundations-height--docs"
+  emoji="📏"
+/>
+<ComponentCard
+  title="Width"
+  description="Width tokens for consistent width and spacing."
+  href="?path=/docs/foundations-width--docs"
+  emoji="📏"
+/>
+<ComponentCard
+  title="Border Radius"
+  description="Border radius tokens for consistent border radius and spacing."
+  href="?path=/docs/foundations-border-radius--docs"
+  emoji="🔘"
+/>
 
-> **Button:**
->
-> - [Documentation](/docs/components-button-overview--docs) - Usage guidelines and API
-> - [Implementation](/docs/components-button-implementation--docs) - Technical details and examples
+</ComponentCardGrid>
 
-## 🚀 Quick Start
+## 2. Symbols
 
-1 . Configure Tailwind:
-See our [Tailwind Setup Guide](/docs/tailwind-setup-guide--docs) and [Tailwind Configuration](/docs/tailwind-configuration--docs) for more information.
+<ComponentCardGrid>
+  <ComponentCard
+    title="Interface Icons"
+    description="Comprehensive icon library with 200+ icons in multiple sizes for all interface needs."
+    href="?path=/docs/symbols-interface-icons--docs"
+    emoji="🔣"
+  />
+</ComponentCardGrid>
 
-2 . Install `ui-react` package:
+## 3. Components
 
-Install the package:
+### Action Components
 
-```bash
-npm install @ledgerhq/ldls-ui-react
-```
+Interactive elements for user actions and navigation.
 
-And its peer dependencies:
+<ComponentCardGrid>
+  <ComponentCard
+    title="Button"
+    description="Primary interactive button for actions, navigation, and form submissions. Multiple variants and sizes available."
+    href="?path=/docs/action-button--docs"
+    emoji="🔘"
+  />
 
-```bash
-npm install clsx tailwind-merge class-variance-authority
-```
+<ComponentCard
+  title="CardButton"
+  description="Card-style button component for displaying actionable cards with content and interactions."
+  href="?path=/docs/action-cardbutton--docs"
+  emoji="🃏"
+/>
 
-3 . Start using components:
+<ComponentCard
+  title="IconButton"
+  description="Compact button with icon for space-efficient actions and toolbar interactions."
+  href="?path=/docs/action-iconbutton--docs"
+  emoji="🎯"
+/>
 
-```bash
-# Install peer dependency related to the button component
-npm install @radix-ui/react-slot
-```
+  <ComponentCard
+    title="Link"
+    description="Navigation links for routing and external references with proper accessibility."
+    href="?path=/docs/action-link--docs"
+    emoji="🔗"
+  />
+</ComponentCardGrid>
 
-`@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
+### Communication Components
 
-```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+Components for user feedback, notifications, and information display.
 
-function App() {
-  return (
-    <Button appearance="base">
-      Get Started
-    </Button>
-  );
-}
-```
+<ComponentCardGrid>
+  <ComponentCard
+    title="Banner"
+    description="Prominent messages and announcements for important information and status updates."
+    href="?path=/docs/communication-banner--docs"
+    emoji="📢"
+  />
 
-**Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
+<ComponentCard
+  title="Tag"
+  description="Labels and categorization elements for content organization and metadata display."
+  href="?path=/docs/communication-tag--docs"
+  emoji="🏷️"
+/>
 
-### 4. Design Resources
+  <ComponentCard
+    title="Tooltip"
+    description="Contextual help and additional information displayed on hover or focus."
+    href="?path=/docs/communication-tooltip--docs"
+    emoji="💬"
+  />
+</ComponentCardGrid>
 
-- [Figma Component Library](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?m=dev) - Design tokens, components, and patterns
-- [Figma Symbols Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=0-1&p=f&m=dev) - Comprehensive icon library
+### Containment Components
 
-## 🤝 Contributing
+Layout and container components for organizing content.
 
-We welcome contributions! Please check our:
+<ComponentCardGrid>
+  <ComponentCard
+    title="Dialog"
+    description="Modal dialogs for focused interactions and important user decisions."
+    href="?path=/docs/containment-dialog--docs"
+    emoji="🗨️"
+  />
 
-- [Contribution Guidelines](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md) - Contribution guidelines
-- [GitHub Repository](https://github.com/LedgerHQ/ldls) - Source code and documentation
+<ComponentCard
+  title="ListItem"
+  description="Flexible list items for displaying content in organized lists and menus."
+  href="?path=/docs/containment-listitem--docs"
+  emoji="📋"
+/>
 
-> ⚠️ **Private Design System Notice**
->
-> The Ledger Design Language System (LDLS) is a private design system for internal Ledger products and authorized partners.
-> It is not intended for public use at this time. Access to this system requires proper authorization.
+<ComponentCard
+  title="SheetBar"
+  description="Bottom sheet component for additional content and actions."
+  href="?path=/docs/containment-sheetbar--docs"
+  emoji="📄"
+/>
+
+  <ComponentCard
+    title="VerticalListItem"
+    description="Vertical list items for stacked content display and navigation menus."
+    href="?path=/docs/containment-verticallistitem--docs"
+    emoji="📑"
+  />
+</ComponentCardGrid>
+
+### Selection Components
+
+Input components for user choices and selections.
+
+<ComponentCardGrid>
+  <ComponentCard
+    title="Checkbox"
+    description="Multi-select input for boolean choices and option selections."
+    href="?path=/docs/selection-checkbox--docs"
+    emoji="☑️"
+  />
+
+  <ComponentCard
+    title="Switch"
+    description="Toggle control for binary settings and feature activation."
+    href="?path=/docs/selection-switch--docs"
+    emoji="🔄"
+  />
+</ComponentCardGrid>
+
+### Text Input Components
+
+Form inputs for text entry and data collection.
+
+<ComponentCardGrid>
+  <ComponentCard
+    title="Input"
+    description="Standard text input field for user data entry and form completion."
+    href="?path=/docs/text-input--docs/"
+    emoji="✏️"
+  />
+
+<ComponentCard
+  title="Search"
+  description="Specialized input field for search functionality with search-specific features."
+  href="?path=/docs/text-input-search--docs"
+  emoji="🔍"
+/>
+
+<ComponentCard
+  title="AmountInput"
+  description="Specialized input for monetary amounts and numeric values with formatting."
+  href="?path=/docs/text-input-amountinput--docs"
+  emoji="💰"
+/>
+
+  <ComponentCard
+    title="AddressFieldInput"
+    description="Specialized input field for address entry with validation and formatting."
+    href="?path=/docs/text-input-addressfieldinput--docs"
+    emoji="🏠"
+  />
+</ComponentCardGrid>
