@@ -1,6 +1,5 @@
 import { cn } from '@ldls/utils-shared';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../Tooltip';
-import { Information } from '../../Symbols';
+import React from 'react';
 
 interface SubheaderProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -9,14 +8,32 @@ interface SubheaderProps
    */
   title: string;
   /**
-   * The info tooltip of the subheader. When provided, an information icon will be displayed and a tooltip will be shown when hovering over it.
+   * The children of the subheader, which can include Subheader.Info and Subheader.Action slots.
    */
-  infoTooltip?: React.ReactNode;
-  /**
-   * The action of the subheader. It can be a link, a button, or any other action element.
-   */
-  action?: React.ReactNode;
+  children?: React.ReactNode;
 }
+
+interface SubheaderInfoProps {
+  children: React.ReactNode;
+}
+
+interface SubheaderActionProps {
+  children: React.ReactNode;
+}
+
+/**
+ * Info slot component for the Subheader. Used to display additional information, like tooltips.
+ */
+const SubheaderInfo = ({ children }: SubheaderInfoProps) => {
+  return <div className="flex shrink-0 items-center">{children}</div>;
+};
+
+/**
+ * Action slot component for the Subheader. Used to display an action, like a link or button.
+ */
+const SubheaderAction = ({ children }: SubheaderActionProps) => {
+  return <div className="flex shrink-0 items-center">{children}</div>;
+};
 
 /**
  * A subheader component for displaying section titles with optional informational tooltips and action elements.
@@ -34,19 +51,38 @@ interface SubheaderProps
  * <Subheader title="Section Title" />
  *
  * // Complete subheader with all features
- * <Subheader
- *   title="Section Title"
- *   infoTooltip="Additional information"
- *   action={<Link href="/action" appearance="accent" size="sm">Action</Link>}
- * />
+ * <Subheader title="Section Title">
+ *   <Subheader.Info>
+ *     <Tooltip>
+ *       <TooltipTrigger asChild>
+ *         <Information
+ *           size={12}
+ *           className="shrink-0 text-muted"
+ *           aria-label="More information"
+ *         />
+ *       </TooltipTrigger>
+ *       <TooltipContent>Additional information</TooltipContent>
+ *     </Tooltip>
+ *   </Subheader.Info>
+ *   <Subheader.Action>
+ *     <Link href="/action" appearance="accent" size="sm">Action</Link>
+ *   </Subheader.Action>
+ * </Subheader>
  */
 export const Subheader = ({
   className,
   title,
-  infoTooltip,
-  action,
+  children,
   ...props
 }: SubheaderProps) => {
+  const childrenArray = React.Children.toArray(children);
+  const infoSlot = childrenArray.find(
+    (child) => React.isValidElement(child) && child.type === SubheaderInfo,
+  );
+  const actionSlot = childrenArray.find(
+    (child) => React.isValidElement(child) && child.type === SubheaderAction,
+  );
+
   return (
     <div
       className={cn('flex items-center justify-between gap-8', className)}
@@ -54,20 +90,12 @@ export const Subheader = ({
     >
       <div className="flex min-w-0 items-center gap-4">
         <h2 className="min-w-0 truncate heading-4-semi-bold">{title}</h2>
-        {infoTooltip && (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Information
-                size={12}
-                className="shrink-0 text-muted"
-                aria-label="More information"
-              />
-            </TooltipTrigger>
-            <TooltipContent>{infoTooltip}</TooltipContent>
-          </Tooltip>
-        )}
+        {infoSlot}
       </div>
-      {action && <div className="shrink-0">{action}</div>}
+      {actionSlot}
     </div>
   );
 };
+
+Subheader.Info = SubheaderInfo;
+Subheader.Action = SubheaderAction;

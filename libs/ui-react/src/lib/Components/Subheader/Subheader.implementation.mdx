@@ -13,12 +13,8 @@ Install the packages and their peer dependencies:
 npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-tooltip
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
-
-#### About @radix-ui/react-tooltip
-
-The `@radix-ui/react-tooltip` is used for the info tooltip feature.
 
 ### Tailwind Configuration
 
@@ -51,35 +47,47 @@ function MyComponent() {
 }
 ```
 
+The component uses a slot-based composition pattern where you can pass `Subheader.Info` and `Subheader.Action` as children.
+
 ### With Info Tooltip
 
-Add an informational tooltip to provide additional context:
+Add an informational tooltip using the `Subheader.Info` slot:
 
 ```tsx
-import { Subheader } from '@ledgerhq/ldls-ui-react';
+import { Subheader, Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 function TooltipExample() {
   return (
-    <Subheader
-      title="Section Title"
-      infoTooltip="This is additional information about the section"
-    />
+    <Subheader title="Section Title">
+      <Subheader.Info>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Information
+              size={12}
+              className="shrink-0 text-muted"
+              aria-label="More information"
+            />
+          </TooltipTrigger>
+          <TooltipContent>This is additional information about the section</TooltipContent>
+        </Tooltip>
+      </Subheader.Info>
+    </Subheader>
   );
 }
 ```
 
 ### With Action
 
-Include an action element, such as a link or button:
+Include an action element using the `Subheader.Action` slot:
 
 ```tsx
 import { Subheader, Link } from '@ledgerhq/ldls-ui-react';
 
 function ActionExample() {
   return (
-    <Subheader
-      title="Section Title"
-      action={
+    <Subheader title="Section Title">
+      <Subheader.Action>
         <Link
           href="https://ledger.com"
           appearance="accent"
@@ -88,26 +96,36 @@ function ActionExample() {
         >
           View More
         </Link>
-      }
-    />
+      </Subheader.Action>
+    </Subheader>
   );
 }
 ```
 
 ### With Both Tooltip and Action
 
-Combine both features for a fully featured subheader:
+Combine both slots for a fully featured subheader:
 
 ```tsx
-import { Subheader } from '@ledgerhq/ldls-ui-react';
-import { Link } from '@ledgerhq/ldls-ui-react';
+import { Subheader, Link, Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 function FullExample() {
   return (
-    <Subheader
-      title="Section Title"
-      infoTooltip="Additional info"
-      action={
+    <Subheader title="Section Title">
+      <Subheader.Info>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Information
+              size={12}
+              className="shrink-0 text-muted"
+              aria-label="More information"
+            />
+          </TooltipTrigger>
+          <TooltipContent>Additional info</TooltipContent>
+        </Tooltip>
+      </Subheader.Info>
+      <Subheader.Action>
         <Link
           href="https://example.com"
           appearance="accent"
@@ -116,8 +134,8 @@ function FullExample() {
         >
           Action
         </Link>
-      }
-    />
+      </Subheader.Action>
+    </Subheader>
   );
 }
 ```
@@ -207,24 +225,34 @@ The following guidelines ensure consistent usage of the Subheader component and 
 />
 ```
 
-### Prop Usage
+### Slot Usage
 
 ✅ **Do**
 
 ```tsx
-// Provide complete action components
-<Subheader
-  title="With Action"
-  action={<Link href="#">Link</Link>}
-/>
+// Use proper slot composition
+<Subheader title="With Action">
+  <Subheader.Action>
+    <Link href="#">Link</Link>
+  </Subheader.Action>
+</Subheader>
+
+// Combine multiple slots
+<Subheader title="Complete">
+  <Subheader.Info>
+    <Tooltip>...</Tooltip>
+  </Subheader.Info>
+  <Subheader.Action>
+    <Link href="#">Action</Link>
+  </Subheader.Action>
+</Subheader>
 ```
 
 ❌ **Don't**
 
 ```tsx
-// Don't provide incomplete props
-<Subheader
-  title="Broken"
-  action="Just a string" // Must be an action element
-/>
+// Don't put non-slot children
+<Subheader title="Wrong">
+  <div>Random child</div> {/* Only use Subheader.Info and Subheader.Action */}
+</Subheader>
 ```

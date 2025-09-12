@@ -17,8 +17,8 @@ Subheaders are section headers used to title content areas in the UI. They provi
 <Canvas of={SubheaderStories.WithFullFeatures} />
 
 - **Title**: The main heading (required)
-- **Info Tooltip (optional)**: Information icon that shows a tooltip on hover
-- **Action (optional)**: Element for user interaction, such as a link or button
+- **Subheader.Info (optional)**: Slot for information elements like tooltips
+- **Subheader.Action (optional)**: Slot for action elements like links or buttons
 
 ## Properties
 
@@ -29,16 +29,16 @@ Subheaders are section headers used to title content areas in the UI. They provi
 
 ### Content Variations
 
-Subheaders support various content configurations:
+Subheaders support various content configurations using slot composition:
 
 - **Title only**: Basic heading
-- **With Tooltip**: Includes information tooltip
-- **With Action**: Includes action element
-- **Complete**: All elements combined
+- **With Info Slot**: Includes information elements via `<Subheader.Info>`
+- **With Action Slot**: Includes action elements via `<Subheader.Action>`
+- **Complete**: All slots combined
 
 <Canvas of={SubheaderStories.ContentVariations} />
 
-> **Note**: The title is required. Tooltip and action are optional and can be combined as needed.
+> **Note**: The title is required. Info and Action slots are optional and can be combined as needed using React children composition.
 
 ### Responsive Layout
 
@@ -50,7 +50,7 @@ Subheaders adapt to their container constraints:
 >
 > - Subheaders flow naturally to fill their parent container width
 > - Title truncates with ellipsis when too long for the available space
-> - Tooltip icon and action maintain their positions
+> - Info and action slot elements maintain their positions
 > - Uses flex layout for responsive arrangement
 
 ## Accessibility
@@ -59,6 +59,6 @@ To be implemented:
 
 - **Color contrast**: Ensure readable text
 - **Text zoom**: Maintain layout integrity
-- **Keyboard navigation**: Proper tab order for interactive elements
-- **Semantic labeling**: Appropriate ARIA attributes for tooltip
-- **Focus management**: Visible focus indicators on interactive elements
+- **Keyboard navigation**: Proper tab order for interactive elements in slots
+- **Semantic labeling**: Appropriate ARIA attributes for slot elements
+- **Focus management**: Visible focus indicators on interactive slot elements
