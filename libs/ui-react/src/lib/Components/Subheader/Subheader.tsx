@@ -76,12 +76,23 @@ export const Subheader = ({
   ...props
 }: SubheaderProps) => {
   const childrenArray = React.Children.toArray(children);
-  const infoSlot = childrenArray.find(
+  const infoSlots = childrenArray.filter(
     (child) => React.isValidElement(child) && child.type === SubheaderInfo,
   );
-  const actionSlot = childrenArray.find(
+  const actionSlots = childrenArray.filter(
     (child) => React.isValidElement(child) && child.type === SubheaderAction,
   );
+
+  if (infoSlots.length > 1) {
+    throw new Error('Subheader can only have one Info slot');
+  }
+
+  if (actionSlots.length > 1) {
+    throw new Error('Subheader can only have one Action slot');
+  }
+
+  const infoSlot = infoSlots.length > 0 ? infoSlots[0] : null;
+  const actionSlot = actionSlots.length > 0 ? actionSlots[0] : null;
 
   return (
     <div
