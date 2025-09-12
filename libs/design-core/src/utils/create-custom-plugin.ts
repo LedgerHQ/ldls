@@ -1,6 +1,19 @@
 import plugin from 'tailwindcss/plugin.js';
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
+const DEFAULT_COLOR_VALUES = {
+  transparent: 'transparent',
+  inherit: 'inherit',
+  current: 'currentColor',
+} as const;
+
+function extendWithDefaultColors<T extends Record<string, string>>(colors: T) {
+  return {
+    ...colors,
+    ...DEFAULT_COLOR_VALUES,
+  };
+}
+
 export function createThemePlugin(
   brandTheme: Record<string, Record<string, string>>,
 ) {
@@ -20,31 +33,33 @@ export function createThemePlugin(
     exclude: ['--border-width'],
   });
 
+  const extendedBackgroundColor = {
+    ...extendWithDefaultColors(backgroundColor),
+    ...cryptoColor,
+    ...discoveryColor,
+  };
+
   return plugin(
     function ({ addBase }) {
       addBase(brandTheme);
     },
     {
       theme: {
-        textColor,
-        borderColor,
-        backgroundColor: {
-          ...backgroundColor,
-          ...cryptoColor,
-          ...discoveryColor,
-        },
-        gradientColorStops: backgroundColor,
-        accentColor: backgroundColor,
-        selectionColor: backgroundColor,
-        boxShadowColor: backgroundColor,
-        fill: backgroundColor,
-        stroke: borderColor,
-        caretColor: textColor,
-        placeholderColor: textColor,
-        ringColor: borderColor,
-        outlineColor: borderColor,
-        ringOffsetColor: borderColor,
-        textDecorationColor: borderColor,
+        textColor: extendWithDefaultColors(textColor),
+        borderColor: extendWithDefaultColors(borderColor),
+        backgroundColor: extendedBackgroundColor,
+        gradientColorStops: extendedBackgroundColor,
+        accentColor: extendedBackgroundColor,
+        selectionColor: extendedBackgroundColor,
+        boxShadowColor: extendedBackgroundColor,
+        fill: extendedBackgroundColor,
+        stroke: extendWithDefaultColors(borderColor),
+        caretColor: extendWithDefaultColors(textColor),
+        placeholderColor: extendWithDefaultColors(textColor),
+        ringColor: extendWithDefaultColors(borderColor),
+        outlineColor: extendWithDefaultColors(borderColor),
+        ringOffsetColor: extendWithDefaultColors(borderColor),
+        textDecorationColor: extendWithDefaultColors(borderColor),
       },
     },
   );

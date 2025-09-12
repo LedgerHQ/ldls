@@ -5,7 +5,7 @@ import { ListItem } from '../ListItem';
 
 const meta: Meta<typeof Search> = {
   component: Search,
-  title: 'Text Input/Search/Overview',
+  title: 'Text Input/Search',
   parameters: {
     docs: {
       source: {

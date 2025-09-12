@@ -31,7 +31,7 @@ const Balance = ({ disabled }: { disabled?: boolean }) => {
 
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
-  title: 'Containment/ListItem/Overview',
+  title: 'Containment/ListItem',
   parameters: {
     docs: {
       source: {

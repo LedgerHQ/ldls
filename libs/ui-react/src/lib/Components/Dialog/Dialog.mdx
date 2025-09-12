@@ -1,0 +1,303 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+import { Dialog, DialogContent, DialogTrigger } from './Dialog';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/Dialog" of={DialogStories} />
+
+# 🪟 Dialog
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+Dialogs are modal windows that interrupt the normal workflow to grab the user's attention, typically for critical information, confirmation, or additional input.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6345-2641&m=dev).
+
+## Anatomy
+
+<Canvas of={DialogStories.Base} />
+
+- **Trigger**: The element that opens the dialog when interacted with
+- **Overlay**: Dimmed background that covers the underlying content
+- **Content**: The main container for dialog content
+- **Header**: Use SheetBar component for a consistent dialog header with title, description, and controls
+
+## Properties
+
+### Basic Usage
+
+Dialogs are composed using Radix UI primitives. Wrap your content in DialogContent and use DialogTrigger for the opening element.
+
+### Header Configuration
+
+Always use the SheetBar component as the header for dialogs to maintain consistency. SheetBar provides:
+
+- Title and optional description
+- Close button
+- Optional back button
+- Two sizes: small (sm) and large (lg)
+
+<Canvas of={DialogStories.WithDescription} />
+
+### Size Variants
+
+Use SheetBar's size prop to adjust the header layout:
+
+- sm: Compact layout with centered title
+- lg: Larger layout with left-aligned title and more space
+
+<Canvas of={DialogStories.Large} />
+
+### With Back Button
+
+Add navigation with SheetBar's onBack prop.
+
+<Canvas of={DialogStories.WithBack} />
+
+### Content Area
+
+The content area after the SheetBar can contain any components. Ensure proper padding and scrolling if needed.
+
+## Accessibility
+
+To be implemented:
+
+- Proper ARIA roles (dialog, etc.)
+- Keyboard navigation (focus trapping, ESC to close)
+- Screen reader support for content
+- Focus management on open/close
+
+<div className="rounded-8 mt-8 bg-muted p-12">
+  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
+  <ul className="space-y-2 body-2">
+    <li>
+      Always include SheetBar as the first child of DialogContent for consistent
+      UX
+    </li>
+    <li>Handle onClose in SheetBar to properly close the dialog</li>
+    <li>Use DialogPortal for correct positioning in the DOM</li>
+    <li>
+      Avoid using for non-critical information - prefer tooltips or other UI
+      elements
+    </li>
+    <li>Ensure content is responsive and works on mobile devices</li>
+  </ul>
+</div>
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies (including for Dialog)
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-dialog
+```
+
+#### **About @radix-ui/react-dialog**
+
+The `@radix-ui/react-dialog` is used as the primitive for accessible dialog behavior, with custom styling and composition using SheetBar for the header.
+
+### Tailwind Configuration
+
+To use the Dialog component with our custom Tailwind preset, configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Dialog, DialogContent, DialogTrigger } from '@ledgerhq/ldls-ui-react';
+import { SheetBar } from '@ledgerhq/ldls-ui-react'; // Import SheetBar for header
+import { Button } from '@ledgerhq/ldls-ui-react'; // Example trigger
+
+function MyComponent() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <SheetBar
+          size="sm"
+          title="Dialog Title"
+          onClose={() => { /* handle close */ }}
+        />
+        <p>Dialog content here</p>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+### With Description
+
+```tsx
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <SheetBar
+      size="sm"
+      title="Title"
+      description="Additional details"
+      onClose={() => { /* handle close */ }}
+    />
+    Content
+  </DialogContent>
+</Dialog>
+```
+
+### Large Size
+
+Use large SheetBar for bigger dialogs:
+
+```tsx
+<Dialog>
+  <DialogTrigger>Open Large</DialogTrigger>
+  <DialogContent className="w-[800px]">
+    <SheetBar
+      size="lg"
+      title="Large Dialog"
+      onClose={() => { /* handle close */ }}
+    />
+    Extended content
+  </DialogContent>
+</Dialog>
+```
+
+### With Back Button
+
+```tsx
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <SheetBar
+      size="sm"
+      title="Title"
+      onBack={() => console.log('Back')}
+      onClose={() => { /* handle close */ }}
+    />
+    Content
+  </DialogContent>
+</Dialog>
+```
+
+### Custom Content Width
+
+Control dialog width via className on DialogContent:
+
+```tsx
+<DialogContent className="w-[600px]">
+  {/* Content */}
+</DialogContent>
+```
+
+## Do's and Don'ts
+
+### Composition
+
+✅ **Do**
+
+```tsx
+// Always use SheetBar as header
+<DialogContent>
+  <SheetBar title="Title" onClose={handleClose} />
+  <div className="p-16">Content</div>
+</DialogContent>
+
+// Use asChild for trigger composition
+<DialogTrigger asChild>
+  <Button>Open</Button>
+</DialogTrigger>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit SheetBar
+<DialogContent>
+  <h2>Custom Title</h2>
+</DialogContent>
+
+// Don't nest dialogs
+<Dialog>
+  <DialogContent>
+    <Dialog>{/* Invalid */}</Dialog>
+  </DialogContent>
+</Dialog>
+```
+
+### Styling
+
+✅ **Do**
+
+```tsx
+// Use className for width control
+<DialogContent className="max-w-512">
+  Content
+</DialogContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't change core styles
+<DialogContent className="bg-base">Custom bg</DialogContent>
+
+// Don't override padding
+<DialogContent className="p-0">No padding</DialogContent>
+```
+
+> **Note**: Use `className` primarily for content layout (like width). The dialog's core styling (colors, positioning etc.) should not be overridden to maintain design system consistency. Always include SheetBar for header consistency.
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Keep content simple
+<DialogContent>
+  <SheetBar ... />
+  <p>Simple text</p>
+</DialogContent>
+
+// Use state to control open
+const [open, setOpen] = useState(false);
+<Dialog open={open} onOpenChange={setOpen}>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't put heavy content
+<DialogContent>
+  <ComplexChart />
+</DialogContent>
+
+// Don't force always open
+<Dialog open={true}>
+```
+
+</Tab>
+</CustomTabs>

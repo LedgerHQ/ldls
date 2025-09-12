@@ -1,0 +1,341 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SheetBarStories from './SheetBar.stories';
+import { SheetBar } from './SheetBar';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/SheetBar" of={SheetBarStories} />
+
+# 📑 SheetBar
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+SheetBar is a navigation component used at the top of sheet modals. It provides optional back navigation, title, description, and a close button. It supports small and large size variants with different layouts and responsive behavior.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2135-3079).
+
+## Anatomy
+
+<Canvas of={SheetBarStories.WithDescription} />
+
+- **Back Button (optional)**: Shown when `onBack` handler is provided. Uses ArrowLeft icon.
+- **Title (optional)**: Main heading text, centered in small size, left-aligned in large size.
+- **Description (optional)**: Supporting text below or beside title.
+- **Close Button**: Always present, requires `onClose` handler. Uses Close icon.
+
+## Properties
+
+### Overview
+
+<Canvas of={SheetBarStories.Base} />
+<Controls of={SheetBarStories.Base} />
+
+### Size
+
+SheetBar supports two sizes:
+
+- **sm** (default): Single-row layout with centered content.
+- **lg**: Two-row layout with buttons on top and content below.
+
+<Canvas of={SheetBarStories.SizeShowcase} />
+
+### Content Variations
+
+SheetBar can be configured with different combinations of title, description, and buttons.
+
+<Canvas of={SheetBarStories.ContentVariations} />
+
+> **Note**: The `onClose` prop is required. `title`, `description`, and `onBack` are optional.
+
+### Responsive Layout
+
+SheetBar adapts to container width:
+
+- In small size, text truncates.
+- In large size, text wraps.
+
+<Canvas of={SheetBarStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Always takes full width of container.
+> - Title and description truncate or wrap based on size and available space.
+> - Buttons maintain fixed size.
+
+## Accessibility
+
+To be implemented:
+
+- **Keyboard navigation**: Ensure back and close buttons are focusable and operable via keyboard.
+- **ARIA attributes**: Provide appropriate roles and labels for buttons (e.g., aria-label for icon-only buttons).
+- **Color contrast**: Verify text and icons meet contrast requirements.
+- **Screen reader support**: Test reading order and announcements.
+- **Focus management**: Visible focus indicators on interactive elements.
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+```
+
+### Tailwind Configuration
+
+To use the SheetBar component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { SheetBar } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <SheetBar
+      size="sm"
+      title="Sheet Title"
+      onClose={() => console.log('Closed')}
+    />
+  );
+}
+```
+
+### Size Variants
+
+The SheetBar component supports two size variants: small (sm) and large (lg), each with different layouts and typography.
+
+```tsx
+import { SheetBar } from '@ledgerhq/ldls-ui-react';
+
+function SizeExamples() {
+  return (
+    <div className="space-y-4">
+      <SheetBar
+        size="sm"
+        title="Small Sheet"
+        description="Description"
+        onBack={() => {}}
+        onClose={() => {}}
+      />
+
+      <SheetBar
+        size="lg"
+        title="Large Sheet"
+        description="Description"
+        onBack={() => {}}
+        onClose={() => {}}
+      />
+    </div>
+  );
+}
+```
+
+### Content Configurations
+
+SheetBar can be configured with various combinations of title, description, back button, and close button.
+
+```tsx
+import { SheetBar } from '@ledgerhq/ldls-ui-react';
+
+function ContentExamples() {
+  return (
+    <div className="space-y-4">
+      <SheetBar
+        size="sm"
+        title="With Title Only"
+        onBack={() => {}}
+        onClose={() => {}}
+      />
+
+      <SheetBar
+        size="sm"
+        title="With Title and Description"
+        description="Additional info"
+        onBack={() => {}}
+        onClose={() => {}}
+      />
+
+      <SheetBar
+        size="sm"
+        title="Without Back Button"
+        onClose={() => {}}
+      />
+
+      <SheetBar
+        size="sm"
+        onBack={() => {}}
+        onClose={() => {}}
+      />
+    </div>
+  );
+}
+```
+
+### Callback Handlers
+
+Provide callbacks for back and close actions. The close button is always present, while the back button is optional.
+
+```tsx
+import { SheetBar } from '@ledgerhq/ldls-ui-react';
+
+function InteractiveSheetBar() {
+  const handleBack = () => {
+    console.log('Back clicked');
+  };
+
+  const handleClose = () => {
+    console.log('Close clicked');
+  };
+
+  return (
+    <SheetBar
+      size="lg"
+      title="Interactive Sheet"
+      description="With actions"
+      onBack={handleBack}
+      onClose={handleClose}
+    />
+  );
+}
+```
+
+### Responsive Behavior
+
+SheetBar handles text truncation and wrapping based on container width and size variant.
+
+```tsx
+import { SheetBar } from '@ledgerhq/ldls-ui-react';
+
+function ResponsiveExamples() {
+  return (
+    <div className="space-y-4">
+      <div className="w-80">
+        <SheetBar
+          size="sm"
+          title="Long Title That Should Truncate In Narrow Container"
+          description="Long description that should also truncate appropriately in narrow width"
+          onBack={() => {}}
+          onClose={() => {}}
+        />
+      </div>
+
+      <div className="w-80">
+        <SheetBar
+          size="lg"
+          title="Long Title That Should Wrap"
+          description="Long description that should wrap"
+          onBack={() => {}}
+          onClose={() => {}}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+### Natural Width Behavior
+
+SheetBars automatically fill their parent container's width. No additional props are needed.
+
+```tsx
+<SheetBar
+  size="sm"
+  title="Full Width SheetBar"
+  description="This SheetBar fills its container"
+  onClose={() => {}}
+/>
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+
+```tsx
+<SheetBar
+  size="sm"
+  title="Custom Layout"
+  onClose={() => {}}
+  className="mb-4" // Custom margin
+/>
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the SheetBar component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<SheetBar
+  size="sm"
+  title="Positioned SheetBar"
+  className="mb-6"
+  onClose={() => {}}
+/>
+
+// Use className for responsive behavior
+<SheetBar
+  size="sm"
+  title="Desktop SheetBar"
+  className="hidden lg:flex"
+  onClose={() => {}}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<SheetBar
+  size="sm"
+  title="Custom Colors"
+  className="bg-base text-active"
+  onClose={() => {}}
+/>
+
+// Don't modify internal spacing
+<SheetBar
+  size="sm"
+  title="Wrong Spacing"
+  className="gap-2 p-2"
+  onClose={() => {}}
+/>
+
+// Don't override typography classes
+<SheetBar
+  size="sm"
+  title="Bad Typography"
+  className="body-3"
+  onClose={() => {}}
+/>
+```
+
+</Tab>
+</CustomTabs>

@@ -56,6 +56,7 @@ export default defineConfig(() => ({
         'tailwind-merge',
         'clsx',
         '@radix-ui/react-checkbox',
+        '@radix-ui/react-dialog',
         '@radix-ui/react-slot',
         '@radix-ui/react-switch',
         '@radix-ui/react-tooltip',
@@ -78,5 +79,6 @@ export default defineConfig(() => ({
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,
     },
+    setupFiles: ['./src/test-setup.ts'],
   },
 }));

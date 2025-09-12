@@ -1,0 +1,306 @@
+import {
+  Meta,
+  Canvas,
+  Controls,
+  IconGallery,
+  IconItem,
+} from '@storybook/addon-docs/blocks';
+import * as Icons from '../../Symbols';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import * as IconsStories from './Icon.stories';
+
+<Meta title="Symbols/Interface Icons/Docs" of={IconsStories} />
+
+# 🎨 Icons
+
+<CustomTabs>
+  <Tab label="Overview">
+
+Icons are essential elements that communicate meaning quickly and visually. They support navigation, clarify actions, and enhance the overall user experience. A well-designed icon set ensures clarity, consistency, and scalability across platforms.
+
+---
+
+## Figma Library
+
+All icons are designed and managed in our Figma Foundations library. This is the single source of truth for our icon set.
+
+- 🔗 **[Figma - Icons Library](https://www.figma.com/design/zSkvGGiqcnhywp2l3HTHxA/1.Symbol-Library?node-id=50-5110&m=dev)**
+
+---
+
+## Interactive Example
+
+<Canvas of={IconsStories.Icon} />
+<Controls of={IconsStories.Icon} />
+
+## 📏 Sizing
+
+Our icons are designed to be scalable and are available in 7 standard sizes to fit various contexts within the UI.
+
+The available sizes are: **16px, 20px, 24px, 32px, 40px, 48px, and 56px**
+
+The thickness of each icon is automatically managed by our token system when you apply a size variable, ensuring visual consistency at any scale.
+
+<Canvas of={IconsStories.IconSizes} />
+
+---
+
+## Icon Gallery
+
+Here's a preview of all the icons available in our design system. To use an icon, just reference its name.
+
+<Canvas of={IconsStories.Gallery} />
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+```
+
+### Tailwind Configuration
+
+To use Icon components with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+Import and use specific icons from the symbols library:
+
+```tsx
+import { ArrowUp, Settings, Plus } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <div>
+      <ArrowUp size={24} />
+      <Settings size={20} />
+      <Plus size={16} />
+    </div>
+  );
+}
+```
+
+### Size Variants
+
+Icons support predefined size variants that ensure consistent visual hierarchy:
+
+```tsx
+import { ArrowUp } from '@ledgerhq/ldls-ui-react/symbols';
+
+function IconSizes() {
+  return (
+    <div className="flex items-center gap-4">
+      <ArrowUp size={16} />
+      <ArrowUp size={20} />
+      <ArrowUp size={24} /> {/* Default size */}
+      <ArrowUp size={40} />
+      <ArrowUp size={48} />
+      <ArrowUp size={56} />
+    </div>
+  );
+}
+```
+
+### Within Buttons
+
+The Button component supports icons with automatic size adjustment based on the button size:
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-react';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <Button size="m" appearance="base" icon={ArrowRight}>
+      Continue
+    </Button>
+  );
+}
+```
+
+The Button component can accept an icon and no label:
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+<Button icon={Settings} />
+```
+
+### Accessibility
+
+Always provide proper accessibility attributes for interactive icons:
+
+```tsx
+import { Information } from '@ledgerhq/ldls-ui-react/symbols';
+
+function AccessibleIcon() {
+  return (
+    <Information size={20} aria-label="Account verification required" />
+  );
+}
+```
+
+### With Semantic Colors
+
+Icons inherit the current text color and can be styled with semantic color utilities:
+
+```tsx
+import { CheckmarkCircle, DeleteCircle, Clock } from '@ledgerhq/ldls-ui-react/symbols';
+
+function SemanticIcons() {
+  return (
+    <div className="flex gap-4">
+      <CheckmarkCircle size={24} className="text-success" />
+      <DeleteCircle size={24} className="text-error" />
+      <Clock size={24} className="text-warning" />
+    </div>
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Icon Importing
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { ArrowUp, Settings, Plus } from '@ledgerhq/ldls-ui-react/symbols';
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons (impacts bundle size)
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't use dynamic icon selection
+const iconName = 'ArrowUp';
+const Icon = Icons[iconName]; // Prevents tree-shaking
+```
+
+### Size Usage
+
+✅ **Do**
+
+```tsx
+// Use predefined size variants
+<ArrowUp size={24} />
+<Settings size={20} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use custom sizes via CSS
+<ArrowUp className="w-6 h-6" />
+
+// Don't override width/height via props
+<ArrowUp size={24} width={32} height={32} />
+
+// Don't use non-standard sizes
+<ArrowUp size={22} /> // Not a defined variant
+```
+
+### Styling and Layout
+
+✅ **Do**
+
+```tsx
+// Use className for color and layout
+<ArrowUp size={24} className="text-on-interactive" />
+
+// Use className for positioning
+<ArrowUp size={20} className="absolute top-2 right-2" />
+
+// Use className for spacing in layouts
+<ArrowUp size={16} className="mr-2" />
+
+// Use className for responsive behavior
+<ArrowUp size={16} className="md:hidden" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core icon dimensions
+<ArrowUp className="w-[35px] h-[32px]" />
+
+// Don't modify stroke width
+<ArrowUp className="icon-stroke-24" />
+
+// Don't use arbitrary colors
+<ArrowUp className="text-[#FF0000]" />
+
+// Don't override viewBox or xmlns
+<ArrowUp viewBox="0 0 32 32" />
+```
+
+### Interactive Usage
+
+✅ **Do**
+
+```tsx
+// Wrap in semantic elements for interaction
+<Button icon={Close} aria-label="Close" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't make icons clickable without semantic wrapper
+<ArrowUp size={24} onClick={handleClick} />
+```
+
+### Color and Theming
+
+✅ **Do**
+
+```tsx
+// Use semantic color tokens
+<CheckmarkCircle className="text-base" />
+<DeleteCircle className="text-error" />
+
+// Inherit text color for consistent theming
+<ArrowUp size={24} /> // Will use current text color
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use arbitrary color values
+<ArrowUp className="text-[#3B82F6]" />
+
+// Don't override currentColor unless necessary
+<ArrowUp style={{ color: '#000000' }} />
+
+// Don't use non-semantic color classes
+<Settings className="text-blue-500" />
+```
+
+</Tab>
+</CustomTabs>

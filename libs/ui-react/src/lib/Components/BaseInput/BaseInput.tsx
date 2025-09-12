@@ -4,7 +4,7 @@ import { DeleteCircleFill } from '../../Symbols';
 import { IconButton } from '../IconButton/IconButton';
 
 const baseContainerStyles = cn(
-  'group relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
+  'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
   'hover:bg-muted-hover focus-within:ring-2 focus-within:ring-active',
   'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
   'has-[:invalid]:ring-1 has-[:invalid]:ring-error has-[:invalid]:border-error',
@@ -12,10 +12,11 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 bg-transparent w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
+  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
   'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
+  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
 );
 
 const baseLabelStyles = cn(
