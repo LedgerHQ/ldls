@@ -15,7 +15,7 @@ const Container = ({
 
 const meta: Meta<typeof SuggestionKeyboard> = {
   component: SuggestionKeyboard,
-  title: 'Action/SuggestionKeyboard/Overview',
+  title: 'Action/SuggestionKeyboard',
   parameters: {
     docs: {
       source: {
