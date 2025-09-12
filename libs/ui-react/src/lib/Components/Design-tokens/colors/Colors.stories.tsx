@@ -111,27 +111,6 @@ export const Background: Story = {
         category="background"
         tokens={[
           {
-            name: 'Muted On Muted',
-            className: 'bg-muted-on-muted',
-            textClassName: 'text-base',
-          },
-          {
-            name: 'Muted On Muted Hover',
-            className: 'bg-muted-on-muted-hover',
-            textClassName: 'text-base',
-          },
-          {
-            name: 'Muted On Muted Pressed',
-            className: 'bg-muted-on-muted-pressed',
-            textClassName: 'text-base',
-          },
-        ]}
-      />
-
-      <ColorSection
-        category="background"
-        tokens={[
-          {
             name: 'Muted Transparent',
             className: 'bg-muted-transparent',
             textClassName: 'text-base',
