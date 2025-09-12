@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconSize } from './Icon';
 import * as Icons from '../../Symbols';
+import { Search } from '../Search/Search';
 import { useState } from 'react';
 
 const meta: Meta = {
@@ -94,6 +95,15 @@ export const Icon: StoryObj<IconStoryProps> = {
       </div>
     );
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Information size={24} className="text-base" />
+      `,
+      },
+    },
+  },
 };
 
 export const IconSizes: StoryObj = {
@@ -126,13 +136,58 @@ export const Gallery: StoryObj = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: () => (
-    <div className="p-8">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8">
-        {Object.entries(Icons).map(([name]) => (
-          <IconCard key={name} name={name} />
-        ))}
+  render: () => {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Filter icons based on search term
+    const filteredIcons = Object.entries(Icons).filter(([name]) =>
+      name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+
+    return (
+      <div className="p-8">
+        {/* Search bar */}
+        <div className="mb-32">
+          <div className="mb-6 max-w-md">
+            <Search
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search icons..."
+              className="w-full"
+            />
+          </div>
+
+          {/* Results count */}
+          <div className="mb-4">
+            <span className="ml-8 text-muted body-3">
+              {filteredIcons.length} of {Object.keys(Icons).length} icons
+              {searchTerm && ` matching "${searchTerm}"`}
+            </span>
+          </div>
+        </div>
+
+        {/* Icon grid */}
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8">
+          {filteredIcons.map(([name]) => (
+            <IconCard key={name} name={name} />
+          ))}
+        </div>
+
+        {/* No results message */}
+        {filteredIcons.length === 0 && searchTerm && (
+          <div className="flex flex-col items-center justify-center py-16">
+            <p className="text-muted body-2">
+              No icons found matching "{searchTerm}"
+            </p>
+            <button
+              onClick={() => setSearchTerm('')}
+              className="mt-4 text-interactive body-2 hover:text-interactive-hover"
+            >
+              Clear search
+            </button>
+          </div>
+        )}
       </div>
-    </div>
-  ),
+    );
+  },
 };

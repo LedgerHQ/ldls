@@ -27,7 +27,7 @@ const secondaryAction = (
 
 const meta: Meta<typeof VerticalListItem> = {
   component: VerticalListItem,
-  title: 'Containment/VerticalListItem/Overview',
+  title: 'Containment/VerticalListItem',
   parameters: {
     docs: {
       source: {

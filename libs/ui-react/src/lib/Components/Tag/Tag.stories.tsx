@@ -4,7 +4,7 @@ import { Check } from '../../Symbols/Icons/Check';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,
-  title: 'Communication/Tag/Overview',
+  title: 'Communication/Tag',
   argTypes: {
     appearance: {
       control: 'select',

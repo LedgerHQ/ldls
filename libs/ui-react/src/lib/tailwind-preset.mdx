@@ -130,16 +130,14 @@ Pre-configured typography classes that handle font family, size, weight, line he
 <div className="rounded-full">    {/* Circular radius */}
 ```
 
-## 🌓 Dark Mode
+## 🌓 Dark Mode Support
 
-Use the `dark:` prefix to specify dark mode variants. [See our foundation principles](/docs/foundations-colors--docs).
+All design tokens automatically support dark mode:
 
 ```tsx
-<div className="bg-canvas dark:bg-canvas-dark">
-  <p className="text-default dark:text-default-dark">
-    Automatically switches in dark mode
-  </p>
-</div>
+<html className="dark">
+  <div className="bg-canvas text-base">Dark mode content</div>
+</html>
 ```
 
 ## ✅ Best Practices

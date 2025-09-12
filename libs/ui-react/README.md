@@ -14,7 +14,7 @@ Install the package and its required peer dependencies:
 npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
-npm install @radix-ui/react-checkbox @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tooltip class-variance-authority clsx tailwind-merge
+npm install @radix-ui/react-checkbox @radix-ui/react-dialog @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tooltip class-variance-authority clsx tailwind-merge
 
 # React (if not already installed)
 npm install react react-dom

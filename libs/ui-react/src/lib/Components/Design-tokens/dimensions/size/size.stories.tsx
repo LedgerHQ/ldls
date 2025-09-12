@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SectionHeader } from '../shared';
+import { SectionHeader } from '../../shared';
 
 const meta: Meta = {
-  title: 'Foundations/Dimensions/Size',
+  title: 'Foundations/Size',
 };
 
 export default meta;
@@ -44,7 +44,7 @@ const SizeShowcase = () => (
   </div>
 );
 
-export const Size: Story = {
+export const Default: Story = {
   render: () => (
     <div className="p-24">
       <SectionHeader
