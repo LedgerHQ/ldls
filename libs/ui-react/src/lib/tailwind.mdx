@@ -1,34 +1,31 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  ComponentCard,
+  ComponentCardGrid,
+} from '../../.storybook/ComponentCard';
 
 <Meta title="Tailwind/Introduction" />
 
 # 🎨 Tailwind in Ledger Design System
 
-The Ledger Design System uses Tailwind CSS as its foundation for styling, with custom configurations and extensions to implement our design language.
+The Ledger Design System uses [Tailwind CSS v3](https://v3.tailwindcss.com/) as its foundation for styling, **with custom configurations and extensions to implement our design language.**
 
-## 📚 Documentation Structure
+<ComponentCardGrid>
+  <ComponentCard
+    title="Setup Guide"
+    description="Complete installation and configuration guide for integrating Tailwind CSS with the Ledger Design System."
+    href="?path=/docs/tailwind-setup-guide--docs"
+    emoji="⚙️"
+  />
 
-1. [Setup](/docs/tailwind-setup-guide--docs)
-   - Basic installation
-   - Project configuration
-   - Developer tools and extensions
-   - Utility functions
-
-2. [Preset Configuration](/docs/tailwind-configuration--docs)
-   - Custom plugins and extensions
-   - Theme system architecture
-   - Design tokens integration
-   - Dark mode implementation
-
-## ✨ Key Features
-
-Our Tailwind implementation includes:
-
-- **Custom Preset**: A comprehensive configuration that implements our design tokens and styling rules
-- **Plugin System**: Custom plugins for typography, colors, shadows, and more
-- **Theme System**: Dynamic theming with support for light/dark modes and different brand themes
-- **Design Token Integration**: Direct mapping of design tokens to Tailwind utilities
-- **Component Patterns**: Common patterns and best practices for component styling
+  <ComponentCard
+    title="Preset Configuration"
+    description="Custom plugins, theme architecture, design tokens integration, and dark mode implementation details."
+    href="?path=/docs/tailwind-configuration--docs"
+    emoji="🎛️"
+  />
+</ComponentCardGrid>
+<br />
 
 ## 🚀 Getting Started
 
@@ -39,6 +36,16 @@ Our Tailwind implementation includes:
    - Our theming system
    - Design token usage
 3. Reference individual component documentation for specific implementation examples
+
+## ✨ Key Features
+
+Our Tailwind implementation includes:
+
+- **Custom Preset**: A comprehensive configuration that implements our design tokens and styling rules
+- **Plugin System**: Custom plugins for typography, colors, shadows, and more
+- **Theme System**: Dynamic theming with support for light/dark modes and different brand themes
+- **Design Token Integration**: Direct mapping of design tokens to Tailwind utilities
+- **Component Patterns**: Common patterns and best practices for component styling
 
 ## 💡 Best Practices
 
