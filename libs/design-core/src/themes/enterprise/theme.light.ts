@@ -19,15 +19,12 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-base-transparent-pressed':
       'var(--color-light-grey-950-10)',
     '--color-background-disabled': 'var(--color-light-grey-200)',
-    '--color-background-muted': 'var(--color-light-grey-100)',
-    '--color-background-muted-hover': 'var(--color-light-grey-200)',
-    '--color-background-muted-pressed': 'var(--color-light-grey-300)',
-    '--color-background-muted-on-sheet': 'var(--color-light-grey-100)',
-    '--color-background-muted-on-sheet-hover': 'var(--color-light-grey-200)',
-    '--color-background-muted-on-sheet-pressed': 'var(--color-light-grey-300)',
-    '--color-background-muted-on-muted': 'var(--color-light-grey-200)',
-    '--color-background-muted-on-muted-hover': 'var(--color-light-grey-300)',
-    '--color-background-muted-on-muted-pressed': 'var(--color-light-grey-400)',
+    '--color-background-muted': 'var(--color-light-grey-200)',
+    '--color-background-muted-hover': 'var(--color-light-grey-300)',
+    '--color-background-muted-pressed': 'var(--color-light-grey-400)',
+    '--color-background-muted-strong': 'var(--color-light-grey-600)',
+    '--color-background-muted-strong-hover': 'var(--color-light-grey-700)',
+    '--color-background-muted-strong-pressed': 'var(--color-light-grey-800)',
     '--color-background-muted-transparent': 'var(--color-light-grey-950-5)',
     '--color-background-muted-transparent-hover':
       'var(--color-light-grey-950-10)',
@@ -35,9 +32,6 @@ export const tokens: Record<string, Record<string, string>> = {
       'var(--color-light-grey-950-20)',
     '--color-background-muted-transparent-disabled':
       'var(--color-light-grey-950-5)',
-    '--color-background-muted-strong': 'var(--color-light-grey-600)',
-    '--color-background-muted-strong-hover': 'var(--color-light-grey-700)',
-    '--color-background-muted-strong-pressed': 'var(--color-light-grey-800)',
     '--color-background-accent-ledger-live': 'var(--color-light-purple-600)',
     '--color-background-accent-ledger-live-hover':
       'var(--color-light-purple-700)',
@@ -369,16 +363,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-muted': 'var(--color-background-muted)',
     '--background-muted-hover': 'var(--color-background-muted-hover)',
     '--background-muted-pressed': 'var(--color-background-muted-pressed)',
-    '--background-muted-on-sheet': 'var(--color-background-muted-on-sheet)',
-    '--background-muted-on-sheet-hover':
-      'var(--color-background-muted-on-sheet-hover)',
-    '--background-muted-on-sheet-pressed':
-      'var(--color-background-muted-on-sheet-pressed)',
-    '--background-muted-on-muted': 'var(--color-background-muted-on-muted)',
-    '--background-muted-on-muted-hover':
-      'var(--color-background-muted-on-muted-hover)',
-    '--background-muted-on-muted-pressed':
-      'var(--color-background-muted-on-muted-pressed)',
     '--background-muted-transparent':
       'var(--color-background-muted-transparent)',
     '--background-muted-transparent-hover':
