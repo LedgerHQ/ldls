@@ -26,7 +26,7 @@ jobs:
       - name: Setup git user
         uses: LedgerHQ/ledger-live/tools/actions/composites/setup-git-user@develop
 
-      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e #v4.3.0
+      - uses: actions/setup-node@cd2651c46231bc0d6f48d6b34433b845331235fe #v4.3.0
         with:
           node-version: '22.14.0'
           cache: 'npm'
