@@ -14,10 +14,7 @@ figma.connect(
   Link,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=770%3A11982',
   {
-    imports: [
-      "import { Link } from '@ledgerhq/ldls-ui-react'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
-    ],
+    imports: ["import { Link } from '@ledgerhq/ldls-ui-react'"],
     props: {
       // These props were automatically mapped based on your linked code:
       isExternal: figma.boolean('show-external-link', {
