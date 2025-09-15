@@ -23,7 +23,7 @@ const config: StorybookConfig = {
   refs: {
     'react-native': {
       title: 'React Native',
-      url: 'https://ledgerhq.github.io/ldls/',
+      url: 'https://ldls-react-native.vercel.app/',
     },
   },
 
