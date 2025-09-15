@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Banner } from './Banner';
+import { Button } from '../Button';
+import { Close } from '../../Symbols';
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {
@@ -39,10 +41,13 @@ describe('Banner Component', () => {
   it('should render primary action button', () => {
     const handlePrimary = vi.fn();
     render(
-      <Banner
-        title="Banner with Primary"
-        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
-      />,
+      <Banner title="Banner with Primary">
+        <Banner.PrimaryAction>
+          <Button appearance="transparent" size="sm" onClick={handlePrimary}>
+            Primary
+          </Button>
+        </Banner.PrimaryAction>
+      </Banner>,
     );
 
     const primaryButton = screen.getByRole('button', { name: /primary/i });
@@ -54,10 +59,17 @@ describe('Banner Component', () => {
   it('should render secondary action button', () => {
     const handleSecondary = vi.fn();
     render(
-      <Banner
-        title="Banner with Secondary"
-        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
-      />,
+      <Banner title="Banner with Secondary">
+        <Banner.SecondaryAction>
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={handleSecondary}
+          >
+            Secondary
+          </Button>
+        </Banner.SecondaryAction>
+      </Banner>,
     );
 
     const secondaryButton = screen.getByRole('button', { name: /secondary/i });
@@ -70,11 +82,22 @@ describe('Banner Component', () => {
     const handlePrimary = vi.fn();
     const handleSecondary = vi.fn();
     render(
-      <Banner
-        title="Banner with Both Actions"
-        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
-        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
-      />,
+      <Banner title="Banner with Both Actions">
+        <Banner.PrimaryAction>
+          <Button appearance="transparent" size="sm" onClick={handlePrimary}>
+            Primary
+          </Button>
+        </Banner.PrimaryAction>
+        <Banner.SecondaryAction>
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={handleSecondary}
+          >
+            Secondary
+          </Button>
+        </Banner.SecondaryAction>
+      </Banner>,
     );
 
     expect(
@@ -88,10 +111,21 @@ describe('Banner Component', () => {
   it('should render close button and handle click', () => {
     const handleClose = vi.fn();
     render(
-      <Banner title="Closable Banner" closeAction={{ onClick: handleClose }} />,
+      <Banner title="Closable Banner">
+        <Banner.CloseAction>
+          <Button
+            appearance="transparent"
+            size="xs"
+            onClick={handleClose}
+            aria-label="Close banner"
+          >
+            <Close />
+          </Button>
+        </Banner.CloseAction>
+      </Banner>,
     );
 
-    const closeButton = screen.getByRole('button'); // assuming it's the only button
+    const closeButton = screen.getByRole('button', { name: 'Close banner' });
     expect(closeButton).toBeInTheDocument();
     fireEvent.click(closeButton);
     expect(handleClose).toHaveBeenCalledTimes(1);
@@ -128,33 +162,104 @@ describe('Banner Component', () => {
     expect(ref).toHaveBeenCalled();
   });
 
-  it('should not render close button if closeAction is not provided', () => {
+  it('should not render close button if CloseAction slot is not provided', () => {
     render(<Banner title="Banner" />);
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
-  it('should render close button when closeAction is provided', () => {
+  it('should render close button when CloseAction slot is provided', () => {
     const handleClose = vi.fn();
-    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    render(
+      <Banner title="Banner">
+        <Banner.CloseAction>
+          <Button
+            appearance="transparent"
+            size="xs"
+            onClick={handleClose}
+            aria-label="Close"
+          >
+            <Close />
+          </Button>
+        </Banner.CloseAction>
+      </Banner>,
+    );
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('should apply default aria-label to close button when ariaLabel is not provided', () => {
-    const handleClose = vi.fn();
-    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
-    const closeButton = screen.getByRole('button');
-    expect(closeButton).toHaveAttribute('aria-label', 'Close');
-  });
-
-  it('should apply custom aria-label to close button when provided', () => {
+  it('should render close button with custom aria-label', () => {
     const handleClose = vi.fn();
     render(
-      <Banner
-        title="Banner"
-        closeAction={{ onClick: handleClose, ariaLabel: 'Close notification' }}
-      />,
+      <Banner title="Banner">
+        <Banner.CloseAction>
+          <Button
+            appearance="transparent"
+            size="xs"
+            onClick={handleClose}
+            aria-label="Close notification"
+          >
+            <Close />
+          </Button>
+        </Banner.CloseAction>
+      </Banner>,
     );
     const closeButton = screen.getByRole('button');
     expect(closeButton).toHaveAttribute('aria-label', 'Close notification');
+  });
+
+  it('should throw error when multiple PrimaryAction slots are provided', () => {
+    expect(() => {
+      render(
+        <Banner title="Banner">
+          <Banner.PrimaryAction>
+            <Button appearance="transparent" size="sm">
+              Primary 1
+            </Button>
+          </Banner.PrimaryAction>
+          <Banner.PrimaryAction>
+            <Button appearance="transparent" size="sm">
+              Primary 2
+            </Button>
+          </Banner.PrimaryAction>
+        </Banner>,
+      );
+    }).toThrow('Banner can only have one PrimaryAction slot');
+  });
+
+  it('should throw error when multiple SecondaryAction slots are provided', () => {
+    expect(() => {
+      render(
+        <Banner title="Banner">
+          <Banner.SecondaryAction>
+            <Button appearance="no-background" size="sm">
+              Secondary 1
+            </Button>
+          </Banner.SecondaryAction>
+          <Banner.SecondaryAction>
+            <Button appearance="no-background" size="sm">
+              Secondary 2
+            </Button>
+          </Banner.SecondaryAction>
+        </Banner>,
+      );
+    }).toThrow('Banner can only have one SecondaryAction slot');
+  });
+
+  it('should throw error when multiple CloseAction slots are provided', () => {
+    expect(() => {
+      render(
+        <Banner title="Banner">
+          <Banner.CloseAction>
+            <Button appearance="transparent" size="xs" aria-label="Close 1">
+              <Close />
+            </Button>
+          </Banner.CloseAction>
+          <Banner.CloseAction>
+            <Button appearance="transparent" size="xs" aria-label="Close 2">
+              <Close />
+            </Button>
+          </Banner.CloseAction>
+        </Banner>,
+      );
+    }).toThrow('Banner can only have one CloseAction slot');
   });
 });

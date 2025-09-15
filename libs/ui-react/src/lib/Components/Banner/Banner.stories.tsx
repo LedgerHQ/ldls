@@ -1,6 +1,41 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner } from './Banner';
+import { Button, ButtonProps } from '../Button';
+import { Close } from '../../Symbols';
+
+const PrimaryButton = (props: ButtonProps) => (
+  <Button
+    appearance="transparent"
+    size="sm"
+    onClick={() => console.log('Primary clicked')}
+    {...props}
+  >
+    Primary
+  </Button>
+);
+
+const SecondaryButton = (props: ButtonProps) => (
+  <Button
+    appearance="no-background"
+    size="sm"
+    onClick={() => console.log('Secondary clicked')}
+    {...props}
+  >
+    Secondary
+  </Button>
+);
+
+const CloseButton = (props: ButtonProps) => (
+  <Button
+    appearance="transparent"
+    size="xs"
+    icon={Close}
+    onClick={() => console.log('Closed')}
+    aria-label="Close banner"
+    {...props}
+  />
+);
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -27,18 +62,6 @@ const meta: Meta<typeof Banner> = {
     description: {
       control: 'text',
       description: 'Optional description text',
-    },
-    primaryAction: {
-      control: 'object',
-      description: 'Primary action with label and onClick',
-    },
-    secondaryAction: {
-      control: 'object',
-      description: 'Secondary action with label and onClick',
-    },
-    closeAction: {
-      control: 'object',
-      description: 'Close action with onClick and ariaLabel',
     },
   },
 };
@@ -100,30 +123,35 @@ export const WithActions: Story = {
   args: {
     appearance: 'info',
     title: 'Banner with Actions',
-    primaryAction: {
-      label: 'Primary',
-      onClick: () => console.log('Primary clicked'),
-    },
-    secondaryAction: {
-      label: 'Secondary',
-      onClick: () => console.log('Secondary clicked'),
-    },
   },
   render: (args: BannerProps) => (
     <div className="max-w-md">
-      <Banner {...args} />
+      <Banner {...args}>
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+        <Banner.SecondaryAction>
+          <SecondaryButton />
+        </Banner.SecondaryAction>
+      </Banner>
     </div>
   ),
   parameters: {
     docs: {
       source: {
         code: `
-<Banner
-  appearance="info"
-  title="Banner with Actions"
-  primaryAction={{ label: "Primary", onClick: () => console.log('Primary clicked') }}
-  secondaryAction={{ label: "Secondary", onClick: () => console.log('Secondary clicked') }}
-/>
+<Banner appearance="info" title="Banner with Actions">
+  <Banner.PrimaryAction>
+    <Button appearance="transparent" size="sm" onClick={() => console.log('Primary clicked')}>
+      Primary
+    </Button>
+  </Banner.PrimaryAction>
+  <Banner.SecondaryAction>
+    <Button appearance="no-background" size="sm" onClick={() => console.log('Secondary clicked')}>
+      Secondary
+    </Button>
+  </Banner.SecondaryAction>
+</Banner>
 `,
       },
     },
@@ -135,22 +163,20 @@ export const WithFullFeatures: Story = {
     appearance: 'info',
     title: 'Banner with Full Features',
     description: 'This is additional information about the banner.',
-    primaryAction: {
-      label: 'Primary',
-      onClick: () => console.log('Primary clicked'),
-    },
-    secondaryAction: {
-      label: 'Secondary',
-      onClick: () => console.log('Secondary clicked'),
-    },
-    closeAction: {
-      onClick: () => console.log('Closed'),
-      ariaLabel: 'Close banner',
-    },
   },
   render: (args: BannerProps) => (
     <div className="max-w-md">
-      <Banner {...args} />
+      <Banner {...args}>
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+        <Banner.SecondaryAction>
+          <SecondaryButton />
+        </Banner.SecondaryAction>
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
     </div>
   ),
   parameters: {
@@ -161,10 +187,27 @@ export const WithFullFeatures: Story = {
   appearance="info"
   title="Banner with Full Features"
   description="This is additional information about the banner."
-  primaryAction={{ label: 'Primary', onClick: () => console.log('Primary clicked') }}
-  secondaryAction={{ label: 'Secondary', onClick: () => console.log('Secondary clicked') }}
-  closeAction={{ onClick: () => console.log('Closed'), ariaLabel: 'Close banner' }}
-/>
+>
+  <Banner.PrimaryAction>
+    <Button appearance="transparent" size="sm" onClick={() => console.log('Primary clicked')}>
+      Primary
+    </Button>
+  </Banner.PrimaryAction>
+  <Banner.SecondaryAction>
+    <Button appearance="no-background" size="sm" onClick={() => console.log('Secondary clicked')}>
+      Secondary
+    </Button>
+  </Banner.SecondaryAction>
+  <Banner.CloseAction>
+    <Button
+      appearance="transparent"
+      size="xs"
+      onClick={() => console.log('Closed')}
+      aria-label="Close banner"
+      icon={Close}
+    />
+  </Banner.CloseAction>
+</Banner>
 `,
       },
     },
@@ -189,11 +232,11 @@ export const AppearanceShowcase: Story = {
             appearance={appearance}
             title={`${name} Banner`}
             description={`${name} Banner Description`}
-            closeAction={{
-              onClick: () => console.log('Closed'),
-              ariaLabel: `Close ${name} banner`,
-            }}
-          />
+          >
+            <Banner.CloseAction>
+              <CloseButton />
+            </Banner.CloseAction>
+          </Banner>
         ))}
       </div>
     );
@@ -206,50 +249,39 @@ export const ContentVariations: Story = {
     <div className="flex max-w-md flex-col gap-16 p-8">
       <Banner title="Title Only" />
       <Banner title="With Description" description="Additional details here." />
-      <Banner
-        title="With Primary Action"
-        primaryAction={{
-          label: 'Action',
-          onClick: () => console.log('Primary clicked'),
-        }}
-      />
-      <Banner
-        title="With Close"
-        description="Can be dismissed"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close banner',
-        }}
-      />
-      <Banner
-        title="With Actions and Description"
-        description="Details"
-        primaryAction={{
-          label: 'Primary',
-          onClick: () => console.log('Primary clicked'),
-        }}
-        secondaryAction={{
-          label: 'Secondary',
-          onClick: () => console.log('Secondary clicked'),
-        }}
-      />
+      <Banner title="With Primary Action">
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+      </Banner>
+      <Banner title="With Close" description="Can be dismissed">
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
+      <Banner title="With Actions and Description" description="Details">
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+        <Banner.SecondaryAction>
+          <SecondaryButton />
+        </Banner.SecondaryAction>
+      </Banner>
       <Banner
         appearance="info"
         title="Banner with Full Features"
         description="This is additional information about the banner."
-        primaryAction={{
-          label: 'Primary',
-          onClick: () => console.log('Primary clicked'),
-        }}
-        secondaryAction={{
-          label: 'Secondary',
-          onClick: () => console.log('Secondary clicked'),
-        }}
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close banner',
-        }}
-      />
+      >
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+        <Banner.SecondaryAction>
+          <SecondaryButton />
+        </Banner.SecondaryAction>
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
     </div>
   ),
 };
@@ -263,15 +295,14 @@ export const NaturalWidth: Story = {
       <Banner
         title="Full Width Banner"
         description="This banner demonstrates natural width behavior - it fills the full width of its parent container."
-        primaryAction={{
-          label: 'Action',
-          onClick: () => console.log('Action clicked'),
-        }}
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close full width banner',
-        }}
-      />
+      >
+        <Banner.PrimaryAction>
+          <PrimaryButton />
+        </Banner.PrimaryAction>
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
     </div>
   ),
 };
@@ -280,30 +311,27 @@ export const ResponsiveLayout: Story = {
   render: () => (
     <div className="grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16">
       <div className="text-muted body-4-semi-bold">Container: 384px wide</div>
-      <Banner
-        title="Short Title"
-        description="Short description"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close short banner',
-        }}
-      />
+      <Banner title="Short Title" description="Short description">
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
       <Banner
         title="Constrained Width"
         description="Banner width is controlled by this 384px container"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close constrained width banner',
-        }}
-      />
+      >
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
       <Banner
         title="Longer Title That Might Overflow When Container is Smaller"
         description="This is a longer description that demonstrates how the banner handles longer content within its constraints. It should be truncated at 5 lines with an ellipsis, so this line should not be visible."
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close overflow banner',
-        }}
-      />
+      >
+        <Banner.CloseAction>
+          <CloseButton />
+        </Banner.CloseAction>
+      </Banner>
     </div>
   ),
 };
@@ -316,14 +344,11 @@ export const InteractiveDismiss: Story = {
 
     return (
       <div className="max-w-md">
-        <Banner
-          {...args}
-          title="Click close to dismiss"
-          closeAction={{
-            onClick: () => setVisible(false),
-            ariaLabel: 'Dismiss interactive banner',
-          }}
-        />
+        <Banner {...args} title="Click close to dismiss">
+          <Banner.CloseAction>
+            <CloseButton onClick={() => setVisible(false)} />
+          </Banner.CloseAction>
+        </Banner>
       </div>
     );
   },
@@ -359,21 +384,21 @@ export const InteractiveActions: Story = {
                 ? 'Rejected!'
                 : 'Banner with Action'
           }
-          primaryAction={
-            state === 'idle'
-              ? { label: 'Accept', onClick: handleAccept }
-              : undefined
-          }
-          secondaryAction={
-            state === 'idle'
-              ? { label: 'Reject', onClick: handleReject }
-              : undefined
-          }
-          closeAction={{
-            onClick: () => setState('idle'),
-            ariaLabel: 'Reset banner state',
-          }}
-        />
+        >
+          {state === 'idle' && (
+            <Banner.PrimaryAction>
+              <PrimaryButton onClick={handleAccept} />
+            </Banner.PrimaryAction>
+          )}
+          {state === 'idle' && (
+            <Banner.SecondaryAction>
+              <SecondaryButton onClick={handleReject} />
+            </Banner.SecondaryAction>
+          )}
+          <Banner.CloseAction>
+            <CloseButton onClick={() => setState('idle')} />
+          </Banner.CloseAction>
+        </Banner>
       </div>
     );
   },
