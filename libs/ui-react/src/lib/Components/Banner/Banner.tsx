@@ -123,9 +123,7 @@ interface BannerComponent
  *     </Button>
  *   </Banner.SecondaryAction>
  *   <Banner.CloseAction>
- *     <Button appearance="transparent" size="xs" onClick={() => console.log('Close')} ariaLabel="Close banner">
- *       <Close />
- *     </Button>
+ *     <Button icon={Close} appearance="transparent" size="xs" onClick={() => console.log('Close')} ariaLabel="Close banner" />
  *   </Banner.CloseAction>
  * </Banner>
  */
