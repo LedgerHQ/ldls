@@ -12,28 +12,28 @@ import {
  * PrimaryAction slot component for the Banner. Used to display the primary action button.
  */
 const BannerPrimaryAction = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex-shrink-0">{children}</div>;
+  return children;
 };
 
 /**
  * SecondaryAction slot component for the Banner. Used to display the secondary action button.
  */
 const BannerSecondaryAction = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex-shrink-0">{children}</div>;
+  return children;
 };
 
 /**
  * CloseAction slot component for the Banner. Used to display the close button.
  */
 const BannerCloseAction = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex-shrink-0">{children}</div>;
+  return children;
 };
 
 const iconMap = {
-  info: <InformationFill className="text-base" />,
-  success: <CheckmarkCircleFill className="text-success" />,
-  warning: <WarningFill className="text-warning" />,
-  error: <DeleteCircleFill className="text-error" />,
+  info: <InformationFill className="text-base" role="status" />,
+  success: <CheckmarkCircleFill className="text-success" role="status" />,
+  warning: <WarningFill className="text-warning" role="alert" />,
+  error: <DeleteCircleFill className="text-error" role="alert" />,
 };
 
 const bannerVariants = cva('align-start flex gap-8 rounded-md p-16 text-base', {
@@ -54,9 +54,22 @@ export type BannerAppearance = NonNullable<
 export interface BannerProps
   extends React.HTMLAttributes<HTMLDivElement>,
     Omit<VariantProps<typeof bannerVariants>, 'appearance'> {
+  /**
+   * The type of banner which affects color and icon.
+   */
   appearance?: BannerAppearance;
+  /**
+   * The main title of the banner.
+   */
   title: string;
+  /**
+   * Optional descriptive text.
+   */
   description?: string;
+  /**
+   * The children of the banner, which can include Banner.PrimaryAction, Banner.SecondaryAction, and Banner.CloseAction slots.
+   * Each slot expects a Button component as its child.
+   */
   children?: React.ReactNode;
 }
 
@@ -76,14 +89,6 @@ interface BannerComponent
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'info' | 'success' | 'warning' | 'error'} [appearance='info'] - The type of banner which affects color and icon.
- * @param {string} title - The main title of the banner.
- * @param {string} [description] - Optional descriptive text.
- * @param {React.ReactNode} [children] - The children of the banner, which can include Banner.PrimaryAction, Banner.SecondaryAction, and Banner.CloseAction slots. Each slot expects a React component (typically a Button) as its child.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.HTMLAttributes<HTMLDivElement>} [...] - Standard div props.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
@@ -173,7 +178,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         <div className="flex flex-shrink-0 items-start py-4">{icon}</div>
         <div className="mr-8 flex flex-1 flex-col gap-8 py-4">
           <div className="flex flex-col gap-4">
-            <div className="line-clamp-2 body-1-semi-bold">{title}</div>
+            <h3 className="line-clamp-2 body-1-semi-bold">{title}</h3>
             {description && (
               <div className="line-clamp-5 body-2">{description}</div>
             )}

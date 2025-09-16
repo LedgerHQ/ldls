@@ -118,9 +118,8 @@ describe('Banner Component', () => {
             size="xs"
             onClick={handleClose}
             aria-label="Close banner"
-          >
-            <Close />
-          </Button>
+            icon={Close}
+          />
         </Banner.CloseAction>
       </Banner>,
     );
@@ -177,9 +176,8 @@ describe('Banner Component', () => {
             size="xs"
             onClick={handleClose}
             aria-label="Close"
-          >
-            <Close />
-          </Button>
+            icon={Close}
+          />
         </Banner.CloseAction>
       </Banner>,
     );
@@ -196,9 +194,8 @@ describe('Banner Component', () => {
             size="xs"
             onClick={handleClose}
             aria-label="Close notification"
-          >
-            <Close />
-          </Button>
+            icon={Close}
+          />
         </Banner.CloseAction>
       </Banner>,
     );
@@ -249,14 +246,20 @@ describe('Banner Component', () => {
       render(
         <Banner title="Banner">
           <Banner.CloseAction>
-            <Button appearance="transparent" size="xs" aria-label="Close 1">
-              <Close />
-            </Button>
+            <Button
+              appearance="transparent"
+              size="xs"
+              aria-label="Close 1"
+              icon={Close}
+            />
           </Banner.CloseAction>
           <Banner.CloseAction>
-            <Button appearance="transparent" size="xs" aria-label="Close 2">
-              <Close />
-            </Button>
+            <Button
+              appearance="transparent"
+              size="xs"
+              aria-label="Close 2"
+              icon={Close}
+            />
           </Banner.CloseAction>
         </Banner>,
       );
