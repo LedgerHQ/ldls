@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 
 export interface AmountInputProps
   extends Omit<
@@ -92,10 +92,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value;
-      const cleaned = allowDecimals
-        ? raw.replace(/[^\d.]/g, '')
-        : raw.replace(/\D/g, '');
+      const cleaned = textFormatter(e.target.value, allowDecimals);
       if (cleaned.replace(/\D/g, '').length <= maxLength) {
         setInputValue(cleaned);
         onChange({ ...e, target: { ...e.target, value: cleaned } });
