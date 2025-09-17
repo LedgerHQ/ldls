@@ -1,5 +1,6 @@
 import { cn } from '@ldls/utils-shared';
 import React from 'react';
+import { getSlots } from '../../../utils/getSlots';
 
 interface SubheaderProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -13,27 +14,25 @@ interface SubheaderProps
   children?: React.ReactNode;
 }
 
-interface SubheaderInfoProps {
-  children: React.ReactNode;
-}
-
-interface SubheaderActionProps {
-  children: React.ReactNode;
-}
-
 /**
  * Info slot component for the Subheader. Used to display additional information, like tooltips.
  */
-const SubheaderInfo = ({ children }: SubheaderInfoProps) => {
-  return <div className="flex shrink-0 items-center">{children}</div>;
+const SubheaderInfo = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return <div className="flex shrink-0 items-center" {...props} />;
 };
+
+SubheaderInfo.displayName = 'SubheaderInfo';
 
 /**
  * Action slot component for the Subheader. Used to display an action, like a link or button.
  */
-const SubheaderAction = ({ children }: SubheaderActionProps) => {
-  return <div className="flex shrink-0 items-center">{children}</div>;
+const SubheaderAction = ({
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => {
+  return <div className="flex shrink-0 items-center" {...props} />;
 };
+
+SubheaderAction.displayName = 'SubheaderAction';
 
 /**
  * A subheader component for displaying section titles with optional informational tooltips and action elements.
@@ -75,13 +74,8 @@ export const Subheader = ({
   children,
   ...props
 }: SubheaderProps) => {
-  const childrenArray = React.Children.toArray(children);
-  const infoSlots = childrenArray.filter(
-    (child) => React.isValidElement(child) && child.type === SubheaderInfo,
-  );
-  const actionSlots = childrenArray.filter(
-    (child) => React.isValidElement(child) && child.type === SubheaderAction,
-  );
+  const infoSlots = getSlots(children, SubheaderInfo);
+  const actionSlots = getSlots(children, SubheaderAction);
 
   if (infoSlots.length > 1) {
     throw new Error('Subheader can only have one Info slot');

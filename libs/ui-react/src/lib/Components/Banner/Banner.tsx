@@ -7,6 +7,7 @@ import {
   WarningFill,
   DeleteCircleFill,
 } from '../../Symbols';
+import { getSlots } from '../../../utils/getSlots';
 
 /**
  * PrimaryAction slot component for the Banner. Used to display the primary action button.
@@ -15,12 +16,15 @@ const BannerPrimaryAction = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
 
+BannerPrimaryAction.displayName = 'BannerPrimaryAction';
+
 /**
  * SecondaryAction slot component for the Banner. Used to display the secondary action button.
  */
 const BannerSecondaryAction = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
+BannerSecondaryAction.displayName = 'BannerSecondaryAction';
 
 /**
  * CloseAction slot component for the Banner. Used to display the close button.
@@ -28,6 +32,7 @@ const BannerSecondaryAction = ({ children }: { children: React.ReactNode }) => {
 const BannerCloseAction = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
+BannerCloseAction.displayName = 'BannerCloseAction';
 
 const iconMap = {
   info: <InformationFill className="text-base" role="status" />,
@@ -139,28 +144,16 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
   ) => {
     const icon = iconMap[appearance];
 
-    const childrenArray = React.Children.toArray(children);
-    const primaryActionSlots = childrenArray.filter(
-      (child) =>
-        React.isValidElement(child) && child.type === BannerPrimaryAction,
-    );
-    const secondaryActionSlots = childrenArray.filter(
-      (child) =>
-        React.isValidElement(child) && child.type === BannerSecondaryAction,
-    );
-    const closeActionSlots = childrenArray.filter(
-      (child) =>
-        React.isValidElement(child) && child.type === BannerCloseAction,
-    );
+    const primaryActionSlots = getSlots(children, BannerPrimaryAction);
+    const secondaryActionSlots = getSlots(children, BannerSecondaryAction);
+    const closeActionSlots = getSlots(children, BannerCloseAction);
 
     if (primaryActionSlots.length > 1) {
       throw new Error('Banner can only have one PrimaryAction slot');
     }
-
     if (secondaryActionSlots.length > 1) {
       throw new Error('Banner can only have one SecondaryAction slot');
     }
-
     if (closeActionSlots.length > 1) {
       throw new Error('Banner can only have one CloseAction slot');
     }
