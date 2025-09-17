@@ -44,8 +44,8 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
               className={cn(
                 'rounded-lg p-8 transition-all duration-200',
                 active === idx
-                  ? 'bg-active-subtle text-active'
-                  : 'bg-muted group-hover:bg-active-subtle',
+                  ? 'bg-accent text-base'
+                  : 'group-hover:opacity-80',
               )}
             >
               <Folder size={24} />
@@ -55,7 +55,9 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
             <span
               className={cn(
                 'transition-colors duration-200 body-3',
-                active === idx ? 'text-active' : 'group-hover:text-active',
+                active === idx
+                  ? 'text-black'
+                  : 'group-hover:text-active group-hover:opacity-80',
               )}
             >
               {tab.props.label}

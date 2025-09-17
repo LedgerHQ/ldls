@@ -101,7 +101,7 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex flex-wrap gap-16 p-8">
+      <div className="flex flex-wrap gap-16 p-8 text-base">
         {appearances.map(({ name, appearance, icon, number }) => (
           <div
             key={appearance}
@@ -174,7 +174,7 @@ export const SizesShowcase: Story = {
     const sizes = [48, 56, 72] as const;
 
     return (
-      <div className="flex flex-col gap-16 p-8">
+      <div className="flex flex-col gap-16 p-8 text-base">
         {sizes.map((size) => (
           <div key={size} className="flex flex-col gap-4">
             <h3>Size {size}px</h3>
@@ -204,7 +204,7 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-16 text-base">
         <div className="flex flex-col gap-8">
           <div>Default</div>
           <div className="flex flex-wrap gap-16">

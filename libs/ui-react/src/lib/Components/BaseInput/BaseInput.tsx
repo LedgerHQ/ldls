@@ -219,7 +219,11 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
           {label && (
             <label
               htmlFor={inputId}
-              className={cn(baseLabelStyles, labelClassName)}
+              className={cn(
+                baseLabelStyles,
+                errorMessage && 'text-error',
+                labelClassName,
+              )}
             >
               {label}
             </label>

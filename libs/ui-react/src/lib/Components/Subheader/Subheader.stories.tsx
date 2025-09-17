@@ -10,7 +10,10 @@ const Container = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('w-[400px] bg-canvas p-8', className)} {...props} />
+  <div
+    className={cn('w-[400px] bg-canvas p-8 text-base', className)}
+    {...props}
+  />
 );
 
 const InfoTooltip = () => (
