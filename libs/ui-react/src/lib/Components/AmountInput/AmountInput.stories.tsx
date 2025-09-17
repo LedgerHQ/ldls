@@ -29,7 +29,7 @@ export const Default: Story = {
 export const WithRightCurrency: Story = {
   args: {
     placeholder: '0',
-    currencyText: 'USD',
+    currencyText: 'ETH',
     currencyPosition: 'right',
     maxLength: 12,
     value: '',
@@ -49,7 +49,7 @@ export const WithValue: Story = {
 export const Disabled: Story = {
   args: {
     value: '1234.56',
-    currencyText: 'USD',
+    currencyText: 'ETH',
     currencyPosition: 'right',
     disabled: true,
     maxLength: 12,
