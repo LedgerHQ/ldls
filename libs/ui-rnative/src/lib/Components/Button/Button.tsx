@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { IconSize } from '../Icon/Icon';
 import React from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '../../utils';
 import { Spinner } from '../../Symbols';
 
 const buttonVariants = cva(
