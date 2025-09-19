@@ -10,6 +10,7 @@
     "mobile",
     "nativewind"
   ],
+  "type": "module",
   "main": "./src/index.ts",
   "module": "./src/index.ts",
   "exports": {
