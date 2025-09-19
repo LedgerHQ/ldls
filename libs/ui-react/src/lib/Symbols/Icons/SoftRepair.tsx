@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * SoftRepair icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <SoftRepair size={40} className="text-warning" />
  */
 export const SoftRepair = createIcon(
-  "SoftRepair",
+  'SoftRepair',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const SoftRepair = createIcon(
       strokeWidth={1.3}
       d="M2 6h12M7.333 3.997h-.006V3.99l-.007-.007m-1.653.014H5.66V3.99l-.007-.007M4 3.997h-.007V3.99l-.006-.007M14 7V4c0-1.107-.9-2-2-2H4c-1.107 0-2 .893-2 2v8a2 2 0 0 0 2 2h3.333M14 12.577c-.1.3-.273.574-.493.8a2.143 2.143 0 0 1-3.387-.5m3.753-2.037a2.14 2.14 0 0 0-2.9-.86c-.18.093-.346.22-.493.36a1.95 1.95 0 0 0-.493.8m3.068-.294h.94V9.9m-3.048 2.988H10v.94"
     />
-  </svg>
+  </svg>,
 );

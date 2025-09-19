@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Theme icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Theme size={40} className="text-warning" />
  */
 export const Theme = createIcon(
-  "Theme",
+  'Theme',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const Theme = createIcon(
       strokeWidth={1.3}
       d="M8 11.667V4.333c2.02 0 3.667 1.64 3.667 3.667A3.673 3.673 0 0 1 8 11.667"
     />
-  </svg>
+  </svg>,
 );

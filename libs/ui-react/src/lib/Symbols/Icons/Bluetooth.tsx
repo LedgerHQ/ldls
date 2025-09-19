@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Bluetooth icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Bluetooth size={40} className="text-warning" />
  */
 export const Bluetooth = createIcon(
-  "Bluetooth",
+  'Bluetooth',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Bluetooth = createIcon(
       strokeWidth={1.3}
       d="M4 11.333 11.333 5l-4-3v12l4-3L4 4.667"
     />
-  </svg>
+  </svg>,
 );

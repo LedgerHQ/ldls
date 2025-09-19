@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ExternalLink icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ExternalLink size={40} className="text-warning" />
  */
 export const ExternalLink = createIcon(
-  "ExternalLink",
+  'ExternalLink',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const ExternalLink = createIcon(
       strokeWidth={1.3}
       d="m8 8 5-5m0 0v3.667M13 3H9.333M6 3H4.333C3.597 3 3 3.597 3 4.333v7.334C3 12.4 3.597 13 4.333 13h7.334C12.4 13 13 12.4 13 11.667V10"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Chart3 icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Chart3 size={40} className="text-warning" />
  */
 export const Chart3 = createIcon(
-  "Chart3",
+  'Chart3',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Chart3 = createIcon(
       strokeWidth={1.3}
       d="M9 7.673v2.994M7 5.333v5.334M5 8.84v1.827M11 6.5v4.167M5.333 2h5.334A3.333 3.333 0 0 1 14 5.333v5.334A3.333 3.333 0 0 1 10.667 14H5.333A3.333 3.333 0 0 1 2 10.667V5.333A3.333 3.333 0 0 1 5.333 2"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * User icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <User size={40} className="text-warning" />
  */
 export const User = createIcon(
-  "User",
+  'User',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const User = createIcon(
       strokeWidth={1.3}
       d="M3.333 13.333A2.916 2.916 0 0 1 6.267 10.4h3.4a2.916 2.916 0 0 1 2.933 2.933M10 3.467c1.133 1.133 1.133 2.933 0 4-1.133 1.066-2.933 1.133-4 0s-1.133-2.934 0-4a2.9 2.9 0 0 1 4 0"
     />
-  </svg>
+  </svg>,
 );
