@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Svg, SvgProps } from 'react-native-svg';
 import { Icon, IconProps } from './Icon';
-import { toPascalCase } from '@ldls/utils-shared';
+import { toPascalCase } from '../../utils';
 
 /**
  * Create an Icon component for React Native
@@ -11,7 +11,7 @@ import { toPascalCase } from '@ldls/utils-shared';
  */
 const createIcon = (
   iconName: string,
-  iconJsx: React.ReactElement<SvgProps>
+  iconJsx: React.ReactElement<SvgProps>,
 ) => {
   const Component = forwardRef<Svg, Omit<IconProps, 'children'>>(
     ({ className, ...props }, ref) =>
@@ -21,7 +21,7 @@ const createIcon = (
         viewBox: iconJsx.props.viewBox,
         ...props,
         children: iconJsx.props.children,
-      })
+      }),
   );
 
   Component.displayName = toPascalCase(iconName);
