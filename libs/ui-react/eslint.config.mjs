@@ -10,7 +10,14 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
-    rules: {},
+    rules: {
+      plugins: {
+        storybook,
+      },
+      'storybook/no-uninstalled-addons': ['error', { 
+        packageJsonLocation: '../../package.json' 
+      }],
+    },
   }, 
   {
     ignores: ['**/*.figma.ts', '**/*.figma.tsx', '**/*.figma.js', '**/*.figma.jsx'],
