@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ClockFill icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ClockFill size={40} className="text-warning" />
  */
 export const ClockFill = createIcon(
-  "ClockFill",
+  'ClockFill',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const ClockFill = createIcon(
       strokeWidth={1.3}
       d="M11.1 8H8V4.267"
     />
-  </svg>
+  </svg>,
 );
