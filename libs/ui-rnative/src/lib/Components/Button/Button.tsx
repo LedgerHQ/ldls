@@ -74,7 +74,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends TouchableOpacityProps,
-    VariantProps<typeof buttonVariants> {
+    Omit<VariantProps<typeof buttonVariants>, 'iconOnly'> {
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
 

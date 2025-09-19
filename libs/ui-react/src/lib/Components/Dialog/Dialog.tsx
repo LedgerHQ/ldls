@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cn } from '@ldls/utils-shared';
+import { SheetBar, SheetBarProps } from '../SheetBar';
 
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
@@ -110,22 +111,22 @@ function DialogPortal({
  * @example
  * <DialogOverlay className="bg-opacity-50" />
  */
-function DialogOverlay({
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+const DialogOverlay = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<typeof DialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => {
   return (
     <DialogPrimitive.Overlay
+      ref={ref}
       data-slot="dialog-overlay"
       className={cn(
         className,
-        // TODO: Fix animation for closing the dialog
-        'z-dialogOverlay data-[state=closed]:animate-overlayHide fixed inset-0 bg-canvas-overlay transition-opacity duration-200 data-[state=open]:animate-overlayShow',
+        'z-dialogOverlay data-[state=closed]:animate-overlayHide fixed inset-0 bg-canvas-overlay data-[state=open]:animate-overlayShow',
       )}
       {...props}
     />
   );
-}
+});
 
 /**
  * The content container that displays the dialog information.
@@ -169,7 +170,6 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          // TODO: Fix animation for closing the dialog
           'z-dialogContent data-[state=closed]:animate-contentHide fixed left-[50%] top-[50%] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet data-[state=open]:animate-contentShow',
           className,
         )}
@@ -178,5 +178,162 @@ export function DialogContent({
         {children}
       </DialogPrimitive.Content>
     </DialogPortal>
+  );
+}
+
+/**
+ * A convenient wrapper that combines SheetBar with accessible DialogTitle and DialogDescription.
+ *
+ * This component provides a consistent header for dialogs by combining the visual SheetBar
+ * component with the necessary accessibility components (DialogTitle and DialogDescription).
+ * It automatically handles the accessibility requirements while maintaining the visual design.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @component
+ * @param {SheetBarProps} props - All props are passed to the underlying SheetBar component.
+ * @param {string} props.title - The dialog title, used both visually and for accessibility.
+ * @param {string} [props.description] - Optional description, used both visually and for accessibility.
+ * @param {'sm' | 'lg'} [props.size='sm'] - The size variant of the header.
+ * @param {function} [props.onClose] - Callback function to handle closing the dialog.
+ * @param {function} [props.onBack] - Optional callback function to handle back navigation.
+ *
+ * @example
+ * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
+ *
+ * <Dialog>
+ *   <DialogTrigger asChild>
+ *     <Button>Open Dialog</Button>
+ *   </DialogTrigger>
+ *   <DialogContent>
+ *     <DialogHeader
+ *       title="Dialog Title"
+ *       onClose={() => setOpen(false)}
+ *     />
+ *     <p>Dialog content here</p>
+ *   </DialogContent>
+ * </Dialog>
+ *
+ * @example
+ * // With description and back button
+ * <DialogHeader
+ *   size="lg"
+ *   title="Settings"
+ *   description="Manage your account preferences"
+ *   onBack={() => goToPreviousStep()}
+ *   onClose={() => setOpen(false)}
+ * />
+ */
+export function DialogHeader({
+  title,
+  description,
+  ...props
+}: SheetBarProps & { title: string }) {
+  return (
+    <>
+      <SheetBar title={title} description={description} {...props} />
+      <DialogTitle hidden>{title}</DialogTitle>
+      {description && (
+        <DialogDescription hidden>{description}</DialogDescription>
+      )}
+    </>
+  );
+}
+
+/**
+ * An accessible title to be announced when the dialog is opened.
+ *
+ * This component is essential for accessibility as it provides screen readers with
+ * the dialog's purpose. Without a DialogTitle, the dialog will not be properly
+ * announced to assistive technologies.
+ *
+ * The title can be visually hidden using the `hidden` prop while still being
+ * available to screen readers. This is useful when you have visual headers
+ * (like SheetBar) but still need proper accessibility.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @component
+ * @param {React.ReactNode} children - The title text content.
+ * @param {boolean} [hidden=false] - Whether to visually hide the title while keeping it accessible to screen readers.
+ * @param {string} [className] - Additional custom CSS classes to apply.
+ * @param {React.ComponentProps<typeof DialogPrimitive.Title>} [...] - All other props are passed to the underlying Radix UI Title.
+ *
+ * @example
+ * // Visible title
+ * <DialogTitle>Account Settings</DialogTitle>
+ *
+ * @example
+ * // Hidden title for accessibility only
+ * <DialogTitle hidden>Transaction Details</DialogTitle>
+ *
+ * @example
+ * // With custom styling
+ * <DialogTitle className="text-lg font-semibold">Important Notice</DialogTitle>
+ */
+export function DialogTitle({
+  hidden,
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }) {
+  return (
+    <DialogPrimitive.Title
+      data-slot="dialog-title"
+      className={cn(hidden && 'sr-only', className)}
+      {...props}
+    />
+  );
+}
+
+/**
+ * An optional accessible description to be announced when the dialog is opened.
+ *
+ * This component provides additional context about the dialog's content or purpose,
+ * enhancing the accessibility experience. It works in conjunction with DialogTitle
+ * to give screen reader users a complete understanding of the dialog.
+ *
+ * The description can be visually hidden using the `hidden` prop while still being
+ * available to screen readers. This is useful when you have visual content that
+ * serves the same purpose but need proper accessibility.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @component
+ * @param {React.ReactNode} children - The description text content.
+ * @param {boolean} [hidden=false] - Whether to visually hide the description while keeping it accessible to screen readers.
+ * @param {string} [className] - Additional custom CSS classes to apply.
+ * @param {React.ComponentProps<typeof DialogPrimitive.Description>} [...] - All other props are passed to the underlying Radix UI Description.
+ *
+ * @example
+ * // Visible description
+ * <DialogDescription>
+ *   This action cannot be undone. Please review your changes carefully.
+ * </DialogDescription>
+ *
+ * @example
+ * // Hidden description for accessibility only
+ * <DialogDescription hidden>
+ *   View detailed information about your transaction including amounts and fees.
+ * </DialogDescription>
+ *
+ * @example
+ * // With custom styling
+ * <DialogDescription className="text-sm text-gray-600">
+ *   Additional context about this dialog.
+ * </DialogDescription>
+ */
+export function DialogDescription({
+  hidden,
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Description> & {
+  hidden?: boolean;
+}) {
+  return (
+    <DialogPrimitive.Description
+      data-slot="dialog-description"
+      className={cn(hidden && 'sr-only', className)}
+      {...props}
+    />
   );
 }
