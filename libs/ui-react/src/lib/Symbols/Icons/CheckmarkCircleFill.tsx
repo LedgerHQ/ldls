@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * CheckmarkCircleFill icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <CheckmarkCircleFill size={40} className="text-warning" />
  */
 export const CheckmarkCircleFill = createIcon(
-  "CheckmarkCircleFill",
+  'CheckmarkCircleFill',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -44,5 +44,5 @@ export const CheckmarkCircleFill = createIcon(
       strokeWidth={1.3}
       d="m5.63 8.226 1.444 1.445m-.01-.01 3.26-3.259"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Minus icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Minus size={40} className="text-warning" />
  */
 export const Minus = createIcon(
-  "Minus",
+  'Minus',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Minus = createIcon(
       strokeWidth={1.3}
       d="M3.333 8h9.334"
     />
-  </svg>
+  </svg>,
 );

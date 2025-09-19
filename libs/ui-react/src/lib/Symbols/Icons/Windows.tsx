@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Windows icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Windows size={40} className="text-warning" />
  */
 export const Windows = createIcon(
-  "Windows",
+  'Windows',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -37,5 +37,5 @@ export const Windows = createIcon(
       fill="currentColor"
       d="M7.504 7.76H13.6V2.4l-6.096.848zM2.4 12.064l4.608.624V8.304H2.4zm0-4.304h4.608V3.312L2.4 3.936zm5.104 4.992 6.096.848V8.304H7.504z"
     />
-  </svg>
+  </svg>,
 );

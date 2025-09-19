@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PinLocation icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <PinLocation size={40} className="text-warning" />
  */
 export const PinLocation = createIcon(
-  "PinLocation",
+  'PinLocation',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const PinLocation = createIcon(
       strokeWidth={1.3}
       d="M8 14s-4.667-3.833-4.667-7.333a4.667 4.667 0 0 1 9.333 0C12.667 10.167 8 14 8 14"
     />
-  </svg>
+  </svg>,
 );

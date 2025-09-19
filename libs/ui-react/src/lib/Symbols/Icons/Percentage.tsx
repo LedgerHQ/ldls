@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Percentage icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Percentage size={40} className="text-warning" />
  */
 export const Percentage = createIcon(
-  "Percentage",
+  'Percentage',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -39,5 +39,5 @@ export const Percentage = createIcon(
       strokeWidth={1.3}
       d="M14 2 2 14m11.6-2.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM6.4 4.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
     />
-  </svg>
+  </svg>,
 );
