@@ -6,15 +6,39 @@ import {
   CheckmarkCircleFill,
   WarningFill,
   DeleteCircleFill,
-  Close,
 } from '../../Symbols';
-import { Button } from '../Button';
+import { getSlots } from '../../../utils/getSlots';
+
+/**
+ * PrimaryAction slot component for the Banner. Used to display the primary action button.
+ */
+const BannerPrimaryAction = ({ children }: { children: React.ReactNode }) => {
+  return children;
+};
+
+BannerPrimaryAction.displayName = 'BannerPrimaryAction';
+
+/**
+ * SecondaryAction slot component for the Banner. Used to display the secondary action button.
+ */
+const BannerSecondaryAction = ({ children }: { children: React.ReactNode }) => {
+  return children;
+};
+BannerSecondaryAction.displayName = 'BannerSecondaryAction';
+
+/**
+ * CloseAction slot component for the Banner. Used to display the close button.
+ */
+const BannerCloseAction = ({ children }: { children: React.ReactNode }) => {
+  return children;
+};
+BannerCloseAction.displayName = 'BannerCloseAction';
 
 const iconMap = {
-  info: <InformationFill className="text-base" />,
-  success: <CheckmarkCircleFill className="text-success" />,
-  warning: <WarningFill className="text-warning" />,
-  error: <DeleteCircleFill className="text-error" />,
+  info: <InformationFill className="text-base" role="status" />,
+  success: <CheckmarkCircleFill className="text-success" role="status" />,
+  warning: <WarningFill className="text-warning" role="alert" />,
+  error: <DeleteCircleFill className="text-error" role="alert" />,
 };
 
 const bannerVariants = cva('align-start flex gap-8 rounded-md p-16 text-base', {
@@ -32,25 +56,35 @@ export type BannerAppearance = NonNullable<
   VariantProps<typeof bannerVariants>['appearance']
 >;
 
-export type BannerAction = {
-  label: string;
-  onClick: () => void;
-};
-
-export type BannerCloseAction = {
-  onClick: () => void;
-  ariaLabel?: string;
-};
-
 export interface BannerProps
   extends React.HTMLAttributes<HTMLDivElement>,
     Omit<VariantProps<typeof bannerVariants>, 'appearance'> {
+  /**
+   * The type of banner which affects color and icon.
+   */
   appearance?: BannerAppearance;
+  /**
+   * The main title of the banner.
+   */
   title: string;
+  /**
+   * Optional descriptive text.
+   */
   description?: string;
-  primaryAction?: BannerAction;
-  secondaryAction?: BannerAction;
-  closeAction?: BannerCloseAction;
+  /**
+   * The children of the banner, which can include Banner.PrimaryAction, Banner.SecondaryAction, and Banner.CloseAction slots.
+   * Each slot expects a Button component as its child.
+   */
+  children?: React.ReactNode;
+}
+
+interface BannerComponent
+  extends React.ForwardRefExoticComponent<
+    BannerProps & React.RefAttributes<HTMLDivElement>
+  > {
+  PrimaryAction: typeof BannerPrimaryAction;
+  SecondaryAction: typeof BannerSecondaryAction;
+  CloseAction: typeof BannerCloseAction;
 }
 
 /**
@@ -60,16 +94,6 @@ export interface BannerProps
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'info' | 'success' | 'warning' | 'error'} [appearance='info'] - The type of banner which affects color and icon.
- * @param {string} title - The main title of the banner.
- * @param {string} [description] - Optional descriptive text.
- * @param {BannerAction} [primaryAction] - Optional primary action with label and onClick handler.
- * @param {BannerAction} [secondaryAction] - Optional secondary action with label and onClick handler.
- * @param {BannerCloseAction} [closeAction] - Optional close action with onClick handler and optional ariaLabel. Controls the visibility of the close button.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.HTMLAttributes<HTMLDivElement>} [...] - Standard div props.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
@@ -85,31 +109,58 @@ export interface BannerProps
  *   title="Success"
  *   appearance="success"
  *   description="Your action was successful."
- *   primaryAction={{ label: "Undo", onClick: () => console.log('Undo') }}
- * />
+ * >
+ *   <Banner.PrimaryAction>
+ *     <Button appearance="transparent" size="sm" onClick={() => console.log('Undo')}>
+ *       Undo
+ *     </Button>
+ *   </Banner.PrimaryAction>
+ * </Banner>
  *
- * // Error banner with close
+ * // Banner with multiple actions and close
  * <Banner
  *   title="Error"
  *   appearance="error"
- *   closeAction={{ onClick: () => console.log('Close'), ariaLabel: 'Close banner' }}
- * />
+ * >
+ *   <Banner.PrimaryAction>
+ *     <Button appearance="transparent" size="sm" onClick={() => console.log('Retry')}>
+ *       Retry
+ *     </Button>
+ *   </Banner.PrimaryAction>
+ *   <Banner.SecondaryAction>
+ *     <Button appearance="no-background" size="sm" onClick={() => console.log('Dismiss')}>
+ *       Dismiss
+ *     </Button>
+ *   </Banner.SecondaryAction>
+ *   <Banner.CloseAction>
+ *     <Button icon={Close} appearance="transparent" size="xs" onClick={() => console.log('Close')} aria-label="Close banner" />
+ *   </Banner.CloseAction>
+ * </Banner>
  */
 export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
   (
-    {
-      appearance = 'info',
-      title,
-      description,
-      primaryAction,
-      secondaryAction,
-      className,
-      closeAction,
-      ...props
-    },
+    { appearance = 'info', title, description, className, children, ...props },
     ref,
   ) => {
     const icon = iconMap[appearance];
+
+    const primaryActionSlots = getSlots(children, BannerPrimaryAction);
+    const secondaryActionSlots = getSlots(children, BannerSecondaryAction);
+    const closeActionSlots = getSlots(children, BannerCloseAction);
+
+    if (primaryActionSlots.length > 1) {
+      throw new Error('Banner can only have one PrimaryAction slot');
+    }
+    if (secondaryActionSlots.length > 1) {
+      throw new Error('Banner can only have one SecondaryAction slot');
+    }
+    if (closeActionSlots.length > 1) {
+      throw new Error('Banner can only have one CloseAction slot');
+    }
+
+    const primaryActionSlot = primaryActionSlots[0] ?? null;
+    const secondaryActionSlot = secondaryActionSlots[0] ?? null;
+    const closeActionSlot = closeActionSlots[0] ?? null;
 
     return (
       <div
@@ -120,44 +171,24 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         <div className="flex flex-shrink-0 items-start py-4">{icon}</div>
         <div className="mr-8 flex flex-1 flex-col gap-8 py-4">
           <div className="flex flex-col gap-4">
-            <div className="line-clamp-2 body-1-semi-bold">{title}</div>
+            <h3 className="line-clamp-2 body-1-semi-bold">{title}</h3>
             {description && (
               <div className="line-clamp-5 body-2">{description}</div>
             )}
           </div>
-          {(primaryAction || secondaryAction) && (
+          {(primaryActionSlot || secondaryActionSlot) && (
             <div className="flex gap-4">
-              {primaryAction && (
-                <Button
-                  appearance="transparent"
-                  size="sm"
-                  onClick={primaryAction.onClick}
-                >
-                  {primaryAction.label}
-                </Button>
-              )}
-              {secondaryAction && (
-                <Button
-                  appearance="no-background"
-                  size="sm"
-                  onClick={secondaryAction.onClick}
-                >
-                  {secondaryAction.label}
-                </Button>
-              )}
+              {primaryActionSlot}
+              {secondaryActionSlot}
             </div>
           )}
         </div>
-        {closeAction && (
-          <Button
-            appearance="transparent"
-            size="xs"
-            icon={Close}
-            onClick={closeAction.onClick}
-            aria-label={closeAction.ariaLabel || 'Close'}
-          />
-        )}
+        {closeActionSlot}
       </div>
     );
   },
-);
+) as BannerComponent;
+
+Banner.PrimaryAction = BannerPrimaryAction;
+Banner.SecondaryAction = BannerSecondaryAction;
+Banner.CloseAction = BannerCloseAction;
