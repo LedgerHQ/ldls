@@ -1,4 +1,4 @@
-import { cn } from '@ldls/utils-shared';
+import { cn } from '../../utils';
 import { cva } from 'class-variance-authority';
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
