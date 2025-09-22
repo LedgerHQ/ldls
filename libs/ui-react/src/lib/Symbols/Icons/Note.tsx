@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Note icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Note size={40} className="text-warning" />
  */
 export const Note = createIcon(
-  "Note",
+  'Note',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Note = createIcon(
       strokeWidth={1.3}
       d="M4.667 8h6.666M4.667 5.333h6.666m-6.666 5.334H8M4.667 14h6.666A2.667 2.667 0 0 0 14 11.333V4.667A2.667 2.667 0 0 0 11.333 2H4.667A2.667 2.667 0 0 0 2 4.667v6.666A2.667 2.667 0 0 0 4.667 14"
     />
-  </svg>
+  </svg>,
 );

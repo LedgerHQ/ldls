@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * GroupUsersAdd icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <GroupUsersAdd size={40} className="text-warning" />
  */
 export const GroupUsersAdd = createIcon(
-  "GroupUsersAdd",
+  'GroupUsersAdd',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const GroupUsersAdd = createIcon(
       strokeWidth={1.3}
       d="M2 14a2.33 2.33 0 0 1 2.327-2.333H7a2.326 2.326 0 0 1 2.327 2.326m1.34-2.322h1a2.326 2.326 0 0 1 2.326 2.326M11.92 3h2.829m-1.414 1.414V1.586M5.667 5.67a2 2 0 1 0 0 4 2 2 0 0 0 0-4m5 1.333a1.333 1.333 0 1 0 0 2.667 1.333 1.333 0 0 0 0-2.667"
     />
-  </svg>
+  </svg>,
 );

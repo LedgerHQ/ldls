@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ArrowRight icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ArrowRight size={40} className="text-warning" />
  */
 export const ArrowRight = createIcon(
-  "ArrowRight",
+  'ArrowRight',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const ArrowRight = createIcon(
       strokeWidth={1.3}
       d="M12.667 8H3.333m9.334 0-3.334 3.333M12.667 8 9.333 4.667"
     />
-  </svg>
+  </svg>,
 );
