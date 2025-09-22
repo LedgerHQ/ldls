@@ -1,0 +1,253 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TagStories from './Tag.stories';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/Tag" of={TagStories} />
+
+# 🏷️ Tag
+
+<CustomTabs>
+  <Tab label="Overview">
+
+View in Figma: [link](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=722-5547&m=dev)
+
+## Anatomy
+
+- **Label:** The text content of the tag.
+- **Icon (optional):** An optional icon displayed before the label.
+
+## Properties
+
+### Overview
+
+<Canvas of={TagStories.Default} />
+<Controls of={TagStories.Default} />
+
+### Appearance
+
+<Canvas of={TagStories.Showcase} />
+
+---
+
+### Size
+
+Tags come in two different sizes:
+
+- **lg** (default)
+- **sm**
+
+<Canvas of={TagStories.SizesShowcase} />
+
+### Icon
+
+Tags can be displayed with or without an icon.
+
+<Canvas of={TagStories.ContentTypesShowcase} />
+
+### Accessibility
+
+To be implemented:
+
+- **Color contrast**
+- **Text zoom**
+- **Touch targets**
+- **Screen reader support**
+- **Semantic labeling**
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install react-native@^0.74.0 react@^18.3.1 nativewind@^4.0.0 tailwindcss@^3.4.0 class-variance-authority
+```
+
+### NativeWind Configuration
+
+To use the Tag component with our custom NativeWind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Tag } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <Tag size="lg" appearance="accent" label="My Tag" />
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<Tag
+  size="lg"
+  appearance="accent"
+  label="Custom Tag"
+  className="mt-4" // Custom margin
+/>
+```
+
+### With Icons
+
+The Tag component supports icons with automatic size adjustment based on the tag size:
+
+```tsx
+import { Tag } from '@ledgerhq/ldls-ui-rnative';
+import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <Tag size="lg" appearance="success" icon={Check} label="Success" />
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use label for text content
+<Tag label="My Tag" />
+
+// Pass icon as a component reference
+import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+<Tag icon={Plus} label="Add Item" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't include icon in label
+<Tag label="<Plus /> Add Item" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Tag className="mt-4 ml-2" label="Submit" />
+
+// Use className for positioning
+<Tag className="absolute top-0 right-0" label="New" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override tag's core styling
+<Tag className="bg-black" label="Custom Background" />
+
+// Don't modify internal spacing/padding
+<Tag className="p-6" label="Wrong Spacing" />
+
+// Don't override typography - use size prop instead
+<Tag className="text-xl" label="Wrong Typography" />
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The tag's core styling (colors, padding, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use icon prop for consistent sizing
+<Tag icon={Check} label="Success" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't use string-based icon names
+<Tag icon="check" label="Success" />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use appropriate size variant
+<Tag size="sm" icon={Check} label="Success" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't use custom sizes when standard ones exist
+<Tag style={{ height: 52 }} label="Custom Height" />
+```
+
+### React Native Specific Considerations
+
+✅ **Do**
+
+```tsx
+// Use onPress for touch interactions (if needed for custom wrapper)
+<TouchableOpacity onPress={handlePress}>
+  <Tag label="Touchable Tag" />
+</TouchableOpacity>
+
+// Use proper accessibility props
+<Tag
+  label="Important Tag"
+  accessible={true}
+  accessibilityRole="text"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use web-specific events
+<Tag onClick={handleClick} label="Wrong Event" />
+
+// Don't use web-specific styling
+<Tag className="hover:bg-blue-500" label="No Hover States" />
+```
+
+</Tab>
+</CustomTabs>
