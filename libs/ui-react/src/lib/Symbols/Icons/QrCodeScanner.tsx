@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * QrCodeScanner icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <QrCodeScanner size={40} className="text-warning" />
  */
 export const QrCodeScanner = createIcon(
-  'QrCodeScanner',
+  "QrCodeScanner",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const QrCodeScanner = createIcon(
       strokeWidth={1.3}
       d="M14 5.333v-2C14 2.597 13.4 2 12.667 2h-2M5.333 2h-2C2.597 2 2 2.597 2 3.333v2m0 5.334v2C2 13.4 2.597 14 3.333 14h2m5.334 0h2C13.4 14 14 13.4 14 12.667v-2M2 8h12"
     />
-  </svg>,
+  </svg>
 );

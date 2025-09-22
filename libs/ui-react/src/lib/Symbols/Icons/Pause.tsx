@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Pause icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Pause size={40} className="text-warning" />
  */
 export const Pause = createIcon(
-  'Pause',
+  "Pause",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -39,5 +39,5 @@ export const Pause = createIcon(
       strokeWidth={1.3}
       d="M4.759 3.893v8m6.482-8v8"
     />
-  </svg>,
+  </svg>
 );

@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Plus icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Plus size={40} className="text-warning" />
  */
 export const Plus = createIcon(
-  'Plus',
+  "Plus",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Plus = createIcon(
       strokeWidth={1.3}
       d="M3.333 8h9.334M8 12.667V3.333"
     />
-  </svg>,
+  </svg>
 );

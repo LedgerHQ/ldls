@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * TransferHorizontal icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <TransferHorizontal size={40} className="text-warning" />
  */
 export const TransferHorizontal = createIcon(
-  'TransferHorizontal',
+  "TransferHorizontal",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const TransferHorizontal = createIcon(
       strokeWidth={1.3}
       d="m5.333 9.333-2 2m0 0 2 2m-2-2h9.334m-2-4.666 2-2m0 0-2-2m2 2H3.333"
     />
-  </svg>,
+  </svg>
 );

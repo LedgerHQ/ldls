@@ -1,6 +1,4 @@
 import nx from '@nx/eslint-plugin';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import { globalIgnores } from 'eslint/config';
 
 export default [
   ...nx.configs['flat/base'],
@@ -62,6 +60,4 @@ export default [
     // Override or add rules here
     rules: {},
   },
-  eslintPluginPrettierRecommended,
-  globalIgnores(['**/out-tsc']),
 ];

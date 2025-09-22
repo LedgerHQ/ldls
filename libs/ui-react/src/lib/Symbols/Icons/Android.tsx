@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Android icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Android size={40} className="text-warning" />
  */
 export const Android = createIcon(
-  'Android',
+  "Android",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -43,5 +43,5 @@ export const Android = createIcon(
       d="M10.504.906q.102.06.043.171l-.607 1.12q.915.47 1.462 1.312.547.841.547 1.842H4.041q0-1 .548-1.842a3.75 3.75 0 0 1 1.47-1.313l-.607-1.119q-.06-.11.042-.17.111-.052.171.05l.615 1.129a4.2 4.2 0 0 1 1.72-.36q.905 0 1.717.36l.615-1.129q.06-.102.171-.05m-4.307 2.35a.33.33 0 0 0-.325.333q0 .138.093.235.094.099.232.099a.32.32 0 0 0 .234-.099.32.32 0 0 0 .099-.234.32.32 0 0 0-.1-.235.32.32 0 0 0-.233-.098m3.606 0a.32.32 0 0 0-.235.099.32.32 0 0 0-.098.235.32.32 0 0 0 .098.234.32.32 0 0 0 .235.099.3.3 0 0 0 .23-.099.33.33 0 0 0 .095-.234.33.33 0 0 0-.325-.333"
       clipRule="evenodd"
     />
-  </svg>,
+  </svg>
 );

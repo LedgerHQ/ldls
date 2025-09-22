@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Share icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Share size={40} className="text-warning" />
  */
 export const Share = createIcon(
-  'Share',
+  "Share",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Share = createIcon(
       strokeWidth={1.3}
       d="M5.333 6.667H4c-.737 0-1.333.596-1.333 1.333v4.667C2.667 13.403 3.263 14 4 14h8c.737 0 1.333-.597 1.333-1.333V8c0-.737-.596-1.333-1.333-1.333h-1.333M8 2v7.333M8 2 6 4m2-2 2 2"
     />
-  </svg>,
+  </svg>
 );

@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * CreditCard icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <CreditCard size={40} className="text-warning" />
  */
 export const CreditCard = createIcon(
-  'CreditCard',
+  "CreditCard",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const CreditCard = createIcon(
       strokeWidth={1.3}
       d="M2 6h12M6.38 8.667H4.667m7.333 4H4a2 2 0 0 1-2-2V5.333a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.334a2 2 0 0 1-2 2"
     />
-  </svg>,
+  </svg>
 );
