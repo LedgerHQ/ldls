@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Bolt icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Bolt size={40} className="text-warning" />
  */
 export const Bolt = createIcon(
-  'Bolt',
+  "Bolt",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Bolt = createIcon(
       strokeWidth={1.3}
       d="M8.64 2 3.16 9.333h4.833L7.347 14l5.473-7.333H7.987z"
     />
-  </svg>,
+  </svg>
 );

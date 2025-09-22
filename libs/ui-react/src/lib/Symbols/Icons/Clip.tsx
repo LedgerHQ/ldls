@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Clip icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Clip size={40} className="text-warning" />
  */
 export const Clip = createIcon(
-  'Clip',
+  "Clip",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Clip = createIcon(
       strokeWidth={1.3}
       d="M8.967 6.253 5.28 9.94a1.083 1.083 0 0 0 0 1.547h-.007c.427.427 1.12.427 1.547 0l5.747-5.75a2.197 2.197 0 0 0 0-3.1l-.007-.007a2.19 2.19 0 0 0-3.1-.007h-.007L3.7 8.369a3.276 3.276 0 0 0-.007 4.639 3.283 3.283 0 0 0 4.64 0v-.007l4.2-4.2"
     />
-  </svg>,
+  </svg>
 );

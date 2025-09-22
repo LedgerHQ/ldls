@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Placeholder icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Placeholder size={40} className="text-warning" />
  */
 export const Placeholder = createIcon(
-  'Placeholder',
+  "Placeholder",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -45,5 +45,5 @@ export const Placeholder = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>,
+  </svg>
 );

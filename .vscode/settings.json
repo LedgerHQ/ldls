@@ -3,15 +3,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "tailwindCSS.classFunctions": ["cva", "cn"],
   "cSpell.words": ["tailwindcss"],
-  "nxConsole.generateAiAgentRules": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-  },
-  "eslint.validate": [
-      "javascriptreact",
-      "typescriptreact",
-      "typescript",
-      "javascript",
-      "html"
-  ],
+  "nxConsole.generateAiAgentRules": true
 }

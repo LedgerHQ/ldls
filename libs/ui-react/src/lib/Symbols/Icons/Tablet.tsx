@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Tablet icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Tablet size={40} className="text-warning" />
  */
 export const Tablet = createIcon(
-  'Tablet',
+  "Tablet",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Tablet = createIcon(
       strokeWidth={1.3}
       d="M8 11.917a.085.085 0 0 0-.087.083c0 .04.033.083.083.083.04 0 .083-.04.083-.083a.085.085 0 0 0-.086-.083m4.674.583v-9c0-.833-.674-1.5-1.5-1.5H4.833c-.833 0-1.5.667-1.5 1.5v9c0 .827.667 1.5 1.5 1.5h6.334c.826 0 1.5-.673 1.5-1.5"
     />
-  </svg>,
+  </svg>
 );

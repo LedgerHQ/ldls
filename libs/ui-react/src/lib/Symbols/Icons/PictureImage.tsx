@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * PictureImage icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <PictureImage size={40} className="text-warning" />
  */
 export const PictureImage = createIcon(
-  'PictureImage',
+  "PictureImage",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const PictureImage = createIcon(
       strokeWidth={1.3}
       d="m1.998 8.667.863-.864a1.61 1.61 0 0 1 2.274 0L8 10.668m-3.333 3.335 4.199-4.199a1.61 1.61 0 0 1 2.274 0l2.627 2.627m.236-1.096a2.67 2.67 0 0 1-2.668 2.667h-6.67a2.67 2.67 0 0 1-2.667-2.667v-6.67a2.67 2.67 0 0 1 2.667-2.667h6.67a2.67 2.67 0 0 1 2.668 2.667z"
     />
-  </svg>,
+  </svg>
 );

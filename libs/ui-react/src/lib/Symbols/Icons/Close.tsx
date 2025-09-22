@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Close icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Close size={40} className="text-warning" />
  */
 export const Close = createIcon(
-  'Close',
+  "Close",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Close = createIcon(
       strokeWidth={1.3}
       d="m3.333 3.333 9.334 9.334m0-9.334-9.334 9.334"
     />
-  </svg>,
+  </svg>
 );

@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Settings icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Settings size={40} className="text-warning" />
  */
 export const Settings = createIcon(
-  'Settings',
+  "Settings",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const Settings = createIcon(
       strokeWidth={1.3}
       d="M8 9.833a1.833 1.833 0 1 0 0-3.666 1.833 1.833 0 0 0 0 3.666"
     />
-  </svg>,
+  </svg>
 );
