@@ -1,0 +1,458 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+import { Button } from './Button';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Action/Button" of={ButtonStories} />
+
+# 🔘 Button
+
+<CustomTabs>
+  <Tab label="Overview ">
+
+## Introduction
+
+Buttons are key interactive elements that trigger actions and guide users through the interface. They come in various styles and states to reflect hierarchy, intent, and context. This React Native implementation ensures consistent behavior across mobile platforms while maintaining design system coherence.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9-28&m=dev).
+
+## Anatomy
+
+<Canvas of={ButtonStories.IconText} />
+
+- **Label**: describes the action that occurs when the button is tapped
+- **Icon (optional)**: visually communicate the button's action, and helps draw attention
+
+## Properties
+
+### Overview
+
+<Canvas of={ButtonStories.Base} />
+<Controls of={ButtonStories.Base} />
+
+### Appearance
+
+There are six button appearances, which indicate its emphasis. From strongest to weakest:
+
+- accent
+- base (default)
+- gray
+- transparent
+- no-background
+- red
+
+<Canvas of={ButtonStories.AppearanceShowcase} />
+
+### Content
+
+Buttons' contents can be of three types:
+
+- text (default)
+- icon-text
+- icon
+
+<Canvas of={ButtonStories.ContentTypesShowcase} />
+
+> Note: Buttons of the smallest size XS can't have a label, so they default to an icon only.
+
+### Size
+
+Buttons come in four different sizes:
+
+- XS (**32 px** tall) **[ICON ONLY]**
+- S (**44 px** tall)
+- M (default, **48 px** tall)
+- L (**56 px** tall)
+
+<Canvas of={ButtonStories.SizesShowcase} />
+
+> **⚠️ Important**: Icon sizes are automatically managed by the Button component based on the selected size. Never override the icon size using className or style props, as this will break the visual consistency of the design system. The Button component ensures proper scaling and alignment of icons across all sizes.
+>
+> ```tsx
+> // ✅ Correct: Let Button handle icon sizing
+> <Button size="xs" icon={Settings} aria-label="Settings" />
+>
+> // ❌ Wrong: Don't override icon size [it's not gonna work even if you try]
+> <Button size="xs" icon={Settings} className="w-6 h-6" aria-label="Settings" />
+> ```
+
+### States
+
+<Canvas of={ButtonStories.StatesShowcase} />
+
+## Responsive Layout
+
+Buttons dynamically adapt their width to the size of their content, while keeping the default paddings:
+
+<Canvas of={ButtonStories.ResponsiveLayout} />
+
+When a label is too long, it's truncated to 2 lines, with a maximum width of the button's container:
+
+<Canvas of={ButtonStories.ResponsiveLayout2} />
+
+> The Button must dynamically resize to its container constraints.
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast
+- Text zoom
+- Touch target sizing (minimum 44px)
+- Screen reader compatibility
+- Semantic labeling
+
+### Interactive States
+
+<Canvas of={ButtonStories.InteractiveLoadingStates} />
+
+</Tab> <Tab label="Implementation ">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.0.1 class-variance-authority
+```
+
+#### **About NativeWind**
+
+The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities. It provides the `className` prop support and ensures consistent styling across platforms.
+
+### NativeWind Configuration
+
+To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Metro Configuration
+
+Add NativeWind to your `metro.config.js`:
+
+```javascript
+const { getDefaultConfig } = require('expo/metro-config');
+const { withNativeWind } = require('nativewind/metro');
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withNativeWind(config, { input: './global.css' });
+```
+
+### Basic Usage
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <Button size="md" appearance="base" onPress={() => console.log('Pressed!')}>
+      Click me
+    </Button>
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<Button
+  size="md"
+  appearance="base"
+  className="mt-4" // Custom margin top
+  onPress={() => {}}
+>
+  Custom Button
+</Button>
+```
+
+### With Icons
+
+The Button component supports icons with automatic size adjustment based on the button size:
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-rnative';
+import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <Button
+      size="md"
+      appearance="base"
+      icon={ArrowRight}
+      onPress={() => {}}
+    >
+      Continue
+    </Button>
+  );
+}
+```
+
+### Full Width
+
+Use the `isFull` prop to make the button take the full width of its container:
+
+```tsx
+<Button
+  size="md"
+  appearance="base"
+  isFull
+  onPress={() => {}}
+>
+  Full Width Button
+</Button>
+```
+
+### Loading State
+
+Use the `loading` prop to show a spinner and disable interaction:
+
+```tsx
+<Button
+  size="md"
+  appearance="base"
+  loading={isLoading}
+  disabled={isLoading}
+  onPress={() => {}}
+>
+  {isLoading ? 'Loading...' : 'Submit'}
+</Button>
+```
+
+### TouchableOpacity Integration
+
+The Button component is built on React Native's `TouchableOpacity` and accepts all its props:
+
+```tsx
+<Button
+  size="md"
+  appearance="base"
+  onPress={() => console.log('Pressed!')}
+  onPressIn={() => console.log('Press started')}
+  onPressOut={() => console.log('Press ended')}
+  disabled={false}
+  activeOpacity={0.7} // Custom opacity on press
+>
+  Interactive Button
+</Button>
+```
+
+## Do's and Don'ts
+
+The following guidelines are based on our [Button Component API Design ADR](https://ledgerhq.atlassian.net/wiki/spaces/DLS/pages/6003949581/ADR-001+Button+Component+API+Design). These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use children for content composition
+<Button onPress={() => {}}>
+  Accept <Text className="font-bold">Terms and Conditions</Text>
+</Button>
+
+// Pass icon as a component reference
+import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+<Button icon={Plus} onPress={() => {}}>Add Item</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use text prop
+<Button text="Accept Terms and Conditions" onPress={() => {}} />
+
+// Don't pass icon as a string
+<Button icon="Plus" onPress={() => {}}>Add Item</Button>
+
+// Don't include icon in children
+<Button onPress={() => {}}>
+  <Plus /> Add Item
+</Button>
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Button className="mt-4 ml-2" onPress={() => {}}>Submit</Button>
+
+// Use className for positioning
+<Button className="absolute top-0 right-0" onPress={() => {}}>Close</Button>
+
+// Use className for margins and spacing in layout
+<Button className="mx-auto my-4" onPress={() => {}}>Centered</Button>
+
+// Use className for responsive behavior
+<Button className="w-full md:w-fit" onPress={() => {}}>Responsive</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override button's core styling
+<Button className="bg-red-500" onPress={() => {}}>Custom Background</Button>
+
+// Don't modify internal spacing/padding
+<Button className="p-6" onPress={() => {}}>Wrong Spacing</Button>
+
+// Don't override typography - use size prop instead
+<Button className="text-lg" onPress={() => {}}>Wrong Typography</Button>
+
+// Don't modify border radius
+<Button className="rounded-none" onPress={() => {}}>Custom Radius</Button>
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The button's core styling (colors, padding, hover states, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { Settings, Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use icon prop for consistent sizing
+<Button icon={Settings} aria-label="Settings" onPress={() => {}} />
+
+// Let Button handle icon sizing
+<Button icon={Plus} size="xs" onPress={() => {}}>Add</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't modify icon size directly
+<Button onPress={() => {}}>
+  <Settings size={24} />
+  Settings
+</Button>
+
+// Don't use string-based icon names
+<Button icon="settings" onPress={() => {}}>Settings</Button>
+```
+
+### Touch Interaction
+
+✅ **Do**
+
+```tsx
+// Provide proper onPress handlers
+<Button onPress={() => navigation.navigate('Details')}>
+  View Details
+</Button>
+
+// Use disabled prop for non-interactive states
+<Button disabled={isSubmitting} onPress={handleSubmit}>
+  Submit
+</Button>
+
+// Provide accessibility labels for icon-only buttons
+<Button
+  icon={Settings}
+  aria-label="Open Settings"
+  onPress={() => openSettings()}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit onPress for interactive buttons
+<Button>Clickable Looking Button</Button>
+
+// Don't use TouchableOpacity directly when Button suffices
+<TouchableOpacity>
+  <Text>Custom Button</Text>
+</TouchableOpacity>
+
+// Don't omit aria-label for icon-only buttons
+<Button icon={Settings} onPress={() => {}} />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use appropriate size variant
+<Button size="xs" icon={Plus} aria-label="Add" onPress={() => {}} />
+
+// Use React.useCallback for onPress handlers in lists
+const handlePress = React.useCallback(() => {
+  // handler logic
+}, [dependencies]);
+
+<Button onPress={handlePress}>Action</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't create inline functions in render for frequently re-rendered components
+<FlatList
+  data={items}
+  renderItem={({ item }) => (
+    <Button onPress={() => handleItem(item.id)}>
+      {item.name}
+    </Button>
+  )}
+/>
+
+// Don't use custom heights when standard sizes exist
+<Button style={{ height: 52 }} onPress={() => {}}>Custom Height</Button>
+```
+
+## Platform Considerations
+
+### iOS Specific
+
+- Buttons automatically adapt to iOS design guidelines
+- Touch feedback uses appropriate opacity transitions
+- Respects iOS accessibility settings like reduced motion
+
+### Android Specific
+
+- Material Design touch ripples are supported through React Native
+- Handles Android back button interactions appropriately
+- Respects Android accessibility services
+
+### Cross-Platform
+
+- Consistent visual appearance across platforms
+- Platform-appropriate touch feedback
+- Unified API regardless of platform
+
+</Tab>
+</CustomTabs>

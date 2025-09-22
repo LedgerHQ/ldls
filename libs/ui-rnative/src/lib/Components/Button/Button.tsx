@@ -6,7 +6,7 @@ import { cn } from '../../utils';
 import { Spinner } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2',
   {
     variants: {
       appearance: {
@@ -17,7 +17,7 @@ const buttonVariants = cva(
         transparent:
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
-          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
+          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed',
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {
@@ -34,6 +34,10 @@ const buttonVariants = cva(
       },
       iconOnly: {
         true: '',
+        false: '',
+      },
+      disabled: {
+        true: 'pointer-events-none cursor-default bg-disabled text-disabled hover:bg-disabled active:bg-disabled',
         false: '',
       },
     },
@@ -62,18 +66,24 @@ const buttonVariants = cva(
         iconOnly: false,
         className: 'gap-8',
       },
+      {
+        appearance: 'no-background',
+        disabled: true,
+        className: 'bg-base-transparent',
+      },
     ],
     defaultVariants: {
       appearance: 'base',
       size: 'md',
       isFull: false,
       iconOnly: false,
+      disabled: false,
     },
   },
 );
 
 export interface ButtonProps
-  extends TouchableOpacityProps,
+  extends Omit<TouchableOpacityProps, 'disabled'>,
     Omit<VariantProps<typeof buttonVariants>, 'iconOnly'> {
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
 }
@@ -113,7 +123,10 @@ export interface ButtonProps
  *   Submit
  * </Button>
  */
-export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
+export const Button = React.forwardRef<
+  React.ElementRef<typeof TouchableOpacity>,
+  ButtonProps
+>(
   (
     {
       className,
@@ -123,6 +136,7 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
       isFull,
       loading,
       icon,
+      disabled,
       ...props
     },
     ref,
@@ -141,7 +155,7 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
 
     return (
       <TouchableOpacity
-        ref={ref as any}
+        ref={ref}
         className={cn(
           className,
           buttonVariants({
@@ -150,9 +164,11 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
             isFull,
             loading,
             iconOnly,
+            disabled,
           }),
         )}
-        disabled={props.disabled}
+        disabled={disabled ?? false}
+        activeOpacity={1}
         {...props}
       >
         {loading ? (
@@ -163,7 +179,9 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
               aria-label="Loading"
             />
             {children && (
-              <Text className="line-clamp-2 text-left">{children}</Text>
+              <Text className="line-clamp-2 text-left body-1-semi-bold">
+                {children}
+              </Text>
             )}
           </>
         ) : (
@@ -175,7 +193,9 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
               />
             )}
             {children && (
-              <Text className="line-clamp-2 text-left">{children}</Text>
+              <Text className="line-clamp-2 text-left body-1-semi-bold">
+                {children}
+              </Text>
             )}
           </>
         )}
