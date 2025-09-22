@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * MenuBurger icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <MenuBurger size={40} className="text-warning" />
  */
 export const MenuBurger = createIcon(
-  'MenuBurger',
+  "MenuBurger",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const MenuBurger = createIcon(
       strokeWidth={1.3}
       d="M3.667 8h8.666m-8.666 3.667h8.666M3.667 4.333h8.666"
     />
-  </svg>,
+  </svg>
 );

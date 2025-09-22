@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * BluetoothCircleFill icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <BluetoothCircleFill size={40} className="text-warning" />
  */
 export const BluetoothCircleFill = createIcon(
-  'BluetoothCircleFill',
+  "BluetoothCircleFill",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -43,5 +43,5 @@ export const BluetoothCircleFill = createIcon(
       d="M6 10.8a4.8 4.8 0 1 0 0-9.6 4.8 4.8 0 0 0 0 9.6m.059-7.466a.33.33 0 0 0-.525.266v1.508l-.821-.693a.33.33 0 1 0-.426.504L5.534 5.97v.058L4.287 7.08a.33.33 0 1 0 .426.504l.82-.693V8.4a.33.33 0 0 0 .526.266l1.636-1.2a.33.33 0 0 0 .018-.518L6.59 6l1.123-.948a.33.33 0 0 0-.018-.518z"
       clipRule="evenodd"
     />
-  </svg>,
+  </svg>
 );

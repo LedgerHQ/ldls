@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * RefreshBack icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <RefreshBack size={40} className="text-warning" />
  */
 export const RefreshBack = createIcon(
-  'RefreshBack',
+  "RefreshBack",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const RefreshBack = createIcon(
       strokeWidth={1.3}
       d="M3.008 3.093V5.45h2.357m-2.05 0A5.334 5.334 0 1 1 2.666 8"
     />
-  </svg>,
+  </svg>
 );

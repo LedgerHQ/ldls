@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Github icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Github size={40} className="text-warning" />
  */
 export const Github = createIcon(
-  'Github',
+  "Github",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -46,5 +46,5 @@ export const Github = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>,
+  </svg>
 );
