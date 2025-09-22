@@ -11,7 +11,6 @@ export default [
     plugins: {
       storybook,
     },
-    // Override or add rules here
     rules: {
       'storybook/no-uninstalled-addons': [
         'error',

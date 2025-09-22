@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * MessageChat icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <MessageChat size={40} className="text-warning" />
  */
 export const MessageChat = createIcon(
-  'MessageChat',
+  "MessageChat",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const MessageChat = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>,
+  </svg>
 );

@@ -1,4 +1,4 @@
-import createIcon from '../../Components/Icon/createIcon';
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Switch icon component.
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Switch size={40} className="text-warning" />
  */
 export const Switch = createIcon(
-  'Switch',
+  "Switch",
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Switch = createIcon(
       strokeWidth={1.3}
       d="M11 11a3 3 0 0 1 0-6m0 6a3 3 0 0 0 0-6m0 6H5a3 3 0 0 1 0-6h6"
     />
-  </svg>,
+  </svg>
 );
