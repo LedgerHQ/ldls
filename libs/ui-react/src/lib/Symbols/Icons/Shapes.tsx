@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Shapes icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Shapes size={40} className="text-warning" />
  */
 export const Shapes = createIcon(
-  "Shapes",
+  'Shapes',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -55,5 +55,5 @@ export const Shapes = createIcon(
       strokeWidth={1.3}
       d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.333H5.331a3.333 3.333 0 0 1-3.333-3.333z"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MinusCircle icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <MinusCircle size={40} className="text-warning" />
  */
 export const MinusCircle = createIcon(
-  "MinusCircle",
+  'MinusCircle',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const MinusCircle = createIcon(
       strokeWidth={1.3}
       d="M10.667 8H5.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12"
     />
-  </svg>
+  </svg>,
 );

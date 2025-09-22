@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Mobile icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Mobile size={40} className="text-warning" />
  */
 export const Mobile = createIcon(
-  "Mobile",
+  'Mobile',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Mobile = createIcon(
       strokeWidth={1.3}
       d="M6.333 2v1.2a.37.37 0 0 0 .334.4h2.666a.38.38 0 0 0 .333-.4V2m-3 10h2.667m1.334 2H5.333C4.593 14 4 13.4 4 12.667V3.333C4 2.593 4.593 2 5.333 2h5.334C11.4 2 12 2.593 12 3.333v9.334C12 13.4 11.4 14 10.667 14"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Download icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Download size={40} className="text-warning" />
  */
 export const Download = createIcon(
-  "Download",
+  'Download',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Download = createIcon(
       strokeWidth={1.3}
       d="M10.37 7.407 8 9.778m0 0-2.37-2.37M8 9.777V2.667m5.333 8.296a2.37 2.37 0 0 1-2.37 2.37H5.037a2.37 2.37 0 0 1-2.37-2.37"
     />
-  </svg>
+  </svg>,
 );

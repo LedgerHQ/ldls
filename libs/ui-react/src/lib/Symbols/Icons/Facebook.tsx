@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Facebook icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Facebook size={40} className="text-warning" />
  */
 export const Facebook = createIcon(
-  "Facebook",
+  'Facebook',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -37,5 +37,5 @@ export const Facebook = createIcon(
       fill="currentColor"
       d="M15 8.044C15 4.155 11.864 1 8 1S1 4.155 1 8.044C1 11.562 3.56 14.478 6.911 15v-4.925H5.124V8.044H6.91V6.49C6.911 4.73 7.95 3.75 9.55 3.75c.764 0 1.557.145 1.557.145v1.72h-.88c-.872 0-1.146.55-1.146 1.102v1.32h1.947l-.31 2.031H9.08v4.926c3.36-.515 5.919-3.431 5.919-6.95"
     />
-  </svg>
+  </svg>,
 );

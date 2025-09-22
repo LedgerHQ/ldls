@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Slideshow icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Slideshow size={40} className="text-warning" />
  */
 export const Slideshow = createIcon(
-  "Slideshow",
+  'Slideshow',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Slideshow = createIcon(
       strokeWidth={1.3}
       d="m6.667 3.333-1.334-.666v10.666l1.334-.666m-4-9.334-1.334-.666v10.666l1.334-.666m12-1.334-5.334 2V2.667l5.334 2z"
     />
-  </svg>
+  </svg>,
 );

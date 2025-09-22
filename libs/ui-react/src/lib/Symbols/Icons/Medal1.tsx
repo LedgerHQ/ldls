@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Medal1 icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Medal1 size={40} className="text-warning" />
  */
 export const Medal1 = createIcon(
-  "Medal1",
+  'Medal1',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Medal1 = createIcon(
       strokeWidth={1.3}
       d="M4.667 9.333v4.66c0 .18.146.327.333.327a.4.4 0 0 0 .133-.033l2.86-1.307 2.86 1.3c.167.073.36 0 .44-.167.014-.046.027-.093.027-.14v-4.74M8 1.333a4.667 4.667 0 1 0 0 9.334 4.667 4.667 0 0 0 0-9.334"
     />
-  </svg>
+  </svg>,
 );

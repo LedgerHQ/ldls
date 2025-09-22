@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * BellNotification icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <BellNotification size={40} className="text-warning" />
  */
 export const BellNotification = createIcon(
-  "BellNotification",
+  'BellNotification',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -43,7 +43,7 @@ export const BellNotification = createIcon(
           y={0}
           maskUnits="userSpaceOnUse"
           style={{
-            maskType: "alpha",
+            maskType: 'alpha',
           }}
         >
           <path
@@ -71,5 +71,5 @@ export const BellNotification = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>
+  </svg>,
 );

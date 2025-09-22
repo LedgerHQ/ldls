@@ -10,9 +10,6 @@
       "path": "../design-core"
     },
     {
-      "path": "../utils-shared"
-    },
-    {
       "path": "./tsconfig.lib.json"
     },
     {

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ShieldCheckNotification icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ShieldCheckNotification size={40} className="text-warning" />
  */
 export const ShieldCheckNotification = createIcon(
-  "ShieldCheckNotification",
+  'ShieldCheckNotification',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -42,7 +42,7 @@ export const ShieldCheckNotification = createIcon(
         y={0}
         maskUnits="userSpaceOnUse"
         style={{
-          maskType: "alpha",
+          maskType: 'alpha',
         }}
       >
         <path fill="#D9D9D9" d="M9.505 0A4.666 4.666 0 0 0 16 6.495V16H0V0z" />
@@ -63,5 +63,5 @@ export const ShieldCheckNotification = createIcon(
         <path fill="#fff" d="M0 0h16v16H0z" />
       </clipPath>
     </defs>
-  </svg>
+  </svg>,
 );

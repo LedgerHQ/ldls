@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * InformationFill icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <InformationFill size={40} className="text-warning" />
  */
 export const InformationFill = createIcon(
-  "InformationFill",
+  'InformationFill',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -37,5 +37,5 @@ export const InformationFill = createIcon(
       fill="currentColor"
       d="M8 1.35a6.65 6.65 0 0 1 0 13.3A6.646 6.646 0 0 1 1.35 8c0-3.679 2.978-6.65 6.65-6.65m0 6a.65.65 0 0 0-.65.65v3.333a.65.65 0 1 0 1.3 0V8A.65.65 0 0 0 8 7.35m-.01-2.666-.003-.001-.009.001a.814.814 0 0 0-.797.732l-.005.084.005.08c.04.395.373.737.813.737.242 0 .443-.11.575-.241A.82.82 0 0 0 8.81 5.5.82.82 0 0 0 8 4.684l-.006-.001zm-.003 1.3L7.9 5.975l-.002-.001c.03.004.059.01.089.01"
     />
-  </svg>
+  </svg>,
 );

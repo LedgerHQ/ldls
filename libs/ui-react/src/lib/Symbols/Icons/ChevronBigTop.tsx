@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ChevronBigTop icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ChevronBigTop size={40} className="text-warning" />
  */
 export const ChevronBigTop = createIcon(
-  "ChevronBigTop",
+  'ChevronBigTop',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const ChevronBigTop = createIcon(
       strokeWidth={1.3}
       d="M14 11 7.993 5 2 11"
     />
-  </svg>
+  </svg>,
 );

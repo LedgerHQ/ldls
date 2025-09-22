@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Reddit icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Reddit size={40} className="text-warning" />
  */
 export const Reddit = createIcon(
-  "Reddit",
+  'Reddit',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -43,5 +43,5 @@ export const Reddit = createIcon(
       d="M15 8.08c0 3.906-3.134 7.072-7 7.072S1 11.986 1 8.08s3.134-7.07 7-7.07 7 3.165 7 7.07m-3.357-1.033c.565 0 1.024.463 1.024 1.034 0 .422-.254.785-.59.95q.025.148.025.307c0 1.588-1.826 2.87-4.085 2.87S3.93 10.926 3.93 9.337q0-.164.025-.314a1.03 1.03 0 0 1-.606-.943c0-.57.458-1.034 1.023-1.034.27 0 .524.116.704.29.704-.521 1.679-.844 2.768-.877l.515-2.464a.2.2 0 0 1 .082-.116q.063-.037.14-.025l1.694.364a.71.71 0 0 1 .647-.414c.401 0 .729.331.729.736a.734.734 0 0 1-.729.736.733.733 0 0 1-.729-.703L8.68 4.252 8.213 6.46c1.064.041 2.03.372 2.726.877a.98.98 0 0 1 .704-.29"
       clipRule="evenodd"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Whatsapp icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Whatsapp size={40} className="text-warning" />
  */
 export const Whatsapp = createIcon(
-  "Whatsapp",
+  'Whatsapp',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const Whatsapp = createIcon(
       d="m4.578 13.324-1.798.3a.352.352 0 0 1-.405-.404l.3-1.798a6.345 6.345 0 1 1 1.903 1.902"
       clipRule="evenodd"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Expand icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Expand size={40} className="text-warning" />
  */
 export const Expand = createIcon(
-  "Expand",
+  'Expand',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Expand = createIcon(
       strokeWidth={1.3}
       d="M11.333 2H14m0 0v2.667M14 2l-4 4M2.667 7.333V4c0-.737.596-1.333 1.333-1.333h3.333M4.667 14H2m0 0v-2.667M2 14l4-4m7.333-1.333V12c0 .737-.596 1.333-1.333 1.333H8"
     />
-  </svg>
+  </svg>,
 );
