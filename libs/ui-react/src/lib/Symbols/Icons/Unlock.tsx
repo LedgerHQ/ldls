@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Unlock Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Unlock Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Unlock = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M14.667 4.013A2.66 2.66 0 0 0 12.087 2 2.67 2.67 0 0 0 9.42 4.667v2M10.667 14H4c-.74 0-1.333-.6-1.333-1.333V8c0-.74.593-1.333 1.333-1.333h6.667C11.4 6.667 12 7.26 12 8v4.667C12 13.4 11.4 14 10.667 14"
+      d="M11 3.01c-.22-.87-1-1.51-1.935-1.51-1.1 0-2 .895-2 2V5M8 10.5H3a1 1 0 0 1-1-1V6c0-.555.445-1 1-1h5a1 1 0 0 1 1 1v3.5c0 .55-.45 1-1 1"
     />
   </svg>
 );

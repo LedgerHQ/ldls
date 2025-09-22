@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Nft icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Nft = createIcon(
-  'Nft',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Nft",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4.333 9.667V6.333L6 9.667V6.333m1.667 3.334V6.333H9m2 3.334V6.333m0 0h-.667m.667 0h.667M8 8h.333m5.167 2.47V5.53c0-.437-.233-.84-.611-1.059L8.61 2.001a1.22 1.22 0 0 0-1.222 0L3.11 4.472A1.22 1.22 0 0 0 2.5 5.53v4.94c0 .436.233.84.611 1.058l4.278 2.47c.378.218.844.218 1.222 0l4.278-2.47c.378-.218.611-.621.611-1.058"
+      d="M3.25 7.25v-2.5l1.25 2.5v-2.5m1.25 2.5v-2.5h1m1.5 2.5v-2.5m0 0h-.5m.5 0h.5M6 6h.25m3.875 1.852V4.147a.92.92 0 0 0-.459-.794L6.458 1.501a.92.92 0 0 0-.917 0L2.334 3.354a.92.92 0 0 0-.458.793v3.705c0 .327.175.63.458.794l3.209 1.852a.92.92 0 0 0 .917 0l3.208-1.852a.92.92 0 0 0 .458-.794"
     />
-  </Svg>,
+  </Svg>
 );

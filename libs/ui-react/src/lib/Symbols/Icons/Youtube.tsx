@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Youtube Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Youtube Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,12 +31,12 @@ export const Youtube = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       fill="currentColor"
       fillRule="evenodd"
-      d="M13.47 3.299a1.77 1.77 0 0 1 1.238 1.263C15 5.675 15 8 15 8s0 2.325-.293 3.438a1.77 1.77 0 0 1-1.238 1.263C12.38 13 8 13 8 13s-4.378 0-5.47-.299a1.77 1.77 0 0 1-1.237-1.263C1 10.325 1 8 1 8s0-2.325.293-3.438A1.77 1.77 0 0 1 2.53 3.299C3.622 3 8 3 8 3s4.378 0 5.47.299M10.239 8 6.6 5.857v4.286z"
+      d="M10.103 2.474c.452.123.807.486.928.947.219.835.219 2.579.219 2.579s0 1.744-.22 2.579a1.33 1.33 0 0 1-.928.947C9.284 9.75 6 9.75 6 9.75s-3.284 0-4.102-.224a1.33 1.33 0 0 1-.928-.947C.75 7.744.75 6 .75 6s0-1.744.22-2.579c.12-.461.476-.824.928-.947C2.716 2.25 6 2.25 6 2.25s3.284 0 4.103.224M7.679 6l-2.73-1.607v3.214z"
       clipRule="evenodd"
     />
   </svg>

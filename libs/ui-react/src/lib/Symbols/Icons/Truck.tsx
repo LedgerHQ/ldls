@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Truck Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Truck Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Truck = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6.667 2.667h2.666c.367 0 .667.293.667.666V10H1.333m2 2.94H2a.67.67 0 0 1-.667-.667V8.66M10 4.667h2.882c.267 0 .513.16.613.413l1.067 2.673q.092.232.093.494v3.965c0 .367-.3.667-.666.667h-1.227m-2.095.068h-5.22m9.22-3.614H12V6.667h2.133m-12.8-4h3.334m-3.334 2h2M2 6.667h-.667m11.136 5.526c.407.407.407 1.08 0 1.494a1.067 1.067 0 0 1-1.493 0 1.054 1.054 0 0 1 0-1.494 1.054 1.054 0 0 1 1.493 0m-7.333 0c.407.407.407 1.08 0 1.494a1.067 1.067 0 0 1-1.493 0 1.054 1.054 0 0 1 0-1.494 1.054 1.054 0 0 1 1.493 0"
+      d="M5 2h2c.275 0 .5.22.5.5v5H1m1.5 2.205h-1a.5.5 0 0 1-.5-.5v-2.71M7.5 3.5h2.162c.2 0 .384.12.46.31l.8 2.005q.068.174.07.37v2.974c0 .275-.226.5-.5.5h-.92M8 9.71H4.085M11 7H9V5h1.6M1 2h2.5M1 3.5h1.5M1.5 5H1m8.352 4.145a.8.8 0 0 1 0 1.12.8.8 0 0 1-1.12 0 .79.79 0 0 1 0-1.12.79.79 0 0 1 1.12 0m-5.5 0a.8.8 0 0 1 0 1.12.8.8 0 0 1-1.12 0 .79.79 0 0 1 0-1.12.79.79 0 0 1 1.12 0"
     />
   </svg>
 );

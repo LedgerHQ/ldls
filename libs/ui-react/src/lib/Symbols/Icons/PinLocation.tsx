@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:PinLocation Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:PinLocation Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,21 +31,19 @@ export const PinLocation = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 8.667a2 2 0 1 1 0-4 2 2 0 0 1 0 4"
+      d="M6 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
     />
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 14s-4.667-3.833-4.667-7.333a4.667 4.667 0 0 1 9.333 0C12.667 10.167 8 14 8 14"
+      d="M6 10.5S2.5 7.625 2.5 5a3.5 3.5 0 0 1 7 0c0 2.625-3.5 5.5-3.5 5.5"
     />
   </svg>
 );

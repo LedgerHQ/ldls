@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Paste icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Paste = createIcon(
-  'Paste',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Paste",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8.333 8.333h3.334M8.333 10H10m-1.667 1.667h2.334M10 4v-.667C10 2.6 9.4 2 8.667 2H3.333C2.593 2 2 2.6 2 3.333v5.334C2 9.407 2.593 10 3.333 10H4m2-2.667v5.334C6 13.403 6.597 14 7.333 14h5.334c.736 0 1.333-.597 1.333-1.333V7.333C14 6.597 13.403 6 12.667 6H7.333C6.597 6 6 6.597 6 7.333"
+      d="M6.25 6.25h2.5M6.25 7.5H7.5M6.25 8.75H8M7.5 3v-.5c0-.55-.45-1-1-1h-4a1 1 0 0 0-1 1v4c0 .555.445 1 1 1H3m1.5-2v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1"
     />
-  </Svg>,
+  </Svg>
 );

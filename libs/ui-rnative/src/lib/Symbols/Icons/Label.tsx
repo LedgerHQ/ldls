@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Label icon component for React Native.
@@ -32,23 +32,21 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Label = createIcon(
-  'Label',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Label",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M5.542 5.173a.26.26 0 1 1-.367.366.26.26 0 0 1 .367-.366"
+      d="M4.157 3.88a.195.195 0 1 1-.276.275.195.195 0 0 1 .276-.276"
       clipRule="evenodd"
     />
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4.83 2.017 6.728 2c.354-.003.694.137.945.387l5.936 5.938c.52.521.52 1.366 0 1.886l-3.396 3.398a1.333 1.333 0 0 1-1.887 0l-5.94-5.942A1.32 1.32 0 0 1 2 6.733V4.858c0-.35.14-.687.387-.934l1.52-1.52a1.32 1.32 0 0 1 .922-.387"
+      d="M3.622 1.513 5.047 1.5a1 1 0 0 1 .708.29l4.453 4.454a1 1 0 0 1 0 1.415L7.66 10.207a1 1 0 0 1-1.415 0L1.79 5.75a1 1 0 0 1-.29-.7V3.644a1 1 0 0 1 .29-.701l1.14-1.14a1 1 0 0 1 .692-.29"
       clipRule="evenodd"
     />
-  </Svg>,
+  </Svg>
 );

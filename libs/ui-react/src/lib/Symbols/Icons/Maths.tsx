@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Maths Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Maths Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Maths = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.867 12h2m-2-2h2M2 8h12m-4-3h2M4 5h2M5 6V4m-.707 6.293 1.414 1.414m-1.414 0 1.414-1.414M8 2v12m6-1.565c0 .86-.707 1.56-1.567 1.56H3.56a1.57 1.57 0 0 1-1.567-1.567V3.553c0-.866.7-1.566 1.566-1.566h8.866c.86 0 1.56.7 1.56 1.565v8.867z"
+      d="M7.4 9h1.5M7.4 7.5h1.5M1.5 6h9m-3-2.25H9m-6 0h1.5m-.75.75V3m-.53 4.72 1.06 1.06m-1.06 0 1.06-1.06M6 1.5v9m4.5-1.174c0 .645-.53 1.17-1.175 1.17H2.67c-.65 0-1.175-.53-1.175-1.175V2.665c0-.65.525-1.175 1.174-1.175h6.65c.645 0 1.17.525 1.17 1.174v6.65z"
     />
   </svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Experiment icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Experiment = createIcon(
-  'Experiment',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Experiment",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.333 4v2.78c0 .353.14.687.387.94l3.213 3.213c.25.25.387.587.387.94v.78c0 .734-.6 1.334-1.333 1.334h-8c-.74 0-1.334-.6-1.334-1.334v-.786c0-.354.14-.694.387-.947L6.253 7.7c.25-.25.387-.593.387-.947V3.967M9.333 4C9.7 4 10 3.7 10 3.333v-.666C10 2.293 9.7 2 9.333 2H6.667A.664.664 0 0 0 6 2.667v.666C6 3.7 6.293 4 6.667 4zm-6.546 7.333h10.426m-6.666-4h2.906"
+      d="M7 3v2.085c0 .265.105.515.29.705L9.7 8.2c.187.188.29.44.29.705v.585c0 .55-.45 1-1 1h-6a1 1 0 0 1-1-1V8.9c0-.265.105-.52.29-.71l2.41-2.415c.187-.187.29-.445.29-.71v-2.09M7 3c.275 0 .5-.225.5-.5V2c0-.28-.225-.5-.5-.5H5c-.28 0-.5.224-.5.5v.5c0 .275.22.5.5.5zM2.09 8.5h7.82m-5-3h2.18"
     />
-  </Svg>,
+  </Svg>
 );

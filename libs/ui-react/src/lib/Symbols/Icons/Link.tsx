@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Link Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Link Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Link = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m9.417 11.508-.971.971a3.58 3.58 0 0 1-5.067 0 3.58 3.58 0 0 1 0-5.066l.974-.969M5.93 9.931l4.14-4.14M6.583 4.215l.971-.972a3.58 3.58 0 0 1 5.844 1.163 3.58 3.58 0 0 1-.777 3.904l-.974.969"
+      d="m7.063 8.631-.728.728a2.686 2.686 0 1 1-3.8-3.8l.73-.726m1.183 2.615 3.105-3.105M4.937 3.161l.729-.729a2.685 2.685 0 0 1 4.587 1.9 2.69 2.69 0 0 1-.787 1.9l-.731.727"
     />
   </svg>
 );

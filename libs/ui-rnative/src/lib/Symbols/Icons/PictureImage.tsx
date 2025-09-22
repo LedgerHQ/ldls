@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * PictureImage icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const PictureImage = createIcon(
-  'PictureImage',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "PictureImage",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m1.998 8.667.863-.864a1.61 1.61 0 0 1 2.274 0L8 10.668m-3.333 3.335 4.199-4.199a1.61 1.61 0 0 1 2.274 0l2.627 2.627m.236-1.096a2.67 2.67 0 0 1-2.668 2.667h-6.67a2.67 2.67 0 0 1-2.667-2.667v-6.67a2.67 2.67 0 0 1 2.667-2.667h6.67a2.67 2.67 0 0 1 2.668 2.667z"
+      d="m1.498 6.5.648-.648a1.206 1.206 0 0 1 1.706 0L6 8.001m-2.5 2.5 3.15-3.148a1.206 1.206 0 0 1 1.705 0l1.97 1.97m.177-.822a2 2 0 0 1-2 2H3.498a2 2 0 0 1-2-2V3.499a2 2 0 0 1 2-2h5.002a2 2 0 0 1 2 2z"
     />
-  </Svg>,
+  </Svg>
 );

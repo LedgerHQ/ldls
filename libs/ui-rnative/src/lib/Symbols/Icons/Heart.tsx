@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Heart icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Heart = createIcon(
-  'Heart',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Heart",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M10.467 2.667C12.58 2.667 14 4.653 14 6.507c0 3.753-5.893 6.826-6 6.826S2 10.26 2 6.507c0-1.854 1.42-3.84 3.533-3.84 1.214 0 2.007.606 2.467 1.14.46-.534 1.253-1.14 2.467-1.14"
+      d="M7.85 2c1.585 0 2.65 1.49 2.65 2.88C10.5 7.695 6.08 10 6 10S1.5 7.695 1.5 4.88C1.5 3.49 2.565 2 4.15 2c.91 0 1.505.455 1.85.855.345-.4.94-.855 1.85-.855"
     />
-  </Svg>,
+  </Svg>
 );

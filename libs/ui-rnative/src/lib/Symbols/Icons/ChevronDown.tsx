@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * ChevronDown icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const ChevronDown = createIcon(
-  'ChevronDown',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "ChevronDown",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M5.333 6.667 8 9.333l2.667-2.666"
+      d="m4 5 2 2 2-2"
     />
-  </Svg>,
+  </Svg>
 );

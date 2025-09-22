@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Globe Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Globe Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Globe = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2.34 6h11.32M2.34 10h11.32M8 2.067c2.889 0 2.889 11.866 0 11.866S5.111 2.067 8 2.067M8 2c3.32 0 6 2.679 6 6 0 3.32-2.68 6-6 6-3.321 0-6-2.68-6-6 0-3.321 2.679-6 6-6"
+      d="M1.755 4.5h8.49m-8.49 3h8.49M6 1.55c2.167 0 2.167 8.9 0 8.9s-2.167-8.9 0-8.9m0-.05c2.49 0 4.5 2.009 4.5 4.5S8.49 10.5 6 10.5 1.5 8.49 1.5 6 3.509 1.5 6 1.5"
     />
   </svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Bug Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Bug Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Bug = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M7.333 5.667 6.667 5m2 .667L9.333 5m2 1.333a4.716 4.716 0 0 1-6.666 0M5.9 9.78c-.46.22-.88.52-1.24.88m6.673.007a4.5 4.5 0 0 0-1.24-.887M5.5 8.5H4.333m7.334 0H10.5M8 5.667c-.663 0-1.299.28-1.768.78A2.76 2.76 0 0 0 5.5 8.334c0 .708.263 1.386.732 1.886.47.5 1.105.781 1.768.781s1.299-.281 1.768-.781a2.76 2.76 0 0 0 .732-1.886 2.76 2.76 0 0 0-.732-1.885A2.42 2.42 0 0 0 8 5.667M5.333 2h5.334A3.333 3.333 0 0 1 14 5.333v5.334A3.333 3.333 0 0 1 10.667 14H5.333A3.333 3.333 0 0 1 2 10.667V5.333A3.333 3.333 0 0 1 5.333 2"
+      d="m5.5 4.25-.5-.5m1.5.5.5-.5m1.5 1a3.537 3.537 0 0 1-5 0m.925 2.585c-.345.165-.66.39-.93.66M8.5 8a3.4 3.4 0 0 0-.93-.665m-3.445-.96H3.25m5.5 0h-.875M6 4.25c-.497 0-.974.21-1.326.586a2.07 2.07 0 0 0-.549 1.414c0 .53.198 1.04.55 1.414.35.375.828.586 1.325.586s.974-.21 1.326-.586a2.07 2.07 0 0 0 .549-1.414c0-.53-.198-1.04-.55-1.414A1.82 1.82 0 0 0 6 4.25M4 1.5h4A2.5 2.5 0 0 1 10.5 4v4A2.5 2.5 0 0 1 8 10.5H4A2.5 2.5 0 0 1 1.5 8V4A2.5 2.5 0 0 1 4 1.5"
     />
   </svg>
 );

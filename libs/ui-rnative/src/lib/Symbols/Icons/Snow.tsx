@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Snow icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Snow = createIcon(
-  'Snow',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Snow",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 2v12M9.445 2.947 8 4.387 6.552 2.941m6.781 1.979L2.667 11.08m10.426-4.355-1.98-.533.527-1.98M2.902 9.273l1.973.527-.533 1.973M2.667 4.92l10.666 6.16M2.902 6.725l1.973-.533-.533-1.98m8.751 5.061-1.98.527.527 1.973m-5.085 1.274 1.44-1.447 1.44 1.44"
+      d="M6 1.5v9m1.084-8.29L5.999 3.29 4.914 2.206M10 3.69 2 8.31m7.82-3.266-1.485-.4.395-1.485M2.176 6.955l1.48.395-.4 1.48M2 3.69l8 4.62M2.177 5.044l1.48-.4-.4-1.485M9.82 6.955l-1.485.395.395 1.48m-3.814.955L5.996 8.7l1.08 1.08"
     />
-  </Svg>,
+  </Svg>
 );

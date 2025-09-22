@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Tablet Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Tablet Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Tablet = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M8 11.917a.085.085 0 0 0-.087.083c0 .04.033.083.083.083.04 0 .083-.04.083-.083a.085.085 0 0 0-.086-.083m4.674.583v-9c0-.833-.674-1.5-1.5-1.5H4.833c-.833 0-1.5.667-1.5 1.5v9c0 .827.667 1.5 1.5 1.5h6.334c.826 0 1.5-.673 1.5-1.5"
+      d="M6 8.938A.064.064 0 0 0 5.934 9c0 .03.026.063.063.063.03 0 .063-.03.063-.063a.064.064 0 0 0-.065-.062m3.505.437v-6.75C9.5 2 8.995 1.5 8.375 1.5h-4.75C3 1.5 2.5 2 2.5 2.625v6.75c0 .62.5 1.125 1.125 1.125h4.75c.62 0 1.125-.505 1.125-1.125"
     />
   </svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Chart2 icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Chart2 = createIcon(
-  'Chart2',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Chart2",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m3.333 10.587 3.38-3.381a.65.65 0 0 1 .94 0l1.428 1.427c.26.26.68.26.94 0l3.973-3.974m-1.774.008h1.773V6.44M14 13.953H1.28V2.147"
+      d="m2.5 7.94 2.535-2.536c.195-.2.51-.2.705 0l1.07 1.07c.196.195.51.195.705 0l2.98-2.98m-1.33.006h1.33v1.33m.005 5.634H.96V1.61"
     />
-  </Svg>,
+  </Svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Incognito icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Incognito = createIcon(
-  'Incognito',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Incognito",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m3.958 6 .481-2.888a1.335 1.335 0 0 1 1.316-1.114h4.41c.652 0 1.208.471 1.315 1.114l.482 2.887m-5.145 6.003a2 2 0 1 1-4.002 0 2 2 0 0 1 4.002 0m0 0c.632-.763 1.655-.763 2.287 0m0 0a2 2 0 1 0 4.002 0 2 2 0 0 0-4.002 0M1.998 8.667c3.315-1.779 8.69-1.779 12.005 0"
+      d="m2.969 4.5.36-2.166c.08-.482.499-.836.987-.836h3.307a1 1 0 0 1 .987.836l.361 2.165M5.113 9.001a1.5 1.5 0 1 1-3.002 0 1.5 1.5 0 0 1 3.002 0m0 0c.473-.572 1.241-.572 1.715 0m0 0a1.5 1.5 0 1 0 3.001 0 1.5 1.5 0 0 0-3.001 0m-5.33-2.5c2.487-1.335 6.517-1.335 9.004 0"
     />
-  </Svg>,
+  </Svg>
 );

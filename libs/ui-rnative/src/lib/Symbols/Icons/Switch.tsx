@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Switch icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Switch = createIcon(
-  'Switch',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Switch",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M11 11a3 3 0 0 1 0-6m0 6a3 3 0 0 0 0-6m0 6H5a3 3 0 0 1 0-6h6"
+      d="M8.25 8.25a2.25 2.25 0 0 1 0-4.5m0 4.5a2.25 2.25 0 0 0 0-4.5m0 4.5h-4.5a2.25 2.25 0 0 1 0-4.5h4.5"
     />
-  </Svg>,
+  </Svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Mobile icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Mobile = createIcon(
-  'Mobile',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Mobile",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6.333 2v1.2a.37.37 0 0 0 .334.4h2.666a.38.38 0 0 0 .333-.4V2m-3 10h2.667m1.334 2H5.333C4.593 14 4 13.4 4 12.667V3.333C4 2.593 4.593 2 5.333 2h5.334C11.4 2 12 2.593 12 3.333v9.334C12 13.4 11.4 14 10.667 14"
+      d="M4.75 1.5v.9c-.015.15.095.28.25.3h2c.15-.02.26-.15.25-.3v-.9M5 9h2m1 1.5H4a1 1 0 0 1-1-1v-7c0-.555.445-1 1-1h4a1 1 0 0 1 1 1v7c0 .55-.45 1-1 1"
     />
-  </Svg>,
+  </Svg>
 );

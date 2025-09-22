@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Cart icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Cart = createIcon(
-  'Cart',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Cart",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m5.333 11.667-2-9.334H2m3.5 9.334h6.667m-6.667 0A1.167 1.167 0 1 0 5.5 14a1.167 1.167 0 0 0 0-2.333m6.667 0a1.167 1.167 0 1 0 0 2.333 1.167 1.167 0 0 0 0-2.333M3.76 4.333h9.567a.66.66 0 0 1 .666.66.7.7 0 0 1-.026.167l-1.067 4a.68.68 0 0 1-.647.493H4.887"
+      d="m4 8.75-1.5-7h-1m2.625 7h5m-5 0a.875.875 0 1 0 0 1.75.875.875 0 0 0 0-1.75m5 0a.875.875 0 1 0 0 1.75.875.875 0 0 0 0-1.75M2.82 3.25h7.175c.275-.005.5.22.5.495 0 .04-.01.085-.02.125l-.8 3a.51.51 0 0 1-.485.37H3.665"
     />
-  </Svg>,
+  </Svg>
 );

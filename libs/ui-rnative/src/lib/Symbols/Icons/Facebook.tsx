@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Facebook icon component for React Native.
@@ -32,11 +32,11 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Facebook = createIcon(
-  'Facebook',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Facebook",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       fill="currentColor"
-      d="M15 8.044C15 4.155 11.864 1 8 1S1 4.155 1 8.044C1 11.562 3.56 14.478 6.911 15v-4.925H5.124V8.044H6.91V6.49C6.911 4.73 7.95 3.75 9.55 3.75c.764 0 1.557.145 1.557.145v1.72h-.88c-.872 0-1.146.55-1.146 1.102v1.32h1.947l-.31 2.031H9.08v4.926c3.36-.515 5.919-3.431 5.919-6.95"
+      d="M11.25 6.033C11.25 3.117 8.898.75 6 .75S.75 3.117.75 6.033c0 2.638 1.92 4.825 4.434 5.217V7.556H3.843V6.033h1.34V4.868c0-1.322.78-2.056 1.98-2.056.573 0 1.167.109 1.167.109v1.29h-.66c-.654 0-.859.413-.859.826v.99h1.46l-.233 1.524H6.811v3.694c2.52-.387 4.439-2.574 4.439-5.212"
     />
-  </Svg>,
+  </Svg>
 );

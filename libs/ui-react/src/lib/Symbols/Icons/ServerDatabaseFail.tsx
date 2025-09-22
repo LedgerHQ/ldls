@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:ServerDatabaseFail Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:ServerDatabaseFail Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const ServerDatabaseFail = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M3.667 6.333A4.326 4.326 0 0 1 8 2a4.33 4.33 0 0 1 4.333 4.333m-8.666 0a4.333 4.333 0 1 0 8.667 0m-8.667 0h8.666m-5.333 6 2 2m-2 0 2-2m1.667 1h2.666m-10.666 0h2.666M7.118 2.51c-1.393 2.323-1.393 5.32 0 7.647.407.68 1.353.68 1.76 0 1.387-2.327 1.387-5.324 0-7.647a1.02 1.02 0 0 0-1.767 0z"
+      d="M2.75 4.75C2.75 2.951 4.2 1.5 6 1.5c1.795 0 3.25 1.45 3.25 3.25m-6.5 0a3.25 3.25 0 1 0 6.5 0m-6.5 0h6.5m-4 4.5 1.5 1.5m-1.5 0 1.5-1.5M8 10h2m-8 0h2m1.338-8.117a5.64 5.64 0 0 0 0 5.735.76.76 0 0 0 1.32 0 5.66 5.66 0 0 0 0-5.735.765.765 0 0 0-1.325-.001z"
     />
   </svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:SoftRepair Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:SoftRepair Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const SoftRepair = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2 6h12M7.333 3.997h-.006V3.99l-.007-.007m-1.653.014H5.66V3.99l-.007-.007M4 3.997h-.007V3.99l-.006-.007M14 7V4c0-1.107-.9-2-2-2H4c-1.107 0-2 .893-2 2v8a2 2 0 0 0 2 2h3.333M14 12.577c-.1.3-.273.574-.493.8a2.143 2.143 0 0 1-3.387-.5m3.753-2.037a2.14 2.14 0 0 0-2.9-.86c-.18.093-.346.22-.493.36a1.95 1.95 0 0 0-.493.8m3.068-.294h.94V9.9m-3.048 2.988H10v.94"
+      d="M1.5 4.5h9m-5-1.502h-.005v-.006l-.005-.005m-1.24.01h-.005v-.004l-.005-.006M3 2.997h-.005v-.004l-.005-.006M10.5 5.25V3c0-.83-.675-1.5-1.5-1.5H3c-.83 0-1.5.67-1.5 1.5v6A1.5 1.5 0 0 0 3 10.5h2.5m5-1.067a1.6 1.6 0 0 1-.37.6 1.607 1.607 0 0 1-2.54-.375m2.815-1.528a1.606 1.606 0 0 0-2.175-.645c-.135.07-.26.165-.37.27-.17.165-.295.37-.37.6m2.302-.22h.704v-.71M8.21 9.665H7.5v.705"
     />
   </svg>
 );

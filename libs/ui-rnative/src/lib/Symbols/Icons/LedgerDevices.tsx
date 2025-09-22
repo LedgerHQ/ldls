@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * LedgerDevices icon component for React Native.
@@ -32,11 +32,11 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const LedgerDevices = createIcon(
-  'LedgerDevices',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "LedgerDevices",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       fill="currentColor"
-      d="M8 14.65a.65.65 0 1 0 0-1.3zm2.683-11.317a.65.65 0 1 0 1.3 0zm1.3-.083a.65.65 0 1 0-1.3 0zm-1.3.167a.65.65 0 1 0 1.3 0zM8 14v-.65H4.667v1.3H8zm-3.333 0v-.65a.683.683 0 0 1-.684-.683h-1.3c0 1.095.888 1.983 1.984 1.983zm-1.334-1.333h.65V3.333h-1.3v9.334zm0-9.334h.65c0-.377.306-.683.684-.683v-1.3a1.983 1.983 0 0 0-1.984 1.983zM4.667 2v.65H10v-1.3H4.667zM10 2v.65c.377 0 .683.306.683.683h1.3A1.983 1.983 0 0 0 10 1.35zm1.333 1.25h-.65v.167h1.3V3.25zM10.8 5.667v.65h1.067v-1.3H10.8zm1.867.8h-.65V13.2h1.3V6.467zm-.8 7.533v-.65H10.8v1.3h1.067zM10 13.2h.65V6.467h-1.3V13.2zm.8.8v-.65a.15.15 0 0 1-.15-.15h-1.3c0 .8.65 1.45 1.45 1.45zm1.867-.8h-.65a.15.15 0 0 1-.15.15v1.3c.8 0 1.45-.65 1.45-1.45zm-.8-7.533v.65a.15.15 0 0 1 .15.15h1.3c0-.801-.65-1.45-1.45-1.45zm-1.067 0v-.65c-.8 0-1.45.649-1.45 1.45h1.3a.15.15 0 0 1 .15-.15zm1.867 5.666h-.65V13.2h1.3v-1.867zM10 13.2h.65v-1.867h-1.3V13.2zm2.667-1.867h.65a1.983 1.983 0 0 0-1.984-1.983v1.3c.378 0 .684.306.684.683zm-2.667 0h.65c0-.377.306-.683.683-.683v-1.3a1.983 1.983 0 0 0-1.983 1.983z"
+      d="M6 11a.5.5 0 0 0 0-1v1m2-8.5a.5.5 0 0 0 1 0H8m1-.062a.5.5 0 0 0-1 0h1m-1 .124a.5.5 0 0 0 1 0H8M6 10.5V10H3.5v1H6zm-2.5 0V10a.5.5 0 0 1-.5-.5H2A1.5 1.5 0 0 0 3.5 11zm-1-1H3v-7H2v7zm0-7H3a.5.5 0 0 1 .5-.5V1A1.5 1.5 0 0 0 2 2.5zm1-1V2h4V1h-4zm4 0V2a.5.5 0 0 1 .5.5h1A1.5 1.5 0 0 0 7.5 1zm1 .938H8v.124h1v-.124zM8.1 4.25v.5h.8v-1h-.8zm1.4.6H9V9.9h1V4.85zm-.6 5.65V10h-.8v1h.8zm-1.4-.6H8V4.85H7V9.9zm.6.6V10a.1.1 0 0 1-.1-.1H7A1.1 1.1 0 0 0 8.1 11zm1.4-.6H9a.1.1 0 0 1-.1.1v1A1.1 1.1 0 0 0 10 9.9zm-.6-5.65v.5a.1.1 0 0 1 .1.1h1a1.1 1.1 0 0 0-1.1-1.1zm-.8 0v-.5A1.1 1.1 0 0 0 7 4.85h1a.1.1 0 0 1 .1-.1zM9.5 8.5H9v1.4h1V8.5zm-2 1.4H8V8.5H7v1.4zm2-1.4h.5A1.5 1.5 0 0 0 8.5 7v1a.5.5 0 0 1 .5.5zm-2 0H8a.5.5 0 0 1 .5-.5V7A1.5 1.5 0 0 0 7 8.5z"
     />
-  </Svg>,
+  </Svg>
 );

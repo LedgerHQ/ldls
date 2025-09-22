@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Folder Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Folder Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Folder = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M14 6V4.667c0-.74-.6-1.334-1.333-1.334h-5.5m.96 1.927L7.193 3.4A1.34 1.34 0 0 0 6 2.66H3.32v-.007c-.74 0-1.333.594-1.333 1.334v8c0 .733.593 1.333 1.333 1.333h9.333c.734 0 1.334-.6 1.334-1.333v-6h-4.68c-.507 0-.974-.287-1.194-.74z"
+      d="M10.5 4.5v-1a1 1 0 0 0-1-1H5.375m.72 1.445-.7-1.395c-.17-.34-.52-.555-.895-.555H2.49V1.99c-.555 0-1 .445-1 1v6a1 1 0 0 0 1 1h7c.55 0 1-.45 1-1v-4.5H6.98a.99.99 0 0 1-.895-.555z"
     />
   </svg>
 );

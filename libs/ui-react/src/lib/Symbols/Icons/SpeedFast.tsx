@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:SpeedFast Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:SpeedFast Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const SpeedFast = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m8.94 7.727 3.393-3.394m1.12 1.874a5.95 5.95 0 0 1-1.693 7.12m-1.307-10.12a5.9 5.9 0 0 0-2.46-.547h0c-3.314-.007-6 2.68-6.007 5.993a5.99 5.99 0 0 0 2.227 4.666M8 7.327a1.333 1.333 0 1 0 0 2.666 1.333 1.333 0 0 0 0-2.666"
+      d="M6.705 5.795 9.25 3.25m.84 1.405a4.46 4.46 0 0 1-1.27 5.34m-.98-7.59a4.45 4.45 0 0 0-1.845-.41h0A4.5 4.5 0 0 0 1.488 6.49a4.49 4.49 0 0 0 1.67 3.5M6 5.495a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
     />
   </svg>
 );

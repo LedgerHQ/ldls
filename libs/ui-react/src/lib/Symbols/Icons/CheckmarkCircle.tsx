@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:CheckmarkCircle Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:CheckmarkCircle Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const CheckmarkCircle = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m5.63 8.226 1.444 1.445-.01-.01 3.26-3.259M14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0"
+      d="m4.222 6.17 1.084 1.083-.008-.007 2.445-2.445M10.5 6a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0"
     />
   </svg>
 );

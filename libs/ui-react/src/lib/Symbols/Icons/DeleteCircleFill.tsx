@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:DeleteCircleFill Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:DeleteCircleFill Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,12 +31,12 @@ export const DeleteCircleFill = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       fill="currentColor"
       fillRule="evenodd"
-      d="M1.5 8c0-3.596 2.91-6.5 6.5-6.5a6.5 6.5 0 1 1 0 13c-3.596 0-6.5-2.91-6.5-6.5m4.967-2.24a.5.5 0 0 0-.707.707L7.293 8 5.76 9.533a.5.5 0 0 0 .707.707L8 8.707l1.533 1.533a.5.5 0 0 0 .707-.707L8.707 8l1.533-1.533a.5.5 0 0 0-.707-.707L8 7.293z"
+      d="M1.125 6A4.87 4.87 0 0 1 6 1.125a4.875 4.875 0 1 1 0 9.75A4.87 4.87 0 0 1 1.125 6M4.85 4.32a.375.375 0 1 0-.53.53L5.47 6 4.32 7.15a.375.375 0 1 0 .53.53L6 6.53l1.15 1.15a.375.375 0 0 0 .53-.53L6.53 6l1.15-1.15a.375.375 0 0 0-.53-.53L6 5.47z"
       clipRule="evenodd"
     />
   </svg>

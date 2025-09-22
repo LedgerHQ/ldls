@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Signature icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Signature = createIcon(
-  'Signature',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Signature",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.006 12.667h4m-10.65-7.3A2.5 2.5 0 0 1 2 4.053 1.89 1.89 0 0 1 3.667 2C5.507 2 7 4.686 7 8s-1.343 6-3 6h.001c-.92 0-1.668-1.194-1.668-2.667A5.336 5.336 0 0 1 7.671 6h-.004A2.517 2.517 0 0 1 10 8.668a6.5 6.5 0 0 1-.334 1.999c1.2-3.61 2.335-4 3.001-4A1.333 1.333 0 0 1 14 8"
+      d="M6.755 9.5h3M1.767 4.025A1.9 1.9 0 0 1 1.5 3.04 1.42 1.42 0 0 1 2.75 1.5c1.38 0 2.5 2.015 2.5 4.5S4.243 10.5 3 10.5h.001c-.691 0-1.251-.895-1.251-2a4 4 0 0 1 4.003-4H5.75a1.89 1.89 0 0 1 1.75 2A4.9 4.9 0 0 1 7.25 8C8.15 5.293 9 5 9.5 5a1 1 0 0 1 1 1"
     />
-  </Svg>,
+  </Svg>
 );

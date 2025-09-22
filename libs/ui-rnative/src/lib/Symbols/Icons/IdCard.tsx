@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * IdCard icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const IdCard = createIcon(
-  'IdCard',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "IdCard",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M6.727 5.433c.58.58.58 1.534 0 2.12-.587.58-1.54.58-2.127 0a1.505 1.505 0 0 1 0-2.126 1.497 1.497 0 0 1 2.12 0m3.28.906h2.667M11.6 9H10m-1.94 2c-.12-.293-.3-.56-.533-.77a2.1 2.1 0 0 0-1.438-.566h-.867a2.12 2.12 0 0 0-1.971 1.33m-1.918 1.34v-8.64c0-.754.607-1.367 1.36-1.367h10.64c.733 0 1.333.593 1.333 1.333v8.667c0 .733-.6 1.333-1.333 1.333H2.666c-.737 0-1.333-.6-1.333-1.333z"
+      d="M5.045 4.075c.435.435.435 1.15 0 1.59a1.14 1.14 0 0 1-1.595 0 1.13 1.13 0 0 1 0-1.595c.435-.44 1.15-.44 1.59 0m2.46.68h2m-.8 2H7.5m-1.455 1.5c-.09-.22-.225-.42-.4-.577a1.58 1.58 0 0 0-1.078-.425h-.65a1.59 1.59 0 0 0-1.479.997M1 9.25V2.77c0-.565.455-1.025 1.02-1.025H10a1 1 0 0 1 1 1v6.5c0 .55-.45 1-1 1H2c-.553 0-1-.45-1-1z"
     />
-  </Svg>,
+  </Svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Grid Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Grid Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Grid = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M5.167 6.5H3.333C2.597 6.5 2 5.9 2 5.167V3.333C2 2.597 2.597 2 3.333 2h1.834C5.9 2 6.5 2.597 6.5 3.333v1.834C6.5 5.9 5.9 6.5 5.167 6.5M12.667 6.5h-1.834c-.74 0-1.333-.6-1.333-1.333V3.333A1.33 1.33 0 0 1 10.833 2h1.834C13.4 2 14 2.597 14 3.333v1.834C14 5.9 13.4 6.5 12.667 6.5M5.167 14H3.333C2.597 14 2 13.4 2 12.667v-1.834c0-.74.597-1.333 1.333-1.333h1.834c.733 0 1.333.593 1.333 1.333v1.834C6.5 13.4 5.9 14 5.167 14M12.667 14h-1.834c-.74 0-1.333-.6-1.333-1.333v-1.834c0-.74.593-1.333 1.333-1.333h1.834c.733 0 1.333.593 1.333 1.333v1.834C14 13.4 13.4 14 12.667 14"
+      d="M3.875 4.875H2.5c-.552 0-1-.45-1-1V2.5a1 1 0 0 1 1-1h1.375c.55 0 1 .448 1 1v1.375c0 .55-.45 1-1 1M9.5 4.875H8.125a1 1 0 0 1-1-1V2.5c0-.552.445-1 1-1H9.5c.55 0 1 .448 1 1v1.375c0 .55-.45 1-1 1M3.875 10.5H2.5c-.552 0-1-.45-1-1V8.125c0-.555.448-1 1-1h1.375a1 1 0 0 1 1 1V9.5c0 .55-.45 1-1 1M9.5 10.5H8.125a1 1 0 0 1-1-1V8.125c0-.555.445-1 1-1H9.5a1 1 0 0 1 1 1V9.5c0 .55-.45 1-1 1"
       clipRule="evenodd"
     />
   </svg>

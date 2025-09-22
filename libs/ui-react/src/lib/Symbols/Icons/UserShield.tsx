@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UserShield Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UserShield Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const UserShield = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M7.562 10.667c-1.433 0-2.8.566-3.807 1.573M14 8c0-3.32-2.687-6-6-6-3.32 0-6 2.68-6 6 0 3.313 2.68 6 6 6m2-3.033v.56a2.48 2.48 0 0 0 1.62 2.34l.286.106q.081.03.173 0l.287-.113a2.51 2.51 0 0 0 1.62-2.347v-.566a.51.51 0 0 0-.353-.48l-1.5-.474a.46.46 0 0 0-.3 0l-1.5.467a.486.486 0 0 0-.354.473zM10 6.5v.333c0 1.1-.9 2-2 2-1.107 0-2-.9-2-2V6.5c0-1.107.893-2 2-2 1.1 0 2 .893 2 2"
+      d="M5.672 8c-1.075 0-2.1.425-2.855 1.18M10.5 6c0-2.49-2.015-4.5-4.5-4.5-2.49 0-4.5 2.01-4.5 4.5 0 2.485 2.01 4.5 4.5 4.5m1.5-2.275v.42c-.005.78.48 1.48 1.214 1.755l.216.08q.061.023.13 0l.214-.085a1.88 1.88 0 0 0 1.216-1.76V8.21c0-.165-.11-.31-.265-.36L9.1 7.495a.35.35 0 0 0-.226 0l-1.125.35a.365.365 0 0 0-.264.355zm0-3.35v.25c0 .825-.675 1.5-1.5 1.5-.83 0-1.5-.675-1.5-1.5v-.25a1.501 1.501 0 0 1 3 0"
     />
   </svg>
 );

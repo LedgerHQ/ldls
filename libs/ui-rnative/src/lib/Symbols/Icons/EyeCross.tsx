@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * EyeCross icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const EyeCross = createIcon(
-  'EyeCross',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "EyeCross",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M9.7 9.033a2.014 2.014 0 0 1-2.747.7 2.01 2.01 0 0 1-.707-2.746c.167-.294.407-.534.7-.707m5.047 5.047a6.62 6.62 0 0 1-4 1.333A6.3 6.3 0 0 1 2.29 9.267h-.003c-.4-.807-.4-1.747 0-2.554A5.9 5.9 0 0 1 4.8 4.133m8.813 5.287c.027-.053.06-.1.087-.153a2.91 2.91 0 0 0 0-2.554A6.29 6.29 0 0 0 7.993 3.32c-.154 0-.3.02-.447.027M14 13.333 2.667 2"
+      d="M7.275 6.775a1.51 1.51 0 0 1-2.06.525 1.507 1.507 0 0 1-.53-2.06c.124-.22.304-.4.524-.53m3.786 3.785a4.97 4.97 0 0 1-3 1A4.73 4.73 0 0 1 1.716 6.95h-.002a2.15 2.15 0 0 1 0-1.915c.41-.825 1.07-1.5 1.885-1.935m6.61 3.965c.02-.04.045-.075.065-.115a2.18 2.18 0 0 0 0-1.915 4.72 4.72 0 0 0-4.28-2.545c-.116 0-.226.015-.336.02M10.5 10 2 1.5"
     />
-  </Svg>,
+  </Svg>
 );

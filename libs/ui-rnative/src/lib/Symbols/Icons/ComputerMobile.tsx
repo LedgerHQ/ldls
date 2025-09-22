@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * ComputerMobile icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const ComputerMobile = createIcon(
-  'ComputerMobile',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "ComputerMobile",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M12.667 7.333V4c0-.74-.6-1.333-1.334-1.333H2.667c-.74 0-1.334.593-1.334 1.333v5.333c0 .734.594 1.334 1.334 1.334h8m-2.334 2.666v-2.666m-2.666 0v2.666m-.834 0h4.334m4.5 0h-2c-.554 0-1-.453-1-1v-4c0-.553.446-1 1-1h2c.546 0 1 .447 1 1v4c0 .547-.454 1-1 1"
+      d="M9.5 5.5V3a1 1 0 0 0-1-1H2c-.555 0-1 .445-1 1v4a1 1 0 0 0 1 1h6m-1.75 2V8m-2 0v2m-.625 0h3.25m3.375 0h-1.5A.75.75 0 0 1 8 9.25v-3c0-.415.335-.75.75-.75h1.5c.41 0 .75.335.75.75v3c0 .41-.34.75-.75.75"
     />
-  </Svg>,
+  </Svg>
 );

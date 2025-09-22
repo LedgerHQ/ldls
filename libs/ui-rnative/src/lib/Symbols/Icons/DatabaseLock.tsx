@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * DatabaseLock icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const DatabaseLock = createIcon(
-  'DatabaseLock',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "DatabaseLock",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2.667 9.407c0 .973 2.246 1.76 5.02 1.76m4.98-7.407c0 .973-2.24 1.76-5 1.76-2.767 0-5-.793-5-1.767m10 2.834c0 .973-2.24 1.76-5 1.76-2.767 0-5-.794-5-1.767M13.149 12v-.853c0-.607-.52-1.154-1.154-1.154-.64 0-1.153.514-1.153 1.147v.847M7.691 14c-2.775 0-5.024-.793-5.024-1.767V3.76c0-.98 2.233-1.767 5-1.767 2.76 0 5 .787 5 1.76v4.234m.684 6.68h-2.702a.654.654 0 0 1-.653-.654V12.64c0-.36.287-.653.647-.653h2.701c.353 0 .647.286.647.646V14a.653.653 0 0 1-.654.647z"
+      d="M2 7.055c0 .73 1.685 1.32 3.765 1.32M9.5 2.82c0 .73-1.68 1.32-3.75 1.32C3.675 4.14 2 3.545 2 2.815M9.5 4.94c0 .73-1.68 1.32-3.75 1.32C3.675 6.26 2 5.665 2 4.935M9.861 9v-.64a.88.88 0 0 0-.865-.865.86.86 0 0 0-.864.86v.635M5.768 10.5C3.687 10.5 2 9.905 2 9.175V2.82c0-.735 1.675-1.325 3.75-1.325 2.07 0 3.75.59 3.75 1.32V5.99m.513 5.01H7.987a.49.49 0 0 1-.49-.49V9.48c0-.27.215-.49.485-.49h2.026c.265 0 .485.215.485.485V10.5a.49.49 0 0 1-.49.485z"
     />
-  </Svg>,
+  </Svg>
 );

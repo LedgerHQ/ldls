@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * RefreshBack icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const RefreshBack = createIcon(
-  'RefreshBack',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "RefreshBack",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M3.008 3.093V5.45h2.357m-2.05 0A5.334 5.334 0 1 1 2.666 8"
+      d="M2.256 2.32v1.768h1.767m-1.537 0A4 4 0 0 1 10 6a4 4 0 0 1-8 0"
     />
-  </Svg>,
+  </Svg>
 );

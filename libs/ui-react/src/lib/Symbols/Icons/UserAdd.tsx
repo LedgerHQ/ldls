@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UserAdd Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UserAdd Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const UserAdd = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M12 11.833h-1.667m.834-.833v1.667M6.667 10h-2A2.666 2.666 0 0 0 2 12.667v.666M11.167 9a2.833 2.833 0 1 0 0 5.667 2.833 2.833 0 0 0 0-5.667M7.333 2a2.667 2.667 0 1 0 0 5.333 2.667 2.667 0 0 0 0-5.333"
+      d="M9 8.875H7.75m.625-.625V9.5M5 7.5H3.5a2 2 0 0 0-2 2v.5m6.875-3.25a2.125 2.125 0 1 0 0 4.25 2.125 2.125 0 0 0 0-4.25M5.5 1.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
     />
   </svg>
 );

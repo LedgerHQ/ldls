@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Percentage icon component for React Native.
@@ -32,13 +32,12 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Percentage = createIcon(
-  'Percentage',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Percentage",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
-      strokeWidth={1.3}
-      d="M14 2 2 14m11.6-2.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM6.4 4.4a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+      d="m10.5 1.5-9 9m8.7-1.8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM4.8 3.3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
     />
-  </Svg>,
+  </Svg>
 );

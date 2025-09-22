@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Lock icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Lock = createIcon(
-  'Lock',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Lock",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M5.333 6.667v-2a2.666 2.666 0 1 1 5.334 0v2M11.333 14H4.667c-.74 0-1.334-.6-1.334-1.333V8c0-.74.594-1.333 1.334-1.333h6.666c.734 0 1.334.593 1.334 1.333v4.667c0 .733-.6 1.333-1.334 1.333"
+      d="M4 5V3.5a2 2 0 1 1 4 0V5m.5 5.5h-5a1 1 0 0 1-1-1V6c0-.555.445-1 1-1h5a1 1 0 0 1 1 1v3.5c0 .55-.45 1-1 1"
     />
-  </Svg>,
+  </Svg>
 );

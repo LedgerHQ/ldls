@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * ArrowLeft icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const ArrowLeft = createIcon(
-  'ArrowLeft',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "ArrowLeft",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M3.333 8h9.334M3.333 8l3.334-3.333M3.333 8l3.334 3.333"
+      d="M2.5 6h7m-7 0L5 3.5M2.5 6 5 8.5"
     />
-  </Svg>,
+  </Svg>
 );

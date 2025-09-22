@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Shapes icon component for React Native.
@@ -32,29 +32,26 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Shapes = createIcon(
-  'Shapes',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Shapes",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M4.377 9.623c0-.427.346-.773.773-.773h.988c.427 0 .773.346.773.773v.988a.773.773 0 0 1-.773.773H5.15a.773.773 0 0 1-.773-.773zM11.713 10.118a1.417 1.417 0 1 1-2.833 0 1.417 1.417 0 0 1 2.833 0"
+      d="M3.282 7.217c0-.32.26-.58.58-.58h.741c.32 0 .58.26.58.58v.741c0 .32-.26.58-.58.58h-.74a.58.58 0 0 1-.58-.58zM8.785 7.588a1.062 1.062 0 1 1-2.125 0 1.062 1.062 0 0 1 2.125 0"
     />
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m7.737 4.562-1.085 1.88a.367.367 0 0 0 .317.55h2.17a.367.367 0 0 0 .318-.55l-1.085-1.88a.367.367 0 0 0-.635 0"
+      d="m5.802 3.421-.813 1.41a.275.275 0 0 0 .238.413h1.627a.275.275 0 0 0 .239-.412l-.814-1.41a.275.275 0 0 0-.477 0"
       clipRule="evenodd"
     />
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M1.998 5.33A3.333 3.333 0 0 1 5.33 1.999h5.338a3.333 3.333 0 0 1 3.334 3.333v5.338a3.333 3.333 0 0 1-3.334 3.333H5.331a3.333 3.333 0 0 1-3.333-3.333z"
+      d="M1.498 3.998a2.5 2.5 0 0 1 2.5-2.5h4.004a2.5 2.5 0 0 1 2.5 2.5v4.004a2.5 2.5 0 0 1-2.5 2.5H3.998a2.5 2.5 0 0 1-2.5-2.5z"
     />
-  </Svg>,
+  </Svg>
 );

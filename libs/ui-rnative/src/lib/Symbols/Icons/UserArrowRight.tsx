@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * UserArrowRight icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const UserArrowRight = createIcon(
-  'UserArrowRight',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "UserArrowRight",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M11.333 13.333A2.916 2.916 0 0 0 8.4 10.4H5a2.916 2.916 0 0 0-2.933 2.933M11.333 8h3.334m0 0-1.334 1.333M14.667 8l-1.334-1.333M4.667 3.6C3.6 4.667 3.6 6.467 4.667 7.533 5.733 8.6 7.533 8.6 8.6 7.533s1.067-2.866 0-3.933-2.8-1.067-3.933 0"
+      d="M8.5 10c0-1.25-1-2.2-2.2-2.2H3.75c-1.25 0-2.2 1-2.2 2.2M8.5 6H11m0 0-1 1m1-1-1-1M3.5 2.7c-.8.8-.8 2.15 0 2.95s2.15.8 2.95 0 .8-2.15 0-2.95-2.1-.8-2.95 0"
     />
-  </Svg>,
+  </Svg>
 );

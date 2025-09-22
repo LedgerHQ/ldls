@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Range icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Range = createIcon(
-  'Range',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Range",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M2 13.333h5.333M2 10.667h4M2 8h5.333M2 5.333h4M2 2.667h5.333M12 13.333V2.667m0 10.666 1.667-1.666M12 13.333l-1.667-1.666m1.667-9-1.667 1.666M12 2.667l1.667 1.666"
+      d="M1.5 10h4m-4-2h3m-3-2h4m-4-2h3m-3-2h4M9 10V2m0 8 1.25-1.25M9 10 7.75 8.75M9 2 7.75 3.25M9 2l1.25 1.25"
     />
-  </Svg>,
+  </Svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * P2p icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const P2p = createIcon(
-  'P2p',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "P2p",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M14.002 10v-.666a1.965 1.965 0 0 0-2-2h-1.334M8 10v-.667a1.965 1.965 0 0 0-2-2H3.997a1.965 1.965 0 0 0-2 2V10m10.004 3.404v-1.704h-1.73m-6.274 0a4.412 4.412 0 0 0 7.75 0M6.665 3.665a1.667 1.667 0 1 1-3.335 0 1.667 1.667 0 0 1 3.335 0m6.002.333a1.334 1.334 0 1 1-2.667 0 1.334 1.334 0 0 1 2.668 0"
+      d="M10.502 7.5V7a1.474 1.474 0 0 0-1.5-1.5H8M6 7.5V7a1.474 1.474 0 0 0-1.5-1.5H2.998a1.474 1.474 0 0 0-1.5 1.5v.5M9 10.055V8.775H7.705m-4.706 0a3.309 3.309 0 0 0 5.812 0M5 2.75a1.25 1.25 0 1 1-2.501 0 1.25 1.25 0 0 1 2.5 0m4.501.25a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
     />
-  </Svg>,
+  </Svg>
 );

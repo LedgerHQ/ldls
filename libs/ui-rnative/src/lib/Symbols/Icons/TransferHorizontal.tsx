@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * TransferHorizontal icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const TransferHorizontal = createIcon(
-  'TransferHorizontal',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "TransferHorizontal",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m5.333 9.333-2 2m0 0 2 2m-2-2h9.334m-2-4.666 2-2m0 0-2-2m2 2H3.333"
+      d="M4 7 2.5 8.5m0 0L4 10M2.5 8.5h7M8 5l1.5-1.5m0 0L8 2m1.5 1.5h-7"
     />
-  </Svg>,
+  </Svg>
 );

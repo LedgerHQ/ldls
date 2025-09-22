@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Airplane Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Airplane Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,20 +31,19 @@ export const Airplane = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <g clipPath="url(#clip0_436_164)">
       <path
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={1.3}
-        d="m2 8-.666-2.667h1.2c.066 0 .2.067.266.134l1.067 1.2h3.2L4.934 1.8c-.134-.2 0-.467.266-.467h1.134c.2 0 .4.134.533.267L10.2 6.667h3.134c.733 0 1.333.6 1.333 1.333s-.6 1.333-1.333 1.333H10.2L6.867 14.4c-.133.2-.333.267-.533.267H5.2c-.266 0-.4-.267-.333-.467L7 9.333H3.8l-1.066 1.2c-.067.067-.134.134-.267.134H1.334z"
+        d="M1.5 6 1 4h.9c.05 0 .15.05.2.1l.8.9h2.4L3.7 1.35c-.1-.15 0-.35.2-.35h.85c.15 0 .3.1.4.2L7.65 5H10c.55 0 1 .45 1 1s-.45 1-1 1H7.65l-2.5 3.8c-.1.15-.25.2-.4.2H3.9c-.2 0-.3-.2-.25-.35L5.25 7h-2.4l-.8.9c-.05.05-.1.1-.2.1H1z"
       />
     </g>
     <defs>
       <clipPath id="clip0_436_164">
-        <path fill="#fff" d="M0 0h16v16H0z" />
+        <path fill="#fff" d="M0 0h12v12H0z" />
       </clipPath>
     </defs>
   </svg>

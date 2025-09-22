@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Nano icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Nano = createIcon(
-  'Nano',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Nano",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M11.333 11.944a.279.279 0 0 0 .556 0 .28.28 0 0 0-.278-.277.28.28 0 0 0-.278.283M6.172 8 3.236 5.064a.333.333 0 0 1 0-.471l2.357-2.357c.13-.13.341-.13.471 0L11.83 8m-9.536 6H12a2 2 0 1 0 0-4H2.293a.293.293 0 0 0-.293.293v3.414c0 .162.131.293.293.293"
+      d="M8.5 8.958c0 .117.092.209.208.209a.21.21 0 0 0 .209-.209.21.21 0 0 0-.209-.208.21.21 0 0 0-.208.213M4.629 6 2.427 3.798a.25.25 0 0 1 0-.353l1.768-1.768a.25.25 0 0 1 .353 0L8.871 6M1.72 10.5H9a1.5 1.5 0 1 0 0-3H1.72a.22.22 0 0 0-.22.22v2.56c0 .122.098.22.22.22"
     />
-  </Svg>,
+  </Svg>
 );

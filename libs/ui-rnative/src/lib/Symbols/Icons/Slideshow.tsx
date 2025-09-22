@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Slideshow icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Slideshow = createIcon(
-  'Slideshow',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "Slideshow",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m6.667 3.333-1.334-.666v10.666l1.334-.666m-4-9.334-1.334-.666v10.666l1.334-.666m12-1.334-5.334 2V2.667l5.334 2z"
+      d="M5 2.5 4 2v8l1-.5m-3-7L1 2v8l1-.5m9-1L7 10V2l4 1.5z"
     />
-  </Svg>,
+  </Svg>
 );

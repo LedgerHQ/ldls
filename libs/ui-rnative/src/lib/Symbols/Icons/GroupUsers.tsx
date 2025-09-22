@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * GroupUsers icon component for React Native.
@@ -32,14 +32,13 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const GroupUsers = createIcon(
-  'GroupUsers',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "GroupUsers",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="M13.86 6.347c.527.526.527 1.38 0 1.906a1.356 1.356 0 0 1-1.913 0 1.344 1.344 0 0 1 0-1.913 1.337 1.337 0 0 1 1.906 0m-4.386-2.4a2.08 2.08 0 0 1 0 2.933 2.09 2.09 0 0 1-2.94 0 2.076 2.076 0 0 1 0-2.94 2.07 2.07 0 0 1 2.933 0M4.04 6.347c.527.526.527 1.38 0 1.906a1.356 1.356 0 0 1-1.913 0 1.344 1.344 0 0 1 0-1.913 1.337 1.337 0 0 1 1.906 0m11.3 6.327v-.734c0-.926-.746-1.666-1.666-1.666h-.54m-12.46 2.4v-.734c0-.926.74-1.666 1.666-1.666h.534m8.686 2.4v-1.074A2.33 2.33 0 0 0 9.22 9.26H6.767a2.327 2.327 0 0 0-2.334 2.333v1.067"
+      d="M10.395 4.76a1.01 1.01 0 0 1 0 1.43c-.4.395-1.04.395-1.435 0-.4-.4-.4-1.04 0-1.435.395-.4 1.035-.4 1.43 0m-3.29-1.8a1.56 1.56 0 0 1 0 2.2 1.566 1.566 0 0 1-2.205 0 1.557 1.557 0 0 1 0-2.205c.605-.61 1.59-.61 2.2 0M3.03 4.76a1.01 1.01 0 0 1 0 1.43c-.4.395-1.04.395-1.435 0-.4-.4-.4-1.04 0-1.435.395-.4 1.035-.4 1.43 0M11.5 9.5v-.55c0-.695-.56-1.25-1.25-1.25h-.405M.5 9.5v-.55c0-.695.555-1.25 1.25-1.25h.4m6.515 1.8v-.805c0-.97-.785-1.75-1.75-1.75h-1.84c-.97 0-1.75.78-1.75 1.75v.8"
     />
-  </Svg>,
+  </Svg>
 );

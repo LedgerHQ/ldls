@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * MobileArrow icon component for React Native.
@@ -32,14 +32,14 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const MobileArrow = createIcon(
-  'MobileArrow',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  "MobileArrow",
+  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 12 12">
     <Path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.3}
-      d="M6.333 2v1.333c0 .18.154.334.334.334h2.666a.334.334 0 0 0 .334-.334V2M4 11.333v1.334C4 13.4 4.6 14 5.333 14h5.334c.74 0 1.333-.6 1.333-1.333V3.333C12 2.593 11.407 2 10.667 2H5.333C4.6 2 4 2.593 4 3.333v1.334M1.333 8h3.334m0 0L3.333 6.667M4.667 8 3.333 9.333"
+      d="M4.75 1.5v1c0 .135.115.25.25.25h2a.25.25 0 0 0 .25-.25v-1M3 8.5v1c0 .55.45 1 1 1h4a1 1 0 0 0 1-1v-7c0-.555-.445-1-1-1H4a1 1 0 0 0-1 1v1M1 6h2.5m0 0-1-1m1 1-1 1"
     />
-  </Svg>,
+  </Svg>
 );

@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Medal2 Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Medal2 Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -31,14 +31,13 @@ export const Medal2 = createIcon(
     width="1em"
     height="1em"
     fill="currentColor"
-    viewBox="0 0 16 16"
+    viewBox="0 0 12 12"
   >
     <path
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m4.08 9.2-2.087 2.133 1.667 1 1 1.667 2.593-2.733m1.48.003 2.594 2.727 1-1.667 1.666-1-2.086-2.133m-.614-5.83a4.663 4.663 0 1 1-6.6 6.593 4.665 4.665 0 0 1-.006-6.6 4.65 4.65 0 0 1 6.593 0M7.993 8.39l1.194.626c.233.12.5-.08.46-.34l-.234-1.34.967-.947a.323.323 0 0 0-.18-.546l-1.34-.2-.6-1.22a.318.318 0 0 0-.573 0l-.6 1.213-1.34.193a.317.317 0 0 0-.18.54l.966.94L6.3 8.643a.316.316 0 0 0 .46.333l1.193-.633h-.006z"
+      d="M3.06 6.9 1.495 8.5l1.25.75.75 1.25L5.44 8.45m1.11.002 1.945 2.046.75-1.25 1.25-.75-1.565-1.6m-.46-4.373A3.498 3.498 0 1 1 3.52 7.47a3.5 3.5 0 0 1-.005-4.95 3.49 3.49 0 0 1 4.945 0M5.995 6.291l.895.47c.175.09.375-.06.345-.255L7.06 5.502l.725-.71c.14-.14.06-.38-.135-.41l-1.005-.15-.45-.915a.239.239 0 0 0-.43 0l-.45.91-1.005.145a.238.238 0 0 0-.135.405l.725.705-.175 1c-.035.195.17.34.345.25l.895-.475H5.96z"
     />
   </svg>
 );
