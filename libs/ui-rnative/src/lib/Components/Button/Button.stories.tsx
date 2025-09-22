@@ -55,6 +55,10 @@ const meta: Meta<typeof Button> = {
       control: 'text',
       description: 'The content to be displayed inside the button',
     },
+    isFull: {
+      control: 'boolean',
+      description: 'Whether the button is full width',
+    },
   },
 };
 
