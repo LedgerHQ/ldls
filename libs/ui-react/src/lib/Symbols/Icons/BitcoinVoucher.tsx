@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * BitcoinVoucher icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <BitcoinVoucher size={40} className="text-warning" />
  */
 export const BitcoinVoucher = createIcon(
-  "BitcoinVoucher",
+  'BitcoinVoucher',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -45,5 +45,5 @@ export const BitcoinVoucher = createIcon(
       fill="currentColor"
       d="M10.352 7.412c.097-.63-.397-.97-1.073-1.195l.22-.855-.536-.129-.213.832q-.211-.051-.429-.098l.215-.837L8.001 5l-.22.854q-.175-.038-.34-.078v-.003l-.738-.179-.143.555s.397.089.389.094c.217.053.256.192.25.303l-.25.973.055.017-.056-.014-.35 1.363c-.027.064-.094.16-.246.124.006.007-.389-.095-.389-.095l-.265.595.696.17q.195.047.382.095l-.222.864.535.129.22-.854q.217.056.426.107l-.219.85.535.13.222-.862c.912.168 1.599.1 1.888-.702.232-.645-.012-1.018-.492-1.26.35-.079.613-.302.683-.764M9.13 9.078c-.165.646-1.284.296-1.647.209l.294-1.145c.363.089 1.526.263 1.353.936m.166-1.675c-.151.587-1.082.289-1.384.215l.266-1.037c.302.073 1.275.21 1.118.822"
     />
-  </svg>
+  </svg>,
 );

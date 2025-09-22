@@ -114,6 +114,11 @@
         "^build"
       ]
     },
+    "lint": {
+      "dependsOn": [
+        "build"
+      ]
+    },
     "test": {
       "dependsOn": [
         "^build"

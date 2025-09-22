@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Range icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Range size={40} className="text-warning" />
  */
 export const Range = createIcon(
-  "Range",
+  'Range',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Range = createIcon(
       strokeWidth={1.3}
       d="M2 13.333h5.333M2 10.667h4M2 8h5.333M2 5.333h4M2 2.667h5.333M12 13.333V2.667m0 10.666 1.667-1.666M12 13.333l-1.667-1.666m1.667-9-1.667 1.666M12 2.667l1.667 1.666"
     />
-  </svg>
+  </svg>,
 );

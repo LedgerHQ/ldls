@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Home icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Home size={40} className="text-warning" />
  */
 export const Home = createIcon(
-  "Home",
+  'Home',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Home = createIcon(
       strokeWidth={1.3}
       d="M2.667 5.733V14h10.666V5.733m-12 .934L8 2l6.667 4.667M10 14v-4c0-.74-.6-1.333-1.333-1.333H7.333C6.593 8.667 6 9.26 6 10v4"
     />
-  </svg>
+  </svg>,
 );

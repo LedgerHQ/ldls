@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MoreVertical icon component.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <MoreVertical size={40} className="text-warning" />
  */
 export const MoreVertical = createIcon(
-  "MoreVertical",
+  'MoreVertical',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const MoreVertical = createIcon(
       strokeWidth={1.3}
       d="M7.993 11.667A.33.33 0 0 0 7.66 12c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333m.006-4A.33.33 0 0 0 7.66 8c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333m.006-4A.33.33 0 0 0 7.66 4c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333"
     />
-  </svg>
+  </svg>,
 );
