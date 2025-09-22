@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * GroupUsersAdd icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const GroupUsersAdd = createIcon(
-  'GroupUsersAdd',
+  "GroupUsersAdd",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const GroupUsersAdd = createIcon(
       strokeWidth={1.3}
       d="M2 14a2.33 2.33 0 0 1 2.327-2.333H7a2.326 2.326 0 0 1 2.327 2.326m1.34-2.322h1a2.326 2.326 0 0 1 2.326 2.326M11.92 3h2.829m-1.414 1.414V1.586M5.667 5.67a2 2 0 1 0 0 4 2 2 0 0 0 0-4m5 1.333a1.333 1.333 0 1 0 0 2.667 1.333 1.333 0 0 0 0-2.667"
     />
-  </Svg>,
+  </Svg>
 );

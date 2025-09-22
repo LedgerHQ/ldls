@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * CheckmarkCircleFill icon component for React Native.
@@ -32,18 +32,11 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const CheckmarkCircleFill = createIcon(
-  'CheckmarkCircleFill',
+  "CheckmarkCircleFill",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
-      d="M8 1.35A6.65 6.65 0 1 1 8 14.65 6.65 6.65 0 0 1 8 1.35"
+      d="M8.001 1.35a6.65 6.65 0 1 1-.003 13.301A6.65 6.65 0 0 1 8.001 1.35m2.795 4.58a.67.67 0 0 0-.944 0L7.064 8.718l-.963-.962a.666.666 0 1 0-.943.942l1.444 1.445a.67.67 0 0 0 1.027-.105l3.167-3.164a.667.667 0 0 0 0-.942"
     />
-    <Path
-      stroke="#fff"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.3}
-      d="m5.63 8.226 1.444 1.445m-.01-.01 3.26-3.259"
-    />
-  </Svg>,
+  </Svg>
 );

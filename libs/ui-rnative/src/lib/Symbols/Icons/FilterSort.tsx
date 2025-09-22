@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * FilterSort icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const FilterSort = createIcon(
-  'FilterSort',
+  "FilterSort",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -42,5 +42,5 @@ export const FilterSort = createIcon(
       d="m9.667 9 3.471-3.471a.67.67 0 0 0 .195-.472V3.333a.667.667 0 0 0-.666-.666H3.333a.667.667 0 0 0-.666.666v1.724c0 .177.07.347.195.472L6.333 9M6.333 9v4.166c0 .542.51.94 1.036.809l1.666-.417a.834.834 0 0 0 .632-.809V9"
       clipRule="evenodd"
     />
-  </Svg>,
+  </Svg>
 );

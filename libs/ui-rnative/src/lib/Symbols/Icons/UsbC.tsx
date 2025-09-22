@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * UsbC icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const UsbC = createIcon(
-  'UsbC',
+  "UsbC",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const UsbC = createIcon(
       strokeWidth={1.3}
       d="M6.667 12.667v2M5.333 6V2.667A.66.66 0 0 1 6 2h4c.367 0 .667.293.667.667V6m-1.334 6.667v2M5 6h6c.547 0 1 .447 1 1v3.667c0 1.1-.9 2-2 2H6c-1.107 0-2-.9-2-2V7c0-.553.447-1 1-1"
     />
-  </Svg>,
+  </Svg>
 );

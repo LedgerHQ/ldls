@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * CreditCard icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const CreditCard = createIcon(
-  'CreditCard',
+  "CreditCard",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const CreditCard = createIcon(
       strokeWidth={1.3}
       d="M2 6h12M6.38 8.667H4.667m7.333 4H4a2 2 0 0 1-2-2V5.333a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.334a2 2 0 0 1-2 2"
     />
-  </Svg>,
+  </Svg>
 );

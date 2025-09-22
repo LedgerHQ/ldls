@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Trash icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Trash = createIcon(
-  'Trash',
+  "Trash",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Trash = createIcon(
       strokeWidth={1.3}
       d="M12.333 4.333v8.334A1.334 1.334 0 0 1 11 14H5a1.334 1.334 0 0 1-1.333-1.333V4.333m9.666 0H2.667m6.666 7v-4m-2.666 4v-4m-1-3V3a1 1 0 0 1 1-1h2.666a1 1 0 0 1 1 1v1"
     />
-  </Svg>,
+  </Svg>
 );

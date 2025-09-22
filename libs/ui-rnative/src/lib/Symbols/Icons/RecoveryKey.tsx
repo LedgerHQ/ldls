@@ -1,5 +1,5 @@
-import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * RecoveryKey icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const RecoveryKey = createIcon(
-  'RecoveryKey',
+  "RecoveryKey",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_7062_10)">
       <Path
@@ -48,5 +48,5 @@ export const RecoveryKey = createIcon(
         <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
-  </Svg>,
+  </Svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * ExternalLink icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const ExternalLink = createIcon(
-  'ExternalLink',
+  "ExternalLink",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const ExternalLink = createIcon(
       strokeWidth={1.3}
       d="m8 8 5-5m0 0v3.667M13 3H9.333M6 3H4.333C3.597 3 3 3.597 3 4.333v7.334C3 12.4 3.597 13 4.333 13h7.334C12.4 13 13 12.4 13 11.667V10"
     />
-  </Svg>,
+  </Svg>
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * SettingsAlt icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const SettingsAlt = createIcon(
-  'SettingsAlt',
+  "SettingsAlt",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const SettingsAlt = createIcon(
       strokeWidth={1.3}
       d="M12 3.333h2m-12 0h5.333M8.667 8H14M2 8h2m8 4.667h2m-12 0h5.333m4.276-10.28c.52.52.52 1.36 0 1.88-.526.52-1.366.52-1.886 0a1.324 1.324 0 0 1 0-1.887 1.316 1.316 0 0 1 1.88 0m-5.33 4.677c.52.52.52 1.36 0 1.88-.526.52-1.366.52-1.886 0a1.324 1.324 0 0 1 0-1.886 1.316 1.316 0 0 1 1.88 0m5.342 4.673c.52.52.52 1.36 0 1.88-.526.52-1.366.52-1.886 0a1.324 1.324 0 0 1 0-1.887 1.316 1.316 0 0 1 1.88 0"
     />
-  </Svg>,
+  </Svg>
 );

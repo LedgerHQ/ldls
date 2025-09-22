@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * WarningFill icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const WarningFill = createIcon(
-  'WarningFill',
+  "WarningFill",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
@@ -40,5 +40,5 @@ export const WarningFill = createIcon(
       d="M9.773 2.506c-.79-1.388-2.789-1.392-3.575 0v.002L1.1 11.44c-.784 1.372.206 3.08 1.787 3.08h10.212c1.576 0 2.572-1.712 1.788-3.08zM8.5 6.253a.5.5 0 1 0-1 0v2.494a.5.5 0 0 0 1 0zm-.506 3.997h-.007q-.021 0-.041.002a.665.665 0 0 0-.62.665c0 .35.285.666.668.666.196 0 .36-.088.469-.197a.67.67 0 0 0 .197-.47.67.67 0 0 0-.666-.666"
       clipRule="evenodd"
     />
-  </Svg>,
+  </Svg>
 );

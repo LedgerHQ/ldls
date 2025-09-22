@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Circles icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Circles = createIcon(
-  'Circles',
+  "Circles",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Circles = createIcon(
       strokeWidth={1.3}
       d="M11.333 2.511a6 6 0 0 0-6.666 0m5.986 10.369a6 6 0 0 0 3.334-5.773m-8.64 5.773a6 6 0 0 1-3.334-5.773m11.89-3.315a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414m-10.388 0a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414m5.194 9a1 1 0 1 1-1.414 1.414 1 1 0 0 1 1.414-1.414M9.65 5.85a2.333 2.333 0 1 1-3.3 3.3 2.333 2.333 0 0 1 3.3-3.3"
     />
-  </Svg>,
+  </Svg>
 );

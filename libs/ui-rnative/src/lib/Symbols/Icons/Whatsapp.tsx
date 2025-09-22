@@ -1,5 +1,5 @@
-import Svg, { Path } from 'react-native-svg';
-import createIcon from '../../Components/Icon/createIcon';
+import Svg, { Path } from "react-native-svg";
+import createIcon from "../../Components/Icon/createIcon";
 
 /**
  * Whatsapp icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * </Button>
  */
 export const Whatsapp = createIcon(
-  'Whatsapp',
+  "Whatsapp",
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
@@ -48,5 +48,5 @@ export const Whatsapp = createIcon(
       d="m4.578 13.324-1.798.3a.352.352 0 0 1-.405-.404l.3-1.798a6.345 6.345 0 1 1 1.903 1.902"
       clipRule="evenodd"
     />
-  </Svg>,
+  </Svg>
 );
