@@ -1,8 +1,8 @@
 import nx from '@nx/eslint-plugin';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import { globalIgnores } from 'eslint/config';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-export default [
+export default defineConfig(
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -15,7 +15,7 @@ export default [
     ],
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -64,4 +64,4 @@ export default [
   },
   eslintPluginPrettierRecommended,
   globalIgnores(['**/out-tsc']),
-];
+);
