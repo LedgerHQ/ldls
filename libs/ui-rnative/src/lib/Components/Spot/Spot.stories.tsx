@@ -1,8 +1,9 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { Spot, SpotAppearance } from './Spot';
 import { Settings, Plus, Heart, Star } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
+import { View, Text } from 'react-native';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,
@@ -101,9 +102,9 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex flex-wrap gap-16 p-8 text-base">
+      <View className="flex flex-row flex-wrap gap-16 p-8 text-base">
         {appearances.map(({ name, appearance, icon, number }) => (
-          <div
+          <View
             key={appearance}
             className="flex w-64 flex-col items-center gap-4"
           >
@@ -112,10 +113,10 @@ export const AppearanceShowcase: Story = {
               icon={icon}
               number={number as any}
             />
-            <span className="text-xs text-center text-muted">{name}</span>
-          </div>
+            <Text className="text-xs text-center text-muted">{name}</Text>
+          </View>
         ))}
-      </div>
+      </View>
     );
   },
 };
@@ -130,11 +131,11 @@ export const IconVariants: Story = {
     ];
 
     return (
-      <div className="flex gap-8 p-8">
+      <View className="flex flex-row gap-8 p-8">
         {icons.map(({ name, component: Icon }) => (
           <Spot key={name} appearance="icon" icon={Icon} />
         ))}
-      </div>
+      </View>
     );
   },
 };
@@ -144,11 +145,11 @@ export const NumberVariants: Story = {
     const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
     return (
-      <div className="flex flex-wrap gap-8 p-8">
+      <View className="flex flex-row flex-wrap gap-8 p-8">
         {numbers.map((num) => (
           <Spot key={num} appearance="number" number={num} />
         ))}
-      </div>
+      </View>
     );
   },
 };
@@ -174,13 +175,13 @@ export const SizesShowcase: Story = {
     const sizes = [48, 56, 72] as const;
 
     return (
-      <div className="flex flex-col gap-16 p-8 text-base">
+      <View className="flex flex-col gap-16 p-8 text-base">
         {sizes.map((size) => (
-          <div key={size} className="flex flex-col gap-4">
-            <h3>Size {size}px</h3>
-            <div className="flex flex-wrap gap-16">
+          <View key={size} className="flex flex-col gap-4">
+            <Text>Size {size}px</Text>
+            <View className="flex flex-row flex-wrap gap-16">
               {appearances.map(({ name, appearance, icon, number }) => (
-                <div
+                <View
                   key={`${appearance}-${size}`}
                   className="flex flex-col items-center gap-4"
                 >
@@ -190,13 +191,13 @@ export const SizesShowcase: Story = {
                     number={number as any}
                     size={size}
                   />
-                  <span className="text-xs text-center text-muted">{name}</span>
-                </div>
+                  <Text className="text-xs text-center text-muted">{name}</Text>
+                </View>
               ))}
-            </div>
-          </div>
+            </View>
+          </View>
         ))}
-      </div>
+      </View>
     );
   },
 };
@@ -204,30 +205,30 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <div className="flex flex-col gap-16 text-base">
-        <div className="flex flex-col gap-8">
-          <div>Default</div>
-          <div className="flex flex-wrap gap-16">
-            <div className="flex w-64 flex-col items-center gap-4">
+      <View className="flex flex-col gap-16 text-base">
+        <View className="flex flex-col gap-8">
+          <Text>Default</Text>
+          <View className="flex flex-row flex-wrap gap-16">
+            <View className="flex w-64 flex-col items-center gap-4">
               <Spot appearance="icon" icon={Settings} />
-            </div>
-            <div className="flex w-64 flex-col items-center gap-4">
+            </View>
+            <View className="flex w-64 flex-col items-center gap-4">
               <Spot appearance="bluetooth" />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-8">
-          <div>Disabled</div>
-          <div className="flex flex-wrap gap-16">
-            <div className="flex w-64 flex-col items-center gap-4">
+            </View>
+          </View>
+        </View>
+        <View className="flex flex-col gap-8">
+          <Text>Disabled</Text>
+          <View className="flex flex-row flex-wrap gap-16">
+            <View className="flex w-64 flex-col items-center gap-4">
               <Spot appearance="icon" icon={Settings} disabled />
-            </div>
-            <div className="flex w-64 flex-col items-center gap-4">
+            </View>
+            <View className="flex w-64 flex-col items-center gap-4">
               <Spot appearance="bluetooth" disabled />
-            </div>
-          </div>
-        </div>
-      </div>
+            </View>
+          </View>
+        </View>
+      </View>
     );
   },
 };

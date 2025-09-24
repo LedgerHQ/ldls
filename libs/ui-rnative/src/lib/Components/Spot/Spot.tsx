@@ -1,15 +1,16 @@
 import { cva } from 'class-variance-authority';
 import { IconSize } from '../Icon/Icon';
-import { HTMLAttributes, useMemo } from 'react';
+import { useMemo } from 'react';
+import { View, Text, ViewProps } from 'react-native';
 import {
-  BluetoothCircleFill,
+  Bluetooth,
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
   Spinner,
   WarningFill,
 } from '../../Symbols';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '../../utils';
 
 const spotVariants = cva(
   'flex items-center justify-center rounded-full bg-muted-transparent',
@@ -23,7 +24,7 @@ const spotVariants = cva(
         warning: 'text-warning',
         info: 'text-muted',
         loader: '',
-        number: 'text-base heading-4',
+        number: 'text-base',
       },
       disabled: {
         true: 'text-disabled',
@@ -106,7 +107,7 @@ type DiscriminatedSpotProps =
 export type SpotSize = 48 | 56 | 72;
 
 export type SpotProps = DiscriminatedSpotProps &
-  HTMLAttributes<HTMLDivElement> & {
+  ViewProps & {
     /**
      * Whether the spot is disabled.
      * @default false
@@ -117,6 +118,10 @@ export type SpotProps = DiscriminatedSpotProps &
      * @default 48
      */
     size?: SpotSize;
+    /**
+     * Additional CSS classes for styling.
+     */
+    className?: string;
   };
 
 /**
@@ -127,16 +132,16 @@ export type SpotProps = DiscriminatedSpotProps &
  * - `'number'` appearance requires a `number` prop
  * - All other appearances are self-contained
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/media-graphics-spot--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_media-graphics-spot--docs Storybook}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the spot's core appearance (colors, size, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Spot } from '@ledgerhq/ldls-ui-react';
+ * import { Spot } from '@ledgerhq/ldls-ui-rnative';
  *
  * // Custom icon spot
- * import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Spot appearance="icon" icon={Settings} />
  *
@@ -179,11 +184,12 @@ export const Spot = (props: SpotProps) => {
       }
       case 'number': {
         return (
-          <span className={calculatedNumberTypography}>{props.number}</span>
+          <Text className={calculatedNumberTypography}>{props.number}</Text>
         );
       }
       case 'bluetooth':
-        return <BluetoothCircleFill size={calculatedIconSize} />;
+        // TODO: Replace with BluetoothCircleFill
+        return <Bluetooth size={calculatedIconSize} />;
       case 'check':
         return <CheckmarkCircleFill size={calculatedIconSize} />;
       case 'error':
@@ -198,11 +204,16 @@ export const Spot = (props: SpotProps) => {
   }, [props, calculatedIconSize, calculatedNumberTypography]);
 
   return (
-    <div
-      className={cn(className, spotVariants({ appearance, disabled, size }))}
+    <View
+      testID="spot-container"
+      className={cn(
+        className,
+        spotVariants({ appearance, disabled, size }),
+        appearance === 'number' && calculatedNumberTypography,
+      )}
       {...rest}
     >
       {content}
-    </div>
+    </View>
   );
 };
