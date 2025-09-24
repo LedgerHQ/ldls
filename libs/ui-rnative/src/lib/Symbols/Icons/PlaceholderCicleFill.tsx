@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PlaceholderCicleFill icon component for React Native.
@@ -32,11 +32,11 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const PlaceholderCicleFill = createIcon(
-  "PlaceholderCicleFill",
+  'PlaceholderCicleFill',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
       d="M8 1.6A6.4 6.4 0 1 1 8 14.4 6.4 6.4 0 0 1 8 1.6M4.15 4.15v7.7h7.7v-7.7zm5.481 6.4H6.37L8 8.92zM7.081 8 5.45 9.63V6.37zm3.47 1.63L8.918 8l1.631-1.63zm-.92-4.18L7.998 7.08 6.37 5.45z"
     />
-  </Svg>
+  </Svg>,
 );

@@ -28,6 +28,9 @@
   "references": [
     {
       "path": "../design-core/tsconfig.lib.json"
+    },
+    {
+      "path": "../utils-shared/tsconfig.lib.json"
     }
   ]
 }

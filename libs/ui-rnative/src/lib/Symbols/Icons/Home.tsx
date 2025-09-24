@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Home icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Home = createIcon(
-  "Home",
+  'Home',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Home = createIcon(
       strokeWidth={1.3}
       d="M2.667 5.733V14h10.666V5.733m-12 .934L8 2l6.667 4.667M10 14v-4c0-.74-.6-1.333-1.333-1.333H7.333C6.593 8.667 6 9.26 6 10v4"
     />
-  </Svg>
+  </Svg>,
 );

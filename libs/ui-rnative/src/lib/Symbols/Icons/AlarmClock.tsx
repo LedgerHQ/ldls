@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * AlarmClock icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const AlarmClock = createIcon(
-  "AlarmClock",
+  'AlarmClock',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const AlarmClock = createIcon(
       strokeWidth={1.3}
       d="M3.113 11.473c.39.546.868 1.024 1.414 1.414M2.09 7A6 6 0 0 0 2 8c0 .341.035.674.09 1m1.023-4.473a6 6 0 0 1 1.414-1.414M7 13.91c.326.055.659.09 1 .09A6 6 0 1 0 8 2a6 6 0 0 0-1 .09m3.667 4.577L7.333 10l-2-2"
     />
-  </Svg>
+  </Svg>,
 );

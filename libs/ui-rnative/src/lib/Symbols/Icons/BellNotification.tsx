@@ -1,5 +1,5 @@
-import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * BellNotification icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const BellNotification = createIcon(
-  "BellNotification",
+  'BellNotification',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <G clipPath="url(#clip0_3_362)">
       <G clipPath="url(#clip1_3_362)">
@@ -44,7 +44,7 @@ export const BellNotification = createIcon(
           y={0}
           maskUnits="userSpaceOnUse"
           style={{
-            maskType: "alpha",
+            maskType: 'alpha',
           }}
         >
           <Path
@@ -72,5 +72,5 @@ export const BellNotification = createIcon(
         <Path fill="#fff" d="M0 0h16v16H0z" />
       </ClipPath>
     </Defs>
-  </Svg>
+  </Svg>,
 );

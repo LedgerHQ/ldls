@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * At icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const At = createIcon(
-  "At",
+  'At',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const At = createIcon(
       strokeWidth={1.3}
       d="M11.333 14H8a6 6 0 1 1 6-6v1a1.666 1.666 0 1 1-3.333 0V8m0 0a2.667 2.667 0 1 0-5.334 0 2.667 2.667 0 0 0 5.334 0"
     />
-  </Svg>
+  </Svg>,
 );

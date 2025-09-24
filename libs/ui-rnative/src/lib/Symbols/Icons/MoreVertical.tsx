@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * MoreVertical icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const MoreVertical = createIcon(
-  "MoreVertical",
+  'MoreVertical',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const MoreVertical = createIcon(
       strokeWidth={1.3}
       d="M7.993 11.667A.33.33 0 0 0 7.66 12c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333m.006-4A.33.33 0 0 0 7.66 8c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333m.006-4A.33.33 0 0 0 7.66 4c0 .18.147.333.333.333.18 0 .334-.153.334-.333a.336.336 0 0 0-.34-.333"
     />
-  </Svg>
+  </Svg>,
 );

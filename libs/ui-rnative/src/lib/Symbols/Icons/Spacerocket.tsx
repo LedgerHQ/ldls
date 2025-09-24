@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Spacerocket icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Spacerocket = createIcon(
-  "Spacerocket",
+  'Spacerocket',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Spacerocket = createIcon(
       strokeWidth={1.3}
       d="M10.668 8.667v2.922a.67.67 0 0 1-.369.597l-1.611.806a.667.667 0 0 1-.931-.386l-.424-1.271M4.665 8.667l-1.271-.424a.667.667 0 0 1-.386-.93L3.814 5.7a.67.67 0 0 1 .596-.369h2.923m4.066 2.75-3.6 2.88a.667.667 0 0 1-.888-.05L5.087 9.09a.667.667 0 0 1-.049-.888l2.88-3.6a6.94 6.94 0 0 1 5.418-2.603c.368 0 .666.298.666.666a6.94 6.94 0 0 1-2.604 5.418m-7.567 5.645-1.834.275.275-1.834a1.37 1.37 0 1 1 1.559 1.559"
     />
-  </Svg>
+  </Svg>,
 );

@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Language icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Language = createIcon(
-  "Language",
+  'Language',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Language = createIcon(
       strokeWidth={1.3}
       d="M5 2.667v2m8.667 8.666-2.667-6-2.667 6M8.927 12h4.146m-10.74-2c2.73-.22 5.118-2.607 5.334-5.333H2.334M7.667 10C5.96 9.86 4.468 8.367 4.333 6.667"
     />
-  </Svg>
+  </Svg>,
 );

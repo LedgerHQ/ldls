@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * StarHalf icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const StarHalf = createIcon(
-  "StarHalf",
+  'StarHalf',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       fill="currentColor"
@@ -45,5 +45,5 @@ export const StarHalf = createIcon(
       strokeWidth={1.3}
       d="M4.12 13.33 8 11.49l3.866 1.817-.8-4.08 2.927-2.987-4.12-.513-1.88-3.747-1.88 3.753M4.12 13.33l.8-4.08-2.926-2.997 4.12-.52M4.12 13.33l3.382-1.676.051-8.758-1.439 2.837"
     />
-  </Svg>
+  </Svg>,
 );

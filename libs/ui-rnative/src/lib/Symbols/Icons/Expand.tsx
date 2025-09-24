@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Expand icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Expand = createIcon(
-  "Expand",
+  'Expand',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -41,5 +41,5 @@ export const Expand = createIcon(
       strokeWidth={1.3}
       d="M11.333 2H14m0 0v2.667M14 2l-4 4M2.667 7.333V4c0-.737.596-1.333 1.333-1.333h3.333M4.667 14H2m0 0v-2.667M2 14l4-4m7.333-1.333V12c0 .737-.596 1.333-1.333 1.333H8"
     />
-  </Svg>
+  </Svg>,
 );

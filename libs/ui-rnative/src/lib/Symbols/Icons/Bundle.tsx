@@ -1,5 +1,5 @@
-import Svg, { Path } from "react-native-svg";
-import createIcon from "../../Components/Icon/createIcon";
+import Svg, { Path } from 'react-native-svg';
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Bundle icon component for React Native.
@@ -32,7 +32,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * </Button>
  */
 export const Bundle = createIcon(
-  "Bundle",
+  'Bundle',
   <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
     <Path
       stroke="currentColor"
@@ -40,5 +40,5 @@ export const Bundle = createIcon(
       strokeWidth={1.3}
       d="M9.6 3.2h.8a.8.8 0 0 1 .8.8v8a.8.8 0 0 1-.8.8h-.8m3.6-9.6h.8a.8.8 0 0 1 .8.8v8a.8.8 0 0 1-.8.8h-.8m-10.8 0h4.4a.8.8 0 0 0 .8-.8V4a.8.8 0 0 0-.8-.8H2.4a.8.8 0 0 0-.8.8v8a.8.8 0 0 0 .8.8Z"
     />
-  </Svg>
+  </Svg>,
 );
