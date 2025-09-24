@@ -1,5 +1,5 @@
 import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 import { IconSize } from '../Icon/Icon';
 import { ChevronRight } from '../../Symbols';
@@ -21,11 +21,26 @@ const buttonVariants = cva(
 );
 
 export interface CardButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>,
-    VariantProps<typeof buttonVariants> {
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+  /**
+   * The visual style of the card button.
+   */
+  appearance?: 'base' | 'outline';
+  /**
+   * An optional icon component to render on the left side.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * The main title of the card button.
+   */
   title: string;
+  /**
+   * Optional descriptive text displayed below the title.
+   */
   description?: string;
+  /**
+   * If true, hides the chevron arrow on the right side.
+   */
   hideChevron?: boolean;
 }
 
@@ -34,18 +49,8 @@ export interface CardButtonProps
  *
  * It supports different appearances. takes full width by default. The chevron can be hidden if needed.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-cardbutton-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'base' | 'outline'} [appearance='base'] - The visual style of the card button.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render on the left side.
- *   The icon styles are defined by the card button. Please do not override them.
- * @param {string} title - The main title of the card button.
- * @param {string} [description] - Optional descriptive text displayed below the title.
- * @param {boolean} [hideChevron=false] - If true, hides the chevron arrow on the right side.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>} [...] - All standard button props except children (e.g., `disabled`, `onClick`, `type`).
+ * @see {@link https://ldls.vercel.app/?path=/docs/action-cardbutton--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/action-cardbutton--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the card button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
