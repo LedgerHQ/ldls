@@ -23,8 +23,8 @@ Banners are prominent message containers used to communicate system status, aler
 - **Icon**: Automatically displays based on appearance (info, success, warning, error)
 - **Title**: The main message or heading (required)
 - **Description (optional)**: Additional details or explanation
-- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Provide an object with label and onClick for an action to be displayed (e.g. `primaryAction={{ label: 'Action', onClick: () => {} }}`).
-- **Close (optional)**: Button to dismiss the banner. Provide the `closeAction` object with onClick handler and optional ariaLabel for the close button to be displayed.
+- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Pass Button components as React nodes (e.g. `primaryAction={<Button appearance="transparent" size="sm" onClick={() => {}}>Action</Button>}`).
+- **Close (optional)**: Button to dismiss the banner. Use the `onClose` prop with a callback function and optionally `closeAriaLabel` for accessibility.
 
 ## Properties
 
@@ -56,7 +56,7 @@ Banners support various content configurations:
 
 <Canvas of={BannerStories.ContentVariations} />
 
-> **Note**: The title is required. Description, actions, and close are optional and can be combined as needed. Actions require both label and onClick handler.
+> **Note**: The title is required. Description, actions, and close are optional and can be combined as needed. Actions should be passed as Button components with their own styling and click handlers.
 
 ### Width Behavior
 
@@ -190,7 +190,7 @@ function NotificationSystem() {
 Banners can include primary and secondary action buttons to allow user interaction:
 
 ```tsx
-import { Banner } from '@ledgerhq/ldls-ui-react';
+import { Banner, Button } from '@ledgerhq/ldls-ui-react';
 
 function ActionableBanner() {
   const handleAccept = () => {
@@ -206,8 +206,16 @@ function ActionableBanner() {
       appearance="warning"
       title="Terms of Service Updated"
       description="Please review and accept the updated terms of service to continue using our platform"
-      primaryAction={{ label: "Accept", onClick: handleAccept }}
-      secondaryAction={{ label: "Review Later", onClick: handleDecline }}
+      primaryAction={
+        <Button appearance="transparent" size="sm" onClick={handleAccept}>
+          Accept
+        </Button>
+      }
+      secondaryAction={
+        <Button appearance="no-background" size="sm" onClick={handleDecline}>
+          Review Later
+        </Button>
+      }
     />
   );
 }
@@ -231,10 +239,8 @@ function DismissibleBanner() {
       appearance="info"
       title="Welcome!"
       description="Thanks for joining our platform. Here are some tips to get started."
-      closeAction={{
-        onClick: () => setIsVisible(false),
-        ariaLabel: 'Close welcome banner'
-      }}
+      onClose={() => setIsVisible(false)}
+      closeAriaLabel="Close welcome banner"
     />
   );
 }
@@ -249,7 +255,8 @@ Banners automatically flow to fill their parent container width. No additional p
   title="System Maintenance"
   description="Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST"
   appearance="warning"
-  closeAction={{ onClick: () => handleDismiss(), ariaLabel: 'Dismiss' }}
+  onClose={() => handleDismiss()}
+  closeAriaLabel="Dismiss"
 />
 ```
 
@@ -275,7 +282,7 @@ To control banner width, use container elements:
 Here's a comprehensive example showing all Banner features:
 
 ```tsx
-import { Banner } from '@ledgerhq/ldls-ui-react';
+import { Banner, Button } from '@ledgerhq/ldls-ui-react';
 import { useState } from 'react';
 
 function NotificationCenter() {
@@ -317,13 +324,18 @@ function NotificationCenter() {
           appearance={notification.type as any}
           title={notification.title}
           description={notification.description}
-
-          closeAction={notification.dismissible ? {
-            onClick: () => dismissNotification(notification.id),
-            ariaLabel: 'Close notification'
-          } : undefined}
-          primaryAction={notification.actions ? { label: "Verify Now", onClick: handleVerify } : undefined}
-          secondaryAction={notification.actions ? { label: "Later", onClick: handleLater } : undefined}
+          onClose={notification.dismissible ? () => dismissNotification(notification.id) : undefined}
+          closeAriaLabel="Close notification"
+          primaryAction={notification.actions ? (
+            <Button appearance="transparent" size="sm" onClick={handleVerify}>
+              Verify Now
+            </Button>
+          ) : undefined}
+          secondaryAction={notification.actions ? (
+            <Button appearance="no-background" size="sm" onClick={handleLater}>
+              Later
+            </Button>
+          ) : undefined}
         />
       ))}
     </div>
@@ -412,11 +424,15 @@ The following guidelines ensure consistent usage of the Banner component and mai
 ✅ **Do**
 
 ```tsx
-// Provide both action and handler
+// Pass complete Button components with proper styling
 <Banner
   title="Confirm Action"
   description="This action cannot be undone"
-  primaryAction={{ label: "Confirm", onClick: handleConfirm }}
+  primaryAction={
+    <Button appearance="transparent" size="sm" onClick={handleConfirm}>
+      Confirm
+    </Button>
+  }
   appearance="warning"
 />
 ```
@@ -424,11 +440,11 @@ The following guidelines ensure consistent usage of the Banner component and mai
 ❌ **Don't**
 
 ```tsx
-// Don't provide label without handler
+// Don't pass incomplete or unstyled elements
 <Banner
   title="Broken Action"
   description="This won't work properly"
-  primaryAction={{ label: "Submit" }}
+  primaryAction={<button onClick={handleSubmit}>Submit</button>}
   appearance="error"
 />
 ```
