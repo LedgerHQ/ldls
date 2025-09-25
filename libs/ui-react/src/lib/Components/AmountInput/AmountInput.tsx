@@ -194,7 +194,9 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         />
 
         {currencyText && currencyPosition === 'right' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
+          <span className={cn(currencyStyles, 'shrink-0', fontSizeClass)}>
+            {currencyText}
+          </span>
         )}
       </div>
     );
