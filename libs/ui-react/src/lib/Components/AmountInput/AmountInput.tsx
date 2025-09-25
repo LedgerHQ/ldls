@@ -100,14 +100,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
 
     const fontSizeClass = useDynamicFontClass(inputValue);
 
-    useLayoutEffect(() => {
-      if (spanRef.current && inputRef.current) {
-        const width = spanRef.current.offsetWidth;
-        const pxToAdd = inputValue === '' ? 33 : 8;
-        inputRef.current.style.width = `${width + pxToAdd}px`;
-      }
-    }, [inputValue]);
-
     useEffect(() => {
       setInputValue(value.toString());
     }, [value]);
@@ -184,7 +176,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
             baseInputStyles,
             'h-56',
             'z-10 relative transition-all duration-300 ease-out',
-            'font-variant-numeric-tabular tracking-wide',
             'focus:animate-focusGlow',
             isChanging && 'animate-slideInFromRight',
             fontSizeClass,
