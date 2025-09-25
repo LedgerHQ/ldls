@@ -7,7 +7,7 @@ import createIcon from '../../Components/Icon/createIcon';
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:PlusCircleFill Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:PlusCircleFill Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -35,7 +35,7 @@ export const PlusCircleFill = createIcon(
   >
     <path
       fill="currentColor"
-      d="M8 1.35a6.65 6.65 0 0 1 0 13.3A6.646 6.646 0 0 1 1.35 8c0-3.679 2.978-6.65 6.65-6.65m0 3.333a.65.65 0 0 0-.65.65V7.35H5.334a.65.65 0 0 0 0 1.3H7.35v2.016a.65.65 0 0 0 1.3 0V8.65h2.016l.131-.013a.65.65 0 0 0 0-1.273l-.13-.014H8.65V5.333a.65.65 0 0 0-.65-.65"
+      d="M8 1.35a6.65 6.65 0 0 1 0 13.3A6.646 6.646 0 0 1 1.35 8c0-3.679 2.978-6.65 6.65-6.65m0 3.333a.65.65 0 0 0-.65.65V7.35H5.334a.65.65 0 0 0 0 1.3H7.35v2.016a.65.65 0 0 0 1.3 0V8.65h2.016a.65.65 0 1 0 0-1.3H8.65V5.333a.65.65 0 0 0-.65-.65"
     />
   </svg>,
 );
