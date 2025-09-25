@@ -26,7 +26,6 @@
     "@react-native-community/cli-platform-ios": "~15.0.1",
     "@react-native/babel-preset": "~0.77.3",
     "@react-native/metro-config": "~0.77.3",
-    "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.17"
   },
   "jest": {
