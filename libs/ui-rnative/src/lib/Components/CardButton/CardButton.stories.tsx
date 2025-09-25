@@ -1,7 +1,7 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { CardButton } from './CardButton';
 import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
+import { View, Text } from 'react-native';
 
 const meta: Meta<typeof CardButton> = {
   component: CardButton,
@@ -170,17 +170,17 @@ export const FullFeatures: Story = {
 
 export const NaturalWidth: Story = {
   render: () => (
-    <div className="w-full bg-muted-pressed p-16">
-      <div className="mb-16 text-muted body-4-semi-bold">
+    <View className="w-full bg-muted-pressed p-16">
+      <Text className="mb-16 text-muted body-4-semi-bold">
         CardButton naturally flows to fill parent container width
-      </div>
+      </Text>
       <CardButton
         appearance="base"
         title="Natural Width Example"
         description="This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints"
         icon={CreditCard}
       />
-    </div>
+    </View>
   ),
   parameters: {
     docs: {
@@ -209,7 +209,7 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex max-w-md flex-col gap-16 p-8">
+      <View className="flex max-w-md flex-col gap-16 p-8">
         {appearances.map(({ name, appearance }) => (
           <CardButton
             key={appearance}
@@ -219,14 +219,14 @@ export const AppearanceShowcase: Story = {
             icon={Coins}
           />
         ))}
-      </div>
+      </View>
     );
   },
 };
 
 export const ContentVariations: Story = {
   render: () => (
-    <div className="flex max-w-md flex-col gap-16 p-8">
+    <View className="flex max-w-md flex-col gap-16 p-8">
       <CardButton
         appearance="base"
         title="With Description"
@@ -253,13 +253,13 @@ export const ContentVariations: Story = {
       />
       <CardButton appearance="base" title="With Icon" icon={Plus} hideChevron />
       <CardButton appearance="base" title="With Chevron" />
-    </div>
+    </View>
   ),
 };
 
 export const StatesShowcase: Story = {
   render: () => (
-    <div className="flex max-w-md flex-col gap-16 p-8">
+    <View className="flex max-w-md flex-col gap-16 p-8">
       <CardButton
         appearance="base"
         title="Base Default"
@@ -286,14 +286,14 @@ export const StatesShowcase: Story = {
         icon={Bank}
         disabled
       />
-    </div>
+    </View>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16">
-      <div className="text-muted body-4-semi-bold">Container: 320px wide</div>
+    <View className="w-320 flex-col gap-16 bg-muted-pressed p-16">
+      <Text className="text-muted body-4-semi-bold">Container: 320px wide</Text>
       <CardButton
         appearance="base"
         title="Short Title"
@@ -312,6 +312,6 @@ export const ResponsiveLayout: Story = {
         description="This is a longer description that demonstrates how the card handles longer content within its constraints"
         icon={Settings}
       />
-    </div>
+    </View>
   ),
 };

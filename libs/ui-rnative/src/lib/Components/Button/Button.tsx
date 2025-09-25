@@ -1,24 +1,23 @@
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { IconSize } from '../Icon/Icon';
 import React from 'react';
 import { cn } from '../../utils';
 import { Spinner } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-focus focus-visible:ring-2 disabled:pointer-events-none disabled:bg-disabled disabled:text-disabled',
+  'inline-flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
   {
     variants: {
       appearance: {
-        base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
-        accent:
-          'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
+        base: 'bg-interactive text-on-interactive active:bg-interactive-pressed',
+        gray: 'bg-muted text-base active:bg-muted-pressed',
+        accent: 'bg-accent text-on-accent active:bg-accent-pressed',
         transparent:
-          'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
+          'bg-muted-transparent text-base active:bg-muted-transparent-pressed',
         'no-background':
-          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
-        red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
+          'bg-transparent text-base active:bg-base-transparent-pressed',
+        red: 'bg-error text-error active:bg-error-pressed',
       },
       size: {
         xs: 'px-12 py-8 body-2-semi-bold',
@@ -34,6 +33,10 @@ const buttonVariants = cva(
       },
       iconOnly: {
         true: '',
+        false: '',
+      },
+      disabled: {
+        true: 'pointer-events-none cursor-default bg-disabled text-disabled active:bg-disabled',
         false: '',
       },
     },
@@ -62,20 +65,57 @@ const buttonVariants = cva(
         iconOnly: false,
         className: 'gap-8',
       },
+      {
+        appearance: 'no-background',
+        disabled: true,
+        className: 'bg-base-transparent',
+      },
     ],
     defaultVariants: {
       appearance: 'base',
       size: 'md',
       isFull: false,
       iconOnly: false,
+      disabled: false,
     },
   },
 );
 
-export interface ButtonProps
-  extends TouchableOpacityProps,
-    Omit<VariantProps<typeof buttonVariants>, 'iconOnly'> {
+export interface ButtonProps extends Omit<TouchableOpacityProps, 'disabled'> {
+  /**
+   * The visual style of the button.
+   */
+  appearance?:
+    | 'base'
+    | 'gray'
+    | 'accent'
+    | 'transparent'
+    | 'no-background'
+    | 'red';
+  /**
+   * The size variant of the button.
+   */
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  /**
+   * If true, the button expands to full width of its container.
+   */
+  isFull?: boolean;
+  /**
+   * If true, shows a loading spinner and disables the button.
+   */
+  loading?: boolean;
+  /**
+   * An optional icon component to render inside the button.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * Whether the button is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Additional custom CSS classes to apply.
+   */
+  className?: string;
 }
 
 /**
@@ -83,16 +123,8 @@ export interface ButtonProps
  *
  * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
  *
- * @component
- * @param {'base' | 'gray' | 'accent' | 'transparent' | 'no-background' | 'red'} [appearance='base'] - The visual style of the button.
- * @param {'xs' | 'sm' | 'md' | 'lg'} [size='md'] - The size variant of the button.
- * @param {boolean} [isFull=false] - If true, the button expands to full width of its container.
- * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
- *   The icon component should accept `size` (IconSize) and `className` props.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
- * @param {TouchableOpacityProps} [...] - All standard TouchableOpacity props (e.g., `disabled`, `onPress`, etc.).
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_action-button--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_action-button--docs#dos-and-donts Guidelines}
  *
  * @example
  * // Basic primary button
@@ -113,7 +145,10 @@ export interface ButtonProps
  *   Submit
  * </Button>
  */
-export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
+export const Button = React.forwardRef<
+  React.ElementRef<typeof TouchableOpacity>,
+  ButtonProps
+>(
   (
     {
       className,
@@ -123,6 +158,7 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
       isFull,
       loading,
       icon,
+      disabled,
       ...props
     },
     ref,
@@ -141,7 +177,7 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
 
     return (
       <TouchableOpacity
-        ref={ref as any}
+        ref={ref}
         className={cn(
           className,
           buttonVariants({
@@ -150,9 +186,11 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
             isFull,
             loading,
             iconOnly,
+            disabled,
           }),
         )}
-        disabled={props.disabled}
+        disabled={disabled ?? false}
+        activeOpacity={1}
         {...props}
       >
         {loading ? (
@@ -163,7 +201,9 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
               aria-label="Loading"
             />
             {children && (
-              <Text className="line-clamp-2 text-left">{children}</Text>
+              <Text className="line-clamp-2 text-left body-1-semi-bold">
+                {children}
+              </Text>
             )}
           </>
         ) : (
@@ -175,7 +215,9 @@ export const Button = React.forwardRef<typeof TouchableOpacity, ButtonProps>(
               />
             )}
             {children && (
-              <Text className="line-clamp-2 text-left">{children}</Text>
+              <Text className="line-clamp-2 text-left body-1-semi-bold">
+                {children}
+              </Text>
             )}
           </>
         )}
