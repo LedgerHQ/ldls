@@ -58,7 +58,6 @@ export const Base: Story = {
   args: {
     appearance: 'base',
     title: 'Basic Card Button',
-    className: 'max-w-md',
   },
   parameters: {
     docs: {
