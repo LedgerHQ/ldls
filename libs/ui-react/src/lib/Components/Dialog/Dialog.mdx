@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as DialogStories from './Dialog.stories';
-import { Dialog, DialogContent, DialogTrigger } from './Dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 <Meta title="Components/Dialog" of={DialogStories} />
@@ -23,7 +23,7 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 - **Trigger**: The element that opens the dialog when interacted with
 - **Overlay**: Dimmed background that covers the underlying content
 - **Content**: The main container for dialog content
-- **Header**: Use SheetBar component for a consistent dialog header with title, description, and controls
+- **Header**: Use DialogHeader component for a consistent dialog header with title, description, and controls
 
 ## Properties
 
@@ -33,18 +33,19 @@ Dialogs are composed using Radix UI primitives. Wrap your content in DialogConte
 
 ### Header Configuration
 
-Always use the SheetBar component as the header for dialogs to maintain consistency. SheetBar provides:
+Always use the DialogHeader component as the header for dialogs to maintain consistency. DialogHeader provides:
 
 - Title and optional description
 - Close button
 - Optional back button
 - Two sizes: small (sm) and large (lg)
+- Automatic accessibility with proper ARIA roles
 
 <Canvas of={DialogStories.WithDescription} />
 
 ### Size Variants
 
-Use SheetBar's size prop to adjust the header layout:
+Use DialogHeader's size prop to adjust the header layout:
 
 - sm: Compact layout with centered title
 - lg: Larger layout with left-aligned title and more space
@@ -53,13 +54,13 @@ Use SheetBar's size prop to adjust the header layout:
 
 ### With Back Button
 
-Add navigation with SheetBar's onBack prop.
+Add navigation with DialogHeader's onBack prop.
 
 <Canvas of={DialogStories.WithBack} />
 
 ### Content Area
 
-The content area after the SheetBar can contain any components. Ensure proper padding and scrolling if needed.
+The content area after the DialogHeader can contain any components. Ensure proper padding and scrolling if needed.
 
 ## Accessibility
 
@@ -74,10 +75,10 @@ To be implemented:
   <p className="mb-4 body-2-semi-bold">Important Notes:</p>
   <ul className="space-y-2 body-2">
     <li>
-      Always include SheetBar as the first child of DialogContent for consistent
-      UX
+      Always include DialogHeader as the first child of DialogContent for
+      consistent UX and accessibility
     </li>
-    <li>Handle onClose in SheetBar to properly close the dialog</li>
+    <li>Handle onClose in DialogHeader to properly close the dialog</li>
     <li>Use DialogPortal for correct positioning in the DOM</li>
     <li>
       Avoid using for non-critical information - prefer tooltips or other UI
@@ -128,8 +129,7 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Dialog, DialogContent, DialogTrigger } from '@ledgerhq/ldls-ui-react';
-import { SheetBar } from '@ledgerhq/ldls-ui-react'; // Import SheetBar for header
+import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
 import { Button } from '@ledgerhq/ldls-ui-react'; // Example trigger
 
 function MyComponent() {
@@ -139,7 +139,7 @@ function MyComponent() {
         <Button>Open Dialog</Button>
       </DialogTrigger>
       <DialogContent>
-        <SheetBar
+        <DialogHeader
           size="sm"
           title="Dialog Title"
           onClose={() => { /* handle close */ }}
@@ -157,7 +157,7 @@ function MyComponent() {
 <Dialog>
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
-    <SheetBar
+    <DialogHeader
       size="sm"
       title="Title"
       description="Additional details"
@@ -170,13 +170,13 @@ function MyComponent() {
 
 ### Large Size
 
-Use large SheetBar for bigger dialogs:
+Use large DialogHeader for bigger dialogs:
 
 ```tsx
 <Dialog>
   <DialogTrigger>Open Large</DialogTrigger>
   <DialogContent className="w-[800px]">
-    <SheetBar
+    <DialogHeader
       size="lg"
       title="Large Dialog"
       onClose={() => { /* handle close */ }}
@@ -192,7 +192,7 @@ Use large SheetBar for bigger dialogs:
 <Dialog>
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
-    <SheetBar
+    <DialogHeader
       size="sm"
       title="Title"
       onBack={() => console.log('Back')}
@@ -220,9 +220,9 @@ Control dialog width via className on DialogContent:
 ✅ **Do**
 
 ```tsx
-// Always use SheetBar as header
+// Always use DialogHeader as header
 <DialogContent>
-  <SheetBar title="Title" onClose={handleClose} />
+  <DialogHeader title="Title" onClose={handleClose} />
   <div className="p-16">Content</div>
 </DialogContent>
 
@@ -235,7 +235,7 @@ Control dialog width via className on DialogContent:
 ❌ **Don't**
 
 ```tsx
-// Don't omit SheetBar
+// Don't omit DialogHeader
 <DialogContent>
   <h2>Custom Title</h2>
 </DialogContent>
@@ -269,7 +269,7 @@ Control dialog width via className on DialogContent:
 <DialogContent className="p-0">No padding</DialogContent>
 ```
 
-> **Note**: Use `className` primarily for content layout (like width). The dialog's core styling (colors, positioning etc.) should not be overridden to maintain design system consistency. Always include SheetBar for header consistency.
+> **Note**: Use `className` primarily for content layout (like width). The dialog's core styling (colors, positioning etc.) should not be overridden to maintain design system consistency. Always include DialogHeader for header consistency and accessibility.
 
 ### Performance Considerations
 
@@ -278,7 +278,7 @@ Control dialog width via className on DialogContent:
 ```tsx
 // Keep content simple
 <DialogContent>
-  <SheetBar ... />
+  <DialogHeader ... />
   <p>Simple text</p>
 </DialogContent>
 

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Grid2 icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Grid2 Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Grid2 Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Grid2 size={40} className="text-warning" />
  */
 export const Grid2 = createIcon(
-  "Grid2",
+  'Grid2',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -46,5 +46,5 @@ export const Grid2 = createIcon(
       strokeWidth={1.3}
       d="M14.3 4.3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 14h4.5L10 9.5z"
     />
-  </svg>
+  </svg>,
 );

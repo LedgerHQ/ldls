@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * PlusCircle icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:PlusCircle Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:PlusCircle Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <PlusCircle size={40} className="text-warning" />
  */
 export const PlusCircle = createIcon(
-  "PlusCircle",
+  'PlusCircle',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const PlusCircle = createIcon(
       strokeWidth={1.3}
       d="M8 5.333v5.334M10.667 8H5.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12"
     />
-  </svg>
+  </svg>,
 );

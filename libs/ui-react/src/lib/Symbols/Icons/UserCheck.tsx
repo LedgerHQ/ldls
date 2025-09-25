@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * UserCheck icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:UserCheck Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:UserCheck Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <UserCheck size={40} className="text-warning" />
  */
 export const UserCheck = createIcon(
-  "UserCheck",
+  'UserCheck',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const UserCheck = createIcon(
       strokeWidth={1.3}
       d="M2.667 13.333c0-1.66 1.34-3 3-3h1.722m5.278.959-2 2-1.2-1.2M8 2.667a2.833 2.833 0 1 0 0 5.666 2.833 2.833 0 0 0 0-5.666"
     />
-  </svg>
+  </svg>,
 );

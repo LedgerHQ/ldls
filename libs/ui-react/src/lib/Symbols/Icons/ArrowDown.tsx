@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ArrowDown icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:ArrowDown Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:ArrowDown Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ArrowDown size={40} className="text-warning" />
  */
 export const ArrowDown = createIcon(
-  "ArrowDown",
+  'ArrowDown',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const ArrowDown = createIcon(
       strokeWidth={1.3}
       d="M8 12.667V3.333m3.334 5.994-3.34 3.333-3.34-3.34"
     />
-  </svg>
+  </svg>,
 );

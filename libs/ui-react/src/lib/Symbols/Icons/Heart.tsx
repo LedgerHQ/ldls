@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Heart icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Heart Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Heart Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Heart size={40} className="text-warning" />
  */
 export const Heart = createIcon(
-  "Heart",
+  'Heart',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Heart = createIcon(
       strokeWidth={1.3}
       d="M10.467 2.667C12.58 2.667 14 4.653 14 6.507c0 3.753-5.893 6.826-6 6.826S2 10.26 2 6.507c0-1.854 1.42-3.84 3.533-3.84 1.214 0 2.007.606 2.467 1.14.46-.534 1.253-1.14 2.467-1.14"
     />
-  </svg>
+  </svg>,
 );

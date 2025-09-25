@@ -18,7 +18,6 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
     <Button
       appearance="no-background"
       size="xs"
-      iconOnly
       icon={ArrowLeft}
       onClick={onBack}
       className="flex-shrink-0"
@@ -32,7 +31,6 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
     <Button
       appearance="gray"
       size="xs"
-      iconOnly
       icon={Close}
       onClick={onClose}
       className="flex-shrink-0"

@@ -74,7 +74,7 @@ export const SectionHeader = ({
   description?: string;
 }) => (
   <div className="mb-48">
-    <h2 className="responsive-display-4 mb-8 text-base">{title}</h2>
+    <h2 className="mb-8 text-base responsive-display-4">{title}</h2>
     {description && <p className="text-muted">{description}</p>}
   </div>
 );

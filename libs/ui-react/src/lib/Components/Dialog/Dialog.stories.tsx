@@ -1,14 +1,13 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../Button';
-import { SheetBar } from '../SheetBar/SheetBar';
-import { Dialog, DialogContent, DialogTrigger } from './Dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 
 const DialogTemplate = ({
-  sheetBarProps,
+  dialogHeaderProps,
   triggerLabel = 'Open Dialog',
 }: {
-  sheetBarProps: Omit<React.ComponentProps<typeof SheetBar>, 'onClose'>;
+  dialogHeaderProps: Omit<React.ComponentProps<typeof DialogHeader>, 'onClose'>;
   triggerLabel?: string;
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -19,7 +18,7 @@ const DialogTemplate = ({
         <Button appearance="base">{triggerLabel}</Button>
       </DialogTrigger>
       <DialogContent className="w-[500px]">
-        <SheetBar {...sheetBarProps} onClose={() => setOpen(false)} />
+        <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
         <div className="h-256" />
       </DialogContent>
     </Dialog>
@@ -46,7 +45,7 @@ type Story = StoryObj<typeof Dialog>;
 export const Base: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'sm',
         title: 'Sheet Title',
       }}
@@ -61,7 +60,7 @@ export const Base: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent className="w-[500px]">
-    <SheetBar title="Sheet Title" onClose={() => setOpen(false)} />
+    <DialogHeader title="Sheet Title" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
 </Dialog>
@@ -74,7 +73,7 @@ export const Base: Story = {
 export const WithDescription: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'sm',
         title: 'Sheet Title',
         description: 'Additional information',
@@ -90,7 +89,7 @@ export const WithDescription: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent className="w-[500px]">
-    <SheetBar title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
+    <DialogHeader title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
 </Dialog>
@@ -103,7 +102,7 @@ export const WithDescription: Story = {
 export const WithBack: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'sm',
         title: 'Sheet Title',
         onBack: () => console.log('Back clicked'),
@@ -119,7 +118,7 @@ export const WithBack: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent className="w-[500px]">
-    <SheetBar title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
+    <DialogHeader title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
 </Dialog>
@@ -132,7 +131,7 @@ export const WithBack: Story = {
 export const Large: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'lg',
         title: 'Large Sheet Title',
       }}
@@ -147,7 +146,7 @@ export const Large: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent className="w-[500px]">
-    <SheetBar title="Large Sheet Title" onClose={() => setOpen(false)} />
+    <DialogHeader title="Large Sheet Title" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
 </Dialog>
@@ -160,7 +159,7 @@ export const Large: Story = {
 export const LargeWithDescription: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'lg',
         title: 'Large Sheet Title',
         description: 'Additional information',
@@ -172,7 +171,7 @@ export const LargeWithDescription: Story = {
 export const LargeWithBack: Story = {
   render: () => (
     <DialogTemplate
-      sheetBarProps={{
+      dialogHeaderProps={{
         size: 'lg',
         title: 'Large Sheet Title',
         onBack: () => console.log('Back clicked'),

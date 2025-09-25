@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-rnative",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
@@ -10,9 +10,9 @@
     "mobile",
     "nativewind"
   ],
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
-  "types": "./dist/index.esm.d.ts",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {

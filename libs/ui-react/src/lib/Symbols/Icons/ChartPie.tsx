@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ChartPie icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:ChartPie Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:ChartPie Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ChartPie size={40} className="text-warning" />
  */
 export const ChartPie = createIcon(
-  "ChartPie",
+  'ChartPie',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -47,5 +47,5 @@ export const ChartPie = createIcon(
       strokeWidth={1.3}
       d="M14 6.667A4.667 4.667 0 0 0 9.333 2v4.667z"
     />
-  </svg>
+  </svg>,
 );

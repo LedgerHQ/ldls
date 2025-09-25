@@ -1,2 +1,2 @@
-export * from './themes/index.js';
-export * from './presets/index.js';
+export * from './themes/index';
+export * from './presets/index';

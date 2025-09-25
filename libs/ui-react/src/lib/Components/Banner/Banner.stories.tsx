@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner } from './Banner';
+import { Button } from '../Button';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -29,15 +30,52 @@ const meta: Meta<typeof Banner> = {
       description: 'Optional description text',
     },
     primaryAction: {
-      control: 'object',
-      description: 'Primary action with label and onClick',
+      control: 'select',
+      description: 'Primary action Button',
+      options: ['Button', 'None'],
+      mapping: {
+        Button: (
+          <Button
+            appearance="transparent"
+            size="sm"
+            onClick={() => console.log('Primary clicked')}
+          >
+            Primary
+          </Button>
+        ),
+        None: undefined,
+      },
     },
     secondaryAction: {
-      control: 'object',
-      description: 'Secondary action with label and onClick',
+      control: 'select',
+      description: 'Secondary action Button',
+      options: ['Button', 'None'],
+      mapping: {
+        Button: (
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={() => console.log('Secondary clicked')}
+          >
+            Secondary
+          </Button>
+        ),
+        None: undefined,
+      },
     },
-    closeAction: {
-      control: 'object',
+    onClose: {
+      control: 'select',
+      description: 'Close action Button',
+      options: ['With Close', 'None'],
+      mapping: {
+        'With Close': () => {
+          console.log('Close clicked');
+        },
+        None: undefined,
+      },
+    },
+    closeAriaLabel: {
+      control: 'text',
       description: 'Close action with onClick and ariaLabel',
     },
   },
@@ -52,6 +90,8 @@ export const Base: Story = {
   args: {
     appearance: 'info',
     title: 'Information Banner',
+    primaryAction: 'None',
+    secondaryAction: 'None',
   },
   render: (args: BannerProps) => (
     // max-w-md container for visual presentation - not required for Banner component
@@ -63,7 +103,12 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<Banner appearance="info" title="Information Banner" />
+<Banner
+  appearance="info"
+  title="Information Banner"
+  onClose={() => console.log('Closed')}
+  closeAriaLabel="Close banner"
+/>
 `,
       },
     },
@@ -89,6 +134,8 @@ export const WithDescription: Story = {
   appearance="info"
   title="Banner with Description"
   description="This is additional information about the banner."
+  onClose={() => console.log('Closed')}
+  closeAriaLabel="Close banner"
 />
 `,
       },
@@ -100,14 +147,8 @@ export const WithActions: Story = {
   args: {
     appearance: 'info',
     title: 'Banner with Actions',
-    primaryAction: {
-      label: 'Primary',
-      onClick: () => console.log('Primary clicked'),
-    },
-    secondaryAction: {
-      label: 'Secondary',
-      onClick: () => console.log('Secondary clicked'),
-    },
+    primaryAction: 'Button',
+    secondaryAction: 'Button',
   },
   render: (args: BannerProps) => (
     <div className="max-w-md">
@@ -118,13 +159,32 @@ export const WithActions: Story = {
     docs: {
       source: {
         code: `
-<Banner
-  appearance="info"
-  title="Banner with Actions"
-  primaryAction={{ label: "Primary", onClick: () => console.log('Primary clicked') }}
-  secondaryAction={{ label: "Secondary", onClick: () => console.log('Secondary clicked') }}
-/>
-`,
+  <Banner
+    appearance="info"
+    title="Banner with Full Features"
+    description="This is additional information about the banner."
+    primaryAction={(
+      <Button
+        appearance="transparent"
+        size="sm"
+        onClick={() => console.log('Primary clicked')}
+      >
+        Primary
+      </Button>
+    )}
+    secondaryAction={(
+      <Button
+        appearance="no-background"
+        size="sm"
+        onClick={() => console.log('Secondary clicked')}
+      >
+        Secondary
+      </Button>
+    )}
+    onClose={() => console.log('Closed')}
+    closeAriaLabel="Close banner"
+  />
+  `,
       },
     },
   },
@@ -135,18 +195,26 @@ export const WithFullFeatures: Story = {
     appearance: 'info',
     title: 'Banner with Full Features',
     description: 'This is additional information about the banner.',
-    primaryAction: {
-      label: 'Primary',
-      onClick: () => console.log('Primary clicked'),
-    },
-    secondaryAction: {
-      label: 'Secondary',
-      onClick: () => console.log('Secondary clicked'),
-    },
-    closeAction: {
-      onClick: () => console.log('Closed'),
-      ariaLabel: 'Close banner',
-    },
+    primaryAction: (
+      <Button
+        appearance="transparent"
+        size="sm"
+        onClick={() => console.log('Primary clicked')}
+      >
+        Primary
+      </Button>
+    ),
+    secondaryAction: (
+      <Button
+        appearance="no-background"
+        size="sm"
+        onClick={() => console.log('Secondary clicked')}
+      >
+        Secondary
+      </Button>
+    ),
+    onClose: () => console.log('Closed'),
+    closeAriaLabel: 'Close banner',
   },
   render: (args: BannerProps) => (
     <div className="max-w-md">
@@ -157,15 +225,32 @@ export const WithFullFeatures: Story = {
     docs: {
       source: {
         code: `
-<Banner
-  appearance="info"
-  title="Banner with Full Features"
-  description="This is additional information about the banner."
-  primaryAction={{ label: 'Primary', onClick: () => console.log('Primary clicked') }}
-  secondaryAction={{ label: 'Secondary', onClick: () => console.log('Secondary clicked') }}
-  closeAction={{ onClick: () => console.log('Closed'), ariaLabel: 'Close banner' }}
-/>
-`,
+  <Banner
+    appearance="info"
+    title="Banner with Full Features"
+    description="This is additional information about the banner."
+    primaryAction={(
+      <Button
+        appearance="transparent"
+        size="sm"
+        onClick={() => console.log('Primary clicked')}
+      >
+        Primary
+      </Button>
+    )}
+    secondaryAction={(
+      <Button
+        appearance="no-background"
+        size="sm"
+        onClick={() => console.log('Secondary clicked')}
+      >
+        Secondary
+      </Button>
+    )}
+    onClose={() => console.log('Closed')}
+    closeAriaLabel="Close banner"
+  />
+  `,
       },
     },
   },
@@ -189,10 +274,8 @@ export const AppearanceShowcase: Story = {
             appearance={appearance}
             title={`${name} Banner`}
             description={`${name} Banner Description`}
-            closeAction={{
-              onClick: () => console.log('Closed'),
-              ariaLabel: `Close ${name} banner`,
-            }}
+            onClose={() => console.log('Closed')}
+            closeAriaLabel={`Close ${name} banner`}
           />
         ))}
       </div>
@@ -208,47 +291,68 @@ export const ContentVariations: Story = {
       <Banner title="With Description" description="Additional details here." />
       <Banner
         title="With Primary Action"
-        primaryAction={{
-          label: 'Action',
-          onClick: () => console.log('Primary clicked'),
-        }}
+        primaryAction={
+          <Button
+            appearance="transparent"
+            size="sm"
+            onClick={() => console.log('Primary clicked')}
+          >
+            Primary
+          </Button>
+        }
       />
       <Banner
         title="With Close"
         description="Can be dismissed"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close banner',
-        }}
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close banner"
       />
       <Banner
         title="With Actions and Description"
         description="Details"
-        primaryAction={{
-          label: 'Primary',
-          onClick: () => console.log('Primary clicked'),
-        }}
-        secondaryAction={{
-          label: 'Secondary',
-          onClick: () => console.log('Secondary clicked'),
-        }}
+        primaryAction={
+          <Button
+            appearance="transparent"
+            size="sm"
+            onClick={() => console.log('Primary clicked')}
+          >
+            Primary
+          </Button>
+        }
+        secondaryAction={
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={() => console.log('Secondary clicked')}
+          >
+            Secondary
+          </Button>
+        }
       />
       <Banner
         appearance="info"
         title="Banner with Full Features"
         description="This is additional information about the banner."
-        primaryAction={{
-          label: 'Primary',
-          onClick: () => console.log('Primary clicked'),
-        }}
-        secondaryAction={{
-          label: 'Secondary',
-          onClick: () => console.log('Secondary clicked'),
-        }}
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close banner',
-        }}
+        primaryAction={
+          <Button
+            appearance="transparent"
+            size="sm"
+            onClick={() => console.log('Primary clicked')}
+          >
+            Primary
+          </Button>
+        }
+        secondaryAction={
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={() => console.log('Secondary clicked')}
+          >
+            Secondary
+          </Button>
+        }
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close banner"
       />
     </div>
   ),
@@ -263,14 +367,17 @@ export const NaturalWidth: Story = {
       <Banner
         title="Full Width Banner"
         description="This banner demonstrates natural width behavior - it fills the full width of its parent container."
-        primaryAction={{
-          label: 'Action',
-          onClick: () => console.log('Action clicked'),
-        }}
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close full width banner',
-        }}
+        primaryAction={
+          <Button
+            appearance="transparent"
+            size="sm"
+            onClick={() => console.log('Action clicked')}
+          >
+            Action
+          </Button>
+        }
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close full width banner"
       />
     </div>
   ),
@@ -283,26 +390,20 @@ export const ResponsiveLayout: Story = {
       <Banner
         title="Short Title"
         description="Short description"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close short banner',
-        }}
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close short banner"
       />
       <Banner
         title="Constrained Width"
         description="Banner width is controlled by this 384px container"
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close constrained width banner',
-        }}
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close constrained width banner"
       />
       <Banner
         title="Longer Title That Might Overflow When Container is Smaller"
         description="This is a longer description that demonstrates how the banner handles longer content within its constraints. It should be truncated at 5 lines with an ellipsis, so this line should not be visible."
-        closeAction={{
-          onClick: () => console.log('Closed'),
-          ariaLabel: 'Close overflow banner',
-        }}
+        onClose={() => console.log('Closed')}
+        closeAriaLabel="Close overflow banner"
       />
     </div>
   ),
@@ -319,10 +420,8 @@ export const InteractiveDismiss: Story = {
         <Banner
           {...args}
           title="Click close to dismiss"
-          closeAction={{
-            onClick: () => setVisible(false),
-            ariaLabel: 'Dismiss interactive banner',
-          }}
+          onClose={() => setVisible(false)}
+          closeAriaLabel="Dismiss interactive banner"
         />
       </div>
     );
@@ -360,19 +459,25 @@ export const InteractiveActions: Story = {
                 : 'Banner with Action'
           }
           primaryAction={
-            state === 'idle'
-              ? { label: 'Accept', onClick: handleAccept }
-              : undefined
+            state === 'idle' ? (
+              <Button appearance="transparent" size="sm" onClick={handleAccept}>
+                Accept
+              </Button>
+            ) : undefined
           }
           secondaryAction={
-            state === 'idle'
-              ? { label: 'Reject', onClick: handleReject }
-              : undefined
+            state === 'idle' ? (
+              <Button
+                appearance="no-background"
+                size="sm"
+                onClick={handleReject}
+              >
+                Reject
+              </Button>
+            ) : undefined
           }
-          closeAction={{
-            onClick: () => setState('idle'),
-            ariaLabel: 'Reset banner state',
-          }}
+          onClose={() => setState('idle')}
+          closeAriaLabel="Reset banner state"
         />
       </div>
     );

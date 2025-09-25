@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * ArrowDownRight icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:ArrowDownRight Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:ArrowDownRight Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <ArrowDownRight size={40} className="text-warning" />
  */
 export const ArrowDownRight = createIcon(
-  "ArrowDownRight",
+  'ArrowDownRight',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const ArrowDownRight = createIcon(
       strokeWidth={1.3}
       d="M11.3 11.3 4.7 4.7m6.6 1.88v4.715l-4.72-.006"
     />
-  </svg>
+  </svg>,
 );

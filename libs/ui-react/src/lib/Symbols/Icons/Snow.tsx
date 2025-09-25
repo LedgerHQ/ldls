@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Snow icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Snow Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Snow Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Snow size={40} className="text-warning" />
  */
 export const Snow = createIcon(
-  "Snow",
+  'Snow',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Snow = createIcon(
       strokeWidth={1.3}
       d="M8 2v12M9.445 2.947 8 4.387 6.552 2.941m6.781 1.979L2.667 11.08m10.426-4.355-1.98-.533.527-1.98M2.902 9.273l1.973.527-.533 1.973M2.667 4.92l10.666 6.16M2.902 6.725l1.973-.533-.533-1.98m8.751 5.061-1.98.527.527 1.973m-5.085 1.274 1.44-1.447 1.44 1.44"
     />
-  </svg>
+  </svg>,
 );

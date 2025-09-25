@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Nft icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Nft Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Nft Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Nft size={40} className="text-warning" />
  */
 export const Nft = createIcon(
-  "Nft",
+  'Nft',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Nft = createIcon(
       strokeWidth={1.3}
       d="M4.333 9.667V6.333L6 9.667V6.333m1.667 3.334V6.333H9m2 3.334V6.333m0 0h-.667m.667 0h.667M8 8h.333m5.167 2.47V5.53c0-.437-.233-.84-.611-1.059L8.61 2.001a1.22 1.22 0 0 0-1.222 0L3.11 4.472A1.22 1.22 0 0 0 2.5 5.53v4.94c0 .436.233.84.611 1.058l4.278 2.47c.378.218.844.218 1.222 0l4.278-2.47c.378-.218.611-.621.611-1.058"
     />
-  </svg>
+  </svg>,
 );

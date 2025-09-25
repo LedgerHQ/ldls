@@ -32,25 +32,35 @@ export type BannerAppearance = NonNullable<
   VariantProps<typeof bannerVariants>['appearance']
 >;
 
-export type BannerAction = {
-  label: string;
-  onClick: () => void;
-};
-
-export type BannerCloseAction = {
-  onClick: () => void;
-  ariaLabel?: string;
-};
-
-export interface BannerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    Omit<VariantProps<typeof bannerVariants>, 'appearance'> {
+export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The type of banner which affects color and icon.
+   */
   appearance?: BannerAppearance;
+  /**
+   * The main title of the banner.
+   */
   title: string;
+  /**
+   * Optional descriptive text.
+   */
   description?: string;
-  primaryAction?: BannerAction;
-  secondaryAction?: BannerAction;
-  closeAction?: BannerCloseAction;
+  /**
+   * Optional primary action.
+   */
+  primaryAction?: React.ReactNode;
+  /**
+   * Optional secondary action.
+   */
+  secondaryAction?: React.ReactNode;
+  /**
+   * Optional close action.
+   */
+  onClose?: () => void;
+  /**
+   * Optional aria label for the close button.
+   */
+  closeAriaLabel?: string;
 }
 
 /**
@@ -58,18 +68,8 @@ export interface BannerProps
  *
  * The appearance determines the color scheme and icon used.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-banner-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'info' | 'success' | 'warning' | 'error'} [appearance='info'] - The type of banner which affects color and icon.
- * @param {string} title - The main title of the banner.
- * @param {string} [description] - Optional descriptive text.
- * @param {BannerAction} [primaryAction] - Optional primary action with label and onClick handler.
- * @param {BannerAction} [secondaryAction] - Optional secondary action with label and onClick handler.
- * @param {BannerCloseAction} [closeAction] - Optional close action with onClick handler and optional ariaLabel. Controls the visibility of the close button.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.HTMLAttributes<HTMLDivElement>} [...] - Standard div props.
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-banner-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-banner-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
@@ -80,19 +80,21 @@ export interface BannerProps
  * // Basic info banner
  * <Banner title="Information" appearance="info" />
  *
- * // Banner with description and primary action
+ * // Banner with description and actions
  * <Banner
  *   title="Success"
  *   appearance="success"
  *   description="Your action was successful."
- *   primaryAction={{ label: "Undo", onClick: () => console.log('Undo') }}
+ *   primaryAction={<Button appearance="transparent" size="sm" onClick={() => {}}>Primary</Button>}
+ *   secondaryAction={<Button appearance="no-background" size="sm" onClick={() => {}}>Secondary</Button>}
  * />
  *
  * // Error banner with close
  * <Banner
  *   title="Error"
  *   appearance="error"
- *   closeAction={{ onClick: () => console.log('Close'), ariaLabel: 'Close banner' }}
+ *   onClose={() => console.log('Close')}
+ *   closeAriaLabel="Close banner"
  * />
  */
 export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
@@ -104,7 +106,8 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       primaryAction,
       secondaryAction,
       className,
-      closeAction,
+      onClose,
+      closeAriaLabel,
       ...props
     },
     ref,
@@ -120,41 +123,25 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         <div className="flex flex-shrink-0 items-start py-4">{icon}</div>
         <div className="mr-8 flex flex-1 flex-col gap-8 py-4">
           <div className="flex flex-col gap-4">
-            <div className="line-clamp-2 body-1-semi-bold">{title}</div>
+            <h3 className="line-clamp-2 body-1-semi-bold">{title}</h3>
             {description && (
               <div className="line-clamp-5 body-2">{description}</div>
             )}
           </div>
           {(primaryAction || secondaryAction) && (
             <div className="flex gap-4">
-              {primaryAction && (
-                <Button
-                  appearance="transparent"
-                  size="sm"
-                  onClick={primaryAction.onClick}
-                >
-                  {primaryAction.label}
-                </Button>
-              )}
-              {secondaryAction && (
-                <Button
-                  appearance="no-background"
-                  size="sm"
-                  onClick={secondaryAction.onClick}
-                >
-                  {secondaryAction.label}
-                </Button>
-              )}
+              {primaryAction}
+              {secondaryAction}
             </div>
           )}
         </div>
-        {closeAction && (
+        {onClose && (
           <Button
             appearance="transparent"
             size="xs"
             icon={Close}
-            onClick={closeAction.onClick}
-            aria-label={closeAction.ariaLabel || 'Close'}
+            onClick={() => onClose()}
+            aria-label={closeAriaLabel || 'Close'}
           />
         )}
       </div>

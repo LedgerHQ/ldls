@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Bundle icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Bundle Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Bundle Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Bundle size={40} className="text-warning" />
  */
 export const Bundle = createIcon(
-  "Bundle",
+  'Bundle',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -39,5 +39,5 @@ export const Bundle = createIcon(
       strokeWidth={1.3}
       d="M9.6 3.2h.8a.8.8 0 0 1 .8.8v8a.8.8 0 0 1-.8.8h-.8m3.6-9.6h.8a.8.8 0 0 1 .8.8v8a.8.8 0 0 1-.8.8h-.8m-10.8 0h4.4a.8.8 0 0 0 .8-.8V4a.8.8 0 0 0-.8-.8H2.4a.8.8 0 0 0-.8.8v8a.8.8 0 0 0 .8.8Z"
     />
-  </svg>
+  </svg>,
 );

@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * LedgerLogo icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:LedgerLogo Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:LedgerLogo Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <LedgerLogo size={40} className="text-warning" />
  */
 export const LedgerLogo = createIcon(
-  "LedgerLogo",
+  'LedgerLogo',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const LedgerLogo = createIcon(
       strokeWidth={1.3}
       d="M2 4.667V3a1 1 0 0 1 1-1h3m3.333 8H7.667a1 1 0 0 1-1-1V6M14 4.667V3a1 1 0 0 0-1-1h-3m-8 9.333V13a1 1 0 0 0 1 1h3m8-2.667V13a1 1 0 0 1-1 1h-3"
     />
-  </svg>
+  </svg>,
 );

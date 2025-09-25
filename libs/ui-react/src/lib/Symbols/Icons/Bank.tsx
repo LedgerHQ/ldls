@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Bank icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Bank Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Bank Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Bank size={40} className="text-warning" />
  */
 export const Bank = createIcon(
-  "Bank",
+  'Bank',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Bank = createIcon(
       strokeWidth={1.3}
       d="M9.762 6.667V12m2.905 0V6.667m-9.334 0V12m2.905 0V6.667m7.762 0H2V4.663L8.101 2 14 4.574zM2 14h12v-.667L13.333 12H2.667L2 13.333z"
     />
-  </svg>
+  </svg>,
 );

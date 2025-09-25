@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Language icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Language Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Language Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Language size={40} className="text-warning" />
  */
 export const Language = createIcon(
-  "Language",
+  'Language',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Language = createIcon(
       strokeWidth={1.3}
       d="M5 2.667v2m8.667 8.666-2.667-6-2.667 6M8.927 12h4.146m-10.74-2c2.73-.22 5.118-2.607 5.334-5.333H2.334M7.667 10C5.96 9.86 4.468 8.367 4.333 6.667"
     />
-  </svg>
+  </svg>,
 );

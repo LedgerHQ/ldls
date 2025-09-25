@@ -1,17 +1,17 @@
-import { tokens as enterpriseLightThemeTokens } from './enterprise/theme.light.js';
-import { tokens as enterpriseDarkThemeTokens } from './enterprise/theme.dark.js';
+import { tokens as enterpriseLightThemeTokens } from './enterprise/theme.light';
+import { tokens as enterpriseDarkThemeTokens } from './enterprise/theme.dark';
 
-import { tokens as ledgerLiveLightThemeTokens } from './ledger-live/theme.light.js';
-import { tokens as ledgerLiveDarkThemeTokens } from './ledger-live/theme.dark.js';
+import { tokens as ledgerLiveLightThemeTokens } from './ledger-live/theme.light';
+import { tokens as ledgerLiveDarkThemeTokens } from './ledger-live/theme.dark';
 
-import { tokens as websitesLightThemeTokens } from './websites/theme.light.js';
-import { tokens as websitesDarkThemeTokens } from './websites/theme.dark.js';
+import { tokens as websitesLightThemeTokens } from './websites/theme.light';
+import { tokens as websitesDarkThemeTokens } from './websites/theme.dark';
 
-import { tokens as primitivesTokens } from './primitives.js';
-import { tokens as typographyLgTokens } from './typography.lg.js';
-import { tokens as typographyMdTokens } from './typography.md.js';
-import { tokens as typographySmTokens } from './typography.sm.js';
-import { tokens as typographyXlTokens } from './typography.xl.js';
+import { tokens as primitivesTokens } from './primitives';
+import { tokens as typographyLgTokens } from './typography.lg';
+import { tokens as typographyMdTokens } from './typography.md';
+import { tokens as typographySmTokens } from './typography.sm';
+import { tokens as typographyXlTokens } from './typography.xl';
 
 export const primitivesTheme = {
   ':root': {

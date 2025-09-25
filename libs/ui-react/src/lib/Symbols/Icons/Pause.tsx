@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Pause icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Pause Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Pause Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Pause size={40} className="text-warning" />
  */
 export const Pause = createIcon(
-  "Pause",
+  'Pause',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -39,5 +39,5 @@ export const Pause = createIcon(
       strokeWidth={1.3}
       d="M4.759 3.893v8m6.482-8v8"
     />
-  </svg>
+  </svg>,
 );

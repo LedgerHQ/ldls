@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Banner } from './Banner';
+import { Button } from '../Button';
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {
@@ -41,7 +42,11 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Primary"
-        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
+        primaryAction={
+          <Button appearance="transparent" size="sm" onClick={handlePrimary}>
+            Primary
+          </Button>
+        }
       />,
     );
 
@@ -56,7 +61,15 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Secondary"
-        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
+        secondaryAction={
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={handleSecondary}
+          >
+            Secondary
+          </Button>
+        }
       />,
     );
 
@@ -72,8 +85,20 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner with Both Actions"
-        primaryAction={{ label: 'Primary', onClick: handlePrimary }}
-        secondaryAction={{ label: 'Secondary', onClick: handleSecondary }}
+        primaryAction={
+          <Button appearance="transparent" size="sm" onClick={handlePrimary}>
+            Primary
+          </Button>
+        }
+        secondaryAction={
+          <Button
+            appearance="no-background"
+            size="sm"
+            onClick={handleSecondary}
+          >
+            Secondary
+          </Button>
+        }
       />,
     );
 
@@ -87,9 +112,7 @@ describe('Banner Component', () => {
 
   it('should render close button and handle click', () => {
     const handleClose = vi.fn();
-    render(
-      <Banner title="Closable Banner" closeAction={{ onClick: handleClose }} />,
-    );
+    render(<Banner title="Closable Banner" onClose={handleClose} />);
 
     const closeButton = screen.getByRole('button'); // assuming it's the only button
     expect(closeButton).toBeInTheDocument();
@@ -128,20 +151,20 @@ describe('Banner Component', () => {
     expect(ref).toHaveBeenCalled();
   });
 
-  it('should not render close button if closeAction is not provided', () => {
+  it('should not render close button if onClose is not provided', () => {
     render(<Banner title="Banner" />);
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
-  it('should render close button when closeAction is provided', () => {
+  it('should render close button when onClose is provided', () => {
     const handleClose = vi.fn();
-    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    render(<Banner title="Banner" onClose={handleClose} />);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('should apply default aria-label to close button when ariaLabel is not provided', () => {
+  it('should apply default aria-label to close button when closeAriaLabel is not provided', () => {
     const handleClose = vi.fn();
-    render(<Banner title="Banner" closeAction={{ onClick: handleClose }} />);
+    render(<Banner title="Banner" onClose={handleClose} />);
     const closeButton = screen.getByRole('button');
     expect(closeButton).toHaveAttribute('aria-label', 'Close');
   });
@@ -151,7 +174,8 @@ describe('Banner Component', () => {
     render(
       <Banner
         title="Banner"
-        closeAction={{ onClick: handleClose, ariaLabel: 'Close notification' }}
+        onClose={handleClose}
+        closeAriaLabel="Close notification"
       />,
     );
     const closeButton = screen.getByRole('button');

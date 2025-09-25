@@ -1,4 +1,4 @@
-import createIcon from "../../Components/Icon/createIcon";
+import createIcon from '../../Components/Icon/createIcon';
 
 /**
  * Switch2 icon component.
@@ -7,7 +7,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * to create a consistent icon interface. It supports all standard SVG props and additional
  * size variants defined in the Icon component.
  *
- * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons-react--icon&args=name:Switch2 Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/story/symbols-interface-icons--icon&args=name:Switch2 Storybook}
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
@@ -25,7 +25,7 @@ import createIcon from "../../Components/Icon/createIcon";
  * <Switch2 size={40} className="text-warning" />
  */
 export const Switch2 = createIcon(
-  "Switch2",
+  'Switch2',
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -40,5 +40,5 @@ export const Switch2 = createIcon(
       strokeWidth={1.3}
       d="M11.607 7.053c.52.52.52 1.36 0 1.88-.527.52-1.367.52-1.887 0a1.324 1.324 0 0 1 0-1.886 1.316 1.316 0 0 1 1.88 0m-6.267-2.38h5.334a3.335 3.335 0 0 1 0 6.667H5.333a3.334 3.334 0 0 1 0-6.667"
     />
-  </svg>
+  </svg>,
 );
