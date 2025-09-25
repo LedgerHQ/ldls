@@ -200,6 +200,134 @@ describe('textFormatter', () => {
     });
   });
 
+  describe('length limits with maxIntegerLength and maxDecimalLength', () => {
+    describe('integer length limits', () => {
+      it('should limit integer part to maxIntegerLength', () => {
+        // Test with 5-digit limit
+        expect(textFormatter('123456789', true, false, 5, 9)).toBe('12345');
+        expect(textFormatter('987654321', true, false, 3, 9)).toBe('987');
+        expect(textFormatter('1000000000', true, false, 9, 9)).toBe(
+          '100000000',
+        ); // Should truncate 10th digit
+      });
+
+      it('should allow exactly maxIntegerLength digits', () => {
+        expect(textFormatter('123456789', true, false, 9, 9)).toBe('123456789');
+        expect(textFormatter('12345', true, false, 5, 9)).toBe('12345');
+      });
+
+      it('should handle integer limits with thousands separator', () => {
+        expect(textFormatter('123456789', true, true, 9, 9)).toBe(
+          '123 456 789',
+        );
+        expect(textFormatter('1234567890', true, true, 9, 9)).toBe(
+          '123 456 789',
+        ); // Should truncate 10th digit
+        expect(textFormatter('12345', true, true, 5, 9)).toBe('12 345');
+      });
+    });
+
+    describe('decimal length limits', () => {
+      it('should limit decimal part to maxDecimalLength', () => {
+        expect(textFormatter('123.456789012', true, false, 9, 5)).toBe(
+          '123.45678',
+        );
+        expect(textFormatter('1.123456789', true, false, 9, 3)).toBe('1.123');
+        expect(textFormatter('0.987654321', true, false, 9, 2)).toBe('0.98');
+      });
+
+      it('should allow exactly maxDecimalLength digits', () => {
+        expect(textFormatter('123.123456789', true, false, 9, 9)).toBe(
+          '123.123456789',
+        );
+        expect(textFormatter('1.12345', true, false, 9, 5)).toBe('1.12345');
+      });
+
+      it('should handle decimal limits with thousands separator', () => {
+        expect(textFormatter('123456.789012345', true, true, 9, 5)).toBe(
+          '123 456.78901',
+        );
+        expect(textFormatter('1234567.123456789', true, true, 9, 9)).toBe(
+          '1 234 567.123456789',
+        );
+      });
+    });
+
+    describe('combined length limits (18 total digits)', () => {
+      it('should allow 9 integer + 9 decimal digits (18 total)', () => {
+        const input = '123456789.987654321';
+        const expected = '123456789.987654321';
+        expect(textFormatter(input, true, false, 9, 9)).toBe(expected);
+      });
+
+      it('should allow 9 integer + 9 decimal with thousands separator', () => {
+        const input = '123456789.987654321';
+        const expected = '123 456 789.987654321';
+        expect(textFormatter(input, true, true, 9, 9)).toBe(expected);
+      });
+
+      it('should truncate excess digits in integer part', () => {
+        const input = '1234567890.123456789'; // 10 integer + 9 decimal
+        const expected = '123456789.123456789'; // Should truncate to 9 integer + 9 decimal
+        expect(textFormatter(input, true, false, 9, 9)).toBe(expected);
+      });
+
+      it('should truncate excess digits in decimal part', () => {
+        const input = '123456789.9876543210'; // 9 integer + 10 decimal
+        const expected = '123456789.987654321'; // Should truncate to 9 integer + 9 decimal
+        expect(textFormatter(input, true, false, 9, 9)).toBe(expected);
+      });
+
+      it('should truncate excess digits in both parts', () => {
+        const input = '12345678901.98765432109'; // 11 integer + 11 decimal
+        const expected = '123456789.987654321'; // Should truncate to 9 integer + 9 decimal
+        expect(textFormatter(input, true, false, 9, 9)).toBe(expected);
+      });
+    });
+
+    describe('edge cases with length limits', () => {
+      it('should handle trailing decimal point with length limits', () => {
+        expect(textFormatter('123456789.', true, false, 9, 9)).toBe(
+          '123456789.',
+        );
+        expect(textFormatter('1234567890.', true, false, 9, 9)).toBe(
+          '123456789.',
+        ); // Truncate integer
+        expect(textFormatter('123.', true, false, 5, 5)).toBe('123.');
+      });
+
+      it('should handle leading zeros with length limits', () => {
+        expect(textFormatter('000123456789', true, false, 9, 9)).toBe(
+          '123456789',
+        );
+        expect(textFormatter('001234567890', true, false, 9, 9)).toBe(
+          '123456789',
+        ); // Should truncate
+      });
+
+      it('should handle decimal starting with dot', () => {
+        expect(textFormatter('.123456789', true, false, 9, 9)).toBe(
+          '0.123456789',
+        );
+        expect(textFormatter('.1234567890', true, false, 9, 9)).toBe(
+          '0.123456789',
+        ); // Truncate decimal
+      });
+
+      it('should preserve functionality when limits are not restrictive', () => {
+        expect(textFormatter('123.45', true, false, 9, 9)).toBe('123.45');
+        expect(textFormatter('1.2', true, true, 9, 9)).toBe('1.2');
+      });
+    });
+
+    describe('backwards compatibility', () => {
+      it('should work with undefined length parameters', () => {
+        // When called without length params, should use default behavior
+        expect(textFormatter('123456789.123456789')).toBe('123456789.12345678'); // Default 8 decimal limit
+      });
+    });
+  });
+
   describe('complex scenarios', () => {
     it('should handle combination of all edge cases', () => {
       expect(textFormatter('$01,234.567890abc')).toBe('1.23456789');

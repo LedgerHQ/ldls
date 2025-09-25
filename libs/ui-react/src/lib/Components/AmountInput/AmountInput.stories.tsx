@@ -19,7 +19,6 @@ export const Default: Story = {
   args: {
     placeholder: '0',
     currencyText: '$',
-    maxLength: 12,
     value: '',
     allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
@@ -31,7 +30,6 @@ export const WithRightCurrency: Story = {
     placeholder: '0',
     currencyText: 'ETH',
     currencyPosition: 'right',
-    maxLength: 12,
     value: '',
     onChange: () => console.log('onChange triggered'),
   },
@@ -41,7 +39,6 @@ export const WithValue: Story = {
   args: {
     value: '1234.56',
     currencyText: '$',
-    maxLength: 12,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -52,7 +49,6 @@ export const Disabled: Story = {
     currencyText: 'ETH',
     currencyPosition: 'right',
     disabled: true,
-    maxLength: 12,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -62,7 +58,6 @@ export const Error: Story = {
     value: '1234.56',
     currencyText: '$',
     'aria-invalid': true,
-    maxLength: 12,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -72,7 +67,6 @@ export const IntegerOnly: Story = {
     value: '1234',
     currencyText: '$',
     allowDecimals: false, // Important: disables decimal input
-    maxLength: 8,
     onChange: () => console.log('onChange triggered'),
   },
   parameters: {
@@ -86,7 +80,6 @@ export const IntegerOnly: Story = {
   value="1234"
   currencyText="$"
   allowDecimals={false} // Important: disables decimal input
-  maxLength={8}
   onChange={() => console.log('onChange triggered')}
 />`,
       },
@@ -98,7 +91,6 @@ export const CustomMaxLength: Story = {
   args: {
     value: '123',
     currencyText: '$',
-    maxLength: 3, // Only allow 3 digits
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -133,7 +125,6 @@ export const LargeAmountDisplay: Story = {
             }
             currencyText={currentCurrency}
             currencyPosition={isEth ? 'right' : 'left'}
-            maxLength={6}
             aria-invalid={hasError}
           />
           <div className='mt-16 text-center text-muted body-2'>
