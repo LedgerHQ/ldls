@@ -8,6 +8,9 @@ const config = {
     './lib/**/*.stories.{js,jsx,ts,tsx}',
   ],
   presets: [allBrandsPreset],
+  corePlugins: {
+    fontSize: true,
+  },
 } satisfies Config;
 
 export default config;
