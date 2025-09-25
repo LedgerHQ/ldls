@@ -42,10 +42,15 @@ set it to `false` to only accept whole numbers:
 
 <Canvas of={AmountInputStories.IntegerOnly} />
 
-#### **Custom Max Length**
+#### **Length Limits**
 
-`maxLength` is set to `12` by default.
-You can limit the number of digits using the `maxLength` prop.
+By default, the AmountInput allows:
+
+- Up to **9 digits** for the integer part (before decimal)
+- Up to **9 digits** for the decimal part (after decimal)
+- **18 total digits** maximum
+
+You can customize these limits using `maxIntegerLength` and `maxDecimalLength` props if needed.
 
 <Canvas of={AmountInputStories.CustomMaxLength} />
 
@@ -119,7 +124,6 @@ function MyComponent() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       currencyText="USD"
-      maxLength={12} // Maximum number of digits
       allowDecimals={true} // Allow decimal points
     />
   );
@@ -130,8 +134,9 @@ function MyComponent() {
 
 The AmountInput component provides two ways to control input validation:
 
-1. `maxLength`: Limits the number of digits (default: 12)
-2. `allowDecimals`: Controls whether decimal points are allowed (default: true)
+`allowDecimals`: Controls whether decimal points are allowed (default: true)
+
+By default, the component allows up to 9 digits for the integer part and 9 digits for the decimal part (18 total).
 
 ```tsx
 // Integer-only input limited to 8 digits
@@ -139,7 +144,8 @@ The AmountInput component provides two ways to control input validation:
   value={value}
   onChange={handleChange}
   currencyText="$"
-  maxLength={8}
+  maxIntegerLength={8}
+  maxDecimalLength={0} // Integer only
   allowDecimals={false}
 />
 
@@ -148,7 +154,8 @@ The AmountInput component provides two ways to control input validation:
   value={value}
   onChange={handleChange}
   currencyText="$"
-  maxLength={3} // Only allow 3 digits
+  maxIntegerLength={3} // Only allow 3 digits
+  maxDecimalLength={0} // Integer only
 />
 
 // Large number input with decimal support
@@ -156,7 +163,8 @@ The AmountInput component provides two ways to control input validation:
   value={value}
   onChange={handleChange}
   currencyText="USD"
-  maxLength={15} // Allow larger amounts
+  maxIntegerLength={12} // Allow larger integer amounts
+  maxDecimalLength={8} // Allow up to 8 decimal places
 />
 ```
 
@@ -224,7 +232,8 @@ function MyComponent() {
   onChange={handleQuantityChange}
   currencyText="items"
   allowDecimals={false}
-  maxLength={4}
+  maxIntegerLength={4}
+  maxDecimalLength={0} // No decimals for quantity
 />
 
 // Use custom max length for specific use cases
@@ -232,16 +241,16 @@ function MyComponent() {
   value={pin}
   onChange={handlePinChange}
   currencyText=""
-  maxLength={4} // PIN code
+  maxIntegerLength={4} // PIN code
+  maxDecimalLength={0} // No decimals for PIN
   allowDecimals={false}
 />
 
-// Use appropriate length for currency amounts
+// Use default length limits for currency amounts (9+9=18 digits)
 <AmountInput
   value={amount}
   onChange={handleAmountChange}
   currencyText="$"
-  maxLength={12} // Reasonable for most currencies
   allowDecimals={true}
 />
 ```
@@ -250,13 +259,13 @@ function MyComponent() {
 
 ```tsx
 // Don't use overly restrictive lengths for currency
-<AmountInput maxLength={2} currencyText="$" /> // Too short for real amounts
+<AmountInput maxIntegerLength={1} maxDecimalLength={1} currencyText="$" /> // Too short for real amounts
 
 // Don't allow decimals for count-based inputs
 <AmountInput currencyText="items" allowDecimals={true} /> // Items should be whole numbers
 
 // Don't use extremely long lengths without good reason
-<AmountInput maxLength={50} currencyText="$" /> // Unnecessarily long
+<AmountInput maxIntegerLength={25} maxDecimalLength={25} currencyText="$" /> // Unnecessarily long
 ```
 
 ### Value Management
