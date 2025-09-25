@@ -32,12 +32,39 @@ export function createAnimationsPlugin() {
                 transform: 'translate(-50%, -48%) scale(0.96)',
               },
             },
+            slideInFromRight: {
+              from: {
+                transform: 'translateX(12px)',
+                opacity: '0.6',
+              },
+              '50%': {
+                opacity: '0.8',
+              },
+              to: {
+                transform: 'translateX(0)',
+                opacity: '1',
+              },
+            },
+            focusGlow: {
+              from: {
+                transform: 'scale(1)',
+              },
+              '50%': {
+                transform: 'scale(1.02)',
+              },
+              to: {
+                transform: 'scale(1)',
+              },
+            },
           },
           animation: {
             overlayShow: 'overlayShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             overlayHide: 'overlayHide 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             contentShow: 'contentShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             contentHide: 'contentHide 250ms cubic-bezier(0.16, 1, 0.3, 1)',
+            slideInFromRight:
+              'slideInFromRight 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+            focusGlow: 'focusGlow 250ms ease-out',
           },
         },
       },
