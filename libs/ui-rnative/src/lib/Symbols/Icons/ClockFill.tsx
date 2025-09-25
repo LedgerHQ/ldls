@@ -33,20 +33,20 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const ClockFill = createIcon(
   'ClockFill',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      fill="currentColor"
-      fillRule="evenodd"
-      d="M1.5 8c0-3.596 2.91-6.5 6.5-6.5a6.5 6.5 0 1 1 0 13c-3.596 0-6.5-2.91-6.5-6.5"
-      clipRule="evenodd"
+      fill='currentColor'
+      fillRule='evenodd'
+      d='M1.5 8c0-3.596 2.91-6.5 6.5-6.5a6.5 6.5 0 1 1 0 13c-3.596 0-6.5-2.91-6.5-6.5'
+      clipRule='evenodd'
     />
-    <Path fill="currentColor" d="M11.1 8H8zM8 8V4.267z" />
+    <Path fill='currentColor' d='M11.1 8H8zM8 8V4.267z' />
     <Path
-      stroke="#fff"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='#fff'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M11.1 8H8V4.267"
+      d='M11.1 8H8V4.267'
     />
   </Svg>,
 );

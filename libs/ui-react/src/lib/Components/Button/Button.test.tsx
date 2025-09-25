@@ -13,7 +13,7 @@ describe('Button Component', () => {
   });
 
   it('should render as an icon-only button and have an aria-label', () => {
-    render(<Button icon={Settings} aria-label="Application Settings" />);
+    render(<Button icon={Settings} aria-label='Application Settings' />);
     const buttonElement = screen.getByRole('button', {
       name: /application settings/i,
     });

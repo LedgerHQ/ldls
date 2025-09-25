@@ -23,7 +23,7 @@ type Story = StoryObj;
 
 export const Basic: Story = {
   render: () => (
-    <div className="flex h-256 items-center justify-center">
+    <div className='flex h-256 items-center justify-center'>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button>Hover me</Button>
@@ -54,10 +54,10 @@ export const PlacementsShowcase: Story = {
   render: () => {
     const placements = ['top', 'bottom', 'left', 'right'] as const;
     return (
-      <div className="grid grid-cols-2 gap-32 p-16">
+      <div className='grid grid-cols-2 gap-32 p-16'>
         {placements.map((placement) => (
-          <div key={placement} className="flex flex-col items-center gap-8">
-            <p className="capitalize">{placement}</p>
+          <div key={placement} className='flex flex-col items-center gap-8'>
+            <p className='capitalize'>{placement}</p>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button>Hover</Button>
@@ -75,7 +75,7 @@ export const PlacementsShowcase: Story = {
 
 export const WithIconTrigger: Story = {
   render: () => (
-    <div className="flex h-256 items-center justify-center">
+    <div className='flex h-256 items-center justify-center'>
       <Tooltip>
         <TooltipTrigger asChild>
           <Information size={20} />
@@ -88,12 +88,12 @@ export const WithIconTrigger: Story = {
 
 export const LongContent: Story = {
   render: () => (
-    <div className="flex h-256 items-center justify-center">
+    <div className='flex h-256 items-center justify-center'>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button>Hover for details</Button>
         </TooltipTrigger>
-        <TooltipContent className="max-w-192">
+        <TooltipContent className='max-w-192'>
           This is a longer tooltip content that spans multiple lines to
           demonstrate text wrapping and content handling in the tooltip
           component.
@@ -105,7 +105,7 @@ export const LongContent: Story = {
 
 export const WithDelay: Story = {
   render: () => (
-    <div className="flex h-256 flex-col items-center justify-center gap-8">
+    <div className='flex h-256 flex-col items-center justify-center gap-8'>
       <Tooltip delayDuration={500}>
         <TooltipTrigger asChild>
           <Button>Hover (with 500ms delay)</Button>

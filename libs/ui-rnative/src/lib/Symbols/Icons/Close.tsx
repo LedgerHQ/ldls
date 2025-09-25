@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const Close = createIcon(
   'Close',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="m3.333 3.333 9.334 9.334m0-9.334-9.334 9.334"
+      d='m3.333 3.333 9.334 9.334m0-9.334-9.334 9.334'
     />
   </Svg>,
 );

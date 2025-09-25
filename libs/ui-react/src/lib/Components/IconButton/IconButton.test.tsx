@@ -8,7 +8,7 @@ import { Settings, Plus } from '../../Symbols';
 describe('IconButton Component', () => {
   it('should render correctly with children icon', () => {
     render(
-      <IconButton iconType="filled" aria-label="Settings">
+      <IconButton iconType='filled' aria-label='Settings'>
         <Settings size={20} />
       </IconButton>,
     );
@@ -18,7 +18,7 @@ describe('IconButton Component', () => {
 
   it('should render with filled iconType variant', () => {
     render(
-      <IconButton iconType="filled" aria-label="Add item">
+      <IconButton iconType='filled' aria-label='Add item'>
         <Plus size={20} />
       </IconButton>,
     );
@@ -29,7 +29,7 @@ describe('IconButton Component', () => {
 
   it('should render with stroked iconType variant', () => {
     render(
-      <IconButton iconType="stroked" aria-label="Settings">
+      <IconButton iconType='stroked' aria-label='Settings'>
         <Settings size={20} />
       </IconButton>,
     );
@@ -40,7 +40,7 @@ describe('IconButton Component', () => {
 
   it('should have correct aria-label for accessibility', () => {
     render(
-      <IconButton iconType="filled" aria-label="Open menu">
+      <IconButton iconType='filled' aria-label='Open menu'>
         <Settings size={20} />
       </IconButton>,
     );
@@ -50,7 +50,7 @@ describe('IconButton Component', () => {
 
   it('should be disabled when the disabled prop is true', () => {
     render(
-      <IconButton iconType="filled" aria-label="Disabled button" disabled>
+      <IconButton iconType='filled' aria-label='Disabled button' disabled>
         <Settings size={20} />
       </IconButton>,
     );
@@ -62,8 +62,8 @@ describe('IconButton Component', () => {
     const handleClick = vi.fn();
     render(
       <IconButton
-        iconType="filled"
-        aria-label="Clickable"
+        iconType='filled'
+        aria-label='Clickable'
         onClick={handleClick}
       >
         <Plus size={20} />
@@ -80,8 +80,8 @@ describe('IconButton Component', () => {
     const handleClick = vi.fn();
     render(
       <IconButton
-        iconType="filled"
-        aria-label="Disabled"
+        iconType='filled'
+        aria-label='Disabled'
         onClick={handleClick}
         disabled
       >
@@ -98,9 +98,9 @@ describe('IconButton Component', () => {
   it('should apply custom className', () => {
     render(
       <IconButton
-        iconType="filled"
-        aria-label="Custom"
-        className="custom-test-class"
+        iconType='filled'
+        aria-label='Custom'
+        className='custom-test-class'
       >
         <Settings size={20} />
       </IconButton>,
@@ -112,7 +112,7 @@ describe('IconButton Component', () => {
   it('should forward ref correctly', () => {
     const ref = vi.fn();
     render(
-      <IconButton iconType="stroked" aria-label="Ref test" ref={ref}>
+      <IconButton iconType='stroked' aria-label='Ref test' ref={ref}>
         <Plus size={20} />
       </IconButton>,
     );

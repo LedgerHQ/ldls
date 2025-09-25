@@ -138,15 +138,15 @@ export const VerticalListItem = ({
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className="flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2 focus-visible:outline-focus"
+        className='flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2 focus-visible:outline-focus'
         {...props}
       >
-        <div className="flex items-center justify-center">{spot}</div>
-        <div className="flex w-full flex-col items-center gap-4">
-          <div className="flex w-full flex-col">
-            <div className="truncate body-3-semi-bold">{title}</div>
+        <div className='flex items-center justify-center'>{spot}</div>
+        <div className='flex w-full flex-col items-center gap-4'>
+          <div className='flex w-full flex-col'>
+            <div className='truncate body-3-semi-bold'>{title}</div>
             {subtitle && (
-              <div className="truncate text-muted body-3">{subtitle}</div>
+              <div className='truncate text-muted body-3'>{subtitle}</div>
             )}
           </div>
           {tag}
@@ -154,7 +154,7 @@ export const VerticalListItem = ({
       </button>
       {secondaryAction && (
         <div
-          className="absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100"
+          className='absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100'
           data-secondary-button-container
         >
           <Slot onClick={onSecondaryActionClickHandler}>{secondaryAction}</Slot>

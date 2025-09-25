@@ -142,26 +142,26 @@ export const CardButton = React.forwardRef<
         activeOpacity={1}
         {...props}
       >
-        {IconComponent && <IconComponent size={24} className="flex-shrink-0" />}
-        <View className="flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold">
+        {IconComponent && <IconComponent size={24} className='flex-shrink-0' />}
+        <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
           <Text
-            className="min-w-0 body-1-semi-bold"
+            className='min-w-0 body-1-semi-bold'
             numberOfLines={1}
-            ellipsizeMode="tail"
+            ellipsizeMode='tail'
           >
             {title}
           </Text>
           {description && (
             <Text
-              className="min-w-0 body-2"
+              className='min-w-0 body-2'
               numberOfLines={2}
-              ellipsizeMode="tail"
+              ellipsizeMode='tail'
             >
               {description}
             </Text>
           )}
         </View>
-        {!hideChevron && <ChevronRight size={24} className="flex-shrink-0" />}
+        {!hideChevron && <ChevronRight size={24} className='flex-shrink-0' />}
       </TouchableOpacity>
     );
   },

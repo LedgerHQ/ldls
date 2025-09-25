@@ -27,8 +27,8 @@ const meta: Meta<typeof AddressFieldInput> = {
       description:
         'Custom suffix Element to show instead of the default "To:" suffix',
       mapping: {
-        QrCode: <QrCode size={20} className="text-muted" />,
-        Information: <InformationFill size={20} className="text-muted" />,
+        QrCode: <QrCode size={20} className='text-muted' />,
+        Information: <InformationFill size={20} className='text-muted' />,
       },
     },
     placeholder: {
@@ -195,9 +195,9 @@ export const Controlled: Story = {
     };
 
     return (
-      <div className="space-y-4">
+      <div className='space-y-4'>
         <AddressFieldInput
-          placeholder="Enter address or ENS"
+          placeholder='Enter address or ENS'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           onQrCodeClick={handleQrCodeScan}
@@ -208,21 +208,21 @@ export const Controlled: Story = {
           }}
           errorMessage={error}
           aria-invalid={!!error}
-          containerClassName="max-w-md"
+          containerClassName='max-w-md'
         />
 
-        <div className="text-muted body-3">
+        <div className='text-muted body-3'>
           <p>
             Click the QR code icon when the field is empty to scan an address.
           </p>
         </div>
 
         {address && !error && (
-          <div className="bg-success/10 rounded-md border border-muted p-16">
-            <h4 className="mb-4 text-success body-2-semi-bold">
+          <div className='bg-success/10 rounded-md border border-muted p-16'>
+            <h4 className='mb-4 text-success body-2-semi-bold'>
               Valid Address
             </h4>
-            <p className="break-all text-success body-3">{address}</p>
+            <p className='break-all text-success body-3'>{address}</p>
           </div>
         )}
       </div>

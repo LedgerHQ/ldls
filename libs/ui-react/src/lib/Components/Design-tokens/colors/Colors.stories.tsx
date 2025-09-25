@@ -20,14 +20,14 @@ type Story = StoryObj;
 
 export const Background: Story = {
   render: () => (
-    <div className="p-24 transition-colors duration-300">
+    <div className='p-24 transition-colors duration-300'>
       <SectionHeader
-        title="Background Colors"
-        description="Tailwind classes for controlling the background color of an element."
+        title='Background Colors'
+        description='Tailwind classes for controlling the background color of an element.'
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Canvas',
@@ -53,7 +53,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           { name: 'Base', className: 'bg-base', textClassName: 'text-base' },
           {
@@ -70,7 +70,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Base Transparent',
@@ -91,7 +91,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           { name: 'Muted', className: 'bg-muted', textClassName: 'text-base' },
           {
@@ -108,7 +108,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Muted Transparent',
@@ -134,7 +134,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Muted Strong',
@@ -155,7 +155,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Accent',
@@ -176,7 +176,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Interactive',
@@ -197,7 +197,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           { name: 'Error', className: 'bg-error', textClassName: 'text-base' },
           {
@@ -239,7 +239,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Active',
@@ -260,7 +260,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Active Subtle',
@@ -281,7 +281,7 @@ export const Background: Story = {
       />
 
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           { name: 'White', className: 'bg-white', textClassName: 'text-base' },
           { name: 'Black', className: 'bg-black', textClassName: 'text-base' },
@@ -298,13 +298,13 @@ export const Background: Story = {
 
 export const Text: Story = {
   render: () => (
-    <div className="p-24 transition-colors duration-300">
+    <div className='p-24 transition-colors duration-300'>
       <SectionHeader
-        title="Text Colors"
-        description="Tailwind classes for controlling the text color of an element."
+        title='Text Colors'
+        description='Tailwind classes for controlling the text color of an element.'
       />
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           { name: 'Base', className: '', textClassName: 'text-base' },
           {
@@ -321,7 +321,7 @@ export const Text: Story = {
       />
 
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           { name: 'Muted', className: '', textClassName: 'text-muted' },
           {
@@ -342,7 +342,7 @@ export const Text: Story = {
         ]}
       />
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           {
             name: 'interactive',
@@ -363,7 +363,7 @@ export const Text: Story = {
       />
 
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           { name: 'Error', className: '', textClassName: 'text-error' },
           { name: 'Warning', className: '', textClassName: 'text-warning' },
@@ -372,7 +372,7 @@ export const Text: Story = {
       />
 
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           {
             name: 'On Accent',
@@ -403,7 +403,7 @@ export const Text: Story = {
       />
 
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           {
             name: 'White',
@@ -424,13 +424,13 @@ export const Text: Story = {
       />
 
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           { name: 'Disabled', className: '', textClassName: 'text-disabled' },
         ]}
       />
       <ColorSection
-        category="text"
+        category='text'
         tokens={[
           {
             name: 'active',
@@ -445,13 +445,13 @@ export const Text: Story = {
 
 export const Border: Story = {
   render: () => (
-    <div className="p-24 transition-colors duration-300">
+    <div className='p-24 transition-colors duration-300'>
       <SectionHeader
-        title="Border Colors"
-        description="Tailwind classes for controlling the border color of an element."
+        title='Border Colors'
+        description='Tailwind classes for controlling the border color of an element.'
       />
       <ColorSection
-        category="border"
+        category='border'
         tokens={[
           { name: 'Base', className: 'bg-base border-base' },
           { name: 'Base Hover', className: 'bg-base border-base-hover' },
@@ -463,7 +463,7 @@ export const Border: Story = {
       />
 
       <ColorSection
-        category="border"
+        category='border'
         tokens={[
           { name: 'Muted', className: 'bg-base border-muted' },
           {
@@ -482,7 +482,7 @@ export const Border: Story = {
       />
 
       <ColorSection
-        category="border"
+        category='border'
         tokens={[
           { name: 'Error', className: 'bg-base border-error' },
           { name: 'Warning', className: 'bg-base border-warning' },
@@ -491,7 +491,7 @@ export const Border: Story = {
       />
 
       <ColorSection
-        category="border"
+        category='border'
         tokens={[
           { name: 'Focus', className: 'bg-base border-focus' },
           { name: 'Active', className: 'bg-base border-active' },
@@ -499,7 +499,7 @@ export const Border: Story = {
       />
 
       <ColorSection
-        category="border"
+        category='border'
         tokens={[
           { name: 'Black', className: 'bg-base border-black' },
           { name: 'White', className: 'bg-base border-white' },
@@ -507,7 +507,7 @@ export const Border: Story = {
       />
 
       <ColorSection
-        category="border"
+        category='border'
         tokens={[{ name: 'Disabled', className: 'bg-base border-disabled' }]}
       />
     </div>
@@ -517,13 +517,13 @@ export const Border: Story = {
 export const Crypto: Story = {
   name: 'Crypto background',
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Crypto Colors"
-        description="Tailwind classes for crypto colors tokens for different cryptocurrencies"
+        title='Crypto Colors'
+        description='Tailwind classes for crypto colors tokens for different cryptocurrencies'
       />
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: 'Aion',
@@ -724,13 +724,13 @@ export const Crypto: Story = {
 export const Discover: Story = {
   name: 'Discover background',
   render: () => (
-    <div className="border-width p-24">
+    <div className='border-width p-24'>
       <SectionHeader
-        title="Discover Colors"
-        description="Tailwind classes for brand colors for discover services and platform integrations"
+        title='Discover Colors'
+        description='Tailwind classes for brand colors for discover services and platform integrations'
       />
       <ColorSection
-        category="background"
+        category='background'
         tokens={[
           {
             name: '1inch',

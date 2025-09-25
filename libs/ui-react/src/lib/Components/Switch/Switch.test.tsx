@@ -66,7 +66,7 @@ describe('Switch Component', () => {
   });
 
   it('should apply custom className', () => {
-    render(<Switch className="custom-test-class" />);
+    render(<Switch className='custom-test-class' />);
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveClass('custom-test-class');
   });
@@ -114,7 +114,7 @@ describe('Switch Component', () => {
   });
 
   it('should support additional HTML attributes', () => {
-    render(<Switch id="test-switch" data-testid="switch-component" />);
+    render(<Switch id='test-switch' data-testid='switch-component' />);
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toHaveAttribute('id', 'test-switch');
     expect(switchElement).toHaveAttribute('data-testid', 'switch-component');

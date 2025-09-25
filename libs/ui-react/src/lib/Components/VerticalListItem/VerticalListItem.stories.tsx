@@ -17,8 +17,8 @@ import { Tag } from '../Tag/Tag';
 
 const secondaryAction = (
   <IconButton
-    iconType="stroked"
-    aria-label="More actions"
+    iconType='stroked'
+    aria-label='More actions'
     onClick={() => console.log('secondary action clicked')}
   >
     <MoreVertical />
@@ -51,8 +51,8 @@ const meta: Meta<typeof VerticalListItem> = {
       options: ['None', 'Settings', 'Plus'],
       mapping: {
         None: undefined,
-        Settings: <Spot appearance="icon" icon={Settings} />,
-        Plus: <Spot appearance="icon" icon={Plus} />,
+        Settings: <Spot appearance='icon' icon={Settings} />,
+        Plus: <Spot appearance='icon' icon={Plus} />,
       },
       description: 'The spot component to display',
     },
@@ -74,9 +74,9 @@ const meta: Meta<typeof VerticalListItem> = {
       options: ['None', 'Base', 'Success', 'Error'],
       mapping: {
         None: undefined,
-        Base: <Tag label="Tag" appearance="base" />,
-        Success: <Tag label="Tag" appearance="success" />,
-        Error: <Tag label="Tag" appearance="error" />,
+        Base: <Tag label='Tag' appearance='base' />,
+        Success: <Tag label='Tag' appearance='success' />,
+        Error: <Tag label='Tag' appearance='error' />,
       },
       description: 'The tag to display at the bottom',
     },
@@ -90,7 +90,7 @@ export const Base: Story = {
   args: {
     title: 'Item with Spot and Subtitle',
     subtitle: 'Additional information',
-    spot: <Spot appearance="icon" icon={Settings} />,
+    spot: <Spot appearance='icon' icon={Settings} />,
     className: 'max-w-256',
     secondaryAction,
   },
@@ -122,7 +122,7 @@ export const Base: Story = {
 export const WithoutSubtitle: Story = {
   args: {
     title: 'Item without Subtitle',
-    spot: <Spot appearance="icon" icon={Plus} />,
+    spot: <Spot appearance='icon' icon={Plus} />,
     className: 'max-w-256',
     secondaryAction,
   },
@@ -154,8 +154,8 @@ export const WithTag: Story = {
   args: {
     title: 'Item with Tag',
     subtitle: 'Additional information',
-    spot: <Spot appearance="icon" icon={Settings} />,
-    tag: <Tag label="New" appearance="base" />,
+    spot: <Spot appearance='icon' icon={Settings} />,
+    tag: <Tag label='New' appearance='base' />,
     secondaryAction,
     className: 'max-w-256',
   },
@@ -189,7 +189,7 @@ export const WithoutSecondaryAction: Story = {
   args: {
     title: 'Item without secondary action',
     subtitle: 'Additional information',
-    spot: <Spot appearance="icon" icon={Settings} />,
+    spot: <Spot appearance='icon' icon={Settings} />,
     className: 'max-w-256',
   },
   parameters: {
@@ -210,41 +210,41 @@ export const WithoutSecondaryAction: Story = {
 
 export const SpotVariantsShowcase: Story = {
   render: () => (
-    <div className="flex">
+    <div className='flex'>
       <VerticalListItem
-        title="User"
-        subtitle="With subtitle"
-        spot={<Spot appearance="icon" icon={User} />}
+        title='User'
+        subtitle='With subtitle'
+        spot={<Spot appearance='icon' icon={User} />}
         secondaryAction={secondaryAction}
-        className="max-w-128"
+        className='max-w-128'
       />
       <VerticalListItem
-        title="Wallet"
-        subtitle="With subtitle"
-        spot={<Spot appearance="icon" icon={Wallet} />}
+        title='Wallet'
+        subtitle='With subtitle'
+        spot={<Spot appearance='icon' icon={Wallet} />}
         secondaryAction={secondaryAction}
-        className="max-w-128"
+        className='max-w-128'
       />
       <VerticalListItem
-        title="Cart"
-        subtitle="With subtitle"
-        spot={<Spot appearance="icon" icon={Cart} />}
+        title='Cart'
+        subtitle='With subtitle'
+        spot={<Spot appearance='icon' icon={Cart} />}
         secondaryAction={secondaryAction}
-        className="max-w-128"
+        className='max-w-128'
       />
       <VerticalListItem
-        title="Apps"
-        subtitle="With subtitle"
-        spot={<Spot appearance="icon" icon={Apps} />}
+        title='Apps'
+        subtitle='With subtitle'
+        spot={<Spot appearance='icon' icon={Apps} />}
         secondaryAction={secondaryAction}
-        className="max-w-128"
+        className='max-w-128'
       />
       <VerticalListItem
-        title="Chart"
-        subtitle="With subtitle"
-        spot={<Spot appearance="icon" icon={Chart1} />}
+        title='Chart'
+        subtitle='With subtitle'
+        spot={<Spot appearance='icon' icon={Chart1} />}
         secondaryAction={secondaryAction}
-        className="max-w-128"
+        className='max-w-128'
       />
     </div>
   ),
@@ -252,19 +252,19 @@ export const SpotVariantsShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="grid w-256 grid-cols-1 gap-16 bg-base p-16">
-      <div className="text-muted body-4-semi-bold">Container: 256px wide</div>
+    <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
+      <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
       <div>
         <VerticalListItem
-          title="Short Title"
-          subtitle="Short subtitle"
-          spot={<Spot appearance="icon" icon={Plus} />}
+          title='Short Title'
+          subtitle='Short subtitle'
+          spot={<Spot appearance='icon' icon={Plus} />}
           secondaryAction={secondaryAction}
         />
         <VerticalListItem
-          title="Long Title that should truncate appropriately"
-          subtitle="Long subtitle that should truncate appropriately"
-          spot={<Spot appearance="icon" icon={Plus} />}
+          title='Long Title that should truncate appropriately'
+          subtitle='Long subtitle that should truncate appropriately'
+          spot={<Spot appearance='icon' icon={Plus} />}
           secondaryAction={secondaryAction}
         />
       </div>
@@ -274,19 +274,19 @@ export const ResponsiveLayout: Story = {
 
 export const List: Story = {
   render: () => (
-    <div className="flex flex-col gap-16">
-      <div className="flex w-[450px] rounded-sm bg-base">
+    <div className='flex flex-col gap-16'>
+      <div className='flex w-[450px] rounded-sm bg-base'>
         {Array.from({ length: 3 }).map((_, i) => (
           <VerticalListItem
             key={`list-1-${i}`}
             title={`Item ${i + 1}`}
             subtitle={`Subtitle ${i + 1}`}
-            spot={<Spot appearance="icon" icon={Apps} />}
+            spot={<Spot appearance='icon' icon={Apps} />}
             secondaryAction={secondaryAction}
           />
         ))}
       </div>
-      <div className="flex w-[450px] overflow-x-auto rounded-sm bg-base">
+      <div className='flex w-[450px] overflow-x-auto rounded-sm bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <VerticalListItem
             key={`list-2-${i}`}
@@ -300,9 +300,9 @@ export const List: Story = {
                 ? 'Long subtitle that should truncate appropriately'
                 : `Subtitle ${i + 1}`
             }
-            spot={<Spot appearance="icon" icon={Apps} />}
+            spot={<Spot appearance='icon' icon={Apps} />}
             secondaryAction={secondaryAction}
-            className="w-128 shrink-0"
+            className='w-128 shrink-0'
           />
         ))}
       </div>

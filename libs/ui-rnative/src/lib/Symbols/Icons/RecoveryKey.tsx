@@ -33,19 +33,19 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const RecoveryKey = createIcon(
   'RecoveryKey',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
-    <G clipPath="url(#clip0_7062_10)">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
+    <G clipPath='url(#clip0_7062_10)'>
       <Path
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
         strokeWidth={1.3}
-        d="M6.333 4.667H4.667v1m1.666 5.666H4.667v-1m5-5.666h1.666v1m-1.666 5.666h1.666v-1m-8 4.334h9.334a2 2 0 0 0 2-2V3.333a2 2 0 0 0-2-2H3.333a2 2 0 0 0-2 2v9.334a2 2 0 0 0 2 2"
+        d='M6.333 4.667H4.667v1m1.666 5.666H4.667v-1m5-5.666h1.666v1m-1.666 5.666h1.666v-1m-8 4.334h9.334a2 2 0 0 0 2-2V3.333a2 2 0 0 0-2-2H3.333a2 2 0 0 0-2 2v9.334a2 2 0 0 0 2 2'
       />
     </G>
     <Defs>
-      <ClipPath id="clip0_7062_10">
-        <Path fill="#fff" d="M0 0h16v16H0z" />
+      <ClipPath id='clip0_7062_10'>
+        <Path fill='#fff' d='M0 0h16v16H0z' />
       </ClipPath>
     </Defs>
   </Svg>,

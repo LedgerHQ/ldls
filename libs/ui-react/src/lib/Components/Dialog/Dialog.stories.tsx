@@ -15,11 +15,11 @@ const DialogTemplate = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button appearance="base">{triggerLabel}</Button>
+        <Button appearance='base'>{triggerLabel}</Button>
       </DialogTrigger>
-      <DialogContent className="w-[500px]">
+      <DialogContent className='w-[500px]'>
         <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
-        <div className="h-256" />
+        <div className='h-256' />
       </DialogContent>
     </Dialog>
   );

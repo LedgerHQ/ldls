@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SheetBar } from './SheetBar';
 
 const Container = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className="w-[400px]" {...props} />
+  <div className='w-[400px]' {...props} />
 );
 
 const meta: Meta<typeof SheetBar> = {
@@ -91,13 +91,13 @@ export const WithDescription: Story = {
 
 export const SizeShowcase: Story = {
   render: () => (
-    <div className="flex flex-col gap-32">
-      <div className="heading-4-semi-bold">Small Size</div>
+    <div className='flex flex-col gap-32'>
+      <div className='heading-4-semi-bold'>Small Size</div>
       <Container>
         <SheetBar
-          size="sm"
-          title="Small Sheet Title"
-          description="Description"
+          size='sm'
+          title='Small Sheet Title'
+          description='Description'
           onBack={() => {
             console.log('back');
           }}
@@ -106,12 +106,12 @@ export const SizeShowcase: Story = {
           }}
         />
       </Container>
-      <div className="heading-4-semi-bold">Large Size</div>
+      <div className='heading-4-semi-bold'>Large Size</div>
       <Container>
         <SheetBar
-          size="lg"
-          title="Large Title"
-          description="Description"
+          size='lg'
+          title='Large Title'
+          description='Description'
           onBack={() => {
             console.log('back');
           }}
@@ -126,13 +126,13 @@ export const SizeShowcase: Story = {
 
 export const ContentVariations: Story = {
   render: () => (
-    <div className="flex gap-32">
-      <div className="flex flex-col gap-32">
-        <div className="heading-4-semi-bold">Small Size</div>
+    <div className='flex gap-32'>
+      <div className='flex flex-col gap-32'>
+        <div className='heading-4-semi-bold'>Small Size</div>
         <Container>
           <SheetBar
-            size="sm"
-            title="With Title Only"
+            size='sm'
+            title='With Title Only'
             onBack={() => {
               console.log('back');
             }}
@@ -143,9 +143,9 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="sm"
-            title="With Title and Description"
-            description="Additional info"
+            size='sm'
+            title='With Title and Description'
+            description='Additional info'
             onBack={() => {
               console.log('back');
             }}
@@ -156,8 +156,8 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="sm"
-            title="Without Back Button"
+            size='sm'
+            title='Without Back Button'
             onClose={() => {
               console.log('close');
             }}
@@ -165,7 +165,7 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="sm"
+            size='sm'
             onBack={() => {
               console.log('back');
             }}
@@ -175,12 +175,12 @@ export const ContentVariations: Story = {
           />
         </Container>
       </div>
-      <div className="flex flex-col gap-32">
-        <div className="heading-4-semi-bold">Large Size</div>
+      <div className='flex flex-col gap-32'>
+        <div className='heading-4-semi-bold'>Large Size</div>
         <Container>
           <SheetBar
-            size="lg"
-            title="With Title Only"
+            size='lg'
+            title='With Title Only'
             onBack={() => {
               console.log('back');
             }}
@@ -191,9 +191,9 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="lg"
-            title="With Title and Description"
-            description="Additional info"
+            size='lg'
+            title='With Title and Description'
+            description='Additional info'
             onBack={() => {
               console.log('back');
             }}
@@ -204,8 +204,8 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="lg"
-            title="Without Back Button"
+            size='lg'
+            title='Without Back Button'
             onClose={() => {
               console.log('close');
             }}
@@ -213,7 +213,7 @@ export const ContentVariations: Story = {
         </Container>
         <Container>
           <SheetBar
-            size="lg"
+            size='lg'
             onBack={() => {
               console.log('back');
             }}
@@ -229,15 +229,15 @@ export const ContentVariations: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="flex flex-col gap-32">
-      <div className="grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16">
-        <div className="text-muted body-4-semi-bold">
+    <div className='flex flex-col gap-32'>
+      <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+        <div className='text-muted body-4-semi-bold'>
           Small Size - Narrow Container
         </div>
         <SheetBar
-          size="sm"
-          title="Long Title That Should Truncate In Narrow Container"
-          description="Long description that should also truncate appropriately in narrow width"
+          size='sm'
+          title='Long Title That Should Truncate In Narrow Container'
+          description='Long description that should also truncate appropriately in narrow width'
           onBack={() => {
             console.log('back');
           }}
@@ -246,14 +246,14 @@ export const ResponsiveLayout: Story = {
           }}
         />
       </div>
-      <div className="grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16">
-        <div className="text-muted body-4-semi-bold">
+      <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+        <div className='text-muted body-4-semi-bold'>
           Large Size - Narrow Container
         </div>
         <SheetBar
-          size="lg"
-          title="Long Title That Should Wrap"
-          description="Long description that should wrap"
+          size='lg'
+          title='Long Title That Should Wrap'
+          description='Long description that should wrap'
           onBack={() => {
             console.log('back');
           }}

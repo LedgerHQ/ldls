@@ -9,9 +9,9 @@ export default meta;
 type Story = StoryObj;
 
 const SizeShowcase = () => (
-  <div className="space-y-24">
-    <div className="space-y-14">
-      <div className="flex items-end gap-24 rounded-lg bg-muted p-24">
+  <div className='space-y-24'>
+    <div className='space-y-14'>
+      <div className='flex items-end gap-24 rounded-lg bg-muted p-24'>
         {[
           { value: '16', token: 'size-16' },
           { value: '24', token: 'size-24' },
@@ -22,23 +22,23 @@ const SizeShowcase = () => (
           { value: '96', token: 'size-96' },
           { value: '128', token: 'size-128' },
         ].map(({ value, token }) => (
-          <div key={value} className="flex flex-col items-center gap-8">
+          <div key={value} className='flex flex-col items-center gap-8'>
             <div
               className={`${token} rounded text-sm font-medium flex items-center justify-center bg-accent text-white`}
             ></div>
-            <div className="space-y-1 text-center">
-              <div className="text-left font-mono text-muted body-3">
+            <div className='space-y-1 text-center'>
+              <div className='text-left font-mono text-muted body-3'>
                 {token}
               </div>
-              <div className="text-left text-muted body-4">{value}px</div>
+              <div className='text-left text-muted body-4'>{value}px</div>
             </div>
           </div>
         ))}
       </div>
-      <div className="mt-32 text-center text-muted body-2">
+      <div className='mt-32 text-center text-muted body-2'>
         The complete scale includes 33 tokens from{' '}
-        <code className="text-warning">size-1</code> to{' '}
-        <code className="text-warning">size-384</code>.
+        <code className='text-warning'>size-1</code> to{' '}
+        <code className='text-warning'>size-384</code>.
       </div>
     </div>
   </div>
@@ -46,10 +46,10 @@ const SizeShowcase = () => (
 
 export const Default: Story = {
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Size"
-        description="Tailwind classes for controlling the size of an element. Includes width and height."
+        title='Size'
+        description='Tailwind classes for controlling the size of an element. Includes width and height.'
       />
       <SizeShowcase />
     </div>

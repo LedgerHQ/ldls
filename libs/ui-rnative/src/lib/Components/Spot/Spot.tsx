@@ -205,7 +205,7 @@ export const Spot = (props: SpotProps) => {
 
   return (
     <View
-      testID="spot-container"
+      testID='spot-container'
       className={cn(
         className,
         spotVariants({ appearance, disabled, size }),

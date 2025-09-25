@@ -21,8 +21,8 @@ const InfoTooltip = () => (
     <TooltipTrigger asChild>
       <Information
         size={12}
-        className="shrink-0 text-muted"
-        aria-label="More information"
+        className='shrink-0 text-muted'
+        aria-label='More information'
       />
     </TooltipTrigger>
     <TooltipContent>This is additional information</TooltipContent>
@@ -30,7 +30,7 @@ const InfoTooltip = () => (
 );
 
 const ActionLink = () => (
-  <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
+  <Link href='https://ledger.com' appearance='accent' size='sm' isExternal>
     Action
   </Link>
 );
@@ -59,20 +59,20 @@ const meta: Meta<typeof Subheader> = {
       mapping: {
         None: null,
         Info: (
-          <Subheader.Info key="info">
+          <Subheader.Info key='info'>
             <InfoTooltip />
           </Subheader.Info>
         ),
         Action: (
-          <Subheader.Action key="action">
+          <Subheader.Action key='action'>
             <ActionLink />
           </Subheader.Action>
         ),
         'Info and Action': [
-          <Subheader.Info key="info">
+          <Subheader.Info key='info'>
             <InfoTooltip />
           </Subheader.Info>,
-          <Subheader.Action key="action">
+          <Subheader.Action key='action'>
             <ActionLink />
           </Subheader.Action>,
         ],
@@ -227,19 +227,19 @@ export const WithFullFeatures: Story = {
 
 export const ContentVariations: Story = {
   render: () => (
-    <Container className="flex flex-col gap-16">
-      <Subheader title="Title Only" />
-      <Subheader title="With Tooltip">
+    <Container className='flex flex-col gap-16'>
+      <Subheader title='Title Only' />
+      <Subheader title='With Tooltip'>
         <Subheader.Info>
           <InfoTooltip />
         </Subheader.Info>
       </Subheader>
-      <Subheader title="With Action">
+      <Subheader title='With Action'>
         <Subheader.Action>
           <ActionLink />
         </Subheader.Action>
       </Subheader>
-      <Subheader title="With Tooltip and Action">
+      <Subheader title='With Tooltip and Action'>
         <Subheader.Info>
           <InfoTooltip />
         </Subheader.Info>
@@ -253,9 +253,9 @@ export const ContentVariations: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <Container className="grid grid-cols-1 gap-16">
-      <div className="text-muted body-4-semi-bold">Container: 400px wide</div>
-      <Subheader title="Title with Tooltip">
+    <Container className='grid grid-cols-1 gap-16'>
+      <div className='text-muted body-4-semi-bold'>Container: 400px wide</div>
+      <Subheader title='Title with Tooltip'>
         <Subheader.Info>
           <InfoTooltip />
         </Subheader.Info>
@@ -263,7 +263,7 @@ export const ResponsiveLayout: Story = {
           <ActionLink />
         </Subheader.Action>
       </Subheader>
-      <Subheader title="Long Title That Should Truncate When Container Is Narrow">
+      <Subheader title='Long Title That Should Truncate When Container Is Narrow'>
         <Subheader.Info>
           <InfoTooltip />
         </Subheader.Info>

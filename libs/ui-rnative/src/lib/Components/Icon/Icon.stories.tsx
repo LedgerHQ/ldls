@@ -47,14 +47,14 @@ const IconCard = ({
   return (
     <div
       key={name}
-      className="relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors hover:bg-muted-pressed"
+      className='relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors hover:bg-muted-pressed'
       onClick={handleClick}
     >
       <IconComponent size={size} className={className} />
-      <span className="text-muted body-4">{name}</span>
+      <span className='text-muted body-4'>{name}</span>
       {copied && (
-        <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center rounded-lg bg-muted">
-          <span className="text-accent body-4">Copied!</span>
+        <div className='absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center rounded-lg bg-muted'>
+          <span className='text-accent body-4'>Copied!</span>
         </div>
       )}
     </div>
@@ -86,10 +86,10 @@ export const Icon: StoryObj<IconStoryProps> = {
   render: (args) => {
     const IconComponent = Icons[args.name];
     return (
-      <div className="p-8">
-        <div className="flex flex-col items-center gap-4">
+      <div className='p-8'>
+        <div className='flex flex-col items-center gap-4'>
           <IconComponent size={args.size} className={args.className} />
-          <span className="text-base">{args.name}</span>
+          <span className='text-base'>{args.name}</span>
         </div>
       </div>
     );
@@ -107,11 +107,11 @@ export const Icon: StoryObj<IconStoryProps> = {
 
 export const IconSizes: StoryObj = {
   render: () => (
-    <div className="space-y-16 text-base">
+    <div className='space-y-16 text-base'>
       {sizes.map((size) => (
         <div key={size}>
-          <h3 className="font-semibold mb-16 heading-3">Size {size}px</h3>
-          <div className="flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16">
+          <h3 className='font-semibold mb-16 heading-3'>Size {size}px</h3>
+          <div className='flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16'>
             {[
               'Home',
               'Settings',
@@ -144,23 +144,23 @@ export const Gallery: StoryObj = {
     );
 
     return (
-      <div className="p-8">
+      <div className='p-8'>
         {/* Search bar */}
-        <div className="mb-32">
-          <div className="mb-6 max-w-md">
+        <div className='mb-32'>
+          <div className='mb-6 max-w-md'>
             {/* TODO: Replace with Search component */}
             <input
-              type="text"
+              type='text'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search icons..."
-              className="rounded w-full border border-muted-subtle p-2"
+              placeholder='Search icons...'
+              className='rounded w-full border border-muted-subtle p-2'
             />
           </div>
 
           {/* Results count */}
-          <div className="mb-4">
-            <span className="ml-8 text-muted body-3">
+          <div className='mb-4'>
+            <span className='ml-8 text-muted body-3'>
               {filteredIcons.length} of {Object.keys(Icons).length} icons
               {searchTerm && ` matching "${searchTerm}"`}
             </span>
@@ -168,7 +168,7 @@ export const Gallery: StoryObj = {
         </div>
 
         {/* Icon grid */}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8">
+        <div className='grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8'>
           {filteredIcons.map(([name]) => (
             <IconCard key={name} name={name} />
           ))}
@@ -176,13 +176,13 @@ export const Gallery: StoryObj = {
 
         {/* No results message */}
         {filteredIcons.length === 0 && searchTerm && (
-          <div className="flex flex-col items-center justify-center py-16">
-            <p className="text-muted body-2">
+          <div className='flex flex-col items-center justify-center py-16'>
+            <p className='text-muted body-2'>
               No icons found matching "{searchTerm}"
             </p>
             <button
               onClick={() => setSearchTerm('')}
-              className="mt-4 text-interactive body-2 hover:text-interactive-hover"
+              className='mt-4 text-interactive body-2 hover:text-interactive-hover'
             >
               Clear search
             </button>

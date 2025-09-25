@@ -83,7 +83,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
     return (
       <button
         ref={ref}
-        type="button"
+        type='button'
         className={cn(
           'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base transition-colors',
           'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
@@ -92,12 +92,12 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
         )}
         {...buttonProps}
       >
-        <div className="flex min-w-0 flex-1 items-center gap-12">
+        <div className='flex min-w-0 flex-1 items-center gap-12'>
           {leadingContent}
-          <div className="flex min-w-0 flex-1 flex-col gap-4 text-left">
-            <div className="truncate body-2-semi-bold">{title}</div>
+          <div className='flex min-w-0 flex-1 flex-col gap-4 text-left'>
+            <div className='truncate body-2-semi-bold'>{title}</div>
             {description && (
-              <div className="flex items-center gap-4">
+              <div className='flex items-center gap-4'>
                 <div
                   className={cn(
                     'truncate text-muted body-3',
@@ -107,7 +107,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
                   {description}
                 </div>
                 {descriptionTag && (
-                  <div className="flex h-16 shrink-0 items-center">
+                  <div className='flex h-16 shrink-0 items-center'>
                     {descriptionTag}
                   </div>
                 )}

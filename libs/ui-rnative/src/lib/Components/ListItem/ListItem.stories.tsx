@@ -18,7 +18,7 @@ import { Spot } from '../Spot/Spot';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
-    <View className="items-end">
+    <View className='items-end'>
       <View className={cn('body-2-semi-bold', disabled && 'text-disabled')}>
         <Text>42.00</Text>
       </View>
@@ -55,7 +55,7 @@ const meta: Meta<typeof ListItem> = {
       options: ['None', 'Tag'],
       mapping: {
         None: undefined,
-        Tag: <Tag label="New" appearance="accent" icon={Bolt} size="sm" />,
+        Tag: <Tag label='New' appearance='accent' icon={Bolt} size='sm' />,
       },
       if: { arg: 'description', exists: true },
     },
@@ -64,8 +64,8 @@ const meta: Meta<typeof ListItem> = {
       options: ['None', 'Settings', 'Plus'],
       mapping: {
         None: undefined,
-        Settings: <Spot appearance="icon" icon={Settings} />,
-        Plus: <Spot appearance="icon" icon={Plus} />,
+        Settings: <Spot appearance='icon' icon={Settings} />,
+        Plus: <Spot appearance='icon' icon={Plus} />,
       },
       description: 'Optional leading content',
     },
@@ -76,7 +76,7 @@ const meta: Meta<typeof ListItem> = {
       mapping: {
         icon: <PenEdit size={24} />,
         value: <Balance />,
-        tag: <Tag label="New" appearance="accent" />,
+        tag: <Tag label='New' appearance='accent' />,
         none: undefined,
       },
     },
@@ -93,7 +93,7 @@ type Story = StoryObj<typeof ListItem>;
 export const Base: Story = {
   args: {
     title: 'Item with Icon and Description',
-    leadingContent: <Spot appearance="icon" icon={Settings} />,
+    leadingContent: <Spot appearance='icon' icon={Settings} />,
     description: 'Additional information',
     className: 'max-w-320',
   },
@@ -115,14 +115,14 @@ export const Base: Story = {
 export const WithDescriptionTag: Story = {
   args: {
     title: 'Item with Description Tag',
-    leadingContent: <Spot appearance="icon" icon={Settings} />,
+    leadingContent: <Spot appearance='icon' icon={Settings} />,
     description: 'Additional information',
     descriptionTag: (
-      <Tag label="New" appearance="accent" icon={Bolt} size="sm" />
+      <Tag label='New' appearance='accent' icon={Bolt} size='sm' />
     ),
   },
   render: (args) => (
-    <View className="max-w-320">
+    <View className='max-w-320'>
       <ListItem {...args} />
     </View>
   ),
@@ -131,35 +131,35 @@ export const WithDescriptionTag: Story = {
 export const TrailingContentVariantsShowcase: Story = {
   render: () => {
     return (
-      <View className="flex max-w-256 flex-col">
+      <View className='flex max-w-256 flex-col'>
         <ListItem
-          title="Caret Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={User} />}
+          title='Caret Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={User} />}
           trailingContent={<ChevronRight size={24} />}
         />
         <ListItem
-          title="Value Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={Cart} />}
+          title='Value Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={Cart} />}
           trailingContent={<Balance />}
         />
         <ListItem
-          title="Tag Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={Apps} />}
-          trailingContent={<Tag label="New" appearance="accent" />}
+          title='Tag Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={Apps} />}
+          trailingContent={<Tag label='New' appearance='accent' />}
         />
         <ListItem
-          title="Icon Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={Settings} />}
+          title='Icon Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={Settings} />}
           trailingContent={<PenEdit size={24} />}
         />
         <ListItem
-          title="None Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={Chart1} />}
+          title='None Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={Chart1} />}
         />
       </View>
     );
@@ -169,79 +169,79 @@ export const TrailingContentVariantsShowcase: Story = {
 export const StateShowcase: Story = {
   render: () => {
     return (
-      <View className="flex flex-row gap-32">
-        <View className="flex max-w-256 flex-col">
+      <View className='flex flex-row gap-32'>
+        <View className='flex max-w-256 flex-col'>
           <ListItem
-            title="Caret Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={User} />}
-            trailingContent={<ChevronRight size={24} className="text-muted" />}
+            title='Caret Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={User} />}
+            trailingContent={<ChevronRight size={24} className='text-muted' />}
           />
           <ListItem
-            title="Value Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Cart} />}
+            title='Value Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Cart} />}
             trailingContent={<Balance />}
           />
           <ListItem
-            title="Tag Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Apps} />}
-            trailingContent={<Tag label="New" appearance="accent" />}
+            title='Tag Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Apps} />}
+            trailingContent={<Tag label='New' appearance='accent' />}
           />
           <ListItem
-            title="Icon Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Settings} />}
+            title='Icon Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Settings} />}
             trailingContent={<PenEdit size={24} />}
           />
           <ListItem
-            title="None Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Chart1} />}
+            title='None Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Chart1} />}
           />
         </View>
-        <View className="flex max-w-256 flex-col">
+        <View className='flex max-w-256 flex-col'>
           <ListItem
-            title="Caret Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={User} disabled />}
+            title='Caret Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={User} disabled />}
             disabled
             trailingContent={
-              <ChevronRight size={24} className="text-disabled" />
+              <ChevronRight size={24} className='text-disabled' />
             }
           />
           <ListItem
-            title="Value Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Cart} disabled />}
+            title='Value Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Cart} disabled />}
             disabled
             trailingContent={<Balance disabled />}
           />
           <ListItem
-            title="Tag Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Apps} disabled />}
+            title='Tag Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Apps} disabled />}
             disabled
             trailingContent={
               <Tag
-                label="New"
-                appearance="accent"
-                className="!bg-muted-transparent !text-disabled"
+                label='New'
+                appearance='accent'
+                className='!bg-muted-transparent !text-disabled'
               />
             }
           />
           <ListItem
-            title="Icon Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Settings} disabled />}
+            title='Icon Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
             disabled
-            trailingContent={<PenEdit size={24} className="text-disabled" />}
+            trailingContent={<PenEdit size={24} className='text-disabled' />}
           />
           <ListItem
-            title="None Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Chart1} disabled />}
+            title='None Variant'
+            description='With description'
+            leadingContent={<Spot appearance='icon' icon={Chart1} disabled />}
             disabled
           />
         </View>
@@ -252,29 +252,29 @@ export const StateShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className="w-320 bg-muted-pressed p-16">
-      <Text className="mb-16 text-muted body-4-semi-bold">
+    <View className='w-320 bg-muted-pressed p-16'>
+      <Text className='mb-16 text-muted body-4-semi-bold'>
         Container: 320px wide
       </Text>
-      <View className="flex flex-col gap-0">
+      <View className='flex flex-col gap-0'>
         <ListItem
-          title="Short Title"
-          description="Short description"
-          leadingContent={<Spot appearance="icon" icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className="text-muted" />}
+          title='Short Title'
+          description='Short description'
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
+          trailingContent={<ChevronRight size={24} className='text-muted' />}
         />
         <ListItem
-          title="Long Title that should truncate appropriately"
-          description="Long description that should truncate appropriately"
-          leadingContent={<Spot appearance="icon" icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className="text-muted" />}
+          title='Long Title that should truncate appropriately'
+          description='Long description that should truncate appropriately'
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
+          trailingContent={<ChevronRight size={24} className='text-muted' />}
         />
         <ListItem
-          title="Long Title that should truncate appropriately"
-          description="Long description that should truncate appropriately"
-          descriptionTag={<Tag label="New" appearance="accent" size="sm" />}
-          leadingContent={<Spot appearance="icon" icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className="text-muted" />}
+          title='Long Title that should truncate appropriately'
+          description='Long description that should truncate appropriately'
+          descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
+          trailingContent={<ChevronRight size={24} className='text-muted' />}
         />
       </View>
     </View>

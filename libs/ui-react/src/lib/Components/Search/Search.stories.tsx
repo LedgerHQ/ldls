@@ -215,36 +215,36 @@ export const DebouncedSearch: Story = {
     };
 
     return (
-      <div className="max-w-md space-y-16">
+      <div className='max-w-md space-y-16'>
         <Search
-          placeholder="Search fruits (properly debounced)"
+          placeholder='Search fruits (properly debounced)'
           value={inputValue}
           onChange={handleInputChange}
           onClear={handleClear}
         />
         {/* Search status indicator */}
         {isSearching && (
-          <div className="italic text-muted body-3">Searching...</div>
+          <div className='italic text-muted body-3'>Searching...</div>
         )}
         {/* Results */}
         {inputValue.length > 0 && !isSearching && (
-          <div className="rounded-md bg-muted p-16">
+          <div className='rounded-md bg-muted p-16'>
             {filteredResults.length > 0 ? (
               <div>
-                <p className="mb-8 text-muted body-3">
+                <p className='mb-8 text-muted body-3'>
                   Found {filteredResults.length} result
                   {filteredResults.length !== 1 ? 's' : ''} for "{searchQuery}"
                 </p>
-                <div className="space-y-4">
+                <div className='space-y-4'>
                   {filteredResults.map((result) => (
                     <ListItem key={result} title={result} />
                   ))}
                 </div>
               </div>
             ) : (
-              <div className="text-center">
-                <p className="text-muted-contrast body-2">Nothing found</p>
-                <p className="text-muted-contrast mt-4 body-3">
+              <div className='text-center'>
+                <p className='text-muted-contrast body-2'>Nothing found</p>
+                <p className='text-muted-contrast mt-4 body-3'>
                   No fruits match "{searchQuery}"
                 </p>
               </div>

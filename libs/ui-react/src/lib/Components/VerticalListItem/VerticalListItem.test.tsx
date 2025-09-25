@@ -8,7 +8,7 @@ import { IconButton } from '../IconButton';
 import { Settings } from '../../Symbols';
 
 describe('VerticalListItem Component', () => {
-  const mockSpot = <Spot appearance="icon" icon={Settings} />;
+  const mockSpot = <Spot appearance='icon' icon={Settings} />;
   const mockTitle = 'Test Item';
 
   it('should render correctly with required props', () => {
@@ -32,7 +32,7 @@ describe('VerticalListItem Component', () => {
 
   it('should render tag when provided', () => {
     const tagText = 'Test Tag';
-    const mockTag = <div data-testid="mock-tag">{tagText}</div>;
+    const mockTag = <div data-testid='mock-tag'>{tagText}</div>;
     render(
       <VerticalListItem spot={mockSpot} title={mockTitle} tag={mockTag} />,
     );
@@ -42,7 +42,7 @@ describe('VerticalListItem Component', () => {
 
   it('should render secondary action when provided', () => {
     const mockSecondaryAction = (
-      <IconButton iconType="stroked" aria-label="Test Action">
+      <IconButton iconType='stroked' aria-label='Test Action'>
         <Settings />
       </IconButton>
     );
@@ -118,7 +118,7 @@ describe('VerticalListItem Component', () => {
   it('should prevent parent activation when clicking secondary action', () => {
     const handleClick = vi.fn();
     const mockSecondaryAction = (
-      <IconButton iconType="stroked" aria-label="Test Action">
+      <IconButton iconType='stroked' aria-label='Test Action'>
         <Settings />
       </IconButton>
     );

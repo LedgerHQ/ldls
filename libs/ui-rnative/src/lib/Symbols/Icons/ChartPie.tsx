@@ -33,20 +33,20 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const ChartPie = createIcon(
   'ChartPie',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M7 4C4.233 4 2 6.233 2 9c0 2.76 2.233 5 5 5 2.76 0 5-2.24 5-5H7z"
+      d='M7 4C4.233 4 2 6.233 2 9c0 2.76 2.233 5 5 5 2.76 0 5-2.24 5-5H7z'
     />
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M14 6.667A4.667 4.667 0 0 0 9.333 2v4.667z"
+      d='M14 6.667A4.667 4.667 0 0 0 9.333 2v4.667z'
     />
   </Svg>,
 );

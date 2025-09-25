@@ -7,7 +7,7 @@ import { Settings, Wallet } from '../../Symbols';
 
 describe('CardButton Component', () => {
   it('should render correctly with only title', () => {
-    render(<CardButton title="Basic Card" />);
+    render(<CardButton title='Basic Card' />);
     const buttonElement = screen.getByRole('button', { name: /basic card/i });
     expect(buttonElement).toBeInTheDocument();
     expect(screen.getByText('Basic Card')).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('CardButton Component', () => {
 
   it('should render with title and description', () => {
     render(
-      <CardButton title="Card Title" description="Card description text" />,
+      <CardButton title='Card Title' description='Card description text' />,
     );
 
     expect(screen.getByText('Card Title')).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('CardButton Component', () => {
   });
 
   it('should render with icon', () => {
-    render(<CardButton title="Settings Card" icon={Settings} />);
+    render(<CardButton title='Settings Card' icon={Settings} />);
 
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe('CardButton Component', () => {
   });
 
   it('should render without chevron when hideChevron prop is true', () => {
-    render(<CardButton title="Navigation Card" hideChevron />);
+    render(<CardButton title='Navigation Card' hideChevron />);
 
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
@@ -41,8 +41,8 @@ describe('CardButton Component', () => {
   it('should render with all props: icon, title, description, and hideChevron', () => {
     render(
       <CardButton
-        title="Complete Card"
-        description="This card has everything"
+        title='Complete Card'
+        description='This card has everything'
         icon={Wallet}
       />,
     );
@@ -54,14 +54,14 @@ describe('CardButton Component', () => {
   });
 
   it('should be disabled when the disabled prop is true', () => {
-    render(<CardButton title="Disabled Card" disabled />);
+    render(<CardButton title='Disabled Card' disabled />);
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeDisabled();
   });
 
   it('should call the onClick handler when clicked', () => {
     const handleClick = vi.fn();
-    render(<CardButton title="Clickable Card" onClick={handleClick} />);
+    render(<CardButton title='Clickable Card' onClick={handleClick} />);
 
     const buttonElement = screen.getByRole('button');
     fireEvent.click(buttonElement);
@@ -71,7 +71,7 @@ describe('CardButton Component', () => {
 
   it('should not call the onClick handler when disabled', () => {
     const handleClick = vi.fn();
-    render(<CardButton title="Disabled Card" onClick={handleClick} disabled />);
+    render(<CardButton title='Disabled Card' onClick={handleClick} disabled />);
 
     const buttonElement = screen.getByRole('button');
     fireEvent.click(buttonElement);
@@ -80,7 +80,7 @@ describe('CardButton Component', () => {
   });
 
   it('should apply custom className', () => {
-    render(<CardButton title="Custom Card" className="custom-test-class" />);
+    render(<CardButton title='Custom Card' className='custom-test-class' />);
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveClass('custom-test-class');
   });
@@ -97,7 +97,7 @@ describe('CardButton Component', () => {
   it('should handle long description text with truncation', () => {
     const longDescription =
       'This is a very long description that should be truncated when it exceeds the available space in the card button component';
-    render(<CardButton title="Title" description={longDescription} />);
+    render(<CardButton title='Title' description={longDescription} />);
 
     const descriptionElement = screen.getByText(longDescription);
     expect(descriptionElement).toHaveClass('line-clamp-2');
@@ -105,7 +105,7 @@ describe('CardButton Component', () => {
 
   it('should forward ref correctly', () => {
     const ref = vi.fn();
-    render(<CardButton title="Ref Test" ref={ref} />);
+    render(<CardButton title='Ref Test' ref={ref} />);
     expect(ref).toHaveBeenCalled();
   });
 });

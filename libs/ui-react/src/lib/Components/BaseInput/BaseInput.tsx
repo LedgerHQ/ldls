@@ -208,7 +208,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             ref={composeRefs(ref, inputRef)}
             id={inputId}
             disabled={disabled}
-            placeholder=" "
+            placeholder=' '
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
             className={cn(baseInputStyles, label && 'pt-16 body-2', className)}
@@ -231,9 +231,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
 
           {showClearButton && (
             <IconButton
-              iconType="filled"
+              iconType='filled'
               onClick={handleClear}
-              aria-label="Clear input"
+              aria-label='Clear input'
             >
               <DeleteCircleFill size={20} />
             </IconButton>
@@ -244,10 +244,10 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className="mt-8 flex items-center gap-2 text-error body-3"
-            role="alert"
+            className='mt-8 flex items-center gap-2 text-error body-3'
+            role='alert'
           >
-            <DeleteCircleFill size={16} className="flex-shrink-0 text-error" />
+            <DeleteCircleFill size={16} className='flex-shrink-0 text-error' />
             <span>{errorMessage}</span>
           </div>
         )}

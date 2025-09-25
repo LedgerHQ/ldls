@@ -20,9 +20,9 @@ const TypographySample = ({
       className={`${className} max-w-fit rounded-lg border border-muted-subtle bg-base p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
-      <div className="mt-24 bg-muted-pressed p-[0.5px]" />
-      <div className="mb-4 mt-16 text-base body-2"> {title} </div>
-      <div className="text-muted body-4">{className}</div>
+      <div className='mt-24 bg-muted-pressed p-[0.5px]' />
+      <div className='mb-4 mt-16 text-base body-2'> {title} </div>
+      <div className='text-muted body-4'>{className}</div>
     </div>
   </div>
 );
@@ -54,8 +54,8 @@ const TypographyShowcase = () => {
   ];
 
   return (
-    <div className="mb-32">
-      <div className="space-y-12">
+    <div className='mb-32'>
+      <div className='space-y-12'>
         {typographyStyles.map((style) => (
           <TypographySample key={style.className} {...style} />
         ))}
@@ -66,10 +66,10 @@ const TypographyShowcase = () => {
 
 export const Typography: Story = {
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Typography"
-        description="Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `responsive-display-1`, `heading-1`... for the display text."
+        title='Typography'
+        description='Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `responsive-display-1`, `heading-1`... for the display text.'
       />
       <TypographyShowcase />
     </div>
