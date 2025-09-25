@@ -86,10 +86,10 @@ Install the packages and their peer dependencies:
 npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
 
 # Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 react-native nativewind@^4.1.0 clsx tailwind-merge class-variance-authority
+npm install tailwindcss@^3.4.0 react@^18.3.1 react-native@^0.77.3 nativewind@^4.1.0 clsx tailwind-merge class-variance-authority
 ```
 
-### Tailwind Configuration
+### NativeWind Configuration
 
 To use the Spot component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
@@ -107,6 +107,8 @@ const config = {
 
 export default config;
 ```
+
+Make sure to configure NativeWind in your `metro.config.js` and import the CSS file as per NativeWind documentation.
 
 ### Basic Usage
 

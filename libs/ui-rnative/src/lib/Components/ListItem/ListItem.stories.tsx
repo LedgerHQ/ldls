@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-native';
+import { View, Text } from 'react-native';
 import { ListItem } from './ListItem';
 import { Tag } from '../Tag/Tag';
 import {
@@ -7,25 +7,25 @@ import {
   Plus,
   User,
   PenEdit,
-  Wallet,
   Cart,
   Apps,
   Chart1,
   Bolt,
   ChevronRight,
 } from '../../Symbols';
-import { Switch } from '../Switch';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '../../utils';
 import { Spot } from '../Spot/Spot';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
-    <div className="text-right">
-      <div className="body-2-semi-bold">42.00</div>
-      <div className={cn('text-muted body-3', disabled && 'text-disabled')}>
-        USD
-      </div>
-    </div>
+    <View className="items-end">
+      <View className={cn('body-2-semi-bold', disabled && 'text-disabled')}>
+        <Text>42.00</Text>
+      </View>
+      <View className={cn('text-muted body-3', disabled && 'text-disabled')}>
+        <Text>USD</Text>
+      </View>
+    </View>
   );
 };
 
@@ -72,18 +72,17 @@ const meta: Meta<typeof ListItem> = {
     trailingContent: {
       control: 'select',
       description: 'Optional trailing content to display on the right side',
-      options: ['icon', 'switch', 'value', 'tag', 'none'],
+      options: ['icon', 'value', 'tag', 'none'],
       mapping: {
         icon: <PenEdit size={24} />,
-        switch: <Switch selected={false} />,
         value: <Balance />,
         tag: <Tag label="New" appearance="accent" />,
         none: undefined,
       },
     },
-    onClick: {
-      action: 'clicked',
-      description: 'The function to be called when the list item is clicked',
+    onPress: {
+      action: 'pressed',
+      description: 'The function to be called when the list item is pressed',
     },
   },
 };
@@ -121,42 +120,23 @@ export const WithDescriptionTag: Story = {
     descriptionTag: (
       <Tag label="New" appearance="accent" icon={Bolt} size="sm" />
     ),
-    className: 'max-w-320',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<ListItem
-  title="Item with Description Tag"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  description="Additional information"
-  descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} size="sm" />}
-/>
-`,
-      },
-    },
-  },
+  render: (args) => (
+    <View className="max-w-320">
+      <ListItem {...args} />
+    </View>
+  ),
 };
 
 export const TrailingContentVariantsShowcase: Story = {
   render: () => {
-    const [selected, setSelected] = useState(false);
-
     return (
-      <div className="flex max-w-256 flex-col">
+      <View className="flex max-w-256 flex-col">
         <ListItem
           title="Caret Variant"
           description="With description"
           leadingContent={<Spot appearance="icon" icon={User} />}
           trailingContent={<ChevronRight size={24} />}
-        />
-        <ListItem
-          title="Switch Variant"
-          description="With description"
-          leadingContent={<Spot appearance="icon" icon={Wallet} />}
-          onClick={() => setSelected(!selected)}
-          trailingContent={<Switch tabIndex={-1} selected={selected} />}
         />
         <ListItem
           title="Value Variant"
@@ -181,30 +161,21 @@ export const TrailingContentVariantsShowcase: Story = {
           description="With description"
           leadingContent={<Spot appearance="icon" icon={Chart1} />}
         />
-      </div>
+      </View>
     );
   },
 };
 
 export const StateShowcase: Story = {
   render: () => {
-    const [selected, setSelected] = useState(false);
-
     return (
-      <div className="flex gap-32">
-        <div className="flex max-w-256 flex-col">
+      <View className="flex flex-row gap-32">
+        <View className="flex max-w-256 flex-col">
           <ListItem
             title="Caret Variant"
             description="With description"
             leadingContent={<Spot appearance="icon" icon={User} />}
             trailingContent={<ChevronRight size={24} className="text-muted" />}
-          />
-          <ListItem
-            title="Switch Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Wallet} />}
-            onClick={() => setSelected(!selected)}
-            trailingContent={<Switch selected={selected} />}
           />
           <ListItem
             title="Value Variant"
@@ -229,8 +200,8 @@ export const StateShowcase: Story = {
             description="With description"
             leadingContent={<Spot appearance="icon" icon={Chart1} />}
           />
-        </div>
-        <div className="flex max-w-256 flex-col">
+        </View>
+        <View className="flex max-w-256 flex-col">
           <ListItem
             title="Caret Variant"
             description="With description"
@@ -239,14 +210,6 @@ export const StateShowcase: Story = {
             trailingContent={
               <ChevronRight size={24} className="text-disabled" />
             }
-          />
-          <ListItem
-            title="Switch Variant"
-            description="With description"
-            leadingContent={<Spot appearance="icon" icon={Wallet} disabled />}
-            onClick={() => setSelected(!selected)}
-            disabled
-            trailingContent={<Switch selected={selected} disabled />}
           />
           <ListItem
             title="Value Variant"
@@ -281,17 +244,19 @@ export const StateShowcase: Story = {
             leadingContent={<Spot appearance="icon" icon={Chart1} disabled />}
             disabled
           />
-        </div>
-      </div>
+        </View>
+      </View>
     );
   },
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16">
-      <div className="text-muted body-4-semi-bold">Container: 320px wide</div>
-      <div>
+    <View className="w-320 bg-muted-pressed p-16">
+      <Text className="mb-16 text-muted body-4-semi-bold">
+        Container: 320px wide
+      </Text>
+      <View className="flex flex-col gap-0">
         <ListItem
           title="Short Title"
           description="Short description"
@@ -311,7 +276,7 @@ export const ResponsiveLayout: Story = {
           leadingContent={<Spot appearance="icon" icon={Plus} />}
           trailingContent={<ChevronRight size={24} className="text-muted" />}
         />
-      </div>
-    </div>
+      </View>
+    </View>
   ),
 };

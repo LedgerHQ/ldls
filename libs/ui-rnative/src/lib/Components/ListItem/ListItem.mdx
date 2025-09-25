@@ -1,0 +1,374 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ListItemStories from './ListItem.stories';
+import { ListItem } from './ListItem';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/ListItem" of={ListItemStories} />
+
+# 📋 ListItem
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+ListItems are flexible interactive elements designed for lists, menus, settings, and option selections in React Native applications. They provide a structured way to display a title with optional description, leading content (usually a Spot), description tag, and flexible trailing content with native touch interactions.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2255-4155).
+
+## Anatomy
+
+<Canvas of={ListItemStories.Base} />
+
+- **Title**: The main label of the item (required)
+- **Leading Content (optional)**: Visually represents the item's category or action, usually using a Spot component
+- **Description (optional)**: Provides additional context
+- **Description Tag (optional)**: Small tag next to description for status or labels
+- **Trailing Content (optional)**: Arbitrary content to be displayed on the right side
+
+## Properties
+
+### Overview
+
+<Canvas of={ListItemStories.Base} />
+<Controls of={ListItemStories.Base} />
+
+### Trailing Content Variants
+
+ListItems support arbitrary trailing content to suit different interaction patterns:
+
+- **caret**: Navigation indicator (chevron right)
+- **value**: Displays a primary value with optional subvalue
+- **tag**: Shows a tag for status or category
+- **icon**: Custom trailing icon
+
+<Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
+
+### States
+
+ListItems support standard states including active and disabled for touch interactions.
+
+<Canvas of={ListItemStories.StateShowcase} />
+
+## Responsive Layout
+
+ListItems adapt to their container width, truncating long titles and descriptions as needed.
+
+<Canvas of={ListItemStories.ResponsiveLayout} />
+
+> **Key behaviors:**
+>
+> - Automatically fits container width
+> - Title truncates to one line
+> - Description truncates to one line
+> - Icons and trailing content maintain fixed sizes
+
+## Accessibility
+
+React Native ListItem includes:
+
+- Native touch feedback with `TouchableOpacity`
+- Proper text truncation with ellipsis
+- Disabled state handling
+- Screen reader support through React Native's accessibility features
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 react-native@^0.77.3 nativewind@^4.1.0 clsx tailwind-merge class-variance-authority
+```
+
+### NativeWind Configuration
+
+To use the ListItem component with our custom NativeWind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+Make sure to configure NativeWind in your `metro.config.js` and import the CSS file as per NativeWind documentation.
+
+### Basic Usage
+
+```tsx
+import { ListItem } from '@ledgerhq/ldls-ui-rnative';
+import { ChevronRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      title="Settings"
+      trailingContent={<ChevronRight size={24} />}
+      onPress={() => console.log('Pressed!')}
+    />
+  );
+}
+```
+
+### With Description
+
+Add a description below the title for additional context:
+
+```tsx
+import { ListItem } from '@ledgerhq/ldls-ui-rnative';
+import { ChevronRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      title="Account Settings"
+      description="Manage your profile and preferences"
+      trailingContent={<ChevronRight size={24} />}
+      onPress={() => console.log('Pressed!')}
+    />
+  );
+}
+```
+
+### With Leading Content
+
+Include a Spot component as leading icon for visual identification:
+
+```tsx
+import { ListItem, Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Settings, ChevronRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      title="Settings"
+      description="Manage your profile and preferences"
+      leadingContent={<Spot appearance="icon" icon={Settings} />}
+      trailingContent={<ChevronRight size={24} />}
+      onPress={() => console.log('Pressed!')}
+    />
+  );
+}
+```
+
+### Trailing Content
+
+The ListItem supports arbitrary trailing content variants. Below are some examples:
+
+```tsx
+import { ListItem, Tag } from '@ledgerhq/ldls-ui-rnative';
+import { Settings, PenEdit, ChevronRight, User } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { View, Text } from 'react-native';
+
+function ListVariants() {
+  return (
+    <View className="flex flex-col gap-2 max-w-md">
+      {/* Chevron - For navigation items */}
+      <ListItem
+        title="Chevron Variant"
+        description="With description"
+        leadingContent={<Spot appearance="icon" icon={User} />}
+        trailingContent={<ChevronRight size={24} />}
+        onPress={() => console.log('Navigate')}
+      />
+
+      {/* Value - For displaying values */}
+      <ListItem
+        title="Account Balance"
+        description="Current available funds"
+        leadingContent={<Spot appearance="icon" icon={User} />}
+        trailingContent={
+          <View className="text-right">
+            <Text className="body-2-semi-bold">42.00</Text>
+            <Text className="text-muted body-3">USD</Text>
+          </View>
+        }
+        onPress={() => console.log('View balance')}
+      />
+
+      {/* Tag - For status indicators */}
+      <ListItem
+        title="New Feature"
+        description="Recently added functionality"
+        leadingContent={<Spot appearance="icon" icon={User} />}
+        trailingContent={<Tag label="New" appearance="accent" />}
+        onPress={() => console.log('View feature')}
+      />
+
+      {/* Icon - For trailing icons */}
+      <ListItem
+        title="Edit Profile"
+        description="Modify your information"
+        leadingContent={<Spot appearance="icon" icon={User} />}
+        trailingContent={<PenEdit size={24} />}
+        onPress={() => console.log('Edit')}
+      />
+
+      {/* None - No trailing content */}
+      <ListItem
+        title="Simple Item"
+        description="No trailing elements"
+        leadingContent={<Spot appearance="icon" icon={User} />}
+        onPress={() => console.log('Simple action')}
+      />
+    </View>
+  );
+}
+```
+
+### With Description Tag
+
+Add a tag to the description for additional status information:
+
+```tsx
+import { ListItem, Tag } from '@ledgerhq/ldls-ui-rnative';
+import { Bolt } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <ListItem
+      title="New Item"
+      description="Recently added"
+      descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} size="sm" />}
+      trailingContent={<ChevronRight size={24} />}
+      onPress={() => console.log('Pressed!')}
+    />
+  );
+}
+```
+
+### Disabled State
+
+Disable the ListItem to prevent interaction:
+
+```tsx
+<ListItem
+  title="Disabled Option"
+  description="Cannot be changed"
+  disabled
+/>
+```
+
+### Responsive Layout
+
+ListItem handles truncation responsively. Use container styles to control behavior:
+
+```tsx
+<View className="w-240 bg-base p-4">
+  <ListItem
+    title="Very Long Title That Will Truncate"
+    description="Very long description that will also truncate appropriately"
+    leadingContent={<Spot appearance="icon" icon={User} />}
+    trailingContent={<ChevronRight size={24} />}
+    onPress={() => console.log('Pressed!')}
+  />
+</View>
+```
+
+### Custom Styling
+
+Use `className` for layout purposes only, such as maximum width:
+
+```tsx
+<ListItem
+  title="Constrained Width"
+  description="This item has a maximum width applied"
+  className="max-w-md"
+  onPress={() => console.log('Pressed!')}
+/>
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout constraints
+<ListItem
+  title="Item"
+  className="max-w-md"
+  onPress={() => {}}
+/>
+
+// Use in ScrollView with proper grouping
+<ScrollView className="flex flex-col max-w-320">
+  <ListItem title="Item 1" onPress={() => {}} />
+  <ListItem title="Item 2" onPress={() => {}} />
+</ScrollView>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<ListItem
+  title="Custom"
+  className="bg-base text-active"
+  onPress={() => {}}
+/>
+
+// Don't modify internal spacing
+<ListItem
+  title="Wrong"
+  className="gap-2 p-2"
+  onPress={() => {}}
+/>
+
+// Don't override typography
+<ListItem
+  title="Bad"
+  className="heading-3"
+  onPress={() => {}}
+/>
+
+// Don't use for non-list contexts
+<ListItem title="Standalone" className="m-4 border" onPress={() => {}} />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for bundle size
+import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use proper React Native event handlers
+<ListItem onPress={handlePress} onLongPress={handleLongPress} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon set
+import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't use complex inline handlers that can cause re-renders
+<ListItem
+  onPress={() => {
+    // Complex logic that should be memoized...
+  }}
+/>
+```
+
+</Tab>
+</CustomTabs>
