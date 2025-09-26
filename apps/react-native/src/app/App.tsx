@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -40,7 +41,6 @@ export const App = () => {
               onPress={() => {
                 console.log('Button pressed');
               }}
-              disabled
             >
               Click me
             </Button>

@@ -66,6 +66,7 @@ export const Base: Story = {
 <CardButton
   appearance="base"
   title="Basic Card Button"
+  className="max-w-md"
 />
 `,
       },
@@ -78,6 +79,7 @@ export const WithIcon: Story = {
     appearance: 'base',
     title: 'Settings',
     icon: Settings,
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -87,6 +89,7 @@ export const WithIcon: Story = {
   appearance="base"
   title="Settings"
   icon={Settings}
+  className="max-w-md"
 />
 `,
       },
@@ -99,6 +102,7 @@ export const WithDescription: Story = {
     appearance: 'base',
     title: 'Payment Method',
     description: 'Add or manage your payment options',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -108,6 +112,7 @@ export const WithDescription: Story = {
   appearance="base"
   title="Payment Method"
   description="Add or manage your payment options"
+  className="max-w-md"
 />
 `,
       },
@@ -120,6 +125,7 @@ export const WithoutChevron: Story = {
     appearance: 'base',
     title: 'Navigate Forward',
     hideChevron: true,
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -129,6 +135,7 @@ export const WithoutChevron: Story = {
   appearance="base"
   title="Navigate Forward"
   hideChevron
+  className="max-w-md"
 />
 `,
       },
@@ -142,6 +149,7 @@ export const FullFeatures: Story = {
     title: 'Account Settings',
     description: 'Manage your account preferences and security',
     icon: Settings,
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -152,6 +160,7 @@ export const FullFeatures: Story = {
   title="Account Settings"
   description="Manage your account preferences and security"
   icon={Settings}
+  className="max-w-md"
 />
 `,
       },

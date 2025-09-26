@@ -1,5 +1,5 @@
 import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 import { Spinner } from '../../Symbols/Icons/Spinner';
 import { IconSize } from '../Icon/Icon';
@@ -73,9 +73,48 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    Omit<VariantProps<typeof buttonVariants>, 'iconOnly'> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * The visual style of the button.
+   */
+  appearance?:
+    | 'base'
+    | 'gray'
+    | 'accent'
+    | 'transparent'
+    | 'no-background'
+    | 'red';
+  /**
+   * The size variant of the button.
+   */
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  /**
+   * If true, the button expands to full width of its container.
+   */
+  isFull?: boolean;
+  /**
+   * If true, shows a loading spinner and disables the button.
+   */
+  loading?: boolean;
+  /**
+   * An optional icon component to render inside the button.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * Whether the button is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Additional custom CSS classes to apply.
+   */
+  className?: string;
+  /**
+   * The button's content, typically text or other elements.
+   */
+  children?: React.ReactNode;
+  /**
+   * If true, renders the child element directly with button styles instead of wrapping in a button element.
+   */
   asChild?: boolean;
 }
 
@@ -84,21 +123,8 @@ export interface ButtonProps
  *
  * When in loading state, it displays a spinner. If an icon is provided without children, it renders as an icon-only button.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-button-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'base' | 'gray' | 'accent' | 'transparent' | 'no-background' | 'red'} [appearance='base'] - The visual style of the button.
- * @param {'xs' | 'sm' | 'md' | 'lg'} [size='md'] - The size variant of the button.
- * @param {boolean} [isFull=false] - If true, the button expands to full width of its container.
- * @param {boolean} [loading=false] - If true, shows a loading spinner and disables the button.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the button.
- *   The icon styles are defined by the button. Please do not override them.
- * @param {boolean} [asChild=false] - If true, renders the child element directly with button styles instead of wrapping in a button element.
- *   Useful for creating link buttons or other semantic elements with button appearance.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.ReactNode} [children] - The button's content, typically text or other elements.
- * @param {React.ButtonHTMLAttributes<HTMLButtonElement>} [...] - All standard button props (e.g., `disabled`, `onClick`, `type`).
+ * @see {@link https://ldls.vercel.app/?path=/docs/action-button--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/action-button--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.

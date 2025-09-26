@@ -5,7 +5,7 @@ import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Components/Button',
+  title: 'Action/Button',
   parameters: {
     docs: {
       source: {
@@ -54,6 +54,10 @@ const meta: Meta<typeof Button> = {
     children: {
       control: 'text',
       description: 'The content to be displayed inside the button',
+    },
+    isFull: {
+      control: 'boolean',
+      description: 'Whether the button is full width',
     },
   },
 };
