@@ -23,7 +23,7 @@ export interface ListItemProps
    */
   descriptionTag?: React.ReactElement<typeof Tag>;
   /**
-   * Custom content to render on the right side of the List-item.
+   * Custom content to render on the right side of the list item.
    * @example trailingContent={<Icon />}
    */
   trailingContent?: React.ReactNode;
@@ -33,8 +33,8 @@ export interface ListItemProps
  * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
  * It functions as a clickable button with hover and active states.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-listitem-implementation--docs#dos-and-donts Guidelines}
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-listitem--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-listitem--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
