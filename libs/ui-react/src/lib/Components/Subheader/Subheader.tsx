@@ -25,14 +25,14 @@ interface SubheaderActionProps {
  * Info slot component for the Subheader. Used to display additional information, like tooltips.
  */
 const SubheaderInfo = ({ children }: SubheaderInfoProps) => {
-  return <div className="flex shrink-0 items-center">{children}</div>;
+  return <div className='flex shrink-0 items-center'>{children}</div>;
 };
 
 /**
  * Action slot component for the Subheader. Used to display an action, like a link or button.
  */
 const SubheaderAction = ({ children }: SubheaderActionProps) => {
-  return <div className="flex shrink-0 items-center">{children}</div>;
+  return <div className='flex shrink-0 items-center'>{children}</div>;
 };
 
 /**
@@ -99,8 +99,8 @@ export const Subheader = ({
       className={cn('flex items-center justify-between gap-8', className)}
       {...props}
     >
-      <div className="flex min-w-0 items-center gap-4">
-        <h2 className="min-w-0 truncate heading-4-semi-bold">{title}</h2>
+      <div className='flex min-w-0 items-center gap-4'>
+        <h2 className='min-w-0 truncate heading-4-semi-bold'>{title}</h2>
         {infoSlot}
       </div>
       {actionSlot}

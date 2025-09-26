@@ -9,8 +9,8 @@ export default meta;
 type Story = StoryObj;
 
 const HeightShowcase = () => (
-  <div className="mb-32">
-    <div className="flex flex-row gap-16">
+  <div className='mb-32'>
+    <div className='flex flex-row gap-16'>
       {[
         { name: '144px', class: 'h-144', token: 'h-144' },
         { name: '128px', class: 'h-128', token: 'h-128' },
@@ -35,8 +35,8 @@ const HeightShowcase = () => (
           <div
             className={`${heightClass} mb-12 w-24 rounded-xs bg-accent`}
           ></div>
-          <div className="w-48 text-base body-2">{name}</div>
-          <div className="text-muted body-4">{token}</div>
+          <div className='w-48 text-base body-2'>{name}</div>
+          <div className='text-muted body-4'>{token}</div>
         </div>
       ))}
     </div>
@@ -45,10 +45,10 @@ const HeightShowcase = () => (
 
 export const Default: Story = {
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Height"
-        description="Tailwind classes for controlling the height of an element. Use the `h-*` prefix followed by the size value."
+        title='Height'
+        description='Tailwind classes for controlling the height of an element. Use the `h-*` prefix followed by the size value.'
       />
       <HeightShowcase />
     </div>

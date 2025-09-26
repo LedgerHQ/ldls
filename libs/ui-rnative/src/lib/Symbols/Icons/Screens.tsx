@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const Screens = createIcon(
   'Screens',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M5.332 1.998h5.336m-6.67 2.5h8.004m.233 9.505h-8.47a1.334 1.334 0 0 1-1.327-1.201l-.434-4.335A1.334 1.334 0 0 1 3.331 7h9.338a1.334 1.334 0 0 1 1.327 1.467l-.434 4.335a1.334 1.334 0 0 1-1.327 1.2"
+      d='M5.332 1.998h5.336m-6.67 2.5h8.004m.233 9.505h-8.47a1.334 1.334 0 0 1-1.327-1.201l-.434-4.335A1.334 1.334 0 0 1 3.331 7h9.338a1.334 1.334 0 0 1 1.327 1.467l-.434 4.335a1.334 1.334 0 0 1-1.327 1.2'
     />
   </Svg>,
 );

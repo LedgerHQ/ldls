@@ -151,7 +151,7 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex gap-16 p-8">
+      <div className='flex gap-16 p-8'>
         {appearances.map(({ name, appearance }) => (
           <Button key={appearance} appearance={appearance}>
             {name}
@@ -164,32 +164,32 @@ export const AppearanceShowcase: Story = {
 
 export const ContentTypesShowcase: Story = {
   render: () => (
-    <div className="flex items-center gap-4">
-      <Button appearance="base">Text Only</Button>
-      <Button appearance="base" icon={Plus}>
+    <div className='flex items-center gap-4'>
+      <Button appearance='base'>Text Only</Button>
+      <Button appearance='base' icon={Plus}>
         With Icon
       </Button>
-      <Button appearance="base" icon={Settings} aria-label="Settings" />
+      <Button appearance='base' icon={Settings} aria-label='Settings' />
     </div>
   ),
 };
 
 export const SizesShowcase: Story = {
   render: () => (
-    <div className="flex items-center gap-4">
+    <div className='flex items-center gap-4'>
       <Button
-        appearance="base"
-        size="xs"
+        appearance='base'
+        size='xs'
         icon={Settings}
-        aria-label="Settings"
+        aria-label='Settings'
       />
-      <Button appearance="base" size="sm">
+      <Button appearance='base' size='sm'>
         Small
       </Button>
-      <Button appearance="base" size="md">
+      <Button appearance='base' size='md'>
         Medium
       </Button>
-      <Button appearance="base" size="lg" icon={Settings}>
+      <Button appearance='base' size='lg' icon={Settings}>
         Large
       </Button>
     </div>
@@ -198,12 +198,12 @@ export const SizesShowcase: Story = {
 
 export const StatesShowcase: Story = {
   render: () => (
-    <div className="flex items-center gap-4">
-      <Button appearance="base">Default</Button>
-      <Button appearance="base" disabled>
+    <div className='flex items-center gap-4'>
+      <Button appearance='base'>Default</Button>
+      <Button appearance='base' disabled>
         Disabled
       </Button>
-      <Button appearance="base" loading>
+      <Button appearance='base' loading>
         Loading
       </Button>
     </div>
@@ -212,12 +212,12 @@ export const StatesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="flex flex-col gap-8 p-8">
-      <Button appearance="base" className="w-full lg:w-fit">
+    <div className='flex flex-col gap-8 p-8'>
+      <Button appearance='base' className='w-full lg:w-fit'>
         Short
       </Button>
-      <Button appearance="base">Medium length button</Button>
-      <Button appearance="base" icon={Plus}>
+      <Button appearance='base'>Medium length button</Button>
+      <Button appearance='base' icon={Plus}>
         This is a longer button text to show dynamic width
       </Button>
     </div>
@@ -227,10 +227,10 @@ export const ResponsiveLayout: Story = {
 export const ResponsiveLayout2: Story = {
   render: () => (
     <>
-      <p className="text-muted body-4-semi-bold">
+      <p className='text-muted body-4-semi-bold'>
         This container has a width of 384px.
       </p>
-      <div className="w-384 bg-muted-pressed p-16">
+      <div className='w-384 bg-muted-pressed p-16'>
         <Button icon={Plus}>
           This Base button has a fixed width container of 384px that should
           content should be fir .
@@ -258,9 +258,9 @@ export const InteractiveLoadingStates: Story = {
     };
 
     return (
-      <div className="flex items-center gap-4">
+      <div className='flex items-center gap-4'>
         <Button
-          appearance="red"
+          appearance='red'
           loading={states.text === 'loading'}
           onClick={() => handleClick('text')}
         >
@@ -268,7 +268,7 @@ export const InteractiveLoadingStates: Story = {
         </Button>
 
         <Button
-          appearance="base"
+          appearance='base'
           loading={states.withIcon === 'loading'}
           onClick={() => handleClick('withIcon')}
           icon={Settings}
@@ -277,11 +277,11 @@ export const InteractiveLoadingStates: Story = {
         </Button>
 
         <Button
-          appearance="accent"
+          appearance='accent'
           loading={states.iconOnly === 'loading'}
           onClick={() => handleClick('iconOnly')}
           icon={Settings}
-          aria-label="Settings"
+          aria-label='Settings'
         />
       </div>
     );
@@ -305,17 +305,17 @@ export const AsChild: Story = {
     );
 
     return (
-      <div className="flex flex-col gap-16 p-8">
-        <div className="flex gap-8">
-          <Button asChild appearance="base">
-            <Link to="#">Open Button documentation</Link>
+      <div className='flex flex-col gap-16 p-8'>
+        <div className='flex gap-8'>
+          <Button asChild appearance='base'>
+            <Link to='#'>Open Button documentation</Link>
           </Button>
 
-          <Button asChild appearance="accent">
+          <Button asChild appearance='accent'>
             <a
-              href="https://shop.ledger.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href='https://shop.ledger.com'
+              target='_blank'
+              rel='noopener noreferrer'
             >
               External Link to Ledger Shop
             </a>

@@ -104,33 +104,33 @@ export const ListItem = React.forwardRef<
       style={style}
       {...touchableProps}
     >
-      <View className="flex min-w-0 flex-1 flex-row items-center gap-12">
+      <View className='flex min-w-0 flex-1 flex-row items-center gap-12'>
         {leadingContent}
-        <View className="flex min-w-0 flex-1 flex-col gap-4">
+        <View className='flex min-w-0 flex-1 flex-col gap-4'>
           <View
             className={cn(
               'body-2-semi-bold',
               disabled ? 'text-disabled' : 'text-base',
             )}
           >
-            <Text numberOfLines={1} ellipsizeMode="tail">
+            <Text numberOfLines={1} ellipsizeMode='tail'>
               {title}
             </Text>
           </View>
           {description && (
-            <View className="flex flex-row items-center gap-4">
+            <View className='flex flex-row items-center gap-4'>
               <View
                 className={cn(
                   'min-w-0 shrink body-3',
                   disabled ? 'text-disabled' : 'text-muted',
                 )}
               >
-                <Text numberOfLines={1} ellipsizeMode="tail">
+                <Text numberOfLines={1} ellipsizeMode='tail'>
                   {description}
                 </Text>
               </View>
               {descriptionTag && (
-                <View className="flex h-16 shrink-0 flex-row items-center">
+                <View className='flex h-16 shrink-0 flex-row items-center'>
                   {descriptionTag}
                 </View>
               )}
@@ -139,7 +139,7 @@ export const ListItem = React.forwardRef<
         </View>
       </View>
       {trailingContent && (
-        <View className="flex-shrink-0">{trailingContent}</View>
+        <View className='flex-shrink-0'>{trailingContent}</View>
       )}
     </TouchableOpacity>
   );

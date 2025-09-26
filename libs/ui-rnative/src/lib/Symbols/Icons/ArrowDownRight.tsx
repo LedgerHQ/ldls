@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const ArrowDownRight = createIcon(
   'ArrowDownRight',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M11.3 11.3 4.7 4.7m6.6 1.88v4.715l-4.72-.006"
+      d='M11.3 11.3 4.7 4.7m6.6 1.88v4.715l-4.72-.006'
     />
   </Svg>,
 );

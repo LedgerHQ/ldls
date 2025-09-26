@@ -6,7 +6,7 @@ import { Search } from './Search';
 
 describe('Search', () => {
   it('renders with search icon', () => {
-    render(<Search placeholder="Search" />);
+    render(<Search placeholder='Search' />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('Search', () => {
   });
 
   it('displays placeholder correctly', () => {
-    render(<Search placeholder="Search products" />);
+    render(<Search placeholder='Search products' />);
 
     const input = screen.getByPlaceholderText('Search products');
     expect(input).toBeInTheDocument();
@@ -27,8 +27,8 @@ describe('Search', () => {
     const handleChange = vi.fn();
     render(
       <Search
-        placeholder="Search"
-        value="test query"
+        placeholder='Search'
+        value='test query'
         onChange={handleChange}
       />,
     );
@@ -41,7 +41,7 @@ describe('Search', () => {
   });
 
   it('shows clear button when input has content', () => {
-    render(<Search placeholder="Search" defaultValue="some text" />);
+    render(<Search placeholder='Search' defaultValue='some text' />);
 
     const clearButton = screen.getByLabelText('Clear input');
     expect(clearButton).toBeInTheDocument();
@@ -50,8 +50,8 @@ describe('Search', () => {
   it('hides clear button when hideClearButton is true', () => {
     render(
       <Search
-        placeholder="Search"
-        defaultValue="some text"
+        placeholder='Search'
+        defaultValue='some text'
         hideClearButton={true}
       />,
     );
@@ -64,8 +64,8 @@ describe('Search', () => {
     const handleClear = vi.fn();
     render(
       <Search
-        placeholder="Search"
-        defaultValue="test content"
+        placeholder='Search'
+        defaultValue='test content'
         onClear={handleClear}
       />,
     );
@@ -79,8 +79,8 @@ describe('Search', () => {
   it('displays error message when provided', () => {
     render(
       <Search
-        placeholder="Search"
-        errorMessage="Search failed"
+        placeholder='Search'
+        errorMessage='Search failed'
         aria-invalid={true}
       />,
     );
@@ -94,14 +94,14 @@ describe('Search', () => {
   });
 
   it('handles disabled state', () => {
-    render(<Search placeholder="Search" disabled />);
+    render(<Search placeholder='Search' disabled />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
   });
 
   it('renders with fixed icon styling', () => {
-    const { container } = render(<Search placeholder="Search" />);
+    const { container } = render(<Search placeholder='Search' />);
 
     // The search icon should have fixed styling
     const searchIcon = container.querySelector('svg');

@@ -21,13 +21,13 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
   );
 
   if (tabs.length === 0) {
-    return <div className="text-muted">No tabs found</div>;
+    return <div className='text-muted'>No tabs found</div>;
   }
 
   return (
-    <div className="storybook-tabs">
+    <div className='storybook-tabs'>
       {/* Tab buttons */}
-      <div className="mb-24 flex gap-24">
+      <div className='mb-24 flex gap-24'>
         {tabs.map((tab, idx) => (
           <button
             key={idx}
@@ -67,7 +67,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
       </div>
 
       {/* Tab content */}
-      <div className="p-24">
+      <div className='p-24'>
         {tabs.map((tab, idx) => {
           if (idx !== active) return null;
           return <div key={idx}>{tab.props.children}</div>;

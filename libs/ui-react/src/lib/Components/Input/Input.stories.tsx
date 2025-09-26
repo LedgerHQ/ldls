@@ -50,7 +50,7 @@ const meta: Meta<typeof Input> = {
       defaultValue: undefined,
       mapping: {
         undefined: undefined,
-        Information: <InformationFill size={20} className="text-muted" />,
+        Information: <InformationFill size={20} className='text-muted' />,
       },
       description:
         'Custom content to render after the input (right side in LTR)',
@@ -126,10 +126,10 @@ export const WithContent: Story = {
     const [value, setValue] = React.useState('Initial content');
     return (
       <Input
-        label="Label"
+        label='Label'
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        containerClassName="max-w-md"
+        containerClassName='max-w-md'
       />
     );
   },
@@ -150,11 +150,11 @@ export const ExtendedClearBehavior: Story = {
   render: () => {
     return (
       <Input
-        label="Extended Clear Behavior"
+        label='Extended Clear Behavior'
         onClear={() => {
           alert('Extended clear behavior');
         }}
-        containerClassName="max-w-md"
+        containerClassName='max-w-md'
       />
     );
   },
@@ -180,11 +180,11 @@ export const ControlledInputExample = () => {
   );
   return (
     <Input
-      label="Controlled Input (Default Clear)"
+      label='Controlled Input (Default Clear)'
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      id="controlled-input"
-      containerClassName="max-w-md"
+      id='controlled-input'
+      containerClassName='max-w-md'
     />
   );
 };
@@ -192,10 +192,10 @@ export const ControlledInputExample = () => {
 export const UncontrolledInputExample = () => {
   return (
     <Input
-      label="Uncontrolled Input (Default Clear)"
-      defaultValue="Default content"
-      id="uncontrolled-input"
-      containerClassName="max-w-md"
+      label='Uncontrolled Input (Default Clear)'
+      defaultValue='Default content'
+      id='uncontrolled-input'
+      containerClassName='max-w-md'
     />
   );
 };
@@ -207,14 +207,14 @@ export const HiddenClearButton: Story = {
   render: () => {
     const [value, setValue] = React.useState('Content with no clear button');
     return (
-      <div className="max-w-md space-y-16">
+      <div className='max-w-md space-y-16'>
         <Input
-          label="Clear Button Hidden"
+          label='Clear Button Hidden'
           value={value}
           onChange={(e) => setValue(e.target.value)}
           hideClearButton
         />
-        <div className="text-muted body-3">
+        <div className='text-muted body-3'>
           Use hideClearButton to prevent the clear button from appearing.
         </div>
       </div>
@@ -245,10 +245,10 @@ export const WithError: Story = {
       email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     return (
-      <div className="max-w-md">
+      <div className='max-w-md'>
         <Input
-          label="Email"
-          type="email"
+          label='Email'
+          type='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           aria-invalid={!isValidEmail}
@@ -256,7 +256,7 @@ export const WithError: Story = {
             !isValidEmail ? 'Please enter a valid email address' : undefined
           }
         />
-        <div className="mt-12 text-muted body-3">
+        <div className='mt-12 text-muted body-3'>
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
@@ -273,13 +273,13 @@ export const Disabled: Story = {
     const [value] = React.useState('Disabled content');
     return (
       <Input
-        label="Label"
+        label='Label'
         value={value}
         onChange={() => {
           console.log('onChange');
         }}
         disabled
-        containerClassName="max-w-md"
+        containerClassName='max-w-md'
       />
     );
   },
@@ -309,11 +309,11 @@ const InfoTooltip = () => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button type="button" aria-label="Username requirements">
-          <InformationFill size={20} className="text-muted" />
+        <button type='button' aria-label='Username requirements'>
+          <InformationFill size={20} className='text-muted' />
         </button>
       </TooltipTrigger>
-      <TooltipContent side="top">
+      <TooltipContent side='top'>
         Username must be unique and at least 3 characters long
       </TooltipContent>
     </Tooltip>
@@ -322,11 +322,11 @@ const InfoTooltip = () => {
 
 const GeneratePasswordButton = () => (
   <button
-    type="button"
+    type='button'
     onClick={() => alert('Generate password')}
-    aria-label="Generate random password"
+    aria-label='Generate random password'
   >
-    <SparksFill size={20} className="text-muted" />
+    <SparksFill size={20} className='text-muted' />
   </button>
 );
 
@@ -334,36 +334,36 @@ export const WithCustomElement: Story = {
   render: () => {
     const [value, setValue] = React.useState('');
     return (
-      <div className="max-w-4xl">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <div className='max-w-4xl'>
+        <div className='grid grid-cols-1 gap-16 md:grid-cols-2'>
           {/* Example with tooltip and clear button */}
           <div>
-            <h3 className="mb-8 body-1-semi-bold">
+            <h3 className='mb-8 body-1-semi-bold'>
               With Tooltip and Clear Button
             </h3>
             <Input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              label="Username"
+              label='Username'
               suffix={<InfoTooltip />}
-              id="tooltip-input"
+              id='tooltip-input'
             />
           </div>
 
           {/* Example with action button and no clear button */}
           <div>
-            <h3 className="mb-8 body-1-semi-bold">
+            <h3 className='mb-8 body-1-semi-bold'>
               With Action Button and No Clear Button
             </h3>
             <Input
-              label="Generate Password"
-              type="password"
+              label='Generate Password'
+              type='password'
               hideClearButton
               suffix={<GeneratePasswordButton />}
             />
           </div>
         </div>
-        <div className="mt-16 text-muted body-3">
+        <div className='mt-16 text-muted body-3'>
           The suffix prop allows you to add custom interactive elements like
           tooltips, or action buttons
         </div>
@@ -451,32 +451,32 @@ export const Interactive: Story = {
 
     if (isSubmitted) {
       return (
-        <div className="bg-success/10 rounded-md p-16 text-center">
-          <div className="text-success body-1-semi-bold">
+        <div className='bg-success/10 rounded-md p-16 text-center'>
+          <div className='text-success body-1-semi-bold'>
             ✓ Form submitted successfully!
           </div>
-          <div className="mt-4 text-muted body-3">Resetting form...</div>
+          <div className='mt-4 text-muted body-3'>Resetting form...</div>
         </div>
       );
     }
 
     return (
-      <div className="max-w-md">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-16">
-          <div className="flex flex-col gap-16">
+      <div className='max-w-md'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-16'>
+          <div className='flex flex-col gap-16'>
             <Input
-              label="Username"
+              label='Username'
               value={formData.username}
               onChange={handleChange('username')}
               onClear={handleClear('username')}
               aria-invalid={!!errors.username}
               errorMessage={errors.username}
-              suffix={<InformationFill size={20} className="text-muted" />}
+              suffix={<InformationFill size={20} className='text-muted' />}
             />
 
             <Input
-              label="Email"
-              type="email"
+              label='Email'
+              type='email'
               value={formData.email}
               onChange={handleChange('email')}
               onClear={handleClear('email')}
@@ -485,8 +485,8 @@ export const Interactive: Story = {
             />
 
             <Input
-              label="Password"
-              type="password"
+              label='Password'
+              type='password'
               value={formData.password}
               onChange={handleChange('password')}
               onClear={handleClear('password')}
@@ -495,8 +495,8 @@ export const Interactive: Story = {
             />
 
             <Input
-              label="Confirm Password"
-              type="password"
+              label='Confirm Password'
+              type='password'
               value={formData.confirmPassword}
               onChange={handleChange('confirmPassword')}
               onClear={handleClear('confirmPassword')}
@@ -505,13 +505,13 @@ export const Interactive: Story = {
             />
           </div>
 
-          <div className="flex gap-12">
-            <Button type="submit" appearance="base">
+          <div className='flex gap-12'>
+            <Button type='submit' appearance='base'>
               Create Account
             </Button>
             <Button
-              type="button"
-              appearance="gray"
+              type='button'
+              appearance='gray'
               onClick={() => {
                 setFormData({
                   username: '',
@@ -526,7 +526,7 @@ export const Interactive: Story = {
             </Button>
           </div>
 
-          <div className="text-muted body-3">
+          <div className='text-muted body-3'>
             This example demonstrates form validation, error handling, clear
             buttons, and right elements working together.
           </div>

@@ -16,12 +16,12 @@ const sheetBarVariants = cva('flex w-full bg-canvas-sheet p-16 text-base', {
 const BackButton = ({ onBack }: { onBack: () => void }) => {
   return (
     <Button
-      appearance="no-background"
-      size="xs"
+      appearance='no-background'
+      size='xs'
       icon={ArrowLeft}
       onClick={onBack}
-      className="flex-shrink-0"
-      aria-label="Go back"
+      className='flex-shrink-0'
+      aria-label='Go back'
     />
   );
 };
@@ -29,12 +29,12 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
 const CloseButton = ({ onClose }: { onClose: () => void }) => {
   return (
     <Button
-      appearance="gray"
-      size="xs"
+      appearance='gray'
+      size='xs'
       icon={Close}
       onClick={onClose}
-      className="flex-shrink-0"
-      aria-label="Close"
+      className='flex-shrink-0'
+      aria-label='Close'
     />
   );
 };
@@ -107,14 +107,14 @@ export const SheetBar = ({
       {size === 'sm' && (
         <>
           {onBack && <BackButton onBack={onBack} />}
-          <div className="flex min-w-0 flex-1 flex-col">
+          <div className='flex min-w-0 flex-1 flex-col'>
             {title && (
-              <div className="truncate text-center heading-4-semi-bold">
+              <div className='truncate text-center heading-4-semi-bold'>
                 {title}
               </div>
             )}
             {description && (
-              <div className="truncate text-center text-muted body-2">
+              <div className='truncate text-center text-muted body-2'>
                 {description}
               </div>
             )}
@@ -124,12 +124,12 @@ export const SheetBar = ({
       )}
       {size === 'lg' && (
         <>
-          <div className="flex flex-row justify-between">
+          <div className='flex flex-row justify-between'>
             <div>{onBack && <BackButton onBack={onBack} />}</div>
             <CloseButton onClose={onClose} />
           </div>
           {(title || description) && (
-            <div className="flex flex-row gap-12">
+            <div className='flex flex-row gap-12'>
               {title && (
                 <div
                   className={cn(

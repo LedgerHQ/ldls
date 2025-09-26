@@ -9,8 +9,8 @@ export default meta;
 type Story = StoryObj;
 
 const WidthShowcase = () => (
-  <div className="mb-32">
-    <div className="space-y-16">
+  <div className='mb-32'>
+    <div className='space-y-16'>
       {[
         { name: '208px', class: 'w-208', token: 'w-208' },
         { name: '176px', class: 'w-176', token: 'w-176' },
@@ -33,10 +33,10 @@ const WidthShowcase = () => (
         { name: '2px', class: 'w-2', token: 'p-2' },
         { name: '1px', class: 'w-1', token: 'w-1' },
       ].map(({ name, class: widthClass, token }) => (
-        <div key={name} className="flex items-center gap-8">
+        <div key={name} className='flex items-center gap-8'>
           <div>
-            <div className="w-48 text-base body-2">{name}</div>
-            <div className="text-muted body-4">{token}</div>
+            <div className='w-48 text-base body-2'>{name}</div>
+            <div className='text-muted body-4'>{token}</div>
           </div>
           <div className={`${widthClass} h-24 rounded-xs bg-accent`}></div>
         </div>
@@ -47,10 +47,10 @@ const WidthShowcase = () => (
 
 export const Default: Story = {
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Width"
-        description="Tailwind classes for controlling the width of an element. Use the `w-*` prefix followed by the size value."
+        title='Width'
+        description='Tailwind classes for controlling the width of an element. Use the `w-*` prefix followed by the size value.'
       />
       <WidthShowcase />
     </div>

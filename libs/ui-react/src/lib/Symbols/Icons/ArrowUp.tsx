@@ -27,18 +27,18 @@ import createIcon from '../../Components/Icon/createIcon';
 export const ArrowUp = createIcon(
   'ArrowUp',
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
-    fill="currentColor"
-    viewBox="0 0 16 16"
+    xmlns='http://www.w3.org/2000/svg'
+    width='1em'
+    height='1em'
+    fill='currentColor'
+    viewBox='0 0 16 16'
   >
     <path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M8 3.333v9.334m-3.334-6L8 3.327l3.333 3.333"
+      d='M8 3.333v9.334m-3.334-6L8 3.327l3.333 3.333'
     />
   </svg>,
 );

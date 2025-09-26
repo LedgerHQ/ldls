@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const Compass = createIcon(
   'Compass',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M12.243 3.753a6 6 0 0 1 0 8.48 6.007 6.007 0 0 1-8.487 0 5.996 5.996 0 0 1 0-8.486 5.99 5.99 0 0 1 8.48-.001m-2.69 5.787L6.454 6.467m0 .002 4.214-1.142-1.12 4.193-4.214 1.133z"
+      d='M12.243 3.753a6 6 0 0 1 0 8.48 6.007 6.007 0 0 1-8.487 0 5.996 5.996 0 0 1 0-8.486 5.99 5.99 0 0 1 8.48-.001m-2.69 5.787L6.454 6.467m0 .002 4.214-1.142-1.12 4.193-4.214 1.133z'
     />
   </Svg>,
 );

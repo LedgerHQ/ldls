@@ -57,7 +57,7 @@ describe('Checkbox Component', () => {
   });
 
   it('should apply custom className', () => {
-    render(<Checkbox className="my-12" />);
+    render(<Checkbox className='my-12' />);
     const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toHaveClass('my-12');
   });

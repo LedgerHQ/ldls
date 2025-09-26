@@ -197,11 +197,11 @@ export const Button = React.forwardRef<
           <>
             <Spinner
               size={calculatedIconSize}
-              className="flex-shrink-0 animate-spin"
-              aria-label="Loading"
+              className='flex-shrink-0 animate-spin'
+              aria-label='Loading'
             />
             {children && (
-              <Text className="line-clamp-2 text-left body-1-semi-bold">
+              <Text className='line-clamp-2 text-left body-1-semi-bold'>
                 {children}
               </Text>
             )}
@@ -211,11 +211,11 @@ export const Button = React.forwardRef<
             {IconComponent && (
               <IconComponent
                 size={calculatedIconSize}
-                className="flex-shrink-0"
+                className='flex-shrink-0'
               />
             )}
             {children && (
-              <Text className="line-clamp-2 text-left body-1-semi-bold">
+              <Text className='line-clamp-2 text-left body-1-semi-bold'>
                 {children}
               </Text>
             )}

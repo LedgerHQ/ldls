@@ -32,7 +32,7 @@ export const TooltipProvider = ({
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) => {
   return (
     <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
+      data-slot='tooltip-provider'
       delayDuration={delayDuration}
       {...props}
     />
@@ -75,7 +75,7 @@ export const Tooltip = ({
 }: React.ComponentProps<typeof TooltipPrimitive.Root>) => {
   return (
     <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+      <TooltipPrimitive.Root data-slot='tooltip' {...props} />
     </TooltipProvider>
   );
 };
@@ -109,7 +109,7 @@ export const Tooltip = ({
 export const TooltipTrigger = ({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Trigger>) => {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+  return <TooltipPrimitive.Trigger data-slot='tooltip-trigger' {...props} />;
 };
 
 /**
@@ -155,7 +155,7 @@ export const TooltipContent = ({
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
-        data-slot="tooltip-content"
+        data-slot='tooltip-content'
         sideOffset={sideOffset}
         className={cn(
           'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
@@ -163,8 +163,8 @@ export const TooltipContent = ({
         )}
         {...props}
       >
-        <TooltipPrimitive.Arrow className="size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive" />
-        <div className="relative">{children}</div>
+        <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
+        <div className='relative'>{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );

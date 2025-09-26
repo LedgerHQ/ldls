@@ -166,12 +166,12 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className="flex gap-32 p-8">
+      <div className='flex gap-32 p-8'>
         {appearances.map(({ name, appearance }) => (
           <Link
             key={appearance}
             appearance={appearance}
-            href="#"
+            href='#'
             onClick={onClick}
             icon={Information}
             isExternal
@@ -187,11 +187,11 @@ export const AppearanceShowcase: Story = {
 export const SizesShowcase: Story = {
   render: () => (
     <>
-      <div className="flex items-center gap-32 p-8">
+      <div className='flex items-center gap-32 p-8'>
         <Link
-          appearance="underlined"
-          size="sm"
-          href="#"
+          appearance='underlined'
+          size='sm'
+          href='#'
           onClick={onClick}
           icon={Information}
           isExternal
@@ -199,9 +199,9 @@ export const SizesShowcase: Story = {
           Small
         </Link>
         <Link
-          appearance="underlined"
-          size="md"
-          href="#"
+          appearance='underlined'
+          size='md'
+          href='#'
           onClick={onClick}
           icon={Information}
           isExternal
@@ -209,11 +209,11 @@ export const SizesShowcase: Story = {
           Medium
         </Link>
       </div>
-      <div className="flex items-center gap-32 p-8">
+      <div className='flex items-center gap-32 p-8'>
         <Link
-          appearance="accent"
-          size="sm"
-          href="#"
+          appearance='accent'
+          size='sm'
+          href='#'
           onClick={onClick}
           icon={Information}
           isExternal
@@ -221,9 +221,9 @@ export const SizesShowcase: Story = {
           Small Accent
         </Link>
         <Link
-          appearance="accent"
-          size="md"
-          href="#"
+          appearance='accent'
+          size='md'
+          href='#'
           onClick={onClick}
           icon={Information}
           isExternal
@@ -237,17 +237,17 @@ export const SizesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className="flex w-256 flex-col gap-8 rounded-sm bg-muted p-8">
-      <Link appearance="underlined" href="#" onClick={onClick}>
+    <div className='flex w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+      <Link appearance='underlined' href='#' onClick={onClick}>
         Short Link
       </Link>
-      <Link appearance="underlined" href="#" onClick={onClick}>
+      <Link appearance='underlined' href='#' onClick={onClick}>
         This is a longer link text to show line clamping behavior over two lines
         if necessary
       </Link>
       <Link
-        appearance="underlined"
-        href="#"
+        appearance='underlined'
+        href='#'
         icon={Information}
         isExternal
         onClick={onClick}
@@ -275,15 +275,15 @@ export const AsChild: Story = {
     );
 
     return (
-      <div className="flex flex-col gap-16 p-8">
-        <Link asChild appearance="underlined">
-          <RouterLink to="#">Dashboard</RouterLink>
+      <div className='flex flex-col gap-16 p-8'>
+        <Link asChild appearance='underlined'>
+          <RouterLink to='#'>Dashboard</RouterLink>
         </Link>
-        <Link asChild appearance="accent">
+        <Link asChild appearance='accent'>
           <a
-            href="https://shop.ledger.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href='https://shop.ledger.com'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             External Link to Ledger Shop
           </a>

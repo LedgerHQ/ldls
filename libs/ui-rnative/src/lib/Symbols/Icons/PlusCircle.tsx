@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const PlusCircle = createIcon(
   'PlusCircle',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M8 5.333v5.334M10.667 8H5.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12"
+      d='M8 5.333v5.334M10.667 8H5.333M8 14c-3.32 0-6-2.686-6-6 0-3.32 2.686-6 6-6a6 6 0 1 1 0 12'
     />
   </Svg>,
 );

@@ -13,7 +13,7 @@ const createControlledProps = (overrides = {}) => ({
 describe('AmountInput', () => {
   it('renders with default props', () => {
     render(
-      <AmountInput placeholder="Enter amount" value="" onChange={vi.fn()} />,
+      <AmountInput placeholder='Enter amount' value='' onChange={vi.fn()} />,
     );
     expect(screen.getByPlaceholderText('Enter amount')).toBeInTheDocument();
   });
@@ -21,8 +21,8 @@ describe('AmountInput', () => {
   it('renders with currency text on the left by default', () => {
     render(
       <AmountInput
-        currencyText="$"
-        placeholder="0"
+        currencyText='$'
+        placeholder='0'
         {...createControlledProps()}
       />,
     );
@@ -40,9 +40,9 @@ describe('AmountInput', () => {
   it('renders with currency text on the right when specified', () => {
     render(
       <AmountInput
-        currencyText="USD"
-        currencyPosition="right"
-        placeholder="0"
+        currencyText='USD'
+        currencyPosition='right'
+        placeholder='0'
         {...createControlledProps()}
       />,
     );
@@ -59,7 +59,7 @@ describe('AmountInput', () => {
 
   it('handles numeric input correctly', async () => {
     const handleChange = vi.fn();
-    render(<AmountInput onChange={handleChange} currencyText="$" value="" />);
+    render(<AmountInput onChange={handleChange} currencyText='$' value='' />);
 
     const input = screen.getByRole('textbox');
     await userEvent.type(input, '123.45');
@@ -71,7 +71,7 @@ describe('AmountInput', () => {
   it('applies error styles when aria-invalid is true', () => {
     render(
       <AmountInput
-        currencyText="$"
+        currencyText='$'
         aria-invalid={true}
         {...createControlledProps()}
       />,
@@ -82,7 +82,7 @@ describe('AmountInput', () => {
 
   it('handles disabled state correctly', () => {
     render(
-      <AmountInput currencyText="$" disabled {...createControlledProps()} />,
+      <AmountInput currencyText='$' disabled {...createControlledProps()} />,
     );
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
@@ -105,20 +105,20 @@ describe('AmountInput', () => {
 
   it('updates currency text when prop changes', () => {
     const { rerender } = render(
-      <AmountInput currencyText="$" {...createControlledProps()} />,
+      <AmountInput currencyText='$' {...createControlledProps()} />,
     );
     expect(screen.getByText('$')).toBeInTheDocument();
 
-    rerender(<AmountInput currencyText="€" {...createControlledProps()} />);
+    rerender(<AmountInput currencyText='€' {...createControlledProps()} />);
     expect(screen.getByText('€')).toBeInTheDocument();
   });
 
   it('maintains input value when currency position changes', () => {
     const { rerender } = render(
       <AmountInput
-        currencyText="$"
-        currencyPosition="left"
-        value="123.45"
+        currencyText='$'
+        currencyPosition='left'
+        value='123.45'
         onChange={vi.fn()}
       />,
     );
@@ -127,9 +127,9 @@ describe('AmountInput', () => {
 
     rerender(
       <AmountInput
-        currencyText="$"
-        currencyPosition="right"
-        value="123.45"
+        currencyText='$'
+        currencyPosition='right'
+        value='123.45'
         onChange={vi.fn()}
       />,
     );

@@ -9,11 +9,11 @@ export default meta;
 type Story = StoryObj;
 
 const GradientShowcase = () => (
-  <div className="mb-32">
-    <div className="space-y-32">
+  <div className='mb-32'>
+    <div className='space-y-32'>
       <div>
-        <h4 className="mb-16 text-base heading-4">Directional Gradients</h4>
-        <div className="grid grid-cols-1 gap-16 sm:grid-cols-2">
+        <h4 className='mb-16 text-base heading-4'>Directional Gradients</h4>
+        <div className='grid grid-cols-1 gap-16 sm:grid-cols-2'>
           {[
             { name: 'Top', class: 'bg-gradient-top' },
             { name: 'Bottom', class: 'bg-gradient-bottom' },
@@ -22,16 +22,16 @@ const GradientShowcase = () => (
               <div
                 className={`h-96 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className="mt-8 text-base body-2">{name}</div>
-              <div className="mt-8 text-muted body-4">{gradientClass}</div>
+              <div className='mt-8 text-base body-2'>{name}</div>
+              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <h4 className="mb-16 text-base heading-4">Asset Gradients</h4>
-        <div className="grid grid-cols-2 gap-16 sm:grid-cols-3 lg:grid-cols-6">
+        <h4 className='mb-16 text-base heading-4'>Asset Gradients</h4>
+        <div className='grid grid-cols-2 gap-16 sm:grid-cols-3 lg:grid-cols-6'>
           {[
             { name: 'Aion', class: 'bg-gradient-aion' },
             { name: 'Algorand', class: 'bg-gradient-algorand' },
@@ -107,8 +107,8 @@ const GradientShowcase = () => (
               <div
                 className={`h-64 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className="mt-8 text-base body-2">{name}</div>
-              <div className="mt-8 text-muted body-4">{gradientClass}</div>
+              <div className='mt-8 text-base body-2'>{name}</div>
+              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
             </div>
           ))}
         </div>
@@ -119,10 +119,10 @@ const GradientShowcase = () => (
 
 export const Gradients: Story = {
   render: () => (
-    <div className="p-24">
+    <div className='p-24'>
       <SectionHeader
-        title="Gradients"
-        description="Tailwind classes for controlling the gradient of an element."
+        title='Gradients'
+        description='Tailwind classes for controlling the gradient of an element.'
       />
       <GradientShowcase />
     </div>

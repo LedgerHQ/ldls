@@ -15,7 +15,7 @@ export const App = () => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle='dark-content' />
       <SafeAreaView
         style={{
           flex: 1,
@@ -25,19 +25,19 @@ export const App = () => {
           ref={(ref) => {
             scrollViewRef.current = ref;
           }}
-          contentInsetAdjustmentBehavior="automatic"
+          contentInsetAdjustmentBehavior='automatic'
           style={styles.scrollView}
         >
           <View style={styles.section}>
             <Text
-              testID="heading"
-              role="heading"
-              className="text-sm font-bold mb-24 uppercase"
+              testID='heading'
+              role='heading'
+              className='text-sm font-bold mb-24 uppercase'
             >
               Welcome to React Native 👋
             </Text>
             <Button
-              appearance="accent"
+              appearance='accent'
               onPress={() => {
                 console.log('Button pressed');
               }}

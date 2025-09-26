@@ -37,7 +37,7 @@ import { SheetBar, SheetBarProps } from '../SheetBar';
 export function Dialog({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+  return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
 
 /**
@@ -65,7 +65,7 @@ export function Dialog({
 export function DialogTrigger({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
-  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
+  return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
 /**
@@ -89,7 +89,7 @@ export function DialogTrigger({
 function DialogPortal({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
-  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
+  return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
 
 /**
@@ -118,7 +118,7 @@ const DialogOverlay = React.forwardRef<
   return (
     <DialogPrimitive.Overlay
       ref={ref}
-      data-slot="dialog-overlay"
+      data-slot='dialog-overlay'
       className={cn(
         className,
         'fixed inset-0 z-dialogOverlay bg-canvas-overlay data-[state=closed]:animate-overlayHide data-[state=open]:animate-overlayShow',
@@ -165,10 +165,10 @@ export function DialogContent({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
-    <DialogPortal data-slot="dialog-portal">
+    <DialogPortal data-slot='dialog-portal'>
       <DialogOverlay />
       <DialogPrimitive.Content
-        data-slot="dialog-content"
+        data-slot='dialog-content'
         className={cn(
           'fixed left-[50%] top-[50%] z-dialogContent w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet data-[state=closed]:animate-contentHide data-[state=open]:animate-contentShow',
           className,
@@ -278,7 +278,7 @@ export function DialogTitle({
 }: React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }) {
   return (
     <DialogPrimitive.Title
-      data-slot="dialog-title"
+      data-slot='dialog-title'
       className={cn(hidden && 'sr-only', className)}
       {...props}
     />
@@ -331,7 +331,7 @@ export function DialogDescription({
 }) {
   return (
     <DialogPrimitive.Description
-      data-slot="dialog-description"
+      data-slot='dialog-description'
       className={cn(hidden && 'sr-only', className)}
       {...props}
     />

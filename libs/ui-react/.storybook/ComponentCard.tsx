@@ -37,18 +37,18 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
       )}
     >
       {/* Content area */}
-      <div className="flex flex-1 flex-col justify-between">
+      <div className='flex flex-1 flex-col justify-between'>
         <div>
-          <h3 className="mb-2 !cursor-pointer text-base heading-4-semi-bold group-hover:text-[#B380DD]">
+          <h3 className='mb-2 !cursor-pointer text-base heading-4-semi-bold group-hover:text-[#B380DD]'>
             {emoji && <div>{emoji}</div>}
             {title}
           </h3>
-          <p className="line-clamp-2 text-muted body-3">{description}</p>
+          <p className='line-clamp-2 text-muted body-3'>{description}</p>
         </div>
 
         {/* Hover indicator */}
-        <div className="mt-4 flex items-center text-[#B380DD] opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <div className="body-3">Learn more</div>
+        <div className='mt-4 flex items-center text-[#B380DD] opacity-0 transition-opacity duration-200 group-hover:opacity-100'>
+          <div className='body-3'>Learn more</div>
         </div>
       </div>
     </button>

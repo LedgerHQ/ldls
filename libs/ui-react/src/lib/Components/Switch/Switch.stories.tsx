@@ -43,7 +43,7 @@ export const Base: Story = {
 
 export const StatesShowcase: Story = {
   render: () => (
-    <div className="flex items-center gap-32">
+    <div className='flex items-center gap-32'>
       <Switch selected={false} />
       <Switch selected={true} />
       <Switch disabled />
@@ -54,9 +54,9 @@ export const StatesShowcase: Story = {
 
 export const SizesShowcase: Story = {
   render: () => (
-    <div className="flex items-center gap-32">
-      <Switch size="sm" />
-      <Switch size="lg" />
+    <div className='flex items-center gap-32'>
+      <Switch size='sm' />
+      <Switch size='lg' />
     </div>
   ),
 };

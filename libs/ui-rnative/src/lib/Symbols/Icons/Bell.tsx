@@ -33,13 +33,13 @@ import createIcon from '../../Components/Icon/createIcon';
  */
 export const Bell = createIcon(
   'Bell',
-  <Svg width={24} height={24} fill="currentColor" viewBox="0 0 16 16">
+  <Svg width={24} height={24} fill='currentColor' viewBox='0 0 16 16'>
     <Path
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke='currentColor'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       strokeWidth={1.3}
-      d="M6 12v.167c0 1.1.893 2 2 2 1.1 0 2-.9 2-2V12m2-2.833 1.133 1.133c.12.12.194.293.194.467v.553c0 .367-.3.667-.667.667H3.327a.664.664 0 0 1-.667-.667v-.56a.66.66 0 0 1 .193-.473l1.134-1.14V6.313c0-2.213 1.786-4 4-4 2.206 0 4 1.787 4 4z"
+      d='M6 12v.167c0 1.1.893 2 2 2 1.1 0 2-.9 2-2V12m2-2.833 1.133 1.133c.12.12.194.293.194.467v.553c0 .367-.3.667-.667.667H3.327a.664.664 0 0 1-.667-.667v-.56a.66.66 0 0 1 .193-.473l1.134-1.14V6.313c0-2.213 1.786-4 4-4 2.206 0 4 1.787 4 4z'
     />
   </Svg>,
 );

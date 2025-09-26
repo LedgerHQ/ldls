@@ -6,14 +6,14 @@ import { Link } from './Link';
 
 describe('Link Component', () => {
   it('should render correctly with children', () => {
-    render(<Link href="/">Home</Link>);
+    render(<Link href='/'>Home</Link>);
     const linkElement = screen.getByRole('link', { name: /home/i });
     expect(linkElement).toBeInTheDocument();
   });
 
   it('should handle external links', () => {
     render(
-      <Link href="https://example.com" isExternal>
+      <Link href='https://example.com' isExternal>
         External
       </Link>,
     );
@@ -25,7 +25,7 @@ describe('Link Component', () => {
   it('should not add external attributes when asChild is true', () => {
     render(
       <Link asChild isExternal>
-        <a href="https://example.com">External Child</a>
+        <a href='https://example.com'>External Child</a>
       </Link>,
     );
     const linkElement = screen.getByRole('link', { name: /external child/i });
@@ -36,7 +36,7 @@ describe('Link Component', () => {
   it('should call the onClick handler when clicked', () => {
     const handleClick = vi.fn();
     render(
-      <Link href="/" onClick={handleClick}>
+      <Link href='/' onClick={handleClick}>
         Clickable
       </Link>,
     );
@@ -49,7 +49,7 @@ describe('Link Component', () => {
 
   it('should apply correct classes for accent appearance and small size', () => {
     render(
-      <Link href="/" appearance="accent" size="sm">
+      <Link href='/' appearance='accent' size='sm'>
         Accent Small
       </Link>,
     );
@@ -62,8 +62,8 @@ describe('Link Component', () => {
 
   it('should render as child with merged props', () => {
     render(
-      <Link asChild appearance="underlined" size="md">
-        <a href="/dashboard">Dashboard</a>
+      <Link asChild appearance='underlined' size='md'>
+        <a href='/dashboard'>Dashboard</a>
       </Link>,
     );
     const linkElement = screen.getByRole('link', { name: /dashboard/i });

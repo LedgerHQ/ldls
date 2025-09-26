@@ -170,14 +170,14 @@ export const FullFeatures: Story = {
 
 export const NaturalWidth: Story = {
   render: () => (
-    <View className="w-full bg-muted-pressed p-16">
-      <Text className="mb-16 text-muted body-4-semi-bold">
+    <View className='w-full bg-muted-pressed p-16'>
+      <Text className='mb-16 text-muted body-4-semi-bold'>
         CardButton naturally flows to fill parent container width
       </Text>
       <CardButton
-        appearance="base"
-        title="Natural Width Example"
-        description="This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints"
+        appearance='base'
+        title='Natural Width Example'
+        description='This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints'
         icon={CreditCard}
       />
     </View>
@@ -209,13 +209,13 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <View className="flex max-w-md flex-col gap-16 p-8">
+      <View className='flex max-w-md flex-col gap-16 p-8'>
         {appearances.map(({ name, appearance }) => (
           <CardButton
             key={appearance}
             appearance={appearance}
             title={`${name} Appearance`}
-            description="This demonstrates the appearance variation"
+            description='This demonstrates the appearance variation'
             icon={Coins}
           />
         ))}
@@ -226,63 +226,63 @@ export const AppearanceShowcase: Story = {
 
 export const ContentVariations: Story = {
   render: () => (
-    <View className="flex max-w-md flex-col gap-16 p-8">
+    <View className='flex max-w-md flex-col gap-16 p-8'>
       <CardButton
-        appearance="base"
-        title="With Description"
-        description="This card has a description below the title"
+        appearance='base'
+        title='With Description'
+        description='This card has a description below the title'
         hideChevron
       />
       <CardButton
-        appearance="base"
-        title="Icon and Description"
-        description="This card has both an icon and description"
+        appearance='base'
+        title='Icon and Description'
+        description='This card has both an icon and description'
         icon={Settings}
         hideChevron
       />
       <CardButton
-        appearance="base"
-        title="Description and Chevron"
-        description="This card has description and chevron"
+        appearance='base'
+        title='Description and Chevron'
+        description='This card has description and chevron'
       />
       <CardButton
-        appearance="base"
-        title="Complete Card"
-        description="This card has all optional features"
+        appearance='base'
+        title='Complete Card'
+        description='This card has all optional features'
         icon={CreditCard}
       />
-      <CardButton appearance="base" title="With Icon" icon={Plus} hideChevron />
-      <CardButton appearance="base" title="With Chevron" />
+      <CardButton appearance='base' title='With Icon' icon={Plus} hideChevron />
+      <CardButton appearance='base' title='With Chevron' />
     </View>
   ),
 };
 
 export const StatesShowcase: Story = {
   render: () => (
-    <View className="flex max-w-md flex-col gap-16 p-8">
+    <View className='flex max-w-md flex-col gap-16 p-8'>
       <CardButton
-        appearance="base"
-        title="Base Default"
-        description="This is the normal interactive state"
+        appearance='base'
+        title='Base Default'
+        description='This is the normal interactive state'
         icon={Settings}
       />
       <CardButton
-        appearance="base"
-        title="Base Disabled"
-        description="This card button is disabled"
+        appearance='base'
+        title='Base Disabled'
+        description='This card button is disabled'
         icon={Settings}
         disabled
       />
       <CardButton
-        appearance="outline"
-        title="Outline Default"
-        description="This is the outline appearance"
+        appearance='outline'
+        title='Outline Default'
+        description='This is the outline appearance'
         icon={Bank}
       />
       <CardButton
-        appearance="outline"
-        title="Outline Disabled"
-        description="This is the disabled outline appearance"
+        appearance='outline'
+        title='Outline Disabled'
+        description='This is the disabled outline appearance'
         icon={Bank}
         disabled
       />
@@ -292,24 +292,24 @@ export const StatesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className="w-320 flex-col gap-16 bg-muted-pressed p-16">
-      <Text className="text-muted body-4-semi-bold">Container: 320px wide</Text>
+    <View className='w-320 flex-col gap-16 bg-muted-pressed p-16'>
+      <Text className='text-muted body-4-semi-bold'>Container: 320px wide</Text>
       <CardButton
-        appearance="base"
-        title="Short Title"
-        description="Short description"
+        appearance='base'
+        title='Short Title'
+        description='Short description'
         icon={Plus}
       />
       <CardButton
-        appearance="base"
-        title="Full Width"
-        description="Short description"
+        appearance='base'
+        title='Full Width'
+        description='Short description'
         icon={Plus}
       />
       <CardButton
-        appearance="base"
-        title="Longer Title That Might Overflow When Container is Smaller"
-        description="This is a longer description that demonstrates how the card handles longer content within its constraints"
+        appearance='base'
+        title='Longer Title That Might Overflow When Container is Smaller'
+        description='This is a longer description that demonstrates how the card handles longer content within its constraints'
         icon={Settings}
       />
     </View>
