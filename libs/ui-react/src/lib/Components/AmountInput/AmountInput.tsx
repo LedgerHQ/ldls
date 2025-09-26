@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn, textFormatter } from '@ldls/utils-shared';
 
 export interface AmountInputProps
   extends Omit<
@@ -10,9 +10,12 @@ export interface AmountInputProps
   currencyText?: string;
   /** Position of the currency text. Defaults to 'left' */
   currencyPosition?: 'left' | 'right';
-  /** Maximum character length */
-  /** @default 12 */
-  maxLength?: number;
+  /** Maximum length for integer part (before decimal) */
+  /** @default 9 */
+  maxIntegerLength?: number;
+  /** Maximum length for decimal part (after decimal) */
+  /** @default 9 */
+  maxDecimalLength?: number;
   /** Allow decimal values */
   /** @default true */
   allowDecimals?: boolean;
@@ -52,7 +55,8 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       currencyText,
       currencyPosition = 'left',
       disabled,
-      maxLength = 12,
+      maxIntegerLength = 9,
+      maxDecimalLength = 9,
       allowDecimals = true,
       value,
       onChange,
@@ -63,6 +67,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     const spanRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [inputValue, setInputValue] = useState(value.toString());
+    const [isChanging, setIsChanging] = useState(false);
 
     /** TODO: move to ui-core */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
@@ -78,6 +83,27 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
+    const digitStyles = [
+      { digits: 4, fontSize: 'heading-0' },
+      { digits: 8, fontSize: 'heading-0' },
+      { digits: 12, fontSize: 'heading-1' },
+      { digits: Infinity, fontSize: 'heading-2' },
+    ];
+
+    function useDynamicFontClass(val: string) {
+      const digits = val.replace(/\D/g, '').length;
+      const style =
+        digitStyles.find((s) => digits <= s.digits) ??
+        digitStyles[digitStyles.length - 1];
+      return style.fontSize;
+    }
+
+    const fontSizeClass = useDynamicFontClass(inputValue);
+
+    useEffect(() => {
+      setInputValue(value.toString());
+    }, [value]);
+
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
       if (spanRef.current && inputRef.current) {
@@ -92,14 +118,25 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value;
-      const cleaned = allowDecimals
-        ? raw.replace(/[^\d.]/g, '')
-        : raw.replace(/\D/g, '');
-      if (cleaned.replace(/\D/g, '').length <= maxLength) {
-        setInputValue(cleaned);
-        onChange({ ...e, target: { ...e.target, value: cleaned } });
+      const useThousandsSeparator = true;
+      const cleaned = textFormatter(
+        e.target.value,
+        allowDecimals,
+        useThousandsSeparator,
+        maxIntegerLength,
+        maxDecimalLength,
+      );
+
+      // textFormatter already handles the length limits, so we always accept the cleaned value
+      // Trigger animation for significant changes
+      if (cleaned !== inputValue && cleaned.length > inputValue.length) {
+        setIsChanging(true);
+        setTimeout(() => setIsChanging(false), 250);
       }
+
+      setInputValue(cleaned);
+      console.log('cleaned', cleaned);
+      onChange({ ...e, target: { ...e.target, value: cleaned } });
     };
 
     return (
@@ -114,13 +151,15 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
+          <span className={cn(currencyStyles, 'shrink-0', fontSizeClass)}>
+            {currencyText}
+          </span>
         )}
 
         {/* Hidden span mirrors input value */}
         <span
           ref={spanRef}
-          className={cn('invisible absolute heading-0')}
+          className={cn('invisible absolute heading-0', fontSizeClass)}
           aria-hidden="true"
         >
           {inputValue}
@@ -133,12 +172,22 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}
-          className={cn(baseInputStyles, className)}
+          className={cn(
+            baseInputStyles,
+            'h-56',
+            'z-10 relative transition-all duration-300 ease-out',
+            'focus:animate-focusGlow',
+            isChanging && 'animate-slideInFromRight',
+            fontSizeClass,
+            className,
+          )}
           {...props}
         />
 
         {currencyText && currencyPosition === 'right' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
+          <span className={cn(currencyStyles, 'shrink-0', fontSizeClass)}>
+            {currencyText}
+          </span>
         )}
       </div>
     );
