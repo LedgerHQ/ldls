@@ -54,7 +54,7 @@ const svgrConfig = {
   icon: true,
   jsxRuntime: 'automatic' as const,
   expandProps: false,
-  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
+  plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
   native: isReactNative,
   svgoConfig: {
     plugins: [
