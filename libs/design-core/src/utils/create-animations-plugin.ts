@@ -45,17 +45,6 @@ export function createAnimationsPlugin() {
                 opacity: '1',
               },
             },
-            focusGlow: {
-              from: {
-                transform: 'scale(1)',
-              },
-              '50%': {
-                transform: 'scale(1.02)',
-              },
-              to: {
-                transform: 'scale(1)',
-              },
-            },
           },
           animation: {
             overlayShow: 'overlayShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -64,7 +53,6 @@ export function createAnimationsPlugin() {
             contentHide: 'contentHide 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             slideInFromRight:
               'slideInFromRight 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-            focusGlow: 'focusGlow 250ms ease-out',
           },
         },
       },
