@@ -11,6 +11,7 @@ export * from './Input';
 export * from './Link';
 export * from './ListItem';
 export * from './Search';
+export * from './Skeleton';
 export * from './SheetBar';
 export * from './Spot';
 export * from './Subheader';
