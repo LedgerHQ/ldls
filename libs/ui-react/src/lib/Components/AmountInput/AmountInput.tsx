@@ -127,15 +127,13 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         maxDecimalLength,
       );
 
-      // textFormatter already handles the length limits, so we always accept the cleaned value
       // Trigger animation for significant changes
       if (cleaned !== inputValue && cleaned.length > inputValue.length) {
         setIsChanging(true);
-        setTimeout(() => setIsChanging(false), 250);
+        setTimeout(() => setIsChanging(false), 200);
       }
 
       setInputValue(cleaned);
-      console.log('cleaned', cleaned);
       onChange({ ...e, target: { ...e.target, value: cleaned } });
     };
 
@@ -175,8 +173,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           className={cn(
             baseInputStyles,
             'h-56',
-            'z-10 relative transition-all duration-300 ease-out',
-            'focus:animate-focusGlow',
+            'z-10 relative',
             isChanging && 'animate-slideInFromRight',
             fontSizeClass,
             className,
