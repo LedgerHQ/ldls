@@ -80,9 +80,9 @@ describe('CardButton Component', () => {
   });
 
   it('should apply custom className', () => {
-    render(<CardButton title='Custom Card' className='custom-test-class' />);
+    render(<CardButton title='Custom Card' className='mt-1' />);
     const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toHaveClass('custom-test-class');
+    expect(buttonElement).toHaveClass('mt-1');
   });
 
   it('should handle long title text with truncation', () => {

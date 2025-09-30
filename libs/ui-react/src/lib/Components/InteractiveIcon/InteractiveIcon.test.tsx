@@ -97,16 +97,12 @@ describe('InteractiveIcon Component', () => {
 
   it('should apply custom className', () => {
     render(
-      <InteractiveIcon
-        iconType='filled'
-        aria-label='Custom'
-        className='custom-test-class'
-      >
+      <InteractiveIcon iconType='filled' aria-label='Custom' className='mt-2'>
         <Settings size={20} />
       </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toHaveClass('custom-test-class');
+    expect(buttonElement).toHaveClass('mt-2');
   });
 
   it('should forward ref correctly', () => {

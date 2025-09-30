@@ -20,7 +20,7 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
       size='xs'
       icon={ArrowLeft}
       onClick={onBack}
-      className='flex-shrink-0'
+      className='shrink-0'
       aria-label='Go back'
     />
   );
@@ -33,7 +33,7 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
       size='xs'
       icon={Close}
       onClick={onClose}
-      className='flex-shrink-0'
+      className='shrink-0'
       aria-label='Close'
     />
   );
