@@ -101,9 +101,9 @@ describe('textFormatter', () => {
       expect(textFormatter('0.5')).toBe('0.5');
     });
 
-    it('should limit to 8 decimal places', () => {
-      expect(textFormatter('1.123456789')).toBe('1.12345678');
-      expect(textFormatter('0.123456789012345')).toBe('0.12345678');
+    it('should limit to 9 decimal places', () => {
+      expect(textFormatter('1.1234567899')).toBe('1.123456789');
+      expect(textFormatter('0.123456789012345')).toBe('0.123456789');
     });
 
     it('should remove multiple decimal points', () => {
@@ -323,14 +323,16 @@ describe('textFormatter', () => {
     describe('backwards compatibility', () => {
       it('should work with undefined length parameters', () => {
         // When called without length params, should use default behavior
-        expect(textFormatter('123456789.123456789')).toBe('123456789.12345678'); // Default 8 decimal limit
+        expect(textFormatter('123456789.123456789')).toBe(
+          '123456789.123456789',
+        ); // Default 9 decimal limit
       });
     });
   });
 
   describe('complex scenarios', () => {
     it('should handle combination of all edge cases', () => {
-      expect(textFormatter('$01,234.567890abc')).toBe('1.23456789');
+      expect(textFormatter('$01,234.567890abc')).toBe('1.234567890');
     });
 
     it('should handle realistic user input scenarios', () => {
