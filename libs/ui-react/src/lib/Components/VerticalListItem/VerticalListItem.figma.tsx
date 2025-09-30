@@ -21,19 +21,19 @@ figma.connect(
         true: figma.string('subtitle'),
         false: undefined,
       }),
-      spot: <Spot appearance="icon" icon={Settings} />,
+      spot: <Spot appearance='icon' icon={Settings} />,
       tag: figma.boolean('show-tag', {
         true: figma.instance('tag'),
         false: undefined,
       }),
       secondaryAction: (
-        <IconButton
-          iconType="stroked"
-          aria-label="More actions"
+        <InteractiveIcon
+          iconType='stroked'
+          aria-label='More actions'
           onClick={() => console.log('secondary action clicked')}
         >
           <MoreVertical />
-        </IconButton>
+        </InteractiveIcon>
       ),
       disabled: figma.enum('state', {
         disabled: true,

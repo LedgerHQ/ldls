@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 import { VerticalListItem } from './VerticalListItem';
 import { Spot } from '../Spot';
-import { IconButton } from '../IconButton';
+import { InteractiveIcon } from '../InteractiveIcon';
 import { Settings } from '../../Symbols';
 
 describe('VerticalListItem Component', () => {
@@ -42,9 +42,9 @@ describe('VerticalListItem Component', () => {
 
   it('should render secondary action when provided', () => {
     const mockSecondaryAction = (
-      <IconButton iconType='stroked' aria-label='Test Action'>
+      <InteractiveIcon iconType='stroked' aria-label='Test Action'>
         <Settings />
-      </IconButton>
+      </InteractiveIcon>
     );
     render(
       <VerticalListItem
@@ -118,9 +118,9 @@ describe('VerticalListItem Component', () => {
   it('should prevent parent activation when clicking secondary action', () => {
     const handleClick = vi.fn();
     const mockSecondaryAction = (
-      <IconButton iconType='stroked' aria-label='Test Action'>
+      <InteractiveIcon iconType='stroked' aria-label='Test Action'>
         <Settings />
-      </IconButton>
+      </InteractiveIcon>
     );
 
     render(

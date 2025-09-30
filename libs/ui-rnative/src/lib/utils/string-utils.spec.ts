@@ -48,14 +48,14 @@ describe('toPascalCase', () => {
   it('should handle multiple consecutive separators', () => {
     expect(toPascalCase('arrow--up')).toBe('ArrowUp');
     expect(toPascalCase('external__link')).toBe('ExternalLink');
-    expect(toPascalCase('icon  button')).toBe('IconButton');
+    expect(toPascalCase('icon  button')).toBe('InteractiveIcon');
     expect(toPascalCase('mixed-_-separators')).toBe('MixedSeparators');
   });
 
   it('should handle separators at the beginning and end', () => {
     expect(toPascalCase('-arrow-up')).toBe('ArrowUp');
     expect(toPascalCase('_external-link_')).toBe('ExternalLink');
-    expect(toPascalCase(' icon button ')).toBe('IconButton');
+    expect(toPascalCase(' icon button ')).toBe('InteractiveIcon');
     expect(toPascalCase('--start-end--')).toBe('StartEnd');
   });
 

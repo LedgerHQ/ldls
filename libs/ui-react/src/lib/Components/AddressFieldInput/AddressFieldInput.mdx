@@ -2,7 +2,7 @@ import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
 import * as AddressFieldInputStories from './AddressFieldInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta of={AddressFieldInputStories} title="Components/AddressFieldInput" />
+<Meta of={AddressFieldInputStories} title='Components/AddressFieldInput' />
 
 # AddressFieldInput
 
@@ -18,7 +18,7 @@ The AddressFieldInput component provides a specialized input field for entering 
 AddressFieldInput is designed specifically where users need to enter wallet addresses or ENS names. It combines the reliability of BaseInput with domain-specific UX enhancements:
 
 - **Customizable prefix label** - defaults to "To:" but can be overridden via prefix prop
-- **Conditional QR code scanner** - Appears only when onQrCodeClick handler is provided, using consistent IconButton styling
+- **Conditional QR code scanner** - Appears only when onQrCodeClick handler is provided, using consistent InteractiveIcon styling
 - **Smart clear button** - Appears automatically when content is entered
 - **Error handling** - Supports error states and error messages
 
@@ -32,7 +32,7 @@ AddressFieldInput is designed specifically where users need to enter wallet addr
 
 ### Empty State
 
-Shows the IconButton QR code scanner when onQrCodeClick is provided, indicating users can scan addresses directly. Without onQrCodeClick, no QR code icon appears.
+Shows the InteractiveIcon QR code scanner when onQrCodeClick is provided, indicating users can scan addresses directly. Without onQrCodeClick, no QR code icon appears.
 
 <Canvas of={AddressFieldInputStories.Empty} />
 
@@ -126,7 +126,7 @@ The component displays "To:" as the default prefix text, but this can be customi
 
 ### Context-Aware Suffix Icons
 
-- **Empty state**: Shows IconButton QR code scanner only if onQrCodeClick handler is provided
+- **Empty state**: Shows InteractiveIcon QR code scanner only if onQrCodeClick handler is provided
 - **With content**: Shows clear button for quick content removal
 - **No handler**: No suffix icon appears if onQrCodeClick is not provided
 
@@ -266,13 +266,13 @@ const handleQrScan = () => {
   onQrCodeClick={() => openQrScanner()}
   suffix={
     selectedAddress ? (
-      <IconButton
+      <InteractiveIcon
         iconType="stroked"
         onClick={openAddressBook}
         aria-label="Open address book"
       >
         <ContactsIcon size={20} />
-      </IconButton>
+      </InteractiveIcon>
     ) : undefined
   }
 />
@@ -289,7 +289,7 @@ const handleQrScan = () => {
 The component includes comprehensive test coverage for:
 
 - **Prefix rendering**: Default "To:" text or custom prefix string
-- **IconButton QR code**: Proper IconButton integration with accessibility
+- **InteractiveIcon QR code**: Proper InteractiveIcon integration with accessibility
 - **Icon switching**: QR code ↔ clear button based on content
 - **Validation states**: Error messages and ARIA attributes
 - **Interaction handling**: onChange, onClear, onQrCodeClick, focus states
