@@ -27,13 +27,13 @@ describe('Skeleton Component', () => {
   });
 
   it('should accept custom className', () => {
-    render(<Skeleton className="custom-class" />);
+    render(<Skeleton className='custom-class' />);
     const skeletonElement = screen.getByTestId('skeleton');
     expect(skeletonElement).toHaveClass('custom-class');
   });
 
   it('should accept additional props', () => {
-    render(<Skeleton data-testid="custom-skeleton" />);
+    render(<Skeleton data-testid='custom-skeleton' />);
     const skeletonElement = screen.getByTestId('custom-skeleton');
     expect(skeletonElement).toBeInTheDocument();
   });
