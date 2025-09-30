@@ -173,7 +173,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           className={cn(
             baseInputStyles,
             'h-56',
-            'z-10 relative',
             isChanging && 'animate-slideInFromRight',
             fontSizeClass,
             className,
