@@ -35,14 +35,9 @@ export function createAnimationsPlugin() {
             slideInFromRight: {
               from: {
                 transform: 'translateX(12px)',
-                opacity: '0.6',
-              },
-              '50%': {
-                opacity: '0.8',
               },
               to: {
                 transform: 'translateX(0)',
-                opacity: '1',
               },
             },
           },
