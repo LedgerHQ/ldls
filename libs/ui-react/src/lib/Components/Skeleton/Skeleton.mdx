@@ -1,0 +1,187 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SkeletonStories from './Skeleton.stories';
+import { Skeleton } from './Skeleton';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Communication/Skeleton" of={SkeletonStories} />
+
+# Skeleton
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+Skeleton components provide visual placeholders for content that is loading. They use a pulsing animation to indicate that content is being fetched or processed, improving perceived performance and user experience.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=8004-10676&m=dev).
+
+## Anatomy
+
+<Canvas of={SkeletonStories.Default} />
+
+- **Shape**: Defines the visual placeholder shape (rectangle, circle, etc.)
+- **Animation**: Built-in pulse animation to indicate loading state
+
+## Properties
+
+### Overview
+
+<Canvas of={SkeletonStories.Default} />
+<Controls of={SkeletonStories.Default} />
+
+### Sizes
+
+Skeletons can be sized using Tailwind CSS classes with pixel values.
+
+<Canvas of={SkeletonStories.Sizes} />
+
+### Shapes
+
+Skeletons can take various shapes depending on the content they're representing.
+
+<Canvas of={SkeletonStories.Shapes} />
+
+## Common Patterns
+
+### List Item Skeleton
+
+A common pattern for list item loading states.
+
+<Canvas of={SkeletonStories.ListItem} />
+
+### Card Skeleton
+
+Skeleton for card-based content layouts.
+
+<Canvas of={SkeletonStories.Card} />
+
+## Best Practices
+
+- **Match Content Shape**: Make skeleton shapes match the actual content they represent
+- **Consistent Spacing**: Use consistent spacing between skeleton elements
+- **Appropriate Sizing**: Size skeletons to match the expected content dimensions
+- **Loading States**: Show skeletons only during actual loading states
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+```
+
+### Tailwind Configuration
+
+To use the Skeleton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { Skeleton } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Skeleton className="h-16 w-256" />
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using Tailwind classes:
+
+```tsx
+<Skeleton
+  className="h-40 w-256 rounded-lg bg-accent-subtle"
+>
+  Custom Skeleton
+</Skeleton>
+```
+
+### Common Patterns
+
+#### List Item Loading
+
+```tsx
+<div className="flex items-center space-x-4">
+    <Skeleton className="h-48 w-48 rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-16 w-160" />
+        <Skeleton className="h-16 w-128" />
+      </div>
+</div>
+```
+
+## Do's and Don'ts
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use className for sizing and styling
+<Skeleton className="h-16 w-256" />
+
+// Use pixel values for consistent sizing
+<Skeleton className="h-48 w-48 rounded-full" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use arbitrary values
+<Skeleton className="h-4 w-[200px]" />
+
+// Don't override core animation
+<Skeleton className="animate-none" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Skeleton className="mt-4 ml-2" />
+
+// Use className for responsive design
+<Skeleton className="hidden md:block" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<Skeleton className="bg-blue-200" />
+
+// Don't modify animation properties
+<Skeleton className="animate-bounce" />
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The skeleton's core styling (colors, animation) should be controlled through the component's built-in styles to maintain design system consistency.
+
+</Tab>
+</CustomTabs>
