@@ -54,7 +54,7 @@ const preview: Preview = {
           'Action',
           [
             'CardButton',
-            'IconButton',
+            'InteractiveIcon',
             'Link',
             'Input',
             'Search',

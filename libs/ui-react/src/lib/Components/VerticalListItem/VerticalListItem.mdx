@@ -3,7 +3,7 @@ import * as VerticalListItemStories from './VerticalListItem.stories';
 import { VerticalListItem } from './VerticalListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/VerticalListItem" of={VerticalListItemStories} />
+<Meta title='Components/VerticalListItem' of={VerticalListItemStories} />
 
 # 📋 VerticalListItem
 
@@ -162,17 +162,17 @@ function MyComponent() {
 Include a secondary action for additional actions:
 
 ```tsx
-import { VerticalListItem, Spot, IconButton } from '@ledgerhq/ldls-ui-react';
+import { VerticalListItem, Spot, InteractiveIcon } from '@ledgerhq/ldls-ui-react';
 import { Settings, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
 
 const MoreActionsButton = () => (
-  <IconButton
+  <InteractiveIcon
     iconType="stroked"
     aria-label="More actions"
     onClick={() => console.log('more actions')}
   >
     <MoreVertical />
-  </IconButton>
+  </InteractiveIcon>
 );
 
 function MyComponent() {

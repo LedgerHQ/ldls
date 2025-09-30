@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@ldls/utils-shared';
 import { DeleteCircleFill } from '../../Symbols';
-import { IconButton } from '../IconButton/IconButton';
+import { InteractiveIcon } from '../InteractiveIcon';
 
 const baseContainerStyles = cn(
   'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
@@ -232,13 +232,13 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
           )}
 
           {showClearButton && (
-            <IconButton
+            <InteractiveIcon
               iconType='filled'
               onClick={handleClear}
               aria-label='Clear input'
             >
               <DeleteCircleFill size={20} />
-            </IconButton>
+            </InteractiveIcon>
           )}
 
           {!showClearButton && suffix}

@@ -103,7 +103,7 @@ export const Tooltip = ({
  *
  * // Works with any interactive element
  * <TooltipTrigger>
- *   <IconButton icon={InfoIcon} size="sm" />
+ *   <InteractiveIcon icon={InfoIcon} size="sm" />
  * </TooltipTrigger>
  */
 export const TooltipTrigger = ({

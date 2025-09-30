@@ -12,17 +12,17 @@ import {
   Chart1,
   MoreVertical,
 } from '../../Symbols';
-import { IconButton } from '../IconButton/IconButton';
+import { InteractiveIcon } from '../InteractiveIcon';
 import { Tag } from '../Tag/Tag';
 
 const secondaryAction = (
-  <IconButton
+  <InteractiveIcon
     iconType='stroked'
     aria-label='More actions'
     onClick={() => console.log('secondary action clicked')}
   >
     <MoreVertical />
-  </IconButton>
+  </InteractiveIcon>
 );
 
 const meta: Meta<typeof VerticalListItem> = {
@@ -103,13 +103,13 @@ export const Base: Story = {
   subtitle="Additional information"
   spot={<Spot appearance="icon" icon={Settings} />}
   secondaryAction={(
-    <IconButton
+    <InteractiveIcon
       iconType="stroked"
       aria-label="More actions"
       onClick={() => console.log('secondary action clicked')}
     >
       <MoreVertical />
-    </IconButton>
+    </InteractiveIcon>
   )}
   className="max-w-256"
 />
@@ -134,13 +134,13 @@ export const WithoutSubtitle: Story = {
   title="Item without Subtitle"
   spot={<Spot appearance="icon" icon={Plus} />}
   secondaryAction={(
-    <IconButton
+    <InteractiveIcon
       iconType="stroked"
       aria-label="More actions"
       onClick={() => console.log('secondary action clicked')}
     >
       <MoreVertical />
-    </IconButton>
+    </InteractiveIcon>
   )}
   className="max-w-256"
 />
@@ -169,13 +169,13 @@ export const WithTag: Story = {
   spot={<Spot appearance="icon" icon={Settings} />}
   tag={<Tag label="New" appearance="base" />}
   secondaryAction={(
-    <IconButton
+    <InteractiveIcon
       iconType="stroked"
       aria-label="More actions"
       onClick={() => console.log('secondary action clicked')}
     >
       <MoreVertical />
-    </IconButton>
+    </InteractiveIcon>
   )}
   className="max-w-256"
 />

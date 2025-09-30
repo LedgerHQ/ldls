@@ -17,7 +17,7 @@ export interface VerticalListItemProps
    */
   subtitle?: string;
   /**
-   * The IconButton component to display on the top right side of the list item.
+   * The InteractiveIcon component to display on the top right side of the list item.
    * The button is rendered when the user hovers over the list item or navigates with the keyboard.
    */
   secondaryAction?: React.ReactNode;
@@ -63,7 +63,7 @@ export interface VerticalListItemProps
  *
  * // With secondary action
  * import { VerticalListItem } from '@ledgerhq/ldls-ui-react';
- * import { IconButton } from '@ledgerhq/ldls-ui-react';
+ * import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
  * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <VerticalListItem
@@ -71,12 +71,12 @@ export interface VerticalListItemProps
  *   subtitle="ETH"
  *   spot={<Spot appearance="icon" icon={Ethereum} />}
  *   secondaryAction={
- *     <IconButton
+ *     <InteractiveIcon
  *       iconType="stroked"
  *       onClick={() => console.log('More actions clicked!')}
  *     >
  *       <MoreVertical />
- *     </IconButton>
+ *     </InteractiveIcon>
  *   }
  * />
  */

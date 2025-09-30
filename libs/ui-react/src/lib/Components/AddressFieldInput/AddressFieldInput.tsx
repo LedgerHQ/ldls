@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
-import { IconButton } from '../IconButton/IconButton';
+import { InteractiveIcon } from '../InteractiveIcon';
 import { QrCode as QrCodeIcon } from '../../Symbols';
 
 export interface AddressFieldInputProps
@@ -105,14 +105,14 @@ export const AddressFieldInput = React.forwardRef<
   const effectiveSuffix =
     suffix ||
     (onQrCodeClick ? (
-      <IconButton
+      <InteractiveIcon
         iconType='filled'
         onClick={onQrCodeClick}
         aria-label='Scan QR code'
         className='group-has-[:disabled]:text-disabled'
       >
         <QrCodeIcon size={20} />
-      </IconButton>
+      </InteractiveIcon>
     ) : undefined);
 
   return (
