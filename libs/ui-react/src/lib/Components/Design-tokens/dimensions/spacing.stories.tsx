@@ -10,7 +10,7 @@ type Story = StoryObj;
 
 const SpacingShowcase = () => (
   <div className="mb-32">
-    <div className="grid grid-cols-1 items-start justify-items-start gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2">
+    <div className="grid grid-cols-1 place-items-start gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2">
       {[
         { name: '2px', class: 'p-2', token: 'p-2' },
         { name: '4px', class: 'p-4', token: 'p-4' },
@@ -39,7 +39,7 @@ const SpacingShowcase = () => (
           <div
             className={`${widthClass} rounded-md border border-muted-subtle bg-[repeating-linear-gradient(45deg,var(--border-muted-subtle)_2px,var(--border-muted-subtle)_4px,transparent_4px,transparent_12px)]`}
           >
-            <div className="h-56 w-56 rounded-sm bg-accent text-muted body-2"></div>
+            <div className="size-56 rounded-sm bg-accent text-muted body-2"></div>
           </div>
         </div>
       ))}

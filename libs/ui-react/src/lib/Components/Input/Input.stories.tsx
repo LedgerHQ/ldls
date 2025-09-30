@@ -451,7 +451,7 @@ export const Interactive: Story = {
 
     if (isSubmitted) {
       return (
-        <div className="bg-success/10 rounded-md p-16 text-center">
+        <div className="rounded-md bg-success p-16 text-center">
           <div className="text-success body-1-semi-bold">
             ✓ Form submitted successfully!
           </div>

@@ -52,7 +52,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
         {...props}
       >
         {IconComponent && (
-          <IconComponent size={calculatedIconSize} className="flex-shrink-0" />
+          <IconComponent size={calculatedIconSize} className="shrink-0" />
         )}
         <span>{label}</span>
       </div>

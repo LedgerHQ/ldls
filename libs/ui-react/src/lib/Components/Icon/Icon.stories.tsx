@@ -54,8 +54,8 @@ const IconCard = ({
       <IconComponent size={size} className={className} />
       <span className="text-muted body-4">{name}</span>
       {copied && (
-        <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center rounded-lg bg-muted">
-          <span className="text-accent body-4">Copied!</span>
+        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-muted">
+          <span className="text-on-accent body-4">Copied!</span>
         </div>
       )}
     </div>
@@ -148,7 +148,7 @@ export const Gallery: StoryObj = {
       <div className="p-8">
         {/* Search bar */}
         <div className="mb-32">
-          <div className="mb-6 max-w-md">
+          <div className="mb-8 max-w-md">
             <Search
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}

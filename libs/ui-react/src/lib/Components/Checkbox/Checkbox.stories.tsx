@@ -46,7 +46,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Base: Story = {
   render: (args) => (
-    <div className="flex h-80 w-80 items-center justify-center">
+    <div className="flex size-80 items-center justify-center">
       <Checkbox {...args} />
     </div>
   ),
