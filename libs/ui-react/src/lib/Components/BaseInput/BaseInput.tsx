@@ -12,11 +12,12 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-muted',
+  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-active',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
   'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
   '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+  'truncate',
 );
 
 const baseLabelStyles = cn(
@@ -24,6 +25,7 @@ const baseLabelStyles = cn(
   'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:body-2',
   'group-has-[:disabled]:text-disabled',
   'peer-focus:top-8 peer-focus:-translate-y-0 peer-focus:body-4',
+  'truncate w-[calc(100%-var(--size-56))]',
 );
 
 export interface BaseInputProps
