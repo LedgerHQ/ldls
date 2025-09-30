@@ -1,24 +1,24 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as IconButtonStories from './IconButton.stories';
-import { IconButton } from './IconButton';
+import * as InteractiveIconStories from './InteractiveIcon.stories';
+import { InteractiveIcon } from './InteractiveIcon';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/IconButton" of={IconButtonStories} />
+<Meta title='Components/InteractiveIcon' of={InteractiveIconStories} />
 
-# 🎯 IconButton
+# 🎯 InteractiveIcon
 
 <CustomTabs>
   <Tab label="Overview">
 
 ## Introduction
 
-IconButtons are specialized interactive elements designed exclusively for icon-based actions. They provide a compact way to trigger actions while maintaining clear visual hierarchy through two distinct styles optimized for different icon types.
+InteractiveIcons are specialized interactive elements designed exclusively for icon-based actions. They provide a compact way to trigger actions while maintaining clear visual hierarchy through two distinct styles optimized for different icon types.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6975-2571).
 
 ## Anatomy
 
-<Canvas of={IconButtonStories.IconTypeShowcase} />
+<Canvas of={InteractiveIconStories.IconTypeShowcase} />
 
 - **Icon**: The visual representation of the action, displayed as a single icon element from the design system
 - **Container**: A circular touch target that provides the interactive area and visual feedback
@@ -27,28 +27,28 @@ IconButtons are specialized interactive elements designed exclusively for icon-b
 
 ### Overview
 
-<Canvas of={IconButtonStories.Filled} />
-<Controls of={IconButtonStories.Filled} />
+<Canvas of={InteractiveIconStories.Filled} />
+<Controls of={InteractiveIconStories.Filled} />
 
 ### Icon Types
 
-IconButtons come in two visual styles, each optimized for specific use cases:
+InteractiveIcons come in two visual styles, each optimized for specific use cases:
 
 - **filled**: Best for filled/solid icons. Features a transparent background with colored icon that changes on interaction
 - **stroked**: Best for outlined icons. Features a subtle background that appears on hover with colored icon states
 
-<Canvas of={IconButtonStories.IconTypeShowcase} />
+<Canvas of={InteractiveIconStories.IconTypeShowcase} />
 
 ### Icon Sizes
 
-IconButtons support various icon sizes to accommodate different use cases and screen densities:
+InteractiveIcons support various icon sizes to accommodate different use cases and screen densities:
 
-<Canvas of={IconButtonStories.SizesShowcase} />
+<Canvas of={InteractiveIconStories.SizesShowcase} />
 
 Common sizes include:
 
 - **16px**: Compact actions in dense interfaces
-- **20px**: Standard size for most icon buttons
+- **20px**: Standard size for most interactive icons
 - **24px**: Prominent actions in toolbars
 - **40px**: Large touch targets for mobile interfaces
 
@@ -56,30 +56,30 @@ Common sizes include:
 
 ### Icon States
 
-IconButtons have enabled or disabled states:
+InteractiveIcons have enabled or disabled states:
 
-<Canvas of={IconButtonStories.StatesShowcase} />
+<Canvas of={InteractiveIconStories.StatesShowcase} />
 
 ## Accessibility
 
-IconButtons require special attention for accessibility since they contain only visual icons without text:
+InteractiveIcons require special attention for accessibility since they contain only visual icons without text:
 
 ### Screen Reader Support
 
-**Always provide an `aria-label` prop** that clearly describes the button's action:
+**Always provide an `aria-label` prop** that clearly describes the action:
 
 ```tsx
-<IconButton iconType="filled" aria-label="Delete item">
+<InteractiveIcon iconType="filled" aria-label="Delete item">
   <DeleteCircleFill size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ### Keyboard Navigation
 
-IconButtons support full keyboard navigation:
+InteractiveIcons support full keyboard navigation:
 
-- **Tab**: Moves focus to the button
-- **Enter/Space**: Activates the button
+- **Tab**: Moves focus to the interactive element
+- **Enter/Space**: Activates the action
 - **Focus ring**: Visible outline for keyboard users
 
 </Tab>
@@ -99,7 +99,7 @@ npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-
 
 ## Tailwind Configuration
 
-To use the IconButton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+To use the InteractiveIcon component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -121,21 +121,21 @@ export default config;
 ### Basic usage
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
 import { Settings, DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
     <div>
-      {/* Stroked icon button */}
-      <IconButton iconType="stroked" aria-label="Open settings" onClick={handleSettings}>
+      {/* Stroked interactive icon */}
+      <InteractiveIcon iconType="stroked" aria-label="Open settings" onClick={handleSettings}>
         <Settings size={20} />
-      </IconButton>
+      </InteractiveIcon>
 
-      {/* Filled icon button */}
-      <IconButton iconType="filled" aria-label="Delete item" onClick={handleDelete}>
+      {/* Filled interactive icon */}
+      <InteractiveIcon iconType="filled" aria-label="Delete item" onClick={handleDelete}>
         <DeleteCircleFill size={20} />
-      </IconButton>
+      </InteractiveIcon>
     </div>
   );
 }
@@ -144,18 +144,18 @@ function MyComponent() {
 ### With Event Handlers
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
 import { CheckmarkCircle, CheckmarkCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 function LikeButton({ isSelected, onToggle }) {
   return (
-    <IconButton
+    <InteractiveIcon
       iconType={isSelected ? "filled" : "stroked"}
       aria-label={isSelected ? "Deselect" : "Select"}
       onClick={onToggle}
     >
       {isSelected ? <CheckmarkCircleFill size={20} /> : <CheckmarkCircle size={20} />}
-    </IconButton>
+    </InteractiveIcon>
   );
 }
 ```
@@ -163,31 +163,31 @@ function LikeButton({ isSelected, onToggle }) {
 ### Different Icon Sizes
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 function SizeExamples() {
   return (
     <div className="flex items-center gap-4">
       {/* Compact size for dense interfaces */}
-      <IconButton iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType="stroked" aria-label="Settings">
         <Settings size={16} />
-      </IconButton>
+      </InteractiveIcon>
 
       {/* Standard size */}
-      <IconButton iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType="stroked" aria-label="Settings">
         <Settings size={20} />
-      </IconButton>
+      </InteractiveIcon>
 
       {/* Prominent size */}
-      <IconButton iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType="stroked" aria-label="Settings">
         <Settings size={24} />
-      </IconButton>
+      </InteractiveIcon>
 
       {/* Large touch target for mobile */}
-      <IconButton iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType="stroked" aria-label="Settings">
         <Settings size={40} />
-      </IconButton>
+      </InteractiveIcon>
     </div>
   );
 }
@@ -206,23 +206,23 @@ The following guidelines are based on our design system principles and accessibi
 import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Filled icons work best with filled variant
-<IconButton iconType="filled" aria-label="Delete">
+<InteractiveIcon iconType="filled" aria-label="Delete">
   <DeleteCircleFill size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Outlined icons work best with stroked variant
-<IconButton iconType="stroked" aria-label="Settings">
+<InteractiveIcon iconType="stroked" aria-label="Settings">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Use consistent icon sizes within the same context
 <div className="flex gap-2">
-  <IconButton iconType="stroked" aria-label="Edit">
+  <InteractiveIcon iconType="stroked" aria-label="Edit">
     <PenEdit size={20} />
-  </IconButton>
-  <IconButton iconType="stroked" aria-label="Delete">
+  </InteractiveIcon>
+  <InteractiveIcon iconType="stroked" aria-label="Delete">
     <DeleteCircle size={20} />
-  </IconButton>
+  </InteractiveIcon>
 </div>
 ```
 
@@ -230,18 +230,18 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Don't mix filled icons with stroked variant (creates visual inconsistency)
-<IconButton iconType="stroked" aria-label="Delete">
+<InteractiveIcon iconType="stroked" aria-label="Delete">
   <DeleteCircleFill size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Don't use inconsistent sizes in the same context
 <div className="flex gap-2">
-  <IconButton iconType="stroked" aria-label="Edit">
+  <InteractiveIcon iconType="stroked" aria-label="Edit">
     <PenEdit size={16} />
-  </IconButton>
-  <IconButton iconType="stroked" aria-label="Delete">
+  </InteractiveIcon>
+  <InteractiveIcon iconType="stroked" aria-label="Delete">
     <DeleteCircle size={24} />
-  </IconButton>
+  </InteractiveIcon>
 </div>
 ```
 
@@ -251,28 +251,28 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Always provide descriptive aria-label
-<IconButton iconType="stroked" aria-label="Download PDF document">
+<InteractiveIcon iconType="stroked" aria-label="Download PDF document">
   <Download size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't omit aria-label (breaks accessibility)
-<IconButton iconType="stroked">
+<InteractiveIcon iconType="stroked">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Don't use generic labels
-<IconButton iconType="stroked" aria-label="Click here">
+<InteractiveIcon iconType="stroked" aria-label="Click here">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Don't use icon names as labels
-<IconButton iconType="stroked" aria-label="Settings icon">
+<InteractiveIcon iconType="stroked" aria-label="Settings icon">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ### Styling and Layout
@@ -281,41 +281,41 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Use className for positioning and layout
-<IconButton
+<InteractiveIcon
   iconType="stroked"
   className="absolute top-4 right-4"
   aria-label="Close"
 >
   <Close size={20} />
-</IconButton>
+</InteractiveIcon>
 
 // Use className for responsive behavior
-<IconButton
+<InteractiveIcon
   iconType="stroked"
   className="md:hidden"
   aria-label="Menu"
 >
   <MenuBurger size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ❌ **Don't**
 
 ```tsx
-// Don't modify button's core appearance
-<IconButton iconType="stroked" className="bg-interactive text-on-interactive">
+// Don't modify the core appearance
+<InteractiveIcon iconType="stroked" className="bg-interactive text-on-interactive">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 
-// Don't override button's size constraints
-<IconButton iconType="stroked" className="w-32 h-32">
+// Don't override size constraints
+<InteractiveIcon iconType="stroked" className="w-32 h-32">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 
-// Don't modify button's padding
-<IconButton iconType="stroked" className="pl-8">
+// Don't modify padding
+<InteractiveIcon iconType="stroked" className="pl-8">
   <Settings size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ### Component Composition
@@ -324,18 +324,18 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Only render icon components as children
-<IconButton iconType="stroked" aria-label="More actions">
+<InteractiveIcon iconType="stroked" aria-label="More actions">
   <MoreVertical size={20} />
-</IconButton>
+</InteractiveIcon>
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't render arbitrary content as children
-<IconButton iconType="stroked" aria-label="More actions">
+<InteractiveIcon iconType="stroked" aria-label="More actions">
   Settings
-</IconButton>
+</InteractiveIcon>
 ```
 
 ### Performance Considerations

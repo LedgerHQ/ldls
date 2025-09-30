@@ -1,7 +1,7 @@
 // @ts-nocheck
 /* eslint-disable */
 import React from 'react';
-import { IconButton } from './IconButton';
+import { InteractiveIcon } from './InteractiveIcon';
 import figma from '@figma/code-connect';
 
 /**
@@ -13,11 +13,11 @@ import figma from '@figma/code-connect';
  */
 
 figma.connect(
-  IconButton,
+  InteractiveIcon,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6975%3A2571',
   {
     imports: [
-      "import { IconButton } from '@ledgerhq/ldls-ui-react'",
+      "import { InteractiveIcon } from '@ledgerhq/ldls-ui-react'",
       "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
     ],
     props: {
@@ -33,13 +33,13 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/components-iconbutton-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/components-interactiveicon-overview--docs',
       },
     ],
     example: (props) => (
-      <IconButton iconType={props.iconType} aria-label="Icon button">
+      <InteractiveIcon iconType={props.iconType} aria-label='Interactive icon'>
         {props.children}
-      </IconButton>
+      </InteractiveIcon>
     ),
   },
 );

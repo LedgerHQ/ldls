@@ -2,15 +2,15 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { IconButton } from './IconButton';
+import { InteractiveIcon } from './InteractiveIcon';
 import { Settings, Plus } from '../../Symbols';
 
-describe('IconButton Component', () => {
+describe('InteractiveIcon Component', () => {
   it('should render correctly with children icon', () => {
     render(
-      <IconButton iconType='filled' aria-label='Settings'>
+      <InteractiveIcon iconType='filled' aria-label='Settings'>
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button', { name: /settings/i });
     expect(buttonElement).toBeInTheDocument();
@@ -18,9 +18,9 @@ describe('IconButton Component', () => {
 
   it('should render with filled iconType variant', () => {
     render(
-      <IconButton iconType='filled' aria-label='Add item'>
+      <InteractiveIcon iconType='filled' aria-label='Add item'>
         <Plus size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveClass('inline-flex');
@@ -29,9 +29,9 @@ describe('IconButton Component', () => {
 
   it('should render with stroked iconType variant', () => {
     render(
-      <IconButton iconType='stroked' aria-label='Settings'>
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveClass('bg-base-transparent');
@@ -40,9 +40,9 @@ describe('IconButton Component', () => {
 
   it('should have correct aria-label for accessibility', () => {
     render(
-      <IconButton iconType='filled' aria-label='Open menu'>
+      <InteractiveIcon iconType='filled' aria-label='Open menu'>
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button', { name: /open menu/i });
     expect(buttonElement).toBeInTheDocument();
@@ -50,9 +50,9 @@ describe('IconButton Component', () => {
 
   it('should be disabled when the disabled prop is true', () => {
     render(
-      <IconButton iconType='filled' aria-label='Disabled button' disabled>
+      <InteractiveIcon iconType='filled' aria-label='Disabled button' disabled>
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeDisabled();
@@ -61,13 +61,13 @@ describe('IconButton Component', () => {
   it('should call the onClick handler when clicked', () => {
     const handleClick = vi.fn();
     render(
-      <IconButton
+      <InteractiveIcon
         iconType='filled'
         aria-label='Clickable'
         onClick={handleClick}
       >
         <Plus size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
 
     const buttonElement = screen.getByRole('button');
@@ -79,14 +79,14 @@ describe('IconButton Component', () => {
   it('should not call the onClick handler when disabled', () => {
     const handleClick = vi.fn();
     render(
-      <IconButton
+      <InteractiveIcon
         iconType='filled'
         aria-label='Disabled'
         onClick={handleClick}
         disabled
       >
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
 
     const buttonElement = screen.getByRole('button');
@@ -97,13 +97,13 @@ describe('IconButton Component', () => {
 
   it('should apply custom className', () => {
     render(
-      <IconButton
+      <InteractiveIcon
         iconType='filled'
         aria-label='Custom'
         className='custom-test-class'
       >
         <Settings size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toHaveClass('custom-test-class');
@@ -112,9 +112,9 @@ describe('IconButton Component', () => {
   it('should forward ref correctly', () => {
     const ref = vi.fn();
     render(
-      <IconButton iconType='stroked' aria-label='Ref test' ref={ref}>
+      <InteractiveIcon iconType='stroked' aria-label='Ref test' ref={ref}>
         <Plus size={20} />
-      </IconButton>,
+      </InteractiveIcon>,
     );
     expect(ref).toHaveBeenCalled();
   });
