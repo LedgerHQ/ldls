@@ -42,8 +42,8 @@ export const Shapes: Story = {
     <div className='space-y-4'>
       <Skeleton className='h-40 w-256 rounded-none' />
       <Skeleton className='h-40 w-256 rounded-lg' />
-      <Skeleton className='h-48 w-48 rounded-full' />
-      <Skeleton className='h-48 w-48 rounded-md' />
+      <Skeleton className='size-48 rounded-full' />
+      <Skeleton className='size-48 rounded-md' />
     </div>
   ),
 };
@@ -52,7 +52,7 @@ export const Shapes: Story = {
 export const ListItem: Story = {
   render: () => (
     <div className='flex items-center space-x-4'>
-      <Skeleton className='h-48 w-48 rounded-full' />
+      <Skeleton className='size-48 rounded-full' />
       <div className='space-y-2'>
         <Skeleton className='h-16 w-160' />
         <Skeleton className='h-16 w-128' />
@@ -82,7 +82,7 @@ export const Card: Story = {
 export const Table: Story = {
   render: () => (
     <div className='w-full'>
-      <div className='space-y-3'>
+      <div className='space-y-4'>
         {/* Header */}
         <div className='flex space-x-4'>
           <Skeleton className='h-16 w-192' />

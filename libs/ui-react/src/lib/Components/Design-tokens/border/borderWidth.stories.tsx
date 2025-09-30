@@ -21,7 +21,7 @@ const BorderWidthShowcase = () => (
             <div className='text-muted body-4'>{token}</div>
           </div>
           <div
-            className={`${borderWidthClass} h-80 w-80 rounded-sm border border-active`}
+            className={`${borderWidthClass} size-80 rounded-sm border border-active`}
           ></div>
         </div>
       ))}

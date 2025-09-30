@@ -138,9 +138,7 @@ export const ListItem = React.forwardRef<
           )}
         </View>
       </View>
-      {trailingContent && (
-        <View className='flex-shrink-0'>{trailingContent}</View>
-      )}
+      {trailingContent && <View className='shrink-0'>{trailingContent}</View>}
     </TouchableOpacity>
   );
 });

@@ -1,3 +1,5 @@
+import tailwind from 'eslint-plugin-tailwindcss';
+
 import nx from '@nx/eslint-plugin';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -6,6 +8,7 @@ export default defineConfig(
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  ...tailwind.configs['flat/recommended'],
   {
     ignores: [
       '**/dist',
@@ -60,7 +63,9 @@ export default defineConfig(
       '**/*.mjs',
     ],
     // Override or add rules here
-    rules: {},
+    rules: {
+      'tailwindcss/no-custom-classname': 'error',
+    },
   },
   eslintPluginPrettierRecommended,
   globalIgnores(['**/out-tsc']),

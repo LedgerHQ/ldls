@@ -28,8 +28,8 @@ const thumbVariants = cva(
   {
     variants: {
       size: {
-        sm: 'h-12 w-12 group-data-[state=checked]:translate-x-8',
-        lg: 'h-20 w-20 group-data-[state=checked]:translate-x-16',
+        sm: 'size-12 group-data-[state=checked]:translate-x-8',
+        lg: 'size-20 group-data-[state=checked]:translate-x-16',
       },
     },
     defaultVariants: {

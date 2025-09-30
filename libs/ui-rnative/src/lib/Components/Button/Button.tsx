@@ -6,7 +6,7 @@ import { cn } from '../../utils';
 import { Spinner } from '../../Symbols';
 
 const buttonVariants = cva(
-  'inline-flex h-fit w-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
+  'inline-flex size-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
   {
     variants: {
       appearance: {
@@ -197,7 +197,7 @@ export const Button = React.forwardRef<
           <>
             <Spinner
               size={calculatedIconSize}
-              className='flex-shrink-0 animate-spin'
+              className='shrink-0 animate-spin'
               aria-label='Loading'
             />
             {children && (
@@ -209,10 +209,7 @@ export const Button = React.forwardRef<
         ) : (
           <>
             {IconComponent && (
-              <IconComponent
-                size={calculatedIconSize}
-                className='flex-shrink-0'
-              />
+              <IconComponent size={calculatedIconSize} className='shrink-0' />
             )}
             {children && (
               <Text className='line-clamp-2 text-left body-1-semi-bold'>
