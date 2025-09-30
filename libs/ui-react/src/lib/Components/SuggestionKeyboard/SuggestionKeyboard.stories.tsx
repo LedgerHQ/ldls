@@ -98,7 +98,7 @@ export const ContentShowcase: Story = {
   render: () => (
     <div className='flex flex-col gap-24 p-16'>
       <div>
-        <h3 className='text-lg font-semibold mb-8'>2 Suggestions Layout</h3>
+        <h3 className='mb-8'>2 Suggestions Layout</h3>
         <Container>
           <SuggestionKeyboard>
             <SuggestionKeyboardItem>500$</SuggestionKeyboardItem>
@@ -108,7 +108,7 @@ export const ContentShowcase: Story = {
       </div>
 
       <div>
-        <h3 className='text-lg font-semibold mb-8'>3 Suggestions Layout</h3>
+        <h3 className='mb-8'>3 Suggestions Layout</h3>
         <Container>
           <SuggestionKeyboard>
             <SuggestionKeyboardItem>250$</SuggestionKeyboardItem>
@@ -119,7 +119,7 @@ export const ContentShowcase: Story = {
       </div>
 
       <div>
-        <h3 className='text-lg font-semibold mb-8'>4 Suggestions Layout</h3>
+        <h3 className='mb-8'>4 Suggestions Layout</h3>
         <Container>
           <SuggestionKeyboard>
             <SuggestionKeyboardItem>25%</SuggestionKeyboardItem>
@@ -167,7 +167,7 @@ export const LayoutShowcase: Story = {
   render: () => (
     <div className='flex flex-col gap-24 p-16'>
       <div>
-        <h3 className='text-lg font-semibold mb-8'>Space Between (default)</h3>
+        <h3 className='mb-8'>Space Between (default)</h3>
         <Container>
           <SuggestionKeyboard>
             <SuggestionKeyboardItem>250$</SuggestionKeyboardItem>
@@ -178,7 +178,7 @@ export const LayoutShowcase: Story = {
       </div>
 
       <div>
-        <h3 className='text-lg font-semibold mb-8'>Centered</h3>
+        <h3 className='mb-8'>Centered</h3>
         <Container>
           <SuggestionKeyboard className='justify-center gap-24'>
             <SuggestionKeyboardItem>250$</SuggestionKeyboardItem>

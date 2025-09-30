@@ -113,7 +113,7 @@ export const AppearanceShowcase: Story = {
               icon={icon}
               number={number as any}
             />
-            <Text className='text-xs text-center text-muted'>{name}</Text>
+            <Text className='text-center text-muted'>{name}</Text>
           </View>
         ))}
       </View>
@@ -191,7 +191,7 @@ export const SizesShowcase: Story = {
                     number={number as any}
                     size={size}
                   />
-                  <Text className='text-xs text-center text-muted'>{name}</Text>
+                  <Text className='text-center text-muted'>{name}</Text>
                 </View>
               ))}
             </View>

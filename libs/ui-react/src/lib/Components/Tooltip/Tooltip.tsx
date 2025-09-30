@@ -135,13 +135,13 @@ export const TooltipTrigger = ({
  * import { TooltipContent } from '@ledgerhq/ldls-ui-react';
  *
  * <TooltipContent sideOffset={8}>
- *   <p className="text-sm">This tooltip provides helpful information</p>
+ *   <p className="text-accent">This tooltip provides helpful information</p>
  * </TooltipContent>
  *
  * // With custom styling for layout
  * <TooltipContent sideOffset={12} className="max-w-xs">
  *   <div className="space-y-2">
- *     <h4 className="font-semibold">Tip Title</h4>
+ *     <h4 className="heading-1">Tip Title</h4>
  *     <p>Detailed explanation of the feature.</p>
  *   </div>
  * </TooltipContent>

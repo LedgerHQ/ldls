@@ -269,7 +269,7 @@ export function DialogHeader({
  *
  * @example
  * // With custom styling
- * <DialogTitle className="text-lg font-semibold">Important Notice</DialogTitle>
+ * <DialogTitle className="text-accent">Important Notice</DialogTitle>
  */
 export function DialogTitle({
   hidden,
@@ -318,7 +318,7 @@ export function DialogTitle({
  *
  * @example
  * // With custom styling
- * <DialogDescription className="text-sm text-gray-600">
+ * <DialogDescription className="text-accent">
  *   Additional context about this dialog.
  * </DialogDescription>
  */

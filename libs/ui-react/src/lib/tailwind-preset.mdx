@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Tailwind/Configuration" />
+<Meta title='Tailwind/Configuration' />
 
 # 🛠 Tailwind Preset Configuration
 
@@ -168,7 +168,8 @@ All design tokens automatically support dark mode:
    // ✅ Do
    <h1 className="heading-1">Title</h1>
 
-   // ❌ Don't
+   // ❌ Don't use tailwind classes for typography
+   // these classes are not part of our tailwind preset - they are disabled by default.
    <h1 className="text-2xl font-semibold">Title</h1>
    ```
 

@@ -141,9 +141,7 @@ export const LargeAmountDisplay: Story = {
           </div>
 
           {hasError && (
-            <div className='text-sm mt-8 text-center text-error'>
-              {errorMessage}
-            </div>
+            <div className='mt-8 text-center text-error'>{errorMessage}</div>
           )}
         </div>
         <Button
