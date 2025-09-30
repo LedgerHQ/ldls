@@ -139,7 +139,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
 
     return (
       <div
-        className='group relative flex items-center justify-center'
+        className="group relative flex items-center justify-center"
         onPointerDown={() => {
           const input = inputRef.current;
           if (!input) return;
@@ -158,15 +158,15 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         <span
           ref={spanRef}
           className={cn('invisible absolute heading-0', fontSizeClass)}
-          aria-hidden='true'
+          aria-hidden="true"
         >
           {inputValue}
         </span>
 
         <input
           ref={composeRefs(ref, inputRef)}
-          type='text'
-          inputMode='decimal'
+          type="text"
+          inputMode="decimal"
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}
