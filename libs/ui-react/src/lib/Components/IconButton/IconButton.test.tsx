@@ -97,16 +97,12 @@ describe('IconButton Component', () => {
 
   it('should apply custom className', () => {
     render(
-      <IconButton
-        iconType="filled"
-        aria-label="Custom"
-        className="custom-test-class"
-      >
+      <IconButton iconType="filled" aria-label="Custom" className="mt-2">
         <Settings size={20} />
       </IconButton>,
     );
     const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toHaveClass('custom-test-class');
+    expect(buttonElement).toHaveClass('mt-2');
   });
 
   it('should forward ref correctly', () => {

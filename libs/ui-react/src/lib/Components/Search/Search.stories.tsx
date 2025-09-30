@@ -243,8 +243,8 @@ export const DebouncedSearch: Story = {
               </div>
             ) : (
               <div className="text-center">
-                <p className="text-muted-contrast body-2">Nothing found</p>
-                <p className="text-muted-contrast mt-4 body-3">
+                <p className="text-muted body-2">Nothing found</p>
+                <p className="mt-4 text-muted body-3">
                   No fruits match "{searchQuery}"
                 </p>
               </div>

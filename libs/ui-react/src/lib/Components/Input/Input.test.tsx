@@ -129,14 +129,10 @@ describe('Input Component', () => {
 
   it('should apply custom className to input element', () => {
     render(
-      <Input
-        label="Username"
-        className="custom-input-class"
-        {...createControlledProps()}
-      />,
+      <Input label="Username" className="mt-2" {...createControlledProps()} />,
     );
     const inputElement = screen.getByRole('textbox');
-    expect(inputElement).toHaveClass('custom-input-class');
+    expect(inputElement).toHaveClass('mt-2');
   });
 
   it('should render label with correct htmlFor attribute when id is provided', () => {

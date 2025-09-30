@@ -66,9 +66,9 @@ describe('Switch Component', () => {
   });
 
   it('should apply custom className', () => {
-    render(<Switch className="custom-test-class" />);
+    render(<Switch className="mt-2" />);
     const switchElement = screen.getByRole('switch');
-    expect(switchElement).toHaveClass('custom-test-class');
+    expect(switchElement).toHaveClass('mt-2');
   });
 
   it('should forward ref correctly', () => {

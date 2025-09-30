@@ -17,7 +17,7 @@ const iconMap = {
   error: <DeleteCircleFill className="text-error" />,
 };
 
-const bannerVariants = cva('align-start flex gap-8 rounded-md p-16 text-base', {
+const bannerVariants = cva('flex items-start gap-8 rounded-md p-16 text-base', {
   variants: {
     appearance: {
       info: 'bg-muted',
@@ -120,7 +120,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         className={cn(className, bannerVariants({ appearance }))}
         {...props}
       >
-        <div className="flex flex-shrink-0 items-start py-4">{icon}</div>
+        <div className="flex shrink-0 items-start py-4">{icon}</div>
         <div className="mr-8 flex flex-1 flex-col gap-8 py-4">
           <div className="flex flex-col gap-4">
             <h3 className="line-clamp-2 body-1-semi-bold">{title}</h3>

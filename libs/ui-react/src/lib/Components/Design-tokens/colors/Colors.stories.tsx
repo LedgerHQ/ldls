@@ -724,7 +724,7 @@ export const Crypto: Story = {
 export const Discover: Story = {
   name: 'Discover background',
   render: () => (
-    <div className="border-width p-24">
+    <div className="border p-24">
       <SectionHeader
         title="Discover Colors"
         description="Tailwind classes for brand colors for discover services and platform integrations"

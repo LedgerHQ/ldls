@@ -10,7 +10,7 @@ type Story = StoryObj;
 
 const SizeShowcase = () => (
   <div className="space-y-24">
-    <div className="space-y-14">
+    <div className="space-y-16">
       <div className="flex items-end gap-24 rounded-lg bg-muted p-24">
         {[
           { value: '16', token: 'size-16' },
