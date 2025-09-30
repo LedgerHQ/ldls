@@ -110,7 +110,7 @@ export const IconSizes: StoryObj = {
     <div className='space-y-16 text-base'>
       {sizes.map((size) => (
         <div key={size}>
-          <h3 className='font-semibold mb-16 heading-3'>Size {size}px</h3>
+          <h3 className='mb-16 heading-3'>Size {size}px</h3>
           <div className='flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16'>
             {[
               'Home',

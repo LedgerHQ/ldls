@@ -29,11 +29,7 @@ export const App = () => {
           style={styles.scrollView}
         >
           <View style={styles.section}>
-            <Text
-              testID='heading'
-              role='heading'
-              className='text-sm font-bold mb-24 uppercase'
-            >
+            <Text testID='heading' role='heading' className='mb-24 uppercase'>
               Welcome to React Native 👋
             </Text>
             <Button

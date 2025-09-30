@@ -85,13 +85,13 @@ export const IconTypeShowcase: Story = {
     return (
       <div className='flex gap-16 p-8'>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Filled</span>
+          <span className='text-muted'>Filled</span>
           <IconButton iconType='filled' aria-label='Delete'>
             <DeleteCircleFill />
           </IconButton>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Stroked</span>
+          <span className='text-muted'>Stroked</span>
           <IconButton iconType='stroked' aria-label='More actions'>
             <MoreVertical />
           </IconButton>
@@ -126,25 +126,25 @@ export const StatesShowcase: Story = {
     return (
       <div className='flex gap-16 bg-base p-8'>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Filled enabled</span>
+          <span className='text-muted'>Filled enabled</span>
           <IconButton iconType='filled' aria-label='Delete'>
             <DeleteCircleFill />
           </IconButton>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Stroked enabled</span>
+          <span className='text-muted'>Stroked enabled</span>
           <IconButton iconType='stroked' aria-label='More actions'>
             <MoreVertical />
           </IconButton>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Filled disabled</span>
+          <span className='text-muted'>Filled disabled</span>
           <IconButton iconType='filled' aria-label='Delete' disabled>
             <DeleteCircleFill />
           </IconButton>
         </div>
         <div className='flex flex-col items-center gap-4'>
-          <span className='text-sm text-muted'>Stroked disabled</span>
+          <span className='text-muted'>Stroked disabled</span>
           <IconButton iconType='stroked' aria-label='More actions' disabled>
             <MoreVertical />
           </IconButton>

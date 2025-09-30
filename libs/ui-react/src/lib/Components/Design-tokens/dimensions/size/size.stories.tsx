@@ -24,12 +24,10 @@ const SizeShowcase = () => (
         ].map(({ value, token }) => (
           <div key={value} className='flex flex-col items-center gap-8'>
             <div
-              className={`${token} rounded text-sm font-medium flex items-center justify-center bg-accent text-white`}
+              className={`${token} rounded flex items-center justify-center bg-accent text-white`}
             ></div>
             <div className='space-y-1 text-center'>
-              <div className='text-left font-mono text-muted body-3'>
-                {token}
-              </div>
+              <div className='text-left text-muted body-3'>{token}</div>
               <div className='text-left text-muted body-4'>{value}px</div>
             </div>
           </div>

@@ -266,7 +266,7 @@ The following guidelines are based on our [Button Component API Design ADR](http
 ```tsx
 // Use children for content composition
 <Button onPress={() => {}}>
-  Accept <Text className="font-bold">Terms and Conditions</Text>
+  Accept <Text className="heading-1">Terms and Conditions</Text>
 </Button>
 
 // Pass icon as a component reference
@@ -317,7 +317,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 <Button className="p-6" onPress={() => {}}>Wrong Spacing</Button>
 
 // Don't override typography - use size prop instead
-<Button className="text-lg" onPress={() => {}}>Wrong Typography</Button>
+<Button className="body-1-semi-bold" onPress={() => {}}>Wrong Typography</Button>
 
 // Don't modify border radius
 <Button className="rounded-none" onPress={() => {}}>Custom Radius</Button>
