@@ -53,11 +53,10 @@ const preview: Preview = {
           'Symbols',
           'Action',
           [
+            'Button',
             'CardButton',
-            'InteractiveIcon',
             'Link',
-            'Input',
-            'Search',
+            'InteractiveIcon',
             'SuggestionKeyboard',
           ],
           'Communication',
