@@ -11,10 +11,6 @@ import { cn } from '@ldls/utils-shared';
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
- * @component
- * @param {number} [delayDuration=0] - The delay in milliseconds before the tooltip appears.
- * @param {React.ComponentProps<typeof TooltipPrimitive.Provider>} [...] - All other props are passed to the underlying Radix UI Provider.
- *
  * @example
  * import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
  *
@@ -27,7 +23,11 @@ import { cn } from '@ldls/utils-shared';
  * }
  */
 export const TooltipProvider = ({
-  delayDuration = 0,
+  /**
+   * The delay in milliseconds before the tooltip appears.
+   * @default 200
+   */
+  delayDuration = 200,
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) => {
   return (
@@ -123,10 +123,6 @@ export const TooltipTrigger = ({
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @component
- * @param {React.ReactNode} children - The content to display inside the tooltip.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {number} [sideOffset=0] - The distance in pixels between the tooltip and the trigger element.
- * @param {React.ComponentProps<typeof TooltipPrimitive.Content>} [...] - All other props are passed to the underlying Radix UI Content.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the tooltip's core appearance (colors, padding, etc).
@@ -147,8 +143,23 @@ export const TooltipTrigger = ({
  * </TooltipContent>
  */
 export const TooltipContent = ({
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
   className,
+  /**
+   * The distance in pixels between the tooltip and the trigger element.
+   * @default 0
+   */
   sideOffset = 0,
+  /**
+   * The side of the trigger element to position the tooltip on.
+   * @default 'top'
+   */
+  side = 'top',
+  /**
+   * The content to display inside the tooltip.
+   */
   children,
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Content>) => {
@@ -156,9 +167,18 @@ export const TooltipContent = ({
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
         data-slot='tooltip-content'
+        side={side}
         sideOffset={sideOffset}
         className={cn(
           'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
+          side === 'top' &&
+            'animate-slideInFromTop data-[state=closed]:animate-slideOutToTop',
+          side === 'bottom' &&
+            'animate-slideInFromBottom data-[state=closed]:animate-slideOutToBottom',
+          side === 'left' &&
+            'animate-slideInFromLeft data-[state=closed]:animate-slideOutToLeft',
+          side === 'right' &&
+            'animate-slideInFromRight data-[state=closed]:animate-slideOutToRight',
           className,
         )}
         {...props}
