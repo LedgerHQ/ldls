@@ -1,6 +1,26 @@
 import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cn } from '@ldls/utils-shared';
+import { cva } from 'class-variance-authority';
+
+const tooltipContentVariants = cva(
+  'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
+  {
+    variants: {
+      side: {
+        top: 'animate-slideInFromTop data-[state=closed]:animate-slideOutToTop',
+        bottom:
+          'animate-slideInFromBottom data-[state=closed]:animate-slideOutToBottom',
+        left: 'animate-slideInFromLeft data-[state=closed]:animate-slideOutToLeft',
+        right:
+          'data-[state=closed]:animate-slideOutToRight animate-slideInFromRight',
+      },
+    },
+    defaultVariants: {
+      side: 'top',
+    },
+  },
+);
 
 /**
  * Provides context for all tooltip components within the application.
@@ -156,7 +176,7 @@ export const TooltipContent = ({
    * The side of the trigger element to position the tooltip on.
    * @default 'top'
    */
-  side = 'top',
+  side,
   /**
    * The content to display inside the tooltip.
    */
@@ -169,18 +189,7 @@ export const TooltipContent = ({
         data-slot='tooltip-content'
         side={side}
         sideOffset={sideOffset}
-        className={cn(
-          'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
-          side === 'top' &&
-            'animate-slideInFromTop data-[state=closed]:animate-slideOutToTop',
-          side === 'bottom' &&
-            'animate-slideInFromBottom data-[state=closed]:animate-slideOutToBottom',
-          side === 'left' &&
-            'animate-slideInFromLeft data-[state=closed]:animate-slideOutToLeft',
-          side === 'right' &&
-            'animate-slideInFromRight data-[state=closed]:animate-slideOutToRight',
-          className,
-        )}
+        className={cn(tooltipContentVariants({ side }), className)}
         {...props}
       >
         <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
