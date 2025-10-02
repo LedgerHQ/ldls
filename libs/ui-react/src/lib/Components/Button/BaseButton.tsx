@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
 import { IconSize } from '../Icon/Icon';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot, Slottable } from '@radix-ui/react-slot';
 import { Spinner } from '../../Symbols/Icons/Spinner';
 
 const baseButtonVariants = cva(
@@ -102,6 +102,19 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
     },
     ref,
   ) => {
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        // If the button is disabled, prevent the default action (e.g., navigation).
+        if (disabled || loading) {
+          event.preventDefault();
+          return;
+        }
+        // Otherwise, call the original onClick handler if it was provided.
+        onClick?.(event);
+      },
+      [disabled, loading, onClick],
+    );
+
     const iconSize = size === 'lg' ? 24 : size === 'xs' ? 16 : 20;
 
     const iconContent = loading ? (
@@ -114,66 +127,28 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       Icon && <Icon size={iconSize} className='shrink-0' />
     );
 
-    if (asChild) {
-      const child = React.Children.only(children);
-
-      if (React.isValidElement(child)) {
-        return (
-          <Slot
-            className={cn(
-              className,
-              baseButtonVariants({ appearance, size, isFull }),
-            )}
-            ref={ref}
-            data-disabled={disabled || undefined}
-            onClick={(
-              event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-            ) => {
-              // If the button is disabled, prevent the default action (e.g., navigation).
-              if (disabled || loading) {
-                event.preventDefault();
-                return;
-              }
-              // Otherwise, call the original onClick handler if it was provided.
-              onClick?.(event);
-            }}
-            {...props}
-          >
-            {React.cloneElement(
-              child,
-              undefined,
-              <>
-                {iconContent}
-                {child.props.children}
-              </>,
-            )}
-          </Slot>
-        );
-      }
-
-      // If the child is not a valid element (e.g., just text),
-      // which is incorrect usage of asChild, we fall back gracefully.
-      console.warn(
-        'Button `asChild` prop received a child that is not a valid React element.',
-      );
-      return <>{children}</>;
-    }
+    const Comp = asChild ? Slot : 'button';
 
     return (
-      <button
-        onClick={disabled || loading ? undefined : onClick}
+      <Comp
         className={cn(
           baseButtonVariants({ appearance, size, isFull }),
           className,
         )}
         ref={ref}
-        disabled={disabled}
         data-disabled={disabled || undefined}
+        disabled={disabled}
+        onClick={handleClick}
         {...props}
       >
         {iconContent}
-        {children && <span className='line-clamp-2 text-left'>{children}</span>}
-      </button>
+        {children &&
+          (asChild ? (
+            <Slottable>{children}</Slottable>
+          ) : (
+            <span className='line-clamp-2 text-left'>{children}</span>
+          ))}
+      </Comp>
     );
   },
 );
