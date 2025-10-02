@@ -6,6 +6,7 @@ export * from './Button';
 export * from './CardButton';
 export * from './Checkbox';
 export * from './Dialog';
+export * from './IconButton';
 export * from './InteractiveIcon';
 export * from './Input';
 export * from './Link';

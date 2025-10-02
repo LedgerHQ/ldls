@@ -55,6 +55,7 @@ const preview: Preview = {
           [
             'Button',
             'CardButton',
+            'IconButton',
             'Link',
             'InteractiveIcon',
             'SuggestionKeyboard',
