@@ -27,6 +27,13 @@ const config: StorybookConfig = {
 
     return mergeConfig(config, {
       plugins: [nxViteTsPaths()],
+      optimizeDeps: {
+        esbuildOptions: {
+          loader: {
+            '.mjs': 'tsx',
+          },
+        },
+      },
       css: {
         postcss: {
           plugins: [
