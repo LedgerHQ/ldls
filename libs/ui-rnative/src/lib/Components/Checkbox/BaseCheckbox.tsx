@@ -1,4 +1,4 @@
-import * as Slot from '@rn-primitives/slot';
+import * as Slot from '../Slot';
 import React from 'react';
 import {
   ForceMountable,
