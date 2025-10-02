@@ -3,7 +3,7 @@ import * as ButtonStories from './Button.stories';
 import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Button" of={ButtonStories} />
+<Meta title='Components/Button' of={ButtonStories} />
 
 # 🔘 Button
 
@@ -20,8 +20,10 @@ Buttons are key interactive elements that trigger actions and guide users throug
 
 <Canvas of={ButtonStories.IconText} />
 
-- **Label**: describes the action that occurs when the button is tapped
+- **Label(required)**: must be present and describe the action that occurs when the button is tapped
 - **Icon (optional)**: visually communicate the button's action, and helps draw attention
+
+> Note: For **icon-only buttons**, use the [IconButton](/docs/action-iconbutton--docs) component instead. It's specifically designed for icon-only interactions with proper accessibility support.
 
 ## Properties
 
@@ -45,24 +47,22 @@ There are five button appearances, which indicate its emphasis. From strongest t
 
 ### Content
 
-Buttons' contents can be of three types:
+Buttons' contents can be of two types:
 
 - text (default)
 - icon-text
-- icon
 
 <Canvas of={ButtonStories.ContentTypesShowcase} />
-
-> Note: Buttons of the smallest size XS can't have a label, so they default to an icon only.
 
 ### Size
 
 Buttons come in four different sizes:
 
-- XS (**32 px** tall) **[ICON ONLY]**
 - S (**44 px** tall)
 - M (default, **48 px** tall)
 - L (**56 px** tall)
+
+> Note: For XS size (32 px tall), use the [IconButton](/docs/action-iconbutton--docs) component instead.
 
 <Canvas of={ButtonStories.SizesShowcase} />
 
@@ -109,21 +109,16 @@ To be implemented:
 
 <Canvas of={ButtonStories.AsChild} />
 
-<div className="rounded-8 mt-8 bg-muted p-12 text-base">
-  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
-  <ul className="space-y-2 body-2">
-    <li>When using asChild, the child element receives all button styles</li>
-    <li>
-      Icon and loading props are ignored with asChild - handle these in the
-      child element
-    </li>
-    <li>Perfect for navigation links that should look like buttons</li>
-    <li>
-      Maintains semantic HTML (e.g., &lt;a&gt; for links, &lt;button&gt; for
-      actions)
-    </li>
-  </ul>
-</div>
+<p className='mb-4 text-base body-2-semi-bold'>Important Notes:</p>
+<ul className='space-y-2 text-base body-2'>
+  <li>When using asChild, the child element receives all button styles</li>
+  <li>Icon and loading props are still applied to the child element.</li>
+  <li>Perfect for navigation links that should look like buttons</li>
+  <li>
+    Maintains semantic HTML (e.g., &lt;a&gt; for links, &lt;button&gt; for
+    actions)
+  </li>
+</ul>
 
 </Tab> <Tab label="Implementation ">
 
