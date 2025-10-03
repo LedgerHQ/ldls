@@ -6,7 +6,7 @@ import { Slot, Slottable } from '@radix-ui/react-slot';
 import { Spinner } from '../../Symbols/Icons/Spinner';
 
 const baseButtonVariants = cva(
-  'duration-250 inline-flex h-fit w-fit cursor-pointer items-center justify-center rounded-full transition-colors body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
+  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
   {
     variants: {
       appearance: {

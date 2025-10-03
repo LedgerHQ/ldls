@@ -11,13 +11,9 @@ describe('IconButton', () => {
 
   it('applies custom className', () => {
     render(
-      <IconButton
-        aria-label='Settings'
-        icon={Settings}
-        className='custom-class'
-      />,
+      <IconButton aria-label='Settings' icon={Settings} className='mt-4' />,
     );
-    expect(screen.getByLabelText('Settings')).toHaveClass('custom-class');
+    expect(screen.getByLabelText('Settings')).toHaveClass('mt-4');
   });
 
   it('handles disabled state', () => {
