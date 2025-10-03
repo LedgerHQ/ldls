@@ -1,2 +1,2 @@
-export * from './useEvent';
-export * from './useGet';
+export * from './use-event';
+export * from './use-get';

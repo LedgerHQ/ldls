@@ -101,7 +101,7 @@ function useCheckboxContext() {
 const BaseCheckboxTrigger = React.forwardRef<
   PressableRef,
   SlottablePressableProps
->(({ asChild, onPress: onPressProp, ...props }, ref) => {
+>(({ asChild, onPress: onPressProp, className, ...props }, ref) => {
   const { disabled, checked, onCheckedChange, nativeID } = useCheckboxContext();
 
   function onPress(ev: GestureResponderEvent) {
@@ -120,6 +120,7 @@ const BaseCheckboxTrigger = React.forwardRef<
       role='checkbox'
       aria-checked={checked}
       onPress={onPress}
+      className={baseCheckboxVariants.trigger({ className, checked, disabled })}
       accessibilityState={{
         checked,
         disabled,
@@ -135,7 +136,7 @@ BaseCheckboxTrigger.displayName = 'BaseCheckboxTrigger';
 const BaseCheckboxIndicator = React.forwardRef<
   ViewRef,
   BaseCheckboxIndicatorProps
->(({ asChild, forceMount, ...props }, ref) => {
+>(({ asChild, forceMount, className, ...props }, ref) => {
   const { checked, disabled } = useCheckboxContext();
 
   if (!forceMount) {
@@ -148,6 +149,7 @@ const BaseCheckboxIndicator = React.forwardRef<
   return (
     <Component
       ref={ref}
+      className={baseCheckboxVariants.indicator({ className })}
       aria-disabled={disabled}
       aria-hidden={!(forceMount || checked)}
       role={'presentation'}

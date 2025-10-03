@@ -1,1 +1,1 @@
-export * from './startTransition';
+export * from './start-transition';

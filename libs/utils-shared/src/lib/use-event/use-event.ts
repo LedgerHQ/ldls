@@ -1,4 +1,4 @@
-import { useGet } from './useGet';
+import { useGet } from './use-get';
 
 type AnyFunction = (...args: any[]) => any;
 
