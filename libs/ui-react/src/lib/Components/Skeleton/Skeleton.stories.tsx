@@ -53,7 +53,7 @@ export const ListItem: Story = {
   render: () => (
     <div className='flex items-center space-x-4'>
       <Skeleton className='size-48 rounded-full' />
-      <div className='space-y-2'>
+      <div className='space-y-8'>
         <Skeleton className='h-16 w-160' />
         <Skeleton className='h-16 w-128' />
       </div>

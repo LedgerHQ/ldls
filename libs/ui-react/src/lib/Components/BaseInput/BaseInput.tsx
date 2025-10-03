@@ -4,7 +4,7 @@ import { DeleteCircleFill } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
 
 const baseContainerStyles = cn(
-  'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-md bg-muted transition-colors',
+  'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors',
   'hover:bg-muted-hover focus-within:ring-2 focus-within:ring-active',
   'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
   'has-[:invalid]:ring-1 has-[:invalid]:ring-error has-[:invalid]:border-error',

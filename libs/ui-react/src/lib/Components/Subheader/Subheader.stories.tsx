@@ -20,7 +20,7 @@ const InfoTooltip = () => (
   <Tooltip>
     <TooltipTrigger asChild>
       <Information
-        size={12}
+        size={16}
         className='shrink-0 text-muted'
         aria-label='More information'
       />

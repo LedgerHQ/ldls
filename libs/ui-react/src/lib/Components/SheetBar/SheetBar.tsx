@@ -4,7 +4,7 @@ import { cn } from '@ldls/utils-shared';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('flex w-full bg-canvas-sheet p-16 text-base', {
+const sheetBarVariants = cva('flex w-full bg-canvas-sheet px-24 text-base', {
   variants: {
     size: {
       sm: 'h-64 flex-row items-center gap-12',
@@ -17,7 +17,7 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
   return (
     <IconButton
       appearance='no-background'
-      size='xs'
+      size='sm'
       icon={ArrowLeft}
       onClick={onBack}
       className='shrink-0'
@@ -129,26 +129,10 @@ export const SheetBar = ({
             <CloseButton onClose={onClose} />
           </div>
           {(title || description) && (
-            <div className='flex flex-row gap-12'>
-              {title && (
-                <div
-                  className={cn(
-                    'heading-2-semi-bold',
-                    description ? 'w-1/2' : 'w-full',
-                  )}
-                >
-                  {title}
-                </div>
-              )}
+            <div className='flex flex-col gap-4'>
+              {title && <div className='heading-2-semi-bold'>{title}</div>}
               {description && (
-                <div
-                  className={cn(
-                    'text-muted body-1',
-                    title ? 'w-1/2' : 'w-full',
-                  )}
-                >
-                  {description}
-                </div>
+                <div className='text-muted body-1'>{description}</div>
               )}
             </div>
           )}
