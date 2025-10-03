@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset React Native Web Text defaults to allow inheritance */
-.css-146c3p1,
-.css-text-146c3p1 {
-  font-family: inherit !important;
-  color: inherit !important;
-}
