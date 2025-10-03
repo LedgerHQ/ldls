@@ -13,7 +13,7 @@ const baseButtonVariants = cva(
         base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
         gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
         accent:
-          'bg- bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
+          'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
         transparent:
           'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
