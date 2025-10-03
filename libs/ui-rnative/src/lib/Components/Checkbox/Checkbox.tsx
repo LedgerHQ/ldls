@@ -4,7 +4,7 @@ import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
 
 import { Check } from '../../Symbols';
 import { CheckboxProps } from './types';
-import { useControllableState } from '@ldls/utils-shared';
+import { useControllableState } from '../../utils';
 
 /**
  * A customizable checkbox component built on top of Radix UI Checkbox primitive.
