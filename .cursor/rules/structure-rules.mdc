@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+
+# Component structure
+- Component should use PascalCase
+- Organize component code into different file for each responsibility:
+  - '/Button' Folder name
+  - '/Button.test.tsx' For tests
+  - '/Button.tsx' For implementation
+  - '/Button.stories.tsx' For storybook stories
+  - '/Button.mdx' For storybook docs
+  - '/Button.figma' For figma code-connect
+  - '/index.ts' For barrel that expose public API
+
+# Other file structure
+- Other files should use dash-case
+- Organize code into different file:
+  - '/use-controllable-state' Folder name
+  - '/use-controllable-state.ts' For implementation
+  - '/use-controllable-state.test.ts' For test
+  - '/index.ts' For barrel that expose public API
