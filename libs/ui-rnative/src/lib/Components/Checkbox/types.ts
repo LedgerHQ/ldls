@@ -1,4 +1,4 @@
-import { SlottablePressableProps } from 'src/lib/types';
+import { SlottablePressableProps } from '../../types';
 
 export type CheckboxProps = {
   /**

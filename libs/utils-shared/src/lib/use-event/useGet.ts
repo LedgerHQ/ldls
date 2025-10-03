@@ -1,8 +1,9 @@
 import { useIsomorphicLayoutEffect } from '../constants';
 import * as React from 'react';
 
-// keeps a reference to the current value easily
-
+/**
+ * keeps a reference to the current value easily
+ */
 export function useGet<A>(
   currentValue: A,
   initialValue?: any,

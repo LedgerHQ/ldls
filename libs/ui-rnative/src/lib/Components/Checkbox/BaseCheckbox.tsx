@@ -6,8 +6,53 @@ import {
   SlottablePressableProps,
   SlottableViewProps,
   ViewRef,
-} from 'src/lib/types';
+} from '../../types';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
+import { cva } from 'class-variance-authority';
+
+const baseCheckboxVariants = {
+  trigger: cva(
+    [
+      'size-20 shrink-0 rounded-xs transition-colors',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
+    ],
+    {
+      variants: {
+        checked: { true: '', false: 'border' },
+        disabled: { true: '', false: '' },
+      },
+      compoundVariants: [
+        {
+          checked: true,
+          disabled: false,
+          className:
+            'bg-active text-on-accent hover:bg-active-hover active:bg-active-pressed',
+        },
+        {
+          checked: false,
+          disabled: false,
+          className:
+            'border-muted bg-base hover:bg-base-hover active:bg-base-pressed',
+        },
+        {
+          checked: true,
+          disabled: true,
+          className: 'bg-disabled text-disabled',
+        },
+        {
+          checked: false,
+          disabled: true,
+          className: 'border-disabled bg-base',
+        },
+      ],
+      defaultVariants: {
+        checked: false,
+        disabled: false,
+      },
+    },
+  ),
+  indicator: cva(['flex size-full items-center justify-center']),
+};
 
 type BaseCheckboxIndicatorProps = ForceMountable & SlottableViewProps;
 type BaseCheckboxRootProps = SlottablePressableProps & {

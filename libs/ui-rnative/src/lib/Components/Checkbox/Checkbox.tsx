@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
 
-import { Check } from 'src/lib/Symbols';
+import { Check } from '../../Symbols';
 import { cva } from 'class-variance-authority';
 import { CheckboxProps } from './types';
 import { useControllableState } from '@ldls/utils-shared';
