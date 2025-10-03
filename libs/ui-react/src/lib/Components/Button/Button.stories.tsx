@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from './Button';
-import { Settings, Plus } from '../../Symbols';
+import { Settings, Plus, ExternalLink } from '../../Symbols';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -30,7 +30,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['sm', 'md', 'lg'],
       description: 'The size of the button',
     },
     disabled: {
@@ -43,7 +43,7 @@ const meta: Meta<typeof Button> = {
     },
     icon: {
       control: 'select',
-      description: 'Optional icon component to display',
+      description: 'Optional icon component to display alongside text',
       options: ['None', 'Plus', 'Settings'],
       mapping: {
         None: undefined,
@@ -60,7 +60,7 @@ const meta: Meta<typeof Button> = {
       description: 'Whether the button is full width',
     },
     asChild: {
-      control: 'boolean',
+      control: false,
       description:
         'Render as child element instead of button (useful for links)',
     },
@@ -169,7 +169,6 @@ export const ContentTypesShowcase: Story = {
       <Button appearance='base' icon={Plus}>
         With Icon
       </Button>
-      <Button appearance='base' icon={Settings} aria-label='Settings' />
     </div>
   ),
 };
@@ -177,12 +176,6 @@ export const ContentTypesShowcase: Story = {
 export const SizesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-4'>
-      <Button
-        appearance='base'
-        size='xs'
-        icon={Settings}
-        aria-label='Settings'
-      />
       <Button appearance='base' size='sm'>
         Small
       </Button>
@@ -243,11 +236,10 @@ export const ResponsiveLayout2: Story = {
 export const InteractiveLoadingStates: Story = {
   render: () => {
     const [states, setStates] = React.useState<
-      Record<'text' | 'withIcon' | 'iconOnly', 'idle' | 'loading' | 'red'>
+      Record<'text' | 'withIcon', 'idle' | 'loading' | 'red'>
     >({
       text: 'idle',
       withIcon: 'idle',
-      iconOnly: 'idle',
     });
 
     const handleClick = async (key: keyof typeof states) => {
@@ -275,14 +267,6 @@ export const InteractiveLoadingStates: Story = {
         >
           {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
         </Button>
-
-        <Button
-          appearance='accent'
-          loading={states.iconOnly === 'loading'}
-          onClick={() => handleClick('iconOnly')}
-          icon={Settings}
-          aria-label='Settings'
-        />
       </div>
     );
   },
@@ -311,7 +295,7 @@ export const AsChild: Story = {
             <Link to='#'>Open Button documentation</Link>
           </Button>
 
-          <Button asChild appearance='accent'>
+          <Button asChild appearance='accent' icon={ExternalLink}>
             <a
               href='https://shop.ledger.com'
               target='_blank'
@@ -334,7 +318,7 @@ export const AsChild: Story = {
 </Button>
 
 // Button as an external link
-<Button asChild appearance="accent" size="sm">
+<Button asChild appearance="accent" icon={ExternalLink}>
   <a href="https://example.com" target="_blank" rel="noopener noreferrer">
     External Link
   </a>

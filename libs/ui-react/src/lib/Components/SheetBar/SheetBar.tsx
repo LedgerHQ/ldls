@@ -1,8 +1,8 @@
 import React from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@ldls/utils-shared';
-import { Button } from '../Button';
 import { ArrowLeft, Close } from '../../Symbols';
+import { IconButton } from '../IconButton';
 
 const sheetBarVariants = cva('flex w-full bg-canvas-sheet p-16 text-base', {
   variants: {
@@ -15,7 +15,7 @@ const sheetBarVariants = cva('flex w-full bg-canvas-sheet p-16 text-base', {
 
 const BackButton = ({ onBack }: { onBack: () => void }) => {
   return (
-    <Button
+    <IconButton
       appearance='no-background'
       size='xs'
       icon={ArrowLeft}
@@ -28,7 +28,7 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
 
 const CloseButton = ({ onClose }: { onClose: () => void }) => {
   return (
-    <Button
+    <IconButton
       appearance='gray'
       size='xs'
       icon={Close}
