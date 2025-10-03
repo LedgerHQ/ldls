@@ -9,7 +9,10 @@ import {
 } from '../../types';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
 import { cva } from 'class-variance-authority';
+<<<<<<< HEAD
 import { cn } from 'src/lib/utils';
+=======
+>>>>>>> 00b463a (feat(rnative): add first-class support for label and required props on checkbox)
 
 const baseCheckboxVariants = {
   trigger: cva(
@@ -152,6 +155,7 @@ const BaseCheckboxIndicator = React.forwardRef<
   const Component = asChild ? Slot.View : View;
   return (
     <Component
+      className={baseCheckboxVariants.indicator()}
       ref={ref}
       className={baseCheckboxVariants.indicator({ className })}
       aria-disabled={disabled}

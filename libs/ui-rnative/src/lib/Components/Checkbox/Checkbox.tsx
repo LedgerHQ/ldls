@@ -5,6 +5,13 @@ import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
 import { Check } from '../../Symbols';
 import { CheckboxProps } from './types';
 import { useControllableState } from '../../utils';
+import { Label } from '../Label';
+import { View } from 'react-native';
+import { cva } from 'class-variance-authority';
+
+const checkboxVariants = {
+  root: cva(['flex flex-row items-center gap-8']),
+};
 
 /**
  * A customizable checkbox component built on top of Radix UI Checkbox primitive.
@@ -30,6 +37,8 @@ export const Checkbox = React.forwardRef<
       onCheckedChange: onCheckedChangeProp,
       defaultChecked = false,
       disabled,
+      label,
+      required,
       ...props
     },
     ref,
@@ -41,18 +50,28 @@ export const Checkbox = React.forwardRef<
     });
 
     return (
-      <BaseCheckboxRoot
-        ref={ref}
-        disabled={disabled}
-        checked={checked}
-        onCheckedChange={onCheckedChange}
-        className={className}
-        {...props}
-      >
-        <BaseCheckboxIndicator>
-          <Check size={16} />
-        </BaseCheckboxIndicator>
-      </BaseCheckboxRoot>
+      <View className={checkboxVariants.root({ className })}>
+        <BaseCheckboxRoot
+          ref={ref}
+          disabled={disabled}
+          checked={checked}
+          onCheckedChange={onCheckedChange}
+          {...props}
+        >
+          <BaseCheckboxIndicator>
+            <Check size={16} />
+          </BaseCheckboxIndicator>
+        </BaseCheckboxRoot>
+        {label && (
+          <Label
+            disabled={disabled}
+            onPress={() => onCheckedChange(!checked)}
+            required={required}
+          >
+            {label}
+          </Label>
+        )}
+      </View>
     );
   },
 );
