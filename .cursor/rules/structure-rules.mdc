@@ -4,23 +4,22 @@ globs:
 alwaysApply: true
 ---
 
-# Folder & filenames
 
-When defining a component, the name of the folder and its related files should use PascalCase pattern.
+# Component structure
+- Component should use PascalCase
+- Organize component code into different file for each responsibility:
+  - '/Button' Folder name
+  - '/Button.test.tsx' For tests
+  - '/Button.tsx' For implementation
+  - '/Button.stories.tsx' For storybook stories
+  - '/Button.mdx' For storybook docs
+  - '/Button.figma' For figma code-connect
+  - '/index.ts' For barrel that expose public API
 
-```
-/Button
-  /Button.test.tsx
-  /Button.tsx
-```
-
-When defining a utility files or a hook, the name of the folder its related files should use dash-case pattern.
-
-```
-/use-controllable-state
-  /use-controllable-state.test.ts
-  /use-controllable-state.ts
-
-/constants
-  /constants.ts
-```
+# Other file structure
+- Other files should use dash-case
+- Organize code into different file:
+  - '/use-controllable-state' Folder name
+  - '/use-controllable-state.ts' For implementation
+  - '/use-controllable-state.test.ts' For test
+  - '/index.ts' For barrel that expose public API
