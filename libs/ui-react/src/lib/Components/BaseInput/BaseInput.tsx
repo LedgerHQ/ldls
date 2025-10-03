@@ -249,7 +249,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             className='mt-8 flex items-center gap-2 text-error body-3'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='flex-shrink-0 text-error' />
+            <DeleteCircleFill size={16} className='shrink-0 text-error' />
             <span>{errorMessage}</span>
           </div>
         )}

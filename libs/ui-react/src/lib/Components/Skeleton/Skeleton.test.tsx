@@ -27,9 +27,9 @@ describe('Skeleton Component', () => {
   });
 
   it('should accept custom className', () => {
-    render(<Skeleton className='custom-class' />);
+    render(<Skeleton className='mt-2' />);
     const skeletonElement = screen.getByTestId('skeleton');
-    expect(skeletonElement).toHaveClass('custom-class');
+    expect(skeletonElement).toHaveClass('mt-2');
   });
 
   it('should accept additional props', () => {

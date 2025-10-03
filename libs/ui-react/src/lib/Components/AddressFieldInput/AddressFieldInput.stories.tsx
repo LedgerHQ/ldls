@@ -218,7 +218,7 @@ export const Controlled: Story = {
         </div>
 
         {address && !error && (
-          <div className='bg-success/10 rounded-md border border-muted p-16'>
+          <div className='rounded-md border border-muted bg-success p-16'>
             <h4 className='mb-4 text-success body-2-semi-bold'>
               Valid Address
             </h4>
