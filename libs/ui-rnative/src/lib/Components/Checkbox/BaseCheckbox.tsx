@@ -1,5 +1,5 @@
 import * as Slot from '../Slot';
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   ForceMountable,
   PressableRef,
@@ -105,12 +105,15 @@ const BaseCheckboxTrigger = React.forwardRef<
 >(({ asChild, onPress: onPressProp, className, ...props }, ref) => {
   const { disabled, checked, onCheckedChange, nativeID } = useCheckboxContext();
 
-  function onPress(ev: GestureResponderEvent) {
-    if (disabled) return;
-    const newValue = !checked;
-    onCheckedChange?.(newValue);
-    onPressProp?.(ev);
-  }
+  const onPress = useCallback(
+    (ev: GestureResponderEvent) => {
+      if (disabled) return;
+      const newValue = !checked;
+      onCheckedChange?.(newValue);
+      onPressProp?.(ev);
+    },
+    [disabled, checked, onCheckedChange, onPressProp],
+  );
 
   const Component = asChild ? Slot.Pressable : Pressable;
   return (
