@@ -13,7 +13,7 @@ const tooltipContentVariants = cva(
           'animate-slideInFromBottom data-[state=closed]:animate-slideOutToBottom',
         left: 'animate-slideInFromLeft data-[state=closed]:animate-slideOutToLeft',
         right:
-          'data-[state=closed]:animate-slideOutToRight animate-slideInFromRight',
+          'animate-slideInFromRight data-[state=closed]:animate-slideOutToRight',
       },
     },
     defaultVariants: {
