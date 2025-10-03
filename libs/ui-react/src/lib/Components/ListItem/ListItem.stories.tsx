@@ -20,7 +20,7 @@ import { Spot } from '../Spot/Spot';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
-    <div className='text-right'>
+    <div className='flex flex-col items-end justify-center gap-4'>
       <div className='body-2-semi-bold'>42.00</div>
       <div className={cn('text-muted body-3', disabled && 'text-disabled')}>
         USD
@@ -55,7 +55,7 @@ const meta: Meta<typeof ListItem> = {
       options: ['None', 'Tag'],
       mapping: {
         None: undefined,
-        Tag: <Tag label='New' appearance='accent' icon={Bolt} size='sm' />,
+        Tag: <Tag label='New' appearance='base' icon={Bolt} size='sm' />,
       },
       if: { arg: 'description', exists: true },
     },
@@ -77,7 +77,7 @@ const meta: Meta<typeof ListItem> = {
         icon: <PenEdit size={24} />,
         switch: <Switch selected={false} />,
         value: <Balance />,
-        tag: <Tag label='New' appearance='accent' />,
+        tag: <Tag label='New' appearance='base' />,
         none: undefined,
       },
     },
@@ -133,6 +133,7 @@ export const WithDescriptionTag: Story = {
   description="Additional information"
   descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} size="sm" />}
 />
+
 `,
       },
     },

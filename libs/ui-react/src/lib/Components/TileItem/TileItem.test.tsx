@@ -2,17 +2,17 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { VerticalListItem } from './VerticalListItem';
+import { TileItem } from './TileItem';
 import { Spot } from '../Spot';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Settings } from '../../Symbols';
 
-describe('VerticalListItem Component', () => {
+describe('TileItem Component', () => {
   const mockSpot = <Spot appearance='icon' icon={Settings} />;
   const mockTitle = 'Test Item';
 
   it('should render correctly with required props', () => {
-    render(<VerticalListItem spot={mockSpot} title={mockTitle} />);
+    render(<TileItem spot={mockSpot} title={mockTitle} />);
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
     expect(screen.getByText(mockTitle)).toBeInTheDocument();
@@ -20,22 +20,14 @@ describe('VerticalListItem Component', () => {
 
   it('should render subtitle when provided', () => {
     const subtitle = 'Test Subtitle';
-    render(
-      <VerticalListItem
-        spot={mockSpot}
-        title={mockTitle}
-        subtitle={subtitle}
-      />,
-    );
+    render(<TileItem spot={mockSpot} title={mockTitle} subtitle={subtitle} />);
     expect(screen.getByText(subtitle)).toBeInTheDocument();
   });
 
   it('should render tag when provided', () => {
     const tagText = 'Test Tag';
     const mockTag = <div data-testid='mock-tag'>{tagText}</div>;
-    render(
-      <VerticalListItem spot={mockSpot} title={mockTitle} tag={mockTag} />,
-    );
+    render(<TileItem spot={mockSpot} title={mockTitle} tag={mockTag} />);
     expect(screen.getByTestId('mock-tag')).toBeInTheDocument();
     expect(screen.getByText(tagText)).toBeInTheDocument();
   });
@@ -47,7 +39,7 @@ describe('VerticalListItem Component', () => {
       </InteractiveIcon>
     );
     render(
-      <VerticalListItem
+      <TileItem
         spot={mockSpot}
         title={mockTitle}
         secondaryAction={mockSecondaryAction}
@@ -60,11 +52,7 @@ describe('VerticalListItem Component', () => {
   it('should call onClick handler when main button is clicked', () => {
     const handleClick = vi.fn();
     render(
-      <VerticalListItem
-        spot={mockSpot}
-        title={mockTitle}
-        onClick={handleClick}
-      />,
+      <TileItem spot={mockSpot} title={mockTitle} onClick={handleClick} />,
     );
 
     const buttonElement = screen.getByRole('button');
@@ -74,7 +62,7 @@ describe('VerticalListItem Component', () => {
   });
 
   it('should apply active state on mouse down', () => {
-    render(<VerticalListItem spot={mockSpot} title={mockTitle} />);
+    render(<TileItem spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -86,7 +74,7 @@ describe('VerticalListItem Component', () => {
   });
 
   it('should remove active state on mouse up', () => {
-    render(<VerticalListItem spot={mockSpot} title={mockTitle} />);
+    render(<TileItem spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -101,7 +89,7 @@ describe('VerticalListItem Component', () => {
   });
 
   it('should remove active state on mouse leave', () => {
-    render(<VerticalListItem spot={mockSpot} title={mockTitle} />);
+    render(<TileItem spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -124,7 +112,7 @@ describe('VerticalListItem Component', () => {
     );
 
     render(
-      <VerticalListItem
+      <TileItem
         spot={mockSpot}
         title={mockTitle}
         onClick={handleClick}
@@ -152,11 +140,7 @@ describe('VerticalListItem Component', () => {
   it('should apply custom className to container', () => {
     const customClass = 'custom-test-class';
     render(
-      <VerticalListItem
-        spot={mockSpot}
-        title={mockTitle}
-        className={customClass}
-      />,
+      <TileItem spot={mockSpot} title={mockTitle} className={customClass} />,
     );
     const containerElement = screen.getByRole('button').parentElement;
     expect(containerElement).toHaveClass(customClass);
@@ -164,13 +148,7 @@ describe('VerticalListItem Component', () => {
 
   it('should forward additional props to button element', () => {
     const testId = 'test-button';
-    render(
-      <VerticalListItem
-        spot={mockSpot}
-        title={mockTitle}
-        data-testid={testId}
-      />,
-    );
+    render(<TileItem spot={mockSpot} title={mockTitle} data-testid={testId} />);
     const buttonElement = screen.getByTestId(testId);
     expect(buttonElement).toBeInTheDocument();
   });
@@ -178,11 +156,7 @@ describe('VerticalListItem Component', () => {
   it('should have correct aria-label when provided', () => {
     const ariaLabel = 'Test aria label';
     render(
-      <VerticalListItem
-        spot={mockSpot}
-        title={mockTitle}
-        aria-label={ariaLabel}
-      />,
+      <TileItem spot={mockSpot} title={mockTitle} aria-label={ariaLabel} />,
     );
     const buttonElement = screen.getByRole('button', { name: ariaLabel });
     expect(buttonElement).toBeInTheDocument();

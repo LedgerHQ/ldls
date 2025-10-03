@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* eslint-disable */
-import { VerticalListItem } from './VerticalListItem';
+import { TileItem } from './TileItem';
 import figma from '@figma/code-connect';
 
 /**
@@ -11,10 +11,10 @@ import figma from '@figma/code-connect';
  */
 
 figma.connect(
-  VerticalListItem,
+  TileItem,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
   {
-    imports: ["import { VerticalListItem } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
       subtitle: figma.boolean('show-subtitle', {
@@ -42,11 +42,11 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/components-verticallistitem-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/components-TileItem-overview--docs',
       },
     ],
     example: (props) => (
-      <VerticalListItem
+      <TileItem
         title={props.title}
         subtitle={props.subtitle}
         spot={props.spot}

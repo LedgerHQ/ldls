@@ -99,7 +99,7 @@ export const Subheader = ({
       className={cn('flex items-center justify-between gap-8', className)}
       {...props}
     >
-      <div className='flex min-w-0 items-center gap-4'>
+      <div className='flex min-w-0 items-center gap-2'>
         <h2 className='min-w-0 truncate heading-4-semi-bold'>{title}</h2>
         {infoSlot}
       </div>

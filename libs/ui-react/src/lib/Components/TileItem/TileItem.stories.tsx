@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { VerticalListItem } from './VerticalListItem';
+import { TileItem } from './TileItem';
 import { Spot } from '../Spot/Spot';
 import {
   Settings,
@@ -25,9 +25,9 @@ const secondaryAction = (
   </InteractiveIcon>
 );
 
-const meta: Meta<typeof VerticalListItem> = {
-  component: VerticalListItem,
-  title: 'Containment/VerticalListItem',
+const meta: Meta<typeof TileItem> = {
+  component: TileItem,
+  title: 'Containment/TileItem',
   parameters: {
     docs: {
       source: {
@@ -84,7 +84,7 @@ const meta: Meta<typeof VerticalListItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof VerticalListItem>;
+type Story = StoryObj<typeof TileItem>;
 
 export const Base: Story = {
   args: {
@@ -98,7 +98,7 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<VerticalListItem
+<TileItem
   title="Item with Spot and Subtitle"
   subtitle="Additional information"
   spot={<Spot appearance="icon" icon={Settings} />}
@@ -130,7 +130,7 @@ export const WithoutSubtitle: Story = {
     docs: {
       source: {
         code: `
-<VerticalListItem
+<TileItem
   title="Item without Subtitle"
   spot={<Spot appearance="icon" icon={Plus} />}
   secondaryAction={(
@@ -163,7 +163,7 @@ export const WithTag: Story = {
     docs: {
       source: {
         code: `
-<VerticalListItem
+<TileItem
   title="Item with Tag"
   subtitle="Additional information"
   spot={<Spot appearance="icon" icon={Settings} />}
@@ -196,7 +196,7 @@ export const WithoutSecondaryAction: Story = {
     docs: {
       source: {
         code: `
-<VerticalListItem
+<TileItem
   title="Item without secondary action"
   subtitle="Additional information"
   spot={<Spot appearance="icon" icon={Settings} />}
@@ -211,35 +211,35 @@ export const WithoutSecondaryAction: Story = {
 export const SpotVariantsShowcase: Story = {
   render: () => (
     <div className='flex'>
-      <VerticalListItem
+      <TileItem
         title='User'
         subtitle='With subtitle'
         spot={<Spot appearance='icon' icon={User} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
-      <VerticalListItem
+      <TileItem
         title='Wallet'
         subtitle='With subtitle'
         spot={<Spot appearance='icon' icon={Wallet} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
-      <VerticalListItem
+      <TileItem
         title='Cart'
         subtitle='With subtitle'
         spot={<Spot appearance='icon' icon={Cart} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
-      <VerticalListItem
+      <TileItem
         title='Apps'
         subtitle='With subtitle'
         spot={<Spot appearance='icon' icon={Apps} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
-      <VerticalListItem
+      <TileItem
         title='Chart'
         subtitle='With subtitle'
         spot={<Spot appearance='icon' icon={Chart1} />}
@@ -255,13 +255,13 @@ export const ResponsiveLayout: Story = {
     <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
       <div>
-        <VerticalListItem
+        <TileItem
           title='Short Title'
           subtitle='Short subtitle'
           spot={<Spot appearance='icon' icon={Plus} />}
           secondaryAction={secondaryAction}
         />
-        <VerticalListItem
+        <TileItem
           title='Long Title that should truncate appropriately'
           subtitle='Long subtitle that should truncate appropriately'
           spot={<Spot appearance='icon' icon={Plus} />}
@@ -275,9 +275,9 @@ export const ResponsiveLayout: Story = {
 export const List: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='flex w-[450px] rounded-sm bg-base'>
+      <div className='flex w-[450px] bg-base'>
         {Array.from({ length: 3 }).map((_, i) => (
-          <VerticalListItem
+          <TileItem
             key={`list-1-${i}`}
             title={`Item ${i + 1}`}
             subtitle={`Subtitle ${i + 1}`}
@@ -286,9 +286,9 @@ export const List: Story = {
           />
         ))}
       </div>
-      <div className='flex w-[450px] overflow-x-auto rounded-sm bg-base'>
+      <div className='flex w-[450px] overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
-          <VerticalListItem
+          <TileItem
             key={`list-2-${i}`}
             title={
               i === 0

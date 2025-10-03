@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { cn } from '@ldls/utils-shared';
 import { Slot } from '@radix-ui/react-slot';
 
-export interface VerticalListItemProps
+export interface TileItemProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The Spot component to display on the top.
@@ -25,51 +25,55 @@ export interface VerticalListItemProps
    * The Tag component to display on the bottom of the list item.
    */
   tag?: React.ReactNode;
+  /**
+   * Whether this item is part of a carousel.
+   */
+  isCarousel?: boolean;
 }
 
 /**
- * A vertical list item component that displays a spot icon at the top, title and optional subtitle,
+ * A tile list item component that displays a spot icon at the top, title and optional subtitle,
  * and optional tag at the bottom. It functions as a clickable button with hover and active states,
  * and can optionally display a secondary action that appears on hover or focus.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-verticallistitem-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-verticallistitem-implementation--docs#dos-and-donts Guidelines}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-TileItem-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-TileItem-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
  *
  * @example
- * // Basic vertical item
- * import { VerticalListItem, Spot } from '@ledgerhq/ldls-ui-react';
+ * // Basic tile item
+ * import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Wallet } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <VerticalListItem
+ * <TileItem
  *   title="My Wallet"
  *   spot={<Spot appearance="icon" icon={Wallet} />}
  *   onClick={() => console.log('Clicked!')}
  * />
  *
  * // With subtitle and tag
- * import { VerticalListItem, Spot } from '@ledgerhq/ldls-ui-react';
+ * import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Tag } from '@ledgerhq/ldls-ui-react';
  * import { Bitcoin } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <VerticalListItem
+ * <TileItem
  *   title="Bitcoin"
  *   subtitle="BTC"
- *   spot={<Spot appearance="icon" icon={Bitcoin} />}
+ *   spot={<Spot appearance="coin" icon="btc" />}
  *   tag={<Tag label="Active" appearance="success" size="sm" />}
  * />
  *
  * // With secondary action
- * import { VerticalListItem } from '@ledgerhq/ldls-ui-react';
+ * import { TileItem } from '@ledgerhq/ldls-ui-react';
  * import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
  * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <VerticalListItem
+ * <TileItem
  *   title="Ethereum"
  *   subtitle="ETH"
- *   spot={<Spot appearance="icon" icon={Ethereum} />}
+ *   spot={<Spot appearance="coin" icon="eth" />}
  *   secondaryAction={
  *     <InteractiveIcon
  *       iconType="stroked"
@@ -80,7 +84,7 @@ export interface VerticalListItemProps
  *   }
  * />
  */
-export const VerticalListItem = ({
+export const TileItem = ({
   className,
   title,
   subtitle,
@@ -91,7 +95,7 @@ export const VerticalListItem = ({
   onMouseUp,
   onMouseLeave,
   ...props
-}: VerticalListItemProps) => {
+}: TileItemProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const onSecondaryActionClickHandler = useCallback(
