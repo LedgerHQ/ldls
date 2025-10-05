@@ -4,15 +4,16 @@
   "sourceRoot": "libs/ui-rnative/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+   "build": {
+      "executor": "@nx/rollup:rollup",
       "options": {
-        "outputPath": "libs/ui-rnative/dist",
         "main": "libs/ui-rnative/src/index.ts",
+        "outputPath": "libs/ui-rnative/dist",
         "tsConfig": "libs/ui-rnative/tsconfig.lib.json",
-        "assets": [],
-        "project": "libs/ui-rnative/package.json"
+        "compiler": "swc",
+        "sourceMap": true,
+        "buildLibsFromSource": true,
+        "useLegacyTypescriptPlugin": false
       }
     }
   },
