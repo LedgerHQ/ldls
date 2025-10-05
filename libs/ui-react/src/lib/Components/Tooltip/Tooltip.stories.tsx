@@ -50,7 +50,7 @@ export const Basic: Story = {
   },
 };
 
-export const PlacementsShowcase: Story = {
+export const AnimatedPlacements: Story = {
   render: () => {
     const placements = ['top', 'bottom', 'left', 'right'] as const;
     return (
@@ -63,13 +63,21 @@ export const PlacementsShowcase: Story = {
                 <Button>Hover</Button>
               </TooltipTrigger>
               <TooltipContent side={placement}>
-                Tooltip on {placement}
+                Slides in from {placement}
               </TooltipContent>
             </Tooltip>
           </div>
         ))}
       </div>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Each placement has its own directional slide animation that matches the tooltip position.',
+      },
+    },
   },
 };
 
@@ -80,7 +88,7 @@ export const WithIconTrigger: Story = {
         <TooltipTrigger asChild>
           <Information size={20} />
         </TooltipTrigger>
-        <TooltipContent>Additional information</TooltipContent>
+        <TooltipContent>Animated tooltip with icon trigger</TooltipContent>
       </Tooltip>
     </div>
   ),
@@ -94,24 +102,45 @@ export const LongContent: Story = {
           <Button>Hover for details</Button>
         </TooltipTrigger>
         <TooltipContent className='max-w-192'>
-          This is a longer tooltip content that spans multiple lines to
-          demonstrate text wrapping and content handling in the tooltip
-          component.
+          This is a longer tooltip content that demonstrates smooth animations
+          even with multi-line content. The tooltip slides in and out based on
+          its placement.
         </TooltipContent>
       </Tooltip>
     </div>
   ),
 };
 
-export const WithDelay: Story = {
+export const CustomDelay: Story = {
   render: () => (
     <div className='flex h-256 flex-col items-center justify-center gap-8'>
+      <p className='text-muted body-2'>Compare different delay durations</p>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button>Default delay (200ms)</Button>
+        </TooltipTrigger>
+        <TooltipContent>Default 200ms delay with animations</TooltipContent>
+      </Tooltip>
       <Tooltip delayDuration={500}>
         <TooltipTrigger asChild>
-          <Button>Hover (with 500ms delay)</Button>
+          <Button>Longer delay (500ms)</Button>
         </TooltipTrigger>
-        <TooltipContent>Tooltip with delay</TooltipContent>
+        <TooltipContent>Longer 500ms delay with animations</TooltipContent>
+      </Tooltip>
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <Button>No delay</Button>
+        </TooltipTrigger>
+        <TooltipContent>Instant tooltip with animations</TooltipContent>
       </Tooltip>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The default 200ms delay provides a good balance between responsiveness and preventing accidental triggers, while maintaining smooth animations.',
+      },
+    },
+  },
 };

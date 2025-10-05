@@ -12,13 +12,10 @@ describe('Button Component', () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
-  it('should render as an icon-only button and have an aria-label', () => {
-    render(<Button icon={Settings} aria-label='Application Settings' />);
-    const buttonElement = screen.getByRole('button', {
-      name: /application settings/i,
-    });
+  it('should render with icon and text', () => {
+    render(<Button icon={Settings}>Settings</Button>);
+    const buttonElement = screen.getByRole('button', { name: /settings/i });
     expect(buttonElement).toBeInTheDocument();
-    expect(buttonElement).toHaveClass('p-12');
   });
 
   it('should be disabled when the disabled prop is true', () => {

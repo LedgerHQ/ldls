@@ -3,7 +3,7 @@ import * as TooltipStories from './Tooltip.stories';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Tooltip" of={TooltipStories} />
+<Meta title='Components/Tooltip' of={TooltipStories} />
 
 # 💬 Tooltip
 
@@ -12,72 +12,74 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 ## Introduction
 
-Tooltips provide contextual information on hover or focus, helping users understand interface elements without cluttering the main UI.
+Tooltips provide contextual information on hover or focus, helping users understand interface elements without cluttering the main UI. They feature smooth animations and a thoughtful default delay for optimal user experience.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6387-409).
+
+## Features
+
+- **Smart Default Delay**: 200ms delay before showing to prevent accidental triggers
+- **Smooth Animations**: Direction-based slide animations for both entry and exit
+- **Accessible**: Proper focus handling and screen reader support
 
 ## Anatomy
 
 <Canvas of={TooltipStories.Basic} />
 
 - **Trigger**: The element that activates the tooltip on hover or focus
-- **Content**: The informational text or content displayed
+- **Content**: The informational text or content displayed with smooth animations
 - **Arrow**: Visual connector pointing to the trigger
 
 ## Properties
 
-### Placement
+### Placement & Animations
 
-Tooltips can appear on different sides of the trigger:
+Each placement comes with its own directional slide animation:
 
-- top (default)
-- bottom
-- left
-- right
+- top (default): Slides in from top
+- bottom: Slides in from bottom
+- left: Slides in from left
+- right: Slides in from right
 
-<Canvas of={TooltipStories.PlacementsShowcase} />
+<Canvas of={TooltipStories.AnimatedPlacements} />
+
+### Timing & Delay
+
+The tooltip has a default 200ms delay before showing, which can be customized:
+
+<Canvas of={TooltipStories.CustomDelay} />
 
 ### Content
 
-Tooltips can have short or long content. For longer content, use appropriate width classes.
+Tooltips animate smoothly regardless of content length:
 
 <Canvas of={TooltipStories.LongContent} />
 
 ### Trigger Types
 
-Can be used with buttons, icons, or any element.
+Works with any trigger while maintaining smooth animations:
 
 <Canvas of={TooltipStories.WithIconTrigger} />
 
-### Delay
-
-Control the appearance delay using delayDuration prop.
-
-<Canvas of={TooltipStories.WithDelay} />
-
 ## Accessibility
 
-To be implemented:
+- Default 200ms delay helps prevent tooltip flicker
+- Smooth animations improve visual experience
+- Proper ARIA attributes for screen readers
+- Keyboard focus triggers animations
 
-- Proper ARIA attributes
-- Keyboard navigation (focus to show)
-- Color contrast for text
-- Screen reader support
-
-<div className="rounded-8 mt-8 bg-muted p-12">
-  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
-  <ul className="space-y-2 body-2">
-    <li>Wrap your app in TooltipProvider for global configuration</li>
-    <li>Use asChild on Trigger for composing with other components</li>
-    <li>Content automatically handles positioning</li>
-    <li>
-      Avoid using for critical information - use for supplementary info only
-    </li>
+<div className='rounded-8 mt-8 bg-muted p-12'>
+  <p className='mb-4 body-2-semi-bold'>Important Notes:</p>
+  <ul className='space-y-2 body-2'>
+    <li>200ms default delay provides optimal user experience</li>
+    <li>Animations match tooltip placement for intuitive feedback</li>
+    <li>Content transitions smoothly in and out</li>
+    <li>All animations respect reduced-motion preferences</li>
   </ul>
 </div>
 
-</Tab>
-<Tab label="Implementation">
+  </Tab>
+  <Tab label="Implementation">
 
 ## Installation
 
@@ -93,28 +95,9 @@ npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-
 
 #### **About @radix-ui/react-tooltip**
 
-The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip behavior, with custom styling applied.
+The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip behavior, enhanced with our custom animations and styling.
 
-### Tailwind Configuration
-
-To use the Tooltip component with our custom Tailwind preset, configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+### Basic Usage with Animations
 
 ```tsx
 import { Tooltip, TooltipTrigger, TooltipContent, Button } from '@ledgerhq/ldls-ui-react';
@@ -126,67 +109,114 @@ function MyComponent() {
         <Button>Hover me</Button>
       </TooltipTrigger>
       <TooltipContent>
-        Tooltip content
+        Tooltip with automatic animations
       </TooltipContent>
     </Tooltip>
   );
 }
 ```
 
-### With Custom Placement
+### Placement with Directional Animations
 
 ```tsx
+// Each placement has its own directional animation
 <Tooltip>
   <TooltipTrigger>Hover</TooltipTrigger>
   <TooltipContent side="right">
-    Right-aligned tooltip
+    Slides in from the right
   </TooltipContent>
 </Tooltip>
-```
-
-### With Icon Trigger
-
-```tsx
-import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 <Tooltip>
-  <TooltipTrigger asChild>
-    <Information size={20} />
-  </TooltipTrigger>
-  <TooltipContent>
-    Info
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent side="top">
+    Slides in from the top
   </TooltipContent>
 </Tooltip>
 ```
 
-### With Delay
+### Custom Delay Duration
 
 ```tsx
-<Tooltip delayDuration={300}>
+// Override the default 200ms delay
+<Tooltip delayDuration={500}>
   <TooltipTrigger>Hover</TooltipTrigger>
   <TooltipContent>
-    Delayed tooltip
+    Shows after 500ms
+  </TooltipContent>
+</Tooltip>
+
+// Instant tooltip
+<Tooltip delayDuration={0}>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    Shows immediately
   </TooltipContent>
 </Tooltip>
 ```
 
-### Global Provider
-
-For app-wide configuration:
+### Global Provider with Default Delay
 
 ```tsx
 import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
 
 function App() {
   return (
-    <TooltipProvider delayDuration={150}>
+    <TooltipProvider delayDuration={200}> {/* Default delay */}
       {/* Your app content */}
     </TooltipProvider>
   );
 }
 ```
 
+## Animation Details
+
+The tooltip uses smooth slide animations that match its placement:
+
+```tsx
+// Animation classes are automatically applied based on side prop
+<TooltipContent side="top">    // Slides from top
+<TooltipContent side="bottom"> // Slides from bottom
+<TooltipContent side="left">   // Slides from left
+<TooltipContent side="right">  // Slides from right
+
+// Animations are handled automatically on both enter and exit
+// Entry: animate-slideInFrom{Direction}
+// Exit: data-[state=closed]:animate-slideOutTo{Direction}
+```
+
 ## Do's and Don'ts
+
+### Timing and Animation
+
+✅ **Do**
+
+```tsx
+// Use the default 200ms delay for consistent experience
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>Default delay</TooltipContent>
+</Tooltip>
+
+// Let animations handle themselves
+<TooltipContent side="right">
+  Auto-animated content
+</TooltipContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use instant tooltips unless necessary
+<Tooltip delayDuration={0}>
+  <TooltipContent>Instant show</TooltipContent>
+</Tooltip>
+
+// Don't override animation classes
+<TooltipContent className="animate-none">
+  No animations
+</TooltipContent>
+```
 
 ### Composition
 
@@ -198,55 +228,13 @@ function App() {
   <TooltipTrigger asChild>
     <Button>Hover</Button>
   </TooltipTrigger>
-  <TooltipContent>Info</TooltipContent>
+  <TooltipContent>Animated info</TooltipContent>
 </Tooltip>
 
-// Use children for content
+// Keep content simple for smooth animations
 <TooltipContent>
-  <p>Multiple</p>
-  <p>Lines</p>
+  <p>Clean content</p>
 </TooltipContent>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use without Trigger and Content
-<Tooltip>Invalid</Tooltip>
-```
-
-### Styling
-
-✅ **Do**
-
-```tsx
-// Use className for width control
-<TooltipContent className="max-w-256">
-  Long content
-</TooltipContent>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't change core styles
-<TooltipContent className="bg-base text-muted">Custom bg</TooltipContent>
-```
-
-> **Note**: Use `className` primarily for content layout (like max-width). The tooltip's core styling (colors, padding etc.) should not be overridden to maintain design system consistency.
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Use global provider for consistent delays
-<TooltipProvider delayDuration={150}>
-  <App />
-</TooltipProvider>
-
-// Keep content simple
-<TooltipContent>Short text</TooltipContent>
 ```
 
 ❌ **Don't**
@@ -260,11 +248,39 @@ function App() {
   </TooltipTrigger>
 </Tooltip>
 
-// Don't put heavy content
+// Don't put heavy content that might affect animations
 <TooltipContent>
   <ComplexComponent />
 </TooltipContent>
 ```
 
-</Tab>
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use global provider for consistent delays
+<TooltipProvider delayDuration={200}>
+  <App />
+</TooltipProvider>
+
+// Keep content light for smooth animations
+<TooltipContent>Short text</TooltipContent>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't set extremely long delays
+<Tooltip delayDuration={2000}>
+  Too long delay
+</Tooltip>
+
+// Don't override animation timing
+<TooltipContent className="duration-1000">
+  Custom duration
+</TooltipContent>
+```
+
+  </Tab>
 </CustomTabs>

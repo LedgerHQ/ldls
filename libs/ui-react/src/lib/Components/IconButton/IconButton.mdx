@@ -1,0 +1,276 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconButtonStories from './IconButton.stories';
+import { IconButton } from './IconButton';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Action/IconButton' of={IconButtonStories} />
+
+# 🔘 IconButton
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+**IconButton** is a specialized button component that displays only an icon. It's ideal for actions that can be represented by a clear, universally understood icon, such as `close`, `settings`, or `favorite`.
+
+## Properties
+
+### Overview
+
+<Canvas of={IconButtonStories.Base} />
+<Controls of={IconButtonStories.Base} />
+
+### Appearance
+
+IconButton supports the same appearances as the standard Button:
+
+- accent
+- base (default)
+- gray
+- transparent
+- no-background
+- red
+
+<Canvas of={IconButtonStories.AppearanceShowcase} />
+
+### Size
+
+IconButtons come in four different sizes:
+
+- xs (32px)
+- sm (44px)
+- md (48px, default)
+- lg (56px)
+
+<Canvas of={IconButtonStories.SizesShowcase} />
+
+### States
+
+<Canvas of={IconButtonStories.StatesShowcase} />
+
+### Tooltip
+
+You can show a tooltip with the aria-label on hover via the `tooltip` prop.
+The tooltip placement is customizable via the `tooltipPlacement` prop and tooltip text is customizable as well via the `tooltipText` prop.
+
+<Canvas of={IconButtonStories.TooltipTextVariations} />
+
+## As Child
+
+The `asChild` prop allows integration with routing by merging IconButton styles with child elements.
+This is useful when you want to use the IconButton as a child of a Link component.
+
+<Canvas of={IconButtonStories.AsChild} />
+
+  </Tab>
+  <Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+```
+
+#### **About @radix-ui/react-slot**
+
+The `@radix-ui/react-slot` dependency is used internally by the IconButton component
+to enable flexible composition patterns. It allows the IconButton to merge its props with child
+elements when needed.
+
+### Tailwind Configuration
+
+To use the IconButton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <IconButton
+      aria-label="Open settings"
+      icon={Settings}
+      size="md"
+      appearance="base"
+      tooltip // Shows a tooltip with the aria-label on hover
+    />
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+
+```tsx
+<IconButton
+  aria-label="Close menu"
+  icon={Close}
+  className="absolute top-4 right-4" // Position the button
+/>
+```
+
+### Using with Routers (asChild)
+
+The `asChild` prop allows integration with routing libraries by merging IconButton styles with child elements:
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { Link } from 'react-router-dom';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <IconButton asChild appearance="accent" aria-label="Go to settings">
+      <Link to="/settings">
+        <Settings />
+      </Link>
+    </IconButton>
+  );
+}
+```
+
+Note: When using asChild, the child element handles its own content. The icon prop is ignored - implement equivalent functionality in the child if needed.
+
+## Do's and Don'ts
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Use icon prop for consistent sizing
+<IconButton aria-label="Settings" icon={Settings} />
+
+// Let IconButton handle icon sizing
+<IconButton aria-label="Add item" icon={Plus} size="xs" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't modify icon size directly
+<IconButton aria-label="Settings">
+  <Settings size={24} />
+</IconButton>
+
+// Don't use string-based icon names
+<IconButton aria-label="Settings" icon="settings" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<IconButton
+  aria-label="Close"
+  icon={Close}
+  className="mt-4 ml-2"
+/>
+
+// Use className for positioning
+<IconButton
+  aria-label="Close"
+  icon={Close}
+  className="absolute top-0 right-0"
+/>
+
+// Use className for responsive visibility
+<IconButton
+  aria-label="Menu"
+  icon={Menu}
+  className="md:hidden"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override button's core styling
+<IconButton
+  aria-label="Settings"
+  icon={Settings}
+  className="bg-base"
+/>
+
+// Don't modify internal spacing/padding
+<IconButton
+  aria-label="Settings"
+  icon={Settings}
+  className="p-6"
+/>
+
+// Don't override icon sizing
+<IconButton
+  aria-label="Settings"
+  icon={Settings}
+  className="w-8 h-8"
+/>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Use appropriate size variant
+<IconButton aria-label="Settings" icon={Settings} size="xs" />
+
+// Always provide descriptive aria-labels
+<IconButton aria-label="Open settings menu" icon={Settings} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't use custom sizes when standard ones exist
+<IconButton
+  aria-label="Settings"
+  icon={Settings}
+  className="h-[52px]"
+/>
+
+// Don't omit aria-label
+<IconButton icon={Settings} />
+```
+
+  </Tab>
+</CustomTabs>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { AmountInput } from './AmountInput';
-import { Button } from '../Button/Button';
+import { IconButton } from '../IconButton';
 import { TransferVertical } from '../../Symbols/Icons/TransferVertical';
 
 const meta = {
@@ -144,7 +144,7 @@ export const LargeAmountDisplay: Story = {
             <div className='mt-8 text-center text-error'>{errorMessage}</div>
           )}
         </div>
-        <Button
+        <IconButton
           icon={TransferVertical}
           size='sm'
           appearance='gray'

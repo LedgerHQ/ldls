@@ -8,7 +8,7 @@ import {
   DeleteCircleFill,
   Close,
 } from '../../Symbols';
-import { Button } from '../Button';
+import { IconButton } from '../IconButton';
 
 const iconMap = {
   info: <InformationFill className='text-base' />,
@@ -136,7 +136,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           )}
         </div>
         {onClose && (
-          <Button
+          <IconButton
             appearance='transparent'
             size='xs'
             icon={Close}
