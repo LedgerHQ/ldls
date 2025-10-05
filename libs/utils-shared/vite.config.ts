@@ -20,7 +20,7 @@ export default defineConfig(() => ({
       formats: ['es' as LibraryFormats],
     },
     rollupOptions: {
-      external: ['clsx', 'tailwind-merge'],
+      external: ['clsx', 'tailwind-merge', 'react'],
     },
   },
   test: {
