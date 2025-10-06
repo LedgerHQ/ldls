@@ -6,7 +6,7 @@ export type LabelProps = {
    */
   disabled?: boolean;
   /**
-   * The required state of the checkbox.
+   * The required state of the label.
    */
   required?: boolean;
 } & TextProps;

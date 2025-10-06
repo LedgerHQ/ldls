@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { LabelProps } from './types';
 import { Text } from 'react-native';
-import { cn } from 'src/lib/utils';
+import { cn } from '../../utils';
 
 const REQUIRED_SYMBOL = '*';
 
@@ -24,14 +24,22 @@ const labelVariants = cva(['body-2'], {
  */
 export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
   (
-    { className, disabled = false, required = false, children, ...props },
+    {
+      className,
+      disabled = false,
+      required = false,
+      children,
+      onPress,
+      onLongPress,
+      ...props
+    },
     ref,
   ) => {
     return (
       <Text
         disabled={disabled}
-        onPress={disabled ? undefined : props.onPress}
-        onLongPress={disabled ? undefined : props.onLongPress}
+        onPress={disabled ? undefined : onPress}
+        onLongPress={disabled ? undefined : onLongPress}
         className={cn(labelVariants({ disabled }), className)}
         {...props}
       >
@@ -41,4 +49,4 @@ export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
   },
 );
 
-Label.displayName = 'LabelProps';
+Label.displayName = 'Label';

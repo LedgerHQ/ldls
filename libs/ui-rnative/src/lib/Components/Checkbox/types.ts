@@ -6,7 +6,7 @@ export type CheckboxProps = {
    */
   disabled?: boolean;
   /**
-   * The checked state of the checkbox.
+   * The controlled checked state of the checkbox.
    */
   checked?: boolean;
   /**
