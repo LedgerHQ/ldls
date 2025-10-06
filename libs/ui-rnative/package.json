@@ -11,21 +11,23 @@
     "nativewind"
   ],
   "type": "module",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
+  "main": "./dist/index.esm.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.esm.js",
+      "development": "./src/index.ts"
     },
     "./symbols": {
-      "types": "./src/lib/Symbols/index.ts",
-      "import": "./src/lib/Symbols/index.ts",
-      "default": "./src/lib/Symbols/index.ts"
+      "types": "./dist/src/lib/Symbols/index.ts",
+      "import": "./dist/src/lib/Symbols/index.ts",
+      "default": "./dist/src/lib/Symbols/index.ts"
     },
-    "./*": "./src/lib/Components/*/index.ts"
+    "./*": "./dist/src/lib/Components/*/index.ts"
   },
   "peerDependencies": {
     "react": "~18.3.1",

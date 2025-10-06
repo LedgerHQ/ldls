@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import * as esbuild from 'esbuild';
 import { readFileSync } from 'fs';
 
@@ -70,9 +69,5 @@ export default defineConfig({
       loader: { '.js': 'jsx' },
     },
   },
-  plugins: [react(), nxViteTsPaths()],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  plugins: [react()],
 });

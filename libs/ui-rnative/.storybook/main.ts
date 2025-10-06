@@ -1,4 +1,3 @@
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-native-web-vite';
 import { mergeConfig } from 'vite';
 
@@ -26,7 +25,6 @@ const config: StorybookConfig = {
     };
 
     return mergeConfig(config, {
-      plugins: [nxViteTsPaths()],
       css: {
         postcss: {
           plugins: [
