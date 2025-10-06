@@ -1,0 +1,220 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TileItemStories from './TileItem.stories';
+import { TileItem } from './TileItem';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Containment/TileItem' of={TileItemStories} />
+
+# 📋 TileItem
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+TileItem components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
+
+## Anatomy
+
+<Canvas of={TileItemStories.Base} />
+
+- **Spot**: Visual icon or element at the top
+- **Title**: The main label of the item (required)
+- **Subtitle (optional)**: Provides additional context
+- **Tag (optional)**: Small tag at the bottom for status or labels
+- **Secondary Action (optional)**: Action button in the top right corner, visible on hover
+
+## Properties
+
+### Overview
+
+<Canvas of={TileItemStories.Base} />
+<Controls of={TileItemStories.Base} />
+
+### Spot Variants
+
+TileItem components support various spot icons to categorize or visualize the content, including coin icons.
+
+<Canvas of={TileItemStories.SpotVariantsShowcase} />
+
+### Tag Variants
+
+Optional tags can be added at the bottom with different appearances.
+
+<Canvas of={TileItemStories.WithTag} />
+
+### Without Secondary Action
+
+The secondary action is optional and can be omitted.
+
+<Canvas of={TileItemStories.WithoutSecondaryAction} />
+
+### Carousel Variant
+
+In carousel mode, only the first and last items have rounded corners on their respective sides.
+
+<Canvas of={TileItemStories.List} />
+
+## Responsive Layout
+
+TileItem components adapt to their container width, truncating long titles and subtitles as needed.
+
+> **Key behaviors:**
+>
+> - Automatically fits container width
+> - Title truncates to one line
+> - Subtitle truncates to one line
+> - In carousel mode, only first and last items have rounded corners
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+```
+
+### Tailwind Configuration
+
+To use the TileItem component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+```tsx
+import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+function MyComponent() {
+  return (
+    <TileItem
+      title="Settings"
+      spot={<Spot appearance="icon" icon={Settings} />}
+      onClick={() => console.log('Clicked!')}
+    />
+  );
+}
+```
+
+### With Coin Icon
+
+```tsx
+import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <TileItem
+      title="Bitcoin"
+      subtitle="BTC"
+      spot={<Spot appearance="coin" icon="btc" />}
+      onClick={() => console.log('Clicked!')}
+    />
+  );
+}
+```
+
+### In Carousel
+
+```tsx
+import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <div className="flex gap-8">
+      <TileItem
+        title="Bitcoin"
+        subtitle="BTC"
+        spot={<Spot appearance="coin" icon="btc" />}
+        isCarousel
+      />
+      <TileItem
+        title="Ethereum"
+        subtitle="ETH"
+        spot={<Spot appearance="coin" icon="eth" />}
+        isCarousel
+      />
+    </div>
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<TileItem
+  title="Settings"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="mb-6"
+/>
+
+// Use className for responsive behavior
+<TileItem
+  title="Desktop Item"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="hidden lg:flex"
+/>
+
+// Use container elements to control width
+<div className="w-128">
+  <TileItem
+    title="Fixed Width"
+    spot={<Spot appearance="icon" icon={Settings} />}
+  />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<TileItem
+  title="Custom Colors"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="bg-base text-active"
+/>
+
+// Don't modify internal spacing
+<TileItem
+  title="Wrong Spacing"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="gap-2 p-2"
+/>
+
+// Don't override typography classes
+<TileItem
+  title="Bad Typography"
+  spot={<Spot appearance="icon" icon={Settings} />}
+  className="body-3"
+/>
+```
+
+</Tab>
+</CustomTabs>
