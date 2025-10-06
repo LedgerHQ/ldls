@@ -63,7 +63,7 @@ const preview: Preview = {
           'Communication',
           'Containment',
           'Selection',
-          'Text Input',
+          'Input',
           'Media & Graphics',
         ],
       },
