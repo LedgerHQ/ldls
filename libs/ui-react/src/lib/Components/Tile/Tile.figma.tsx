@@ -43,7 +43,7 @@ figma.connect(
         title={props.title}
         description={props.description}
         leadingContent={props.leadingContent}
-        tag={props.tag}
+        trailingContent={props.trailingContent}
         secondaryAction={props.secondaryAction}
         disabled={props.disabled}
       />

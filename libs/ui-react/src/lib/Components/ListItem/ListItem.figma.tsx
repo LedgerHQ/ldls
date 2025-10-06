@@ -28,12 +28,12 @@ figma.connect(
         chevron: '{<ChevronRight size={24} />}',
         value: figma.boolean('show-subvalue', {
           true: (
-            <div className="text-right">
-              <div className="body-2-semi-bold">42.00</div>
-              <div className="text-muted body-3">USD</div>
+            <div className='text-right'>
+              <div className='body-2-semi-bold'>42.00</div>
+              <div className='text-muted body-3'>USD</div>
             </div>
           ),
-          false: <div className="body-2-semi-bold">42.00</div>,
+          false: <div className='body-2-semi-bold'>42.00</div>,
         }),
         icon: figma.instance('trailing-icon'),
         tag: '{<Tag label="New" appearance="accent" />}',
@@ -41,6 +41,10 @@ figma.connect(
       }),
       disabled: figma.enum('state', {
         disabled: true,
+      }),
+      disabledTag: figma.enum('disabled-tag', {
+        none: undefined,
+        tag: '{<Tag label="New" appearance="accent" />}',
       }),
     },
     links: [
