@@ -7,7 +7,7 @@ import { InformationFill, SparksFill } from '../../Symbols';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
-  title: 'Text Input/TextInput',
+  title: 'Input/TextInput',
   parameters: {
     docs: {
       source: {

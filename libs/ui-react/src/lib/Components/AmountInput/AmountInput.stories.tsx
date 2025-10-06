@@ -5,7 +5,7 @@ import { IconButton } from '../IconButton';
 import { TransferVertical } from '../../Symbols/Icons/TransferVertical';
 
 const meta = {
-  title: 'Text Input/AmountInput',
+  title: 'Input/AmountInput',
   component: AmountInput,
   parameters: {
     layout: 'centered',

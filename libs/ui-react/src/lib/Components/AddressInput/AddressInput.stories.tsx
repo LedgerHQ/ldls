@@ -5,7 +5,7 @@ import { InformationFill, QrCode } from '../../Symbols';
 
 const meta: Meta<typeof AddressInput> = {
   component: AddressInput,
-  title: 'Text Input/AddressInput',
+  title: 'Input/AddressInput',
   parameters: {
     docs: {
       source: {
