@@ -16,7 +16,8 @@
     "react-native": "~0.77.3",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "^5.4.0",
-    "react-native-svg": "~15.8.0"
+    "react-native-svg": "~15.8.0",
+    "@ledgerhq/ldls-ui-rnative": "*"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.28.0",

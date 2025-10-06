@@ -11,7 +11,6 @@
         "outputPath": "libs/ui-rnative/dist",
         "tsConfig": "libs/ui-rnative/tsconfig.lib.json",
         "compiler": "swc",
-        "sourceMap": true,
         "buildLibsFromSource": true,
         "useLegacyTypescriptPlugin": false
       }

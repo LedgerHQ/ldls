@@ -11,21 +11,22 @@
     "nativewind"
   ],
   "type": "module",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
+  "main": "./dist/index.ts",
+  "module": "./dist/index.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.ts",
+      "import": "./dist/index.ts",
+      "default": "./dist/index.ts",
+      "development": "./src/index.ts"
     },
     "./symbols": {
-      "types": "./src/lib/Symbols/index.ts",
-      "import": "./src/lib/Symbols/index.ts",
-      "default": "./src/lib/Symbols/index.ts"
+      "types": "./dist/lib/Symbols/index.ts",
+      "import": "./dist/lib/Symbols/index.ts",
+      "default": "./dist/lib/Symbols/index.ts"
     },
-    "./*": "./src/lib/Components/*/index.ts"
+    "./*": "./dist/lib/Components/*/index.ts"
   },
   "peerDependencies": {
     "react": "~18.3.1",
@@ -38,5 +39,6 @@
       "scope:react-native",
       "type:ui"
     ]
-  }
+  },
+  "types": "./dist/index.ts"
 }
