@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 
-export type InputProps = Omit<BaseInputProps, 'prefix'>;
+export type TextInputProps = Omit<BaseInputProps, 'prefix'>;
 
 /**
  * A customizable input component with floating label, automatic clear button, error states, and focus/hover effects.
@@ -27,10 +27,10 @@ export type InputProps = Omit<BaseInputProps, 'prefix'>;
  *
  * @example
  * // Basic input with automatic clear button
- * <Input label="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+ * <TextInput label="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
  *
  * // Input with error state
- * <Input
+ * <TextInput
  *   label="Email"
  *   value={email}
  *   onChange={(e) => setEmail(e.target.value)}
@@ -39,7 +39,7 @@ export type InputProps = Omit<BaseInputProps, 'prefix'>;
  * />
  *
  * // Input with suffix element
- * <Input
+ * <TextInput
  *   label="Search"
  *   value={query}
  *   onChange={(e) => setQuery(e.target.value)}
@@ -48,7 +48,7 @@ export type InputProps = Omit<BaseInputProps, 'prefix'>;
  * />
  *
  * // Extend clear behavior with analytics
- * <Input
+ * <TextInput
  *   label="Username"
  *   value={username}
  *   onChange={(e) => setUsername(e.target.value)}
@@ -57,10 +57,10 @@ export type InputProps = Omit<BaseInputProps, 'prefix'>;
  *   }}
  * />
  */
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (props, ref) => {
     return <BaseInput ref={ref} {...props} />;
   },
 );
 
-Input.displayName = 'Input';
+TextInput.displayName = 'TextInput';

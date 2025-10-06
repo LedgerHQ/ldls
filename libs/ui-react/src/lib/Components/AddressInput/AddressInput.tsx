@@ -3,7 +3,7 @@ import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { QrCode as QrCodeIcon } from '../../Symbols';
 
-export interface AddressFieldInputProps
+export interface AddressInputProps
   extends Omit<BaseInputProps, 'prefix' | 'label'> {
   /**
    * Custom suffix element to show instead of the QR code icon.
@@ -52,10 +52,10 @@ export interface AddressFieldInputProps
  *
  * @example
  * // Basic address field with automatic clear button
- * <AddressFieldInput value={address} onChange={(e) => setAddress(e.target.value)} />
+ * <AddressInput value={address} onChange={(e) => setAddress(e.target.value)} />
  *
  * // Address field with error state
- * <AddressFieldInput
+ * <AddressInput
  *   value={invalidAddress}
  *   onChange={(e) => setInvalidAddress(e.target.value)}
  *   aria-invalid={!isValid}
@@ -63,21 +63,21 @@ export interface AddressFieldInputProps
  * />
  *
  * // Address field with QR scanner
- * <AddressFieldInput
+ * <AddressInput
  *   value={walletAddress}
  *   onChange={(e) => setWalletAddress(e.target.value)}
  *   onQrCodeClick={() => openQrScanner()}
  * />
  *
  * // Address field with custom prefix
- * <AddressFieldInput
+ * <AddressInput
  *   prefix="From:"
  *   value={senderAddress}
  *   onChange={(e) => setSenderAddress(e.target.value)}
  * />
  *
  * // Extend clear behavior with analytics
- * <AddressFieldInput
+ * <AddressInput
  *   value={recipientAddress}
  *   onChange={(e) => setRecipientAddress(e.target.value)}
  *   onQrCodeClick={() => openQrScanner()}
@@ -86,9 +86,9 @@ export interface AddressFieldInputProps
  *   }}
  * />
  */
-export const AddressFieldInput = React.forwardRef<
+export const AddressInput = React.forwardRef<
   HTMLInputElement,
-  AddressFieldInputProps
+  AddressInputProps
 >(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
@@ -125,4 +125,4 @@ export const AddressFieldInput = React.forwardRef<
   );
 });
 
-AddressFieldInput.displayName = 'AddressFieldInput';
+AddressInput.displayName = 'AddressInput';

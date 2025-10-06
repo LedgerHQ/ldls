@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* eslint-disable */
-import { Input } from './Input';
+import { TextInput } from './TextInput';
 import figma from '@figma/code-connect';
 
 /**

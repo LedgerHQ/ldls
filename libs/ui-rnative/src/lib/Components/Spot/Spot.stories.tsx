@@ -7,7 +7,7 @@ import { View, Text } from 'react-native';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,
-  title: 'Media & Graphics/Spot',
+  title: 'Communication/Spot',
   parameters: {
     docs: {
       source: {

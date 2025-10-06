@@ -1,4 +1,4 @@
-export * from './AddressFieldInput';
+export * from './AddressInput';
 export * from './AmountInput';
 export * from './Banner';
 export * from './BaseInput';
@@ -8,7 +8,7 @@ export * from './Checkbox';
 export * from './Dialog';
 export * from './IconButton';
 export * from './InteractiveIcon';
-export * from './Input';
+export * from './TextInput';
 export * from './Link';
 export * from './ListItem';
 export * from './Search';

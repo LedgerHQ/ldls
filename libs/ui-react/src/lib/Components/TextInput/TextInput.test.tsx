@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { Input } from './Input';
+import { TextInput } from './TextInput';
 
 // Helper function to create controlled input props
 const createControlledProps = (overrides = {}) => ({
@@ -15,7 +15,7 @@ const createControlledProps = (overrides = {}) => ({
 
 describe('Input Component', () => {
   it('should render correctly with floating label', () => {
-    render(<Input label='Username' {...createControlledProps()} />);
+    render(<TextInput label='Username' {...createControlledProps()} />);
     const inputElement = screen.getByRole('textbox');
     const labelElement = screen.getByText('Username');
     expect(inputElement).toBeInTheDocument();
@@ -25,14 +25,20 @@ describe('Input Component', () => {
 
   it('should render with error state when aria-invalid is true', () => {
     render(
-      <Input label='Email' {...createControlledProps()} aria-invalid={true} />,
+      <TextInput
+        label='Email'
+        {...createControlledProps()}
+        aria-invalid={true}
+      />,
     );
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toHaveAttribute('aria-invalid', 'true');
   });
 
   it('should be disabled when disabled prop is true', () => {
-    render(<Input label='Username' {...createControlledProps()} disabled />);
+    render(
+      <TextInput label='Username' {...createControlledProps()} disabled />,
+    );
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toBeDisabled();
   });
@@ -40,7 +46,7 @@ describe('Input Component', () => {
   it('should handle onChange events', () => {
     const handleChange = vi.fn();
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({ onChange: handleChange })}
       />,
@@ -53,7 +59,11 @@ describe('Input Component', () => {
 
   it('should render with different input types', () => {
     render(
-      <Input label='Password' type='password' {...createControlledProps()} />,
+      <TextInput
+        label='Password'
+        type='password'
+        {...createControlledProps()}
+      />,
     );
     const inputElement = screen.getByLabelText('Password');
     expect(inputElement).toHaveAttribute('type', 'password');
@@ -61,14 +71,16 @@ describe('Input Component', () => {
 
   it('should forward ref correctly', () => {
     const ref = { current: null };
-    render(<Input label='Username' {...createControlledProps()} ref={ref} />);
+    render(
+      <TextInput label='Username' {...createControlledProps()} ref={ref} />,
+    );
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
   });
 
   it('should set aria-describedby and show error message', () => {
     const errorMessage = 'This field is required';
     render(
-      <Input
+      <TextInput
         label='Email'
         id='test-input'
         errorMessage={errorMessage}
@@ -95,7 +107,7 @@ describe('Input Component', () => {
   it('should show error message with icon', () => {
     const errorMessage = 'This field is required';
     render(
-      <Input
+      <TextInput
         label='Email'
         errorMessage={errorMessage}
         {...createControlledProps()}
@@ -111,7 +123,7 @@ describe('Input Component', () => {
 
   it('should accept all standard HTML input props', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         maxLength={10}
         minLength={3}
@@ -129,7 +141,11 @@ describe('Input Component', () => {
 
   it('should apply custom className to input element', () => {
     render(
-      <Input label='Username' className='mt-2' {...createControlledProps()} />,
+      <TextInput
+        label='Username'
+        className='mt-2'
+        {...createControlledProps()}
+      />,
     );
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toHaveClass('mt-2');
@@ -137,7 +153,7 @@ describe('Input Component', () => {
 
   it('should render label with correct htmlFor attribute when id is provided', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         id='username-input'
         {...createControlledProps()}
@@ -152,7 +168,7 @@ describe('Input Component', () => {
     const handleBlur = vi.fn();
 
     render(
-      <Input
+      <TextInput
         label='Username'
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -170,7 +186,7 @@ describe('Input Component', () => {
 
   it('should show clear button when input has content by default', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({ value: 'test content' })}
       />,
@@ -180,14 +196,14 @@ describe('Input Component', () => {
   });
 
   it('should not show clear button when input is empty', () => {
-    render(<Input label='Username' {...createControlledProps()} />);
+    render(<TextInput label='Username' {...createControlledProps()} />);
     const clearButton = screen.queryByRole('button', { name: /clear input/i });
     expect(clearButton).not.toBeInTheDocument();
   });
 
   it('should not show clear button when input is disabled', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({ value: 'test content' })}
         disabled
@@ -201,7 +217,7 @@ describe('Input Component', () => {
     const handleClear = vi.fn();
     const handleChange = vi.fn();
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({
           value: 'test content',
@@ -222,7 +238,7 @@ describe('Input Component', () => {
   it('should render custom suffix element when provided', () => {
     const CustomElement = () => <div data-testid='custom-element'>Custom</div>;
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps()}
         suffix={<CustomElement />}
@@ -233,7 +249,7 @@ describe('Input Component', () => {
 
   it('should hide clear button when hideClearButton is true', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({ value: 'test content' })}
         hideClearButton={true}
@@ -246,7 +262,7 @@ describe('Input Component', () => {
   it('should clear input with default behavior when no onClear provided', () => {
     const handleChange = vi.fn();
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({
           value: 'test content',
@@ -264,7 +280,7 @@ describe('Input Component', () => {
 
   it('should apply containerClassName to container element', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         containerClassName='custom-container-class'
         {...createControlledProps()}
@@ -279,7 +295,7 @@ describe('Input Component', () => {
 
   it('should apply labelClassName to label element', () => {
     render(
-      <Input
+      <TextInput
         label='Username'
         labelClassName='custom-label-class'
         {...createControlledProps()}
@@ -292,7 +308,7 @@ describe('Input Component', () => {
   it('should hide suffix when clear button is shown', () => {
     const CustomElement = () => <div data-testid='custom-suffix'>Suffix</div>;
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({ value: 'test content' })}
         suffix={<CustomElement />}
@@ -310,7 +326,7 @@ describe('Input Component', () => {
   it('should focus input after clearing', () => {
     const handleChange = vi.fn();
     render(
-      <Input
+      <TextInput
         label='Username'
         {...createControlledProps({
           value: 'test content',

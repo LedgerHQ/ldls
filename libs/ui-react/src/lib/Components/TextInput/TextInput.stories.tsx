@@ -1,13 +1,13 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Input } from './Input';
+import { TextInput } from './TextInput';
 import { Button } from '../Button';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip';
 import { InformationFill, SparksFill } from '../../Symbols';
 
-const meta: Meta<typeof Input> = {
-  component: Input,
-  title: 'Text Input/Input',
+const meta: Meta<typeof TextInput> = {
+  component: TextInput,
+  title: 'Input/TextInput',
   parameters: {
     docs: {
       source: {
@@ -77,7 +77,7 @@ const meta: Meta<typeof Input> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof TextInput>;
 
 /**
  * The default input with a label.
@@ -87,7 +87,7 @@ export const Default: Story = {
     const [value, setValue] = React.useState(args.value || '');
 
     return (
-      <Input
+      <TextInput
         {...args}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -109,7 +109,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Input 
+        code: `<TextInput 
   label="Label" 
   type="text" 
 />`,
@@ -125,7 +125,7 @@ export const WithContent: Story = {
   render: () => {
     const [value, setValue] = React.useState('Initial content');
     return (
-      <Input
+      <TextInput
         label='Label'
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -136,7 +136,7 @@ export const WithContent: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Input 
+        code: `<TextInput 
   label="Label"
   value="Initial content"
   onChange={(e) => setValue(e.target.value)}
@@ -149,7 +149,7 @@ export const WithContent: Story = {
 export const ExtendedClearBehavior: Story = {
   render: () => {
     return (
-      <Input
+      <TextInput
         label='Extended Clear Behavior'
         onClear={() => {
           alert('Extended clear behavior');
@@ -161,7 +161,7 @@ export const ExtendedClearBehavior: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Input 
+        code: `<TextInput 
   label="Extended Clear Behavior"
   onClear={() => {
     alert('Extended clear behavior');
@@ -179,7 +179,7 @@ export const ControlledInputExample = () => {
     'Type here to see default clear button',
   );
   return (
-    <Input
+    <TextInput
       label='Controlled Input (Default Clear)'
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -191,7 +191,7 @@ export const ControlledInputExample = () => {
 
 export const UncontrolledInputExample = () => {
   return (
-    <Input
+    <TextInput
       label='Uncontrolled Input (Default Clear)'
       defaultValue='Default content'
       id='uncontrolled-input'
@@ -208,7 +208,7 @@ export const HiddenClearButton: Story = {
     const [value, setValue] = React.useState('Content with no clear button');
     return (
       <div className='max-w-md space-y-16'>
-        <Input
+        <TextInput
           label='Clear Button Hidden'
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -223,7 +223,7 @@ export const HiddenClearButton: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Input 
+        code: `<TextInput 
   label="Clear Button Hidden" 
   value="Content with no clear button"
   onChange={(e) => setValue(e.target.value)}
@@ -246,7 +246,7 @@ export const WithError: Story = {
 
     return (
       <div className='max-w-md'>
-        <Input
+        <TextInput
           label='Email'
           type='email'
           value={email}
@@ -272,7 +272,7 @@ export const Disabled: Story = {
   render: () => {
     const [value] = React.useState('Disabled content');
     return (
-      <Input
+      <TextInput
         label='Label'
         value={value}
         onChange={() => {
@@ -286,7 +286,7 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Input 
+        code: `<TextInput 
   label="Label" 
   value="Disabled content"
   onChange={handleChange}
@@ -341,7 +341,7 @@ export const WithCustomElement: Story = {
             <h3 className='mb-8 body-1-semi-bold'>
               With Tooltip and Clear Button
             </h3>
-            <Input
+            <TextInput
               value={value}
               onChange={(e) => setValue(e.target.value)}
               label='Username'
@@ -355,7 +355,7 @@ export const WithCustomElement: Story = {
             <h3 className='mb-8 body-1-semi-bold'>
               With Action Button and No Clear Button
             </h3>
-            <Input
+            <TextInput
               label='Generate Password'
               type='password'
               hideClearButton
@@ -464,7 +464,7 @@ export const Interactive: Story = {
       <div className='max-w-md'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-16'>
           <div className='flex flex-col gap-16'>
-            <Input
+            <TextInput
               label='Username'
               value={formData.username}
               onChange={handleChange('username')}
@@ -474,7 +474,7 @@ export const Interactive: Story = {
               suffix={<InformationFill size={20} className='text-muted' />}
             />
 
-            <Input
+            <TextInput
               label='Email'
               type='email'
               value={formData.email}
@@ -484,7 +484,7 @@ export const Interactive: Story = {
               errorMessage={errors.email}
             />
 
-            <Input
+            <TextInput
               label='Password'
               type='password'
               value={formData.password}
@@ -494,7 +494,7 @@ export const Interactive: Story = {
               errorMessage={errors.password}
             />
 
-            <Input
+            <TextInput
               label='Confirm Password'
               type='password'
               value={formData.confirmPassword}
