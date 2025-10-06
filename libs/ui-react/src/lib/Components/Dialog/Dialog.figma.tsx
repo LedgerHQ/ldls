@@ -8,8 +8,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6345-2641',
   {
     imports: [
-      "import { Dialog, DialogContent, DialogTrigger } from '@ledgerhq/ldls-ui-react'",
-      "import { SheetBar } from '@ledgerhq/ldls-ui-react'",
+      "import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react'",
       "import { Button } from '@ledgerhq/ldls-ui-react'",
     ],
     props: {
@@ -54,14 +53,14 @@ figma.connect(
           <Button>Open Dialog</Button>
         </DialogTrigger>
         <DialogContent>
-          <SheetBar
+          <DialogHeader
             size={props.sheetBar.size}
             title={props.sheetBar.title}
             description={props.sheetBar.description}
             onBack={props.sheetBar.onBack}
             onClose={props.onClose}
           />
-          <div className="p-16">
+          <div className='p-16'>
             <p>Dialog content goes here</p>
             {/* Content varies based on: {props.contentState} */}
           </div>

@@ -1,19 +1,16 @@
 // @ts-nocheck
 /* eslint-disable */
-import { TileItem } from './TileItem';
+import { Tile } from './Tile';
 import figma from '@figma/code-connect';
 
 figma.connect(
-  TileItem,
+  Tile,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
   {
-    imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Tile } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
-      subtitle: figma.boolean('show-subtitle', {
-        true: figma.string('subtitle'),
-        false: undefined,
-      }),
+      subtitle: figma.string('description'),
       spot: <Spot appearance='icon' icon={Settings} />,
       tag: figma.boolean('show-tag', {
         true: figma.instance('tag'),
@@ -39,7 +36,7 @@ figma.connect(
       },
     ],
     example: (props) => (
-      <TileItem
+      <Tile
         title={props.title}
         subtitle={props.subtitle}
         spot={props.spot}
