@@ -150,7 +150,7 @@ export const Error: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<AddressFieldInput 
+        code: `<AddressInput 
   placeholder="Enter address or ENS"
   defaultValue="invalid-address-format"
   errorMessage="Invalid address format"

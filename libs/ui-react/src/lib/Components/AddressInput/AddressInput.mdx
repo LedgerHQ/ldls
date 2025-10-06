@@ -15,14 +15,14 @@ The AddressInput component provides a specialized input field for entering crypt
 
 ## Introduction
 
-AddressFieldInput is designed specifically where users need to enter wallet addresses or ENS names. It combines the reliability of BaseInput with domain-specific UX enhancements:
+AddressInput is designed specifically where users need to enter wallet addresses or ENS names. It combines the reliability of BaseInput with domain-specific UX enhancements:
 
 - **Customizable prefix label** - defaults to "To:" but can be overridden via prefix prop
 - **Conditional QR code scanner** - Appears only when onQrCodeClick handler is provided, using consistent InteractiveIcon styling
 - **Smart clear button** - Appears automatically when content is entered
 - **Error handling** - Supports error states and error messages
 
-<Canvas of={AddressFieldInputStories.Default} />
+<Canvas of={AddressInputStories.Default} />
 
 ## Properties
 
@@ -34,25 +34,25 @@ AddressFieldInput is designed specifically where users need to enter wallet addr
 
 Shows the InteractiveIcon QR code scanner when onQrCodeClick is provided, indicating users can scan addresses directly. Without onQrCodeClick, no QR code icon appears.
 
-<Canvas of={AddressFieldInputStories.Empty} />
+<Canvas of={AddressInputStories.Empty} />
 
 ### With Content
 
 When an address is entered, the QR code icon (if present) is replaced with a clear button for easy content removal.
 
-<Canvas of={AddressFieldInputStories.WithContent} />
+<Canvas of={AddressInputStories.WithContent} />
 
 ### Disabled State
 
 Prevents interaction while maintaining visual consistency.
 
-<Canvas of={AddressFieldInputStories.Disabled} />
+<Canvas of={AddressInputStories.Disabled} />
 
 ### Error State
 
 Displays validation errors with proper ARIA attributes for accessibility.
 
-<Canvas of={AddressFieldInputStories.Error} />
+<Canvas of={AddressInputStories.Error} />
 
 ## Clear Button
 
@@ -64,7 +64,7 @@ The clear button automatically appears when content is entered, allowing users t
 
 When onQrCodeClick is not provided, no QR code icon appears.
 
-<Canvas of={AddressFieldInputStories.WithoutQrCode} />
+<Canvas of={AddressInputStories.WithoutQrCode} />
 
 ## Accessibility
 
@@ -78,11 +78,11 @@ When onQrCodeClick is not provided, no QR code icon appears.
 
 # AddressInput Implementation
 
-Technical implementation guide for the AddressFieldInput component.
+Technical implementation guide for the AddressInput component.
 
 ## Architecture
 
-AddressFieldInput extends BaseInput with Web3-specific functionality:
+AddressInput extends BaseInput with Web3-specific functionality:
 
 ```tsx
 import { AddressInput } from '@ledgerhq/ldls-ui-react';
