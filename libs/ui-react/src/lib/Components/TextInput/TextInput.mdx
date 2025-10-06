@@ -19,8 +19,8 @@ It also provides the ability to add custom elements on the right side of the inp
 
 ## Anatomy
 
-<Canvas of={InputStories.Default} />
-<Controls of={InputStories.Default} />
+<Canvas of={TextInputStories.Default} />
+<Controls of={TextInputStories.Default} />
 
 > **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
 
@@ -28,7 +28,7 @@ It also provides the ability to add custom elements on the right side of the inp
 
 A clear button (×) appears **automatically** when input has content.
 
-<Canvas of={InputStories.WithContent} />
+<Canvas of={TextInputStories.WithContent} />
 
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
@@ -36,13 +36,13 @@ A clear button (×) appears **automatically** when input has content.
 
 Use `hideClearButton` to prevent the clear button from appearing:
 
-<Canvas of={InputStories.HiddenClearButton} />
+<Canvas of={TextInputStories.HiddenClearButton} />
 
 #### **Extending the Clear Behavior**
 
 Use `onClear` to extend the default clear behavior with custom logic:
 
-<Canvas of={InputStories.ExtendedClearBehavior} />
+<Canvas of={TextInputStories.ExtendedClearBehavior} />
 
 ### Error State
 
@@ -52,7 +52,7 @@ The input supports error handling through:
 - `errorMessage`: Displays an error message below the input
 - Error styling includes a red ring and text color
 
-<Canvas of={InputStories.WithError} />
+<Canvas of={TextInputStories.WithError} />
 
 The error message will be automatically:
 
@@ -65,7 +65,7 @@ The error message will be automatically:
 
 The input supports custom interactive elements on the right side through the `suffix` prop:
 
-<Canvas of={InputStories.WithCustomElement} />
+<Canvas of={TextInputStories.WithCustomElement} />
 
 You can add: Tooltips, Action buttons, Custom icons, Any interactive element
 
@@ -73,7 +73,7 @@ You can add: Tooltips, Action buttons, Custom icons, Any interactive element
 
 ### Interactive in a Form
 
-<Canvas of={InputStories.Interactive} />
+<Canvas of={TextInputStories.Interactive} />
 
 ## Input Types
 
@@ -103,11 +103,11 @@ The Input component supports both controlled and uncontrolled usage:
 
 ### Uncontrolled (with defaultValue)
 
-<Canvas of={InputStories.UncontrolledInputExample} />
+<Canvas of={TextInputStories.UncontrolledInputExample} />
 
 ### Controlled (with value and onChange)
 
-<Canvas of={InputStories.ControlledInputExample} />
+<Canvas of={TextInputStories.ControlledInputExample} />
 
 ## Label vs Placeholder
 
