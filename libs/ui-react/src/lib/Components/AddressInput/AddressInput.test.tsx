@@ -2,18 +2,18 @@ import { expect, describe, it, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { AddressFieldInput } from './AddressFieldInput';
+import { AddressInput } from './AddressInput';
 
-describe('AddressFieldInput', () => {
+describe('AddressInput', () => {
   it('uses default prefix when none provided', () => {
-    render(<AddressFieldInput placeholder='Enter address or ENS' />);
+    render(<AddressInput placeholder='Enter address or ENS' />);
 
     // Should use default "To:" prefix
     const defaultPrefix = screen.getByText('To:');
     expect(defaultPrefix).toBeInTheDocument();
   });
   it('renders with default "To:" prefix label', () => {
-    render(<AddressFieldInput placeholder='Enter address or ENS' />);
+    render(<AddressInput placeholder='Enter address or ENS' />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -24,9 +24,7 @@ describe('AddressFieldInput', () => {
   });
 
   it('renders with custom prefix when provided', () => {
-    render(
-      <AddressFieldInput prefix='From:' placeholder='Enter address or ENS' />,
-    );
+    render(<AddressInput prefix='From:' placeholder='Enter address or ENS' />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -41,7 +39,7 @@ describe('AddressFieldInput', () => {
   });
 
   it('renders with empty prefix when provided', () => {
-    render(<AddressFieldInput prefix='' placeholder='Enter address or ENS' />);
+    render(<AddressInput prefix='' placeholder='Enter address or ENS' />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -53,7 +51,7 @@ describe('AddressFieldInput', () => {
 
   it('renders with QR code icon when onQrCodeClick is provided', () => {
     const { container } = render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         onQrCodeClick={() => {
           console.log('QR code clicked');
@@ -75,7 +73,7 @@ describe('AddressFieldInput', () => {
 
   it('does not render QR code icon when onQrCodeClick is not provided', () => {
     const { container } = render(
-      <AddressFieldInput placeholder='Enter address or ENS' />,
+      <AddressInput placeholder='Enter address or ENS' />,
     );
 
     const input = screen.getByRole('textbox');
@@ -91,7 +89,7 @@ describe('AddressFieldInput', () => {
   });
 
   it('displays placeholder correctly', () => {
-    render(<AddressFieldInput placeholder='Enter address or ENS' />);
+    render(<AddressInput placeholder='Enter address or ENS' />);
 
     const input = screen.getByPlaceholderText('Enter address or ENS');
     expect(input).toBeInTheDocument();
@@ -100,7 +98,7 @@ describe('AddressFieldInput', () => {
   it('handles controlled input', () => {
     const handleChange = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         value='0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434'
         onChange={handleChange}
@@ -116,7 +114,7 @@ describe('AddressFieldInput', () => {
 
   it('shows clear button when input has content', () => {
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         defaultValue='0x123456789'
       />,
@@ -128,7 +126,7 @@ describe('AddressFieldInput', () => {
 
   it('shows clear button when input has content (no QR code when no handler)', () => {
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         defaultValue='0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434'
       />,
@@ -145,7 +143,7 @@ describe('AddressFieldInput', () => {
 
   it('hides clear button when hideClearButton is true', () => {
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         defaultValue='0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434'
         hideClearButton={true}
@@ -159,7 +157,7 @@ describe('AddressFieldInput', () => {
   it('clears input when clear button is clicked', () => {
     const handleClear = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         defaultValue='0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434'
         onClear={handleClear}
@@ -174,7 +172,7 @@ describe('AddressFieldInput', () => {
 
   it('displays error message when provided', () => {
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         errorMessage='Invalid address format'
         aria-invalid={true}
@@ -190,7 +188,7 @@ describe('AddressFieldInput', () => {
   });
 
   it('handles disabled state', () => {
-    render(<AddressFieldInput placeholder='Enter address or ENS' disabled />);
+    render(<AddressInput placeholder='Enter address or ENS' disabled />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
@@ -199,10 +197,7 @@ describe('AddressFieldInput', () => {
   it('supports custom suffix', () => {
     const customSuffix = <span data-testid='custom-suffix'>Custom</span>;
     render(
-      <AddressFieldInput
-        placeholder='Enter address or ENS'
-        suffix={customSuffix}
-      />,
+      <AddressInput placeholder='Enter address or ENS' suffix={customSuffix} />,
     );
 
     const customElement = screen.getByTestId('custom-suffix');
@@ -212,7 +207,7 @@ describe('AddressFieldInput', () => {
   it('handles uncontrolled input changes', () => {
     const handleChange = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         onChange={handleChange}
       />,
@@ -227,7 +222,7 @@ describe('AddressFieldInput', () => {
   it('handles QR code click when provided', () => {
     const handleQrClick = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         onQrCodeClick={handleQrClick}
       />,
@@ -242,7 +237,7 @@ describe('AddressFieldInput', () => {
   it('enables QR code button when onQrCodeClick handler is provided', () => {
     const handleQrClick = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         onQrCodeClick={handleQrClick}
       />,
@@ -256,7 +251,7 @@ describe('AddressFieldInput', () => {
   it('hides QR code button when input has content (shows clear button instead)', () => {
     const handleQrClick = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         defaultValue='0x742d35cc6234567c3c3c2f308bcfb8d6e80f3434'
         onQrCodeClick={handleQrClick}
@@ -276,7 +271,7 @@ describe('AddressFieldInput', () => {
     const handleQrClick = vi.fn();
     const handleChange = vi.fn();
     render(
-      <AddressFieldInput
+      <AddressInput
         prefix='Send to:'
         placeholder='Enter destination address'
         onQrCodeClick={handleQrClick}
@@ -308,7 +303,7 @@ describe('AddressFieldInput', () => {
 
   it('conditionally shows QR code based on onQrCodeClick prop', () => {
     const { rerender } = render(
-      <AddressFieldInput placeholder='Enter address or ENS' />,
+      <AddressInput placeholder='Enter address or ENS' />,
     );
 
     // Without onQrCodeClick, no QR code button
@@ -317,7 +312,7 @@ describe('AddressFieldInput', () => {
 
     // With onQrCodeClick, QR code button appears
     rerender(
-      <AddressFieldInput
+      <AddressInput
         placeholder='Enter address or ENS'
         onQrCodeClick={() => {
           console.log('QR code clicked');

@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AddressFieldInput } from './AddressFieldInput';
+import { AddressInput } from './AddressInput';
 import { InformationFill, QrCode } from '../../Symbols';
 
-const meta: Meta<typeof AddressFieldInput> = {
-  component: AddressFieldInput,
-  title: 'Text Input/AddressFieldInput',
+const meta: Meta<typeof AddressInput> = {
+  component: AddressInput,
+  title: 'Text Input/AddressInput',
   parameters: {
     docs: {
       source: {
@@ -59,7 +59,7 @@ const meta: Meta<typeof AddressFieldInput> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof AddressFieldInput>;
+type Story = StoryObj<typeof AddressInput>;
 
 /**
  * The default address field input with "To:" prefix and clickable QR code scanner icon.
@@ -72,7 +72,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} />',
+        code: '<AddressInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} />',
       },
     },
   },
@@ -90,7 +90,7 @@ export const Empty: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} containerClassName="max-w-md" />',
       },
     },
   },
@@ -109,7 +109,7 @@ export const WithContent: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
       },
     },
   },
@@ -129,7 +129,7 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
       },
     },
   },
@@ -196,7 +196,7 @@ export const Controlled: Story = {
 
     return (
       <div className='space-y-4'>
-        <AddressFieldInput
+        <AddressInput
           placeholder='Enter address or ENS'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -242,7 +242,7 @@ export const WithoutQrCode: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<AddressFieldInput  containerClassName="max-w-md" />',
+        code: '<AddressInput  containerClassName="max-w-md" />',
       },
     },
   },

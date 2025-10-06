@@ -1,17 +1,17 @@
 import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
-import * as AddressFieldInputStories from './AddressFieldInput.stories';
+import * as AddressInputStories from './AddressInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta of={AddressFieldInputStories} title='Components/AddressFieldInput' />
+<Meta of={AddressInputStories} title='Components/AddressInput' />
 
-# AddressFieldInput
+# AddressInput
 
 <CustomTabs>
   <Tab label="Overview">
 
-The AddressFieldInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons.
+The AddressInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons.
 
-> **Layout:** The AddressFieldInput component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
 
 ## Introduction
 
@@ -76,7 +76,7 @@ When onQrCodeClick is not provided, no QR code icon appears.
 </Tab>
 <Tab label="Implementation">
 
-# AddressFieldInput Implementation
+# AddressInput Implementation
 
 Technical implementation guide for the AddressFieldInput component.
 
@@ -85,10 +85,10 @@ Technical implementation guide for the AddressFieldInput component.
 AddressFieldInput extends BaseInput with Web3-specific functionality:
 
 ```tsx
-import { AddressFieldInput } from '@ledgerhq/ldls-ui-react';
+import { AddressInput } from '@ledgerhq/ldls-ui-react';
 
 // Basic usage
-<AddressFieldInput
+<AddressInput
   placeholder="Enter address or ENS"
   value={address}
   onChange={(e) => setAddress(e.target.value)}
@@ -103,22 +103,22 @@ The component displays "To:" as the default prefix text, but this can be customi
 
 ```tsx
 // Default "To:" prefix
-<AddressFieldInput placeholder="Enter address or ENS" />
+<AddressInput placeholder="Enter address or ENS" />
 
 // Custom "From:" prefix for sender address input
-<AddressFieldInput
+<AddressInput
   prefix="From:"
   placeholder="Enter address or ENS"
 />
 
 // Custom prefix for other contexts
-<AddressFieldInput
+<AddressInput
   prefix="Withdraw to:"
   placeholder="Enter withdrawal address"
 />
 
 // Short prefix
-<AddressFieldInput
+<AddressInput
   prefix=">"
   placeholder="Enter destination"
 />
@@ -132,18 +132,18 @@ The component displays "To:" as the default prefix text, but this can be customi
 
 ```tsx
 // QR code scanner appears when onQrCodeClick is provided
-<AddressFieldInput
+<AddressInput
   placeholder="Enter address or ENS"
   onQrCodeClick={() => openQrScanner()}
 />
 
 // No QR code scanner when onQrCodeClick is not provided
-<AddressFieldInput
+<AddressInput
   placeholder="Enter address or ENS"
 />
 
 // Clear button appears automatically when there's content (regardless of QR code)
-<AddressFieldInput defaultValue="0x742d35cc..." onQrCodeClick={() => openQrScanner()} />
+<AddressInput defaultValue="0x742d35cc..." onQrCodeClick={() => openQrScanner()} />
 ```
 
 ### Address Validation
@@ -167,7 +167,7 @@ React.useEffect(() => {
   }
 }, [address]);
 
-<AddressFieldInput
+<AddressInput
   value={address}
   onChange={(e) => setAddress(e.target.value)}
   errorMessage={error}
@@ -180,7 +180,7 @@ React.useEffect(() => {
 Handle clearing logic with additional state management:
 
 ```tsx
-<AddressFieldInput
+<AddressInput
   value={walletAddress}
   onChange={(e) => setWalletAddress(e.target.value)}
   onClear={() => {
@@ -195,23 +195,23 @@ Handle clearing logic with additional state management:
 
 ### Layout & Styling
 
-The AddressFieldInput component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+The AddressInput component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
 
 ```tsx
 // ✅ Preferred: Direct width control
-<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+<AddressInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
 
 // ✅ Responsive width control
-<AddressFieldInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-md" />
+<AddressInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-md" />
 
 // Alternative: Container wrapper
 <div className="max-w-md">
-  <AddressFieldInput placeholder="Enter address or ENS" />
+  <AddressInput placeholder="Enter address or ENS" />
 </div>
 
 // Full width in form (default behavior)
 <form>
-  <AddressFieldInput placeholder="Enter address or ENS" />
+  <AddressInput placeholder="Enter address or ENS" />
 </form>
 ```
 
@@ -230,7 +230,7 @@ const handleQrScan = () => {
     });
 };
 
-<AddressFieldInput
+<AddressInput
   placeholder="Enter address or ENS"
   value={address}
   onChange={(e) => setAddress(e.target.value)}
@@ -244,7 +244,7 @@ const handleQrScan = () => {
 
 ```tsx
 <form>
-  <AddressFieldInput
+  <AddressInput
     placeholder="Enter address or ENS"
     value={recipientAddress}
     onChange={(e) => setRecipientAddress(e.target.value)}
@@ -259,7 +259,7 @@ const handleQrScan = () => {
 ### Address Book Integration
 
 ```tsx
-<AddressFieldInput
+<AddressInput
   placeholder="Enter address or ENS"
   value={selectedAddress}
   onChange={(e) => setSelectedAddress(e.target.value)}
@@ -300,13 +300,13 @@ The component includes comprehensive test coverage for:
 
 ```tsx
 // Use containerClassName for layout and width control (preferred)
-<AddressFieldInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+<AddressInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
 
 // Use containerClassName for responsive design
-<AddressFieldInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-lg" />
+<AddressInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-lg" />
 
 // Use custom prefix for different contexts
-<AddressFieldInput
+<AddressInput
   prefix="From:"
   placeholder="Enter sender address"
 />
@@ -324,14 +324,14 @@ const validateAddress = (address) => {
 ```tsx
 // Don't use generic wrapper divs when containerClassName is available
 <div className="max-w-md">
-  <AddressFieldInput placeholder="Enter address or ENS" />
+  <AddressInput placeholder="Enter address or ENS" />
 </div>
 
 // Don't disable QR code functionality without good reason
-<AddressFieldInput onQrCodeClick={undefined} />
+<AddressInput onQrCodeClick={undefined} />
 
 // Don't use overly long prefix text that affects readability
-<AddressFieldInput prefix="This is a very long prefix that takes up too much space:" />
+<AddressInput prefix="This is a very long prefix that takes up too much space:" />
 ```
 
 </Tab>
