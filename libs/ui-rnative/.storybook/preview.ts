@@ -64,7 +64,6 @@ const preview: Preview = {
           'Containment',
           'Selection',
           'Text Input',
-          'Media & Graphics',
         ],
       },
     },
