@@ -1,11 +1,11 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as InputStories from './Input.stories';
-import { Input } from './Input';
+import * as TextInputStories from './TextInput.stories';
+import { TextInput } from './TextInput';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Input" of={InputStories} />
+<Meta title='Components/TextInput' of={TextInputStories} />
 
-# ⌨️ Input
+# ⌨️ TextInput
 
 <CustomTabs>
   <Tab label="Overview">
@@ -166,13 +166,13 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Input } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
 
   return (
-    <Input
+    <TextInput
       label="Username"
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -188,13 +188,13 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Input } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
 
   return (
-    <Input
+    <TextInput
       label="Username"
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -209,13 +209,13 @@ function MyComponent() {
 Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
-import { Input } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
 
   return (
-    <Input
+    <TextInput
       label="Search"
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -236,7 +236,7 @@ You can add custom elements to the right side of the input.
 > **Note:** Define reusable components for better organization and performance:
 
 ```tsx
-import { Input } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/ldls-ui-react';
 import { InformationFill, SparksFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Action button component
@@ -255,7 +255,7 @@ function MyComponent() {
 
   return (
     <div className="space-y-16">
-      <Input
+      <TextInput
         label="Password"
         type="password"
         value={value}
@@ -274,7 +274,7 @@ function MyComponent() {
 The Input component supports error states and messages:
 
 ```tsx
-import { Input } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -287,7 +287,7 @@ function MyComponent() {
   };
 
   return (
-    <Input
+    <TextInput
       label="Username"
       value={value}
       onChange={handleChange}
@@ -310,14 +310,14 @@ The Input component uses floating labels that animate from inside the input fiel
 
 ```tsx
 // Use floating label (recommended approach)
-<Input
+<TextInput
   label="Email Address"
   value={email}
   onChange={(e) => setEmail(e.target.value)}
 />
 
 // OR use placeholder (alternative approach)
-<Input
+<TextInput
   placeholder="Enter your email address"
   value={email}
   onChange={(e) => setEmail(e.target.value)}
@@ -328,7 +328,7 @@ The Input component uses floating labels that animate from inside the input fiel
 
 ```tsx
 // DON'T DO THIS - causes visual overlap
-<Input
+<TextInput
   label="Email Address"
   placeholder="Enter your email address"  // This will overlap with the label
   value={email}
@@ -347,26 +347,26 @@ With Custom Right Element
 ```tsx
 // Use controlled input pattern
 const [value, setValue] = useState('');
-<Input
+<TextInput
   value={value}
   onChange={(e) => setValue(e.target.value)}
 />
 
 // Or use uncontrolled inputs (also valid)
-<Input defaultValue="initial value" />
+<TextInput defaultValue="initial value" />
 
 // Uncontrolled with ref access
 const inputRef = useRef<HTMLInputElement>(null);
-<Input ref={inputRef} defaultValue="" />
+<TextInput ref={inputRef} defaultValue="" />
 
 // Clear button appears automatically - hideClearButton is false by default
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
 />
 
 // Use onClear to extend default clear behavior with custom logic
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
   onClear={() => {
@@ -376,14 +376,14 @@ const inputRef = useRef<HTMLInputElement>(null);
 />
 
 // Hide clear button when needed
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
   hideClearButton
 />
 
 // Use aria-invalid for error states
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
   aria-invalid={hasError}
@@ -396,7 +396,7 @@ const inputRef = useRef<HTMLInputElement>(null);
 ```tsx
 // Don't create custom clear buttons - use the built-in one
 
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
   suffix={<Button onClick={() => setValue('')}>Clear</Button>}
@@ -404,7 +404,7 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 // Don't manually clear the value in onClear - it happens automatically
 
-<Input
+<TextInput
   value={value}
   onChange={handleChange}
   onClear={() => setValue('')} // Redundant - clearing happens by default
@@ -412,7 +412,7 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 // Don't use custom error props
 
-<Input error={true} errorText="Invalid input" />
+<TextInput error={true} errorText="Invalid input" />
 ```
 
 ### Layout and Styling
@@ -421,19 +421,19 @@ The Input component takes the **full width** of its parent container by default.
 
 ```tsx
 // ✅ Preferred: Direct width control
-<Input label="Email" containerClassName="max-w-md" />
+<TextInput label="Email" containerClassName="max-w-md" />
 
 // ✅ Responsive width control
-<Input label="Email" containerClassName="w-full md:max-w-md" />
+<TextInput label="Email" containerClassName="w-full md:max-w-md" />
 
 // Alternative: Container wrapper
 <div className="max-w-md">
-  <Input label="Email" />
+  <TextInput label="Email" />
 </div>
 
 // Full width in form (default behavior)
 <form>
-  <Input label="Search products..." />
+  <TextInput label="Search products..." />
 </form>
 ```
 
@@ -441,29 +441,29 @@ The Input component takes the **full width** of its parent container by default.
 
 ```tsx
 // Use className for input-specific styling
-<Input className="heading-0" label="Title" />
+<TextInput className="heading-0" label="Title" />
 
 // Use containerClassName for layout and width control (preferred)
-<Input label="Email" containerClassName="max-w-md" />
+<TextInput label="Email" containerClassName="max-w-md" />
 
 // Use containerClassName for responsive design
-<Input label="Email" containerClassName="w-full md:max-w-lg" />
+<TextInput label="Email" containerClassName="w-full md:max-w-lg" />
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't override core input styling
-<Input className="bg-white border-gray-300" />
+<TextInput className="bg-white border-gray-300" />
 
 // Don't modify internal padding/spacing
-<Input className="px-6 py-4" />
+<TextInput className="px-6 py-4" />
 
 // Don't override typography
-<Input className="body-4" />
+<TextInput className="body-4" />
 
 // Don't modify hover/focus states
-<Input className="hover:border-accent" />
+<TextInput className="hover:border-accent" />
 ```
 
 ### Performance Considerations
@@ -485,14 +485,14 @@ const InfoButton = React.memo(() => (
   </button>
 ));
 
-<Input suffix={<InfoButton />} />
+<TextInput suffix={<InfoButton />} />
 
 // Use stable callbacks for extending clear behavior
 const handleCustomClear = useCallback(() => {
   // Default clearing happens automatically
   customClearLogic();
 }, []);
-<Input onClear={handleCustomClear} />
+<TextInput onClear={handleCustomClear} />
 ```
 
 ❌ **Don't**
@@ -502,13 +502,13 @@ const handleCustomClear = useCallback(() => {
 import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't manually clear in onClear - it's automatic
-<Input onClear={() => setValue('')} /> // Redundant
+<TextInput onClear={() => setValue('')} /> // Redundant
 
 // Don't create new functions in render for extending behavior
-<Input onClear={() => { customLogic(); }} /> // Use useCallback instead
+<TextInput onClear={() => { customLogic(); }} /> // Use useCallback instead
 
 // Don't create complex elements inline
-<Input
+<TextInput
   suffix={
     <ComplexComponent>
       <NestedComponents />
