@@ -1,24 +1,24 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as TileItemStories from './TileItem.stories';
-import { TileItem } from './TileItem';
+import * as TileStories from './Tile.stories';
+import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title='Containment/TileItem' of={TileItemStories} />
+<Meta title='Containment/Tile' of={TileStories} />
 
-# 📋 TileItem
+# 📋 Tile
 
 <CustomTabs>
   <Tab label="Overview">
 
 ## Introduction
 
-TileItem components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
 
 ## Anatomy
 
-<Canvas of={TileItemStories.Base} />
+<Canvas of={TileStories.Base} />
 
 - **Spot**: Visual icon or element at the top
 - **Title**: The main label of the item (required)
@@ -30,36 +30,36 @@ TileItem components are compact, card-like interactive elements designed for hor
 
 ### Overview
 
-<Canvas of={TileItemStories.Base} />
-<Controls of={TileItemStories.Base} />
+<Canvas of={TileStories.Base} />
+<Controls of={TileStories.Base} />
 
 ### Spot Variants
 
-TileItem components support various spot icons to categorize or visualize the content, including coin icons.
+Tile components support various spot icons to categorize or visualize the content, including coin icons.
 
-<Canvas of={TileItemStories.SpotVariantsShowcase} />
+<Canvas of={TileStories.SpotVariantsShowcase} />
 
 ### Tag Variants
 
 Optional tags can be added at the bottom with different appearances.
 
-<Canvas of={TileItemStories.WithTag} />
+<Canvas of={TileStories.WithTag} />
 
 ### Without Secondary Action
 
 The secondary action is optional and can be omitted.
 
-<Canvas of={TileItemStories.WithoutSecondaryAction} />
+<Canvas of={TileStories.WithoutSecondaryAction} />
 
 ### Carousel Variant
 
 In carousel mode, only the first and last items have rounded corners on their respective sides.
 
-<Canvas of={TileItemStories.List} />
+<Canvas of={TileStories.List} />
 
 ## Responsive Layout
 
-TileItem components adapt to their container width, truncating long titles and subtitles as needed.
+Tile components adapt to their container width, truncating long titles and subtitles as needed.
 
 > **Key behaviors:**
 >
@@ -85,7 +85,7 @@ npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-
 
 ### Tailwind Configuration
 
-To use the TileItem component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+To use the Tile component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -105,12 +105,12 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <TileItem
+    <Tile
       title="Settings"
       spot={<Spot appearance="icon" icon={Settings} />}
       onClick={() => console.log('Clicked!')}
@@ -122,11 +122,11 @@ function MyComponent() {
 ### With Coin Icon
 
 ```tsx
-import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <TileItem
+    <Tile
       title="Bitcoin"
       subtitle="BTC"
       spot={<Spot appearance="coin" icon="btc" />}
@@ -139,18 +139,18 @@ function MyComponent() {
 ### In Carousel
 
 ```tsx
-import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
     <div className="flex gap-8">
-      <TileItem
+      <Tile
         title="Bitcoin"
         subtitle="BTC"
         spot={<Spot appearance="coin" icon="btc" />}
         isCarousel
       />
-      <TileItem
+      <Tile
         title="Ethereum"
         subtitle="ETH"
         spot={<Spot appearance="coin" icon="eth" />}
@@ -169,14 +169,14 @@ function MyComponent() {
 
 ```tsx
 // Use className for layout positioning
-<TileItem
+<Tile
   title="Settings"
   spot={<Spot appearance="icon" icon={Settings} />}
   className="mb-6"
 />
 
 // Use className for responsive behavior
-<TileItem
+<Tile
   title="Desktop Item"
   spot={<Spot appearance="icon" icon={Settings} />}
   className="hidden lg:flex"
@@ -184,7 +184,7 @@ function MyComponent() {
 
 // Use container elements to control width
 <div className="w-128">
-  <TileItem
+  <Tile
     title="Fixed Width"
     spot={<Spot appearance="icon" icon={Settings} />}
   />
@@ -195,21 +195,21 @@ function MyComponent() {
 
 ```tsx
 // Don't override core styling
-<TileItem
+<Tile
   title="Custom Colors"
   spot={<Spot appearance="icon" icon={Settings} />}
   className="bg-base text-active"
 />
 
 // Don't modify internal spacing
-<TileItem
+<Tile
   title="Wrong Spacing"
   spot={<Spot appearance="icon" icon={Settings} />}
   className="gap-2 p-2"
 />
 
 // Don't override typography classes
-<TileItem
+<Tile
   title="Bad Typography"
   spot={<Spot appearance="icon" icon={Settings} />}
   className="body-3"

@@ -2,17 +2,17 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { TileItem } from './TileItem';
+import { Tile } from './Tile';
 import { Spot } from '../Spot';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Settings } from '../../Symbols';
 
-describe('TileItem Component', () => {
+describe('Tile Component', () => {
   const mockSpot = <Spot appearance='icon' icon={Settings} />;
   const mockTitle = 'Test Item';
 
   it('should render correctly with required props', () => {
-    render(<TileItem spot={mockSpot} title={mockTitle} />);
+    render(<Tile spot={mockSpot} title={mockTitle} />);
     const buttonElement = screen.getByRole('button');
     expect(buttonElement).toBeInTheDocument();
     expect(screen.getByText(mockTitle)).toBeInTheDocument();
@@ -20,14 +20,14 @@ describe('TileItem Component', () => {
 
   it('should render subtitle when provided', () => {
     const subtitle = 'Test Subtitle';
-    render(<TileItem spot={mockSpot} title={mockTitle} subtitle={subtitle} />);
+    render(<Tile spot={mockSpot} title={mockTitle} subtitle={subtitle} />);
     expect(screen.getByText(subtitle)).toBeInTheDocument();
   });
 
   it('should render tag when provided', () => {
     const tagText = 'Test Tag';
     const mockTag = <div data-testid='mock-tag'>{tagText}</div>;
-    render(<TileItem spot={mockSpot} title={mockTitle} tag={mockTag} />);
+    render(<Tile spot={mockSpot} title={mockTitle} tag={mockTag} />);
     expect(screen.getByTestId('mock-tag')).toBeInTheDocument();
     expect(screen.getByText(tagText)).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe('TileItem Component', () => {
       </InteractiveIcon>
     );
     render(
-      <TileItem
+      <Tile
         spot={mockSpot}
         title={mockTitle}
         secondaryAction={mockSecondaryAction}
@@ -51,9 +51,7 @@ describe('TileItem Component', () => {
 
   it('should call onClick handler when main button is clicked', () => {
     const handleClick = vi.fn();
-    render(
-      <TileItem spot={mockSpot} title={mockTitle} onClick={handleClick} />,
-    );
+    render(<Tile spot={mockSpot} title={mockTitle} onClick={handleClick} />);
 
     const buttonElement = screen.getByRole('button');
     fireEvent.click(buttonElement);
@@ -62,7 +60,7 @@ describe('TileItem Component', () => {
   });
 
   it('should apply active state on mouse down', () => {
-    render(<TileItem spot={mockSpot} title={mockTitle} />);
+    render(<Tile spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -74,7 +72,7 @@ describe('TileItem Component', () => {
   });
 
   it('should remove active state on mouse up', () => {
-    render(<TileItem spot={mockSpot} title={mockTitle} />);
+    render(<Tile spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -89,7 +87,7 @@ describe('TileItem Component', () => {
   });
 
   it('should remove active state on mouse leave', () => {
-    render(<TileItem spot={mockSpot} title={mockTitle} />);
+    render(<Tile spot={mockSpot} title={mockTitle} />);
     const containerElement = screen.getByRole('button').parentElement;
 
     if (!containerElement) {
@@ -112,7 +110,7 @@ describe('TileItem Component', () => {
     );
 
     render(
-      <TileItem
+      <Tile
         spot={mockSpot}
         title={mockTitle}
         onClick={handleClick}
@@ -139,25 +137,21 @@ describe('TileItem Component', () => {
 
   it('should apply custom className to container', () => {
     const customClass = 'custom-test-class';
-    render(
-      <TileItem spot={mockSpot} title={mockTitle} className={customClass} />,
-    );
+    render(<Tile spot={mockSpot} title={mockTitle} className={customClass} />);
     const containerElement = screen.getByRole('button').parentElement;
     expect(containerElement).toHaveClass(customClass);
   });
 
   it('should forward additional props to button element', () => {
     const testId = 'test-button';
-    render(<TileItem spot={mockSpot} title={mockTitle} data-testid={testId} />);
+    render(<Tile spot={mockSpot} title={mockTitle} data-testid={testId} />);
     const buttonElement = screen.getByTestId(testId);
     expect(buttonElement).toBeInTheDocument();
   });
 
   it('should have correct aria-label when provided', () => {
     const ariaLabel = 'Test aria label';
-    render(
-      <TileItem spot={mockSpot} title={mockTitle} aria-label={ariaLabel} />,
-    );
+    render(<Tile spot={mockSpot} title={mockTitle} aria-label={ariaLabel} />);
     const buttonElement = screen.getByRole('button', { name: ariaLabel });
     expect(buttonElement).toBeInTheDocument();
   });

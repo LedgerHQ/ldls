@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { cn } from '@ldls/utils-shared';
 import { Slot } from '@radix-ui/react-slot';
 
-export interface TileItemProps
+export interface TileProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The Spot component to display on the top.
@@ -36,29 +36,29 @@ export interface TileItemProps
  * and optional tag at the bottom. It functions as a clickable button with hover and active states,
  * and can optionally display a secondary action that appears on hover or focus.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-TileItem-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-TileItem-implementation--docs#dos-and-donts Guidelines}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
  *
  * @example
  * // Basic tile item
- * import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+ * import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Wallet } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <TileItem
+ * <Tile
  *   title="My Wallet"
  *   spot={<Spot appearance="icon" icon={Wallet} />}
  *   onClick={() => console.log('Clicked!')}
  * />
  *
  * // With subtitle and tag
- * import { TileItem, Spot } from '@ledgerhq/ldls-ui-react';
+ * import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Tag } from '@ledgerhq/ldls-ui-react';
  * import { Bitcoin } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <TileItem
+ * <Tile
  *   title="Bitcoin"
  *   subtitle="BTC"
  *   spot={<Spot appearance="coin" icon="btc" />}
@@ -66,11 +66,11 @@ export interface TileItemProps
  * />
  *
  * // With secondary action
- * import { TileItem } from '@ledgerhq/ldls-ui-react';
+ * import { Tile } from '@ledgerhq/ldls-ui-react';
  * import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
  * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
  *
- * <TileItem
+ * <Tile
  *   title="Ethereum"
  *   subtitle="ETH"
  *   spot={<Spot appearance="coin" icon="eth" />}
@@ -84,7 +84,7 @@ export interface TileItemProps
  *   }
  * />
  */
-export const TileItem = ({
+export const Tile = ({
   className,
   title,
   subtitle,
@@ -95,7 +95,7 @@ export const TileItem = ({
   onMouseUp,
   onMouseLeave,
   ...props
-}: TileItemProps) => {
+}: TileProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const onSecondaryActionClickHandler = useCallback(
