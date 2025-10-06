@@ -64,6 +64,7 @@ const preview: Preview = {
           'Containment',
           'Selection',
           'Input',
+          ['TextInput', 'Search', 'AddressInput', 'AmountInput'],
           'Media & Graphics',
         ],
       },
