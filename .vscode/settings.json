@@ -7,6 +7,10 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
+  "eslint.workingDirectories": [
+    "./libs/ui-rnative",
+    "./libs/ui-react"
+  ],
   "eslint.validate": [
       "javascriptreact",
       "typescriptreact",
