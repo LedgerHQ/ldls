@@ -8,7 +8,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import { Button } from '@ledgerhq/ldls-ui-rnative';
+import { Button, Tag } from '@ledgerhq/ldls-ui-rnative';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
@@ -32,6 +32,7 @@ export const App = () => {
             <Text testID='heading' role='heading' className='mb-24 uppercase'>
               Welcome to React Native 👋
             </Text>
+            <Tag className='bg-accent' label='My Tag' appearance='accent' />
             <Button
               appearance='accent'
               onPress={() => {

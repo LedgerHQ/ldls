@@ -10,9 +10,9 @@
         "main": "libs/ui-rnative/src/index.ts",
         "outputPath": "libs/ui-rnative/dist",
         "tsConfig": "libs/ui-rnative/tsconfig.lib.json",
+        "useLegacyTypescriptPlugin": false,
         "compiler": "swc",
-        "buildLibsFromSource": true,
-        "useLegacyTypescriptPlugin": false
+        "sourceMap": true
       }
     }
   },

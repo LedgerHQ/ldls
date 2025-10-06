@@ -1,9 +1,3 @@
-const { withNx } = require('@nx/rollup/with-nx');
+import { withNx } from '@nx/rollup/with-nx';
 
-export default withNx({
-  main: './src/index.ts',
-  outputPath: './dist',
-  tsConfig: './tsconfig.lib.json',
-  format: ['esm'],
-  sourceMap: true,
-});
+export default withNx({});
