@@ -1,13 +1,13 @@
 // @ts-nocheck
 /* eslint-disable */
-import { TileItem } from './TileItem';
+import { Tile } from './Tile';
 import figma from '@figma/code-connect';
 
 figma.connect(
-  TileItem,
+  Tile,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
   {
-    imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Tile } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
       description: figma.boolean('show-description', {
@@ -39,11 +39,11 @@ figma.connect(
       },
     ],
     example: (props) => (
-      <TileItem
+      <Tile
         title={props.title}
         description={props.description}
-        spot={props.spot}
-        tag={props.tag}
+        leadingContent={props.leadingContent}
+        trailingContent={props.trailingContent}
         secondaryAction={props.secondaryAction}
         disabled={props.disabled}
       />

@@ -1,27 +1,22 @@
 // @ts-nocheck
 /* eslint-disable */
-import { Button } from './Button';
+import { IconButton } from './IconButton';
 import figma from '@figma/code-connect';
 
 figma.connect(
-  Button,
-  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=9%3A28',
+  IconButton,
+  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=8166-17796',
   {
     imports: [
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
+      "import { IconButton } from '@ledgerhq/ldls-ui-react'",
       "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
     ],
     props: {
-      // These props were automatically mapped based on your linked code:
       disabled: figma.enum('state', {
         disabled: true,
       }),
       loading: figma.enum('state', {
         loading: true,
-      }),
-      content: figma.enum('content', {
-        text: 'text',
-        iconText: 'iconText',
       }),
       appearance: figma.enum('appearance', {
         base: 'base',
@@ -32,29 +27,28 @@ figma.connect(
         red: 'red',
       }),
       size: figma.enum('size', {
+        xs: 'xs',
         sm: 'sm',
         md: 'md',
         lg: 'lg',
       }),
-      label: figma.string('label'),
       icon: figma.instance('icon'),
     },
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/action-button-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/action-iconbutton--docs',
       },
     ],
     example: (props) => (
-      <Button
+      <IconButton
         disabled={props.disabled}
         loading={props.loading}
         appearance={props.appearance}
         size={props.size}
         icon={props.icon}
-      >
-        {props.label}
-      </Button>
+        aria-label='aria-label'
+      />
     ),
   },
 );

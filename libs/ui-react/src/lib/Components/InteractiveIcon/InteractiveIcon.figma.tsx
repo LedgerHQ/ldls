@@ -13,13 +13,14 @@ figma.connect(
       "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
     ],
     props: {
-      iconType: figma.enum('type', {
+      'icon-type': figma.enum('appearance', {
         filled: 'filled',
         stroked: 'stroked',
       }),
-      children: figma.enum('type', {
-        filled: figma.instance('icon-filled'),
-        stroked: figma.instance('icon-stroked'),
+      children: figma.instance('icon'),
+      state: figma.enum('state', {
+        enabled: 'enabled',
+        disabled: 'disabled',
       }),
     },
     links: [
@@ -29,7 +30,11 @@ figma.connect(
       },
     ],
     example: (props) => (
-      <InteractiveIcon iconType={props.iconType} aria-label='Interactive icon'>
+      <InteractiveIcon
+        iconType={props['icon-type']}
+        disabled={props.state === 'disabled'}
+        aria-label='Interactive icon'
+      >
         {props.children}
       </InteractiveIcon>
     ),

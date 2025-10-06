@@ -4,17 +4,14 @@ import { TextInput } from './TextInput';
 import figma from '@figma/code-connect';
 
 figma.connect(
-  Input,
-  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2248%3A3905',
+  TextInput,
+  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2248-3905',
   {
-    imports: ["import { Input } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { TextInput } from '@ledgerhq/ldls-ui-react'"],
     props: {
-      label: figma.boolean('show-title', {
-        true: figma.string('title'),
-        false: undefined,
-      }),
-      placeholder: figma.string('description'),
-      value: figma.enum('field-state', {
+      label: figma.string('label-text'),
+      placeholder: figma.string('placeholder-text'),
+      value: figma.enum('input-state', {
         placeholder: '',
         typing: 'User input text',
       }),
@@ -28,11 +25,11 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/components-input-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/input-textinput--docs',
       },
     ],
     example: (props) => (
-      <Input
+      <TextInput
         label={props.label}
         placeholder={props.placeholder}
         value={props.value}
