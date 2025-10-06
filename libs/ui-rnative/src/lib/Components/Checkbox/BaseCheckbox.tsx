@@ -14,8 +14,8 @@ import { cn } from '../../utils';
 const baseCheckboxVariants = {
   trigger: cva(
     [
-      'rounded-xs size-20 shrink-0 transition-colors',
-      'focus-visible:ring-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+      'size-20 shrink-0 rounded-xs transition-colors',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
     ],
     {
       variants: {
