@@ -1,5 +1,5 @@
 {
-  "name": "@ldls/ui-rnative",
+  "name": "@ledgerhq/ldls-ui-rnative",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/ui-rnative/src",
   "projectType": "library",

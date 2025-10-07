@@ -9,7 +9,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 export default {
-  displayName: '@ldls/ui-core',
+  displayName: '@ledgerhq/ldls-ui-core',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
