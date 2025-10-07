@@ -22,7 +22,7 @@ jobs:
       - name: Build ui-react library
         env:
           NX_NO_CLOUD: true
-        run: npx nx build @ldls/ui-react --skip-nx-cache
+        run: npx nx build @ledgerhq/ldls-ui-react --skip-nx-cache
 
       - name: Build Storybook
         env:

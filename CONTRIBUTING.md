@@ -19,31 +19,27 @@ The LDLS Design System is structured as a monorepo using Nx, with the following 
 ldls
   ├──libs/
   │    ├── ui-core/        # Shared utilities and types
-  │    │                   # nx: @ldls/ui-core
+  │    │                   # name: @ledgerhq/ldls-ui-core
   │    │
   │    ├── ui-react/       # React components
-  │    │                   # nx: @ldls/ui-react
-  │    │                   # npm-package: @ledgerhq/ldls-ui-react
+  │    │                   # name: @ledgerhq/ldls-ui-react
   │    │
   │    ├── ui-rnative/     # React Native components
-  │    │                   # nx: @ldls/ui-rnative
-  │    │                   # npm-package: @ledgerhq/ldls-ui-rnative
+  │    │                   # name: @ledgerhq/ldls-ui-rnative
   │    │
   │    ├── design-core/    # Design tokens and themes
-  │    │                   # nx: @ldls/design-core
-  │    │                   # npm-package: @ledgerhq/ldls-design-core
+  │    │                   # name: @ledgerhq/ldls-design-core
   │    │
   │    └── utils-shared/   # Shared utilities
-  │                        # nx: @ldls/utils-shared
-  │                        # npm-package: @ledgerhq/ldls-utils-shared
+  │                        # name: @ledgerhq/ldls-utils-shared
   │
   └──apps/
        ├── app-sandbox-rnative   # Demo React-Native application
        └── app-sandbox-react     # Demo React application
 ```
 
-- NXJS libraries are prefixed by `@ldls/*` - defined in the project.json
-- Publishable npm libraries are prefixed by `@ledgerhq/ldls-*` - defined in the package.json
+- NXJS libraries are prefixed by `@ledgerhq/ldls-*` - defined in the project.json
+- NPM package will match the name of the NXJS library, to make a library publishable a private:false needs to be set
 
 ### Technology Stack
 
@@ -91,7 +87,7 @@ npx nx run @ledgerhq/ldls-ui-react:build
 npx nx run @ledgerhq/ldls-ui-rnative:build
 
 # Build shared core library
-npx nx run @ldls/ui-core:build
+npx nx run @ledgerhq/ldls-ui-core:build
 ```
 
 ### Branch Strategy
