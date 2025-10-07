@@ -7,9 +7,6 @@
       "path": "./libs/ui-rnative"
     },
     {
-      "path": "./apps/ldls-react"
-    },
-    {
       "path": "./libs/ui-react"
     },
     {
@@ -22,7 +19,10 @@
       "path": "./libs/utils-shared"
     },
     {
-      "path": "./apps/react-native"
+      "path": "./apps/app-sandbox-react"
+    },
+    {
+      "path": "./apps/app-sandbox-rnative"
     }
   ],
   "ts-node": {

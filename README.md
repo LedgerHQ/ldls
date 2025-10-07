@@ -98,7 +98,8 @@ ldls/
 │   ├── design-core/   # Design tokens and themes
 │   └── utils-shared/  # Shared utilities
 └── apps/
-    └── ldls-react/    # Demo React application
+    ├── app-sandbox-rnative  # Demo React-Native application
+    └── app-sandbox-react    # Demo React application
 ```
 
 ### Development Workflow
