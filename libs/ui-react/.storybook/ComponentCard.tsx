@@ -37,7 +37,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
       )}
     >
       {/* Content area */}
-      <div className='flex flex-1 flex-col justify-between'>
+      <div className='flex flex-1 flex-col items-center justify-between'>
         <div>
           <h3 className='mb-2 !cursor-pointer text-base heading-4-semi-bold group-hover:text-[#B380DD]'>
             {emoji && <div>{emoji}</div>}
