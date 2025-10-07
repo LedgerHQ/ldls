@@ -15,13 +15,13 @@ Shared utility functions for the LDLS design system.
 
 ```bash
 # Build the library
-npx nx build ldls-utils-shared
+npx nx build @ledgerhq/ldls-utils-shared
 
 # Run tests
-npx nx test ldls-utils-shared
+npx nx test @ledgerhq/ldls-utils-shared
 
 # Lint code
-npx nx lint ldls-utils-shared
+npx nx lint @ledgerhq/ldls-utils-shared
 ```
 
 ### Guidelines
