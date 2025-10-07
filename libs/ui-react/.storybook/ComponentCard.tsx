@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 interface ComponentCardProps {
   title: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Check } from '../../Symbols/Icons/Check';
 
 const checkboxStyles = [

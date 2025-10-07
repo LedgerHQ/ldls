@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
 
 export interface TileProps

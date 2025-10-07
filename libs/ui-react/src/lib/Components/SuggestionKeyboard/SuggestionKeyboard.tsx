@@ -1,4 +1,4 @@
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const itemClassName = cn(
   'rounded-full bg-muted px-16 py-8 text-base body-2-semi-bold',

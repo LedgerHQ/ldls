@@ -4,7 +4,7 @@ import {
   SuggestionKeyboard,
   SuggestionKeyboardItem,
 } from './SuggestionKeyboard';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const Container = ({
   className,

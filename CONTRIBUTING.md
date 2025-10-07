@@ -15,11 +15,35 @@
 
 The LDLS Design System is structured as a monorepo using Nx, with the following key libraries:
 
-- **ui-core**: Shared utilities and types used across platforms
-- **ui-react**: React-specific components and patterns
-- **ui-rnative**: React Native-specific components and patterns
-- **design-core**: Design tokens and symbols for the design system
-- **utils-shared**: Shared utility functions
+```sh
+ldls
+  ├──libs/
+  │    ├── ui-core/        # Shared utilities and types
+  │    │                   # nx: @ldls/ui-core
+  │    │
+  │    ├── ui-react/       # React components
+  │    │                   # nx: @ldls/ui-react
+  │    │                   # npm-package: @ledgerhq/ldls-ui-react
+  │    │
+  │    ├── ui-rnative/     # React Native components
+  │    │                   # nx: @ldls/ui-rnative
+  │    │                   # npm-package: @ledgerhq/ldls-ui-rnative
+  │    │
+  │    ├── design-core/    # Design tokens and themes
+  │    │                   # nx: @ldls/design-core
+  │    │                   # npm-package: @ledgerhq/ldls-design-core
+  │    │
+  │    └── utils-shared/   # Shared utilities
+  │                        # nx: @ldls/utils-shared
+  │                        # npm-package: @ledgerhq/ldls-utils-shared
+  │
+  └──apps/
+       ├── app-sandbox-rnative   # Demo React-Native application
+       └── app-sandbox-react     # Demo React application
+```
+
+- NXJS libraries are prefixed by `@ldls/*` - defined in the project.json
+- Publishable npm libraries are prefixed by `@ledgerhq/ldls-*` - defined in the package.json
 
 ### Technology Stack
 
@@ -50,21 +74,6 @@ npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 
 # Build all libraries
 npx nx run-many --target=build --all
-```
-
-### Project Structure
-
-```
-ldls/
-├── libs/
-│   ├── ui-core/       # Shared utilities and types
-│   ├── ui-react/      # React components
-│   ├── ui-rnative/    # React Native components
-│   ├── design-core/   # Design tokens and themes
-│   └── utils-shared/  # Shared utilities
-└── apps/
-    ├── app-sandbox-rnative  # Demo React-Native application
-    └── app-sandbox-react    # Demo React application
 ```
 
 ## Development Workflow

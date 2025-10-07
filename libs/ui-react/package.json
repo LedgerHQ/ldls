@@ -38,6 +38,9 @@
       "type:ui"
     ]
   },
+  "dependencies": {
+    "@ledgerhq/ldls-utils-shared": "*"
+  },
   "peerDependencies": {
     "@radix-ui/react-checkbox": "^1.3.2",
     "@radix-ui/react-dialog": "^1.1.15",
