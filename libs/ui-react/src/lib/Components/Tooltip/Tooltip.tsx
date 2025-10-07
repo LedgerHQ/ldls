@@ -1,6 +1,6 @@
 import React from 'react';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 
 const tooltipContentVariants = cva(

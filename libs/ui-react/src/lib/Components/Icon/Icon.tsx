@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 import { createElement, forwardRef } from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 

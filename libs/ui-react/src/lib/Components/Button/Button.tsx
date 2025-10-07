@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva } from 'class-variance-authority';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { BaseButton, BaseButtonProps } from './BaseButton';
 
 const buttonVariants = cva('', {

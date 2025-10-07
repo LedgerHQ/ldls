@@ -15,7 +15,7 @@ import {
   ChevronRight,
 } from '../../Symbols';
 import { Switch } from '../Switch';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Spot } from '../Spot/Spot';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {

@@ -4,7 +4,7 @@ import { Subheader } from './Subheader';
 import { Link } from '../Link/Link';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import { Information } from '../../Symbols';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const Container = ({
   className,
