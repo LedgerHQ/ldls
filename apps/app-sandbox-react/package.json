@@ -1,0 +1,8 @@
+{
+  "name": "app-sandbox-react",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "app-sandbox-react"
+  }
+}

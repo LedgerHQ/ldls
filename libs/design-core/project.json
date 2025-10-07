@@ -1,5 +1,5 @@
 {
-  "name": "@ledgerhq/ldls-design-core",
+  "name": "@ldls/design-core",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/design-core/src",
   "projectType": "library",

@@ -16,7 +16,7 @@ const processConfig = async () => {
    * @type {import('metro-config').MetroConfig}
    */
   const customConfig = {
-    cacheVersion: '@ldls/react-native',
+    cacheVersion: 'app-sandbox-rnative',
     transformer: {
       babelTransformerPath: require.resolve('react-native-svg-transformer'),
     },
