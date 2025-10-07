@@ -1,0 +1,17 @@
+@media (max-width: 600px) {
+  .disclaimer {
+    display: none !important;
+  }
+}
+
+.mobile-logo {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-logo {
+    display: block;
+    width: 120px; /* adjust as needed */
+    margin: 0 auto 16px auto; /* center and add bottom spacing */
+  }
+}
