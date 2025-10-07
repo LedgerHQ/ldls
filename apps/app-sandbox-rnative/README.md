@@ -47,7 +47,7 @@ sudo gem install cocoapods
 ### 4. Install iOS Dependencies
 
 ```bash
-cd apps/react-native/ios
+cd apps/app-sandbox-rnative/ios
 pod install
 ```
 
@@ -68,7 +68,7 @@ npm install
 npx nx run react-native:start:ios
 
 # Or run directly with React Native CLI
-cd apps/react-native
+cd apps/app-sandbox-rnative
 npm run ios
 ```
 
@@ -79,7 +79,7 @@ npm run ios
 npx nx run react-native:start:android
 
 # Or run directly with React Native CLI
-cd apps/react-native
+cd apps/app-sandbox-rnative
 npm run android
 ```
 
@@ -88,7 +88,7 @@ npm run android
 Start the Metro bundler separately if needed:
 
 ```bash
-cd apps/react-native
+cd apps/app-sandbox-rnative
 npx react-native start
 ```
 
