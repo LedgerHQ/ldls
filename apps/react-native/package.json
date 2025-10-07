@@ -1,5 +1,5 @@
 {
-  "name": "@ldls/react-native",
+  "name": "app-sandbox-rnative",
   "version": "0.0.1",
   "private": true,
   "main": "./src/main.tsx",
@@ -32,6 +32,7 @@
     "preset": "react-native"
   },
   "nx": {
+    "name": "app-sandbox-rnative",
     "tags": [
       "scope:react-native"
     ]
