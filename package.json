@@ -11,9 +11,9 @@
     "clsx": "^2.1.1",
     "invariant": "^2.2.4",
     "lodash-es": "^4.17.21",
-    "react-native-reanimated": "~3.17.4",
+    "react-native-reanimated": "~4.1.2",
     "react-native-safe-area-context": "^5.4.0",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -96,15 +96,15 @@
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "nativewind": "^4.1.23",
+    "nativewind": "^4.2.1",
     "nx": "21.2.2",
     "postcss": "^8.4.38",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-native": "~0.77.3",
-    "react-native-svg": "~15.8.0",
+    "react-native": "~0.81.4",
+    "react-native-svg": "~15.13.0",
     "react-native-svg-transformer": "~1.5.0",
     "react-native-svg-web": "^1.0.9",
     "react-native-web": "^0.20.0",
@@ -143,9 +143,9 @@
     }
   },
   "peerDependencies": {
-    "nativewind": "^4.1.23",
+    "nativewind": "^4.2.1",
     "react": "18.3.1",
-    "react-native": "~0.77.3",
+    "react-native": "~0.81.4",
     "tailwindcss": "^3.4.3"
   }
 }
