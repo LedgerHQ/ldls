@@ -1,7 +1,6 @@
 {
-  "name": "@ldls/utils-shared",
-  "version": "0.0.4",
-  "private": true,
+  "name": "@ledgerhq/ldls-utils-shared",
+  "version": "0.0.5",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

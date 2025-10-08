@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 interface ComponentCardProps {
   title: string;
@@ -30,7 +30,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
     <button
       onClick={handleClick}
       className={cn(
-        'group relative flex flex-col gap-16 overflow-hidden rounded-2xl border-2 border-[#F4F4F4] p-16 transition-all duration-200',
+        'group relative flex flex-col gap-16 overflow-hidden rounded-md border-2 border-[#F4F4F4] px-8 pt-8 transition-all duration-200',
         'hover:-translate-y-1 hover:border-[#B380DD] hover:shadow-lg',
         'cursor-pointer',
         className,
@@ -39,16 +39,17 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
       {/* Content area */}
       <div className='flex flex-1 flex-col items-center justify-between'>
         <div>
-          <h3 className='mb-2 !cursor-pointer text-base heading-4-semi-bold group-hover:text-[#B380DD]'>
+          <h4 className='!mb-0 block !cursor-pointer text-base heading-4 group-hover:text-[#B380DD] md:hidden'>
+            {emoji && <div>{emoji}</div>}
+            {title}
+          </h4>
+          <h3 className='!mb-0 hidden !cursor-pointer text-base heading-4 group-hover:text-[#B380DD] md:block'>
             {emoji && <div>{emoji}</div>}
             {title}
           </h3>
-          <p className='line-clamp-2 text-muted body-3'>{description}</p>
-        </div>
-
-        {/* Hover indicator */}
-        <div className='mt-4 flex items-center text-[#B380DD] opacity-0 transition-opacity duration-200 group-hover:opacity-100'>
-          <div className='body-3'>Learn more</div>
+          <p className='line-clamp-2 hidden text-muted body-3 md:block'>
+            {description}
+          </p>
         </div>
       </div>
     </button>
@@ -65,12 +66,7 @@ export const ComponentCardGrid: React.FC<ComponentCardGridProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={cn(
-        'grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3',
-        className,
-      )}
-    >
+    <div className={cn('grid grid-cols-2 gap-8 lg:grid-cols-3', className)}>
       {children}
     </div>
   );

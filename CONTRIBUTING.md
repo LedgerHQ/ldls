@@ -15,11 +15,31 @@
 
 The LDLS Design System is structured as a monorepo using Nx, with the following key libraries:
 
-- **ui-core**: Shared utilities and types used across platforms
-- **ui-react**: React-specific components and patterns
-- **ui-rnative**: React Native-specific components and patterns
-- **design-core**: Design tokens and symbols for the design system
-- **utils-shared**: Shared utility functions
+```sh
+ldls
+  ├──libs/
+  │    ├── ui-core/        # Shared utilities and types
+  │    │                   # name: @ledgerhq/ldls-ui-core
+  │    │
+  │    ├── ui-react/       # React components
+  │    │                   # name: @ledgerhq/ldls-ui-react
+  │    │
+  │    ├── ui-rnative/     # React Native components
+  │    │                   # name: @ledgerhq/ldls-ui-rnative
+  │    │
+  │    ├── design-core/    # Design tokens and themes
+  │    │                   # name: @ledgerhq/ldls-design-core
+  │    │
+  │    └── utils-shared/   # Shared utilities
+  │                        # name: @ledgerhq/ldls-utils-shared
+  │
+  └──apps/
+       ├── app-sandbox-rnative   # Demo React-Native application
+       └── app-sandbox-react     # Demo React application
+```
+
+- NXJS libraries are prefixed by `@ledgerhq/ldls-*` - defined in the project.json
+- NPM package will match the name of the NXJS library, to make a library publishable a private:false needs to be set
 
 ### Technology Stack
 
@@ -52,21 +72,6 @@ npx nx run @ledgerhq/ldls-ui-react:serve:storybook
 npx nx run-many --target=build --all
 ```
 
-### Project Structure
-
-```
-ldls/
-├── libs/
-│   ├── ui-core/       # Shared utilities and types
-│   ├── ui-react/      # React components
-│   ├── ui-rnative/    # React Native components
-│   ├── design-core/   # Design tokens and themes
-│   └── utils-shared/  # Shared utilities
-└── apps/
-    ├── app-sandbox-rnative  # Demo React-Native application
-    └── app-sandbox-react    # Demo React application
-```
-
 ## Development Workflow
 
 ### Running the Libraries
@@ -82,7 +87,7 @@ npx nx run @ledgerhq/ldls-ui-react:build
 npx nx run @ledgerhq/ldls-ui-rnative:build
 
 # Build shared core library
-npx nx run @ldls/ui-core:build
+npx nx run @ledgerhq/ldls-ui-core:build
 ```
 
 ### Branch Strategy

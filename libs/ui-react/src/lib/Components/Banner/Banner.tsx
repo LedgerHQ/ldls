@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import {
   InformationFill,
   CheckmarkCircleFill,

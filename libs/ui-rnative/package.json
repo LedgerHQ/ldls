@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-rnative",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
@@ -26,6 +26,9 @@
       "default": "./src/lib/Symbols/index.ts"
     },
     "./*": "./src/lib/Components/*/index.ts"
+  },
+  "dependencies": {
+    "@ledgerhq/ldls-utils-shared": "0.0.5"
   },
   "peerDependencies": {
     "react": "~18.3.1",

@@ -1,4 +1,4 @@
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 function Skeleton({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div

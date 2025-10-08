@@ -9,7 +9,7 @@ import {
   Spinner,
   WarningFill,
 } from '../../Symbols';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const spotVariants = cva(
   'flex items-center justify-center rounded-full bg-muted-transparent',

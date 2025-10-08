@@ -1,4 +1,4 @@
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
 
 interface SubheaderProps

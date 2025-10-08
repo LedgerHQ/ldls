@@ -1,6 +1,6 @@
 {
-  "name": "@ldls/ui-core",
-  "version": "0.0.2",
+  "name": "@ledgerhq/ldls-ui-core",
+  "version": "0.0.3",
   "private": true,
   "type": "module",
   "main": "./dist/index.esm.js",

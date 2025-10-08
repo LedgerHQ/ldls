@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@ldls/utils-shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { IconSize } from '../Icon/Icon';
 import { Slot } from '@radix-ui/react-slot';
 import { ExternalLink } from '../../Symbols';
