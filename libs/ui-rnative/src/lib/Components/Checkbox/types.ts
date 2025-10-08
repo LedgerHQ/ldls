@@ -2,11 +2,11 @@ import { SlottablePressableProps } from '../../types';
 
 export type CheckboxProps = {
   /**
-   * The controlled checked state of the checkbox.
+   * The disabled state of the checkbox.
    */
   disabled?: boolean;
   /**
-   * The checked state of the checkbox.
+   * The controlled checked state of the checkbox.
    */
   checked?: boolean;
   /**
@@ -17,4 +17,8 @@ export type CheckboxProps = {
    * The default checked state of the checkbox.
    */
   defaultChecked?: boolean;
+  /**
+   * The label of the checkbox.
+   */
+  label?: React.ReactNode;
 } & SlottablePressableProps;

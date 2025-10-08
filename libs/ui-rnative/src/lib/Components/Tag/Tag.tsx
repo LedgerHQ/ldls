@@ -53,7 +53,7 @@ export const Tag = React.forwardRef<View, TagProps>(
         {IconComponent && (
           <IconComponent size={calculatedIconSize} className='shrink-0' />
         )}
-        <Text>{label}</Text>
+        <Text className='text-inherit'>{label}</Text>
       </View>
     );
   },

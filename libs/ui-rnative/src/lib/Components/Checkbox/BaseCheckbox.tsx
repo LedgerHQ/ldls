@@ -9,7 +9,7 @@ import {
 } from '../../types';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
 import { cva } from 'class-variance-authority';
-import { cn } from 'src/lib/utils';
+import { cn } from '../../utils';
 
 const baseCheckboxVariants = {
   trigger: cva(
