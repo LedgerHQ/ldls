@@ -33,7 +33,6 @@ const checkboxVariants = {
  * <Checkbox
  *   label="My label"
  *   checked={checked}
-
  *   onCheckedChange={setChecked}
  * />
  *
@@ -52,7 +51,6 @@ export const Checkbox = React.forwardRef<
       defaultChecked = false,
       disabled,
       label,
-
       ...props
     },
     ref,
