@@ -21,8 +21,4 @@ export type CheckboxProps = {
    * The label of the checkbox.
    */
   label?: React.ReactNode;
-  /**
-   * The required state of the checkbox.
-   */
-  required?: boolean;
 } & SlottablePressableProps;

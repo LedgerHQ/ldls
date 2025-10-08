@@ -5,8 +5,6 @@ import { LabelProps } from './types';
 import { Text } from 'react-native';
 import { cn } from '../../utils';
 
-const REQUIRED_SYMBOL = '*';
-
 const labelVariants = cva(['body-2'], {
   variants: {
     disabled: {
@@ -24,15 +22,7 @@ const labelVariants = cva(['body-2'], {
  */
 export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
   (
-    {
-      className,
-      disabled = false,
-      required = false,
-      children,
-      onPress,
-      onLongPress,
-      ...props
-    },
+    { className, disabled = false, children, onPress, onLongPress, ...props },
     ref,
   ) => {
     return (
@@ -43,7 +33,7 @@ export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
         className={cn(labelVariants({ disabled }), className)}
         {...props}
       >
-        {children} {required && REQUIRED_SYMBOL}
+        {children}
       </Text>
     );
   },

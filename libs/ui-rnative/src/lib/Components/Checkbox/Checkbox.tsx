@@ -33,7 +33,7 @@ const checkboxVariants = {
  * <Checkbox
  *   label="My label"
  *   checked={checked}
- *   required
+
  *   onCheckedChange={setChecked}
  * />
  *
@@ -52,7 +52,7 @@ export const Checkbox = React.forwardRef<
       defaultChecked = false,
       disabled,
       label,
-      required,
+
       ...props
     },
     ref,
@@ -77,11 +77,7 @@ export const Checkbox = React.forwardRef<
           </BaseCheckboxIndicator>
         </BaseCheckboxRoot>
         {label && (
-          <Label
-            disabled={disabled}
-            onPress={() => onCheckedChange(!checked)}
-            required={required}
-          >
+          <Label disabled={disabled} onPress={() => onCheckedChange(!checked)}>
             {label}
           </Label>
         )}

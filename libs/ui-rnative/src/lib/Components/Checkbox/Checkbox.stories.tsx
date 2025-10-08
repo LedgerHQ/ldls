@@ -89,17 +89,6 @@ export const AllStates: Story = {
           </div>
         </div>
       </div>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Required</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
-            <Checkbox label='Unchecked' required defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
-            <Checkbox label='Checked' required defaultChecked />
-          </div>
-        </div>
-      </div>
     </div>
   ),
 };
