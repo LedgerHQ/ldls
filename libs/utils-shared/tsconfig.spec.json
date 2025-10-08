@@ -9,8 +9,9 @@
       "node",
       "vitest"
     ],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true
   },
   "include": [
