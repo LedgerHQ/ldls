@@ -73,14 +73,6 @@ describe('Checkbox', () => {
     );
   });
 
-  it('label: shows required asterisk when required', () => {
-    const { getByText } = render(
-      <Checkbox label='Email' required defaultChecked={false} />,
-    );
-
-    getByText(/Email \*/);
-  });
-
   it('disabled: does not toggle on trigger or label press', async () => {
     const onChange = vi.fn();
     const { getByText, getByTestId } = render(

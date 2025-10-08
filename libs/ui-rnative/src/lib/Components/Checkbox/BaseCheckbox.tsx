@@ -95,7 +95,7 @@ const BaseCheckboxTrigger = React.forwardRef<
 >(({ asChild, onPress: onPressProp, className, ...props }, ref) => {
   const { disabled, checked, onCheckedChange, nativeID } =
     useBaseCheckboxContext({
-      consumerName: INDICATOR_COMPONENT_NAME,
+      consumerName: TRIGGER_COMPONENT_NAME,
       contextRequired: true,
     });
 

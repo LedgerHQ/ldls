@@ -6,8 +6,6 @@ import { SwitchProps } from './types';
 import { useControllableState } from '../../utils';
 
 /**
- * A customizable switch component built on top of Radix UI Switch primitive.
- *
  * The switch follows the design system tokens and supports checked, unchecked,
  * disabled, and focus states with proper hover and active interactions.
  *

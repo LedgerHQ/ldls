@@ -65,20 +65,17 @@ Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
 
 # Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-checkbox
+npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
 ```
 
-#### **About @radix-ui/react-checkbox**
+#### **About NativeWind**
 
-The `@radix-ui/react-checkbox` dependency is used internally by the Checkbox component
-to provide accessible, unstyled checkbox functionality with proper keyboard navigation,
-focus management, and screen reader support. It handles the core checkbox behavior including
-checked/unchecked states, form integration, and accessibility features, while our component adds the visual styling and design system tokens.
+The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities. It provides the `className` prop support and ensures consistent styling across platforms.
 
-### Tailwind Configuration
+### NativeWind Configuration
 
 To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
@@ -89,7 +86,7 @@ import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -100,7 +97,7 @@ export default config;
 ## Basic Usage
 
 ```tsx
-import { Checkbox } from '@ledgerhq/ldls-ui-react';
+import { Checkbox } from '@ledgerhq/ldls-ui-rnative';
 
 function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
