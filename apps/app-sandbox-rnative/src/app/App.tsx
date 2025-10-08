@@ -8,7 +8,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import { Button } from '@ledgerhq/ldls-ui-rnative';
+import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
@@ -29,6 +29,7 @@ export const App = () => {
           style={styles.scrollView}
         >
           <View style={styles.section}>
+            <Switch testID='switch' aria-valuetext='custom' />
             <Text testID='heading' role='heading' className='mb-24 uppercase'>
               Welcome to React Native 👋
             </Text>
