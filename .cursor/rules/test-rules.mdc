@@ -1,0 +1,10 @@
+---
+globs: *.test.tsx,*.test.ts
+alwaysApply: false
+---
+
+# Testing target elements
+- For react target elements using `data-testid`
+- For react-native target elements using `testID`
+- Target content / text when it makes no sense to use `data-testid` or `testID`
+
