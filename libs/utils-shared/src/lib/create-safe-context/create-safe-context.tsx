@@ -1,49 +1,45 @@
 import { createContext, FC, ReactNode, useContext, useMemo } from 'react';
 
-export function createSafeContext<ContextValueType extends object>(
+export function createSafeContext<ContextValue extends object>(
   rootComponentName: string,
-  defaultContext?: ContextValueType,
+  defaultContext?: ContextValue,
 ) {
-  const Context = createContext<ContextValueType | undefined>(defaultContext);
+  const Context = createContext<ContextValue | undefined>(defaultContext);
 
   const Provider: FC<{
     children: ReactNode;
-    value: ContextValueType;
+    value: ContextValue;
   }> = ({ children, value: context }) => {
     // Only re-memoize when prop values change
     const memoValue = useMemo(
       () => context,
       Object.values(context ?? {}),
-    ) as ContextValueType;
+    ) as ContextValue;
 
     return <Context.Provider value={memoValue}>{children}</Context.Provider>;
   };
 
   Provider.displayName = rootComponentName + 'Provider';
 
-  function useSafeContext({
+  function useSafeContext<ContextRequired extends boolean = boolean>({
     consumerName,
     contextRequired,
   }: {
     consumerName: string;
-    contextRequired: boolean;
-  }) {
+    contextRequired: ContextRequired;
+  }): ContextRequired extends true ? ContextValue : Partial<ContextValue> {
     const context = useContext(Context);
 
     if (context) {
       return context;
     }
-
-    /**
-     * If the context is required, throw an error.
-     */
     if (contextRequired) {
       throw new Error(
         `\`${consumerName}\` must be used within \`${rootComponentName}\``,
       );
     }
 
-    return (defaultContext || {}) as ContextValueType;
+    return (defaultContext || {}) as ContextValue;
   }
 
   return [Provider, useSafeContext] as const;
