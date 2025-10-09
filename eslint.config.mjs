@@ -6,6 +6,7 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig(
   ...nx.configs['flat/base'],
+  ...nx.configs['flat/react'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   ...tailwind.configs['flat/recommended'],
@@ -18,8 +19,15 @@ export default defineConfig(
     ],
   },
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
     rules: {
+      /**
+       * tailwind
+       */
+      'tailwindcss/no-custom-classname': 'error',
+      /**
+       * nx
+       */
       '@nx/enforce-module-boundaries': [
         'error',
         {
@@ -49,22 +57,6 @@ export default defineConfig(
           ],
         },
       ],
-    },
-  },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
-    // Override or add rules here
-    rules: {
-      'tailwindcss/no-custom-classname': 'error',
     },
   },
   eslintPluginPrettierRecommended,
