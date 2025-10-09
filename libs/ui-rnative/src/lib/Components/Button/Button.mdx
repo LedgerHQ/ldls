@@ -108,53 +108,8 @@ To be implemented:
 
 </Tab> <Tab label="Implementation ">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
-```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
-```
-
-#### **About NativeWind**
-
-The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities. It provides the `className` prop support and ensures consistent styling across platforms.
-
-### NativeWind Configuration
-
-To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Metro Configuration
-
-Add NativeWind to your `metro.config.js`:
-
-```javascript
-const { getDefaultConfig } = require('expo/metro-config');
-const { withNativeWind } = require('nativewind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withNativeWind(config, { input: './global.css' });
-```
+## Setup
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
 
