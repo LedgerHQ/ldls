@@ -7,7 +7,7 @@ import { useControllableState } from '../../utils';
 
 /**
  * The switch follows the design system tokens and supports checked, unchecked,
- * disabled, and focus states with proper hover and active interactions.
+ * disabled, and focus states with proper active interactions.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-switch--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-switch--docs#dos-and-donts Guidelines}
