@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Checkbox } from './Checkbox';
+import { Switch } from './Switch';
 
-const meta: Meta<typeof Checkbox> = {
-  title: 'Selection/Checkbox',
-  component: Checkbox,
+const meta: Meta<typeof Switch> = {
+  title: 'Selection/Switch',
+  component: Switch,
   parameters: {
     layout: 'centered',
     docs: {
@@ -14,13 +14,10 @@ const meta: Meta<typeof Checkbox> = {
       },
     },
   },
-  args: {
-    label: 'Checkbox',
-  },
   argTypes: {
     checked: {
       control: 'boolean',
-      description: 'The controlled checked state of the checkbox',
+      description: 'The controlled checked state of the switch',
     },
     defaultChecked: {
       control: 'boolean',
@@ -28,15 +25,11 @@ const meta: Meta<typeof Checkbox> = {
     },
     disabled: {
       control: 'boolean',
-      description: 'If true, the checkbox is disabled',
+      description: 'If true, the switch is disabled',
     },
     onCheckedChange: {
       action: 'checked changed',
       description: 'Callback function called when the checked state changes',
-    },
-    label: {
-      control: 'text',
-      description: 'The label text of the checkbox',
     },
   },
 };
@@ -45,13 +38,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * The base checkbox in its normal state.
+ * The base switch in its normal state.
  */
 export const Base: Story = {
   render: (args) => {
     return (
       <div className='flex size-80 items-center justify-center'>
-        <Checkbox {...args} />
+        <Switch {...args} />
       </div>
     );
   },
@@ -67,14 +60,10 @@ export const AllStates: Story = {
         <h3 className='heading-4'>Enabled</h3>
         <div className='space-y-8'>
           <div className='flex items-center space-x-8'>
-            <Checkbox
-              label='Unchecked'
-              accessibilityLabel='Unchecked'
-              defaultChecked={false}
-            />
+            <Switch defaultChecked={false} />
           </div>
           <div className='flex items-center space-x-8'>
-            <Checkbox label='Checked' defaultChecked />
+            <Switch aria-labelledby='' defaultChecked />
           </div>
         </div>
       </div>
@@ -82,10 +71,10 @@ export const AllStates: Story = {
         <h3 className='heading-4'>Disabled</h3>
         <div className='space-y-8'>
           <div className='flex items-center space-x-8'>
-            <Checkbox label='Unchecked' disabled defaultChecked={false} />
+            <Switch disabled defaultChecked={false} />
           </div>
           <div className='flex items-center space-x-8'>
-            <Checkbox label='Checked' disabled defaultChecked />
+            <Switch disabled defaultChecked />
           </div>
         </div>
       </div>

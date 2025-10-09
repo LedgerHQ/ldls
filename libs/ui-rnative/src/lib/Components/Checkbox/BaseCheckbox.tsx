@@ -9,7 +9,13 @@ import {
 } from '../../types';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
 import { cva } from 'class-variance-authority';
-import { cn } from 'src/lib/utils';
+import { cn } from '../../utils';
+import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { CheckboxProps } from './types';
+
+const ROOT_COMPONENT_NAME = 'BaseCheckbox';
+const TRIGGER_COMPONENT_NAME = 'BaseCheckboxTrigger';
+const INDICATOR_COMPONENT_NAME = 'BaseCheckboxIndicator';
 
 const baseCheckboxVariants = {
   trigger: cva(
@@ -55,25 +61,20 @@ const baseCheckboxVariants = {
   indicator: cva(['flex size-full items-center justify-center']),
 };
 
-type BaseCheckboxIndicatorProps = ForceMountable & SlottableViewProps;
 type BaseCheckboxRootProps = SlottablePressableProps & {
-  checked?: boolean;
-  onCheckedChange?: (checked: boolean) => void;
-  disabled?: boolean;
+  checked?: CheckboxProps['checked'];
+  onCheckedChange?: CheckboxProps['onCheckedChange'];
+  disabled?: CheckboxProps['disabled'];
+  nativeID?: CheckboxProps['nativeID'];
 };
 
-interface RootContext extends BaseCheckboxRootProps {
-  nativeID?: string;
-}
+const [BaseCheckboxProvider, useBaseCheckboxContext] =
+  createSafeContext<BaseCheckboxRootProps>(ROOT_COMPONENT_NAME);
 
-const BaseCheckboxContext = React.createContext<RootContext | null>(null);
 const BaseCheckboxRoot = React.forwardRef<PressableRef, BaseCheckboxRootProps>(
-  (
-    { asChild, disabled = false, checked, onCheckedChange, nativeID, ...props },
-    ref,
-  ) => {
+  ({ disabled = false, checked, onCheckedChange, nativeID, ...props }, ref) => {
     return (
-      <BaseCheckboxContext.Provider
+      <BaseCheckboxProvider
         value={{
           disabled,
           checked,
@@ -82,28 +83,21 @@ const BaseCheckboxRoot = React.forwardRef<PressableRef, BaseCheckboxRootProps>(
         }}
       >
         <BaseCheckboxTrigger ref={ref} {...props} />
-      </BaseCheckboxContext.Provider>
+      </BaseCheckboxProvider>
     );
   },
 );
-
-BaseCheckboxRoot.displayName = 'BaseCheckboxRoot';
-
-function useCheckboxContext() {
-  const context = React.useContext(BaseCheckboxContext);
-  if (!context) {
-    throw new Error(
-      'Checkbox compound components cannot be rendered outside the Checkbox component',
-    );
-  }
-  return context;
-}
+BaseCheckboxRoot.displayName = ROOT_COMPONENT_NAME;
 
 const BaseCheckboxTrigger = React.forwardRef<
   PressableRef,
   SlottablePressableProps
 >(({ asChild, onPress: onPressProp, className, ...props }, ref) => {
-  const { disabled, checked, onCheckedChange, nativeID } = useCheckboxContext();
+  const { disabled, checked, onCheckedChange, nativeID } =
+    useBaseCheckboxContext({
+      consumerName: TRIGGER_COMPONENT_NAME,
+      contextRequired: true,
+    });
 
   const onPress = useCallback(
     (ev: GestureResponderEvent) => {
@@ -137,14 +131,17 @@ const BaseCheckboxTrigger = React.forwardRef<
     />
   );
 });
+BaseCheckboxTrigger.displayName = TRIGGER_COMPONENT_NAME;
 
-BaseCheckboxTrigger.displayName = 'BaseCheckboxTrigger';
-
+type BaseCheckboxIndicatorProps = ForceMountable & SlottableViewProps;
 const BaseCheckboxIndicator = React.forwardRef<
   ViewRef,
   BaseCheckboxIndicatorProps
 >(({ asChild, forceMount, className, ...props }, ref) => {
-  const { checked, disabled } = useCheckboxContext();
+  const { checked, disabled } = useBaseCheckboxContext({
+    consumerName: INDICATOR_COMPONENT_NAME,
+    contextRequired: true,
+  });
 
   if (!forceMount) {
     if (!checked) {
@@ -164,7 +161,6 @@ const BaseCheckboxIndicator = React.forwardRef<
     />
   );
 });
-
-BaseCheckboxIndicator.displayName = 'BaseCheckboxIndicator';
+BaseCheckboxIndicator.displayName = INDICATOR_COMPONENT_NAME;
 
 export { BaseCheckboxIndicator, BaseCheckboxRoot, type BaseCheckboxRootProps };

@@ -1,0 +1,258 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SwitchStories from './Switch.stories';
+import { Switch } from './Switch';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/Switch" of={SwitchStories} />
+
+# ☑️ Switch
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+Switches are form controls that allow users to select one or multiple options from a list. They provide clear visual feedback about the selection state and support various interaction states including hover, focus, and disabled modes.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=723-5734&p=f&m=dev).
+
+## Anatomy
+
+<Canvas of={SwitchStories.Base} />
+
+- **Switch**: The main interactive element that can be checked or unchecked
+- **Check mark**: Visual indicator shown when the switch is in a checked state
+
+## Properties
+
+### Overview
+
+<Canvas of={SwitchStories.Base} />
+<Controls of={SwitchStories.Base} />
+
+### States
+
+Switches support multiple states to provide clear feedback to users:
+
+- **Unchecked**: Default state when not selected
+- **Checked**: Selected state with a visible check mark
+- **Disabled**: Non-interactive state for both checked and unchecked variants
+- **Focus**: Accessible focus state with visible ring indicator
+
+<Canvas of={SwitchStories.AllStates} />
+
+## Usage Guidelines
+
+### Best Practices
+
+- Use Switches when users can select multiple options from a list
+- Always provide clear labels that describe what checking the box means
+- Group related Switches logically
+- Use consistent spacing between switch options
+
+### Accessibility
+
+- Provide descriptive labels for screen readers
+- Ensure sufficient color contrast in all states
+
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
+```
+
+#### **About NativeWind**
+
+The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities. It provides the `className` prop support and ensures consistent styling across platforms.
+
+### NativeWind Configuration
+
+To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
+    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+## Basic Usage
+
+```tsx
+import { Switch } from '@ledgerhq/ldls-ui-rnative';
+
+function MyForm() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  return (
+    <div className="flex items-center space-x-8">
+      <Switch
+        checked={isChecked}
+        onCheckedChange={setIsChecked}
+      />
+      <label>Accept terms and conditions</label>
+    </div>
+  );
+}
+```
+
+## Controlled vs Uncontrolled
+
+### Controlled
+
+Use the `checked` and `onCheckedChange` props for full control:
+
+```tsx
+const [checked, setChecked] = useState(false);
+
+<Switch
+  checked={checked}
+  onCheckedChange={setChecked}
+/>
+```
+
+### Uncontrolled
+
+Use `defaultChecked` for simple cases:
+
+```tsx
+<Switch defaultChecked={true} />
+```
+
+## Accessibility Best Practices
+
+### Labels and ARIA
+
+```tsx
+// ✅ Associated label
+<div className="flex items-center space-x-8">
+  <Switch id="terms" />
+  <label htmlFor="terms">I agree to the terms</label>
+</div>
+
+// ✅ ARIA label for standalone switch
+<Switch aria-label="Select all items" />
+
+// ✅ ARIA described by for complex descriptions
+<div>
+  <Switch
+    id="marketing"
+    aria-describedby="marketing-description"
+  />
+  <label htmlFor="marketing">Marketing emails</label>
+  <p id="marketing-description" className="text-muted body-4">
+    Receive promotional offers and product updates
+  </p>
+</div>
+```
+
+### Keyboard Navigation
+
+The Switch component automatically supports:
+
+- **Tab**: Navigate to the switch
+- **Space**: Toggle checked/unchecked state
+- **Enter**: Submit form (when inside a form)
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the Switch component and maintain design system principles.
+
+### Layout and Styling
+
+✅ **Do**
+
+````tsx
+// Use className for responsive behavior
+<Switch className="hidden md:block" />
+
+// Use className for margins and positioning
+<Switch className="mt-2 mr-4" />
+
+❌ **Don't**
+
+```tsx
+// Don't override switch's core styling
+<Switch className="bg-base border-muted" />
+
+// Don't modify switch size or appearance
+<Switch className="w-24 h-24 rounded-lg" />
+
+// Don't modify internal spacing or padding
+<Switch className="p-2" />
+````
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, border, focus states, etc.) should be controlled through the design system to maintain consistency.
+
+### Accessibility and Labels
+
+✅ **Do**
+
+```tsx
+// Associate labels properly
+<div className="flex items-center space-x-8">
+  <Switch id="newsletter" />
+  <label htmlFor="newsletter">Subscribe to newsletter</label>
+</div>
+
+// Use aria-label for standalone Switches
+<Switch aria-label="Select all items" />
+
+// Provide descriptions when needed
+<Switch
+  id="terms"
+  aria-describedby="terms-description"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use unlabeled Switches
+<Switch />
+```
+
+### State Management
+
+✅ **Do**
+
+```tsx
+// Use controlled components for form state
+const [isChecked, setIsChecked] = useState(false);
+<Switch checked={isChecked} onCheckedChange={setIsChecked} />
+
+// Use defaultChecked for simple uncontrolled cases
+<Switch defaultChecked={false} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't mix controlled and uncontrolled patterns
+<Switch checked={isChecked} defaultChecked={true} />
+
+// Don't ignore state change handlers
+<Switch checked={isChecked} />
+
+```
+
+</Tab>
+</CustomTabs>
