@@ -14,8 +14,6 @@ const checkboxVariants = {
 };
 
 /**
- * A customizable checkbox component built on top of Radix UI Checkbox primitive.
- *
  * The checkbox follows the design system tokens and supports checked, unchecked,
  * disabled, and focus states with proper hover and active interactions.
  *
@@ -33,7 +31,6 @@ const checkboxVariants = {
  * <Checkbox
  *   label="My label"
  *   checked={checked}
-
  *   onCheckedChange={setChecked}
  * />
  *
@@ -52,7 +49,6 @@ export const Checkbox = React.forwardRef<
       defaultChecked = false,
       disabled,
       label,
-
       ...props
     },
     ref,

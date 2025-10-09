@@ -114,10 +114,6 @@ Image.displayName = 'SlotImage';
 
 export { Image, Pressable, Text, View };
 
-// This project uses code from WorkOS/Radix Primitives.
-// The code is licensed under the MIT License.
-// https://github.com/radix-ui/primitives/tree/main
-
 function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
   return (node: T) =>
     refs.forEach((ref) => {
