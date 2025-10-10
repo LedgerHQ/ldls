@@ -1,5 +1,6 @@
-import { create } from 'storybook/theming/create';
 import { ThemeVars } from 'storybook/theming';
+import { create } from 'storybook/theming/create';
+
 import logoUrl from './lumen.svg';
 
 const theme: ThemeVars = create({

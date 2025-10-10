@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
 describe('getThemeUtilsByPrefix', () => {

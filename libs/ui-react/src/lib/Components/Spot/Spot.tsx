@@ -1,6 +1,7 @@
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
-import { IconSize } from '../Icon/Icon';
 import { HTMLAttributes, useMemo } from 'react';
+
 import {
   BluetoothCircleFill,
   CheckmarkCircleFill,
@@ -9,7 +10,7 @@ import {
   Spinner,
   WarningFill,
 } from '../../Symbols';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { IconSize } from '../Icon/Icon';
 
 const spotVariants = cva(
   'flex items-center justify-center rounded-full bg-muted-transparent',

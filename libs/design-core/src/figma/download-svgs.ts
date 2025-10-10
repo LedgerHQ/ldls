@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
+
 import { SvgData } from './get-svgs.js';
 
 /**

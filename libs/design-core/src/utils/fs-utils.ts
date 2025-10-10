@@ -1,5 +1,5 @@
-import path from 'path';
 import { promises as fs } from 'fs';
+import path from 'path';
 
 /**
  * Recursively finds all files with a specific extension in a directory.

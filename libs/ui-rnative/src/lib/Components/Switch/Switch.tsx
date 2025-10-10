@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { BaseSwitchThumb, BaseSwitchRoot } from './BaseSwitch';
-
-import { SwitchProps } from './types';
 import { useControllableState } from '../../utils';
+
+import { BaseSwitchThumb, BaseSwitchRoot } from './BaseSwitch';
+import { SwitchProps } from './types';
 
 /**
  * The switch follows the design system tokens and supports checked, unchecked,

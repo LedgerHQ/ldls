@@ -1,5 +1,5 @@
+import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
 import { useRef } from 'react';
-
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,7 +8,6 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);

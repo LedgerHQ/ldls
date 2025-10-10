@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
 import { allBrandsPreset } from '@ledgerhq/ldls-design-core';
+import type { Config } from 'tailwindcss';
 
 const config = {
   content: [

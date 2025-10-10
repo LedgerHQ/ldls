@@ -1,7 +1,8 @@
+import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { View, Text, ViewProps } from 'react-native';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+
 import { IconSize } from '../Icon/Icon';
 
 const tagVariants = cva(

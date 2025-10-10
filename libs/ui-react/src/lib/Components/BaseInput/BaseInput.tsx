@@ -1,5 +1,6 @@
-import React from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import React from 'react';
+
 import { DeleteCircleFill } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
 

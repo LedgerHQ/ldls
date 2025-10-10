@@ -1,10 +1,11 @@
-import React from 'react';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
+
 import {
   SuggestionKeyboard,
   SuggestionKeyboardItem,
 } from './SuggestionKeyboard';
-import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const Container = ({
   className,
