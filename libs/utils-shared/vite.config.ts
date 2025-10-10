@@ -2,11 +2,13 @@ import { defineConfig } from 'vite';
 import { join } from 'path';
 import dts from 'vite-plugin-dts';
 import type { LibraryFormats } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/utils-shared',
   plugins: [
+    react(),
     dts({
       entryRoot: 'src',
       tsconfigPath: join(__dirname, 'tsconfig.lib.json'),
