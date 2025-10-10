@@ -1,4 +1,8 @@
 {
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  },
   "files": [],
   "include": [],
   "references": [
@@ -18,8 +22,4 @@
       "path": "./tsconfig.storybook.json"
     }
   ],
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ESNext"]
-  }
 }

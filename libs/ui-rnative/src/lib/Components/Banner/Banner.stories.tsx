@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner } from './Banner';
 import { Button } from '../Button';
+import { Text, View } from 'react-native';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -38,7 +39,7 @@ const meta: Meta<typeof Banner> = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -55,7 +56,7 @@ const meta: Meta<typeof Banner> = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -94,7 +95,14 @@ export const Base: Story = {
   render: (args) => (
     // max-w-md container for visual presentation - not required for Banner component
     <div className='max-w-md'>
-      <Banner {...args} />
+      <Banner
+        {...args}
+        description={
+          <View>
+            <Text>azeaz</Text>
+          </View>
+        }
+      />
     </div>
   ),
   parameters: {
@@ -165,7 +173,7 @@ export const WithActions: Story = {
       <Button
         appearance="transparent"
         size="sm"
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -174,7 +182,7 @@ export const WithActions: Story = {
       <Button
         appearance="no-background"
         size="sm"
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -197,7 +205,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance='transparent'
         size='sm'
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -206,7 +214,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance='no-background'
         size='sm'
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -231,7 +239,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance="transparent"
         size="sm"
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -240,7 +248,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance="no-background"
         size="sm"
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -293,7 +301,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -312,7 +320,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -321,7 +329,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -335,7 +343,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -344,7 +352,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -369,7 +377,7 @@ export const NaturalWidth: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Action clicked')}
+            onPress={() => console.log('Action clicked')}
           >
             Action
           </Button>
@@ -458,7 +466,7 @@ export const InteractiveActions: Story = {
           }
           primaryAction={
             state === 'idle' ? (
-              <Button appearance='transparent' size='sm' onClick={handleAccept}>
+              <Button appearance='transparent' size='sm' onPress={handleAccept}>
                 Accept
               </Button>
             ) : undefined
@@ -468,7 +476,7 @@ export const InteractiveActions: Story = {
               <Button
                 appearance='no-background'
                 size='sm'
-                onClick={handleReject}
+                onPress={handleReject}
               >
                 Reject
               </Button>

@@ -8,8 +8,12 @@ import {
   DeleteCircleFill,
   Close,
 } from '../../Symbols';
-import { IconButton } from '../IconButton';
+import { Button } from '../Button';
 import { BannerProps } from './types';
+import { Text, View } from 'react-native';
+import { ViewRef } from '../../types';
+import { Wrap } from '../Wrap';
+import { isTextChildren } from '@ledgerhq/ldls-utils-shared';
 
 const iconMap = {
   info: <InformationFill className='text-base' />,
@@ -19,17 +23,20 @@ const iconMap = {
 };
 
 const bannerVariants = {
-  root: cva('flex w-full items-start gap-8 rounded-md p-16 text-base', {
-    variants: {
-      appearance: {
-        info: 'bg-muted',
-        success: 'bg-success',
-        warning: 'bg-warning',
-        error: 'bg-error',
+  root: cva(
+    'flex w-full flex-row items-start gap-8 rounded-md p-16 text-base',
+    {
+      variants: {
+        appearance: {
+          info: 'bg-muted',
+          success: 'bg-success',
+          warning: 'bg-warning',
+          error: 'bg-error',
+        },
       },
     },
-  }),
-  iconWrapper: cva('flex shrink-0 items-start py-4'),
+  ),
+  iconWrapper: cva('flex shrink-0 flex-row items-start py-4'),
   contentWrapper: cva('mr-8 flex flex-1 flex-col gap-8 py-4'),
   contentText: cva('flex flex-col gap-4'),
   title: cva('line-clamp-2 body-1-semi-bold'),
@@ -70,7 +77,7 @@ const bannerVariants = {
  *   closeAriaLabel="Close banner"
  * />
  */
-export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+export const Banner = React.forwardRef<ViewRef, BannerProps>(
   (
     {
       appearance = 'info',
@@ -88,36 +95,43 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     const icon = iconMap[appearance];
 
     return (
-      <div
+      <View
         ref={ref}
         className={cn(className, bannerVariants.root({ appearance }))}
         {...props}
       >
-        <div className={bannerVariants.iconWrapper()}>{icon}</div>
-        <div className={bannerVariants.contentWrapper()}>
-          <div className={bannerVariants.contentText()}>
-            <h3 className={bannerVariants.title()}>{title}</h3>
+        <View className={bannerVariants.iconWrapper()}>{icon}</View>
+        <View className={bannerVariants.contentWrapper()}>
+          <View className={bannerVariants.contentText()}>
+            <Text className={bannerVariants.title()}>{title}</Text>
             {description && (
-              <div className={bannerVariants.description()}>{description}</div>
+              <View className={bannerVariants.description()}>
+                <Wrap
+                  if={isTextChildren(description)}
+                  with={(children) => <Text>{children}</Text>}
+                >
+                  {description}
+                </Wrap>
+              </View>
             )}
-          </div>
+          </View>
           {(primaryAction || secondaryAction) && (
-            <div className='flex gap-4'>
+            <View className='flex flex-row gap-4'>
               {primaryAction}
               {secondaryAction}
-            </div>
+            </View>
           )}
-        </div>
+        </View>
         {onClose && (
-          <IconButton
+          <Button
             appearance='transparent'
             size='xs'
             icon={Close}
-            onClick={() => onClose()}
+            onPress={() => onClose()}
             aria-label={closeAriaLabel || 'Close'}
           />
         )}
-      </div>
+      </View>
     );
   },
 );
