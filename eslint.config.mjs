@@ -1,8 +1,7 @@
-import tailwind from 'eslint-plugin-tailwindcss';
-
 import nx from '@nx/eslint-plugin';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import tailwind from 'eslint-plugin-tailwindcss';
 
 export default defineConfig(
   ...nx.configs['flat/base'],
@@ -22,9 +21,33 @@ export default defineConfig(
     files: ['**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
     rules: {
       /**
+       * import
+       */
+      'import/no-unused-modules': 'error',
+      'import/no-mutable-exports': 'error',
+      'import/no-duplicates': 'error',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      /**
        * tailwind
        */
       'tailwindcss/no-custom-classname': 'error',
+      /**
+       * typescript
+       */
+      '@typescript-eslint/no-unused-vars': ['error'],
       /**
        * nx
        */
