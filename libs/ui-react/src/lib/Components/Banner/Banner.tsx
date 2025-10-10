@@ -1,4 +1,4 @@
-import { cva, VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import {
@@ -9,6 +9,7 @@ import {
   Close,
 } from '../../Symbols';
 import { IconButton } from '../IconButton';
+import { BannerProps } from './types';
 
 const iconMap = {
   info: <InformationFill className='text-base' />,
@@ -17,51 +18,23 @@ const iconMap = {
   error: <DeleteCircleFill className='text-error' />,
 };
 
-const bannerVariants = cva('flex items-start gap-8 rounded-md p-16 text-base', {
-  variants: {
-    appearance: {
-      info: 'bg-muted',
-      success: 'bg-success',
-      warning: 'bg-warning',
-      error: 'bg-error',
+const bannerVariants = {
+  root: cva('flex w-full items-start gap-8 rounded-md p-16 text-base', {
+    variants: {
+      appearance: {
+        info: 'bg-muted',
+        success: 'bg-success',
+        warning: 'bg-warning',
+        error: 'bg-error',
+      },
     },
-  },
-});
-
-export type BannerAppearance = NonNullable<
-  VariantProps<typeof bannerVariants>['appearance']
->;
-
-export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * The type of banner which affects color and icon.
-   */
-  appearance?: BannerAppearance;
-  /**
-   * The main title of the banner.
-   */
-  title: string;
-  /**
-   * Optional descriptive text.
-   */
-  description?: string;
-  /**
-   * Optional primary action.
-   */
-  primaryAction?: React.ReactNode;
-  /**
-   * Optional secondary action.
-   */
-  secondaryAction?: React.ReactNode;
-  /**
-   * Optional close action.
-   */
-  onClose?: () => void;
-  /**
-   * Optional aria label for the close button.
-   */
-  closeAriaLabel?: string;
-}
+  }),
+  iconWrapper: cva('flex shrink-0 items-start py-4'),
+  contentWrapper: cva('mr-8 flex flex-1 flex-col gap-8 py-4'),
+  contentText: cva('flex flex-col gap-4'),
+  title: cva('line-clamp-2 body-1-semi-bold'),
+  description: cva('line-clamp-5 body-2'),
+};
 
 /**
  * A banner component for displaying informational, success, warning, or error messages with optional description, action buttons, and close button.
@@ -117,15 +90,15 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     return (
       <div
         ref={ref}
-        className={cn(className, bannerVariants({ appearance }))}
+        className={cn(className, bannerVariants.root({ appearance }))}
         {...props}
       >
-        <div className='flex shrink-0 items-start py-4'>{icon}</div>
-        <div className='mr-8 flex flex-1 flex-col gap-8 py-4'>
-          <div className='flex flex-col gap-4'>
-            <h3 className='line-clamp-2 body-1-semi-bold'>{title}</h3>
+        <div className={bannerVariants.iconWrapper()}>{icon}</div>
+        <div className={bannerVariants.contentWrapper()}>
+          <div className={bannerVariants.contentText()}>
+            <h3 className={bannerVariants.title()}>{title}</h3>
             {description && (
-              <div className='line-clamp-5 body-2'>{description}</div>
+              <div className={bannerVariants.description()}>{description}</div>
             )}
           </div>
           {(primaryAction || secondaryAction) && (

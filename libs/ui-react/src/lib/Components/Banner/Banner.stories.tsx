@@ -83,8 +83,6 @@ const meta: Meta<typeof Banner> = {
 
 export default meta;
 type Story = StoryObj<typeof Banner>;
-type BannerAppearance = 'info' | 'success' | 'warning' | 'error';
-type BannerProps = React.ComponentProps<typeof Banner>;
 
 export const Base: Story = {
   args: {
@@ -93,7 +91,7 @@ export const Base: Story = {
     primaryAction: 'None',
     secondaryAction: 'None',
   },
-  render: (args: BannerProps) => (
+  render: (args) => (
     // max-w-md container for visual presentation - not required for Banner component
     <div className='max-w-md'>
       <Banner {...args} />
@@ -121,7 +119,7 @@ export const WithDescription: Story = {
     title: 'Banner with Description',
     description: 'This is additional information about the banner.',
   },
-  render: (args: BannerProps) => (
+  render: (args) => (
     <div className='max-w-md'>
       <Banner {...args} />
     </div>
@@ -150,7 +148,7 @@ export const WithActions: Story = {
     primaryAction: 'Button',
     secondaryAction: 'Button',
   },
-  render: (args: BannerProps) => (
+  render: (args) => (
     <div className='max-w-md'>
       <Banner {...args} />
     </div>
@@ -216,7 +214,7 @@ export const WithFullFeatures: Story = {
     onClose: () => console.log('Closed'),
     closeAriaLabel: 'Close banner',
   },
-  render: (args: BannerProps) => (
+  render: (args) => (
     <div className='max-w-md'>
       <Banner {...args} />
     </div>
@@ -258,12 +256,12 @@ export const WithFullFeatures: Story = {
 
 export const AppearanceShowcase: Story = {
   render: () => {
-    const appearances: Array<{ name: string; appearance: BannerAppearance }> = [
+    const appearances = [
       { name: 'Info', appearance: 'info' },
       { name: 'Success', appearance: 'success' },
       { name: 'Warning', appearance: 'warning' },
       { name: 'Error', appearance: 'error' },
-    ];
+    ] as const;
 
     return (
       // max-w-md container for visual presentation - not required for Banner component
@@ -410,7 +408,7 @@ export const ResponsiveLayout: Story = {
 };
 
 export const InteractiveDismiss: Story = {
-  render: (args: BannerProps) => {
+  render: (args) => {
     const [visible, setVisible] = React.useState(true);
 
     if (!visible) return <p>Banner dismissed</p>;
@@ -429,7 +427,7 @@ export const InteractiveDismiss: Story = {
 };
 
 export const InteractiveActions: Story = {
-  render: (args: BannerProps) => {
+  render: (args) => {
     const [state, setState] = React.useState('idle');
 
     const handleAccept = () => {
