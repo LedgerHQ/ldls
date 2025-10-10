@@ -90,42 +90,9 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
+## Setup
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
-Install the packages and their peer dependencies:
-
-```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
-```
-
-#### About @radix-ui/react-slot
-
-The `@radix-ui/react-slot` dependency is used internally by the Button component
-to enable flexible composition patterns. It allows the Button to merge its props with child
-elements when needed.
-
-### Tailwind Configuration
-
-To use the Banner component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
 
 ### Basic Usage
 
@@ -152,7 +119,7 @@ import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function NotificationSystem() {
   return (
-    <div className="space-y-4">
+    <View className="space-y-4">
       {/* Info - Default informational messages */}
       <Banner
         appearance="info"
@@ -180,7 +147,7 @@ function NotificationSystem() {
         title="Error"
         description="Something went wrong, please try again"
       />
-    </div>
+    </View>
   );
 }
 ```
@@ -267,14 +234,14 @@ To control banner width, use container elements:
 <Banner title="Full Width" description="This banner fills the viewport width" />
 
 {/* Constrained width */}
-<div className="max-w-4xl mx-auto">
+<View className="max-w-4xl mx-auto">
   <Banner title="Constrained" description="This banner is limited by its container" />
-</div>
+</View>
 
 {/* Responsive width */}
-<div className="w-full lg:max-w-2xl">
+<View className="w-full lg:max-w-2xl">
   <Banner title="Responsive" description="Width adapts based on screen size" />
-</div>
+</View>
 ```
 
 ### Complete Example
@@ -317,7 +284,7 @@ function NotificationCenter() {
   };
 
   return (
-    <div className="space-y-4">
+    <View className="space-y-4">
       {notifications.map(notification => (
         <Banner
           key={notification.id}
@@ -338,7 +305,7 @@ function NotificationCenter() {
           ) : undefined}
         />
       ))}
-    </div>
+    </View>
   );
 }
 ```
@@ -382,13 +349,13 @@ The following guidelines ensure consistent usage of the Banner component and mai
 />
 
 // Use container elements to control banner width
-<div className="w-full">
+<View className="w-full">
   <Banner
     title="System Notice"
     description="Maintenance scheduled for tonight"
     appearance="warning"
   />
-</div>
+</View>
 ```
 
 ❌ **Don't**
@@ -444,7 +411,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
 <Banner
   title="Broken Action"
   description="This won't work properly"
-  primaryAction={<button onClick={handleSubmit}>Submit</button>}
+  primaryAction={<Button onClick={handleSubmit}>Submit</Button>}
   appearance="error"
 />
 ```

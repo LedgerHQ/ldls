@@ -1,6 +1,6 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { describe, it, expect, vi } from 'vitest';
+
 import { Checkbox } from './Checkbox';
 
 describe('Checkbox', () => {
