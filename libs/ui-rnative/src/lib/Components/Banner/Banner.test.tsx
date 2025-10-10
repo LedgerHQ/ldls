@@ -1,6 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react-native';
 import { Banner } from './Banner';
+import { Text } from 'react-native';
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {
@@ -34,12 +35,11 @@ describe('Banner Component', () => {
   });
 
   it('should render primary and secondary actions', () => {
-    const handlePrimary = vi.fn();
     const { getByText } = render(
       <Banner
         title='Banner with Primary'
-        primaryAction={'Primary'}
-        secondaryAction={'Secondary'}
+        primaryAction={<Text>Primary</Text>}
+        secondaryAction={<Text>Secondary</Text>}
       />,
     );
 
