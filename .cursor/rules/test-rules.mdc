@@ -4,9 +4,9 @@ alwaysApply: false
 ---
 
 # Testing target elements
-- For react target elements using `data-testid`
-- For react-native target elements using `testID`
-- Target content / text when it makes no sense to use `data-testid` or `testID`
+- For react, targets root elements using `data-testid`
+- For react-native, targets root elements using `testID`
+- Targets content / text when it makes no sense to use `data-testid` or `testID`
 
 # Jest related
 - Only libs/ui-rnative is using Jest, other libs and apps are using Vitest
