@@ -19,7 +19,6 @@
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
-    "src/test-setup.ts",
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"

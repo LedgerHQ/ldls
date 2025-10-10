@@ -4,4 +4,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [reactNative(), react()],
+  test: {
+    setupFiles: ['./vitest.setup.ts'],
+  },
 });
