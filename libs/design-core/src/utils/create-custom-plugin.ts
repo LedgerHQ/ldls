@@ -1,4 +1,5 @@
 import plugin from 'tailwindcss/plugin.js';
+
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
 const DEFAULT_COLOR_VALUES = {

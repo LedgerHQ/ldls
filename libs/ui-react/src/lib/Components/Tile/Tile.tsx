@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
+import { useCallback, useState } from 'react';
 
 export interface TileProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

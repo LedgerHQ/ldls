@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-native-web-vite';
+
 import '../src/styles.css';
 import './font.css';
 import { withBrandDecorator, withModeDecorator } from './Decorator';

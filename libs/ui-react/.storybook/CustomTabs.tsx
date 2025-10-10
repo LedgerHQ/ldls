@@ -1,5 +1,6 @@
-import React from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import React from 'react';
+
 import { Folder } from '../src/lib/Symbols/Icons/Folder';
 
 interface TabProps {

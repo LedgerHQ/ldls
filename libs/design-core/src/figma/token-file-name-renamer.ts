@@ -1,4 +1,5 @@
 import { LocalVariableCollection } from '@figma/rest-api-spec';
+
 import { LocalVariableCollectionMode } from './types.js';
 
 export default function ledgerSpecificFileNameRenamer(

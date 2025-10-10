@@ -1,7 +1,7 @@
-import React from 'react';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
+import React from 'react';
 
 const tooltipContentVariants = cva(
   'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',

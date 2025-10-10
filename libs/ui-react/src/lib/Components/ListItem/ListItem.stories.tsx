@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ListItem } from './ListItem';
-import { Tag } from '../Tag/Tag';
+import React, { useState } from 'react';
+
 import {
   Settings,
   Plus,
@@ -14,9 +14,11 @@ import {
   Bolt,
   ChevronRight,
 } from '../../Symbols';
-import { Switch } from '../Switch';
-import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Spot } from '../Spot/Spot';
+import { Switch } from '../Switch';
+import { Tag } from '../Tag/Tag';
+
+import { ListItem } from './ListItem';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (

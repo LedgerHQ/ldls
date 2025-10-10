@@ -1,4 +1,5 @@
 import Svg, { Path } from 'react-native-svg';
+
 import createIcon from '../../Components/Icon/createIcon';
 
 /**

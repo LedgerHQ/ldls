@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
-import { IconSize } from '../Icon/Icon';
 import { useMemo } from 'react';
 import { View, Text, ViewProps } from 'react-native';
+
 import {
   Bluetooth,
   CheckmarkCircleFill,
@@ -11,6 +11,7 @@ import {
   WarningFill,
 } from '../../Symbols';
 import { cn } from '../../utils';
+import { IconSize } from '../Icon/Icon';
 
 const spotVariants = cva(
   'flex items-center justify-center rounded-full bg-muted-transparent',

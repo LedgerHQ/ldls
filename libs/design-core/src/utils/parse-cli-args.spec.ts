@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+
 import { parseCliArgs } from './parse-cli-args.js';
 
 describe('parseCliArgs', () => {

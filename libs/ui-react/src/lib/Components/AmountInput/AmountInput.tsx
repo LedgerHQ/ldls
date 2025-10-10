@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export interface AmountInputProps
   extends Omit<

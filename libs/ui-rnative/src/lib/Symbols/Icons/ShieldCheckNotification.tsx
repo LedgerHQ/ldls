@@ -1,4 +1,5 @@
 import Svg, { G, Mask, Path, Circle, Defs, ClipPath } from 'react-native-svg';
+
 import createIcon from '../../Components/Icon/createIcon';
 
 /**

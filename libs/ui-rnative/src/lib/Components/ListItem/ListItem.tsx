@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacityProps,
 } from 'react-native';
+
 import { cn } from '../../utils';
 import { Tag } from '../Tag';
 

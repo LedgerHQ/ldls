@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { View, Text } from 'react-native';
-import { ListItem } from './ListItem';
-import { Tag } from '../Tag/Tag';
+
 import {
   Settings,
   Plus,
@@ -15,6 +14,9 @@ import {
 } from '../../Symbols';
 import { cn } from '../../utils';
 import { Spot } from '../Spot/Spot';
+import { Tag } from '../Tag/Tag';
+
+import { ListItem } from './ListItem';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
