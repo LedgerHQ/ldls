@@ -83,22 +83,16 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
-    const digitStyles = [
-      { digits: 4, fontSize: 'heading-0' },
-      { digits: 8, fontSize: 'heading-0' },
-      { digits: 12, fontSize: 'heading-1' },
-      { digits: Infinity, fontSize: 'heading-2' },
-    ];
-
-    function useDynamicFontClass(val: string) {
+    function getScaleClass(val: string): string {
       const digits = val.replace(/\D/g, '').length;
-      const style =
-        digitStyles.find((s) => digits <= s.digits) ??
-        digitStyles[digitStyles.length - 1];
-      return style.fontSize;
+      
+      if (digits <= 8) return 'scale-100';
+      if (digits <= 12) return 'scale-75';
+      if (digits <= 16) return 'scale-[0.6]';
+      return 'scale-50';
     }
 
-    const fontSizeClass = useDynamicFontClass(inputValue);
+    const scaleClass = getScaleClass(inputValue);
 
     useEffect(() => {
       setInputValue(value.toString());
@@ -139,7 +133,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
 
     return (
       <div
-        className='group relative flex items-center justify-center'
+        className={cn(
+          'group relative flex items-center justify-center transition-transform',
+          scaleClass,
+        )}
         onPointerDown={() => {
           const input = inputRef.current;
           if (!input) return;
@@ -149,7 +146,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span className={cn(currencyStyles, 'shrink-0', fontSizeClass)}>
+          <span className={cn(currencyStyles, 'shrink-0')}>
             {currencyText}
           </span>
         )}
@@ -157,7 +154,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         {/* Hidden span mirrors input value */}
         <span
           ref={spanRef}
-          className={cn('invisible absolute heading-0', fontSizeClass)}
+          className={cn('invisible absolute heading-0')}
           aria-hidden='true'
         >
           {inputValue}
@@ -173,15 +170,16 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           className={cn(
             baseInputStyles,
             'h-56',
-            isChanging && 'animate-slideInFromRight',
-            fontSizeClass,
+            isChanging && 'animate-translateFromRight',
             className,
           )}
           {...props}
         />
 
         {currencyText && currencyPosition === 'right' && (
-          <span className={cn(currencyStyles, 'shrink-0', fontSizeClass)}>
+          <span
+            className={cn(currencyStyles, 'shrink-0')}
+          >
             {currencyText}
           </span>
         )}
