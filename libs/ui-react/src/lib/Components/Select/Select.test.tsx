@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger } from './Select';
 
 describe('Select', () => {
-
   it('renders with floating label', () => {
     render(
       <Select>
@@ -30,7 +29,6 @@ describe('Select', () => {
 
     expect(screen.queryByRole('label')).not.toBeInTheDocument();
   });
-
 
   it('can be disabled', () => {
     render(
