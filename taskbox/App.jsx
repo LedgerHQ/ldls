@@ -1,5 +1,5 @@
-import { LogBox, StyleSheet, Text, View } from "react-native";
-import Constants from "expo-constants";
+import { LogBox, StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
 LogBox.ignoreAllLogs();
 
 function App() {
@@ -12,16 +12,16 @@ function App() {
 
 let AppEntryPoint = App;
 
-if (Constants.expoConfig.extra.storybookEnabled === "true") {
-  AppEntryPoint = require("./.storybook").default;
+if (Constants.expoConfig.extra.storybookEnabled === 'true') {
+  AppEntryPoint = require('./.storybook').default;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

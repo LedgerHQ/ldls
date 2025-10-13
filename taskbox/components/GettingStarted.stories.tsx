@@ -1,30 +1,30 @@
-import { Linking, Text, View } from "react-native";
+import { Linking, Text, View } from 'react-native';
 
 const StarterComponent = () => (
   <View style={{ padding: 16 }}>
     <Text>
-      Thanks for trying out Storybook, follow the{" "}
+      Thanks for trying out Storybook, follow the{' '}
       <Text
         style={{
-          color: "blue",
-          textDecorationLine: "underline",
-          textDecorationColor: "blue",
+          color: 'blue',
+          textDecorationLine: 'underline',
+          textDecorationColor: 'blue',
         }}
         onPress={() =>
           Linking.openURL(
-            "https://storybook.js.org/tutorials/intro-to-storybook/react-native/en/get-started/"
+            'https://storybook.js.org/tutorials/intro-to-storybook/react-native/en/get-started/',
           )
         }
       >
         tutorial
-      </Text>{" "}
+      </Text>{' '}
       to learn how to create your own stories
     </Text>
   </View>
 );
 
 const meta = {
-  title: "Welcome",
+  title: 'Welcome',
   component: StarterComponent,
 };
 

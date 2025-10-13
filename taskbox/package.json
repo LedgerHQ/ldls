@@ -3,11 +3,14 @@
     "@expo/metro-runtime": "~3.2.3",
     "@expo/vector-icons": "^14.0.3",
     "@types/react": "~18.2.79",
+    "babel-plugin-react-docgen-typescript": "^1.5.1",
     "expo": "^51.0.32",
     "expo-constants": "~16.0.2",
+    "nativewind": "^4.1.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
+    "react-native-css-interop": "^0.1.18",
     "react-native-web": "^0.19.10"
   },
   "devDependencies": {

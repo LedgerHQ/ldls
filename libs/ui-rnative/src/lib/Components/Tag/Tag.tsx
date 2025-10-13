@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, ViewProps } from 'react-native';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+
 import { IconSize } from '../Icon/Icon';
 
 const tagVariants = cva(
-  'inline-flex flex-row items-center justify-center gap-4 rounded-xs',
+  'rounded-xs inline-flex flex-row items-center justify-center gap-4',
   {
     variants: {
       appearance: {
@@ -18,8 +18,8 @@ const tagVariants = cva(
         disabled: 'bg-disabled text-disabled',
       },
       size: {
-        lg: 'px-8 py-4 body-3',
-        sm: 'px-4 py-2 body-4',
+        lg: 'body-3 px-8 py-4',
+        sm: 'body-4 px-4 py-2',
       },
     },
     defaultVariants: {
@@ -46,7 +46,7 @@ export const Tag = React.forwardRef<View, TagProps>(
 
     return (
       <View
-        className={cn(className, tagVariants({ appearance, size }))}
+        className={`${className}  ${tagVariants({ appearance, size })}`}
         ref={ref}
         {...props}
       >

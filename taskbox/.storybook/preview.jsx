@@ -1,4 +1,5 @@
-import { View } from "react-native";
+import '../global.css';
+import { View } from 'react-native';
 
 /** @type{import("@storybook/react").Preview} */
 const preview = {
@@ -17,7 +18,7 @@ const preview = {
         style={{
           flex: 1,
           backgroundColor:
-            parameters.noBackground === true ? undefined : "#26c6da",
+            parameters.noBackground === true ? undefined : '#26c6da',
           padding: 8,
         }}
       >

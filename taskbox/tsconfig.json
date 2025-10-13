@@ -1,4 +1,22 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "files": [],
+  "include": [
+    "nativewind-env.d.ts"
+  ],
+  "references": [
+    {
+      "path": "../libs/design-core"
+    },
+    {
+      "path": "../libs/utils-shared"
+    }
+  ],
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ]
+  }
 }
