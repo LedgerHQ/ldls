@@ -27,6 +27,8 @@ The Select component provides a dropdown interface for choosing from a list of o
 - **Items**: Individual selectable options
 - **Groups**: Optional grouping of related items with labels
 - **Separators**: Visual dividers between groups
+- **Scroll Up Button**: Button to scroll up the content
+- **Scroll Down Button**: Button to scroll down the content
 
 ## Properties
 
@@ -407,6 +409,53 @@ The Select component integrates seamlessly with HTML forms:
   <button type='submit'>Submit</button>
 </form>
 ```
+
+### With Scroll Buttons
+
+The scroll buttons are automatically included in `SelectContent` to indicate when there's more content available. They appear when the list is scrollable:
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+  SelectTrigger,
+  SelectValue,
+} from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+  
+  const countries = [
+    'United States',
+    'Canada',
+    'Mexico',
+    'Brazil',
+    'Argentina',
+    // ... more items
+  ];
+
+  return (
+    <Select value={value} onValueChange={setValue}>
+      <SelectTrigger label='Country'>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {/* Scroll buttons are automatically included in SelectContent */}
+        {countries.map((country) => (
+          <SelectItem key={country} value={country.toLowerCase()}>
+            {country}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+> **Note:** As shown in the shadcn implementation, `SelectScrollUpButton` and `SelectScrollDownButton` are automatically rendered inside `SelectContent`. You don't need to manually add them unless you want custom styling.
 
 </Tab>
 </CustomTabs>

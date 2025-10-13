@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { ChevronDown, Check } from '../../Symbols';
+import { ChevronDown, Check, ChevronUp } from '../../Symbols';
 
 function Select({
   ...props
@@ -76,7 +76,7 @@ const SelectTrigger = React.forwardRef<
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cn(
-  'relative z-select min-w-200 max-h-384 overflow-hidden',
+  'relative z-select min-w-200 max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
   'bg-muted rounded-sm',
   'drop-shadow-md',
   'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out',
@@ -102,6 +102,7 @@ const SelectContent = React.forwardRef<
       position={position}
       {...props}
     >
+      <SelectScrollUpButton />
       <SelectPrimitive.Viewport
         className={cn(
           'p-8',
@@ -111,6 +112,7 @@ const SelectContent = React.forwardRef<
       >
         {children}
       </SelectPrimitive.Viewport>
+      <SelectScrollDownButton />
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
 ));
@@ -172,6 +174,42 @@ const SelectSeparator = React.forwardRef<
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
+function SelectScrollUpButton({
+  className,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {
+  return (
+    <SelectPrimitive.ScrollUpButton
+      data-slot='select-scroll-up-button'
+      className={cn(
+        'flex cursor-default items-center justify-center py-1',
+        className,
+      )}
+      {...props}
+    >
+      <ChevronUp className='size-4' />
+    </SelectPrimitive.ScrollUpButton>
+  );
+}
+
+function SelectScrollDownButton({
+  className,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {
+  return (
+    <SelectPrimitive.ScrollDownButton
+      data-slot='select-scroll-down-button'
+      className={cn(
+        'flex cursor-default items-center justify-center py-1',
+        className,
+      )}
+      {...props}
+    >
+      <ChevronDown className='size-4' />
+    </SelectPrimitive.ScrollDownButton>
+  );
+}
+
 export {
   Select,
   SelectGroup,
@@ -181,4 +219,6 @@ export {
   SelectLabel,
   SelectItem,
   SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
 };
