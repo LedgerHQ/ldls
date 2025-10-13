@@ -1,17 +1,17 @@
 import * as React from 'react';
 import {
-  Image as RNImage,
+  View as RNView,
   Pressable as RNPressable,
   Text as RNText,
-  View as RNView,
+  Image as RNImage,
+  PressableProps as RNPressableProps,
+  ViewProps as RNViewProps,
+  TextProps as RNTextProps,
+  ImageProps as RNImageProps,
+  StyleProp,
   StyleSheet,
-  type PressableStateCallbackType,
-  type ImageProps as RNImageProps,
-  type ImageStyle as RNImageStyle,
-  type PressableProps as RNPressableProps,
-  type TextProps as RNTextProps,
-  type ViewProps as RNViewProps,
-  type StyleProp,
+  PressableStateCallbackType,
+  ImageStyle as RNImageStyle,
 } from 'react-native';
 
 const Pressable = React.forwardRef<
