@@ -31,6 +31,9 @@ export interface AmountInputProps
   value: string | number;
   /** Change handler (required) */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Whether to use thousands separator */
+  /** @default true */
+  useThousandsSeparator?: boolean;
 }
 
 const baseInputStyles = cn(
@@ -64,6 +67,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       maxIntegerLength = 9,
       maxDecimalLength = 9,
       allowDecimals = true,
+      useThousandsSeparator = true,
       value,
       onChange,
       ...props
@@ -125,7 +129,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const useThousandsSeparator = true;
       const cleaned = textFormatter(
         e.target.value,
         allowDecimals,
@@ -158,7 +161,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span className={cn(currencyStyles, 'shrink-0')} style={{ fontSize }}>
+          <span
+            className={cn(currencyStyles, 'shrink-0')}
+            style={{ fontSize, letterSpacing: 'normal' }}
+          >
             {currencyText}
           </span>
         )}
