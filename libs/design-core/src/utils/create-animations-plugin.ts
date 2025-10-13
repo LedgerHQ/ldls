@@ -7,14 +7,6 @@ export function createAnimationsPlugin() {
       theme: {
         extend: {
           keyframes: {
-            overlayShow: {
-              from: { opacity: '0' },
-              to: { opacity: '1' },
-            },
-            overlayHide: {
-              from: { opacity: '1' },
-              to: { opacity: '0' },
-            },
             contentShow: {
               from: {
                 opacity: '0',
@@ -64,10 +56,24 @@ export function createAnimationsPlugin() {
                 transform: 'translate(-50%, -48%) scale(0.96)',
               },
             },
+            'fade-in-0': {
+              from: { opacity: '0' },
+              to: { opacity: '1' },
+            },
+            'fade-out-0': {
+              from: { opacity: '1' },
+              to: { opacity: '0' },
+            },
+            'slide-in-from-top': {
+              from: { transform: 'translateY(-8px)', opacity: '0' },
+              to: { transform: 'translateY(8px)', opacity: '1' },
+            },
+            'slide-in-from-bottom': {
+              from: { transform: 'translateY(8px)', opacity: '0' },
+              to: { transform: 'translateY(-8px)', opacity: '1' },
+            },
           },
           animation: {
-            overlayShow: 'overlayShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
-            overlayHide: 'overlayHide 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             contentShow: 'contentShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             contentHide: 'contentHide 250ms cubic-bezier(0.16, 1, 0.3, 1)',
             slideInFromRight: 'slideInFromRight 250ms ease-in',
@@ -78,6 +84,10 @@ export function createAnimationsPlugin() {
             slideOutToLeft: 'slideOutToLeft 250ms ease-in',
             slideOutToTop: 'slideOutToTop 250ms ease-in',
             slideOutToBottom: 'slideOutToBottom 250ms ease-in',
+            'fade-in': 'fade-in-0 250ms ease-out',
+            'fade-out': 'fade-out-0 250ms ease-in',
+            'slide-in-from-top': 'slide-in-from-top 250ms ease-out',
+            'slide-in-from-bottom': 'slide-in-from-bottom 250ms ease-out',
           },
         },
       },

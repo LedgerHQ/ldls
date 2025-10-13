@@ -1,0 +1,412 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Components/Select' of={SelectStories} />
+
+# 📋 Select
+
+<CustomTabs>
+  <Tab label='Overview'>
+
+## Introduction
+
+The Select component provides a dropdown interface for choosing from a list of options. Built on Radix UI primitives, it offers excellent accessibility, keyboard navigation, and a modern floating label design that matches our BaseInput component.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6397-463&m=dev).
+
+## Anatomy
+
+<Canvas of={SelectStories.Base} />
+
+- **Trigger**: The clickable element that opens the dropdown with floating label support
+- **Label**: Optional floating label that animates when a value is selected
+- **Value**: The currently selected value
+- **Icon**: Chevron down/up indicator
+- **Content**: The dropdown container with options
+- **Items**: Individual selectable options
+- **Groups**: Optional grouping of related items with labels
+- **Separators**: Visual dividers between groups
+
+## Properties
+
+### Basic Usage
+
+<Canvas of={SelectStories.Base} />
+<Controls of={SelectStories.Base} />
+
+
+### With Groups and Separators
+
+Organize related options using groups with labels and separators for better user experience.
+
+<Canvas of={SelectStories.WithGroups} />
+
+### Long Lists
+
+The component handles long lists with proper scrolling and keyboard navigation.
+
+<Canvas of={SelectStories.LongList} />
+
+### Disabled State
+
+The select can be disabled to prevent user interaction.
+
+<Canvas of={SelectStories.Disabled} />
+
+### With Default Value
+
+Provide an initial value using the `defaultValue` prop for uncontrolled usage.
+
+<Canvas of={SelectStories.WithDefaultValue} />
+
+### Form Integration
+
+The Select component integrates seamlessly with HTML forms.
+
+<Canvas of={SelectStories.FormIntegration} />
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support with arrow keys, Enter, Space, and Escape
+- **Screen Reader Support**: Proper ARIA attributes and roles
+- **Focus Management**: Clear focus indicators and logical tab order
+- **High Contrast**: Compatible with high contrast mode
+- **Form Integration**: Works with native form submission
+
+
+</Tab>
+
+<Tab label='Implementation'>
+
+## Overview
+
+This component is built on top of [shadcn/ui Select](https://ui.shadcn.com/docs/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install @radix-ui/react-select tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+```
+
+### Basic Usage
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Select value={value} onValueChange={setValue}>
+      <SelectTrigger label='Label'>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value='option1'>Option 1</SelectItem>
+        <SelectItem value='option2'>Option 2</SelectItem>
+        <SelectItem value='option3'>Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+## API Reference
+
+### Select Props
+
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="p-12 text-left text-on-accent body-3">
+          Prop
+        </th>
+        <th className="p-12 text-left text-on-accent body-3">Type</th>
+        <th className="p-12 text-left text-on-accent body-3">Default</th>
+        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">value</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">The controlled value of the select</td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">defaultValue</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">The default value (uncontrolled)</td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">onValueChange</td>
+        <td className="p-12 text-muted body-3">(value: string) =&gt; void</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Callback when value changes</td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">disabled</td>
+        <td className="p-12 text-muted body-3">boolean</td>
+        <td className="p-12 text-muted body-3">false</td>
+        <td className="p-12 text-muted body-3">Whether the select is disabled</td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">required</td>
+        <td className="p-12 text-muted body-3">boolean</td>
+        <td className="p-12 text-muted body-3">false</td>
+        <td className="p-12 text-muted body-3">Whether the select is required</td>
+      </tr>
+      <tr>
+        <td className="text-accent p-12 body-3">name</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Name attribute for form submission</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### SelectTrigger Props
+
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="p-12 text-left text-on-accent body-3">
+          Prop
+        </th>
+        <th className="p-12 text-left text-on-accent body-3">Type</th>
+        <th className="p-12 text-left text-on-accent body-3">Default</th>
+        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">label</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Floating label text</td>
+      </tr>
+      <tr>
+        <td className="text-accent p-12 body-3">className</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+      </tr>
+
+      <tr>
+        <td className="text-accent p-12 body-3">labelClassName</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Additional CSS classes for the label</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### SelectItem Props
+
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="p-12 text-left text-on-accent body-3">
+          Prop
+        </th>
+        <th className="p-12 text-left text-on-accent body-3">Type</th>
+        <th className="p-12 text-left text-on-accent body-3">Default</th>
+        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">value</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">The value of the option (required)</td>
+      </tr>
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">disabled</td>
+        <td className="p-12 text-muted body-3">boolean</td>
+        <td className="p-12 text-muted body-3">false</td>
+        <td className="p-12 text-muted body-3">Whether the option is disabled</td>
+      </tr>
+      <tr>
+        <td className="text-accent p-12 body-3">className</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### SelectLabel Props
+
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="p-12 text-left text-on-accent body-3">
+          Prop
+        </th>
+        <th className="p-12 text-left text-on-accent body-3">Type</th>
+        <th className="p-12 text-left text-on-accent body-3">Default</th>
+        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr>
+        <td className="text-accent p-12 body-3">className</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### SelectContent Props
+
+<div className="my-24 overflow-hidden rounded-lg">
+  <table className="w-full">
+    <thead>
+      <tr className="border-b border-muted bg-muted">
+        <th className="p-12 text-left text-on-accent body-3">
+          Prop
+        </th>
+        <th className="p-12 text-left text-on-accent body-3">Type</th>
+        <th className="p-12 text-left text-on-accent body-3">Default</th>
+        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-canvas">
+      <tr className="border-b border-muted">
+        <td className="text-accent p-12 body-3">position</td>
+        <td className="p-12 text-muted body-3">'popper' | 'item-aligned'</td>
+        <td className="p-12 text-muted body-3">'popper'</td>
+        <td className="p-12 text-muted body-3">Positioning strategy</td>
+      </tr>
+      <tr>
+        <td className="text-accent p-12 body-3">className</td>
+        <td className="p-12 text-muted body-3">string</td>
+        <td className="p-12 text-muted body-3">-</td>
+        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+      </tr>
+
+      <tr>
+        <td className="text-accent p-12 body-3">align</td>
+        <td className="p-12 text-muted body-3">'start' | 'center' | 'end'</td>
+        <td className="p-12 text-muted body-3">'start'</td>
+        <td className="p-12 text-muted body-3">Alignment of the content</td>
+      </tr>
+
+      <tr>
+        <td className="text-accent p-12 body-3">side</td>
+        <td className="p-12 text-muted body-3">'top' | 'bottom' | 'left' | 'right'</td>
+        <td className="p-12 text-muted body-3">'bottom'</td>
+        <td className="p-12 text-muted body-3">Side of the trigger to align the content</td>
+      </tr>
+
+      <tr>
+        <td className="text-accent p-12 body-3">sticky</td>
+        <td className="p-12 text-muted body-3">boolean</td>
+        <td className="p-12 text-muted body-3">false</td>
+        <td className="p-12 text-muted body-3">Whether the content should be sticky</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+### With Groups
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Select value={value} onValueChange={setValue}>
+      <SelectTrigger label='Category'>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Fruits</SelectLabel>
+          <SelectItem value='apple'>Apple</SelectItem>
+          <SelectItem value='banana'>Banana</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+          <SelectLabel>Vegetables</SelectLabel>
+          <SelectItem value='carrot'>Carrot</SelectItem>
+          <SelectItem value='broccoli'>Broccoli</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  );
+}
+```
+
+### Controlled vs Uncontrolled
+
+The Select component supports both controlled and uncontrolled usage patterns:
+
+```tsx
+// Controlled
+const [value, setValue] = useState('option1');
+<Select value={value} onValueChange={setValue}>
+
+// Uncontrolled
+<Select defaultValue='option1' onValueChange={(value) => console.log(value)}>
+```
+
+
+### Form Integration
+
+The Select component integrates seamlessly with HTML forms:
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <Select name='category' required>
+    <SelectTrigger label='Category'>
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value='tech'>Technology</SelectItem>
+      <SelectItem value='design'>Design</SelectItem>
+      <SelectItem value='business'>Business</SelectItem>
+    </SelectContent>
+  </Select>
+  <button type='submit'>Submit</button>
+</form>
+```
+
+</Tab>
+</CustomTabs>

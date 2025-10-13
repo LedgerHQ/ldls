@@ -121,7 +121,7 @@ const DialogOverlay = React.forwardRef<
       data-slot='dialog-overlay'
       className={cn(
         className,
-        'fixed inset-0 z-dialogOverlay bg-canvas-overlay data-[state=closed]:animate-overlayHide data-[state=open]:animate-overlayShow',
+        'fixed inset-0 z-dialogOverlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
       )}
       {...props}
     />
