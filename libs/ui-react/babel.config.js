@@ -1,0 +1,12 @@
+export default {
+  presets: [
+    [
+      '@nx/react/babel',
+      {
+        runtime: 'automatic',
+        useBuiltIns: 'usage',
+      },
+    ],
+  ],
+  plugins: [],
+};

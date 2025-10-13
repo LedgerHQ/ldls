@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "tailwindCSS.classFunctions": ["cva", "cn"],
   "cSpell.words": ["tailwindcss"],
   "nxConsole.generateAiAgentRules": true,

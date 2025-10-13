@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -18,9 +15,7 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
-    ]
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "67f3c278db421d0a6374d282",
   "neverConnectToCloud": true,
@@ -54,9 +49,7 @@
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint",
-        "lintFilePatterns": [
-          "{projectRoot}/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx,js,jsx}"]
       }
     },
     {
@@ -72,7 +65,7 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       }
-    }, 
+    },
     {
       "plugin": "@nx/react-native/plugin",
       "options": {
@@ -114,14 +107,10 @@
   ],
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "test": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   },
   "generators": {
@@ -143,9 +132,7 @@
     }
   },
   "release": {
-    "projects": [
-      "libs/*"
-    ],
+    "projects": ["libs/*"],
     "projectsRelationship": "independent",
     "versionPlans": true,
     "version": {
