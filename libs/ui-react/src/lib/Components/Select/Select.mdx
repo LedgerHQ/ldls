@@ -105,7 +105,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
@@ -113,9 +112,7 @@ function MyComponent() {
 
   return (
     <Select value={value} onValueChange={setValue}>
-      <SelectTrigger label='Label'>
-        <SelectValue />
-      </SelectTrigger>
+      <SelectTrigger label='Label' />
       <SelectContent>
         <SelectItem value='option1'>Option 1</SelectItem>
         <SelectItem value='option2'>Option 2</SelectItem>
@@ -347,7 +344,6 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
@@ -355,9 +351,7 @@ function MyComponent() {
 
   return (
     <Select value={value} onValueChange={setValue}>
-      <SelectTrigger label='Category'>
-        <SelectValue />
-      </SelectTrigger>
+      <SelectTrigger label='Category' />
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Fruits</SelectLabel>
@@ -397,9 +391,7 @@ The Select component integrates seamlessly with HTML forms:
 ```tsx
 <form onSubmit={handleSubmit}>
   <Select name='category' required>
-    <SelectTrigger label='Category'>
-      <SelectValue />
-    </SelectTrigger>
+    <SelectTrigger label='Category' />
     <SelectContent>
       <SelectItem value='tech'>Technology</SelectItem>
       <SelectItem value='design'>Design</SelectItem>
@@ -422,7 +414,6 @@ import {
   SelectScrollUpButton,
   SelectScrollDownButton,
   SelectTrigger,
-  SelectValue,
 } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
@@ -439,9 +430,7 @@ function MyComponent() {
 
   return (
     <Select value={value} onValueChange={setValue}>
-      <SelectTrigger label='Country'>
-        <SelectValue />
-      </SelectTrigger>
+      <SelectTrigger label='Country' />
       <SelectContent>
         {/* Scroll buttons are automatically included in SelectContent */}
         {countries.map((country) => (

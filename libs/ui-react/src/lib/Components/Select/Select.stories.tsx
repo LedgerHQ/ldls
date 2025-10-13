@@ -8,7 +8,6 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from './Select';
 
 const meta: Meta<typeof Select> = {
@@ -29,9 +28,7 @@ export const Base: Story = {
     return (
       <div className='w-384'>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger label='Label'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>Option 1</SelectItem>
             <SelectItem value='option2'>Option 2</SelectItem>
@@ -51,9 +48,7 @@ export const WithGroups: Story = {
     return (
       <div className='w-384'>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger label='Category'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Category' />
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Fruits</SelectLabel>
@@ -101,9 +96,7 @@ export const LongList: Story = {
     return (
       <div className='w-208'>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger label='Country'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Country' />
           <SelectContent>
             {countries.map((country) => (
               <SelectItem key={country} value={country.toLowerCase()}>
@@ -123,9 +116,7 @@ export const Disabled: Story = {
     return (
       <div className='w-208'>
         <Select disabled>
-          <SelectTrigger label='Disabled'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Disabled' />
           <SelectContent>
             <SelectItem value='option1'>Option 1</SelectItem>
             <SelectItem value='option2'>Option 2</SelectItem>
@@ -142,9 +133,7 @@ export const WithDefaultValue: Story = {
     return (
       <div className='w-208'>
         <Select defaultValue='option2'>
-          <SelectTrigger label='Label'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>Option 1</SelectItem>
             <SelectItem value='option2'>Option 2</SelectItem>
@@ -182,9 +171,7 @@ export const FormIntegration: Story = {
           name='category'
           required
         >
-          <SelectTrigger label='Category'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Category' />
           <SelectContent>
             <SelectItem value='tech'>Technology</SelectItem>
             <SelectItem value='design'>Design</SelectItem>
@@ -200,9 +187,7 @@ export const FormIntegration: Story = {
           name='priority'
           required
         >
-          <SelectTrigger label='Priority'>
-            <SelectValue />
-          </SelectTrigger>
+          <SelectTrigger label='Priority' />
           <SelectContent>
             <SelectItem value='low'>Low</SelectItem>
             <SelectItem value='medium'>Medium</SelectItem>

@@ -5,16 +5,13 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from './Select';
 
 describe('Select', () => {
   it('renders with placeholder text', () => {
     render(
       <Select>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
         </SelectContent>
@@ -27,9 +24,7 @@ describe('Select', () => {
   it('renders with floating label', () => {
     render(
       <Select>
-        <SelectTrigger label='Choose an option'>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger label='Choose an option' />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
         </SelectContent>
@@ -42,9 +37,7 @@ describe('Select', () => {
   it('renders without label when not provided', () => {
     render(
       <Select>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
         </SelectContent>
@@ -59,9 +52,7 @@ describe('Select', () => {
 
     render(
       <Select>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
           <SelectItem value='option2'>Option 2</SelectItem>
@@ -84,9 +75,7 @@ describe('Select', () => {
 
     render(
       <Select onValueChange={onValueChange}>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
           <SelectItem value='option2'>Option 2</SelectItem>
@@ -110,9 +99,7 @@ describe('Select', () => {
   it('displays selected value', () => {
     render(
       <Select value='option1'>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
           <SelectItem value='option2'>Option 2</SelectItem>
@@ -126,9 +113,7 @@ describe('Select', () => {
   it('can be disabled', () => {
     render(
       <Select disabled>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
         </SelectContent>
@@ -145,9 +130,7 @@ describe('Select', () => {
 
     render(
       <Select onValueChange={onValueChange}>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
           <SelectItem value='option2'>Option 2</SelectItem>
@@ -177,9 +160,7 @@ describe('Select', () => {
 
     render(
       <Select>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
         </SelectContent>
@@ -203,9 +184,7 @@ describe('Select', () => {
   it('works with default value', () => {
     render(
       <Select defaultValue='option2'>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
+        <SelectTrigger />
         <SelectContent>
           <SelectItem value='option1'>Option 1</SelectItem>
           <SelectItem value='option2'>Option 2</SelectItem>

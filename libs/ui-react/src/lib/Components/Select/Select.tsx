@@ -15,12 +15,6 @@ function SelectGroup({
   return <SelectPrimitive.Group data-slot='select-group' {...props} />;
 }
 
-function SelectValue({
-  ...props
-}: React.ComponentProps<typeof SelectPrimitive.Value>) {
-  return <SelectPrimitive.Value data-slot='select-value' {...props} />;
-}
-
 const triggerStyles = cn(
   'group relative flex h-48 w-full items-center justify-between gap-8',
   'bg-muted rounded-sm px-16',
@@ -66,7 +60,9 @@ const SelectTrigger = React.forwardRef<
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
     <span className='mt-8 flex-1 truncate text-left opacity-100 transition-opacity duration-500 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
-      {children}
+      <SelectPrimitive.Value data-slot='select-value'>
+        {children}
+      </SelectPrimitive.Value>
     </span>
     <SelectPrimitive.Icon asChild>
       <ChevronDown size={20} className='shrink-0 text-muted' />
@@ -213,7 +209,6 @@ function SelectScrollDownButton({
 export {
   Select,
   SelectGroup,
-  SelectValue,
   SelectTrigger,
   SelectContent,
   SelectLabel,
