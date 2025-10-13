@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Pressable, View, type GestureResponderEvent } from 'react-native';
 
 import { cva } from 'class-variance-authority';
-import * as Slot from '../Slot';
+import { SlotPressable, SlotView } from '../Slot';
 
 import {
   PressableRef,
@@ -20,7 +20,7 @@ const baseSwitchVariants = {
   root: cva(
     [
       'group flex justify-center rounded-full p-2 transition-colors duration-200 ease-in-out',
-      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+      'focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
     ],
     {
       variants: {
@@ -114,7 +114,7 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
       [disabled, checked, onCheckedChange, onPressProp],
     );
 
-    const Component = asChild ? Slot.Pressable : Pressable;
+    const Component = asChild ? SlotPressable : Pressable;
 
     return (
       <BaseSwitchProvider
@@ -158,7 +158,7 @@ const BaseSwitchThumb = React.forwardRef<ViewRef, SlottableViewProps>(
       contextRequired: true,
     });
 
-    const Component = asChild ? Slot.View : View;
+    const Component = asChild ? SlotView : View;
     return (
       <Component
         ref={ref}
