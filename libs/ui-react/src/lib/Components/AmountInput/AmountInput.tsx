@@ -109,7 +109,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       return '17px';
     }
 
-    const fontsize = useMemo(() => getFontSize(inputValue), [inputValue]);
+    const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
 
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
@@ -158,10 +158,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span
-            className={cn(currencyStyles, 'shrink-0')}
-            style={{ fontSize: fontsize }}
-          >
+          <span className={cn(currencyStyles, 'shrink-0')} style={{ fontSize }}>
             {currencyText}
           </span>
         )}
@@ -171,7 +168,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           ref={spanRef}
           className={cn('invisible absolute heading-0')}
           aria-hidden='true'
-          style={{ fontSize: fontsize, letterSpacing: 'normal' }}
+          style={{ fontSize, letterSpacing: 'normal' }}
         >
           {inputValue}
         </span>
@@ -190,13 +187,13 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
             className,
           )}
           {...props}
-          style={{ fontSize: `${fontsize}px`, letterSpacing: 'normal' }}
+          style={{ fontSize, letterSpacing: 'normal' }}
         />
 
         {currencyText && currencyPosition === 'right' && (
           <span
             className={cn(currencyStyles, 'shrink-0')}
-            style={{ fontSize: fontsize, letterSpacing: 'normal' }}
+            style={{ fontSize, letterSpacing: 'normal' }}
           >
             {currencyText}
           </span>
