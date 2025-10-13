@@ -1,4 +1,10 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 
 export interface AmountInputProps
@@ -83,20 +89,27 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
-    function getScaleClass(val: string): string {
+    function getFontSize(val: string): string {
       const digits = val.replace(/\D/g, '').length;
-      
-      if (digits <= 8) return 'scale-100';
-      if (digits <= 12) return 'scale-75';
-      if (digits <= 16) return 'scale-[0.6]';
-      return 'scale-50';
+
+      if (digits <= 4) return '48px';
+      if (digits === 5) return '44px';
+      if (digits === 6) return '40px';
+      if (digits === 7) return '36px';
+      if (digits === 8) return '33px';
+      if (digits === 9) return '31px';
+      if (digits === 10) return '28px';
+      if (digits === 11) return '27px';
+      if (digits === 12) return '25px';
+      if (digits === 13) return '23px';
+      if (digits === 14) return '21px';
+      if (digits === 15) return '20px';
+      if (digits === 16) return '19px';
+      if (digits === 17) return '18px';
+      return '17px';
     }
 
-    const scaleClass = getScaleClass(inputValue);
-
-    useEffect(() => {
-      setInputValue(value.toString());
-    }, [value]);
+    const fontsize = useMemo(() => getFontSize(inputValue), [inputValue]);
 
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
@@ -135,7 +148,6 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       <div
         className={cn(
           'group relative flex items-center justify-center transition-transform',
-          scaleClass,
         )}
         onPointerDown={() => {
           const input = inputRef.current;
@@ -146,7 +158,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>
+          <span
+            className={cn(currencyStyles, 'shrink-0')}
+            style={{ fontSize: fontsize }}
+          >
             {currencyText}
           </span>
         )}
@@ -156,6 +171,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           ref={spanRef}
           className={cn('invisible absolute heading-0')}
           aria-hidden='true'
+          style={{ fontSize: fontsize, letterSpacing: 'normal' }}
         >
           {inputValue}
         </span>
@@ -174,11 +190,13 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
             className,
           )}
           {...props}
+          style={{ fontSize: `${fontsize}px`, letterSpacing: 'normal' }}
         />
 
         {currencyText && currencyPosition === 'right' && (
           <span
             className={cn(currencyStyles, 'shrink-0')}
+            style={{ fontSize: fontsize, letterSpacing: 'normal' }}
           >
             {currencyText}
           </span>
