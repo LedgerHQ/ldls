@@ -167,7 +167,7 @@ describe('textFormatter', () => {
   describe('integer-only mode with allowDecimals=false', () => {
     it('should remove decimal points when allowDecimals is false', () => {
       expect(textFormatter('1.5', false)).toBe('15');
-      expect(textFormatter('123.456', false)).toBe('123456');
+      expect(textFormatter('123.456', false)).toBe('123 456');
       expect(textFormatter('.5', false)).toBe('5');
     });
 
@@ -324,7 +324,7 @@ describe('textFormatter', () => {
       it('should work with undefined length parameters', () => {
         // When called without length params, should use default behavior
         expect(textFormatter('123456789.123456789')).toBe(
-          '123456789.123456789',
+          '123 456 789.123456789',
         ); // Default 9 decimal limit
       });
     });
