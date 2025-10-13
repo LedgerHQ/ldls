@@ -28,7 +28,6 @@ export function createPrimitivesPlugin() {
     dialogContent: '100',
     select: '120',
     tooltip: '200',
-
   };
 
   return plugin(

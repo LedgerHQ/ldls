@@ -1,11 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from './Select';
+import { Select, SelectContent, SelectItem, SelectTrigger } from './Select';
 
 describe('Select', () => {
   it('renders with placeholder text', () => {

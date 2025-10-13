@@ -40,7 +40,6 @@ export const Base: Story = {
   },
 };
 
-
 export const WithGroups: Story = {
   render: () => {
     const [value, setValue] = useState('');
@@ -162,7 +161,7 @@ export const FormIntegration: Story = {
     };
 
     return (
-      <form onSubmit={handleSubmit} className='w-256 flex flex-col gap-16'>
+      <form onSubmit={handleSubmit} className='flex w-256 flex-col gap-16'>
         <Select
           value={formData.category}
           onValueChange={(value) =>
