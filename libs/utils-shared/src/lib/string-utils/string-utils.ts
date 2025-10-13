@@ -36,45 +36,34 @@ export function toPascalCase(str: string): string {
 export function textFormatter(
   value: string,
   allowDecimals = true,
-  useThousandsSeparator = false,
+  useThousandsSeparator = true,
   maxIntegerLength = 9,
   maxDecimalLength = 9,
 ): string {
-  // Convert comma to dot and remove all characters except digits and dots
-  let cleaned = value.replace(',', '.').replace(/[^\d.]/g, '');
+  // Normalize input: convert comma to dot, remove non-digit/non-dot characters
+  const normalizedValue = value.replace(',', '.').replace(/[^\d.]/g, '');
+  let cleaned = normalizedValue;
 
-  // Handle leading zeros
-  // If number starts with 0 but is not a decimal (e.g., "01", "02", etc.)
-  // Remove leading zeros. For "000" return "0"
-  if (
-    cleaned.startsWith('0') &&
-    !cleaned.startsWith('0.') &&
-    cleaned.length > 1
-  ) {
-    cleaned = cleaned.replace(/^0+/, '') || '0'; // edge case to display 0 when user types 0 multiple times
-  }
+  // Remove leading zeros (except when followed by dot)
+  cleaned = cleaned.replace(/^0+(?=\d)/, '');
 
-  // For integer-only input
   if (!allowDecimals) {
-    // Remove all non-digit characters if decimals are not allowed
+    // Integer-only: remove any non-digit and apply max length
     cleaned = cleaned.replace(/\D/g, '');
-
-    // Apply integer length limit
     if (maxIntegerLength && cleaned.length > maxIntegerLength) {
       cleaned = cleaned.slice(0, maxIntegerLength);
     }
-
     return useThousandsSeparator ? formatThousands(cleaned) : cleaned;
   }
 
-  // Convert single decimal point to "0."
-  // e.g., "." -> "0."
+  // Handle single dot input as "0."
   if (cleaned === '.') {
     cleaned = '0.';
   }
 
   const firstDot = cleaned.indexOf('.');
   if (firstDot !== -1) {
+    // Split integer and decimal parts
     let integerPart = cleaned.slice(0, firstDot);
     let decimalPart = cleaned.slice(firstDot + 1).replace(/\./g, '');
 
@@ -84,24 +73,20 @@ export function textFormatter(
     }
     decimalPart = decimalPart.slice(0, maxDecimalLength);
 
-    // Handle cases where integer part is empty (e.g., ".5" -> "0.5")
-    if (integerPart === '') {
-      integerPart = '0';
-    }
+    // Ensure integer part is not empty
+    if (integerPart === '') integerPart = '0';
 
-    // Preserve trailing decimal point to allow continued typing
-    const originalValue = value.replace(',', '.').replace(/[^\d.]/g, '');
-    const hasTrailingDot = originalValue.endsWith('.') || cleaned.endsWith('.');
-
-    if (decimalPart.length > 0) {
-      cleaned = `${integerPart}.${decimalPart}`;
-    } else if (hasTrailingDot) {
-      cleaned = `${integerPart}.`;
-    } else {
-      cleaned = integerPart;
-    }
+    // Preserve trailing dot if user is typing
+    const hasTrailingDot =
+      normalizedValue.endsWith('.') || cleaned.endsWith('.');
+    cleaned =
+      decimalPart.length > 0
+        ? `${integerPart}.${decimalPart}`
+        : hasTrailingDot
+          ? `${integerPart}.`
+          : integerPart;
   } else {
-    // No decimal point, apply integer length limit
+    // No decimal point, just apply integer length limit
     if (maxIntegerLength && cleaned.length > maxIntegerLength) {
       cleaned = cleaned.slice(0, maxIntegerLength);
     }
@@ -130,16 +115,12 @@ export function formatThousands(
 ): string {
   if (!value) return '';
 
-  // Check if original value has a decimal point
   const hasDecimalPoint = value.includes('.');
-
-  // Split number into integer and decimal parts
   const [integerPart, decimalPart] = value.split('.');
 
-  // Format integer part with spaces every 3 digits from right
+  // Add space separator every 3 digits
   const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-  // Return with decimal part if preserveDecimals is true and original had decimal point
   if (hasDecimalPoint && preserveDecimals) {
     return decimalPart
       ? `${formattedInteger}.${decimalPart}`
