@@ -72,7 +72,6 @@ export function createAnimationsPlugin() {
                 transform: 'translateX(0)',
               },
             },
-            
           },
           animation: {
             overlayShow: 'overlayShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -88,7 +87,8 @@ export function createAnimationsPlugin() {
             slideOutToTop: 'slideOutToTop 250ms ease-in',
             slideOutToBottom: 'slideOutToBottom 250ms ease-in',
             translateFromRight:
-            'translateFromRight 250ms cubic-bezier(0.4, 0, 0.2, 1)',          },
+              'translateFromRight 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+          },
         },
       },
     },

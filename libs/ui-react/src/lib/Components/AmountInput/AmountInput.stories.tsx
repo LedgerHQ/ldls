@@ -114,7 +114,7 @@ export const LargeAmountDisplay: Story = {
     const errorMessage = hasError ? 'Insufficient balance' : '';
 
     return (
-      <div className='relative h-128 w-384 rounded-lg'>
+      <div className='relative h-128 w-[359px] rounded-lg'>
         {/* Large amount input */}
         <div className='flex-col items-center justify-center'>
           <AmountInput
@@ -137,10 +137,10 @@ export const LargeAmountDisplay: Story = {
         </div>
         <IconButton
           icon={TransferVertical}
-          size='sm'
+          size='xs'
           appearance='gray'
           aria-label='Toggle currency'
-          className='absolute right-8 top-4'
+          className='absolute right-8 top-12'
           onClick={() => setIsEth(!isEth)}
         />
       </div>
