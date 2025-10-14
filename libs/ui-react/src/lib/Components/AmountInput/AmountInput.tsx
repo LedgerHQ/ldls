@@ -79,6 +79,9 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     const [inputValue, setInputValue] = useState(value.toString());
     const [isChanging, setIsChanging] = useState(false);
 
+    /** Track previous value for animation trigger */
+    const prevValueRef = useRef<string>(inputValue);
+
     /** TODO: move to ui-core */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
       return (node: T) => {
@@ -124,14 +127,15 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         maxDecimalLength,
       );
 
-      // Trigger animation whenever input changes (adding or removing characters)
-      if (cleaned !== inputValue) {
-        setIsChanging(false);
-        requestAnimationFrame(() => setIsChanging(true));
-      }
-
       setInputValue(cleaned);
       onChange({ ...e, target: { ...e.target, value: cleaned } });
+
+      // Trigger animation if value actually changes
+      if (cleaned !== prevValueRef.current) {
+        setIsChanging(true);
+      }
+
+      prevValueRef.current = cleaned;
     };
 
     return (
