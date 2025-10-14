@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatThousands } from './format-thousands.js';
+import { formatThousands } from './format-thousands';
 
 describe('formatThousands', () => {
   it('should format thousands with spaces', () => {

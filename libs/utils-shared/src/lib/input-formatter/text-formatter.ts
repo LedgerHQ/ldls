@@ -1,4 +1,4 @@
-import { formatThousands } from './format-thousands.js';
+import { formatThousands } from './format-thousands';
 
 /**
  * Formats and validates numeric input text for amount inputs.
