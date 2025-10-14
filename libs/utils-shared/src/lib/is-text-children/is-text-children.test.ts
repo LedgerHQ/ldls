@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { describe, it, expect } from 'vitest';
 import { isTextChildren } from './is-text-children';
 
@@ -11,6 +11,7 @@ describe('isAllowedTextChildren', () => {
     { name: 'number', input: 42, expected: true },
     { name: 'zero', input: 0, expected: true },
     { name: 'NaN', input: Number.NaN, expected: true },
+    { name: 'array of strings', input: ['a', 'b'], expected: true },
     {
       name: 'React element',
       input: React.createElement('View', null),
@@ -18,15 +19,15 @@ describe('isAllowedTextChildren', () => {
     },
     { name: 'null', input: null, expected: false },
     { name: 'undefined', input: undefined, expected: false },
+    { name: 'array of object and string', input: [{}, 'b'], expected: false },
     { name: 'boolean true', input: true, expected: false },
     { name: 'boolean false', input: false, expected: false },
-    { name: 'array of strings', input: ['a', 'b'], expected: false },
     { name: 'object', input: { a: 1 }, expected: false },
     { name: 'function', input: () => 'x', expected: false },
     { name: 'symbol', input: Symbol('s'), expected: false },
   ];
 
   it.each(cases)('$name', ({ input, expected }) => {
-    expect(isTextChildren(input as React.ReactNode)).toBe(expected);
+    expect(isTextChildren(input as ReactNode)).toBe(expected);
   });
 });

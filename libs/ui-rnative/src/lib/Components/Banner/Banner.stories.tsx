@@ -2,7 +2,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Banner } from './Banner';
 import { Button } from '../Button';
-import { Text, View } from 'react-native';
 
 const meta: Meta<typeof Banner> = {
   component: Banner,
@@ -97,11 +96,7 @@ export const Base: Story = {
     <div className='max-w-md'>
       <Banner
         {...args}
-        description={
-          <View>
-            <Text>azeaz</Text>
-          </View>
-        }
+        description={'This is additional information about the banner.'}
       />
     </div>
   ),
@@ -113,7 +108,7 @@ export const Base: Story = {
   appearance="info"
   title="Information Banner"
   onClose={() => console.log('Closed')}
-  closeAriaLabel="Close banner"
+  description="This is additional information about the banner."
 />
 `,
       },
@@ -391,7 +386,7 @@ export const NaturalWidth: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='w-384 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 384px wide</div>
       <Banner
         title='Short Title'
