@@ -5,16 +5,16 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ]
   },
   "exclude": [
-    "src/**/*.spec.ts",
     "src/**/*.test.ts",
-    "src/**/*.spec.js",
     "src/**/*.test.js",
-    "src/**/*.spec.tsx",
     "src/**/*.test.tsx",
-    "src/**/*.spec.jsx",
     "src/**/*.test.js"
   ],
   "include": [

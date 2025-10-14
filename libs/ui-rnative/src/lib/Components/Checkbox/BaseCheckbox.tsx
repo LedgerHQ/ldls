@@ -1,4 +1,4 @@
-import * as Slot from '../Slot';
+import { SlotPressable, SlotView } from '../Slot';
 import React, { useCallback } from 'react';
 import {
   ForceMountable,
@@ -20,8 +20,8 @@ const INDICATOR_COMPONENT_NAME = 'BaseCheckboxIndicator';
 const baseCheckboxVariants = {
   trigger: cva(
     [
-      'size-20 shrink-0 rounded-xs transition-colors',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
+      'rounded-xs size-20 shrink-0 transition-colors',
+      'focus-visible:ring-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
     ],
     {
       variants: {
@@ -109,7 +109,7 @@ const BaseCheckboxTrigger = React.forwardRef<
     [disabled, checked, onCheckedChange, onPressProp],
   );
 
-  const Component = asChild ? Slot.Pressable : Pressable;
+  const Component = asChild ? SlotPressable : Pressable;
   return (
     <Component
       ref={ref}
@@ -149,7 +149,7 @@ const BaseCheckboxIndicator = React.forwardRef<
     }
   }
 
-  const Component = asChild ? Slot.View : View;
+  const Component = asChild ? SlotView : View;
   return (
     <Component
       ref={ref}

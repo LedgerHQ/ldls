@@ -8,3 +8,7 @@ alwaysApply: false
 - For react-native target elements using `testID`
 - Target content / text when it makes no sense to use `data-testid` or `testID`
 
+# Jest related
+- Only libs/ui-rnative is using Jest, other libs and apps are using Vitest
+- For Jest, the prefered approach is to not expose globals but instead import it like:
+```import { describe, it, expect, jest } from '@jest/globals';```

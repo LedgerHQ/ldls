@@ -1,6 +1,5 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { describe, it, expect, jest } from '@jest/globals';
 import { Checkbox } from './Checkbox';
 
 describe('Checkbox', () => {
@@ -23,7 +22,7 @@ describe('Checkbox', () => {
   });
 
   it('controlled: calls onCheckedChange but state is controlled by parent', async () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     const { getByTestId, rerender } = render(
       <Checkbox checked={false} onCheckedChange={onChange} testID='checkbox' />,
     );
@@ -53,7 +52,7 @@ describe('Checkbox', () => {
   });
 
   it('label: renders and toggles when pressed', async () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     const { getByText, getByTestId } = render(
       <Checkbox
         defaultChecked={false}
@@ -74,7 +73,7 @@ describe('Checkbox', () => {
   });
 
   it('disabled: does not toggle on trigger or label press', async () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     const { getByText, getByTestId } = render(
       <Checkbox
         disabled

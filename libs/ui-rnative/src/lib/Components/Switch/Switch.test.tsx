@@ -1,5 +1,4 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, jest } from '@jest/globals';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { Switch } from './Switch';
 
@@ -21,7 +20,7 @@ describe('Switch', () => {
   });
 
   it('controlled: calls onCheckedChange but state is controlled by parent', async () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     const { getByTestId, rerender } = render(
       <Switch checked={false} onCheckedChange={onChange} testID='switch' />,
     );
@@ -49,7 +48,7 @@ describe('Switch', () => {
   });
 
   it('disabled: does not toggle on press', async () => {
-    const onChange = vi.fn();
+    const onChange = jest.fn();
     const { getByTestId } = render(
       <Switch
         disabled
@@ -79,7 +78,7 @@ describe('Switch', () => {
     expect(getByTestId('switch').props['aria-valuetext']).toBe('off');
 
     rerender(
-      <Switch checked={true} onCheckedChange={vi.fn()} testID='switch' />,
+      <Switch checked={true} onCheckedChange={jest.fn()} testID='switch' />,
     );
     expect(getByTestId('switch').props['aria-valuetext']).toBe('on');
 

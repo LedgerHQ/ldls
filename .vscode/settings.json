@@ -1,8 +1,13 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "tailwindCSS.classFunctions": ["cva", "cn"],
-  "cSpell.words": ["tailwindcss"],
+  "tailwindCSS.classFunctions": [
+    "cva",
+    "cn"
+  ],
+  "cSpell.words": [
+    "tailwindcss"
+  ],
   "nxConsole.generateAiAgentRules": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
@@ -12,10 +17,10 @@
     "./libs/ui-react"
   ],
   "eslint.validate": [
-      "javascriptreact",
-      "typescriptreact",
-      "typescript",
-      "javascript",
-      "html"
+    "javascriptreact",
+    "typescriptreact",
+    "typescript",
+    "javascript",
+    "html"
   ],
 }

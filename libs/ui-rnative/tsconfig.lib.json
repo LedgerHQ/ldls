@@ -11,18 +11,11 @@
   "exclude": [
     "out-tsc",
     "dist",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
     "src/test-setup.ts",
     "eslint.config.js",
     "eslint.config.cjs",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "jest.config.ts"
   ],
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
