@@ -17,7 +17,7 @@ const DialogTemplate = ({
       <DialogTrigger asChild>
         <Button appearance='base'>{triggerLabel}</Button>
       </DialogTrigger>
-      <DialogContent className='w-[500px]'>
+      <DialogContent className='w-[400px]'>
         <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
         <div className='h-256' />
       </DialogContent>
@@ -59,7 +59,7 @@ export const Base: Story = {
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent className="w-[500px]">
+  <DialogContent className="w-[400px]">
     <DialogHeader title="Sheet Title" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
@@ -88,7 +88,7 @@ export const WithDescription: Story = {
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent className="w-[500px]">
+  <DialogContent className="w-[400px]">
     <DialogHeader title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
@@ -117,7 +117,7 @@ export const WithBack: Story = {
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent className="w-[500px]">
+  <DialogContent className="w-[400px]">
     <DialogHeader title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
@@ -145,7 +145,7 @@ export const Large: Story = {
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent className="w-[500px]">
+  <DialogContent className="w-[400px]">
     <DialogHeader title="Large Sheet Title" onClose={() => setOpen(false)} />
     <div className="h-256" />
   </DialogContent>
