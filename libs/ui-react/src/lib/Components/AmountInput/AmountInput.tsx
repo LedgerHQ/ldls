@@ -95,22 +95,9 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
 
     function getFontSize(val: string): string {
       const digits = val.replace(/\D/g, '').length;
-
-      if (digits <= 4) return '48px';
-      if (digits === 5) return '44px';
-      if (digits === 6) return '40px';
-      if (digits === 7) return '36px';
-      if (digits === 8) return '33px';
-      if (digits === 9) return '31px';
-      if (digits === 10) return '28px';
-      if (digits === 11) return '27px';
-      if (digits === 12) return '25px';
-      if (digits === 13) return '23px';
-      if (digits === 14) return '21px';
-      if (digits === 15) return '20px';
-      if (digits === 16) return '19px';
-      if (digits === 17) return '18px';
-      return '17px';
+      // Max font 48px, min 17px
+      const fontSize = Math.max(17, 48 - digits * 2);
+      return `${fontSize}px`;
     }
 
     const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
@@ -137,10 +124,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         maxDecimalLength,
       );
 
-      // Trigger animation for significant changes
-      if (cleaned !== inputValue && cleaned.length > inputValue.length) {
-        setIsChanging(true);
-        setTimeout(() => setIsChanging(false), 200);
+      // Trigger animation whenever input changes (adding or removing characters)
+      if (cleaned !== inputValue) {
+        setIsChanging(false);
+        requestAnimationFrame(() => setIsChanging(true));
       }
 
       setInputValue(cleaned);
@@ -186,6 +173,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}
+          onAnimationEnd={() => setIsChanging(false)}
           className={cn(
             baseInputStyles,
             'h-56',
