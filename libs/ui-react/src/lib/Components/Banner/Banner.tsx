@@ -88,12 +88,12 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         className={cn(className, bannerVariants.root({ appearance }))}
         {...props}
       >
-        <div className={'flex shrink-0 items-start py-4'}>{icon}</div>
-        <div className={'mr-8 flex flex-1 flex-col gap-8 py-4'}>
-          <div className={'flex flex-col gap-4'}>
-            <h3 className={'body-1-semi-bold line-clamp-2'}>{title}</h3>
+        <div className='flex shrink-0 items-start py-4'>{icon}</div>
+        <div className='mr-8 flex flex-1 flex-col gap-8 py-4'>
+          <div className='flex flex-col gap-4'>
+            <h3 className='body-1-semi-bold line-clamp-2'>{title}</h3>
             {description && (
-              <div className={'body-2 line-clamp-5'}>{description}</div>
+              <div className='body-2 line-clamp-5'>{description}</div>
             )}
           </div>
           {(primaryAction || secondaryAction) && (
