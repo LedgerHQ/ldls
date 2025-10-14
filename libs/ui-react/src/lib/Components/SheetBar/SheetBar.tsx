@@ -4,7 +4,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('flex w-full bg-canvas-sheet px-24 text-base', {
+const sheetBarVariants = cva('flex w-full bg-canvas-sheet text-base', {
   variants: {
     size: {
       sm: 'h-64 flex-row items-center gap-12',
