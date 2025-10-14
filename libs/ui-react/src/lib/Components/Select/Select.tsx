@@ -71,7 +71,7 @@ const SelectTrigger = React.forwardRef<
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cn(
-  'relative z-select min-w-200 max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
+  'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
   'bg-muted rounded-sm',
   'drop-shadow-md',
   'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out',
