@@ -96,10 +96,15 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
+    // Font size calculation constants
+    const MAX_FONT_SIZE = 48;
+    const MIN_FONT_SIZE = 17;
+    const SCALE_FACTOR = 2;
+
     function getFontSize(val: string): string {
       const digits = val.replace(/\D/g, '').length;
       // Max font 48px, min 17px
-      const fontSize = Math.max(17, 48 - digits * 2);
+      const fontSize = Math.max(MIN_FONT_SIZE, MAX_FONT_SIZE - digits * SCALE_FACTOR);
       return `${fontSize}px`;
     }
 
