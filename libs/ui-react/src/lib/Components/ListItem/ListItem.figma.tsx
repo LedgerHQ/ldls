@@ -42,10 +42,10 @@ figma.connect(
       disabled: figma.enum('state', {
         disabled: true,
       }),
-      disabledTag: figma.enum('disabled-tag', {
-        none: undefined,
-        tag: '{<Tag label="New" appearance="accent" />}',
-      }),
+      // disabledTag: figma.enum('disabled-tag', {
+      //   none: undefined,
+      //   tag: '{<Tag label="New" appearance="accent" />}',
+      // }),
     },
     links: [
       {
