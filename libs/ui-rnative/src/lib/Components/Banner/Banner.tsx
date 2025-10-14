@@ -39,8 +39,8 @@ const bannerVariants = {
   iconWrapper: cva('flex shrink-0 flex-row items-start py-4'),
   contentWrapper: cva('mr-8 flex flex-1 flex-col gap-8 py-4'),
   contentText: cva('flex flex-col gap-4'),
-  title: cva('line-clamp-2 body-1-semi-bold'),
-  description: cva('line-clamp-5 body-2'),
+  title: cva('body-1-semi-bold line-clamp-2'),
+  description: cva('body-2 line-clamp-5'),
 };
 
 /**
@@ -124,6 +124,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
         </View>
         {onClose && (
           <Button
+            testID='banner-close-button'
             appearance='transparent'
             size='xs'
             icon={Close}
