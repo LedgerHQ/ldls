@@ -38,7 +38,7 @@ const meta: Meta<typeof Banner> = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -55,7 +55,7 @@ const meta: Meta<typeof Banner> = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -94,7 +94,10 @@ export const Base: Story = {
   render: (args) => (
     // max-w-md container for visual presentation - not required for Banner component
     <div className='max-w-md'>
-      <Banner {...args} />
+      <Banner
+        {...args}
+        description={'This is additional information about the banner.'}
+      />
     </div>
   ),
   parameters: {
@@ -105,7 +108,7 @@ export const Base: Story = {
   appearance="info"
   title="Information Banner"
   onClose={() => console.log('Closed')}
-  closeAriaLabel="Close banner"
+  description="This is additional information about the banner."
 />
 `,
       },
@@ -165,7 +168,7 @@ export const WithActions: Story = {
       <Button
         appearance="transparent"
         size="sm"
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -174,7 +177,7 @@ export const WithActions: Story = {
       <Button
         appearance="no-background"
         size="sm"
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -197,7 +200,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance='transparent'
         size='sm'
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -206,7 +209,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance='no-background'
         size='sm'
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -231,7 +234,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance="transparent"
         size="sm"
-        onClick={() => console.log('Primary clicked')}
+        onPress={() => console.log('Primary clicked')}
       >
         Primary
       </Button>
@@ -240,7 +243,7 @@ export const WithFullFeatures: Story = {
       <Button
         appearance="no-background"
         size="sm"
-        onClick={() => console.log('Secondary clicked')}
+        onPress={() => console.log('Secondary clicked')}
       >
         Secondary
       </Button>
@@ -293,7 +296,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -312,7 +315,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -321,7 +324,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -335,7 +338,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Primary clicked')}
+            onPress={() => console.log('Primary clicked')}
           >
             Primary
           </Button>
@@ -344,7 +347,7 @@ export const ContentVariations: Story = {
           <Button
             appearance='no-background'
             size='sm'
-            onClick={() => console.log('Secondary clicked')}
+            onPress={() => console.log('Secondary clicked')}
           >
             Secondary
           </Button>
@@ -369,7 +372,7 @@ export const NaturalWidth: Story = {
           <Button
             appearance='transparent'
             size='sm'
-            onClick={() => console.log('Action clicked')}
+            onPress={() => console.log('Action clicked')}
           >
             Action
           </Button>
@@ -383,7 +386,7 @@ export const NaturalWidth: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='w-384 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 384px wide</div>
       <Banner
         title='Short Title'
@@ -458,7 +461,7 @@ export const InteractiveActions: Story = {
           }
           primaryAction={
             state === 'idle' ? (
-              <Button appearance='transparent' size='sm' onClick={handleAccept}>
+              <Button appearance='transparent' size='sm' onPress={handleAccept}>
                 Accept
               </Button>
             ) : undefined
@@ -468,7 +471,7 @@ export const InteractiveActions: Story = {
               <Button
                 appearance='no-background'
                 size='sm'
-                onClick={handleReject}
+                onPress={handleReject}
               >
                 Reject
               </Button>

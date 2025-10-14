@@ -11,7 +11,10 @@
   "exclude": [
     "out-tsc",
     "dist",
-    "src/test-setup.ts",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test.js",
+    "src/**/*.test.jsx",
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs",

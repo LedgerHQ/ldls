@@ -8,8 +8,12 @@ import {
   DeleteCircleFill,
   Close,
 } from '../../Symbols';
-import { IconButton } from '../IconButton';
+import { Button } from '../Button';
 import { BannerProps } from './types';
+import { Text, View } from 'react-native';
+import { ViewRef } from '../../types';
+import { Wrap } from '../Wrap';
+import { isTextChildren } from '@ledgerhq/ldls-utils-shared';
 
 const iconMap = {
   info: <InformationFill className='text-base' />,
@@ -19,16 +23,19 @@ const iconMap = {
 };
 
 const bannerVariants = {
-  root: cva('flex w-full items-start gap-8 rounded-md p-16 text-base', {
-    variants: {
-      appearance: {
-        info: 'bg-muted',
-        success: 'bg-success',
-        warning: 'bg-warning',
-        error: 'bg-error',
+  root: cva(
+    'flex w-full flex-row items-start gap-8 rounded-md p-16 text-base',
+    {
+      variants: {
+        appearance: {
+          info: 'bg-muted',
+          success: 'bg-success',
+          warning: 'bg-warning',
+          error: 'bg-error',
+        },
       },
     },
-  }),
+  ),
 };
 
 /**
@@ -65,7 +72,7 @@ const bannerVariants = {
  *   closeAriaLabel="Close banner"
  * />
  */
-export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+export const Banner = React.forwardRef<ViewRef, BannerProps>(
   (
     {
       appearance = 'info',
@@ -83,36 +90,46 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     const icon = iconMap[appearance];
 
     return (
-      <div
+      <View
         ref={ref}
         className={cn(className, bannerVariants.root({ appearance }))}
         {...props}
       >
-        <div className={'flex shrink-0 items-start py-4'}>{icon}</div>
-        <div className={'mr-8 flex flex-1 flex-col gap-8 py-4'}>
-          <div className={'flex flex-col gap-4'}>
-            <h3 className={'body-1-semi-bold line-clamp-2'}>{title}</h3>
+        <View className={'flex shrink-0 flex-row items-start py-4'}>
+          {icon}
+        </View>
+        <View className={'mr-8 flex flex-1 flex-col gap-8 py-4'}>
+          <View className={'flex flex-col gap-4'}>
+            <Text className={'line-clamp-2 body-1-semi-bold'}>{title}</Text>
             {description && (
-              <div className={'body-2 line-clamp-5'}>{description}</div>
+              <View className={'line-clamp-5 body-2'}>
+                <Wrap
+                  if={isTextChildren(description)}
+                  with={(children) => <Text>{children}</Text>}
+                >
+                  {description}
+                </Wrap>
+              </View>
             )}
-          </div>
+          </View>
           {(primaryAction || secondaryAction) && (
-            <div className='flex gap-4'>
+            <View className='flex flex-row gap-4'>
               {primaryAction}
               {secondaryAction}
-            </div>
+            </View>
           )}
-        </div>
+        </View>
         {onClose && (
-          <IconButton
+          <Button
+            testID='banner-close-button'
             appearance='transparent'
             size='xs'
             icon={Close}
-            onClick={() => onClose()}
+            onPress={() => onClose()}
             aria-label={closeAriaLabel || 'Close'}
           />
         )}
-      </div>
+      </View>
     );
   },
 );
