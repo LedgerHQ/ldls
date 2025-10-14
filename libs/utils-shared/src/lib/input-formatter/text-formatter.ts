@@ -39,7 +39,7 @@ export function textFormatter(
   if (!allowDecimals) {
     // Integer-only: remove any non-digit and apply max length
     cleaned = cleaned.replace(/\D/g, '');
-    if (maxIntegerLength && cleaned.length > maxIntegerLength) {
+    if (maxIntegerLength > 0 && cleaned.length > maxIntegerLength) {
       cleaned = cleaned.slice(0, maxIntegerLength);
     }
     return useThousandsSeparator ? formatThousands(cleaned) : cleaned;
@@ -57,7 +57,7 @@ export function textFormatter(
     let decimalPart = cleaned.slice(firstDot + 1).replace(/\./g, '');
 
     // Apply length limits
-    if (maxIntegerLength && integerPart.length > maxIntegerLength) {
+    if (maxIntegerLength > 0 && integerPart.length > maxIntegerLength) {
       integerPart = integerPart.slice(0, maxIntegerLength);
     }
     decimalPart = decimalPart.slice(0, maxDecimalLength);
@@ -76,7 +76,7 @@ export function textFormatter(
           : integerPart;
   } else {
     // No decimal point, just apply integer length limit
-    if (maxIntegerLength && cleaned.length > maxIntegerLength) {
+    if (maxIntegerLength > 0 && cleaned.length > maxIntegerLength) {
       cleaned = cleaned.slice(0, maxIntegerLength);
     }
   }

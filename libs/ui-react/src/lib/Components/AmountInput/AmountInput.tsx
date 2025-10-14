@@ -104,7 +104,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     function getFontSize(val: string): string {
       const digits = val.replace(/\D/g, '').length;
       // Max font 48px, min 17px
-      const fontSize = Math.max(MIN_FONT_SIZE, MAX_FONT_SIZE - digits * SCALE_FACTOR);
+      const fontSize = Math.max(
+        MIN_FONT_SIZE,
+        MAX_FONT_SIZE - digits * SCALE_FACTOR,
+      );
       return `${fontSize}px`;
     }
 
