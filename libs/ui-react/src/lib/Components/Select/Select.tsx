@@ -38,7 +38,6 @@ interface SelectTriggerProps
    * The label text that floats above the input when focused or filled
    * @example label='Choose an option'
    */
-  /** The label text that floats above the input when focused or filled */
   label?: string;
   /** Additional class names to apply to the label element
    * @example labelClassName='text-error'
@@ -76,7 +75,6 @@ const contentStyles = cn(
   'bg-muted rounded-sm',
   'drop-shadow-md',
   'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out',
-  'data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
   'data-[side=bottom]:animate-slide-in-from-top',
   'data-[side=top]:animate-slide-in-from-bottom',
 );
