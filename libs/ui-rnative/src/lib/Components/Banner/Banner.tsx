@@ -95,14 +95,12 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
         className={cn(className, bannerVariants.root({ appearance }))}
         {...props}
       >
-        <View className={'flex shrink-0 flex-row items-start py-4'}>
-          {icon}
-        </View>
-        <View className={'mr-8 flex flex-1 flex-col gap-8 py-4'}>
-          <View className={'flex flex-col gap-4'}>
-            <Text className={'line-clamp-2 body-1-semi-bold'}>{title}</Text>
+        <View className='flex shrink-0 flex-row items-start py-4'>{icon}</View>
+        <View className='mr-8 flex flex-1 flex-col gap-8 py-4'>
+          <View className='flex flex-col gap-4'>
+            <Text className='body-1-semi-bold line-clamp-2'>{title}</Text>
             {description && (
-              <View className={'line-clamp-5 body-2'}>
+              <View className='body-2 line-clamp-5'>
                 <Wrap
                   if={isTextChildren(description)}
                   with={(children) => <Text>{children}</Text>}
