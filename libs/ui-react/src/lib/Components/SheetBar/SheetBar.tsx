@@ -128,7 +128,7 @@ export const SheetBar = ({
       )}
       {size === 'lg' && (
         <>
-          <div className='flex flex-row justify-between items-center'>
+          <div className='flex flex-row items-center justify-between'>
             {onBack && <BackButton onBack={onBack} />}
             <CloseButton onClose={onClose} />
           </div>

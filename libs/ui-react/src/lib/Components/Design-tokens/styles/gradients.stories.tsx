@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../shared';
-import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const meta: Meta = {
   title: 'Foundations/Styles/Gradients',
