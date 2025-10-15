@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SectionHeader } from '../shared';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 
 const meta: Meta = {
   title: 'Foundations/Styles/Gradients',
@@ -21,6 +22,25 @@ const GradientShowcase = () => (
             <div key={name}>
               <div
                 className={`h-96 rounded-lg border border-muted-subtle ${gradientClass}`}
+              ></div>
+              <div className='mt-8 text-base body-2'>{name}</div>
+              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h4 className='mb-16 text-base heading-4'>Status Gradients</h4>
+        <div className='grid grid-cols-1 gap-16 sm:grid-cols-3'>
+          {[
+            { name: 'Error', class: 'bg-gradient-error' },
+            { name: 'Success', class: 'bg-gradient-success' },
+            { name: 'Muted', class: 'bg-gradient-muted' },
+          ].map(({ name, class: gradientClass }) => (
+            <div key={name}>
+              <div
+                className={`h-224 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
               <div className='mt-8 text-base body-2'>{name}</div>
               <div className='mt-8 text-muted body-4'>{gradientClass}</div>
