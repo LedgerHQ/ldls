@@ -59,6 +59,7 @@ export default defineConfig(() => ({
         '@radix-ui/react-dialog',
         '@radix-ui/react-slot',
         '@radix-ui/react-switch',
+        '@radix-ui/react-select',
         '@radix-ui/react-tooltip',
       ],
       preserveEntrySignatures: 'strict' as const,

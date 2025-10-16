@@ -37,7 +37,6 @@ The Select component provides a dropdown interface for choosing from a list of o
 <Canvas of={SelectStories.Base} />
 <Controls of={SelectStories.Base} />
 
-
 ### With Groups and Separators
 
 Organize related options using groups with labels and separators for better user experience.
@@ -76,7 +75,6 @@ The Select component integrates seamlessly with HTML forms.
 - **High Contrast**: Compatible with high contrast mode
 - **Form Integration**: Works with native form submission
 
-
 </Tab>
 
 <Tab label='Implementation'>
@@ -96,6 +94,13 @@ npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 # Install peer dependencies
 npm install @radix-ui/react-select tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
+
+#### **About @radix-ui/react-select**
+
+The `@radix-ui/react-select` dependency is used internally by the Select component
+to provide accessible, unstyled select functionality with proper keyboard navigation,
+focus management, and screen reader support. It handles the core select behavior including
+open/closed states, option selection, and accessibility features, while our component adds the visual styling and design system tokens.
 
 ### Basic Usage
 
@@ -127,54 +132,62 @@ function MyComponent() {
 
 ### Select Props
 
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
     <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-3">
-          Prop
-        </th>
-        <th className="p-12 text-left text-on-accent body-3">Type</th>
-        <th className="p-12 text-left text-on-accent body-3">Default</th>
-        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
+        <th className='p-12 text-left text-on-accent body-3'>Type</th>
+        <th className='p-12 text-left text-on-accent body-3'>Default</th>
+        <th className='p-12 text-left text-on-accent body-3'>Description</th>
       </tr>
     </thead>
-    <tbody className="bg-canvas">
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">value</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">The controlled value of the select</td>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>value</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>
+          The controlled value of the select
+        </td>
       </tr>
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">defaultValue</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">The default value (uncontrolled)</td>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>defaultValue</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>
+          The default value (uncontrolled)
+        </td>
       </tr>
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">onValueChange</td>
-        <td className="p-12 text-muted body-3">(value: string) =&gt; void</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Callback when value changes</td>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>onValueChange</td>
+        <td className='p-12 text-muted body-3'>(value: string) =&gt; void</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>Callback when value changes</td>
       </tr>
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">disabled</td>
-        <td className="p-12 text-muted body-3">boolean</td>
-        <td className="p-12 text-muted body-3">false</td>
-        <td className="p-12 text-muted body-3">Whether the select is disabled</td>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>disabled</td>
+        <td className='p-12 text-muted body-3'>boolean</td>
+        <td className='p-12 text-muted body-3'>false</td>
+        <td className='p-12 text-muted body-3'>
+          Whether the select is disabled
+        </td>
       </tr>
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">required</td>
-        <td className="p-12 text-muted body-3">boolean</td>
-        <td className="p-12 text-muted body-3">false</td>
-        <td className="p-12 text-muted body-3">Whether the select is required</td>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>required</td>
+        <td className='p-12 text-muted body-3'>boolean</td>
+        <td className='p-12 text-muted body-3'>false</td>
+        <td className='p-12 text-muted body-3'>
+          Whether the select is required
+        </td>
       </tr>
       <tr>
-        <td className="text-accent p-12 body-3">name</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Name attribute for form submission</td>
+        <td className='text-accent p-12 body-3'>name</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>
+          Name attribute for form submission
+        </td>
       </tr>
     </tbody>
   </table>
@@ -215,41 +228,44 @@ function MyComponent() {
         <td className="p-12 text-muted body-3">Additional CSS classes for the label</td>
       </tr>
     </tbody>
+
   </table>
 </div>
 
 ### SelectItem Props
 
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
     <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-3">
-          Prop
-        </th>
-        <th className="p-12 text-left text-on-accent body-3">Type</th>
-        <th className="p-12 text-left text-on-accent body-3">Default</th>
-        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
+        <th className='p-12 text-left text-on-accent body-3'>Type</th>
+        <th className='p-12 text-left text-on-accent body-3'>Default</th>
+        <th className='p-12 text-left text-on-accent body-3'>Description</th>
       </tr>
     </thead>
-    <tbody className="bg-canvas">
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">value</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">The value of the option (required)</td>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>value</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>
+          The value of the option (required)
+        </td>
       </tr>
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">disabled</td>
-        <td className="p-12 text-muted body-3">boolean</td>
-        <td className="p-12 text-muted body-3">false</td>
-        <td className="p-12 text-muted body-3">Whether the option is disabled</td>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>disabled</td>
+        <td className='p-12 text-muted body-3'>boolean</td>
+        <td className='p-12 text-muted body-3'>false</td>
+        <td className='p-12 text-muted body-3'>
+          Whether the option is disabled
+        </td>
       </tr>
       <tr>
-        <td className="text-accent p-12 body-3">className</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+        <td className='text-accent p-12 body-3'>className</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>Additional CSS classes</td>
       </tr>
     </tbody>
   </table>
@@ -257,24 +273,22 @@ function MyComponent() {
 
 ### SelectLabel Props
 
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
     <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-3">
-          Prop
-        </th>
-        <th className="p-12 text-left text-on-accent body-3">Type</th>
-        <th className="p-12 text-left text-on-accent body-3">Default</th>
-        <th className="p-12 text-left text-on-accent body-3">Description</th>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
+        <th className='p-12 text-left text-on-accent body-3'>Type</th>
+        <th className='p-12 text-left text-on-accent body-3'>Default</th>
+        <th className='p-12 text-left text-on-accent body-3'>Description</th>
       </tr>
     </thead>
-    <tbody className="bg-canvas">
+    <tbody className='bg-canvas'>
       <tr>
-        <td className="text-accent p-12 body-3">className</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Additional CSS classes</td>
+        <td className='text-accent p-12 body-3'>className</td>
+        <td className='p-12 text-muted body-3'>string</td>
+        <td className='p-12 text-muted body-3'>-</td>
+        <td className='p-12 text-muted body-3'>Additional CSS classes</td>
       </tr>
     </tbody>
   </table>
@@ -329,9 +343,9 @@ function MyComponent() {
         <td className="p-12 text-muted body-3">Whether the content should be sticky</td>
       </tr>
     </tbody>
+
   </table>
 </div>
-
 
 ### With Groups
 
@@ -383,7 +397,6 @@ const [value, setValue] = useState('option1');
 <Select defaultValue='option1' onValueChange={(value) => console.log(value)}>
 ```
 
-
 ### Form Integration
 
 The Select component integrates seamlessly with HTML forms:
@@ -418,7 +431,7 @@ import {
 
 function MyComponent() {
   const [value, setValue] = useState('');
-  
+
   const countries = [
     'United States',
     'Canada',
