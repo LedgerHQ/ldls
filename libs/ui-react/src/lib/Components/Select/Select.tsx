@@ -225,6 +225,16 @@ function SelectScrollDownButton({
   );
 }
 
+type SelectContentProps = React.ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Content
+>;
+type SelectItemProps = React.ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Item
+>;
+type SelectSeparatorProps = React.ComponentPropsWithoutRef<
+  typeof SelectPrimitive.Separator
+>;
+
 export {
   Select,
   SelectGroup,
@@ -233,4 +243,8 @@ export {
   SelectLabel,
   SelectItem,
   SelectSeparator,
+  type SelectTriggerProps,
+  type SelectContentProps,
+  type SelectItemProps,
+  type SelectSeparatorProps,
 };
