@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { cva } from 'class-variance-authority';
 import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 
 export interface AmountInputProps
@@ -36,12 +37,26 @@ export interface AmountInputProps
   thousandsSeparator?: boolean;
 }
 
-const baseInputStyles = cn(
-  'bg-transparent outline-none heading-0 transition-colors caret-active',
-  'placeholder:text-muted-subtle text-base',
-  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
-  '[&[aria-invalid="true"]]:text-error',
-  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+const inputStyles = cva(
+  [
+    'bg-transparent outline-none heading-0 transition-colors caret-active',
+    'placeholder:text-muted-subtle text-base',
+    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    '[&[aria-invalid="true"]]:text-error',
+    '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+    'h-56',
+  ],
+  {
+    variants: {
+      isChanging: {
+        true: 'animate-translate-from-right',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      isChanging: false,
+    },
+  },
 );
 
 const currencyStyles = cn(
@@ -150,9 +165,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
 
     return (
       <div
-        className={cn(
-          'group relative flex items-center justify-center transition-transform',
-        )}
+        className='group relative flex items-center justify-center transition-transform'
         onPointerDown={() => {
           const input = inputRef.current;
           if (!input) return;
@@ -188,12 +201,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           value={inputValue}
           onChange={handleChange}
           onAnimationEnd={() => setIsChanging(false)}
-          className={cn(
-            baseInputStyles,
-            'h-56',
-            isChanging && 'animate-translateFromRight',
-            className,
-          )}
+          className={cn(inputStyles({ isChanging }), className)}
           {...props}
           style={{ fontSize, letterSpacing: 'normal' }}
         />

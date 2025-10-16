@@ -64,7 +64,7 @@ export function createAnimationsPlugin() {
                 transform: 'translate(-50%, -48%) scale(0.96)',
               },
             },
-            translateFromRight: {
+            'translate-from-right': {
               from: {
                 transform: 'translateX(12px)',
               },
@@ -86,8 +86,8 @@ export function createAnimationsPlugin() {
             slideOutToLeft: 'slideOutToLeft 250ms ease-in',
             slideOutToTop: 'slideOutToTop 250ms ease-in',
             slideOutToBottom: 'slideOutToBottom 250ms ease-in',
-            translateFromRight:
-              'translateFromRight 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+            'translate-from-right':
+              'translate-from-right 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           },
         },
       },
