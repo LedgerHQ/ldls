@@ -3,284 +3,471 @@ import { textFormatter } from './text-formatter.js';
 
 describe('textFormatter', () => {
   describe('decimal handling with allowDecimals=true (default)', () => {
-    it('should convert single dot to "0."', () => {
-      expect(textFormatter('.')).toBe('0.');
+    type Case = { name: string; input: string; expected: string };
+
+    const decimalCases: Case[] = [
+      { name: 'convert single dot to "0."', input: '.', expected: '0.' },
+      { name: 'prepend 0 to .5', input: '.5', expected: '0.5' },
+      { name: 'prepend 0 to .123', input: '.123', expected: '0.123' },
+      { name: 'allow 1.5', input: '1.5', expected: '1.5' },
+      { name: 'allow 123.456', input: '123.456', expected: '123.456' },
+      { name: 'allow 0.5', input: '0.5', expected: '0.5' },
+      {
+        name: 'limit to 9 decimal places (1.1234567899)',
+        input: '1.1234567899',
+        expected: '1.123456789',
+      },
+      {
+        name: 'limit to 9 decimal places (0.123456789012345)',
+        input: '0.123456789012345',
+        expected: '0.123456789',
+      },
+    ];
+
+    it.each(decimalCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
 
-    it('should prepend 0 to decimal starting with dot', () => {
-      expect(textFormatter('.5')).toBe('0.5');
-      expect(textFormatter('.123')).toBe('0.123');
-    });
+    const multipleDecimalCases: Case[] = [
+      {
+        name: 'remove multiple decimal points (1.2.3)',
+        input: '1.2.3',
+        expected: '1.23',
+      },
+      {
+        name: 'remove multiple decimal points (1.2.3.4)',
+        input: '1.2.3.4',
+        expected: '1.234',
+      },
+      { name: 'handle triple dots', input: '...', expected: '0.' },
+      { name: 'handle 1..2', input: '1..2', expected: '1.2' },
+    ];
 
-    it('should allow valid decimal numbers', () => {
-      expect(textFormatter('1.5')).toBe('1.5');
-      expect(textFormatter('123.456')).toBe('123.456');
-      expect(textFormatter('0.5')).toBe('0.5');
-    });
-
-    it('should limit to 9 decimal places', () => {
-      expect(textFormatter('1.1234567899')).toBe('1.123456789');
-      expect(textFormatter('0.123456789012345')).toBe('0.123456789');
-    });
-
-    it('should remove multiple decimal points', () => {
-      expect(textFormatter('1.2.3')).toBe('1.23');
-      expect(textFormatter('1.2.3.4')).toBe('1.234');
-      expect(textFormatter('...')).toBe('0.');
-      expect(textFormatter('1..2')).toBe('1.2');
+    it.each(multipleDecimalCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 
   describe('leading zero handling', () => {
-    it('should remove leading zeros from integers', () => {
-      expect(textFormatter('01')).toBe('1');
-      expect(textFormatter('001')).toBe('1');
-      expect(textFormatter('0123')).toBe('123');
-    });
+    type Case = { name: string; input: string; expected: string };
 
-    it('should preserve single zero', () => {
-      expect(textFormatter('0')).toBe('0');
-      expect(textFormatter('000')).toBe('0');
-    });
+    const leadingZeroCases: Case[] = [
+      { name: 'remove leading zeros from 01', input: '01', expected: '1' },
+      { name: 'remove leading zeros from 001', input: '001', expected: '1' },
+      {
+        name: 'remove leading zeros from 0123',
+        input: '0123',
+        expected: '123',
+      },
+      { name: 'preserve single zero', input: '0', expected: '0' },
+      { name: 'convert 000 to 0', input: '000', expected: '0' },
+      { name: 'preserve zero in 0.5', input: '0.5', expected: '0.5' },
+      { name: 'preserve zero in 0.0', input: '0.0', expected: '0.0' },
+      { name: 'preserve zero in 0.123', input: '0.123', expected: '0.123' },
+      { name: 'handle 01.5', input: '01.5', expected: '1.5' },
+      { name: 'handle 001.23', input: '001.23', expected: '1.23' },
+    ];
 
-    it('should preserve zero in decimal format', () => {
-      expect(textFormatter('0.5')).toBe('0.5');
-      expect(textFormatter('0.0')).toBe('0.0');
-      expect(textFormatter('0.123')).toBe('0.123');
-    });
-
-    it('should handle edge case of leading zero with decimal', () => {
-      expect(textFormatter('01.5')).toBe('1.5');
-      expect(textFormatter('001.23')).toBe('1.23');
+    it.each(leadingZeroCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 
   describe('comma to dot conversion', () => {
-    it('should convert comma to dot', () => {
-      expect(textFormatter('1,5')).toBe('1.5');
-      expect(textFormatter('12,34')).toBe('12.34');
-      expect(textFormatter(',5')).toBe('0.5');
-    });
+    type Case = { name: string; input: string; expected: string };
 
-    it('should handle multiple commas', () => {
-      expect(textFormatter('1,2,3')).toBe('1.23');
-      expect(textFormatter(',,,')).toBe('0.');
+    const commaCases: Case[] = [
+      { name: 'convert 1,5 to 1.5', input: '1,5', expected: '1.5' },
+      { name: 'convert 12,34 to 12.34', input: '12,34', expected: '12.34' },
+      { name: 'convert ,5 to 0.5', input: ',5', expected: '0.5' },
+      {
+        name: 'handle multiple commas (1,2,3)',
+        input: '1,2,3',
+        expected: '1.23',
+      },
+      { name: 'handle triple commas', input: ',,,', expected: '0.' },
+    ];
+
+    it.each(commaCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 
   describe('non-numeric character removal', () => {
-    it('should remove letters and special characters', () => {
-      expect(textFormatter('abc123def')).toBe('123');
-      expect(textFormatter('$100.50')).toBe('100.50');
-      expect(textFormatter('1@2#3$')).toBe('123');
-    });
+    type Case = { name: string; input: string; expected: string };
 
-    it('should preserve only digits and dots', () => {
-      expect(textFormatter('1a2b.3c4d')).toBe('12.34');
-      expect(textFormatter('!@#1.23$%^')).toBe('1.23');
+    const nonNumericCases: Case[] = [
+      {
+        name: 'remove letters from abc123def',
+        input: 'abc123def',
+        expected: '123',
+      },
+      { name: 'remove $ from $100.50', input: '$100.50', expected: '100.50' },
+      {
+        name: 'remove special chars from 1@2#3$',
+        input: '1@2#3$',
+        expected: '123',
+      },
+      {
+        name: 'preserve only digits and dots (1a2b.3c4d)',
+        input: '1a2b.3c4d',
+        expected: '12.34',
+      },
+      {
+        name: 'remove special chars (!@#1.23$%^)',
+        input: '!@#1.23$%^',
+        expected: '1.23',
+      },
+    ];
+
+    it.each(nonNumericCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 
   describe('integer-only mode with allowDecimals=false', () => {
-    it('should remove decimal points when allowDecimals is false', () => {
-      expect(textFormatter('1.5', { allowDecimals: false })).toBe('15');
-      expect(textFormatter('123.456', { allowDecimals: false })).toBe(
-        '123 456',
-      );
-      expect(textFormatter('.5', { allowDecimals: false })).toBe('5');
-    });
+    type Case = {
+      name: string;
+      input: string;
+      expected: string;
+      options?: { allowDecimals: boolean };
+    };
 
-    it('should remove all non-digit characters', () => {
-      expect(textFormatter('abc123def', { allowDecimals: false })).toBe('123');
-      expect(textFormatter('$100', { allowDecimals: false })).toBe('100');
-      expect(textFormatter('1,2,3', { allowDecimals: false })).toBe('123');
-    });
+    const integerOnlyCases: Case[] = [
+      {
+        name: 'remove decimal from 1.5',
+        input: '1.5',
+        expected: '15',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'remove decimal from 123.456',
+        input: '123.456',
+        expected: '123 456',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'remove decimal from .5',
+        input: '.5',
+        expected: '5',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'remove non-digits from abc123def',
+        input: 'abc123def',
+        expected: '123',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'remove $ from $100',
+        input: '$100',
+        expected: '100',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'remove commas from 1,2,3',
+        input: '1,2,3',
+        expected: '123',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'handle leading zeros in 01',
+        input: '01',
+        expected: '1',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'handle leading zeros in 001',
+        input: '001',
+        expected: '1',
+        options: { allowDecimals: false },
+      },
+      {
+        name: 'convert 000 to 0',
+        input: '000',
+        expected: '0',
+        options: { allowDecimals: false },
+      },
+    ];
 
-    it('should handle leading zeros in integer mode', () => {
-      expect(textFormatter('01', { allowDecimals: false })).toBe('1');
-      expect(textFormatter('001', { allowDecimals: false })).toBe('1');
-      expect(textFormatter('000', { allowDecimals: false })).toBe('0');
+    it.each(integerOnlyCases)('$name', ({ input, expected, options }) => {
+      expect(textFormatter(input, options)).toBe(expected);
     });
   });
 
   describe('edge cases and empty input', () => {
-    it('should handle empty string', () => {
-      expect(textFormatter('')).toBe('');
-    });
+    type Case = { name: string; input: string; expected: string };
 
-    it('should handle strings with no digits', () => {
-      expect(textFormatter('abc')).toBe('');
-      expect(textFormatter('!@#$%^')).toBe('');
-    });
+    const edgeCases: Case[] = [
+      { name: 'handle empty string', input: '', expected: '' },
+      {
+        name: 'handle strings with no digits (abc)',
+        input: 'abc',
+        expected: '',
+      },
+      {
+        name: 'handle strings with no digits (!@#$%^)',
+        input: '!@#$%^',
+        expected: '',
+      },
+      {
+        name: 'handle whitespace ( 1 2 3 )',
+        input: ' 1 2 3 ',
+        expected: '123',
+      },
+      { name: 'handle whitespace ( 1.5 )', input: ' 1.5 ', expected: '1.5' },
+    ];
 
-    it('should handle whitespace', () => {
-      expect(textFormatter(' 1 2 3 ')).toBe('123');
-      expect(textFormatter(' 1.5 ')).toBe('1.5');
+    it.each(edgeCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 
   describe('length limits with maxIntegerLength and maxDecimalLength', () => {
     describe('integer length limits', () => {
-      it('should limit integer part to maxIntegerLength', () => {
-        // Test with 5-digit limit
-        expect(
-          textFormatter('123456789', {
-            thousandsSeparator: false,
-            maxIntegerLength: 5,
-          }),
-        ).toBe('12345');
-        expect(
-          textFormatter('987654321', {
-            thousandsSeparator: false,
-            maxIntegerLength: 3,
-          }),
-        ).toBe('987');
-        expect(textFormatter('1000000000', { thousandsSeparator: false })).toBe(
-          '100000000',
-        ); // Should truncate 10th digit
-      });
+      type Case = {
+        name: string;
+        input: string;
+        expected: string;
+        options?: {
+          thousandsSeparator?: boolean;
+          maxIntegerLength?: number;
+        };
+      };
 
-      it('should allow exactly maxIntegerLength digits', () => {
-        expect(textFormatter('123456789', { thousandsSeparator: false })).toBe(
-          '123456789',
-        );
-        expect(
-          textFormatter('12345', {
-            thousandsSeparator: false,
-            maxIntegerLength: 5,
-          }),
-        ).toBe('12345');
-      });
+      const integerLimitCases: Case[] = [
+        {
+          name: 'limit to 5 digits (123456789)',
+          input: '123456789',
+          expected: '12345',
+          options: { thousandsSeparator: false, maxIntegerLength: 5 },
+        },
+        {
+          name: 'limit to 3 digits (987654321)',
+          input: '987654321',
+          expected: '987',
+          options: { thousandsSeparator: false, maxIntegerLength: 3 },
+        },
+        {
+          name: 'truncate 10th digit (1000000000)',
+          input: '1000000000',
+          expected: '100000000',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'allow exactly 9 digits',
+          input: '123456789',
+          expected: '123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'allow exactly maxIntegerLength digits',
+          input: '12345',
+          expected: '12345',
+          options: { thousandsSeparator: false, maxIntegerLength: 5 },
+        },
+        {
+          name: 'handle limits with thousands separator (123456789)',
+          input: '123456789',
+          expected: '123 456 789',
+        },
+        {
+          name: 'truncate 10th digit with thousands separator',
+          input: '1234567890',
+          expected: '123 456 789',
+        },
+        {
+          name: 'handle 5-digit limit with thousands separator',
+          input: '12345',
+          expected: '12 345',
+          options: { maxIntegerLength: 5 },
+        },
+      ];
 
-      it('should handle integer limits with thousands separator', () => {
-        expect(textFormatter('123456789')).toBe('123 456 789');
-        expect(textFormatter('1234567890')).toBe('123 456 789'); // Should truncate 10th digit
-        expect(textFormatter('12345', { maxIntegerLength: 5 })).toBe('12 345');
+      it.each(integerLimitCases)('$name', ({ input, expected, options }) => {
+        expect(textFormatter(input, options)).toBe(expected);
       });
     });
 
     describe('decimal length limits', () => {
-      it('should limit decimal part to maxDecimalLength', () => {
-        expect(
-          textFormatter('123.456789012', {
-            thousandsSeparator: false,
-            maxDecimalLength: 5,
-          }),
-        ).toBe('123.45678');
-        expect(
-          textFormatter('1.123456789', {
-            thousandsSeparator: false,
-            maxDecimalLength: 3,
-          }),
-        ).toBe('1.123');
-        expect(
-          textFormatter('0.987654321', {
-            thousandsSeparator: false,
-            maxDecimalLength: 2,
-          }),
-        ).toBe('0.98');
-      });
+      type Case = {
+        name: string;
+        input: string;
+        expected: string;
+        options?: {
+          thousandsSeparator?: boolean;
+          maxDecimalLength?: number;
+        };
+      };
 
-      it('should allow exactly maxDecimalLength digits', () => {
-        expect(
-          textFormatter('123.123456789', { thousandsSeparator: false }),
-        ).toBe('123.123456789');
-        expect(
-          textFormatter('1.12345', {
-            thousandsSeparator: false,
-            maxDecimalLength: 5,
-          }),
-        ).toBe('1.12345');
-      });
+      const decimalLimitCases: Case[] = [
+        {
+          name: 'limit to 5 decimals (123.456789012)',
+          input: '123.456789012',
+          expected: '123.45678',
+          options: { thousandsSeparator: false, maxDecimalLength: 5 },
+        },
+        {
+          name: 'limit to 3 decimals (1.123456789)',
+          input: '1.123456789',
+          expected: '1.123',
+          options: { thousandsSeparator: false, maxDecimalLength: 3 },
+        },
+        {
+          name: 'limit to 2 decimals (0.987654321)',
+          input: '0.987654321',
+          expected: '0.98',
+          options: { thousandsSeparator: false, maxDecimalLength: 2 },
+        },
+        {
+          name: 'allow exactly 9 decimals',
+          input: '123.123456789',
+          expected: '123.123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'allow exactly maxDecimalLength digits',
+          input: '1.12345',
+          expected: '1.12345',
+          options: { thousandsSeparator: false, maxDecimalLength: 5 },
+        },
+        {
+          name: 'handle 5 decimal limit with thousands separator',
+          input: '123456.789012345',
+          expected: '123 456.78901',
+          options: { maxDecimalLength: 5 },
+        },
+        {
+          name: 'handle 9 decimals with thousands separator',
+          input: '1234567.123456789',
+          expected: '1 234 567.123456789',
+        },
+      ];
 
-      it('should handle decimal limits with thousands separator', () => {
-        expect(textFormatter('123456.789012345', { maxDecimalLength: 5 })).toBe(
-          '123 456.78901',
-        );
-        expect(textFormatter('1234567.123456789')).toBe('1 234 567.123456789');
+      it.each(decimalLimitCases)('$name', ({ input, expected, options }) => {
+        expect(textFormatter(input, options)).toBe(expected);
       });
     });
 
     describe('combined length limits (18 total digits)', () => {
-      it('should allow 9 integer + 9 decimal digits (18 total)', () => {
-        const input = '123456789.987654321';
-        const expected = '123456789.987654321';
-        expect(textFormatter(input, { thousandsSeparator: false })).toBe(
-          expected,
-        );
-      });
+      type Case = {
+        name: string;
+        input: string;
+        expected: string;
+        options?: { thousandsSeparator?: boolean };
+      };
 
-      it('should allow 9 integer + 9 decimal with thousands separator', () => {
-        const input = '123456789.987654321';
-        const expected = '123 456 789.987654321';
-        expect(textFormatter(input)).toBe(expected);
-      });
+      const combinedLimitCases: Case[] = [
+        {
+          name: 'allow 9 integer + 9 decimal (no separator)',
+          input: '123456789.987654321',
+          expected: '123456789.987654321',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'allow 9 integer + 9 decimal (with separator)',
+          input: '123456789.987654321',
+          expected: '123 456 789.987654321',
+        },
+        {
+          name: 'truncate excess in integer part (10 + 9)',
+          input: '1234567890.123456789',
+          expected: '123456789.123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'truncate excess in decimal part (9 + 10)',
+          input: '123456789.9876543210',
+          expected: '123456789.987654321',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'truncate excess in both parts (11 + 11)',
+          input: '12345678901.98765432109',
+          expected: '123456789.987654321',
+          options: { thousandsSeparator: false },
+        },
+      ];
 
-      it('should truncate excess digits in integer part', () => {
-        const input = '1234567890.123456789'; // 10 integer + 9 decimal
-        const expected = '123456789.123456789'; // Should truncate to 9 integer + 9 decimal
-        expect(textFormatter(input, { thousandsSeparator: false })).toBe(
-          expected,
-        );
-      });
-
-      it('should truncate excess digits in decimal part', () => {
-        const input = '123456789.9876543210'; // 9 integer + 10 decimal
-        const expected = '123456789.987654321'; // Should truncate to 9 integer + 9 decimal
-        expect(textFormatter(input, { thousandsSeparator: false })).toBe(
-          expected,
-        );
-      });
-
-      it('should truncate excess digits in both parts', () => {
-        const input = '12345678901.98765432109'; // 11 integer + 11 decimal
-        const expected = '123456789.987654321'; // Should truncate to 9 integer + 9 decimal
-        expect(textFormatter(input, { thousandsSeparator: false })).toBe(
-          expected,
-        );
+      it.each(combinedLimitCases)('$name', ({ input, expected, options }) => {
+        expect(textFormatter(input, options)).toBe(expected);
       });
     });
 
     describe('edge cases with length limits', () => {
-      it('should handle trailing decimal point with length limits', () => {
-        expect(textFormatter('123456789.', { thousandsSeparator: false })).toBe(
-          '123456789.',
-        );
-        expect(
-          textFormatter('1234567890.', { thousandsSeparator: false }),
-        ).toBe('123456789.'); // Truncate integer
-        expect(
-          textFormatter('123.', {
+      type Case = {
+        name: string;
+        input: string;
+        expected: string;
+        options?: {
+          thousandsSeparator?: boolean;
+          maxIntegerLength?: number;
+          maxDecimalLength?: number;
+        };
+      };
+
+      const lengthEdgeCases: Case[] = [
+        {
+          name: 'trailing decimal point (123456789.)',
+          input: '123456789.',
+          expected: '123456789.',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'truncate integer with trailing decimal (1234567890.)',
+          input: '1234567890.',
+          expected: '123456789.',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'trailing decimal with custom limits (123.)',
+          input: '123.',
+          expected: '123.',
+          options: {
             thousandsSeparator: false,
             maxIntegerLength: 5,
             maxDecimalLength: 5,
-          }),
-        ).toBe('123.');
-      });
+          },
+        },
+        {
+          name: 'remove leading zeros (000123456789)',
+          input: '000123456789',
+          expected: '123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'remove leading zeros and truncate (001234567890)',
+          input: '001234567890',
+          expected: '123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'decimal starting with dot (.123456789)',
+          input: '.123456789',
+          expected: '0.123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'truncate decimal starting with dot (.1234567890)',
+          input: '.1234567890',
+          expected: '0.123456789',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'preserve functionality (123.45)',
+          input: '123.45',
+          expected: '123.45',
+          options: { thousandsSeparator: false },
+        },
+        {
+          name: 'preserve functionality (1.2)',
+          input: '1.2',
+          expected: '1.2',
+        },
+      ];
 
-      it('should handle leading zeros with length limits', () => {
-        expect(
-          textFormatter('000123456789', { thousandsSeparator: false }),
-        ).toBe('123456789');
-        expect(
-          textFormatter('001234567890', { thousandsSeparator: false }),
-        ).toBe('123456789'); // Should truncate
-      });
-
-      it('should handle decimal starting with dot', () => {
-        expect(textFormatter('.123456789', { thousandsSeparator: false })).toBe(
-          '0.123456789',
-        );
-        expect(
-          textFormatter('.1234567890', { thousandsSeparator: false }),
-        ).toBe('0.123456789'); // Truncate decimal
-      });
-
-      it('should preserve functionality when limits are not restrictive', () => {
-        expect(textFormatter('123.45', { thousandsSeparator: false })).toBe(
-          '123.45',
-        );
-        expect(textFormatter('1.2')).toBe('1.2');
+      it.each(lengthEdgeCases)('$name', ({ input, expected, options }) => {
+        expect(textFormatter(input, options)).toBe(expected);
       });
     });
 
@@ -295,15 +482,22 @@ describe('textFormatter', () => {
   });
 
   describe('complex scenarios', () => {
-    it('should handle combination of all edge cases', () => {
-      expect(textFormatter('$01,234.567890abc')).toBe('1.234567890');
-    });
+    type Case = { name: string; input: string; expected: string };
 
-    it('should handle realistic user input scenarios', () => {
-      expect(textFormatter('100')).toBe('100');
-      expect(textFormatter('100.00')).toBe('100.00');
-      expect(textFormatter('0100')).toBe('100');
-      expect(textFormatter('€50.25')).toBe('50.25');
+    const complexCases: Case[] = [
+      {
+        name: 'combination of all edge cases',
+        input: '$01,234.567890abc',
+        expected: '1.234567890',
+      },
+      { name: 'realistic input: 100', input: '100', expected: '100' },
+      { name: 'realistic input: 100.00', input: '100.00', expected: '100.00' },
+      { name: 'realistic input: 0100', input: '0100', expected: '100' },
+      { name: 'realistic input: €50.25', input: '€50.25', expected: '50.25' },
+    ];
+
+    it.each(complexCases)('$name', ({ input, expected }) => {
+      expect(textFormatter(input)).toBe(expected);
     });
   });
 });
