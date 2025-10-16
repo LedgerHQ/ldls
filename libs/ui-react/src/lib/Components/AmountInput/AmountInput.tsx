@@ -33,7 +33,7 @@ export interface AmountInputProps
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Whether to use thousands separator */
   /** @default true */
-  useThousandsSeparator?: boolean;
+  thousandsSeparator?: boolean;
 }
 
 const baseInputStyles = cn(
@@ -85,7 +85,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       maxIntegerLength = 9,
       maxDecimalLength = 9,
       allowDecimals = true,
-      useThousandsSeparator = true,
+      thousandsSeparator = true,
       value,
       onChange,
       ...props
@@ -130,13 +130,12 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const cleaned = textFormatter(
-        e.target.value,
+      const cleaned = textFormatter(e.target.value, {
         allowDecimals,
-        useThousandsSeparator,
+        thousandsSeparator,
         maxIntegerLength,
         maxDecimalLength,
-      );
+      });
 
       setInputValue(cleaned);
       onChange({ ...e, target: { ...e.target, value: cleaned } });

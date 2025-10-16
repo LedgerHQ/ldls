@@ -1,5 +1,16 @@
 import { formatThousands } from './format-thousands';
 
+export interface TextFormatterOptions {
+  /** Whether to allow decimal values */
+  allowDecimals?: boolean;
+  /** Whether to format with space-separated thousands */
+  thousandsSeparator?: boolean;
+  /** Maximum length for integer part (before decimal) */
+  maxIntegerLength?: number;
+  /** Maximum length for decimal part (after decimal) */
+  maxDecimalLength?: number;
+}
+
 /**
  * Formats and validates numeric input text for amount inputs.
  * Handles decimal formatting, leading zeros, and prevents multiple decimal points.
@@ -12,23 +23,22 @@ import { formatThousands } from './format-thousands';
  * textFormatter('1.2.3') // '1.23'
  * textFormatter('1,5') // '1.5'
  * textFormatter('abc123') // '123'
- * textFormatter('1000000', true, true) // '1 000 000'
- * textFormatter('1234.5678', true, true) // '1 234.5678'
- * textFormatter('123456789012', true, false, 9, 2) // '123456789'
- * textFormatter('123.123456', true, false, 9, 2) // '123.12'
+ * textFormatter('1000000', { thousandsSeparator: true }) // '1 000 000'
+ * textFormatter('1234.5678', { thousandsSeparator: true }) // '1 234.5678'
+ * textFormatter('123456789012', { maxIntegerLength: 9 }) // '123456789'
+ * textFormatter('123.123456', { maxDecimalLength: 2 }) // '123.12'
  */
 export function textFormatter(
   /** The input value to format */
   value: string,
-  /** Whether to allow decimal values */
-  allowDecimals = true,
-  /** Whether to format with space-separated thousands */
-  useThousandsSeparator = true,
-  /** Maximum length for integer part (before decimal) */
-  maxIntegerLength = 9,
-  /** Maximum length for decimal part (after decimal) */
-  maxDecimalLength = 9,
+  options: TextFormatterOptions = {},
 ): string {
+  const {
+    allowDecimals = true,
+    thousandsSeparator = true,
+    maxIntegerLength = 9,
+    maxDecimalLength = 9,
+  } = options;
   // Normalize input: convert comma to dot, remove non-digit/non-dot characters
   const normalizedValue = value.replace(',', '.').replace(/[^\d.]/g, '');
   let cleaned = normalizedValue;
@@ -42,7 +52,7 @@ export function textFormatter(
     if (maxIntegerLength > 0 && cleaned.length > maxIntegerLength) {
       cleaned = cleaned.slice(0, maxIntegerLength);
     }
-    return useThousandsSeparator ? formatThousands(cleaned) : cleaned;
+    return thousandsSeparator ? formatThousands(cleaned) : cleaned;
   }
 
   // Handle single dot input as "0."
@@ -81,5 +91,5 @@ export function textFormatter(
     }
   }
 
-  return useThousandsSeparator ? formatThousands(cleaned) : cleaned;
+  return thousandsSeparator ? formatThousands(cleaned) : cleaned;
 }
