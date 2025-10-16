@@ -1,6 +1,6 @@
 ---
 description:
-globs:
+globs: *.mdx
 alwaysApply: When asked to write documentation amd markdown files 
 ---
 
@@ -13,48 +13,49 @@ use the tab component to have a preview section + a implementation
 When writing tables in documentation, follow this structure:
 
 ## Table Container
+
 ```jsx
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
-    {/* table content */}
-  </table>
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>{/* table content */}</table>
 </div>
 ```
 
 ## Table Structure
+
 - **Container**: Use `my-24 overflow-hidden rounded-lg` for spacing and rounded corners
 - **Table**: Use `w-full` for full width
 - **Header**: Use `border-b border-muted bg-muted` for the thead row
 - **Header cells**: Use `p-12 text-left text-on-accent body-2` for th elements
 - **Body**: Use `bg-canvas` for tbody
 - **Body rows**: Use `border-b border-muted` for all rows except the last one
-- **Body cells**: 
+- **Body cells**:
   - First column (utilities/classes): Use `text-accent p-12 body-3`
   - Other columns: Use `p-12 text-muted body-3`
 
 ## Example Structure
+
 ```jsx
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
     <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-2">
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>
           Tailwind class (utilities)
         </th>
-        <th className="p-12 text-left text-on-accent body-2">styles</th>
+        <th className='p-12 text-left text-on-accent body-2'>styles</th>
       </tr>
     </thead>
-    <tbody className="bg-canvas">
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">h-1</td>
-        <td className="p-12 text-muted body-3">
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12 body-3'>h-1</td>
+        <td className='p-12 text-muted body-3'>
           height: var(--size-1); /* 1px */
         </td>
       </tr>
       {/* More rows... */}
       <tr>
-        <td className="text-accent p-12 body-3">h-256</td>
-        <td className="p-12 text-muted body-3">
+        <td className='text-accent p-12 body-3'>h-256</td>
+        <td className='p-12 text-muted body-3'>
           height: var(--size-256); /* 256px */
         </td>
       </tr>
@@ -64,6 +65,7 @@ When writing tables in documentation, follow this structure:
 ```
 
 ## Key Points
+
 - Always use design system typography classes (`body-3`, `body-4`)
 - Use design system colors (`text-accent`, `text-muted`, `text-on-accent`, `bg-muted`, `bg-canvas`)
 - Use design system spacing (`p-12`, `my-24`)
