@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { ChevronDown, Check, ChevronUp } from '../../Symbols';
 
@@ -73,15 +74,42 @@ const SelectTrigger = React.forwardRef<
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
-const contentStyles = cn(
-  'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
-  'bg-muted rounded-sm',
-  'drop-shadow-md',
-  'data-[side=bottom]:animate-slide-in-from-top-8',
-  'data-[side=top]:animate-slide-in-from-bottom-8',
-  'data-[side=left]:animate-slide-in-from-right-8',
-  'data-[side=right]:animate-slide-in-from-left-8',
+const contentStyles = cva(
+  [
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
+    'bg-muted rounded-sm',
+    'drop-shadow-md',
+    'data-[side=bottom]:animate-slide-in-from-top-8',
+    'data-[side=top]:animate-slide-in-from-bottom-8',
+    'data-[side=left]:animate-slide-in-from-right-8',
+    'data-[side=right]:animate-slide-in-from-left-8',
+  ],
+  {
+    variants: {
+      position: {
+        popper:
+          'data-[side=bottom]:translate-y-8 data-[side=left]:-translate-x-8 data-[side=right]:translate-x-8 data-[side=top]:-translate-y-8',
+        'item-aligned': '',
+      },
+    },
+    defaultVariants: {
+      position: 'popper',
+    },
+  },
 );
+
+const viewportStyles = cva('p-8', {
+  variants: {
+    position: {
+      popper:
+        'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+      'item-aligned': '',
+    },
+  },
+  defaultVariants: {
+    position: 'popper',
+  },
+});
 
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
@@ -91,23 +119,12 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       data-slot='select-content'
-      className={cn(
-        contentStyles,
-        position === 'popper' &&
-          'data-[side=bottom]:translate-y-8 data-[side=left]:-translate-x-8 data-[side=right]:translate-x-8 data-[side=top]:-translate-y-8',
-        className,
-      )}
+      className={cn(contentStyles({ position }), className)}
       position={position}
       {...props}
     >
       <SelectScrollUpButton />
-      <SelectPrimitive.Viewport
-        className={cn(
-          'p-8',
-          position === 'popper' &&
-            'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
-        )}
-      >
+      <SelectPrimitive.Viewport className={viewportStyles({ position })}>
         {children}
       </SelectPrimitive.Viewport>
       <SelectScrollDownButton />
