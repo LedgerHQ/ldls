@@ -9,6 +9,7 @@ import {
   SelectSeparator,
   SelectTrigger,
 } from './Select';
+import { Button } from '../Button';
 
 const meta: Meta<typeof Select> = {
   title: 'Selection/Select',
@@ -31,7 +32,9 @@ export const Base: Story = {
           <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>Option 1</SelectItem>
-            <SelectItem value='option2'>Option 2</SelectItem>
+            <SelectItem value='option2' disabled>
+              Option 2 disabled
+            </SelectItem>
             <SelectItem value='option3'>Option 3</SelectItem>
           </SelectContent>
         </Select>
@@ -195,12 +198,9 @@ export const FormIntegration: Story = {
           </SelectContent>
         </Select>
 
-        <button
-          type='submit'
-          className='rounded-sm bg-active px-16 py-12 text-on-accent body-2 hover:bg-active-hover'
-        >
+        <Button appearance='accent' type='submit' isFull>
           Submit
-        </button>
+        </Button>
       </form>
     );
   },

@@ -20,15 +20,15 @@ const triggerStyles = cn(
   'bg-muted rounded-sm px-16',
   'text-base body-2',
   'hover:bg-muted-hover',
-  'focus:outline-none focus:ring-2 focus:ring-active',
+  'focus:outline-none focus:ring-2 focus:ring-focus',
   'disabled:cursor-not-allowed disabled:text-disabled',
 );
 
 const labelStyles = cn(
-  'pointer-events-none absolute left-16 origin-left text-muted transition-all duration-[400ms]',
-  'top-8 body-4 -translate-y-4',
+  'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-[400ms]',
+  'top-[10px] body-4 -translate-y-4',
   'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-[14px]',
-  'group-has-[:disabled]:text-disabled',
+  'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'truncate max-w-[calc(100%-var(--size-56))]',
 );
 
@@ -58,13 +58,16 @@ const SelectTrigger = React.forwardRef<
     {label && (
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
-    <span className='mt-8 flex-1 truncate text-left opacity-100 transition-opacity duration-500 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
+    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity duration-500 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
       <SelectPrimitive.Value data-slot='select-value'>
         {children}
       </SelectPrimitive.Value>
     </span>
     <SelectPrimitive.Icon asChild>
-      <ChevronDown size={20} className='shrink-0 text-muted' />
+      <ChevronDown
+        size={20}
+        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
+      />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -74,9 +77,10 @@ const contentStyles = cn(
   'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
   'bg-muted rounded-sm',
   'drop-shadow-md',
-  'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out',
-  'data-[side=bottom]:animate-slide-in-from-top',
-  'data-[side=top]:animate-slide-in-from-bottom',
+  'data-[side=bottom]:animate-slide-in-from-top-8',
+  'data-[side=top]:animate-slide-in-from-bottom-8',
+  'data-[side=left]:animate-slide-in-from-right-8',
+  'data-[side=right]:animate-slide-in-from-left-8',
 );
 
 const SelectContent = React.forwardRef<
@@ -119,7 +123,7 @@ const SelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     data-slot='select-label'
-    className={cn('px-8 pb-0 pt-4 text-muted body-3-semi-bold', className)}
+    className={cn('px-8 pb-0 pt-8 text-muted body-3-semi-bold mb-4', className)}
     {...props}
   />
 ));
@@ -127,12 +131,12 @@ SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const itemStyles = cn(
   'relative flex w-full cursor-default bg-base-transparent select-none items-center',
-  'rounded-md px-8 py-8',
+  'rounded-sm px-8 py-8',
   'text-base body-2',
   'outline-none',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:pointer-events-none',
+  'data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
 );
 
 const SelectItem = React.forwardRef<
