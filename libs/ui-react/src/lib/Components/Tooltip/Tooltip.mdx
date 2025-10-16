@@ -100,7 +100,12 @@ The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip be
 ### Basic Usage with Animations
 
 ```tsx
-import { Tooltip, TooltipTrigger, TooltipContent, Button } from '@ledgerhq/ldls-ui-react';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  Button,
+} from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
@@ -108,9 +113,7 @@ function MyComponent() {
       <TooltipTrigger asChild>
         <Button>Hover me</Button>
       </TooltipTrigger>
-      <TooltipContent>
-        Tooltip with automatic animations
-      </TooltipContent>
+      <TooltipContent>Tooltip with automatic animations</TooltipContent>
     </Tooltip>
   );
 }
@@ -162,7 +165,8 @@ import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
 
 function App() {
   return (
-    <TooltipProvider delayDuration={200}> {/* Default delay */}
+    <TooltipProvider delayDuration={200}>
+      {/* Default delay */}
       {/* Your app content */}
     </TooltipProvider>
   );
@@ -181,8 +185,8 @@ The tooltip uses smooth slide animations that match its placement:
 <TooltipContent side="right">  // Slides from right
 
 // Animations are handled automatically on both enter and exit
-// Entry: animate-slideInFrom{Direction}
-// Exit: data-[state=closed]:animate-slideOutTo{Direction}
+// Entry: animate-slide-in-from-{direction}
+// Exit: data-[state=closed]:animate-slide-out-to-{direction}
 ```
 
 ## Do's and Don'ts
