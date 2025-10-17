@@ -12,6 +12,7 @@ export * from './TextInput';
 export * from './Link';
 export * from './ListItem';
 export * from './Search';
+export * from './Select';
 export * from './Skeleton';
 export * from './Spot';
 export * from './Subheader';

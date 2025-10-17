@@ -21,10 +21,10 @@ const baseInputStyles = cn(
 );
 
 const baseLabelStyles = cn(
-  'pointer-events-none absolute left-16 top-8 origin-left text-muted transition-all duration-300 body-4',
+  'pointer-events-none absolute left-16 top-[6px] origin-left text-muted transition-all duration-300 body-4',
   'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:body-2',
   'group-has-[:disabled]:text-disabled',
-  'peer-focus:top-8 peer-focus:-translate-y-0 peer-focus:body-4',
+  'peer-focus:top-[6px] peer-focus:-translate-y-0 peer-focus:body-4',
   'truncate w-[calc(100%-var(--size-56))]',
 );
 
@@ -213,7 +213,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=' '
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(baseInputStyles, label && 'pt-16 body-2', className)}
+            className={cn(baseInputStyles, label && 'pt-12 body-2', className)}
             onChange={handleInput}
             {...props}
           />

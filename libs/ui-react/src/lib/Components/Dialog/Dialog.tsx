@@ -121,7 +121,7 @@ const DialogOverlay = React.forwardRef<
       data-slot='dialog-overlay'
       className={cn(
         className,
-        'fixed inset-0 z-dialogOverlay bg-canvas-overlay data-[state=closed]:animate-overlayHide data-[state=open]:animate-overlayShow',
+        'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
       )}
       {...props}
     />
@@ -170,7 +170,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          'fixed left-[50%] top-[50%] z-dialogContent w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-contentHide data-[state=open]:animate-contentShow',
+          'fixed left-[50%] top-[50%] z-dialog-content w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
           className,
         )}
         {...props}
