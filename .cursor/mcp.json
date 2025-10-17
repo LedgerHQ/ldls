@@ -2,6 +2,9 @@
   "mcpServers": {
     "nx-mcp": {
       "url": "http://localhost:9318/sse"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
     }
   }
 }
