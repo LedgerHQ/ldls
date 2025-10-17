@@ -39,8 +39,8 @@ export interface AmountInputProps
 
 const inputStyles = cva(
   [
-    'bg-transparent outline-none heading-0 transition-colors caret-active',
-    'placeholder:text-muted-subtle text-base',
+    'bg-transparent caret-active outline-none transition-colors heading-0',
+    'text-base placeholder:text-muted-subtle',
     'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
     '[&[aria-invalid="true"]]:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
