@@ -69,6 +69,20 @@
           "codeSyntax": {}
         }
       }
+    },
+    "icon-font-size": {
+      "$type": "number",
+      "$value": "{font.size.24}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "FONT_SIZE"
+          ],
+          "codeSyntax": {}
+        }
+      }
     }
   },
   "icon-multiple": {
