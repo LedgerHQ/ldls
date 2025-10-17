@@ -64,6 +64,14 @@ export function createAnimationsPlugin() {
                 transform: 'translate(-50%, -48%) scale(0.96)',
               },
             },
+            'translate-from-right': {
+              from: {
+                transform: 'translateX(12px)',
+              },
+              to: {
+                transform: 'translateX(0)',
+              },
+            },
           },
           animation: {
             overlayShow: 'overlayShow 250ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -78,6 +86,8 @@ export function createAnimationsPlugin() {
             slideOutToLeft: 'slideOutToLeft 250ms ease-in',
             slideOutToTop: 'slideOutToTop 250ms ease-in',
             slideOutToBottom: 'slideOutToBottom 250ms ease-in',
+            'translate-from-right':
+              'translate-from-right 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           },
         },
       },

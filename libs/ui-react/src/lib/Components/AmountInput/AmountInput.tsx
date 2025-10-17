@@ -1,5 +1,12 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { cva } from 'class-variance-authority';
+import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 
 export interface AmountInputProps
   extends Omit<
@@ -10,9 +17,12 @@ export interface AmountInputProps
   currencyText?: string;
   /** Position of the currency text. Defaults to 'left' */
   currencyPosition?: 'left' | 'right';
-  /** Maximum character length */
-  /** @default 12 */
-  maxLength?: number;
+  /** Maximum length for integer part (before decimal) */
+  /** @default 9 */
+  maxIntegerLength?: number;
+  /** Maximum length for decimal part (after decimal) */
+  /** @default 9 */
+  maxDecimalLength?: number;
   /** Allow decimal values */
   /** @default true */
   allowDecimals?: boolean;
@@ -22,14 +32,31 @@ export interface AmountInputProps
   value: string | number;
   /** Change handler (required) */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Whether to use thousands separator */
+  /** @default true */
+  thousandsSeparator?: boolean;
 }
 
-const baseInputStyles = cn(
-  'bg-transparent outline-none heading-0 transition-colors caret-active',
-  'placeholder:text-muted-subtle text-base',
-  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
-  '[&[aria-invalid="true"]]:text-error',
-  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+const inputStyles = cva(
+  [
+    'bg-transparent outline-none heading-0 transition-colors caret-active',
+    'placeholder:text-muted-subtle text-base',
+    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    '[&[aria-invalid="true"]]:text-error',
+    '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+    'h-56',
+  ],
+  {
+    variants: {
+      isChanging: {
+        true: 'animate-translate-from-right',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      isChanging: false,
+    },
+  },
 );
 
 const currencyStyles = cn(
@@ -39,6 +66,24 @@ const currencyStyles = cn(
   'group-has-[input:disabled]:text-disabled group-has-[input:disabled]:pointer-events-none',
   'group-has-[input[aria-invalid="true"]]:text-error',
 );
+
+// Font size calculation constants
+const MAX_FONT_SIZE = 48;
+const MIN_FONT_SIZE = 17;
+const SCALE_FACTOR = 2;
+
+/**
+ * Calculates the font size based on the number of digits in the input value.
+ * Scales from 48px (max) to 17px (min) as digit count increases.
+ */
+function getFontSize(val: string): string {
+  const digits = val.replace(/\D/g, '').length;
+  const fontSize = Math.max(
+    MIN_FONT_SIZE,
+    MAX_FONT_SIZE - digits * SCALE_FACTOR,
+  );
+  return `${fontSize}px`;
+}
 
 /**
  * AmountInput component for handling numeric input with currency display.
@@ -52,8 +97,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       currencyText,
       currencyPosition = 'left',
       disabled,
-      maxLength = 12,
+      maxIntegerLength = 9,
+      maxDecimalLength = 9,
       allowDecimals = true,
+      thousandsSeparator = true,
       value,
       onChange,
       ...props
@@ -63,6 +110,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     const spanRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [inputValue, setInputValue] = useState(value.toString());
+    const [isChanging, setIsChanging] = useState(false);
+
+    /** Track previous value for animation trigger */
+    const prevValueRef = useRef<string>(inputValue);
 
     /** TODO: move to ui-core */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
@@ -78,6 +129,8 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
+    const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
+
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
       if (spanRef.current && inputRef.current) {
@@ -92,19 +145,27 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     }, [value]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value;
-      const cleaned = allowDecimals
-        ? raw.replace(/[^\d.]/g, '')
-        : raw.replace(/\D/g, '');
-      if (cleaned.replace(/\D/g, '').length <= maxLength) {
-        setInputValue(cleaned);
-        onChange({ ...e, target: { ...e.target, value: cleaned } });
+      const cleaned = textFormatter(e.target.value, {
+        allowDecimals,
+        thousandsSeparator,
+        maxIntegerLength,
+        maxDecimalLength,
+      });
+
+      setInputValue(cleaned);
+      onChange({ ...e, target: { ...e.target, value: cleaned } });
+
+      // Trigger animation if value actually changes
+      if (cleaned !== prevValueRef.current) {
+        setIsChanging(true);
       }
+
+      prevValueRef.current = cleaned;
     };
 
     return (
       <div
-        className='group relative flex items-center justify-center'
+        className='group relative flex items-center justify-center transition-transform'
         onPointerDown={() => {
           const input = inputRef.current;
           if (!input) return;
@@ -114,7 +175,12 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
         }}
       >
         {currencyText && currencyPosition === 'left' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
+          <span
+            className={cn(currencyStyles, 'shrink-0')}
+            style={{ fontSize, letterSpacing: 'normal' }}
+          >
+            {currencyText}
+          </span>
         )}
 
         {/* Hidden span mirrors input value */}
@@ -122,6 +188,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           ref={spanRef}
           className={cn('invisible absolute heading-0')}
           aria-hidden='true'
+          style={{ fontSize, letterSpacing: 'normal' }}
         >
           {inputValue}
         </span>
@@ -133,12 +200,19 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
           disabled={disabled}
           value={inputValue}
           onChange={handleChange}
-          className={cn(baseInputStyles, className)}
+          onAnimationEnd={() => setIsChanging(false)}
+          className={cn(inputStyles({ isChanging }), className)}
           {...props}
+          style={{ fontSize, letterSpacing: 'normal' }}
         />
 
         {currencyText && currencyPosition === 'right' && (
-          <span className={cn(currencyStyles, 'shrink-0')}>{currencyText}</span>
+          <span
+            className={cn(currencyStyles, 'shrink-0')}
+            style={{ fontSize, letterSpacing: 'normal' }}
+          >
+            {currencyText}
+          </span>
         )}
       </div>
     );
