@@ -3,6 +3,12 @@ import * as SelectPrimitive from '@radix-ui/react-select';
 import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { ChevronDown, Check, ChevronUp } from '../../Symbols';
+import type {
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectSeparatorProps,
+} from './types';
 
 function Select({
   ...props
@@ -32,19 +38,6 @@ const labelStyles = cn(
   'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'truncate max-w-[calc(100%-var(--size-56))]',
 );
-
-interface SelectTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
-  /**
-   * The label text that floats above the input when focused or filled
-   * @example label='Choose an option'
-   */
-  label?: string;
-  /** Additional class names to apply to the label element
-   * @example labelClassName='text-error'
-   */
-  labelClassName?: string;
-}
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
@@ -76,8 +69,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-x-hidden overflow-y-auto',
-    'bg-muted rounded-sm',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'rounded-sm bg-muted',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',
@@ -224,16 +217,6 @@ function SelectScrollDownButton({
     </SelectPrimitive.ScrollDownButton>
   );
 }
-
-type SelectContentProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Content
->;
-type SelectItemProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Item
->;
-type SelectSeparatorProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Separator
->;
 
 export {
   Select,
