@@ -141,6 +141,7 @@ jobs:
       - name: Generate React Symbol Components
         run: |
           npx nx run @ledgerhq/ldls-design-core:generate-symbols-react
+          npx nx run-many --targets=build-deps --all
           npx nx run-many --target=lint --fix
 
       - name: Upload React symbols artifacts
