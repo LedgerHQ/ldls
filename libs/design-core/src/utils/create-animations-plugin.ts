@@ -132,7 +132,7 @@ export function createAnimationsPlugin() {
             'slide-out-to-bottom-8': 'slide-out-to-bottom-8 250ms ease-in',
             'slide-out-to-left-8': 'slide-out-to-left-8 250ms ease-in',
             'slide-out-to-right-8': 'slide-out-to-right-8 250ms ease-in',
-            
+
             'translate-from-right':
               'translate-from-right 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           },
