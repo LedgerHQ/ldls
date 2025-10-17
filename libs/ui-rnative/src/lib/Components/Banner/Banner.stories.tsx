@@ -386,7 +386,7 @@ export const NaturalWidth: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='w-384 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
+    <div className='grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 384px wide</div>
       <Banner
         title='Short Title'
