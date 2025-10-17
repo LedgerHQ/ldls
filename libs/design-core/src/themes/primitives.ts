@@ -655,6 +655,8 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-weight-bold': '700',
     '--font-weight-semi-bold': '600',
     '--font-weight-medium': '500',
+    '--font-size-6': 6,
+    '--font-size-8': 8,
     '--font-size-10': 10,
     '--font-size-12': 12,
     '--font-size-14': 14,
