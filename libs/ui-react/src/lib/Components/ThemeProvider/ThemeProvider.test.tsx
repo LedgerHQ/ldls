@@ -2,7 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { ThemeProvider, useThemeProvider } from './ThemeProvider';
+import { ThemeProvider } from './ThemeProvider';
+import { useThemeState } from './useThemeState';
 
 const root = document.documentElement;
 
@@ -101,10 +102,7 @@ describe('ThemeProvider', () => {
 
   it('provides theme in context', () => {
     const Consumer = () => {
-      const { theme } = useThemeProvider({
-        consumerName: 'ThemeConsumer',
-        contextRequired: true,
-      });
+      const { theme } = useThemeState();
       return <div data-testid='theme-value'>{theme}</div>;
     };
 
