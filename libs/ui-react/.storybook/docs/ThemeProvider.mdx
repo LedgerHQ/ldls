@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Theme Provider" />
+
+## Ledger Design System Theme Provider
+Define the color-mode theme for the application.
+
+```tsx
+import { ThemeProvider } from '@ledgerhq/ldls-ui-react';
+
+function AppProviders() {
+  return (
+    <ThemeProvider mode="dark">
+      <App />
+    </ThemeProvider>
+  );
+}
+```
+
+The mode can be updated using the `useTheme` context hook.
+```tsx
+import { ThemeProvider, useTheme } from '@ledgerhq/ldls-ui-react';
+
+const UpdateThemeModeButton = () => {
+  const { mode, toggleMode, setMode } = useTheme();
+  return (
+    <Button onClick={toggleMode}>
+      {mode}
+    </Button>
+  );
+};
+
+function AppProviders() {
+  return (
+    <ThemeProvider mode="dark">
+      <UpdateThemeModeButton />
+    </ThemeProvider>
+  );
+}
+```
