@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Subheader } from './Subheader';
-import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
+import { describe, it, expect } from 'vitest';
 import { Information } from '../../Symbols';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
+import { Subheader } from './Subheader';
 import '@testing-library/jest-dom';
 
 describe('Subheader', () => {

@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { Button } from './Button';
 import { Settings } from '../../Symbols';
+import { Button } from './Button';
 
 describe('Button Component', () => {
   it('should render correctly with children', () => {

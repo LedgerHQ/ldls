@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { Button } from '../Button';
 import {
   Select,
   SelectContent,
@@ -9,7 +10,6 @@ import {
   SelectSeparator,
   SelectTrigger,
 } from './Select';
-import { Button } from '../Button';
 
 const meta: Meta<typeof Select> = {
   title: 'Selection/Select',

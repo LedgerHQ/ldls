@@ -1,9 +1,9 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { IconSize } from '../Icon/Icon';
 import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+import React from 'react';
 import { ExternalLink } from '../../Symbols';
+import { IconSize } from '../Icon/Icon';
 
 const linkVariants = cva(
   'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',

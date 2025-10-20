@@ -4,11 +4,11 @@
  * Copyright 2013 gerard-figma
  */
 
-import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
-import tokenFileNameRenamer from './token-file-name-renamer.js';
-import figmaApi from './api.js';
 import * as fs from 'fs';
+import figmaApi from './api.js';
 import getEnvironmentVariables from './get-environment-variables.js';
+import tokenFileNameRenamer from './token-file-name-renamer.js';
+import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
 
 const outputDir = 'tokens';
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { Tag } from './Tag';
 import { Check } from '../../Symbols/Icons/Check';
+import { Tag } from './Tag';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,

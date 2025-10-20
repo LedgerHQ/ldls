@@ -1,8 +1,8 @@
-import { cn } from '../../utils';
 import { cva } from 'class-variance-authority';
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
 import { Svg, SvgProps } from 'react-native-svg';
+import { cn } from '../../utils';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 

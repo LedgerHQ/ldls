@@ -1,8 +1,7 @@
+import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
 import { Pressable, View, type GestureResponderEvent } from 'react-native';
-
-import { cva } from 'class-variance-authority';
-import { SlotPressable, SlotView } from '../Slot';
 
 import {
   PressableRef,
@@ -10,8 +9,9 @@ import {
   SlottableViewProps,
   ViewRef,
 } from '../../types';
+import { SlotPressable, SlotView } from '../Slot';
+
 import { SwitchProps } from './types';
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
 
 const ROOT_COMPONENT_NAME = 'BaseSwitch';
 const THUMB_COMPONENT_NAME = 'BaseSwitchThumb';

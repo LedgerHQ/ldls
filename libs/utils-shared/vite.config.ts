@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
 import { join } from 'path';
-import dts from 'vite-plugin-dts';
-import type { LibraryFormats } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import type { LibraryFormats } from 'vite';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig(() => ({
   root: __dirname,

@@ -1,9 +1,9 @@
 import plugin from 'tailwindcss/plugin.js';
-import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
-import { createIconUtilities } from './create-icon-utilities.js';
-import { primitivesTheme } from '../themes/index.js';
 import { CSSRuleObject } from 'tailwindcss/types/config.js';
+import { primitivesTheme } from '../themes/index.js';
+import { createIconUtilities } from './create-icon-utilities.js';
 import { createSpotUtilities } from './create-spot-utilities.js';
+import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
 
 export function createPrimitivesPlugin() {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');

@@ -1,7 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Link } from './Link';
+import React from 'react';
 import { Settings, Information } from '../../Symbols';
+import { Link } from './Link';
 
 const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
   event.preventDefault();

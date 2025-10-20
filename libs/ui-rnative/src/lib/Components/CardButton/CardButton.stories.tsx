@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { CardButton } from './CardButton';
-import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
 import { View, Text } from 'react-native';
+import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
+import { CardButton } from './CardButton';
 
 const meta: Meta<typeof CardButton> = {
   component: CardButton,

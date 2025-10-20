@@ -1,3 +1,5 @@
+import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
 import React, {
   useEffect,
   useLayoutEffect,
@@ -5,8 +7,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { cva } from 'class-variance-authority';
-import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 
 export interface AmountInputProps
   extends Omit<

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tag } from './Tag';
 import { Check } from '../../Symbols/Icons/Check';
+import { Tag } from './Tag';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,

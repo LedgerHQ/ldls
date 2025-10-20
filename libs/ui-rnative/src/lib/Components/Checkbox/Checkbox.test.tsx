@@ -1,5 +1,5 @@
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { describe, it, expect, jest } from '@jest/globals';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import { Checkbox } from './Checkbox';
 
 describe('Checkbox', () => {

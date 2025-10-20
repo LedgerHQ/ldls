@@ -1,10 +1,10 @@
+import { describe } from 'node:test';
 import { it, expect } from 'vitest';
 import figmaApiMock from './api-mock.js';
 import {
   findVariablesEndingByDefault,
   codeSyntaxFromVariableNameEndingByDefault,
 } from './local-variables-code-syntax.js';
-import { describe } from 'node:test';
 
 describe('transform code syntax', () => {
   it('find variables ending with default', async () => {

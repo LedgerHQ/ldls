@@ -1,5 +1,5 @@
-import { useIsomorphicLayoutEffect } from '../constants';
 import * as React from 'react';
+import { useIsomorphicLayoutEffect } from '../constants';
 
 /**
  * keeps a reference to the current value easily

@@ -1,5 +1,5 @@
-import { expect, describe, it, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { expect, describe, it, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
 import { AddressInput } from './AddressInput';

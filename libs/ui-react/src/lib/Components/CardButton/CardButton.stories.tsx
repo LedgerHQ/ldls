@@ -1,7 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CardButton } from './CardButton';
+import React from 'react';
 import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
+import { CardButton } from './CardButton';
 
 const meta: Meta<typeof CardButton> = {
   component: CardButton,

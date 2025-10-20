@@ -1,8 +1,8 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
 import { Button } from '../Button';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 import { Spot } from '../Spot';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 
 const DialogTemplate = ({
   dialogHeaderProps,
@@ -213,7 +213,7 @@ export const InfoStateError: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
+            <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
 
             <Spot appearance='error' size={72} />
 
@@ -284,7 +284,7 @@ export const InfoStateSuccess: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
+            <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
 
             <Spot appearance='check' size={72} />
 

@@ -1,11 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { Tile } from './Tile';
-import { Spot } from '../Spot';
-import { InteractiveIcon } from '../InteractiveIcon';
 import { Settings } from '../../Symbols';
+import { InteractiveIcon } from '../InteractiveIcon';
+import { Spot } from '../Spot';
+import { Tile } from './Tile';
 
 describe('Tile Component', () => {
   const mockSpot = <Spot appearance='icon' icon={Settings} />;

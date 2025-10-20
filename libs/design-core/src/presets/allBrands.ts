@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss';
+import { allBrandsTheme } from '../themes/index.js';
+import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 import {
   createGradientPlugin,
@@ -6,8 +8,6 @@ import {
   createTypographyPlugin,
   createDropShadowPlugin,
 } from '../utils/index.js';
-import { allBrandsTheme } from '../themes/index.js';
-import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 
 export const allBrandsPreset = {
   content: [],

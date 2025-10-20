@@ -1,6 +1,7 @@
+import { cn, isTextChildren } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { Text, View } from 'react-native';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -8,12 +9,10 @@ import {
   DeleteCircleFill,
   Close,
 } from '../../Symbols';
-import { Button } from '../Button';
-import { BannerProps } from './types';
-import { Text, View } from 'react-native';
 import { ViewRef } from '../../types';
+import { Button } from '../Button';
 import { Wrap } from '../Wrap';
-import { isTextChildren } from '@ledgerhq/ldls-utils-shared';
+import { BannerProps } from './types';
 
 const iconMap = {
   info: <InformationFill className='text-base' />,

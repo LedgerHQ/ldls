@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Svg, SvgProps } from 'react-native-svg';
-import { Icon, IconProps } from './Icon';
 import { toPascalCase } from '../../utils';
+import { Icon, IconProps } from './Icon';
 
 /**
  * Create an Icon component for React Native

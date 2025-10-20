@@ -1,9 +1,9 @@
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { cva } from 'class-variance-authority';
-import { IconSize } from '../Icon/Icon';
 import React from 'react';
-import { cn } from '../../utils';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Spinner } from '../../Symbols';
+import { cn } from '../../utils';
+import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = {
   root: cva(

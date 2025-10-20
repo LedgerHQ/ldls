@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { CardButton } from './CardButton';
 import { Settings, Wallet } from '../../Symbols';
+import { CardButton } from './CardButton';
 
 describe('CardButton Component', () => {
   it('should render correctly with only title', () => {

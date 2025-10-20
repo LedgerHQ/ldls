@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { Banner } from './Banner';
 import { Button } from '../Button';
+import { Banner } from './Banner';
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {

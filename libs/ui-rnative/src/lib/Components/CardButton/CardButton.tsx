@@ -1,14 +1,14 @@
+import { cva } from 'class-variance-authority';
+import React from 'react';
 import {
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
   View,
 } from 'react-native';
-import { cva } from 'class-variance-authority';
-import React from 'react';
+import { ChevronRight } from '../../Symbols';
 import { cn } from '../../utils';
 import { IconSize } from '../Icon/Icon';
-import { ChevronRight } from '../../Symbols';
 
 const buttonVariants = cva(
   'inline-flex h-fit w-full flex-row items-center gap-12 rounded-sm p-12 transition-colors',

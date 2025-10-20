@@ -1,9 +1,8 @@
-import React, { forwardRef } from 'react';
-
 import { cva } from 'class-variance-authority';
-import { LabelProps } from './types';
+import React, { forwardRef } from 'react';
 import { Text } from 'react-native';
 import { cn } from '../../utils';
+import { LabelProps } from './types';
 
 const labelVariants = cva(['body-2'], {
   variants: {
