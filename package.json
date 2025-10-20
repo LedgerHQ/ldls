@@ -52,7 +52,7 @@
     "@storybook/addon-themes": "9.1.0",
     "@storybook/cli": "9.1.0",
     "@storybook/jest": "^0.2.3",
-    "@storybook/react-native": "9.1.0",
+    "@storybook/react-native": "^9.1.0",
     "@storybook/react-native-web-vite": "9.1.0",
     "@storybook/react-vite": "9.1.0",
     "@storybook/test-runner": "^0.23.0",

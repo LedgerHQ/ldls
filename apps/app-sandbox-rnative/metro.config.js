@@ -1,7 +1,9 @@
 const { withNxMetro } = require('@nx/react-native');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { withNativeWind } = require('nativewind/metro');
+const withStorybook = require('@storybook/react-native/metro/withStorybook');
 const path = require('path');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
 
 const processConfig = async () => {
   const defaultConfig = getDefaultConfig(__dirname);
@@ -23,12 +25,13 @@ const processConfig = async () => {
     resolver: {
       assetExts: assetExts.filter((ext) => ext !== 'svg'),
       sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg', 'css'],
+      disableHierarchicalLookup: true,
+      nodeModulesPaths: [
+        path.join(__dirname, 'node_modules'),
+        path.join(monorepoRoot, 'node_modules'),
+      ],
     },
-    watchFolders: [
-      monorepoRoot,
-      path.join(monorepoRoot, 'node_modules'),
-      path.join(monorepoRoot, 'libs/ui-rnative'),
-    ],
+    watchFolders: [monorepoRoot, path.join(monorepoRoot, 'libs/ui-rnative')],
   };
 
   const nxMetroConfig = await withNxMetro(
@@ -43,9 +46,10 @@ const processConfig = async () => {
       watchFolders: [],
     },
   );
-  return withNativeWind(nxMetroConfig, {
+  const nativeWindConfig = withNativeWind(nxMetroConfig, {
     input: cssEntry,
   });
+  return withStorybook(nativeWindConfig);
 };
 
 module.exports = processConfig();

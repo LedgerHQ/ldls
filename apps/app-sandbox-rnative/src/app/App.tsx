@@ -8,13 +8,14 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
 
 export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar barStyle='dark-content' />
       <SafeAreaView
         style={{
@@ -44,9 +45,19 @@ export const App = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </GestureHandlerRootView>
   );
 };
+
+let AppEntryPoint = App;
+
+// Toggle Storybook via global flag set by start scripts
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+if (true) {
+  AppEntryPoint = require('../../.rnstorybook').default;
+}
+
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#ffffff',
@@ -57,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default AppEntryPoint;
