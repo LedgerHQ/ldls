@@ -3,7 +3,7 @@ import * as DialogStories from './Dialog.stories';
 import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Dialog" of={DialogStories} />
+<Meta title='Components/Dialog' of={DialogStories} />
 
 # 🪟 Dialog
 
@@ -14,7 +14,9 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 Dialogs are modal windows that interrupt the normal workflow to grab the user's attention, typically for critical information, confirmation, or additional input.
 
-> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6345-2641&m=dev).
+> This Dialog component is built on top of [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog) primitives.
+
+> View the component in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6345-2641&m=dev).
 
 ## Anatomy
 
@@ -22,14 +24,18 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 
 - **Trigger**: The element that opens the dialog when interacted with
 - **Overlay**: Dimmed background that covers the underlying content
-- **Content**: The main container for dialog content
 - **Header**: Use DialogHeader component for a consistent dialog header with title, description, and controls
+- **Content**: The main container for dialog content
+
+> **Note**:
+>
+> The **width** of the dialog is `400px` by default, you can adjust the width of the dialog content by using the `className` prop on `DialogContent`.
+>
+> The **height** of the dialog is `auto-adjusted` to the content, you can adjust the height of the dialog content by using the `className` prop on `DialogContent`.
 
 ## Properties
 
 ### Basic Usage
-
-Dialogs are composed using Radix UI primitives. Wrap your content in DialogContent and use DialogTrigger for the opening element.
 
 ### Header Configuration
 
@@ -62,6 +68,16 @@ Add navigation with DialogHeader's onBack prop.
 
 The content area after the DialogHeader can contain any components. Ensure proper padding and scrolling if needed.
 
+## Examples
+
+### Info State Error
+
+<Canvas of={DialogStories.InfoStateError} />
+
+### Info State Success
+
+<Canvas of={DialogStories.InfoStateSuccess} />
+
 ## Accessibility
 
 To be implemented:
@@ -71,9 +87,9 @@ To be implemented:
 - Screen reader support for content
 - Focus management on open/close
 
-<div className="rounded-8 mt-8 bg-muted p-12">
-  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
-  <ul className="space-y-2 body-2">
+<div className='rounded-8 mt-8 bg-muted p-12'>
+  <p className='mb-4 body-2-semi-bold'>Important Notes:</p>
+  <ul className='space-y-2 body-2'>
     <li>
       Always include DialogHeader as the first child of DialogContent for
       consistent UX and accessibility
@@ -85,6 +101,10 @@ To be implemented:
       elements
     </li>
     <li>Ensure content is responsive and works on mobile devices</li>
+    <li>
+      Use className prop on DialogContent to adjust the width and height of the
+      dialog
+    </li>
   </ul>
 </div>
 
@@ -117,8 +137,8 @@ import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
+    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -129,7 +149,12 @@ export default config;
 ### Basic Usage
 
 ```tsx
-import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+} from '@ledgerhq/ldls-ui-react';
 import { Button } from '@ledgerhq/ldls-ui-react'; // Example trigger
 
 function MyComponent() {
@@ -140,9 +165,11 @@ function MyComponent() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader
-          size="sm"
-          title="Dialog Title"
-          onClose={() => { /* handle close */ }}
+          size='sm'
+          title='Dialog Title'
+          onClose={() => {
+            /* handle close */
+          }}
         />
         <p>Dialog content here</p>
       </DialogContent>
@@ -158,10 +185,12 @@ function MyComponent() {
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader
-      size="sm"
-      title="Title"
-      description="Additional details"
-      onClose={() => { /* handle close */ }}
+      size='sm'
+      title='Title'
+      description='Additional details'
+      onClose={() => {
+        /* handle close */
+      }}
     />
     Content
   </DialogContent>
@@ -175,11 +204,13 @@ Use large DialogHeader for bigger dialogs:
 ```tsx
 <Dialog>
   <DialogTrigger>Open Large</DialogTrigger>
-  <DialogContent className="w-[800px]">
+  <DialogContent className='w-[800px]'>
     <DialogHeader
-      size="lg"
-      title="Large Dialog"
-      onClose={() => { /* handle close */ }}
+      size='lg'
+      title='Large Dialog'
+      onClose={() => {
+        /* handle close */
+      }}
     />
     Extended content
   </DialogContent>
@@ -193,10 +224,12 @@ Use large DialogHeader for bigger dialogs:
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader
-      size="sm"
-      title="Title"
+      size='sm'
+      title='Title'
       onBack={() => console.log('Back')}
-      onClose={() => { /* handle close */ }}
+      onClose={() => {
+        /* handle close */
+      }}
     />
     Content
   </DialogContent>
@@ -208,9 +241,7 @@ Use large DialogHeader for bigger dialogs:
 Control dialog width via className on DialogContent:
 
 ```tsx
-<DialogContent className="w-[600px]">
-  {/* Content */}
-</DialogContent>
+<DialogContent className='w-[600px]'>{/* Content */}</DialogContent>
 ```
 
 ## Do's and Don'ts
@@ -254,9 +285,7 @@ Control dialog width via className on DialogContent:
 
 ```tsx
 // Use className for width control
-<DialogContent className="max-w-512">
-  Content
-</DialogContent>
+<DialogContent className='max-w-512'>Content</DialogContent>
 ```
 
 ❌ **Don't**

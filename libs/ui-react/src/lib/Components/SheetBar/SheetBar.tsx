@@ -4,7 +4,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('flex w-full bg-canvas-sheet text-base', {
+const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
   variants: {
     size: {
       sm: 'h-64 flex-row items-center gap-12',
@@ -107,7 +107,11 @@ export const SheetBar = ({
       {size === 'sm' && (
         <>
           {onBack && <BackButton onBack={onBack} />}
-          <div className='flex min-w-0 flex-1 flex-col'>
+          <div
+            className={cn('flex min-w-0 flex-1 flex-col', {
+              'pl-40': !onBack,
+            })}
+          >
             {title && (
               <div className='truncate text-center heading-4-semi-bold'>
                 {title}
@@ -124,15 +128,15 @@ export const SheetBar = ({
       )}
       {size === 'lg' && (
         <>
-          <div className='flex flex-row justify-between'>
-            <div>{onBack && <BackButton onBack={onBack} />}</div>
+          <div className='flex flex-row items-center justify-between'>
+            {onBack && <BackButton onBack={onBack} />}
             <CloseButton onClose={onClose} />
           </div>
           {(title || description) && (
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 ps-16'>
               {title && <div className='heading-2-semi-bold'>{title}</div>}
               {description && (
-                <div className='text-muted body-1'>{description}</div>
+                <div className='text-muted body-2'>{description}</div>
               )}
             </div>
           )}

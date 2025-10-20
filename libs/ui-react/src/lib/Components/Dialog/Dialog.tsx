@@ -170,7 +170,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          'fixed left-[50%] top-[50%] z-dialog-content w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
+          'fixed left-[50%] top-[50%] z-dialog-content w-[400px] max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
           className,
         )}
         {...props}
@@ -225,13 +225,26 @@ export function DialogContent({
  * />
  */
 export function DialogHeader({
-  title,
+  title = '',
   description,
+  size,
   ...props
-}: SheetBarProps & { title: string }) {
+}: SheetBarProps & { title?: string }) {
   return (
     <>
-      <SheetBar title={title} description={description} {...props} />
+      <SheetBar
+        title={title}
+        description={description}
+        size={size}
+        {...props}
+        /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
+        className={cn('-ml-16 -mr-8', size === 'lg' && 'pt-16')}
+      />
+      {/* Accessibility Note: Even though the visible header/description are
+      rendered by SheetBar, Radix Dialog still requires DialogTitle (and
+      optionally DialogDescription) for proper labeling. These hidden elements
+      ensure assistive technologies announce the dialog correctly without
+      duplicating visible text. */}
       <DialogTitle hidden>{title}</DialogTitle>
       {description && (
         <DialogDescription hidden>{description}</DialogDescription>
