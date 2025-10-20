@@ -1,47 +1,50 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
-import { FC, useEffect, useMemo } from 'react';
-import { Theme, ThemeProviderProps } from './ThemeProvider.types';
-
-const LIGHT_MODE = 'light';
-const DARK_MODE = 'dark';
-const SYSTEM_MODE = 'system';
+import { FC, useMemo, useState } from 'react';
+import { ThemeMode, ThemeProviderProps } from './ThemeProvider.types';
+import {
+  DARK_MODE,
+  LIGHT_MODE,
+  SYSTEM_MODE,
+  useRootColorModeSideEffect,
+} from './useRootColorModeSideEffect';
 
 type ThemeProviderState = {
-  theme: Theme;
+  mode: ThemeMode;
+  setMode: (mode: ThemeMode) => void;
 };
 
-const [ThemeProviderContext] =
+const [ThemeProviderContext, useThemeContext] =
   createSafeContext<ThemeProviderState>('ThemeProvider');
 
 const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
-  theme = SYSTEM_MODE,
-  ...props
+  mode = SYSTEM_MODE,
 }) => {
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(LIGHT_MODE, DARK_MODE);
+  const [valueTheme, setValueTheme] = useState(mode);
 
-    if (theme === SYSTEM_MODE) {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? DARK_MODE
-        : LIGHT_MODE;
+  useRootColorModeSideEffect({ mode: valueTheme });
 
-      root.classList.add(systemTheme);
-      return;
-    }
-
-    root.classList.add(theme);
-  }, [theme]);
-
-  const value = useMemo(() => ({ theme }), [theme]);
-
-  return (
-    <ThemeProviderContext {...props} value={value}>
-      {children}
-    </ThemeProviderContext>
+  const value = useMemo(
+    () => ({
+      mode: valueTheme,
+      setMode: setValueTheme,
+    }),
+    [valueTheme, setValueTheme],
   );
+
+  return <ThemeProviderContext value={value}>{children}</ThemeProviderContext>;
 };
 
-export { ThemeProvider };
+const useTheme = () => {
+  const context = useThemeContext({
+    consumerName: 'useTheme',
+    contextRequired: true,
+  });
+  return {
+    ...context,
+    toggleMode: () =>
+      context.setMode(context.mode === DARK_MODE ? LIGHT_MODE : DARK_MODE),
+  };
+};
+
+export { ThemeProvider, useTheme };

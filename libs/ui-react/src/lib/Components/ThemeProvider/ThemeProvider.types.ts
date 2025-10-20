@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
-export type Theme = 'dark' | 'light' | 'system';
+export type ThemeMode = 'dark' | 'light' | 'system';
 
 export type ThemeProviderProps = PropsWithChildren & {
-  theme?: Theme;
+  mode?: ThemeMode;
 };
