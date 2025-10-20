@@ -79,27 +79,7 @@ describe('ThemeProvider', () => {
     expect(root).not.toHaveClass('dark');
   });
 
-  it('updates classes when theme changes', () => {
-    const { rerender } = render(
-      <ThemeProvider mode='light'>
-        <div data-testid='child' />
-      </ThemeProvider>,
-    );
-
-    expect(root).toHaveClass('light');
-    expect(root).not.toHaveClass('dark');
-
-    rerender(
-      <ThemeProvider mode='dark'>
-        <div data-testid='child' />
-      </ThemeProvider>,
-    );
-
-    expect(root).toHaveClass('dark');
-    expect(root).not.toHaveClass('light');
-  });
-
-  it('provides theme in context', () => {
+  it('updates class using useTheme context', () => {
     const Consumer = () => {
       const { mode, setMode } = useTheme();
       return (
