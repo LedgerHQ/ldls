@@ -16,7 +16,6 @@ export * from './Select';
 export * from './Skeleton';
 export * from './Spot';
 export * from './Subheader';
-export * from './SuggestionKeyboard';
 export * from './Switch';
 export * from './Tag';
 export * from './Tooltip';
