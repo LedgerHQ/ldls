@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-design-core",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "license": "Apache-2.0",
   "keywords": [
     "design-system",
@@ -27,6 +27,7 @@
     "!dist/figma/*"
   ],
   "dependencies": {
+    "tailwindcss": "^3.4.0",
     "tslib": "^2.3.0"
   }
 }

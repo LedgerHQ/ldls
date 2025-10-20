@@ -24,9 +24,10 @@ export function createPrimitivesPlugin() {
   );
 
   const zIndex = {
-    dialogOverlay: '90',
-    dialogContent: '100',
-    tooltip: '110',
+    'dialog-overlay': '90',
+    'dialog-content': '100',
+    select: '120',
+    tooltip: '200',
   };
 
   return plugin(

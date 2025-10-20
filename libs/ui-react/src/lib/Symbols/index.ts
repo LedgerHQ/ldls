@@ -147,6 +147,7 @@ export { Nft } from './Icons/Nft';
 export { NftHide } from './Icons/NftHide';
 export { Note } from './Icons/Note';
 export { P2p } from './Icons/P2p';
+export { Parachute } from './Icons/Parachute';
 export { Paste } from './Icons/Paste';
 export { Pause } from './Icons/Pause';
 export { PenEdit } from './Icons/PenEdit';

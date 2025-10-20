@@ -1145,7 +1145,8 @@
             "hiddenFromPublishing": false,
             "scopes": [
               "SHAPE_FILL",
-              "TEXT_FILL"
+              "TEXT_FILL",
+              "STROKE_COLOR"
             ],
             "codeSyntax": {
               "WEB": "var(--text-active);"
