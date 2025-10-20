@@ -2,7 +2,12 @@
   "name": "app-sandbox-react",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "nx": {
-    "name": "app-sandbox-react"
+    "name": "app-sandbox-react",
+    "tags": [
+      "scope:react"
+    ]
+    
   }
 }
