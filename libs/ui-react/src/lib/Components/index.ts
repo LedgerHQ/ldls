@@ -20,3 +20,4 @@ export * from './Switch';
 export * from './Tag';
 export * from './Tooltip';
 export * from './Tile';
+export * from './ThemeProvider';

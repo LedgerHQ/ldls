@@ -51,6 +51,19 @@ function App() {
   );
 }
 ```
+4 . Define the color-mode theme
+
+```tsx
+import { ThemeProvider } from '@ledgerhq/ldls-ui-react';
+
+function App() {
+  return (
+    <ThemeProvider theme="dark">
+      <App />
+    </ThemeProvider>
+  );
+}
+```
 
 **Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
 
