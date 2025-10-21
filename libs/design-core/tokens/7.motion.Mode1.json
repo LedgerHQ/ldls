@@ -24,9 +24,33 @@
         }
       }
     },
+    "200": {
+      "$type": "number",
+      "$value": 200,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
     "250": {
       "$type": "number",
       "$value": 250,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "300": {
+      "$type": "number",
+      "$value": 300,
       "$description": "",
       "$extensions": {
         "com.figma": {

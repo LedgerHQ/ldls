@@ -12,6 +12,15 @@ const HeightShowcase = () => (
   <div className='mb-32'>
     <div className='flex flex-row gap-16'>
       {[
+        { name: '560px', class: 'h-560', token: 'h-560' },
+        { name: '480px', class: 'h-480', token: 'h-480' },
+        { name: '400px', class: 'h-400', token: 'h-400' },
+        { name: '320px', class: 'h-320', token: 'h-320' },
+        { name: '256px', class: 'h-256', token: 'h-256' },
+        { name: '224px', class: 'h-224', token: 'h-224' },
+        { name: '208px', class: 'h-208', token: 'h-208' },
+        { name: '176px', class: 'h-176', token: 'h-176' },
+        { name: '160px', class: 'h-160', token: 'h-160' },
         { name: '144px', class: 'h-144', token: 'h-144' },
         { name: '128px', class: 'h-128', token: 'h-128' },
         { name: '112px', class: 'h-112', token: 'h-112' },

@@ -213,7 +213,7 @@ export const InfoStateError: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
 
             <Spot appearance='error' size={72} />
 
@@ -284,7 +284,7 @@ export const InfoStateSuccess: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
 
             <Spot appearance='check' size={72} />
 

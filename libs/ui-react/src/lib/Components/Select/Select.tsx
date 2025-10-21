@@ -69,7 +69,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
     'rounded-sm bg-muted',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',

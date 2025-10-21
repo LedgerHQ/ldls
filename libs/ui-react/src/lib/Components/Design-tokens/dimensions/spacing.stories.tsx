@@ -14,9 +14,13 @@ const SpacingShowcase = () => (
       {[
         { name: '2px', class: 'p-2', token: 'p-2' },
         { name: '4px', class: 'p-4', token: 'p-4' },
+        { name: '6px', class: 'p-6', token: 'p-6' },
         { name: '8px', class: 'p-8', token: 'p-8' },
+        { name: '10px', class: 'p-10', token: 'p-10' },
         { name: '12px', class: 'p-12', token: 'p-12' },
+        { name: '14px', class: 'p-14', token: 'p-14' },
         { name: '16px', class: 'p-16', token: 'p-16' },
+        { name: '20px', class: 'p-20', token: 'p-20' },
         { name: '24px', class: 'p-24', token: 'p-24' },
         { name: '32px', class: 'p-32', token: 'p-32' },
         { name: '40px', class: 'p-40', token: 'p-40' },
