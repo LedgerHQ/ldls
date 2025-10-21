@@ -206,9 +206,7 @@ export const StatesShowcase: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className='flex flex-col gap-8 p-8'>
-      <Button appearance='base' className='w-full'>
-        Short
-      </Button>
+      <Button appearance='base'>Short</Button>
       <Button appearance='base'>Medium length button</Button>
       <Button appearance='base' icon={Plus}>
         This is a longer button text to show dynamic width
