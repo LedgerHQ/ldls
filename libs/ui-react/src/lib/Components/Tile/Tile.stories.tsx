@@ -1,7 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tile } from './Tile';
-import { Spot } from '../Spot/Spot';
+import React from 'react';
 import {
   Settings,
   Plus,
@@ -13,7 +11,9 @@ import {
   MoreVertical,
 } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
+import { Spot } from '../Spot/Spot';
 import { Tag } from '../Tag/Tag';
+import { Tile } from './Tile';
 
 const secondaryAction = (
   <InteractiveIcon

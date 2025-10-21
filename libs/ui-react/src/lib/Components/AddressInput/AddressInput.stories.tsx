@@ -1,7 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AddressInput } from './AddressInput';
+import React from 'react';
 import { InformationFill, QrCode } from '../../Symbols';
+import { AddressInput } from './AddressInput';
 
 const meta: Meta<typeof AddressInput> = {
   component: AddressInput,

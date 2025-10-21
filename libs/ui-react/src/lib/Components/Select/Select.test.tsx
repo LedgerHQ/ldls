@@ -1,5 +1,5 @@
-import { expect, describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { expect, describe, it } from 'vitest';
 import '@testing-library/jest-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger } from './Select';
 

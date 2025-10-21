@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { IconSize } from './Icon';
-import * as Icons from '../../Symbols';
 import { useState } from 'react';
+import * as Icons from '../../Symbols';
+import { IconSize } from './Icon';
 
 const meta: Meta = {
   title: 'Symbols/Interface Icons',

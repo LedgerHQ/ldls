@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
+import React from 'react';
 
 const buttonVariants = cva(
   'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',

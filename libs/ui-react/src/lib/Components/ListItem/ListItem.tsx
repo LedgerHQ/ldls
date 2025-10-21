@@ -1,5 +1,5 @@
-import React from 'react';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import React from 'react';
 import { Tag } from '../Tag';
 
 export interface ListItemProps

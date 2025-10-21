@@ -1,6 +1,6 @@
 import React from 'react';
-import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { Search as SearchIcon } from '../../Symbols';
+import { BaseInput, type BaseInputProps } from '../BaseInput';
 
 export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
 

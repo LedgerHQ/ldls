@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { IconSize } from '../Icon/Icon';
 import { Slot, Slottable } from '@radix-ui/react-slot';
+import { cva } from 'class-variance-authority';
+import React, { useCallback } from 'react';
 import { Spinner } from '../../Symbols/Icons/Spinner';
+import { IconSize } from '../Icon/Icon';
 
 const baseButtonVariants = cva(
   'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',

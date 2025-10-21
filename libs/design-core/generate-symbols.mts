@@ -1,10 +1,10 @@
-import { transform } from '@svgr/core';
-import path from 'path';
 import { promises as fs } from 'fs';
+import * as os from 'os';
+import path from 'path';
 import { toPascalCase } from '@ledgerhq/ldls-utils-shared';
+import { transform } from '@svgr/core';
 import { findFilesByExtension } from './src/utils/fs-utils.js';
 import { parseCliArgs } from './src/utils/parse-cli-args.js';
-import * as os from 'os';
 
 const params = parseCliArgs(process.argv.slice(2));
 
@@ -110,7 +110,7 @@ async function generateSymbols() {
       const tempPath = path.join(tempDir, relative);
       await fs.mkdir(path.dirname(tempPath), { recursive: true });
       await fs.copyFile(preservedPath, tempPath);
-    } catch (e) {
+    } catch {
       // skip if not exists
     }
   }
@@ -192,7 +192,7 @@ async function generateSymbols() {
         .join(pascalCaseDir, componentName)
         .replace(/\\/g, '/');
       exportPaths.push({ barrelExportPath, componentName });
-    } catch (e) {
+    } catch {
       // skip
     }
   }

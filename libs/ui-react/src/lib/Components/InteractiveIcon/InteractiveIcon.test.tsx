@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { InteractiveIcon } from './InteractiveIcon';
 import { Settings, Plus } from '../../Symbols';
+import { InteractiveIcon } from './InteractiveIcon';
 
 describe('InteractiveIcon Component', () => {
   it('should render correctly with children icon', () => {

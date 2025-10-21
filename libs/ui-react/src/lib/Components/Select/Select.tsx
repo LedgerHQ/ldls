@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { cva } from 'class-variance-authority';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import * as React from 'react';
 import { ChevronDown, Check, ChevronUp } from '../../Symbols';
 import type {
   SelectTriggerProps,
@@ -69,7 +69,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
     'rounded-sm bg-muted',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',

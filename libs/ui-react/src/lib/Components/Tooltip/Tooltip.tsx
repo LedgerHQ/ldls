@@ -1,10 +1,10 @@
-import React from 'react';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
+import React from 'react';
 
 const tooltipContentVariants = cva(
-  'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
+  'z-tooltip rounded-xs bg-interactive text-on-interactive body-3 w-fit select-none text-balance px-8 py-4',
   {
     variants: {
       side: {
@@ -192,7 +192,7 @@ export const TooltipContent = ({
         className={cn(tooltipContentVariants({ side }), className)}
         {...props}
       >
-        <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
+        <TooltipPrimitive.Arrow className='bg-interactive fill-interactive size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px]' />
         <div className='relative'>{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>

@@ -1,10 +1,10 @@
-import React from 'react';
+import { cn } from '@ledgerhq/ldls-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Subheader } from './Subheader';
+import React from 'react';
+import { Information } from '../../Symbols';
 import { Link } from '../Link/Link';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
-import { Information } from '../../Symbols';
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { Subheader } from './Subheader';
 
 const Container = ({
   className,

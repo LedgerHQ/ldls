@@ -1,8 +1,8 @@
-import StyleDictionary from 'style-dictionary';
-import type { TransformedToken } from 'style-dictionary';
-import prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
+import prettier from 'prettier';
+import StyleDictionary from 'style-dictionary';
+import type { TransformedToken } from 'style-dictionary';
 
 const brands = ['enterprise', 'websites', 'ledger-live'];
 const breakpoints = ['sm', 'md', 'lg', 'xl'];

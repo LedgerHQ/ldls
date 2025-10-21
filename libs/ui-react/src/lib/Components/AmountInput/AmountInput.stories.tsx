@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { AmountInput } from './AmountInput';
-import { IconButton } from '../IconButton';
 import { TransferVertical } from '../../Symbols/Icons/TransferVertical';
+import { IconButton } from '../IconButton';
+import { AmountInput } from './AmountInput';
 
 const meta = {
   title: 'Input/AmountInput',

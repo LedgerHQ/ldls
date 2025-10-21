@@ -1,9 +1,9 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TextInput } from './TextInput';
+import React from 'react';
+import { InformationFill, SparksFill } from '../../Symbols';
 import { Button } from '../Button';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip';
-import { InformationFill, SparksFill } from '../../Symbols';
+import { TextInput } from './TextInput';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,

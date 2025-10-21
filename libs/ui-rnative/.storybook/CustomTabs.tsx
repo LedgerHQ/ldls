@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from '../src/lib/utils';
 import { Folder } from '../src/lib/Symbols/Icons/Folder';
+import { cn } from '../src/lib/utils';
 
 interface TabProps {
   label: string;

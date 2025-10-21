@@ -1,12 +1,12 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconButton } from './IconButton';
+import React from 'react';
+import { ExternalLink, Home } from '../../Symbols';
+import { Close } from '../../Symbols/Icons/Close';
 import { Heart } from '../../Symbols/Icons/Heart';
 import { Plus } from '../../Symbols/Icons/Plus';
 import { Settings } from '../../Symbols/Icons/Settings';
 import { Share } from '../../Symbols/Icons/Share';
-import { Close } from '../../Symbols/Icons/Close';
-import { ExternalLink, Home } from '../../Symbols';
+import { IconButton } from './IconButton';
 
 const iconMap = {
   Heart,

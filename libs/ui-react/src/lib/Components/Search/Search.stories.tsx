@@ -1,7 +1,7 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Search } from './Search';
+import React from 'react';
 import { ListItem } from '../ListItem';
+import { Search } from './Search';
 
 const meta: Meta<typeof Search> = {
   component: Search,

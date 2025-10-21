@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
+import React from 'react';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 

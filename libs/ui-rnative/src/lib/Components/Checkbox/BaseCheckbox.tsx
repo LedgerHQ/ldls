@@ -1,5 +1,7 @@
-import { SlotPressable, SlotView } from '../Slot';
+import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
+import { GestureResponderEvent, Pressable, View } from 'react-native';
 import {
   ForceMountable,
   PressableRef,
@@ -7,10 +9,8 @@ import {
   SlottableViewProps,
   ViewRef,
 } from '../../types';
-import { GestureResponderEvent, Pressable, View } from 'react-native';
-import { cva } from 'class-variance-authority';
 import { cn } from '../../utils';
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { SlotPressable, SlotView } from '../Slot';
 import { CheckboxProps } from './types';
 
 const ROOT_COMPONENT_NAME = 'BaseCheckbox';

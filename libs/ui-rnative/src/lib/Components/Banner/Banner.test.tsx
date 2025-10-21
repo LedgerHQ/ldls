@@ -1,8 +1,7 @@
 import { describe, it, expect, jest } from '@jest/globals';
 import { fireEvent, render } from '@testing-library/react-native';
-import { Banner } from './Banner';
-
 import { Button } from '../Button';
+import { Banner } from './Banner';
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {

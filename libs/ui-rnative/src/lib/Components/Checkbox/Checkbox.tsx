@@ -1,13 +1,13 @@
+import { cva } from 'class-variance-authority';
 import React from 'react';
 
-import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
-
+import { View } from 'react-native';
 import { Check } from '../../Symbols';
-import { CheckboxProps } from './types';
 import { useControllableState } from '../../utils';
 import { Label } from '../Label';
-import { View } from 'react-native';
-import { cva } from 'class-variance-authority';
+import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
+
+import { CheckboxProps } from './types';
 
 const checkboxVariants = {
   root: cva(['flex flex-row items-center gap-8']),

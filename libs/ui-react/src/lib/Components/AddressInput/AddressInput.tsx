@@ -1,7 +1,7 @@
 import React from 'react';
+import { QrCode as QrCodeIcon } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
-import { QrCode as QrCodeIcon } from '../../Symbols';
 
 export interface AddressInputProps
   extends Omit<BaseInputProps, 'prefix' | 'label'> {

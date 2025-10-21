@@ -1,8 +1,8 @@
-import React from 'react';
-import { cva } from 'class-variance-authority';
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { IconSize } from '../Icon/Icon';
+import { cva } from 'class-variance-authority';
+import React from 'react';
 import { ChevronRight } from '../../Symbols';
+import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = cva(
   'inline-flex h-fit w-full items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:text-disabled',

@@ -1,12 +1,12 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { InteractiveIcon } from './InteractiveIcon';
+import React from 'react';
 import {
   Settings,
   PenEdit,
   DeleteCircleFill,
   MoreVertical,
 } from '../../Symbols';
+import { InteractiveIcon } from './InteractiveIcon';
 
 const meta: Meta<typeof InteractiveIcon> = {
   component: InteractiveIcon,

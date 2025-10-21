@@ -1,7 +1,7 @@
+import type * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import React from 'react';
 import { BaseButton, BaseButtonProps } from '../Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../Tooltip/Tooltip';
-import type * as TooltipPrimitive from '@radix-ui/react-tooltip';
 
 export interface IconButtonProps extends Omit<BaseButtonProps, 'isFull'> {
   /**
