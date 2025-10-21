@@ -7,7 +7,7 @@ export const SYSTEM_MODE = 'system';
 
 /**
  * Updates the root element className when the theme mode changes.
- * This allow the design-system theme config to be applied
+ * This allows the design-system theme config to be applied
  */
 export const useRootColorModeSideEffect = ({ mode }: { mode: ThemeMode }) => {
   useEffect(() => {

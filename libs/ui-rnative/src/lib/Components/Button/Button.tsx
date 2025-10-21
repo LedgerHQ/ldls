@@ -1,9 +1,10 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { Spinner } from '../../Symbols';
 import { cn } from '../../utils';
-import { IconSize } from '../Icon/Icon';
+import { IconSize } from '../Icon';
+import { ButtonProps } from './Button.types';
 
 const buttonVariants = {
   root: cva(
@@ -83,43 +84,6 @@ const buttonVariants = {
   ),
   label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
 };
-
-export interface ButtonProps extends Omit<TouchableOpacityProps, 'disabled'> {
-  /**
-   * The visual style of the button.
-   */
-  appearance?:
-    | 'base'
-    | 'gray'
-    | 'accent'
-    | 'transparent'
-    | 'no-background'
-    | 'red';
-  /**
-   * The size variant of the button.
-   */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  /**
-   * If true, the button expands to full width of its container.
-   */
-  isFull?: boolean;
-  /**
-   * If true, shows a loading spinner and disables the button.
-   */
-  loading?: boolean;
-  /**
-   * An optional icon component to render inside the button.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * Whether the button is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Additional custom CSS classes to apply.
-   */
-  className?: string;
-}
 
 /**
  * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.
