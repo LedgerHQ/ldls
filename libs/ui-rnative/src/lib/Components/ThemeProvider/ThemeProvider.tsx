@@ -25,11 +25,16 @@ const ThemeProvider = forwardRef<View, ThemeProviderProps>(
     const initialMode = defaultMode === SYSTEM_MODE ? colorScheme : defaultMode;
     const [mode, setMode] = useState<ColorSchemeName>(initialMode);
 
+    /**
+     * Side-effect to update the color scheme of the app when the mode changes.
+     */
     useEffect(() => {
-      Appearance.setColorScheme(mode as ColorSchemeName);
+      if (mode !== null && mode !== undefined) {
+        Appearance.setColorScheme(mode as ColorSchemeName);
+      }
     }, [mode]);
 
-    const value = useMemo(() => ({ mode, setMode }), [mode, setMode]);
+    const value = useMemo(() => ({ mode, setMode }), [mode]);
 
     return (
       <ThemeProviderProvider value={value}>
@@ -51,12 +56,10 @@ const useTheme = () => {
     mode: context.mode,
     setMode(mode: ColorSchemeName) {
       context.setMode(mode);
-      Appearance.setColorScheme(mode as ColorSchemeName);
     },
     toggleMode() {
       const newMode = context.mode === DARK_MODE ? LIGHT_MODE : DARK_MODE;
       context.setMode(newMode);
-      Appearance.setColorScheme(newMode);
     },
   };
 };

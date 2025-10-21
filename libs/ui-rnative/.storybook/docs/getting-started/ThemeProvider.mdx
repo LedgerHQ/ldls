@@ -26,7 +26,7 @@ import { ThemeProvider, useTheme } from '@ledgerhq/ldls-ui-rnative';
 const UpdateThemeModeButton = () => {
   const { mode, toggleMode, setMode } = useTheme();
   return (
-    <Button onClick={toggleMode}>
+    <Button onPress={toggleMode}>
       {mode}
     </Button>
   );
@@ -34,7 +34,7 @@ const UpdateThemeModeButton = () => {
 
 function AppProviders() {
   return (
-    <ThemeProvider mode="dark">
+    <ThemeProvider defaultMode="dark">
       <UpdateThemeModeButton />
     </ThemeProvider>
   );

@@ -5,6 +5,5 @@ const isStringOrNumber = (element: ReactNode) =>
 
 export const isTextChildren = (element: ReactNode) => {
   const isArray = Array.isArray(element);
-  console.log({ isArray });
   return isArray ? element.every(isStringOrNumber) : isStringOrNumber(element);
 };
