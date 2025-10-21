@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-rnative",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
@@ -28,7 +28,7 @@
     "./*": "./src/lib/Components/*/index.ts"
   },
   "dependencies": {
-    "@ledgerhq/ldls-utils-shared": "0.0.6"
+    "@ledgerhq/ldls-utils-shared": "0.0.7"
   },
   "peerDependencies": {
     "react": "~18.3.1",
