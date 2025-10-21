@@ -38,6 +38,7 @@ export const Icon = forwardRef<Svg, IconProps>(
         className={cn(className, iconVariants({ size }), 'inline-block')}
         viewBox={viewBox}
         fill='none'
+        pointerEvents='none'
         {...props}
       >
         {children}
