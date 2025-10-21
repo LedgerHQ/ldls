@@ -21,12 +21,16 @@ const SizeShowcase = () => (
           { value: '64', token: 'size-64' },
           { value: '96', token: 'size-96' },
           { value: '128', token: 'size-128' },
+          { value: '160', token: 'size-160' },
         ].map(({ value, token }) => (
-          <div key={value} className='flex flex-col items-center gap-8'>
+          <div
+            key={value}
+            className='flex flex-col items-center gap-8 whitespace-nowrap'
+          >
             <div
-              className={`${token} rounded flex items-center justify-center bg-accent text-white`}
+              className={`${token} flex items-center justify-center rounded-xs bg-accent text-white`}
             ></div>
-            <div className='space-y-1 text-center'>
+            <div className=' space-y-1 text-center'>
               <div className='text-left text-muted body-3'>{token}</div>
               <div className='text-left text-muted body-4'>{value}px</div>
             </div>
@@ -36,7 +40,7 @@ const SizeShowcase = () => (
       <div className='mt-32 text-center text-muted body-2'>
         The complete scale includes 33 tokens from{' '}
         <code className='text-warning'>size-1</code> to{' '}
-        <code className='text-warning'>size-384</code>.
+        <code className='text-warning'>size-560</code>.
       </div>
     </div>
   </div>

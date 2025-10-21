@@ -208,9 +208,7 @@ export const StatesShowcase: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className='flex flex-col gap-8 p-8'>
-      <Button appearance='base' className='w-full lg:w-fit'>
-        Short
-      </Button>
+      <Button appearance='base'>Short</Button>
       <Button appearance='base'>Medium length button</Button>
       <Button appearance='base' icon={Plus}>
         This is a longer button text to show dynamic width
@@ -223,12 +221,12 @@ export const ResponsiveLayout2: Story = {
   render: () => (
     <>
       <p className='text-muted body-4-semi-bold'>
-        This container has a width of 384px.
+        This container has a fixed width.
       </p>
-      <div className='w-384 bg-muted-pressed p-16'>
+      <div className='w-400 bg-muted-pressed p-16'>
         <Button icon={Plus}>
-          This Base button has a fixed width container of 384px that should
-          content should be fir .
+          This Base button has a fixed width container that should fit the
+          content width.
         </Button>
       </div>
     </>

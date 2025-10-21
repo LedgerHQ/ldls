@@ -10,10 +10,7 @@ const Container = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn('w-[400px] bg-canvas p-8 text-base', className)}
-    {...props}
-  />
+  <div className={cn('w-400 bg-canvas p-8 text-base', className)} {...props} />
 );
 
 const InfoTooltip = () => (
@@ -254,7 +251,9 @@ export const ContentVariations: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <Container className='grid grid-cols-1 gap-16'>
-      <div className='text-muted body-4-semi-bold'>Container: 400px wide</div>
+      <div className='text-muted body-4-semi-bold'>
+        Container with a fixed width
+      </div>
       <Subheader title='Title with Tooltip'>
         <Subheader.Info>
           <InfoTooltip />

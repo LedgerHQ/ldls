@@ -33,8 +33,8 @@ const triggerStyles = cn(
 
 const labelStyles = cn(
   'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-[400ms]',
-  'top-[10px] body-4 -translate-y-4',
-  'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-[14px]',
+  'top-10 body-4 -translate-y-4',
+  'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-14',
   'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'truncate max-w-[calc(100%-var(--size-56))]',
 );
@@ -60,7 +60,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
+        className='text-muted group-data-[disabled]:text-disabled shrink-0'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -70,7 +70,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 const contentStyles = cva(
   [
     'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'rounded-sm bg-muted',
+    'bg-muted rounded-sm',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',

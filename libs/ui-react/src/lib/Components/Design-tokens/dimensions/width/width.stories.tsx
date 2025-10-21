@@ -12,8 +12,15 @@ const WidthShowcase = () => (
   <div className='mb-32'>
     <div className='space-y-16'>
       {[
+        { name: '560px', class: 'w-560', token: 'w-560' },
+        { name: '480px', class: 'w-480', token: 'w-480' },
+        { name: '400px', class: 'w-400', token: 'w-400' },
+        { name: '320px', class: 'w-320', token: 'w-320' },
+        { name: '256px', class: 'w-256', token: 'w-256' },
+        { name: '224px', class: 'w-224', token: 'w-224' },
         { name: '208px', class: 'w-208', token: 'w-208' },
         { name: '176px', class: 'w-176', token: 'w-176' },
+        { name: '160px', class: 'w-160', token: 'w-160' },
         { name: '144px', class: 'w-144', token: 'w-144' },
         { name: '128px', class: 'w-128', token: 'w-128' },
         { name: '112px', class: 'w-112', token: 'w-112' },

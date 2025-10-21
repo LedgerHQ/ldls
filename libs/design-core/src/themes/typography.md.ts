@@ -4,30 +4,30 @@
 
 export const tokens: Record<string, Record<string, string | number>> = {
   '@media (min-width: theme("screens.md"))': {
-    '--font-style-responsive-display-1-size': 'var(--font-size-80)',
+    '--font-style-responsive-display-1-size': 'var(--font-size-112)',
     '--font-style-responsive-display-1-weight': 'var(--font-weight-bold)',
     '--font-style-responsive-display-1-line-height':
-      'var(--font-line-height-80)',
+      'var(--font-line-height-112)',
     '--font-style-responsive-display-1-letter-spacing':
-      'var(--font-letter-spacing-80)',
-    '--font-style-responsive-display-2-size': 'var(--font-size-64)',
+      'var(--font-letter-spacing-112)',
+    '--font-style-responsive-display-2-size': 'var(--font-size-80)',
     '--font-style-responsive-display-2-weight': 'var(--font-weight-semi-bold)',
     '--font-style-responsive-display-2-line-height':
-      'var(--font-line-height-64)',
+      'var(--font-line-height-80)',
     '--font-style-responsive-display-2-letter-spacing':
-      'var(--font-letter-spacing-64)',
-    '--font-style-responsive-display-3-size': 'var(--font-size-52)',
+      'var(--font-letter-spacing-80)',
+    '--font-style-responsive-display-3-size': 'var(--font-size-64)',
     '--font-style-responsive-display-3-weight': 'var(--font-weight-semi-bold)',
     '--font-style-responsive-display-3-line-height':
-      'var(--font-line-height-52)',
+      'var(--font-line-height-64)',
     '--font-style-responsive-display-3-letter-spacing':
-      'var(--font-letter-spacing-52)',
-    '--font-style-responsive-display-4-size': 'var(--font-size-40)',
+      'var(--font-letter-spacing-64)',
+    '--font-style-responsive-display-4-size': 'var(--font-size-52)',
     '--font-style-responsive-display-4-weight': 'var(--font-weight-semi-bold)',
     '--font-style-responsive-display-4-line-height':
-      'var(--font-line-height-40)',
+      'var(--font-line-height-52)',
     '--font-style-responsive-display-4-letter-spacing':
-      'var(--font-letter-spacing-40)',
+      'var(--font-letter-spacing-52)',
     '--font-style-heading-0-size': 'var(--font-size-48)',
     '--font-style-heading-0-weight-semi-bold': 'var(--font-weight-semi-bold)',
     '--font-style-heading-0-weight-medium': 'var(--font-weight-medium)',
@@ -39,7 +39,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-style-heading-1-line-height': 'var(--font-line-height-28)',
     '--font-style-heading-1-letter-spacing': 'var(--font-letter-spacing-28)',
     '--font-style-heading-2-size': 'var(--font-size-24)',
-    '--font-style-heading-2-size-2': 'var(--font-size-28)',
+    '--font-style-heading-2-size-2': 'var(--font-size-32)',
     '--font-style-heading-2-weight-semi-bold': 'var(--font-weight-semi-bold)',
     '--font-style-heading-2-weight-medium': 'var(--font-weight-medium)',
     '--font-style-heading-2-line-height': 'var(--font-line-height-24)',
@@ -75,7 +75,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-style-body-4-line-height': 'var(--font-line-height-10)',
     '--font-style-body-4-letter-spacing': 'var(--font-letter-spacing-10)',
     '--font-style-grid-column-count': 8,
-    '--font-style-grid-margin': 'var(--spacing-24)',
-    '--font-style-grid-gutter': 'var(--spacing-16)',
+    '--font-style-grid-margin': 'var(--spacing-32)',
+    '--font-style-grid-gutter': 'var(--spacing-32)',
   },
 };
