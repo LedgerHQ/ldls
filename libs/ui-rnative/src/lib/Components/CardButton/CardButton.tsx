@@ -1,14 +1,10 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-} from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { ChevronRight } from '../../Symbols';
 import { cn } from '../../utils';
-import { IconSize } from '../Icon/Icon';
+
+import { CardButtonProps } from './CardButton.types';
 
 const buttonVariants = cva(
   'inline-flex h-fit w-full flex-row items-center gap-12 rounded-sm p-12 transition-colors',
@@ -52,34 +48,6 @@ const buttonVariants = cva(
     },
   },
 );
-
-export interface CardButtonProps
-  extends Omit<TouchableOpacityProps, 'disabled'> {
-  /**
-   * The visual style of the card button.
-   */
-  appearance?: 'base' | 'outline';
-  /**
-   * Whether the card button is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * An optional icon component to render on the left side.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * The main title of the card button.
-   */
-  title: string;
-  /**
-   * Optional descriptive text displayed below the title.
-   */
-  description?: string;
-  /**
-   * If true, hides the chevron arrow on the right side.
-   */
-  hideChevron?: boolean;
-}
 
 /**
  * A customizable card button component that displays an optional icon, a required title, an optional description, and an optional chevron arrow.
@@ -143,9 +111,9 @@ export const CardButton = React.forwardRef<
         {...props}
       >
         {IconComponent && <IconComponent size={24} className='shrink-0' />}
-        <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
+        <View className='body-1-semi-bold flex min-w-0 flex-1 flex-col gap-4 text-left'>
           <Text
-            className='min-w-0 body-1-semi-bold'
+            className='body-1-semi-bold min-w-0'
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -153,7 +121,7 @@ export const CardButton = React.forwardRef<
           </Text>
           {description && (
             <Text
-              className='min-w-0 body-2'
+              className='body-2 min-w-0'
               numberOfLines={2}
               ellipsizeMode='tail'
             >

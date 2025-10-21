@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Settings, Plus, Heart, Star } from '../../Symbols';
-import { IconSize } from '../Icon/Icon';
-import { Spot, SpotAppearance } from './Spot';
+import { IconSize } from '../Icon';
+import { Spot } from './Spot';
+import { SpotProps } from './Spot.types';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,
@@ -87,7 +88,7 @@ export const AppearanceShowcase: Story = {
   render: () => {
     const appearances: Array<{
       name: string;
-      appearance: SpotAppearance;
+      appearance: SpotProps['appearance'];
       icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
       number?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }> = [
@@ -158,7 +159,7 @@ export const SizesShowcase: Story = {
   render: () => {
     const appearances: Array<{
       name: string;
-      appearance: SpotAppearance;
+      appearance: SpotProps['appearance'];
       icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
       number?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }> = [
