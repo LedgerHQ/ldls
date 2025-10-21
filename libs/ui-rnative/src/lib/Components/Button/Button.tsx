@@ -7,22 +7,22 @@ import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = {
   root: cva(
-    'body-1-semi-bold inline-flex size-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors',
+    'inline-flex size-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
     {
       variants: {
         appearance: {
           base: 'bg-interactive text-on-interactive active:bg-interactive-pressed',
-          gray: 'bg-muted active:bg-muted-pressed text-base',
+          gray: 'bg-muted text-base active:bg-muted-pressed',
           accent: 'bg-accent text-on-accent active:bg-accent-pressed',
           transparent:
-            'bg-muted-transparent active:bg-muted-transparent-pressed text-base',
+            'bg-muted-transparent text-base active:bg-muted-transparent-pressed',
           'no-background':
-            'active:bg-base-transparent-pressed bg-transparent text-base',
+            'bg-transparent text-base active:bg-base-transparent-pressed',
           red: 'bg-error text-error active:bg-error-pressed',
         },
         size: {
-          xs: 'body-2-semi-bold px-12 py-8',
-          sm: 'body-2-semi-bold px-16 py-12',
+          xs: 'px-12 py-8 body-2-semi-bold',
+          sm: 'px-16 py-12 body-2-semi-bold',
           md: 'px-16 py-12',
           lg: 'p-16',
         },
@@ -37,7 +37,7 @@ const buttonVariants = {
           false: '',
         },
         disabled: {
-          true: 'bg-disabled text-disabled active:bg-disabled pointer-events-none cursor-default',
+          true: 'pointer-events-none cursor-default bg-disabled text-disabled active:bg-disabled',
           false: '',
         },
       },
@@ -81,7 +81,7 @@ const buttonVariants = {
       },
     },
   ),
-  label: cva('body-1-semi-bold line-clamp-2 text-left text-inherit'),
+  label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
 };
 
 export interface ButtonProps extends Omit<TouchableOpacityProps, 'disabled'> {
