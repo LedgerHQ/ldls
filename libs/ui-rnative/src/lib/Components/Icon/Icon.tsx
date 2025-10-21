@@ -1,6 +1,5 @@
 import { cva } from 'class-variance-authority';
 import React, { forwardRef } from 'react';
-import { View } from 'react-native';
 import { Svg, SvgProps } from 'react-native-svg';
 import { cn } from '../../utils';
 
@@ -32,17 +31,17 @@ const iconVariants = cva('inline-block', {
 export const Icon = forwardRef<Svg, IconProps>(
   ({ size = 24, className = '', children, viewBox, ...props }, ref) => {
     return (
-      <View>
-        <Svg
-          ref={ref}
-          className={cn(className, iconVariants({ size }), 'inline-block')}
-          viewBox={viewBox}
-          fill='none'
-          {...props}
-        >
-          {children}
-        </Svg>
-      </View>
+      <Svg
+        ref={ref}
+        width={size}
+        height={size}
+        className={cn(className, iconVariants({ size }), 'inline-block')}
+        viewBox={viewBox}
+        fill='none'
+        {...props}
+      >
+        {children}
+      </Svg>
     );
   },
 );
