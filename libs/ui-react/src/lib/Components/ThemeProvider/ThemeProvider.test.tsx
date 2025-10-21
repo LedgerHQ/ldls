@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
 import { ThemeProvider, useTheme } from './ThemeProvider';
@@ -33,7 +33,7 @@ afterEach(() => {
 describe('ThemeProvider', () => {
   it('applies light class when theme is light', () => {
     render(
-      <ThemeProvider mode='light'>
+      <ThemeProvider defaultMode='light'>
         <div data-testid='child' />
       </ThemeProvider>,
     );
@@ -44,7 +44,7 @@ describe('ThemeProvider', () => {
 
   it('applies dark class when theme is dark', () => {
     render(
-      <ThemeProvider mode='dark'>
+      <ThemeProvider defaultMode='dark'>
         <div data-testid='child' />
       </ThemeProvider>,
     );
@@ -57,7 +57,7 @@ describe('ThemeProvider', () => {
     setupMatchMedia(true);
 
     render(
-      <ThemeProvider mode='system'>
+      <ThemeProvider defaultMode='system'>
         <div data-testid='child' />
       </ThemeProvider>,
     );
@@ -70,7 +70,7 @@ describe('ThemeProvider', () => {
     setupMatchMedia(false);
 
     render(
-      <ThemeProvider mode='system'>
+      <ThemeProvider defaultMode='system'>
         <div data-testid='child' />
       </ThemeProvider>,
     );
@@ -90,7 +90,7 @@ describe('ThemeProvider', () => {
     };
 
     render(
-      <ThemeProvider mode='dark'>
+      <ThemeProvider defaultMode='dark'>
         <Consumer />
       </ThemeProvider>,
     );

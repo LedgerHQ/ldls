@@ -3,5 +3,5 @@ import { PropsWithChildren } from 'react';
 export type ThemeMode = 'dark' | 'light' | 'system';
 
 export type ThemeProviderProps = PropsWithChildren & {
-  mode?: ThemeMode;
+  defaultMode?: ThemeMode;
 };

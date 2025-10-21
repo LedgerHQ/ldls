@@ -18,18 +18,18 @@ const [ThemeProviderContext, useThemeContext] =
 
 const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
-  mode = SYSTEM_MODE,
+  defaultMode = SYSTEM_MODE,
 }) => {
-  const [valueTheme, setValueTheme] = useState(mode);
+  const [mode, setMode] = useState(defaultMode);
 
-  useRootColorModeSideEffect({ mode: valueTheme });
+  useRootColorModeSideEffect({ mode });
 
   const value = useMemo(
     () => ({
-      mode: valueTheme,
-      setMode: setValueTheme,
+      mode,
+      setMode,
     }),
-    [valueTheme, setValueTheme],
+    [mode, setMode],
   );
 
   return <ThemeProviderContext value={value}>{children}</ThemeProviderContext>;
