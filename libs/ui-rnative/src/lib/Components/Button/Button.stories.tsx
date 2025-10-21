@@ -223,12 +223,12 @@ export const ResponsiveLayout2: Story = {
   render: () => (
     <>
       <p className='text-muted body-4-semi-bold'>
-        This container has a width of 384px.
+        This container has a fixed width.
       </p>
       <div className='w-400 bg-muted-pressed p-16'>
         <Button icon={Plus}>
-          This Base button has a fixed width container of 384px that should
-          content should be fir .
+          This Base button has a fixed width container that should fit the
+          content width.
         </Button>
       </div>
     </>
