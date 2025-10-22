@@ -1,15 +1,8 @@
 import { cva } from 'class-variance-authority';
-import React, { forwardRef } from 'react';
-import { Svg, SvgProps } from 'react-native-svg';
+import { forwardRef } from 'react';
+import { Svg } from 'react-native-svg';
 import { cn } from '../../utils';
-
-export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
-
-export interface IconProps extends SvgProps {
-  size?: IconSize;
-  className?: string;
-  children: React.ReactNode;
-}
+import { IconProps } from './Icon.types';
 
 const iconVariants = cva('inline-block', {
   variants: {

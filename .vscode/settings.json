@@ -14,7 +14,9 @@
   },
   "eslint.workingDirectories": [
     "./libs/ui-rnative",
-    "./libs/ui-react"
+    "./libs/ui-react",
+    "./apps/app-sandbox-react",
+    "./apps/app-sandbox-rnative"
   ],
   "eslint.validate": [
     "javascriptreact",

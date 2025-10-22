@@ -1,11 +1,12 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import React from 'react';
-import { View, Text, ViewProps } from 'react-native';
-import { IconSize } from '../Icon/Icon';
+import { View, Text } from 'react-native';
+import { IconSize } from '../Icon';
+import { TagProps } from './Tag.types';
 
 const tagVariants = cva(
-  'inline-flex flex-row items-center justify-center gap-4 rounded-xs',
+  'rounded-xs inline-flex flex-row items-center justify-center gap-4',
   {
     variants: {
       appearance: {
@@ -18,8 +19,8 @@ const tagVariants = cva(
         disabled: 'bg-disabled text-disabled',
       },
       size: {
-        lg: 'px-8 py-4 body-3',
-        sm: 'px-4 py-2 body-4',
+        lg: 'body-3 px-8 py-4',
+        sm: 'body-4 px-4 py-2',
       },
     },
     defaultVariants: {
@@ -28,11 +29,6 @@ const tagVariants = cva(
     },
   },
 );
-
-export interface TagProps extends ViewProps, VariantProps<typeof tagVariants> {
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  label: string;
-}
 
 export const Tag = React.forwardRef<View, TagProps>(
   ({ className, appearance, size, icon, label, ...props }, ref) => {

@@ -27,7 +27,7 @@ export const Base: Story = {
     const [value, setValue] = useState('');
 
     return (
-      <div className='w-384'>
+      <div className='w-400'>
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger label='Label' />
           <SelectContent>
@@ -48,7 +48,7 @@ export const WithGroups: Story = {
     const [value, setValue] = useState('');
 
     return (
-      <div className='w-384'>
+      <div className='w-400'>
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger label='Category' />
           <SelectContent>

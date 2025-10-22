@@ -74,8 +74,8 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-style-body-4-weight-medium': 'var(--font-weight-medium)',
     '--font-style-body-4-line-height': 'var(--font-line-height-10)',
     '--font-style-body-4-letter-spacing': 'var(--font-letter-spacing-10)',
-    '--font-style-grid-column-count': 8,
-    '--font-style-grid-margin': 'var(--spacing-32)',
-    '--font-style-grid-gutter': 'var(--spacing-16)',
+    '--font-style-grid-column-count': 12,
+    '--font-style-grid-margin': 'var(--spacing-24)',
+    '--font-style-grid-gutter': 'var(--spacing-40)',
   },
 };

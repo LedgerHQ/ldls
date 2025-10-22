@@ -903,7 +903,7 @@
     "grid": {
       "column-count": {
         "$type": "number",
-        "$value": 8,
+        "$value": 12,
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -917,7 +917,7 @@
       },
       "margin": {
         "$type": "number",
-        "$value": "{spacing.32}",
+        "$value": "{spacing.24}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -931,7 +931,7 @@
       },
       "gutter": {
         "$type": "number",
-        "$value": "{spacing.16}",
+        "$value": "{spacing.40}",
         "$description": "",
         "$extensions": {
           "com.figma": {

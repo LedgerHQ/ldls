@@ -903,7 +903,7 @@
     "grid": {
       "column-count": {
         "$type": "number",
-        "$value": 8,
+        "$value": 12,
         "$description": "",
         "$extensions": {
           "com.figma": {

@@ -386,8 +386,10 @@ export const NaturalWidth: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-384 grid-cols-1 gap-16 bg-muted-pressed p-16'>
-      <div className='text-muted body-4-semi-bold'>Container: 384px wide</div>
+    <div className='grid w-400 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+      <div className='text-muted body-4-semi-bold'>
+        Container with a fixed width
+      </div>
       <Banner
         title='Short Title'
         description='Short description'
@@ -396,7 +398,7 @@ export const ResponsiveLayout: Story = {
       />
       <Banner
         title='Constrained Width'
-        description='Banner width is controlled by this 384px container'
+        description='Banner width is controlled by a fixed width container'
         onClose={() => console.log('Closed')}
         closeAriaLabel='Close constrained width banner'
       />

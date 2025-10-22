@@ -4,7 +4,7 @@
       "1": {
         "size": {
           "$type": "number",
-          "$value": "{font.size.80}",
+          "$value": "{font.size.112}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -19,6 +19,64 @@
         "weight": {
           "$type": "string",
           "$value": "{font.weight.bold}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_STYLE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{font.line-height.112}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "LINE_HEIGHT"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "letter-spacing": {
+          "$type": "number",
+          "$value": "{font.letter-spacing.112}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "LETTER_SPACING"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        }
+      },
+      "2": {
+        "size": {
+          "$type": "number",
+          "$value": "{font.size.80}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [
+                "FONT_SIZE"
+              ],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "weight": {
+          "$type": "string",
+          "$value": "{font.weight.semi-bold}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -59,7 +117,7 @@
           }
         }
       },
-      "2": {
+      "3": {
         "size": {
           "$type": "number",
           "$value": "{font.size.64}",
@@ -117,7 +175,7 @@
           }
         }
       },
-      "3": {
+      "4": {
         "size": {
           "$type": "number",
           "$value": "{font.size.52}",
@@ -163,64 +221,6 @@
         "letter-spacing": {
           "$type": "number",
           "$value": "{font.letter-spacing.52}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [
-                "LETTER_SPACING"
-              ],
-              "codeSyntax": {}
-            }
-          }
-        }
-      },
-      "4": {
-        "size": {
-          "$type": "number",
-          "$value": "{font.size.40}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [
-                "FONT_SIZE"
-              ],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "weight": {
-          "$type": "string",
-          "$value": "{font.weight.semi-bold}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [
-                "FONT_STYLE"
-              ],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "line-height": {
-          "$type": "number",
-          "$value": "{font.line-height.40}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [
-                "LINE_HEIGHT"
-              ],
-              "codeSyntax": {}
-            }
-          }
-        },
-        "letter-spacing": {
-          "$type": "number",
-          "$value": "{font.letter-spacing.40}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -396,7 +396,7 @@
         },
         "size 2": {
           "$type": "number",
-          "$value": "{font.size.28}",
+          "$value": "{font.size.32}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -917,7 +917,7 @@
       },
       "margin": {
         "$type": "number",
-        "$value": "{spacing.24}",
+        "$value": "{spacing.32}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -931,7 +931,7 @@
       },
       "gutter": {
         "$type": "number",
-        "$value": "{spacing.16}",
+        "$value": "{spacing.32}",
         "$description": "",
         "$extensions": {
           "com.figma": {
