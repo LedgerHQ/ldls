@@ -1,4 +1,5 @@
 import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
+import { Plus, Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { useRef } from 'react';
 
 import {
@@ -41,6 +42,13 @@ export const App = () => {
             >
               Click me
             </Button>
+            <View className='mt-12 w-full flex-row items-center gap-8'>
+              <Button appearance='accent'>Text Only</Button>
+              <Button appearance='accent' icon={Plus}>
+                With Icon
+              </Button>
+              <Button appearance='accent' icon={Settings} />
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>
