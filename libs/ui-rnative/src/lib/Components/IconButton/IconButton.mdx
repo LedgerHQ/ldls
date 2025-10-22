@@ -49,20 +49,6 @@ IconButtons come in four different sizes:
 
 <Canvas of={IconButtonStories.StatesShowcase} />
 
-### Tooltip
-
-You can show a tooltip with the aria-label on hover via the `tooltip` prop.
-The tooltip placement is customizable via the `tooltipPlacement` prop and tooltip text is customizable as well via the `tooltipText` prop.
-
-<Canvas of={IconButtonStories.TooltipTextVariations} />
-
-## As Child
-
-The `asChild` prop allows integration with routing by merging IconButton styles with child elements.
-This is useful when you want to use the IconButton as a child of a Link component.
-
-<Canvas of={IconButtonStories.AsChild} />
-
   </Tab>
   <Tab label="Implementation">
 
@@ -110,15 +96,7 @@ import { IconButton } from '@ledgerhq/ldls-ui-react';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
-  return (
-    <IconButton
-      aria-label='Open settings'
-      icon={Settings}
-      size='md'
-      appearance='base'
-      tooltip // Shows a tooltip with the aria-label on hover
-    />
-  );
+  return <IconButton icon={Settings} size='md' appearance='base' />;
 }
 ```
 
@@ -128,33 +106,10 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <IconButton
-  aria-label='Close menu'
   icon={Close}
   className='absolute top-4 right-4' // Position the button
 />
 ```
-
-### Using with Routers (asChild)
-
-The `asChild` prop allows integration with routing libraries by merging IconButton styles with child elements:
-
-```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
-import { Link } from 'react-router-dom';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
-
-function MyComponent() {
-  return (
-    <IconButton asChild appearance='accent' aria-label='Go to settings'>
-      <Link to='/settings'>
-        <Settings />
-      </Link>
-    </IconButton>
-  );
-}
-```
-
-Note: When using asChild, the child element handles its own content. The icon prop is ignored - implement equivalent functionality in the child if needed.
 
 ## Do's and Don'ts
 
