@@ -4,7 +4,6 @@ import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { Button } from '../Button';
 import { BottomSheetProps } from './BottomSheet.types';
 
 export const BottomSheet = forwardRef<
@@ -29,7 +28,6 @@ export const BottomSheet = forwardRef<
   // renders
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Button>azeae</Button>
       <GorghomBottomSheet
         ref={mergedRefs}
         enablePanDownToClose
@@ -37,9 +35,7 @@ export const BottomSheet = forwardRef<
         onChange={handleSheetChanges}
         index={-1}
       >
-        <BottomSheetView style={styles.contentContainer}>
-          {children}
-        </BottomSheetView>
+        {children}
       </GorghomBottomSheet>
     </GestureHandlerRootView>
   );

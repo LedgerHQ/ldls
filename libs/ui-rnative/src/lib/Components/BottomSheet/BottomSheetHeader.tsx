@@ -1,6 +1,7 @@
-import { useBottomSheet } from '@gorhom/bottom-sheet';
+import { BottomSheetView } from '@gorhom/bottom-sheet';
 import { cva } from 'class-variance-authority';
-import { forwardRef } from 'react';
+import { tailwind } from 'nativewind';
+import { FC, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import { ArrowLeft, Close } from 'src/lib/Symbols';
@@ -8,19 +9,21 @@ import { Button } from '../Button';
 import { BottomSheetHeaderProps } from './BottomSheet.types';
 
 const bottomSheetHeaderVariants = {
-  root: cva('flex flex-row'),
+  root: cva('flex flex-row justify-between p-16'),
 };
 
-export const BottomSheetHeader = forwardRef<
-  React.ElementRef<typeof View>,
-  BottomSheetHeaderProps
->(({ className, title, description, onBack, onClose, ...props }, ref) => {
-  const methods = useBottomSheet();
+export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
+  className,
+  title,
+  description,
+  onBack,
+  onClose,
+  ...props
+}) => {
   return (
-    <View
+    <BottomSheetView
       {...props}
-      ref={ref}
-      className={bottomSheetHeaderVariants.root({ className })}
+      className={tailwind(bottomSheetHeaderVariants.root({ className }))}
     >
       <View>
         {title && <Text className='heading-3-semi-bold'>{title}</Text>}
@@ -32,8 +35,13 @@ export const BottomSheetHeader = forwardRef<
         <Button onPress={onBack} icon={ArrowLeft} appearance='transparent' />
       )}
       {onClose && (
-        <Button onPress={onClose} icon={Close} appearance='transparent' />
+        <Button
+          size='xs'
+          onPress={onClose}
+          icon={Close}
+          appearance='transparent'
+        />
       )}
-    </View>
+    </BottomSheetView>
   );
-});
+};
