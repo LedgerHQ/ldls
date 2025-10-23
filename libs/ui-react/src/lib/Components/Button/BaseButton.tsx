@@ -116,17 +116,6 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
     );
 
     const iconSize = size === 'lg' ? 24 : size === 'xs' ? 16 : 20;
-
-    const iconContent = loading ? (
-      <Spinner
-        size={iconSize}
-        className='shrink-0 animate-spin'
-        aria-label='Loading'
-      />
-    ) : (
-      Icon && <Icon size={iconSize} className='shrink-0' />
-    );
-
     const Comp = asChild ? Slot : 'button';
 
     return (
@@ -141,7 +130,15 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         onClick={handleClick}
         {...props}
       >
-        {iconContent}
+        {loading && (
+          <Spinner
+            size={iconSize}
+            className='shrink-0 animate-spin'
+            aria-label='Loading'
+          />
+        )}
+        {!loading && Icon && <Icon size={iconSize} className='shrink-0' />}
+
         {children &&
           (asChild ? (
             <Slottable>{children}</Slottable>

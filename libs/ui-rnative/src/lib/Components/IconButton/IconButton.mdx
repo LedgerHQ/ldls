@@ -1,0 +1,250 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconButtonStories from './IconButton.stories';
+import { IconButton } from './IconButton';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Action/IconButton' of={IconButtonStories} />
+
+# 🔘 IconButton
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+**IconButton** is a specialized button component that displays only an icon. It's ideal for actions that can be represented by a clear, universally understood icon, such as `close`, `settings`, or `favorite`.
+
+## Properties
+
+### Overview
+
+<Canvas of={IconButtonStories.Base} />
+<Controls of={IconButtonStories.Base} />
+
+### Appearance
+
+IconButton supports the same appearances as the standard Button:
+
+- accent
+- base (default)
+- gray
+- transparent
+- no-background
+- red
+
+<Canvas of={IconButtonStories.AppearanceShowcase} />
+
+### Size
+
+IconButtons come in four different sizes:
+
+- xs (32px)
+- sm (44px)
+- md (48px, default)
+- lg (56px)
+
+<Canvas of={IconButtonStories.SizesShowcase} />
+
+### States
+
+<Canvas of={IconButtonStories.StatesShowcase} />
+
+  </Tab>
+  <Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+### Basic Usage
+
+```tsx
+import { IconButton } from '@ledgerhq/ldls-ui-rnative';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <IconButton
+      accessibilityLabel='Settings'
+      icon={Settings}
+      size='md'
+      appearance='base'
+    />
+  );
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<IconButton accessibilityLabel='Close' icon={Close} className='mt-4' />
+```
+
+### Full Width
+
+Use the `isFull` prop to make the button take the full width of its container:
+
+```tsx
+<IconButton
+  accessibilityLabel='Close'
+  icon={Close}
+  size='md'
+  appearance='base'
+  isFull
+  onPress={() => {}}
+/>
+```
+
+### Loading State
+
+Use the `loading` prop to show a spinner and disable interaction:
+
+```tsx
+<IconButton
+  accessibilityLabel='Close'
+  icon={Close}
+  size='md'
+  appearance='base'
+  loading={isLoading}
+  disabled={isLoading}
+  onPress={() => {}}
+/>
+```
+
+### TouchableOpacity Integration
+
+The Button component is built on React Native's `TouchableOpacity` and accepts all its props:
+
+```tsx
+<IconButton
+  accessibilityLabel='Close'
+  icon={Close}
+  size='md'
+  appearance='base'
+  onPress={() => console.log('Pressed!')}
+  onPressIn={() => console.log('Press started')}
+  onPressOut={() => console.log('Press ended')}
+  disabled={false}
+/>
+```
+
+## Do's and Don'ts
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use icon prop for consistent sizing
+<IconButton accessibilityLabel="Settings" icon={Settings} />
+
+// Let IconButton handle icon sizing
+<IconButton accessibilityLabel="Add item" icon={Plus} size="xs" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't modify icon size directly
+<IconButton accessibilityLabel="Settings">
+  <Settings size={24} />
+</IconButton>
+
+// Don't use string-based icon names
+<IconButton accessibilityLabel="Settings" icon="settings" />
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<IconButton
+  accessibilityLabel="Close"
+  icon={Close}
+  className="mt-4 ml-2"
+/>
+
+// Use className for positioning
+<IconButton
+  accessibilityLabel="Close"
+  icon={Close}
+  className="absolute top-0 right-0"
+/>
+
+// Use className for responsive visibility
+<IconButton
+  accessibilityLabel="Menu"
+  icon={Menu}
+  className="md:hidden"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override button's core styling
+<IconButton
+  accessibilityLabel="Settings"
+  icon={Settings}
+  className="bg-base"
+/>
+
+// Don't modify internal spacing/padding
+<IconButton
+  accessibilityLabel="Settings"
+  icon={Settings}
+  className="p-6"
+/>
+
+// Don't override icon sizing
+<IconButton
+  accessibilityLabel="Settings"
+  icon={Settings}
+  className="w-8 h-8"
+/>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+// Use appropriate size variant
+<IconButton accessibilityLabel="Settings" icon={Settings} size="xs" />
+
+// Always provide descriptive accessibility labels
+<IconButton accessibilityLabel="Open settings menu" icon={Settings} />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
+
+// Don't use custom sizes when standard ones exist
+<IconButton
+  accessibilityLabel="Settings"
+  icon={Settings}
+  className="h-[52px]"
+/>
+
+// Don't omit accessibilityLabel
+<IconButton icon={Settings} />
+```
+
+  </Tab>
+</CustomTabs>

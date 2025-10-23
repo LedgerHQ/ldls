@@ -3,7 +3,7 @@ import * as ButtonStories from './Button.stories';
 import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Action/Button" of={ButtonStories} />
+<Meta title='Action/Button' of={ButtonStories} />
 
 # 🔘 Button
 
@@ -45,24 +45,24 @@ There are six button appearances, which indicate its emphasis. From strongest to
 
 ### Content
 
-Buttons' contents can be of three types:
+Buttons' contents can be of two types:
 
 - text (default)
 - icon-text
-- icon
+
+> Note: For `icon-only` buttons, use the [IconButton](https://ldls.vercel.app/?path=/docs/action-iconbutton--docs) component instead. It's specifically designed for icon-only interactions with proper accessibility support.
 
 <Canvas of={ButtonStories.ContentTypesShowcase} />
-
-> Note: Buttons of the smallest size XS can't have a label, so they default to an icon only.
 
 ### Size
 
 Buttons come in four different sizes:
 
-- XS (**32 px** tall) **[ICON ONLY]**
 - S (**44 px** tall)
 - M (default, **48 px** tall)
 - L (**56 px** tall)
+
+> Note: For XS size (32 px tall), use the [IconButton](/docs/action-iconbutton--docs) component instead.
 
 <Canvas of={ButtonStories.SizesShowcase} />
 
@@ -70,10 +70,10 @@ Buttons come in four different sizes:
 >
 > ```tsx
 > // ✅ Correct: Let Button handle icon sizing
-> <Button size="xs" icon={Settings} aria-label="Settings" />
+> <Button size="sm" icon={Settings} accessibilityLabel="Settings">Settings</Button>
 >
 > // ❌ Wrong: Don't override icon size [it's not gonna work even if you try]
-> <Button size="xs" icon={Settings} className="w-6 h-6" aria-label="Settings" />
+> <Button size="sm" icon={Settings} className="w-6 h-6" accessibilityLabel="Settings">Settings</Button>
 > ```
 
 ### States
@@ -109,6 +109,7 @@ To be implemented:
 </Tab> <Tab label="Implementation ">
 
 ## Setup
+
 Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
@@ -118,7 +119,7 @@ import { Button } from '@ledgerhq/ldls-ui-rnative';
 
 function MyComponent() {
   return (
-    <Button size="md" appearance="base" onPress={() => console.log('Pressed!')}>
+    <Button size='md' appearance='base' onPress={() => console.log('Pressed!')}>
       Click me
     </Button>
   );
@@ -131,9 +132,9 @@ While the component comes with predefined styles, you can extend them using Nati
 
 ```tsx
 <Button
-  size="md"
-  appearance="base"
-  className="mt-4" // Custom margin top
+  size='md'
+  appearance='base'
+  className='mt-4' // Custom margin top
   onPress={() => {}}
 >
   Custom Button
@@ -150,12 +151,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 function MyComponent() {
   return (
-    <Button
-      size="md"
-      appearance="base"
-      icon={ArrowRight}
-      onPress={() => {}}
-    >
+    <Button size='md' appearance='base' icon={ArrowRight} onPress={() => {}}>
       Continue
     </Button>
   );
@@ -167,12 +163,7 @@ function MyComponent() {
 Use the `isFull` prop to make the button take the full width of its container:
 
 ```tsx
-<Button
-  size="md"
-  appearance="base"
-  isFull
-  onPress={() => {}}
->
+<Button size='md' appearance='base' isFull onPress={() => {}}>
   Full Width Button
 </Button>
 ```
@@ -183,8 +174,8 @@ Use the `loading` prop to show a spinner and disable interaction:
 
 ```tsx
 <Button
-  size="md"
-  appearance="base"
+  size='md'
+  appearance='base'
   loading={isLoading}
   disabled={isLoading}
   onPress={() => {}}
@@ -199,8 +190,8 @@ The Button component is built on React Native's `TouchableOpacity` and accepts a
 
 ```tsx
 <Button
-  size="md"
-  appearance="base"
+  size='md'
+  appearance='base'
   onPress={() => console.log('Pressed!')}
   onPressIn={() => console.log('Press started')}
   onPressOut={() => console.log('Press ended')}
@@ -221,19 +212,21 @@ The following guidelines are based on our [Button Component API Design ADR](http
 ```tsx
 // Use children for content composition
 <Button onPress={() => {}}>
-  Accept <Text className="heading-1">Terms and Conditions</Text>
-</Button>
+  Accept <Text className='heading-1'>Terms and Conditions</Text>
+</Button>;
 
 // Pass icon as a component reference
 import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-<Button icon={Plus} onPress={() => {}}>Add Item</Button>
+<Button icon={Plus} onPress={() => {}}>
+  Add Item
+</Button>;
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't use text prop
-<Button text="Accept Terms and Conditions" onPress={() => {}} />
+<Button text="Accept Terms and Conditions" onPress={() => {}}></Button>
 
 // Don't pass icon as a string
 <Button icon="Plus" onPress={() => {}}>Add Item</Button>
@@ -289,10 +282,10 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Settings, Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use icon prop for consistent sizing
-<Button icon={Settings} aria-label="Settings" onPress={() => {}} />
+<Button icon={Settings} accessibilityLabel="Settings" onPress={() => {}}>Settings</Button>
 
 // Let Button handle icon sizing
-<Button icon={Plus} size="xs" onPress={() => {}}>Add</Button>
+<Button icon={Plus} size="sm" onPress={() => {}}>Add</Button>
 ```
 
 ❌ **Don't**
@@ -325,13 +318,6 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 <Button disabled={isSubmitting} onPress={handleSubmit}>
   Submit
 </Button>
-
-// Provide accessibility labels for icon-only buttons
-<Button
-  icon={Settings}
-  aria-label="Open Settings"
-  onPress={() => openSettings()}
-/>
 ```
 
 ❌ **Don't**
@@ -344,9 +330,6 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 <TouchableOpacity>
   <Text>Custom Button</Text>
 </TouchableOpacity>
-
-// Don't omit aria-label for icon-only buttons
-<Button icon={Settings} onPress={() => {}} />
 ```
 
 ### Performance Considerations
@@ -358,14 +341,16 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use appropriate size variant
-<Button size="xs" icon={Plus} aria-label="Add" onPress={() => {}} />
+<Button size='sm' icon={Plus} accessibilityLabel='Add' onPress={() => {}}>
+  Add
+</Button>;
 
 // Use React.useCallback for onPress handlers in lists
 const handlePress = React.useCallback(() => {
   // handler logic
 }, [dependencies]);
 
-<Button onPress={handlePress}>Action</Button>
+<Button onPress={handlePress}>Action</Button>;
 ```
 
 ❌ **Don't**

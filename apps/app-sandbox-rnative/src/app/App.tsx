@@ -1,14 +1,18 @@
-import { Button, Switch } from '@ledgerhq/ldls-ui-rnative';
-import { Plus, Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Button, IconButton, Switch } from '@ledgerhq/ldls-ui-rnative';
+import {
+  ExternalLink,
+  Link,
+  Plus,
+  Settings,
+} from '@ledgerhq/ldls-ui-rnative/symbols';
 import { useRef } from 'react';
-
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
 export const App = () => {
@@ -47,7 +51,26 @@ export const App = () => {
               <Button appearance='accent' icon={Plus}>
                 With Icon
               </Button>
-              <Button appearance='accent' icon={Settings} />
+              <IconButton
+                accessibilityLabel='Settings'
+                appearance='accent'
+                icon={Settings}
+              />
+            </View>
+            <View className='my-12 gap-8'>
+              <Text>IconButton</Text>
+              <View className='flex-row gap-8'>
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  appearance='accent'
+                  icon={ExternalLink}
+                />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  appearance='base'
+                  icon={Link}
+                />
+              </View>
             </View>
           </View>
         </ScrollView>
