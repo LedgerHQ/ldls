@@ -50,6 +50,8 @@ Buttons' contents can be of two types:
 - text (default)
 - icon-text
 
+> Note: For `icon-only` buttons, use the [IconButton](https://ldls.vercel.app/?path=/docs/action-iconbutton--docs) component instead. It's specifically designed for icon-only interactions with proper accessibility support.
+
 <Canvas of={ButtonStories.ContentTypesShowcase} />
 
 ### Size
@@ -224,7 +226,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 ```tsx
 // Don't use text prop
-<Button text="Accept Terms and Conditions" onPress={() => {}} />
+<Button text="Accept Terms and Conditions" onPress={() => {}}></Button>
 
 // Don't pass icon as a string
 <Button icon="Plus" onPress={() => {}}>Add Item</Button>
@@ -280,7 +282,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Settings, Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use icon prop for consistent sizing
-<Button icon={Settings} accessibilityLabel="Settings" onPress={() => {}} />
+<Button icon={Settings} accessibilityLabel="Settings" onPress={() => {}}>Settings</Button>
 
 // Let Button handle icon sizing
 <Button icon={Plus} size="sm" onPress={() => {}}>Add</Button>
@@ -316,13 +318,6 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 <Button disabled={isSubmitting} onPress={handleSubmit}>
   Submit
 </Button>
-
-// Provide accessibility labels for icon-only buttons
-<Button
-  icon={Settings}
-  accessibilityLabel="Open Settings"
-  onPress={() => openSettings()}
-/>
 ```
 
 ❌ **Don't**
@@ -335,9 +330,6 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 <TouchableOpacity>
   <Text>Custom Button</Text>
 </TouchableOpacity>
-
-// Don't omit accessibilityLabel for icon-only buttons
-<Button icon={Settings} onPress={() => {}} />
 ```
 
 ### Performance Considerations
