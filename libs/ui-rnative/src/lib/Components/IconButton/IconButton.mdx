@@ -52,62 +52,81 @@ IconButtons come in four different sizes:
   </Tab>
   <Tab label="Implementation">
 
-## Installation
+## Setup
 
-Install the packages and their peer dependencies:
-
-```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
-```
-
-#### **About @radix-ui/react-slot**
-
-The `@radix-ui/react-slot` dependency is used internally by the IconButton component
-to enable flexible composition patterns. It allows the IconButton to merge its props with child
-elements when needed.
-
-### Tailwind Configuration
-
-To use the IconButton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { IconButton } from '@ledgerhq/ldls-ui-rnative';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 function MyComponent() {
-  return <IconButton icon={Settings} size='md' appearance='base' />;
+  return (
+    <IconButton
+      accessibilityLabel='Settings'
+      icon={Settings}
+      size='md'
+      appearance='base'
+    />
+  );
 }
 ```
 
 ### Custom Styling
 
-While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<IconButton accessibilityLabel='Close' icon={Close} className='mt-4' />
+```
+
+### Full Width
+
+Use the `isFull` prop to make the button take the full width of its container:
 
 ```tsx
 <IconButton
+  accessibilityLabel='Close'
   icon={Close}
-  className='absolute top-4 right-4' // Position the button
+  size='md'
+  appearance='base'
+  isFull
+  onPress={() => {}}
+/>
+```
+
+### Loading State
+
+Use the `loading` prop to show a spinner and disable interaction:
+
+```tsx
+<IconButton
+  accessibilityLabel='Close'
+  icon={Close}
+  size='md'
+  appearance='base'
+  loading={isLoading}
+  disabled={isLoading}
+  onPress={() => {}}
+/>
+```
+
+### TouchableOpacity Integration
+
+The Button component is built on React Native's `TouchableOpacity` and accepts all its props:
+
+```tsx
+<IconButton
+  accessibilityLabel='Close'
+  icon={Close}
+  size='md'
+  appearance='base'
+  onPress={() => console.log('Pressed!')}
+  onPressIn={() => console.log('Press started')}
+  onPressOut={() => console.log('Press ended')}
+  disabled={false}
 />
 ```
 
@@ -119,7 +138,7 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 // Import icons explicitly
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use icon prop for consistent sizing
 <IconButton accessibilityLabel="Settings" icon={Settings} />
@@ -132,7 +151,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Don't modify icon size directly
 <IconButton accessibilityLabel="Settings">
