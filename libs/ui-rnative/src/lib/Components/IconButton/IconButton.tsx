@@ -7,7 +7,7 @@ export interface IconButtonProps extends Omit<BaseButtonProps, 'isFull'> {
   /**
    * Accessible label for the IconButton
    */
-  'aria-label': string;
+  accessibilityLabel: string;
   /**
    * The icon to display in the button
    */

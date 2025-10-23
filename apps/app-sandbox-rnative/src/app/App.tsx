@@ -57,12 +57,12 @@ export const App = () => {
               <Text>IconButton</Text>
               <View className='flex-row gap-8'>
                 <IconButton
-                  aria-label='Go to Ledger Shop'
+                  accessibilityLabel='Go to Ledger Shop'
                   appearance='accent'
                   icon={ExternalLink}
                 />
                 <IconButton
-                  aria-label='Go to Ledger Shop'
+                  accessibilityLabel='Go to Ledger Shop'
                   appearance='base'
                   icon={Link}
                 />

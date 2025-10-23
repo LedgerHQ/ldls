@@ -31,10 +31,9 @@ const meta: Meta<typeof IconButton> = {
         },
       },
     },
-    'aria-label': {
+    accessibilityLabel: {
       control: 'text',
-      description:
-        'Accessible label for screen readers and fallback tooltip text',
+      description: 'Accessibility label for screen readers',
     },
     appearance: {
       control: 'select',
@@ -62,7 +61,7 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Base: Story = {
   args: {
-    'aria-label': 'Settings',
+    accessibilityLabel: 'Settings',
     icon: Settings,
     size: 'md',
     appearance: 'base',
@@ -72,12 +71,20 @@ export const Base: Story = {
 export const AppearanceShowcase: Story = {
   render: () => (
     <div className='flex gap-8'>
-      <IconButton aria-label='Add' icon={Plus} appearance='accent' />
-      <IconButton aria-label='Add' icon={Plus} appearance='base' />
-      <IconButton aria-label='Add' icon={Plus} appearance='gray' />
-      <IconButton aria-label='Add' icon={Plus} appearance='transparent' />
-      <IconButton aria-label='Add' icon={Plus} appearance='no-background' />
-      <IconButton aria-label='Add' icon={Plus} appearance='red' />
+      <IconButton accessibilityLabel='Add' icon={Plus} appearance='accent' />
+      <IconButton accessibilityLabel='Add' icon={Plus} appearance='base' />
+      <IconButton accessibilityLabel='Add' icon={Plus} appearance='gray' />
+      <IconButton
+        accessibilityLabel='Add'
+        icon={Plus}
+        appearance='transparent'
+      />
+      <IconButton
+        accessibilityLabel='Add'
+        icon={Plus}
+        appearance='no-background'
+      />
+      <IconButton accessibilityLabel='Add' icon={Plus} appearance='red' />
     </div>
   ),
 };
@@ -85,10 +92,26 @@ export const AppearanceShowcase: Story = {
 export const SizesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-8'>
-      <IconButton aria-label='Add to favorites' icon={Heart} size='xs' />
-      <IconButton aria-label='Add to favorites' icon={Heart} size='sm' />
-      <IconButton aria-label='Add to favorites' icon={Heart} size='md' />
-      <IconButton aria-label='Add to favorites' icon={Heart} size='lg' />
+      <IconButton
+        accessibilityLabel='Add to favorites'
+        icon={Heart}
+        size='xs'
+      />
+      <IconButton
+        accessibilityLabel='Add to favorites'
+        icon={Heart}
+        size='sm'
+      />
+      <IconButton
+        accessibilityLabel='Add to favorites'
+        icon={Heart}
+        size='md'
+      />
+      <IconButton
+        accessibilityLabel='Add to favorites'
+        icon={Heart}
+        size='lg'
+      />
     </div>
   ),
 };
@@ -96,8 +119,8 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-8'>
-      <IconButton aria-label='Settings' icon={Settings} disabled />
-      <IconButton aria-label='Settings' icon={Settings} loading />
+      <IconButton accessibilityLabel='Settings' icon={Settings} disabled />
+      <IconButton accessibilityLabel='Settings' icon={Settings} loading />
     </div>
   ),
 };

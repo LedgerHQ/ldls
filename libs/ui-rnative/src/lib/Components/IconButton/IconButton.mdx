@@ -122,10 +122,10 @@ While the component comes with predefined styles, you can extend them using Tail
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use icon prop for consistent sizing
-<IconButton aria-label="Settings" icon={Settings} />
+<IconButton accessibilityLabel="Settings" icon={Settings} />
 
 // Let IconButton handle icon sizing
-<IconButton aria-label="Add item" icon={Plus} size="xs" />
+<IconButton accessibilityLabel="Add item" icon={Plus} size="xs" />
 ```
 
 ❌ **Don't**
@@ -135,12 +135,12 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't modify icon size directly
-<IconButton aria-label="Settings">
+<IconButton accessibilityLabel="Settings">
   <Settings size={24} />
 </IconButton>
 
 // Don't use string-based icon names
-<IconButton aria-label="Settings" icon="settings" />
+<IconButton accessibilityLabel="Settings" icon="settings" />
 ```
 
 ### Layout and Styling
@@ -150,21 +150,21 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 ```tsx
 // Use className for layout positioning
 <IconButton
-  aria-label="Close"
+  accessibilityLabel="Close"
   icon={Close}
   className="mt-4 ml-2"
 />
 
 // Use className for positioning
 <IconButton
-  aria-label="Close"
+  accessibilityLabel="Close"
   icon={Close}
   className="absolute top-0 right-0"
 />
 
 // Use className for responsive visibility
 <IconButton
-  aria-label="Menu"
+  accessibilityLabel="Menu"
   icon={Menu}
   className="md:hidden"
 />
@@ -175,21 +175,21 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 ```tsx
 // Don't override button's core styling
 <IconButton
-  aria-label="Settings"
+  accessibilityLabel="Settings"
   icon={Settings}
   className="bg-base"
 />
 
 // Don't modify internal spacing/padding
 <IconButton
-  aria-label="Settings"
+  accessibilityLabel="Settings"
   icon={Settings}
   className="p-6"
 />
 
 // Don't override icon sizing
 <IconButton
-  aria-label="Settings"
+  accessibilityLabel="Settings"
   icon={Settings}
   className="w-8 h-8"
 />
@@ -204,10 +204,10 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use appropriate size variant
-<IconButton aria-label="Settings" icon={Settings} size="xs" />
+<IconButton accessibilityLabel="Settings" icon={Settings} size="xs" />
 
-// Always provide descriptive aria-labels
-<IconButton aria-label="Open settings menu" icon={Settings} />
+// Always provide descriptive accessibility labels
+<IconButton accessibilityLabel="Open settings menu" icon={Settings} />
 ```
 
 ❌ **Don't**
@@ -218,12 +218,12 @@ import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use custom sizes when standard ones exist
 <IconButton
-  aria-label="Settings"
+  accessibilityLabel="Settings"
   icon={Settings}
   className="h-[52px]"
 />
 
-// Don't omit aria-label
+// Don't omit accessibilityLabel
 <IconButton icon={Settings} />
 ```
 
