@@ -1,7 +1,7 @@
-import { BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetView as GorhomBottomSheetView } from '@gorhom/bottom-sheet';
 import { cva } from 'class-variance-authority';
-import { tailwind } from 'nativewind';
-import { FC, useState } from 'react';
+import { remapProps } from 'nativewind';
+import { FC } from 'react';
 import { Text, View } from 'react-native';
 
 import { ArrowLeft, Close } from 'src/lib/Symbols';
@@ -23,7 +23,7 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   return (
     <BottomSheetView
       {...props}
-      className={tailwind(bottomSheetHeaderVariants.root({ className }))}
+      className={bottomSheetHeaderVariants.root({ className })}
     >
       <View>
         {title && <Text className='heading-3-semi-bold'>{title}</Text>}
@@ -45,3 +45,11 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
     </BottomSheetView>
   );
 };
+
+/**
+  ThirdPartyButton is a component with two "style" props, buttonStyle & labelStyle.
+  We can use remapProps to create new props that accept Tailwind CSS's classNames.
+ */
+export const BottomSheetView = remapProps(GorhomBottomSheetView, {
+  className: 'style',
+});
