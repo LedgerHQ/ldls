@@ -1,13 +1,19 @@
 import GorghomBottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { useMergedRef } from '@ledgerhq/ldls-utils-shared';
+import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
+import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import { Button } from '../Button';
 import { BottomSheetProps } from './BottomSheet.types';
 
-export const BottomSheet: FC<BottomSheetProps> = () => {
+export const BottomSheet = forwardRef<
+  React.ElementRef<typeof GorghomBottomSheet>,
+  BottomSheetProps
+>(({ children, ...props }, ref) => {
   // ref
-  const bottomSheetRef = useRef<GorghomBottomSheet>(null);
+  const innerRef = useRef<GorghomBottomSheet>(null);
+  const mergedRefs = useMergedRef<GorghomBottomSheet>(ref, innerRef);
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
@@ -15,37 +21,38 @@ export const BottomSheet: FC<BottomSheetProps> = () => {
   }, []);
 
   useEffect(() => {
-    bottomSheetRef.current?.expand();
+    innerRef.current?.expand();
   }, []);
 
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['25%', '50%', '100%'], []);
 
   // renders
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Button onPress={() => bottomSheetRef.current?.expand()}>Click</Button>
+      <Button>azeae</Button>
       <GorghomBottomSheet
+        ref={mergedRefs}
+        enablePanDownToClose
         snapPoints={snapPoints}
-        ref={bottomSheetRef}
         onChange={handleSheetChanges}
+        index={-1}
       >
         <BottomSheetView style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
+          {children}
         </BottomSheetView>
       </GorghomBottomSheet>
     </GestureHandlerRootView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
+    width: '100%',
   },
   contentContainer: {
     flex: 1,
     padding: 36,
     height: 120,
-    alignItems: 'center',
   },
 });
