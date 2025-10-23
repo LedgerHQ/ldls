@@ -51,7 +51,11 @@ export const App = () => {
               <Button appearance='accent' icon={Plus}>
                 With Icon
               </Button>
-              <Button appearance='accent' icon={Settings} />
+              <IconButton
+                accessibilityLabel='Settings'
+                appearance='accent'
+                icon={Settings}
+              />
             </View>
             <View className='my-12 gap-8'>
               <Text>IconButton</Text>
