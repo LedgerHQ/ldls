@@ -1,55 +1,57 @@
-import { Button, IconButton, Switch } from '@ledgerhq/ldls-ui-rnative';
+import {
+  Button,
+  IconButton,
+  Switch,
+  ThemeProvider,
+  useTheme,
+} from '@ledgerhq/ldls-ui-rnative';
 import {
   ExternalLink,
   Link,
   Plus,
   Settings,
 } from '@ledgerhq/ldls-ui-rnative/symbols';
-import { useRef } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
+
+const ToggleThemeButton = () => {
+  const { mode, toggleMode } = useTheme();
+  return (
+    <View className='text-muted flex flex-row gap-8'>
+      <Text className='text-base'>Dark mode</Text>
+      <Switch checked={mode === 'dark'} onCheckedChange={toggleMode} />
+    </View>
+  );
+};
 
 export const App = () => {
-  const scrollViewRef = useRef<null | ScrollView>(null);
-
   return (
     <>
       <StatusBar barStyle='dark-content' />
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
-        <ScrollView
-          ref={(ref) => {
-            scrollViewRef.current = ref;
-          }}
-          contentInsetAdjustmentBehavior='automatic'
-          style={styles.scrollView}
-        >
-          <View style={styles.section}>
-            <Switch testID='switch' aria-valuetext='custom' />
-            <Text testID='heading' role='heading' className='mb-24 uppercase'>
-              Welcome to React Native 👋
-            </Text>
-            <Button
-              appearance='accent'
-              onPress={() => {
-                console.log('Button pressed');
-              }}
-            >
-              Click me
-            </Button>
-            <View className='mt-12 w-full flex-row items-center gap-8'>
-              <Button appearance='accent'>Text Only</Button>
-              <Button appearance='accent' icon={Plus}>
-                With Icon
+      <SafeAreaView className='flex-1'>
+        <ThemeProvider defaultMode='system'>
+          <ScrollView contentInsetAdjustmentBehavior='automatic'>
+            <View className='bg-muted size-full p-16'>
+              <ToggleThemeButton />
+              <Text
+                testID='heading'
+                role='heading'
+                className='mb-24 text-base uppercase'
+              >
+                Welcome to React Native 👋
+              </Text>
+              <View className='mt-12 w-full flex-row items-center gap-8'>
+                <Button appearance='accent'>Text Only</Button>
+                <Button appearance='accent' icon={Plus}>
+                  With Icon
+                </Button>
+              </View>
+              <Button
+                appearance='accent'
+                onPress={() => {
+                  console.log('Button pressed');
+                }}
+              >
+                Click me
               </Button>
               <IconButton
                 accessibilityLabel='Settings'
@@ -72,20 +74,11 @@ export const App = () => {
                 />
               </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </ThemeProvider>
       </SafeAreaView>
     </>
   );
 };
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#ffffff',
-  },
-  section: {
-    marginVertical: 12,
-    marginHorizontal: 12,
-  },
-});
 
 export default App;

@@ -59,28 +59,6 @@ export default function App() {
   );
 }
 ```
-
----
-
-## 🎨 Dark Mode Support
-
-Components automatically adapt to system theme:
-
-```tsx
-import { useColorScheme } from 'react-native';
-import { Button } from '@ledgerhq/ldls-ui-rnative';
-
-export default function App() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <View className={colorScheme === 'dark' ? 'dark' : ''}>
-      <Button appearance="accent">Themed Button</Button>
-    </View>
-  );
-}
-```
-
 ---
 
 ## 🔧 Icon Usage

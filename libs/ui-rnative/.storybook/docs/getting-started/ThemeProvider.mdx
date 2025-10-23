@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Theme Provider" />
+
+## Ledger Design System Theme Provider
+The ThemeProvider from @ledgerhq/ldls-ui-rnative manages the app’s visual theme (light or dark mode).
+Define the `ThemeProvider` at the top-level of your app.
+
+```tsx
+import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
+
+function AppProviders() {
+  return (
+    <ThemeProvider defaultMode="system">
+      <App />
+    </ThemeProvider>
+  );
+}
+```
+
+
+Updates the mode using the `useTheme` context hook.
+```tsx
+import { ThemeProvider, useTheme } from '@ledgerhq/ldls-ui-rnative';
+
+const UpdateThemeModeButton = () => {
+  const { mode, toggleMode, setMode } = useTheme();
+  return (
+    <Button onPress={toggleMode}>
+      {mode}
+    </Button>
+  );
+};
+
+function AppProviders() {
+  return (
+    <ThemeProvider defaultMode="dark">
+      <UpdateThemeModeButton />
+    </ThemeProvider>
+  );
+}
+```
+
+When updating the mode, the react-native `Appearance.setColorScheme` API method is called to update the application scheme.
