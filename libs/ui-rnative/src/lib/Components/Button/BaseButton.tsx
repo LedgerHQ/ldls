@@ -8,22 +8,21 @@ import { BaseButtonProps } from './BaseButton.types';
 
 const buttonVariants = {
   root: cva(
-    'inline-flex size-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
+    'body-1-semi-bold inline-flex size-fit cursor-pointer flex-row items-center justify-center gap-8 rounded-full transition-colors',
     {
       variants: {
         appearance: {
           base: 'bg-interactive text-on-interactive active:bg-interactive-pressed',
-          gray: 'bg-muted text-base active:bg-muted-pressed',
+          gray: 'bg-muted active:bg-muted-pressed text-base',
           accent: 'bg-accent text-on-accent active:bg-accent-pressed',
           transparent:
-            'bg-muted-transparent text-base active:bg-muted-transparent-pressed',
+            'bg-muted-transparent active:bg-muted-transparent-pressed text-base',
           'no-background':
-            'bg-transparent text-base active:bg-base-transparent-pressed',
+            'active:bg-base-transparent-pressed bg-transparent text-base',
           red: 'bg-error text-error active:bg-error-pressed',
         },
         size: {
-          xs: 'px-12 py-8 body-2-semi-bold',
-          sm: 'px-16 py-12 body-2-semi-bold',
+          sm: 'body-2-semi-bold px-16 py-12',
           md: 'px-16 py-12',
           lg: 'p-16',
         },
@@ -33,40 +32,12 @@ const buttonVariants = {
         loading: {
           true: '',
         },
-        iconOnly: {
-          true: '',
-          false: '',
-        },
         disabled: {
-          true: 'pointer-events-none cursor-default bg-disabled text-disabled active:bg-disabled',
+          true: 'bg-disabled text-disabled active:bg-disabled pointer-events-none cursor-default',
           false: '',
         },
       },
       compoundVariants: [
-        {
-          size: 'xs',
-          iconOnly: true,
-          className: 'p-8',
-        },
-        {
-          size: 'sm',
-          iconOnly: true,
-          className: 'p-12',
-        },
-        {
-          size: 'md',
-          iconOnly: true,
-          className: 'p-12',
-        },
-        {
-          size: 'lg',
-          iconOnly: true,
-          className: 'p-16',
-        },
-        {
-          iconOnly: false,
-          className: 'gap-8',
-        },
         {
           appearance: 'no-background',
           disabled: true,
@@ -77,12 +48,11 @@ const buttonVariants = {
         appearance: 'base',
         size: 'md',
         isFull: false,
-        iconOnly: false,
         disabled: false,
       },
     },
   ),
-  label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
+  label: cva('body-1-semi-bold line-clamp-2 text-left text-inherit'),
 };
 
 export const BaseButton = React.forwardRef<
@@ -103,10 +73,7 @@ export const BaseButton = React.forwardRef<
     },
     ref,
   ) => {
-    const iconOnly = Boolean(icon && !children);
-
     const iconSizeMap: { [key: string]: IconSize } = {
-      xs: 16,
       sm: 20,
       md: 24,
       lg: 24,
@@ -125,7 +92,6 @@ export const BaseButton = React.forwardRef<
             size,
             isFull,
             loading,
-            iconOnly,
             disabled,
           }),
         )}

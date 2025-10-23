@@ -19,12 +19,6 @@ import { BaseButtonProps } from './BaseButton.types';
  *   Click Me
  * </Button>
  *
- * // Icon-only button with loading state
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
- * import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
- *
- * <Button icon={ArrowRight} size="sm" loading={isLoading} disabled={isLoading} />
- *
  * // Full-width button with custom class
  * <Button appearance="accent" isFull={true} className="my-custom-class">
  *   Submit

@@ -30,7 +30,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
+      options: ['sm', 'md', 'lg'],
       description: 'The size of the button',
     },
     disabled: {
@@ -164,7 +164,6 @@ export const ContentTypesShowcase: Story = {
       <Button appearance='base' icon={Plus}>
         With Icon
       </Button>
-      <Button appearance='base' icon={Settings} aria-label='Settings' />
     </div>
   ),
 };
@@ -172,12 +171,6 @@ export const ContentTypesShowcase: Story = {
 export const SizesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-4'>
-      <Button
-        appearance='base'
-        size='xs'
-        icon={Settings}
-        aria-label='Settings'
-      />
       <Button appearance='base' size='sm'>
         Small
       </Button>
@@ -268,14 +261,6 @@ export const InteractiveLoadingStates: Story = {
         >
           {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
         </Button>
-
-        <Button
-          appearance='accent'
-          loading={states.iconOnly === 'loading'}
-          onPress={() => handleClick('iconOnly')}
-          icon={Settings}
-          aria-label='Settings'
-        />
       </div>
     );
   },

@@ -17,7 +17,7 @@ export interface BaseButtonProps
   /**
    * The size variant of the button.
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   /**
    * If true, the button expands to full width of its container.
    */
