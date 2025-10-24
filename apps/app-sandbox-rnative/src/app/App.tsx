@@ -67,8 +67,19 @@ export const App = () => {
                 />
                 <IconButton
                   accessibilityLabel='Go to Ledger Shop'
+                  appearance='accent'
+                  icon={Settings}
+                  loading
+                />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
                   appearance='base'
                   icon={Link}
+                />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  appearance='red'
+                  icon={Settings}
                 />
               </View>
             </View>

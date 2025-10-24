@@ -1,8 +1,13 @@
 import { cva } from 'class-variance-authority';
+import { cssInterop } from 'nativewind';
 import { forwardRef } from 'react';
 import { Svg } from 'react-native-svg';
 import { cn } from '../../utils';
 import { IconProps } from './Icon.types';
+
+const StyledSvg = cssInterop(Svg, {
+  className: 'style',
+});
 
 const iconVariants = cva('inline-block', {
   variants: {
@@ -24,7 +29,7 @@ const iconVariants = cva('inline-block', {
 export const Icon = forwardRef<Svg, IconProps>(
   ({ size = 24, className = '', children, viewBox, ...props }, ref) => {
     return (
-      <Svg
+      <StyledSvg
         ref={ref}
         width={size}
         height={size}
@@ -35,7 +40,7 @@ export const Icon = forwardRef<Svg, IconProps>(
         {...props}
       >
         {children}
-      </Svg>
+      </StyledSvg>
     );
   },
 );
