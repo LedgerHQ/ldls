@@ -12,6 +12,7 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-native-web-vite',
     options: {
+      modulesToTranspile: ['react-native-css-interop'],
       pluginReactOptions: {
         jsxImportSource: 'nativewind',
       },
@@ -24,28 +25,6 @@ const config: StorybookConfig = {
       ...config.resolve.alias,
       'react-native': 'react-native-web',
       'react-native-svg': 'react-native-svg-web',
-    };
-
-    config.build = config.build || {};
-    config.build.rollupOptions = {
-      ...config.build.rollupOptions,
-      treeshake: 'safest',
-      plugins: [
-        ...(Array.isArray(config.build.rollupOptions?.plugins)
-          ? config.build.rollupOptions.plugins
-          : []),
-        {
-          name: 'nativewind-fix',
-          async transform(_, id) {
-            if (
-              id.includes('react-native-css-interop') &&
-              id.includes('runtime/components.js')
-            ) {
-              return { moduleSideEffects: 'no-treeshake' };
-            }
-          },
-        },
-      ],
     };
 
     return mergeConfig(config, {
