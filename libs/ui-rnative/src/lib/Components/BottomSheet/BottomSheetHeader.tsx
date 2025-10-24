@@ -1,15 +1,36 @@
-import { BottomSheetView as GorhomBottomSheetView } from '@gorhom/bottom-sheet';
 import { cva } from 'class-variance-authority';
-import { remapProps } from 'nativewind';
 import { FC } from 'react';
 import { Text, View } from 'react-native';
 
-import { ArrowLeft, Close } from 'src/lib/Symbols';
-import { Button } from '../Button';
+import { useBottomSheetContext } from './BottomSheet';
 import { BottomSheetHeaderProps } from './BottomSheet.types';
 
 const bottomSheetHeaderVariants = {
-  root: cva('flex flex-row justify-between p-16'),
+  root: cva('sticky top-0 mx-64 flex'),
+  textWrapper: cva(' mt-8 flex flex-1 flex-col text-center', {
+    variants: {
+      size: {
+        sm: 'mt-10',
+        lg: 'flex-col',
+      },
+    },
+  }),
+  title: cva('', {
+    variants: {
+      size: {
+        sm: 'heading-4-semi-bold text-center',
+        lg: 'heading-2-semi-bold',
+      },
+    },
+  }),
+  desc: cva('text-muted body-2', {
+    variants: {
+      size: {
+        sm: 'text-center',
+        lg: 'text-left',
+      },
+    },
+  }),
 };
 
 export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
@@ -18,38 +39,26 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   description,
   onBack,
   onClose,
+  closeable,
   ...props
 }) => {
+  const { size } = useBottomSheetContext({
+    consumerName: 'BottomSheetHeader',
+    contextRequired: true,
+  });
+
   return (
-    <BottomSheetView
-      {...props}
-      className={bottomSheetHeaderVariants.root({ className })}
-    >
-      <View>
-        {title && <Text className='heading-3-semi-bold'>{title}</Text>}
-        {description && (
-          <Text className='text-muted body-2'>{description}</Text>
-        )}
-      </View>
-      {onBack && (
-        <Button onPress={onBack} icon={ArrowLeft} appearance='transparent' />
+    <View {...props} className={bottomSheetHeaderVariants.root({ className })}>
+      {title && (
+        <Text className={bottomSheetHeaderVariants.title({ size })}>
+          {title}
+        </Text>
       )}
-      {onClose && (
-        <Button
-          size='xs'
-          onPress={onClose}
-          icon={Close}
-          appearance='transparent'
-        />
+      {description && (
+        <Text className={bottomSheetHeaderVariants.desc({ size })}>
+          {description}
+        </Text>
       )}
-    </BottomSheetView>
+    </View>
   );
 };
-
-/**
-  ThirdPartyButton is a component with two "style" props, buttonStyle & labelStyle.
-  We can use remapProps to create new props that accept Tailwind CSS's classNames.
- */
-export const BottomSheetView = remapProps(GorhomBottomSheetView, {
-  className: 'style',
-});

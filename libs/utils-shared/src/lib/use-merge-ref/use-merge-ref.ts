@@ -1,46 +1,41 @@
-import { Ref, useCallback, type RefCallback } from 'react';
+import { Ref, useMemo, type RefCallback } from 'react';
 
 type PossibleRef<T> = Ref<T> | undefined;
-type RefCleanup<T> = ReturnType<RefCallback<T>>;
+type RefCleanup = void | (() => void);
 
-export function assignRef<T>(ref: PossibleRef<T>, value: T): RefCleanup<T> {
+export function assignRef<T>(ref: PossibleRef<T>, value: T | null): RefCleanup {
   if (typeof ref === 'function') {
     return ref(value);
   } else if (typeof ref === 'object' && ref !== null && 'current' in ref) {
-    // @ts-expect-error - we know that the ref is an object
-    ref.current = value;
+    (ref as { current: T | null }).current = value;
   }
 }
 
 export function mergeRefs<T>(...refs: PossibleRef<T>[]): RefCallback<T> {
-  const cleanupMap = new Map<PossibleRef<T>, Exclude<RefCleanup<T>, void>>();
+  const cleanupMap = new Map<PossibleRef<T>, () => void>();
 
   return (node: T | null) => {
+    if (node === null) {
+      refs.forEach((ref) => {
+        const cleanup = cleanupMap.get(ref);
+        if (typeof cleanup === 'function') {
+          cleanup();
+        }
+        assignRef(ref, null);
+      });
+      cleanupMap.clear();
+      return;
+    }
+
     refs.forEach((ref) => {
       const cleanup = assignRef(ref, node);
-      // @ts-expect-error - we know that the cleanup is a function
-      if (cleanup) {
+      if (typeof cleanup === 'function') {
         cleanupMap.set(ref, cleanup);
       }
     });
-
-    if (cleanupMap.size > 0) {
-      return () => {
-        refs.forEach((ref) => {
-          const cleanup = cleanupMap.get(ref);
-          if (cleanup && typeof cleanup === 'function') {
-            // @ts-expect-error - we know that the cleanup is a function
-            cleanup();
-          } else {
-            assignRef(ref, null);
-          }
-        });
-        cleanupMap.clear();
-      };
-    }
   };
 }
 
-export function useMergedRef<T>(...refs: PossibleRef<T>[]) {
-  return useCallback(mergeRefs(...refs), refs);
+export function useMergedRef<T>(...refs: PossibleRef<T>[]): RefCallback<T> {
+  return useMemo(() => mergeRefs<T>(...refs), refs);
 }

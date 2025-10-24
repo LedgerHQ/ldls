@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Button } from '../Button';
 import { BottomSheet } from './BottomSheet';
 import { BottomSheetHeader } from './BottomSheetHeader';
+import { BottomSheetScrollView, BottomSheetView } from './Scrollables';
 import { useBottomSheetRef } from './useBottomSheetRef';
 
 const meta: Meta<typeof BottomSheet> = {
   component: BottomSheet,
-  title: 'Communication/BottomSheet',
+  title: 'Containment/BottomSheet',
   parameters: {
     docs: {
       source: {
@@ -17,28 +18,37 @@ const meta: Meta<typeof BottomSheet> = {
       },
     },
   },
-  argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof BottomSheet>;
 
 export const Base: Story = {
-  args: {},
+  args: {
+    size: 'sm',
+    enableHandlePanningGesture: true,
+    enablePanDownToClose: true,
+    closeable: false,
+    onBack: () => null,
+    onClose: () => null,
+  },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='m-auto h-screen max-w-md items-center justify-center'>
+      <View className='h-[calc(100vh-40px)] w-full items-center justify-center'>
         <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
-          <BottomSheetHeader
-            title='Title'
-            description='Description'
-            onClose={() => bottomSheetRef.current?.close()}
-          />
+          <BottomSheetView>
+            <BottomSheetHeader title='Title' description='Description' />
+          </BottomSheetView>
+          <BottomSheetScrollView>
+            {Array.from({ length: 100 }).map((_, index) => (
+              <Text key={index}>azeazea</Text>
+            ))}
+          </BottomSheetScrollView>
         </BottomSheet>
       </View>
     );
