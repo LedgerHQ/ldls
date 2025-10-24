@@ -12,6 +12,7 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-native-web-vite',
     options: {
+      modulesToTranspile: ['react-native-css-interop'],
       pluginReactOptions: {
         jsxImportSource: 'nativewind',
       },
