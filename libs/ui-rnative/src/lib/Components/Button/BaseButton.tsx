@@ -116,7 +116,7 @@ export const BaseButton = React.forwardRef<
       if (disabled) {
         return 'text-disabled';
       }
-      if (appearance === 'base') {
+      if (!appearance || appearance === 'base') {
         return 'text-on-interactive';
       }
       if (appearance === 'accent') {
