@@ -7,9 +7,9 @@ import * as AnimationsStories from './Animations.stories';
   {`
   @keyframes ease-demo-cycle {
     0% { transform: translateX(0); }
-    25% { transform: translateX(calc(100% - 16px)); }
+    25% { transform: translateX(calc(100% + 100px)); }
     50% { transform: translateX(0); }
-    75% { transform: translateX(calc(100% - 16px)); }
+    75% { transform: translateX(calc(100% + 100px)); }
     100% { transform: translateX(0); }
   }
   
@@ -109,6 +109,7 @@ The animation system provides a comprehensive set of utilities for creating smoo
   <table className='w-full'>
     <thead>
       <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
         <th className='p-12 text-left text-on-accent body-2'>Name</th>
         <th className='p-12 text-left text-on-accent body-2'>Value</th>
         <th className='p-12 text-left text-on-accent body-2'>Description</th>
@@ -117,57 +118,58 @@ The animation system provides a comprehensive set of utilities for creating smoo
     <tbody className='bg-canvas'>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
-            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
-              <div className='absolute inset-0 bg-accent ease-in-demo'></div>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-in-demo'></div>
             </div>
-            <span className='text-accent body-3 '>ease-in</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>ease-in</span>
         </td>
         <td className='p-12 text-muted body-3 '>cubic-bezier(0.4, 0, 1, 1)</td>
-        <td className='p-12 text-muted body-3'>
-          Slow start, fast end. Use for elements entering the screen.
-        </td>
+        <td className='p-12 text-muted body-3'>Slow start, fast end.</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
-            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
-              <div className='absolute inset-0 bg-accent ease-out-demo'></div>
-            </div>
-            <span className='text-accent body-3 '>ease-out</span>
+          <div className='flex items-center justify-center'>
+          <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+            <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-out-demo'></div>
           </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>ease-out</span>
         </td>
         <td className='p-12 text-muted body-3 '>cubic-bezier(0, 0, 0.2, 1)</td>
-        <td className='p-12 text-muted body-3'>
-          Fast start, slow end. Use for elements leaving the screen.
-        </td>
+        <td className='p-12 text-muted body-3'>Fast start, slow end.</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
-            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
-              <div className='absolute inset-0 bg-accent ease-in-out-demo'></div>
+          <div className='flex items-center justify-center'>    
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-in-out-demo'></div>
             </div>
-            <span className='text-accent body-3 '>ease-in-out</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>ease-in-out</span>
         </td>
         <td className='p-12 text-muted body-3 '>
           cubic-bezier(0.4, 0, 0.2, 1)
         </td>
-        <td className='p-12 text-muted body-3'>
-          Slow start and end. Use for elements that need smooth acceleration and
-          deceleration.
-        </td>
+        <td className='p-12 text-muted body-3'>Slow start and end.</td>
       </tr>
       <tr>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
-            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
-              <div className='absolute inset-0 bg-accent ease-linear-demo'></div>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-linear-demo'></div>
             </div>
-            <span className='text-accent body-3 '>ease-linear</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>ease-linear</span>
         </td>
         <td className='p-12 text-muted body-3 '>linear</td>
         <td className='p-12 text-muted body-3'>
@@ -175,6 +177,7 @@ The animation system provides a comprehensive set of utilities for creating smoo
         </td>
       </tr>
     </tbody>
+
   </table>
 </div>
 
@@ -184,6 +187,7 @@ The animation system provides a comprehensive set of utilities for creating smoo
   <table className='w-full'>
     <thead>
       <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
         <th className='p-12 text-left text-on-accent body-2'>Name</th>
         <th className='p-12 text-left text-on-accent body-2'>Value</th>
         <th className='p-12 text-left text-on-accent body-2'>Description</th>
@@ -192,96 +196,112 @@ The animation system provides a comprehensive set of utilities for creating smoo
     <tbody className='bg-canvas'>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-75-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-75</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-75</span>
         </td>
         <td className='p-12 text-muted body-3 '>75ms</td>
         <td className='p-12 text-muted body-3'>Very fast animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-100-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-100</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-100</span>
         </td>
         <td className='p-12 text-muted body-3 '>100ms</td>
         <td className='p-12 text-muted body-3'>Fast animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-150-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-150</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-150</span>
         </td>
         <td className='p-12 text-muted body-3 '>150ms</td>
         <td className='p-12 text-muted body-3'>Quick animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-200-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-200</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-200</span>
         </td>
         <td className='p-12 text-muted body-3 '>200ms</td>
         <td className='p-12 text-muted body-3'>Standard animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-300-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-300</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-300</span>
         </td>
         <td className='p-12 text-muted body-3 '>300ms</td>
         <td className='p-12 text-muted body-3'>Medium animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-500-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-500</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-500</span>
         </td>
         <td className='p-12 text-muted body-3 '>500ms</td>
         <td className='p-12 text-muted body-3'>Slow animation</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-700-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-700</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-700</span>
         </td>
         <td className='p-12 text-muted body-3 '>700ms</td>
         <td className='p-12 text-muted body-3'>Slower animation</td>
       </tr>
       <tr>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24'>
               <div className='absolute inset-0 bg-accent duration-1000-demo'></div>
             </div>
-            <span className='text-accent body-3 '>duration-1000</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>duration-1000</span>
         </td>
         <td className='p-12 text-muted body-3 '>1000ms</td>
         <td className='p-12 text-muted body-3'>Very slow animation</td>
@@ -296,6 +316,7 @@ The animation system provides a comprehensive set of utilities for creating smoo
   <table className='w-full'>
     <thead>
       <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
         <th className='p-12 text-left text-on-accent body-2'>Name</th>
         <th className='p-12 text-left text-on-accent body-2'>Value</th>
         <th className='p-12 text-left text-on-accent body-2'>Description</th>
@@ -304,24 +325,28 @@ The animation system provides a comprehensive set of utilities for creating smoo
     <tbody className='bg-canvas'>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent'></div>
             </div>
-            <span className='text-accent body-3 '>delay-0</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-0</span>
         </td>
         <td className='p-12 text-muted body-3 '>0ms</td>
         <td className='p-12 text-muted body-3'>No delay</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-75-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-75</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-75</span>
         </td>
         <td className='p-12 text-muted body-3 '>75ms</td>
         <td className='p-12 text-muted body-3'>
@@ -330,12 +355,14 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-100-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-100</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-100</span>
         </td>
         <td className='p-12 text-muted body-3 '>100ms</td>
         <td className='p-12 text-muted body-3'>
@@ -344,12 +371,14 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-150-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-150</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-150</span>
         </td>
         <td className='p-12 text-muted body-3 '>150ms</td>
         <td className='p-12 text-muted body-3'>
@@ -358,12 +387,14 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-200-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-200</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-200</span>
         </td>
         <td className='p-12 text-muted body-3 '>200ms</td>
         <td className='p-12 text-muted body-3'>
@@ -372,24 +403,28 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-300-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-300</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-300</span>
         </td>
         <td className='p-12 text-muted body-3 '>300ms</td>
         <td className='p-12 text-muted body-3'>Medium delay for emphasis</td>
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-500-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-500</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-500</span>
         </td>
         <td className='p-12 text-muted body-3 '>500ms</td>
         <td className='p-12 text-muted body-3'>
@@ -398,12 +433,14 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr className='border-b border-muted'>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-700-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-700</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-700</span>
         </td>
         <td className='p-12 text-muted body-3 '>700ms</td>
         <td className='p-12 text-muted body-3'>
@@ -412,12 +449,14 @@ The animation system provides a comprehensive set of utilities for creating smoo
       </tr>
       <tr>
         <td className='p-12'>
-          <div className='flex items-center gap-12'>
+          <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
               <div className='absolute inset-0 bg-accent delay-1000-demo'></div>
             </div>
-            <span className='text-accent body-3 '>delay-1000</span>
           </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent body-3 '>delay-1000</span>
         </td>
         <td className='p-12 text-muted body-3 '>1000ms</td>
         <td className='p-12 text-muted body-3'>

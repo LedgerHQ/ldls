@@ -29,7 +29,8 @@ const AnimationDemo = ({
   description: string;
 }) => {
   // Check if this is an "out" animation
-  const isOutAnimation = animationClass.includes('out');
+  const isOutAnimation =
+    animationClass.includes('out') || animationClass.includes('hide');
 
   // For out animations, start visible; for in animations, start hidden
   const [isVisible, setIsVisible] = useState(isOutAnimation);
@@ -57,20 +58,20 @@ const AnimationDemo = ({
   return (
     <div className='flex flex-col items-center gap-16 rounded-sm p-24'>
       <div className='text-center'>
-        <h3 className='mb-8 heading-3'>{title}</h3>
-        <p className='mb-16 text-muted body-2'>{description}</p>
-        <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+        <h3 className='heading-3 mb-8'>{title}</h3>
+        <p className='text-muted body-2 mb-16'>{description}</p>
+        <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
           {animationClass}
         </code>
       </div>
 
       <button
-        className='relative h-80 w-144 overflow-hidden rounded-sm border border-muted-subtle'
+        className='w-144 border-muted-subtle relative h-80 overflow-hidden rounded-sm border'
         onClick={handleTrigger}
       >
         {/* Placeholder for in animations when not visible */}
         {!isOutAnimation && !isVisible && (
-          <div className='absolute inset-0 flex items-center justify-center text-muted body-2'>
+          <div className='text-muted body-2 absolute inset-0 flex items-center justify-center'>
             Click me
           </div>
         )}
@@ -201,17 +202,6 @@ export const SlideOutToRight: Story = {
   ),
 };
 
-// Translate Animations
-export const TranslateFromRight: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-translate-from-right'
-      title='Translate From Right'
-      description='Element moves from right to final position (no opacity change)'
-    />
-  ),
-};
-
 // Default Tailwind Animations
 export const DefaultTailwindAnimations: Story = {
   render: () => (
@@ -219,53 +209,53 @@ export const DefaultTailwindAnimations: Story = {
       {/* Spin Animation */}
       <div className='flex flex-col items-center gap-16 p-24'>
         <div className='text-center'>
-          <h3 className='mb-8 heading-3'>Spin</h3>
-          <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+          <h3 className='heading-3 mb-8'>Spin</h3>
+          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
             animate-spin
           </code>
         </div>
         <div className='relative size-24'>
-          <div className='absolute inset-0 animate-spin bg-accent'></div>
+          <div className='bg-accent absolute inset-0 animate-spin'></div>
         </div>
       </div>
 
       {/* Ping Animation */}
       <div className='flex flex-col items-center gap-16 p-24'>
         <div className='text-center'>
-          <h3 className='mb-8 heading-3'>Ping</h3>
-          <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+          <h3 className='heading-3 mb-8'>Ping</h3>
+          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
             animate-ping
           </code>
         </div>
         <div className='relative size-24'>
-          <div className='absolute inset-0 animate-ping bg-accent'></div>
-          <div className='relative size-full bg-accent'></div>
+          <div className='bg-accent absolute inset-0 animate-ping'></div>
+          <div className='bg-accent relative size-full'></div>
         </div>
       </div>
 
       {/* Pulse Animation */}
       <div className='flex flex-col items-center gap-16 p-24'>
         <div className='text-center'>
-          <h3 className='mb-8 heading-3'>Pulse</h3>
-          <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+          <h3 className='heading-3 mb-8'>Pulse</h3>
+          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
             animate-pulse
           </code>
         </div>
         <div className='relative size-24'>
-          <div className='absolute inset-0 animate-pulse bg-accent'></div>
+          <div className='bg-accent absolute inset-0 animate-pulse'></div>
         </div>
       </div>
 
       {/* Bounce Animation */}
       <div className='flex flex-col items-center gap-16 p-24'>
         <div className='text-center'>
-          <h3 className='mb-8 heading-3'>Bounce</h3>
-          <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+          <h3 className='heading-3 mb-8'>Bounce</h3>
+          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
             animate-bounce
           </code>
         </div>
         <div className='relative size-24'>
-          <div className='absolute inset-0 animate-bounce bg-accent'></div>
+          <div className='bg-accent absolute inset-0 animate-bounce'></div>
         </div>
       </div>
     </div>
@@ -281,7 +271,7 @@ export const AllAnimations: Story = {
     <div className='space-y-48 p-24'>
       {/* Fade Animations Section */}
       <div>
-        <h2 className='mb-24 text-center heading-2'>Fade Animations</h2>
+        <h2 className='heading-2 mb-24 text-center'>Fade Animations</h2>
         <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           <AnimationDemo
             animationClass='animate-fade-in'
@@ -296,9 +286,26 @@ export const AllAnimations: Story = {
         </div>
       </div>
 
+      {/* Content Animations Section */}
+      <div>
+        <h2 className='heading-2 mb-24 text-center'>Content Animations</h2>
+        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+          <AnimationDemo
+            animationClass='animate-content-show'
+            title='Content Show'
+            description='Content reveal animation'
+          />
+          <AnimationDemo
+            animationClass='animate-content-hide'
+            title='Content Hide'
+            description='Content hide animation'
+          />
+        </div>
+      </div>
+
       {/* Slide In Animations Section */}
       <div>
-        <h2 className='mb-24 text-center heading-2'>Slide In Animations</h2>
+        <h2 className='heading-2 mb-24 text-center'>Slide In Animations</h2>
         <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           <AnimationDemo
             animationClass='animate-slide-in-from-top'
@@ -325,7 +332,7 @@ export const AllAnimations: Story = {
 
       {/* Slide Out Animations Section */}
       <div>
-        <h2 className='mb-24 text-center heading-2'>Slide Out Animations</h2>
+        <h2 className='heading-2 mb-24 text-center'>Slide Out Animations</h2>
         <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
           <AnimationDemo
             animationClass='animate-slide-out-to-top'
@@ -346,18 +353,6 @@ export const AllAnimations: Story = {
             animationClass='animate-slide-out-to-right'
             title='Slide Out To Right'
             description='To right with fade'
-          />
-        </div>
-      </div>
-
-      {/* Translate Animations Section */}
-      <div>
-        <h2 className='mb-24 text-center heading-2'>Translate Animations</h2>
-        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <AnimationDemo
-            animationClass='animate-translate-from-right'
-            title='Translate From Right'
-            description='Movement only, no fade'
           />
         </div>
       </div>
