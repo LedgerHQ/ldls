@@ -1,0 +1,30 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+export const tokens: Record<string, Record<string, string | number>> = {
+  ':root': {
+    '--duration-0': 0,
+    '--duration-75': 75,
+    '--duration-100': 100,
+    '--duration-150': 150,
+    '--duration-200': 200,
+    '--duration-300': 300,
+    '--duration-500': 500,
+    '--duration-700': 700,
+    '--duration-1000': 1000,
+    '--delay-0': 0,
+    '--delay-75': 75,
+    '--delay-100': 100,
+    '--delay-150': 150,
+    '--delay-200': 200,
+    '--delay-300': 300,
+    '--delay-500': 500,
+    '--delay-700': 700,
+    '--delay-1000': 1000,
+    '--easing-linear': 'linear',
+    '--easing-ease-in': 'cubic-bezier(0.4, 0, 1, 1)',
+    '--easing-ease-out': 'cubic-bezier(0, 0, 0.2, 1)',
+    '--easing-ease-in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+};

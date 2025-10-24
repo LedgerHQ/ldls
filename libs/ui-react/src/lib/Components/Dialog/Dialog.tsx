@@ -170,7 +170,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          'fixed left-[50%] top-[50%] z-dialog-content w-[400px] max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
+          'fixed left-[50%] top-[50%] z-dialog-content w-400 max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
           className,
         )}
         {...props}

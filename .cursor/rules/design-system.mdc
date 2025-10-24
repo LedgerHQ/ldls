@@ -58,3 +58,12 @@ alwaysApply: true
   - `bg-gradient-top`: 180deg gradient for top overlays
   - `bg-gradient-bottom`: 180deg gradient for bottom overlays
   - `bg-gradient-{crypto}`: 161deg gradient for crypto colors
+
+# Tailwind Classnames
+
+- Tailwind utilities should never be concatenated
+- Always use complete class names as strings
+- Use template literals or array joining for dynamic class names
+- Example: `className="text-base bg-muted"` ✅
+- Example: `className={text-${color}}` ❌
+- Example: `className={cn("text-base", color && "bg-muted")}` ✅

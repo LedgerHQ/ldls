@@ -29,8 +29,8 @@ When writing tables in documentation, follow this structure:
 - **Body**: Use `bg-canvas` for tbody
 - **Body rows**: Use `border-b border-muted` for all rows except the last one
 - **Body cells**:
-  - First column (utilities/classes): Use `text-accent p-12 body-3`
-  - Other columns: Use `p-12 text-muted body-3`
+  - First column (utilities/classes): Use `text-accent p-12`
+  - Other columns: Use `p-12 text-muted`
 
 ## Example Structure
 
@@ -47,15 +47,13 @@ When writing tables in documentation, follow this structure:
     </thead>
     <tbody className='bg-canvas'>
       <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>h-1</td>
-        <td className='p-12 text-muted body-3'>
-          height: var(--size-1); /* 1px */
-        </td>
+        <td className='text-accent p-12'>h-1</td>
+        <td className='p-12 text-muted'>height: var(--size-1); /* 1px */</td>
       </tr>
       {/* More rows... */}
       <tr>
-        <td className='text-accent p-12 body-3'>h-256</td>
-        <td className='p-12 text-muted body-3'>
+        <td className='text-accent p-12'>h-256</td>
+        <td className='p-12 text-muted'>
           height: var(--size-256); /* 256px */
         </td>
       </tr>
