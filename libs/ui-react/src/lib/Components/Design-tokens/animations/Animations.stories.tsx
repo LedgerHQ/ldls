@@ -1,6 +1,8 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { CursorTouch, Refresh } from '../../../Symbols';
+import { Button } from '../../Button';
 
 const meta: Meta = {
   title: 'Foundations/Animations',
@@ -29,8 +31,7 @@ const AnimationDemo = ({
   description: string;
 }) => {
   // Check if this is an "out" animation
-  const isOutAnimation =
-    animationClass.includes('out') || animationClass.includes('hide');
+  const isOutAnimation = animationClass.includes('out');
 
   // For out animations, start visible; for in animations, start hidden
   const [isVisible, setIsVisible] = useState(isOutAnimation);
@@ -55,46 +56,66 @@ const AnimationDemo = ({
     }
   };
 
+  const handleReset = () => {
+    setIsVisible(isOutAnimation);
+    setIsAnimating(false);
+  };
+
   return (
     <div className='flex flex-col items-center gap-16 rounded-sm p-24'>
       <div className='text-center'>
-        <h3 className='heading-3 mb-8'>{title}</h3>
-        <p className='text-muted body-2 mb-16'>{description}</p>
-        <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
+        <h3 className='mb-8 heading-3'>{title}</h3>
+        <p className='mb-16 text-muted body-2'>{description}</p>
+        <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
           {animationClass}
         </code>
       </div>
 
-      <button
-        className='w-144 border-muted-subtle relative h-80 overflow-hidden rounded-sm border'
-        onClick={handleTrigger}
-      >
-        {/* Placeholder for in animations when not visible */}
-        {!isOutAnimation && !isVisible && (
-          <div className='text-muted body-2 absolute inset-0 flex items-center justify-center'>
-            Click me
-          </div>
-        )}
-
-        {/* Animated element */}
-        <div
-          className={cn(
-            'absolute inset-0 flex items-center justify-center bg-accent text-on-accent body-2-semi-bold',
-            // For out animations, show by default, hide when animating out
-            isOutAnimation
-              ? isVisible && !isAnimating
-                ? ''
-                : isAnimating
-                  ? animationClass
-                  : 'hidden'
-              : isVisible
-                ? animationClass
-                : 'hidden',
-          )}
+      <div className='relative'>
+        <button
+          className='relative h-80 w-144 overflow-hidden rounded-sm border border-muted-subtle'
+          onClick={handleTrigger}
         >
-          {isOutAnimation ? 'Click me' : 'Animated Element'}
-        </div>
-      </button>
+          {/* Placeholder for in animations when not visible */}
+          {!isOutAnimation && !isVisible && (
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <CursorTouch className='text-muted' size={24} />
+            </div>
+          )}
+
+          {/* Animated element */}
+          <div
+            className={cn(
+              'absolute inset-0 flex items-center justify-center bg-accent text-on-accent body-2-semi-bold',
+              // For out animations, show by default, hide when animating out
+              isOutAnimation
+                ? isVisible && !isAnimating
+                  ? ''
+                  : isAnimating
+                    ? animationClass
+                    : 'hidden'
+                : isVisible
+                  ? animationClass
+                  : 'hidden',
+            )}
+          >
+            {isOutAnimation ? (
+              <CursorTouch className='text-on-accent' size={24} />
+            ) : (
+              <span className='body-4'>Animated Element</span>
+            )}
+          </div>
+        </button>
+      </div>
+      <Button
+        size='sm'
+        appearance='gray'
+        onClick={handleReset}
+        aria-label='Reset'
+        icon={Refresh}
+      >
+        Reset
+      </Button>
     </div>
   );
 };
@@ -205,60 +226,73 @@ export const SlideOutToRight: Story = {
 // Default Tailwind Animations
 export const DefaultTailwindAnimations: Story = {
   render: () => (
-    <div className='grid grid-cols-1 gap-24 p-24 md:grid-cols-2 lg:grid-cols-4'>
-      {/* Spin Animation */}
-      <div className='flex flex-col items-center gap-16 p-24'>
-        <div className='text-center'>
-          <h3 className='heading-3 mb-8'>Spin</h3>
-          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
-            animate-spin
-          </code>
-        </div>
-        <div className='relative size-24'>
-          <div className='bg-accent absolute inset-0 animate-spin'></div>
-        </div>
-      </div>
+    <>
+      <h2 className='mb-16 mt-32 text-start heading-2'>Static animation</h2>
+      <div className='rounded-2xl border border-muted-subtle bg-canvas p-16'>
+        <div className='grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-4'>
+          {/* Spin Animation */}
+          <div className='flex flex-col items-center gap-16 p-24'>
+            <div className='text-center'>
+              <h3 className='mb-8 heading-3'>Spin</h3>
+              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+                animate-spin
+              </code>
+            </div>
+            <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
+              <div className='relative size-24'>
+                <div className='absolute inset-0 animate-spin bg-accent'></div>
+              </div>
+            </div>
+          </div>
 
-      {/* Ping Animation */}
-      <div className='flex flex-col items-center gap-16 p-24'>
-        <div className='text-center'>
-          <h3 className='heading-3 mb-8'>Ping</h3>
-          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
-            animate-ping
-          </code>
-        </div>
-        <div className='relative size-24'>
-          <div className='bg-accent absolute inset-0 animate-ping'></div>
-          <div className='bg-accent relative size-full'></div>
-        </div>
-      </div>
+          {/* Ping Animation */}
+          <div className='flex flex-col items-center gap-16 p-24'>
+            <div className='text-center'>
+              <h3 className='mb-8 heading-3'>Ping</h3>
+              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+                animate-ping
+              </code>
+            </div>
+            <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
+              <div className='relative size-24'>
+                <div className='absolute inset-0 animate-ping bg-accent'></div>
+                <div className='relative size-full bg-accent'></div>
+              </div>
+            </div>
+          </div>
 
-      {/* Pulse Animation */}
-      <div className='flex flex-col items-center gap-16 p-24'>
-        <div className='text-center'>
-          <h3 className='heading-3 mb-8'>Pulse</h3>
-          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
-            animate-pulse
-          </code>
-        </div>
-        <div className='relative size-24'>
-          <div className='bg-accent absolute inset-0 animate-pulse'></div>
-        </div>
-      </div>
+          {/* Pulse Animation */}
+          <div className='flex flex-col items-center gap-16 p-24'>
+            <div className='text-center'>
+              <h3 className='mb-8 heading-3'>Pulse</h3>
+              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+                animate-pulse
+              </code>
+            </div>
+            <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
+              <div className='relative size-24'>
+                <div className='absolute inset-0 animate-pulse bg-accent'></div>
+              </div>
+            </div>
+          </div>
 
-      {/* Bounce Animation */}
-      <div className='flex flex-col items-center gap-16 p-24'>
-        <div className='text-center'>
-          <h3 className='heading-3 mb-8'>Bounce</h3>
-          <code className='bg-muted body-3-semi-bold rounded-sm px-8 py-4'>
-            animate-bounce
-          </code>
-        </div>
-        <div className='relative size-24'>
-          <div className='bg-accent absolute inset-0 animate-bounce'></div>
+          {/* Bounce Animation */}
+          <div className='flex flex-col items-center gap-16 p-24'>
+            <div className='text-center'>
+              <h3 className='mb-8 heading-3'>Bounce</h3>
+              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
+                animate-bounce
+              </code>
+            </div>
+            <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
+              <div className='relative size-24'>
+                <div className='absolute inset-0 animate-bounce bg-accent'></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   ),
   parameters: {
     layout: 'fullscreen',
@@ -268,92 +302,81 @@ export const DefaultTailwindAnimations: Story = {
 // All Animations Grid
 export const AllAnimations: Story = {
   render: () => (
-    <div className='space-y-48 p-24'>
+    <div className='space-y-48'>
       {/* Fade Animations Section */}
       <div>
-        <h2 className='heading-2 mb-24 text-center'>Fade Animations</h2>
-        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <AnimationDemo
-            animationClass='animate-fade-in'
-            title='Fade In'
-            description='Opacity transition'
-          />
-          <AnimationDemo
-            animationClass='animate-fade-out'
-            title='Fade Out'
-            description='Opacity transition'
-          />
-        </div>
-      </div>
-
-      {/* Content Animations Section */}
-      <div>
-        <h2 className='heading-2 mb-24 text-center'>Content Animations</h2>
-        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <AnimationDemo
-            animationClass='animate-content-show'
-            title='Content Show'
-            description='Content reveal animation'
-          />
-          <AnimationDemo
-            animationClass='animate-content-hide'
-            title='Content Hide'
-            description='Content hide animation'
-          />
+        <h2 className='mb-16 mt-32 text-start heading-2'>Fade</h2>
+        <div className='rounded-2xl border border-muted-subtle bg-canvas p-16'>
+          <div className='grid grid-cols-1 gap-24 md:grid-cols-2'>
+            <AnimationDemo
+              animationClass='animate-fade-in'
+              title='In'
+              description=''
+            />
+            <AnimationDemo
+              animationClass='animate-fade-out'
+              title='Out'
+              description=''
+            />
+          </div>
         </div>
       </div>
 
       {/* Slide In Animations Section */}
       <div>
-        <h2 className='heading-2 mb-24 text-center'>Slide In Animations</h2>
-        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <AnimationDemo
-            animationClass='animate-slide-in-from-top'
-            title='Slide In From Top'
-            description='From above with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-in-from-bottom'
-            title='Slide In From Bottom'
-            description='From below with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-in-from-left'
-            title='Slide In From Left'
-            description='From left with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-in-from-right'
-            title='Slide In From Right'
-            description='From right with fade'
-          />
+        <h2 className='mb-16 mt-32 text-start heading-2'>Slide in</h2>
+        <div className='rounded-2xl border border-muted-subtle bg-canvas p-8'>
+          <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
+            <AnimationDemo
+              animationClass='animate-slide-in-from-top'
+              title='From top'
+              description='From above with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-in-from-bottom'
+              title='From bottom'
+              description='From below with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-in-from-left'
+              title='From left'
+              description='From left with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-in-from-right'
+              title='From right'
+              description='From right with fade'
+            />
+          </div>
         </div>
       </div>
 
       {/* Slide Out Animations Section */}
       <div>
-        <h2 className='heading-2 mb-24 text-center'>Slide Out Animations</h2>
-        <div className='grid min-w-max grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          <AnimationDemo
-            animationClass='animate-slide-out-to-top'
-            title='Slide Out To Top'
-            description='To above with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-out-to-bottom'
-            title='Slide Out To Bottom'
-            description='To below with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-out-to-left'
-            title='Slide Out To Left'
-            description='To left with fade'
-          />
-          <AnimationDemo
-            animationClass='animate-slide-out-to-right'
-            title='Slide Out To Right'
-            description='To right with fade'
-          />
+        <h2 className='mb-16 mt-32 text-start heading-2'>Slide out</h2>
+        <div className='rounded-2xl border border-muted-subtle bg-canvas p-8'>
+          <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
+            <AnimationDemo
+              animationClass='animate-slide-out-to-top'
+              title='To top'
+              description='To above with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-out-to-bottom'
+              title='To bottom'
+              description='To below with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-out-to-left'
+              title='To left'
+              description='To left with fade'
+            />
+            <AnimationDemo
+              animationClass='animate-slide-out-to-right'
+              title='To right'
+              description='To right with fade'
+            />
+          </div>
         </div>
       </div>
     </div>

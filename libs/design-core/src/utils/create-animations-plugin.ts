@@ -10,18 +10,18 @@ export function createAnimationsPlugin() {
             'content-show': {
               from: {
                 opacity: '0',
-                transform: 'scale(0.96)',
+                transform: 'translate(-50%, -48%) scale(0.96)',
               },
-              to: { opacity: '1', transform: 'scale(1)' },
+              to: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' },
             },
             'content-hide': {
               from: {
                 opacity: '1',
-                transform: 'scale(1)',
+                transform: 'translate(-50%, -50%) scale(1)',
               },
               to: {
                 opacity: '0',
-                transform: 'scale(0.96)',
+                transform: 'translate(-50%, -48%) scale(0.96)',
               },
             },
             'fade-in': {
