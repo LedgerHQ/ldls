@@ -50,6 +50,7 @@ const preview: Preview = {
           ['Introduction', 'Setup guide', 'Configuration'],
           'Foundations',
           ['Docs', 'Colors', 'Border', 'Spacing', 'Size', 'Height', 'Width'],
+          'Animations',
           'Symbols',
           'Action',
           ['Button', 'CardButton', 'IconButton', 'Link', 'InteractiveIcon'],

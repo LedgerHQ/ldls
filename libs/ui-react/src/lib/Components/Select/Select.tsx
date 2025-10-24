@@ -32,7 +32,7 @@ const triggerStyles = cn(
 );
 
 const labelStyles = cn(
-  'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-[400ms]',
+  'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-300',
   'top-10 body-4 -translate-y-4',
   'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-14',
   'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
@@ -52,7 +52,7 @@ const SelectTrigger = React.forwardRef<
     {label && (
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
-    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity duration-500 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
+    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
       <SelectPrimitive.Value data-slot='select-value'>
         {children}
       </SelectPrimitive.Value>
@@ -60,7 +60,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='text-muted group-data-[disabled]:text-disabled shrink-0'
+        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -69,8 +69,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'bg-muted rounded-sm',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'rounded-sm bg-muted',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',

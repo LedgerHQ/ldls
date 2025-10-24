@@ -1,3 +1,4 @@
+import { tokens as animationsTokens } from './animations';
 import { tokens as enterpriseDarkThemeTokens } from './enterprise/theme.dark';
 import { tokens as enterpriseLightThemeTokens } from './enterprise/theme.light';
 
@@ -19,6 +20,7 @@ export const primitivesTheme = {
     ...typographyLgTokens,
     ...typographyMdTokens,
     ...typographyXlTokens,
+    ...animationsTokens[':root'],
   },
 };
 

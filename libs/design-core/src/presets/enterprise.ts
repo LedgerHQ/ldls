@@ -1,3 +1,4 @@
+import { createAnimationsPlugin } from 'src/utils/create-animations-plugin.js';
 import type { Config } from 'tailwindcss';
 import { enterpriseTheme } from '../themes/index.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
@@ -16,6 +17,7 @@ export const enterprisePreset = {
     createTypographyPlugin(),
     createGradientPlugin(enterpriseTheme),
     createDropShadowPlugin(),
+    createAnimationsPlugin(),
   ],
   darkMode: 'class',
   corePlugins: {
