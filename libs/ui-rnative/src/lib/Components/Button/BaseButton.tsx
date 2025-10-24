@@ -130,7 +130,6 @@ export const BaseButton = React.forwardRef<
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
     const IconComponent = icon;
-    const iconColorClass = getIconColorClass();
 
     return (
       <TouchableOpacity
@@ -160,7 +159,7 @@ export const BaseButton = React.forwardRef<
         {!loading && IconComponent && (
           <IconComponent
             size={calculatedIconSize}
-            className={`shrink-0 ${iconColorClass}`}
+            className={`shrink-0 ${getIconColorClass()}`}
           />
         )}
         {children && <Text className={buttonVariants.label()}>{children}</Text>}
