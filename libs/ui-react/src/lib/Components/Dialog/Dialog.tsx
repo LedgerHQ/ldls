@@ -225,13 +225,26 @@ export function DialogContent({
  * />
  */
 export function DialogHeader({
-  title,
+  title = '',
   description,
+  size,
   ...props
-}: SheetBarProps & { title: string }) {
+}: SheetBarProps & { title?: string }) {
   return (
     <>
-      <SheetBar title={title} description={description} {...props} />
+      <SheetBar
+        title={title}
+        description={description}
+        size={size}
+        {...props}
+        /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
+        className={cn('-ml-16 -mr-8', size === 'lg' && 'pt-16')}
+      />
+      {/* Accessibility Note: Even though the visible header/description are
+      rendered by SheetBar, Radix Dialog still requires DialogTitle (and
+      optionally DialogDescription) for proper labeling. These hidden elements
+      ensure assistive technologies announce the dialog correctly without
+      duplicating visible text. */}
       <DialogTitle hidden>{title}</DialogTitle>
       {description && (
         <DialogDescription hidden>{description}</DialogDescription>

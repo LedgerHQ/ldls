@@ -1,7 +1,8 @@
-import { createAnimationsPlugin } from 'src/utils/create-animations-plugin.js';
 import type { Config } from 'tailwindcss';
 import { websitesTheme } from '../themes/index.js';
+import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
+
 import {
   createGradientPlugin,
   createThemePlugin,
