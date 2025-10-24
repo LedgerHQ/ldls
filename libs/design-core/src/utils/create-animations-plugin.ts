@@ -166,7 +166,7 @@ export function createAnimationsPlugin() {
             'slide-out-to-right-8': 'slide-out-to-right-8 300ms ease-in',
 
             'translate-from-right':
-              'translate-from-right 300ms var(--easing-ease-in-out)',
+              'translate-from-right 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           },
         },
       },
