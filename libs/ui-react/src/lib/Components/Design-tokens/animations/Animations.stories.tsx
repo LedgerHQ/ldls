@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import { CursorTouch, Refresh } from '../../../Symbols';
 import { Button } from '../../Button';
+import { Tag } from '../../Tag';
 
 const meta: Meta = {
   title: 'Foundations/Animations',
@@ -66,9 +67,7 @@ const AnimationDemo = ({
       <div className='text-center'>
         <h3 className='mb-8 heading-3'>{title}</h3>
         <p className='mb-16 text-muted body-2'>{description}</p>
-        <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
-          {animationClass}
-        </code>
+        <Tag label={animationClass} appearance='gray' />
       </div>
 
       <div className='relative'>
@@ -100,7 +99,13 @@ const AnimationDemo = ({
             )}
           >
             {isOutAnimation ? (
-              <CursorTouch className='text-on-accent' size={24} />
+              <CursorTouch
+                className={cn(
+                  'text-on-accent',
+                  isAnimating && 'animate-fade-out',
+                )}
+                size={24}
+              />
             ) : (
               <span className='body-4'>Animated Element</span>
             )}
@@ -108,7 +113,6 @@ const AnimationDemo = ({
         </button>
       </div>
       <Button
-        size='sm'
         appearance='gray'
         onClick={handleReset}
         aria-label='Reset'
@@ -121,105 +125,76 @@ const AnimationDemo = ({
 };
 
 // Fade Animations
-export const FadeIn: Story = {
+export const Fade: Story = {
   render: () => (
-    <AnimationDemo
-      animationClass='animate-fade-in'
-      title='Fade In'
-      description='Simple opacity transition from transparent to visible'
-    />
+    <div className='grid grid-cols-2 gap-24'>
+      <AnimationDemo
+        animationClass='animate-fade-in'
+        title='Fade In'
+        description='Opacity transition from transparent to visible'
+      />
+      <AnimationDemo
+        animationClass='animate-fade-out'
+        title='Fade Out'
+        description='Opacity transition from visible to transparent'
+      />
+    </div>
   ),
 };
 
-export const FadeOut: Story = {
+// Slide In Animations
+export const SlideIn: Story = {
   render: () => (
-    <AnimationDemo
-      animationClass='animate-fade-out'
-      title='Fade Out'
-      description='Simple opacity transition from visible to transparent'
-    />
+    <div className='grid grid-cols-2 gap-24 lg:grid-cols-4'>
+      <AnimationDemo
+        animationClass='animate-slide-in-from-top'
+        title='From Top'
+        description='Slides in from above with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-in-from-bottom'
+        title='From Bottom'
+        description='Slides in from below with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-in-from-left'
+        title='From Left'
+        description='Slides in from left with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-in-from-right'
+        title='From Right'
+        description='Slides in from right with fade'
+      />
+    </div>
   ),
 };
 
-// Slide In Animations (0px offset)
-export const SlideInFromTop: Story = {
+// Slide Out Animations
+export const SlideOut: Story = {
   render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-in-from-top'
-      title='Slide In From Top'
-      description='Element slides in from above with fade-in effect'
-    />
-  ),
-};
-
-export const SlideInFromBottom: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-in-from-bottom'
-      title='Slide In From Bottom'
-      description='Element slides in from below with fade-in effect'
-    />
-  ),
-};
-
-export const SlideInFromLeft: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-in-from-left'
-      title='Slide In From Left'
-      description='Element slides in from the left with fade-in effect'
-    />
-  ),
-};
-
-export const SlideInFromRight: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-in-from-right'
-      title='Slide In From Right'
-      description='Element slides in from the right with fade-in effect'
-    />
-  ),
-};
-
-// Slide Out Animations (0px offset)
-export const SlideOutToTop: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-out-to-top'
-      title='Slide Out To Top'
-      description='Element slides out upward with fade-out effect'
-    />
-  ),
-};
-
-export const SlideOutToBottom: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-out-to-bottom'
-      title='Slide Out To Bottom'
-      description='Element slides out downward with fade-out effect'
-    />
-  ),
-};
-
-export const SlideOutToLeft: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-out-to-left'
-      title='Slide Out To Left'
-      description='Element slides out to the left with fade-out effect'
-    />
-  ),
-};
-
-export const SlideOutToRight: Story = {
-  render: () => (
-    <AnimationDemo
-      animationClass='animate-slide-out-to-right'
-      title='Slide Out To Right'
-      description='Element slides out to the right with fade-out effect'
-    />
+    <div className='grid grid-cols-2 gap-24 lg:grid-cols-4'>
+      <AnimationDemo
+        animationClass='animate-slide-out-to-top'
+        title='To Top'
+        description='Slides out upward with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-out-to-bottom'
+        title='To Bottom'
+        description='Slides out downward with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-out-to-left'
+        title='To Left'
+        description='Slides out to left with fade'
+      />
+      <AnimationDemo
+        animationClass='animate-slide-out-to-right'
+        title='To Right'
+        description='Slides out to right with fade'
+      />
+    </div>
   ),
 };
 
@@ -234,9 +209,7 @@ export const DefaultTailwindAnimations: Story = {
           <div className='flex flex-col items-center gap-16 p-24'>
             <div className='text-center'>
               <h3 className='mb-8 heading-3'>Spin</h3>
-              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
-                animate-spin
-              </code>
+              <Tag label='animate-spin' appearance='gray' />
             </div>
             <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
               <div className='relative size-24'>
@@ -249,9 +222,7 @@ export const DefaultTailwindAnimations: Story = {
           <div className='flex flex-col items-center gap-16 p-24'>
             <div className='text-center'>
               <h3 className='mb-8 heading-3'>Ping</h3>
-              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
-                animate-ping
-              </code>
+              <Tag label='animate-ping' appearance='gray' />
             </div>
             <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
               <div className='relative size-24'>
@@ -265,9 +236,7 @@ export const DefaultTailwindAnimations: Story = {
           <div className='flex flex-col items-center gap-16 p-24'>
             <div className='text-center'>
               <h3 className='mb-8 heading-3'>Pulse</h3>
-              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
-                animate-pulse
-              </code>
+              <Tag label='animate-pulse' appearance='gray' />
             </div>
             <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
               <div className='relative size-24'>
@@ -280,9 +249,7 @@ export const DefaultTailwindAnimations: Story = {
           <div className='flex flex-col items-center gap-16 p-24'>
             <div className='text-center'>
               <h3 className='mb-8 heading-3'>Bounce</h3>
-              <code className='rounded-sm bg-muted px-8 py-4 body-3-semi-bold'>
-                animate-bounce
-              </code>
+              <Tag label='animate-bounce' appearance='gray' />
             </div>
             <div className='flex h-80 w-144 items-center justify-center rounded-sm border border-muted-subtle'>
               <div className='relative size-24'>
