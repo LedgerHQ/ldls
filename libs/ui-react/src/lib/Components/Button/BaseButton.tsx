@@ -2,7 +2,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
-import { Spinner } from '../../Symbols/Icons/Spinner';
+import { Spinner } from '../../Symbols/Spinner';
 import { IconSize } from '../Icon/Icon';
 
 const baseButtonVariants = cva(
@@ -130,13 +130,7 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         onClick={handleClick}
         {...props}
       >
-        {loading && (
-          <Spinner
-            size={iconSize}
-            className='shrink-0 animate-spin'
-            aria-label='Loading'
-          />
-        )}
+        {loading && <Spinner size={iconSize} />}
         {!loading && Icon && <Icon size={iconSize} className='shrink-0' />}
 
         {children &&
