@@ -117,13 +117,13 @@ export const BaseButton = React.forwardRef<
       size = 'md',
       isFull,
       loading,
-      icon,
+      icon: IconProp,
       disabled,
       ...props
     },
     ref,
   ) => {
-    const iconOnly = Boolean(icon && !children);
+    const iconOnly = Boolean(IconProp && !children);
 
     const iconSizeMap: { [key: string]: IconSize } = {
       xs: 16,
@@ -133,7 +133,6 @@ export const BaseButton = React.forwardRef<
     };
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
-    const IconComponent = icon;
 
     return (
       <TouchableOpacity
@@ -163,8 +162,8 @@ export const BaseButton = React.forwardRef<
             accessibilityLabel='Loading'
           />
         )}
-        {!loading && IconComponent && (
-          <IconComponent
+        {!loading && IconProp && (
+          <IconProp
             size={calculatedIconSize}
             className={buttonVariants.icon({ appearance, disabled })}
           />
