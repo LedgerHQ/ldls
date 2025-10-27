@@ -26,9 +26,6 @@ import * as AnimationsStories from './Animations.stories';
     animation: ease-demo-cycle 4s linear infinite;
   }
   
-  .duration-0-demo {
-    animation: spin 0ms linear infinite;
-  }
   .duration-75-demo {
     animation: spin 75ms linear infinite;
   }
@@ -58,7 +55,10 @@ import * as AnimationsStories from './Animations.stories';
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  
+  .delay-0-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 0ms;
+  }
   .delay-75-demo {
     animation: delay-demo 2s ease-in-out infinite;
     animation-delay: 75ms;
@@ -330,7 +330,7 @@ The animation system provides a comprehensive set of utilities for creating smoo
         <td className='p-12'>
           <div className='flex items-center justify-center'>
             <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
-              <div className='absolute inset-0 bg-accent duration-0-demo'></div>
+              <div className='absolute inset-0 bg-accent delay-0-demo'></div>
             </div>
           </div>
         </td>
