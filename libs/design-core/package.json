@@ -27,7 +27,7 @@
     "!dist/figma/*"
   ],
   "dependencies": {
-    "tailwindcss": "^3.4.0",
+    "tailwindcss": "^4.1.16",
     "tslib": "^2.3.0"
   }
 }
