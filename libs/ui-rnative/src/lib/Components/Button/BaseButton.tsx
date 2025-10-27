@@ -156,8 +156,11 @@ export const BaseButton = React.forwardRef<
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className='shrink-0 animate-spin'
-            aria-label='Loading'
+            className={cn(
+              'shrink-0 animate-spin',
+              buttonVariants.icon({ appearance, disabled }),
+            )}
+            accessibilityLabel='Loading'
           />
         )}
         {!loading && IconComponent && (
