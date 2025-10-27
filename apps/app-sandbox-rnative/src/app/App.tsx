@@ -81,6 +81,20 @@ export const App = () => {
                   appearance='red'
                   icon={Settings}
                 />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  appearance='gray'
+                  icon={Settings}
+                />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  icon={Settings}
+                />
+                <IconButton
+                  accessibilityLabel='Go to Ledger Shop'
+                  icon={Settings}
+                  disabled
+                />
               </View>
             </View>
           </View>
