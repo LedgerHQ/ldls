@@ -1,8 +1,13 @@
 import { cva } from 'class-variance-authority';
+import { cssInterop } from 'nativewind';
 import { forwardRef } from 'react';
 import { Svg } from 'react-native-svg';
 import { cn } from '../../utils';
 import { IconProps } from './Icon.types';
+
+cssInterop(Svg, {
+  className: 'style',
+});
 
 const iconVariants = cva('inline-block', {
   variants: {
