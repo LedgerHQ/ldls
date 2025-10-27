@@ -40,7 +40,7 @@ jobs:
           FIGMA_FOUNDATIONS_FILE_KEY: ${{ github.event.inputs.figma_foundations_file_key || vars.FIGMA_FOUNDATIONS_FILE_KEY }}
 
       - name: Upload design tokens artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: design-tokens
           path: libs/design-core/tokens/
@@ -72,7 +72,7 @@ jobs:
           FIGMA_ICONS_CANVAS: ${{ github.event.inputs.figma_icons_canvas || vars.FIGMA_ICONS_CANVAS }}
 
       - name: Upload SVG artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: svg-symbols
           path: libs/design-core/symbols/
@@ -107,7 +107,7 @@ jobs:
         run: npx nx run @ledgerhq/ldls-design-core:design-tokens-etl
 
       - name: Upload processed tokens artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: processed-design-tokens
           path: libs/design-core/src/themes/
@@ -145,7 +145,7 @@ jobs:
           npx nx run-many --target=lint --fix
 
       - name: Upload React symbols artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: react-symbols
           path: libs/ui-react/src/lib/Symbols/
@@ -183,7 +183,7 @@ jobs:
           npx nx run-many --target=lint --fix
 
       - name: Upload React Native symbols artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: react-native-symbols
           path: libs/ui-rnative/src/lib/Symbols/
