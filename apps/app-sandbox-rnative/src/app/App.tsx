@@ -1,108 +1,41 @@
-import {
-  Button,
-  IconButton,
-  Switch,
-  ThemeProvider,
-  useTheme,
-} from '@ledgerhq/ldls-ui-rnative';
-import {
-  ExternalLink,
-  Link,
-  Plus,
-  Settings,
-} from '@ledgerhq/ldls-ui-rnative/symbols';
-import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
-
-const ToggleThemeButton = () => {
-  const { mode, toggleMode } = useTheme();
-  return (
-    <View className='text-muted flex flex-row gap-8'>
-      <Text className='text-base'>Dark mode</Text>
-      <Switch checked={mode === 'dark'} onCheckedChange={toggleMode} />
-    </View>
-  );
-};
+import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
+import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
+import { Buttons } from './blocks/Buttons';
+import { Checkboxes } from './blocks/Checkboxes';
+import { IconButtons } from './blocks/IconButtons';
+import { Switches } from './blocks/Switches';
+import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
+import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
   return (
-    <>
-      <StatusBar barStyle='dark-content' />
-      <SafeAreaView className='flex-1'>
-        <ThemeProvider defaultMode='system'>
-          <ScrollView contentInsetAdjustmentBehavior='automatic'>
-            <View className='bg-muted size-full p-16'>
-              <ToggleThemeButton />
-              <Text
-                testID='heading'
-                role='heading'
-                className='mb-24 text-base uppercase'
-              >
-                Welcome to React Native 👋
-              </Text>
-              <View className='mt-12 w-full flex-row items-center gap-8'>
-                <Button appearance='accent'>Text Only</Button>
-                <Button appearance='accent' icon={Plus}>
-                  With Icon
-                </Button>
-              </View>
-              <Button
-                appearance='accent'
-                onPress={() => {
-                  console.log('Button pressed');
-                }}
-              >
-                Click me
-              </Button>
-              <IconButton
-                accessibilityLabel='Settings'
-                appearance='accent'
-                icon={Settings}
-              />
-            </View>
-            <View className='my-12 gap-8'>
-              <Text>IconButton</Text>
-              <View className='flex-row gap-8'>
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  appearance='accent'
-                  icon={ExternalLink}
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  appearance='accent'
-                  icon={Settings}
-                  loading
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  appearance='base'
-                  icon={Link}
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  appearance='red'
-                  icon={Settings}
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  appearance='gray'
-                  icon={Settings}
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  icon={Settings}
-                />
-                <IconButton
-                  accessibilityLabel='Go to Ledger Shop'
-                  icon={Settings}
-                  disabled
-                />
-              </View>
-            </View>
-          </ScrollView>
-        </ThemeProvider>
-      </SafeAreaView>
-    </>
+    <SafeAreaView className='flex flex-1'>
+      <StatusBar />
+      <ThemeProvider defaultMode='dark' className='flex flex-1'>
+        <ScrollView
+          contentInsetAdjustmentBehavior='automatic'
+          className='bg-canvas-sheet h-screen px-16 '
+        >
+          <View className='flex flex-col gap-32 py-40'>
+            <SandboxBlock title='Checkboxes'>
+              <Checkboxes />
+            </SandboxBlock>
+            <SandboxBlock title='Switches'>
+              <Switches />
+            </SandboxBlock>
+            <SandboxBlock title='Buttons'>
+              <Buttons />
+            </SandboxBlock>
+            <SandboxBlock title='IconButtons'>
+              <IconButtons />
+            </SandboxBlock>
+            <SandboxBlock title='ToggleThemeSwitch'>
+              <ToggleThemeSwitch />
+            </SandboxBlock>
+          </View>
+        </ScrollView>
+      </ThemeProvider>
+    </SafeAreaView>
   );
 };
 
