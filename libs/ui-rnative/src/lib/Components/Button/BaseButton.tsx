@@ -97,12 +97,14 @@ const buttonVariants = {
         true: 'text-disabled',
       },
     },
-    defaultVariants: {
-      appearance: 'base',
-    },
   }),
 };
 
+/**
+ * Base button component
+ * @default appearance 'base'
+ * @default size 'md'
+ */
 export const BaseButton = React.forwardRef<
   React.ElementRef<typeof TouchableOpacity>,
   BaseButtonProps
@@ -111,7 +113,7 @@ export const BaseButton = React.forwardRef<
     {
       className,
       children,
-      appearance,
+      appearance = 'base',
       size = 'md',
       isFull,
       loading,
