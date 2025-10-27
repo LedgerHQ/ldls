@@ -83,8 +83,28 @@ const buttonVariants = {
     },
   ),
   label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
+  icon: cva('shrink-0', {
+    variants: {
+      appearance: {
+        base: 'text-on-interactive',
+        accent: 'text-on-accent',
+        red: 'text-error',
+        gray: 'text-base',
+        'no-background': 'text-base',
+        transparent: 'text-base',
+      },
+      disabled: {
+        true: 'text-disabled',
+      },
+    },
+  }),
 };
 
+/**
+ * Base button component
+ * @default appearance 'base'
+ * @default size 'md'
+ */
 export const BaseButton = React.forwardRef<
   React.ElementRef<typeof TouchableOpacity>,
   BaseButtonProps
@@ -93,7 +113,7 @@ export const BaseButton = React.forwardRef<
     {
       className,
       children,
-      appearance,
+      appearance = 'base',
       size = 'md',
       isFull,
       loading,
@@ -136,14 +156,14 @@ export const BaseButton = React.forwardRef<
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className='shrink-0 animate-spin text-inherit'
+            className='shrink-0 animate-spin'
             aria-label='Loading'
           />
         )}
         {!loading && IconComponent && (
           <IconComponent
             size={calculatedIconSize}
-            className='shrink-0 text-inherit'
+            className={buttonVariants.icon({ appearance, disabled })}
           />
         )}
         {children && <Text className={buttonVariants.label()}>{children}</Text>}
