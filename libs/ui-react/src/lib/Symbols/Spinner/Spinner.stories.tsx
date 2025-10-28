@@ -34,7 +34,7 @@ export const Basic: Story = {
   ),
 };
 
-export const Appearances: Story = {
+export const AppearanceShowcase: Story = {
   args: {
     size: 40,
   },
@@ -57,7 +57,7 @@ export const Appearances: Story = {
   ),
 };
 
-export const Sizes: Story = {
+export const SizeShowcase: Story = {
   args: {
     appearance: 'base',
   },
