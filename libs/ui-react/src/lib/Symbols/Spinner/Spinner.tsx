@@ -12,8 +12,8 @@ export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
 const iconVariants = cva('shrink-0 animate-spin', {
   variants: {
     appearance: {
-      base: 'text-on-accent',
-      accent: 'text-on-interactive',
+      base: 'text-base',
+      accent: 'text-interactive',
     },
   },
   defaultVariants: {
