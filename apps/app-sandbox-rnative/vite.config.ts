@@ -1,6 +1,5 @@
 /// <reference types='vitest' />
 import { readFileSync } from 'fs';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react';
 import * as esbuild from 'esbuild';
 import { defineConfig } from 'vite';
@@ -49,7 +48,13 @@ export default defineConfig({
     commonjsOptions: { transformMixedEsModules: true },
     outDir: '../../dist/apps/app-sandbox-rnative/web',
     rollupOptions: {
-      plugins: [rollupPlugin([/react-native-vector-icons/])],
+      plugins: [
+        rollupPlugin([
+          /react-native-vector-icons/,
+          /react-native-css-interop/,
+          /nativewind/,
+        ]),
+      ],
     },
   },
   server: {
@@ -71,7 +76,7 @@ export default defineConfig({
       loader: { '.js': 'jsx' },
     },
   },
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [react()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
