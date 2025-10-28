@@ -1,10 +1,11 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { forwardRef } from 'react';
+import { IconSize } from '../../Components/Icon/Icon';
 import { Spinner as SpinnerIcon } from '../Icons/Spinner';
 
 export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
-  size?: 16 | 20 | 24;
-  appearance?: 'accent'; // TODO: use cva later
+  size?: IconSize;
+  appearance?: 'base' | 'accent'; // TODO: use cva later
 };
 
 /**
@@ -14,12 +15,21 @@ export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
  * <Spinner />
  */
 export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
-  ({ className }, ref) => {
+  ({ className, size = 16, appearance = 'base', ...props }, ref) => {
     return (
       <SpinnerIcon
-        className={cn('shrink-0 animate-spin', className)}
+        size={size}
+        className={cn(
+          'shrink-0 animate-spin',
+          {
+            'text-on-accent': appearance === 'base',
+            'text-on-interactive': appearance === 'accent',
+          },
+          className,
+        )}
         ref={ref}
         aria-label='Loading'
+        {...props}
       />
     );
   },

@@ -5,7 +5,7 @@ import { Spinner as SpinnerIcon } from '../Icons/Spinner';
 
 export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
   size?: 16 | 20 | 24;
-  appearance?: 'accent'; // TODO: use cva later
+  appearance?: 'base' | 'accent'; // TODO: use cva later
 };
 
 /**
@@ -19,7 +19,7 @@ export const Spinner = forwardRef<Svg, SpinnerProps>(({ className }, ref) => {
     <SpinnerIcon
       ref={ref}
       className={cn('shrink-0 animate-spin', className)}
-      aria-label='Loading'
+      accessibilityLabel='Loading'
     />
   );
 });

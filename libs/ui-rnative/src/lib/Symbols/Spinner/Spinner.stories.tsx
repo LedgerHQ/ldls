@@ -19,3 +19,10 @@ export const Basic = () => (
     <Spinner size={16} />
   </div>
 );
+
+export const AppearancesShowcase = () => (
+  <div className='flex items-center justify-center gap-4'>
+    <Spinner size={16} appearance='base' />
+    <Spinner size={16} appearance='accent' />
+  </div>
+);
