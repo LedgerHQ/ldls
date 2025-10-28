@@ -98,7 +98,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Download design tokens artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: design-tokens
           path: libs/design-core/tokens/
@@ -133,7 +133,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Download SVG artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: svg-symbols
           path: libs/design-core/symbols/
@@ -171,7 +171,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Download SVG artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: svg-symbols
           path: libs/design-core/symbols/
@@ -202,31 +202,31 @@ jobs:
           fetch-depth: 0
 
       - name: Download design tokens artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: design-tokens
           path: libs/design-core/tokens/
 
       - name: Download processed design tokens artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: processed-design-tokens
           path: libs/design-core/src/themes/
 
       - name: Download SVG symbols artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: svg-symbols
           path: libs/design-core/symbols/
 
       - name: Download React symbols artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: react-symbols
           path: libs/ui-react/src/lib/Symbols/
 
       - name: Download React Native symbols artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: react-native-symbols
           path: libs/ui-rnative/src/lib/Symbols/
