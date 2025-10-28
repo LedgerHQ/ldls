@@ -1,13 +1,223 @@
-import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as SpinnerStories from './Spinner.stories';
-import { Spinner } from './Spinner';
 
-<Meta title='Symbols/Spinner' of={SpinnerStories} />
+<Meta title='Symbols/Spinner/Docs' of={SpinnerStories} />
 
 # 🌀 Spinner
 
-A basic animated spinner for loading states.
+<CustomTabs>
+  <Tab label="Overview">
 
-<Canvas>
-  <Story of={SpinnerStories.Basic} />
-</Canvas>
+The Spinner component provides visual feedback for loading states and background processes. It's a crucial element for maintaining user engagement during asynchronous operations and preventing perceived delays.
+
+## Figma Library
+
+All spinner designs are created and managed in our components library. This ensures consistency across all platforms and use cases.
+
+- 🔗 **[Figma - Components Library](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9023-3681&m=dev)**
+
+## Interactive Example
+
+<Canvas of={SpinnerStories.Basic} />
+<Controls of={SpinnerStories.Basic} />
+
+## 🎨 Appearances
+
+The Spinner component comes in two visual variants:
+
+- **Base** - uses the primary text color (`text-base`) for standard loading states
+- **Accent** - uses the interactive color (`text-interactive`) for emphasized loading states
+
+<Canvas of={SpinnerStories.AppearanceShowcase} />
+
+---
+
+## 📏 Sizing
+
+Our spinners are designed to be scalable and available in 7 standard sizes to fit various contexts within the UI, matching our icon sizing system for consistency. The available sizes are: **12, 16, 20, 24, 40, 48** and **56** pixels.
+
+<Canvas of={SpinnerStories.SizeShowcase} />
+
+---
+
+## Usage Guidelines
+
+### When to Use
+
+- **Loading States**: During data fetching, form submissions, or content loading
+- **Background Processes**: When operations take longer than 1-2 seconds
+- **Screen Transitions**: During navigation between views or routes
+- **Button Actions**: Within buttons to indicate processing
+
+### When Not to Use
+
+- **Very Quick Operations**: For processes under 1 second
+- **Static Content**: Don't use spinners for content that's already loaded
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+Install the packages and their peer dependencies:
+
+```bash
+# Install the UI Kit
+npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+
+# Install peer dependencies
+npm install react@~18.3.1 react-native@~0.77.3 react-native-svg@^15.0.0 nativewind@^4.1.23
+```
+
+### NativeWind Configuration
+
+To use Spinner components with our custom NativeWind preset, you need to configure your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
+    './node_modules/@ledgerhq/ldls-ui-rnative/src/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### Basic Usage
+
+Import and use the Spinner component:
+
+```tsx
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  return <View>{isLoading && <Spinner />}</View>;
+}
+```
+
+### Size Variants
+
+Spinners support predefined size variants that ensure consistent visual hierarchy:
+
+```tsx
+import React from 'react';
+import { View } from 'react-native';
+import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <View className='flex flex-row items-center gap-4'>
+      <Spinner size={12} />
+      <Spinner size={16} />
+      <Spinner size={20} />
+    </View>
+  );
+}
+```
+
+### Appearance Variants
+
+Choose the appropriate appearance based on the context:
+
+```tsx
+import React from 'react';
+import { View } from 'react-native';
+import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <View className='flex flex-row items-center gap-4'>
+      <Spinner appearance='base' size={24} />
+      <Spinner appearance='accent' size={24} />
+    </View>
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Size Usage
+
+✅ **Do**
+
+```tsx
+// Match spinner size to context
+<Spinner size={12} /> // For small inline loading
+<Spinner size={40} /> // For prominent loading states
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override the spinner's size
+<Spinner className="w-6 h-6" />
+<Spinner size={24} width={32} height={32} />
+
+// Don't use non-standard sizes
+<Spinner size={22} />
+```
+
+### Appearance Usage
+
+✅ **Do**
+
+```tsx
+// Use base for standard loading states
+<Spinner appearance="base" />
+
+// Use accent for emphasized loading
+<Spinner appearance="accent" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use arbitrary colors
+<Spinner style={{ color: '#FF0000' }} />
+<Spinner className="text-red-500" />
+```
+
+### Loading States
+
+✅ **Do**
+
+```tsx
+// Show spinners for operations over 1-2 seconds
+{isLoading && <Spinner />}
+
+// Provide context with descriptive text
+<View className="flex flex-row items-center gap-2">
+  <Spinner size={16} />
+  <Text>Syncing wallet...</Text>
+</View>
+
+// Disable interactions during loading
+<Button disabled={isLoading}>
+  {isLoading ? <Spinner size={16} /> : 'Submit'}
+</Button>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't show spinners for instant operations
+const data = getLocalData(); // Synchronous
+return <Spinner />; // Not needed
+
+// Don't modify or disable animation properties
+<Spinner className="animate-bounce" />
+<Spinner className="animate-none" />
+```
+
+</Tab>
+</CustomTabs>
