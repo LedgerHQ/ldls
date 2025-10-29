@@ -60,7 +60,7 @@ export const Base: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'sm',
+        appearance: 'compact',
         title: 'Sheet Title',
       }}
     />
@@ -74,7 +74,7 @@ export const Base: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent >
-    <DialogHeader title="Sheet Title" onClose={() => setOpen(false)} />
+    <DialogHeader appearance="compact" title="Sheet Title" onClose={() => setOpen(false)} />
     <div>Content goes here</div>
   </DialogContent>
 </Dialog>
@@ -88,7 +88,7 @@ export const WithDescription: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'sm',
+        appearance: 'compact',
         title: 'Sheet Title',
         description: 'Additional information',
         onBack: () => console.log('Back clicked'),
@@ -104,7 +104,7 @@ export const WithDescription: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent >
-    <DialogHeader title="Sheet Title" description="Additional information" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
+    <DialogHeader appearance="compact" title="Sheet Title" description="Additional information" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
     <div>Content goes here </div>
   </DialogContent>
 </Dialog>
@@ -118,7 +118,7 @@ export const WithBack: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'sm',
+        appearance: 'compact',
         title: 'Sheet Title',
         onBack: () => console.log('Back clicked'),
       }}
@@ -133,7 +133,7 @@ export const WithBack: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent >
-    <DialogHeader title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
+    <DialogHeader appearance="compact" title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
     <div>Content goes here </div>
   </DialogContent>
 </Dialog>
@@ -143,12 +143,12 @@ export const WithBack: Story = {
   },
 };
 
-export const Large: Story = {
+export const Extended: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'lg',
-        title: 'Large Sheet Title',
+        appearance: 'extended',
+        title: 'Extended Sheet Title',
         description: 'Additional information',
         onBack: () => console.log('Back clicked'),
       }}
@@ -163,7 +163,7 @@ export const Large: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent >
-    <DialogHeader title="Large Sheet Title" onClose={() => setOpen(false)} />
+    <DialogHeader appearance="extended" title="Extended Sheet Title" onClose={() => setOpen(false)} />
     <div>Content goes here </div>
   </DialogContent>
 </Dialog>
@@ -173,24 +173,24 @@ export const Large: Story = {
   },
 };
 
-export const LargeWithDescription: Story = {
+export const ExtendedWithDescription: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'lg',
-        title: 'Large Sheet Title',
+        appearance: 'extended',
+        title: 'Extended Sheet Title',
         description: 'Additional information',
       }}
     />
   ),
 };
 
-export const LargeWithBack: Story = {
+export const ExtendedWithBack: Story = {
   render: () => (
     <DialogTemplate
       dialogHeaderProps={{
-        size: 'lg',
-        title: 'Large Sheet Title',
+        appearance: 'extended',
+        title: 'Extended Sheet Title',
         onBack: () => console.log('Back clicked'),
       }}
     />
@@ -208,7 +208,7 @@ export const InfoStateError: Story = {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader
-            size='sm'
+            appearance='compact'
             onClose={() => setOpen(false)}
             className='relative'
           />
@@ -244,7 +244,7 @@ export const InfoStateError: Story = {
     <Button appearance="base">Open Error Dialog</Button>
   </DialogTrigger>
   <DialogContent>
-    <DialogHeader size="sm" onClose={() => setOpen(false)} className="relative"/>
+    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
     <div className="flex flex-col items-center gap-24 overflow-hidden">
       <div className='absolute inset-x-0 top-0 h-full bg-gradient-error pointer-events-none' />
       
@@ -279,7 +279,7 @@ export const InfoStateSuccess: Story = {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader
-            size='sm'
+            appearance='compact'
             onClose={() => setOpen(false)}
             className='relative'
           />
@@ -315,7 +315,7 @@ export const InfoStateSuccess: Story = {
     <Button appearance="base">Open Success Dialog</Button>
   </DialogTrigger>
   <DialogContent>
-    <DialogHeader size="sm" onClose={() => setOpen(false)} className="relative"/>
+    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
        <div className="flex flex-col items-center gap-24 overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-full bg-gradient-success pointer-events-none" />
       

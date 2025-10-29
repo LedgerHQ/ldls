@@ -6,9 +6,9 @@ import { IconButton } from '../IconButton';
 
 const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
   variants: {
-    size: {
-      sm: 'h-64 flex-row items-center gap-12',
-      lg: 'flex-col gap-16 pb-12',
+    appearance: {
+      compact: 'h-64 flex-row items-center gap-12',
+      extended: 'flex-col gap-16 pb-12',
     },
   },
 });
@@ -41,9 +41,10 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
 
 export interface SheetBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * The size variant of the sheet bar.
+   * The appearance variant of the sheet bar.
+   * @default 'compact'
    */
-  size: 'sm' | 'lg';
+  appearance?: 'compact' | 'extended';
   /**
    * The main title to display in the sheet bar.
    */
@@ -72,21 +73,21 @@ export interface SheetBarProps extends React.HTMLAttributes<HTMLDivElement> {
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-sheetbar-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the sheet bar's core appearance (colors, padding, etc). Use the `size` prop instead.
+ * Do not use it to modify the sheet bar's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
  * import { SheetBar } from '@ledgerhq/ldls-ui-react';
  *
- * // Basic small sheet bar with title and close
+ * // Basic compact sheet bar with title and close
  * <SheetBar
- *   size="sm"
+ *   appearance="compact"
  *   title="Settings"
  *   onClose={() => console.log('Closed!')}
  * />
  *
- * // Large sheet bar with back button and description
+ * // Extended sheet bar with back button and description
  * <SheetBar
- *   size="lg"
+ *   appearance="extended"
  *   title="Account Details"
  *   description="View and edit your account information"
  *   onClose={() => handleClose()}
@@ -95,7 +96,7 @@ export interface SheetBarProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 export const SheetBar = ({
   className,
-  size = 'sm',
+  appearance = 'compact',
   title,
   description,
   onClose,
@@ -103,8 +104,8 @@ export const SheetBar = ({
   ...props
 }: SheetBarProps) => {
   return (
-    <div className={cn(className, sheetBarVariants({ size }))} {...props}>
-      {size === 'sm' && (
+    <div className={cn(className, sheetBarVariants({ appearance }))} {...props}>
+      {appearance === 'compact' && (
         <>
           {onBack && <BackButton onBack={onBack} />}
           <div
@@ -126,7 +127,7 @@ export const SheetBar = ({
           <CloseButton onClose={onClose} />
         </>
       )}
-      {size === 'lg' && (
+      {appearance === 'extended' && (
         <>
           <div className='flex flex-row items-center justify-between'>
             {onBack && <BackButton onBack={onBack} />}
