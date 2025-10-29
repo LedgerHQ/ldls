@@ -2,7 +2,7 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as SpinnerStories from './Spinner.stories';
 
-<Meta title='Symbols/Spinner/Docs' of={SpinnerStories} />
+<Meta title='Communication/Spinner/Docs' of={SpinnerStories} />
 
 # 🌀 Spinner
 
@@ -47,7 +47,7 @@ Our spinners are designed to be scalable and available in 7 standard sizes to fi
 
 - **Loading States**: During data fetching, form submissions, or content loading
 - **Background Processes**: When operations take longer than 1-2 seconds
-- **Screen Transitions**: During navigation between views or routes
+- **Page Transitions**: During navigation between views or routes
 - **Button Actions**: Within buttons to indicate processing
 
 ### When Not to Use
@@ -64,15 +64,15 @@ Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
 
 # Install peer dependencies
-npm install react@~18.3.1 react-native@~0.77.3 react-native-svg@^15.0.0 nativewind@^4.1.23
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
 ```
 
-### NativeWind Configuration
+### Tailwind Configuration
 
-To use Spinner components with our custom NativeWind preset, you need to configure your `tailwind.config.ts`:
+To use Spinner components with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
@@ -81,7 +81,7 @@ import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-rnative/src/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -94,14 +94,12 @@ export default config;
 Import and use the Spinner component:
 
 ```tsx
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+import { Spinner } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   const [isLoading, setIsLoading] = useState(false);
 
-  return <View>{isLoading && <Spinner />}</View>;
+  return <div>{isLoading && <Spinner />}</div>;
 }
 ```
 
@@ -110,17 +108,15 @@ function MyComponent() {
 Spinners support predefined size variants that ensure consistent visual hierarchy:
 
 ```tsx
-import React from 'react';
-import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+import { Spinner } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <View className='flex flex-row items-center gap-4'>
+    <div className='flex items-center gap-4'>
       <Spinner size={12} />
       <Spinner size={16} />
       <Spinner size={20} />
-    </View>
+    </div>
   );
 }
 ```
@@ -130,16 +126,14 @@ function MyComponent() {
 Choose the appropriate appearance based on the context:
 
 ```tsx
-import React from 'react';
-import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+import { Spinner } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <View className='flex flex-row items-center gap-4'>
+    <div className='flex items-center gap-4'>
       <Spinner appearance='base' size={24} />
       <Spinner appearance='accent' size={24} />
-    </View>
+    </div>
   );
 }
 ```
@@ -196,10 +190,10 @@ function MyComponent() {
 {isLoading && <Spinner />}
 
 // Provide context with descriptive text
-<View className="flex flex-row items-center gap-2">
+<div className="flex items-center gap-2">
   <Spinner size={16} />
-  <Text>Syncing wallet...</Text>
-</View>
+  <span>Syncing wallet...</span>
+</div>
 
 // Disable interactions during loading
 <Button disabled={isLoading}>

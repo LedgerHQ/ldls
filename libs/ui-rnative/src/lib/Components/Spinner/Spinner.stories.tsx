@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { Spinner } from './Spinner';
 
 const meta: Meta<typeof Spinner> = {
-  title: 'Symbols/Spinner',
+  title: 'Communication/Spinner',
   component: Spinner,
   parameters: {
     actions: { disable: true },

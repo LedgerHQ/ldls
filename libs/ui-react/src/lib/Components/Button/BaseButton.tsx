@@ -2,22 +2,22 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
-import { Spinner } from '../../Symbols/Spinner';
 import { IconSize } from '../Icon/Icon';
+import { Spinner } from '../Spinner';
 
 const baseButtonVariants = cva(
-  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
+  'body-1-semi-bold focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
   {
     variants: {
       appearance: {
         base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
+        gray: 'bg-muted hover:bg-muted-hover active:bg-muted-pressed text-base',
         accent:
           'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
         transparent:
-          'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
+          'bg-muted-transparent hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed text-base',
         'no-background':
-          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
+          'hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent bg-transparent text-base',
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {
