@@ -1,9 +1,9 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { Spinner } from '../../Symbols';
 import { cn } from '../../utils';
 import { IconSize } from '../Icon';
+import { Spinner } from '../Spinner';
 import { BaseButtonProps } from './BaseButton.types';
 
 const buttonVariants = {
@@ -152,16 +152,7 @@ export const BaseButton = React.forwardRef<
         activeOpacity={1}
         {...props}
       >
-        {loading && (
-          <Spinner
-            size={calculatedIconSize}
-            className={cn(
-              'shrink-0 animate-spin',
-              buttonVariants.icon({ appearance, disabled }),
-            )}
-            accessibilityLabel='Loading'
-          />
-        )}
+        {loading && <Spinner size={calculatedIconSize} />}
         {!loading && IconProp && (
           <IconProp
             size={calculatedIconSize}
