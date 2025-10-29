@@ -1,9 +1,15 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import {
+  Text,
+  TextInput,
+  type TextInputProps,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { DeleteCircleFill } from 'src/lib/Symbols';
 
-export type BaseInputProps = {
+export type BaseInputProps = TextInputProps & {
   /** The label text that floats above the input when focused or filled */
   label?: string;
   /** Additional class names to apply to the input element */
@@ -32,7 +38,7 @@ export type BaseInputProps = {
 
 const baseContainerStyles = cn(
   'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors',
-  'hover:bg-muted-hover focus-within:ring-2 focus-within:ring-active',
+  'focus-within:ring-2 focus-within:ring-active',
   'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
   'has-[:invalid]:ring-1 has-[:invalid]:ring-error has-[:invalid]:border-error',
   'has-[input[aria-invalid="true"]]:ring-1 has-[input[aria-invalid="true"]]:ring-error has-[input[aria-invalid="true"]]:border-error',
@@ -40,7 +46,7 @@ const baseContainerStyles = cn(
 
 const baseInputStyles = cn(
   'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-active',
-  'group-hover:bg-muted-hover group-disabled:bg-disabled',
+  'group-disabled:bg-disabled',
   'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
   'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
   '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
@@ -56,13 +62,60 @@ const baseLabelStyles = cn(
 );
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
-  ({ label, errorMessage, className, containerClassName, labelClassName }) => {
+  ({
+    label,
+    errorMessage,
+    className,
+    containerClassName,
+    labelClassName,
+    hideClearButton,
+    onChangeText: onChangeTextProp,
+    editable = true,
+    ...props
+  }) => {
+    const isControlled = props.value !== undefined;
+
+    const [uncontrolledValue, setUncontrolledValue] = useState(
+      props.defaultValue || '',
+    );
+    const value = isControlled ? props.value : uncontrolledValue;
+
+    const onChangeText = useCallback(
+      (text: string) => {
+        if (!isControlled) {
+          setUncontrolledValue(text);
+        }
+        onChangeTextProp?.(text);
+      },
+      [isControlled, onChangeTextProp],
+    );
+
+    const handleClear = () => {
+      if (!isControlled) {
+        setUncontrolledValue('');
+      } else {
+        onChangeTextProp?.('');
+      }
+      props.onClear?.();
+    };
+
+    const hasContent = isControlled
+      ? !!props.value && props.value.length > 0
+      : uncontrolledValue.length > 0;
+
+    const showClearButton = hasContent && editable && !hideClearButton;
+
     return (
       <View>
-        <View className={cn(baseContainerStyles, containerClassName)}>
+        <View
+          className={cn(baseContainerStyles, 'flex-row', containerClassName)}
+        >
           <TextInput
+            value={value}
             className={cn(baseInputStyles, label && 'pt-12 body-2', className)}
-            value={'asdf'}
+            onChangeText={onChangeText}
+            editable={editable}
+            {...props}
           />
           {label && (
             <Text
@@ -74,6 +127,15 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             >
               {label}
             </Text>
+          )}
+          {showClearButton && (
+            <TouchableOpacity
+              className='ml-auto'
+              onPress={handleClear}
+              accessibilityLabel='clear input'
+            >
+              <DeleteCircleFill size={20} />
+            </TouchableOpacity>
           )}
         </View>
         {errorMessage && (
