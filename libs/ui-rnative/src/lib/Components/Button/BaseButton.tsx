@@ -152,7 +152,12 @@ export const BaseButton = React.forwardRef<
         activeOpacity={1}
         {...props}
       >
-        {loading && <Spinner size={calculatedIconSize} />}
+        {loading && (
+          <Spinner
+            size={calculatedIconSize}
+            className={buttonVariants.icon({ appearance, disabled })}
+          />
+        )}
         {!loading && IconProp && (
           <IconProp
             size={calculatedIconSize}
