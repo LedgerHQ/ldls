@@ -22,7 +22,7 @@ const baseButtonVariants = cva(
       },
       size: {
         xs: 'p-8',
-        sm: 'p-12',
+        sm: 'p-10',
         md: 'p-12',
         lg: 'p-16',
       },
@@ -115,7 +115,15 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       [disabled, loading, onClick],
     );
 
-    const iconSize = size === 'lg' ? 24 : size === 'xs' ? 16 : 20;
+    const iconSizeMap: { [key: string]: IconSize } = {
+      xs: 16,
+      sm: 20,
+      md: 24,
+      lg: 24,
+    };
+
+    const calculatedIconSize = size ? iconSizeMap[size] : 24;
+
     const Comp = asChild ? Slot : 'button';
 
     return (
@@ -132,12 +140,14 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       >
         {loading && (
           <Spinner
-            size={iconSize}
+            size={calculatedIconSize}
             className='shrink-0 animate-spin'
             aria-label='Loading'
           />
         )}
-        {!loading && Icon && <Icon size={iconSize} className='shrink-0' />}
+        {!loading && Icon && (
+          <Icon size={calculatedIconSize} className='shrink-0' />
+        )}
 
         {children &&
           (asChild ? (
