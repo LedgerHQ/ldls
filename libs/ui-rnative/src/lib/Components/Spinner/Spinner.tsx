@@ -1,9 +1,8 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
-import Svg from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { IconSize } from '../../Components/Icon/Icon.types';
-import { Spinner as SpinnerIcon } from '../../Symbols/Icons/Spinner';
 
 export type SpinnerProps = {
   size?: IconSize;
@@ -33,14 +32,25 @@ const iconVariants = cva('shrink-0 animate-spin', {
  * @default appearance 'base'
  */
 export const Spinner = forwardRef<Svg, SpinnerProps>(
-  ({ className, size = 16, appearance = 'base' }, ref) => {
+  ({ className, size = 16, appearance = 'base', ...props }, ref) => {
     return (
-      <SpinnerIcon
-        size={size}
+      <Svg
+        width={size}
+        height={size}
+        viewBox='0 0 16 16'
+        fill='none'
         className={cn(iconVariants({ appearance }), className)}
-        ref={ref}
         accessibilityLabel='Loading'
-      />
+        ref={ref}
+        {...props}
+      >
+        <Path
+          d='M8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8'
+          stroke='currentColor'
+          strokeWidth='1.5'
+          strokeLinecap='round'
+        />
+      </Svg>
     );
   },
 );
