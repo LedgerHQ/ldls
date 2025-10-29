@@ -170,7 +170,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          'fixed left-[50%] top-[50%] z-dialog-content w-[400px] max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
+          'fixed left-[50%] top-[50%] z-dialog-content w-400 max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
           className,
         )}
         {...props}
@@ -194,7 +194,7 @@ export function DialogContent({
  * @param {SheetBarProps} props - All props are passed to the underlying SheetBar component.
  * @param {string} props.title - The dialog title, used both visually and for accessibility.
  * @param {string} [props.description] - Optional description, used both visually and for accessibility.
- * @param {'sm' | 'lg'} [props.size='sm'] - The size variant of the header.
+ * @param {'compact' | 'extended'} [props.appearance='compact'] - The appearance variant of the header.
  * @param {function} [props.onClose] - Callback function to handle closing the dialog.
  * @param {function} [props.onBack] - Optional callback function to handle back navigation.
  *
@@ -217,7 +217,7 @@ export function DialogContent({
  * @example
  * // With description and back button
  * <DialogHeader
- *   size="lg"
+ *   appearance="extended"
  *   title="Settings"
  *   description="Manage your account preferences"
  *   onBack={() => goToPreviousStep()}
@@ -227,7 +227,7 @@ export function DialogContent({
 export function DialogHeader({
   title = '',
   description,
-  size,
+  appearance = 'compact',
   ...props
 }: SheetBarProps & { title?: string }) {
   return (
@@ -235,10 +235,10 @@ export function DialogHeader({
       <SheetBar
         title={title}
         description={description}
-        size={size}
+        appearance={appearance}
         {...props}
         /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
-        className={cn('-ml-16 -mr-8', size === 'lg' && 'pt-16')}
+        className={cn('-ml-16 -mr-8', appearance === 'extended' && 'pt-16')}
       />
       {/* Accessibility Note: Even though the visible header/description are
       rendered by SheetBar, Radix Dialog still requires DialogTitle (and

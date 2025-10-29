@@ -44,19 +44,19 @@ Always use the DialogHeader component as the header for dialogs to maintain cons
 - Title and optional description
 - Close button
 - Optional back button
-- Two sizes: small (sm) and large (lg)
+- Two appearance variants: compact and extended
 - Automatic accessibility with proper ARIA roles
 
 <Canvas of={DialogStories.WithDescription} />
 
-### Size Variants
+### Appearance Variants
 
-Use DialogHeader's size prop to adjust the header layout:
+Use DialogHeader's appearance prop to adjust the header layout:
 
-- sm: Compact layout with centered title
-- lg: Larger layout with left-aligned title and more space
+- compact: Compact layout with centered title
+- extended: Larger layout with left-aligned title and more space
 
-<Canvas of={DialogStories.Large} />
+<Canvas of={DialogStories.Extended} />
 
 ### With Back Button
 
@@ -165,7 +165,7 @@ function MyComponent() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader
-          size='sm'
+          appearance='compact'
           title='Dialog Title'
           onClose={() => {
             /* handle close */
@@ -185,7 +185,7 @@ function MyComponent() {
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader
-      size='sm'
+      appearance='compact'
       title='Title'
       description='Additional details'
       onClose={() => {
@@ -197,17 +197,17 @@ function MyComponent() {
 </Dialog>
 ```
 
-### Large Size
+### Extended Appearance
 
-Use large DialogHeader for bigger dialogs:
+Use extended DialogHeader for bigger dialogs:
 
 ```tsx
 <Dialog>
-  <DialogTrigger>Open Large</DialogTrigger>
+  <DialogTrigger>Open Extended</DialogTrigger>
   <DialogContent className='w-[800px]'>
     <DialogHeader
-      size='lg'
-      title='Large Dialog'
+      appearance='extended'
+      title='Extended Dialog'
       onClose={() => {
         /* handle close */
       }}
@@ -224,7 +224,7 @@ Use large DialogHeader for bigger dialogs:
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader
-      size='sm'
+      appearance='compact'
       title='Title'
       onBack={() => console.log('Back')}
       onClose={() => {

@@ -5,10 +5,10 @@ import '@testing-library/jest-dom';
 import { SheetBar } from './SheetBar';
 
 describe('SheetBar', () => {
-  it('renders small size with title and description', () => {
+  it('renders compact appearance with title and description', () => {
     render(
       <SheetBar
-        size='sm'
+        appearance='compact'
         title='Test Title'
         description='Test Desc'
         onClose={() => {
@@ -20,19 +20,19 @@ describe('SheetBar', () => {
     expect(screen.getByText('Test Desc')).toBeInTheDocument();
   });
 
-  it('calls onClose when close button is clicked in small size', () => {
+  it('calls onClose when close button is clicked in compact appearance', () => {
     const onClose = vi.fn();
-    render(<SheetBar size='sm' onClose={onClose} />);
+    render(<SheetBar appearance='compact' onClose={onClose} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('renders back button and calls onBack when clicked in small size', () => {
+  it('renders back button and calls onBack when clicked in compact appearance', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
-    render(<SheetBar size='sm' onClose={onClose} onBack={onBack} />);
+    render(<SheetBar appearance='compact' onClose={onClose} onBack={onBack} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
     fireEvent.click(buttons[0]);
@@ -41,10 +41,10 @@ describe('SheetBar', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('renders large size with title and description', () => {
+  it('renders extended appearance with title and description', () => {
     render(
       <SheetBar
-        size='lg'
+        appearance='extended'
         title='Test Title'
         description='Test Desc'
         onClose={() => {
@@ -56,19 +56,21 @@ describe('SheetBar', () => {
     expect(screen.getByText('Test Desc')).toBeInTheDocument();
   });
 
-  it('calls onClose when close button is clicked in large size', () => {
+  it('calls onClose when close button is clicked in extended appearance', () => {
     const onClose = vi.fn();
-    render(<SheetBar size='lg' onClose={onClose} />);
+    render(<SheetBar appearance='extended' onClose={onClose} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('renders back button and calls onBack when clicked in large size', () => {
+  it('renders back button and calls onBack when clicked in extended appearance', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
-    render(<SheetBar size='lg' onClose={onClose} onBack={onBack} />);
+    render(
+      <SheetBar appearance='extended' onClose={onClose} onBack={onBack} />,
+    );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
     fireEvent.click(buttons[0]);

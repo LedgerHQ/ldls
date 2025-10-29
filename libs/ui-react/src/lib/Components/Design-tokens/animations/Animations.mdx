@@ -1,0 +1,465 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as AnimationsStories from './Animations.stories';
+
+<Meta title='Design Tokens/Animations' of={AnimationsStories} />
+
+<style>
+  {`
+  @keyframes ease-demo-cycle {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(calc(100% + 100px)); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(calc(100% + 100px)); }
+    100% { transform: translateX(0); }
+  }
+  
+  .ease-in-demo {
+    animation: ease-demo-cycle 4s cubic-bezier(0.4, 0, 1, 1) infinite;
+  }
+  .ease-out-demo {
+    animation: ease-demo-cycle 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .ease-in-out-demo {
+    animation: ease-demo-cycle 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  .ease-linear-demo {
+    animation: ease-demo-cycle 4s linear infinite;
+  }
+  
+  .duration-75-demo {
+    animation: spin 75ms linear infinite;
+  }
+  .duration-100-demo {
+    animation: spin 100ms linear infinite;
+  }
+  .duration-150-demo {
+    animation: spin 150ms linear infinite;
+  }
+  .duration-200-demo {
+    animation: spin 200ms linear infinite;
+  }
+  .duration-300-demo {
+    animation: spin 300ms linear infinite;
+  }
+  .duration-500-demo {
+    animation: spin 500ms linear infinite;
+  }
+  .duration-700-demo {
+    animation: spin 700ms linear infinite;
+  }
+  .duration-1000-demo {
+    animation: spin 1000ms linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .delay-0-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 0ms;
+  }
+  .delay-75-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 75ms;
+  }
+  .delay-100-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 100ms;
+  }
+  .delay-150-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 150ms;
+  }
+  .delay-200-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 200ms;
+  }
+  .delay-300-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 300ms;
+  }
+  .delay-500-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 500ms;
+  }
+  .delay-700-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 700ms;
+  }
+  .delay-1000-demo {
+    animation: delay-demo 2s ease-in-out infinite;
+    animation-delay: 1000ms;
+  }
+  
+  @keyframes delay-demo {
+    0%, 20% { opacity: 0; transform: scale(0.8); }
+    25%, 75% { opacity: 1; transform: scale(1); }
+    80%, 100% { opacity: 0; transform: scale(0.8); }
+  }
+`}
+</style>
+
+# Animations
+
+The animation system provides a comprehensive set of utilities for creating smooth, consistent animations across the Ledger Design System. This includes predefined animations, duration values, delay utilities, and easing functions.
+
+## Design Tokens Reference
+
+### Easing Functions
+
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
+    <thead>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
+        <th className='p-12 text-left text-on-accent body-2'>Name</th>
+        <th className='p-12 text-left text-on-accent body-2'>Value</th>
+        <th className='p-12 text-left text-on-accent body-2'>Description</th>
+      </tr>
+    </thead>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-in-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>ease-in</span>
+        </td>
+        <td className='p-12 text-muted'>cubic-bezier(0.4, 0, 1, 1)</td>
+        <td className='p-12 text-muted'>Slow start, fast end.</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+          <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+            <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-out-demo'></div>
+          </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>ease-out</span>
+        </td>
+        <td className='p-12 text-muted'>cubic-bezier(0, 0, 0.2, 1)</td>
+        <td className='p-12 text-muted'>Fast start, slow end.</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>    
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-in-out-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>ease-in-out</span>
+        </td>
+        <td className='p-12 text-muted'>
+          cubic-bezier(0.4, 0, 0.2, 1)
+        </td>
+        <td className='p-12 text-muted'>Slow start and end.</td>
+      </tr>
+      <tr>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-20 w-144 overflow-hidden border border-muted-subtle'>
+              <div className='absolute top-1/2 h-20 w-20 -translate-y-1/2 bg-accent ease-linear-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>ease-linear</span>
+        </td>
+        <td className='p-12 text-muted'>linear</td>
+        <td className='p-12 text-muted'>
+          Constant speed throughout the animation.
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+### Duration Values
+
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
+    <thead>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
+        <th className='p-12 text-left text-on-accent body-2'>Name</th>
+        <th className='p-12 text-left text-on-accent body-2'>Value</th>
+        <th className='p-12 text-left text-on-accent body-2'>Description</th>
+      </tr>
+    </thead>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-75-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-75</span>
+        </td>
+        <td className='p-12 text-muted'>75ms</td>
+        <td className='p-12 text-muted'>Very fast animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-100-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-100</span>
+        </td>
+        <td className='p-12 text-muted'>100ms</td>
+        <td className='p-12 text-muted'>Fast animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-150-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-150</span>
+        </td>
+        <td className='p-12 text-muted'>150ms</td>
+        <td className='p-12 text-muted'>Quick animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-200-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-200</span>
+        </td>
+        <td className='p-12 text-muted'>200ms</td>
+        <td className='p-12 text-muted'>Standard animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-300-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-300</span>
+        </td>
+        <td className='p-12 text-muted'>300ms</td>
+        <td className='p-12 text-muted'>Medium animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-500-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-500</span>
+        </td>
+        <td className='p-12 text-muted'>500ms</td>
+        <td className='p-12 text-muted'>Slow animation</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-700-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-700</span>
+        </td>
+        <td className='p-12 text-muted'>700ms</td>
+        <td className='p-12 text-muted'>Slower animation</td>
+      </tr>
+      <tr>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24'>
+              <div className='absolute inset-0 bg-accent duration-1000-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>duration-1000</span>
+        </td>
+        <td className='p-12 text-muted'>1000ms</td>
+        <td className='p-12 text-muted'>Very slow animation</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Delay Values
+
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
+    <thead>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Overview</th>
+        <th className='p-12 text-left text-on-accent body-2'>Name</th>
+        <th className='p-12 text-left text-on-accent body-2'>Value</th>
+        <th className='p-12 text-left text-on-accent body-2'>Description</th>
+      </tr>
+    </thead>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-0-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-0</span>
+        </td>
+        <td className='p-12 text-muted'>0ms</td>
+        <td className='p-12 text-muted'>No delay</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-75-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-75</span>
+        </td>
+        <td className='p-12 text-muted'>75ms</td>
+        <td className='p-12 text-muted'>Minimal delay for subtle timing</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-100-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-100</span>
+        </td>
+        <td className='p-12 text-muted'>100ms</td>
+        <td className='p-12 text-muted'>Quick delay for micro-interactions</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-150-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-150</span>
+        </td>
+        <td className='p-12 text-muted'>150ms</td>
+        <td className='p-12 text-muted'>
+          Short delay for sequential animations
+        </td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-200-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-200</span>
+        </td>
+        <td className='p-12 text-muted'>200ms</td>
+        <td className='p-12 text-muted'>
+          Standard delay for staggered effects
+        </td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-300-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-300</span>
+        </td>
+        <td className='p-12 text-muted'>300ms</td>
+        <td className='p-12 text-muted'>Medium delay for emphasis</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-500-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-500</span>
+        </td>
+        <td className='p-12 text-muted'>500ms</td>
+        <td className='p-12 text-muted'>Longer delay for dramatic effect</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-700-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-700</span>
+        </td>
+        <td className='p-12 text-muted'>700ms</td>
+        <td className='p-12 text-muted'>Extended delay for special cases</td>
+      </tr>
+      <tr>
+        <td className='p-12'>
+          <div className='flex items-center justify-center'>
+            <div className='relative h-24 w-24 overflow-hidden rounded-sm border border-muted-subtle'>
+              <div className='absolute inset-0 bg-accent delay-1000-demo'></div>
+            </div>
+          </div>
+        </td>
+        <td className='p-12'>
+          <span className='text-accent'>delay-1000</span>
+        </td>
+        <td className='p-12 text-muted'>1000ms</td>
+        <td className='p-12 text-muted'>Maximum delay for complex sequences</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<Story of={AnimationsStories.DefaultTailwindAnimations} />
+
+<Story of={AnimationsStories.AllAnimations} />
