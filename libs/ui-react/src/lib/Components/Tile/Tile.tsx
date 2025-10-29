@@ -25,10 +25,6 @@ export interface TileProps
    * The Tag component to display on the bottom of the list item.
    */
   tag?: React.ReactNode;
-  /**
-   * Whether this item is part of a carousel.
-   */
-  isCarousel?: boolean;
 }
 
 /**
