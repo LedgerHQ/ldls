@@ -46,12 +46,7 @@ export interface DialogProps
  *   );
  * }
  */
-export function Dialog({
-  defaultOpen = false,
-  onOpenChange,
-  open,
-  ...props
-}: DialogProps) {
+export function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
 
