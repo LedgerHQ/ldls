@@ -1,9 +1,9 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { Spinner } from '../../Symbols';
 import { cn } from '../../utils';
 import { IconSize } from '../Icon';
+import { Spinner } from '../Spinner';
 import { BaseButtonProps } from './BaseButton.types';
 
 const buttonVariants = {
@@ -83,22 +83,23 @@ const buttonVariants = {
     },
   ),
   label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
-  icon: cva('shrink-0', {
-    variants: {
-      appearance: {
-        base: 'text-on-interactive',
-        accent: 'text-on-accent',
-        red: 'text-error',
-        gray: 'text-base',
-        'no-background': 'text-base',
-        transparent: 'text-base',
-      },
-      disabled: {
-        true: 'text-disabled',
-      },
-    },
-  }),
 };
+
+const iconVariants = cva('shrink-0', {
+  variants: {
+    appearance: {
+      base: 'text-on-interactive',
+      accent: 'text-on-accent',
+      red: 'text-error',
+      gray: 'text-base',
+      'no-background': 'text-base',
+      transparent: 'text-base',
+    },
+    disabled: {
+      true: 'text-disabled',
+    },
+  },
+});
 
 /**
  * Base button component
@@ -117,13 +118,13 @@ export const BaseButton = React.forwardRef<
       size = 'md',
       isFull,
       loading,
-      icon,
+      icon: IconProp,
       disabled,
       ...props
     },
     ref,
   ) => {
-    const iconOnly = Boolean(icon && !children);
+    const iconOnly = Boolean(IconProp && !children);
 
     const iconSizeMap: { [key: string]: IconSize } = {
       xs: 16,
@@ -133,7 +134,6 @@ export const BaseButton = React.forwardRef<
     };
 
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
-    const IconComponent = icon;
 
     return (
       <TouchableOpacity
@@ -156,14 +156,13 @@ export const BaseButton = React.forwardRef<
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className='shrink-0 animate-spin'
-            aria-label='Loading'
+            className={iconVariants({ appearance, disabled })}
           />
         )}
-        {!loading && IconComponent && (
-          <IconComponent
+        {!loading && IconProp && (
+          <IconProp
             size={calculatedIconSize}
-            className={buttonVariants.icon({ appearance, disabled })}
+            className={iconVariants({ appearance, disabled })}
           />
         )}
         {children && <Text className={buttonVariants.label()}>{children}</Text>}

@@ -2,8 +2,8 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
-import { Spinner } from '../../Symbols/Icons/Spinner';
 import { IconSize } from '../Icon/Icon';
+import { Spinner } from '../Spinner';
 
 const baseButtonVariants = cva(
   'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
@@ -37,6 +37,22 @@ const baseButtonVariants = cva(
     },
   },
 );
+
+const iconVariants = cva('shrink-0', {
+  variants: {
+    appearance: {
+      base: 'text-on-interactive',
+      accent: 'text-on-accent',
+      red: 'text-error',
+      gray: 'text-base',
+      'no-background': 'text-base',
+      transparent: 'text-base',
+    },
+    disabled: {
+      true: 'text-disabled',
+    },
+  },
+});
 
 export interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -94,7 +110,7 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
   (
     {
       className,
-      appearance,
+      appearance = 'base',
       size,
       isFull,
       disabled,
@@ -146,12 +162,14 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className='shrink-0 animate-spin'
-            aria-label='Loading'
+            className={iconVariants({ appearance, disabled })}
           />
         )}
         {!loading && Icon && (
-          <Icon size={calculatedIconSize} className='shrink-0' />
+          <Icon
+            size={calculatedIconSize}
+            className={iconVariants({ appearance, disabled })}
+          />
         )}
 
         {children &&

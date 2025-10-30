@@ -193,7 +193,6 @@ export { SparksFill } from './Icons/SparksFill';
 export { SpeedFast } from './Icons/SpeedFast';
 export { SpeedLow } from './Icons/SpeedLow';
 export { SpeedMedium } from './Icons/SpeedMedium';
-export { Spinner } from './Icons/Spinner';
 export { Star } from './Icons/Star';
 export { StarFill } from './Icons/StarFill';
 export { StarHalf } from './Icons/StarHalf';

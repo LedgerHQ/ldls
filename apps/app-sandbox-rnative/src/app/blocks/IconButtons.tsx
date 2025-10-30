@@ -23,6 +23,12 @@ export const IconButtons = () => {
         accessibilityLabel='Go to Ledger Shop'
         appearance='base'
         icon={Link}
+        loading
+      />
+      <IconButton
+        accessibilityLabel='Go to Ledger Shop'
+        appearance='base'
+        icon={Link}
       />
       <IconButton
         accessibilityLabel='Go to Ledger Shop'

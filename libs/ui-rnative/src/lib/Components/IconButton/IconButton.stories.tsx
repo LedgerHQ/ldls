@@ -117,10 +117,23 @@ export const SizesShowcase: Story = {
 };
 
 export const StatesShowcase: Story = {
-  render: () => (
+  args: {
+    appearance: 'base',
+  },
+  render: ({ appearance }) => (
     <div className='flex items-center gap-8'>
-      <IconButton accessibilityLabel='Settings' icon={Settings} disabled />
-      <IconButton accessibilityLabel='Settings' icon={Settings} loading />
+      <IconButton
+        accessibilityLabel='Settings'
+        appearance={appearance}
+        icon={Settings}
+        disabled
+      />
+      <IconButton
+        accessibilityLabel='Settings'
+        appearance={appearance}
+        icon={Settings}
+        loading
+      />
     </div>
   ),
 };

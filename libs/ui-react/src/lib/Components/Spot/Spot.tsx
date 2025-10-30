@@ -6,10 +6,10 @@ import {
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
-  Spinner,
   WarningFill,
 } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
+import { Spinner } from '../Spinner';
 
 const spotVariants = cva(
   'flex items-center justify-center rounded-full bg-muted-transparent',
