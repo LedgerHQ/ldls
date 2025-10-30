@@ -42,6 +42,11 @@ const DialogTemplate = ({
 const meta: Meta<typeof Dialog> = {
   component: Dialog,
   title: 'Containment/Dialog',
+  subcomponents: {
+    DialogHeader,
+    DialogContent,
+    DialogTrigger,
+  },
   parameters: {
     docs: {
       source: {
@@ -49,6 +54,14 @@ const meta: Meta<typeof Dialog> = {
         format: true,
         type: 'code',
       },
+    },
+  },
+  argTypes: {
+    defaultOpen: {
+      control: false,
+    },
+    open: {
+      control: false,
     },
   },
 };

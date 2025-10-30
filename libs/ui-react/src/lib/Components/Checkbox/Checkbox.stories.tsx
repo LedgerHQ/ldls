@@ -15,25 +15,8 @@ const meta: Meta<typeof Checkbox> = {
     },
   },
   argTypes: {
-    checked: {
-      control: 'boolean',
-      description: 'The controlled checked state of the checkbox',
-    },
-    defaultChecked: {
-      control: 'boolean',
-      description: 'The default checked state (uncontrolled)',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'If true, the checkbox is disabled',
-    },
-    required: {
-      control: 'boolean',
-      description: 'If true, the checkbox is required in forms',
-    },
     onCheckedChange: {
       action: 'checked changed',
-      description: 'Callback function called when the checked state changes',
     },
   },
 };

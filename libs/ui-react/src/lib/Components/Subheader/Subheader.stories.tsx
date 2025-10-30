@@ -45,13 +45,8 @@ const meta: Meta<typeof Subheader> = {
     },
   },
   argTypes: {
-    title: {
-      control: 'text',
-      description: 'The title of the subheader',
-    },
     children: {
       control: 'select',
-      description: 'Slot components: Subheader.Info and Subheader.Action',
       options: ['None', 'Info', 'Action', 'Info and Action'],
       mapping: {
         None: null,

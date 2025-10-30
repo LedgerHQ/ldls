@@ -30,10 +30,36 @@ const linkVariants = cva(
 export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof linkVariants> {
+  /**
+   * The visual style of the link.
+   * @default underlined
+   */
+  appearance?: 'underlined' | 'accent';
+  /**
+   * The size variant of the link.
+   * @default md
+   */
+  size?: 'sm' | 'md';
+  /**
+   * An optional icon component to render inside the link.
+   * The icon styles are defined by the link. Please do not override them.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
+   * @default false
+   */
   isExternal?: boolean;
+  /**
+   * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
+   * Useful for creating router links or other semantic elements with link appearance.
+   * @default false
+   */
   asChild?: boolean;
-  children: React.ReactNode; // Children are required
+  /**
+   * The link's content, typically text.
+   */
+  children: React.ReactNode;
 }
 
 /**
@@ -41,18 +67,6 @@ export interface LinkProps
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'underlined' | 'accent'} [appearance='underlined'] - The visual style of the link (text underlined or button-like).
- * @param {'sm' | 'md'} [size='md'] - The size variant of the link.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the link.
- *   The icon styles are defined by the link. Please do not override them.
- * @param {boolean} [isExternal=false] - If true, adds target="_blank" and rel="noopener noreferrer" for external links.
- * @param {boolean} [asChild=false] - If true, renders the child element directly with link styles instead of wrapping in an anchor element.
- *   Useful for creating router links or other semantic elements with link appearance.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.ReactNode} [children] - The link's content, typically text.
- * @param {React.AnchorHTMLAttributes<HTMLAnchorElement>} [...] - All standard anchor props (e.g., `href`, `onClick` etc.).
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` prop instead.

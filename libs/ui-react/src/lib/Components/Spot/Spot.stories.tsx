@@ -17,32 +17,8 @@ const meta: Meta<typeof Spot> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: [
-        'icon',
-        'bluetooth',
-        'check',
-        'error',
-        'warning',
-        'info',
-        'loader',
-        'number',
-      ],
-      description: 'The visual appearance and behavior of the spot',
-    },
-    size: {
-      control: 'select',
-      options: [48, 56, 72],
-      description: 'The size of the spot',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the spot looks disabled',
-    },
     icon: {
       control: 'select',
-      description: 'Icon component to display (required for icon appearance)',
       options: ['None', 'Settings', 'Plus', 'Heart', 'Star'],
       mapping: {
         None: undefined,
@@ -55,7 +31,6 @@ const meta: Meta<typeof Spot> = {
     number: {
       control: 'select',
       options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      description: 'Number to display (required for number appearance)',
     },
   },
 };

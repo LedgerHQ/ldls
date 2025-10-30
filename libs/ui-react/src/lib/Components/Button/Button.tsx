@@ -20,14 +20,17 @@ export interface ButtonProps
   extends Omit<BaseButtonProps, 'children' | 'size'> {
   /**
    * If true, shows a loading spinner and disables the button.
+   * @default false
    */
   loading?: boolean;
   /**
    * The content of the button. This is required to ensure buttons always have a label.
+   * @required
    */
   children: React.ReactNode;
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'sm' | 'md' | 'lg';
 }

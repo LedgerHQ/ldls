@@ -16,44 +16,16 @@ const meta: Meta<typeof AddressInput> = {
     },
   },
   argTypes: {
-    prefix: {
-      control: 'text',
-      description:
-        'Custom prefix text to show instead of the default "To:" prefix',
-    },
     suffix: {
       control: 'select',
       options: ['QrCode', 'Information'],
-      description:
-        'Custom suffix Element to show instead of the default "To:" suffix',
       mapping: {
         QrCode: <QrCode size={20} className='text-muted' />,
         Information: <InformationFill size={20} className='text-muted' />,
       },
     },
-    placeholder: {
-      control: 'text',
-      description: 'The placeholder text for the address input',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the address input is disabled',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display below the input',
-    },
-    value: {
-      control: 'text',
-      description: 'Controlled value of the address input',
-    },
-    hideClearButton: {
-      control: 'boolean',
-      description: 'Hide the clear button that appears when typing',
-    },
     onQrCodeClick: {
       action: 'qr-code-clicked',
-      description: 'Callback fired when the QR code scanner icon is clicked',
     },
   },
 };

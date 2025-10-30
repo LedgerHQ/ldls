@@ -72,16 +72,10 @@ export const Icon: StoryObj<IconStoryProps> = {
     size: {
       control: 'select',
       options: sizes,
-      description: 'The size of the icon in pixels',
     },
     name: {
       control: 'select',
       options: iconNames,
-      description: 'The name of the icon to display',
-    },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply (can be used for color)',
     },
   },
   render: (args) => {
