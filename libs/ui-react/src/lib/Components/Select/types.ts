@@ -15,23 +15,7 @@ export interface SelectTriggerProps
 }
 
 export type SelectContentProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Content & {
-    /**
-     * The positioning mode for the select content
-     * @default 'popper'
-     */
-    position?: 'popper' | 'item-aligned';
-    /**
-     * The side of the trigger to position the content
-     * @default 'bottom'
-     */
-    side?: 'top' | 'right' | 'bottom' | 'left';
-    /**
-     * The distance in pixels from the trigger
-     * @default 0
-     */
-    sideOffset?: number;
-  }
+  typeof SelectPrimitive.Content
 >;
 
 export type SelectItemProps = React.ComponentPropsWithoutRef<
