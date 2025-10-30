@@ -1,5 +1,4 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
@@ -12,27 +11,10 @@ export type SpinnerProps = {
    */
   size?: IconSize;
   /**
-   * The visual style of the spinner.
-   * @default 'base'
-   */
-  appearance?: 'base' | 'accent';
-  /**
    * Additional custom CSS classes to apply.
    */
   className?: string;
 };
-
-const iconVariants = cva('', {
-  variants: {
-    appearance: {
-      base: 'text-base',
-      accent: 'text-interactive',
-    },
-  },
-  defaultVariants: {
-    appearance: 'base',
-  },
-});
 
 /**
  * A basic spinner component for loading states.
@@ -41,15 +23,15 @@ const iconVariants = cva('', {
  * <Spinner />
  */
 export const Spinner = forwardRef<Svg, SpinnerProps>(
-  ({ className, size = 16, appearance = 'base', ...props }, ref) => {
+  ({ className, size = 16, ...props }, ref) => {
     return (
       <View className='shrink-0 animate-spin'>
         <Svg
+          className={cn('shrink-0 animate-spin text-base', className)}
           width={size}
           height={size}
           viewBox='0 0 16 16'
           fill='none'
-          className={cn(iconVariants({ appearance }), className)}
           accessibilityLabel='Loading'
           ref={ref}
           {...props}

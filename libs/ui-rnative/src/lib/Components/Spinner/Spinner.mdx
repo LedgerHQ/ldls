@@ -24,12 +24,9 @@ All spinner designs are created and managed in our components library. This ensu
 
 ## 🎨 Appearances
 
-The Spinner component comes in two visual variants:
+The Spinner component is designed to inherit text color from its parent, making it especially versatile when used inside a button, it will automatically match the button's label color for seamless integration. By default, it adopts the primary text color (`text-base`), but you can easily emphasize it using accent colors (such as `text-interactive`).
 
-- **Base** - uses the primary text color (`text-base`) for standard loading states
-- **Accent** - uses the interactive color (`text-interactive`) for emphasized loading states
-
-<Canvas of={SpinnerStories.AppearanceShowcase} />
+Additionally, you can customize the spinner's appearance by applying your own styles with the `className` prop, allowing for further flexibility to match any specific design requirement.
 
 ---
 
@@ -125,25 +122,6 @@ function MyComponent() {
 }
 ```
 
-### Appearance Variants
-
-Choose the appropriate appearance based on the context:
-
-```tsx
-import React from 'react';
-import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
-
-function MyComponent() {
-  return (
-    <View className='flex flex-row items-center gap-4'>
-      <Spinner appearance='base' size={24} />
-      <Spinner appearance='accent' size={24} />
-    </View>
-  );
-}
-```
-
 ## Do's and Don'ts
 
 ### Size Usage
@@ -165,26 +143,6 @@ function MyComponent() {
 
 // Don't use non-standard sizes
 <Spinner size={22} />
-```
-
-### Appearance Usage
-
-✅ **Do**
-
-```tsx
-// Use base for standard loading states
-<Spinner appearance="base" />
-
-// Use accent for emphasized loading
-<Spinner appearance="accent" />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use arbitrary colors
-<Spinner style={{ color: '#FF0000' }} />
-<Spinner className="text-red-500" />
 ```
 
 ### Loading States

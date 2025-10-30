@@ -1,5 +1,4 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
 import { IconSize } from '../../Components/Icon/Icon';
 
@@ -9,24 +8,7 @@ export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
    * @default 16
    */
   size?: IconSize;
-  /**
-   * The visual style of the spinner.
-   * @default 'base'
-   */
-  appearance?: 'base' | 'accent';
 };
-
-const iconVariants = cva('shrink-0 animate-spin', {
-  variants: {
-    appearance: {
-      base: 'text-base',
-      accent: 'text-interactive',
-    },
-  },
-  defaultVariants: {
-    appearance: 'base',
-  },
-});
 
 /**
  * A basic spinner component for loading states.
@@ -35,15 +17,15 @@ const iconVariants = cva('shrink-0 animate-spin', {
  * <Spinner />
  */
 export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
-  ({ className, size = 16, appearance = 'base', ...props }, ref) => {
+  ({ className, size = 16, ...props }, ref) => {
     return (
       <svg
+        className={cn('shrink-0 animate-spin text-base', className)}
         xmlns='http://www.w3.org/2000/svg'
         width={size}
         height={size}
         viewBox='0 0 16 16'
         fill='none'
-        className={cn(iconVariants({ appearance }), className)}
         aria-label='Loading'
         role='img'
         ref={ref}

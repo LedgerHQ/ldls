@@ -83,22 +83,23 @@ const buttonVariants = {
     },
   ),
   label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
-  icon: cva('shrink-0', {
-    variants: {
-      appearance: {
-        base: 'text-on-interactive',
-        accent: 'text-on-accent',
-        red: 'text-error',
-        gray: 'text-base',
-        'no-background': 'text-base',
-        transparent: 'text-base',
-      },
-      disabled: {
-        true: 'text-disabled',
-      },
-    },
-  }),
 };
+
+const iconVariants = cva('shrink-0', {
+  variants: {
+    appearance: {
+      base: 'text-on-interactive',
+      accent: 'text-on-accent',
+      red: 'text-error',
+      gray: 'text-base',
+      'no-background': 'text-base',
+      transparent: 'text-base',
+    },
+    disabled: {
+      true: 'text-disabled',
+    },
+  },
+});
 
 /**
  * Base button component
@@ -155,13 +156,13 @@ export const BaseButton = React.forwardRef<
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className={buttonVariants.icon({ appearance, disabled })}
+            className={iconVariants({ appearance, disabled })}
           />
         )}
         {!loading && IconProp && (
           <IconProp
             size={calculatedIconSize}
-            className={buttonVariants.icon({ appearance, disabled })}
+            className={iconVariants({ appearance, disabled })}
           />
         )}
         {children && <Text className={buttonVariants.label()}>{children}</Text>}
