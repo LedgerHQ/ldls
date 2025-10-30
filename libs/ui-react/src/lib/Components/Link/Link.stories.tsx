@@ -210,7 +210,7 @@ export const SizesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='flex w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+    <div className='w-256 bg-muted flex flex-col gap-8 rounded-sm p-8'>
       <Link appearance='underlined' href='#' onClick={onClick}>
         Short Link
       </Link>

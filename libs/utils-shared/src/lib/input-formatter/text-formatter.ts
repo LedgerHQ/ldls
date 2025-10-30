@@ -1,6 +1,6 @@
 import { formatThousands } from './format-thousands';
 
-export interface TextFormatterOptions {
+export type TextFormatterOptions = {
   /** Whether to allow decimal values */
   allowDecimals?: boolean;
   /** Whether to format with space-separated thousands */
@@ -9,7 +9,7 @@ export interface TextFormatterOptions {
   maxIntegerLength?: number;
   /** Maximum length for decimal part (after decimal) */
   maxDecimalLength?: number;
-}
+};
 
 /**
  * Formats and validates numeric input text for amount inputs.

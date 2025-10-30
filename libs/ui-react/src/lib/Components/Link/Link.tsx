@@ -6,18 +6,18 @@ import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const linkVariants = cva(
-  'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
+  'focus-visible:outline-focus inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4',
   {
     variants: {
       appearance: {
         underlined:
-          'text-base underline underline-offset-2 hover:text-base-hover active:text-base-pressed',
+          'hover:text-base-hover active:text-base-pressed text-base underline underline-offset-2',
         accent:
           'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
       },
       size: {
-        sm: 'gap-4 body-2-semi-bold',
-        md: 'gap-8 body-1-semi-bold',
+        sm: 'body-2-semi-bold gap-4',
+        md: 'body-1-semi-bold gap-8',
       },
     },
     defaultVariants: {
@@ -27,9 +27,7 @@ const linkVariants = cva(
   },
 );
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    VariantProps<typeof linkVariants> {
+export type LinkProps = {
   /**
    * The visual style of the link.
    * @default underlined
@@ -60,7 +58,8 @@ export interface LinkProps
    * The link's content, typically text.
    */
   children: React.ReactNode;
-}
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  VariantProps<typeof linkVariants>;
 
 /**
  * A customizable link component that supports underlined text and accent button-like appearances, sizes, optional icons, and external link handling.

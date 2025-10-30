@@ -18,12 +18,7 @@ const checkboxStyles = [
   'data-[state=checked]:disabled:bg-disabled data-[state=checked]:disabled:text-disabled',
 ].join(' ');
 
-export interface CheckboxProps
-  // The radix-ui Checkbox component supports indeterminate state, but we don't need it for now.
-  extends Omit<
-    React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
-    'checked' | 'defaultChecked' | 'onCheckedChange' | 'asChild'
-  > {
+export type CheckboxProps = {
   /**
    * The controlled checked state of the checkbox.
    */
@@ -40,7 +35,10 @@ export interface CheckboxProps
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & Omit<
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
+  'checked' | 'defaultChecked' | 'onCheckedChange' | 'asChild'
+>;
 
 /**
  * A customizable checkbox component built on top of Radix UI Checkbox primitive.

@@ -24,7 +24,7 @@ const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[disabled]:bg-base',
+  'group-data-[disabled]:bg-base translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out',
   {
     variants: {
       size: {
@@ -38,12 +38,7 @@ const thumbVariants = cva(
   },
 );
 
-export interface SwitchProps
-  extends Omit<
-      React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
-      'onChange' | 'checked' | 'defaultChecked' | 'onCheckedChange'
-    >,
-    VariantProps<typeof switchVariants> {
+export type SwitchProps = {
   /**
    * The controlled selected state of the switch.
    */
@@ -61,7 +56,11 @@ export interface SwitchProps
    * @default 'lg'
    */
   size?: 'sm' | 'lg';
-}
+} & Omit<
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
+  'onChange' | 'checked' | 'defaultChecked' | 'onCheckedChange'
+> &
+  VariantProps<typeof switchVariants>;
 
 /**
  * A customizable switch component.

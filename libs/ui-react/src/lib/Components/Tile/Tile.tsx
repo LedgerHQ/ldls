@@ -2,8 +2,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
 import { useCallback, useState } from 'react';
 
-export interface TileProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type TileProps = {
   /**
    * The Spot component to display on the top.
    */
@@ -25,7 +24,7 @@ export interface TileProps
    * The Tag component to display on the bottom of the list item.
    */
   tag?: React.ReactNode;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * A tile list item component that displays a spot icon at the top, title and optional subtitle,
@@ -138,15 +137,15 @@ export const Tile = ({
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className='flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2 focus-visible:outline-focus'
+        className='focus-visible:outline-focus flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2'
         {...props}
       >
         <div className='flex items-center justify-center'>{spot}</div>
         <div className='flex w-full flex-col items-center gap-4'>
           <div className='flex w-full flex-col'>
-            <div className='truncate body-3-semi-bold'>{title}</div>
+            <div className='body-3-semi-bold truncate'>{title}</div>
             {subtitle && (
-              <div className='truncate text-muted body-3'>{subtitle}</div>
+              <div className='text-muted body-3 truncate'>{subtitle}</div>
             )}
           </div>
           {tag}

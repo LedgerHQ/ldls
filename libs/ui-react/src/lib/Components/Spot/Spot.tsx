@@ -12,7 +12,7 @@ import { IconSize } from '../Icon/Icon';
 import { Spinner } from '../Spinner';
 
 const spotVariants = cva(
-  'flex items-center justify-center rounded-full bg-muted-transparent',
+  'bg-muted-transparent flex items-center justify-center rounded-full',
   {
     variants: {
       appearance: {
@@ -23,7 +23,7 @@ const spotVariants = cva(
         warning: 'text-warning',
         info: 'text-muted',
         loader: '',
-        number: 'text-base heading-4',
+        number: 'heading-4 text-base',
       },
       disabled: {
         true: 'text-disabled',

@@ -3,8 +3,7 @@ import { QrCode as QrCodeIcon } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
 
-export interface AddressInputProps
-  extends Omit<BaseInputProps, 'prefix' | 'label'> {
+export type AddressInputProps = {
   /**
    * Custom suffix element to show instead of the QR code icon.
    * Default suffix is a QR code scanner when empty (if onQrCodeClick provided), clear button when content.
@@ -29,7 +28,7 @@ export interface AddressInputProps
    * When not provided, no QR code scanner icon will be shown.
    */
   onQrCodeClick?: () => void;
-}
+} & Omit<BaseInputProps, 'prefix' | 'label'>;
 
 /**
  * A customizable address field input component for cryptocurrency addresses with fixed "To:" prefix, QR code scanner, automatic clear button, error states, and focus/hover effects.
@@ -93,7 +92,7 @@ export const AddressInput = React.forwardRef<
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
     <span
-      className='text-nowrap text-base body-1 group-has-[:disabled]:text-disabled'
+      className='body-1 group-has-[:disabled]:text-disabled text-nowrap text-base'
       aria-hidden='true'
     >
       {prefix}

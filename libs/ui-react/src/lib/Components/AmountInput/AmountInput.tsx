@@ -8,11 +8,7 @@ import React, {
   useState,
 } from 'react';
 
-export interface AmountInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'prefix' | 'value' | 'onChange'
-  > {
+export type AmountInputProps = {
   /**
    * The controlled value of the input
    * @required
@@ -56,13 +52,16 @@ export interface AmountInputProps
    * @default true
    */
   thousandsSeparator?: boolean;
-}
+} & Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'prefix' | 'value' | 'onChange'
+>;
 
 const inputStyles = cva(
   [
-    'bg-transparent caret-active outline-none transition-colors heading-0',
-    'text-base placeholder:text-muted-subtle',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    'caret-active heading-0 bg-transparent outline-none transition-colors',
+    'placeholder:text-muted-subtle text-base',
+    'disabled:bg-base-transparent disabled:text-disabled disabled:pointer-events-none disabled:cursor-not-allowed',
     '[&[aria-invalid="true"]]:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',

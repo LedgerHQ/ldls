@@ -1,6 +1,6 @@
 import { TouchableOpacityProps } from 'react-native';
 
-export interface ListItemProps extends Omit<TouchableOpacityProps, 'children'> {
+export type ListItemProps = {
   /**
    * The main title of the list item.
    */
@@ -24,4 +24,4 @@ export interface ListItemProps extends Omit<TouchableOpacityProps, 'children'> {
    * @example trailingContent={<Icon />}
    */
   trailingContent?: React.ReactNode;
-}
+} & Omit<TouchableOpacityProps, 'children'>;

@@ -2,8 +2,7 @@ import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { IconSize } from '../Icon';
 
-export interface CardButtonProps
-  extends Omit<TouchableOpacityProps, 'disabled'> {
+export type CardButtonProps = {
   /**
    * The visual style of the card button.
    */
@@ -28,4 +27,4 @@ export interface CardButtonProps
    * If true, hides the chevron arrow on the right side.
    */
   hideChevron?: boolean;
-}
+} & Omit<TouchableOpacityProps, 'disabled'>;
