@@ -1,18 +1,14 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { forwardRef } from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
 import { IconSize } from '../../Components/Icon/Icon.types';
 
-export type SpinnerProps = {
+export type SpinnerProps = SvgProps & {
   /**
    * The size of the spinner icon in pixels.
    * @default 16
    */
   size?: IconSize;
-  /**
-   * Additional custom CSS classes to apply.
-   */
-  className?: string;
 };
 
 /**
