@@ -18,7 +18,7 @@ const meta: Meta<typeof Spinner> = {
 export default meta;
 type Story = StoryObj<typeof Spinner>;
 
-export const Basic: Story = {
+export const Base: Story = {
   args: {
     size: 40,
   },
@@ -29,7 +29,7 @@ export const Basic: Story = {
   ),
 };
 
-export const SizeShowcase: Story = {
+export const Sizes: Story = {
   argTypes: {
     size: {
       control: false,
