@@ -59,6 +59,14 @@ export const TooltipProvider = ({
   );
 };
 
+export interface TooltipProps
+  extends React.ComponentProps<typeof TooltipPrimitive.Root> {
+  /**
+   * The delay in milliseconds before the tooltip appears.
+   * @default 200
+   */
+  delayDuration?: number;
+}
 /**
  * The root component that manages the tooltip's open/closed state and contains the trigger and content.
  *
@@ -67,12 +75,6 @@ export const TooltipProvider = ({
  * state and coordinates between the trigger and content components.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
- *
- * @component
- * @param {boolean} [defaultOpen] - The initial open state of the tooltip when uncontrolled.
- * @param {boolean} [open] - Controls the open state of the tooltip when used as a controlled component.
- * @param {function} [onOpenChange] - Callback fired when the tooltip's open state changes.
- * @param {React.ComponentProps<typeof TooltipPrimitive.Root>} [...] - All other props are passed to the underlying Radix UI Root.
  *
  * @example
  * import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
@@ -90,15 +92,25 @@ export const TooltipProvider = ({
  *   );
  * }
  */
-export const Tooltip = ({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) => {
+export const Tooltip = ({ delayDuration = 200, ...props }: TooltipProps) => {
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={delayDuration}>
       <TooltipPrimitive.Root data-slot='tooltip' {...props} />
     </TooltipProvider>
   );
 };
+
+export interface TooltipTriggerProps
+  extends React.ComponentProps<typeof TooltipPrimitive.Trigger> {
+  /**
+   * The element that will trigger the tooltip (e.g., button, icon, text).
+   */
+  children?: React.ReactNode;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+}
 
 /**
  * The element that triggers the tooltip to appear when interacted with.
@@ -108,11 +120,6 @@ export const Tooltip = ({
  * associated tooltip content will be displayed.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
- *
- * @component
- * @param {React.ReactNode} children - The element that will trigger the tooltip (e.g., button, icon, text).
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof TooltipPrimitive.Trigger>} [...] - All other props are passed to the underlying Radix UI Trigger.
  *
  * @example
  * import { TooltipTrigger } from '@ledgerhq/ldls-ui-react';
@@ -126,11 +133,31 @@ export const Tooltip = ({
  *   <InteractiveIcon icon={InfoIcon} size="sm" />
  * </TooltipTrigger>
  */
-export const TooltipTrigger = ({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) => {
+export const TooltipTrigger = ({ ...props }: TooltipTriggerProps) => {
   return <TooltipPrimitive.Trigger data-slot='tooltip-trigger' {...props} />;
 };
+
+export interface TooltipContentProps
+  extends React.ComponentProps<typeof TooltipPrimitive.Content> {
+  /**
+   * The content to display inside the tooltip.
+   */
+  children?: React.ReactNode;
+  /**
+   * The side of the trigger element to position the tooltip on.
+   * @default top
+   */
+  side?: 'top' | 'right' | 'bottom' | 'left';
+  /**
+   * The distance in pixels between the tooltip and the trigger element.
+   * @default 0
+   */
+  sideOffset?: number;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+}
 
 /**
  * The content container that displays the tooltip information.
@@ -141,8 +168,6 @@ export const TooltipTrigger = ({
  * the viewport boundaries.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
- *
- * @component
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the tooltip's core appearance (colors, padding, etc).
@@ -163,26 +188,12 @@ export const TooltipTrigger = ({
  * </TooltipContent>
  */
 export const TooltipContent = ({
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
   className,
-  /**
-   * The distance in pixels between the tooltip and the trigger element.
-   * @default 0
-   */
   sideOffset = 0,
-  /**
-   * The side of the trigger element to position the tooltip on.
-   * @default 'top'
-   */
   side,
-  /**
-   * The content to display inside the tooltip.
-   */
   children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) => {
+}: TooltipContentProps) => {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content

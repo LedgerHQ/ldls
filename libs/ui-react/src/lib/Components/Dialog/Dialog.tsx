@@ -3,6 +3,25 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { SheetBar, SheetBarProps } from '../SheetBar';
 
+export interface DialogProps
+  extends React.ComponentProps<typeof DialogPrimitive.Root> {
+  /**
+   * Callback function to handle open state change.
+   * @param open - The new open state of the dialog.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state of the dialog.
+   * @default false
+   */
+  open?: boolean;
+  /**
+   * The default open state of the dialog.
+   * @default false
+   */
+  defaultOpen?: boolean;
+}
+
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -10,13 +29,6 @@ import { SheetBar, SheetBarProps } from '../SheetBar';
  * state and coordinates between the trigger and content components.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- * ```
- *
- * @component
- * @param {boolean} [defaultOpen] - The initial open state of the dialog when uncontrolled.
- * @param {boolean} [open] - Controls the open state of the dialog when used as a controlled component.
- * @param {function} [onOpenChange] - Callback fired when the dialog's open state changes.
- * @param {React.ComponentProps<typeof DialogPrimitive.Root>} [...] - All other props are passed to the underlying Radix UI Root.
  *
  * @example
  * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/ldls-ui-react';
@@ -35,9 +47,27 @@ import { SheetBar, SheetBarProps } from '../SheetBar';
  * }
  */
 export function Dialog({
+  defaultOpen = false,
+  onOpenChange,
+  open,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Root>) {
+}: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
+}
+
+export interface DialogTriggerProps
+  extends React.ComponentProps<typeof DialogPrimitive.Trigger> {
+  /**
+   * The element that will trigger the dialog (e.g., button, icon, text).
+   */
+  children?: React.ReactNode;
+  /**
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.   */
+  asChild?: boolean;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
 }
 
 /**
@@ -49,12 +79,6 @@ export function Dialog({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {React.ReactNode} children - The element that will trigger the dialog (e.g., button, icon, text).
- * @param {boolean} [asChild=false] - Change the default rendered element for the one passed as a child, merging their props and behavior.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Trigger>} [...] - All other props are passed to the underlying Radix UI Trigger.
- *
  * @example
  * import { DialogTrigger, Button } from '@ledgerhq/ldls-ui-react';
  *
@@ -62,9 +86,7 @@ export function Dialog({
  *   <Button>Click me for a dialog</Button>
  * </DialogTrigger>
  */
-export function DialogTrigger({
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
+export function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
@@ -76,9 +98,6 @@ export function DialogTrigger({
  * styling conflicts and ensure proper stacking context.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ComponentProps<typeof DialogPrimitive.Portal>} [...] - All props are passed to the underlying Radix UI Portal.
  *
  * @example
  * // Used internally
@@ -92,6 +111,14 @@ function DialogPortal({
   return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
 
+export interface DialogOverlayProps
+  extends React.ComponentProps<typeof DialogPrimitive.Overlay> {
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+}
+
 /**
  * The overlay that covers the background when the dialog is open.
  *
@@ -101,32 +128,43 @@ function DialogPortal({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {React.ComponentProps<typeof DialogPrimitive.Overlay>} [...] - All other props are passed to the underlying Radix UI Overlay.
- *
  * @warning The `className` prop should only be used for layout adjustments.
  * Do not use it to modify the overlay's core appearance (colors, opacity, etc).
  *
  * @example
  * <DialogOverlay className="bg-opacity-50" />
  */
-const DialogOverlay = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => {
-  return (
-    <DialogPrimitive.Overlay
-      ref={ref}
-      data-slot='dialog-overlay'
-      className={cn(
-        className,
-        'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
-      )}
-      {...props}
-    />
-  );
-});
+const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <DialogPrimitive.Overlay
+        ref={ref}
+        data-slot='dialog-overlay'
+        className={cn(
+          className,
+          'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+        )}
+        {...props}
+      />
+    );
+  },
+);
+
+export interface DialogContentProps
+  extends React.ComponentProps<typeof DialogPrimitive.Content> {
+  /**
+   * The content to display inside the dialog.
+   */
+  children?: React.ReactNode;
+  /**
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.
+   */
+  asChild?: boolean;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+}
 
 /**
  * The content container that displays the dialog information.
@@ -135,11 +173,6 @@ const DialogOverlay = React.forwardRef<
  * The content is automatically positioned in the center of the viewport.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ReactNode} children - The content to display inside the dialog.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {React.ComponentProps<typeof DialogPrimitive.Content>} [...] - All other props are passed to the underlying Radix UI Content.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the dialog's core appearance (colors, padding, etc).
@@ -163,7 +196,7 @@ export function DialogContent({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+}: DialogContentProps) {
   return (
     <DialogPortal data-slot='dialog-portal'>
       <DialogOverlay />
@@ -189,14 +222,6 @@ export function DialogContent({
  * It automatically handles the accessibility requirements while maintaining the visual design.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {SheetBarProps} props - All props are passed to the underlying SheetBar component.
- * @param {string} props.title - The dialog title, used both visually and for accessibility.
- * @param {string} [props.description] - Optional description, used both visually and for accessibility.
- * @param {'compact' | 'extended'} [props.appearance='compact'] - The appearance variant of the header.
- * @param {function} [props.onClose] - Callback function to handle closing the dialog.
- * @param {function} [props.onBack] - Optional callback function to handle back navigation.
  *
  * @example
  * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
@@ -266,12 +291,6 @@ export function DialogHeader({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {React.ReactNode} children - The title text content.
- * @param {boolean} [hidden=false] - Whether to visually hide the title while keeping it accessible to screen readers.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Title>} [...] - All other props are passed to the underlying Radix UI Title.
- *
  * @example
  * // Visible title
  * <DialogTitle>Account Settings</DialogTitle>
@@ -284,7 +303,7 @@ export function DialogHeader({
  * // With custom styling
  * <DialogTitle className="text-accent">Important Notice</DialogTitle>
  */
-export function DialogTitle({
+function DialogTitle({
   hidden,
   className,
   ...props
@@ -311,12 +330,6 @@ export function DialogTitle({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {React.ReactNode} children - The description text content.
- * @param {boolean} [hidden=false] - Whether to visually hide the description while keeping it accessible to screen readers.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Description>} [...] - All other props are passed to the underlying Radix UI Description.
- *
  * @example
  * // Visible description
  * <DialogDescription>
@@ -335,7 +348,7 @@ export function DialogTitle({
  *   Additional context about this dialog.
  * </DialogDescription>
  */
-export function DialogDescription({
+function DialogDescription({
   hidden,
   className,
   ...props

@@ -7,12 +7,6 @@ const meta: Meta<typeof Skeleton> = {
   parameters: {
     layout: 'centered',
   },
-  argTypes: {
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply to the skeleton',
-    },
-  },
 };
 
 export default meta;

@@ -6,22 +6,10 @@ const meta: Meta<typeof Tag> = {
   component: Tag,
   title: 'Communication/Tag',
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['base', 'gray', 'accent', 'success', 'error', 'warning'],
-    },
-    size: {
-      control: 'radio',
-      options: ['sm', 'lg'],
-    },
-    label: {
-      control: 'text',
-    },
     icon: {
       control: {
         type: 'boolean',
       },
-      description: 'Show icon',
     },
   },
 };

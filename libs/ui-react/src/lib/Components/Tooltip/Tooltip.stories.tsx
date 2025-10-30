@@ -4,8 +4,13 @@ import { Information } from '../../Symbols';
 import { Button } from '../Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './Tooltip';
 
-const meta: Meta = {
+const meta: Meta<typeof TooltipContent> = {
   title: 'Communication/Tooltip',
+  component: TooltipContent,
+  subcomponents: {
+    TooltipTrigger,
+    Tooltip,
+  },
   parameters: {
     docs: {
       source: {
@@ -15,11 +20,29 @@ const meta: Meta = {
       },
     },
   },
+  argTypes: {
+    side: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+    },
+    sideOffset: {
+      control: 'number',
+    },
+    children: {
+      control: 'text',
+    },
+    className: {
+      control: false,
+    },
+    asChild: {
+      control: false,
+    },
+  },
 };
 
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<typeof TooltipContent>;
 
 export const Basic: Story = {
   render: () => (

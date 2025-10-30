@@ -3,19 +3,32 @@ import { useState } from 'react';
 import { Button } from '../Button';
 import {
   Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
   SelectLabel,
-  SelectSeparator,
   SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectSeparator,
 } from './Select';
 
 const meta: Meta<typeof Select> = {
   title: 'Selection/Select',
   component: Select,
+  subcomponents: {
+    SelectTrigger,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectSeparator,
+  },
   parameters: {
     layout: 'centered',
+  },
+  argTypes: {
+    value: { control: false },
+    defaultValue: { control: false },
+    onValueChange: { control: false },
   },
 };
 

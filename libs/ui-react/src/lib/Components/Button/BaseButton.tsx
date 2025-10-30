@@ -42,6 +42,7 @@ export interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The visual style of the button.
+   * @default base
    */
   appearance?:
     | 'base'
@@ -52,14 +53,17 @@ export interface BaseButtonProps
     | 'red';
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /**
    * If true, the button expands to full width of its container.
+   * @default false
    */
   isFull?: boolean;
   /**
    * Whether the button is disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
@@ -73,6 +77,7 @@ export interface BaseButtonProps
   className?: string;
   /**
    * Optional prop to render the button as a child element.
+   * @default false
    */
   asChild?: boolean;
   /**

@@ -38,14 +38,6 @@ const meta: Meta<typeof Tile> = {
     },
   },
   argTypes: {
-    title: {
-      control: 'text',
-      description: 'The main title of the list item',
-    },
-    subtitle: {
-      control: 'text',
-      description: 'Optional subtitle',
-    },
     spot: {
       control: 'select',
       options: ['None', 'Settings', 'Plus'],
@@ -54,11 +46,9 @@ const meta: Meta<typeof Tile> = {
         Settings: <Spot appearance='icon' icon={Settings} />,
         Plus: <Spot appearance='icon' icon={Plus} />,
       },
-      description: 'The spot component to display',
     },
     onClick: {
       action: 'clicked',
-      description: 'Function called when the item is clicked',
     },
     secondaryAction: {
       control: 'select',
@@ -67,7 +57,6 @@ const meta: Meta<typeof Tile> = {
         None: undefined,
         MoreVertical: secondaryAction,
       },
-      description: 'Function called when the more actions button is clicked',
     },
     tag: {
       control: 'select',
@@ -78,7 +67,6 @@ const meta: Meta<typeof Tile> = {
         Success: <Tag label='Tag' appearance='success' />,
         Error: <Tag label='Tag' appearance='error' />,
       },
-      description: 'The tag to display at the bottom',
     },
   },
 };

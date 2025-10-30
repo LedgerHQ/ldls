@@ -24,6 +24,7 @@ export interface CardButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   /**
    * The visual style of the card button.
+   * @default base
    */
   appearance?: 'base' | 'outline';
   /**
@@ -32,6 +33,7 @@ export interface CardButtonProps
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
   /**
    * The main title of the card button.
+   * @required
    */
   title: string;
   /**
@@ -40,6 +42,7 @@ export interface CardButtonProps
   description?: string;
   /**
    * If true, hides the chevron arrow on the right side.
+   * @default false
    */
   hideChevron?: boolean;
 }

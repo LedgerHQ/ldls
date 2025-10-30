@@ -42,14 +42,6 @@ const meta: Meta<typeof ListItem> = {
     },
   },
   argTypes: {
-    title: {
-      control: 'text',
-      description: 'The main title of the list item',
-    },
-    description: {
-      control: 'text',
-      description: 'Optional description',
-    },
     descriptionTag: {
       control: 'select',
       options: ['None', 'Tag'],
@@ -67,11 +59,9 @@ const meta: Meta<typeof ListItem> = {
         Settings: <Spot appearance='icon' icon={Settings} />,
         Plus: <Spot appearance='icon' icon={Plus} />,
       },
-      description: 'Optional leading content',
     },
     trailingContent: {
       control: 'select',
-      description: 'Optional trailing content to display on the right side',
       options: ['icon', 'switch', 'value', 'tag', 'none'],
       mapping: {
         icon: <PenEdit size={24} />,
@@ -83,7 +73,6 @@ const meta: Meta<typeof ListItem> = {
     },
     onClick: {
       action: 'clicked',
-      description: 'The function to be called when the list item is clicked',
     },
   },
 };

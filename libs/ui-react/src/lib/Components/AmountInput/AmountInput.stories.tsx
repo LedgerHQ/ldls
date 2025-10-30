@@ -20,7 +20,6 @@ export const Default: Story = {
     placeholder: '0',
     currencyText: '$',
     value: '',
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };

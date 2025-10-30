@@ -15,28 +15,6 @@ const meta: Meta<typeof Search> = {
       },
     },
   },
-  argTypes: {
-    placeholder: {
-      control: 'text',
-      description: 'The placeholder text for the search input',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the search input is disabled',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display below the input',
-    },
-    value: {
-      control: 'text',
-      description: 'Controlled value of the search input',
-    },
-    hideClearButton: {
-      control: 'boolean',
-      description: 'Hide the clear button that appears when typing',
-    },
-  },
 };
 
 export default meta;

@@ -4,9 +4,10 @@ import { Icon, IconProps } from './Icon';
 
 /**
  * Create an Icon component
- * @param {string} iconName - The name of the icon
- * @param {React.ReactElement} iconJsx - The JSX content of the icon
- * @returns {ForwardRefExoticComponent} Icon component
+ *
+ * @param iconName - The name of the icon
+ * @param iconJsx - The JSX content of the icon
+ * @returns Icon component
  */
 const createIcon = (
   iconName: string,

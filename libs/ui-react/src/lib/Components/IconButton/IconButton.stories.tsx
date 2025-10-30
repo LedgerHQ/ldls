@@ -37,42 +37,8 @@ const meta: Meta<typeof IconButton> = {
         },
       },
     },
-    'aria-label': {
-      control: 'text',
-      description:
-        'Accessible label for screen readers and fallback tooltip text',
-    },
-    appearance: {
-      control: 'select',
-      options: [
-        'base',
-        'gray',
-        'accent',
-        'transparent',
-        'no-background',
-        'red',
-      ],
-    },
-    size: {
-      control: 'select',
-      options: ['xs', 'sm', 'md', 'lg'],
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    tooltip: {
-      control: 'boolean',
-      description: 'Show tooltip on hover',
-    },
-    tooltipPlacement: {
-      control: 'select',
-      options: ['top', 'right', 'bottom', 'left'],
-      description: 'Position of the tooltip relative to the button',
-    },
-    tooltipText: {
-      control: 'text',
-      description:
-        'Optional custom tooltip text (defaults to aria-label if not provided)',
+    children: {
+      control: false,
     },
   },
 };

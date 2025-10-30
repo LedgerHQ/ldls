@@ -24,10 +24,18 @@ export interface CheckboxProps
     React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
     'checked' | 'defaultChecked' | 'onCheckedChange' | 'asChild'
   > {
+  /**
+   * The controlled checked state of the checkbox.
+   */
   checked?: boolean;
+  /**
+   * The default checked state (uncontrolled).
+   */
   defaultChecked?: boolean;
+  /**
+   * Callback function called when the checked state changes.
+   */
   onCheckedChange?: (checked: boolean) => void;
-  className?: string;
 }
 
 /**
@@ -38,17 +46,6 @@ export interface CheckboxProps
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-checkbox-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-checkbox-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {boolean} [checked] - The controlled checked state of the checkbox.
- * @param {boolean} [defaultChecked] - The default checked state (uncontrolled).
- * @param {function} [onCheckedChange] - Callback function called when the checked state changes.
- * @param {boolean} [disabled=false] - If true, the checkbox is disabled and cannot be interacted with.
- * @param {boolean} [required=false] - If true, the checkbox is required in forms.
- * @param {string} [name] - The name attribute for the checkbox input.
- * @param {string} [value] - The value attribute for the checkbox input.
- * @param {string} [className] - Additional custom CSS classes for the checkbox container.
- * @param {React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>} [...] - All other Radix Checkbox root props.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the checkbox's core appearance.

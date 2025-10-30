@@ -16,36 +16,14 @@ const meta: Meta<typeof CardButton> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['base', 'outline'],
-      description: 'The visual style appearance of the card button',
-    },
-    title: {
-      control: 'text',
-      description: 'The main title text for the card button',
-    },
-    description: {
-      control: 'text',
-      description: 'Optional description text displayed below the title',
-    },
     icon: {
       control: 'select',
-      description: 'Optional icon component to display',
       options: ['None', 'Plus', 'Settings'],
       mapping: {
         None: undefined,
         Plus: Plus,
         Settings: Settings,
       },
-    },
-    hideChevron: {
-      control: 'boolean',
-      description: 'Whether to hide the chevron right icon on the right side',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the card button is disabled',
     },
   },
 };
