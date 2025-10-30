@@ -169,10 +169,23 @@ export const SizesShowcase: Story = {
 };
 
 export const StatesShowcase: Story = {
-  render: () => (
+  args: {
+    appearance: 'base',
+  },
+  render: ({ appearance }) => (
     <div className='flex items-center gap-8'>
-      <IconButton aria-label='Settings' icon={Settings} disabled />
-      <IconButton aria-label='Settings' icon={Settings} loading />
+      <IconButton
+        aria-label='Settings'
+        appearance={appearance}
+        icon={Settings}
+        disabled
+      />
+      <IconButton
+        aria-label='Settings'
+        appearance={appearance}
+        icon={Settings}
+        loading
+      />
     </div>
   ),
 };
