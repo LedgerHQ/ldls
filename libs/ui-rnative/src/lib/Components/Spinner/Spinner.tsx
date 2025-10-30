@@ -6,8 +6,19 @@ import Svg, { Path } from 'react-native-svg';
 import { IconSize } from '../../Components/Icon/Icon.types';
 
 export type SpinnerProps = {
+  /**
+   * The size of the spinner icon in pixels.
+   * @default 16
+   */
   size?: IconSize;
+  /**
+   * The visual style of the spinner.
+   * @default 'base'
+   */
   appearance?: 'base' | 'accent';
+  /**
+   * Additional custom CSS classes to apply.
+   */
   className?: string;
 };
 
@@ -28,9 +39,6 @@ const iconVariants = cva('', {
  *
  * @example
  * <Spinner />
- *
- * @default size 16
- * @default appearance 'base'
  */
 export const Spinner = forwardRef<Svg, SpinnerProps>(
   ({ className, size = 16, appearance = 'base', ...props }, ref) => {
