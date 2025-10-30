@@ -275,29 +275,15 @@ export function DialogHeader({
 }
 
 /**
- * An accessible title to be announced when the dialog is opened.
+ * Internal component for accessible dialog titles.
  *
- * This component is essential for accessibility as it provides screen readers with
- * the dialog's purpose. Without a DialogTitle, the dialog will not be properly
- * announced to assistive technologies.
+ * @internal
+ * This component is used internally by DialogHeader to provide proper
+ * accessibility labeling. It ensures screen readers announce the dialog
+ * correctly by providing a title element that Radix Dialog requires.
  *
- * The title can be visually hidden using the `hidden` prop while still being
- * available to screen readers. This is useful when you have visual headers
- * (like SheetBar) but still need proper accessibility.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @example
- * // Visible title
- * <DialogTitle>Account Settings</DialogTitle>
- *
- * @example
- * // Hidden title for accessibility only
- * <DialogTitle hidden>Transaction Details</DialogTitle>
- *
- * @example
- * // With custom styling
- * <DialogTitle className="text-accent">Important Notice</DialogTitle>
+ * **Consumers should use `DialogHeader` instead**, which automatically
+ * handles the title and accessibility requirements.
  */
 function DialogTitle({
   hidden,
@@ -314,35 +300,15 @@ function DialogTitle({
 }
 
 /**
- * An optional accessible description to be announced when the dialog is opened.
+ * Internal component for accessible dialog descriptions.
  *
- * This component provides additional context about the dialog's content or purpose,
- * enhancing the accessibility experience. It works in conjunction with DialogTitle
- * to give screen reader users a complete understanding of the dialog.
+ * @internal
+ * This component is used internally by DialogHeader to provide optional
+ * accessibility context. It works with DialogTitle to give screen readers
+ * a complete understanding of the dialog's purpose.
  *
- * The description can be visually hidden using the `hidden` prop while still being
- * available to screen readers. This is useful when you have visual content that
- * serves the same purpose but need proper accessibility.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @example
- * // Visible description
- * <DialogDescription>
- *   This action cannot be undone. Please review your changes carefully.
- * </DialogDescription>
- *
- * @example
- * // Hidden description for accessibility only
- * <DialogDescription hidden>
- *   View detailed information about your transaction including amounts and fees.
- * </DialogDescription>
- *
- * @example
- * // With custom styling
- * <DialogDescription className="text-accent">
- *   Additional context about this dialog.
- * </DialogDescription>
+ * **Consumers should use `DialogHeader` with the `description` prop instead**,
+ * which automatically handles the description and accessibility requirements.
  */
 function DialogDescription({
   hidden,
