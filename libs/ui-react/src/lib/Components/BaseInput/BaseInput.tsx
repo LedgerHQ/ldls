@@ -32,9 +32,8 @@ export interface BaseInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /**
    * The label text that floats above the input when focused or filled
-   * @required
    */
-  label: string;
+  label?: string;
   /**
    * An optional error message displayed below the input
    */
