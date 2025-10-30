@@ -31,7 +31,7 @@ const baseLabelStyles = cn(
 export interface BaseInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /**
-   * The label text that floats above the input when focused or filled
+   * The label text that floats above the input when focused or filled.
    */
   label?: string;
   /**
