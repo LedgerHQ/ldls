@@ -36,6 +36,10 @@ export interface CheckboxProps
    * Callback function called when the checked state changes.
    */
   onCheckedChange?: (checked: boolean) => void;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
 }
 
 /**
