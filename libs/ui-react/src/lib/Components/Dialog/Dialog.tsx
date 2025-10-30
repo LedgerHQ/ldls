@@ -62,7 +62,8 @@ export interface DialogTriggerProps
    */
   children?: React.ReactNode;
   /**
-   * Change the default rendered element for the one passed as a child, merging their props and behavior.   */
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.
+   */
   asChild?: boolean;
   /**
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
