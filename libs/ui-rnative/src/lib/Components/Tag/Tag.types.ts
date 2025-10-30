@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { ViewProps } from 'react-native';
 import { IconSize } from '../Icon';
 
-export interface TagProps extends ViewProps {
+export type TagProps = {
   /**
    * The appearance of the tag.
    */
@@ -26,4 +26,4 @@ export interface TagProps extends ViewProps {
    * The size of the tag.
    */
   size?: 'sm' | 'lg';
-}
+} & ViewProps;

@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 import React from 'react';
 
 const tooltipContentVariants = cva(
-  'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
+  'z-tooltip rounded-xs bg-interactive text-on-interactive body-3 w-fit select-none text-balance px-8 py-4',
   {
     variants: {
       side: {
@@ -59,14 +59,13 @@ export const TooltipProvider = ({
   );
 };
 
-export interface TooltipProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Root> {
+export type TooltipProps = {
   /**
    * The delay in milliseconds before the tooltip appears.
    * @default 200
    */
   delayDuration?: number;
-}
+} & React.ComponentProps<typeof TooltipPrimitive.Root>;
 /**
  * The root component that manages the tooltip's open/closed state and contains the trigger and content.
  *
@@ -100,8 +99,7 @@ export const Tooltip = ({ delayDuration = 200, ...props }: TooltipProps) => {
   );
 };
 
-export interface TooltipTriggerProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Trigger> {
+export type TooltipTriggerProps = {
   /**
    * The element that will trigger the tooltip (e.g., button, icon, text).
    */
@@ -110,7 +108,7 @@ export interface TooltipTriggerProps
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & React.ComponentProps<typeof TooltipPrimitive.Trigger>;
 
 /**
  * The element that triggers the tooltip to appear when interacted with.
@@ -137,8 +135,7 @@ export const TooltipTrigger = ({ ...props }: TooltipTriggerProps) => {
   return <TooltipPrimitive.Trigger data-slot='tooltip-trigger' {...props} />;
 };
 
-export interface TooltipContentProps
-  extends React.ComponentProps<typeof TooltipPrimitive.Content> {
+export type TooltipContentProps = {
   /**
    * The content to display inside the tooltip.
    */
@@ -157,7 +154,7 @@ export interface TooltipContentProps
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & React.ComponentProps<typeof TooltipPrimitive.Content>;
 
 /**
  * The content container that displays the tooltip information.
@@ -203,7 +200,7 @@ export const TooltipContent = ({
         className={cn(tooltipContentVariants({ side }), className)}
         {...props}
       >
-        <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
+        <TooltipPrimitive.Arrow className='bg-interactive fill-interactive size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px]' />
         <div className='relative'>{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>

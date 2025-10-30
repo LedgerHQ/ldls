@@ -2,7 +2,7 @@ import { SvgProps } from 'react-native-svg';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 
-export interface IconProps extends SvgProps {
+export type IconProps = {
   /**
    * The size of the icon.
    */
@@ -15,4 +15,4 @@ export interface IconProps extends SvgProps {
    * The children of the icon.
    */
   children: React.ReactNode;
-}
+} & SvgProps;

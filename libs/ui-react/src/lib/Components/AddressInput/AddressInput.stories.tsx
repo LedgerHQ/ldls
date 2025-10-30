@@ -190,11 +190,11 @@ export const Controlled: Story = {
         </div>
 
         {address && !error && (
-          <div className='rounded-md border border-muted bg-success p-16'>
-            <h4 className='mb-4 text-success body-2-semi-bold'>
+          <div className='border-muted bg-success rounded-md border p-16'>
+            <h4 className='text-success body-2-semi-bold mb-4'>
               Valid Address
             </h4>
-            <p className='break-all text-success body-3'>{address}</p>
+            <p className='text-success body-3 break-all'>{address}</p>
           </div>
         )}
       </div>

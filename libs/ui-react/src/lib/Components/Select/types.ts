@@ -1,8 +1,7 @@
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
 
-export interface SelectTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
+export type SelectTriggerProps = {
   /**
    * The label text that floats above the input when focused or filled
    * @example label='Choose an option'
@@ -12,7 +11,7 @@ export interface SelectTriggerProps
    * @example labelClassName='text-error'
    */
   labelClassName?: string;
-}
+} & React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>;
 
 export type SelectContentProps = React.ComponentPropsWithoutRef<
   typeof SelectPrimitive.Content

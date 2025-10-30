@@ -3,7 +3,7 @@ import React from 'react';
 import { BaseButton, BaseButtonProps } from '../Button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../Tooltip/Tooltip';
 
-export interface IconButtonProps extends Omit<BaseButtonProps, 'isFull'> {
+export type IconButtonProps = {
   /**
    * Accessible label for the IconButton
    */
@@ -26,7 +26,7 @@ export interface IconButtonProps extends Omit<BaseButtonProps, 'isFull'> {
    * Optional text to show in the tooltip. If not provided, aria-label will be used
    */
   tooltipText?: string;
-}
+} & Omit<BaseButtonProps, 'isFull'>;
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (

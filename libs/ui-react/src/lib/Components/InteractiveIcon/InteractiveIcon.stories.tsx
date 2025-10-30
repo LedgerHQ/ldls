@@ -118,7 +118,7 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <div className='flex gap-16 bg-base p-8'>
+      <div className='bg-base flex gap-16 p-8'>
         <div className='flex flex-col items-center gap-4'>
           <span className='text-muted'>Filled enabled</span>
           <InteractiveIcon iconType='filled' aria-label='Delete'>

@@ -6,7 +6,7 @@
 
 import { VariableCodeSyntax, VariableScope } from '@figma/rest-api-spec';
 
-export interface Token {
+export type Token = {
   $type: 'color' | 'number' | 'string' | 'boolean';
   $value: string | number | boolean;
   $description?: string;
@@ -17,7 +17,7 @@ export interface Token {
       codeSyntax?: VariableCodeSyntax;
     };
   };
-}
+};
 
 type TokenOrTokenGroup =
   | Token

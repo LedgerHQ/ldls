@@ -19,7 +19,7 @@ describe('Subheader', () => {
             <TooltipTrigger asChild>
               <Information
                 size={12}
-                className='shrink-0 text-muted'
+                className='text-muted shrink-0'
                 aria-label='More information'
               />
             </TooltipTrigger>
@@ -52,7 +52,7 @@ describe('Subheader', () => {
             <TooltipTrigger asChild>
               <Information
                 size={12}
-                className='shrink-0 text-muted'
+                className='text-muted shrink-0'
                 aria-label='More information'
               />
             </TooltipTrigger>

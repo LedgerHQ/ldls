@@ -3,8 +3,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { SheetBar, SheetBarProps } from '../SheetBar';
 
-export interface DialogProps
-  extends React.ComponentProps<typeof DialogPrimitive.Root> {
+export type DialogProps = {
   /**
    * Callback function to handle open state change.
    * @param open - The new open state of the dialog.
@@ -20,7 +19,7 @@ export interface DialogProps
    * @default false
    */
   defaultOpen?: boolean;
-}
+} & React.ComponentProps<typeof DialogPrimitive.Root>;
 
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
@@ -50,8 +49,7 @@ export function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
 
-export interface DialogTriggerProps
-  extends React.ComponentProps<typeof DialogPrimitive.Trigger> {
+export type DialogTriggerProps = {
   /**
    * The element that will trigger the dialog (e.g., button, icon, text).
    */
@@ -64,7 +62,7 @@ export interface DialogTriggerProps
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & React.ComponentProps<typeof DialogPrimitive.Trigger>;
 
 /**
  * The element that triggers the dialog to appear when interacted with.
@@ -107,13 +105,12 @@ function DialogPortal({
   return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
 
-export interface DialogOverlayProps
-  extends React.ComponentProps<typeof DialogPrimitive.Overlay> {
+export type DialogOverlayProps = {
   /**
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & React.ComponentProps<typeof DialogPrimitive.Overlay>;
 
 /**
  * The overlay that covers the background when the dialog is open.
@@ -146,8 +143,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
   },
 );
 
-export interface DialogContentProps
-  extends React.ComponentProps<typeof DialogPrimitive.Content> {
+export type DialogContentProps = {
   /**
    * The content to display inside the dialog.
    */
@@ -160,7 +156,7 @@ export interface DialogContentProps
    * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
    */
   className?: string;
-}
+} & React.ComponentProps<typeof DialogPrimitive.Content>;
 
 /**
  * The content container that displays the dialog information.

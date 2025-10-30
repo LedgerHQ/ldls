@@ -3,12 +3,12 @@ import { TouchableOpacity } from 'react-native';
 import { BaseButton } from './BaseButton';
 import { BaseButtonProps } from './BaseButton.types';
 
-export interface ButtonProps extends BaseButtonProps {
+export type ButtonProps = {
   /**
    * The content to display inside the button.
    */
   children: React.ReactNode;
-}
+} & BaseButtonProps;
 
 /**
  * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.

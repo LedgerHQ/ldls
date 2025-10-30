@@ -240,7 +240,7 @@ export const SpotVariantsShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
+    <div className='w-256 bg-base grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
       <div>
         <Tile
@@ -263,7 +263,7 @@ export const ResponsiveLayout: Story = {
 export const List: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='flex w-[450px] bg-base'>
+      <div className='bg-base flex w-[450px]'>
         {Array.from({ length: 3 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
@@ -274,7 +274,7 @@ export const List: Story = {
           />
         ))}
       </div>
-      <div className='flex w-[450px] overflow-x-auto bg-base'>
+      <div className='bg-base flex w-[450px] overflow-x-auto'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}

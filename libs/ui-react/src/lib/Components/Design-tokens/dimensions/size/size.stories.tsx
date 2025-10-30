@@ -11,7 +11,7 @@ type Story = StoryObj;
 const SizeShowcase = () => (
   <div className='space-y-24'>
     <div className='space-y-16'>
-      <div className='flex items-end gap-24 rounded-lg bg-muted p-24'>
+      <div className='bg-muted flex items-end gap-24 rounded-lg p-24'>
         {[
           { value: '16', token: 'size-16' },
           { value: '24', token: 'size-24' },
@@ -28,16 +28,16 @@ const SizeShowcase = () => (
             className='flex flex-col items-center gap-8 whitespace-nowrap'
           >
             <div
-              className={`${token} flex items-center justify-center rounded-xs bg-accent text-white`}
+              className={`${token} rounded-xs bg-accent flex items-center justify-center text-white`}
             ></div>
             <div className=' space-y-1 text-center'>
-              <div className='text-left text-muted body-3'>{token}</div>
-              <div className='text-left text-muted body-4'>{value}px</div>
+              <div className='text-muted body-3 text-left'>{token}</div>
+              <div className='text-muted body-4 text-left'>{value}px</div>
             </div>
           </div>
         ))}
       </div>
-      <div className='mt-32 text-center text-muted body-2'>
+      <div className='text-muted body-2 mt-32 text-center'>
         The complete scale includes 33 tokens from{' '}
         <code className='text-warning'>size-1</code> to{' '}
         <code className='text-warning'>size-560</code>.

@@ -2,14 +2,14 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
 import { Folder } from '../src/lib/Symbols/Icons/Folder';
 
-interface TabProps {
+type TabProps = {
   label: string;
   children: React.ReactNode;
-}
+};
 
-interface CustomTabsProps {
+type CustomTabsProps = {
   children: React.ReactNode;
-}
+};
 
 export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
   const [active, setActive] = React.useState<number>(0);

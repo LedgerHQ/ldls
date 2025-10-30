@@ -2,8 +2,7 @@ import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { IconSize } from '../Icon';
 
-export interface BaseButtonProps
-  extends Omit<TouchableOpacityProps, 'disabled'> {
+export type BaseButtonProps = {
   /**
    * The visual style of the button.
    */
@@ -38,4 +37,4 @@ export interface BaseButtonProps
    * Additional custom CSS classes to apply.
    */
   className?: string;
-}
+} & Omit<TouchableOpacityProps, 'disabled'>;

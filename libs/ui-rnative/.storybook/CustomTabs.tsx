@@ -2,14 +2,14 @@ import React from 'react';
 import { Folder } from '../src/lib/Symbols/Icons/Folder';
 import { cn } from '../src/lib/utils';
 
-interface TabProps {
+type TabProps = {
   label: string;
   children: React.ReactNode;
-}
+};
 
-interface CustomTabsProps {
+type CustomTabsProps = {
   children: React.ReactNode;
-}
+};
 
 export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
   const [active, setActive] = React.useState<number>(0);

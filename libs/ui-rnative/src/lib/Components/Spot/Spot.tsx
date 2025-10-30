@@ -14,7 +14,7 @@ import { Spinner } from '../Spinner';
 import { SpotProps, SpotSize } from './Spot.types';
 
 const spotVariants = cva(
-  'flex items-center justify-center rounded-full bg-muted-transparent',
+  'bg-muted-transparent flex items-center justify-center rounded-full',
   {
     variants: {
       appearance: {

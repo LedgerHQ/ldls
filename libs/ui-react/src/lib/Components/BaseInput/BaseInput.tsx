@@ -28,8 +28,7 @@ const baseLabelStyles = cn(
   'truncate w-[calc(100%-var(--size-56))]',
 );
 
-export interface BaseInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+export type BaseInputProps = {
   /**
    * The label text that floats above the input when focused or filled.
    */
@@ -74,7 +73,7 @@ export interface BaseInputProps
    * Additional class names to apply to the label element
    */
   labelClassName?: string;
-}
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>;
 
 /**
  * Base input component with floating label, error state styling, and clear button functionality.
@@ -266,10 +265,10 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className='mt-8 flex items-center gap-2 text-error body-3'
+            className='text-error body-3 mt-8 flex items-center gap-2'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='shrink-0 text-error' />
+            <DeleteCircleFill size={16} className='text-error shrink-0' />
             <span>{errorMessage}</span>
           </div>
         )}
