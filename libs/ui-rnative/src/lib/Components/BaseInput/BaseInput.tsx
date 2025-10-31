@@ -51,7 +51,7 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'cursor-text relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors overflow-hidden',
+  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors overflow-hidden',
   'disabled:bg-disabled disabled:text-disabled',
 );
 
@@ -64,8 +64,6 @@ const baseInputStyles = cn(
 
 const baseLabelStyles = cn(
   'absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
-  'disabled:text-disabled',
-  'peer-focus:top-6 peer-focus:-translate-y-0 peer-focus:body-4',
   'truncate w-[calc(100%-var(--size-56))]',
 );
 
@@ -114,6 +112,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       : uncontrolledValue.length > 0;
 
     const showClearButton = hasContent && editable && !hideClearButton;
+    const shouldCenterLabel = !isFocused && !value;
 
     return (
       <View>
@@ -140,13 +139,17 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             onBlur={() => setIsFocused(false)}
             onChangeText={onChangeText}
             editable={editable}
+            autoCapitalize='none'
+            autoCorrect={false}
             {...props}
           />
           {label && (
             <Text
               className={cn(
                 baseLabelStyles,
-                !value && 'top-1/2 -translate-y-1/2 scale-[1.4]',
+                shouldCenterLabel
+                  ? 'translate-y-8 scale-150 translate-x-12' // relaxed position
+                  : 'translate-y-0 scale-100 body-4', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
