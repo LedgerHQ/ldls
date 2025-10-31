@@ -1210,7 +1210,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-safe-area-context (5.6.1):
+  - react-native-safe-area-context (5.4.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1223,8 +1223,8 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
-    - react-native-safe-area-context/common (= 5.6.1)
-    - react-native-safe-area-context/fabric (= 5.6.1)
+    - react-native-safe-area-context/common (= 5.4.0)
+    - react-native-safe-area-context/fabric (= 5.4.0)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-rendererdebug
@@ -1233,7 +1233,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/common (5.6.1):
+  - react-native-safe-area-context/common (5.4.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1254,7 +1254,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/fabric (5.6.1):
+  - react-native-safe-area-context/fabric (5.4.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1565,6 +1565,27 @@ PODS:
     - React-logger (= 0.77.3)
     - React-perflogger (= 0.77.3)
     - React-utils (= 0.77.3)
+  - RNGestureHandler (2.28.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNReanimated (3.17.5):
     - DoubleConversion
     - glog
@@ -1799,6 +1820,7 @@ DEPENDENCIES:
   - ReactAppDependencyProvider (from `build/generated/ios`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../../../node_modules/react-native/ReactCommon`)
+  - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
@@ -1941,6 +1963,8 @@ EXTERNAL SOURCES:
     :path: build/generated/ios
   ReactCommon:
     :path: "../../../node_modules/react-native/ReactCommon"
+  RNGestureHandler:
+    :path: "../../../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../../../node_modules/react-native-reanimated"
   RNSVG:
@@ -1985,7 +2009,7 @@ SPEC CHECKSUMS:
   React-logger: a23563f96a622637d7cce687bdf304929104effd
   React-Mapbuffer: 1864935968d15b9b73d8e413d29c780f0ab50038
   React-microtasksnativemodule: 3b784cf40f7c3c9500b9a5f9e4eec5c9bbfbef8f
-  react-native-safe-area-context: 3ca252db05d82ea67f6d178fbd289ff832f5681b
+  react-native-safe-area-context: afcc2e2b3e78ae8ef90d81e658aacee34ebc27ea
   React-nativeconfig: f77b4627803bf7886a1f2e96b33b8af34e583cc4
   React-NativeModulesApple: dfa86c79c621f2a9cdb39636570c2e1623b71367
   React-perflogger: 1f83401f01544142b32151ef6c66870455c64994
@@ -2015,6 +2039,7 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 31015410a4a53b9fd0a908ad4d6e3e2b9a25086a
   ReactCodegen: 0bc214e29416a2fe0589237d7f93018e8b3a6f3d
   ReactCommon: bf4612cba0fa356b529385029f470d5529dddde4
+  RNGestureHandler: 212e71e875f993aef2f9f08ac8f61231c863ec44
   RNReanimated: 2e47b7dd1752e4d37ceba7dfcde62e7e8e1e9984
   RNSVG: 6a383145a3c76eba345cabe83d6424a2840308ca
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748

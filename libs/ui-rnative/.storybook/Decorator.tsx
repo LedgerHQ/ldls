@@ -1,5 +1,8 @@
 import type { Decorator } from '@storybook/react-native-web-vite';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ThemeProvider } from '../src/lib/Components';
+
 const createThemeDecorator = (
   globalName: string,
   themeClasses: string[],
@@ -28,3 +31,13 @@ export const withModeDecorator = createThemeDecorator('mode', [
   'light',
   'dark',
 ]);
+
+export const withProvidersDecorator: Decorator = (Story, context) => {
+  return (
+    <ThemeProvider>
+      <GestureHandlerRootView style={{ flex: 1, width: '100%' }}>
+        <Story />
+      </GestureHandlerRootView>
+    </ThemeProvider>
+  );
+};

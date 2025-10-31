@@ -15,7 +15,10 @@ module.exports = function (api) {
         ],
         'nativewind/babel',
       ],
-      plugins: [['@babel/plugin-proposal-decorators', { version: '2023-11' }]],
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { version: '2023-11' }],
+        'react-native-worklets/plugin',
+      ],
     };
   }
 
