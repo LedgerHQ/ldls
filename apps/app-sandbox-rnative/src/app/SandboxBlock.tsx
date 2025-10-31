@@ -8,9 +8,9 @@ type SandboxBlockProps = {
 
 export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
   return (
-    <View className='border-muted-subtle flex flex-col gap-8 border-t pt-16'>
-      <Text className='heading-3-semi-bold text-base'>{title}</Text>
-      <View className='flex-row flex-wrap gap-12'>{children}</View>
+    <View className='flex flex-col gap-8 border-t border-muted-subtle pt-16'>
+      <Text className='text-base heading-3-semi-bold'>{title}</Text>
+      <View className='flex-row flex-wrap items-start gap-12'>{children}</View>
     </View>
   );
 };
