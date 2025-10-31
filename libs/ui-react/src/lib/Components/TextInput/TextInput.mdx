@@ -132,38 +132,13 @@ The Input component uses **floating labels** that animate from inside the input 
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the Input component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { TextInput } from '@ledgerhq/ldls-ui-react';
@@ -173,7 +148,7 @@ function MyComponent() {
 
   return (
     <TextInput
-      label="Username"
+      label='Username'
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
@@ -195,7 +170,7 @@ function MyComponent() {
 
   return (
     <TextInput
-      label="Username"
+      label='Username'
       value={value}
       onChange={(e) => setValue(e.target.value)}
       hideClearButton // Clear button will not appear
@@ -216,7 +191,7 @@ function MyComponent() {
 
   return (
     <TextInput
-      label="Search"
+      label='Search'
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onClear={() => {
@@ -242,11 +217,11 @@ import { InformationFill, SparksFill } from '@ledgerhq/ldls-ui-react/symbols';
 // Action button component
 const GeneratePasswordButton = () => (
   <button
-    type="button"
+    type='button'
     onClick={() => alert('Generate password')}
-    aria-label="Generate random password"
+    aria-label='Generate random password'
   >
-    <SparksFill size={20} className="text-muted" />
+    <SparksFill size={20} className='text-muted' />
   </button>
 );
 
@@ -254,10 +229,10 @@ function MyComponent() {
   const [value, setValue] = React.useState('');
 
   return (
-    <div className="space-y-16">
+    <div className='space-y-16'>
       <TextInput
-        label="Password"
-        type="password"
+        label='Password'
+        type='password'
         value={value}
         onChange={(e) => setValue(e.target.value)}
         suffix={<GeneratePasswordButton />}
@@ -288,7 +263,7 @@ function MyComponent() {
 
   return (
     <TextInput
-      label="Username"
+      label='Username'
       value={value}
       onChange={handleChange}
       aria-invalid={error}
@@ -329,8 +304,8 @@ The Input component uses floating labels that animate from inside the input fiel
 ```tsx
 // DON'T DO THIS - causes visual overlap
 <TextInput
-  label="Email Address"
-  placeholder="Enter your email address"  // This will overlap with the label
+  label='Email Address'
+  placeholder='Enter your email address' // This will overlap with the label
   value={email}
   onChange={(e) => setEmail(e.target.value)}
 />
@@ -477,22 +452,22 @@ import { InformationFill } from '@ledgerhq/ldls-ui-react/symbols';
 // Memoize complex right elements
 const InfoButton = React.memo(() => (
   <button
-    type="button"
-    aria-label="Show information"
-    className="rounded-full p-2 hover:bg-muted-hover"
+    type='button'
+    aria-label='Show information'
+    className='rounded-full p-2 hover:bg-muted-hover'
   >
-    <InformationFill size={20} className="text-muted" />
+    <InformationFill size={20} className='text-muted' />
   </button>
 ));
 
-<TextInput suffix={<InfoButton />} />
+<TextInput suffix={<InfoButton />} />;
 
 // Use stable callbacks for extending clear behavior
 const handleCustomClear = useCallback(() => {
   // Default clearing happens automatically
   customClearLogic();
 }, []);
-<TextInput onClear={handleCustomClear} />
+<TextInput onClear={handleCustomClear} />;
 ```
 
 ❌ **Don't**

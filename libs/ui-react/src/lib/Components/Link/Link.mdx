@@ -3,7 +3,7 @@ import * as LinkStories from './Link.stories';
 import { Link } from './Link';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Link" of={LinkStories} />
+<Meta title='Components/Link' of={LinkStories} />
 
 # 🔗 Link
 
@@ -68,9 +68,9 @@ To be implemented:
 
 <Canvas of={LinkStories.AsChild} />
 
-<div className="rounded-8 mt-8 bg-muted p-12">
-  <p className="mb-4 body-2-semi-bold">Important Notes:</p>
-  <ul className="space-y-2 body-2">
+<div className='rounded-8 mt-8 bg-muted p-12'>
+  <p className='mb-4 body-2-semi-bold'>Important Notes:</p>
+  <ul className='space-y-2 body-2'>
     <li>When using asChild, the child element receives all link styles</li>
     <li>
       Icon and isExternal props are ignored with asChild - handle these in the
@@ -83,51 +83,22 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
 ```
 
-#### **About @radix-ui/react-slot**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-slot` dependency is used internally by the Link component
-to enable flexible composition patterns. It allows the Link to merge its props with child
-elements when needed.
+The `@radix-ui/react-slot` dependency enables flexible composition patterns, allowing the Link to merge its props with child elements when needed.
 
-### Tailwind Configuration
-
-To use the Link component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Link } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <Link appearance="underlined" size="md" href="/page">
+    <Link appearance='underlined' size='md' href='/page'>
       Go to Page
     </Link>
   );
@@ -140,10 +111,10 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Link
-  appearance="underlined"
-  size="md"
-  href="/page"
-  className="md:hidden" // Custom responsive behavior
+  appearance='underlined'
+  size='md'
+  href='/page'
+  className='md:hidden' // Custom responsive behavior
 >
   Link for small screen
 </Link>
@@ -159,7 +130,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <Link appearance="accent" size="sm" href="/next" icon={ArrowRight}>
+    <Link appearance='accent' size='sm' href='/next' icon={ArrowRight}>
       Continue
     </Link>
   );
@@ -171,7 +142,7 @@ function MyComponent() {
 Use the `isExternal` prop to automatically add target="\_blank" and an external link icon:
 
 ```tsx
-<Link appearance="underlined" size="md" href="https://example.com" isExternal>
+<Link appearance='underlined' size='md' href='https://example.com' isExternal>
   Visit External Site
 </Link>
 ```
@@ -186,8 +157,8 @@ import { Link as RouterLink } from 'react-router-dom';
 
 function MyComponent() {
   return (
-    <Link asChild appearance="underlined" size="md">
-      <RouterLink to="/dashboard">Dashboard</RouterLink>
+    <Link asChild appearance='underlined' size='md'>
+      <RouterLink to='/dashboard'>Dashboard</RouterLink>
     </Link>
   );
 }
@@ -207,11 +178,11 @@ These guidelines ensure consistency, maintainability, and proper implementation 
 // Use children for content composition
 <Link>
   See <em>Terms and Conditions</em>
-</Link>
+</Link>;
 
 // Pass icon as a component reference
 import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
-<Link icon={ArrowRight}>Next</Link>
+<Link icon={ArrowRight}>Next</Link>;
 ```
 
 ❌ **Don't**
