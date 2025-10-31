@@ -3,7 +3,7 @@ import * as ListItemStories from './ListItem.stories';
 import { ListItem } from './ListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/ListItem" of={ListItemStories} />
+<Meta title='Components/ListItem' of={ListItemStories} />
 
 # 📋 ListItem
 
@@ -77,38 +77,13 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the ListItem component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { ListItem } from '@ledgerhq/ldls-ui-react';
@@ -116,10 +91,7 @@ import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title="Settings"
-      trailingContent={<ChevronRight size={24} />}
-    />
+    <ListItem title='Settings' trailingContent={<ChevronRight size={24} />} />
   );
 }
 ```
@@ -135,8 +107,8 @@ import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 function MyComponent() {
   return (
     <ListItem
-      title="Account Settings"
-      description="Manage your profile and preferences"
+      title='Account Settings'
+      description='Manage your profile and preferences'
       trailingContent={<ChevronRight size={24} />}
     />
   );
@@ -154,9 +126,9 @@ import { Settings, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 function MyComponent() {
   return (
     <ListItem
-      title="Settings"
-      description="Manage your profile and preferences"
-      leadingContent={<Spot appearance="icon" icon={Settings} />}
+      title='Settings'
+      description='Manage your profile and preferences'
+      leadingContent={<Spot appearance='icon' icon={Settings} />}
       trailingContent={<ChevronRight size={24} />}
     />
   );
@@ -170,64 +142,70 @@ The ListItem supports arbitrary trailing content variants. Below are some exampl
 ```tsx
 import { useState } from 'react';
 import { ListItem, Switch, Tag } from '@ledgerhq/ldls-ui-react';
-import { Settings, Check, Bolt, ChevronRight, User } from '@ledgerhq/ldls-ui-react/symbols';
+import {
+  Settings,
+  Check,
+  Bolt,
+  ChevronRight,
+  User,
+} from '@ledgerhq/ldls-ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2 max-w-md">
+    <div className='flex flex-col gap-2 max-w-md'>
       {/* Chevron - For navigation items */}
       <ListItem
-        title="Chevron Variant"
-        description="With description"
-        leadingContent={<Spot appearance="icon" icon={User} />}
+        title='Chevron Variant'
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={User} />}
         trailingContent={<ChevronRight size={24} />}
       />
 
       {/* Switch - For switchable options */}
       <ListItem
-        title="Enable Feature"
-        description="Toggle this setting on/off"
-        leadingContent={<Spot appearance="icon" icon={User} />}
+        title='Enable Feature'
+        description='Toggle this setting on/off'
+        leadingContent={<Spot appearance='icon' icon={User} />}
         onClick={() => setSelected(!selected)}
         trailingContent={<Switch selected={selected} />}
       />
 
       {/* Value - For displaying values */}
       <ListItem
-        title="Account Balance"
-        description="Current available funds"
-        leadingContent={<Spot appearance="icon" icon={User} />}
+        title='Account Balance'
+        description='Current available funds'
+        leadingContent={<Spot appearance='icon' icon={User} />}
         trailingContent={
-          <div className="text-right">
-            <div className="body-2-semi-bold">42.00</div>
-            <div className="text-muted body-3">USD</div>
+          <div className='text-right'>
+            <div className='body-2-semi-bold'>42.00</div>
+            <div className='text-muted body-3'>USD</div>
           </div>
         }
       />
 
       {/* Tag - For status indicators */}
       <ListItem
-        title="New Feature"
-        description="Recently added functionality"
-        leadingContent={<Spot appearance="icon" icon={User} />}
-        trailingContent={<Tag label="New" appearance="accent" />}
+        title='New Feature'
+        description='Recently added functionality'
+        leadingContent={<Spot appearance='icon' icon={User} />}
+        trailingContent={<Tag label='New' appearance='accent' />}
       />
 
       {/* Icon - For trailing icons */}
       <ListItem
-        title="Edit Profile"
-        description="Modify your information"
-        leadingContent={<Spot appearance="icon" icon={User} />}
+        title='Edit Profile'
+        description='Modify your information'
+        leadingContent={<Spot appearance='icon' icon={User} />}
         trailingContent={<Check />}
       />
 
       {/* None - No trailing content */}
       <ListItem
-        title="Simple Item"
-        description="No trailing elements"
-        leadingContent={<Spot appearance="icon" icon={User} />}
+        title='Simple Item'
+        description='No trailing elements'
+        leadingContent={<Spot appearance='icon' icon={User} />}
       />
     </div>
   );
@@ -245,10 +223,10 @@ import { Bolt } from '@ledgerhq/ldls-ui-react/symbols';
 function MyComponent() {
   return (
     <ListItem
-      trailingContentVariant="caret"
-      title="New Item"
-      description="Recently added"
-      descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} />}
+      trailingContentVariant='caret'
+      title='New Item'
+      description='Recently added'
+      descriptionTag={<Tag label='New' appearance='accent' icon={Bolt} />}
     />
   );
 }
@@ -260,9 +238,9 @@ Disable the ListItem to prevent interaction:
 
 ```tsx
 <ListItem
-  trailingContentVariant="toggle"
-  title="Disabled Option"
-  description="Cannot be changed"
+  trailingContentVariant='toggle'
+  title='Disabled Option'
+  description='Cannot be changed'
   disabled
 />
 ```
@@ -272,12 +250,12 @@ Disable the ListItem to prevent interaction:
 ListItem handles truncation responsively. Use container widths to control behavior:
 
 ```tsx
-<div className="w-240 bg-base p-4">
+<div className='w-240 bg-base p-4'>
   <ListItem
-    trailingContentVariant="caret"
-    title="Very Long Title That Will Truncate"
-    description="Very long description that will also truncate appropriately"
-    leadingContent={<Spot appearance="icon" icon={User} />}
+    trailingContentVariant='caret'
+    title='Very Long Title That Will Truncate'
+    description='Very long description that will also truncate appropriately'
+    leadingContent={<Spot appearance='icon' icon={User} />}
   />
 </div>
 ```
@@ -288,10 +266,10 @@ Use `className` for layout purposes only, such as maximum width:
 
 ```tsx
 <ListItem
-  trailingContentVariant="caret"
-  title="Constrained Width"
-  description="This item has a maximum width applied"
-  className="max-w-md"
+  trailingContentVariant='caret'
+  title='Constrained Width'
+  description='This item has a maximum width applied'
+  className='max-w-md'
 />
 ```
 
@@ -351,7 +329,7 @@ The following guidelines ensure consistent usage of the ListItem component and m
 import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use proper event handlers
-<ListItem onClick={handleClick} />
+<ListItem onClick={handleClick} />;
 ```
 
 ❌ **Don't**
@@ -365,7 +343,7 @@ import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
   onClick={() => {
     // Complex logic...
   }}
-/>
+/>;
 ```
 
 </Tab>

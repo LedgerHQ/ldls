@@ -2,7 +2,7 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as AmountInputStories from './AmountInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/AmountInput" of={AmountInputStories} />
+<Meta title='Components/AmountInput' of={AmountInputStories} />
 
 # 💰 AmountInput
 
@@ -78,38 +78,13 @@ Example of a large amount display interface with currency toggle:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the AmountInput component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 AmountInput is a **controlled component only**. You must provide both `value` and `onChange` props.
 
@@ -123,7 +98,7 @@ function MyComponent() {
     <AmountInput
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      currencyText="USD"
+      currencyText='USD'
       allowDecimals={true} // Allow decimal points
     />
   );
@@ -212,7 +187,7 @@ function MyComponent() {
     <AmountInput
       value={value}
       onChange={handleChange}
-      currencyText="USD"
+      currencyText='USD'
       aria-invalid={error}
     />
   );
@@ -280,9 +255,8 @@ const [value, setValue] = useState('');
 <AmountInput
   value={value}
   onChange={(e) => setValue(e.target.value)}
-  currencyText="USD"
-/>
-
+  currencyText='USD'
+/>;
 
 // Use with validation state
 const [value, setValue] = useState('');
@@ -293,9 +267,9 @@ const [hasError, setHasError] = useState(false);
     setValue(e.target.value);
     setHasError(!e.target.value || isNaN(Number(e.target.value)));
   }}
-  currencyText="USD"
+  currencyText='USD'
   aria-invalid={hasError}
-/>
+/>;
 
 // Access the input element via ref
 const inputRef = useRef<HTMLInputElement>(null);
@@ -303,8 +277,8 @@ const inputRef = useRef<HTMLInputElement>(null);
   ref={inputRef}
   value={value}
   onChange={(e) => setValue(e.target.value)}
-  currencyText="USD"
-/>
+  currencyText='USD'
+/>;
 ```
 
 ❌ **Don't**

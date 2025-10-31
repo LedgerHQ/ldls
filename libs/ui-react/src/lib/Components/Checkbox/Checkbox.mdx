@@ -3,7 +3,7 @@ import * as CheckboxStories from './Checkbox.stories';
 import { Checkbox } from './Checkbox';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Checkbox" of={CheckboxStories} />
+<Meta title='Components/Checkbox' of={CheckboxStories} />
 
 # ☑️ Checkbox
 
@@ -67,43 +67,13 @@ When using checkboxes in forms, provide the `name` and `value` attributes for pr
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-checkbox
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-checkbox
 ```
 
-#### **About @radix-ui/react-checkbox**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-checkbox` dependency is used internally by the Checkbox component
-to provide accessible, unstyled checkbox functionality with proper keyboard navigation,
-focus management, and screen reader support. It handles the core checkbox behavior including
-checked/unchecked states, form integration, and accessibility features, while our component adds the visual styling and design system tokens.
-
-### Tailwind Configuration
-
-To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
+The `@radix-ui/react-checkbox` dependency provides accessible checkbox functionality with proper keyboard navigation, focus management, and screen reader support.
 
 ## Basic Usage
 
@@ -114,11 +84,8 @@ function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="flex items-center space-x-8">
-      <Checkbox
-        checked={isChecked}
-        onCheckedChange={setIsChecked}
-      />
+    <div className='flex items-center space-x-8'>
+      <Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
       <label>Accept terms and conditions</label>
     </div>
   );
@@ -134,10 +101,7 @@ Use the `checked` and `onCheckedChange` props for full control:
 ```tsx
 const [checked, setChecked] = useState(false);
 
-<Checkbox
-  checked={checked}
-  onCheckedChange={setChecked}
-/>
+<Checkbox checked={checked} onCheckedChange={setChecked} />;
 ```
 
 ### Uncontrolled

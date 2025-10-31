@@ -69,7 +69,7 @@ InteractiveIcons require special attention for accessibility since they contain 
 **Always provide an `aria-label` prop** that clearly describes the action:
 
 ```tsx
-<InteractiveIcon iconType="filled" aria-label="Delete item">
+<InteractiveIcon iconType='filled' aria-label='Delete item'>
   <DeleteCircleFill size={20} />
 </InteractiveIcon>
 ```
@@ -85,36 +85,11 @@ InteractiveIcons support full keyboard navigation:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-## Tailwind Configuration
-
-To use the InteractiveIcon component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
 ## Usage examples
 
@@ -128,12 +103,20 @@ function MyComponent() {
   return (
     <div>
       {/* Stroked interactive icon */}
-      <InteractiveIcon iconType="stroked" aria-label="Open settings" onClick={handleSettings}>
+      <InteractiveIcon
+        iconType='stroked'
+        aria-label='Open settings'
+        onClick={handleSettings}
+      >
         <Settings size={20} />
       </InteractiveIcon>
 
       {/* Filled interactive icon */}
-      <InteractiveIcon iconType="filled" aria-label="Delete item" onClick={handleDelete}>
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Delete item'
+        onClick={handleDelete}
+      >
         <DeleteCircleFill size={20} />
       </InteractiveIcon>
     </div>
@@ -145,16 +128,23 @@ function MyComponent() {
 
 ```tsx
 import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
-import { CheckmarkCircle, CheckmarkCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+import {
+  CheckmarkCircle,
+  CheckmarkCircleFill,
+} from '@ledgerhq/ldls-ui-react/symbols';
 
 function LikeButton({ isSelected, onToggle }) {
   return (
     <InteractiveIcon
-      iconType={isSelected ? "filled" : "stroked"}
-      aria-label={isSelected ? "Deselect" : "Select"}
+      iconType={isSelected ? 'filled' : 'stroked'}
+      aria-label={isSelected ? 'Deselect' : 'Select'}
       onClick={onToggle}
     >
-      {isSelected ? <CheckmarkCircleFill size={20} /> : <CheckmarkCircle size={20} />}
+      {isSelected ? (
+        <CheckmarkCircleFill size={20} />
+      ) : (
+        <CheckmarkCircle size={20} />
+      )}
     </InteractiveIcon>
   );
 }
@@ -168,24 +158,24 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 function SizeExamples() {
   return (
-    <div className="flex items-center gap-4">
+    <div className='flex items-center gap-4'>
       {/* Compact size for dense interfaces */}
-      <InteractiveIcon iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={16} />
       </InteractiveIcon>
 
       {/* Standard size */}
-      <InteractiveIcon iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={20} />
       </InteractiveIcon>
 
       {/* Prominent size */}
-      <InteractiveIcon iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={24} />
       </InteractiveIcon>
 
       {/* Large touch target for mobile */}
-      <InteractiveIcon iconType="stroked" aria-label="Settings">
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={40} />
       </InteractiveIcon>
     </div>
@@ -251,7 +241,7 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Always provide descriptive aria-label
-<InteractiveIcon iconType="stroked" aria-label="Download PDF document">
+<InteractiveIcon iconType='stroked' aria-label='Download PDF document'>
   <Download size={20} />
 </InteractiveIcon>
 ```
@@ -324,7 +314,7 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Only render icon components as children
-<InteractiveIcon iconType="stroked" aria-label="More actions">
+<InteractiveIcon iconType='stroked' aria-label='More actions'>
   <MoreVertical size={20} />
 </InteractiveIcon>
 ```
@@ -333,7 +323,7 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Don't render arbitrary content as children
-<InteractiveIcon iconType="stroked" aria-label="More actions">
+<InteractiveIcon iconType='stroked' aria-label='More actions'>
   Settings
 </InteractiveIcon>
 ```

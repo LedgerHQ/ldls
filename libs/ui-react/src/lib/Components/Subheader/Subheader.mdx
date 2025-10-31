@@ -3,7 +3,7 @@ import * as SubheaderStories from './Subheader.stories';
 import { Subheader } from './Subheader';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Communication/Subheader" of={SubheaderStories} />
+<Meta title='Communication/Subheader' of={SubheaderStories} />
 
 # 🃏 Subheader
 
@@ -70,46 +70,19 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the Subheader component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Subheader } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
-  return (
-    <Subheader title="Section Title" />
-  );
+  return <Subheader title='Section Title' />;
 }
 ```
 
@@ -120,22 +93,29 @@ The component uses a slot-based composition pattern where you can pass `Subheade
 Add an informational tooltip using the `Subheader.Info` slot:
 
 ```tsx
-import { Subheader, Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+import {
+  Subheader,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ledgerhq/ldls-ui-react';
 import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 function TooltipExample() {
   return (
-    <Subheader title="Section Title">
+    <Subheader title='Section Title'>
       <Subheader.Info>
         <Tooltip>
           <TooltipTrigger asChild>
             <Information
               size={12}
-              className="shrink-0 text-muted"
-              aria-label="More information"
+              className='shrink-0 text-muted'
+              aria-label='More information'
             />
           </TooltipTrigger>
-          <TooltipContent>This is additional information about the section</TooltipContent>
+          <TooltipContent>
+            This is additional information about the section
+          </TooltipContent>
         </Tooltip>
       </Subheader.Info>
     </Subheader>
@@ -152,12 +132,12 @@ import { Subheader, Link } from '@ledgerhq/ldls-ui-react';
 
 function ActionExample() {
   return (
-    <Subheader title="Section Title">
+    <Subheader title='Section Title'>
       <Subheader.Action>
         <Link
-          href="https://ledger.com"
-          appearance="accent"
-          size="sm"
+          href='https://ledger.com'
+          appearance='accent'
+          size='sm'
           isExternal
         >
           View More
@@ -173,19 +153,25 @@ function ActionExample() {
 Combine both slots for a fully featured subheader:
 
 ```tsx
-import { Subheader, Link, Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+import {
+  Subheader,
+  Link,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ledgerhq/ldls-ui-react';
 import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 function FullExample() {
   return (
-    <Subheader title="Section Title">
+    <Subheader title='Section Title'>
       <Subheader.Info>
         <Tooltip>
           <TooltipTrigger asChild>
             <Information
               size={12}
-              className="shrink-0 text-muted"
-              aria-label="More information"
+              className='shrink-0 text-muted'
+              aria-label='More information'
             />
           </TooltipTrigger>
           <TooltipContent>Additional info</TooltipContent>
@@ -193,9 +179,9 @@ function FullExample() {
       </Subheader.Info>
       <Subheader.Action>
         <Link
-          href="https://example.com"
-          appearance="accent"
-          size="sm"
+          href='https://example.com'
+          appearance='accent'
+          size='sm'
           isExternal
         >
           Action
@@ -211,24 +197,30 @@ function FullExample() {
 Subheaders automatically adjust to their parent container's width. No additional props are needed:
 
 ```tsx
-<Subheader title="Section Title" />
+<Subheader title='Section Title' />
 ```
 
 To control width, use container elements:
 
 ```tsx
-{/* Full viewport width */}
-<Subheader title="Full Width" />
+{
+  /* Full viewport width */
+}
+<Subheader title='Full Width' />;
 
-{/* Constrained width */}
-<div className="max-w-4xl mx-auto">
-  <Subheader title="Constrained" />
-</div>
+{
+  /* Constrained width */
+}
+<div className='max-w-4xl mx-auto'>
+  <Subheader title='Constrained' />
+</div>;
 
-{/* Responsive width */}
-<div className="w-full lg:max-w-2xl">
-  <Subheader title="Responsive" />
-</div>
+{
+  /* Responsive width */
+}
+<div className='w-full lg:max-w-2xl'>
+  <Subheader title='Responsive' />
+</div>;
 ```
 
 ### Custom Styling
@@ -237,8 +229,8 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Subheader
-  title="Styled Subheader"
-  className="mb-4" // Custom margin
+  title='Styled Subheader'
+  className='mb-4' // Custom margin
 />
 ```
 
@@ -318,7 +310,7 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
 ```tsx
 // Don't put non-slot children
-<Subheader title="Wrong">
+<Subheader title='Wrong'>
   <div>Random child</div> {/* Only use Subheader.Info and Subheader.Action */}
 </Subheader>
 ```

@@ -3,7 +3,7 @@ import * as SpotStories from './Spot.stories';
 import { Spot } from './Spot';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Spot" of={SpotStories} />
+<Meta title='Components/Spot' of={SpotStories} />
 
 # 🔵 Spot
 
@@ -77,46 +77,19 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the Spot component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
-  return (
-    <Spot appearance="check" />
-  );
+  return <Spot appearance='check' />;
 }
 ```
 
@@ -125,11 +98,7 @@ function MyComponent() {
 While the component comes with predefined styles, you can extend them using Tailwind classes:
 
 ```tsx
-<Spot
-  appearance="icon"
-  icon={Settings}
-  className="mt-4 ml-2"
-/>
+<Spot appearance='icon' icon={Settings} className='mt-4 ml-2' />
 ```
 
 ### With Icons
@@ -142,10 +111,10 @@ import { Settings, Heart, Star } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <div className="flex gap-4">
-      <Spot appearance="icon" icon={Settings} />
-      <Spot appearance="icon" icon={Heart} />
-      <Spot appearance="icon" icon={Star} />
+    <div className='flex gap-4'>
+      <Spot appearance='icon' icon={Settings} />
+      <Spot appearance='icon' icon={Heart} />
+      <Spot appearance='icon' icon={Star} />
     </div>
   );
 }
@@ -160,10 +129,10 @@ import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <div className="flex gap-4">
-      <Spot appearance="number" number={1} />
-      <Spot appearance="number" number={2} />
-      <Spot appearance="number" number={3} />
+    <div className='flex gap-4'>
+      <Spot appearance='number' number={1} />
+      <Spot appearance='number' number={2} />
+      <Spot appearance='number' number={3} />
     </div>
   );
 }
@@ -178,24 +147,24 @@ import { Spot } from '@ledgerhq/ldls-ui-react';
 
 function StatusIndicators() {
   return (
-    <div className="flex gap-4">
+    <div className='flex gap-4'>
       {/* Success state */}
-      <Spot appearance="check" />
+      <Spot appearance='check' />
 
       {/* Error state */}
-      <Spot appearance="error" />
+      <Spot appearance='error' />
 
       {/* Warning state */}
-      <Spot appearance="warning" />
+      <Spot appearance='warning' />
 
       {/* Info state */}
-      <Spot appearance="info" />
+      <Spot appearance='info' />
 
       {/* Loading state */}
-      <Spot appearance="loader" />
+      <Spot appearance='loader' />
 
       {/* Connectivity */}
-      <Spot appearance="bluetooth" />
+      <Spot appearance='bluetooth' />
     </div>
   );
 }
@@ -277,14 +246,14 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
 ```tsx
 // Use Spot for status indication only
-<Spot appearance="check" /> // Status indicator
+<Spot appearance='check' /> // Status indicator
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't make spots directly interactive
-<Spot appearance="check" className="cursor-pointer" onClick={handleClick} />
+<Spot appearance='check' className='cursor-pointer' onClick={handleClick} />
 ```
 
 ### Performance Considerations

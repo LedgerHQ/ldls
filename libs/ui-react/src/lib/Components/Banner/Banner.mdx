@@ -3,7 +3,7 @@ import * as BannerStories from './Banner.stories';
 import { Banner } from './Banner';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Banner" of={BannerStories} />
+<Meta title='Components/Banner' of={BannerStories} />
 
 # 🃏 Banner
 
@@ -90,44 +90,15 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
 ```
 
-#### About @radix-ui/react-slot
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-slot` dependency is used internally by the Button component
-to enable flexible composition patterns. It allows the Button to merge its props with child
-elements when needed.
+The `@radix-ui/react-slot` dependency enables flexible composition patterns for the Banner component's action buttons.
 
-### Tailwind Configuration
-
-To use the Banner component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Banner } from '@ledgerhq/ldls-ui-react';
@@ -135,9 +106,9 @@ import { Banner } from '@ledgerhq/ldls-ui-react';
 function MyComponent() {
   return (
     <Banner
-      title="Information"
-      description="This is an informational message for the user"
-      appearance="info"
+      title='Information'
+      description='This is an informational message for the user'
+      appearance='info'
     />
   );
 }
@@ -152,33 +123,33 @@ import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function NotificationSystem() {
   return (
-    <div className="space-y-4">
+    <div className='space-y-4'>
       {/* Info - Default informational messages */}
       <Banner
-        appearance="info"
-        title="Information"
-        description="General information or tips"
+        appearance='info'
+        title='Information'
+        description='General information or tips'
       />
 
       {/* Success - Positive feedback or completion */}
       <Banner
-        appearance="success"
-        title="Success"
-        description="Action completed successfully"
+        appearance='success'
+        title='Success'
+        description='Action completed successfully'
       />
 
       {/* Warning - Caution or important notices */}
       <Banner
-        appearance="warning"
-        title="Warning"
-        description="Please review this important information"
+        appearance='warning'
+        title='Warning'
+        description='Please review this important information'
       />
 
       {/* Error - Error states or critical issues */}
       <Banner
-        appearance="error"
-        title="Error"
-        description="Something went wrong, please try again"
+        appearance='error'
+        title='Error'
+        description='Something went wrong, please try again'
       />
     </div>
   );
@@ -203,16 +174,16 @@ function ActionableBanner() {
 
   return (
     <Banner
-      appearance="warning"
-      title="Terms of Service Updated"
-      description="Please review and accept the updated terms of service to continue using our platform"
+      appearance='warning'
+      title='Terms of Service Updated'
+      description='Please review and accept the updated terms of service to continue using our platform'
       primaryAction={
-        <Button appearance="transparent" size="sm" onClick={handleAccept}>
+        <Button appearance='transparent' size='sm' onClick={handleAccept}>
           Accept
         </Button>
       }
       secondaryAction={
-        <Button appearance="no-background" size="sm" onClick={handleDecline}>
+        <Button appearance='no-background' size='sm' onClick={handleDecline}>
           Review Later
         </Button>
       }
@@ -236,11 +207,11 @@ function DismissibleBanner() {
 
   return (
     <Banner
-      appearance="info"
-      title="Welcome!"
-      description="Thanks for joining our platform. Here are some tips to get started."
+      appearance='info'
+      title='Welcome!'
+      description='Thanks for joining our platform. Here are some tips to get started.'
       onClose={() => setIsVisible(false)}
-      closeAriaLabel="Close welcome banner"
+      closeAriaLabel='Close welcome banner'
     />
   );
 }
@@ -252,29 +223,41 @@ Banners automatically flow to fill their parent container width. No additional p
 
 ```tsx
 <Banner
-  title="System Maintenance"
-  description="Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST"
-  appearance="warning"
+  title='System Maintenance'
+  description='Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST'
+  appearance='warning'
   onClose={() => handleDismiss()}
-  closeAriaLabel="Dismiss"
+  closeAriaLabel='Dismiss'
 />
 ```
 
 To control banner width, use container elements:
 
 ```tsx
-{/* Full viewport width */}
-<Banner title="Full Width" description="This banner fills the viewport width" />
+{
+  /* Full viewport width */
+}
+<Banner
+  title='Full Width'
+  description='This banner fills the viewport width'
+/>;
 
-{/* Constrained width */}
-<div className="max-w-4xl mx-auto">
-  <Banner title="Constrained" description="This banner is limited by its container" />
-</div>
+{
+  /* Constrained width */
+}
+<div className='max-w-4xl mx-auto'>
+  <Banner
+    title='Constrained'
+    description='This banner is limited by its container'
+  />
+</div>;
 
-{/* Responsive width */}
-<div className="w-full lg:max-w-2xl">
-  <Banner title="Responsive" description="Width adapts based on screen size" />
-</div>
+{
+  /* Responsive width */
+}
+<div className='w-full lg:max-w-2xl'>
+  <Banner title='Responsive' description='Width adapts based on screen size' />
+</div>;
 ```
 
 ### Complete Example
@@ -298,14 +281,15 @@ function NotificationCenter() {
       id: '2',
       type: 'warning',
       title: 'Verification Required',
-      description: 'Please verify your email address to continue using all features.',
+      description:
+        'Please verify your email address to continue using all features.',
       dismissible: true,
       actions: true,
     },
   ]);
 
   const dismissNotification = (id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
   const handleVerify = () => {
@@ -317,25 +301,37 @@ function NotificationCenter() {
   };
 
   return (
-    <div className="space-y-4">
-      {notifications.map(notification => (
+    <div className='space-y-4'>
+      {notifications.map((notification) => (
         <Banner
           key={notification.id}
           appearance={notification.type as any}
           title={notification.title}
           description={notification.description}
-          onClose={notification.dismissible ? () => dismissNotification(notification.id) : undefined}
-          closeAriaLabel="Close notification"
-          primaryAction={notification.actions ? (
-            <Button appearance="transparent" size="sm" onClick={handleVerify}>
-              Verify Now
-            </Button>
-          ) : undefined}
-          secondaryAction={notification.actions ? (
-            <Button appearance="no-background" size="sm" onClick={handleLater}>
-              Later
-            </Button>
-          ) : undefined}
+          onClose={
+            notification.dismissible
+              ? () => dismissNotification(notification.id)
+              : undefined
+          }
+          closeAriaLabel='Close notification'
+          primaryAction={
+            notification.actions ? (
+              <Button appearance='transparent' size='sm' onClick={handleVerify}>
+                Verify Now
+              </Button>
+            ) : undefined
+          }
+          secondaryAction={
+            notification.actions ? (
+              <Button
+                appearance='no-background'
+                size='sm'
+                onClick={handleLater}
+              >
+                Later
+              </Button>
+            ) : undefined
+          }
         />
       ))}
     </div>
@@ -349,10 +345,10 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Banner
-  title="Mobile Alert"
-  description="This banner only shows on mobile devices"
-  className="md:hidden mb-4" // Custom responsive display and margin
-  appearance="info"
+  title='Mobile Alert'
+  description='This banner only shows on mobile devices'
+  className='md:hidden mb-4' // Custom responsive display and margin
+  appearance='info'
 />
 ```
 
@@ -426,14 +422,14 @@ The following guidelines ensure consistent usage of the Banner component and mai
 ```tsx
 // Pass complete Button components with proper styling
 <Banner
-  title="Confirm Action"
-  description="This action cannot be undone"
+  title='Confirm Action'
+  description='This action cannot be undone'
   primaryAction={
-    <Button appearance="transparent" size="sm" onClick={handleConfirm}>
+    <Button appearance='transparent' size='sm' onClick={handleConfirm}>
       Confirm
     </Button>
   }
-  appearance="warning"
+  appearance='warning'
 />
 ```
 
@@ -442,10 +438,10 @@ The following guidelines ensure consistent usage of the Banner component and mai
 ```tsx
 // Don't pass incomplete or unstyled elements
 <Banner
-  title="Broken Action"
+  title='Broken Action'
   description="This won't work properly"
   primaryAction={<button onClick={handleSubmit}>Submit</button>}
-  appearance="error"
+  appearance='error'
 />
 ```
 
