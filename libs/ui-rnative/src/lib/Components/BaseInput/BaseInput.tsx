@@ -133,6 +133,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               baseInputStyles,
               label && 'pt-12 body-2',
               !editable && 'bg-disabled text-disabled',
+              isFocused && !errorMessage && editable && '-translate-x-2', // this is because of border-2
               className,
             )}
             onFocus={() => setIsFocused(true)}
@@ -152,6 +153,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
                   : 'translate-y-0 scale-100 body-4', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
+                isFocused && !errorMessage && editable && '-translate-x-2', // this is because of border-2
                 labelClassName,
               )}
             >
