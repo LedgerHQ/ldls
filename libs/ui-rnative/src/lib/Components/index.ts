@@ -1,4 +1,5 @@
 export * from './Banner';
+export * from './BottomSheet';
 export * from './Button';
 export * from './CardButton';
 export * from './Checkbox';

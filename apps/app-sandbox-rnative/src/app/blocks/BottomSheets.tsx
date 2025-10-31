@@ -1,12 +1,11 @@
-import { BottomSheetView } from '@gorhom/bottom-sheet';
 import {
   BottomSheet,
   BottomSheetHeader,
   Button,
-  BottomSheetScrollView,
+  BottomSheetFlatList,
 } from '@ledgerhq/ldls-ui-rnative';
 import { forwardRef } from 'react';
-import { Text, TextInput } from 'react-native';
+import { Text, View } from 'react-native';
 
 export const BottomSheetsButton = ({ onPress }: any) => {
   return (
@@ -18,23 +17,37 @@ export const BottomSheetsButton = ({ onPress }: any) => {
 
 export const BottomSheets = forwardRef<React.ElementRef<typeof BottomSheet>>(
   (props, ref) => {
+    const data = Array.from({ length: 100 }, (_, i) => ({
+      id: i.toString(),
+      title: `Item ${i + 1}`,
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    }));
+
     return (
-      <BottomSheet closeable snapPoints='half' ref={ref}>
-        <BottomSheetView>
-          <BottomSheetHeader
-            title='Title'
-            appearance='compact'
-            description='Description'
-          />
-          {Array.from({ length: 2 }).map((_, index) => (
-            <Text className='mb-24 text-base' key={index}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
-              excepturi odit, quis tenetur iste perspiciatis mollitia porro
-              velit laborum quasi numquam reiciendis dolor! Et quia voluptates
-              eum, sunt asperiores quod.
-            </Text>
-          ))}
-        </BottomSheetView>
+      <BottomSheet {...props} ref={ref} closeable>
+        <BottomSheetHeader
+          spacing
+          title='Virtual List'
+          appearance='compact'
+          description='This bottom sheet contains a virtualized list'
+        />
+        <BottomSheetFlatList
+          data={data}
+          keyExtractor={(item) => (item as any).id}
+          renderItem={({ item }) => {
+            const typedItem = item as any;
+            return (
+              <View className='flex flex-col gap-4 border-b border-base py-12'>
+                <Text className='text-base body-2-semi-bold'>
+                  {typedItem.title}
+                </Text>
+                <Text className='text-muted body-3'>
+                  {typedItem.description}
+                </Text>
+              </View>
+            );
+          }}
+        />
       </BottomSheet>
     );
   },
