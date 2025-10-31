@@ -1,10 +1,10 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React, { useCallback, useState } from 'react';
 import {
+  Pressable,
   Text,
   TextInput,
   type TextInputProps,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import { DeleteCircleFill } from 'src/lib/Symbols';
@@ -129,13 +129,14 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             </Text>
           )}
           {showClearButton && (
-            <TouchableOpacity
+            <Pressable
               className='ml-auto'
               onPress={handleClear}
               accessibilityLabel='clear input'
+              style={({ pressed }) => pressed && { opacity: pressed ? 0.6 : 1 }}
             >
               <DeleteCircleFill size={20} />
-            </TouchableOpacity>
+            </Pressable>
           )}
         </View>
         {errorMessage && (

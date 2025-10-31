@@ -77,6 +77,7 @@ export const ExtendedClearBehavior: Story = {
     return (
       <TextInput
         defaultValue='Clear me'
+        {...props}
         onClear={() => alert('Extended clear behavior')}
       />
     );
