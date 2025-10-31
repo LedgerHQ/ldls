@@ -168,7 +168,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.200}",
+          "$value": "{color.dark.grey.100}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -722,7 +722,7 @@
       "error": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.red.600-20%}",
+          "$value": "{color.dark.red.600-15%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -794,7 +794,7 @@
       "warning": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.yellow.600-20%}",
+          "$value": "{color.dark.yellow.600-15%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -826,7 +826,7 @@
       "success": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.green.600-20%}",
+          "$value": "{color.dark.green.600-15%}",
           "$description": "",
           "$extensions": {
             "com.figma": {
