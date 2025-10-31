@@ -1,6 +1,7 @@
-import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
 import type { Decorator } from '@storybook/react-native-web-vite';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ThemeProvider } from '../src/lib/Components';
 
 const createThemeDecorator = (
   globalName: string,
