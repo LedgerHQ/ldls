@@ -1,7 +1,11 @@
 import type { Preview } from '@storybook/react-native-web-vite';
 import '../src/styles.css';
 import './font.css';
-import { withBrandDecorator, withModeDecorator } from './Decorator';
+import {
+  withBrandDecorator,
+  withModeDecorator,
+  withProvidersDecorator,
+} from './Decorator';
 
 const preview: Preview = {
   globalTypes: {
@@ -60,6 +64,7 @@ const preview: Preview = {
         ],
       },
     },
+    tags: ['autodocs'],
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -69,7 +74,7 @@ const preview: Preview = {
     },
   },
 
-  decorators: [withBrandDecorator, withModeDecorator],
+  decorators: [withBrandDecorator, withModeDecorator, withProvidersDecorator],
 };
 
 export default preview;
