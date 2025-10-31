@@ -168,7 +168,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.100}",
+          "$value": "{color.dark.grey.200}",
           "$description": "",
           "$extensions": {
             "com.figma": {
