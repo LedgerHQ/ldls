@@ -1,6 +1,7 @@
 export { Airplane } from './Icons/Airplane';
 export { AlarmClock } from './Icons/AlarmClock';
 export { Android } from './Icons/Android';
+export { Apex } from './Icons/Apex';
 export { Apple } from './Icons/Apple';
 export { Apps } from './Icons/Apps';
 export { Ar } from './Icons/Ar';

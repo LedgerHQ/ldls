@@ -4378,9 +4378,9 @@
             }
           }
         },
-        "600-20%": {
+        "600-15%": {
           "$type": "color",
-          "$value": "#6ec85c33",
+          "$value": "#6ec85c26",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -4548,9 +4548,9 @@
             }
           }
         },
-        "600-20%": {
+        "600-15%": {
           "$type": "color",
-          "$value": "#ffbd4233",
+          "$value": "#ffbd4226",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -4718,9 +4718,9 @@
             }
           }
         },
-        "600-20%": {
+        "600-15%": {
           "$type": "color",
-          "$value": "#f8727433",
+          "$value": "#f8727426",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -6772,7 +6772,7 @@
       "$description": "",
       "$extensions": {
         "com.figma": {
-          "hiddenFromPublishing": true,
+          "hiddenFromPublishing": false,
           "scopes": [
             "GAP"
           ],
@@ -7216,6 +7216,18 @@
     }
   },
   "spot-width": {
+    "32": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
     "48": {
       "$type": "number",
       "$value": 48,
@@ -7254,6 +7266,18 @@
     }
   },
   "spot-height": {
+    "32": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
     "48": {
       "$type": "number",
       "$value": 48,
@@ -7379,6 +7403,104 @@
     "56": {
       "$type": "number",
       "$value": 2.799999952316284,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    }
+  },
+  "spinner-border-width": {
+    "12": {
+      "$type": "number",
+      "$value": 1.2000000476837158,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "16": {
+      "$type": "number",
+      "$value": 1.600000023841858,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "20": {
+      "$type": "number",
+      "$value": 2,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "24": {
+      "$type": "number",
+      "$value": 2.5999999046325684,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "32": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "40": {
+      "$type": "number",
+      "$value": 3.200000047683716,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "48": {
+      "$type": "number",
+      "$value": 3.5999999046325684,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "56": {
+      "$type": "number",
+      "$value": 3.799999952316284,
       "$description": "",
       "$extensions": {
         "com.figma": {

@@ -83,6 +83,20 @@
           "codeSyntax": {}
         }
       }
+    },
+    "spinner-border-width": {
+      "$type": "number",
+      "$value": "{spinner-border-width.32}",
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "ALL_SCOPES"
+          ],
+          "codeSyntax": {}
+        }
+      }
     }
   },
   "icon-multiple": {
