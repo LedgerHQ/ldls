@@ -7,7 +7,7 @@ import {
   type TextInputProps,
   View,
 } from 'react-native';
-import { DeleteCircleFill } from 'src/lib/Symbols';
+import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 
 export type BaseInputProps = TextInputProps & {
   /**
@@ -51,25 +51,20 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'group cursor-text relative flex h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors overflow-hidden',
-  'focus-within:ring-2 focus-within:ring-active',
-  'has-[:disabled]:pointer-events-none has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
-  'has-[:invalid]:ring-1 has-[:invalid]:ring-error has-[:invalid]:border-error',
-  'has-[input[aria-invalid="true"]]:ring-1 has-[input[aria-invalid="true"]]:ring-error has-[input[aria-invalid="true"]]:border-error',
+  'cursor-text relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors overflow-hidden',
+  'disabled:bg-disabled disabled:text-disabled',
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-active',
-  'group-disabled:bg-disabled',
-  'group-has-[:disabled]:pointer-events-none group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
-  'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
-  '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-active truncate',
+  'disabled:bg-disabled disabled:text-disabled',
+  'placeholder:text-muted disabled:placeholder:text-disabled',
   'truncate',
 );
 
 const baseLabelStyles = cn(
-  'pointer-events-none absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
-  'group-has-[:disabled]:text-disabled',
+  'absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
+  'disabled:text-disabled',
   'peer-focus:top-6 peer-focus:-translate-y-0 peer-focus:body-4',
   'truncate w-[calc(100%-var(--size-56))]',
 );
@@ -89,6 +84,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     const [uncontrolledValue, setUncontrolledValue] = useState(
       props.defaultValue || '',
     );
+    const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef<TextInput>(null);
 
     const isControlled = props.value !== undefined;
@@ -122,13 +118,26 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     return (
       <View>
         <Pressable
-          className={cn(baseContainerStyles, 'flex-row', containerClassName)}
+          className={cn(
+            baseContainerStyles,
+            errorMessage && 'ring-1 ring-error border-error',
+            isFocused && !errorMessage && editable && 'ring-2 ring-active',
+            containerClassName,
+          )}
           onFocus={() => inputRef.current?.focus()}
+          disabled={!editable}
         >
           <TextInput
             ref={inputRef}
             value={value}
-            className={cn(baseInputStyles, label && 'pt-12 body-2', className)}
+            className={cn(
+              baseInputStyles,
+              label && 'pt-12 body-2',
+              !editable && 'bg-disabled text-disabled',
+              className,
+            )}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             onChangeText={onChangeText}
             editable={editable}
             {...props}
@@ -138,6 +147,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className={cn(
                 baseLabelStyles,
                 !value && 'top-1/2 -translate-y-1/2 scale-[1.4]',
+                !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
               )}
@@ -150,14 +160,14 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className='ml-auto'
               onPress={handleClear}
               accessibilityLabel='clear input'
-              style={({ pressed }) => pressed && { opacity: pressed ? 0.6 : 1 }}
+              style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
             >
               <DeleteCircleFill size={20} />
             </Pressable>
           )}
         </Pressable>
         {errorMessage && (
-          <View className='mt-8 flex-row items-center gap-2' role='alert'>
+          <View className='mt-8 flex-row items-center gap-2'>
             <DeleteCircleFill size={16} className='shrink-0 text-error' />
             <Text className='text-error body-3'>{errorMessage}</Text>
           </View>

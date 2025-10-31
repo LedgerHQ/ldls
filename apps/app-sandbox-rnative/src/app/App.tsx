@@ -3,6 +3,7 @@ import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { Buttons } from './blocks/Buttons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
+import { Inputs } from './blocks/Inputs';
 import { Switches } from './blocks/Switches';
 import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
 import { SandboxBlock } from './SandboxBlock';
@@ -14,9 +15,12 @@ export const App = () => {
       <ThemeProvider defaultMode='dark' className='flex flex-1'>
         <ScrollView
           contentInsetAdjustmentBehavior='automatic'
-          className='bg-canvas-sheet h-screen px-16 '
+          className='h-screen bg-canvas-sheet px-16'
         >
           <View className='flex flex-col gap-32 py-40'>
+            <SandboxBlock title='Inputs'>
+              <Inputs />
+            </SandboxBlock>
             <SandboxBlock title='Checkboxes'>
               <Checkboxes />
             </SandboxBlock>
