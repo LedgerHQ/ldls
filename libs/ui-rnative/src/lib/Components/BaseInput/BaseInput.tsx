@@ -120,8 +120,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
         <Pressable
           className={cn(
             baseContainerStyles,
-            errorMessage && 'ring-1 ring-error border-error',
-            isFocused && !errorMessage && editable && 'ring-2 ring-active',
+            errorMessage && 'border border-error',
+            isFocused && !errorMessage && editable && 'border-2 border-active',
             containerClassName,
           )}
           onFocus={() => inputRef.current?.focus()}
