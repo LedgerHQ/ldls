@@ -14,14 +14,20 @@ export const Default: Story = {
   args: {
     label: 'Label',
   },
-  render: (props) => <TextInput {...props} />,
+  render: (props) => <TextInput {...props} containerClassName='max-w-md' />,
 };
 
 export const WithContent: Story = {
   args: {
     label: 'Label',
   },
-  render: (props) => <TextInput defaultValue='Initial content' {...props} />,
+  render: (props) => (
+    <TextInput
+      defaultValue='Initial content'
+      {...props}
+      containerClassName='max-w-md'
+    />
+  ),
 };
 
 export const WithError: Story = {
@@ -29,7 +35,13 @@ export const WithError: Story = {
     label: 'Email',
     errorMessage: 'Please enter a valid email address',
   },
-  render: (props) => <TextInput defaultValue='invalid.email' {...props} />,
+  render: (props) => (
+    <TextInput
+      defaultValue='invalid.email'
+      {...props}
+      containerClassName='max-w-md'
+    />
+  ),
 };
 
 export const Disabled: Story = {
@@ -37,7 +49,12 @@ export const Disabled: Story = {
     label: 'Label',
   },
   render: (props) => (
-    <TextInput defaultValue='Disabled content' editable={false} {...props} />
+    <TextInput
+      defaultValue='Disabled content'
+      editable={false}
+      {...props}
+      containerClassName='max-w-md'
+    />
   ),
 };
 
@@ -46,7 +63,14 @@ export const HiddenClearButton: Story = {
     label: 'Hidden clear button',
   },
   render: (props) => {
-    return <TextInput defaultValue='Edit me' hideClearButton {...props} />;
+    return (
+      <TextInput
+        defaultValue='Edit me'
+        hideClearButton
+        {...props}
+        containerClassName='max-w-md'
+      />
+    );
   },
 };
 
@@ -56,7 +80,14 @@ export const ControlledInput: Story = {
   },
   render: (props) => {
     const [value, setValue] = useState('Edit me');
-    return <TextInput value={value} onChangeText={setValue} {...props} />;
+    return (
+      <TextInput
+        value={value}
+        onChangeText={setValue}
+        {...props}
+        containerClassName='max-w-md'
+      />
+    );
   },
 };
 
@@ -65,7 +96,13 @@ export const UncontrolledInput: Story = {
     label: 'Uncontrolled Input',
   },
   render: (props) => {
-    return <TextInput defaultValue='Edit me' {...props} />;
+    return (
+      <TextInput
+        defaultValue='Edit me'
+        {...props}
+        containerClassName='max-w-md'
+      />
+    );
   },
 };
 
@@ -79,6 +116,7 @@ export const ExtendedClearBehavior: Story = {
         defaultValue='Clear me'
         {...props}
         onClear={() => alert('Extended clear behavior')}
+        containerClassName='max-w-md'
       />
     );
   },
