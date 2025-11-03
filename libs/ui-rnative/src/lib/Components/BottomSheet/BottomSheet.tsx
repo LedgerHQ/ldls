@@ -1,7 +1,8 @@
-import GorghomBottomSheet from '@gorhom/bottom-sheet';
+import GorghomBottomSheet, { SNAP_POINT_TYPE } from '@gorhom/bottom-sheet';
 import { createSafeContext, useMergedRef } from '@ledgerhq/ldls-utils-shared';
+import { cva } from 'class-variance-authority';
 import { cssInterop } from 'nativewind';
-import { forwardRef, useCallback, useMemo, useRef } from 'react';
+import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
 import { CustomBackdrop } from './CustomBackdrop';
 import { CustomHandle } from './CustomHandle';
 import { BottomSheetProps } from './types';
@@ -11,10 +12,22 @@ const StyledGorghomBottomSheet = cssInterop(GorghomBottomSheet, {
   backgroundClassName: 'backgroundStyle',
 });
 
-const bottomSheetSnapPoints = {
+const SNAP_POINTS = {
   full: ['95%'],
   half: ['50%'],
   quarter: ['25%'],
+};
+
+const bottomSheetVariants = {
+  root: cva('w-full flex-1 rounded-t-xl bg-canvas-sheet', {
+    variants: {
+      shadow: {
+        true: 'shadow-lg shadow-base',
+        false: '',
+      },
+    },
+  }),
+  background: cva('bg-canvas-sheet'),
 };
 
 const [BottomSheetProvider, useBottomSheetContext] =
@@ -31,6 +44,7 @@ const BottomSheet = forwardRef<
       onOpen,
       onClose,
       onBack,
+      onAnimate,
       closeable,
       children,
       enablePanDownToClose = true,
@@ -39,6 +53,7 @@ const BottomSheet = forwardRef<
       enableHandlePanningGesture = true,
       maxDynamicContentSize = undefined,
       detached = false,
+      hideBackdrop = false,
       showBackdropPress = false,
       onBackdropPress,
       onChange,
@@ -50,9 +65,10 @@ const BottomSheet = forwardRef<
     // ref
     const innerRef = useRef<GorghomBottomSheet>(null);
     const mergedRefs = useMergedRef<GorghomBottomSheet>(ref, innerRef);
+    const [isOpen, setIsOpen] = useState(false);
 
     /**
-     * Match the snap points to the preset snap points
+     * Match the snap points to the preset or the custom snap points array
      */
     const computedSnapPoints = useMemo(() => {
       if (!snapPoints) {
@@ -63,37 +79,59 @@ const BottomSheet = forwardRef<
         return snapPoints;
       }
 
-      return bottomSheetSnapPoints[
-        snapPoints as keyof typeof bottomSheetSnapPoints
-      ];
+      return SNAP_POINTS[snapPoints as keyof typeof SNAP_POINTS];
     }, [snapPoints]);
 
     const renderBackdrop = useCallback(
-      (backdropProps: React.ComponentProps<typeof CustomBackdrop>) => (
-        <CustomBackdrop
-          showBackdropPress={showBackdropPress}
-          onPress={() => {
-            backdropProps.onPress?.();
-            onBackdropPress?.();
-          }}
-          {...backdropProps}
-        />
-      ),
+      (backdropProps: React.ComponentProps<typeof CustomBackdrop>) => {
+        return (
+          <CustomBackdrop
+            showBackdropPress={showBackdropPress}
+            onPress={() => {
+              backdropProps.onPress?.();
+              onBackdropPress?.();
+            }}
+            {...backdropProps}
+          />
+        );
+      },
       [showBackdropPress, onBackdropPress],
     );
 
-    const handleChange: BottomSheetProps['onChange'] = (
-      index: number,
-      ...args
-    ) => {
-      if (index === -1 && onClose) {
-        onClose();
-      }
-      if (index === 0 && onOpen) {
-        onOpen();
-      }
-      onChange?.(index, ...args);
-    };
+    const handleChange: BottomSheetProps['onChange'] = useCallback(
+      (index: number, position: number, type: SNAP_POINT_TYPE) => {
+        console.log('onchange');
+        if (index === -1 && onClose) {
+          onClose();
+        }
+        if (index === 0 && onOpen) {
+          onOpen();
+        }
+        setIsOpen(index === 0);
+        onChange?.(index, position, type);
+      },
+      [onClose, onOpen, onChange],
+    );
+
+    const handleAnimate: BottomSheetProps['onAnimate'] = useCallback(
+      (
+        fromIndex: number,
+        toIndex: number,
+        fromPosition: number,
+        toPosition: number,
+      ) => {
+        const newIsOpen = fromIndex === -1 && toIndex >= 0;
+        if (newIsOpen !== isOpen) {
+          setIsOpen(newIsOpen);
+        }
+        onAnimate?.(fromIndex, toIndex, fromPosition, toPosition);
+      },
+      [onAnimate],
+    );
+
+    console.log({ isOpen });
+
+    console.log({ a: innerRef.current });
 
     // renders
     return (
@@ -103,9 +141,12 @@ const BottomSheet = forwardRef<
         <StyledGorghomBottomSheet
           {...props}
           ref={mergedRefs}
-          className='w-full flex-1 rounded-t-xl bg-canvas-sheet'
-          backgroundClassName='bg-canvas-sheet'
+          className={bottomSheetVariants.root({
+            shadow: hideBackdrop && isOpen,
+          })}
+          backgroundClassName={bottomSheetVariants.background()}
           onChange={handleChange}
+          onAnimate={handleAnimate}
           /**
            * Configuration
            */
@@ -125,7 +166,7 @@ const BottomSheet = forwardRef<
            * Components
            */
           handleComponent={CustomHandle}
-          backdropComponent={renderBackdrop}
+          backdropComponent={hideBackdrop ? undefined : renderBackdrop}
           index={-1}
         >
           {children}

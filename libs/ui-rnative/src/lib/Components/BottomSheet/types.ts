@@ -11,6 +11,7 @@ type ExtendsGorhomBottomSheetProps = Omit<
   | 'enablePanDownToClose'
   | 'maxDynamicContentSize'
   | 'onChange'
+  | 'onAnimate'
   | 'snapPoints'
 >;
 
@@ -45,6 +46,11 @@ export type BottomSheetProps = PropsWithChildren & {
    */
   onChange?: GorhomBottomSheetProps['onChange'];
   /**
+   * The callback function to handle the change event.
+   * @default undefined
+   */
+  onAnimate?: GorhomBottomSheetProps['onAnimate'];
+  /**
    * The callback function to handle the back event.
    */
   onBack?: () => void;
@@ -65,6 +71,11 @@ export type BottomSheetProps = PropsWithChildren & {
    * @default undefined
    */
   onOpen?: () => void;
+  /**
+   * If true, the backdrop will be hidden.
+   * @default false
+   */
+  hideBackdrop?: boolean;
   /**
    * If true, the backdrop will be displayed.
    */

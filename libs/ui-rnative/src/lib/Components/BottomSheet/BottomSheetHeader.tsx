@@ -3,12 +3,13 @@ import { cva } from 'class-variance-authority';
 import { FC, useCallback } from 'react';
 import { Text, View } from 'react-native';
 import { ArrowLeft, Close } from '../../Symbols';
+import { cn } from '../../utils';
 import { IconButton } from '../IconButton';
 import { useBottomSheetContext } from './BottomSheet';
 import { BottomSheetHeaderProps } from './types';
 
 const bottomSheetHeaderVariants = {
-  root: cva('sticky top-0 z-dialog-content bg-canvas-sheet pb-12', {
+  root: cva('z-dialog-content bg-canvas-sheet sticky top-0 pb-12', {
     variants: {
       spacing: {
         true: 'px-16',
@@ -22,7 +23,7 @@ const bottomSheetHeaderVariants = {
         compact: '',
         expanded: 'mb-16',
       },
-      noIcons: {
+      hidden: {
         true: 'hidden',
         false: '',
       },
@@ -32,14 +33,14 @@ const bottomSheetHeaderVariants = {
     variants: {
       appearance: {
         compact: '',
-        expanded: 'gap-8',
+        expanded: 'gap-4',
       },
     },
   }),
   title: cva('text-base', {
     variants: {
       appearance: {
-        compact: 'text-center heading-4-semi-bold',
+        compact: 'heading-4-semi-bold text-center',
         expanded: 'heading-2-semi-bold',
       },
     },
@@ -62,21 +63,24 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   spacing = false,
   ...props
 }) => {
-  const methods = useBottomSheet();
+  const { close } = useBottomSheet();
   const { onBack, closeable } = useBottomSheetContext({
     consumerName: 'BottomSheetHeader',
     contextRequired: true,
   });
 
   const handleClose = useCallback(() => {
-    methods.close();
-  }, [methods]);
+    close();
+  }, [close]);
+
+  const hasTitleSection = Boolean(title || description);
+  const hasIcons = Boolean(onBack || closeable);
 
   if (!title && !description && !onBack && !closeable) {
     return null;
   }
 
-  const titleComponent = (
+  const titleComponent = hasTitleSection ? (
     <View className={bottomSheetHeaderVariants.textWrapper({ appearance })}>
       {title && (
         <Text className={bottomSheetHeaderVariants.title({ appearance })}>
@@ -89,17 +93,17 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
         </Text>
       )}
     </View>
-  );
+  ) : null;
 
   return (
     <View
       {...props}
-      className={bottomSheetHeaderVariants.root({ className, spacing })}
+      className={cn(bottomSheetHeaderVariants.root({ spacing }), className)}
     >
       <View
         className={bottomSheetHeaderVariants.inner({
           appearance,
-          noIcons: !onBack && !closeable,
+          hidden: !hasIcons && appearance !== 'compact',
         })}
       >
         <View className='size-44'>
