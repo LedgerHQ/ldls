@@ -12,10 +12,13 @@ export function Inputs() {
         editable={false}
       />
       <TextInput
-        label='Error input'
+        label='tiny'
         containerClassName='min-w-full'
-        defaultValue='invalid.email'
         errorMessage='Please enter a valid email address'
+      />
+      <TextInput
+        label='super huge label goes here'
+        containerClassName='min-w-full'
       />
     </View>
   );

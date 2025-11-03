@@ -57,15 +57,15 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors',
+  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2',
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 size-full text-base transition-colors bg-muted outline-none',
+  'flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none border-2',
 );
 
 const baseLabelStyles = cn(
-  'absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
+  'absolute left-16 text-left top-4 text-muted transition-all duration-300 body-4 border-2',
   'truncate w-[calc(100%-var(--size-56))]',
 );
 
@@ -133,8 +133,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
         <Pressable
           className={cn(
             baseContainerStyles,
-            errorMessage && 'border border-error',
-            isFocused && !errorMessage && editable && 'border-2 border-active',
+            errorMessage && 'border-error',
+            isFocused && !errorMessage && editable && 'border-active',
             !editable && 'bg-disabled text-disabled',
             containerClassName,
           )}
@@ -146,7 +146,6 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             value={value}
             className={cn(
               baseInputStyles,
-              label ? 'pt-12 pb-2 body-2' : 'py-12',
               !editable && 'bg-disabled text-disabled',
               className,
             )}
@@ -164,7 +163,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className={cn(
                 baseLabelStyles,
                 shouldCenterLabel
-                  ? 'translate-y-8 scale-150 translate-x-12' // relaxed position
+                  ? 'translate-x-16 translate-y-8 scale-150' // relaxed position
                   : 'translate-y-0 scale-100', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
