@@ -14,7 +14,7 @@ export const App = () => {
       <ThemeProvider defaultMode='dark' className='flex flex-1'>
         <ScrollView
           contentInsetAdjustmentBehavior='automatic'
-          className='bg-canvas-sheet h-screen px-16 '
+          className='h-screen bg-canvas-sheet px-16 '
         >
           <View className='flex flex-col gap-32 py-40'>
             <SandboxBlock title='Checkboxes'>
