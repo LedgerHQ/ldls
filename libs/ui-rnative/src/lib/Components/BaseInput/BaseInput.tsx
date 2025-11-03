@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 import {
-  Platform,
   Pressable,
   Text,
   TextInput,
@@ -57,15 +56,11 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors overflow-hidden',
-  'disabled:bg-disabled disabled:text-disabled',
+  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors',
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 w-full text-base outline-none body-1 transition-colors bg-muted caret-active truncate',
-  'disabled:bg-disabled disabled:text-disabled',
-  'placeholder:text-muted disabled:placeholder:text-disabled',
-  'truncate',
+  'peer flex-1 size-full text-base transition-colors bg-muted',
 );
 
 const baseLabelStyles = cn(
@@ -132,6 +127,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             baseContainerStyles,
             errorMessage && 'border border-error',
             isFocused && !errorMessage && editable && 'border-2 border-active',
+            !editable && 'bg-disabled text-disabled',
             containerClassName,
           )}
           onPress={() => inputRef.current?.focus()}
@@ -142,9 +138,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             value={value}
             className={cn(
               baseInputStyles,
-              label && 'pt-12 body-2',
+              label ? 'pt-12 pb-2 body-2' : 'py-12',
               !editable && 'bg-disabled text-disabled',
-              !shouldCenterLabel && '-translate-x-2',
               className,
             )}
             onFocus={() => setIsFocused(true)}
@@ -161,7 +156,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
                 baseLabelStyles,
                 shouldCenterLabel
                   ? 'translate-y-8 scale-150 translate-x-12' // relaxed position
-                  : 'translate-y-0 scale-100 -translate-x-2', // floating position
+                  : 'translate-y-0 scale-100', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
