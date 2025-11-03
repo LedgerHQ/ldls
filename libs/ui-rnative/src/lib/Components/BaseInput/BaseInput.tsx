@@ -169,7 +169,6 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
                   : shouldCenterLabel && Platform.OS !== 'web'
                     ? 'translate-x-12'
                     : 'translate-x-0',
-                // States
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
@@ -185,7 +184,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               accessibilityLabel='clear input'
               style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
             >
-              <DeleteCircleFill size={20} />
+              <DeleteCircleFill size={20} className='text-base' />
             </Pressable>
           )}
         </Pressable>
