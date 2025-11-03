@@ -1,5 +1,10 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import {
   Platform,
   Pressable,
@@ -69,22 +74,27 @@ const baseLabelStyles = cn(
 );
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
-  ({
-    label,
-    errorMessage,
-    className,
-    containerClassName,
-    labelClassName,
-    hideClearButton,
-    onChangeText: onChangeTextProp,
-    editable = true,
-    ...props
-  }) => {
+  (
+    {
+      label,
+      errorMessage,
+      className,
+      containerClassName,
+      labelClassName,
+      hideClearButton,
+      onChangeText: onChangeTextProp,
+      editable = true,
+      ...props
+    },
+    ref,
+  ) => {
     const [uncontrolledValue, setUncontrolledValue] = useState(
       props.defaultValue || '',
     );
     const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef<TextInput>(null);
+
+    useImperativeHandle(ref, () => inputRef.current as TextInput);
 
     const isControlled = props.value !== undefined;
     const value = isControlled ? props.value : uncontrolledValue;
@@ -124,7 +134,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             isFocused && !errorMessage && editable && 'border-2 border-active',
             containerClassName,
           )}
-          onFocus={() => inputRef.current?.focus()}
+          onPress={() => inputRef.current?.focus()}
           disabled={!editable}
         >
           <TextInput
@@ -134,7 +144,9 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               baseInputStyles,
               label && 'pt-12 body-2',
               !editable && 'bg-disabled text-disabled',
-              isFocused && !errorMessage && editable && '-translate-x-2', // this is because of border-2
+              isFocused && !errorMessage && editable
+                ? '-translate-x-2' // offset for border-2
+                : 'translate-x-0',
               className,
             )}
             onFocus={() => setIsFocused(true)}
@@ -150,11 +162,16 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className={cn(
                 baseLabelStyles,
                 shouldCenterLabel
-                  ? `translate-y-8 scale-150 ${Platform.OS === 'web' ? '' : 'translate-x-12'}` // relaxed position
+                  ? 'translate-y-8 scale-150' // relaxed position
                   : 'translate-y-0 scale-100 body-4', // floating position
+                isFocused && !errorMessage && editable
+                  ? '-translate-x-2'
+                  : shouldCenterLabel && Platform.OS !== 'web'
+                    ? 'translate-x-12'
+                    : 'translate-x-0',
+                // States
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
-                isFocused && !errorMessage && editable && '-translate-x-2', // this is because of border-2
                 labelClassName,
               )}
             >
