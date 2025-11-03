@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-native-web-vite';
 import { mergeConfig } from 'vite';
@@ -9,9 +11,9 @@ const config: StorybookConfig = {
     '../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)',
     '../docs/**/*.@(mdx)',
   ],
-  addons: ['@storybook/addon-themes', '@storybook/addon-docs'],
+  addons: [getAbsolutePath("@storybook/addon-themes"), getAbsolutePath("@storybook/addon-docs")],
   framework: {
-    name: '@storybook/react-native-web-vite',
+    name: getAbsolutePath("@storybook/react-native-web-vite"),
     options: {
       pluginReactOptions: {
         jsxImportSource: 'nativewind',
@@ -49,3 +51,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}

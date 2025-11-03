@@ -1,3 +1,5 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
@@ -10,13 +12,13 @@ const config: StorybookConfig = {
   ],
 
   addons: [
-    '@storybook/addon-themes',
-    '@storybook/addon-docs',
-    '@chromatic-com/storybook',
+    getAbsolutePath('@storybook/addon-themes'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@chromatic-com/storybook'),
   ],
 
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   typescript: {
@@ -58,3 +60,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+
+function getAbsolutePath(value: string) {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}
