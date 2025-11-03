@@ -48,6 +48,7 @@ export default defineConfig(
        * typescript
        */
       '@typescript-eslint/no-unused-vars': ['error'],
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       /**
        * nx
        */

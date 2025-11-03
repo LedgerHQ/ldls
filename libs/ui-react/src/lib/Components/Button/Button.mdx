@@ -58,7 +58,7 @@ Buttons' contents can be of two types:
 
 Buttons come in four different sizes:
 
-- S (**44 px** tall)
+- S (**40 px** tall)
 - M (default, **48 px** tall)
 - L (**56 px** tall)
 
@@ -122,51 +122,22 @@ To be implemented:
 
 </Tab> <Tab label="Implementation ">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-slot
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
 ```
 
-#### **About @radix-ui/react-slot**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-slot` dependency is used internally by the Button component
-to enable flexible composition patterns. It allows the Button to merge its props with child
-elements when needed.
+The `@radix-ui/react-slot` dependency enables flexible composition patterns, allowing the Button to merge its props with child elements when needed.
 
-### Tailwind Configuration
-
-To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Button } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
   return (
-    <Button size="md" appearance="base">
+    <Button size='md' appearance='base'>
       Click me
     </Button>
   );
@@ -179,9 +150,9 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Button
-  size="md"
-  appearance="base"
-  className="md:hidden" // Custom responsive width
+  size='md'
+  appearance='base'
+  className='md:hidden' // Custom responsive width
 >
   Custom Button
 </Button>
@@ -197,7 +168,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <Button size="md" appearance="base" icon={ArrowRight}>
+    <Button size='md' appearance='base' icon={ArrowRight}>
       Continue
     </Button>
   );
@@ -209,7 +180,7 @@ function MyComponent() {
 Use the `isFull` prop to make the button take the full width of its container:
 
 ```tsx
-<Button size="md" appearance="base" isFull>
+<Button size='md' appearance='base' isFull>
   Full Width Button
 </Button>
 ```
@@ -245,11 +216,11 @@ The following guidelines are based on our [Button Component API Design ADR](http
 // Use children for content composition
 <Button>
   Accept <em>Terms and Conditions</em>
-</Button>
+</Button>;
 
 // Pass icon as a component reference
 import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
-<Button icon={Plus}>Add Item</Button>
+<Button icon={Plus}>Add Item</Button>;
 ```
 
 ❌ **Don't**

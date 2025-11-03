@@ -26,6 +26,8 @@ Tooltips provide contextual information on hover or focus, helping users underst
 
 <Canvas of={TooltipStories.Basic} />
 
+<Controls of={TooltipStories.Basic} />
+
 - **Trigger**: The element that activates the tooltip on hover or focus
 - **Content**: The informational text or content displayed with smooth animations
 - **Arrow**: Visual connector pointing to the trigger
@@ -81,23 +83,15 @@ Works with any trigger while maintaining smooth animations:
   </Tab>
   <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies (including for Tooltip)
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-tooltip
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-tooltip
 ```
 
-#### **About @radix-ui/react-tooltip**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-tooltip` is used as the primitive for accessible tooltip behavior, enhanced with our custom animations and styling.
+The `@radix-ui/react-tooltip` dependency provides accessible tooltip behavior primitives, enhanced with our custom animations and styling.
 
-### Basic Usage with Animations
+## Basic Usage with Animations
 
 ```tsx
 import {

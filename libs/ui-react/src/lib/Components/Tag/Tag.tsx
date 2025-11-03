@@ -4,7 +4,7 @@ import React from 'react';
 import { IconSize } from '../Icon/Icon';
 
 const tagVariants = cva(
-  'inline-flex items-center justify-center gap-4 rounded-xs',
+  'rounded-xs inline-flex items-center justify-center gap-4',
   {
     variants: {
       appearance: {
@@ -17,8 +17,8 @@ const tagVariants = cva(
         disabled: 'bg-disabled text-disabled',
       },
       size: {
-        lg: 'px-8 py-4 body-3',
-        sm: 'px-4 py-2 body-4',
+        lg: 'body-3 px-8 py-4',
+        sm: 'body-4 px-4 py-2',
       },
     },
     defaultVariants: {
@@ -28,12 +28,35 @@ const tagVariants = cva(
   },
 );
 
-export interface TagProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tagVariants> {
+export type TagProps = {
+  /**
+   * The appearance of the tag.
+   * @default accent
+   */
+  appearance?:
+    | 'base'
+    | 'gray'
+    | 'accent'
+    | 'success'
+    | 'error'
+    | 'warning'
+    | 'disabled';
+  /**
+   * The size of the tag.
+   * @default lg
+   */
+  size?: 'sm' | 'lg';
+  /**
+   * Icon component to render.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * Label text to display.
+   * @required
+   */
   label: string;
-}
+} & React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof tagVariants>;
 
 export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
   ({ className, appearance, size, icon, label, ...props }, ref) => {

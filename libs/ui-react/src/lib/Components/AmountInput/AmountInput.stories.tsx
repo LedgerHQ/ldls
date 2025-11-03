@@ -20,7 +20,6 @@ export const Default: Story = {
     placeholder: '0',
     currencyText: '$',
     value: '',
-    allowDecimals: true,
     onChange: () => console.log('onChange triggered'),
   },
 };
@@ -114,7 +113,7 @@ export const LargeAmountDisplay: Story = {
     const errorMessage = hasError ? 'Insufficient balance' : '';
 
     return (
-      <div className='relative h-128 w-[359px] rounded-lg'>
+      <div className='h-128 relative w-[359px] rounded-lg'>
         {/* Large amount input */}
         <div className='flex-col items-center justify-center'>
           <AmountInput
@@ -127,12 +126,12 @@ export const LargeAmountDisplay: Story = {
             currencyPosition={isEth ? 'right' : 'left'}
             aria-invalid={hasError}
           />
-          <div className='mt-16 text-center text-muted body-2'>
+          <div className='text-muted body-2 mt-16 text-center'>
             {convertedValue}
           </div>
 
           {hasError && (
-            <div className='mt-8 text-center text-error'>{errorMessage}</div>
+            <div className='text-error mt-8 text-center'>{errorMessage}</div>
           )}
         </div>
         <IconButton

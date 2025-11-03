@@ -3,19 +3,32 @@ import { useState } from 'react';
 import { Button } from '../Button';
 import {
   Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
   SelectLabel,
-  SelectSeparator,
   SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectSeparator,
 } from './Select';
 
 const meta: Meta<typeof Select> = {
   title: 'Selection/Select',
   component: Select,
+  subcomponents: {
+    SelectTrigger,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectSeparator,
+  },
   parameters: {
     layout: 'centered',
+  },
+  argTypes: {
+    value: { control: false },
+    defaultValue: { control: false },
+    onValueChange: { control: false },
   },
 };
 
@@ -164,7 +177,7 @@ export const FormIntegration: Story = {
     };
 
     return (
-      <form onSubmit={handleSubmit} className='flex w-256 flex-col gap-16'>
+      <form onSubmit={handleSubmit} className='w-256 flex flex-col gap-16'>
         <Select
           value={formData.category}
           onValueChange={(value) =>

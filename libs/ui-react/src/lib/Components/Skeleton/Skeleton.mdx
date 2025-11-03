@@ -3,7 +3,7 @@ import * as SkeletonStories from './Skeleton.stories';
 import { Skeleton } from './Skeleton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Communication/Skeleton" of={SkeletonStories} />
+<Meta title='Communication/Skeleton' of={SkeletonStories} />
 
 # Skeleton
 
@@ -66,46 +66,19 @@ Skeleton for card-based content layouts.
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the Skeleton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { Skeleton } from '@ledgerhq/ldls-ui-react';
 
 function MyComponent() {
-  return (
-    <Skeleton className="h-16 w-256" />
-  );
+  return <Skeleton className='h-16 w-256' />;
 }
 ```
 
@@ -114,9 +87,7 @@ function MyComponent() {
 While the component comes with predefined styles, you can extend them using Tailwind classes:
 
 ```tsx
-<Skeleton
-  className="h-40 w-256 rounded-lg bg-accent-subtle"
->
+<Skeleton className='h-40 w-256 rounded-lg bg-accent-subtle'>
   Custom Skeleton
 </Skeleton>
 ```
@@ -126,12 +97,12 @@ While the component comes with predefined styles, you can extend them using Tail
 #### List Item Loading
 
 ```tsx
-<div className="flex items-center space-x-4">
-    <Skeleton className="h-48 w-48 rounded-full" />
-      <div className="space-y-2">
-        <Skeleton className="h-16 w-160" />
-        <Skeleton className="h-16 w-128" />
-      </div>
+<div className='flex items-center space-x-4'>
+  <Skeleton className='h-48 w-48 rounded-full' />
+  <div className='space-y-2'>
+    <Skeleton className='h-16 w-160' />
+    <Skeleton className='h-16 w-128' />
+  </div>
 </div>
 ```
 

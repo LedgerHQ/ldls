@@ -9,7 +9,7 @@ import {
 } from '@figma/rest-api-spec';
 import { mapValues, omitBy } from 'lodash-es';
 
-interface CallFigmaAPIOptions {
+type CallFigmaAPIOptions = {
   apiPath: string;
   method?: string;
   token: string;
@@ -18,7 +18,7 @@ interface CallFigmaAPIOptions {
     string,
     string | number | boolean | undefined | string[]
   >;
-}
+};
 
 async function callFigmaAPI<T>({
   apiPath,

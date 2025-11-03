@@ -16,44 +16,16 @@ const meta: Meta<typeof AddressInput> = {
     },
   },
   argTypes: {
-    prefix: {
-      control: 'text',
-      description:
-        'Custom prefix text to show instead of the default "To:" prefix',
-    },
     suffix: {
       control: 'select',
       options: ['QrCode', 'Information'],
-      description:
-        'Custom suffix Element to show instead of the default "To:" suffix',
       mapping: {
         QrCode: <QrCode size={20} className='text-muted' />,
         Information: <InformationFill size={20} className='text-muted' />,
       },
     },
-    placeholder: {
-      control: 'text',
-      description: 'The placeholder text for the address input',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the address input is disabled',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display below the input',
-    },
-    value: {
-      control: 'text',
-      description: 'Controlled value of the address input',
-    },
-    hideClearButton: {
-      control: 'boolean',
-      description: 'Hide the clear button that appears when typing',
-    },
     onQrCodeClick: {
       action: 'qr-code-clicked',
-      description: 'Callback fired when the QR code scanner icon is clicked',
     },
   },
 };
@@ -218,11 +190,11 @@ export const Controlled: Story = {
         </div>
 
         {address && !error && (
-          <div className='rounded-md border border-muted bg-success p-16'>
-            <h4 className='mb-4 text-success body-2-semi-bold'>
+          <div className='border-muted bg-success rounded-md border p-16'>
+            <h4 className='text-success body-2-semi-bold mb-4'>
               Valid Address
             </h4>
-            <p className='break-all text-success body-3'>{address}</p>
+            <p className='text-success body-3 break-all'>{address}</p>
           </div>
         )}
       </div>

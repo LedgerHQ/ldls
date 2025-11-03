@@ -2,8 +2,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
 import { Tag } from '../Tag';
 
-export interface ListItemProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+export type ListItemProps = {
   /**
    * The main title of the list item.
    */
@@ -27,7 +26,7 @@ export interface ListItemProps
    * @example trailingContent={<Icon />}
    */
   trailingContent?: React.ReactNode;
-}
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
 /**
  * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
@@ -95,7 +94,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
         <div className='flex min-w-0 flex-1 items-center gap-12'>
           {leadingContent}
           <div className='flex min-w-0 flex-1 flex-col gap-4 text-left'>
-            <div className='truncate body-2-semi-bold'>{title}</div>
+            <div className='body-2-semi-bold truncate'>{title}</div>
             {description && (
               <div className='flex items-center gap-4'>
                 <div

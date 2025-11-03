@@ -9,7 +9,7 @@ import * as Icons from '../../Symbols';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as IconsStories from './Icon.stories';
 
-<Meta title="Symbols/Interface Icons/Docs" of={IconsStories} />
+<Meta title='Symbols/Interface Icons/Docs' of={IconsStories} />
 
 # 🎨 Icons
 
@@ -54,38 +54,13 @@ Here's a preview of all the icons available in our design system. To use an icon
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use Icon components with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 Import and use specific icons from the symbols library:
 
@@ -112,7 +87,7 @@ import { ArrowUp } from '@ledgerhq/ldls-ui-react/symbols';
 
 function IconSizes() {
   return (
-    <div className="flex items-center gap-4">
+    <div className='flex items-center gap-4'>
       <ArrowUp size={16} />
       <ArrowUp size={20} />
       <ArrowUp size={24} /> {/* Default size */}
@@ -134,7 +109,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <Button size="m" appearance="base" icon={ArrowRight}>
+    <Button size='m' appearance='base' icon={ArrowRight}>
       Continue
     </Button>
   );
@@ -146,7 +121,7 @@ The Button component can accept an icon and no label:
 ```tsx
 import { Button } from '@ledgerhq/ldls-ui-react';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
-<Button icon={Settings} />
+<Button icon={Settings} />;
 ```
 
 ### Accessibility
@@ -157,9 +132,7 @@ Always provide proper accessibility attributes for interactive icons:
 import { Information } from '@ledgerhq/ldls-ui-react/symbols';
 
 function AccessibleIcon() {
-  return (
-    <Information size={20} aria-label="Account verification required" />
-  );
+  return <Information size={20} aria-label='Account verification required' />;
 }
 ```
 
@@ -168,14 +141,18 @@ function AccessibleIcon() {
 Icons inherit the current text color and can be styled with semantic color utilities:
 
 ```tsx
-import { CheckmarkCircle, DeleteCircle, Clock } from '@ledgerhq/ldls-ui-react/symbols';
+import {
+  CheckmarkCircle,
+  DeleteCircle,
+  Clock,
+} from '@ledgerhq/ldls-ui-react/symbols';
 
 function SemanticIcons() {
   return (
-    <div className="flex gap-4">
-      <CheckmarkCircle size={24} className="text-success" />
-      <DeleteCircle size={24} className="text-error" />
-      <Clock size={24} className="text-warning" />
+    <div className='flex gap-4'>
+      <CheckmarkCircle size={24} className='text-success' />
+      <DeleteCircle size={24} className='text-error' />
+      <Clock size={24} className='text-warning' />
     </div>
   );
 }
@@ -266,7 +243,7 @@ const Icon = Icons[iconName]; // Prevents tree-shaking
 
 ```tsx
 // Wrap in semantic elements for interaction
-<Button icon={Close} aria-label="Close" />
+<Button icon={Close} aria-label='Close' />
 ```
 
 ❌ **Don't**

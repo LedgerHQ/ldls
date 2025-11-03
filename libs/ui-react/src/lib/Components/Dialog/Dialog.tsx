@@ -3,6 +3,24 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { SheetBar, SheetBarProps } from '../SheetBar';
 
+export type DialogProps = {
+  /**
+   * Callback function to handle open state change.
+   * @param open - The new open state of the dialog.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * The open state of the dialog.
+   * @default false
+   */
+  open?: boolean;
+  /**
+   * The default open state of the dialog.
+   * @default false
+   */
+  defaultOpen?: boolean;
+} & React.ComponentProps<typeof DialogPrimitive.Root>;
+
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -10,13 +28,6 @@ import { SheetBar, SheetBarProps } from '../SheetBar';
  * state and coordinates between the trigger and content components.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- * ```
- *
- * @component
- * @param {boolean} [defaultOpen] - The initial open state of the dialog when uncontrolled.
- * @param {boolean} [open] - Controls the open state of the dialog when used as a controlled component.
- * @param {function} [onOpenChange] - Callback fired when the dialog's open state changes.
- * @param {React.ComponentProps<typeof DialogPrimitive.Root>} [...] - All other props are passed to the underlying Radix UI Root.
  *
  * @example
  * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/ldls-ui-react';
@@ -34,11 +45,24 @@ import { SheetBar, SheetBarProps } from '../SheetBar';
  *   );
  * }
  */
-export function Dialog({
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Root>) {
+export function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
+
+export type DialogTriggerProps = {
+  /**
+   * The element that will trigger the dialog (e.g., button, icon, text).
+   */
+  children?: React.ReactNode;
+  /**
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.
+   */
+  asChild?: boolean;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+} & React.ComponentProps<typeof DialogPrimitive.Trigger>;
 
 /**
  * The element that triggers the dialog to appear when interacted with.
@@ -49,12 +73,6 @@ export function Dialog({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {React.ReactNode} children - The element that will trigger the dialog (e.g., button, icon, text).
- * @param {boolean} [asChild=false] - Change the default rendered element for the one passed as a child, merging their props and behavior.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Trigger>} [...] - All other props are passed to the underlying Radix UI Trigger.
- *
  * @example
  * import { DialogTrigger, Button } from '@ledgerhq/ldls-ui-react';
  *
@@ -62,9 +80,7 @@ export function Dialog({
  *   <Button>Click me for a dialog</Button>
  * </DialogTrigger>
  */
-export function DialogTrigger({
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
+export function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
@@ -76,9 +92,6 @@ export function DialogTrigger({
  * styling conflicts and ensure proper stacking context.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ComponentProps<typeof DialogPrimitive.Portal>} [...] - All props are passed to the underlying Radix UI Portal.
  *
  * @example
  * // Used internally
@@ -92,6 +105,13 @@ function DialogPortal({
   return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
 
+export type DialogOverlayProps = {
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+} & React.ComponentProps<typeof DialogPrimitive.Overlay>;
+
 /**
  * The overlay that covers the background when the dialog is open.
  *
@@ -101,32 +121,42 @@ function DialogPortal({
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
- * @component
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {React.ComponentProps<typeof DialogPrimitive.Overlay>} [...] - All other props are passed to the underlying Radix UI Overlay.
- *
  * @warning The `className` prop should only be used for layout adjustments.
  * Do not use it to modify the overlay's core appearance (colors, opacity, etc).
  *
  * @example
  * <DialogOverlay className="bg-opacity-50" />
  */
-const DialogOverlay = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => {
-  return (
-    <DialogPrimitive.Overlay
-      ref={ref}
-      data-slot='dialog-overlay'
-      className={cn(
-        className,
-        'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
-      )}
-      {...props}
-    />
-  );
-});
+const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <DialogPrimitive.Overlay
+        ref={ref}
+        data-slot='dialog-overlay'
+        className={cn(
+          className,
+          'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+        )}
+        {...props}
+      />
+    );
+  },
+);
+
+export type DialogContentProps = {
+  /**
+   * The content to display inside the dialog.
+   */
+  children?: React.ReactNode;
+  /**
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.
+   */
+  asChild?: boolean;
+  /**
+   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
+   */
+  className?: string;
+} & React.ComponentProps<typeof DialogPrimitive.Content>;
 
 /**
  * The content container that displays the dialog information.
@@ -135,11 +165,6 @@ const DialogOverlay = React.forwardRef<
  * The content is automatically positioned in the center of the viewport.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ReactNode} children - The content to display inside the dialog.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
- * @param {React.ComponentProps<typeof DialogPrimitive.Content>} [...] - All other props are passed to the underlying Radix UI Content.
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the dialog's core appearance (colors, padding, etc).
@@ -163,7 +188,7 @@ export function DialogContent({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+}: DialogContentProps) {
   return (
     <DialogPortal data-slot='dialog-portal'>
       <DialogOverlay />
@@ -189,14 +214,6 @@ export function DialogContent({
  * It automatically handles the accessibility requirements while maintaining the visual design.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {SheetBarProps} props - All props are passed to the underlying SheetBar component.
- * @param {string} props.title - The dialog title, used both visually and for accessibility.
- * @param {string} [props.description] - Optional description, used both visually and for accessibility.
- * @param {'compact' | 'extended'} [props.appearance='compact'] - The appearance variant of the header.
- * @param {function} [props.onClose] - Callback function to handle closing the dialog.
- * @param {function} [props.onBack] - Optional callback function to handle back navigation.
  *
  * @example
  * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
@@ -254,37 +271,17 @@ export function DialogHeader({
 }
 
 /**
- * An accessible title to be announced when the dialog is opened.
+ * Internal component for accessible dialog titles.
  *
- * This component is essential for accessibility as it provides screen readers with
- * the dialog's purpose. Without a DialogTitle, the dialog will not be properly
- * announced to assistive technologies.
+ * @internal
+ * This component is used internally by DialogHeader to provide proper
+ * accessibility labeling. It ensures screen readers announce the dialog
+ * correctly by providing a title element that Radix Dialog requires.
  *
- * The title can be visually hidden using the `hidden` prop while still being
- * available to screen readers. This is useful when you have visual headers
- * (like SheetBar) but still need proper accessibility.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ReactNode} children - The title text content.
- * @param {boolean} [hidden=false] - Whether to visually hide the title while keeping it accessible to screen readers.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Title>} [...] - All other props are passed to the underlying Radix UI Title.
- *
- * @example
- * // Visible title
- * <DialogTitle>Account Settings</DialogTitle>
- *
- * @example
- * // Hidden title for accessibility only
- * <DialogTitle hidden>Transaction Details</DialogTitle>
- *
- * @example
- * // With custom styling
- * <DialogTitle className="text-accent">Important Notice</DialogTitle>
+ * **Consumers should use `DialogHeader` instead**, which automatically
+ * handles the title and accessibility requirements.
  */
-export function DialogTitle({
+function DialogTitle({
   hidden,
   className,
   ...props
@@ -299,43 +296,17 @@ export function DialogTitle({
 }
 
 /**
- * An optional accessible description to be announced when the dialog is opened.
+ * Internal component for accessible dialog descriptions.
  *
- * This component provides additional context about the dialog's content or purpose,
- * enhancing the accessibility experience. It works in conjunction with DialogTitle
- * to give screen reader users a complete understanding of the dialog.
+ * @internal
+ * This component is used internally by DialogHeader to provide optional
+ * accessibility context. It works with DialogTitle to give screen readers
+ * a complete understanding of the dialog's purpose.
  *
- * The description can be visually hidden using the `hidden` prop while still being
- * available to screen readers. This is useful when you have visual content that
- * serves the same purpose but need proper accessibility.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @component
- * @param {React.ReactNode} children - The description text content.
- * @param {boolean} [hidden=false] - Whether to visually hide the description while keeping it accessible to screen readers.
- * @param {string} [className] - Additional custom CSS classes to apply.
- * @param {React.ComponentProps<typeof DialogPrimitive.Description>} [...] - All other props are passed to the underlying Radix UI Description.
- *
- * @example
- * // Visible description
- * <DialogDescription>
- *   This action cannot be undone. Please review your changes carefully.
- * </DialogDescription>
- *
- * @example
- * // Hidden description for accessibility only
- * <DialogDescription hidden>
- *   View detailed information about your transaction including amounts and fees.
- * </DialogDescription>
- *
- * @example
- * // With custom styling
- * <DialogDescription className="text-accent">
- *   Additional context about this dialog.
- * </DialogDescription>
+ * **Consumers should use `DialogHeader` with the `description` prop instead**,
+ * which automatically handles the description and accessibility requirements.
  */
-export function DialogDescription({
+function DialogDescription({
   hidden,
   className,
   ...props

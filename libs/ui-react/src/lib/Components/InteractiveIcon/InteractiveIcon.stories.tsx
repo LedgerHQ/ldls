@@ -21,14 +21,8 @@ const meta: Meta<typeof InteractiveIcon> = {
     },
   },
   argTypes: {
-    iconType: {
-      control: 'select',
-      options: ['filled', 'stroked'],
-      description: 'The visual style of the interactive icon',
-    },
     children: {
       control: 'select',
-      description: 'The icon component to display',
       options: ['Settings', 'PenEdit', 'DeleteCircleFill'],
       mapping: {
         Settings: <Settings />,
@@ -124,7 +118,7 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <div className='flex gap-16 bg-base p-8'>
+      <div className='bg-base flex gap-16 p-8'>
         <div className='flex flex-col items-center gap-4'>
           <span className='text-muted'>Filled enabled</span>
           <InteractiveIcon iconType='filled' aria-label='Delete'>

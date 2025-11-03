@@ -1,7 +1,7 @@
-interface ThemeUtilsOptions {
+type ThemeUtilsOptions = {
   customPrefix?: string;
   exclude?: string[];
-}
+};
 
 export const getThemeUtilsByPrefix = (
   themeObject: Record<

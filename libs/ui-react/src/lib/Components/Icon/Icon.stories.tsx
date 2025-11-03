@@ -15,17 +15,17 @@ const sizes: IconSize[] = [12, 16, 20, 24, 40, 48, 56];
 type IconName = keyof typeof Icons;
 const iconNames = Object.keys(Icons) as IconName[];
 
-interface IconStoryProps {
+type IconStoryProps = {
   size: IconSize;
   name: IconName;
   className?: string;
-}
+};
 
-interface IconCardProps {
+type IconCardProps = {
   name: string;
   size?: IconSize;
   className?: string;
-}
+};
 
 const IconCard = ({
   name,
@@ -48,13 +48,13 @@ const IconCard = ({
   return (
     <div
       key={name}
-      className='relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors hover:bg-muted-pressed'
+      className='hover:bg-muted-pressed relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors'
       onClick={handleClick}
     >
       <IconComponent size={size} className={className} />
       <span className='text-muted body-4'>{name}</span>
       {copied && (
-        <div className='absolute inset-0 flex items-center justify-center rounded-lg bg-muted'>
+        <div className='bg-muted absolute inset-0 flex items-center justify-center rounded-lg'>
           <span className='text-on-accent body-4'>Copied!</span>
         </div>
       )}
@@ -72,16 +72,10 @@ export const Icon: StoryObj<IconStoryProps> = {
     size: {
       control: 'select',
       options: sizes,
-      description: 'The size of the icon in pixels',
     },
     name: {
       control: 'select',
       options: iconNames,
-      description: 'The name of the icon to display',
-    },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply (can be used for color)',
     },
   },
   render: (args) => {
@@ -111,8 +105,8 @@ export const IconSizes: StoryObj = {
     <div className='space-y-16 text-base'>
       {sizes.map((size) => (
         <div key={size}>
-          <h3 className='mb-16 heading-3'>Size {size}px</h3>
-          <div className='flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16'>
+          <h3 className='heading-3 mb-16'>Size {size}px</h3>
+          <div className='border-muted-subtle flex max-w-fit flex-wrap gap-16 rounded-lg border p-16'>
             {[
               'Home',
               'Settings',
@@ -159,7 +153,7 @@ export const Gallery: StoryObj = {
 
           {/* Results count */}
           <div className='mb-4'>
-            <span className='ml-8 text-muted body-3'>
+            <span className='text-muted body-3 ml-8'>
               {filteredIcons.length} of {Object.keys(Icons).length} icons
               {searchTerm && ` matching "${searchTerm}"`}
             </span>
@@ -181,7 +175,7 @@ export const Gallery: StoryObj = {
             </p>
             <button
               onClick={() => setSearchTerm('')}
-              className='mt-4 text-interactive body-2 hover:text-interactive-hover'
+              className='text-interactive body-2 hover:text-interactive-hover mt-4'
             >
               Clear search
             </button>

@@ -2,22 +2,22 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
-import { Spinner } from '../../Symbols/Icons/Spinner';
 import { IconSize } from '../Icon/Icon';
+import { Spinner } from '../Spinner';
 
 const baseButtonVariants = cva(
-  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
+  'body-1-semi-bold focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
   {
     variants: {
       appearance: {
         base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
+        gray: 'bg-muted hover:bg-muted-hover active:bg-muted-pressed text-base',
         accent:
           'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
         transparent:
-          'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
+          'bg-muted-transparent hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed text-base',
         'no-background':
-          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
+          'hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent bg-transparent text-base',
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {
@@ -38,10 +38,26 @@ const baseButtonVariants = cva(
   },
 );
 
-export interface BaseButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+const iconVariants = cva('shrink-0', {
+  variants: {
+    appearance: {
+      base: 'text-on-interactive',
+      accent: 'text-on-accent',
+      red: 'text-error',
+      gray: 'text-base',
+      'no-background': 'text-base',
+      transparent: 'text-base',
+    },
+    disabled: {
+      true: 'text-disabled',
+    },
+  },
+});
+
+export type BaseButtonProps = {
   /**
    * The visual style of the button.
+   * @default base
    */
   appearance?:
     | 'base'
@@ -52,14 +68,17 @@ export interface BaseButtonProps
     | 'red';
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /**
    * If true, the button expands to full width of its container.
+   * @default false
    */
   isFull?: boolean;
   /**
    * Whether the button is disabled.
+   * @default false
    */
   disabled?: boolean;
   /**
@@ -73,6 +92,7 @@ export interface BaseButtonProps
   className?: string;
   /**
    * Optional prop to render the button as a child element.
+   * @default false
    */
   asChild?: boolean;
   /**
@@ -83,13 +103,13 @@ export interface BaseButtonProps
    * Optional children to render inside the button.
    */
   children?: React.ReactNode;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
   (
     {
       className,
-      appearance,
+      appearance = 'base',
       size,
       isFull,
       disabled,
@@ -141,12 +161,14 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
         {loading && (
           <Spinner
             size={calculatedIconSize}
-            className='shrink-0 animate-spin'
-            aria-label='Loading'
+            className={iconVariants({ appearance, disabled })}
           />
         )}
         {!loading && Icon && (
-          <Icon size={calculatedIconSize} className='shrink-0' />
+          <Icon
+            size={calculatedIconSize}
+            className={iconVariants({ appearance, disabled })}
+          />
         )}
 
         {children &&

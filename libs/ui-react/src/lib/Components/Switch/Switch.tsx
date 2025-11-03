@@ -24,7 +24,7 @@ const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[disabled]:bg-base',
+  'group-data-[disabled]:bg-base translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out',
   {
     variants: {
       size: {
@@ -38,16 +38,29 @@ const thumbVariants = cva(
   },
 );
 
-export interface SwitchProps
-  extends Omit<
-      React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
-      'onChange' | 'checked' | 'defaultChecked' | 'onCheckedChange'
-    >,
-    VariantProps<typeof switchVariants> {
+export type SwitchProps = {
+  /**
+   * The controlled selected state of the switch.
+   */
   selected?: boolean;
+  /**
+   * The default selected state of the switch (uncontrolled).
+   */
   defaultSelected?: boolean;
+  /**
+   * Event handler called when the selected state changes.
+   */
   onChange?: (selected: boolean) => void;
-}
+  /**
+   * The size of the switch.
+   * @default 'lg'
+   */
+  size?: 'sm' | 'lg';
+} & Omit<
+  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
+  'onChange' | 'checked' | 'defaultChecked' | 'onCheckedChange'
+> &
+  VariantProps<typeof switchVariants>;
 
 /**
  * A customizable switch component.
@@ -56,15 +69,6 @@ export interface SwitchProps
  *
  * @see {@link https://ldls.vercel.app/?path=/docs-components-switch-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-switch-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {VariantProps<typeof switchVariants>} [size] - The size of the switch.
- * @param {boolean} [defaultSelected] - The default selected state of the switch (uncontrolled).
- * @param {boolean} [selected] - The controlled selected state of the switch.
- * @param {(selected: boolean) => void} [onChange] - Event handler called when the selected state changes.
- * @param {boolean} [disabled] - If true, disables the switch.
- * @param {string} [className] - Additional custom CSS classes to apply to the switch. Do not use this prop to modify the component's core appearance.
- * @param {React.InputHTMLAttributes<HTMLInputElement>} [...] - All standard input props (e.g., `name`, `value`, `id`).
  *
  * @warning The `className` prop is applied to the label element. Use it for layout adjustments only.
  *

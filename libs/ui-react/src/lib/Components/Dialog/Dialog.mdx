@@ -22,6 +22,8 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 
 <Canvas of={DialogStories.Base} />
 
+<Controls of={DialogStories.Base} />
+
 - **Trigger**: The element that opens the dialog when interacted with
 - **Overlay**: Dimmed background that covers the underlying content
 - **Header**: Use DialogHeader component for a consistent dialog header with title, description, and controls
@@ -111,42 +113,15 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies (including for Dialog)
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority @radix-ui/react-dialog
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-dialog
 ```
 
-#### **About @radix-ui/react-dialog**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-dialog` is used as the primitive for accessible dialog behavior, with custom styling and composition using SheetBar for the header.
+The `@radix-ui/react-dialog` dependency provides accessible dialog behavior primitives with custom styling and composition.
 
-### Tailwind Configuration
-
-To use the Dialog component with our custom Tailwind preset, configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import {

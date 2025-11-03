@@ -42,14 +42,6 @@ const meta: Meta<typeof ListItem> = {
     },
   },
   argTypes: {
-    title: {
-      control: 'text',
-      description: 'The main title of the list item',
-    },
-    description: {
-      control: 'text',
-      description: 'Optional description',
-    },
     descriptionTag: {
       control: 'select',
       options: ['None', 'Tag'],
@@ -67,11 +59,9 @@ const meta: Meta<typeof ListItem> = {
         Settings: <Spot appearance='icon' icon={Settings} />,
         Plus: <Spot appearance='icon' icon={Plus} />,
       },
-      description: 'Optional leading content',
     },
     trailingContent: {
       control: 'select',
-      description: 'Optional trailing content to display on the right side',
       options: ['icon', 'switch', 'value', 'tag', 'none'],
       mapping: {
         icon: <PenEdit size={24} />,
@@ -83,7 +73,6 @@ const meta: Meta<typeof ListItem> = {
     },
     onClick: {
       action: 'clicked',
-      description: 'The function to be called when the list item is clicked',
     },
   },
 };
@@ -145,7 +134,7 @@ export const TrailingContentVariantsShowcase: Story = {
     const [selected, setSelected] = useState(false);
 
     return (
-      <div className='flex max-w-256 flex-col'>
+      <div className='max-w-256 flex flex-col'>
         <ListItem
           title='Caret Variant'
           description='With description'
@@ -193,7 +182,7 @@ export const StateShowcase: Story = {
 
     return (
       <div className='flex gap-32'>
-        <div className='flex max-w-256 flex-col'>
+        <div className='max-w-256 flex flex-col'>
           <ListItem
             title='Caret Variant'
             description='With description'
@@ -231,7 +220,7 @@ export const StateShowcase: Story = {
             leadingContent={<Spot appearance='icon' icon={Chart1} />}
           />
         </div>
-        <div className='flex max-w-256 flex-col'>
+        <div className='max-w-256 flex flex-col'>
           <ListItem
             title='Caret Variant'
             description='With description'
@@ -290,7 +279,7 @@ export const StateShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='w-320 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
       <div>
         <ListItem

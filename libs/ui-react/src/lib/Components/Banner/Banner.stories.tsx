@@ -16,22 +16,8 @@ const meta: Meta<typeof Banner> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['info', 'success', 'warning', 'error'],
-      description: 'The visual style appearance of the banner',
-    },
-    title: {
-      control: 'text',
-      description: 'The title of the banner',
-    },
-    description: {
-      control: 'text',
-      description: 'Optional description text',
-    },
     primaryAction: {
       control: 'select',
-      description: 'Primary action Button',
       options: ['Button', 'None'],
       mapping: {
         Button: (
@@ -48,7 +34,6 @@ const meta: Meta<typeof Banner> = {
     },
     secondaryAction: {
       control: 'select',
-      description: 'Secondary action Button',
       options: ['Button', 'None'],
       mapping: {
         Button: (
@@ -65,7 +50,6 @@ const meta: Meta<typeof Banner> = {
     },
     onClose: {
       control: 'select',
-      description: 'Close action Button',
       options: ['With Close', 'None'],
       mapping: {
         'With Close': () => {
@@ -73,10 +57,6 @@ const meta: Meta<typeof Banner> = {
         },
         None: undefined,
       },
-    },
-    closeAriaLabel: {
-      control: 'text',
-      description: 'Close action with onClick and ariaLabel',
     },
   },
 };
@@ -383,7 +363,7 @@ export const NaturalWidth: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-400 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='w-400 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>
         Container with a fixed width
       </div>

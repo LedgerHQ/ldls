@@ -4,11 +4,11 @@ import { createElement, forwardRef } from 'react';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 
-export interface IconProps extends React.SVGProps<SVGSVGElement> {
+export type IconProps = {
   size?: IconSize;
   className?: string;
   children: React.ReactNode;
-}
+} & React.SVGProps<SVGSVGElement>;
 
 const iconVariants = cva('inline-block', {
   variants: {

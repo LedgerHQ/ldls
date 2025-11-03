@@ -3,7 +3,7 @@ import * as CardButtonStories from './CardButton.stories';
 import { CardButton } from './CardButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/CardButton" of={CardButtonStories} />
+<Meta title='Components/CardButton' of={CardButtonStories} />
 
 # 🃏 CardButton
 
@@ -94,38 +94,13 @@ To be implemented:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react
 ```
 
-### Tailwind Configuration
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-To use the CardButton component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import { CardButton } from '@ledgerhq/ldls-ui-react';
@@ -133,9 +108,9 @@ import { CardButton } from '@ledgerhq/ldls-ui-react';
 function MyComponent() {
   return (
     <CardButton
-      title="Payment Method"
-      description="Add or edit your payment information"
-      appearance="base"
+      title='Payment Method'
+      description='Add or edit your payment information'
+      appearance='base'
     />
   );
 }
@@ -153,9 +128,9 @@ function MyComponent() {
   return (
     <CardButton
       icon={CreditCard}
-      title="Payment Method"
-      description="Add or edit your payment information"
-      appearance="base"
+      title='Payment Method'
+      description='Add or edit your payment information'
+      appearance='base'
     />
   );
 }
@@ -167,10 +142,10 @@ By default, a ChevronRight icon will be rendered on the right side. Use the `hid
 
 ```tsx
 <CardButton
-  title="Settings"
-  description="Configure your account preferences"
+  title='Settings'
+  description='Configure your account preferences'
   hideChevron
-  appearance="base"
+  appearance='base'
 />
 ```
 
@@ -180,27 +155,42 @@ CardButtons automatically flow to fit their parent container width. No additiona
 
 ```tsx
 <CardButton
-  title="Continue Setup"
-  description="Complete your account configuration"
-  appearance="base"
+  title='Continue Setup'
+  description='Complete your account configuration'
+  appearance='base'
 />
 ```
 
 To control card button width, use container elements:
 
 ```tsx
-{/* Full container width */}
-<CardButton title="Full Width" description="This button fills the container width" />
+{
+  /* Full container width */
+}
+<CardButton
+  title='Full Width'
+  description='This button fills the container width'
+/>;
 
-{/* Constrained width */}
-<div className="max-w-md">
-  <CardButton title="Constrained" description="This button is limited by its container" />
-</div>
+{
+  /* Constrained width */
+}
+<div className='max-w-md'>
+  <CardButton
+    title='Constrained'
+    description='This button is limited by its container'
+  />
+</div>;
 
-{/* Responsive width */}
-<div className="w-full lg:max-w-lg">
-  <CardButton title="Responsive" description="Width adapts based on screen size" />
-</div>
+{
+  /* Responsive width */
+}
+<div className='w-full lg:max-w-lg'>
+  <CardButton
+    title='Responsive'
+    description='Width adapts based on screen size'
+  />
+</div>;
 ```
 
 ### Outline Appearance
@@ -209,9 +199,9 @@ Use the outline appearance for a more subtle card style:
 
 ```tsx
 <CardButton
-  title="Optional Feature"
-  description="Enable this feature for enhanced functionality"
-  appearance="outline"
+  title='Optional Feature'
+  description='Enable this feature for enhanced functionality'
+  appearance='outline'
 />
 ```
 
@@ -221,10 +211,10 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <CardButton
-  title="Mobile Only"
-  description="This option is only available on mobile"
-  className="md:hidden" // Custom responsive display
-  appearance="base"
+  title='Mobile Only'
+  description='This option is only available on mobile'
+  className='md:hidden' // Custom responsive display
+  appearance='base'
 />
 ```
 
@@ -347,10 +337,10 @@ import { CreditCard } from '@ledgerhq/ldls-ui-react/symbols';
 
 // Use proper event handlers
 <CardButton
-  title="Process Payment"
-  description="Complete your transaction"
+  title='Process Payment'
+  description='Complete your transaction'
   onClick={handlePayment}
-/>
+/>;
 ```
 
 ❌ **Don't**
@@ -361,15 +351,15 @@ import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
 // Don't use inline functions for complex operations
 <CardButton
-  title="Complex Action"
-  description="This will take some time"
+  title='Complex Action'
+  description='This will take some time'
   onClick={() => {
     // Complex inline logic here...
     performComplexOperation();
     updateMultipleStates();
     makeAPICall();
   }}
-/>
+/>;
 ```
 
 </Tab>

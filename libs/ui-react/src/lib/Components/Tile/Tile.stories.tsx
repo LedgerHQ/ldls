@@ -38,14 +38,6 @@ const meta: Meta<typeof Tile> = {
     },
   },
   argTypes: {
-    title: {
-      control: 'text',
-      description: 'The main title of the list item',
-    },
-    subtitle: {
-      control: 'text',
-      description: 'Optional subtitle',
-    },
     spot: {
       control: 'select',
       options: ['None', 'Settings', 'Plus'],
@@ -54,11 +46,9 @@ const meta: Meta<typeof Tile> = {
         Settings: <Spot appearance='icon' icon={Settings} />,
         Plus: <Spot appearance='icon' icon={Plus} />,
       },
-      description: 'The spot component to display',
     },
     onClick: {
       action: 'clicked',
-      description: 'Function called when the item is clicked',
     },
     secondaryAction: {
       control: 'select',
@@ -67,7 +57,6 @@ const meta: Meta<typeof Tile> = {
         None: undefined,
         MoreVertical: secondaryAction,
       },
-      description: 'Function called when the more actions button is clicked',
     },
     tag: {
       control: 'select',
@@ -78,7 +67,6 @@ const meta: Meta<typeof Tile> = {
         Success: <Tag label='Tag' appearance='success' />,
         Error: <Tag label='Tag' appearance='error' />,
       },
-      description: 'The tag to display at the bottom',
     },
   },
 };
@@ -252,7 +240,7 @@ export const SpotVariantsShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
+    <div className='w-256 bg-base grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
       <div>
         <Tile
@@ -275,7 +263,7 @@ export const ResponsiveLayout: Story = {
 export const List: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='flex w-[450px] bg-base'>
+      <div className='bg-base flex w-[450px]'>
         {Array.from({ length: 3 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
@@ -286,7 +274,7 @@ export const List: Story = {
           />
         ))}
       </div>
-      <div className='flex w-[450px] overflow-x-auto bg-base'>
+      <div className='bg-base flex w-[450px] overflow-x-auto'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}

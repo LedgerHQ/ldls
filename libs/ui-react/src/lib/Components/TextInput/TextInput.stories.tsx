@@ -18,32 +18,6 @@ const meta: Meta<typeof TextInput> = {
     },
   },
   argTypes: {
-    label: {
-      control: 'text',
-      description:
-        'The label text that floats above the input when focused or filled',
-    },
-    'aria-invalid': {
-      control: 'boolean',
-      description: 'Indicates whether the input value is invalid',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the input is disabled',
-    },
-    type: {
-      control: 'select',
-      options: ['text', 'email', 'password', 'number', 'tel', 'url'],
-      description: 'The type of input',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display below the input',
-    },
-    value: {
-      control: false,
-      description: 'Controlled value of the input',
-    },
     suffix: {
       control: 'select',
       options: [undefined, 'Information'],
@@ -52,25 +26,12 @@ const meta: Meta<typeof TextInput> = {
         undefined: undefined,
         Information: <InformationFill size={20} className='text-muted' />,
       },
-      description:
-        'Custom content to render after the input (right side in LTR)',
-    },
-    onClear: {
-      control: 'select',
-      options: [undefined, 'Clear'],
-      defaultValue: undefined,
-      mapping: {
-        undefined: undefined,
-        Clear: () => {
-          console.log('Clear');
-        },
+      onClear: {
+        control: false,
       },
-      description: 'Optional function to extend the default clear behavior',
     },
     hideClearButton: {
       control: 'boolean',
-      description:
-        'Hide the clear button (shown by default when input has content)',
     },
   },
   // Default args moved to Default story
@@ -256,7 +217,7 @@ export const WithError: Story = {
             !isValidEmail ? 'Please enter a valid email address' : undefined
           }
         />
-        <div className='mt-12 text-muted body-3'>
+        <div className='text-muted body-3 mt-12'>
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
@@ -338,7 +299,7 @@ export const WithCustomElement: Story = {
         <div className='grid grid-cols-1 gap-16 md:grid-cols-2'>
           {/* Example with tooltip and clear button */}
           <div>
-            <h3 className='mb-8 body-1-semi-bold'>
+            <h3 className='body-1-semi-bold mb-8'>
               With Tooltip and Clear Button
             </h3>
             <TextInput
@@ -352,7 +313,7 @@ export const WithCustomElement: Story = {
 
           {/* Example with action button and no clear button */}
           <div>
-            <h3 className='mb-8 body-1-semi-bold'>
+            <h3 className='body-1-semi-bold mb-8'>
               With Action Button and No Clear Button
             </h3>
             <TextInput
@@ -363,7 +324,7 @@ export const WithCustomElement: Story = {
             />
           </div>
         </div>
-        <div className='mt-16 text-muted body-3'>
+        <div className='text-muted body-3 mt-16'>
           The suffix prop allows you to add custom interactive elements like
           tooltips, or action buttons
         </div>
@@ -451,11 +412,11 @@ export const Interactive: Story = {
 
     if (isSubmitted) {
       return (
-        <div className='rounded-md bg-success p-16 text-center'>
+        <div className='bg-success rounded-md p-16 text-center'>
           <div className='text-success body-1-semi-bold'>
             ✓ Form submitted successfully!
           </div>
-          <div className='mt-4 text-muted body-3'>Resetting form...</div>
+          <div className='text-muted body-3 mt-4'>Resetting form...</div>
         </div>
       );
     }

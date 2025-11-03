@@ -16,36 +16,14 @@ const meta: Meta<typeof CardButton> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['base', 'outline'],
-      description: 'The visual style appearance of the card button',
-    },
-    title: {
-      control: 'text',
-      description: 'The main title text for the card button',
-    },
-    description: {
-      control: 'text',
-      description: 'Optional description text displayed below the title',
-    },
     icon: {
       control: 'select',
-      description: 'Optional icon component to display',
       options: ['None', 'Plus', 'Settings'],
       mapping: {
         None: undefined,
         Plus: Plus,
         Settings: Settings,
       },
-    },
-    hideChevron: {
-      control: 'boolean',
-      description: 'Whether to hide the chevron right icon on the right side',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the card button is disabled',
     },
   },
 };
@@ -170,8 +148,8 @@ export const FullFeatures: Story = {
 
 export const NaturalWidth: Story = {
   render: () => (
-    <div className='w-full bg-muted-pressed p-16'>
-      <div className='mb-16 text-muted body-4-semi-bold'>
+    <div className='bg-muted-pressed w-full p-16'>
+      <div className='text-muted body-4-semi-bold mb-16'>
         CardButton naturally flows to fill parent container width
       </div>
       <CardButton
@@ -292,7 +270,7 @@ export const StatesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='w-320 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
       <CardButton
         appearance='base'

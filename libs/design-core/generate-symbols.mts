@@ -23,9 +23,7 @@ const INPUT_DIR = path.join(CWD, 'libs/design-core/symbols');
 const OUTPUT_DIR = path.resolve(CWD, params.outputPath);
 const BARREL_FILE = path.join(OUTPUT_DIR, 'index.ts');
 const isReactNative = params.isReactNative === 'true';
-// spinner.svg has an issue with the gradient color and we're manually setting it to currentColor.
-// We need to preserve the corresponding component file in the output directory and ignore it from the generation process.
-const ignoredFiles = ['spinner.svg'];
+const ignoredFiles: string[] = [];
 
 let iconTemplate: any;
 

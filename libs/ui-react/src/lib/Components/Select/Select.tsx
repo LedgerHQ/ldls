@@ -60,7 +60,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
+        className='text-muted group-data-[disabled]:text-disabled shrink-0'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -69,8 +69,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'rounded-sm bg-muted',
+    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'bg-muted rounded-sm',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',

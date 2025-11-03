@@ -28,20 +28,22 @@ const baseLabelStyles = cn(
   'truncate w-[calc(100%-var(--size-56))]',
 );
 
-export interface BaseInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
-  /** The label text that floats above the input when focused or filled */
+export type BaseInputProps = {
+  /**
+   * The label text that floats above the input when focused or filled.
+   */
   label?: string;
-  /** Additional class names to apply to the input element */
-  className?: string;
-  /** Additional class names to apply to the container element */
-  containerClassName?: string;
-  /** Additional class names to apply to the label element */
-  labelClassName?: string;
-  /** An optional error message displayed below the input */
+  /**
+   * An optional error message displayed below the input
+   */
   errorMessage?: string;
   /**
-   * Custom content to render after the input (right side in LTR).
+   * Indicates whether the input value is invalid
+   * @default false
+   */
+  'aria-invalid'?: boolean;
+  /**
+   * Custom content to render after the input.
    * @example suffix={<Icon />}
    */
   suffix?: React.ReactNode;
@@ -50,11 +52,28 @@ export interface BaseInputProps
    * @example prefix={<Icon />}
    */
   prefix?: React.ReactNode;
-  /** Optional function to extend the default clear behavior with custom logic */
+  /**
+   * Optional function to extend the default clear behavior with custom logic
+   */
   onClear?: () => void;
-  /** Hide the clear button (shown by default when input has content) */
+  /**
+   * Hide the clear button (shown by default when input has content)
+   * @default false
+   */
   hideClearButton?: boolean;
-}
+  /**
+   * Additional class names to apply to the input element
+   */
+  className?: string;
+  /**
+   * Additional class names to apply to the container element
+   */
+  containerClassName?: string;
+  /**
+   * Additional class names to apply to the label element
+   */
+  labelClassName?: string;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>;
 
 /**
  * Base input component with floating label, error state styling, and clear button functionality.

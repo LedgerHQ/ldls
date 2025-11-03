@@ -6,11 +6,11 @@ import {
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
-  Spinner,
   WarningFill,
 } from '../../Symbols';
 import { cn } from '../../utils';
 import { IconSize } from '../Icon';
+import { Spinner } from '../Spinner';
 import { SpotProps, SpotSize } from './Spot.types';
 
 const spotVariants = cva(

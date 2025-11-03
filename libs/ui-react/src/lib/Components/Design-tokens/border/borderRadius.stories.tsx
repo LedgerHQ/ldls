@@ -22,9 +22,9 @@ const BorderRadiusShowcase = () => (
         { name: 'full', class: 'rounded-full' },
       ].map(({ name, class: className }) => (
         <div key={name} className=''>
-          <div className={`mb-8 size-80 bg-accent ${className}`}></div>
+          <div className={`bg-accent mb-8 size-80 ${className}`}></div>
           <div></div>
-          <div className='text-base body-2'>{name}</div>
+          <div className='body-2 text-base'>{name}</div>
           <div className='text-muted body-4'>{className}</div>
         </div>
       ))}

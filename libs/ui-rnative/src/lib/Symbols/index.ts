@@ -1,6 +1,7 @@
 export { Airplane } from './Icons/Airplane';
 export { AlarmClock } from './Icons/AlarmClock';
 export { Android } from './Icons/Android';
+export { Apex } from './Icons/Apex';
 export { Apple } from './Icons/Apple';
 export { Apps } from './Icons/Apps';
 export { Ar } from './Icons/Ar';
@@ -193,7 +194,6 @@ export { SparksFill } from './Icons/SparksFill';
 export { SpeedFast } from './Icons/SpeedFast';
 export { SpeedLow } from './Icons/SpeedLow';
 export { SpeedMedium } from './Icons/SpeedMedium';
-export { Spinner } from './Icons/Spinner';
 export { Star } from './Icons/Star';
 export { StarFill } from './Icons/StarFill';
 export { StarHalf } from './Icons/StarHalf';

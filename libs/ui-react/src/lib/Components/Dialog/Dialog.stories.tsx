@@ -21,13 +21,13 @@ const DialogTemplate = ({
       <DialogContent>
         <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
         <div className='space-y-16'>
-          <p className='text-base body-2'>
+          <p className='body-2 text-base'>
             The content area after the DialogHeader can contain any components.
             Ensure proper padding and scrolling if needed.
           </p>
-          <div className='rounded-sm bg-muted p-12'>
+          <div className='bg-muted rounded-sm p-12'>
             <p className='text-muted body-3'>
-              <strong className='text-base body-3-semi-bold'>Note:</strong> The
+              <strong className='body-3-semi-bold text-base'>Note:</strong> The
               dialog content defaults to a width of 400px and height
               auto-adjusts to content. Use the className prop on DialogContent
               to customize dimensions if needed.
@@ -42,6 +42,11 @@ const DialogTemplate = ({
 const meta: Meta<typeof Dialog> = {
   component: Dialog,
   title: 'Containment/Dialog',
+  subcomponents: {
+    DialogHeader,
+    DialogContent,
+    DialogTrigger,
+  },
   parameters: {
     docs: {
       source: {
@@ -49,6 +54,14 @@ const meta: Meta<typeof Dialog> = {
         format: true,
         type: 'code',
       },
+    },
+  },
+  argTypes: {
+    defaultOpen: {
+      control: false,
+    },
+    open: {
+      control: false,
     },
   },
 };
@@ -213,12 +226,12 @@ export const InfoStateError: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
+            <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
 
             <Spot appearance='error' size={72} />
 
             <div className='flex flex-col items-center gap-12 text-center'>
-              <h3 className='text-base heading-3-semi-bold'>Title</h3>
+              <h3 className='heading-3-semi-bold text-base'>Title</h3>
               <p className='text-muted body-2'>Description</p>
             </div>
 
@@ -284,12 +297,12 @@ export const InfoStateSuccess: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
+            <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
 
             <Spot appearance='check' size={72} />
 
             <div className='flex flex-col items-center gap-12 text-center'>
-              <h3 className='text-base heading-3-semi-bold'>Title</h3>
+              <h3 className='heading-3-semi-bold text-base'>Title</h3>
               <p className='text-muted body-2'>Description</p>
             </div>
 

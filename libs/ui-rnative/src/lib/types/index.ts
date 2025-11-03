@@ -19,9 +19,9 @@ type SlottablePressableProps = ComponentPropsWithAsChild<typeof Pressable> & {
   onKeyUp?: (ev: React.KeyboardEvent) => void;
 };
 
-interface ForceMountable {
+type ForceMountable = {
   forceMount?: true | undefined;
-}
+};
 
 export type {
   ForceMountable,

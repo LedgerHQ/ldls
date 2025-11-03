@@ -6,13 +6,13 @@ import {
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
-  Spinner,
   WarningFill,
 } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
+import { Spinner } from '../Spinner';
 
 const spotVariants = cva(
-  'flex items-center justify-center rounded-full bg-muted-transparent',
+  'bg-muted-transparent flex items-center justify-center rounded-full',
   {
     variants: {
       appearance: {
@@ -23,7 +23,7 @@ const spotVariants = cva(
         warning: 'text-warning',
         info: 'text-muted',
         loader: '',
-        number: 'text-base heading-4',
+        number: 'heading-4 text-base',
       },
       disabled: {
         true: 'text-disabled',
@@ -53,52 +53,27 @@ export type SpotAppearance =
 type DiscriminatedSpotProps =
   | {
       /**
-       * Displays a custom icon with neutral base styling.
-       *
-       * **Use case**: When you need to show a custom icon that isn't available in the predefined appearances.
-       * **Style**: Default text color with transparent background.
-       * **Required prop**: `icon` - Must provide an icon component.
-       *
+       * Custom icon appearance with neutral base styling.
        * @example <Spot appearance="icon" icon={SettingsIcon} />
        */
       appearance: 'icon';
-      /** A React component to be rendered as the icon. Required when appearance is 'icon'. */
+      /** Icon component to render. Required when appearance is 'icon'. */
       icon: React.ComponentType<{ size?: IconSize; className?: string }>;
     }
   | {
       /**
-       * Displays a single digit (0-9) with number styling.
-       *
-       * **Use case**: Step indicators, counters, or numbered badges.
-       * **Style**: Heading-4 typography with base text color.
-       * **Required prop**: `number` - Must be a digit from 0 to 9.
-       *
+       * Number appearance for displaying a single digit (0-9).
        * @example <Spot appearance="number" number={5} />
        */
       appearance: 'number';
-      /** A single digit from 0 to 9 to display. Required when appearance is 'number'. */
+      /** Digit (0-9) to display. Required when appearance is 'number'. */
       number: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }
   | {
       /**
-       * Self-contained predefined status indicators with semantic styling.
-       *
-       * **Available options**:
-       * - `'bluetooth'` - Bluetooth connection status (blue color)
-       * - `'check'` - Success/completion state (green color)
-       * - `'error'` - Error/failure state (red color)
-       * - `'warning'` - Warning/caution state (yellow color)
-       * - `'info'` - Informational state (muted color)
-       * - `'loader'` - Loading/processing state (no color)
-       *
-       * **Use case**: Status indicators, feedback states, loading states.
-       * **Style**: Each has semantic colors and predefined icons.
-       * **Props**: No additional props required - fully self-contained.
-       *
-       * @example
-       * <Spot appearance="check" />    // Success checkmark
-       * <Spot appearance="error" />    // Error X icon
-       * <Spot appearance="loader" />   // Loading spinner
+       * Predefined status indicators with semantic styling.
+       * Options: 'bluetooth' | 'check' | 'error' | 'warning' | 'info' | 'loader'
+       * @example <Spot appearance="check" />
        */
       appearance: Exclude<SpotAppearance, 'icon' | 'number'>;
     };

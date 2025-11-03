@@ -4,7 +4,7 @@ import React from 'react';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
+const sheetBarVariants = cva('bg-canvas-sheet flex text-base', {
   variants: {
     appearance: {
       compact: 'h-64 flex-row items-center gap-12',
@@ -39,7 +39,7 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-export interface SheetBarProps extends React.HTMLAttributes<HTMLDivElement> {
+export type SheetBarProps = {
   /**
    * The appearance variant of the sheet bar.
    * @default 'compact'
@@ -61,7 +61,7 @@ export interface SheetBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * Optional callback for back navigation.
    */
   onBack?: () => void;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * A customizable sheet bar component that displays title, description, and navigation buttons for sheets/modals.
@@ -114,12 +114,12 @@ export const SheetBar = ({
             })}
           >
             {title && (
-              <div className='truncate text-center heading-4-semi-bold'>
+              <div className='heading-4-semi-bold truncate text-center'>
                 {title}
               </div>
             )}
             {description && (
-              <div className='truncate text-center text-muted body-2'>
+              <div className='text-muted body-2 truncate text-center'>
                 {description}
               </div>
             )}

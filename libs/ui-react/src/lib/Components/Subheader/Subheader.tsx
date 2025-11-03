@@ -1,8 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
 
-interface SubheaderProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+type SubheaderProps = {
   /**
    * The title of the subheader.
    */
@@ -11,15 +10,15 @@ interface SubheaderProps
    * The children of the subheader, which can include Subheader.Info and Subheader.Action slots.
    */
   children?: React.ReactNode;
-}
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
 
-interface SubheaderInfoProps {
+type SubheaderInfoProps = {
   children: React.ReactNode;
-}
+};
 
-interface SubheaderActionProps {
+type SubheaderActionProps = {
   children: React.ReactNode;
-}
+};
 
 /**
  * Info slot component for the Subheader. Used to display additional information, like tooltips.
@@ -100,7 +99,7 @@ export const Subheader = ({
       {...props}
     >
       <div className='flex min-w-0 items-center gap-2'>
-        <h2 className='min-w-0 truncate heading-4-semi-bold'>{title}</h2>
+        <h2 className='heading-4-semi-bold min-w-0 truncate'>{title}</h2>
         {infoSlot}
       </div>
       {actionSlot}

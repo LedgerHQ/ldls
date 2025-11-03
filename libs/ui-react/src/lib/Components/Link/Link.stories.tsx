@@ -20,41 +20,14 @@ const meta: Meta<typeof Link> = {
     },
   },
   argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['underlined', 'accent'],
-      description: 'The visual style appearance of the link',
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md'],
-      description: 'The size of the link',
-    },
     icon: {
       control: 'select',
-      description: 'Optional icon component to display',
       options: ['None', 'Information', 'Settings'],
       mapping: {
         None: undefined,
         Information: Information,
         Settings: Settings,
       },
-    },
-    children: {
-      control: 'text',
-      description: 'The content to be displayed inside the link',
-    },
-    isExternal: {
-      control: 'boolean',
-      description: 'Whether the link is external',
-    },
-    asChild: {
-      control: 'boolean',
-      description: 'Render as child element',
-    },
-    href: {
-      control: 'text',
-      description: 'The URL to link to',
     },
   },
 };
@@ -237,7 +210,7 @@ export const SizesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='flex w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+    <div className='w-256 bg-muted flex flex-col gap-8 rounded-sm p-8'>
       <Link appearance='underlined' href='#' onClick={onClick}>
         Short Link
       </Link>

@@ -20,7 +20,7 @@ const baseSwitchVariants = {
   root: cva(
     [
       'group flex justify-center rounded-full p-2 transition-colors duration-200 ease-in-out',
-      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+      'focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
     ],
     {
       variants: {

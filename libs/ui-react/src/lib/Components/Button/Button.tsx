@@ -6,7 +6,7 @@ import { BaseButton, BaseButtonProps } from './BaseButton';
 const buttonVariants = cva('', {
   variants: {
     size: {
-      sm: 'px-16 py-12 body-2-semi-bold',
+      sm: 'body-2-semi-bold px-16 py-12',
       md: 'px-16 py-12',
       lg: 'p-16',
     },
@@ -16,21 +16,23 @@ const buttonVariants = cva('', {
   },
 });
 
-export interface ButtonProps
-  extends Omit<BaseButtonProps, 'children' | 'size'> {
+export type ButtonProps = {
   /**
    * If true, shows a loading spinner and disables the button.
+   * @default false
    */
   loading?: boolean;
   /**
    * The content of the button. This is required to ensure buttons always have a label.
+   * @required
    */
   children: React.ReactNode;
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'sm' | 'md' | 'lg';
-}
+} & Omit<BaseButtonProps, 'children' | 'size'>;
 
 /**
  * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.

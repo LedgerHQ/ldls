@@ -83,26 +83,15 @@ The Select component integrates seamlessly with HTML forms.
 
 This component is built on top of [shadcn/ui Select](https://ui.shadcn.com/docs/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
 
-## Installation
-
-Install the packages and their peer dependencies:
-
 ```bash
-# Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
-
-# Install peer dependencies
-npm install @radix-ui/react-select tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-select
 ```
 
-#### **About @radix-ui/react-select**
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
 
-The `@radix-ui/react-select` dependency is used internally by the Select component
-to provide accessible, unstyled select functionality with proper keyboard navigation,
-focus management, and screen reader support. It handles the core select behavior including
-open/closed states, option selection, and accessibility features, while our component adds the visual styling and design system tokens.
+The `@radix-ui/react-select` dependency provides accessible, unstyled select functionality with proper keyboard navigation, focus management, and screen reader support.
 
-### Basic Usage
+## Basic Usage
 
 ```tsx
 import {

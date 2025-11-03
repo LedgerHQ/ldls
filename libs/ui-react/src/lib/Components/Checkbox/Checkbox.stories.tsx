@@ -15,25 +15,8 @@ const meta: Meta<typeof Checkbox> = {
     },
   },
   argTypes: {
-    checked: {
-      control: 'boolean',
-      description: 'The controlled checked state of the checkbox',
-    },
-    defaultChecked: {
-      control: 'boolean',
-      description: 'The default checked state (uncontrolled)',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'If true, the checkbox is disabled',
-    },
-    required: {
-      control: 'boolean',
-      description: 'If true, the checkbox is required in forms',
-    },
     onCheckedChange: {
       action: 'checked changed',
-      description: 'Callback function called when the checked state changes',
     },
   },
 };
@@ -99,13 +82,13 @@ export const FormExample: Story = {
         <div className='space-y-8'>
           <div className='flex items-center space-x-8'>
             <Checkbox id='weekly' name='newsletter' value='weekly' />
-            <label htmlFor='weekly' className='cursor-pointer body-2'>
+            <label htmlFor='weekly' className='body-2 cursor-pointer'>
               Weekly newsletter
             </label>
           </div>
           <div className='flex items-center space-x-8'>
             <Checkbox id='monthly' name='newsletter' value='monthly' />
-            <label htmlFor='monthly' className='cursor-pointer body-2'>
+            <label htmlFor='monthly' className='body-2 cursor-pointer'>
               Monthly newsletter
             </label>
           </div>
@@ -116,7 +99,7 @@ export const FormExample: Story = {
               value='product-updates'
               defaultChecked
             />
-            <label htmlFor='product-updates' className='cursor-pointer body-2'>
+            <label htmlFor='product-updates' className='body-2 cursor-pointer'>
               Product updates
             </label>
           </div>
@@ -124,7 +107,7 @@ export const FormExample: Story = {
       </div>
       <div className='flex items-center space-x-8'>
         <Checkbox id='terms' name='terms' required />
-        <label htmlFor='terms' className='cursor-pointer body-2'>
+        <label htmlFor='terms' className='body-2 cursor-pointer'>
           I agree to the{' '}
           <a href='#' onClick={(e) => e.preventDefault()} className='underline'>
             terms and conditions

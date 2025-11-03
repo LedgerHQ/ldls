@@ -8,40 +8,60 @@ import React, {
   useState,
 } from 'react';
 
-export interface AmountInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'prefix' | 'value' | 'onChange'
-  > {
-  /** The currency text (e.g. USD, EUR) */
-  currencyText?: string;
-  /** Position of the currency text. Defaults to 'left' */
-  currencyPosition?: 'left' | 'right';
-  /** Maximum length for integer part (before decimal) */
-  /** @default 9 */
-  maxIntegerLength?: number;
-  /** Maximum length for decimal part (after decimal) */
-  /** @default 9 */
-  maxDecimalLength?: number;
-  /** Allow decimal values */
-  /** @default true */
-  allowDecimals?: boolean;
-  /** Additional class names */
-  className?: string;
-  /** The controlled value of the input (required) */
+export type AmountInputProps = {
+  /**
+   * The controlled value of the input
+   * @required
+   */
   value: string | number;
-  /** Change handler (required) */
+  /**
+   * Change handler
+   * @required
+   */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Whether to use thousands separator */
-  /** @default true */
+  /**
+   * The currency text (e.g. USD, EUR)
+   */
+  currencyText?: string;
+  /**
+   * Position of the currency text.
+   * @default 'left'
+   */
+  currencyPosition?: 'left' | 'right';
+  /**
+   * Maximum length for integer part (before decimal)
+   * @default 9
+   */
+  maxIntegerLength?: number;
+  /**
+   * Maximum length for decimal part (after decimal)
+   * @default 9
+   */
+  maxDecimalLength?: number;
+  /**
+   * Allow decimal values
+   * @default true
+   */
+  allowDecimals?: boolean;
+  /**
+   * Additional class names
+   */
+  className?: string;
+  /**
+   * Whether to use thousands separator (e.g. 1 000 for 1000)
+   * @default true
+   */
   thousandsSeparator?: boolean;
-}
+} & Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'size' | 'prefix' | 'value' | 'onChange'
+>;
 
 const inputStyles = cva(
   [
-    'bg-transparent caret-active outline-none transition-colors heading-0',
-    'text-base placeholder:text-muted-subtle',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    'caret-active heading-0 bg-transparent outline-none transition-colors',
+    'placeholder:text-muted-subtle text-base',
+    'disabled:bg-base-transparent disabled:text-disabled disabled:pointer-events-none disabled:cursor-not-allowed',
     '[&[aria-invalid="true"]]:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',

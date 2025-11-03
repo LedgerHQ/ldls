@@ -6,18 +6,18 @@ import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const linkVariants = cva(
-  'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
+  'focus-visible:outline-focus inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4',
   {
     variants: {
       appearance: {
         underlined:
-          'text-base underline underline-offset-2 hover:text-base-hover active:text-base-pressed',
+          'hover:text-base-hover active:text-base-pressed text-base underline underline-offset-2',
         accent:
           'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
       },
       size: {
-        sm: 'gap-4 body-2-semi-bold',
-        md: 'gap-8 body-1-semi-bold',
+        sm: 'body-2-semi-bold gap-4',
+        md: 'body-1-semi-bold gap-8',
       },
     },
     defaultVariants: {
@@ -27,32 +27,45 @@ const linkVariants = cva(
   },
 );
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    VariantProps<typeof linkVariants> {
+export type LinkProps = {
+  /**
+   * The visual style of the link.
+   * @default underlined
+   */
+  appearance?: 'underlined' | 'accent';
+  /**
+   * The size variant of the link.
+   * @default md
+   */
+  size?: 'sm' | 'md';
+  /**
+   * An optional icon component to render inside the link.
+   * The icon styles are defined by the link. Please do not override them.
+   */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
+   * @default false
+   */
   isExternal?: boolean;
+  /**
+   * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
+   * Useful for creating router links or other semantic elements with link appearance.
+   * @default false
+   */
   asChild?: boolean;
-  children: React.ReactNode; // Children are required
-}
+  /**
+   * The link's content, typically text.
+   */
+  children: React.ReactNode;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  VariantProps<typeof linkVariants>;
 
 /**
  * A customizable link component that supports underlined text and accent button-like appearances, sizes, optional icons, and external link handling.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
- *
- * @component
- * @param {'underlined' | 'accent'} [appearance='underlined'] - The visual style of the link (text underlined or button-like).
- * @param {'sm' | 'md'} [size='md'] - The size variant of the link.
- * @param {React.ComponentType<{ size?: IconSize; className?: string }>} [icon] - An optional icon component to render inside the link.
- *   The icon styles are defined by the link. Please do not override them.
- * @param {boolean} [isExternal=false] - If true, adds target="_blank" and rel="noopener noreferrer" for external links.
- * @param {boolean} [asChild=false] - If true, renders the child element directly with link styles instead of wrapping in an anchor element.
- *   Useful for creating router links or other semantic elements with link appearance.
- * @param {string} [className] - Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance - use the `appearance` prop instead.
- * @param {React.ReactNode} [children] - The link's content, typically text.
- * @param {React.AnchorHTMLAttributes<HTMLAnchorElement>} [...] - All standard anchor props (e.g., `href`, `onClick` etc.).
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` prop instead.
