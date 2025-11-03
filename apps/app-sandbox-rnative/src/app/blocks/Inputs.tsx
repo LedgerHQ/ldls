@@ -1,27 +1,55 @@
 import { TextInput } from '@ledgerhq/ldls-ui-rnative';
-import { View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Alert, View } from 'react-native';
 
 export function Inputs() {
+  const [team, setTeam] = useState<string>();
+  const [isTeamValid, setIsTeamValid] = useState(true);
+
+  useEffect(() => {
+    if (team) {
+      setIsTeamValid(team.toLowerCase() === 'ldls');
+    }
+  }, [team]);
+
   return (
     <View className='gap-8'>
-      <TextInput label='Default input' containerClassName='min-w-full' />
       <TextInput
-        label='Disabled input'
+        label='Username'
         containerClassName='min-w-full'
-        defaultValue="You can't edit this!"
+        onClear={() =>
+          Alert.alert('Custom handler', 'You found an easter egg!', [
+            { text: 'Okay', style: 'default' },
+          ])
+        }
+      />
+      <TextInput
+        label='Password'
+        containerClassName='min-w-full'
+        secureTextEntry
+        hideClearButton
+      />
+      <TextInput
+        label='Company'
+        containerClassName='min-w-full'
+        defaultValue='Ledger'
         editable={false}
       />
       <TextInput
-        label='Email'
+        label='Team'
         containerClassName='min-w-full'
-        defaultValue='ldls@ledger.com'
-        errorMessage='Please enter a valid email address'
+        value={team}
+        onChangeText={setTeam}
+        errorMessage={
+          !isTeamValid && team !== undefined
+            ? 'Team must match "ldls"!'
+            : undefined
+        }
       />
       <TextInput
         label='A very long label that should really be truncated at different breakpoints'
         containerClassName='min-w-full'
-        defaultValue='ldls@ledger.com'
-        errorMessage='Please enter a valid email address'
+        defaultValue='This is a default value!'
       />
     </View>
   );
