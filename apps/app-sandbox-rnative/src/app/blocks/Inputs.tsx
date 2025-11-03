@@ -12,13 +12,16 @@ export function Inputs() {
         editable={false}
       />
       <TextInput
-        label='tiny'
+        label='Email'
         containerClassName='min-w-full'
+        defaultValue='ldls@ledger.com'
         errorMessage='Please enter a valid email address'
       />
       <TextInput
-        label='super huge label goes here'
+        label='A very long label that should really be truncated at different breakpoints'
         containerClassName='min-w-full'
+        defaultValue='ldls@ledger.com'
+        errorMessage='Please enter a valid email address'
       />
     </View>
   );

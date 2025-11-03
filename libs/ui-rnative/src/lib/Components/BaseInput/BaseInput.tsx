@@ -62,16 +62,11 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2 border-transparent',
+  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2 border-transparent overflow-hidden',
 );
 
 const baseInputStyles = cn(
-  'flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
-);
-
-const baseLabelStyles = cn(
-  'absolute left-16 text-muted',
-  'truncate w-[calc(100%-var(--size-56))]',
+  'relative flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
 );
 
 const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
@@ -108,19 +103,26 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
     // floating label styling
     const labelFontSize = useSharedValue(14);
-    const labelTop = useSharedValue(16);
+    const labelTop = useSharedValue(14);
     const isFloatingLabel = isFocused || hasContent;
 
-    const animatedLabelStyle = useAnimatedStyle(() => ({
-      fontSize: labelFontSize.value,
-      top: labelTop.value,
-    }));
+    const animatedLabelStyle = useAnimatedStyle(
+      () => ({
+        fontSize: labelFontSize.value,
+        top: labelTop.value,
+      }),
+      [],
+    );
 
     const showClearButton = hasContent && editable && !hideClearButton;
 
     useEffect(() => {
-      labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14);
-      labelTop.value = withTiming(isFloatingLabel ? 8 : 12);
+      labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14, {
+        duration: 200,
+      });
+      labelTop.value = withTiming(isFloatingLabel ? 8 : 14, {
+        duration: 200,
+      });
     }, [isFloatingLabel, labelFontSize, labelTop]);
 
     const handleChangeText = useCallback(
@@ -163,6 +165,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               !editable && 'bg-disabled text-disabled',
               className,
             )}
+            style={{ fontWeight: '600' }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -175,12 +178,14 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           {label && (
             <AnimatedLabel
               className={cn(
-                baseLabelStyles,
+                'absolute left-16 text-muted w-full',
+                hasContent && showClearButton && 'w-[92%]',
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
               )}
               style={animatedLabelStyle}
+              numberOfLines={1}
             >
               {label}
             </AnimatedLabel>
