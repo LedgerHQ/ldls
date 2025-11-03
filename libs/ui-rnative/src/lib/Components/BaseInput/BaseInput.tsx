@@ -13,6 +13,11 @@ import {
   type TextInputProps,
   View,
 } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 
 export type BaseInputProps = TextInputProps & {
@@ -57,17 +62,19 @@ export type BaseInputProps = TextInputProps & {
 };
 
 const baseContainerStyles = cn(
-  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2',
+  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2 border-transparent',
 );
 
 const baseInputStyles = cn(
-  'flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none border-2',
+  'flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
 );
 
 const baseLabelStyles = cn(
-  'absolute left-16 text-left top-4 text-muted transition-all duration-300 body-4 border-2',
+  'absolute left-16 text-muted',
   'truncate w-[calc(100%-var(--size-56))]',
 );
+
+const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
@@ -84,25 +91,39 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     },
     ref,
   ) => {
+    const inputRef = useRef<TextInput>(null);
+    useImperativeHandle(ref, () => inputRef.current as TextInput);
+
     const [uncontrolledValue, setUncontrolledValue] = useState(
       props.defaultValue || '',
     );
     const [isFocused, setIsFocused] = useState(false);
 
-    // wait for layout before deciding label position
-    const [layoutReady, setLayoutReady] = useState(false);
-    useEffect(() => {
-      const id = requestAnimationFrame(() => setLayoutReady(true));
-      return () => cancelAnimationFrame(id);
-    }, []);
-
-    const inputRef = useRef<TextInput>(null);
-    useImperativeHandle(ref, () => inputRef.current as TextInput);
-
     const isControlled = props.value !== undefined;
     const value = isControlled ? props.value : uncontrolledValue;
 
-    const onChangeText = useCallback(
+    const hasContent = isControlled
+      ? !!props.value && props.value.length > 0
+      : uncontrolledValue.length > 0;
+
+    // floating label styling
+    const labelFontSize = useSharedValue(14);
+    const labelTop = useSharedValue(16);
+    const isFloatingLabel = isFocused || hasContent;
+
+    const animatedLabelStyle = useAnimatedStyle(() => ({
+      fontSize: labelFontSize.value,
+      top: labelTop.value,
+    }));
+
+    const showClearButton = hasContent && editable && !hideClearButton;
+
+    useEffect(() => {
+      labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14);
+      labelTop.value = withTiming(isFloatingLabel ? 8 : 12);
+    }, [isFloatingLabel, labelFontSize, labelTop]);
+
+    const handleChangeText = useCallback(
       (text: string) => {
         if (!isControlled) {
           setUncontrolledValue(text);
@@ -120,13 +141,6 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       }
       props.onClear?.();
     };
-
-    const hasContent = isControlled
-      ? !!props.value && props.value.length > 0
-      : uncontrolledValue.length > 0;
-
-    const showClearButton = hasContent && editable && !hideClearButton;
-    const shouldCenterLabel = layoutReady && !isFocused && !hasContent;
 
     return (
       <View>
@@ -151,7 +165,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             )}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            onChangeText={onChangeText}
+            onChangeText={handleChangeText}
             editable={editable}
             autoCapitalize='none'
             autoCorrect={false}
@@ -159,19 +173,17 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           />
 
           {label && (
-            <Text
+            <AnimatedLabel
               className={cn(
                 baseLabelStyles,
-                shouldCenterLabel
-                  ? 'translate-x-16 translate-y-8 scale-150' // relaxed position
-                  : 'translate-y-0 scale-100', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
               )}
+              style={animatedLabelStyle}
             >
               {label}
-            </Text>
+            </AnimatedLabel>
           )}
 
           {showClearButton && (
