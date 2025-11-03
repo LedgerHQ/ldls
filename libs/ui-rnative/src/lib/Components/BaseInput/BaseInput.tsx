@@ -144,9 +144,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               baseInputStyles,
               label && 'pt-12 body-2',
               !editable && 'bg-disabled text-disabled',
-              isFocused && !errorMessage && editable
-                ? '-translate-x-2' // offset for border-2
-                : 'translate-x-0',
+              !shouldCenterLabel && '-translate-x-2',
               className,
             )}
             onFocus={() => setIsFocused(true)}
@@ -162,13 +160,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className={cn(
                 baseLabelStyles,
                 shouldCenterLabel
-                  ? 'translate-y-8 scale-150' // relaxed position
-                  : 'translate-y-0 scale-100 body-4', // floating position
-                isFocused && !errorMessage && editable
-                  ? '-translate-x-2'
-                  : shouldCenterLabel && Platform.OS !== 'web'
-                    ? 'translate-x-12'
-                    : 'translate-x-0',
+                  ? 'translate-y-8 scale-150 translate-x-12' // relaxed position
+                  : 'translate-y-0 scale-100 -translate-x-2', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
