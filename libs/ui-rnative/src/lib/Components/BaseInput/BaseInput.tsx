@@ -1,6 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React, {
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -60,7 +61,7 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer flex-1 size-full text-base transition-colors bg-muted',
+  'peer flex-1 size-full text-base transition-colors bg-muted outline-none',
 );
 
 const baseLabelStyles = cn(
@@ -87,8 +88,15 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       props.defaultValue || '',
     );
     const [isFocused, setIsFocused] = useState(false);
-    const inputRef = useRef<TextInput>(null);
 
+    // wait for layout before deciding label position
+    const [layoutReady, setLayoutReady] = useState(false);
+    useEffect(() => {
+      const id = requestAnimationFrame(() => setLayoutReady(true));
+      return () => cancelAnimationFrame(id);
+    }, []);
+
+    const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
     const isControlled = props.value !== undefined;
@@ -118,7 +126,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       : uncontrolledValue.length > 0;
 
     const showClearButton = hasContent && editable && !hideClearButton;
-    const shouldCenterLabel = !isFocused && !hasContent;
+    const shouldCenterLabel = layoutReady && !isFocused && !hasContent;
 
     return (
       <View>
@@ -150,6 +158,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             autoCorrect={false}
             {...props}
           />
+
           {label && (
             <Text
               className={cn(
@@ -165,6 +174,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               {label}
             </Text>
           )}
+
           {showClearButton && (
             <Pressable
               className='ml-auto'
@@ -176,6 +186,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             </Pressable>
           )}
         </Pressable>
+
         {errorMessage && (
           <View className='mt-8 flex-row items-center gap-2'>
             <DeleteCircleFill size={16} className='shrink-0 text-error' />
