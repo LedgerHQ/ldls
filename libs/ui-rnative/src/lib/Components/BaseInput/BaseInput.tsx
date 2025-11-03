@@ -82,6 +82,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       hideClearButton,
       onChangeText: onChangeTextProp,
       editable = true,
+      suffix,
       ...props
     },
     ref,
@@ -193,14 +194,15 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
           {showClearButton && (
             <Pressable
-              className='ml-auto'
               onPress={handleClear}
-              accessibilityLabel='clear input'
+              accessibilityLabel='Clear input'
               style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
             >
               <DeleteCircleFill size={20} className='text-base' />
             </Pressable>
           )}
+
+          {!showClearButton && suffix}
         </Pressable>
 
         {errorMessage && (

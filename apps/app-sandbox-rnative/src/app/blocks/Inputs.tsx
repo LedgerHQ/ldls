@@ -1,6 +1,7 @@
 import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { Eye, EyeCross } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, Pressable, View } from 'react-native';
 
 export function Inputs() {
   const [team, setTeam] = useState<string>();
@@ -11,6 +12,8 @@ export function Inputs() {
       setIsTeamValid(team.toLowerCase() === 'ldls');
     }
   }, [team]);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View className='gap-8'>
@@ -26,8 +29,17 @@ export function Inputs() {
       <TextInput
         label='Password'
         containerClassName='min-w-full'
-        secureTextEntry
+        secureTextEntry={!showPassword}
         hideClearButton
+        suffix={
+          <Pressable onPress={() => setShowPassword(!showPassword)}>
+            {showPassword ? (
+              <EyeCross size={20} className='text-base' />
+            ) : (
+              <Eye size={20} className='text-base' />
+            )}
+          </Pressable>
+        }
       />
       <TextInput
         label='Company'
