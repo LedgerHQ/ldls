@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
 import { TextInput } from './TextInput';
 
 const meta: Meta<typeof TextInput> = {
@@ -118,6 +119,67 @@ export const ExtendedClearBehavior: Story = {
         onClear={() => alert('Extended clear behavior')}
         containerClassName='max-w-md'
       />
+    );
+  },
+};
+
+export const Interactive: Story = {
+  args: {},
+  render: () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = () => {
+      if (!email || !password) {
+        setError('Both fields are required');
+        return;
+      }
+      if (password.length < 6) {
+        setError('Password must be at least 6 characters');
+        return;
+      }
+      setError('');
+      setSubmitted(true);
+    };
+
+    return (
+      <View className='max-w-md gap-16'>
+        <TextInput
+          label='Email'
+          value={email}
+          onChangeText={(text) => {
+            setEmail(text);
+            setError('');
+            setSubmitted(false);
+          }}
+          keyboardType='email-address'
+          autoCapitalize='none'
+        />
+        <TextInput
+          label='Password'
+          value={password}
+          onChangeText={(text) => {
+            setPassword(text);
+            setError('');
+            setSubmitted(false);
+          }}
+          secureTextEntry
+          errorMessage={error}
+        />
+        <Pressable
+          className='h-48 items-center justify-center rounded-sm bg-accent active:opacity-80'
+          onPress={handleSubmit}
+        >
+          <Text className='text-on-accent body-2'>Submit</Text>
+        </Pressable>
+        {submitted && (
+          <Text className='text-success body-2'>
+            Form submitted successfully!
+          </Text>
+        )}
+      </View>
     );
   },
 };
