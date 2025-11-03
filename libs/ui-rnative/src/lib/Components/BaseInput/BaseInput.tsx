@@ -1,6 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React, { useCallback, useRef, useState } from 'react';
 import {
+  Platform,
   Pressable,
   Text,
   TextInput,
@@ -112,7 +113,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       : uncontrolledValue.length > 0;
 
     const showClearButton = hasContent && editable && !hideClearButton;
-    const shouldCenterLabel = !isFocused && !value;
+    const shouldCenterLabel = !isFocused && !hasContent;
 
     return (
       <View>
@@ -149,7 +150,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               className={cn(
                 baseLabelStyles,
                 shouldCenterLabel
-                  ? 'translate-y-8 scale-150 translate-x-12' // relaxed position
+                  ? `translate-y-8 scale-150 ${Platform.OS === 'web' ? '' : 'translate-x-12'}` // relaxed position
                   : 'translate-y-0 scale-100 body-4', // floating position
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
