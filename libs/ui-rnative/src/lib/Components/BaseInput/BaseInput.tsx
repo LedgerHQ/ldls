@@ -199,7 +199,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             >
               <DeleteCircleFill
                 size={20}
-                className='text-base group-active:text-base-pressed'
+                className='text-muted group-active:text-muted-pressed'
               />
             </Pressable>
           )}
