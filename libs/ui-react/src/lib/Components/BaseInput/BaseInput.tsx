@@ -197,9 +197,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     }
 
     return (
-      <div>
+      <div className={containerClassName}>
         <div
-          className={cn(containerClassName, baseContainerStyles)}
+          className={baseContainerStyles}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
@@ -265,10 +265,10 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className='text-error body-3 mt-8 flex items-center gap-2'
+            className='mt-8 flex items-center gap-2 text-error body-3'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='text-error shrink-0' />
+            <DeleteCircleFill size={16} className='shrink-0 text-error' />
             <span>{errorMessage}</span>
           </div>
         )}

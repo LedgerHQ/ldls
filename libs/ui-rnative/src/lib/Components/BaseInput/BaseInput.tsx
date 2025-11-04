@@ -146,14 +146,13 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     };
 
     return (
-      <View>
+      <View className={containerClassName}>
         <Pressable
           className={cn(
             baseContainerStyles,
             errorMessage && 'border-error',
             isFocused && !errorMessage && editable && 'border-active',
             !editable && 'bg-disabled text-disabled',
-            containerClassName,
           )}
           onPress={() => inputRef.current?.focus()}
           disabled={!editable}
