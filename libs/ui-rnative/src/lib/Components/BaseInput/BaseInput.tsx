@@ -55,7 +55,7 @@ export type BaseInputProps = TextInputProps & {
    * Optional function to extend the default clear behavior with custom logic.
    */
   onClear?: () => void;
-  /*
+  /**
    * Hide the clear button (shown by default when input has content).
    */
   hideClearButton?: boolean;
@@ -194,11 +194,14 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
           {showClearButton && (
             <Pressable
+              className='group'
               onPress={handleClear}
               accessibilityLabel='Clear input'
-              style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
             >
-              <DeleteCircleFill size={20} className='text-base' />
+              <DeleteCircleFill
+                size={20}
+                className='text-base group-active:text-base-pressed'
+              />
             </Pressable>
           )}
 
@@ -215,3 +218,5 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     );
   },
 );
+
+BaseInput.displayName = 'BaseInput';
