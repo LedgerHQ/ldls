@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-native';
+import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { View, Text } from 'react-native';
 import {
   Settings,
@@ -131,7 +131,7 @@ export const WithDescriptionTag: Story = {
 export const TrailingContentVariantsShowcase: Story = {
   render: () => {
     return (
-      <View className='max-w-256 flex flex-col'>
+      <View className='flex max-w-256 flex-col'>
         <ListItem
           title='Caret Variant'
           description='With description'
@@ -170,7 +170,7 @@ export const StateShowcase: Story = {
   render: () => {
     return (
       <View className='flex flex-row gap-32'>
-        <View className='max-w-256 flex flex-col'>
+        <View className='flex max-w-256 flex-col'>
           <ListItem
             title='Caret Variant'
             description='With description'
@@ -201,7 +201,7 @@ export const StateShowcase: Story = {
             leadingContent={<Spot appearance='icon' icon={Chart1} />}
           />
         </View>
-        <View className='max-w-256 flex flex-col'>
+        <View className='flex max-w-256 flex-col'>
           <ListItem
             title='Caret Variant'
             description='With description'
@@ -253,7 +253,7 @@ export const StateShowcase: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <View className='w-320 bg-muted-pressed p-16'>
-      <Text className='text-muted body-4-semi-bold mb-16'>
+      <Text className='mb-16 text-muted body-4-semi-bold'>
         Container: 320px wide
       </Text>
       <View className='flex flex-col gap-0'>
