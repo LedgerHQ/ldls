@@ -4,12 +4,9 @@
     "outDir": "out-tsc/storybook",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "jsx": "preserve",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ]
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
   },
   "exclude": [
     "src/**/*.test.ts",
