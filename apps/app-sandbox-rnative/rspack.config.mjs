@@ -19,8 +19,10 @@ export default Repack.defineRspackConfig({
   resolve: {
     ...Repack.getResolveOptions({
       enablePackageExports: true,
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.css'],
     }),
   },
+
   module: {
     rules: [
       {
@@ -33,12 +35,12 @@ export default Repack.defineRspackConfig({
         },
       },
       {
-        test: /\.css$/,
+        test: 'css',
         use: ['postcss-loader'],
         type: 'css',
       },
       ...Repack.getAssetTransformRules(),
     ],
   },
-  plugins: [new Repack.RepackPlugin(), new NativeWindPlugin()],
+  plugins: [new NativeWindPlugin(), new Repack.RepackPlugin()],
 });

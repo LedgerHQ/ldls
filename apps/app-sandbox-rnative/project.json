@@ -61,46 +61,6 @@
         "description": "Run the app on Android device or emulator"
       }
     },
-    "bundle-ios": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["^build"],
-      "options": {
-        "cwd": "apps/app-sandbox-rnative",
-        "command": "react-native bundle --platform ios --dev false --entry-file src/main.tsx --bundle-output ios/main.jsbundle"
-      },
-      "cache": true,
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{projectRoot}/ios/main.jsbundle"
-      ],
-      "metadata": {
-        "technologies": ["react-native", "repack", "ios"],
-        "description": "Bundle the iOS app for production using Re.Pack"
-      }
-    },
-    "bundle-android": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["^build"],
-      "options": {
-        "cwd": "apps/app-sandbox-rnative",
-        "command": "react-native bundle --platform android --dev false --entry-file src/main.tsx --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res"
-      },
-      "cache": true,
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{projectRoot}/android/app/src/main/assets/index.android.bundle"
-      ],
-      "metadata": {
-        "technologies": ["react-native", "repack", "android"],
-        "description": "Bundle the Android app for production using Re.Pack"
-      }
-    },
     "pod-install": {
       "executor": "nx:run-commands",
       "options": {
@@ -119,32 +79,6 @@
         "technologies": ["react-native"],
         "description": "Sync dependencies to native projects"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/app-sandbox-rnative/**/*.{ts,tsx,js,jsx}"]
-      }
-    },
-    "typecheck": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/app-sandbox-rnative",
-        "command": "tsc --build --emitDeclarationOnly"
-      },
-      "dependsOn": ["^typecheck"],
-      "cache": true,
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "externalDependencies": ["typescript"]
-        }
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
     }
   }
 }

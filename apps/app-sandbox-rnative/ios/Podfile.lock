@@ -32,6 +32,29 @@ PODS:
     - hermes-engine/Pre-built (= 0.77.3)
   - hermes-engine/Pre-built (0.77.3)
   - JWTDecode (3.0.1)
+  - NitroModules (0.31.4):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1755,6 +1778,28 @@ PODS:
   - SwiftyRSA (1.7.0):
     - SwiftyRSA/ObjC (= 1.7.0)
   - SwiftyRSA/ObjC (1.7.0)
+  - Unistyles (3.0.17):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - NitroModules
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1766,6 +1811,7 @@ DEPENDENCIES:
   - fmt (from `../../../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../../../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../../../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
+  - NitroModules (from `../../../node_modules/react-native-nitro-modules`)
   - RCT-Folly (from `../../../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../../../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTDeprecation (from `../../../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
@@ -1829,6 +1875,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../../../node_modules/react-native/ReactCommon`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
+  - Unistyles (from `../../../node_modules/react-native-unistyles`)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1855,6 +1902,8 @@ EXTERNAL SOURCES:
   hermes-engine:
     :podspec: "../../../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
     :tag: hermes-2024-11-25-RNv0.77.0-d4f25d534ab744866448b36ca3bf3d97c08e638c
+  NitroModules:
+    :path: "../../../node_modules/react-native-nitro-modules"
   RCT-Folly:
     :podspec: "../../../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTDeprecation:
@@ -1977,6 +2026,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-reanimated"
   RNSVG:
     :path: "../../../node_modules/react-native-svg"
+  Unistyles:
+    :path: "../../../node_modules/react-native-unistyles"
   Yoga:
     :path: "../../../node_modules/react-native/ReactCommon/yoga"
 
@@ -1990,6 +2041,7 @@ SPEC CHECKSUMS:
   glog: eb93e2f488219332457c3c4eafd2738ddc7e80b8
   hermes-engine: b2187dbe13edb0db8fcb2a93a69c1987a30d98a4
   JWTDecode: 2eed97c2fa46ccaf3049a787004eedf0be474a87
+  NitroModules: 78347883094b9131c59a2b3cec2c693f58b9ce8a
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 6ee92578d332db1d4e03267d3ae98bcf8b780863
   RCTRequired: 5b3da0e0f91fddda935574b81748c3e3d3649ee7
@@ -2053,6 +2105,7 @@ SPEC CHECKSUMS:
   RNSVG: 6a383145a3c76eba345cabe83d6424a2840308ca
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
+  Unistyles: a129ca4f71f7fada22ea436f2bb2d44aba28f8c4
   Yoga: 92f3bb322c40a86b7233b815854730442e01b8c4
 
 PODFILE CHECKSUM: 7a7c01a6b8ced6567ada45a9791ed6aebd16ca33
