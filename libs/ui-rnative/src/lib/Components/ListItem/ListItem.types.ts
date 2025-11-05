@@ -1,4 +1,4 @@
-import { TouchableOpacityProps } from 'react-native';
+import { PressableProps } from 'react-native';
 
 export type ListItemProps = {
   /**
@@ -24,4 +24,4 @@ export type ListItemProps = {
    * @example trailingContent={<Icon />}
    */
   trailingContent?: React.ReactNode;
-} & Omit<TouchableOpacityProps, 'children'>;
+} & Omit<PressableProps, 'children'>;

@@ -184,9 +184,9 @@ Use the `loading` prop to show a spinner and disable interaction:
 </Button>
 ```
 
-### TouchableOpacity Integration
+### Pressable Integration
 
-The Button component is built on React Native's `TouchableOpacity` and accepts all its props:
+The Button component is built on React Native's `Pressable` and accepts all its props:
 
 ```tsx
 <Button
@@ -326,10 +326,10 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 // Don't omit onPress for interactive buttons
 <Button>Clickable Looking Button</Button>
 
-// Don't use TouchableOpacity directly when Button suffices
-<TouchableOpacity>
+// Don't use Pressable directly when Button suffices
+<Pressable>
   <Text>Custom Button</Text>
-</TouchableOpacity>
+</Pressable>
 ```
 
 ### Performance Considerations

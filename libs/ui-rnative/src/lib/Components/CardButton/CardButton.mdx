@@ -3,7 +3,7 @@ import * as CardButtonStories from './CardButton.stories';
 import { CardButton } from './CardButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Action/CardButton" of={CardButtonStories} />
+<Meta title='Action/CardButton' of={CardButtonStories} />
 
 # 🃏 CardButton
 
@@ -83,10 +83,9 @@ CardButtons automatically adapt to their container constraints while maintaining
 
 ## Touch Interactions
 
-The CardButton component is built on TouchableOpacity and provides:
+The CardButton component is built on Pressable and provides:
 
 - **Touch feedback**: Visual indication when pressed through opacity changes
-- **activeOpacity**: Set to 1 for consistent behavior across the design system
 - **Disabled state**: Prevents touch interactions when disabled prop is true
 - **Accessibility**: Built-in support for screen readers and assistive technologies
 
@@ -114,9 +113,9 @@ import { CardButton } from '@ledgerhq/ldls-ui-rnative';
 function MyComponent() {
   return (
     <CardButton
-      title="Payment Method"
-      description="Add or edit your payment information"
-      appearance="base"
+      title='Payment Method'
+      description='Add or edit your payment information'
+      appearance='base'
       onPress={() => console.log('Card button pressed')}
     />
   );
@@ -135,9 +134,9 @@ function MyComponent() {
   return (
     <CardButton
       icon={CreditCard}
-      title="Payment Method"
-      description="Add or edit your payment information"
-      appearance="base"
+      title='Payment Method'
+      description='Add or edit your payment information'
+      appearance='base'
       onPress={() => console.log('Payment method pressed')}
     />
   );
@@ -150,10 +149,10 @@ By default, a ChevronRight icon will be rendered on the right side. Use the `hid
 
 ```tsx
 <CardButton
-  title="Settings"
-  description="Configure your account preferences"
+  title='Settings'
+  description='Configure your account preferences'
   hideChevron
-  appearance="base"
+  appearance='base'
   onPress={() => console.log('Settings pressed')}
 />
 ```
@@ -164,9 +163,9 @@ CardButtons automatically flow to fit their parent container width. No additiona
 
 ```tsx
 <CardButton
-  title="Continue Setup"
-  description="Complete your account configuration"
-  appearance="base"
+  title='Continue Setup'
+  description='Complete your account configuration'
+  appearance='base'
   onPress={() => console.log('Continue pressed')}
 />
 ```
@@ -176,30 +175,36 @@ To control card button width, use container elements:
 ```tsx
 import { View } from 'react-native';
 
-{/* Full container width */}
+{
+  /* Full container width */
+}
 <CardButton
-  title="Full Width"
-  description="This button fills the container width"
+  title='Full Width'
+  description='This button fills the container width'
   onPress={() => console.log('Full width pressed')}
-/>
+/>;
 
-{/* Constrained width */}
+{
+  /* Constrained width */
+}
 <View style={{ maxWidth: 300 }}>
   <CardButton
-    title="Constrained"
-    description="This button is limited by its container"
+    title='Constrained'
+    description='This button is limited by its container'
     onPress={() => console.log('Constrained pressed')}
   />
-</View>
+</View>;
 
-{/* Using NativeWind classes */}
-<View className="max-w-md">
+{
+  /* Using NativeWind classes */
+}
+<View className='max-w-md'>
   <CardButton
-    title="Responsive"
-    description="Width adapts based on container"
+    title='Responsive'
+    description='Width adapts based on container'
     onPress={() => console.log('Responsive pressed')}
   />
-</View>
+</View>;
 ```
 
 ### Outline Appearance
@@ -208,9 +213,9 @@ Use the outline appearance for a more subtle card style:
 
 ```tsx
 <CardButton
-  title="Optional Feature"
-  description="Enable this feature for enhanced functionality"
-  appearance="outline"
+  title='Optional Feature'
+  description='Enable this feature for enhanced functionality'
+  appearance='outline'
   onPress={() => console.log('Optional feature pressed')}
 />
 ```
@@ -221,9 +226,9 @@ Disable the card button to prevent user interaction:
 
 ```tsx
 <CardButton
-  title="Unavailable Option"
-  description="This option is currently unavailable"
-  appearance="base"
+  title='Unavailable Option'
+  description='This option is currently unavailable'
+  appearance='base'
   disabled={true}
 />
 ```
@@ -234,10 +239,10 @@ While the component comes with predefined styles, you can extend them using Nati
 
 ```tsx
 <CardButton
-  title="Mobile Only"
-  description="This option is only available on mobile"
-  className="mt-4 mx-2" // Custom margins
-  appearance="base"
+  title='Mobile Only'
+  description='This option is only available on mobile'
+  className='mt-4 mx-2' // Custom margins
+  appearance='base'
   onPress={() => console.log('Mobile only pressed')}
 />
 ```
@@ -371,10 +376,10 @@ import { CreditCard } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use proper event handlers
 <CardButton
-  title="Process Payment"
-  description="Complete your transaction"
+  title='Process Payment'
+  description='Complete your transaction'
   onPress={handlePayment}
-/>
+/>;
 ```
 
 ❌ **Don't**
@@ -385,15 +390,15 @@ import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Don't use inline functions for complex operations
 <CardButton
-  title="Complex Action"
-  description="This will take some time"
+  title='Complex Action'
+  description='This will take some time'
   onPress={() => {
     // Complex inline logic here...
     performComplexOperation();
     updateMultipleStates();
     makeAPICall();
   }}
-/>
+/>;
 ```
 
 </Tab>
