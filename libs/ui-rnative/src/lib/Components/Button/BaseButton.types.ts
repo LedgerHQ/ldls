@@ -37,4 +37,8 @@ export type BaseButtonProps = {
    * Additional custom CSS classes to apply.
    */
   className?: string;
-} & Omit<PressableProps, 'disabled'>;
+  /**
+   * The content to display inside the button.
+   */
+  children?: React.ReactNode;
+} & Omit<PressableProps, 'disabled' | 'children'>;
