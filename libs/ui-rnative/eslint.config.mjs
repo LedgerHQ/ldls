@@ -18,6 +18,14 @@ export default [
           packageJsonLocation: '../../package.json',
         },
       ],
+      'no-restricted-imports': [
+        'warn',
+        {
+          name: 'react-native',
+          importNames: ['TouchableOpacity'],
+          message: 'Prefer `Pressable` instead of `TouchableOpacity`.',
+        },
+      ],
     },
   },
   {
