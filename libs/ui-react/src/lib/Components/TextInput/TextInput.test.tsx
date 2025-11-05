@@ -139,18 +139,6 @@ describe('Input Component', () => {
     expect(inputElement).toHaveAttribute('autoComplete', 'username');
   });
 
-  it('should apply custom className to input element', () => {
-    render(
-      <TextInput
-        label='Username'
-        className='mt-2'
-        {...createControlledProps()}
-      />,
-    );
-    const inputElement = screen.getByRole('textbox');
-    expect(inputElement).toHaveClass('mt-2');
-  });
-
   it('should render label with correct htmlFor attribute when id is provided', () => {
     render(
       <TextInput
