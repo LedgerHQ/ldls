@@ -1,19 +1,5 @@
-import { BottomSheetProps as GorhomBottomSheetProps } from '@gorhom/bottom-sheet';
 import { PropsWithChildren, ReactNode } from 'react';
 import { ViewProps } from 'react-native';
-
-type ExtendsGorhomBottomSheetProps = Omit<
-  GorhomBottomSheetProps,
-  | 'detached'
-  | 'enableBlurKeyboardOnGesture'
-  | 'enableDynamicSizing'
-  | 'enableHandlePanningGesture'
-  | 'enablePanDownToClose'
-  | 'maxDynamicContentSize'
-  | 'onChange'
-  | 'onAnimate'
-  | 'snapPoints'
->;
 
 export type BottomSheetProps = PropsWithChildren & {
   /**
@@ -22,11 +8,11 @@ export type BottomSheetProps = PropsWithChildren & {
   testID?: string;
   /**
    * The snap points represent allowed heights of the bottom sheet.
-   * You can use presets like 'full', 'half', 'quarter' or define your own snap points in % (string) or pixel (number).
+   * You can use presets like 'full', 'medium', 'small' or define your own snap points in % (string) or pixel (number).
    * If you want to use dynamic sizing, you should not define snapPoints.
    * @default 'full'
    */
-  snapPoints?: 'full' | 'half' | 'quarter' | string[] | number[];
+  snapPoints?: 'full' | 'medium' | 'small' | string[] | number[];
   /**
    * If true, the bottom sheet will be resized to fit the content.
    * You should not define snapPoints when enableDynamicSizing is true.
@@ -39,35 +25,39 @@ export type BottomSheetProps = PropsWithChildren & {
    * By default, the max dynamic content size is the container height.
    * @default undefined
    */
-  maxDynamicContentSize?: GorhomBottomSheetProps['maxDynamicContentSize'];
+  maxDynamicContentSize?: number;
+  /**
+   * The callback function to handle the change event.
+   * The index of the snap point in the array.
+   * @default undefined
+   */
+  onChange?: (index: number, position: number, type: 0 | 1) => void;
   /**
    * The callback function to handle the change event.
    * @default undefined
    */
-  onChange?: GorhomBottomSheetProps['onChange'];
-  /**
-   * The callback function to handle the change event.
-   * @default undefined
-   */
-  onAnimate?: GorhomBottomSheetProps['onAnimate'];
+  onAnimate?: (
+    fromIndex: number,
+    toIndex: number,
+    fromPosition: number,
+    toPosition: number,
+  ) => void;
   /**
    * The callback function to handle the back event.
    */
   onBack?: () => void;
   /**
-   * If true, the close button will be displayed.
-   * This property should be used when no callback is required for the close action.
+   * If true, the close button will be hidden.
    * @default false
    */
-  closeable?: boolean;
+  hideCloseButton?: boolean;
   /**
-   * If true, the close button will be displayed
-   * This property should be used when a callback function to handle the close event is required.
+   * Callback function to handle the close event.
    * @default undefined
    */
   onClose?: () => void;
   /**
-   * The callback function to handle the open event.
+   * Callback function to handle the open event.
    * @default undefined
    */
   onOpen?: () => void;
@@ -77,9 +67,11 @@ export type BottomSheetProps = PropsWithChildren & {
    */
   hideBackdrop?: boolean;
   /**
-   * If true, the backdrop will be displayed.
+   * The behavior of the backdrop press event.
+   * You can defined an index to snap to when the backdrop is pressed.
+   * @default 'close'
    */
-  showBackdropPress?: boolean;
+  backdropPressBehavior?: 'none' | 'close' | number;
   /**
    * The callback function to handle the backdrop press event.
    * @default undefined
@@ -90,25 +82,25 @@ export type BottomSheetProps = PropsWithChildren & {
    * If true, the whole sheet area can be dragged to resize the sheet.
    * @default false
    */
-  enableHandlePanningGesture?: GorhomBottomSheetProps['enableHandlePanningGesture'];
+  enableHandlePanningGesture?: boolean;
   /**
    * Whether to enable pan down to close.
    * If true, the sheet can be closed by dragging down.
    * @default true
    */
-  enablePanDownToClose?: GorhomBottomSheetProps['enablePanDownToClose'];
+  enablePanDownToClose?: boolean;
   /**
    * Defines whether the bottom sheet is attached to the bottom or no.
    * @default false
    */
-  detached?: GorhomBottomSheetProps['detached'];
+  detached?: boolean;
   /**
    * Whether to enable blur keyboard on gesture.
    * If true, the keyboard will be blurred when the user interacts with the bottom sheet.
    * @default true
    */
-  enableBlurKeyboardOnGesture?: GorhomBottomSheetProps['enableBlurKeyboardOnGesture'];
-} & ExtendsGorhomBottomSheetProps;
+  enableBlurKeyboardOnGesture?: boolean;
+};
 
 export type BottomSheetHeaderProps = ViewProps & {
   /**

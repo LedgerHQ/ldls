@@ -9,7 +9,7 @@ import { useBottomSheetContext } from './BottomSheet';
 import { BottomSheetHeaderProps } from './types';
 
 const bottomSheetHeaderVariants = {
-  root: cva('z-dialog-content bg-canvas-sheet sticky top-0 pb-12', {
+  root: cva('sticky top-0 z-dialog-content bg-canvas-sheet pb-12', {
     variants: {
       spacing: {
         true: 'px-16',
@@ -40,7 +40,7 @@ const bottomSheetHeaderVariants = {
   title: cva('text-base', {
     variants: {
       appearance: {
-        compact: 'heading-4-semi-bold text-center',
+        compact: 'text-center heading-4-semi-bold',
         expanded: 'heading-2-semi-bold',
       },
     },
@@ -64,7 +64,7 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   ...props
 }) => {
   const { close } = useBottomSheet();
-  const { onBack, closeable } = useBottomSheetContext({
+  const { onBack, hideCloseButton } = useBottomSheetContext({
     consumerName: 'BottomSheetHeader',
     contextRequired: true,
   });
@@ -74,9 +74,9 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   }, [close]);
 
   const hasTitleSection = Boolean(title || description);
-  const hasIcons = Boolean(onBack || closeable);
+  const hasIcons = Boolean(onBack || !hideCloseButton);
 
-  if (!title && !description && !onBack && !closeable) {
+  if (!title && !description && !onBack && hideCloseButton) {
     return null;
   }
 
@@ -106,11 +106,11 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
           hidden: !hasIcons && appearance !== 'compact',
         })}
       >
-        <View className='size-44'>
+        <View className='size-32'>
           {onBack && (
             <IconButton
               accessibilityLabel='Go back'
-              size='sm'
+              size='xs'
               onPress={onBack}
               icon={ArrowLeft}
               appearance='transparent'
@@ -118,11 +118,11 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
           )}
         </View>
         {appearance === 'compact' && titleComponent}
-        <View className='size-44'>
-          {closeable && (
+        <View className='size-32'>
+          {!hideCloseButton && (
             <IconButton
               accessibilityLabel='Close'
-              size='sm'
+              size='xs'
               onPress={handleClose}
               icon={Close}
               appearance='transparent'

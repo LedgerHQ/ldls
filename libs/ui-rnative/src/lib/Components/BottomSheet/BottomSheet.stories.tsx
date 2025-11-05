@@ -30,16 +30,16 @@ const meta = {
       options: [
         undefined,
         'full',
-        'half',
-        'quarter',
+        'medium',
+        'small',
         '[150, 300]',
         '["25%", "50%"]',
       ],
       mapping: {
         undefined: undefined,
         full: 'full',
-        half: 'half',
-        quarter: 'quarter',
+        medium: 'medium',
+        small: 'small',
         '[150, 300]': [150, 300],
         '["25%", "50%"]': ['25%', '50%'],
       },
@@ -64,6 +64,16 @@ const meta = {
         undefined: undefined,
       },
     },
+    backdropPressBehavior: {
+      control: 'select',
+      options: ['none', 'close', 'collapse', 1],
+      mapping: {
+        none: 'none',
+        close: 'close',
+        collapse: 'collapse',
+        1: 1,
+      },
+    },
   },
 } satisfies Meta<typeof BottomSheet>;
 
@@ -73,7 +83,7 @@ type Story = StoryObj<typeof BottomSheet>;
 export const Base: Story = {
   args: {
     snapPoints: 'full',
-    closeable: true,
+    hideCloseButton: false,
     onBack: undefined,
     onClose: undefined,
     enableHandlePanningGesture: true,
@@ -81,7 +91,7 @@ export const Base: Story = {
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: false,
     detached: false,
-    showBackdropPress: false,
+    backdropPressBehavior: 'close',
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -118,13 +128,12 @@ export const Base: Story = {
 export const TitleExpanded: Story = {
   args: {
     snapPoints: 'full',
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: false,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -161,13 +170,12 @@ export const TitleExpanded: Story = {
 
 export const DynamicSizing: Story = {
   args: {
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: true,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -202,14 +210,13 @@ export const DynamicSizing: Story = {
 export const DynamicSizingAndMaxSize: Story = {
   args: {
     snapPoints: undefined,
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: true,
     maxDynamicContentSize: 250,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -242,17 +249,12 @@ export const DynamicSizingAndMaxSize: Story = {
   },
 };
 
-export const NonCloseable: Story = {
+export const PreventClose: Story = {
   args: {
     snapPoints: 'full',
-    closeable: false,
-    onClose: undefined,
-    enableHandlePanningGesture: true,
+    hideCloseButton: true,
     enablePanDownToClose: false,
-    enableBlurKeyboardOnGesture: true,
-    enableDynamicSizing: false,
-    detached: false,
-    showBackdropPress: false,
+    backdropPressBehavior: 'none',
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -265,7 +267,7 @@ export const NonCloseable: Story = {
         <BottomSheet {...args} ref={bottomSheetRef}>
           <BottomSheetView>
             <BottomSheetHeader
-              title='Non-Closeable'
+              title='Hidden Close Button'
               appearance='compact'
               description='This bottom sheet cannot be closed by dragging or button'
             />
@@ -288,13 +290,12 @@ export const NonCloseable: Story = {
 export const ScrollView: Story = {
   args: {
     snapPoints: 'full',
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: false,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -331,13 +332,12 @@ export const ScrollView: Story = {
 export const VirtualList: Story = {
   args: {
     snapPoints: 'full',
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: false,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -392,13 +392,12 @@ export const VirtualList: Story = {
 export const VirtualizedList: Story = {
   args: {
     snapPoints: 'full',
-    closeable: true,
+    hideCloseButton: false,
     enableHandlePanningGesture: true,
     enablePanDownToClose: true,
     enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: false,
     detached: false,
-    showBackdropPress: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();

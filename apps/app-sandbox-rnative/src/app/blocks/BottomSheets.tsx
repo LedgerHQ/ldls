@@ -24,7 +24,12 @@ export const BottomSheets = forwardRef<React.ElementRef<typeof BottomSheet>>(
     }));
 
     return (
-      <BottomSheet {...props} ref={ref} closeable>
+      <BottomSheet
+        {...props}
+        ref={ref}
+        backdropPressBehavior='close'
+        snapPoints={['25%', '50%', '90%']}
+      >
         <BottomSheetHeader
           spacing
           title='Virtual List'

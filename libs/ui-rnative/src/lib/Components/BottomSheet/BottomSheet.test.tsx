@@ -96,7 +96,7 @@ describe('BottomSheet', () => {
   });
 
   describe('snap points', () => {
-    it('uses default snapPoints "half" when not specified', () => {
+    it('uses default snapPoints "medium" when not specified', () => {
       const { BottomSheet } = require('./BottomSheet');
       const { getByTestId } = render(
         <BottomSheet testID='bottom-sheet'>
@@ -123,7 +123,7 @@ describe('BottomSheet', () => {
     it('renders with snapPoints preset "quarter"', () => {
       const { BottomSheet } = require('./BottomSheet');
       const { getByTestId } = render(
-        <BottomSheet snapPoints='quarter' testID='bottom-sheet'>
+        <BottomSheet snapPoints='small' testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
       );
@@ -239,10 +239,10 @@ describe('BottomSheet', () => {
       expect(getByText('Content')).toBeTruthy();
     });
 
-    it('provides context with closeable prop', () => {
+    it('provides context with hideCloseButton prop', () => {
       const { BottomSheet } = require('./BottomSheet');
       const { getByText } = render(
-        <BottomSheet closeable testID='bottom-sheet'>
+        <BottomSheet hideCloseButton testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
       );
@@ -251,11 +251,11 @@ describe('BottomSheet', () => {
       expect(getByText('Content')).toBeTruthy();
     });
 
-    it('provides context with both onBack and closeable', () => {
+    it('provides context with both onBack and hideCloseButton', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onBack = jest.fn();
       const { getByText } = render(
-        <BottomSheet onBack={onBack} closeable testID='bottom-sheet'>
+        <BottomSheet onBack={onBack} hideCloseButton testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
       );

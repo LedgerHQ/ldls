@@ -14,8 +14,8 @@ const StyledGorghomBottomSheet = cssInterop(GorghomBottomSheet, {
 
 const SNAP_POINTS = {
   full: ['95%'],
-  half: ['50%'],
-  quarter: ['25%'],
+  medium: ['50%'],
+  small: ['25%'],
 };
 
 const bottomSheetVariants = {
@@ -31,7 +31,7 @@ const bottomSheetVariants = {
 };
 
 const [BottomSheetProvider, useBottomSheetContext] =
-  createSafeContext<Pick<BottomSheetProps, 'onBack' | 'closeable'>>(
+  createSafeContext<Pick<BottomSheetProps, 'onBack' | 'hideCloseButton'>>(
     'BottomSheet',
   );
 
@@ -45,8 +45,8 @@ const BottomSheet = forwardRef<
       onClose,
       onBack,
       onAnimate,
-      closeable,
       children,
+      hideCloseButton = false,
       enablePanDownToClose = true,
       enableDynamicSizing = false,
       enableBlurKeyboardOnGesture = true,
@@ -54,10 +54,10 @@ const BottomSheet = forwardRef<
       maxDynamicContentSize = undefined,
       detached = false,
       hideBackdrop = false,
-      showBackdropPress = false,
+      backdropPressBehavior = 'close',
       onBackdropPress,
       onChange,
-      snapPoints = 'half',
+      snapPoints = 'medium',
       ...props
     },
     ref,
@@ -86,28 +86,23 @@ const BottomSheet = forwardRef<
       (backdropProps: React.ComponentProps<typeof CustomBackdrop>) => {
         return (
           <CustomBackdrop
-            showBackdropPress={showBackdropPress}
-            onPress={() => {
-              backdropProps.onPress?.();
-              onBackdropPress?.();
-            }}
+            backdropPressBehavior={backdropPressBehavior}
+            onPress={onBackdropPress}
             {...backdropProps}
           />
         );
       },
-      [showBackdropPress, onBackdropPress],
+      [backdropPressBehavior, onBackdropPress],
     );
 
     const handleChange: BottomSheetProps['onChange'] = useCallback(
       (index: number, position: number, type: SNAP_POINT_TYPE) => {
-        console.log('onchange');
         if (index === -1 && onClose) {
           onClose();
         }
         if (index === 0 && onOpen) {
           onOpen();
         }
-        setIsOpen(index === 0);
         onChange?.(index, position, type);
       },
       [onClose, onOpen, onChange],
@@ -129,15 +124,8 @@ const BottomSheet = forwardRef<
       [onAnimate],
     );
 
-    console.log({ isOpen });
-
-    console.log({ a: innerRef.current });
-
-    // renders
     return (
-      <BottomSheetProvider
-        value={{ onBack, closeable: Boolean(onClose || closeable) }}
-      >
+      <BottomSheetProvider value={{ onBack, hideCloseButton }}>
         <StyledGorghomBottomSheet
           {...props}
           ref={mergedRefs}

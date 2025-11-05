@@ -8,12 +8,12 @@ const StyledCustomBackdrop = cssInterop(GorhomBottomSheetBackdrop, {
 });
 
 type BackDropProps = React.ComponentProps<typeof GorhomBottomSheetBackdrop> & {
-  showBackdropPress?: BottomSheetProps['showBackdropPress'];
+  backdropPressBehavior?: BottomSheetProps['backdropPressBehavior'];
   onPress?: () => void;
 };
 
 export const CustomBackdrop = ({
-  showBackdropPress,
+  backdropPressBehavior,
   onPress,
   ...props
 }: BackDropProps) => {
@@ -22,10 +22,13 @@ export const CustomBackdrop = ({
       {...props}
       className='bg-canvas-overlay'
       opacity={1}
-      disappearsOnIndex={-1}
       appearsOnIndex={0}
-      pressBehavior={showBackdropPress ? 'none' : 'close'}
-      onPress={onPress}
+      disappearsOnIndex={-1}
+      pressBehavior={backdropPressBehavior}
+      onPress={() => {
+        console.log('onPress');
+        onPress?.();
+      }}
     />
   );
 };

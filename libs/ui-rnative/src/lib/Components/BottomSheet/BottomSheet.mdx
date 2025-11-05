@@ -80,11 +80,15 @@ When using dynamic sizing with potentially long content, set `maxDynamicContentS
 
 <Canvas of={BottomSheetStories.DynamicSizingAndMaxSize} />
 
-### Non-Closeable
+### Prevent Close
 
-Prevent user dismissal for critical flows where users must complete an action or make a decision. Set both `closeable={false}` and `enablePanDownToClose={false}` to disable all dismiss mechanisms. Use this pattern for required confirmations, important notices, or multi-step processes. The sheet can only be closed programmatically via ref.
+Prevent user dismissal for critical flows where users must complete an action or make a decision. 
+Set both properties: 
+- `hideCloseButton={true}`
+- `enablePanDownToClose={false}`
+- `backdropPressBehavior='none'` 
 
-<Canvas of={BottomSheetStories.NonCloseable} />
+<Canvas of={BottomSheetStories.PreventClose} />
 
 ## Accessibility
 
@@ -119,7 +123,7 @@ function MyComponent() {
         Open Bottom Sheet
       </Button>
 
-      <BottomSheet ref={bottomSheetRef} snapPoints="full" closeable>
+      <BottomSheet ref={bottomSheetRef} snapPoints="full">
         <BottomSheetView>
           <BottomSheetHeader
             title="Welcome"
@@ -192,8 +196,8 @@ function MyComponent() {
 ```tsx
 // Preset snap points
 <BottomSheet snapPoints="full">    {/* 95% of screen */}
-<BottomSheet snapPoints="half">    {/* 50% of screen */}
-<BottomSheet snapPoints="quarter"> {/* 25% of screen */}
+<BottomSheet snapPoints="medium">    {/* 50% of screen */}
+<BottomSheet snapPoints="small"> {/* 25% of screen */}
 
 // Custom snap points (pixels, percentages, or mixed)
 <BottomSheet snapPoints={[200, 400, 600]}>
@@ -245,7 +249,10 @@ const bottomSheetRef = useBottomSheetRef();
 bottomSheetRef.current?.expand();
 
 // Disable both for non-dismissible sheets
-<BottomSheet closeable={false} enablePanDownToClose={false}>
+<BottomSheet 
+  hideCloseButton 
+  enablePanDownToClose={false}
+>
 ```
 
 ❌ **Don't**
