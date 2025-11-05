@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as Repack from '@callstack/repack';
+import { NativeWindPlugin } from '@callstack/repack-plugin-nativewind';
 import { ReanimatedPlugin } from '@callstack/repack-plugin-reanimated';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,5 +41,9 @@ export default Repack.defineRspackConfig({
       ...Repack.getAssetTransformRules(),
     ],
   },
-  plugins: [new Repack.RepackPlugin(), new ReanimatedPlugin()],
+  plugins: [
+    new Repack.RepackPlugin(),
+    new NativeWindPlugin(),
+    new ReanimatedPlugin(),
+  ],
 });

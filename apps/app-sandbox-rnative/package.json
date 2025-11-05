@@ -32,7 +32,7 @@
     "lodash-es": "*",
     "nativewind": "^4.1.23",
     "prettier": "*",
-    "react": "19.2.0",
+    "react": "19.0.0",
     "react-dom": "*",
     "react-native": "~0.78.0",
     "react-native-edge-to-edge": "^1.7.0",
