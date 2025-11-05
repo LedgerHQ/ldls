@@ -293,18 +293,6 @@ describe('Input Component', () => {
     expect(containerElement).toBeInTheDocument();
   });
 
-  it('should apply labelClassName to label element', () => {
-    render(
-      <TextInput
-        label='Username'
-        labelClassName='custom-label-class'
-        {...createControlledProps()}
-      />,
-    );
-    const labelElement = screen.getByText('Username');
-    expect(labelElement).toHaveClass('custom-label-class');
-  });
-
   it('should hide suffix when clear button is shown', () => {
     const CustomElement = () => <div data-testid='custom-suffix'>Suffix</div>;
     render(

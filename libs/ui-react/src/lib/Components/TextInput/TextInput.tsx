@@ -1,7 +1,10 @@
 import React from 'react';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 
-export type TextInputProps = Omit<BaseInputProps, 'prefix'>;
+export type TextInputProps = Omit<
+  BaseInputProps,
+  'prefix' | 'labelClassName' | 'inputClassName'
+>;
 
 /**
  * A customizable input component with floating label, automatic clear button, error states, and focus/hover effects.
@@ -12,7 +15,7 @@ export type TextInputProps = Omit<BaseInputProps, 'prefix'>;
  * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with aria-invalid and errorMessage support
  * - **Container-based spacing** with padding and gap for clean layout
- * - **Flexible styling** via className, inputClassName, and labelClassName
+ * - **Flexible styling** via className
  *
  * ## Clear Button Behavior
  * - Shows automatically when input has content and is not disabled

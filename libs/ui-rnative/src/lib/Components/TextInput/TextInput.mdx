@@ -361,9 +361,6 @@ The Input component takes the **full width** of its parent container by default.
 // Responsive width control
 <TextInput label="Email" className="w-full md:max-w-md" />
 
-// Use inputClassName for input-specific styling
-<TextInput inputClassName="heading-0" label="Title" />
-
 // Use className for margins and positioning
 <TextInput label="Email" className="mt-4 mx-auto" />
 
@@ -372,24 +369,6 @@ The Input component takes the **full width** of its parent container by default.
   <TextInput label="Email" />
 </View>
 ```
-
-❌ **Don't**
-
-```tsx
-// Don't override core input styling
-<TextInput inputClassName="bg-white border-gray-300" label="Email" />
-
-// Don't modify internal padding/spacing
-<TextInput inputClassName="px-6 py-4" label="Email" />
-
-// Don't override typography
-<TextInput inputClassName="body-4" label="Email" />
-
-// Don't modify focus/error states
-<TextInput inputClassName="border-error" label="Email" />
-```
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties, or custom text styling). The input's core styling (colors, padding, focus states, etc.) should be controlled through the design system to maintain consistency.
 
 ### Accessibility and Labels
 
