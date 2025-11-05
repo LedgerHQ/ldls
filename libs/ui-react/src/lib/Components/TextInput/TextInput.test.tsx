@@ -282,14 +282,12 @@ describe('Input Component', () => {
     render(
       <TextInput
         label='Username'
-        className='custom-container-class'
+        className='min-w-full'
         {...createControlledProps()}
       />,
     );
     const inputElement = screen.getByRole('textbox');
-    const containerElement = inputElement.closest(
-      '[class*="custom-container-class"]',
-    );
+    const containerElement = inputElement.closest('[class*="min-w-full"]');
     expect(containerElement).toBeInTheDocument();
   });
 
