@@ -1,4 +1,4 @@
-import '../global.css';
+import './styles/unistyles';
 import { AppRegistry } from 'react-native';
 import App from './app/App';
 

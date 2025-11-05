@@ -35,7 +35,7 @@ export default Repack.defineRspackConfig({
         },
       },
       {
-        test: 'css',
+        test: /\.css$/,
         use: ['postcss-loader'],
         type: 'css',
       },
