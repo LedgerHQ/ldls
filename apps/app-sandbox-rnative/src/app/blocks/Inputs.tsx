@@ -19,7 +19,7 @@ export function Inputs() {
     <View className='gap-8'>
       <TextInput
         label='Username'
-        containerClassName='min-w-full'
+        className='min-w-full'
         onClear={() =>
           Alert.alert('Custom handler', 'You found an easter egg!', [
             { text: 'Okay', style: 'default' },
@@ -28,7 +28,7 @@ export function Inputs() {
       />
       <TextInput
         label='Password'
-        containerClassName='min-w-full'
+        className='min-w-full'
         secureTextEntry={!showPassword}
         hideClearButton
         suffix={
@@ -43,13 +43,13 @@ export function Inputs() {
       />
       <TextInput
         label='Company'
-        containerClassName='min-w-full'
+        className='min-w-full'
         defaultValue='Ledger'
         editable={false}
       />
       <TextInput
         label='Team'
-        containerClassName='min-w-full'
+        className='min-w-full'
         value={team}
         onChangeText={setTeam}
         errorMessage={
@@ -60,7 +60,7 @@ export function Inputs() {
       />
       <TextInput
         label='A very long label that should really be truncated at different breakpoints'
-        containerClassName='min-w-full'
+        className='min-w-full'
         defaultValue='This is a default value!'
       />
     </View>

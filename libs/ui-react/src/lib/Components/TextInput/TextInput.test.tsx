@@ -278,11 +278,11 @@ describe('Input Component', () => {
     expect(handleChange).toHaveBeenCalled();
   });
 
-  it('should apply containerClassName to container element', () => {
+  it('should apply className to container element', () => {
     render(
       <TextInput
         label='Username'
-        containerClassName='custom-container-class'
+        className='custom-container-class'
         {...createControlledProps()}
       />,
     );

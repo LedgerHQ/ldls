@@ -22,7 +22,7 @@ It also provides the ability to add custom elements on the right side of the inp
 <Canvas of={TextInputStories.Default} />
 <Controls of={TextInputStories.Default} />
 
-> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
 
 ### Clear Button
 
@@ -392,14 +392,14 @@ const inputRef = useRef<HTMLInputElement>(null);
 
 ### Layout and Styling
 
-The Input component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+The Input component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
 
 ```tsx
 // ✅ Preferred: Direct width control
-<TextInput label="Email" containerClassName="max-w-md" />
+<TextInput label="Email" className="max-w-md" />
 
 // ✅ Responsive width control
-<TextInput label="Email" containerClassName="w-full md:max-w-md" />
+<TextInput label="Email" className="w-full md:max-w-md" />
 
 // Alternative: Container wrapper
 <div className="max-w-md">
@@ -418,11 +418,11 @@ The Input component takes the **full width** of its parent container by default.
 // Use className for input-specific styling
 <TextInput className="heading-0" label="Title" />
 
-// Use containerClassName for layout and width control (preferred)
-<TextInput label="Email" containerClassName="max-w-md" />
+// Use className for layout and width control (preferred)
+<TextInput label="Email" className="max-w-md" />
 
-// Use containerClassName for responsive design
-<TextInput label="Email" containerClassName="w-full md:max-w-lg" />
+// Use className for responsive design
+<TextInput label="Email" className="w-full md:max-w-lg" />
 ```
 
 ❌ **Don't**

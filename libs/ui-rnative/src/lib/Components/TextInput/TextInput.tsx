@@ -13,7 +13,7 @@ export type TextInputProps = Omit<BaseInputProps, 'prefix'>;
  * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with errorMessage support
  * - **Container-based spacing** with padding and gap for clean layout
- * - **Flexible styling** via className, containerClassName, and labelClassName
+ * - **Flexible styling** via className, inputClassName, and labelClassName
  * - **React Native TextInput** with proper mobile behavior
  *
  * ## Clear Button Behavior

@@ -26,13 +26,13 @@ export type BaseInputProps = TextInputProps & {
    */
   label?: string;
   /**
-   *  Additional class names to apply to the input element.
+   *  Additional class names to apply to the container element.
    */
   className?: string;
   /**
-   *  Additional class names to apply to the container element.
+   *  Additional class names to apply to the input element.
    */
-  containerClassName?: string;
+  inputClassName?: string;
   /**
    *  Additional class names to apply to the label element.
    */
@@ -77,7 +77,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       label,
       errorMessage,
       className,
-      containerClassName,
+      inputClassName,
       labelClassName,
       hideClearButton,
       onChangeText: onChangeTextProp,
@@ -146,7 +146,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     };
 
     return (
-      <View className={containerClassName}>
+      <View className={className}>
         <Pressable
           className={cn(
             baseContainerStyles,
@@ -162,8 +162,9 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             value={value}
             className={cn(
               baseInputStyles,
+              'selection:caret-white',
               !editable && 'bg-disabled text-disabled',
-              className,
+              inputClassName,
             )}
             style={{ fontWeight: '600' }}
             onFocus={() => setIsFocused(true)}

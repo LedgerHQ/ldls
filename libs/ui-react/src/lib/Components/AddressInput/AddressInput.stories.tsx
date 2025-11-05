@@ -57,12 +57,12 @@ export const Empty: Story = {
   args: {
     placeholder: 'Enter address or ENS',
     onQrCodeClick: () => console.log('QR code clicked!'),
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" onQrCodeClick={() => openQrScanner()} className="max-w-md" />',
       },
     },
   },
@@ -75,13 +75,13 @@ export const WithContent: Story = {
   args: {
     placeholder: 'Enter address or ENS',
     defaultValue: '0x95f980s5ag77xe7csuz',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
     onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" defaultValue="0x95f980s5ag77xe7csuz" className="max-w-md" />',
       },
     },
   },
@@ -95,13 +95,13 @@ export const Disabled: Story = {
     placeholder: 'Enter address or ENS',
     disabled: true,
     defaultValue: '0x95f980s5ag77xe7csuz',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
     onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" containerClassName="max-w-md" />',
+        code: '<AddressInput placeholder="Enter address or ENS" disabled defaultValue="0x95f980s5ag77xe7csuz" className="max-w-md" />',
       },
     },
   },
@@ -116,7 +116,7 @@ export const Error: Story = {
     defaultValue: 'invalid-address-format',
     errorMessage: 'Invalid address format',
     'aria-invalid': true,
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
     onQrCodeClick: () => console.log('QR code clicked!'),
   },
   parameters: {
@@ -127,7 +127,7 @@ export const Error: Story = {
   defaultValue="invalid-address-format"
   errorMessage="Invalid address format"
   aria-invalid={true}
-  containerClassName="max-w-md"
+  className="max-w-md"
 />`,
       },
     },
@@ -180,7 +180,7 @@ export const Controlled: Story = {
           }}
           errorMessage={error}
           aria-invalid={!!error}
-          containerClassName='max-w-md'
+          className='max-w-md'
         />
 
         <div className='text-muted body-3'>
@@ -190,11 +190,11 @@ export const Controlled: Story = {
         </div>
 
         {address && !error && (
-          <div className='border-muted bg-success rounded-md border p-16'>
-            <h4 className='text-success body-2-semi-bold mb-4'>
+          <div className='rounded-md border border-muted bg-success p-16'>
+            <h4 className='mb-4 text-success body-2-semi-bold'>
               Valid Address
             </h4>
-            <p className='text-success body-3 break-all'>{address}</p>
+            <p className='break-all text-success body-3'>{address}</p>
           </div>
         )}
       </div>
@@ -208,13 +208,13 @@ export const Controlled: Story = {
 export const WithoutQrCode: Story = {
   args: {
     placeholder: 'Enter address or ENS',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
     onQrCodeClick: undefined,
   },
   parameters: {
     docs: {
       source: {
-        code: '<AddressInput  containerClassName="max-w-md" />',
+        code: '<AddressInput className="max-w-md" />',
       },
     },
   },

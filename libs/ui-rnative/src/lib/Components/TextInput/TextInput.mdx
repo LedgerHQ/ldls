@@ -22,7 +22,7 @@ It also provides the ability to add custom elements on the right side of the inp
 <Canvas of={TextInputStories.Default} />
 <Controls of={TextInputStories.Default} />
 
-> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
 
 ### Clear Button
 
@@ -224,7 +224,7 @@ While the component comes with predefined styles, you can extend them using Nati
   label='Email'
   value={email}
   onChangeText={setEmail}
-  containerClassName='max-w-md' // Control width
+  className='max-w-md' // Control width
   className='heading-0' // Customize input text style
 />
 ```
@@ -350,22 +350,22 @@ const inputRef = useRef<TextInput>(null);
 
 ### Layout and Styling
 
-The Input component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+The Input component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
 
 ✅ **Do**
 
 ```tsx
 // Preferred: Direct width control
-<TextInput label="Email" containerClassName="max-w-md" />
+<TextInput label="Email" className="max-w-md" />
 
 // Responsive width control
-<TextInput label="Email" containerClassName="w-full md:max-w-md" />
+<TextInput label="Email" className="w-full md:max-w-md" />
 
-// Use className for input-specific styling
-<TextInput className="heading-0" label="Title" />
+// Use inputClassName for input-specific styling
+<TextInput inputClassName="heading-0" label="Title" />
 
-// Use containerClassName for margins and positioning
-<TextInput label="Email" containerClassName="mt-4 mx-auto" />
+// Use className for margins and positioning
+<TextInput label="Email" className="mt-4 mx-auto" />
 
 // Alternative: Container wrapper
 <View className="max-w-md">
@@ -377,16 +377,16 @@ The Input component takes the **full width** of its parent container by default.
 
 ```tsx
 // Don't override core input styling
-<TextInput className="bg-white border-gray-300" label="Email" />
+<TextInput inputClassName="bg-white border-gray-300" label="Email" />
 
 // Don't modify internal padding/spacing
-<TextInput className="px-6 py-4" label="Email" />
+<TextInput inputClassName="px-6 py-4" label="Email" />
 
 // Don't override typography
-<TextInput className="body-4" label="Email" />
+<TextInput inputClassName="body-4" label="Email" />
 
 // Don't modify focus/error states
-<TextInput className="border-error" label="Email" />
+<TextInput inputClassName="border-error" label="Email" />
 ```
 
 > **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties, or custom text styling). The input's core styling (colors, padding, focus states, etc.) should be controlled through the design system to maintain consistency.

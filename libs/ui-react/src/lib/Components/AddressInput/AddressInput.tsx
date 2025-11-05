@@ -40,7 +40,7 @@ export type AddressInputProps = {
  * - **Conditional QR code scanner** appears only when onQrCodeClick handler is provided
  * - **ENS and address support** optimized for cryptocurrency address entry
  * - **Error state styling** with aria-invalid and errorMessage support
- * - **Flexible styling** via className, containerClassName props
+ * - **Flexible styling** via className, inputClassName, labelClassName props
  *
  * ## Clear Button Behavior
  * - Shows automatically when input has content and is not disabled
@@ -92,7 +92,7 @@ export const AddressInput = React.forwardRef<
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
     <span
-      className='body-1 group-has-[:disabled]:text-disabled text-nowrap text-base'
+      className='text-nowrap text-base body-1 group-has-[:disabled]:text-disabled'
       aria-hidden='true'
     >
       {prefix}

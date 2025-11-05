@@ -15,7 +15,7 @@ export const Default: Story = {
   args: {
     label: 'Label',
   },
-  render: (props) => <TextInput {...props} containerClassName='max-w-md' />,
+  render: (props) => <TextInput {...props} className='max-w-md' />,
 };
 
 export const WithContent: Story = {
@@ -23,11 +23,7 @@ export const WithContent: Story = {
     label: 'Label',
   },
   render: (props) => (
-    <TextInput
-      defaultValue='Initial content'
-      {...props}
-      containerClassName='max-w-md'
-    />
+    <TextInput defaultValue='Initial content' {...props} className='max-w-md' />
   ),
 };
 
@@ -37,11 +33,7 @@ export const WithError: Story = {
     errorMessage: 'Please enter a valid email address',
   },
   render: (props) => (
-    <TextInput
-      defaultValue='invalid.email'
-      {...props}
-      containerClassName='max-w-md'
-    />
+    <TextInput defaultValue='invalid.email' {...props} className='max-w-md' />
   ),
 };
 
@@ -54,7 +46,7 @@ export const Disabled: Story = {
       defaultValue='Disabled content'
       editable={false}
       {...props}
-      containerClassName='max-w-md'
+      className='max-w-md'
     />
   ),
 };
@@ -69,7 +61,7 @@ export const HiddenClearButton: Story = {
         defaultValue='Edit me'
         hideClearButton
         {...props}
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },
@@ -86,7 +78,7 @@ export const ControlledInput: Story = {
         value={value}
         onChangeText={setValue}
         {...props}
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },
@@ -97,13 +89,7 @@ export const UncontrolledInput: Story = {
     label: 'Uncontrolled Input',
   },
   render: (props) => {
-    return (
-      <TextInput
-        defaultValue='Edit me'
-        {...props}
-        containerClassName='max-w-md'
-      />
-    );
+    return <TextInput defaultValue='Edit me' {...props} className='max-w-md' />;
   },
 };
 
@@ -117,7 +103,7 @@ export const ExtendedClearBehavior: Story = {
         defaultValue='Clear me'
         {...props}
         onClear={() => alert('Extended clear behavior')}
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },

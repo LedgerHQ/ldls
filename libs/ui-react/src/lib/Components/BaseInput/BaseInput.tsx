@@ -62,13 +62,13 @@ export type BaseInputProps = {
    */
   hideClearButton?: boolean;
   /**
-   * Additional class names to apply to the input element
+   * Additional class names to apply to the container element
    */
   className?: string;
   /**
-   * Additional class names to apply to the container element
+   * Additional class names to apply to the input element
    */
-  containerClassName?: string;
+  inputClassName?: string;
   /**
    * Additional class names to apply to the label element
    */
@@ -88,8 +88,8 @@ export type BaseInputProps = {
  * - Error state styling and accessibility
  *
  * Supports className customization for different elements:
- * - `className`: Applied to the input element
- * - `containerClassName`: Applied to the container/root element
+ * - `className`: Applied to the container/root element
+ * - `inputClassName`: Applied to the input element
  * - `labelClassName`: Applied to the floating label element
  *
  * @internal
@@ -99,7 +99,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (
     {
       className,
-      containerClassName,
+      inputClassName,
       labelClassName,
       label,
       id,
@@ -197,7 +197,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     }
 
     return (
-      <div className={containerClassName}>
+      <div className={className}>
         <div
           className={baseContainerStyles}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
@@ -232,7 +232,11 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=' '
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(baseInputStyles, label && 'pt-12 body-2', className)}
+            className={cn(
+              baseInputStyles,
+              label && 'pt-12 body-2',
+              inputClassName,
+            )}
             onChange={handleInput}
             {...props}
           />
