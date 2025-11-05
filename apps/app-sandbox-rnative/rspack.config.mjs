@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as Repack from '@callstack/repack';
-import { NativeWindPlugin } from '@callstack/repack-plugin-nativewind';
+import { ReanimatedPlugin } from '@callstack/repack-plugin-reanimated';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,10 +19,12 @@ export default Repack.defineRspackConfig({
   resolve: {
     ...Repack.getResolveOptions({
       enablePackageExports: true,
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.css'],
     }),
   },
 
+  experiments: {
+    css: true,
+  },
   module: {
     rules: [
       {
@@ -34,13 +36,9 @@ export default Repack.defineRspackConfig({
           options: {},
         },
       },
-      {
-        test: /\.css$/,
-        use: ['postcss-loader'],
-        type: 'css',
-      },
+
       ...Repack.getAssetTransformRules(),
     ],
   },
-  plugins: [new NativeWindPlugin(), new Repack.RepackPlugin()],
+  plugins: [new Repack.RepackPlugin(), new ReanimatedPlugin()],
 });

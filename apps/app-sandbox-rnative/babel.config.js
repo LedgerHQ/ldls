@@ -5,10 +5,8 @@ module.exports = function (api) {
   api.cache(true);
 
   return {
-    presets: ['@react-native/babel-preset'],
+    presets: ['@react-native/babel-preset', 'nativewind/babel'],
     plugins: [
-      // React Native Reanimated plugin (must be last)
-      'react-native-reanimated/plugin',
       [
         'react-native-unistyles/plugin',
         {
@@ -19,7 +17,9 @@ module.exports = function (api) {
           root: 'src',
         },
       ],
-      'babel-plugin-react-compiler',
+      // React Native Reanimated plugin (must be last)
+      'react-native-reanimated/plugin',
+      'react-native-worklets/plugin',
     ],
   };
 };

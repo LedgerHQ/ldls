@@ -6,8 +6,8 @@ export const UnistylesDemo = () => {
   const styles = createStyles(theme);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Unistyles Demo</Text>
+    <View className='bg-accent'>
+      <Text className='bg-accent'>Unistyles Demo</Text>
       <Text style={styles.subtitle}>Theme: {theme.colors.primary}</Text>
 
       <View style={styles.card}>
