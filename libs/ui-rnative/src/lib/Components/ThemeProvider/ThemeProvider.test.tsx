@@ -1,5 +1,6 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { render } from '@testing-library/react-native';
+// eslint-disable-next-line no-restricted-imports
 import * as ReactNative from 'react-native';
 
 import { ThemeProvider } from './ThemeProvider';
