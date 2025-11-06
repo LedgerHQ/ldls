@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectContent,
   SelectItem,
+  SelectItemText,
   SelectGroup,
   SelectSeparator,
 } from './Select';
@@ -17,18 +18,45 @@ const meta: Meta<typeof Select> = {
   subcomponents: {
     SelectTrigger,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
+    SelectItemText,
+    SelectGroup,
     SelectSeparator,
   },
   parameters: {
     layout: 'centered',
   },
   argTypes: {
-    value: { control: false },
-    defaultValue: { control: false },
-    onValueChange: { control: false },
+    children: {
+      control: false,
+    },
+    open: {
+      control: false,
+    },
+    defaultOpen: {
+      control: false,
+    },
+    onOpenChange: {
+      action: false,
+    },
+    value: {
+      control: false,
+    },
+    defaultValue: {
+      control: false,
+    },
+    dir: {
+      control: false,
+    },
+    name: {
+      control: false,
+    },
+    required: {
+      control: false,
+    },
+    disabled: {
+      control: false,
+    },
   },
 };
 
@@ -42,13 +70,17 @@ export const Base: Story = {
     return (
       <div className='w-400'>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger label='Label' />
+          <SelectTrigger label='Choose an option' />
           <SelectContent>
-            <SelectItem value='option1'>Option 1</SelectItem>
-            <SelectItem value='option2' disabled>
-              Option 2 disabled
+            <SelectItem value='option1'>
+              <SelectItemText>Option 1</SelectItemText>
             </SelectItem>
-            <SelectItem value='option3'>Option 3</SelectItem>
+            <SelectItem value='option2' disabled textValue='Option 2 disabled'>
+              <SelectItemText>Option 2 disabled</SelectItemText>
+            </SelectItem>
+            <SelectItem value='option3' textValue='Option 3'>
+              <SelectItemText>Option 3</SelectItemText>
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -67,16 +99,28 @@ export const WithGroups: Story = {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value='apple'>Apple</SelectItem>
-              <SelectItem value='banana'>Banana</SelectItem>
-              <SelectItem value='orange'>Orange</SelectItem>
+              <SelectItem value='apple'>
+                <SelectItemText>Apple</SelectItemText>
+              </SelectItem>
+              <SelectItem value='banana'>
+                <SelectItemText>Banana</SelectItemText>
+              </SelectItem>
+              <SelectItem value='orange'>
+                <SelectItemText>Orange</SelectItemText>
+              </SelectItem>
             </SelectGroup>
             <SelectSeparator />
             <SelectGroup>
               <SelectLabel>Vegetables</SelectLabel>
-              <SelectItem value='carrot'>Carrot</SelectItem>
-              <SelectItem value='broccoli'>Broccoli</SelectItem>
-              <SelectItem value='spinach'>Spinach</SelectItem>
+              <SelectItem value='carrot'>
+                <SelectItemText>Carrot</SelectItemText>
+              </SelectItem>
+              <SelectItem value='broccoli'>
+                <SelectItemText>Broccoli</SelectItemText>
+              </SelectItem>
+              <SelectItem value='spinach'>
+                <SelectItemText>Spinach</SelectItemText>
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -115,7 +159,7 @@ export const LongList: Story = {
           <SelectContent>
             {countries.map((country) => (
               <SelectItem key={country} value={country.toLowerCase()}>
-                {country}
+                <SelectItemText>{country}</SelectItemText>
               </SelectItem>
             ))}
           </SelectContent>
@@ -133,8 +177,12 @@ export const Disabled: Story = {
         <Select disabled>
           <SelectTrigger label='Disabled' />
           <SelectContent>
-            <SelectItem value='option1'>Option 1</SelectItem>
-            <SelectItem value='option2'>Option 2</SelectItem>
+            <SelectItem value='option1'>
+              <SelectItemText>Option 1</SelectItemText>
+            </SelectItem>
+            <SelectItem value='option2'>
+              <SelectItemText>Option 2</SelectItemText>
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -150,9 +198,43 @@ export const WithDefaultValue: Story = {
         <Select defaultValue='option2'>
           <SelectTrigger label='Label' />
           <SelectContent>
-            <SelectItem value='option1'>Option 1</SelectItem>
-            <SelectItem value='option2'>Option 2</SelectItem>
-            <SelectItem value='option3'>Option 3</SelectItem>
+            <SelectItem value='option1'>
+              <SelectItemText>Option 1</SelectItemText>
+            </SelectItem>
+            <SelectItem value='option2'>
+              <SelectItemText>Option 2</SelectItemText>
+            </SelectItem>
+            <SelectItem value='option3'>
+              <SelectItemText>Option 3</SelectItemText>
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  },
+};
+
+export const WithDescription: Story = {
+  render: () => {
+    return (
+      <div className='w-208'>
+        <Select>
+          <SelectTrigger label='Label' />
+          <SelectContent>
+            <SelectItem
+              value='option1'
+              className='flex flex-col items-start justify-start gap-2'
+            >
+              <SelectItemText>Option 1</SelectItemText>
+              <div className='text-muted body-4'>this is a description</div>
+            </SelectItem>
+            <SelectItem
+              value='option2'
+              className='flex flex-col items-start justify-start gap-4'
+            >
+              <SelectItemText>Option 2</SelectItemText>
+              <div className='text-muted body-4'>this is a description</div>
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -177,7 +259,7 @@ export const FormIntegration: Story = {
     };
 
     return (
-      <form onSubmit={handleSubmit} className='w-256 flex flex-col gap-16'>
+      <form onSubmit={handleSubmit} className='flex w-256 flex-col gap-16'>
         <Select
           value={formData.category}
           onValueChange={(value) =>
@@ -188,9 +270,15 @@ export const FormIntegration: Story = {
         >
           <SelectTrigger label='Category' />
           <SelectContent>
-            <SelectItem value='tech'>Technology</SelectItem>
-            <SelectItem value='design'>Design</SelectItem>
-            <SelectItem value='business'>Business</SelectItem>
+            <SelectItem value='tech'>
+              <SelectItemText>Technology</SelectItemText>
+            </SelectItem>
+            <SelectItem value='design'>
+              <SelectItemText>Design</SelectItemText>
+            </SelectItem>
+            <SelectItem value='business'>
+              <SelectItemText>Business</SelectItemText>
+            </SelectItem>
           </SelectContent>
         </Select>
 
@@ -204,10 +292,18 @@ export const FormIntegration: Story = {
         >
           <SelectTrigger label='Priority' />
           <SelectContent>
-            <SelectItem value='low'>Low</SelectItem>
-            <SelectItem value='medium'>Medium</SelectItem>
-            <SelectItem value='high'>High</SelectItem>
-            <SelectItem value='urgent'>Urgent</SelectItem>
+            <SelectItem value='low'>
+              <SelectItemText>Low</SelectItemText>
+            </SelectItem>
+            <SelectItem value='medium'>
+              <SelectItemText>Medium</SelectItemText>
+            </SelectItem>
+            <SelectItem value='high'>
+              <SelectItemText>High</SelectItemText>
+            </SelectItem>
+            <SelectItem value='urgent'>
+              <SelectItemText>Urgent</SelectItemText>
+            </SelectItem>
           </SelectContent>
         </Select>
 
