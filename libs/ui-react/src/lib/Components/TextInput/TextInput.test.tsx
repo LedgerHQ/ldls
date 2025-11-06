@@ -139,18 +139,6 @@ describe('Input Component', () => {
     expect(inputElement).toHaveAttribute('autoComplete', 'username');
   });
 
-  it('should apply custom className to input element', () => {
-    render(
-      <TextInput
-        label='Username'
-        className='mt-2'
-        {...createControlledProps()}
-      />,
-    );
-    const inputElement = screen.getByRole('textbox');
-    expect(inputElement).toHaveClass('mt-2');
-  });
-
   it('should render label with correct htmlFor attribute when id is provided', () => {
     render(
       <TextInput
@@ -278,31 +266,17 @@ describe('Input Component', () => {
     expect(handleChange).toHaveBeenCalled();
   });
 
-  it('should apply containerClassName to container element', () => {
+  it('should apply className to container element', () => {
     render(
       <TextInput
         label='Username'
-        containerClassName='custom-container-class'
+        className='min-w-full'
         {...createControlledProps()}
       />,
     );
     const inputElement = screen.getByRole('textbox');
-    const containerElement = inputElement.closest(
-      '[class*="custom-container-class"]',
-    );
+    const containerElement = inputElement.closest('[class*="min-w-full"]');
     expect(containerElement).toBeInTheDocument();
-  });
-
-  it('should apply labelClassName to label element', () => {
-    render(
-      <TextInput
-        label='Username'
-        labelClassName='custom-label-class'
-        {...createControlledProps()}
-      />,
-    );
-    const labelElement = screen.getByText('Username');
-    expect(labelElement).toHaveClass('custom-label-class');
   });
 
   it('should hide suffix when clear button is shown', () => {

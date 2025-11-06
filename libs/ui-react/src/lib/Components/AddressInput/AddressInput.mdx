@@ -11,7 +11,7 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 The AddressInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons.
 
-> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width directly using `containerClassName` or by wrapping in a container.
+> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
 
 ## Introduction
 
@@ -89,10 +89,10 @@ import { AddressInput } from '@ledgerhq/ldls-ui-react';
 
 // Basic usage
 <AddressInput
-  placeholder="Enter address or ENS"
+  placeholder='Enter address or ENS'
   value={address}
   onChange={(e) => setAddress(e.target.value)}
-/>
+/>;
 ```
 
 ## Key Features
@@ -156,7 +156,8 @@ const [error, setError] = React.useState('');
 
 React.useEffect(() => {
   if (address.length > 0) {
-    const isValidEthereumAddress = address.startsWith('0x') && address.length === 42;
+    const isValidEthereumAddress =
+      address.startsWith('0x') && address.length === 42;
     const isValidENS = address.endsWith('.eth');
 
     if (!isValidEthereumAddress && !isValidENS) {
@@ -172,7 +173,7 @@ React.useEffect(() => {
   onChange={(e) => setAddress(e.target.value)}
   errorMessage={error}
   aria-invalid={!!error}
-/>
+/>;
 ```
 
 ### Custom Clear Behavior
@@ -195,14 +196,14 @@ Handle clearing logic with additional state management:
 
 ### Layout & Styling
 
-The AddressInput component takes the **full width** of its parent container by default. You can control the width using `containerClassName` (preferred) or wrapper containers:
+The AddressInput component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
 
 ```tsx
 // ✅ Preferred: Direct width control
-<AddressInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+<AddressInput placeholder="Enter address or ENS" className="max-w-md" />
 
 // ✅ Responsive width control
-<AddressInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-md" />
+<AddressInput placeholder="Enter address or ENS" className="w-full md:max-w-md" />
 
 // Alternative: Container wrapper
 <div className="max-w-md">
@@ -231,11 +232,11 @@ const handleQrScan = () => {
 };
 
 <AddressInput
-  placeholder="Enter address or ENS"
+  placeholder='Enter address or ENS'
   value={address}
   onChange={(e) => setAddress(e.target.value)}
   onQrCodeClick={handleQrScan}
-/>
+/>;
 ```
 
 ## Common Patterns
@@ -245,12 +246,12 @@ const handleQrScan = () => {
 ```tsx
 <form>
   <AddressInput
-    placeholder="Enter address or ENS"
+    placeholder='Enter address or ENS'
     value={recipientAddress}
     onChange={(e) => setRecipientAddress(e.target.value)}
     errorMessage={addressError}
     aria-invalid={!!addressError}
-    containerClassName="max-w-md"
+    className='max-w-md'
   />
   {/* Other transaction fields */}
 </form>
@@ -260,16 +261,16 @@ const handleQrScan = () => {
 
 ```tsx
 <AddressInput
-  placeholder="Enter address or ENS"
+  placeholder='Enter address or ENS'
   value={selectedAddress}
   onChange={(e) => setSelectedAddress(e.target.value)}
   onQrCodeClick={() => openQrScanner()}
   suffix={
     selectedAddress ? (
       <InteractiveIcon
-        iconType="stroked"
+        iconType='stroked'
         onClick={openAddressBook}
-        aria-label="Open address book"
+        aria-label='Open address book'
       >
         <ContactsIcon size={20} />
       </InteractiveIcon>
@@ -299,11 +300,11 @@ The component includes comprehensive test coverage for:
 ✅ **Do**
 
 ```tsx
-// Use containerClassName for layout and width control (preferred)
-<AddressInput placeholder="Enter address or ENS" containerClassName="max-w-md" />
+// Use className for layout and width control (preferred)
+<AddressInput placeholder="Enter address or ENS" className="max-w-md" />
 
-// Use containerClassName for responsive design
-<AddressInput placeholder="Enter address or ENS" containerClassName="w-full md:max-w-lg" />
+// Use className for responsive design
+<AddressInput placeholder="Enter address or ENS" className="w-full md:max-w-lg" />
 
 // Use custom prefix for different contexts
 <AddressInput
@@ -322,7 +323,7 @@ const validateAddress = (address) => {
 ❌ **Don't**
 
 ```tsx
-// Don't use generic wrapper divs when containerClassName is available
+// Don't use generic wrapper divs when className is available
 <div className="max-w-md">
   <AddressInput placeholder="Enter address or ENS" />
 </div>

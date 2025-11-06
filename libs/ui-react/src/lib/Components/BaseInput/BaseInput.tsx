@@ -62,13 +62,13 @@ export type BaseInputProps = {
    */
   hideClearButton?: boolean;
   /**
-   * Additional class names to apply to the input element
+   * Additional class names to apply to the container element
    */
   className?: string;
   /**
-   * Additional class names to apply to the container element
+   * Additional class names to apply to the input element
    */
-  containerClassName?: string;
+  inputClassName?: string;
   /**
    * Additional class names to apply to the label element
    */
@@ -88,8 +88,8 @@ export type BaseInputProps = {
  * - Error state styling and accessibility
  *
  * Supports className customization for different elements:
- * - `className`: Applied to the input element
- * - `containerClassName`: Applied to the container/root element
+ * - `className`: Applied to the container/root element
+ * - `inputClassName`: Applied to the input element
  * - `labelClassName`: Applied to the floating label element
  *
  * @internal
@@ -99,7 +99,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (
     {
       className,
-      containerClassName,
+      inputClassName,
       labelClassName,
       label,
       id,
@@ -197,9 +197,9 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     }
 
     return (
-      <div>
+      <div className={className}>
         <div
-          className={cn(containerClassName, baseContainerStyles)}
+          className={baseContainerStyles}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
@@ -232,7 +232,11 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             placeholder=' '
             aria-invalid={ariaInvalid}
             aria-describedby={errorMessage ? errorId : undefined}
-            className={cn(baseInputStyles, label && 'pt-12 body-2', className)}
+            className={cn(
+              baseInputStyles,
+              label && 'pt-12 body-2',
+              inputClassName,
+            )}
             onChange={handleInput}
             {...props}
           />
@@ -265,10 +269,10 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className='text-error body-3 mt-8 flex items-center gap-2'
+            className='mt-8 flex items-center gap-2 text-error body-3'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='text-error shrink-0' />
+            <DeleteCircleFill size={16} className='shrink-0 text-error' />
             <span>{errorMessage}</span>
           </div>
         )}

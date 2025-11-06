@@ -90,7 +90,7 @@ export const WithContent: Story = {
         label='Label'
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },
@@ -115,7 +115,7 @@ export const ExtendedClearBehavior: Story = {
         onClear={() => {
           alert('Extended clear behavior');
         }}
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },
@@ -127,7 +127,7 @@ export const ExtendedClearBehavior: Story = {
   onClear={() => {
     alert('Extended clear behavior');
   }}
-  containerClassName="max-w-md"
+  className="max-w-md"
 />`,
       },
     },
@@ -145,7 +145,7 @@ export const ControlledInputExample = () => {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       id='controlled-input'
-      containerClassName='max-w-md'
+      className='max-w-md'
     />
   );
 };
@@ -156,7 +156,7 @@ export const UncontrolledInputExample = () => {
       label='Uncontrolled Input (Default Clear)'
       defaultValue='Default content'
       id='uncontrolled-input'
-      containerClassName='max-w-md'
+      className='max-w-md'
     />
   );
 };
@@ -217,7 +217,7 @@ export const WithError: Story = {
             !isValidEmail ? 'Please enter a valid email address' : undefined
           }
         />
-        <div className='text-muted body-3 mt-12'>
+        <div className='mt-12 text-muted body-3'>
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
@@ -240,7 +240,7 @@ export const Disabled: Story = {
           console.log('onChange');
         }}
         disabled
-        containerClassName='max-w-md'
+        className='max-w-md'
       />
     );
   },
@@ -252,7 +252,7 @@ export const Disabled: Story = {
   value="Disabled content"
   onChange={handleChange}
   disabled
-  containerClassName="max-w-md"
+  className="max-w-md"
 />`,
       },
     },
@@ -299,7 +299,7 @@ export const WithCustomElement: Story = {
         <div className='grid grid-cols-1 gap-16 md:grid-cols-2'>
           {/* Example with tooltip and clear button */}
           <div>
-            <h3 className='body-1-semi-bold mb-8'>
+            <h3 className='mb-8 body-1-semi-bold'>
               With Tooltip and Clear Button
             </h3>
             <TextInput
@@ -313,7 +313,7 @@ export const WithCustomElement: Story = {
 
           {/* Example with action button and no clear button */}
           <div>
-            <h3 className='body-1-semi-bold mb-8'>
+            <h3 className='mb-8 body-1-semi-bold'>
               With Action Button and No Clear Button
             </h3>
             <TextInput
@@ -324,7 +324,7 @@ export const WithCustomElement: Story = {
             />
           </div>
         </div>
-        <div className='text-muted body-3 mt-16'>
+        <div className='mt-16 text-muted body-3'>
           The suffix prop allows you to add custom interactive elements like
           tooltips, or action buttons
         </div>
@@ -412,11 +412,11 @@ export const Interactive: Story = {
 
     if (isSubmitted) {
       return (
-        <div className='bg-success rounded-md p-16 text-center'>
+        <div className='rounded-md bg-success p-16 text-center'>
           <div className='text-success body-1-semi-bold'>
             ✓ Form submitted successfully!
           </div>
-          <div className='text-muted body-3 mt-4'>Resetting form...</div>
+          <div className='mt-4 text-muted body-3'>Resetting form...</div>
         </div>
       );
     }
