@@ -19,7 +19,7 @@ export default [
         },
       ],
       'no-restricted-imports': [
-        'warn',
+        'error',
         {
           name: 'react-native',
           importNames: ['TouchableOpacity'],
