@@ -6,7 +6,7 @@ import { IconSize } from '../Icon/Icon';
 import { Spinner } from '../Spinner';
 
 const baseButtonVariants = cva(
-  'body-1-semi-bold focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
+  'body-1-semi-bold focus-visible:outline-focus data-[disabled="true"]:bg-disabled data-[disabled="true"]:text-disabled inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
   {
     variants: {
       appearance: {

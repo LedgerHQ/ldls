@@ -254,7 +254,7 @@ export const StateShowcase: Story = {
               <Tag
                 label='New'
                 appearance='accent'
-                className='!bg-muted-transparent !text-disabled'
+                className='bg-muted-transparent! text-disabled!'
               />
             }
           />

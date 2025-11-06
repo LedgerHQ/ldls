@@ -27,15 +27,15 @@ const triggerStyles = cn(
   'bg-muted rounded-sm px-16',
   'text-base body-2',
   'hover:bg-muted-hover',
-  'focus:outline-none focus:ring-2 focus:ring-focus',
+  'focus:outline-hidden focus:ring-2 focus:ring-focus',
   'disabled:cursor-not-allowed disabled:text-disabled',
 );
 
 const labelStyles = cn(
   'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-300',
   'top-10 body-4 -translate-y-4',
-  'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-14',
-  'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
+  'group-data-placeholder:body-2 group-data-placeholder:translate-y-0 group-data-placeholder:top-14',
+  'group-data-[:disabled]:text-disabled group-data-disabled:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'truncate max-w-[calc(100%-var(--size-56))]',
 );
 
@@ -52,7 +52,7 @@ const SelectTrigger = React.forwardRef<
     {label && (
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
-    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
+    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity delay-100 duration-300 group-data-placeholder:mt-0 group-data-placeholder:opacity-0'>
       <SelectPrimitive.Value data-slot='select-value'>
         {children}
       </SelectPrimitive.Value>
@@ -60,7 +60,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='text-muted group-data-[disabled]:text-disabled shrink-0'
+        className='text-muted group-data-disabled:text-disabled shrink-0'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -69,7 +69,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'z-select relative max-h-(--radix-select-content-available-height) overflow-y-auto overflow-x-hidden',
     'bg-muted rounded-sm',
     'drop-shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
@@ -95,7 +95,7 @@ const viewportStyles = cva('p-8', {
   variants: {
     position: {
       popper:
-        'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+        'h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width)',
       'item-aligned': '',
     },
   },
@@ -143,10 +143,10 @@ const itemStyles = cn(
   'relative flex w-full cursor-default bg-base-transparent select-none items-center',
   'rounded-sm px-8 py-8',
   'text-base body-2',
-  'outline-none',
+  'outline-hidden',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
+  'data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:text-disabled',
 );
 
 const SelectItem = React.forwardRef<

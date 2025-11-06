@@ -92,7 +92,7 @@ export const AddressInput = React.forwardRef<
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
     <span
-      className='text-nowrap text-base body-1 group-has-[:disabled]:text-disabled'
+      className='text-nowrap text-base body-1 group-has-disabled:text-disabled'
       aria-hidden='true'
     >
       {prefix}
@@ -108,7 +108,7 @@ export const AddressInput = React.forwardRef<
         iconType='filled'
         onClick={onQrCodeClick}
         aria-label='Scan QR code'
-        className='group-has-[:disabled]:text-disabled'
+        className='group-has-disabled:text-disabled'
       >
         <QrCodeIcon size={20} />
       </InteractiveIcon>

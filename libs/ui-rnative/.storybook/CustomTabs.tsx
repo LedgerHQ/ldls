@@ -32,7 +32,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
           <button
             key={idx}
             className={cn(
-              'group relative flex flex-col items-center gap-8 rounded-lg p-12 transition-all duration-200 focus:outline-none',
+              'group relative flex flex-col items-center gap-8 rounded-lg p-12 transition-all duration-200 focus:outline-hidden',
               active === idx
                 ? 'text-active-subtle'
                 : 'text-muted hover:text-active',

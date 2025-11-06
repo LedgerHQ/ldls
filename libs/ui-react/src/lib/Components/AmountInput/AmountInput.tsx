@@ -59,10 +59,10 @@ export type AmountInputProps = {
 
 const inputStyles = cva(
   [
-    'caret-active heading-0 bg-transparent outline-none transition-colors',
+    'caret-active heading-0 bg-transparent outline-hidden transition-colors',
     'placeholder:text-muted-subtle text-base',
     'disabled:bg-base-transparent disabled:text-disabled disabled:pointer-events-none disabled:cursor-not-allowed',
-    '[&[aria-invalid="true"]]:text-error',
+    'aria-invalid:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',
   ],
