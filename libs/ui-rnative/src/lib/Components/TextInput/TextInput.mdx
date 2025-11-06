@@ -14,6 +14,11 @@ It also provides the ability to add custom elements on the right side of the inp
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
 
+> ⚠️ **Unsupported previews on web**
+>
+> For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, **please test on-device**.
+> We plan to add screenshots or embed Expo Snack in the future.
+
 ## Anatomy
 
 > **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
@@ -22,27 +27,19 @@ It also provides the ability to add custom elements on the right side of the inp
 
 A clear button (×) appears **automatically** when input has content.
 
-> 🚧 Currently, testing is only available on mobile.
-
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
 #### **Hiding the Clear Button**
 
 Use `hideClearButton` to prevent the clear button from appearing.
 
-> 🚧 Currently, testing is only available on mobile.
-
 #### **Extending the Clear Behavior**
 
 Use `onClear` to extend the default clear behavior with custom logic.
 
-> 🚧 Currently, testing is only available on mobile.
-
 ### Error State
 
 The input supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
-
-> 🚧 Currently, testing is only available on mobile.
 
 The error message will be automatically:
 
@@ -55,13 +52,9 @@ The error message will be automatically:
 
 The input can be disabled using the `editable` prop set to `false`.
 
-> 🚧 Currently, testing is only available on mobile.
-
 ### Interactive Form Example
 
 A complete example showing how to use TextInput in a form with validation.
-
-> 🚧 Currently, testing is only available on mobile.
 
 ## Controlled vs Uncontrolled
 
@@ -69,11 +62,11 @@ The Input component supports both controlled and uncontrolled usage.
 
 ### Uncontrolled (with defaultValue)
 
-> 🚧 Currently, testing is only available on mobile.
+Use defaultValue when you don't need to track the input's value in state. The component manages its own internal state.
 
 ### Controlled (with value and onChangeText)
 
-> 🚧 Currently, testing is only available on mobile.
+Use `value` and `onChangeText` when you want full control of the input's state from your component logic.
 
 ## Input Types
 
