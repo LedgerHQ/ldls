@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import { cn } from '../../utils';
 import { ListItemProps } from './ListItem.types';
 
@@ -43,7 +43,7 @@ import { ListItemProps } from './ListItem.types';
  * />
  */
 export const ListItem = React.forwardRef<
-  React.ElementRef<typeof TouchableOpacity>,
+  React.ElementRef<typeof Pressable>,
   ListItemProps
 >((props, ref) => {
   const {
@@ -59,7 +59,7 @@ export const ListItem = React.forwardRef<
   } = props;
 
   return (
-    <TouchableOpacity
+    <Pressable
       ref={ref}
       disabled={disabled}
       className={cn(
@@ -69,7 +69,6 @@ export const ListItem = React.forwardRef<
           'cursor-default bg-base-transparent active:bg-base-transparent',
         className,
       )}
-      activeOpacity={1}
       style={style}
       {...touchableProps}
     >
@@ -108,7 +107,7 @@ export const ListItem = React.forwardRef<
         </View>
       </View>
       {trailingContent && <View className='shrink-0'>{trailingContent}</View>}
-    </TouchableOpacity>
+    </Pressable>
   );
 });
 

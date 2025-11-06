@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { PressableProps } from 'react-native';
 import { IconSize } from '../Icon';
 
 export type BaseButtonProps = {
@@ -37,4 +37,8 @@ export type BaseButtonProps = {
    * Additional custom CSS classes to apply.
    */
   className?: string;
-} & Omit<TouchableOpacityProps, 'disabled'>;
+  /**
+   * The content to display inside the button.
+   */
+  children?: React.ReactNode;
+} & Omit<PressableProps, 'disabled' | 'children'>;

@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import { ChevronRight } from '../../Symbols';
 import { cn } from '../../utils';
 
@@ -78,7 +78,7 @@ const buttonVariants = cva(
  * />
  */
 export const CardButton = React.forwardRef<
-  React.ElementRef<typeof TouchableOpacity>,
+  React.ElementRef<typeof Pressable>,
   CardButtonProps
 >(
   (
@@ -97,7 +97,7 @@ export const CardButton = React.forwardRef<
     const IconComponent = icon;
 
     return (
-      <TouchableOpacity
+      <Pressable
         ref={ref}
         className={cn(
           className,
@@ -107,13 +107,12 @@ export const CardButton = React.forwardRef<
           }),
         )}
         disabled={disabled ?? false}
-        activeOpacity={1}
         {...props}
       >
         {IconComponent && <IconComponent size={24} className='shrink-0' />}
-        <View className='body-1-semi-bold flex min-w-0 flex-1 flex-col gap-4 text-left'>
+        <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
           <Text
-            className='body-1-semi-bold min-w-0'
+            className='min-w-0 body-1-semi-bold'
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -121,7 +120,7 @@ export const CardButton = React.forwardRef<
           </Text>
           {description && (
             <Text
-              className='body-2 min-w-0'
+              className='min-w-0 body-2'
               numberOfLines={2}
               ellipsizeMode='tail'
             >
@@ -130,7 +129,7 @@ export const CardButton = React.forwardRef<
           )}
         </View>
         {!hideChevron && <ChevronRight size={24} className='shrink-0' />}
-      </TouchableOpacity>
+      </Pressable>
     );
   },
 );

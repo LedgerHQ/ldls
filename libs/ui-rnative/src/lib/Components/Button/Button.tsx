@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Pressable } from 'react-native';
 import { BaseButton } from './BaseButton';
 import { BaseButtonProps } from './BaseButton.types';
 
@@ -32,7 +32,7 @@ export type ButtonProps = {
  * </Button>
  */
 export const Button = React.forwardRef<
-  React.ElementRef<typeof TouchableOpacity>,
+  React.ElementRef<typeof Pressable>,
   ButtonProps
 >((props, ref) => {
   return <BaseButton ref={ref} {...props} />;

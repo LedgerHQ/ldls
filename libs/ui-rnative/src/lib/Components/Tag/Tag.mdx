@@ -2,7 +2,7 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title="Components/Tag" of={TagStories} />
+<Meta title='Components/Tag' of={TagStories} />
 
 # 🏷️ Tag
 
@@ -58,6 +58,7 @@ To be implemented:
 <Tab label="Implementation">
 
 ## Setup
+
 Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
@@ -66,9 +67,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 import { Tag } from '@ledgerhq/ldls-ui-rnative';
 
 function MyComponent() {
-  return (
-    <Tag size="lg" appearance="accent" label="My Tag" />
-  );
+  return <Tag size='lg' appearance='accent' label='My Tag' />;
 }
 ```
 
@@ -78,10 +77,10 @@ While the component comes with predefined styles, you can extend them using Nati
 
 ```tsx
 <Tag
-  size="lg"
-  appearance="accent"
-  label="Custom Tag"
-  className="mt-4" // Custom margin
+  size='lg'
+  appearance='accent'
+  label='Custom Tag'
+  className='mt-4' // Custom margin
 />
 ```
 
@@ -94,9 +93,7 @@ import { Tag } from '@ledgerhq/ldls-ui-rnative';
 import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 function MyComponent() {
-  return (
-    <Tag size="lg" appearance="success" icon={Check} label="Success" />
-  );
+  return <Tag size='lg' appearance='success' icon={Check} label='Success' />;
 }
 ```
 
@@ -108,18 +105,18 @@ function MyComponent() {
 
 ```tsx
 // Use label for text content
-<Tag label="My Tag" />
+<Tag label='My Tag' />;
 
 // Pass icon as a component reference
 import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-<Tag icon={Plus} label="Add Item" />
+<Tag icon={Plus} label='Add Item' />;
 ```
 
 ❌ **Don't**
 
 ```tsx
 // Don't include icon in label
-<Tag label="<Plus /> Add Item" />
+<Tag label='<Plus /> Add Item' />
 ```
 
 ### Layout and Styling
@@ -158,7 +155,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use icon prop for consistent sizing
-<Tag icon={Check} label="Success" />
+<Tag icon={Check} label='Success' />;
 ```
 
 ❌ **Don't**
@@ -168,7 +165,7 @@ import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Don't use string-based icon names
-<Tag icon="check" label="Success" />
+<Tag icon='check' label='Success' />;
 ```
 
 ### Performance Considerations
@@ -180,7 +177,7 @@ import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Use appropriate size variant
-<Tag size="sm" icon={Check} label="Success" />
+<Tag size='sm' icon={Check} label='Success' />;
 ```
 
 ❌ **Don't**
@@ -190,7 +187,7 @@ import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
 
 // Don't use custom sizes when standard ones exist
-<Tag style={{ height: 52 }} label="Custom Height" />
+<Tag style={{ height: 52 }} label='Custom Height' />;
 ```
 
 ### React Native Specific Considerations
@@ -199,9 +196,9 @@ import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
 
 ```tsx
 // Use onPress for touch interactions (if needed for custom wrapper)
-<TouchableOpacity onPress={handlePress}>
+<Pressable onPress={handlePress}>
   <Tag label="Touchable Tag" />
-</TouchableOpacity>
+</Pressable>
 
 // Use proper accessibility props
 <Tag
