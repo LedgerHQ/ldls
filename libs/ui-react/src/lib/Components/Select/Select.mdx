@@ -35,7 +35,6 @@ The Select component provides a dropdown interface for choosing from a list of o
 ### Basic Usage
 
 <Canvas of={SelectStories.Base} />
-<Controls of={SelectStories.Base} />
 
 ### With Groups and Separators
 
@@ -87,7 +86,7 @@ The Select component integrates seamlessly with HTML forms.
 
 ## Overview
 
-This component is built on top of [shadcn/ui Select](https://ui.shadcn.com/docs/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
+This component is built on top of [radix-ui/react-select](https://www.radix-ui.com/docs/primitives/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
 
 ```bash
 npm install @ledgerhq/ldls-ui-react @radix-ui/react-select
@@ -130,28 +129,7 @@ function MyComponent() {
 }
 ```
 
-### SelectItemText Props
-
-<div className='my-24 overflow-hidden rounded-lg'>
-  <table className='w-full'>
-    <thead>
-      <tr className='border-b border-muted bg-muted'>
-        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
-        <th className='p-12 text-left text-on-accent body-3'>Type</th>
-        <th className='p-12 text-left text-on-accent body-3'>Default</th>
-        <th className='p-12 text-left text-on-accent body-3'>Description</th>
-      </tr>
-    </thead>
-    <tbody className='bg-canvas'>
-      <tr>
-        <td className='text-accent p-12 body-3'>className</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>Additional CSS classes</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<Controls of={SelectStories.Base} />
 
 ### With Descriptions
 
@@ -172,7 +150,7 @@ function MyComponent() {
 
   return (
     <Select value={value} onValueChange={setValue}>
-      <SelectTrigger label='Choose option' />
+      <SelectTrigger label='Label' />
       <SelectContent>
         <SelectItem
           value='option1'
