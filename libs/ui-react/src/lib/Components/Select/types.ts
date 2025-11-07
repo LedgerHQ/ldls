@@ -10,11 +10,13 @@ export type SelectProps = {
    */
   children?: React.ReactNode;
   /**
-   * The controlled open state of the select. Must be used in conjunction with onOpenChange.
+   * The controlled open state of the select.
+   * Must be used in conjunction with onOpenChange.
    */
   open?: boolean;
   /**
-   * The value of the select when initially rendered. Use when you do not need to control the state of the select.
+   * The value of the select when initially rendered.
+   * Use when you do not need to control the state of the select.
    */
   defaultValue?: string;
   /**
@@ -22,16 +24,19 @@ export type SelectProps = {
    */
   onOpenChange?(open: boolean): void;
   /**
-   * The open state of the select when it is initially rendered. Use when you do not need to control its open state.
+   * The open state of the select when it is initially rendered.
+   * Use when you do not need to control its open state.
    * @default false
    */
   defaultOpen?: boolean;
   /**
-   * The reading direction of the select when applicable. If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode.
+   * The reading direction of the select when applicable.
+   * If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode.
    */
   dir?: Direction;
   /**
-   * The name of the select. Submitted with its owning form as part of a name/value pair.
+   * The name of the select.
+   * Submitted with its owning form as part of a name/value pair.
    */
   name?: string;
   /**
@@ -44,7 +49,8 @@ export type SelectProps = {
    */
   required?: boolean;
   /**
-   * The controlled value of the select. Should be used in conjunction with onValueChange.
+   * The controlled value of the select.
+   * Should be used in conjunction with onValueChange.
    */
   value?: string;
   /**
@@ -91,24 +97,29 @@ export type SelectContentProps = {
    */
   asChild?: boolean;
   /**
-   * Event handler called when focus moves to the trigger after closing. It can be prevented by calling event.preventDefault.
+   * Event handler called when focus moves to the trigger after closing.
+   * It can be prevented by calling event.preventDefault.
    */
   onCloseAutoFocus?: (event: Event) => void;
   /**
-   * Event handler called when the escape key is down. It can be prevented by calling event.preventDefault.
+   * Event handler called when the escape key is down.
+   * It can be prevented by calling event.preventDefault.
    */
   onEscapeKeyDown?: (event: KeyboardEvent) => void;
   /**
-   * Event handler called when a pointer event occurs outside the bounds of the component. It can be prevented by calling event.preventDefault.
+   * Event handler called when a pointer event occurs outside the bounds of the component.
+   * It can be prevented by calling event.preventDefault.
    */
   onPointerDownOutside?: (event: PointerDownOutsideEvent) => void;
   /**
-   * The positioning mode to use
-   * @default "item-aligned"
+   * The positioning mode to use.
+   * we are using popper by default to position the content relative to the trigger.
+   * @default "popper"
    */
   position?: 'item-aligned' | 'popper';
   /**
-   * The preferred side of the anchor to render against when open. Will be reversed when collisions occur and avoidCollisions is enabled. Only available when position is set to popper.
+   * The preferred side of the anchor to render against when open. Will be reversed when collisions occur and avoidCollisions is enabled.
+   * This is only available when position is set to popper.
    * @default "bottom"
    */
   side?: 'top' | 'right' | 'bottom' | 'left';
