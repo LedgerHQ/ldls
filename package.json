@@ -67,6 +67,7 @@
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@swc/jest": "~0.2.36",
+    "@tailwindcss/postcss": "^4.1.17",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react": "16.1.0",

@@ -39,10 +39,7 @@ const config: StorybookConfig = {
       plugins: [nxViteTsPaths(), commonjsExportsShim()],
       css: {
         postcss: {
-          plugins: [
-            (await import('tailwindcss')).default,
-            (await import('autoprefixer')).default,
-          ],
+          plugins: [(await import('@tailwindcss/postcss')).default],
         },
       },
     });
