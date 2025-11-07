@@ -6,23 +6,26 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
-  createDropShadowPlugin,
+  createShadowPlugin,
 } from '../utils/index.js';
 
 export const ledgerLivePreset = {
   content: [],
+  theme: {
+    extend: {
+      boxShadow: {},
+      fontSize: {},
+      fontWeight: {},
+      lineHeight: {},
+    },
+  },
   plugins: [
     createPrimitivesPlugin(),
     createThemePlugin(ledgerLiveTheme),
     createTypographyPlugin(),
     createGradientPlugin(ledgerLiveTheme),
-    createDropShadowPlugin(),
+    createShadowPlugin(),
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-  corePlugins: {
-    fontSize: false,
-    fontWeight: false,
-    lineHeight: false,
-  },
 } satisfies Config;

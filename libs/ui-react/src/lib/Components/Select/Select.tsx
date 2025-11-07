@@ -71,7 +71,7 @@ const contentStyles = cva(
   [
     'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
     'bg-muted rounded-sm',
-    'drop-shadow-md',
+    'shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',
     'data-[side=left]:animate-slide-in-from-right-8',

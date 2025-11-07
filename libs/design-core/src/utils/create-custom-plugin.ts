@@ -311,26 +311,37 @@ export function createGradientPlugin(
   });
 }
 
-export function createDropShadowPlugin() {
-  return plugin(function ({ addUtilities }) {
-    const dropShadowStyles = {
-      '.drop-shadow-sm': {
-        boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.16)',
+export function createShadowPlugin() {
+  return plugin(function ({ theme, addUtilities, matchUtilities }) {
+    const defaultColor = 'rgba(0, 0, 0, 0.16)';
+
+    const shadows = {
+      '.shadow-sm': {
+        '--tw-shadow': `0px 1px 4px 0px var(--tw-shadow-color, ${defaultColor})`,
+        'box-shadow': 'var(--tw-shadow)',
       },
-      '.drop-shadow-md': {
-        boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.16)',
+      '.shadow-md': {
+        '--tw-shadow': `0px 2px 8px 0px var(--tw-shadow-color, ${defaultColor})`,
+        'box-shadow': 'var(--tw-shadow)',
       },
-      '.drop-shadow-lg': {
-        boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.16)',
+      '.shadow-lg': {
+        '--tw-shadow': `0px 4px 16px 0px var(--tw-shadow-color, ${defaultColor})`,
+        'box-shadow': 'var(--tw-shadow)',
       },
-      '.drop-shadow-xl': {
-        boxShadow: '0px 6px 24px 0px rgba(0, 0, 0, 0.16)',
+      '.shadow-xl': {
+        '--tw-shadow': `0px 6px 24px 0px var(--tw-shadow-color, ${defaultColor})`,
+        'box-shadow': 'var(--tw-shadow)',
       },
-      '.drop-shadow-2xl': {
-        boxShadow: '0px 8px 32px 0px rgba(0, 0, 0, 0.16)',
+      '.shadow-2xl': {
+        '--tw-shadow': `0px 8px 32px 0px var(--tw-shadow-color, ${defaultColor})`,
+        'box-shadow': 'var(--tw-shadow)',
       },
     };
 
-    addUtilities(dropShadowStyles);
+    addUtilities(shadows);
+    matchUtilities(
+      { shadow: (value) => ({ '--tw-shadow-color': value }) },
+      { values: theme('colors') },
+    );
   });
 }
