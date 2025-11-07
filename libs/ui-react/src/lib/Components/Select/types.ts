@@ -68,9 +68,9 @@ export type SelectProps = {
 export type SelectTriggerProps = {
   /**
    * The label text that floats above the input when focused or filled
-   * @example label='Choose an option'
+   * @example label='Label'
    */
-  label: string;
+  label?: string;
   /** Additional class names to apply to the label element
    * @example labelClassName='text-error'
    */

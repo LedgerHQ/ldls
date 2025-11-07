@@ -70,7 +70,7 @@ export const Base: Story = {
     return (
       <div className='w-400'>
         <Select value={value} onValueChange={setValue}>
-          <SelectTrigger label='Choose an option' />
+          <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>
               <SelectItemText>Option 1</SelectItemText>

@@ -52,7 +52,14 @@ const SelectTrigger = React.forwardRef<
     {label && (
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
-    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
+    <span
+      className={cn(
+        'flex-1 truncate text-left ',
+        label &&
+          'mt-16 opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0',
+        className,
+      )}
+    >
       <SelectPrimitive.Value data-slot='select-value' />
     </span>
     <SelectPrimitive.Icon asChild>
