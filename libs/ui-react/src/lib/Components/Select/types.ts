@@ -1,4 +1,3 @@
-import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
 
 type Direction = 'ltr' | 'rtl';
@@ -8,7 +7,7 @@ export type SelectProps = {
   /**
    * The children of the select item
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * The controlled open state of the select.
    * Must be used in conjunction with onOpenChange.
@@ -57,21 +56,14 @@ export type SelectProps = {
    * Event handler called when the value changes.
    */
   onValueChange?(value: string): void;
-} & Omit<
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>,
-  | 'children'
-  | 'onValueChange'
-  | 'value'
-  | 'defaultValue'
-  | 'onOpenChange'
-  | 'open'
-  | 'defaultOpen'
-  | 'dir'
-  | 'name'
-  | 'required'
->;
+};
 
 export type SelectTriggerProps = {
+  /**
+   * Extra class names to apply to the trigger element
+   * @example className='text-error'
+   */
+  className?: string;
   /**
    * The label text that floats above the input when focused or filled
    * @example label='Label'
@@ -81,16 +73,13 @@ export type SelectTriggerProps = {
    * @example labelClassName='text-error'
    */
   labelClassName?: string;
-} & Omit<
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
-  'asChild' | 'children'
->;
+};
 
 export type SelectContentProps = {
   /**
    * The children of the select content
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * Change the default rendered element for the one passed as a child, merging their props and behavior.
    * @default false
@@ -156,11 +145,6 @@ export type SelectContentProps = {
     | number
     | { top?: number; right?: number; bottom?: number; left?: number };
   /**
-   * The padding between the arrow and the edges of the content
-   * @default 0
-   */
-  arrowPadding?: number;
-  /**
    * The sticky behavior on the align axis
    * @default "partial"
    */
@@ -170,45 +154,47 @@ export type SelectContentProps = {
    * @default false
    */
   hideWhenDetached?: boolean;
-} & Omit<
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>,
-  | 'children'
-  | 'asChild'
-  | 'onCloseAutoFocus'
-  | 'onEscapeKeyDown'
-  | 'onPointerDownOutside'
-  | 'position'
-  | 'side'
-  | 'sideOffset'
-  | 'align'
-  | 'alignOffset'
-  | 'avoidCollisions'
-  | 'collisionBoundary'
-  | 'collisionPadding'
-  | 'arrowPadding'
-  | 'sticky'
-  | 'hideWhenDetached'
->;
+  /**
+   * Extra class names to apply to the content element
+   * @example className='text-error'
+   */
+  className?: string;
+};
 
-export type SelectGroupProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Group
->;
+export type SelectGroupProps = {
+  /**
+   * The children of the select group
+   */
+  children: React.ReactNode;
+};
 
-export type SelectLabelProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Label
->;
+export type SelectLabelProps = {
+  /**
+   * The children of the select label
+   * @example children={<SelectLabel>Option</SelectLabel>}
+   * @required
+   */
+  children: React.ReactNode;
+  /**
+   * The class name of the select label
+   */
+  className?: string;
+};
 
-export type SelectItemTextProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.ItemText
->;
+export type SelectItemTextProps = {
+  /**
+   * The children of the select item text
+   * @example children={<SelectItemText>Option</SelectItemText>}
+   * @required
+   */
+  children: React.ReactNode;
+  /**
+   * Extra class names to apply to the item text element
+   * @example className='text-error'
+   */
+  className?: string;
+};
 
-/**
- * Children cannot be raw strings — must use <SelectItemText>
- * Example:
- * <SelectItem>
- *   <SelectItemText>Option</SelectItemText>
- * </SelectItem>
- */
 export type SelectItemProps = {
   /**
    * The value of the select item
@@ -234,11 +220,21 @@ export type SelectItemProps = {
    * @example disabled={true}
    */
   disabled?: boolean;
-} & Omit<
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
-  'children'
->;
+  /**
+   * Extra class names to apply to the item element
+   * @example className='text-error'
+   */
+  className?: string;
+};
 
-export type SelectSeparatorProps = React.ComponentPropsWithoutRef<
-  typeof SelectPrimitive.Separator
->;
+export type SelectSeparatorProps = {
+  /**
+   * Change the default rendered element for the one passed as a child, merging their props and behavior.
+   * @default false
+   */
+  asChild?: boolean;
+  /**
+   * Extra class names to apply to the separator element
+   */
+  className?: string;
+};
