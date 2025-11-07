@@ -2,8 +2,13 @@ import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { render } from '@testing-library/react-native';
 // eslint-disable-next-line no-restricted-imports
 import * as ReactNative from 'react-native';
-
 import { ThemeProvider } from './ThemeProvider';
+
+// Mock isNative to be true so Appearance.setColorScheme is called
+jest.mock('../../utils', () => ({
+  ...(jest.requireActual('../../utils') as object),
+  isNative: true,
+}));
 
 const setColorSchemeSpy = jest.spyOn(ReactNative.Appearance, 'setColorScheme');
 const useColorSchemeSpy = jest.spyOn(ReactNative, 'useColorScheme');
