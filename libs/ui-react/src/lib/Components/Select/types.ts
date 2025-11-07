@@ -10,7 +10,7 @@ export type SelectProps = {
    */
   children?: React.ReactNode;
   /**
-   *The controlled open state of the select. Must be used in conjunction with onOpenChange.
+   * The controlled open state of the select. Must be used in conjunction with onOpenChange.
    */
   open?: boolean;
   /**
@@ -44,7 +44,7 @@ export type SelectProps = {
    */
   required?: boolean;
   /**
-   *The controlled value of the select. Should be used in conjunction with onValueChange.
+   * The controlled value of the select. Should be used in conjunction with onValueChange.
    */
   value?: string;
   /**
