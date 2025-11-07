@@ -42,12 +42,12 @@ export const Default: Story = {
 export const Empty: Story = {
   args: {
     placeholder: 'Search text',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" containerClassName="max-w-md" />',
+        code: '<Search placeholder="Search text" className="max-w-md" />',
       },
     },
   },
@@ -60,12 +60,12 @@ export const WithContent: Story = {
   args: {
     placeholder: 'Search text',
     defaultValue: 'Search text',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" defaultValue="Search text" containerClassName="max-w-md" />',
+        code: '<Search placeholder="Search text" defaultValue="Search text" className="max-w-md" />',
       },
     },
   },
@@ -79,12 +79,12 @@ export const Disabled: Story = {
     placeholder: 'Search text',
     disabled: true,
     defaultValue: 'Disabled input',
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" disabled defaultValue="Disabled input" containerClassName="max-w-md" />',
+        code: '<Search placeholder="Search text" disabled defaultValue="Disabled input" className="max-w-md" />',
       },
     },
   },
@@ -99,7 +99,7 @@ export const Error: Story = {
     defaultValue: 'Invalid search',
     errorMessage: 'Search term is invalid',
     'aria-invalid': true,
-    containerClassName: 'max-w-md',
+    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -109,7 +109,7 @@ export const Error: Story = {
   defaultValue="Invalid search"
   errorMessage="Search term is invalid"
   aria-invalid={true}
-  containerClassName="max-w-md"
+  className="max-w-md"
 />`,
       },
     },
@@ -202,14 +202,14 @@ export const DebouncedSearch: Story = {
         />
         {/* Search status indicator */}
         {isSearching && (
-          <div className='text-muted body-3 italic'>Searching...</div>
+          <div className='italic text-muted body-3'>Searching...</div>
         )}
         {/* Results */}
         {inputValue.length > 0 && !isSearching && (
-          <div className='bg-muted rounded-md p-16'>
+          <div className='rounded-md bg-muted p-16'>
             {filteredResults.length > 0 ? (
               <div>
-                <p className='text-muted body-3 mb-8'>
+                <p className='mb-8 text-muted body-3'>
                   Found {filteredResults.length} result
                   {filteredResults.length !== 1 ? 's' : ''} for "{searchQuery}"
                 </p>
@@ -222,7 +222,7 @@ export const DebouncedSearch: Story = {
             ) : (
               <div className='text-center'>
                 <p className='text-muted body-2'>Nothing found</p>
-                <p className='text-muted body-3 mt-4'>
+                <p className='mt-4 text-muted body-3'>
                   No fruits match "{searchQuery}"
                 </p>
               </div>

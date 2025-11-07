@@ -7,23 +7,26 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
-  createDropShadowPlugin,
+  createShadowPlugin,
 } from '../utils/index.js';
 
 export const enterprisePreset = {
   content: [],
+  theme: {
+    extend: {
+      boxShadow: {},
+      fontSize: {},
+      fontWeight: {},
+      lineHeight: {},
+    },
+  },
   plugins: [
     createPrimitivesPlugin(),
     createThemePlugin(enterpriseTheme),
     createTypographyPlugin(),
     createGradientPlugin(enterpriseTheme),
-    createDropShadowPlugin(),
+    createShadowPlugin(),
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-  corePlugins: {
-    fontSize: false,
-    fontWeight: false,
-    lineHeight: false,
-  },
 } satisfies Config;

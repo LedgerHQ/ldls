@@ -13,7 +13,7 @@ export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
  * - **No label support** - uses placeholder text for optimal search UX
  * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with aria-invalid and errorMessage support
- * - **Flexible styling** via className, containerClassName props
+ * - **Flexible styling** via className, inputClassName, labelClassName props
  *
  * ## Clear Button Behavior
  * - Shows automatically when input has content and is not disabled

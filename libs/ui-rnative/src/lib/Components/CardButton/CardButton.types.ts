@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { PressableProps } from 'react-native';
 import { IconSize } from '../Icon';
 
 export type CardButtonProps = {
@@ -27,4 +27,4 @@ export type CardButtonProps = {
    * If true, hides the chevron arrow on the right side.
    */
   hideChevron?: boolean;
-} & Omit<TouchableOpacityProps, 'disabled'>;
+} & Omit<PressableProps, 'disabled'>;

@@ -7,23 +7,26 @@ import {
   createGradientPlugin,
   createThemePlugin,
   createTypographyPlugin,
-  createDropShadowPlugin,
+  createShadowPlugin,
 } from '../utils/index.js';
 
 export const websitesPreset = {
   content: [],
+  theme: {
+    extend: {
+      boxShadow: {},
+      fontSize: {},
+      fontWeight: {},
+      lineHeight: {},
+    },
+  },
   plugins: [
     createPrimitivesPlugin(),
     createThemePlugin(websitesTheme),
     createTypographyPlugin(),
     createGradientPlugin(websitesTheme),
-    createDropShadowPlugin(),
+    createShadowPlugin(),
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-  corePlugins: {
-    fontSize: false,
-    fontWeight: false,
-    lineHeight: false,
-  },
 } satisfies Config;

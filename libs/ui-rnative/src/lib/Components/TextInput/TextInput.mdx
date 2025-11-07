@@ -1,0 +1,467 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { TextInput } from './TextInput';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+# ⌨️ TextInput
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+Input fields are essential form elements that enable users to enter and edit text. This React Native component features a floating label, error states, and an automatic clear button for enhanced user experience across mobile platforms.
+It also provides the ability to add custom elements on the right side of the input.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
+
+> ⚠️ **Unsupported previews on web**
+>
+> For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, **please test on-device**.
+> We plan to add screenshots or embed Expo Snack in the future.
+
+## Anatomy
+
+> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+
+### Clear Button
+
+A clear button (×) appears **automatically** when input has content.
+
+> **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing.
+
+#### **Extending the Clear Behavior**
+
+Use `onClear` to extend the default clear behavior with custom logic.
+
+### Error State
+
+The input supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
+
+The error message will be automatically:
+
+- Connected to the input
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
+
+### Disabled State
+
+The input can be disabled using the `editable` prop set to `false`.
+
+### Interactive Form Example
+
+A complete example showing how to use TextInput in a form with validation.
+
+## Controlled vs Uncontrolled
+
+The Input component supports both controlled and uncontrolled usage.
+
+### Uncontrolled (with defaultValue)
+
+Use defaultValue when you don't need to track the input's value in state. The component manages its own internal state.
+
+### Controlled (with value and onChangeText)
+
+Use `value` and `onChangeText` when you want full control of the input's state from your component logic.
+
+## Input Types
+
+The component supports various React Native TextInput content types:
+
+- default (text)
+- email-address
+- numeric
+- phone-pad
+- url
+
+Set these using the `keyboardType` prop.
+
+## Accessibility
+
+The Input component follows accessibility best practices:
+
+- Supports screen reader navigation
+- Labels are properly associated with inputs
+- Error messages are properly announced
+- Clear button has an accessible label
+- Touch target sizes meet minimum requirements (48px height)
+
+## Best Practices
+
+**Labels**: Always provide clear, descriptive labels
+
+**Error Messages**: Make error messages helpful and actionable
+
+**Validation**: Validate on blur or submit, not on every keystroke
+
+**Clear Button**: Use for optional fields where clearing is helpful
+
+**Types**: Use the appropriate keyboard type for the data being collected
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+### Basic Usage
+
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return <TextInput label='Username' value={value} onChangeText={setValue} />;
+}
+```
+
+> **Note:** Clear button appears automatically when input has content. Use `hideClearButton` to hide it.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <TextInput
+      label='Username'
+      value={value}
+      onChangeText={setValue}
+      hideClearButton // Clear button will not appear
+    />
+  );
+}
+```
+
+#### **Extending the Clear Behavior**
+
+Provide `onClear` to extend the default clear behavior with additional logic:
+
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <TextInput
+      label='Search'
+      value={value}
+      onChangeText={setValue}
+      onClear={() => {
+        // Default clearing happens automatically
+        // Add your custom logic here
+        analytics.track('search_cleared');
+      }}
+    />
+  );
+}
+```
+
+### With Error State
+
+The Input component supports error states and messages:
+
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (text: string) => {
+    setValue(text);
+    setError(text.length < 3 ? 'Must be at least 3 characters' : '');
+  };
+
+  return (
+    <TextInput
+      label='Username'
+      value={value}
+      onChangeText={handleChange}
+      errorMessage={error}
+    />
+  );
+}
+```
+
+> **Note:** Error messages are optional. Use `errorMessage` to display an error message below the input.
+
+### With Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<TextInput
+  label='Email'
+  value={email}
+  onChangeText={setEmail}
+  className='max-w-md' // Control width
+  className='heading-0' // Customize input text style
+/>
+```
+
+### With Different Keyboard Types
+
+Use the `keyboardType` prop to show the appropriate keyboard:
+
+```tsx
+// Email keyboard
+<TextInput
+  label="Email"
+  value={email}
+  onChangeText={setEmail}
+  keyboardType="email-address"
+/>
+
+// Numeric keyboard
+<TextInput
+  label="Phone"
+  value={phone}
+  onChangeText={setPhone}
+  keyboardType="phone-pad"
+/>
+
+// URL keyboard
+<TextInput
+  label="Website"
+  value={website}
+  onChangeText={setWebsite}
+  keyboardType="url"
+/>
+```
+
+### Disabled State
+
+Use the `editable` prop to disable the input:
+
+```tsx
+<TextInput label='Username' value='johndoe' editable={false} />
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the TextInput component and maintain design system principles.
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern
+const [value, setValue] = useState('');
+<TextInput
+  label="Email"
+  value={value}
+  onChangeText={setValue}
+/>
+
+// Or use uncontrolled inputs (also valid)
+<TextInput label="Email" defaultValue="initial value" />
+
+// Uncontrolled with ref access
+const inputRef = useRef<TextInput>(null);
+<TextInput ref={inputRef} label="Email" defaultValue="" />
+
+// Clear button appears automatically - hideClearButton is false by default
+<TextInput
+  label="Search"
+  value={value}
+  onChangeText={handleChange}
+/>
+
+// Use onClear to extend default clear behavior with custom logic
+<TextInput
+  label="Search"
+  value={value}
+  onChangeText={handleChange}
+  onClear={() => {
+    // Default clearing happens automatically
+    customClearLogic();
+  }}
+/>
+
+// Hide clear button when needed
+<TextInput
+  label="Search"
+  value={value}
+  onChangeText={handleChange}
+  hideClearButton
+/>
+
+// Use errorMessage for error states
+<TextInput
+  label="Email"
+  value={value}
+  onChangeText={handleChange}
+  errorMessage={hasError ? 'Invalid email' : undefined}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't manually clear the value in onClear - it happens automatically
+<TextInput
+  label="Search"
+  value={value}
+  onChangeText={setValue}
+  onClear={() => setValue('')} // Redundant - clearing happens by default
+/>
+
+// Don't mix controlled and uncontrolled patterns
+<TextInput
+  value={value}
+  defaultValue="initial"
+  onChangeText={setValue}
+/>
+
+// Don't use custom error props
+<TextInput error={true} errorText="Invalid input" />
+```
+
+### Layout and Styling
+
+The Input component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+
+✅ **Do**
+
+```tsx
+// Preferred: Direct width control
+<TextInput label="Email" className="max-w-md" />
+
+// Responsive width control
+<TextInput label="Email" className="w-full md:max-w-md" />
+
+// Use className for margins and positioning
+<TextInput label="Email" className="mt-4 mx-auto" />
+
+// Alternative: Container wrapper
+<View className="max-w-md">
+  <TextInput label="Email" />
+</View>
+```
+
+### Accessibility and Labels
+
+✅ **Do**
+
+```tsx
+// Always provide labels
+<TextInput label="Email Address" value={email} onChangeText={setEmail} />
+
+// Use appropriate keyboard types
+<TextInput
+  label="Email"
+  value={email}
+  onChangeText={setEmail}
+  keyboardType="email-address"
+/>
+
+// Provide error messages
+<TextInput
+  label="Password"
+  value={password}
+  onChangeText={setPassword}
+  errorMessage="Password must be at least 8 characters"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit labels
+<TextInput value={email} onChangeText={setEmail} />
+
+// Don't use placeholder as a replacement for label
+<TextInput placeholder="Enter your email" value={email} onChangeText={setEmail} />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use stable callbacks with useCallback
+const handleChange = useCallback((text: string) => {
+  setValue(text);
+}, []);
+
+<TextInput label='Email' value={value} onChangeText={handleChange} />;
+
+// Use stable callbacks for extending clear behavior
+const handleCustomClear = useCallback(() => {
+  // Default clearing happens automatically
+  customClearLogic();
+}, []);
+
+<TextInput
+  label='Search'
+  value={value}
+  onChangeText={handleChange}
+  onClear={handleCustomClear}
+/>;
+```
+
+❌ **Don't**
+
+```tsx
+// Don't create new functions in render for frequently re-rendered components
+<FlatList
+  data={items}
+  renderItem={({ item }) => (
+    <TextInput
+      label="Name"
+      value={item.name}
+      onChangeText={(text) => handleChange(item.id, text)}
+    />
+  )}
+/>
+
+// Don't manually clear in onClear - it's automatic
+<TextInput
+  label="Search"
+  value={value}
+  onChangeText={setValue}
+  onClear={() => setValue('')} // Redundant
+/>
+```
+
+## Platform Considerations
+
+### iOS Specific
+
+- Input automatically adapts to iOS design guidelines
+- Keyboard automatically handles safe area insets
+- Respects iOS accessibility settings like Dynamic Type
+
+### Android Specific
+
+- Supports Android keyboard types and input methods
+- Handles Android back button interactions appropriately
+- Respects Android accessibility services
+
+### Cross-Platform
+
+- Consistent visual appearance across platforms
+- Platform-appropriate keyboard behavior
+- Unified API regardless of platform
+- Animated floating labels work seamlessly on both platforms
+
+</Tab>
+</CustomTabs>

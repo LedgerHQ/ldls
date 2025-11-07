@@ -30,7 +30,7 @@
         },
         "sheet": {
           "$type": "color",
-          "$value": "{color.dark.grey.100}",
+          "$value": "{color.dark.grey.075}",
           "$description": "",
           "$extensions": {
             "com.figma": {
@@ -81,6 +81,44 @@
               "codeSyntax": {
                 "WEB": "var(--color-background-black);"
               }
+            }
+          }
+        }
+      },
+      "surface": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.dark.grey.100}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.dark.grey.200}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.dark.grey.300}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
             }
           }
         }
@@ -177,6 +215,20 @@
               "codeSyntax": {
                 "WEB": "var(--color-background-disabled);"
               }
+            }
+          }
+        }
+      },
+      "disabled-strong": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.dark.grey.300}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
             }
           }
         }
@@ -1162,7 +1214,7 @@
       "disabled": {
         "default": {
           "$type": "color",
-          "$value": "{color.dark.grey.500}",
+          "$value": "{color.dark.grey.400}",
           "$description": "",
           "$extensions": {
             "com.figma": {
