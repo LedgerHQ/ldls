@@ -65,7 +65,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='shrink-0 text-muted group-data-[disabled]:text-disabled '
+        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
