@@ -100,6 +100,53 @@
         }
       }
     },
+    "surface": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.surface.default}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": "{color.background.surface.hover}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": "{color.background.surface.pressed}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      }
+    },
     "base": {
       "default": {
         "$type": "color",
@@ -213,6 +260,23 @@
             "codeSyntax": {
               "WEB": "var(--background-disabled);"
             }
+          }
+        }
+      }
+    },
+    "disabled-strong": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.background.disabled-strong.default}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "codeSyntax": {}
           }
         }
       }
@@ -1765,6 +1829,24 @@
           ],
           "codeSyntax": {
             "WEB": "var(--border-2)"
+          }
+        }
+      }
+    }
+  },
+  "color": {
+    "background": {
+      "disabled-strong": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.dark.grey.300}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
           }
         }
       }
