@@ -125,7 +125,7 @@ export type DialogOverlayProps = {
  * Do not use it to modify the overlay's core appearance (colors, opacity, etc).
  *
  * @example
- * <DialogOverlay className="bg-opacity-50" />
+ * <DialogOverlay className="bg-opacity/50" />
  */
 const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
   ({ className, ...props }, ref) => {
