@@ -84,8 +84,8 @@ export type LinkProps = {
  * @example
  * import { Link } from '@ledgerhq/ldls-ui-react';
  *
- * // Basic link with underline
- * <Link appearance="base" size="md" underline href="/page">
+ * // Default link with underline, base appearance and medium size
+ * <Link href="/page">
  *   Go to Page
  * </Link>
  *
@@ -104,7 +104,7 @@ export type LinkProps = {
  * // Link as a router link (asChild pattern)
  * import { Link as RouterLink } from 'react-router-dom';
  *
- * <Link asChild appearance="base" size="md" underline>
+ * <Link asChild>
  *   <RouterLink to="/dashboard">Dashboard</RouterLink>
  * </Link>
  *
