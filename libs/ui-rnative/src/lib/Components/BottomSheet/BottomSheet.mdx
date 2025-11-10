@@ -74,11 +74,12 @@ Use `BottomSheetVirtualizedList` when you need more control over item access pat
 
 Bottom sheets can automatically adapt to content height instead of using fixed snap points. Enable this with `enableDynamicSizing` prop. The sheet will automatically resize as content changes—perfect for dynamic forms, expandable sections, or content that varies in length. This example shows a sheet that sizes itself to fit 5 items.
 
-<Canvas of={BottomSheetStories.DynamicSizing} />
+<Canvas of={BottomSheetStories.DynamicSizingWithoutSnapPoints} />
 
-When using dynamic sizing with potentially long content, set `maxDynamicContentSize` to prevent the sheet from taking over the entire screen. The content becomes scrollable once it exceeds this limit. This example constrains the height to 400px and displays 15 items, making the content scrollable.
+You can also use snap points with dynamic sizing to control the height of the bottom sheet. This example shows a sheet that sizes itself to fit 3 items.
+You can also use maxDynamicContentSize to control the max height of the bottom sheet (not working on web preview).
 
-<Canvas of={BottomSheetStories.DynamicSizingAndMaxSize} />
+<Canvas of={BottomSheetStories.DynamicSizingWithSnapPoints} />
 
 ### Prevent Close
 
@@ -89,16 +90,6 @@ Set both properties:
 - `backdropPressBehavior='none'` 
 
 <Canvas of={BottomSheetStories.PreventClose} />
-
-## Accessibility
-
-To be implemented:
-
-- **Keyboard navigation**: Focus management and tab order
-- **Screen readers**: Proper ARIA labels and announcements
-- **Gesture alternatives**: Keyboard shortcuts for dismiss actions
-- **Focus trapping**: Keep focus within modal when open
-- **Reduced motion**: Respect user motion preferences
 
 </Tab>
 <Tab label="Implementation">

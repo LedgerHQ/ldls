@@ -9,13 +9,21 @@ export type BottomSheetProps = PropsWithChildren & {
   /**
    * The snap points represent allowed heights of the bottom sheet.
    * You can use presets like 'full', 'medium', 'small' or define your own snap points in % (string) or pixel (number).
-   * If you want to use dynamic sizing, you should not define snapPoints.
-   * @default 'full'
+   * This prop is required when enableDynamicSizing is false.
+   * @default 'dynamic'
    */
-  snapPoints?: 'full' | 'medium' | 'small' | string[] | number[];
+  snapPoints?:
+    | 'full'
+    | 'fullWithOffset'
+    | 'medium'
+    | 'small'
+    | string[]
+    | number[]
+    | null;
   /**
    * If true, the bottom sheet will be resized to fit the content.
-   * You should not define snapPoints when enableDynamicSizing is true.
+   * Setting this prop to true, will result in adding a new snap point to the provided snap points and will be sorted accordingly,
+   * if provided snap points are [100, 1000], and the content size is 500 then the final snap points will be [100, 500, 1000].
    * @default false
    */
   enableDynamicSizing?: boolean;
@@ -25,7 +33,7 @@ export type BottomSheetProps = PropsWithChildren & {
    * By default, the max dynamic content size is the container height.
    * @default undefined
    */
-  maxDynamicContentSize?: number;
+  maxDynamicContentSize?: 'full' | 'fullWithOffset' | number;
   /**
    * The callback function to handle the change event.
    * The index of the snap point in the array.
