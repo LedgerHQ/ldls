@@ -168,14 +168,10 @@ export const TitleExpanded: Story = {
   },
 };
 
-export const DynamicSizing: Story = {
+export const DynamicSizingWithoutSnapPoints: Story = {
   args: {
-    hideCloseButton: false,
-    enableHandlePanningGesture: true,
-    enablePanDownToClose: true,
-    enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: true,
-    detached: false,
+    snapPoints: null,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -186,59 +182,55 @@ export const DynamicSizing: Story = {
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
-          <BottomSheetView>
+          <BottomSheetScrollView>
             <BottomSheetHeader
               title='Dynamic Sizing'
               appearance='compact'
               description='This bottom sheet adapts to its content height'
             />
             <View className='flex flex-col gap-12'>
-              {Array.from({ length: 40 }).map((_, index) => (
+              {Array.from({ length: 5 }).map((_, index) => (
                 <Text className='text-base' key={index}>
                   Item {index + 1}: Lorem ipsum, dolor sit amet consectetur
                   adipisicing elit.
                 </Text>
               ))}
             </View>
-          </BottomSheetView>
+          </BottomSheetScrollView>
         </BottomSheet>
       </View>
     );
   },
 };
 
-export const DynamicSizingAndMaxSize: Story = {
+export const DynamicSizingWithSnapPoints: Story = {
   args: {
-    snapPoints: undefined,
-    hideCloseButton: false,
-    enableHandlePanningGesture: true,
-    enablePanDownToClose: true,
-    enableBlurKeyboardOnGesture: true,
     enableDynamicSizing: true,
-    maxDynamicContentSize: 250,
-    detached: false,
+    snapPoints: [150, 300],
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+      <View className='h-320 w-full items-center justify-center'>
+        <Button
+          size='xs'
+          onPress={() => bottomSheetRef.current?.snapToIndex(1)}
+        >
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
           <BottomSheetScrollView>
             <BottomSheetHeader
-              title='Dynamic Sizing with Max Height'
+              title='Dynamic Sizing'
               appearance='compact'
-              description='This bottom sheet has a max height of 250px'
+              description='This bottom sheet adapts to its content height and has snap points'
             />
             <View className='flex flex-col gap-12'>
-              {Array.from({ length: 15 }).map((_, index) => (
+              {Array.from({ length: 3 }).map((_, index) => (
                 <Text className='text-base' key={index}>
                   Item {index + 1}: Lorem ipsum, dolor sit amet consectetur
-                  adipisicing elit. Vitae excepturi odit, quis tenetur iste
-                  perspiciatis mollitia porro velit laborum quasi.
+                  adipisicing elit.
                 </Text>
               ))}
             </View>
@@ -290,12 +282,6 @@ export const PreventClose: Story = {
 export const ScrollView: Story = {
   args: {
     snapPoints: 'full',
-    hideCloseButton: false,
-    enableHandlePanningGesture: true,
-    enablePanDownToClose: true,
-    enableBlurKeyboardOnGesture: true,
-    enableDynamicSizing: false,
-    detached: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
@@ -332,12 +318,6 @@ export const ScrollView: Story = {
 export const VirtualList: Story = {
   args: {
     snapPoints: 'full',
-    hideCloseButton: false,
-    enableHandlePanningGesture: true,
-    enablePanDownToClose: true,
-    enableBlurKeyboardOnGesture: true,
-    enableDynamicSizing: false,
-    detached: false,
   },
   render: (args) => {
     const bottomSheetRef = useBottomSheetRef();
