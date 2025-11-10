@@ -34,12 +34,12 @@ const meta: Meta<typeof Link> = {
 
 export default meta;
 type Story = StoryObj<typeof Link>;
-type LinkAppearance = 'underlined' | 'accent';
+type LinkAppearance = 'base' | 'accent' | 'inherit';
 
 export const Base: Story = {
   args: {
-    appearance: 'underlined',
-    children: 'Underlined Link',
+    appearance: 'base',
+    children: 'Base Link',
     href: '#',
     onClick,
   },
@@ -47,8 +47,8 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<Link appearance="underlined" href="#">
-  Underlined Link
+<Link appearance="base" href="#">
+  Base Link
 </Link>
 `,
       },
@@ -58,7 +58,7 @@ export const Base: Story = {
 
 export const WithIcon: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
     children: 'Link with Icon',
     icon: Information,
     href: '#',
@@ -69,7 +69,7 @@ export const WithIcon: Story = {
       source: {
         code: `
 <Link
-  appearance="underlined"
+  appearance="base"
   icon={Information}
   href="#"
 >
@@ -83,7 +83,7 @@ export const WithIcon: Story = {
 
 export const External: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
     children: 'External Link',
     isExternal: true,
     href: 'https://ledger.com',
@@ -93,7 +93,7 @@ export const External: Story = {
       source: {
         code: `
 <Link
-  appearance="underlined"
+  appearance="base"
   isExternal
   href="https://ledger.com"
 >
@@ -107,7 +107,7 @@ export const External: Story = {
 
 export const ExternalLinkWithIcon: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
     children: 'External Link with Icon',
     icon: Information,
     isExternal: true,
@@ -118,7 +118,7 @@ export const ExternalLinkWithIcon: Story = {
       source: {
         code: `
   <Link
-    appearance="underlined"
+    appearance="base"
     icon={Information}
     isExternal
     href="https://ledger.com"
@@ -134,7 +134,7 @@ export const ExternalLinkWithIcon: Story = {
 export const AppearanceShowcase: Story = {
   render: () => {
     const appearances: Array<{ name: string; appearance: LinkAppearance }> = [
-      { name: 'Underlined', appearance: 'underlined' },
+      { name: 'Base', appearance: 'base' },
       { name: 'Accent', appearance: 'accent' },
     ];
 
@@ -162,7 +162,7 @@ export const SizesShowcase: Story = {
     <>
       <div className='flex items-center gap-32 p-8'>
         <Link
-          appearance='underlined'
+          appearance='base'
           size='sm'
           href='#'
           onClick={onClick}
@@ -172,7 +172,7 @@ export const SizesShowcase: Story = {
           Small
         </Link>
         <Link
-          appearance='underlined'
+          appearance='base'
           size='md'
           href='#'
           onClick={onClick}
@@ -210,22 +210,22 @@ export const SizesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='flex w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+    <div className='w-256 bg-muted flex flex-col gap-8 rounded-sm p-8'>
       <Link appearance='underlined' href='#' onClick={onClick}>
         Short Link
       </Link>
-      <Link appearance='underlined' href='#' onClick={onClick}>
+      <Link appearance='base' href='#' onClick={onClick}>
         This is a longer link text to show line clamping behavior over two lines
         if necessary
       </Link>
       <Link
-        appearance='underlined'
+        appearance='base'
         href='#'
         icon={Information}
         isExternal
         onClick={onClick}
       >
-        Underlined with long text that should fit
+        Base with long text that should fit
       </Link>
     </div>
   ),
@@ -249,7 +249,7 @@ export const AsChild: Story = {
 
     return (
       <div className='flex flex-col gap-16 p-8'>
-        <Link asChild appearance='underlined'>
+        <Link asChild appearance='base'>
           <RouterLink to='#'>Dashboard</RouterLink>
         </Link>
         <Link asChild appearance='accent'>
@@ -271,7 +271,7 @@ export const AsChild: Story = {
 // Example with react-router-dom
 import { Link as RouterLink } from 'react-router-dom';
 
-<Link asChild appearance="underlined">
+<Link asChild appearance="base">
   <RouterLink to="#">Dashboard</RouterLink>
 </Link>
 
@@ -281,6 +281,59 @@ import { Link as RouterLink } from 'react-router-dom';
     External Link to Ledger Shop
   </a>
 </Link>
+`,
+      },
+    },
+  },
+};
+
+export const InheritVariants: Story = {
+  render: () => (
+    <div className='flex flex-col gap-24 p-8'>
+      <div className='text-error heading-2'>
+        <Link appearance='inherit' size='inherit' href='#' onClick={onClick}>
+          Inherits parent heading-2 and text-error
+        </Link>
+      </div>
+      <div className='text-muted body-3'>
+        <Link appearance='inherit' size='inherit' href='#' onClick={onClick}>
+          Inherits parent body-3 and text-muted
+        </Link>
+      </div>
+      <div className='text-error body-1-semi-bold'>
+        <Link
+          appearance='inherit'
+          size='inherit'
+          underline={false}
+          href='#'
+          onClick={onClick}
+        >
+          Inherits parent styles without underline
+        </Link>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<div className='heading-2 text-error'>
+  <Link appearance='inherit' size='inherit' href='#'>
+    Inherits parent heading-2 and text-error
+  </Link>
+</div>
+
+<div className='body-3 text-muted'>
+  <Link appearance='inherit' size='inherit' href='#'>
+    Inherits parent body-3 and text-muted
+  </Link>
+</div>
+
+<div className='body-1-semi-bold text-error'>
+  <Link appearance='inherit' size='inherit' underline={false} href='#'>
+    Inherits parent styles without underline
+  </Link>
+</div>
 `,
       },
     },
