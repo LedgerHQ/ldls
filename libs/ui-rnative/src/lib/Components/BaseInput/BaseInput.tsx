@@ -165,7 +165,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             value={value}
             className={cn(
               baseInputStyles,
-              'selection:caret-white',
+              !label && 'py-0',
               !editable && 'bg-disabled text-disabled',
               inputClassName,
             )}
