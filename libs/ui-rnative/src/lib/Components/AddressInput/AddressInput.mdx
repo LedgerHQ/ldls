@@ -1,0 +1,791 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { AddressInput } from './AddressInput';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+# ⌨️ AddressInput
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+The AddressInput component provides a specialized input field for entering cryptocurrency addresses or ENS names. Built on top of BaseInput, it features a customizable prefix label (defaults to "To:") and context-aware suffix icons for an optimized mobile experience.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
+
+> ⚠️ **Unsupported previews on web**
+>
+> For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, **please test on-device**.
+> We plan to add screenshots or embed Expo Snack in the future.
+
+## Anatomy
+
+> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+
+### Customizable Prefix
+
+The component displays "To:" as the default prefix text, but this can be customized via the `prefix` prop for different use cases like "From:", "Withdraw to:", etc.
+
+### QR Code Scanner
+
+When `onQrCodeClick` is provided, a QR code scanner icon appears when the input is empty, allowing users to scan addresses directly. Without `onQrCodeClick`, no QR code icon appears.
+
+### Clear Button
+
+A clear button appears **automatically** when input has content, replacing the QR code scanner icon (if present).
+
+> **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing.
+
+#### **Extending the Clear Behavior**
+
+Use `onClear` to extend the default clear behavior with custom logic.
+
+### Error State
+
+The input supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
+
+The error message will be automatically:
+
+- Connected to the input
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
+
+### Disabled State
+
+The input can be disabled using the `editable` prop set to `false`.
+
+## Controlled vs Uncontrolled
+
+The AddressInput component supports both controlled and uncontrolled usage.
+
+### Uncontrolled (with defaultValue)
+
+Use defaultValue when you don't need to track the input's value in state. The component manages its own internal state.
+
+### Controlled (with value and onChangeText)
+
+Use `value` and `onChangeText` when you want full control of the input's state from your component logic.
+
+## Input Types
+
+The component supports various React Native TextInput content types:
+
+- default (text)
+- email-address
+- url
+
+Set these using the `keyboardType` prop.
+
+## Accessibility
+
+The AddressInput component follows accessibility best practices:
+
+- Supports screen reader navigation
+- Prefix labels are properly associated with inputs
+- Error messages are properly announced
+- QR code scanner button has an accessible label
+- Clear button has an accessible label
+- Touch target sizes meet minimum requirements (48px height)
+
+## Best Practices
+
+**Prefix**: Keep prefix text short and descriptive ("To:", "From:", etc.)
+
+**QR Code Scanner**: Always provide onQrCodeClick to enable easy address scanning
+
+**Error Messages**: Make error messages helpful and actionable (e.g., "Invalid address format")
+
+**Validation**: Validate on blur or submit, not on every keystroke
+
+**Clear Button**: Appears automatically when there's content - use hideClearButton only when necessary
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+### Basic Usage
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={setAddress}
+      onQrCodeClick={() => openQrScanner()}
+    />
+  );
+}
+```
+
+> **Note:** Clear button appears automatically when input has content. QR code scanner appears when input is empty (if onQrCodeClick is provided). Use `hideClearButton` to hide the clear button.
+
+### With Custom Prefix
+
+Customize the prefix text for different contexts:
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+// Default "To:" prefix
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+/>
+
+// Custom "From:" prefix for sender address input
+<AddressInput
+  prefix="From:"
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+/>
+
+// Custom prefix for other contexts
+<AddressInput
+  prefix="Withdraw to:"
+  placeholder="Enter withdrawal address"
+  value={address}
+  onChangeText={setAddress}
+/>
+```
+
+### Without QR Code Scanner
+
+When `onQrCodeClick` is not provided, no QR code icon appears:
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+
+  // No onQrCodeClick - no QR code scanner icon
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={setAddress}
+    />
+  );
+}
+```
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={setAddress}
+      onQrCodeClick={() => openQrScanner()}
+      hideClearButton // Clear button will not appear
+    />
+  );
+}
+```
+
+#### **Extending the Clear Behavior**
+
+Provide `onClear` to extend the default clear behavior with additional logic:
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState('');
+
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={setAddress}
+      errorMessage={error}
+      onClear={() => {
+        // Default clearing happens automatically
+        // Add your custom logic here
+        setError(''); // Clear error state
+        analytics.track('address_cleared');
+      }}
+    />
+  );
+}
+```
+
+### With Error State
+
+The AddressInput component supports error states and messages:
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState('');
+
+  const handleChange = (text: string) => {
+    setAddress(text);
+
+    if (text.length > 0) {
+      const isValidEthereumAddress =
+        text.startsWith('0x') && text.length === 42;
+      const isValidENS = text.endsWith('.eth');
+
+      if (!isValidEthereumAddress && !isValidENS) {
+        setError('Please enter a valid Ethereum address or ENS name');
+      } else {
+        setError('');
+      }
+    }
+  };
+
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={handleChange}
+      errorMessage={error}
+      onQrCodeClick={() => openQrScanner()}
+    />
+  );
+}
+```
+
+> **Note:** Error messages are optional. Use `errorMessage` to display an error message below the input.
+
+### With Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<AddressInput
+  placeholder='Enter address or ENS'
+  value={address}
+  onChangeText={setAddress}
+  className='max-w-md' // Control width
+  onQrCodeClick={() => openQrScanner()}
+/>
+```
+
+### With Different Keyboard Types
+
+Use the `keyboardType` prop to show the appropriate keyboard:
+
+```tsx
+// Default keyboard (recommended for addresses)
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// URL keyboard (alternative for ENS names)
+<AddressInput
+  placeholder="Enter ENS name"
+  value={address}
+  onChangeText={setAddress}
+  keyboardType="url"
+  onQrCodeClick={() => openQrScanner()}
+/>
+```
+
+### Disabled State
+
+Use the `editable` prop to disable the input:
+
+```tsx
+<AddressInput
+  placeholder='Enter address or ENS'
+  value='0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27'
+  editable={false}
+/>
+```
+
+### QR Code Integration
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState('');
+
+  const handleQrScan = async () => {
+    try {
+      // Open QR scanner modal/camera
+      const scannedAddress = await openQrScanner();
+      setAddress(scannedAddress);
+      validateAddress(scannedAddress);
+    } catch (error) {
+      console.error('QR scan failed:', error);
+      setError('Failed to scan QR code');
+    }
+  };
+
+  return (
+    <AddressInput
+      placeholder='Enter address or ENS'
+      value={address}
+      onChangeText={setAddress}
+      onQrCodeClick={handleQrScan}
+      errorMessage={error}
+    />
+  );
+}
+```
+
+## Common Patterns
+
+### Transaction Forms
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { View } from 'react-native';
+import { useState } from 'react';
+
+function TransactionForm() {
+  const [recipientAddress, setRecipientAddress] = useState('');
+  const [addressError, setAddressError] = useState('');
+
+  return (
+    <View>
+      <AddressInput
+        placeholder='Enter address or ENS'
+        value={recipientAddress}
+        onChangeText={setRecipientAddress}
+        errorMessage={addressError}
+        onQrCodeClick={() => openQrScanner()}
+        className='max-w-md'
+      />
+      {/* Other transaction fields */}
+    </View>
+  );
+}
+```
+
+### Sender and Recipient Addresses
+
+```tsx
+import { AddressInput } from '@ledgerhq/ldls-ui-rnative';
+import { View } from 'react-native';
+import { useState } from 'react';
+
+function AddressForm() {
+  const [fromAddress, setFromAddress] = useState('');
+  const [toAddress, setToAddress] = useState('');
+
+  return (
+    <View>
+      <AddressInput
+        prefix='From:'
+        placeholder='Enter sender address'
+        value={fromAddress}
+        onChangeText={setFromAddress}
+        onQrCodeClick={() => openQrScanner('from')}
+      />
+
+      <AddressInput
+        prefix='To:'
+        placeholder='Enter recipient address'
+        value={toAddress}
+        onChangeText={setToAddress}
+        onQrCodeClick={() => openQrScanner('to')}
+      />
+    </View>
+  );
+}
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the AddressInput component and maintain design system principles.
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern
+const [address, setAddress] = useState('');
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Or use uncontrolled inputs (also valid)
+<AddressInput
+  placeholder="Enter address or ENS"
+  defaultValue="0x742d35cc..."
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Clear button appears automatically
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Use onClear to extend default clear behavior with custom logic
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onClear={() => {
+    // Default clearing happens automatically
+    setError(''); // Clear error state
+    customClearLogic();
+  }}
+/>
+
+// Hide clear button when needed
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  hideClearButton
+/>
+
+// Use errorMessage for error states
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  errorMessage={hasError ? 'Invalid address format' : undefined}
+/>
+
+// Use custom prefix for different contexts
+<AddressInput
+  prefix="From:"
+  placeholder="Enter sender address"
+  value={address}
+  onChangeText={setAddress}
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't manually clear the value in onClear - it happens automatically
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onClear={() => setAddress('')} // Redundant - clearing happens by default
+/>
+
+// Don't mix controlled and uncontrolled patterns
+<AddressInput
+  value={address}
+  defaultValue="initial"
+  onChangeText={setAddress}
+/>
+
+// Don't use overly long prefix text
+<AddressInput
+  prefix="This is a very long prefix that takes up too much space:"
+  placeholder="Enter address"
+/>
+
+// Don't disable QR code functionality without good reason
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  // No onQrCodeClick - users can't scan QR codes
+/>
+```
+
+### Layout and Styling
+
+The AddressInput component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+
+✅ **Do**
+
+```tsx
+// Preferred: Direct width control
+<AddressInput
+  placeholder="Enter address or ENS"
+  className="max-w-md"
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Responsive width control
+<AddressInput
+  placeholder="Enter address or ENS"
+  className="w-full md:max-w-md"
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Use className for margins and positioning
+<AddressInput
+  placeholder="Enter address or ENS"
+  className="mt-4 mx-auto"
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Alternative: Container wrapper
+<View className="max-w-md">
+  <AddressInput
+    placeholder="Enter address or ENS"
+    onQrCodeClick={() => openQrScanner()}
+  />
+</View>
+```
+
+### Prefix Usage
+
+✅ **Do**
+
+```tsx
+// Use short, descriptive prefixes
+<AddressInput prefix="To:" placeholder="Enter recipient" />
+<AddressInput prefix="From:" placeholder="Enter sender" />
+<AddressInput prefix=">" placeholder="Enter destination" />
+
+// Use custom prefix for specific contexts
+<AddressInput prefix="Withdraw to:" placeholder="Enter address" />
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use overly long prefixes
+<AddressInput
+  prefix="Please enter the recipient's wallet address:"
+  placeholder="Enter address"
+/>
+
+// Don't use prefix for instructions
+<AddressInput
+  prefix="Scan QR or type:"
+  placeholder="Enter address"
+/>
+```
+
+### Accessibility
+
+✅ **Do**
+
+```tsx
+// Always provide onQrCodeClick for QR scanning capability
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onQrCodeClick={() => openQrScanner()}
+/>
+
+// Provide error messages
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  errorMessage="Invalid Ethereum address format"
+/>
+
+// Use appropriate keyboard types
+<AddressInput
+  placeholder="Enter ENS name"
+  value={address}
+  onChangeText={setAddress}
+  keyboardType="url"
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit QR scanning when it would be useful
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  // No onQrCodeClick - users must type addresses manually
+/>
+
+// Don't use placeholder as a replacement for prefix
+<AddressInput
+  placeholder="To: Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+/>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use stable callbacks with useCallback
+const handleChange = useCallback((text: string) => {
+  setAddress(text);
+}, []);
+
+const handleQrScan = useCallback(() => {
+  openQrScanner();
+}, []);
+
+<AddressInput
+  placeholder='Enter address or ENS'
+  value={address}
+  onChangeText={handleChange}
+  onQrCodeClick={handleQrScan}
+/>;
+
+// Use stable callbacks for extending clear behavior
+const handleCustomClear = useCallback(() => {
+  // Default clearing happens automatically
+  setError('');
+  customClearLogic();
+}, []);
+
+<AddressInput
+  placeholder='Enter address or ENS'
+  value={address}
+  onChangeText={handleChange}
+  onClear={handleCustomClear}
+/>;
+```
+
+❌ **Don't**
+
+```tsx
+// Don't create new functions in render for frequently re-rendered components
+<FlatList
+  data={transactions}
+  renderItem={({ item }) => (
+    <AddressInput
+      placeholder="Enter address"
+      value={item.address}
+      onChangeText={(text) => handleChange(item.id, text)}
+      onQrCodeClick={() => openQrScanner(item.id)}
+    />
+  )}
+/>
+
+// Don't manually clear in onClear - it's automatic
+<AddressInput
+  placeholder="Enter address or ENS"
+  value={address}
+  onChangeText={setAddress}
+  onClear={() => setAddress('')} // Redundant
+/>
+```
+
+## Platform Considerations
+
+### iOS Specific
+
+- Input automatically adapts to iOS design guidelines
+- Keyboard automatically handles safe area insets
+- Respects iOS accessibility settings like Dynamic Type
+- QR code scanner integrates with iOS camera permissions
+
+### Android Specific
+
+- Supports Android keyboard types and input methods
+- Handles Android back button interactions appropriately
+- Respects Android accessibility services
+- QR code scanner integrates with Android camera permissions
+
+### Cross-Platform
+
+- Consistent visual appearance across platforms
+- Platform-appropriate keyboard behavior
+- Unified API regardless of platform
+- QR code scanner works seamlessly on both platforms
+- Context-aware suffix icons (QR code ↔ clear button) work consistently
+
+## Address Validation Best Practices
+
+### Ethereum Addresses
+
+```tsx
+const validateEthereumAddress = (address: string): boolean => {
+  // Basic validation
+  return address.startsWith('0x') && address.length === 42;
+};
+
+// In your component
+const handleChange = (text: string) => {
+  setAddress(text);
+
+  if (
+    text.length > 0 &&
+    !validateEthereumAddress(text) &&
+    !text.endsWith('.eth')
+  ) {
+    setError('Please enter a valid Ethereum address or ENS name');
+  } else {
+    setError('');
+  }
+};
+```
+
+### ENS Names
+
+```tsx
+const validateENS = (address: string): boolean => {
+  return address.endsWith('.eth') && address.length > 4;
+};
+```
+
+### Debounced Validation
+
+```tsx
+import { useCallback } from 'react';
+import { debounce } from 'lodash';
+
+const debouncedValidate = useCallback(
+  debounce((address: string) => {
+    validateAddress(address);
+  }, 500),
+  [],
+);
+
+<AddressInput
+  placeholder='Enter address or ENS'
+  value={address}
+  onChangeText={(text) => {
+    setAddress(text);
+    debouncedValidate(text);
+  }}
+/>;
+```
+
+</Tab>
+</CustomTabs>

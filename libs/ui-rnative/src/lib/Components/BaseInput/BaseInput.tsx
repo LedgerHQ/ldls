@@ -169,7 +169,9 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               !editable && 'bg-disabled text-disabled',
               inputClassName,
             )}
-            style={{ fontWeight: '600' }}
+            // TODO: eventually move to token system
+            // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
+            style={{ fontWeight: 500 }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}

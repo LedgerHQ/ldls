@@ -31,8 +31,9 @@ export const AddressInput = React.forwardRef<
 >(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
   const actualPrefix = (
     <Text
-      className='text-nowrap text-base body-1 group-has-[:disabled]:text-disabled'
+      className='text-nowrap text-base group-has-[:disabled]:text-disabled'
       accessible={false}
+      style={{ fontSize: 16, fontWeight: '500' }}
     >
       {prefix}
     </Text>
@@ -58,6 +59,7 @@ export const AddressInput = React.forwardRef<
       ref={ref}
       prefix={actualPrefix}
       suffix={actualSuffix}
+      style={{ fontSize: 16, fontWeight: '500' }}
       {...props}
     />
   );
