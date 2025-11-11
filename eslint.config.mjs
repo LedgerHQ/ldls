@@ -1,14 +1,13 @@
 import nx from '@nx/eslint-plugin';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import tailwind from 'eslint-plugin-tailwindcss';
 
 export default defineConfig(
   ...nx.configs['flat/base'],
   ...nx.configs['flat/react'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
-  ...tailwind.configs['flat/recommended'],
   {
     ignores: [
       '**/dist',
@@ -19,6 +18,9 @@ export default defineConfig(
   },
   {
     files: ['**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
+    plugins: {
+      'better-tailwindcss': eslintPluginBetterTailwindcss,
+    },
     rules: {
       /**
        * import
@@ -43,7 +45,8 @@ export default defineConfig(
       /**
        * tailwind
        */
-      'tailwindcss/no-custom-classname': 'error',
+      ...eslintPluginBetterTailwindcss.configs['recommended-warn'].rules,
+      ...eslintPluginBetterTailwindcss.configs['recommended-error'].rules,
       /**
        * typescript
        */
@@ -81,6 +84,11 @@ export default defineConfig(
           ],
         },
       ],
+    },
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: './libs/ui-react/src/styles.css',
+      },
     },
   },
   eslintPluginPrettierRecommended,

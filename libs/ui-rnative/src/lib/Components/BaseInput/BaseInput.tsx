@@ -66,7 +66,7 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'relative flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
+  'relative flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-hidden',
 );
 
 const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);

@@ -200,7 +200,7 @@ export const TooltipContent = ({
         className={cn(tooltipContentVariants({ side }), className)}
         {...props}
       >
-        <TooltipPrimitive.Arrow className='bg-interactive fill-interactive size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px]' />
+        <TooltipPrimitive.Arrow className='bg-interactive fill-interactive size-10 translate-y-[calc(-50%-1px)] rotate-45 rounded-[1px]' />
         <div className='relative'>{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
