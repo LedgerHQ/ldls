@@ -82,6 +82,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       hideClearButton,
       onChangeText: onChangeTextProp,
       editable = true,
+      prefix,
       suffix,
       ...props
     },
@@ -157,6 +158,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           onPress={() => inputRef.current?.focus()}
           disabled={!editable}
         >
+          {prefix}
+
           <TextInput
             ref={inputRef}
             value={value}
