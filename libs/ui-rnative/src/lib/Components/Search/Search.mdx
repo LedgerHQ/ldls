@@ -1,0 +1,580 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Search } from './Search';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+# 🔍 Search
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+The Search component is a specialized input field designed specifically for search functionality on mobile platforms. It features a built-in search icon, placeholder text, and automatic clear button for enhanced user experience. Unlike regular inputs, it uses placeholder text instead of floating labels for better search UX patterns.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2248-3468&m=dev).
+
+> ⚠️ **Unsupported previews on web**
+>
+> For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, **please test on-device**.
+> We plan to add screenshots or embed Expo Snack in the future.
+
+## Anatomy
+
+> **Layout:** The Search component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+
+### Search Icon
+
+Fixed 20px search icon positioned on the left with muted color styling. The icon is built-in and cannot be customized.
+
+### Placeholder Text
+
+Uses placeholder text instead of floating labels for better search UX. Styled with `text-muted` color.
+
+### Clear Button
+
+A clear button (×) appears **automatically** when input has content.
+
+> **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing.
+
+#### **Extending the Clear Behavior**
+
+Use `onClear` to extend the default clear behavior with custom logic.
+
+### Disabled State
+
+The search input can be disabled using the `editable` prop set to `false`.
+
+### Error State
+
+The search component supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
+
+The error message will be automatically:
+
+- Connected to the input
+- Displayed with a warning icon
+- Styled in the error color
+- Announced by screen readers
+
+## Controlled vs Uncontrolled
+
+The Search component supports both controlled and uncontrolled usage.
+
+### Uncontrolled (with defaultValue)
+
+Use defaultValue when you don't need to track the search query in state. The component manages its own internal state.
+
+### Controlled (with value and onChangeText)
+
+Use `value` and `onChangeText` when you want full control of the search query from your component logic. This is the recommended approach for search functionality.
+
+## Keyboard Types
+
+The component supports various React Native TextInput keyboard types. While the default keyboard is suitable for most search scenarios, you can customize it:
+
+- default (text) - recommended for most searches
+- email-address - for email search
+- url - for URL search
+- numeric - for numeric search
+
+Set these using the `keyboardType` prop.
+
+## Accessibility
+
+The Search component follows accessibility best practices:
+
+- Supports screen reader navigation
+- Placeholder text is properly announced
+- Error messages are properly announced
+- Clear button has an accessible label
+- Search icon is marked as decorative (`accessible={false}`)
+- Touch target sizes meet minimum requirements (48px height)
+
+## Best Practices
+
+**Placeholder Text**: Provide clear, descriptive placeholder text that indicates what can be searched
+
+**Error Messages**: Make error messages helpful and actionable (e.g., "Search failed. Please try again")
+
+**Debouncing**: Debounce search operations to avoid excessive API calls or filtering on every keystroke
+
+**Clear Button**: Automatically available - use for quick clearing of search queries
+
+**Keyboard Types**: Use the default keyboard type unless you have a specific use case
+
+**Performance**: For large datasets or API searches, implement proper debouncing and optimize your search logic
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+### Basic Usage
+
+```tsx
+import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Search
+      placeholder='Search products'
+      value={query}
+      onChangeText={setQuery}
+    />
+  );
+}
+```
+
+> **Note:** Clear button appears automatically when input has content. Use `hideClearButton` to hide it.
+
+#### **Hiding the Clear Button**
+
+Use `hideClearButton` to prevent the clear button from appearing:
+
+```tsx
+import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Search
+      placeholder='Search'
+      value={query}
+      onChangeText={setQuery}
+      hideClearButton // Clear button will not appear
+    />
+  );
+}
+```
+
+#### **Extending the Clear Behavior**
+
+Provide `onClear` to extend the default clear behavior with additional logic:
+
+```tsx
+import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [query, setQuery] = useState('');
+  const [error, setError] = useState('');
+
+  return (
+    <Search
+      placeholder='Search users'
+      value={query}
+      onChangeText={setQuery}
+      onClear={() => {
+        // Default clearing happens automatically
+        // Add your custom logic here
+        analytics.track('search_cleared');
+        // Clear error state if needed
+        setError('');
+      }}
+    />
+  );
+}
+```
+
+### With Error State
+
+The Search component supports error states and messages:
+
+```tsx
+import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [query, setQuery] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSearch = (text: string) => {
+    setQuery(text);
+    // Example: validate search query
+    if (text.length > 0 && text.length < 2) {
+      setError('Search query must be at least 2 characters');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Search
+      placeholder='Search products'
+      value={query}
+      onChangeText={handleSearch}
+      errorMessage={error}
+    />
+  );
+}
+```
+
+> **Note:** Error messages are optional. Use `errorMessage` to display an error message below the search input.
+
+### With Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={setQuery}
+  className='max-w-md' // Control width
+/>
+```
+
+### With Different Keyboard Types
+
+Use the `keyboardType` prop to show the appropriate keyboard:
+
+```tsx
+// Email search keyboard
+<Search
+  placeholder='Search by email'
+  value={query}
+  onChangeText={setQuery}
+  keyboardType='email-address'
+/>
+
+// URL search keyboard
+<Search
+  placeholder='Search by URL'
+  value={query}
+  onChangeText={setQuery}
+  keyboardType='url'
+/>
+```
+
+### Disabled State
+
+Use the `editable` prop to disable the search input:
+
+```tsx
+<Search placeholder='Search' value='Current search' editable={false} />
+```
+
+### Debounced Search Example
+
+For better performance, especially when dealing with API calls or expensive filtering operations, implement debounced search:
+
+```tsx
+import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { useState, useCallback } from 'react';
+import { debounce } from 'lodash'; // or your preferred debounce utility
+
+function MyComponent() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+
+  // Debounced search function
+  const performSearch = useCallback(
+    debounce(async (searchQuery: string) => {
+      if (searchQuery.trim()) {
+        const results = await searchAPI(searchQuery);
+        setResults(results);
+      } else {
+        setResults([]);
+      }
+    }, 500),
+    [],
+  );
+
+  const handleChange = (text: string) => {
+    setQuery(text); // Update immediately for UI responsiveness
+    performSearch(text); // Debounced search operation
+  };
+
+  return (
+    <Search
+      placeholder='Search products'
+      value={query}
+      onChangeText={handleChange}
+    />
+  );
+}
+```
+
+## Do's and Don'ts
+
+The following guidelines ensure consistent usage of the Search component and maintain design system principles.
+
+### Value Management
+
+✅ **Do**
+
+```tsx
+// Use controlled input pattern (recommended)
+const [query, setQuery] = useState('');
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={setQuery}
+/>
+
+// Or use uncontrolled inputs (also valid)
+<Search placeholder='Search' defaultValue='' />
+
+// Clear button appears automatically - hideClearButton is false by default
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={handleChange}
+/>
+
+// Use onClear to extend default clear behavior with custom logic
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={handleChange}
+  onClear={() => {
+    // Default clearing happens automatically
+    analytics.track('search_cleared');
+  }}
+/>
+
+// Hide clear button when needed
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={handleChange}
+  hideClearButton
+/>
+
+// Use errorMessage for error states
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={handleChange}
+  errorMessage={hasError ? 'Search failed' : undefined}
+/>
+
+// Debounce search operations
+const debouncedSearch = useCallback(
+  debounce((text: string) => performSearch(text), 500),
+  []
+);
+```
+
+❌ **Don't**
+
+```tsx
+// Don't manually clear the value in onClear - it happens automatically
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={setQuery}
+  onClear={() => setQuery('')} // Redundant - clearing happens by default
+/>
+
+// Don't mix controlled and uncontrolled patterns
+<Search
+  value={query}
+  defaultValue='initial'
+  onChangeText={setQuery}
+/>
+
+// Don't search on every keystroke without debouncing
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={(text) => performExpensiveSearch(text)} // Bad performance
+/>
+
+// Don't use labels with Search
+<Search label='Search' placeholder='Search products' /> // label is not supported
+
+// Don't override the built-in search icon
+<Search prefix={<CustomIcon />} /> // prefix is not customizable
+```
+
+### Layout and Styling
+
+The Search component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+
+✅ **Do**
+
+```tsx
+// Preferred: Direct width control
+<Search placeholder='Search' className='max-w-md' />
+
+// Responsive width control
+<Search placeholder='Search' className='w-full md:max-w-md' />
+
+// Use className for margins and positioning
+<Search placeholder='Search' className='mt-4 mx-auto' />
+
+// Alternative: Container wrapper
+<View className='max-w-md'>
+  <Search placeholder='Search' />
+</View>
+```
+
+### Accessibility and Placeholders
+
+✅ **Do**
+
+```tsx
+// Always provide clear, descriptive placeholder text
+<Search
+  placeholder='Search by name or email'
+  value={query}
+  onChangeText={setQuery}
+/>
+
+// Use appropriate keyboard types when needed
+<Search
+  placeholder='Search by email'
+  value={query}
+  onChangeText={setQuery}
+  keyboardType='email-address'
+/>
+
+// Provide error messages when search fails
+<Search
+  placeholder='Search products'
+  value={query}
+  onChangeText={setQuery}
+  errorMessage='Search failed. Please try again.'
+/>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use vague placeholder text
+<Search placeholder='Type here' value={query} onChangeText={setQuery} />
+
+// Don't omit placeholder text
+<Search value={query} onChangeText={setQuery} />
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Use stable callbacks with useCallback
+const handleChange = useCallback((text: string) => {
+  setQuery(text);
+}, []);
+
+<Search placeholder='Search' value={query} onChangeText={handleChange} />;
+
+// Use stable callbacks for extending clear behavior
+const handleCustomClear = useCallback(() => {
+  // Default clearing happens automatically
+  analytics.track('search_cleared');
+}, []);
+
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={handleChange}
+  onClear={handleCustomClear}
+/>;
+
+// Debounce expensive operations
+const debouncedSearch = useCallback(
+  debounce((text: string) => {
+    performSearch(text);
+  }, 500),
+  [],
+);
+
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={(text) => {
+    setQuery(text);
+    debouncedSearch(text);
+  }}
+/>;
+```
+
+❌ **Don't**
+
+```tsx
+// Don't create new functions in render for frequently re-rendered components
+<FlatList
+  data={items}
+  renderItem={({ item }) => (
+    <Search
+      placeholder='Search'
+      value={item.query}
+      onChangeText={(text) => handleChange(item.id, text)}
+    />
+  )}
+/>
+
+// Don't manually clear in onClear - it's automatic
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={setQuery}
+  onClear={() => setQuery('')} // Redundant
+/>
+
+// Don't perform expensive operations on every keystroke
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={(text) => {
+    setQuery(text);
+    performExpensiveAPICall(text); // Bad - should be debounced
+  }}
+/>
+```
+
+## Platform Considerations
+
+### iOS Specific
+
+- Search input automatically adapts to iOS design guidelines
+- Keyboard automatically handles safe area insets
+- Respects iOS accessibility settings like Dynamic Type
+- Search icon renders with platform-appropriate styling
+
+### Android Specific
+
+- Supports Android keyboard types and input methods
+- Handles Android back button interactions appropriately
+- Respects Android accessibility services
+- Search icon adapts to Android visual guidelines
+
+### Cross-Platform
+
+- Consistent visual appearance across platforms
+- Platform-appropriate keyboard behavior
+- Unified API regardless of platform
+- Search icon maintains consistent 20px size
+- Clear button behavior works seamlessly on both platforms
+
+## Usage Guidelines
+
+Use Search for:
+
+- Search functionality and data querying
+- Filtering lists or datasets
+- Quick find operations
+- Search bars in navigation
+
+Use TextInput (instead of Search) for:
+
+- Form data collection
+- User profile information
+- Settings and configurations
+- Any input that requires a label
+
+</Tab>
+</CustomTabs>

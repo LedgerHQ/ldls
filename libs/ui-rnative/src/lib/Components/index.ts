@@ -5,6 +5,7 @@ export * from './CardButton';
 export * from './Checkbox';
 export * from './IconButton';
 export * from './ListItem';
+export * from './Search';
 export * from './Spot';
 export * from './Switch';
 export * from './Tag';
