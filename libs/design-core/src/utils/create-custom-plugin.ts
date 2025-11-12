@@ -313,27 +313,28 @@ export function createGradientPlugin(
 
 export function createShadowPlugin() {
   return plugin(function ({ theme, addUtilities, matchUtilities }) {
-    const defaultColor = 'rgba(0, 0, 0, 0.16)';
+    const defaultColor = 'rgba(0, 0, 0, 0.10)';
+    const strongDefaultColor = 'rgba(0, 0, 0, 0.25)';
 
     const shadows = {
       '.shadow-sm': {
-        '--tw-shadow': `0px 1px 4px 0px var(--tw-shadow-color, ${defaultColor})`,
+        '--tw-shadow': `0 1px 2px -1px var(--tw-shadow-color, ${defaultColor}), 0 1px 3px 0 var(--tw-shadow-color, ${defaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
       '.shadow-md': {
-        '--tw-shadow': `0px 2px 8px 0px var(--tw-shadow-color, ${defaultColor})`,
+        '--tw-shadow': `0 2px 4px -2px var(--tw-shadow-color, ${defaultColor}), 0 4px 6px -1px var(--tw-shadow-color, ${defaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
       '.shadow-lg': {
-        '--tw-shadow': `0px 4px 16px 0px var(--tw-shadow-color, ${defaultColor})`,
+        '--tw-shadow': `0 4px 6px -4px var(--tw-shadow-color, ${defaultColor}), 0 10px 15px -3px var(--tw-shadow-color, ${defaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
       '.shadow-xl': {
-        '--tw-shadow': `0px 6px 24px 0px var(--tw-shadow-color, ${defaultColor})`,
+        '--tw-shadow': `0 8px 10px -6px var(--tw-shadow-color, ${defaultColor}), 0 20px 25px -5px var(--tw-shadow-color, ${defaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
       '.shadow-2xl': {
-        '--tw-shadow': `0px 8px 32px 0px var(--tw-shadow-color, ${defaultColor})`,
+        '--tw-shadow': `0 25px 50px -12px var(--tw-shadow-color, ${strongDefaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
     };
