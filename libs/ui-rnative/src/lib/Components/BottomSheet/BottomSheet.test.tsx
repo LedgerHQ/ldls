@@ -96,7 +96,7 @@ describe('BottomSheet', () => {
   });
 
   describe('snap points', () => {
-    it('uses default snapPoints "medium" when not specified', () => {
+    it('uses default snapPoints "fullWithOffset" when not specified', () => {
       const { BottomSheet } = require('./BottomSheet');
       const { getByTestId } = render(
         <BottomSheet testID='bottom-sheet'>
@@ -105,7 +105,7 @@ describe('BottomSheet', () => {
       );
 
       const element = getByTestId('bottom-sheet');
-      expect(element.props['data-snap-points']).toBe(JSON.stringify(['50%']));
+      expect(element.props['data-snap-points']).toBe(JSON.stringify([1309]));
     });
 
     it('renders with snapPoints preset "full"', () => {
@@ -117,7 +117,7 @@ describe('BottomSheet', () => {
       );
 
       const element = getByTestId('bottom-sheet');
-      expect(element.props['data-snap-points']).toBe(JSON.stringify(['95%']));
+      expect(element.props['data-snap-points']).toBe(JSON.stringify([1334]));
     });
 
     it('renders with snapPoints preset "quarter"', () => {

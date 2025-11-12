@@ -3,6 +3,7 @@ import { createSafeContext, useMergedRef } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import { cssInterop } from 'nativewind';
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { RuntimeConstants } from '../../utils';
 import { CustomBackdrop } from './CustomBackdrop';
 import { CustomHandle } from './CustomHandle';
 import { BottomSheetProps } from './types';
@@ -12,14 +13,24 @@ const StyledGorghomBottomSheet = cssInterop(GorghomBottomSheet, {
   backgroundClassName: 'backgroundStyle',
 });
 
-const SNAP_POINTS = {
-  full: ['95%'],
+const OFFSET_TOP = 25;
+const FULL_HEIGHT = RuntimeConstants.insetDimensions.height;
+const FULL_WITH_OFFSET = FULL_HEIGHT - OFFSET_TOP;
+
+const SNAP_POINTS_MAP = {
+  full: [FULL_HEIGHT],
+  fullWithOffset: [FULL_WITH_OFFSET],
   medium: ['50%'],
   small: ['25%'],
 };
 
+const MAX_DYNAMIC_CONTENT_SIZE = {
+  full: FULL_HEIGHT,
+  fullWithOffset: FULL_WITH_OFFSET,
+};
+
 const bottomSheetVariants = {
-  root: cva('w-full flex-1 rounded-t-xl bg-canvas-sheet', {
+  root: cva('mb-16 w-full flex-1 rounded-t-xl bg-canvas-sheet', {
     variants: {
       shadow: {
         true: 'shadow-lg shadow-base',
@@ -27,7 +38,7 @@ const bottomSheetVariants = {
       },
     },
   }),
-  background: cva('bg-canvas-sheet'),
+  background: cva('mb-16 bg-canvas-sheet'),
 };
 
 const [BottomSheetProvider, useBottomSheetContext] =
@@ -57,7 +68,7 @@ const BottomSheet = forwardRef<
       backdropPressBehavior = 'close',
       onBackdropPress,
       onChange,
-      snapPoints = 'medium',
+      snapPoints = 'fullWithOffset',
       ...props
     },
     ref,
@@ -79,8 +90,25 @@ const BottomSheet = forwardRef<
         return snapPoints;
       }
 
-      return SNAP_POINTS[snapPoints as keyof typeof SNAP_POINTS];
+      return SNAP_POINTS_MAP[snapPoints as keyof typeof SNAP_POINTS_MAP];
     }, [snapPoints]);
+
+    /**
+     * Match the max dynamic content size to the preset or the custom max dynamic content size
+     */
+    const computedMaxDynamicContentSize = useMemo(() => {
+      if (!maxDynamicContentSize) {
+        return undefined;
+      }
+
+      if (typeof maxDynamicContentSize === 'number') {
+        return maxDynamicContentSize;
+      }
+
+      return MAX_DYNAMIC_CONTENT_SIZE[
+        maxDynamicContentSize as keyof typeof MAX_DYNAMIC_CONTENT_SIZE
+      ];
+    }, [maxDynamicContentSize]);
 
     const renderBackdrop = useCallback(
       (backdropProps: React.ComponentProps<typeof CustomBackdrop>) => {
@@ -144,7 +172,7 @@ const BottomSheet = forwardRef<
           enableHandlePanningGesture={enableHandlePanningGesture}
           overDragResistanceFactor={2.5}
           enablePanDownToClose={enablePanDownToClose}
-          maxDynamicContentSize={maxDynamicContentSize}
+          maxDynamicContentSize={computedMaxDynamicContentSize}
           /**
            * Keyboard
            */
