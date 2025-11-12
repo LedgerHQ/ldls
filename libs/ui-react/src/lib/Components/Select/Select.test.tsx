@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { expect, describe, it } from 'vitest';
 import '@testing-library/jest-dom';
-import { Select, SelectContent, SelectItem, SelectTrigger } from './Select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectTrigger,
+} from './Select';
 
 describe('Select', () => {
   it('renders with floating label', () => {
@@ -9,7 +15,9 @@ describe('Select', () => {
       <Select>
         <SelectTrigger label='Choose an option' />
         <SelectContent>
-          <SelectItem value='option1'>Option 1</SelectItem>
+          <SelectItem value='option1'>
+            <SelectItemText>Option 1</SelectItemText>
+          </SelectItem>
         </SelectContent>
       </Select>,
     );
@@ -20,9 +28,11 @@ describe('Select', () => {
   it('renders without label when not provided', () => {
     render(
       <Select>
-        <SelectTrigger />
+        <SelectTrigger label='Choose an option' />
         <SelectContent>
-          <SelectItem value='option1'>Option 1</SelectItem>
+          <SelectItem value='option1'>
+            <SelectItemText>Option 1</SelectItemText>
+          </SelectItem>
         </SelectContent>
       </Select>,
     );
@@ -33,9 +43,11 @@ describe('Select', () => {
   it('can be disabled', () => {
     render(
       <Select disabled>
-        <SelectTrigger />
+        <SelectTrigger label='Choose an option' />
         <SelectContent>
-          <SelectItem value='option1'>Option 1</SelectItem>
+          <SelectItem value='option1'>
+            <SelectItemText>Option 1</SelectItemText>
+          </SelectItem>
         </SelectContent>
       </Select>,
     );
@@ -47,10 +59,14 @@ describe('Select', () => {
   it('works with default value', () => {
     render(
       <Select defaultValue='option2'>
-        <SelectTrigger />
+        <SelectTrigger label='Choose an option' />
         <SelectContent>
-          <SelectItem value='option1'>Option 1</SelectItem>
-          <SelectItem value='option2'>Option 2</SelectItem>
+          <SelectItem value='option1'>
+            <SelectItemText>Option 1</SelectItemText>
+          </SelectItem>
+          <SelectItem value='option2'>
+            <SelectItemText>Option 2</SelectItemText>
+          </SelectItem>
         </SelectContent>
       </Select>,
     );
