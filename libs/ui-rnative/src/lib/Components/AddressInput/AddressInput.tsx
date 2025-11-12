@@ -46,7 +46,7 @@ export const AddressInput = React.forwardRef<
       <Pressable
         onPress={onQrCodeClick}
         accessibilityLabel='Scan QR code'
-        className='group-has-[:disabled]:text-disabled'
+        className='group group-has-[:disabled]:text-disabled'
       >
         <QrCode
           className='text-muted group-active:text-muted-pressed'
