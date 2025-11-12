@@ -12,7 +12,7 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 ## Introduction
 
-Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional description, tag, and a secondary action button visible on hover.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
 
@@ -22,7 +22,7 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 - **Leading Content**: Visual icon or element at the top
 - **Title**: The main label of the item (required)
-- **Subtitle (optional)**: Provides additional context
+- **Description (optional)**: Provides additional context
 - **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
 - **Secondary Action (optional)**: Action button in the top right corner, visible on hover
 
@@ -59,13 +59,13 @@ In carousel mode, the tiles are displayed in a horizontal list with no rounded c
 
 ## Responsive Layout
 
-Tile components adapt to their container width, truncating long titles and subtitles as needed.
+Tile components adapt to their container width, truncating long titles and descriptions as needed.
 
 > **Key behaviors:**
 >
 > - Automatically fits container width
 > - Title truncates to one line
-> - Subtitle truncates to one line
+> - Description truncates to one line
 > - In carousel mode, only first and last items have rounded corners
 
 </Tab>
@@ -105,7 +105,7 @@ function MyComponent() {
   return (
     <Tile
       title='Bitcoin'
-      subtitle='BTC'
+      description='BTC'
       spot={<Spot appearance='coin' icon='btc' />}
       onClick={() => console.log('Clicked!')}
     />
