@@ -334,7 +334,7 @@ export function createShadowPlugin() {
         'box-shadow': 'var(--tw-shadow)',
       },
       '.shadow-2xl': {
-        '--tw-shadow': `0 25px 50px -12px  var(--tw-shadow-color, ${strongDefaultColor})`,
+        '--tw-shadow': `0 25px 50px -12px var(--tw-shadow-color, ${strongDefaultColor})`,
         'box-shadow': 'var(--tw-shadow)',
       },
     };
