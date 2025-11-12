@@ -1,0 +1,363 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title='Getting Started/Setup Tailwind' />
+
+# 🎨 Setup Tailwind CSS
+
+The Ledger Design System uses [Tailwind CSS v3](https://v3.tailwindcss.com/) as its foundation for styling, **with custom configurations and extensions to implement our design language.**
+
+## ✨ Key Features
+
+Our Tailwind implementation includes:
+
+- **Custom Preset**: A comprehensive configuration that implements our design tokens and styling rules. [See custom utilities →](#-custom-utilities)
+- **Plugin System**: Custom plugins for [typography](#3-typography), [colors](#2-colors--backgrounds), [shadows](#5-shadows), and [more](#-custom-utilities)
+- **Theme System**: Dynamic theming with support for [light/dark modes](#-dark-mode-support) and [different brand themes](/docs/foundations-colors--docs)
+- **Design Token Integration**: Direct mapping of design tokens to Tailwind utilities. [Explore foundations →](/docs/foundations-colors--docs)
+- **Component Patterns**: Common patterns and best practices for component styling. [View components →](/docs/action-button--docs)
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+> **Note:** This guide assumes you already have Tailwind CSS v3.x installed in your project. Our Design System is built and tested with Tailwind CSS v3. If you haven't installed Tailwind CSS yet, please follow the [official Tailwind CSS installation guide](https://v3.tailwindcss.com/docs/installation) first.
+
+> **Tailwind v4 Migration:** We are currently using Tailwind CSS v3 and have not yet migrated to v4. For details about our styling strategy, version choice, and future migration plans, see our [ADR 005: Styling Strategy](https://ledgerhq.atlassian.net/wiki/spaces/TA/pages/5840142351/ADR+005+Styling+Strategy).
+
+Install `ldls-design-core` and `ldls-ui-react` packages:
+
+```bash
+# Install the Design Core package where the tailwind preset lives
+npm install @ledgerhq/ldls-design-core
+
+# Install the React UI Kit package where the components lives
+npm install @ledgerhq/ldls-ui-react
+
+# Install peer dependencies
+npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
+```
+
+---
+
+## ⚙️ Configuration
+
+### 1. Tailwind Config
+
+Create or update your `tailwind.config.ts` (or `tailwind.config.js`) to use our preset.
+
+Available presets are: `ledgerLivePreset`, `websitesPreset`, `enterprisePreset`.
+
+```typescript
+import type { Config } from 'tailwindcss';
+import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+
+const config = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
+    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+  ],
+  presets: [ledgerLivePreset], // the installed tailwind preset
+} satisfies Config;
+
+export default config;
+```
+
+### 2. VSCode Extensions and Setup
+
+For the best development experience, we recommend the following setup:
+
+1. **Tailwind CSS IntelliSense** ([bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss))
+   - Provides autocomplete for Tailwind classes
+   - Shows class definitions on hover
+   - Syntax highlighting for Tailwind classes
+   - Linting for class order and conflicts
+   - Add to your VSCode settings (in your `.vscode/settings.json` file):
+     ```json
+     {
+       "editor.defaultFormatter": "esbenp.prettier-vscode",
+       "tailwindCSS.classFunctions": ["cva", "cn"],
+       "tailwindCSS.experimental.classRegex": [
+         ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+       ]
+     }
+     ```
+
+2. **ESLint Plugin Tailwind** ([eslint-plugin-tailwindcss](https://github.com/tailwindlabs/eslint-plugin-tailwindcss))
+   - Lints Tailwind classes in a consistent order
+   - Formats Tailwind classes using official prettier tailwind plugin
+   - Install with:
+     ```bash
+     npm install -D eslint-plugin-tailwindcss
+     ```
+
+### 3. Utility Functions
+
+We recommend creating utility functions to help you work with Tailwind classes. Here's how to create powerful utilities that handle conditional classes, Tailwind class conflicts, and type-safe variants:
+
+**Creating Class Names Utility**
+
+Create your class names utility file (e.g., `utils/cn.ts`):
+
+```typescript
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+This utility combines the power of two popular libraries:
+
+- [clsx](https://www.npmjs.com/package/clsx): Handles conditional class names
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): Intelligently handles Tailwind CSS class conflicts
+
+Example usage of cn utility:
+
+```typescript
+import { cn } from '../utils/cn';
+
+// Basic usage
+<div className={cn(
+  "base-class",
+  isActive && "active-class",
+  variant === "large" && "large-class"
+)}>
+
+// With conditional objects
+<div className={cn(
+  "px-4 py-2 rounded",
+  {
+    "bg-accent": isAccent,
+    "bg-base": !isAccent,
+    "bg-disabled": isDisabled
+  }
+)}>
+
+// Merging with component classes - handles Tailwind conflicts!
+<Component
+  className={cn(
+    "body-1 md:body-2", // Base styles
+    "body-2 md:body-3"  // Override - properly merges breakpoints
+  )}
+/>
+```
+
+**Creating Component Variants Utility**
+
+For type-safe component variants, we use class-variance-authority. [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) provides:
+
+- Simple way to define component variants
+- Type-safe variant options
+- Default values for variants
+- Easy composition with other classes
+
+---
+
+## 🧩 Custom Utilities
+
+The Ledger Design System builds on Tailwind CSS's utility-first methodology while ensuring design consistency through a shared preset. Instead of customizing Tailwind's configuration in every project, **we provide a common preset that all teams can use out of the box.**
+
+### 1. Spacing & Sizing
+
+Our spacing scale uses a 1:1 pixel mapping, where each number directly corresponds to its pixel value. For example, m-4 equals 4px of margin. [Learn more about our spacing system](/docs/foundations-spacing--docs).
+
+```tsx
+// Spacing Examples
+<div className="p-1">        {/* padding: 1px */}
+<div className="m-2">        {/* margin: 2px */}
+<div className="gap-3">      {/* gap: 3px */}
+<div className="p-4">        {/* padding: 4px */}
+<div className="m-8">        {/* margin: 8px */}
+
+// Sizing Examples
+<div className="w-4">        {/* width: 4px */}
+<div className="h-8">        {/* height: 8px */}
+<div className="max-w-16">   {/* max-width: 16px */}
+```
+
+### 2. Colors & Backgrounds
+
+Our color system uses semantic tokens. [Explore our color system](/docs/foundations-colors--docs).
+[background colors](/docs/foundations-colors-backgrounds--docs).
+[text colors](/story/foundations-colors-text--text).
+[border colors](/story/foundations-colors-border--border).
+[Crypto colors](/story/foundations-colors-crypto-background--crypto).
+[Discover colors](/story/foundations-colors-discover-background--discover).
+
+```tsx
+// Background Colors
+<div className="bg-canvas">          {/* Main background */}
+<div className="bg-canvas-subtle">   {/* Subtle background variation */}
+
+// Text Colors
+<div className="text-base">       {/* Default base color */}
+<div className="text-muted">         {/* Muted text color */}
+<div className="text-accent">        {/* Accent text color */}
+
+// Border Colors
+<div className="border-base">     {/* Default border */}
+<div className="border-accent">      {/* Accent border */}
+
+// Interactive Colors
+<button className="bg-interactive hover:bg-interactive-hover">
+<div className="text-interactive-focus">
+```
+
+### 3. Typography
+
+Our preset carefully **overrides** specific Tailwind core plugins to ensure design consistency.
+
+```typescript
+corePlugins: {
+  fontSize: false,    // Controlled by our typography system
+  fontWeight: false,  // Controlled by our typography system
+  lineHeight: false,  // Controlled by our typography system
+}
+```
+
+Pre-configured typography classes that handle font family, size, weight, line height, and letter spacing. [View typography guidelines](/story/foundations-styles-typography--typography).
+
+```tsx
+// Responsive Display Text
+<h1 className="responsive-display-1">Large Title</h1>
+<h2 className="responsive-display-2">Medium Title</h2>
+
+// Headings
+<h2 className="heading-1">Main Heading</h2>
+<h3 className="heading-2-semi-bold">Section Title</h3>
+
+// Body Text
+<p className="body-1">Regular paragraph text</p>
+<p className="body-2-semi-bold">Emphasized text</p>
+
+// ❌ These are not valid typography classes
+<div className="text-2xl font-semibold">Title</div>
+```
+
+### 4. Gradients
+
+[See gradient examples](/story/foundations-styles-gradients--gradients).
+
+```tsx
+// Directional Gradients
+<div className="bg-gradient-top" />      {/* Top to bottom fade */}
+<div className="bg-gradient-bottom" />   {/* Bottom to top fade */}
+
+// Crypto Asset Gradients
+<div className="bg-gradient-bitcoin" />  {/* Bitcoin theme gradient */}
+<div className="bg-gradient-ethereum" /> {/* Ethereum theme gradient */}
+```
+
+### 5. Shadows
+
+[View shadow system](/story/foundations-styles-shadows--shadows).
+
+```tsx
+<div className="shadow-sm">   {/* Subtle elevation */}
+<div className="shadow-md">   {/* Medium elevation */}
+<div className="shadow-lg">   {/* Large elevation */}
+<div className="shadow-xl">   {/* Extra large elevation */}
+<div className="shadow-2xl">  {/* Maximum elevation */}
+```
+
+### 6. Border Radius
+
+[Explore border radius tokens](/docs/foundations-border-radius--docs).
+
+```tsx
+<div className="rounded-sm">      {/* Small radius */}
+<div className="rounded-md">      {/* Medium radius */}
+<div className="rounded-lg">      {/* Large radius */}
+<div className="rounded-full">    {/* Circular radius */}
+```
+
+---
+
+## 🌓 Dark Mode Support
+
+All design tokens automatically support dark mode:
+
+```tsx
+<html className='dark'>
+  <div className='bg-canvas text-base'>Dark mode content</div>
+</html>
+```
+
+---
+
+## ✅ Best Practices
+
+### 1. Use Semantic Color Tokens
+
+```tsx
+// ✅ Do
+<div className="bg-canvas text-base">
+
+// ❌ Don't
+<div className="bg-[#ffffff] text-[#000000]">
+```
+
+### 2. Follow the 4px Grid
+
+```tsx
+// ✅ Do
+<div className="p-4 gap-2">    {/* 4px padding, 2px gap */}
+
+// ❌ Don't
+<div className="p-[5px] gap-[7px]">
+```
+
+### 3. Use Typography System
+
+```tsx
+// ✅ Do
+<h1 className="heading-1">Title</h1>
+
+// ❌ Don't use tailwind classes for typography
+// these classes are not part of our tailwind preset - they are disabled by default.
+<h1 className="text-2xl font-semibold">Title</h1>
+```
+
+### 4. Leverage Dark Mode
+
+```tsx
+// ✅ Do
+<div className="bg-canvas dark:bg-canvas-dark">
+
+// ❌ Don't
+<div style={{
+  backgroundColor: isDark ? 'var(--color-canvas-dark)' : 'var(--color-canvas)'
+}}>
+```
+
+### 5. Avoid Overriding Preset Configurations
+
+- Use our preset's semantic utilities instead of raw Tailwind classes
+- Follow our color system and spacing scale
+- Leverage the typography system for consistent text styling
+- Use the theme system for dark mode support
+- Avoid overriding preset configurations unless absolutely necessary
+
+---
+
+## 📚 Next Steps
+
+Once you have everything configured, check out:
+
+- [Button component](?path=/docs/action-button--docs) for usage examples
+- [Foundations](/docs/foundations-colors--docs) to explore design tokens
+- [Components](/docs/action-button--docs) to see all available components
+
+---
+
+## 💬 Support
+
+If you encounter any issues with the setup:
+
+- Check that all dependencies are correctly installed
+- Verify your configuration matches the examples above
+- Ensure your IDE extensions are properly configured
+- Reach out to our Design System team if issues persist

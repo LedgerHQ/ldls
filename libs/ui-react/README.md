@@ -172,5 +172,5 @@ To contribute:
 - [📚 Storybook Documentation](https://ldls.vercel.app)
 - [🏠 Main Repository](https://github.com/LedgerHQ/ldls)
 - [📦 npm Package](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react)
-- [🎨 Design System SetUp Guide](https://ldls.vercel.app/?path=/docs/tailwind-setup-guide--docs)
+- [🎨 Design System SetUp Guide](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
 - [🐛 Report Issues](https://github.com/LedgerHQ/ldls/issues)
