@@ -22,10 +22,7 @@ import type { Config } from 'tailwindcss';
 import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset],
 } satisfies Config;
 
@@ -60,8 +57,8 @@ export default config;
 All design tokens automatically support dark mode:
 
 ```tsx
-<html className="dark">
-  <div className="bg-canvas text-base">Dark mode content</div>
+<html className='dark'>
+  <div className='bg-canvas text-base'>Dark mode content</div>
 </html>
 ```
 
@@ -88,6 +85,5 @@ All design tokens are automatically kept in sync with Figma design files through
 ## 🔗 Links
 
 - [📚 Full Documentation](https://ldls.vercel.app)
-- [🎨 Setup Guide](https://ldls.vercel.app/?path=/docs/tailwind-setup-guide--docs)
-- [⚙️ Configuration](https://ldls.vercel.app/?path=/docs/tailwind-configuration--docs)
+- [🎨 Setup Tailwind](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
 - [🏠 Repository](https://github.com/LedgerHQ/ldls)

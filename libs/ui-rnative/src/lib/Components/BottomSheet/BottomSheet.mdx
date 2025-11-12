@@ -1,0 +1,270 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BottomSheetStories from './BottomSheet.stories';
+import { BottomSheet } from './BottomSheet';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title="Components/BottomSheet" of={BottomSheetStories} />
+
+# 📋 BottomSheet
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+BottomSheet provides a flexible and performant way to present content, forms, or actions in a mobile-friendly interface with support for scrollable content, dynamic sizing, and gesture controls.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=XXXXX&p=f&m=dev).
+
+## Anatomy
+
+<Canvas of={BottomSheetStories.Base} />
+
+- **Handle**: Visual indicator for draggable area
+- **Backdrop**: Semi-transparent overlay behind the sheet
+- **Header**: Optional header with title, description, back button, and close button
+- **Content**: Scrollable or static content using specialized scrollable components
+
+## Properties
+
+### Overview
+
+The base bottom sheet with standard configuration. This example uses `BottomSheetView` for static content, shows a compact header, and snaps to full height. Use this as your starting point for most implementations.
+
+<Canvas of={BottomSheetStories.Base} />
+<Controls of={BottomSheetStories.Base} />
+
+### Header Appearances
+
+Bottom sheets support two header appearances:
+
+- **compact**: Centered title with optional description (ideal for shorter titles)
+- **expanded**: Left-aligned title with larger typography (ideal for longer titles and detailed descriptions)
+
+The expanded appearance provides more breathing room for content-heavy headers and is recommended when your title exceeds 2-3 words or when you need to display substantial description text.
+
+<Canvas of={BottomSheetStories.TitleExpanded} />
+
+### Scrollable Content
+
+#### ScrollView
+
+Use `BottomSheetScrollView` when you have a moderate amount of scrollable content (typically under 20-30 items) that can safely fit in memory. Perfect for forms, article content, or settings menus. Note: Always use `BottomSheetScrollView`, not React Native's regular `ScrollView`.
+
+<Canvas of={BottomSheetStories.ScrollView} />
+
+#### FlatList (Virtual List)
+
+Use `BottomSheetFlatList` for efficiently rendering large lists (100+ items) with simple data structures. It virtualizes items to improve performance by only rendering what's visible on screen. Ideal for contact lists, search results, or product catalogs. This example demonstrates a list with 100 items.
+
+<Canvas of={BottomSheetStories.VirtualList} />
+
+#### VirtualizedList
+
+Use `BottomSheetVirtualizedList` when you need more control over item access patterns or work with complex data structures. Requires explicit `getItem` and `getItemCount` implementations. This is the lower-level API that `FlatList` is built upon—use it for custom optimizations or non-array data sources.
+
+<Canvas of={BottomSheetStories.VirtualizedList} />
+
+> **Additional List Types:**
+>
+> - **SectionList**: Available via `BottomSheetSectionList` but **not compatible with react-native-web**. See [Gorhom documentation](https://gorhom.dev/react-native-bottom-sheet/components/bottomsheetsectionlist) for usage details.
+> - **FlashList**: High-performance list from Shopify. Requires `@shopify/flash-list` package. See [Gorhom documentation](https://gorhom.dev/react-native-bottom-sheet/components/bottomsheetflashlist) for usage details.
+
+### Dynamic Sizing
+
+Bottom sheets can automatically adapt to content height instead of using fixed snap points. Enable this with `enableDynamicSizing` prop. The sheet will automatically resize as content changes—perfect for dynamic forms, expandable sections, or content that varies in length. This example shows a sheet that sizes itself to fit 5 items.
+
+<Canvas of={BottomSheetStories.DynamicSizingWithoutSnapPoints} />
+
+You can also combine snap points with dynamic sizing to control the height of the bottom sheet. This example shows a sheet that sizes itself to fit 3 items. Additionally, maxDynamicContentSize can be used to control the max height of the bottom sheet (not working on web preview).
+
+<Canvas of={BottomSheetStories.DynamicSizingWithSnapPoints} />
+
+### Prevent Close
+
+Prevent user dismissal for critical flows where users must complete an action or make a decision. 
+Set both properties: 
+- `hideCloseButton={true}`
+- `enablePanDownToClose={false}`
+- `backdropPressBehavior='none'` 
+
+<Canvas of={BottomSheetStories.PreventClose} />
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+BottomSheet is built on top of [@gorhom/bottom-sheet v5](https://gorhom.dev/react-native-bottom-sheet/).  
+
+### Basic Usage
+
+```tsx
+import { BottomSheet, BottomSheetView, BottomSheetHeader, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import { Button, View, Text } from 'react-native';
+
+function MyComponent() {
+  const bottomSheetRef = useBottomSheetRef();
+
+  return (
+    <>
+      <Button onPress={() => bottomSheetRef.current?.expand()}>
+        Open Bottom Sheet
+      </Button>
+
+      <BottomSheet ref={bottomSheetRef} snapPoints="full">
+        <BottomSheetView>
+          <BottomSheetHeader
+            title="Welcome"
+            appearance="compact"
+            description="Get started with our platform"
+          />
+          <Text>Your content here</Text>
+        </BottomSheetView>
+      </BottomSheet>
+    </>
+  );
+}
+```
+
+### useBottomSheetRef Hook
+
+The `useBottomSheetRef` hook provides a typed ref for programmatic control:
+
+```tsx
+import { useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  const bottomSheetRef = useBottomSheetRef();
+
+  return (
+    <BottomSheet ref={bottomSheetRef} snapPoints={['25%', '50%', '90%']}>
+      {/* Content */}
+    </BottomSheet>
+  );
+}
+```
+
+<table style={{width: "100%"}}>
+  <thead>
+    <tr>
+      <th style={{textAlign: "left"}}>Method</th>
+      <th style={{textAlign: "left"}}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>expand()</b></td>
+      <td>Expand to the highest snap point</td>
+    </tr>
+    <tr>
+      <td><b>collapse()</b></td>
+      <td>Collapse to the lowest snap point</td>
+    </tr>
+    <tr>
+      <td><b>close()</b></td>
+      <td>Close the bottom sheet completely</td>
+    </tr>
+    <tr>
+      <td><b>snapToIndex(index: number)</b></td>
+      <td>Snap to a specific snap point by index</td>
+    </tr>
+    <tr>
+      <td><b>snapToPosition(position: string | number)</b></td>
+      <td>Snap to a specific position</td>
+    </tr>
+    <tr>
+      <td><b>forceClose()</b></td>
+      <td>Force close without animation</td>
+    </tr>
+  </tbody>
+</table>
+
+### Snap Points
+
+```tsx
+// Preset snap points
+<BottomSheet snapPoints="full">    {/* 95% of screen */}
+<BottomSheet snapPoints="medium">    {/* 50% of screen */}
+<BottomSheet snapPoints="small"> {/* 25% of screen */}
+
+// Custom snap points (pixels, percentages, or mixed)
+<BottomSheet snapPoints={[200, 400, 600]}>
+<BottomSheet snapPoints={['30%', '60%', '90%']}>
+<BottomSheet snapPoints={[150, '50%', '90%']}>
+```
+
+### Scrollable Components
+
+Always use specialized scrollable components, never regular React Native components:
+
+```tsx
+import { 
+  BottomSheetView,           // Static content
+  BottomSheetScrollView,      // Scrollable content
+  BottomSheetFlatList,        // Large lists (100+ items)
+  BottomSheetVirtualizedList, // Custom data access patterns
+} from '@ledgerhq/ldls-ui-rnative';
+
+// Use spacing prop on header when using list components
+<BottomSheet ref={ref} snapPoints="full">
+  <BottomSheetHeader spacing title="List" appearance="compact" />
+  <BottomSheetFlatList data={data} renderItem={renderItem} />
+</BottomSheet>
+```
+
+### Important Notes
+
+- **Dynamic Sizing**: When using `enableDynamicSizing`, do not define `snapPoints`
+- **Header Spacing**: Use `spacing` prop on `BottomSheetHeader` when using FlatList/VirtualizedList
+- **SectionList**: Not compatible with react-native-web. See [Gorhom documentation](https://gorhom.dev/react-native-bottom-sheet/components/bottomsheetsectionlist).
+- **FlashList**: Requires `@shopify/flash-list` package. See [Gorhom docs](https://gorhom.dev/react-native-bottom-sheet/components/bottomsheetflashlist)
+
+## Do's and Don'ts
+
+✅ **Do**
+
+```tsx
+// Use specialized scrollable components
+<BottomSheet ref={bottomSheetRef} snapPoints="full">
+  <BottomSheetScrollView>
+    <BottomSheetHeader title="Title" appearance="compact" />
+    {/* Content */}
+  </BottomSheetScrollView>
+</BottomSheet>
+
+// Use the provided hook
+const bottomSheetRef = useBottomSheetRef();
+bottomSheetRef.current?.expand();
+
+// Disable both for non-dismissible sheets
+<BottomSheet 
+  hideCloseButton 
+  enablePanDownToClose={false}
+>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use regular React Native components
+<BottomSheet ref={ref}>
+  <ScrollView> {/* Wrong! Use BottomSheetScrollView */}
+    <Text>Content</Text>
+  </ScrollView>
+</BottomSheet>
+
+// Don't mix snapPoints with enableDynamicSizing
+<BottomSheet snapPoints="half" enableDynamicSizing> {/* Conflicting! */}
+
+// Don't call methods without optional chaining
+bottomSheetRef.current.expand(); // May crash! Use current?.expand()
+```
+
+## Learn More
+
+For advanced features and customization options, refer to the [@gorhom/bottom-sheet documentation](https://gorhom.dev/react-native-bottom-sheet/).
+
+</Tab>
+</CustomTabs>

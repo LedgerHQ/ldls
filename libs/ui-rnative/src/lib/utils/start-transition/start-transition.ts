@@ -1,8 +1,8 @@
 import { startTransition as reactStartTransition } from 'react';
-import { isWeb } from '../constants';
+import { RuntimeConstants } from '../constants';
 
 export const startTransition = (callback: React.TransitionFunction): void => {
-  if (!isWeb) {
+  if (!RuntimeConstants.isBrowser) {
     // Pass-through function
     callback();
   } else {

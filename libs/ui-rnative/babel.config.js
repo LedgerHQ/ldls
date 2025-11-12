@@ -12,6 +12,7 @@ export default function (api) {
       ],
       'nativewind/babel',
     ],
+    plugins: ['react-native-worklets/plugin'],
     env: {
       test: {
         presets: [

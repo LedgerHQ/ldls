@@ -7,6 +7,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { RuntimeConstants } from '../../utils';
 
 import { ThemeProviderProps } from './ThemeProvider.types';
 
@@ -29,7 +30,7 @@ const ThemeProvider = forwardRef<View, ThemeProviderProps>(
      * Side-effect to update the color scheme of the app when the mode changes.
      */
     useEffect(() => {
-      if (mode !== null && mode !== undefined) {
+      if (mode !== null && mode !== undefined && RuntimeConstants.isNative) {
         Appearance.setColorScheme(mode as ColorSchemeName);
       }
     }, [mode]);
