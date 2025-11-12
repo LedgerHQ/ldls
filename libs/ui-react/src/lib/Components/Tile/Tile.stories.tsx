@@ -38,7 +38,7 @@ const meta: Meta<typeof Tile> = {
     },
   },
   argTypes: {
-    spot: {
+    leadingContent: {
       control: 'select',
       options: ['None', 'Settings', 'Plus'],
       mapping: {
@@ -58,14 +58,13 @@ const meta: Meta<typeof Tile> = {
         MoreVertical: secondaryAction,
       },
     },
-    tag: {
+    trailingContent: {
       control: 'select',
-      options: ['None', 'Base', 'Success', 'Error'],
+      options: ['None', 'Tag', 'Text'],
       mapping: {
         None: undefined,
-        Base: <Tag label='Tag' appearance='base' />,
-        Success: <Tag label='Tag' appearance='success' />,
-        Error: <Tag label='Tag' appearance='error' />,
+        Tag: <Tag label='Tag' appearance='base' />,
+        Text: <span>Text</span>,
       },
     },
   },
@@ -76,9 +75,9 @@ type Story = StoryObj<typeof Tile>;
 
 export const Base: Story = {
   args: {
-    title: 'Item with Spot and Subtitle',
-    subtitle: 'Additional information',
-    spot: <Spot appearance='icon' icon={Settings} />,
+    title: 'Item with Spot and Description',
+    description: 'Additional information',
+    leadingContent: <Spot appearance='icon' icon={Settings} />,
     className: 'max-w-256',
     secondaryAction,
   },
@@ -87,9 +86,9 @@ export const Base: Story = {
       source: {
         code: `
 <Tile
-  title="Item with Spot and Subtitle"
-  subtitle="Additional information"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  title="Item with Spot and Description"
+  description="Additional information"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   secondaryAction={(
     <InteractiveIcon
       iconType="stroked"
@@ -107,10 +106,10 @@ export const Base: Story = {
   },
 };
 
-export const WithoutSubtitle: Story = {
+export const Withoutdescription: Story = {
   args: {
-    title: 'Item without Subtitle',
-    spot: <Spot appearance='icon' icon={Plus} />,
+    title: 'Item without Description',
+    leadingContent: <Spot appearance='icon' icon={Plus} />,
     className: 'max-w-256',
     secondaryAction,
   },
@@ -119,8 +118,8 @@ export const WithoutSubtitle: Story = {
       source: {
         code: `
 <Tile
-  title="Item without Subtitle"
-  spot={<Spot appearance="icon" icon={Plus} />}
+  title="Item without Description"
+  leadingContent={<Spot appearance="icon" icon={Plus} />}
   secondaryAction={(
     <InteractiveIcon
       iconType="stroked"
@@ -138,12 +137,12 @@ export const WithoutSubtitle: Story = {
   },
 };
 
-export const WithTag: Story = {
+export const WithTrailingContent: Story = {
   args: {
-    title: 'Item with Tag',
-    subtitle: 'Additional information',
-    spot: <Spot appearance='icon' icon={Settings} />,
-    tag: <Tag label='New' appearance='base' />,
+    title: 'Item with Trailing Content',
+    description: 'Additional information',
+    leadingContent: <Spot appearance='icon' icon={Settings} />,
+    trailingContent: <Tag label='New' appearance='base' />,
     secondaryAction,
     className: 'max-w-256',
   },
@@ -152,10 +151,10 @@ export const WithTag: Story = {
       source: {
         code: `
 <Tile
-  title="Item with Tag"
-  subtitle="Additional information"
-  spot={<Spot appearance="icon" icon={Settings} />}
-  tag={<Tag label="New" appearance="base" />}
+  title="Item with Trailing Content"
+  description="Additional information"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  trailingContent={<Tag label="New" appearance="base" />}
   secondaryAction={(
     <InteractiveIcon
       iconType="stroked"
@@ -176,8 +175,8 @@ export const WithTag: Story = {
 export const WithoutSecondaryAction: Story = {
   args: {
     title: 'Item without secondary action',
-    subtitle: 'Additional information',
-    spot: <Spot appearance='icon' icon={Settings} />,
+    description: 'Additional information',
+    leadingContent: <Spot appearance='icon' icon={Settings} />,
     className: 'max-w-256',
   },
   parameters: {
@@ -186,8 +185,8 @@ export const WithoutSecondaryAction: Story = {
         code: `
 <Tile
   title="Item without secondary action"
-  subtitle="Additional information"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  description="Additional information"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="max-w-256"
 />
 `,
@@ -196,41 +195,41 @@ export const WithoutSecondaryAction: Story = {
   },
 };
 
-export const SpotVariantsShowcase: Story = {
+export const LeadingContentVariantsShowcase: Story = {
   render: () => (
     <div className='flex'>
       <Tile
         title='User'
-        subtitle='With subtitle'
-        spot={<Spot appearance='icon' icon={User} />}
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={User} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Wallet'
-        subtitle='With subtitle'
-        spot={<Spot appearance='icon' icon={Wallet} />}
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={Wallet} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Cart'
-        subtitle='With subtitle'
-        spot={<Spot appearance='icon' icon={Cart} />}
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={Cart} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Apps'
-        subtitle='With subtitle'
-        spot={<Spot appearance='icon' icon={Apps} />}
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={Apps} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Chart'
-        subtitle='With subtitle'
-        spot={<Spot appearance='icon' icon={Chart1} />}
+        description='With description'
+        leadingContent={<Spot appearance='icon' icon={Chart1} />}
         secondaryAction={secondaryAction}
         className='max-w-128'
       />
@@ -240,19 +239,19 @@ export const SpotVariantsShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='w-256 bg-base grid grid-cols-1 gap-16 p-16'>
+    <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
       <div>
         <Tile
           title='Short Title'
-          subtitle='Short subtitle'
-          spot={<Spot appearance='icon' icon={Plus} />}
+          description='Short description'
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
           secondaryAction={secondaryAction}
         />
         <Tile
           title='Long Title that should truncate appropriately'
-          subtitle='Long subtitle that should truncate appropriately'
-          spot={<Spot appearance='icon' icon={Plus} />}
+          description='Long description that should truncate appropriately'
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
           secondaryAction={secondaryAction}
         />
       </div>
@@ -263,18 +262,18 @@ export const ResponsiveLayout: Story = {
 export const List: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='bg-base flex w-[450px]'>
+      <div className='flex w-[450px] bg-base'>
         {Array.from({ length: 3 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
             title={`Item ${i + 1}`}
-            subtitle={`Subtitle ${i + 1}`}
-            spot={<Spot appearance='icon' icon={Apps} />}
+            description={`Description ${i + 1}`}
+            leadingContent={<Spot appearance='icon' icon={Apps} />}
             secondaryAction={secondaryAction}
           />
         ))}
       </div>
-      <div className='bg-base flex w-[450px] overflow-x-auto'>
+      <div className='flex w-[450px] overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}
@@ -283,12 +282,12 @@ export const List: Story = {
                 ? 'Long Title that should truncate appropriately'
                 : `Item ${i + 1}`
             }
-            subtitle={
+            description={
               i === 0
-                ? 'Long subtitle that should truncate appropriately'
-                : `Subtitle ${i + 1}`
+                ? 'Long description that should truncate appropriately'
+                : `Description ${i + 1}`
             }
-            spot={<Spot appearance='icon' icon={Apps} />}
+            leadingContent={<Spot appearance='icon' icon={Apps} />}
             secondaryAction={secondaryAction}
             className='w-128 shrink-0'
           />

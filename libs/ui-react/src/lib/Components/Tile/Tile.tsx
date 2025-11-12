@@ -1,34 +1,28 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
-import { useCallback, useState } from 'react';
+import { cva } from 'class-variance-authority';
+import { MouseEventHandler, useCallback, useState } from 'react';
+import { TileProps } from './types';
 
-export type TileProps = {
-  /**
-   * The Spot component to display on the top.
-   */
-  spot: React.ReactNode;
-  /**
-   * The title of the list item.
-   */
-  title: string;
-  /**
-   * The subtitle of the list item.
-   */
-  subtitle?: string;
-  /**
-   * The InteractiveIcon component to display on the top right side of the list item.
-   * The button is rendered when the user hovers over the list item or navigates with the keyboard.
-   */
-  secondaryAction?: React.ReactNode;
-  /**
-   * The Tag component to display on the bottom of the list item.
-   */
-  tag?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+const tileVariants = {
+  root: cva(
+    [
+      'group relative flex w-full flex-col items-center gap-8 p-8 ',
+      'rounded-sm bg-base-transparent text-base transition-colors focus-visible:outline-2 focus-visible:outline-focus',
+    ],
+    {
+      variants: {
+        isActive: {
+          true: 'bg-base-transparent-pressed',
+          false: 'hover:bg-base-transparent-hover',
+        },
+      },
+    },
+  ),
+};
 
 /**
- * A tile list item component that displays a spot icon at the top, title and optional subtitle,
- * and optional tag at the bottom. It functions as a clickable button with hover and active states,
+ * A tile list item component that displays a spot icon at the top, title and optional description,
+ * and optional trailing content at the bottom. It functions as a clickable button with hover and active states,
  * and can optionally display a secondary action that appears on hover or focus.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs Storybook}
@@ -82,13 +76,12 @@ export type TileProps = {
 export const Tile = ({
   className,
   title,
-  subtitle,
-  spot,
+  description,
+  leadingContent,
   secondaryAction,
-  tag,
-  onMouseDown,
-  onMouseUp,
-  onMouseLeave,
+  trailingContent,
+  onClick,
+  'aria-label': ariaLabel,
   ...props
 }: TileProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -115,40 +108,46 @@ export const Tile = ({
     [],
   );
 
-  const handleMouseUp = useCallback(() => {
+  const handleMouseUp: MouseEventHandler<HTMLDivElement> = useCallback(() => {
     setIsActive(false);
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    setIsActive(false);
-  }, []);
+  const handleMouseLeave: MouseEventHandler<HTMLDivElement> =
+    useCallback(() => {
+      setIsActive(false);
+    }, []);
 
   return (
     <div
-      className={cn(
-        'w-full', // Default styles that can be overridden by the className prop
-        className,
-        'group relative rounded-sm bg-base-transparent text-base transition-colors',
-        isActive && 'bg-base-transparent-pressed',
-        !isActive && 'hover:bg-base-transparent-hover',
-      )}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
+      {...props}
+      className={tileVariants.root({ isActive, className })}
+      onMouseDown={(e) => {
+        props?.onMouseDown?.(e);
+        handleMouseDown(e);
+      }}
+      onMouseUp={(e) => {
+        props?.onMouseUp?.(e);
+        handleMouseUp(e);
+      }}
+      onMouseLeave={(e) => {
+        props?.onMouseLeave?.(e);
+        handleMouseLeave(e);
+      }}
     >
       <button
-        className='focus-visible:outline-focus flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2'
-        {...props}
+        aria-label={ariaLabel || title}
+        onClick={onClick}
+        className='flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2 focus-visible:outline-focus'
       >
-        <div className='flex items-center justify-center'>{spot}</div>
+        <div className='flex items-center justify-center'>{leadingContent}</div>
         <div className='flex w-full flex-col items-center gap-4'>
           <div className='flex w-full flex-col'>
-            <div className='body-3-semi-bold truncate'>{title}</div>
-            {subtitle && (
-              <div className='text-muted body-3 truncate'>{subtitle}</div>
+            <div className='truncate body-3-semi-bold'>{title}</div>
+            {description && (
+              <div className='truncate text-muted body-3'>{description}</div>
             )}
           </div>
-          {tag}
+          {trailingContent}
         </div>
       </button>
       {secondaryAction && (
