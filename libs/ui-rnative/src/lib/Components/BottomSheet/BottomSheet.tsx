@@ -101,6 +101,10 @@ const BottomSheet = forwardRef<
         return undefined;
       }
 
+      if (typeof maxDynamicContentSize === 'number') {
+        return maxDynamicContentSize;
+      }
+
       return MAX_DYNAMIC_CONTENT_SIZE[
         maxDynamicContentSize as keyof typeof MAX_DYNAMIC_CONTENT_SIZE
       ];

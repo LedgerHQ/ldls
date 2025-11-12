@@ -10,7 +10,7 @@ export type BottomSheetProps = PropsWithChildren & {
    * The snap points represent allowed heights of the bottom sheet.
    * You can use presets like 'full', 'medium', 'small' or define your own snap points in % (string) or pixel (number).
    * This prop is required when enableDynamicSizing is false.
-   * @default 'dynamic'
+   * @default 'fullWithOffset'
    */
   snapPoints?:
     | 'full'
