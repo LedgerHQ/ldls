@@ -33,6 +33,7 @@ export const AddressInput = React.forwardRef<
     <Text
       className='text-nowrap text-base group-has-[:disabled]:text-disabled'
       accessible={false}
+      // TODO: use theme object here
       style={{ fontSize: 16, fontWeight: '500' }}
     >
       {prefix}
@@ -59,6 +60,7 @@ export const AddressInput = React.forwardRef<
       ref={ref}
       prefix={actualPrefix}
       suffix={actualSuffix}
+      // TODO: use theme object here
       style={{ fontSize: 16, fontWeight: '500' }}
       {...props}
     />
