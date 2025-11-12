@@ -17,12 +17,12 @@ figma.connect(
     imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
-      subtitle: figma.boolean('show-subtitle', {
+      description: figma.boolean('show-subtitle', {
         true: figma.string('subtitle'),
         false: undefined,
       }),
-      spot: <Spot appearance='icon' icon={Settings} />,
-      tag: figma.boolean('show-tag', {
+      leadingContent: <Spot appearance='icon' icon={Settings} />,
+      trailingContent: figma.boolean('show-tag', {
         true: figma.instance('tag'),
         false: undefined,
       }),

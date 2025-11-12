@@ -20,10 +20,10 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 <Canvas of={TileStories.Base} />
 
-- **Spot**: Visual icon or element at the top
+- **Leading Content**: Visual icon or element at the top
 - **Title**: The main label of the item (required)
 - **Subtitle (optional)**: Provides additional context
-- **Tag (optional)**: Small tag at the bottom for status or labels
+- **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
 - **Secondary Action (optional)**: Action button in the top right corner, visible on hover
 
 ## Properties
@@ -37,13 +37,13 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 Tile components support various spot icons to categorize or visualize the content, including coin icons.
 
-<Canvas of={TileStories.SpotVariantsShowcase} />
+<Canvas of={TileStories.LeadingContentVariantsShowcase} />
 
-### Tag Variants
+### Trailing Content Variants
 
-Optional tags can be added at the bottom with different appearances.
+Optional trailing content can be added at the bottom of the tile.
 
-<Canvas of={TileStories.WithTag} />
+<Canvas of={TileStories.WithTrailingContent} />
 
 ### Without Secondary Action
 
