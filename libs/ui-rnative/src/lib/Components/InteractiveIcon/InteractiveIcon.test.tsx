@@ -1,0 +1,154 @@
+import { describe, it, expect, jest } from '@jest/globals';
+import { render, screen, fireEvent } from '@testing-library/react-native';
+
+import { Settings, Plus } from '../../Symbols';
+import { InteractiveIcon } from './InteractiveIcon';
+
+describe('InteractiveIcon Component', () => {
+  it('should render correctly with children icon', () => {
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Settings'
+        testID='icon-button'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('icon-button');
+    expect(buttonElement).toBeTruthy();
+  });
+
+  it('should render with filled iconType variant', () => {
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Add item'
+        testID='filled-icon'
+      >
+        <Plus size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('filled-icon');
+    expect(buttonElement).toBeTruthy();
+    expect(buttonElement.props.accessibilityRole).toBe('button');
+  });
+
+  it('should render with stroked iconType variant', () => {
+    render(
+      <InteractiveIcon
+        iconType='stroked'
+        aria-label='Settings'
+        testID='stroked-icon'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('stroked-icon');
+    expect(buttonElement).toBeTruthy();
+    expect(buttonElement.props.accessibilityRole).toBe('button');
+  });
+
+  it('should have correct accessibility label', () => {
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Open menu'
+        testID='menu-icon'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('menu-icon');
+    expect(buttonElement.props.accessibilityLabel).toBe('Open menu');
+  });
+
+  it('should be disabled when the disabled prop is true', () => {
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Disabled button'
+        disabled
+        testID='disabled-icon'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('disabled-icon');
+    expect(buttonElement.props.accessibilityState.disabled).toBe(true);
+  });
+
+  it('should call the onPress handler when pressed', () => {
+    const handlePress = jest.fn();
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Pressable'
+        onPress={handlePress}
+        testID='pressable-icon'
+      >
+        <Plus size={20} />
+      </InteractiveIcon>,
+    );
+
+    const buttonElement = screen.getByTestId('pressable-icon');
+    fireEvent.press(buttonElement);
+
+    expect(handlePress).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call the onPress handler when disabled', () => {
+    const handlePress = jest.fn();
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Disabled'
+        onPress={handlePress}
+        disabled
+        testID='disabled-pressable'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+
+    const buttonElement = screen.getByTestId('disabled-pressable');
+    fireEvent.press(buttonElement);
+
+    expect(handlePress).not.toHaveBeenCalled();
+  });
+
+  it('should call the onLongPress handler when long pressed', () => {
+    const handleLongPress = jest.fn();
+    render(
+      <InteractiveIcon
+        iconType='stroked'
+        aria-label='Long pressable'
+        onLongPress={handleLongPress}
+        testID='long-pressable-icon'
+      >
+        <Plus size={20} />
+      </InteractiveIcon>,
+    );
+
+    const buttonElement = screen.getByTestId('long-pressable-icon');
+    fireEvent(buttonElement, 'onLongPress');
+
+    expect(handleLongPress).toHaveBeenCalledTimes(1);
+  });
+
+  it('should apply custom style', () => {
+    const customStyle = { marginTop: 8 };
+    render(
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Custom'
+        style={customStyle}
+        testID='custom-icon'
+      >
+        <Settings size={20} />
+      </InteractiveIcon>,
+    );
+    const buttonElement = screen.getByTestId('custom-icon');
+    expect(buttonElement.props.style).toEqual(customStyle);
+  });
+});

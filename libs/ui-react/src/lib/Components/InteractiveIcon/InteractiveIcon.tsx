@@ -1,9 +1,10 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
+import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
-  'text-muted hover:text-muted-hover focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled inline-flex size-fit items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2',
+  'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',
   {
     variants: {
       iconType: {
@@ -14,13 +15,6 @@ const buttonVariants = cva(
     },
   },
 );
-
-export type InteractiveIconProps = {
-  /** The visual style of the icon button. Choose 'filled' for icons with solid backgrounds or 'stroked' for outlined icons. */
-  iconType: 'filled' | 'stroked';
-  /** The icon component to display inside the button. Should be a single icon element from the design system. */
-  children: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * A specialized interactive component designed specifically for displaying clickable icons.
