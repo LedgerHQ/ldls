@@ -42,16 +42,16 @@ const tileVariants = {
  *   onClick={() => console.log('Clicked!')}
  * />
  *
- * // With subtitle and tag
+ * // With subtitle and trailing content
  * import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
  * import { Tag } from '@ledgerhq/ldls-ui-react';
  * import { Bitcoin } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Tile
  *   title="Bitcoin"
- *   subtitle="BTC"
+ *   description="BTC"
  *   spot={<Spot appearance="coin" icon="btc" />}
- *   tag={<Tag label="Active" appearance="success" size="sm" />}
+ *   trailingContent={<Tag label="Active" appearance="success" size="sm" />}
  * />
  *
  * // With secondary action
@@ -61,7 +61,7 @@ const tileVariants = {
  *
  * <Tile
  *   title="Ethereum"
- *   subtitle="ETH"
+ *   description="ETH"
  *   spot={<Spot appearance="coin" icon="eth" />}
  *   secondaryAction={
  *     <InteractiveIcon
