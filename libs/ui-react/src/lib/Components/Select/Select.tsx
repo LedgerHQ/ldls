@@ -74,8 +74,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'bg-muted rounded-sm',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'rounded-sm bg-muted',
     'shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',
@@ -245,12 +245,4 @@ export {
   SelectItemText,
   SelectItem,
   SelectSeparator,
-  type SelectProps,
-  type SelectTriggerProps,
-  type SelectContentProps,
-  type SelectGroupProps,
-  type SelectLabelProps,
-  type SelectItemTextProps,
-  type SelectItemProps,
-  type SelectSeparatorProps,
 };
