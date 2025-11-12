@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 import React from 'react';
 
 const buttonVariants = cva(
-  'text-muted hover:text-muted-hover focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled inline-flex size-fit items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2',
+  'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',
   {
     variants: {
       iconType: {

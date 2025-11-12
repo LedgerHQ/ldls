@@ -6,7 +6,7 @@ import { BaseButton, BaseButtonProps } from './BaseButton';
 const buttonVariants = cva('', {
   variants: {
     size: {
-      sm: 'body-2-semi-bold px-16 py-12',
+      sm: 'px-16 py-12 body-2-semi-bold',
       md: 'px-16 py-12',
       lg: 'p-16',
     },

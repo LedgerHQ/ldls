@@ -24,7 +24,7 @@ const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  'group-data-[disabled]:bg-base translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out',
+  'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[disabled]:bg-base',
   {
     variants: {
       size: {

@@ -24,7 +24,7 @@ export const Sizes: Story = {
   render: () => (
     <div className='space-y-4'>
       <Skeleton className='h-40 w-56' />
-      <Skeleton className='w-112 h-12' />
+      <Skeleton className='h-12 w-112' />
       <Skeleton className='h-128 w-256' />
     </div>
   ),
@@ -34,8 +34,8 @@ export const Sizes: Story = {
 export const Shapes: Story = {
   render: () => (
     <div className='space-y-4'>
-      <Skeleton className='w-256 h-40 rounded-none' />
-      <Skeleton className='w-256 h-40 rounded-lg' />
+      <Skeleton className='h-40 w-256 rounded-none' />
+      <Skeleton className='h-40 w-256 rounded-lg' />
       <Skeleton className='size-48 rounded-full' />
       <Skeleton className='size-48 rounded-md' />
     </div>
@@ -48,8 +48,8 @@ export const ListItem: Story = {
     <div className='flex items-center space-x-4'>
       <Skeleton className='size-48 rounded-full' />
       <div className='space-y-8'>
-        <Skeleton className='w-160 h-16' />
-        <Skeleton className='w-128 h-16' />
+        <Skeleton className='h-16 w-160' />
+        <Skeleton className='h-16 w-128' />
       </div>
     </div>
   ),
@@ -60,12 +60,12 @@ export const Card: Story = {
   render: () => (
     <div className='max-w-md rounded-lg border p-12'>
       <div className='space-y-4'>
-        <Skeleton className='w-256 h-24' />
+        <Skeleton className='h-24 w-256' />
         <Skeleton className='h-16 w-full' />
-        <Skeleton className='w-256 h-16' />
+        <Skeleton className='h-16 w-256' />
         <div className='flex space-x-2'>
-          <Skeleton className='w-160 h-32' />
-          <Skeleton className='w-128 h-32' />
+          <Skeleton className='h-32 w-160' />
+          <Skeleton className='h-32 w-128' />
         </div>
       </div>
     </div>
@@ -79,18 +79,18 @@ export const Table: Story = {
       <div className='space-y-4'>
         {/* Header */}
         <div className='flex space-x-4'>
-          <Skeleton className='w-192 h-16' />
-          <Skeleton className='w-256 h-16' />
-          <Skeleton className='w-160 h-16' />
-          <Skeleton className='w-224 h-16' />
+          <Skeleton className='h-16 w-192' />
+          <Skeleton className='h-16 w-256' />
+          <Skeleton className='h-16 w-160' />
+          <Skeleton className='h-16 w-224' />
         </div>
         {/* Rows */}
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className='flex space-x-4'>
-            <Skeleton className='w-192 h-16' />
-            <Skeleton className='w-256 h-16' />
-            <Skeleton className='w-160 h-16' />
-            <Skeleton className='w-224 h-16' />
+            <Skeleton className='h-16 w-192' />
+            <Skeleton className='h-16 w-256' />
+            <Skeleton className='h-16 w-160' />
+            <Skeleton className='h-16 w-224' />
           </div>
         ))}
       </div>

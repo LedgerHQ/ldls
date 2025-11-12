@@ -148,8 +148,8 @@ export const FullFeatures: Story = {
 
 export const NaturalWidth: Story = {
   render: () => (
-    <div className='bg-muted-pressed w-full p-16'>
-      <div className='text-muted body-4-semi-bold mb-16'>
+    <div className='w-full bg-muted-pressed p-16'>
+      <div className='mb-16 text-muted body-4-semi-bold'>
         CardButton naturally flows to fill parent container width
       </div>
       <CardButton
@@ -270,7 +270,7 @@ export const StatesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='w-320 bg-muted-pressed grid grid-cols-1 gap-16 p-16'>
+    <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
       <CardButton
         appearance='base'
