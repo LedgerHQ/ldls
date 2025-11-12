@@ -148,12 +148,6 @@ const BottomSheet = forwardRef<
       [onAnimate],
     );
 
-    console.log({
-      computedSnapPoints,
-      maxDynamicContentSize,
-      enableDynamicSizing,
-    });
-
     return (
       <BottomSheetProvider value={{ onBack, hideCloseButton }}>
         <StyledGorghomBottomSheet
