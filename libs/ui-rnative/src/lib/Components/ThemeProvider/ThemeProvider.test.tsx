@@ -9,6 +9,9 @@ jest.mock('../../utils', () => ({
   ...(jest.requireActual('../../utils') as object),
   RuntimeConstants: {
     isNative: true,
+    isBrowser: false,
+    isServer: false,
+    insetDimensions: { height: 800, width: 400 },
   },
 }));
 
