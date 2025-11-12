@@ -38,5 +38,10 @@ If the user wants help with tasks or commands (which include keywords like "test
 - If the user would like to rerun the task or command, always use `nx run <taskId>` to rerun in the terminal. This will ensure that the task will run in the nx context and will be run the same way it originally executed
 - If the task was marked as "continuous" do not offer to rerun the task. This task is already running and the user can see the output in the terminal. You can use 'nx_current_running_task_output' to get the output of the task to verify the output. 
 
-
-
+# Commands
+- Targets are defined in project.json of each lib or app, but these can also be inferred based on each project config
+- To run a command, you can run `nx run [project][:target]`, here are few useful examples:
+  - test react `npx nx run @ledgerhq/ldls-ui-react:test $1`
+  - test react-native `npx nx run @ledgerhq/ldls-ui-rnative:test $1`
+  - lint all `npx nx run-many --target=lint --all`
+  - typecheck all `npx nx run-many --target=typecheck --all`
