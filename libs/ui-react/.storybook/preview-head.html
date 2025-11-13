@@ -15,6 +15,11 @@
     background-color: #000;
   }
 
+  /* Remove font antialiasing causing unique bold text perception in .mdx and stories */
+  .css-x28zkw :where(div:not(.sb-anchor, .sb-unstyled, .sb-unstyled div)) {
+    -webkit-font-smoothing: auto !important;
+  }
+
   /* Change link color to purple */
   .css-x28zkw :where(a:not(.sb-anchor, .sb-unstyled, .sb-unstyled a)) {
     color: rgb(126, 78, 165) !important;
