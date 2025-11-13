@@ -1,0 +1,166 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TileStories from './Tile.stories';
+import { Tile } from './Tile';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Containment/Tile' of={TileStories} />
+
+# 📋 Tile
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional description, tag, and a secondary action button visible on hover.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
+
+## Anatomy
+
+<Canvas of={TileStories.Base} />
+
+- **Leading Content**: Visual icon or element at the top
+- **Title**: The main label of the item (required)
+- **Description (optional)**: Provides additional context
+- **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
+- **Secondary Action (optional)**: Action button in the top right corner, visible on hover
+
+## Properties
+
+### Overview
+
+<Canvas of={TileStories.Base} />
+<Controls of={TileStories.Base} />
+
+### Spot Variants
+
+Tile components support various spot icons to categorize or visualize the content, including coin icons.
+
+<Canvas of={TileStories.LeadingContentVariantsShowcase} />
+
+### Trailing Content Variants
+
+Optional trailing content can be added at the bottom of the tile.
+
+<Canvas of={TileStories.WithTrailingContent} />
+
+### Secondary Action
+
+The secondary action is optional and can be omitted.
+
+<Canvas of={TileStories.WithSecondaryAction} />
+
+### Horizontal Lists
+
+Horizontal lists are used to display a list of tiles in a horizontal scrollable container.
+
+<Canvas of={TileStories.HorizontalList} />
+
+### ResponsiveLayout
+
+By default the tile fill the width of its container. The title and description will be truncated to one line.
+
+<Canvas of={TileStories.ResponsiveLayout} />
+
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+## Basic Usage
+
+```tsx
+import { Tile, Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <Tile
+      title='Settings'
+      description='BTC'
+      leadingContent={<Spot appearance='icon' icon={Settings} />}
+      trailingContent={<Tag label='Active' appearance='success' size='sm' />}
+      onClick={() => console.log('Primary action')}
+      onLongPress={() => console.log('Secondary action')}
+    />
+  );
+}
+```
+
+### With Coin Icon
+
+```tsx
+import { Tile, Spot } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <Tile
+      title='Bitcoin'
+      description='BTC'
+      leadingContent={<Spot appearance='coin' icon='btc' />}
+      onClick={() => console.log('Clicked!')}
+    />
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Tile
+  title="Settings"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  className="mb-6"
+/>
+
+// Use className for responsive behavior
+<Tile
+  title="Desktop Item"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  className="hidden lg:flex"
+/>
+
+// Use container elements to control width
+<div className="w-128">
+  <Tile
+    title="Fixed Width"
+    leadingContent={<Spot appearance="icon" icon={Settings} />}
+  />
+</div>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override core styling
+<Tile
+  title="Custom Colors"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  className="bg-base text-active"
+/>
+
+// Don't modify internal spacing
+<Tile
+  title="Wrong Spacing"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  className="gap-2 p-2"
+/>
+
+// Don't override typography classes
+<Tile
+  title="Bad Typography"
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
+  className="body-3"
+/>
+```
+
+</Tab>
+</CustomTabs>

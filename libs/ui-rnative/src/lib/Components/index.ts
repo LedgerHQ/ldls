@@ -13,3 +13,4 @@ export * from './Switch';
 export * from './Tag';
 export * from './TextInput';
 export * from './ThemeProvider';
+export * from './Tile';
