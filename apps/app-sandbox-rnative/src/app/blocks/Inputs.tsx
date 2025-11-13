@@ -63,7 +63,7 @@ export function Inputs() {
         className='min-w-full'
         defaultValue='This is a default value!'
       />
-      <Search className='min-w-full' />
+      <Search className='min-w-full' placeholder='Search for a component...' />
     </View>
   );
 }

@@ -19,7 +19,6 @@ export const Search = React.forwardRef<
           accessible={false}
         />
       }
-      placeholder='Search for component...'
       style={{ fontSize: 16, fontWeight: '500' }}
       {...props}
     />
