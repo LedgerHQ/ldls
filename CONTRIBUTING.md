@@ -130,100 +130,23 @@ To maintain consistency across our Storybook documentation, follow these naming 
 
 #### 1. Base Story
 
-- **Name**: `Base`
-- **Purpose**: The default, most basic usage of the component
-- **Example**: `export const Base: Story = { ... }`
+The default, most basic usage of the component.
+
+- ✅ Use: `Base`
+- ❌ Do not use: `Default`, `Primary`, `Basic`
 
 #### 2. Showcase Stories
 
-Showcase stories demonstrate variations of a single property. Use the pattern: `{Property}Showcase`
+Showcase stories demonstrate variations of a single property.
 
-- **Appearance variations**: `AppearanceShowcase`
-- **Size variations**: `SizeShowcase` (singular, not "Sizes")
-- **State variations**: `StateShowcase` (singular, not "States" or "AllStates")
-- **Content type variations**: `ContentTypeShowcase`
-
-**Examples**:
-
-```typescript
-export const AppearanceShowcase: Story = { ... }
-export const SizeShowcase: Story = { ... }
-export const StateShowcase: Story = { ... }
-```
+- ✅ Use the pattern: `{Property}Showcase`
+- ❌ Do not use: `States`, `AllStates`, `StatesShowcase`
 
 #### 3. Feature-Specific Stories
 
-Stories highlighting specific features should use the pattern: `With{Feature}`
+Stories highlighting specific features.
 
-- `WithIcon`
-- `WithDescription`
-- `WithActions`
-- `WithTooltip`
-
-**Example**:
-
-```typescript
-export const WithDescription: Story = {
-  args: {
-    title: 'Title',
-    description: 'Description text',
-  },
-};
-```
-
-#### 4. Interactive Examples
-
-Stories with user interaction should start with `Interactive`:
-
-- `InteractiveStates`
-- `InteractiveActions`
-- `InteractiveDismiss`
-
-**Example**:
-
-```typescript
-export const InteractiveStates: Story = {
-  render: () => {
-    const [state, setState] = useState(false);
-    // ... interactive logic
-  },
-};
-```
-
-#### 5. Layout Examples
-
-Stories demonstrating responsive behavior or layout should start with `Responsive`:
-
-- `ResponsiveLayout`
-- `ResponsiveWidth`
-
-**Example**:
-
-```typescript
-export const ResponsiveLayout: Story = {
-  render: () => (
-    <div className='w-320'>
-      {/* Component in constrained container */}
-    </div>
-  ),
-};
-```
-
-#### 6. Special Cases
-
-- **Galleries/Catalogs**: Use `Gallery` (e.g., icon galleries)
-- **Loading states**: Use `Loading` or `LoadingState`
-- **Polymorphic components**: Use `AsChild` for `asChild` prop examples
-
-#### 7. Avoid These Patterns
-
-- ❌ `Default` (use `Base` instead)
-- ❌ `Primary` (use `Base` instead)
-- ❌ `Basic` (use `Base` instead)
-- ❌ `Sizes` without "Showcase" suffix (use `SizeShowcase`)
-- ❌ `States` (use `StateShowcase`)
-- ❌ `AllStates` (use `StateShowcase`)
-- ❌ Inconsistent pluralization (always singular: `SizeShowcase`, not `SizesShowcase`)
+- ✅ Use: `With{Feature}` (e.g., `WithIcon`, `WithTooltip`)
 
 ### Documentation Best Practices
 
