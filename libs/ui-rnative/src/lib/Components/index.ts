@@ -1,3 +1,4 @@
+export * from './AddressInput';
 export * from './Banner';
 export * from './BottomSheet';
 export * from './Button';
