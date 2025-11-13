@@ -7,11 +7,11 @@ export type TileProps = {
    */
   leadingContent: ReactNode;
   /**
-   * The title of the list item.
+   * The title of the tile.
    */
   title: string;
   /**
-   * The description of the list item.
+   * The description of the tile.
    */
   description?: string;
   /**

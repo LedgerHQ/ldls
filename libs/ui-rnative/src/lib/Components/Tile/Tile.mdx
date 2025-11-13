@@ -83,7 +83,7 @@ function MyComponent() {
       description='BTC'
       leadingContent={<Spot appearance='icon' icon={Settings} />}
       trailingContent={<Tag label='Active' appearance='success' size='sm' />}
-      onClick={() => console.log('Primary action')}
+      onPress={() => console.log('Primary action')}
       onLongPress={() => console.log('Secondary action')}
     />
   );
@@ -101,7 +101,7 @@ function MyComponent() {
       title='Bitcoin'
       description='BTC'
       leadingContent={<Spot appearance='coin' icon='btc' />}
-      onClick={() => console.log('Clicked!')}
+      onPress={() => console.log('Clicked!')}
     />
   );
 }

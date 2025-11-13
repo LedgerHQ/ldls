@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import { TileItem } from './TileItem';
+import { Tile } from './Tile';
 import figma from '@figma/code-connect';
 
 /**
@@ -11,10 +11,10 @@ import figma from '@figma/code-connect';
  */
 
 figma.connect(
-  TileItem,
+  Tile,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
   {
-    imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Tile } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
       description: figma.boolean('show-description', {
@@ -33,11 +33,11 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/components-TileItem-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs',
       },
     ],
     example: (props) => (
-      <TileItem
+      <Tile
         title={props.title}
         subtitle={props.subtitle}
         spot={props.spot}
