@@ -5,7 +5,7 @@ import figma from '@figma/code-connect';
 
 figma.connect(
   Link,
-  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=770%3A11982',
+  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9661-18364',
   {
     imports: ["import { Link } from '@ledgerhq/ldls-ui-react'"],
     props: {
@@ -22,7 +22,7 @@ figma.connect(
         true: true,
         false: false,
       }),
-      children: figma.string('label'),
+      // children: figma.string('label'),
       appearance: figma.enum('appearance', {
         base: 'base',
         accent: 'accent',
@@ -47,7 +47,7 @@ figma.connect(
         size={props.size}
         href='#'
       >
-        {props.children}
+        Label
       </Link>
     ),
   },

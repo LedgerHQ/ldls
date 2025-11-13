@@ -22,7 +22,10 @@ figma.connect(
     ],
     props: {
       // These props were automatically mapped based on your linked code:
-      selected: figma.boolean('selected'),
+      selected: figma.boolean('selected', {
+        true: true,
+        false: false,
+      }),
       disabled: figma.enum('state', {
         disabled: true,
       }),

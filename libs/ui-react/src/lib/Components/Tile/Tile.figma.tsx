@@ -5,7 +5,7 @@ import figma from '@figma/code-connect';
 
 figma.connect(
   Tile,
-  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
+  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328',
   {
     imports: ["import { Tile } from '@ledgerhq/ldls-ui-react'"],
     props: {

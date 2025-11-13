@@ -21,14 +21,14 @@ figma.connect(
       "// import { YourIconName } from '@ledgerhq/ldls-ui-rnative/symbols'",
     ],
     props: {
-      iconType: figma.enum('type', {
-        filled: 'filled',
-        stroked: 'stroked',
-      }),
-      children: figma.enum('type', {
-        filled: figma.instance('icon-filled'),
-        stroked: figma.instance('icon-stroked'),
-      }),
+      // iconType: figma.enum('type', {
+      //   filled: 'filled',
+      //   stroked: 'stroked',
+      // }),
+      // children: figma.enum('type', {
+      //   filled: figma.instance('icon-filled'),
+      //   stroked: figma.instance('icon-stroked'),
+      // }),
     },
     links: [
       {
