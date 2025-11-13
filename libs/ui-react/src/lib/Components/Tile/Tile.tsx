@@ -6,7 +6,7 @@ import { TileProps } from './types';
 const tileVariants = {
   root: cva(
     [
-      'group relative flex w-full flex-col items-center gap-8 p-8 ',
+      'group relative flex flex-col items-center gap-8 p-8 ',
       'rounded-sm bg-base-transparent text-base transition-colors focus-visible:outline-2 focus-visible:outline-focus',
     ],
     {

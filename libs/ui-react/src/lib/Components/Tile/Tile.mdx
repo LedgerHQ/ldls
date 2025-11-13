@@ -51,22 +51,17 @@ The secondary action is optional and can be omitted.
 
 <Canvas of={TileStories.WithoutSecondaryAction} />
 
-### Carousel Variant
+### Horizontal Lists
 
-In carousel mode, the tiles are displayed in a horizontal list with no rounded corners on the sides.
+Horizontal lists are used to display a list of tiles in a horizontal scrollable container.
 
-<Canvas of={TileStories.List} />
+<Canvas of={TileStories.HorizontalList} />
 
-## Responsive Layout
+### Responsive layout
 
-Tile components adapt to their container width, truncating long titles and descriptions as needed.
+By default the tile fill the width of its container. The title and description will be truncated to one line.
 
-> **Key behaviors:**
->
-> - Automatically fits container width
-> - Title truncates to one line
-> - Description truncates to one line
-> - In carousel mode, only first and last items have rounded corners
+<Canvas of={TileStories.ResponsiveLayout} />
 
 </Tab>
 <Tab label="Implementation">
