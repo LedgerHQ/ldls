@@ -1,6 +1,27 @@
-# Storybook Story Naming Conventions
+# Storybook Story Guidelines
 
-When creating or modifying Storybook stories, follow these naming conventions strictly:
+When creating or modifying Storybook stories, follow these conventions strictly:
+
+## Story Layout Configuration
+
+### Centering and Background
+
+All stories must include these parameters:
+
+```typescript
+export const Base: Story = {
+  parameters: {
+    layout: 'centered',
+    backgrounds: { default: 'light' },
+  },
+  args: {
+    // Component props
+  },
+};
+```
+
+- **Layout**: Stories should be centered.
+- **Background**: Stories should use white background.
 
 ## Story Export Names
 

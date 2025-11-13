@@ -148,6 +148,54 @@ Stories highlighting specific features.
 
 - ✅ Use: `With{Feature}` (e.g., `WithIcon`, `WithTooltip`)
 
+### Story Layout Configuration
+
+All stories should follow these visual guidelines:
+
+#### Centering and Background
+
+- **Layout**: Stories should be centered.
+- **Background**: Stories should use white background.
+
+**Example**:
+
+```typescript
+export const Base: Story = {
+  parameters: {
+    layout: 'centered',
+    backgrounds: { default: 'light' },
+  },
+  // ...
+};
+```
+
+### MDX Documentation Structure
+
+Component documentation should use a two-tab structure for clarity:
+
+#### Overview Tab
+
+**Intent**: Provide designers and developers with a comprehensive understanding of the component's purpose, behavior, and usage patterns.
+
+**Focus**: Design specifications, visual examples, anatomy, properties, and accessibility guidelines.
+
+#### Implementation Tab
+
+**Intent**: Give developers practical, copy-paste ready code examples and integration patterns.
+
+**Focus**: Installation instructions, code examples, API usage, routing integration, and best practices.
+
+**Example Structure**:
+
+```tsx
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<CustomTabs>
+  <Tab label='Overview '>{/* Design documentation, anatomy, properties, showcases */}</Tab>
+  <Tab label='Implementation '>{/* Installation, code examples, do's and don'ts */}</Tab>
+</CustomTabs>;
+```
+
 ### Documentation Best Practices
 
 1. Include a clear component description
