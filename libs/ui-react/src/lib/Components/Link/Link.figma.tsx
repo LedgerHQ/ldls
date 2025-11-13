@@ -18,9 +18,13 @@ figma.connect(
         true: figma.instance('icon'),
         false: undefined,
       }),
+      underline: figma.boolean('underline', {
+        true: true,
+        false: false,
+      }),
       children: figma.string('label'),
       appearance: figma.enum('appearance', {
-        underlined: 'underlined',
+        base: 'base',
         accent: 'accent',
       }),
       size: figma.enum('size', {
@@ -37,10 +41,11 @@ figma.connect(
     example: (props) => (
       <Link
         isExternal={props.isExternal}
+        underline={props.underline}
         icon={props.icon}
         appearance={props.appearance}
         size={props.size}
-        href="#"
+        href='#'
       >
         {props.children}
       </Link>
