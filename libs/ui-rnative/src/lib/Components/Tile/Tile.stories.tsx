@@ -92,15 +92,7 @@ export const WithTrailingContent: Story = {
   description="Additional information"
   leadingContent={<Spot appearance="icon" icon={Settings} />}
   trailingContent={<Tag label="New" appearance="base" />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onPress={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
+  onLongPress={() => console.log('Long press - secondary action')}
   className="max-w-256"
 />
 `,
@@ -136,7 +128,7 @@ export const WithSecondaryAction: Story = {
 
 export const LeadingContentVariantsShowcase: Story = {
   render: () => (
-    <View className='flex'>
+    <View className='flex flex-row'>
       <Tile
         title='User'
         description='With description'
@@ -174,7 +166,7 @@ export const LeadingContentVariantsShowcase: Story = {
 export const HorizontalList: Story = {
   render: () => (
     <View className='flex flex-col gap-16'>
-      <View className='flex w-480 bg-base'>
+      <View className='flex w-480 flex-row bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
@@ -184,7 +176,7 @@ export const HorizontalList: Story = {
           />
         ))}
       </View>
-      <View className='flex w-480 overflow-x-auto bg-base'>
+      <View className='flex w-480 flex-row overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}

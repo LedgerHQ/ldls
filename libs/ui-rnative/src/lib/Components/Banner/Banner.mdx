@@ -23,7 +23,7 @@ Banners are prominent message containers used to communicate system status, aler
 - **Icon**: Automatically displays based on appearance (info, success, warning, error)
 - **Title**: The main message or heading (required)
 - **Description (optional)**: Additional details or explanation
-- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Pass Button components as React nodes (e.g. `primaryAction={<Button appearance="transparent" size="sm" onClick={() => {}}>Action</Button>}`).
+- **Actions (optional)**: Primary and/or secondary buttons for user interaction. Pass Button components as React nodes (e.g. `primaryAction={<Button appearance="transparent" size="sm" onPress={() => {}}>Action</Button>}`).
 - **Close (optional)**: Button to dismiss the banner. Use the `onClose` prop with a callback function and optionally `closeAriaLabel` for accessibility.
 
 ## Properties
@@ -174,12 +174,12 @@ function ActionableBanner() {
       title="Terms of Service Updated"
       description="Please review and accept the updated terms of service to continue using our platform"
       primaryAction={
-        <Button appearance="transparent" size="sm" onClick={handleAccept}>
+        <Button appearance="transparent" size="sm" onPress={handleAccept}>
           Accept
         </Button>
       }
       secondaryAction={
-        <Button appearance="no-background" size="sm" onClick={handleDecline}>
+        <Button appearance="no-background" size="sm" onPress={handleDecline}>
           Review Later
         </Button>
       }
@@ -294,12 +294,12 @@ function NotificationCenter() {
           onClose={notification.dismissible ? () => dismissNotification(notification.id) : undefined}
           closeAriaLabel="Close notification"
           primaryAction={notification.actions ? (
-            <Button appearance="transparent" size="sm" onClick={handleVerify}>
+            <Button appearance="transparent" size="sm" onPress={handleVerify}>
               Verify Now
             </Button>
           ) : undefined}
           secondaryAction={notification.actions ? (
-            <Button appearance="no-background" size="sm" onClick={handleLater}>
+            <Button appearance="no-background" size="sm" onPress={handleLater}>
               Later
             </Button>
           ) : undefined}
@@ -396,7 +396,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
   title="Confirm Action"
   description="This action cannot be undone"
   primaryAction={
-    <Button appearance="transparent" size="sm" onClick={handleConfirm}>
+    <Button appearance="transparent" size="sm" onPress={handleConfirm}>
       Confirm
     </Button>
   }
@@ -411,7 +411,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
 <Banner
   title="Broken Action"
   description="This won't work properly"
-  primaryAction={<Button onClick={handleSubmit}>Submit</Button>}
+  primaryAction={<Button onPress={handleSubmit}>Submit</Button>}
   appearance="error"
 />
 ```

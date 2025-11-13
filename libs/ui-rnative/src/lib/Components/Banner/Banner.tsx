@@ -59,8 +59,8 @@ const bannerVariants = {
  *   title="Success"
  *   appearance="success"
  *   description="Your action was successful."
- *   primaryAction={<Button appearance="transparent" size="sm" onClick={() => {}}>Primary</Button>}
- *   secondaryAction={<Button appearance="no-background" size="sm" onClick={() => {}}>Secondary</Button>}
+ *   primaryAction={<Button appearance="transparent" size="sm" onPress={() => {}}>Primary</Button>}
+ *   secondaryAction={<Button appearance="no-background" size="sm" onPress={() => {}}>Secondary</Button>}
  * />
  *
  * // Error banner with close
