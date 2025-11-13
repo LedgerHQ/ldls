@@ -6,18 +6,18 @@ import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const linkVariants = cva(
-  'focus-visible:outline-focus inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4',
+  'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
   {
     variants: {
       appearance: {
-        base: 'hover:text-base-hover active:text-base-pressed text-base',
+        base: 'text-base hover:text-base-hover active:text-base-pressed',
         accent:
           'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
         inherit: '',
       },
       size: {
-        sm: 'body-2-semi-bold gap-4',
-        md: 'body-1-semi-bold gap-8',
+        sm: 'gap-4 body-2-semi-bold',
+        md: 'gap-8 body-1-semi-bold',
         inherit: '',
       },
       underline: {
@@ -26,8 +26,8 @@ const linkVariants = cva(
       },
     },
     defaultVariants: {
-      appearance: 'base',
-      size: 'md',
+      appearance: 'inherit',
+      size: 'inherit',
       underline: true,
     },
   },
@@ -36,12 +36,12 @@ const linkVariants = cva(
 export type LinkProps = {
   /**
    * The visual style of the link.
-   * @default base
+   * @default inherit
    */
   appearance?: 'base' | 'accent' | 'inherit';
   /**
    * The size variant of the link.
-   * @default md
+   * @default inherit
    */
   size?: 'sm' | 'md' | 'inherit';
   /**
@@ -84,7 +84,7 @@ export type LinkProps = {
  * @example
  * import { Link } from '@ledgerhq/ldls-ui-react';
  *
- * // Default link with underline, base appearance and medium size
+ * // Default link with underline and inherited appearance and size
  * <Link href="/page">
  *   Go to Page
  * </Link>
@@ -117,7 +117,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       children,
       appearance,
-      size = 'md',
+      size = 'inherit',
       underline = true,
       icon,
       isExternal = false,
