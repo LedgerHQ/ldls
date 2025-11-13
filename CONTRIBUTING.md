@@ -117,11 +117,83 @@ export default meta;
 type Story = StoryObj<typeof YourComponent>;
 
 // Basic usage example
-export const Primary: Story = {
+export const Base: Story = {
   args: {
     // Component props
   },
 };
+```
+
+### Story Naming Conventions
+
+To maintain consistency across our Storybook documentation, follow these naming rules:
+
+#### 1. Base Story
+
+The default, most basic usage of the component.
+
+- ✅ Use: `Base`
+- ❌ Do not use: `Default`, `Primary`, `Basic`
+
+#### 2. Showcase Stories
+
+Showcase stories demonstrate variations of a single property.
+
+- ✅ Use the pattern: `{Property}Showcase`
+- ❌ Do not use: `States`, `AllStates`, `StatesShowcase`
+
+#### 3. Feature-Specific Stories
+
+Stories highlighting specific features.
+
+- ✅ Use: `With{Feature}` (e.g., `WithIcon`, `WithTooltip`)
+
+### Story Layout Configuration
+
+All stories should follow these visual guidelines:
+
+#### Centering and Background
+
+- **Layout**: Stories should be centered.
+- **Background**: Stories should use white background.
+
+**Example**:
+
+```typescript
+export const Base: Story = {
+  parameters: {
+    layout: 'centered',
+    backgrounds: { default: 'light' },
+  },
+  // ...
+};
+```
+
+### MDX Documentation Structure
+
+Component documentation should use a two-tab structure for clarity:
+
+#### Overview Tab
+
+**Intent**: Provide designers and developers with a comprehensive understanding of the component's purpose, behavior, and usage patterns.
+
+**Focus**: Design specifications, visual examples, anatomy, properties, and accessibility guidelines.
+
+#### Implementation Tab
+
+**Intent**: Give developers practical, copy-paste ready code examples and integration patterns.
+
+**Focus**: Installation instructions, code examples, API usage, routing integration, and best practices.
+
+**Example Structure**:
+
+```tsx
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<CustomTabs>
+  <Tab label='Overview '>{/* Design documentation, anatomy, properties, showcases */}</Tab>
+  <Tab label='Implementation '>{/* Installation, code examples, do's and don'ts */}</Tab>
+</CustomTabs>;
 ```
 
 ### Documentation Best Practices
@@ -131,6 +203,7 @@ export const Primary: Story = {
 3. Provide usage examples
 4. Include accessibility considerations
 5. Document any known limitations or edge cases
+6. Follow the story naming conventions above for consistency
 
 ## Testing Guidelines
 

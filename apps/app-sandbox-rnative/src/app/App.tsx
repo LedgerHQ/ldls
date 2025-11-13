@@ -1,7 +1,11 @@
 import { ThemeProvider, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BottomSheets, BottomSheetsButton } from './blocks/BottomSheets';
+import {
+  BottomSheetDynamicSize,
+  BottomSheetFlatLists,
+  BottomSheetsButton,
+} from './blocks/BottomSheets';
 import { Buttons } from './blocks/Buttons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
@@ -11,7 +15,8 @@ import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
-  const bottomSheetRef = useBottomSheetRef();
+  const bottomSheetFlatListsRef = useBottomSheetRef();
+  const bottomSheetDynamicSizeRef = useBottomSheetRef();
 
   return (
     <SafeAreaView className='flex flex-1 bg-canvas'>
@@ -43,12 +48,16 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
-                  onPress={() => bottomSheetRef.current?.expand()}
+                  onPress={() => bottomSheetFlatListsRef.current?.expand()}
+                />
+                <BottomSheetsButton
+                  onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
                 />
               </SandboxBlock>
             </View>
           </ScrollView>
-          <BottomSheets ref={bottomSheetRef} />
+          <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
+          <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>

@@ -35,7 +35,6 @@ The Select component provides a dropdown interface for choosing from a list of o
 ### Basic Usage
 
 <Canvas of={SelectStories.Base} />
-<Controls of={SelectStories.Base} />
 
 ### With Groups and Separators
 
@@ -61,6 +60,12 @@ Provide an initial value using the `defaultValue` prop for uncontrolled usage.
 
 <Canvas of={SelectStories.WithDefaultValue} />
 
+### With Description
+
+The select can display a description for each item.
+
+<Canvas of={SelectStories.WithDescription} />
+
 ### Form Integration
 
 The Select component integrates seamlessly with HTML forms.
@@ -81,13 +86,13 @@ The Select component integrates seamlessly with HTML forms.
 
 ## Overview
 
-This component is built on top of [shadcn/ui Select](https://ui.shadcn.com/docs/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
+This component is built on top of [radix-ui/react-select](https://www.radix-ui.com/docs/primitives/components/select), which provides a robust foundation using Radix UI primitives. We've customized it to match our design system while maintaining all the accessibility and functionality features.
 
 ```bash
 npm install @ledgerhq/ldls-ui-react @radix-ui/react-select
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-select` dependency provides accessible, unstyled select functionality with proper keyboard navigation, focus management, and screen reader support.
 
@@ -98,6 +103,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectItemText,
   SelectTrigger,
 } from '@ledgerhq/ldls-ui-react';
 
@@ -108,233 +114,98 @@ function MyComponent() {
     <Select value={value} onValueChange={setValue}>
       <SelectTrigger label='Label' />
       <SelectContent>
-        <SelectItem value='option1'>Option 1</SelectItem>
-        <SelectItem value='option2'>Option 2</SelectItem>
-        <SelectItem value='option3'>Option 3</SelectItem>
+        <SelectItem value='option1'>
+          <SelectItemText>Option 1</SelectItemText>
+        </SelectItem>
+        <SelectItem value='option2'>
+          <SelectItemText>Option 2</SelectItemText>
+        </SelectItem>
+        <SelectItem value='option3'>
+          <SelectItemText>Option 3</SelectItemText>
+        </SelectItem>
       </SelectContent>
     </Select>
   );
 }
 ```
 
-## API Reference
+<Controls of={SelectStories.Base} />
 
-### Select Props
+### With Descriptions
 
-<div className='my-24 overflow-hidden rounded-lg'>
-  <table className='w-full'>
-    <thead>
-      <tr className='border-b border-muted bg-muted'>
-        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
-        <th className='p-12 text-left text-on-accent body-3'>Type</th>
-        <th className='p-12 text-left text-on-accent body-3'>Default</th>
-        <th className='p-12 text-left text-on-accent body-3'>Description</th>
-      </tr>
-    </thead>
-    <tbody className='bg-canvas'>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>value</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>
-          The controlled value of the select
-        </td>
-      </tr>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>defaultValue</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>
-          The default value (uncontrolled)
-        </td>
-      </tr>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>onValueChange</td>
-        <td className='p-12 text-muted body-3'>(value: string) =&gt; void</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>Callback when value changes</td>
-      </tr>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>disabled</td>
-        <td className='p-12 text-muted body-3'>boolean</td>
-        <td className='p-12 text-muted body-3'>false</td>
-        <td className='p-12 text-muted body-3'>
-          Whether the select is disabled
-        </td>
-      </tr>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>required</td>
-        <td className='p-12 text-muted body-3'>boolean</td>
-        <td className='p-12 text-muted body-3'>false</td>
-        <td className='p-12 text-muted body-3'>
-          Whether the select is required
-        </td>
-      </tr>
-      <tr>
-        <td className='text-accent p-12 body-3'>name</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>
-          Name attribute for form submission
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+You can add descriptions or additional content to select items by including extra elements alongside `SelectItemText`:
 
-### SelectTrigger Props
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+  SelectTrigger,
+} from '@ledgerhq/ldls-ui-react';
+import { Tag } from '@ledgerhq/ldls-ui-react';
 
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
-    <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-3">
-          Prop
-        </th>
-        <th className="p-12 text-left text-on-accent body-3">Type</th>
-        <th className="p-12 text-left text-on-accent body-3">Default</th>
-        <th className="p-12 text-left text-on-accent body-3">Description</th>
-      </tr>
-    </thead>
-    <tbody className="bg-canvas">
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">label</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Floating label text</td>
-      </tr>
-      <tr>
-        <td className="text-accent p-12 body-3">className</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Additional CSS classes</td>
-      </tr>
+function MyComponent() {
+  const [value, setValue] = useState('');
 
-      <tr>
-        <td className="text-accent p-12 body-3">labelClassName</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Additional CSS classes for the label</td>
-      </tr>
-    </tbody>
+  return (
+    <Select value={value} onValueChange={setValue}>
+      <SelectTrigger label='Label' />
+      <SelectContent>
+        <SelectItem
+          value='option1'
+          className='flex flex-col items-start justify-start gap-2'
+        >
+          <SelectItemText>Premium Plan</SelectItemText>
+          <div className='body-4 text-muted'>Best for professionals</div>
+        </SelectItem>
+        <SelectItem
+          value='option2'
+          className='flex flex-col items-start justify-start gap-2'
+        >
+          <SelectItemText>Basic Plan</SelectItemText>
+          <div className='body-4 text-muted'>Perfect for starters</div>
+        </SelectItem>
+        <SelectItem value='option3' className='flex items-center gap-8'>
+          <SelectItemText>New Feature</SelectItemText>
+          <Tag label='new' appearance='accent' size='sm' />
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+```
 
-  </table>
-</div>
+**Important:** Always use `SelectItemText` for the main option text. Description text should be placed in separate elements alongside `SelectItemText`, never inside it.
 
-### SelectItem Props
+✅ **Do:**
 
-<div className='my-24 overflow-hidden rounded-lg'>
-  <table className='w-full'>
-    <thead>
-      <tr className='border-b border-muted bg-muted'>
-        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
-        <th className='p-12 text-left text-on-accent body-3'>Type</th>
-        <th className='p-12 text-left text-on-accent body-3'>Default</th>
-        <th className='p-12 text-left text-on-accent body-3'>Description</th>
-      </tr>
-    </thead>
-    <tbody className='bg-canvas'>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>value</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>
-          The value of the option (required)
-        </td>
-      </tr>
-      <tr className='border-b border-muted'>
-        <td className='text-accent p-12 body-3'>disabled</td>
-        <td className='p-12 text-muted body-3'>boolean</td>
-        <td className='p-12 text-muted body-3'>false</td>
-        <td className='p-12 text-muted body-3'>
-          Whether the option is disabled
-        </td>
-      </tr>
-      <tr>
-        <td className='text-accent p-12 body-3'>className</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>Additional CSS classes</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+```tsx
+<SelectItem value='option1' className='flex flex-col items-start gap-4'>
+  <SelectItemText>Option Title</SelectItemText>
+  <div className='body-4 text-muted'>This is a description</div>
+</SelectItem>
+```
 
-### SelectLabel Props
+❌ **Don't:**
 
-<div className='my-24 overflow-hidden rounded-lg'>
-  <table className='w-full'>
-    <thead>
-      <tr className='border-b border-muted bg-muted'>
-        <th className='p-12 text-left text-on-accent body-3'>Prop</th>
-        <th className='p-12 text-left text-on-accent body-3'>Type</th>
-        <th className='p-12 text-left text-on-accent body-3'>Default</th>
-        <th className='p-12 text-left text-on-accent body-3'>Description</th>
-      </tr>
-    </thead>
-    <tbody className='bg-canvas'>
-      <tr>
-        <td className='text-accent p-12 body-3'>className</td>
-        <td className='p-12 text-muted body-3'>string</td>
-        <td className='p-12 text-muted body-3'>-</td>
-        <td className='p-12 text-muted body-3'>Additional CSS classes</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+```tsx
+<SelectItem value='option1'>
+  <SelectItemText>
+    Option Title
+    <div>This is a description</div>{' '}
+    {/* Don't nest description inside SelectItemText */}
+  </SelectItemText>
+</SelectItem>
+```
 
-### SelectContent Props
+❌ **Don't:**
 
-<div className="my-24 overflow-hidden rounded-lg">
-  <table className="w-full">
-    <thead>
-      <tr className="border-b border-muted bg-muted">
-        <th className="p-12 text-left text-on-accent body-3">
-          Prop
-        </th>
-        <th className="p-12 text-left text-on-accent body-3">Type</th>
-        <th className="p-12 text-left text-on-accent body-3">Default</th>
-        <th className="p-12 text-left text-on-accent body-3">Description</th>
-      </tr>
-    </thead>
-    <tbody className="bg-canvas">
-      <tr className="border-b border-muted">
-        <td className="text-accent p-12 body-3">position</td>
-        <td className="p-12 text-muted body-3">'popper' | 'item-aligned'</td>
-        <td className="p-12 text-muted body-3">'popper'</td>
-        <td className="p-12 text-muted body-3">Positioning strategy</td>
-      </tr>
-      <tr>
-        <td className="text-accent p-12 body-3">className</td>
-        <td className="p-12 text-muted body-3">string</td>
-        <td className="p-12 text-muted body-3">-</td>
-        <td className="p-12 text-muted body-3">Additional CSS classes</td>
-      </tr>
-
-      <tr>
-        <td className="text-accent p-12 body-3">align</td>
-        <td className="p-12 text-muted body-3">'start' | 'center' | 'end'</td>
-        <td className="p-12 text-muted body-3">'start'</td>
-        <td className="p-12 text-muted body-3">Alignment of the content</td>
-      </tr>
-
-      <tr>
-        <td className="text-accent p-12 body-3">side</td>
-        <td className="p-12 text-muted body-3">'top' | 'bottom' | 'left' | 'right'</td>
-        <td className="p-12 text-muted body-3">'bottom'</td>
-        <td className="p-12 text-muted body-3">Side of the trigger to align the content</td>
-      </tr>
-
-      <tr>
-        <td className="text-accent p-12 body-3">sticky</td>
-        <td className="p-12 text-muted body-3">boolean</td>
-        <td className="p-12 text-muted body-3">false</td>
-        <td className="p-12 text-muted body-3">Whether the content should be sticky</td>
-      </tr>
-    </tbody>
-
-  </table>
-</div>
+```tsx
+<SelectItem value='option1'>
+  Option Title {/* Don't use raw text - always wrap with SelectItemText */}
+</SelectItem>
+```
 
 ### With Groups
 
@@ -344,6 +215,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectItemText,
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
@@ -358,14 +230,22 @@ function MyComponent() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value='apple'>Apple</SelectItem>
-          <SelectItem value='banana'>Banana</SelectItem>
+          <SelectItem value='apple'>
+            <SelectItemText>Apple</SelectItemText>
+          </SelectItem>
+          <SelectItem value='banana'>
+            <SelectItemText>Banana</SelectItemText>
+          </SelectItem>
         </SelectGroup>
         <SelectSeparator />
         <SelectGroup>
           <SelectLabel>Vegetables</SelectLabel>
-          <SelectItem value='carrot'>Carrot</SelectItem>
-          <SelectItem value='broccoli'>Broccoli</SelectItem>
+          <SelectItem value='carrot'>
+            <SelectItemText>Carrot</SelectItemText>
+          </SelectItem>
+          <SelectItem value='broccoli'>
+            <SelectItemText>Broccoli</SelectItemText>
+          </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
@@ -395,9 +275,15 @@ The Select component integrates seamlessly with HTML forms:
   <Select name='category' required>
     <SelectTrigger label='Category' />
     <SelectContent>
-      <SelectItem value='tech'>Technology</SelectItem>
-      <SelectItem value='design'>Design</SelectItem>
-      <SelectItem value='business'>Business</SelectItem>
+      <SelectItem value='tech'>
+        <SelectItemText>Technology</SelectItemText>
+      </SelectItem>
+      <SelectItem value='design'>
+        <SelectItemText>Design</SelectItemText>
+      </SelectItem>
+      <SelectItem value='business'>
+        <SelectItemText>Business</SelectItemText>
+      </SelectItem>
     </SelectContent>
   </Select>
   <button type='submit'>Submit</button>
@@ -413,8 +299,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectScrollUpButton,
-  SelectScrollDownButton,
+  SelectItemText,
   SelectTrigger,
 } from '@ledgerhq/ldls-ui-react';
 
@@ -437,7 +322,7 @@ function MyComponent() {
         {/* Scroll buttons are automatically included in SelectContent */}
         {countries.map((country) => (
           <SelectItem key={country} value={country.toLowerCase()}>
-            {country}
+            <SelectItemText>{country}</SelectItemText>
           </SelectItem>
         ))}
       </SelectContent>
@@ -446,7 +331,7 @@ function MyComponent() {
 }
 ```
 
-> **Note:** As shown in the shadcn implementation, `SelectScrollUpButton` and `SelectScrollDownButton` are automatically rendered inside `SelectContent`. You don't need to manually add them unless you want custom styling.
+> **Note:** `SelectScrollUpButton` and `SelectScrollDownButton` are automatically rendered inside `SelectContent`. 
 
 </Tab>
 </CustomTabs>

@@ -12,7 +12,7 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
 ## Introduction
 
-Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional subtitle, tag, and a secondary action button visible on hover.
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional description, tag, and a secondary action button visible on hover.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
 
@@ -20,10 +20,10 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 <Canvas of={TileStories.Base} />
 
-- **Spot**: Visual icon or element at the top
+- **Leading Content**: Visual icon or element at the top
 - **Title**: The main label of the item (required)
-- **Subtitle (optional)**: Provides additional context
-- **Tag (optional)**: Small tag at the bottom for status or labels
+- **Description (optional)**: Provides additional context
+- **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
 - **Secondary Action (optional)**: Action button in the top right corner, visible on hover
 
 ## Properties
@@ -37,13 +37,13 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 Tile components support various spot icons to categorize or visualize the content, including coin icons.
 
-<Canvas of={TileStories.SpotVariantsShowcase} />
+<Canvas of={TileStories.LeadingContentVariantsShowcase} />
 
-### Tag Variants
+### Trailing Content Variants
 
-Optional tags can be added at the bottom with different appearances.
+Optional trailing content can be added at the bottom of the tile.
 
-<Canvas of={TileStories.WithTag} />
+<Canvas of={TileStories.WithTrailingContent} />
 
 ### Without Secondary Action
 
@@ -59,13 +59,13 @@ In carousel mode, the tiles are displayed in a horizontal list with no rounded c
 
 ## Responsive Layout
 
-Tile components adapt to their container width, truncating long titles and subtitles as needed.
+Tile components adapt to their container width, truncating long titles and descriptions as needed.
 
 > **Key behaviors:**
 >
 > - Automatically fits container width
 > - Title truncates to one line
-> - Subtitle truncates to one line
+> - Description truncates to one line
 > - In carousel mode, only first and last items have rounded corners
 
 </Tab>
@@ -75,7 +75,7 @@ Tile components adapt to their container width, truncating long titles and subti
 npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/tailwind-setup-guide--docs) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-slot` dependency enables flexible composition patterns for the Tile component.
 
@@ -105,7 +105,7 @@ function MyComponent() {
   return (
     <Tile
       title='Bitcoin'
-      subtitle='BTC'
+      description='BTC'
       spot={<Spot appearance='coin' icon='btc' />}
       onClick={() => console.log('Clicked!')}
     />

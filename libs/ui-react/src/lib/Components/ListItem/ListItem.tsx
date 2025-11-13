@@ -94,7 +94,7 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
         <div className='flex min-w-0 flex-1 items-center gap-12'>
           {leadingContent}
           <div className='flex min-w-0 flex-1 flex-col gap-4 text-left'>
-            <div className='body-2-semi-bold truncate'>{title}</div>
+            <div className='truncate body-2-semi-bold'>{title}</div>
             {description && (
               <div className='flex items-center gap-4'>
                 <div

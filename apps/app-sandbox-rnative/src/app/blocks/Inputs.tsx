@@ -1,4 +1,4 @@
-import { Search, TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { AddressInput, Search, TextInput } from '@ledgerhq/ldls-ui-rnative';
 import { Eye, EyeCross } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
@@ -64,6 +64,16 @@ export function Inputs() {
         defaultValue='This is a default value!'
       />
       <Search className='min-w-full' placeholder='Search for a component...' />
+      <AddressInput
+        className='min-w-full'
+        placeholder='Enter address or ENS'
+        onQrCodeClick={() =>
+          Alert.alert(
+            'Copied!',
+            'You can now proceed with your transaction on your phone.',
+          )
+        }
+      />
     </View>
   );
 }

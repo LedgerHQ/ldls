@@ -32,7 +32,7 @@ export const withModeDecorator = createThemeDecorator('mode', [
   'dark',
 ]);
 
-export const withProvidersDecorator: Decorator = (Story, context) => {
+export const withProvidersDecorator: Decorator = (Story) => {
   return (
     <ThemeProvider>
       <GestureHandlerRootView style={{ flex: 1, width: '100%' }}>

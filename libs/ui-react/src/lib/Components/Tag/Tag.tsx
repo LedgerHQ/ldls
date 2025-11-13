@@ -4,7 +4,7 @@ import React from 'react';
 import { IconSize } from '../Icon/Icon';
 
 const tagVariants = cva(
-  'rounded-xs inline-flex items-center justify-center gap-4',
+  'inline-flex items-center justify-center gap-4 rounded-xs',
   {
     variants: {
       appearance: {
@@ -17,8 +17,8 @@ const tagVariants = cva(
         disabled: 'bg-disabled text-disabled',
       },
       size: {
-        lg: 'body-3 px-8 py-4',
-        sm: 'body-4 px-4 py-2',
+        lg: 'px-8 py-4 body-3',
+        sm: 'px-4 py-2 body-4',
       },
     },
     defaultVariants: {

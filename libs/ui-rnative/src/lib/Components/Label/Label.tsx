@@ -26,6 +26,7 @@ export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
   ) => {
     return (
       <Text
+        ref={ref}
         disabled={disabled}
         onPress={disabled ? undefined : onPress}
         onLongPress={disabled ? undefined : onLongPress}

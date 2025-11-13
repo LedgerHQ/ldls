@@ -34,12 +34,13 @@ const meta: Meta<typeof Link> = {
 
 export default meta;
 type Story = StoryObj<typeof Link>;
-type LinkAppearance = 'underlined' | 'accent';
+type LinkAppearance = 'base' | 'accent' | 'inherit';
 
 export const Base: Story = {
   args: {
-    appearance: 'underlined',
-    children: 'Underlined Link',
+    appearance: 'base',
+    size: 'md',
+    children: 'Base Link',
     href: '#',
     onClick,
   },
@@ -47,8 +48,8 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<Link appearance="underlined" href="#">
-  Underlined Link
+<Link appearance="base" href="#">
+  Base Link
 </Link>
 `,
       },
@@ -58,7 +59,7 @@ export const Base: Story = {
 
 export const WithIcon: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
     children: 'Link with Icon',
     icon: Information,
     href: '#',
@@ -69,7 +70,7 @@ export const WithIcon: Story = {
       source: {
         code: `
 <Link
-  appearance="underlined"
+  appearance="base"
   icon={Information}
   href="#"
 >
@@ -83,7 +84,7 @@ export const WithIcon: Story = {
 
 export const External: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
     children: 'External Link',
     isExternal: true,
     href: 'https://ledger.com',
@@ -93,7 +94,7 @@ export const External: Story = {
       source: {
         code: `
 <Link
-  appearance="underlined"
+  appearance="base"
   isExternal
   href="https://ledger.com"
 >
@@ -107,7 +108,8 @@ export const External: Story = {
 
 export const ExternalLinkWithIcon: Story = {
   args: {
-    appearance: 'underlined',
+    appearance: 'base',
+    size: 'md',
     children: 'External Link with Icon',
     icon: Information,
     isExternal: true,
@@ -118,7 +120,8 @@ export const ExternalLinkWithIcon: Story = {
       source: {
         code: `
   <Link
-    appearance="underlined"
+    appearance="base"
+    size="md"
     icon={Information}
     isExternal
     href="https://ledger.com"
@@ -134,7 +137,7 @@ export const ExternalLinkWithIcon: Story = {
 export const AppearanceShowcase: Story = {
   render: () => {
     const appearances: Array<{ name: string; appearance: LinkAppearance }> = [
-      { name: 'Underlined', appearance: 'underlined' },
+      { name: 'Base', appearance: 'base' },
       { name: 'Accent', appearance: 'accent' },
     ];
 
@@ -143,6 +146,7 @@ export const AppearanceShowcase: Story = {
         {appearances.map(({ name, appearance }) => (
           <Link
             key={appearance}
+            size='md'
             appearance={appearance}
             href='#'
             onClick={onClick}
@@ -162,7 +166,7 @@ export const SizesShowcase: Story = {
     <>
       <div className='flex items-center gap-32 p-8'>
         <Link
-          appearance='underlined'
+          appearance='base'
           size='sm'
           href='#'
           onClick={onClick}
@@ -172,7 +176,7 @@ export const SizesShowcase: Story = {
           Small
         </Link>
         <Link
-          appearance='underlined'
+          appearance='base'
           size='md'
           href='#'
           onClick={onClick}
@@ -210,22 +214,23 @@ export const SizesShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='w-256 bg-muted flex flex-col gap-8 rounded-sm p-8'>
-      <Link appearance='underlined' href='#' onClick={onClick}>
+    <div className='flex w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+      <Link underline href='#' onClick={onClick} size='md'>
         Short Link
       </Link>
-      <Link appearance='underlined' href='#' onClick={onClick}>
+      <Link appearance='base' href='#' onClick={onClick} size='md'>
         This is a longer link text to show line clamping behavior over two lines
         if necessary
       </Link>
       <Link
-        appearance='underlined'
+        appearance='base'
+        size='md'
         href='#'
         icon={Information}
         isExternal
         onClick={onClick}
       >
-        Underlined with long text that should fit
+        Base with long text that should fit
       </Link>
     </div>
   ),
@@ -249,10 +254,10 @@ export const AsChild: Story = {
 
     return (
       <div className='flex flex-col gap-16 p-8'>
-        <Link asChild appearance='underlined'>
+        <Link asChild appearance='base' size='md'>
           <RouterLink to='#'>Dashboard</RouterLink>
         </Link>
-        <Link asChild appearance='accent'>
+        <Link asChild appearance='accent' size='md'>
           <a
             href='https://shop.ledger.com'
             target='_blank'
@@ -271,16 +276,88 @@ export const AsChild: Story = {
 // Example with react-router-dom
 import { Link as RouterLink } from 'react-router-dom';
 
-<Link asChild appearance="underlined">
+<Link asChild appearance="base" size="md">
   <RouterLink to="#">Dashboard</RouterLink>
 </Link>
 
 // Example as external link
-<Link asChild appearance="accent">
+<Link asChild appearance="accent" size="md">
   <a href="https://shop.ledger.com" target="_blank" rel="noopener noreferrer">
     External Link to Ledger Shop
   </a>
 </Link>
+`,
+      },
+    },
+  },
+};
+
+export const InheritVariants: Story = {
+  render: () => (
+    <div className='flex flex-col gap-32 p-8'>
+      <div className='text-base body-2'>
+        By continuing, you agree to our{' '}
+        <Link href='#' onClick={onClick}>
+          Terms & Conditions
+        </Link>{' '}
+        and{' '}
+        <Link href='#' onClick={onClick}>
+          Privacy Policy
+        </Link>
+        .
+      </div>
+
+      <div className='text-interactive heading-3'>
+        Need help?{' '}
+        <Link href='#' onClick={onClick}>
+          Contact Support
+        </Link>
+      </div>
+
+      <div className='text-muted body-3'>
+        Learn more about security in our{' '}
+        <Link href='#' onClick={onClick}>
+          Security Guide
+        </Link>
+        .
+      </div>
+
+      <div className='text-base body-1-semi-bold'>
+        Already have an account?{' '}
+        <Link underline={false} href='#' onClick={onClick}>
+          Sign in
+        </Link>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+// Terms and conditions in body text (default behavior)
+<div className='text-base body-2'>
+  By continuing, you agree to our{' '}
+  <Link href='#'>Terms & Conditions</Link>
+  {' '}and{' '}
+  <Link href='#'>Privacy Policy</Link>.
+</div>
+
+// Heading with inline link
+<div className='text-interactive heading-3'>
+  Need help? <Link href='#'>Contact Support</Link>
+</div>
+
+// Muted text with link
+<div className='text-muted body-3'>
+  Learn more about security in our{' '}
+  <Link href='#'>Security Guide</Link>.
+</div>
+
+// Bold text with ununderlined link
+<div className='text-base body-1-semi-bold'>
+  Already have an account?{' '}
+  <Link underline={false} href='#'>Sign in</Link>
+</div>
 `,
       },
     },

@@ -4,21 +4,21 @@ import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { ChevronDown, Check, ChevronUp } from '../../Symbols';
 import type {
+  SelectProps,
   SelectTriggerProps,
   SelectContentProps,
+  SelectGroupProps,
+  SelectLabelProps,
+  SelectItemTextProps,
   SelectItemProps,
   SelectSeparatorProps,
 } from './types';
 
-function Select({
-  ...props
-}: React.ComponentProps<typeof SelectPrimitive.Root>) {
+function Select({ ...props }: SelectProps) {
   return <SelectPrimitive.Root data-slot='select' {...props} />;
 }
 
-function SelectGroup({
-  ...props
-}: React.ComponentProps<typeof SelectPrimitive.Group>) {
+function SelectGroup({ ...props }: SelectGroupProps) {
   return <SelectPrimitive.Group data-slot='select-group' {...props} />;
 }
 
@@ -42,7 +42,7 @@ const labelStyles = cn(
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, labelClassName, label, children, ...props }, ref) => (
+>(({ className, labelClassName, label, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     data-slot='select-trigger'
@@ -52,15 +52,20 @@ const SelectTrigger = React.forwardRef<
     {label && (
       <label className={cn(labelStyles, labelClassName)}>{label}</label>
     )}
-    <span className='mt-16 flex-1 truncate text-left opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0'>
-      <SelectPrimitive.Value data-slot='select-value'>
-        {children}
-      </SelectPrimitive.Value>
+    <span
+      className={cn(
+        'flex-1 truncate text-left ',
+        label &&
+          'mt-16 opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0',
+        className,
+      )}
+    >
+      <SelectPrimitive.Value data-slot='select-value' />
     </span>
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='text-muted group-data-[disabled]:text-disabled shrink-0'
+        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -69,8 +74,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'bg-muted rounded-sm',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'rounded-sm bg-muted',
     'shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',
@@ -106,7 +111,7 @@ const viewportStyles = cva('p-8', {
 
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
+  SelectContentProps
 >(({ className, children, position = 'popper', ...props }, ref) => (
   <SelectPrimitive.Portal data-slot='select-portal'>
     <SelectPrimitive.Content
@@ -128,7 +133,7 @@ SelectContent.displayName = SelectPrimitive.Content.displayName;
 
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+  SelectLabelProps
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
@@ -151,7 +156,7 @@ const itemStyles = cn(
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
+  SelectItemProps
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
@@ -159,7 +164,7 @@ const SelectItem = React.forwardRef<
     className={cn(itemStyles, className)}
     {...props}
   >
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+    {children}
     <span className='absolute right-8 flex size-24 items-center justify-center'>
       <SelectPrimitive.ItemIndicator>
         <Check size={24} className='text-active' />
@@ -171,7 +176,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
+  SelectSeparatorProps
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
@@ -181,6 +186,19 @@ const SelectSeparator = React.forwardRef<
   />
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
+
+const SelectItemText = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.ItemText>,
+  SelectItemTextProps
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.ItemText
+    ref={ref}
+    data-slot='select-item-text'
+    className={cn('text-muted body-2', className)}
+    {...props}
+  />
+));
+SelectItemText.displayName = SelectPrimitive.ItemText.displayName;
 
 function SelectScrollUpButton({
   className,
@@ -224,10 +242,7 @@ export {
   SelectTrigger,
   SelectContent,
   SelectLabel,
+  SelectItemText,
   SelectItem,
   SelectSeparator,
-  type SelectTriggerProps,
-  type SelectContentProps,
-  type SelectItemProps,
-  type SelectSeparatorProps,
 };

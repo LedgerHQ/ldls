@@ -17,12 +17,12 @@ figma.connect(
     imports: ["import { TileItem } from '@ledgerhq/ldls-ui-react'"],
     props: {
       title: figma.string('title'),
-      subtitle: figma.boolean('show-subtitle', {
-        true: figma.string('subtitle'),
+      description: figma.boolean('show-description', {
+        true: figma.string('description'),
         false: undefined,
       }),
-      spot: <Spot appearance='icon' icon={Settings} />,
-      tag: figma.boolean('show-tag', {
+      leadingContent: <Spot appearance='icon' icon={Settings} />,
+      trailingContent: figma.boolean('show-tag', {
         true: figma.instance('tag'),
         false: undefined,
       }),
@@ -48,7 +48,7 @@ figma.connect(
     example: (props) => (
       <TileItem
         title={props.title}
-        subtitle={props.subtitle}
+        description={props.description}
         spot={props.spot}
         tag={props.tag}
         secondaryAction={props.secondaryAction}
