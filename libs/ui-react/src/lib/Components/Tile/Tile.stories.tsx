@@ -237,29 +237,7 @@ export const LeadingContentVariantsShowcase: Story = {
   ),
 };
 
-export const ResponsiveLayout: Story = {
-  render: () => (
-    <div className='grid w-256 grid-cols-1 gap-16 bg-base p-16'>
-      <div className='text-muted body-4-semi-bold'>Container: 256px wide</div>
-      <div>
-        <Tile
-          title='Short Title'
-          description='Short description'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          secondaryAction={secondaryAction}
-        />
-        <Tile
-          title='Long Title that should truncate appropriately'
-          description='Long description that should truncate appropriately'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          secondaryAction={secondaryAction}
-        />
-      </div>
-    </div>
-  ),
-};
-
-export const List: Story = {
+export const HorizontalList: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
       <div className='flex w-[450px] bg-base'>
@@ -292,6 +270,28 @@ export const List: Story = {
             className='w-128 shrink-0'
           />
         ))}
+      </div>
+    </div>
+  ),
+};
+
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div className='flex w-full flex-col gap-16'>
+      <div>
+        <Tile
+          title='Item fill width'
+          description='Description fill width'
+          leadingContent={<Spot appearance='icon' icon={Apps} />}
+        />
+      </div>
+      <div className='flex items-center justify-center'>
+        <Tile
+          className='w-224'
+          title='Long Item with fixed width'
+          description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
+          leadingContent={<Spot appearance='icon' icon={Plus} />}
+        />
       </div>
     </div>
   ),
