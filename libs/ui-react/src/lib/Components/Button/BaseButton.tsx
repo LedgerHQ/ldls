@@ -6,18 +6,18 @@ import { IconSize } from '../Icon/Icon';
 import { Spinner } from '../Spinner';
 
 const baseButtonVariants = cva(
-  'body-1-semi-bold focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
+  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
   {
     variants: {
       appearance: {
         base: 'bg-interactive text-on-interactive hover:bg-interactive-hover active:bg-interactive-pressed',
-        gray: 'bg-muted hover:bg-muted-hover active:bg-muted-pressed text-base',
+        gray: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed',
         accent:
           'bg-accent text-on-accent hover:bg-accent-hover active:bg-accent-pressed',
         transparent:
-          'bg-muted-transparent hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed text-base',
+          'bg-muted-transparent text-base hover:bg-muted-transparent-hover active:bg-muted-transparent-pressed',
         'no-background':
-          'hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent bg-transparent text-base',
+          'bg-transparent text-base hover:bg-base-transparent-hover active:bg-base-transparent-pressed disabled:bg-base-transparent',
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       size: {

@@ -4,7 +4,7 @@ import React from 'react';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('bg-canvas-sheet flex text-base', {
+const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
   variants: {
     appearance: {
       compact: 'h-64 flex-row items-center gap-12',
@@ -114,12 +114,12 @@ export const SheetBar = ({
             })}
           >
             {title && (
-              <div className='heading-4-semi-bold truncate text-center'>
+              <div className='truncate text-center heading-4-semi-bold'>
                 {title}
               </div>
             )}
             {description && (
-              <div className='text-muted body-2 truncate text-center'>
+              <div className='truncate text-center text-muted body-2'>
                 {description}
               </div>
             )}

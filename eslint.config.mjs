@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import tailwind from 'eslint-plugin-tailwindcss';
@@ -19,6 +20,9 @@ export default defineConfig(
   },
   {
     files: ['**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
+    languageOptions: {
+      parser: tsParser,
+    },
     rules: {
       /**
        * import
@@ -47,7 +51,19 @@ export default defineConfig(
       /**
        * typescript
        */
-      '@typescript-eslint/no-unused-vars': ['error'],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       /**
        * nx

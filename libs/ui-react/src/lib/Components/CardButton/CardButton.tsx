@@ -5,13 +5,13 @@ import { ChevronRight } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const buttonVariants = cva(
-  'focus-visible:outline-focus disabled:text-disabled inline-flex h-fit w-full items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2',
+  'inline-flex h-fit w-full items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:text-disabled',
   {
     variants: {
       appearance: {
-        base: 'bg-muted hover:bg-muted-hover active:bg-muted-pressed disabled:bg-disabled text-base',
+        base: 'bg-muted text-base hover:bg-muted-hover active:bg-muted-pressed disabled:bg-disabled',
         outline:
-          'bg-base-transparent outline-muted-subtle hover:bg-base-transparent-hover hover:outline-muted-subtle-hover active:bg-base-transparent-pressed active:outline-muted-subtle-pressed disabled:bg-base-transparent disabled:outline-disabled text-base outline-dashed outline-1 focus-visible:outline-none focus-visible:outline-offset-0',
+          'bg-base-transparent text-base outline-dashed outline-1 outline-muted-subtle hover:bg-base-transparent-hover hover:outline-muted-subtle-hover focus-visible:outline-none focus-visible:outline-offset-0 active:bg-base-transparent-pressed active:outline-muted-subtle-pressed disabled:bg-base-transparent disabled:outline-disabled',
       },
     },
     defaultVariants: {
@@ -95,9 +95,9 @@ export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
       >
         {IconComponent && <IconComponent size={24} className='shrink-0' />}
         <div className='flex min-w-0 flex-1 flex-col gap-4 text-left'>
-          <div className='body-1-semi-bold min-w-0 truncate'>{title}</div>
+          <div className='min-w-0 truncate body-1-semi-bold'>{title}</div>
           {description && (
-            <div className='body-2 line-clamp-2 min-w-0'>{description}</div>
+            <div className='line-clamp-2 min-w-0 body-2'>{description}</div>
           )}
         </div>
         {!hideChevron && <ChevronRight size={24} className='shrink-0' />}

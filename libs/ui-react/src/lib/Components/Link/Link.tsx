@@ -6,18 +6,18 @@ import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon/Icon';
 
 const linkVariants = cva(
-  'focus-visible:outline-focus inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4',
+  'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
   {
     variants: {
       appearance: {
         underlined:
-          'hover:text-base-hover active:text-base-pressed text-base underline underline-offset-2',
+          'text-base underline underline-offset-2 hover:text-base-hover active:text-base-pressed',
         accent:
           'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
       },
       size: {
-        sm: 'body-2-semi-bold gap-4',
-        md: 'body-1-semi-bold gap-8',
+        sm: 'gap-4 body-2-semi-bold',
+        md: 'gap-8 body-1-semi-bold',
       },
     },
     defaultVariants: {

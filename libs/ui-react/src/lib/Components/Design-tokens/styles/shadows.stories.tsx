@@ -19,11 +19,11 @@ const ShadowShowcase = () => (
         { name: '32px', class: 'shadow-2xl' },
       ].map(({ name, class: shadowClass }) => (
         <div key={name}>
-          <div className='size-192 border-muted-subtle dark:bg-muted-strong flex items-center justify-center rounded-lg border text-center'>
+          <div className='flex size-192 items-center justify-center rounded-lg border border-muted-subtle text-center dark:bg-muted-strong'>
             <div className={`size-80 rounded-lg ${shadowClass}`}></div>
           </div>
-          <div className='body-2 mt-8 text-base'>{name}</div>
-          <div className='text-muted body-4 mt-8'>{shadowClass}</div>
+          <div className='mt-8 text-base body-2'>{name}</div>
+          <div className='mt-8 text-muted body-4'>{shadowClass}</div>
         </div>
       ))}
     </div>
