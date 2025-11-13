@@ -117,12 +117,113 @@ export default meta;
 type Story = StoryObj<typeof YourComponent>;
 
 // Basic usage example
-export const Primary: Story = {
+export const Base: Story = {
   args: {
     // Component props
   },
 };
 ```
+
+### Story Naming Conventions
+
+To maintain consistency across our Storybook documentation, follow these naming rules:
+
+#### 1. Base Story
+
+- **Name**: `Base`
+- **Purpose**: The default, most basic usage of the component
+- **Example**: `export const Base: Story = { ... }`
+
+#### 2. Showcase Stories
+
+Showcase stories demonstrate variations of a single property. Use the pattern: `{Property}Showcase`
+
+- **Appearance variations**: `AppearanceShowcase`
+- **Size variations**: `SizeShowcase` (singular, not "Sizes")
+- **State variations**: `StateShowcase` (singular, not "States" or "AllStates")
+- **Content type variations**: `ContentTypeShowcase`
+
+**Examples**:
+
+```typescript
+export const AppearanceShowcase: Story = { ... }
+export const SizeShowcase: Story = { ... }
+export const StateShowcase: Story = { ... }
+```
+
+#### 3. Feature-Specific Stories
+
+Stories highlighting specific features should use the pattern: `With{Feature}`
+
+- `WithIcon`
+- `WithDescription`
+- `WithActions`
+- `WithTooltip`
+
+**Example**:
+
+```typescript
+export const WithDescription: Story = {
+  args: {
+    title: 'Title',
+    description: 'Description text',
+  },
+};
+```
+
+#### 4. Interactive Examples
+
+Stories with user interaction should start with `Interactive`:
+
+- `InteractiveStates`
+- `InteractiveActions`
+- `InteractiveDismiss`
+
+**Example**:
+
+```typescript
+export const InteractiveStates: Story = {
+  render: () => {
+    const [state, setState] = useState(false);
+    // ... interactive logic
+  },
+};
+```
+
+#### 5. Layout Examples
+
+Stories demonstrating responsive behavior or layout should start with `Responsive`:
+
+- `ResponsiveLayout`
+- `ResponsiveWidth`
+
+**Example**:
+
+```typescript
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div className='w-320'>
+      {/* Component in constrained container */}
+    </div>
+  ),
+};
+```
+
+#### 6. Special Cases
+
+- **Galleries/Catalogs**: Use `Gallery` (e.g., icon galleries)
+- **Loading states**: Use `Loading` or `LoadingState`
+- **Polymorphic components**: Use `AsChild` for `asChild` prop examples
+
+#### 7. Avoid These Patterns
+
+- ❌ `Default` (use `Base` instead)
+- ❌ `Primary` (use `Base` instead)
+- ❌ `Basic` (use `Base` instead)
+- ❌ `Sizes` without "Showcase" suffix (use `SizeShowcase`)
+- ❌ `States` (use `StateShowcase`)
+- ❌ `AllStates` (use `StateShowcase`)
+- ❌ Inconsistent pluralization (always singular: `SizeShowcase`, not `SizesShowcase`)
 
 ### Documentation Best Practices
 
@@ -131,6 +232,7 @@ export const Primary: Story = {
 3. Provide usage examples
 4. Include accessibility considerations
 5. Document any known limitations or edge cases
+6. Follow the story naming conventions above for consistency
 
 ## Testing Guidelines
 

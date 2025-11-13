@@ -1,8 +1,23 @@
 ---
 description:
-globs: *.mdx
-alwaysApply: When asked to write documentation amd markdown files 
+globs: *.mdx, *.stories.tsx
+alwaysApply: When asked to write documentation and markdown files 
 ---
+
+# Documentation Guidelines
+
+## Storybook Stories
+
+When creating Storybook stories (`.stories.tsx` files), refer to the storybook.mdc rules for story naming conventions.
+Key points:
+
+- Use `Base` for the default story (never `Default`, `Primary`, or `Basic`)
+- Use `{Property}Showcase` pattern for property variations (e.g., `SizeShowcase`, not `Sizes`)
+- Use `With{Feature}` for feature-specific examples
+- Use `Interactive{Feature}` for interactive examples
+- Use `Responsive{Aspect}` for responsive/layout examples
+
+## MDX Documentation
 
 When asked to write a documentation for a component
 

@@ -1,0 +1,138 @@
+# Storybook Story Naming Conventions
+
+When creating or modifying Storybook stories, follow these naming conventions strictly:
+
+## Story Export Names
+
+### 1. Base Story
+
+- **Name**: `Base` (always)
+- **Purpose**: The default, most basic usage example of the component
+- **Never use**: `Default`, `Primary`, `Basic`
+
+```typescript
+export const Base: Story = {
+  args: {
+    children: 'Button text',
+  },
+};
+```
+
+### 2. Showcase Stories
+
+Stories demonstrating variations of a **single property**. Pattern: `{Property}Showcase`
+
+- `AppearanceShowcase` - for appearance/variant props
+- `SizeShowcase` - for size props (singular, not "Sizes")
+- `StateShowcase` - for state variations (singular, not "States" or "AllStates")
+- `ContentTypeShowcase` - for content type variations
+
+**Never use**:
+
+- ❌ `Sizes`, `SizesShowcase` (use `SizeShowcase`)
+- ❌ `States`, `StatesShowcase`, `AllStates` (use `StateShowcase`)
+- ❌ `Showcase` without property prefix (use specific property name)
+
+```typescript
+export const SizeShowcase: Story = {
+  render: () => (
+    <div className='flex gap-4'>
+      <Component size='sm'>Small</Component>
+      <Component size='md'>Medium</Component>
+      <Component size='lg'>Large</Component>
+    </div>
+  ),
+};
+```
+
+### 3. Feature-Specific Stories
+
+Pattern: `With{Feature}` - demonstrates a specific feature or prop combination
+
+- `WithIcon`
+- `WithDescription`
+- `WithActions`
+- `WithTooltip`
+- `WithFullFeatures` (when demonstrating all features together)
+
+```typescript
+export const WithIcon: Story = {
+  args: {
+    icon: Plus,
+    children: 'Add Item',
+  },
+};
+```
+
+### 4. Interactive Examples
+
+Pattern: `Interactive{Feature}` - stories with user interaction/state management
+
+- `InteractiveStates`
+- `InteractiveActions`
+- `InteractiveDismiss`
+- `InteractiveLoadingStates`
+
+```typescript
+export const InteractiveStates: Story = {
+  render: () => {
+    const [selected, setSelected] = useState(false);
+    return <Component selected={selected} onChange={setSelected} />;
+  },
+};
+```
+
+### 5. Responsive/Layout Examples
+
+Pattern: `Responsive{Aspect}` - demonstrates responsive behavior or layout constraints
+
+- `ResponsiveLayout`
+- `ResponsiveWidth`
+
+```typescript
+export const ResponsiveLayout: Story = {
+  render: () => (
+    <div className='w-400 bg-muted-pressed p-16'>
+      <Component />
+    </div>
+  ),
+};
+```
+
+### 6. Special Cases
+
+- **Icon/Asset Galleries**: `Gallery`
+- **Loading States**: `Loading` or `LoadingState`
+- **Polymorphic (asChild)**: `AsChild`
+- **Form Context**: `FormExample`
+
+```typescript
+export const Gallery: Story = {
+  render: () => (
+    <div className='grid grid-cols-6 gap-4'>
+      {items.map(item => <Component key={item} {...item} />)}
+    </div>
+  ),
+};
+```
+
+## Quick Reference
+
+| Purpose               | Story Name                | ❌ Don't Use                            |
+| --------------------- | ------------------------- | --------------------------------------- |
+| Default example       | `Base`                    | `Default`, `Primary`, `Basic`           |
+| Size variations       | `SizeShowcase`            | `Sizes`, `SizesShowcase`                |
+| State variations      | `StateShowcase`           | `States`, `StatesShowcase`, `AllStates` |
+| Appearance variations | `AppearanceShowcase`      | `Appearances`, `Variants`               |
+| With specific feature | `WithIcon`, `WithTooltip` | `Icon`, `HasIcon`                       |
+| Interactive example   | `InteractiveStates`       | `Interactive`, `States`                 |
+| Responsive example    | `ResponsiveLayout`        | `Responsive`, `Layout`                  |
+| Gallery view          | `Gallery`                 | `All`, `Catalog`                        |
+
+## General Principles
+
+1. **Consistency over creativity**: Follow the patterns even if you think another name might be clearer
+2. **Singular property names**: Use `SizeShowcase` not `SizesShowcase`
+3. **PascalCase**: All story names use PascalCase (e.g., `InteractiveStates`)
+4. **Descriptive suffixes**: Add context with suffixes like `Showcase`, `Example`, `Interactive`
+5. **Avoid ambiguity**: Don't use generic names like `Example1`, `Test`, `Demo`
