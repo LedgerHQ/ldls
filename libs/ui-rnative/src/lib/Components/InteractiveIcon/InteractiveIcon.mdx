@@ -1,0 +1,361 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as InteractiveIconStories from './InteractiveIcon.stories';
+import { InteractiveIcon } from './InteractiveIcon';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Components/InteractiveIcon' of={InteractiveIconStories} />
+
+# 🎯 InteractiveIcon
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+InteractiveIcons are specialized interactive elements designed exclusively for icon-based actions. They provide a compact way to trigger actions while maintaining clear visual hierarchy through two distinct styles optimized for different icon types.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6975-2571).
+
+## Anatomy
+
+<Canvas of={InteractiveIconStories.IconTypeShowcase} />
+
+- **Icon**: The visual representation of the action, displayed as a single icon element from the design system
+- **Container**: A circular touch target that provides the interactive area and visual feedback
+
+## Properties
+
+### Overview
+
+<Canvas of={InteractiveIconStories.Filled} />
+<Controls of={InteractiveIconStories.Filled} />
+
+### Icon Types
+
+InteractiveIcons come in two visual styles, each optimized for specific use cases:
+
+- **filled**: Best for filled/solid icons. Features a transparent background with colored icon that changes on interaction
+- **stroked**: Best for outlined icons. Features a subtle background that appears on press with colored icon states
+
+<Canvas of={InteractiveIconStories.IconTypeShowcase} />
+
+### Icon Sizes
+
+InteractiveIcons support various icon sizes to accommodate different use cases and screen densities:
+
+<Canvas of={InteractiveIconStories.SizesShowcase} />
+
+Common sizes include:
+
+- **16px**: Compact actions in dense interfaces
+- **20px**: Standard size for most interactive icons
+- **24px**: Prominent actions in toolbars
+- **40px**: Large touch targets for mobile interfaces
+
+> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through CSS classes. Always use the `size` prop on your icon component (e.g., `<Settings size={20} />`) to ensure proper scaling and visual consistency.
+
+### Icon States
+
+InteractiveIcons have enabled or disabled states:
+
+<Canvas of={InteractiveIconStories.StatesShowcase} />
+
+## Accessibility
+
+InteractiveIcons require special attention for accessibility since they contain only visual icons without text:
+
+### Screen Reader Support
+
+**Always provide an `accessibilityLabel` or  `aria-label` prop** that clearly describes the action:
+
+```tsx
+<InteractiveIcon iconType='filled' accessibilityLabel='Delete item'>
+  <DeleteCircleFill size={20} />
+</InteractiveIcon>
+```
+
+### Touch Interaction
+
+InteractiveIcons support full touch interaction:
+
+- **Tap**: Activates the primary action via `onPress`
+- **Long Press**: Triggers secondary action via `onLongPress` (if provided)
+- **Pressed state**: Visual feedback when touched
+- **Disabled state**: Prevents interaction when disabled
+
+</Tab>
+<Tab label="Implementation">
+
+```bash
+npm install @ledgerhq/ldls-ui-rnative
+```
+
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react-native`, `nativewind`, etc.) are required. See our Setup Guide for complete installation and configuration.
+
+## Usage examples
+
+### Basic usage
+
+```tsx
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative';
+import { Settings, DeleteCircleFill } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { View } from 'react-native';
+
+function MyComponent() {
+  return (
+    <View>
+      {/* Stroked interactive icon */}
+      <InteractiveIcon
+        iconType='stroked'
+        aria-label='Open settings'
+        onPress={handleSettings}
+      >
+        <Settings size={20} />
+      </InteractiveIcon>
+
+      {/* Filled interactive icon */}
+      <InteractiveIcon
+        iconType='filled'
+        aria-label='Delete item'
+        onPress={handleDelete}
+      >
+        <DeleteCircleFill size={20} />
+      </InteractiveIcon>
+    </View>
+  );
+}
+```
+
+### With Event Handlers
+
+```tsx
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative';
+import {
+  CheckmarkCircle,
+  CheckmarkCircleFill,
+} from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function LikeButton({ isSelected, onToggle }) {
+  return (
+    <InteractiveIcon
+      iconType={isSelected ? 'filled' : 'stroked'}
+      aria-label={isSelected ? 'Deselect' : 'Select'}
+      onPress={onToggle}
+    >
+      {isSelected ? (
+        <CheckmarkCircleFill size={20} />
+      ) : (
+        <CheckmarkCircle size={20} />
+      )}
+    </InteractiveIcon>
+  );
+}
+```
+
+### Different Icon Sizes
+
+```tsx
+import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { View } from 'react-native';
+
+function SizeExamples() {
+  return (
+    <View className='flex items-center gap-4'>
+      {/* Compact size for dense interfaces */}
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+        <Settings size={16} />
+      </InteractiveIcon>
+
+      {/* Standard size */}
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+        <Settings size={20} />
+      </InteractiveIcon>
+
+      {/* Prominent size */}
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+        <Settings size={24} />
+      </InteractiveIcon>
+
+      {/* Large touch target for mobile */}
+      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+        <Settings size={40} />
+      </InteractiveIcon>
+    </View>
+  );
+}
+```
+
+## Do's and Don'ts
+
+The following guidelines are based on our design system principles and accessibility best practices for icon-only interactive elements.
+
+### Icon Selection and Usage
+
+✅ **Do**
+
+```tsx
+// Use appropriate icon types for each variant
+import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { View } from 'react-native';
+
+// Filled icons work best with filled variant
+<InteractiveIcon iconType="filled" aria-label="Delete">
+  <DeleteCircleFill size={20} />
+</InteractiveIcon>
+
+// Outlined icons work best with stroked variant
+<InteractiveIcon iconType="stroked" aria-label="Settings">
+  <Settings size={20} />
+</InteractiveIcon>
+
+// Use consistent icon sizes within the same context
+<View className="flex gap-2">
+  <InteractiveIcon iconType="stroked" aria-label="Edit">
+    <PenEdit size={20} />
+  </InteractiveIcon>
+  <InteractiveIcon iconType="stroked" aria-label="Delete">
+    <DeleteCircle size={20} />
+  </InteractiveIcon>
+</View>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't mix filled icons with stroked variant (creates visual inconsistency)
+<InteractiveIcon iconType="stroked" aria-label="Delete">
+  <DeleteCircleFill size={20} />
+</InteractiveIcon>
+
+// Don't use inconsistent sizes in the same context
+<View className="flex gap-2">
+  <InteractiveIcon iconType="stroked" aria-label="Edit">
+    <PenEdit size={16} />
+  </InteractiveIcon>
+  <InteractiveIcon iconType="stroked" aria-label="Delete">
+    <DeleteCircle size={24} />
+  </InteractiveIcon>
+</View>
+```
+
+### Accessibility
+
+✅ **Do**
+
+```tsx
+// Always provide descriptive aria-label
+<InteractiveIcon iconType='stroked' aria-label='Download PDF document'>
+  <Download size={20} />
+</InteractiveIcon>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit aria-label (breaks accessibility)
+<InteractiveIcon iconType="stroked">
+  <Settings size={20} />
+</InteractiveIcon>
+
+// Don't use generic labels
+<InteractiveIcon iconType="stroked" aria-label="Click here">
+  <Settings size={20} />
+</InteractiveIcon>
+
+// Don't use icon names as labels
+<InteractiveIcon iconType="stroked" aria-label="Settings icon">
+  <Settings size={20} />
+</InteractiveIcon>
+```
+
+### Styling and Layout
+
+✅ **Do**
+
+```tsx
+// Use style for positioning and layout
+<InteractiveIcon
+  iconType="stroked"
+  style={{ position: 'absolute', top: 16, right: 16 }}
+  aria-label="Close"
+>
+  <Close size={20} />
+</InteractiveIcon>
+
+// Use style for margins and spacing
+<InteractiveIcon
+  iconType="stroked"
+  style={{ marginLeft: 8 }}
+  aria-label="Menu"
+>
+  <MenuBurger size={20} />
+</InteractiveIcon>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't modify the core appearance with custom styles
+<InteractiveIcon 
+  iconType="stroked" 
+  style={{ backgroundColor: '#FF0000', color: '#FFFFFF' }}
+>
+  <Settings size={20} />
+</InteractiveIcon>
+
+// Don't override size constraints
+<InteractiveIcon 
+  iconType="stroked" 
+  style={{ width: 128, height: 128 }}
+>
+  <Settings size={20} />
+</InteractiveIcon>
+
+// Don't modify padding
+<InteractiveIcon 
+  iconType="stroked" 
+  style={{ paddingLeft: 32 }}
+>
+  <Settings size={20} />
+</InteractiveIcon>
+```
+
+### Component Composition
+
+✅ **Do**
+
+```tsx
+// Only render icon components as children
+<InteractiveIcon iconType='stroked' aria-label='More actions'>
+  <MoreVertical size={20} />
+</InteractiveIcon>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't render arbitrary content as children
+<InteractiveIcon iconType='stroked' aria-label='More actions'>
+  Settings
+</InteractiveIcon>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import only the icons you need for better tree-shaking
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
+```
+
+</Tab>
+</CustomTabs>
