@@ -22,7 +22,7 @@ describe('Skeleton Component', () => {
     expect(skeletonElement).toHaveClass(
       'animate-pulse',
       'rounded-md',
-      'bg-muted',
+      'bg-surface',
     );
   });
 

@@ -25,7 +25,7 @@ describe('Banner Component', () => {
     const { container, rerender } = render(
       <Banner title='Info Banner' appearance='info' />,
     );
-    expect(container.firstChild).toHaveClass('bg-muted');
+    expect(container.firstChild).toHaveClass('bg-surface');
 
     rerender(<Banner title='Success Banner' appearance='success' />);
     expect(container.firstChild).toHaveClass('bg-success');
