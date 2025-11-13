@@ -27,7 +27,7 @@ figma.connect(
         disabled: 'disabled',
       }),
       size: figma.enum('size', {
-        lg: 'lg',
+        md: 'md',
         sm: 'sm',
       }),
       showicon: figma.boolean('show-icon'),

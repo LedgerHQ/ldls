@@ -14,9 +14,9 @@ figma.connect(
     props: {
       // Access nested SheetBar properties using figma.nestedProps()
       sheetBar: figma.nestedProps('.sheet-bar', {
-        size: figma.enum('size', {
-          sm: 'sm',
-          lg: 'lg',
+        appearance: figma.enum('appearance', {
+          compact: 'compact',
+          extended: 'extended',
         }),
         title: figma.boolean('show-title', {
           true: figma.string('title'),
@@ -54,7 +54,7 @@ figma.connect(
         </DialogTrigger>
         <DialogContent>
           <DialogHeader
-            size={props.sheetBar.size}
+            appearance={props.sheetBar.appearance}
             title={props.sheetBar.title}
             description={props.sheetBar.description}
             onBack={props.sheetBar.onBack}
