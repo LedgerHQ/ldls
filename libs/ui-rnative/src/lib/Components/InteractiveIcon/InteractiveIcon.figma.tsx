@@ -18,7 +18,7 @@ figma.connect(
   {
     imports: [
       "import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-rnative/Symbols'",
+      "// import { YourIconName } from '@ledgerhq/ldls-ui-rnative/symbols'",
     ],
     props: {
       iconType: figma.enum('type', {
@@ -36,7 +36,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-interactiveicon-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: any) => (
       <InteractiveIcon iconType={props.iconType} aria-label='Interactive icon'>
         {props.children}
       </InteractiveIcon>
