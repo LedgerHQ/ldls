@@ -15,9 +15,18 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6688%3A3600',
   {
     imports: ["import { Checkbox } from '@ledgerhq/ldls-ui-rnative'"],
+    label: 'React Native',
     props: {
-      checked: figma.boolean('checked'),
-      disabled: figma.boolean('disabled'),
+      checkbox: figma.nestedProps('.checkbox', {
+        checked: figma.boolean('checked'),
+        disabled: figma.enum('state', {
+          disabled: true,
+        }),
+      }),
+      label: figma.boolean('show-label', {
+        true: figma.string('label'),
+        false: undefined,
+      }),
     },
     links: [
       {
@@ -25,8 +34,11 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/react-native_selection-checkbox--docs',
       },
     ],
-    example: (props: { checked: boolean; disabled: boolean }) => (
-      <Checkbox checked={props.checked} disabled={props.disabled} />
+    example: (props: any) => (
+      <Checkbox
+        checked={props.checkbox.checked}
+        disabled={props.checkbox.disabled}
+      />
     ),
   },
 );

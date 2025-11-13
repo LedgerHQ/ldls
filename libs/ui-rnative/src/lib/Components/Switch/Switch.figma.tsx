@@ -16,8 +16,13 @@ figma.connect(
   {
     imports: ["import { Switch } from '@ledgerhq/ldls-ui-rnative'"],
     props: {
-      checked: figma.boolean('checked'),
-      disabled: figma.boolean('disabled'),
+      checked: figma.boolean('selected', {
+        true: true,
+        false: false,
+      }),
+      disabled: figma.enum('state', {
+        disabled: true,
+      }),
     },
     links: [
       {
