@@ -8,9 +8,9 @@ figma.connect(
     imports: ["import { SheetBar } from '@ledgerhq/ldls-ui-react'"],
     props: {
       // Size variant mapping
-      size: figma.enum('size', {
-        sm: 'sm',
-        lg: 'lg',
+      appearance: figma.enum('appearance', {
+        compact: 'compact',
+        extended: 'extended',
       }),
 
       // Title text
@@ -46,7 +46,7 @@ figma.connect(
     ],
     example: (props) => (
       <SheetBar
-        size={props.size}
+        appearance={props.appearance}
         title={props.title}
         description={props.description}
         onClose={props.onClose}
