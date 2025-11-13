@@ -10,19 +10,25 @@ const linkVariants = cva(
   {
     variants: {
       appearance: {
-        underlined:
-          'text-base underline underline-offset-2 hover:text-base-hover active:text-base-pressed',
+        base: 'text-base hover:text-base-hover active:text-base-pressed',
         accent:
           'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
+        inherit: '',
       },
       size: {
         sm: 'gap-4 body-2-semi-bold',
         md: 'gap-8 body-1-semi-bold',
+        inherit: '',
+      },
+      underline: {
+        true: 'underline underline-offset-2',
+        false: '',
       },
     },
     defaultVariants: {
-      appearance: 'underlined',
-      size: 'md',
+      appearance: 'inherit',
+      size: 'inherit',
+      underline: true,
     },
   },
 );
@@ -30,14 +36,19 @@ const linkVariants = cva(
 export type LinkProps = {
   /**
    * The visual style of the link.
-   * @default underlined
+   * @default inherit
    */
-  appearance?: 'underlined' | 'accent';
+  appearance?: 'base' | 'accent' | 'inherit';
   /**
    * The size variant of the link.
-   * @default md
+   * @default inherit
    */
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'inherit';
+  /**
+   * Whether to underline the link text.
+   * @default true
+   */
+  underline?: boolean;
   /**
    * An optional icon component to render inside the link.
    * The icon styles are defined by the link. Please do not override them.
@@ -62,33 +73,38 @@ export type LinkProps = {
   VariantProps<typeof linkVariants>;
 
 /**
- * A customizable link component that supports underlined text and accent button-like appearances, sizes, optional icons, and external link handling.
+ * A customizable link component that supports base and accent color appearances, optional underline, sizes, icons, and external link handling.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` and `underline` props instead.
  *
  * @example
  * import { Link } from '@ledgerhq/ldls-ui-react';
  *
- * // Basic underlined link
- * <Link appearance="underlined" size="md" href="/page">
+ * // Default link with underline and inherited appearance and size
+ * <Link href="/page">
  *   Go to Page
  * </Link>
  *
- * // Accent button-like link with icon
+ * // Accent link with icon
  * import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
  *
  * <Link appearance="accent" size="sm" href="https://example.com" isExternal icon={ArrowRight}>
  *   External Site
  * </Link>
  *
+ * // Link with inherited styles
+ * <Link appearance="inherit" size="inherit" href="/page">
+ *   Inherit Styles
+ * </Link>
+ *
  * // Link as a router link (asChild pattern)
  * import { Link as RouterLink } from 'react-router-dom';
  *
- * <Link asChild appearance="underlined" size="md">
+ * <Link asChild>
  *   <RouterLink to="/dashboard">Dashboard</RouterLink>
  * </Link>
  *
@@ -101,7 +117,8 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       className,
       children,
       appearance,
-      size = 'md',
+      size = 'inherit',
+      underline = true,
       icon,
       isExternal = false,
       asChild = false,
@@ -127,6 +144,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
           linkVariants({
             appearance,
             size,
+            underline,
           }),
         )}
         target={isExternal && !asChild ? '_blank' : undefined}
