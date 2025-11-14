@@ -10,7 +10,10 @@ import { Buttons } from './blocks/Buttons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
 import { Inputs } from './blocks/Inputs';
+import { Spots } from './blocks/Spots';
 import { Switches } from './blocks/Switches';
+import { Tags } from './blocks/Tags';
+import { Tiles } from './blocks/Tiles';
 import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
 import { SandboxBlock } from './SandboxBlock';
 
@@ -34,6 +37,12 @@ export const App = () => {
               <SandboxBlock title='Checkboxes'>
                 <Checkboxes />
               </SandboxBlock>
+              <SandboxBlock title='Spots'>
+                <Spots />
+              </SandboxBlock>
+              <SandboxBlock title='Tags'>
+                <Tags />
+              </SandboxBlock>
               <SandboxBlock title='Switches'>
                 <Switches />
               </SandboxBlock>
@@ -45,6 +54,9 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='ToggleThemeSwitch'>
                 <ToggleThemeSwitch />
+              </SandboxBlock>
+              <SandboxBlock title='Tiles'>
+                <Tiles />
               </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
