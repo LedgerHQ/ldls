@@ -84,7 +84,7 @@ function MyComponent() {
   return (
     <Tile
       title='Settings'
-      spot={<Spot appearance='icon' icon={Settings} />}
+      leadingContent={<Spot appearance='icon' icon={Settings} />}
       onClick={() => console.log('Clicked!')}
     />
   );
@@ -101,7 +101,7 @@ function MyComponent() {
     <Tile
       title='Bitcoin'
       description='BTC'
-      spot={<Spot appearance='coin' icon='btc' />}
+      leadingContent={<Spot appearance='coin' icon='btc' />}
       onClick={() => console.log('Clicked!')}
     />
   );
@@ -118,14 +118,14 @@ function MyComponent() {
 // Use className for layout positioning
 <Tile
   title="Settings"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="mb-6"
 />
 
 // Use className for responsive behavior
 <Tile
   title="Desktop Item"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="hidden lg:flex"
 />
 
@@ -133,7 +133,7 @@ function MyComponent() {
 <div className="w-128">
   <Tile
     title="Fixed Width"
-    spot={<Spot appearance="icon" icon={Settings} />}
+    leadingContent={<Spot appearance="icon" icon={Settings} />}
   />
 </div>
 ```
@@ -144,21 +144,21 @@ function MyComponent() {
 // Don't override core styling
 <Tile
   title="Custom Colors"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="bg-base text-active"
 />
 
 // Don't modify internal spacing
 <Tile
   title="Wrong Spacing"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="gap-2 p-2"
 />
 
 // Don't override typography classes
 <Tile
   title="Bad Typography"
-  spot={<Spot appearance="icon" icon={Settings} />}
+  leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="body-3"
 />
 ```

@@ -20,7 +20,8 @@ export type TileProps = {
    */
   secondaryAction?: ReactNode;
   /**
-   * The Trailing content is used to display custom content.
+   * Custom content to display at the bottom (trailing area) of the tile.
+   * Accepts ReactNode such as <Tag label="New" appearance="base" />
    */
   trailingContent?: ReactNode;
   /**

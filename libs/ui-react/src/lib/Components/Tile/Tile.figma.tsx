@@ -49,7 +49,7 @@ figma.connect(
       <Tile
         title={props.title}
         description={props.description}
-        spot={props.spot}
+        leadingContent={props.leadingContent}
         tag={props.tag}
         secondaryAction={props.secondaryAction}
         disabled={props.disabled}

@@ -40,7 +40,7 @@ figma.connect(
       <Tile
         title={props.title}
         subtitle={props.subtitle}
-        spot={props.spot}
+        leadingContent={props.leadingContent}
         tag={props.tag}
         disabled={props.disabled}
         onPress={props.onPress}
