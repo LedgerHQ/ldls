@@ -42,8 +42,9 @@ figma.connect(
         subtitle={props.subtitle}
         spot={props.spot}
         tag={props.tag}
-        secondaryAction={props.secondaryAction}
         disabled={props.disabled}
+        onPress={props.onPress}
+        onLongPress={props.onLongPress}
       />
     ),
   },

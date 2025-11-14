@@ -5,30 +5,45 @@ import { View, Text } from 'react-native';
 import { IconSize } from '../Icon';
 import { TagProps } from './Tag.types';
 
-const tagVariants = cva(
-  'inline-flex flex-row items-center justify-center gap-4 rounded-xs',
-  {
+const tagVariants = {
+  root: cva(
+    'inline-flex flex-row items-center justify-center gap-4 rounded-xs',
+    {
+      variants: {
+        appearance: {
+          base: 'bg-muted-transparent',
+          gray: 'bg-muted-transparent',
+          accent: 'bg-accent',
+          success: 'bg-success',
+          error: 'bg-error',
+          warning: 'bg-warning',
+          disabled: 'bg-disabled',
+        },
+        size: {
+          lg: 'px-8 py-4 body-3',
+          sm: 'px-4 py-2 body-4',
+        },
+      },
+      defaultVariants: {
+        appearance: 'accent',
+        size: 'lg',
+      },
+    },
+  ),
+  inner: cva('', {
     variants: {
       appearance: {
-        base: 'bg-muted-transparent text-base',
-        gray: 'bg-muted-transparent text-muted',
-        accent: 'bg-accent text-on-accent',
-        success: 'bg-success text-success',
-        error: 'bg-error text-error',
-        warning: 'bg-warning text-warning',
-        disabled: 'bg-disabled text-disabled',
-      },
-      size: {
-        lg: 'px-8 py-4 body-3',
-        sm: 'px-4 py-2 body-4',
+        base: 'text-base',
+        gray: 'text-muted',
+        accent: 'text-on-accent',
+        success: 'text-success',
+        error: 'text-error',
+        warning: 'text-warning',
+        disabled: 'text-disabled',
       },
     },
-    defaultVariants: {
-      appearance: 'accent',
-      size: 'lg',
-    },
-  },
-);
+  }),
+};
 
 export const Tag = React.forwardRef<View, TagProps>(
   ({ className, appearance, size, icon, label, ...props }, ref) => {
@@ -42,14 +57,17 @@ export const Tag = React.forwardRef<View, TagProps>(
 
     return (
       <View
-        className={cn(className, tagVariants({ appearance, size }))}
+        className={cn(className, tagVariants.root({ appearance, size }))}
         ref={ref}
         {...props}
       >
         {IconComponent && (
-          <IconComponent size={calculatedIconSize} className='shrink-0' />
+          <IconComponent
+            size={calculatedIconSize}
+            className={tagVariants.inner({ appearance, className: 'shrink-0' })}
+          />
         )}
-        <Text className='text-inherit'>{label}</Text>
+        <Text className={tagVariants.inner({ appearance })}>{label}</Text>
       </View>
     );
   },
