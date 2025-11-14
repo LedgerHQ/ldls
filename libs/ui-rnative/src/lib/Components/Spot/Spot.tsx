@@ -8,14 +8,24 @@ import {
   InformationFill,
   WarningFill,
 } from '../../Symbols';
-import { cn } from '../../utils';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
 import { SpotProps, SpotSize } from './Spot.types';
 
-const spotVariants = cva(
-  'flex items-center justify-center rounded-full bg-muted-transparent',
-  {
+const spotVariants = {
+  root: cva(
+    'flex items-center justify-center rounded-full bg-muted-transparent',
+    {
+      variants: {
+        size: {
+          48: 'spot-w-48 spot-h-48',
+          56: 'spot-w-56 spot-h-56',
+          72: 'spot-w-72 spot-h-72',
+        },
+      },
+    },
+  ),
+  inner: cva('', {
     variants: {
       appearance: {
         icon: 'text-base',
@@ -30,14 +40,9 @@ const spotVariants = cva(
       disabled: {
         true: 'text-disabled',
       },
-      size: {
-        48: 'spot-w-48 spot-h-48',
-        56: 'spot-w-56 spot-h-56',
-        72: 'spot-w-72 spot-h-72',
-      },
     },
-  },
-);
+  }),
+};
 
 /**
  * A circular status indicator component that displays different types of content based on appearance.
@@ -95,37 +100,76 @@ export const Spot = (props: SpotProps) => {
     switch (props.appearance) {
       case 'icon': {
         const { icon: Icon } = props;
-        return <Icon size={calculatedIconSize} />;
+        return (
+          <Icon
+            size={calculatedIconSize}
+            className={spotVariants.inner({ appearance, disabled })}
+          />
+        );
       }
       case 'number': {
         return (
-          <Text className={calculatedNumberTypography}>{props.number}</Text>
+          <Text
+            className={spotVariants.inner({
+              appearance,
+              disabled,
+              className: calculatedNumberTypography,
+            })}
+          >
+            {props.number}
+          </Text>
         );
       }
       case 'bluetooth':
         // TODO: Replace with BluetoothCircleFill
-        return <Bluetooth size={calculatedIconSize} />;
+        return (
+          <Bluetooth
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
       case 'check':
-        return <CheckmarkCircleFill size={calculatedIconSize} />;
+        return (
+          <CheckmarkCircleFill
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
       case 'error':
-        return <DeleteCircleFill size={calculatedIconSize} />;
+        return (
+          <DeleteCircleFill
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
       case 'warning':
-        return <WarningFill size={calculatedIconSize} />;
+        return (
+          <WarningFill
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
       case 'info':
-        return <InformationFill size={calculatedIconSize} />;
+        return (
+          <InformationFill
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
       case 'loader':
-        return <Spinner size={calculatedIconSize} />;
+        return (
+          <Spinner
+            className={spotVariants.inner({ appearance, disabled })}
+            size={calculatedIconSize}
+          />
+        );
     }
   }, [props, calculatedIconSize, calculatedNumberTypography]);
 
   return (
     <View
       testID='spot-container'
-      className={cn(
-        className,
-        spotVariants({ appearance, disabled, size }),
-        appearance === 'number' && calculatedNumberTypography,
-      )}
+      className={spotVariants.root({ size, className })}
       {...rest}
     >
       {content}

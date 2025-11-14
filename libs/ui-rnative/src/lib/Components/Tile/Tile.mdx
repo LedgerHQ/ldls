@@ -45,11 +45,11 @@ Optional trailing content can be added at the bottom of the tile.
 
 <Canvas of={TileStories.WithTrailingContent} />
 
-### Without Secondary Action
+### Secondary Action
 
 The secondary action is optional and can be omitted.
 
-<Canvas of={TileStories.WithoutSecondaryAction} />
+<Canvas of={TileStories.WithSecondaryAction} />
 
 ### Horizontal Lists
 
@@ -57,35 +57,34 @@ Horizontal lists are used to display a list of tiles in a horizontal scrollable 
 
 <Canvas of={TileStories.HorizontalList} />
 
-### Responsive layout
+### ResponsiveLayout
 
 By default the tile fill the width of its container. The title and description will be truncated to one line.
 
 <Canvas of={TileStories.ResponsiveLayout} />
 
+
 </Tab>
 <Tab label="Implementation">
 
-```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
-```
-
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
-
-The `@radix-ui/react-slot` dependency enables flexible composition patterns for the Tile component.
+## Setup
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ## Basic Usage
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Tile, Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 function MyComponent() {
   return (
     <Tile
       title='Settings'
+      description='BTC'
       leadingContent={<Spot appearance='icon' icon={Settings} />}
-      onClick={() => console.log('Clicked!')}
+      trailingContent={<Tag label='Active' appearance='success' size='sm' />}
+      onPress={() => console.log('Primary action')}
+      onLongPress={() => console.log('Secondary action')}
     />
   );
 }
@@ -94,7 +93,7 @@ function MyComponent() {
 ### With Coin Icon
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
+import { Tile, Spot } from '@ledgerhq/ldls-ui-rnative';
 
 function MyComponent() {
   return (
@@ -102,7 +101,7 @@ function MyComponent() {
       title='Bitcoin'
       description='BTC'
       leadingContent={<Spot appearance='coin' icon='btc' />}
-      onClick={() => console.log('Clicked!')}
+      onPress={() => console.log('Clicked!')}
     />
   );
 }
