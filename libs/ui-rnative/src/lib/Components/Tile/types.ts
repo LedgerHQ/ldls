@@ -3,7 +3,8 @@ import { PressableProps } from 'react-native';
 
 export type TileProps = {
   /**
-   * The Leading content is used to display custom content.
+   * Custom content to display at the top (leading area) of the tile.
+   * Accepts ReactNode such as <Spot appearance="icon" icon={Settings} />
    */
   leadingContent: ReactNode;
   /**

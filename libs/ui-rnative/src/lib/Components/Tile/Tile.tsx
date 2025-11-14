@@ -7,7 +7,7 @@ import { TileProps } from './types';
 const tileVariants = {
   root: cva(
     [
-      'relative flex w-full flex-col items-center gap-8 p-8',
+      'relative flex w-full items-center gap-8 p-8',
       'rounded-sm bg-base-transparent text-base transition-colors',
     ],
     {
@@ -64,17 +64,23 @@ export const Tile: FC<TileProps> = forwardRef<PressableRef, TileProps>(
       >
         {({ pressed }) => (
           <View className={tileVariants.root({ pressed })}>
-            <View className='flex w-full flex-col items-center gap-8'>
+            <View className='flex w-full items-center gap-8'>
               <View className='flex items-center justify-center'>
                 {leadingContent}
               </View>
-              <View className='flex w-full flex-col items-center gap-4'>
-                <View className='flex w-full flex-col items-center'>
-                  <Text className='w-full truncate text-center text-base body-3-semi-bold'>
+              <View className='flex w-full items-center gap-4'>
+                <View className='flex w-full items-center'>
+                  <Text
+                    numberOfLines={1}
+                    className='w-full truncate text-center text-base body-3-semi-bold'
+                  >
                     {title}
                   </Text>
                   {description && (
-                    <Text className='w-full truncate text-center text-muted body-3'>
+                    <Text
+                      numberOfLines={1}
+                      className='w-full overflow-hidden truncate text-center text-muted body-3'
+                    >
                       {description}
                     </Text>
                   )}
