@@ -1,6 +1,7 @@
-// @ts-nocheck
-/* eslint-disable */
+import React from 'react';
 import { Banner } from './Banner';
+import { Button } from '../Button/Button';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 // Base banner without actions or close
@@ -59,10 +60,14 @@ figma.connect(
         true: figma.string('description'),
         false: undefined,
       }),
-      showSecondary: figma.boolean('show-actions', {
+      secondaryAction: figma.boolean('show-actions', {
         true: figma.boolean('show-secondary-action', {
-          true: true,
-          false: false,
+          true: (
+            <Button appearance='no-background' size='sm' onClick={() => {}}>
+              Secondary Action
+            </Button>
+          ),
+          false: undefined,
         }),
         false: undefined,
       }),
@@ -77,11 +82,7 @@ figma.connect(
             Primary Action
           </Button>
         }
-        secondaryAction={
-          <Button appearance='no-background' size='sm' onClick={() => {}}>
-            Secondary Action
-          </Button>
-        }
+        secondaryAction={props.secondaryAction}
       />
     ),
   },
@@ -108,10 +109,14 @@ figma.connect(
         true: figma.string('description'),
         false: undefined,
       }),
-      showSecondary: figma.boolean('show-actions', {
+      secondaryAction: figma.boolean('show-actions', {
         true: figma.boolean('show-secondary-action', {
-          true: true,
-          false: false,
+          true: (
+            <Button appearance='no-background' size='sm' onClick={() => {}}>
+              Secondary Action
+            </Button>
+          ),
+          false: undefined,
         }),
         false: undefined,
       }),
@@ -126,11 +131,7 @@ figma.connect(
             Primary Action
           </Button>
         }
-        secondaryAction={
-          <Button appearance='no-background' size='sm' onClick={() => {}}>
-            Secondary Action
-          </Button>
-        }
+        secondaryAction={props.secondaryAction}
       />
     ),
   },
@@ -151,10 +152,14 @@ figma.connect(
         true: figma.string('description'),
         false: undefined,
       }),
-      showSecondary: figma.boolean('show-actions', {
+      secondaryAction: figma.boolean('show-actions', {
         true: figma.boolean('show-secondary-action', {
-          true: true,
-          false: false,
+          true: (
+            <Button appearance='no-background' size='sm' onClick={() => {}}>
+              Secondary Action
+            </Button>
+          ),
+          false: undefined,
         }),
         false: undefined,
       }),
@@ -169,13 +174,7 @@ figma.connect(
             Primary Action
           </Button>
         }
-        secondaryAction={
-          props.showSecondary ? (
-            <Button appearance='no-background' size='sm' onClick={() => {}}>
-              Secondary Action
-            </Button>
-          ) : undefined
-        }
+        secondaryAction={props.secondaryAction}
       />
     ),
   },
@@ -196,10 +195,14 @@ figma.connect(
         true: figma.string('description'),
         false: undefined,
       }),
-      showSecondary: figma.boolean('show-actions', {
+      secondaryAction: figma.boolean('show-actions', {
         true: figma.boolean('show-secondary-action', {
-          true: true,
-          false: false,
+          true: (
+            <Button appearance='no-background' size='sm' onClick={() => {}}>
+              Secondary Action
+            </Button>
+          ),
+          false: undefined,
         }),
         false: undefined,
       }),
@@ -214,13 +217,7 @@ figma.connect(
             Primary Action
           </Button>
         }
-        secondaryAction={
-          props.showSecondary ? (
-            <Button appearance='no-background' size='sm' onClick={() => {}}>
-              Secondary Action
-            </Button>
-          ) : undefined
-        }
+        secondaryAction={props.secondaryAction}
       />
     ),
   },

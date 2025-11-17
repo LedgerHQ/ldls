@@ -1,5 +1,10 @@
-// @ts-nocheck
-import { Subheader } from './Subheader';
+import React from 'react';
+import { Subheader, SubheaderProps } from './Subheader';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
+import { Link } from '../Link/Link';
+import { Information } from '../../Symbols';
+// @ts-expect-error - @figma/code-connect does not have type declarations
+import figma from '@figma/code-connect';
 
 // Base subheader with title only
 figma.connect(
@@ -39,15 +44,15 @@ figma.connect(
     props: {
       title: figma.string('title'),
     },
-    example: (props) => (
+    example: (props: SubheaderProps) => (
       <Subheader title={props.title}>
         <Subheader.Info>
           <Tooltip>
             <TooltipTrigger asChild>
               <Information
                 size={12}
-                className="shrink-0 text-muted"
-                aria-label="More information"
+                className='shrink-0 text-muted'
+                aria-label='More information'
               />
             </TooltipTrigger>
             <TooltipContent>Additional information</TooltipContent>
@@ -68,10 +73,10 @@ figma.connect(
     props: {
       title: figma.string('title'),
     },
-    example: (props) => (
+    example: (props: SubheaderProps) => (
       <Subheader title={props.title}>
         <Subheader.Action>
-          <Link href="#" appearance="accent" size="sm">
+          <Link href='#' appearance='accent' size='sm'>
             Action
           </Link>
         </Subheader.Action>
@@ -94,22 +99,22 @@ figma.connect(
     props: {
       title: figma.string('title'),
     },
-    example: (props) => (
+    example: (props: SubheaderProps) => (
       <Subheader title={props.title}>
         <Subheader.Info>
           <Tooltip>
             <TooltipTrigger asChild>
               <Information
                 size={12}
-                className="shrink-0 text-muted"
-                aria-label="More information"
+                className='shrink-0 text-muted'
+                aria-label='More information'
               />
             </TooltipTrigger>
             <TooltipContent>Additional information</TooltipContent>
           </Tooltip>
         </Subheader.Info>
         <Subheader.Action>
-          <Link href="#" appearance="accent" size="sm">
+          <Link href='#' appearance='accent' size='sm'>
             Action
           </Link>
         </Subheader.Action>

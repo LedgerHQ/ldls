@@ -1,5 +1,12 @@
-// @ts-nocheck
-import { SheetBar } from './SheetBar';
+import React from 'react';
+import { SheetBar, SheetBarProps } from './SheetBar';
+// @ts-expect-error - @figma/code-connect does not have type declarations
+import figma from '@figma/code-connect';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const handleClose = () => {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const handleBack = () => {};
 
 figma.connect(
   SheetBar,
@@ -44,7 +51,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/components-sheetbar--base',
       },
     ],
-    example: (props) => (
+    example: (props: SheetBarProps) => (
       <SheetBar
         appearance={props.appearance}
         title={props.title}

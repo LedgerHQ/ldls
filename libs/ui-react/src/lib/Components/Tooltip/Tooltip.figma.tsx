@@ -1,6 +1,11 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Tooltip } from './Tooltip';
+import React from 'react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProps,
+  TooltipTrigger,
+} from './Tooltip';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -12,7 +17,7 @@ figma.connect(
     ],
     props: {
       label: figma.string('label'),
-      direction: figma.enum('direction', {
+      side: figma.enum('direction', {
         top: 'top',
         bottom: 'bottom',
         left: 'left',
@@ -25,12 +30,17 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (
+      props: TooltipProps & {
+        side: 'top' | 'bottom' | 'left' | 'right';
+        label: string;
+      },
+    ) => (
       <Tooltip>
         <TooltipTrigger>
           <button>Hover me</button>
         </TooltipTrigger>
-        <TooltipContent side={props.direction}>{props.label}</TooltipContent>
+        <TooltipContent side={props.side}>{props.label}</TooltipContent>
       </Tooltip>
     ),
   },

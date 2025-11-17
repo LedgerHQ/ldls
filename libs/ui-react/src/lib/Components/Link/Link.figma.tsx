@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Link } from './Link';
+import React from 'react';
+import { Link, LinkProps } from './Link';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -38,7 +38,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-link-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: LinkProps) => (
       <Link
         isExternal={props.isExternal}
         underline={props.underline}
