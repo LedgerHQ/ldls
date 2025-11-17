@@ -8,20 +8,16 @@ figma.connect(
   InteractiveIcon,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6975%3A2571',
   {
-    imports: [
-      "import { InteractiveIcon } from '@ledgerhq/ldls-ui-react'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
-    ],
+    imports: ["import { InteractiveIcon } from '@ledgerhq/ldls-ui-react'"],
     props: {
-      // 'icon-type': figma.enum('appearance', {
-      //   filled: 'filled',
-      //   stroked: 'stroked',
-      // }),
-      children: figma.instance('icon'),
-      // state: figma.enum('state', {
-      //   enabled: 'enabled',
-      //   disabled: 'disabled',
-      // }),
+      iconType: figma.enum('appearance', {
+        filled: 'filled',
+        stroked: 'stroked',
+      }),
+      disabled: figma.enum('state', {
+        disabled: true,
+      }),
+      children: figma.instance('icon-filled'),
     },
     links: [
       {
@@ -31,8 +27,8 @@ figma.connect(
     ],
     example: (props) => (
       <InteractiveIcon
-        // iconType={props['icon-type']}
-        // disabled={props.state === 'disabled'}
+        iconType={props.iconType}
+        disabled={props.disabled}
         aria-label='Interactive icon'
       >
         {props.children}
