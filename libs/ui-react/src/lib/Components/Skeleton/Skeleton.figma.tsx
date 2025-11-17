@@ -17,11 +17,11 @@ figma.connect(
     example: () => {
       return (
         <>
-          // circle Skeleton
+          {/* circle Skeleton */}
           <Skeleton className='h-56 w-56 rounded-full' />
-          // square Skeleton
+          {/* square Skeleton */}
           <Skeleton className='h-56 w-112 rounded-md' />
-          // line Skeleton
+          {/* line Skeleton */}
           <Skeleton className='h-16 w-112 rounded-md' />
         </>
       );
