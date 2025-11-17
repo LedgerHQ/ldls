@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spot, SpotAppearance, SpotSize } from './Spot';
+import { Spot, SpotAppearance } from './Spot';
 // @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 import { IconSize } from '../Icon/Icon';
