@@ -6,7 +6,7 @@ import { TileProps } from './types';
 const tileVariants = {
   root: cva(
     [
-      'group relative flex w-full flex-col items-center gap-8 p-8 ',
+      'group relative flex flex-col items-center gap-8 p-8',
       'rounded-sm bg-base-transparent text-base transition-colors focus-visible:outline-2 focus-visible:outline-focus',
     ],
     {
@@ -38,7 +38,7 @@ const tileVariants = {
  *
  * <Tile
  *   title="My Wallet"
- *   spot={<Spot appearance="icon" icon={Wallet} />}
+ *   leadingContent={<Spot appearance="icon" icon={Wallet} />}
  *   onClick={() => console.log('Clicked!')}
  * />
  *
@@ -50,7 +50,7 @@ const tileVariants = {
  * <Tile
  *   title="Bitcoin"
  *   description="BTC"
- *   spot={<Spot appearance="coin" icon="btc" />}
+ *   leadingContent={<Spot appearance="coin" icon="btc" />}
  *   trailingContent={<Tag label="Active" appearance="success" size="sm" />}
  * />
  *
@@ -62,7 +62,7 @@ const tileVariants = {
  * <Tile
  *   title="Ethereum"
  *   description="ETH"
- *   spot={<Spot appearance="coin" icon="eth" />}
+ *   leadingContent={<Spot appearance="coin" icon="eth" />}
  *   secondaryAction={
  *     <InteractiveIcon
  *       iconType="stroked"

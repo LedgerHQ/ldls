@@ -103,7 +103,7 @@ export const AddressInput = React.forwardRef<
   // BaseInput will handle showing/hiding based on content via its clear button logic
   const effectiveSuffix =
     suffix ||
-    (onQrCodeClick ? (
+    (onQrCodeClick && (
       <InteractiveIcon
         iconType='filled'
         onClick={onQrCodeClick}
@@ -112,7 +112,7 @@ export const AddressInput = React.forwardRef<
       >
         <QrCodeIcon size={20} />
       </InteractiveIcon>
-    ) : undefined);
+    ));
 
   return (
     <BaseInput

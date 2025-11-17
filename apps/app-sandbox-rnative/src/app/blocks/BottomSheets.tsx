@@ -87,7 +87,10 @@ export const BottomSheetDynamicSize = forwardRef<
       </BottomSheetView>
       <BottomSheetScrollView className='flex flex-col gap-12'>
         {data.map((item) => (
-          <View className='flex flex-col gap-4 border-b border-base py-12'>
+          <View
+            key={item.id}
+            className='flex flex-col gap-4 border-b border-base py-12'
+          >
             <Text className='text-base body-2-semi-bold'>{item.title}</Text>
             <Text className='text-muted body-3'>{item.description}</Text>
           </View>

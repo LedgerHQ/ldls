@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { PressableProps } from 'react-native';
 
 export type TileProps = {
   /**
@@ -7,25 +8,25 @@ export type TileProps = {
    */
   leadingContent: ReactNode;
   /**
-   * The title of the list item.
+   * The title of the tile.
    */
   title: string;
   /**
-   * The description of the list item.
+   * The description of the tile.
    */
   description?: string;
-  /**
-   * The InteractiveIcon component to display on the top right side of the list item.
-   * The button is rendered when the user hovers over the list item or navigates with the keyboard.
-   */
-  secondaryAction?: ReactNode;
   /**
    * Custom content to display at the bottom (trailing area) of the tile.
    * Accepts ReactNode such as <Tag label="New" appearance="base" />
    */
   trailingContent?: ReactNode;
   /**
-   * The function to call when the tile is clicked.
+   * Callback function when the tile is pressed.
    */
-  onClick?: React.HTMLAttributes<HTMLButtonElement>['onClick'];
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
+  onPress?: PressableProps['onPress'];
+  /**
+   * Callback function when the tile is long pressed.
+   * Can be used to perform secondary actions.
+   */
+  onLongPress?: PressableProps['onLongPress'];
+} & Omit<PressableProps, 'onPress' | 'onLongPress'>;

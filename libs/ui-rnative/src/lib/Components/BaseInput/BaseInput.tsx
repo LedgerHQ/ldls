@@ -82,6 +82,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       hideClearButton,
       onChangeText: onChangeTextProp,
       editable = true,
+      prefix,
       suffix,
       ...props
     },
@@ -157,16 +158,20 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           onPress={() => inputRef.current?.focus()}
           disabled={!editable}
         >
+          {prefix}
+
           <TextInput
             ref={inputRef}
             value={value}
             className={cn(
               baseInputStyles,
-              'selection:caret-white',
+              !label && 'py-0',
               !editable && 'bg-disabled text-disabled',
               inputClassName,
             )}
-            style={{ fontWeight: '600' }}
+            // TODO: eventually move to token system
+            // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
+            style={{ fontWeight: '500' }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
