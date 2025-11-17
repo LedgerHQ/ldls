@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import React from 'react';
 import { Banner } from '../Banner';
 import { TextInput } from './TextInput';
 
@@ -37,4 +36,3 @@ export const WebPreviewWarning: Story = {
     },
   },
 };
-
