@@ -2,7 +2,6 @@
 import figma from '@figma/code-connect';
 import { InteractiveIcon } from './InteractiveIcon';
 
-
 figma.connect(
   InteractiveIcon,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6975%3A2571',
