@@ -6,48 +6,66 @@ import { cn } from '../../utils';
 
 import { CardButtonProps } from './CardButton.types';
 
-const buttonVariants = cva(
-  'inline-flex h-fit w-full flex-row items-center gap-12 rounded-sm p-12 transition-colors',
-  {
-    variants: {
-      appearance: {
-        base: '',
-        outline: 'outline-dashed outline-1',
+const cardButtonVariants = {
+  root: cva(
+    'inline-flex h-fit w-full flex-row items-center gap-12 rounded-sm p-12 transition-colors',
+    {
+      variants: {
+        appearance: {
+          base: '',
+          outline: 'outline-dashed outline-1',
+        },
+        disabled: {
+          true: 'text-disabled',
+          false: 'text-base',
+        },
       },
+      compoundVariants: [
+        {
+          appearance: 'base',
+          disabled: true,
+          className: 'bg-disabled',
+        },
+        {
+          appearance: 'base',
+          disabled: false,
+          className: 'bg-muted active:bg-muted-pressed',
+        },
+        {
+          appearance: 'outline',
+          disabled: true,
+          className: 'bg-base-transparent outline-disabled',
+        },
+        {
+          appearance: 'outline',
+          disabled: false,
+          className:
+            'bg-base-transparent outline-muted-subtle active:bg-base-transparent-pressed active:outline-muted-subtle-pressed',
+        },
+      ],
+      defaultVariants: {
+        appearance: 'base',
+        disabled: false,
+      },
+    },
+  ),
+  title: cva('min-w-0 body-1-semi-bold', {
+    variants: {
       disabled: {
         true: 'text-disabled',
         false: 'text-base',
       },
     },
-    compoundVariants: [
-      {
-        appearance: 'base',
-        disabled: true,
-        className: 'bg-disabled',
+  }),
+  description: cva('min-w-0 body-2', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-base',
       },
-      {
-        appearance: 'base',
-        disabled: false,
-        className: 'bg-muted active:bg-muted-pressed',
-      },
-      {
-        appearance: 'outline',
-        disabled: true,
-        className: 'bg-base-transparent outline-disabled',
-      },
-      {
-        appearance: 'outline',
-        disabled: false,
-        className:
-          'bg-base-transparent outline-muted-subtle active:bg-base-transparent-pressed active:outline-muted-subtle-pressed',
-      },
-    ],
-    defaultVariants: {
-      appearance: 'base',
-      disabled: false,
     },
-  },
-);
+  }),
+};
 
 /**
  * A customizable card button component that displays an optional icon, a required title, an optional description, and an optional chevron arrow.
@@ -89,7 +107,7 @@ export const CardButton = React.forwardRef<
       title,
       description,
       hideChevron,
-      disabled,
+      disabled = false,
       ...props
     },
     ref,
@@ -101,7 +119,7 @@ export const CardButton = React.forwardRef<
         ref={ref}
         className={cn(
           className,
-          buttonVariants({
+          cardButtonVariants.root({
             appearance,
             disabled,
           }),
@@ -112,7 +130,7 @@ export const CardButton = React.forwardRef<
         {IconComponent && <IconComponent size={24} className='shrink-0' />}
         <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
           <Text
-            className='min-w-0 body-1-semi-bold'
+            className={cardButtonVariants.title({ disabled })}
             numberOfLines={1}
             ellipsizeMode='tail'
           >
@@ -120,7 +138,7 @@ export const CardButton = React.forwardRef<
           </Text>
           {description && (
             <Text
-              className='min-w-0 body-2'
+              className={cardButtonVariants.description({ disabled })}
               numberOfLines={2}
               ellipsizeMode='tail'
             >

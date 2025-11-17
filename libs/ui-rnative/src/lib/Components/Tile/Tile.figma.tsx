@@ -1,5 +1,5 @@
-// @ts-nocheck
 /* eslint-disable */
+// @ts-nocheck
 import { Tile } from './Tile';
 import figma from '@figma/code-connect';
 
@@ -26,15 +26,6 @@ figma.connect(
         true: figma.instance('tag'),
         false: undefined,
       }),
-      secondaryAction: (
-        <InteractiveIcon
-          iconType='stroked'
-          aria-label='More actions'
-          onClick={() => console.log('secondary action clicked')}
-        >
-          <MoreVertical />
-        </InteractiveIcon>
-      ),
       disabled: figma.enum('state', {
         disabled: true,
       }),
@@ -48,11 +39,12 @@ figma.connect(
     example: (props) => (
       <Tile
         title={props.title}
-        description={props.description}
+        subtitle={props.subtitle}
         leadingContent={props.leadingContent}
         tag={props.tag}
-        secondaryAction={props.secondaryAction}
         disabled={props.disabled}
+        onPress={props.onPress}
+        onLongPress={props.onLongPress}
       />
     ),
   },

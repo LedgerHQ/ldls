@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { View } from 'react-native';
 import {
   Settings,
   Plus,
@@ -8,22 +8,10 @@ import {
   Cart,
   Apps,
   Chart1,
-  MoreVertical,
 } from '../../Symbols';
-import { InteractiveIcon } from '../InteractiveIcon';
 import { Spot } from '../Spot/Spot';
 import { Tag } from '../Tag/Tag';
 import { Tile } from './Tile';
-
-const secondaryAction = (
-  <InteractiveIcon
-    iconType='stroked'
-    aria-label='More actions'
-    onClick={() => console.log('secondary action clicked')}
-  >
-    <MoreVertical />
-  </InteractiveIcon>
-);
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
@@ -47,17 +35,6 @@ const meta: Meta<typeof Tile> = {
         Plus: <Spot appearance='icon' icon={Plus} />,
       },
     },
-    onClick: {
-      action: 'clicked',
-    },
-    secondaryAction: {
-      control: 'select',
-      options: ['None', 'MoreVertical'],
-      mapping: {
-        None: undefined,
-        MoreVertical: secondaryAction,
-      },
-    },
     trailingContent: {
       control: 'select',
       options: ['None', 'Tag', 'Text'],
@@ -79,7 +56,6 @@ export const Base: Story = {
     description: 'Additional information',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     className: 'max-w-256',
-    secondaryAction,
   },
   parameters: {
     docs: {
@@ -89,46 +65,8 @@ export const Base: Story = {
   title="Item with Spot and Description"
   description="Additional information"
   leadingContent={<Spot appearance="icon" icon={Settings} />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
-  className="max-w-256"
-/>
-`,
-      },
-    },
-  },
-};
-
-export const Withoutdescription: Story = {
-  args: {
-    title: 'Item without Description',
-    leadingContent: <Spot appearance='icon' icon={Plus} />,
-    className: 'max-w-256',
-    secondaryAction,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item without Description"
-  leadingContent={<Spot appearance="icon" icon={Plus} />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
+  onLongPress={() => console.log('Secondary action')}
+  onPress={() => console.log('Primary action')}
   className="max-w-256"
 />
 `,
@@ -143,7 +81,6 @@ export const WithTrailingContent: Story = {
     description: 'Additional information',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     trailingContent: <Tag label='New' appearance='base' />,
-    secondaryAction,
     className: 'max-w-256',
   },
   parameters: {
@@ -155,15 +92,7 @@ export const WithTrailingContent: Story = {
   description="Additional information"
   leadingContent={<Spot appearance="icon" icon={Settings} />}
   trailingContent={<Tag label="New" appearance="base" />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
+  onLongPress={() => console.log('Long press - secondary action')}
   className="max-w-256"
 />
 `,
@@ -172,11 +101,12 @@ export const WithTrailingContent: Story = {
   },
 };
 
-export const WithoutSecondaryAction: Story = {
+export const WithSecondaryAction: Story = {
   args: {
-    title: 'Item without secondary action',
-    description: 'Additional information',
+    title: 'Item with secondary action',
+    description: 'LongPress to trigger secondary action',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
+    onLongPress: () => alert('Long press - secondary action'),
     className: 'max-w-256',
   },
   parameters: {
@@ -184,8 +114,9 @@ export const WithoutSecondaryAction: Story = {
       source: {
         code: `
 <Tile
-  title="Item without secondary action"
+  title="Item secondary action"
   description="Additional information"
+  onLongPress={() => // do stuff}
   leadingContent={<Spot appearance="icon" icon={Settings} />}
   className="max-w-256"
 />
@@ -197,102 +128,87 @@ export const WithoutSecondaryAction: Story = {
 
 export const LeadingContentVariantsShowcase: Story = {
   render: () => (
-    <div className='flex'>
+    <View className='flex flex-row'>
       <Tile
         title='User'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={User} />}
-        secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Wallet'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Wallet} />}
-        secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Cart'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Cart} />}
-        secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Apps'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Apps} />}
-        secondaryAction={secondaryAction}
         className='max-w-128'
       />
       <Tile
         title='Chart'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Chart1} />}
-        secondaryAction={secondaryAction}
         className='max-w-128'
       />
-    </div>
+    </View>
   ),
 };
 
 export const HorizontalList: Story = {
   render: () => (
-    <div className='flex flex-col gap-16'>
-      <div className='flex w-[450px] bg-base'>
-        {Array.from({ length: 3 }).map((_, i) => (
+    <View className='flex flex-col gap-16'>
+      <View className='flex w-480 flex-row bg-base'>
+        {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
             title={`Item ${i + 1}`}
             description={`Description ${i + 1}`}
             leadingContent={<Spot appearance='icon' icon={Apps} />}
-            secondaryAction={secondaryAction}
           />
         ))}
-      </div>
-      <div className='flex w-[450px] overflow-x-auto bg-base'>
+      </View>
+      <View className='flex w-480 flex-row overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}
-            title={
-              i === 0
-                ? 'Long Title that should truncate appropriately'
-                : `Item ${i + 1}`
-            }
-            description={
-              i === 0
-                ? 'Long description that should truncate appropriately'
-                : `Description ${i + 1}`
-            }
+            title='Long Title that should truncate appropriately'
+            description='Long description that should truncate appropriately'
             leadingContent={<Spot appearance='icon' icon={Apps} />}
-            secondaryAction={secondaryAction}
-            className='w-128 shrink-0'
+            className='w-208 shrink-0'
           />
         ))}
-      </div>
-    </div>
+      </View>
+    </View>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='flex w-full flex-col gap-16'>
-      <div>
+    <View className='flex w-full flex-col gap-16'>
+      <View>
         <Tile
           title='Item fill width'
           description='Description fill width'
           leadingContent={<Spot appearance='icon' icon={Apps} />}
         />
-      </div>
-      <div className='flex items-center justify-center'>
+      </View>
+      <View className='flex items-center justify-center'>
         <Tile
           className='w-224'
           title='Long Item with fixed width'
           description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
           leadingContent={<Spot appearance='icon' icon={Plus} />}
         />
-      </div>
-    </div>
+      </View>
+    </View>
   ),
 };
