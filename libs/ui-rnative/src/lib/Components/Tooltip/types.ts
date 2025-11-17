@@ -7,10 +7,6 @@ export type TooltipProps = {
    */
   children: ReactNode;
   /**
-   * Controlled open state.
-   */
-  open?: boolean;
-  /**
    * Callback when open state changes.
    */
   onOpenChange?: (open: boolean) => void;

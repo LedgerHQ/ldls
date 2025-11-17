@@ -6,48 +6,6 @@ import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
 import { TooltipsBottomSheet } from './TooltipsBottomSheet';
 import { TooltipsProvider } from './TooltipsBottomSheetContext';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-jest.mock('react-native-css-interop', () => {
-  const mockReact = jest.requireActual<typeof import('react')>('react');
-  return {
-    cssInterop: (component: any) => component,
-    createInteropElement: (component: any, ...args: any[]) =>
-      mockReact.createElement(component, ...args),
-  };
-});
-
-jest.mock('@gorhom/bottom-sheet', () => {
-  const mockReact = jest.requireActual<typeof import('react')>('react');
-  const mockRN =
-    jest.requireActual<typeof import('react-native')>('react-native');
-
-  const mockRef = {
-    expand: jest.fn(),
-    close: jest.fn(),
-    snapToIndex: jest.fn(),
-  };
-
-  return {
-    __esModule: true,
-    default: mockReact.forwardRef((props: any, ref: any) => {
-      mockReact.useEffect(() => {
-        if (ref) {
-          if (typeof ref === 'function') ref(mockRef);
-          else ref.current = mockRef;
-        }
-      }, [ref]);
-
-      return mockReact.createElement(mockRN.View, {
-        testID: props.testID,
-        children: props.children,
-      });
-    }),
-    BottomSheetScrollView: ({ children }: any) =>
-      mockReact.createElement(mockRN.ScrollView, { children }),
-    useBottomSheet: () => mockRef,
-  };
-});
-
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <TooltipsProvider>
     {children}
@@ -85,7 +43,7 @@ describe('Tooltip', () => {
     const onOpenChange = jest.fn();
     const { getByText } = render(
       <TestWrapper>
-        <Tooltip open={false} onOpenChange={onOpenChange}>
+        <Tooltip onOpenChange={onOpenChange}>
           <TooltipTrigger>
             <View>
               <Text>Press me</Text>
@@ -97,7 +55,6 @@ describe('Tooltip', () => {
     );
 
     fireEvent.press(getByText('Press me'));
-
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
