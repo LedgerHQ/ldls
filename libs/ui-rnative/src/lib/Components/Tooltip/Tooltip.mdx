@@ -1,0 +1,229 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Communication/Tooltip' of={TooltipStories} />
+
+# 💬 Tooltip
+
+<CustomTabs>
+  <Tab label="Overview">
+
+View in Figma: [link](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=1234-5678&m=dev)
+
+## Introduction
+
+Tooltips display contextual information in a bottom sheet when users press an interactive element. They're designed for mobile interfaces where hover states don't exist.
+
+## Anatomy
+
+- **TooltipTrigger:** The interactive element that opens the tooltip
+- **TooltipContent:** Defines the title and content displayed in the bottom sheet
+- **TooltipsBottomSheet:** The shared bottom sheet that renders all tooltip content
+
+## Properties
+
+### Base Example
+
+<Canvas of={TooltipStories.Base} />
+
+### With Custom Content
+
+Tooltips can contain rich content including text, buttons, and custom layouts.
+
+<Canvas of={TooltipStories.WithCustomContent} />
+
+### Multiple Tooltips
+
+Multiple tooltips can be used on the same page. Only one tooltip displays at a time.
+
+<Canvas of={TooltipStories.WithMultipleTooltips} />
+
+### With Change Callback
+When the tooltip is opened or closed, the `onOpenChange` callback is called with the new open state.
+<Canvas of={TooltipStories.WithChangeCallback} />
+
+### Accessibility
+
+- Tooltips use bottom sheets for better touch interaction on mobile
+- Content is announced by screen readers
+- Dismissible via backdrop press or swipe gesture
+
+</Tab>
+<Tab label="Implementation">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+### Requirements
+
+⚠️ **Important:** Tooltips require two global components in your app:
+
+1. **ThemeProvider** - Wraps your entire app
+2. **TooltipsBottomSheet** - Placed at the root level
+
+```tsx
+import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
+import { TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <YourAppContent />
+      <TooltipsBottomSheet />
+    </ThemeProvider>
+  );
+}
+```
+
+### Basic Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ledgerhq/ldls-ui-rnative';
+import { Button } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button>Help</Button>
+      </TooltipTrigger>
+      <TooltipContent
+        title='Help Information'
+        content={<Text>This is helpful information about the feature.</Text>}
+      />
+    </Tooltip>
+  );
+}
+```
+
+### With Custom Content
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <InteractiveIcon iconType='filled'>
+      <Information />
+    </InteractiveIcon>
+  </TooltipTrigger>
+  <TooltipContent
+    title='Feature Details'
+    content={
+      <View className='flex gap-12'>
+        <Text className='text-muted'>
+          Detailed explanation with rich formatting.
+        </Text>
+        <Button size='xs' appearance='accent'>
+          Learn More
+        </Button>
+      </View>
+    }
+  />
+</Tooltip>
+```
+
+### Controlled Mode
+
+```tsx
+function ControlledTooltip() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Tooltip open={open} onOpenChange={setOpen}>
+      <TooltipTrigger asChild>
+        <Button>Toggle Tooltip</Button>
+      </TooltipTrigger>
+      <TooltipContent title='Controlled' content={<Text>Content</Text>} />
+    </Tooltip>
+  );
+}
+```
+
+## Do's and Don'ts
+
+### Trigger Usage
+
+✅ **Do**
+
+```tsx
+// Use asChild to merge props with existing components
+<TooltipTrigger asChild>
+  <Button>Help</Button>
+</TooltipTrigger>
+
+// Use with interactive icons
+<TooltipTrigger asChild>
+  <InteractiveIcon iconType='filled'>
+    <Information />
+  </InteractiveIcon>
+</TooltipTrigger>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't wrap non-interactive elements
+<TooltipTrigger>
+  <Text>Static Text</Text>
+</TooltipTrigger>
+
+// Don't nest tooltips
+<Tooltip>
+  <TooltipTrigger>
+    <Tooltip>...</Tooltip>
+  </TooltipTrigger>
+</Tooltip>
+```
+
+### Content Guidelines
+
+✅ **Do**
+
+```tsx
+// Keep content concise and helpful
+<TooltipContent
+  title='Short Title'
+  content={<Text>Brief, helpful explanation.</Text>}
+/>
+
+// Use rich content when needed
+<TooltipContent
+  title='Details'
+  content={
+    <View className='gap-8'>
+      <Text>Explanation</Text>
+      <Button size='xs'>Action</Button>
+    </View>
+  }
+/>
+```
+
+### Setup
+
+✅ **Do**
+
+```tsx
+// Include TooltipsBottomSheet once at root level
+function App() {
+  return (
+    <ThemeProvider>
+      <Navigation />
+      <TooltipsBottomSheet />
+    </ThemeProvider>
+  );
+}
+```
+
+
+### Performance
+
+The Tooltip system is optimized to prevent unnecessary re-renders. When one tooltip opens, other tooltips on the page don't re-render.
+
+</Tab>
+</CustomTabs>
+

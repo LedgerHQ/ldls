@@ -1,0 +1,73 @@
+import React, { useCallback, useEffect } from 'react';
+import {
+  BottomSheet,
+  BottomSheetHeader,
+  BottomSheetScrollView,
+  useBottomSheetRef,
+} from '../BottomSheet';
+import { useTooltipsBottomSheetSafeContext } from './TooltipsBottomSheetContext';
+
+/**
+ * BottomSheet component that displays tooltip content.
+ * This should be placed at the root level inside GestureHandlerRootView.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
+ *
+ * @example
+ * import { TooltipsProvider, TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ *
+ * function App() {
+ *   return (
+ *     <GestureHandlerRootView>
+ *       <YourAppContent />
+ *       <TooltipsBottomSheet />
+ *     </GestureHandlerRootView>
+ *   );
+ * }
+ */
+export const TooltipsBottomSheet: React.FC = () => {
+  const bottomSheetRef = useBottomSheetRef();
+  /**
+   * This is the only component that subscribes to currentTooltip
+   * All other components use refs to avoid re-renders
+   */
+  const { currentTooltip, hideTooltipRef } = useTooltipsBottomSheetSafeContext({
+    consumerName: 'useTooltipsBottomSheetContext',
+    contextRequired: true,
+  });
+
+  useEffect(() => {
+    if (currentTooltip) {
+      bottomSheetRef.current?.expand();
+    } else {
+      bottomSheetRef.current?.close();
+    }
+  }, [currentTooltip, bottomSheetRef]);
+
+  const handleClose = useCallback(() => {
+    currentTooltip?.setOpen?.(false);
+    hideTooltipRef.current();
+  }, [hideTooltipRef, currentTooltip?.setOpen]);
+
+  return (
+    <BottomSheet
+      ref={bottomSheetRef}
+      snapPoints={null}
+      backdropPressBehavior='close'
+      onClose={handleClose}
+      maxDynamicContentSize='fullWithOffset'
+      enableDynamicSizing
+      enablePanDownToClose
+    >
+      <BottomSheetScrollView>
+        {(currentTooltip?.title || currentTooltip?.content) && (
+          <BottomSheetHeader
+            title={currentTooltip.title}
+            appearance='expanded'
+            description={currentTooltip.content}
+          />
+        )}
+      </BottomSheetScrollView>
+    </BottomSheet>
+  );
+};
