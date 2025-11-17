@@ -15,23 +15,13 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6688%3A3600',
   {
     imports: ["import { Switch } from '@ledgerhq/ldls-ui-rnative'"],
-    props: {
-      checked: figma.boolean('selected', {
-        true: true,
-        false: false,
-      }),
-      disabled: figma.enum('state', {
-        disabled: true,
-      }),
-    },
+    props: {},
     links: [
       {
         name: '*',
         url: 'https://ldls.vercel.app/?path=/docs/react-native_selection-switch--docs',
       },
     ],
-    example: (props: { checked: boolean; disabled: boolean }) => (
-      <Switch checked={props.checked} disabled={props.disabled} />
-    ),
+    example: () => <Switch checked />,
   },
 );
