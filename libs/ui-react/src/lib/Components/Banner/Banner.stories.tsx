@@ -143,7 +143,7 @@ export const WithActions: Story = {
     description="This is additional information about the banner."
     primaryAction={(
       <Button
-        appearance="transparent"
+        appearance="gray"
         size="sm"
         onClick={() => console.log('Primary clicked')}
       >
@@ -175,7 +175,7 @@ export const WithFullFeatures: Story = {
     description: 'This is additional information about the banner.',
     primaryAction: (
       <Button
-        appearance='transparent'
+        appearance='gray'
         size='sm'
         onClick={() => console.log('Primary clicked')}
       >
@@ -209,7 +209,7 @@ export const WithFullFeatures: Story = {
     description="This is additional information about the banner."
     primaryAction={(
       <Button
-        appearance="transparent"
+        appearance="gray"
         size="sm"
         onClick={() => console.log('Primary clicked')}
       >
@@ -313,7 +313,7 @@ export const ContentVariations: Story = {
         description='This is additional information about the banner.'
         primaryAction={
           <Button
-            appearance='transparent'
+            appearance='gray'
             size='sm'
             onClick={() => console.log('Primary clicked')}
           >
