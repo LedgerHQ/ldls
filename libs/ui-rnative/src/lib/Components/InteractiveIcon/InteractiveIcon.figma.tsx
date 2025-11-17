@@ -31,7 +31,7 @@ figma.connect(
       disabled: boolean;
       children: React.ReactNode;
     }) => (
-      <InteractiveIcon iconType={props.iconType} aria-label='Interactive icon'>
+      <InteractiveIcon iconType={props.iconType} disabled={props.disabled} aria-label='Interactive icon'>
         {props.children}
       </InteractiveIcon>
     ),
