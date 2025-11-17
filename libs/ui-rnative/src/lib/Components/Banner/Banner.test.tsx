@@ -16,7 +16,7 @@ describe('Banner Component', () => {
     const { getByTestId, rerender } = render(
       <Banner testID='banner-id' title='Info Banner' appearance='info' />,
     );
-    expect(getByTestId('banner-id').props.className).toContain('bg-muted');
+    expect(getByTestId('banner-id').props.className).toContain('bg-surface');
 
     rerender(
       <Banner testID='banner-id' title='Success Banner' appearance='success' />,
