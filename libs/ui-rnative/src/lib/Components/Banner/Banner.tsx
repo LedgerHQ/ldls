@@ -27,7 +27,7 @@ const bannerVariants = {
     {
       variants: {
         appearance: {
-          info: 'bg-muted',
+          info: 'bg-surface',
           success: 'bg-success',
           warning: 'bg-warning',
           error: 'bg-error',

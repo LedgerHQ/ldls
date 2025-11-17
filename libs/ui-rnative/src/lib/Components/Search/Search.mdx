@@ -1,6 +1,9 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SearchStories from './Search.stories';
 import { Search } from './Search';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Input/Search' of={SearchStories} />
 
 # 🔍 Search
 
@@ -13,10 +16,7 @@ The Search component is a specialized input field designed specifically for sear
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2248-3468&m=dev).
 
-> ⚠️ **Unsupported previews on web**
->
-> For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, **please test on-device**.
-> We plan to add screenshots or embed Expo Snack in the future.
+<Canvas of={SearchStories.WebPreviewWarning} />
 
 ## Anatomy
 
