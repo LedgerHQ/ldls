@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { TextInput } from './TextInput';
+import React from 'react';
+import { TextInput, TextInputProps } from './TextInput';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -28,7 +28,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/input-textinput--docs',
       },
     ],
-    example: (props) => (
+    example: (props: TextInputProps) => (
       <TextInput
         label={props.label}
         placeholder={props.placeholder}

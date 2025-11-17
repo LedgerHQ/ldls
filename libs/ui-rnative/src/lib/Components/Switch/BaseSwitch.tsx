@@ -28,7 +28,7 @@ const baseSwitchVariants = {
         disabled: { true: '', false: '' },
         size: {
           sm: 'h-16 max-h-16 min-h-16 w-24 min-w-24 max-w-24',
-          lg: 'h-24 max-h-24 min-h-24 w-40 min-w-40 max-w-40',
+          md: 'h-24 max-h-24 min-h-24 w-40 min-w-40 max-w-40',
         },
       },
       compoundVariants: [
@@ -59,7 +59,7 @@ const baseSwitchVariants = {
     'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out',
     {
       variants: {
-        size: { sm: 'size-12', lg: 'size-20' },
+        size: { sm: 'size-12', md: 'size-20' },
         checked: { true: '', false: '' },
         disabled: { true: 'bg-base', false: '' },
       },
@@ -71,7 +71,7 @@ const baseSwitchVariants = {
         },
         {
           checked: true,
-          size: 'lg',
+          size: 'md',
           className: 'translate-x-16',
         },
       ],
@@ -95,7 +95,7 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
     {
       asChild,
       checked,
-      size = 'lg',
+      size = 'md',
       onCheckedChange,
       disabled = false,
       className,

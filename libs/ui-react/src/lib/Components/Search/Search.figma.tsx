@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Search } from './Search';
+import React from 'react';
+import { Search, SearchProps } from './Search';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -24,7 +24,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-search-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: SearchProps) => (
       <Search
         placeholder={props.placeholder}
         value={props.value}

@@ -1,7 +1,10 @@
-// @ts-nocheck
-/* eslint-disable */
+import React from 'react';
 import { AddressInput } from './AddressInput';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const openQrScanner = () => {};
 
 figma.connect(
   AddressInput,
@@ -24,7 +27,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/text-input-addressfieldinput-overview--docs',
       },
     ],
-    example: (props) => {
+    example: (props: { state: 'enabled' | 'error' | 'disabled' }) => {
       switch (props.state) {
         case 'enabled':
           return (

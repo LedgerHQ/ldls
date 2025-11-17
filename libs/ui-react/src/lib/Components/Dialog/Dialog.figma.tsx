@@ -1,7 +1,26 @@
-// @ts-nocheck
-import { Dialog, DialogContent, DialogTrigger } from './Dialog';
-import { SheetBar } from '../SheetBar/SheetBar';
+import React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+  DialogProps,
+} from './Dialog';
+import { SheetBarProps } from '../SheetBar/SheetBar';
 import { Button } from '../Button/Button';
+// @ts-expect-error - @figma/code-connect does not have type declarations
+import figma from '@figma/code-connect';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const onClose = () => {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const onBack = () => {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const setOpen = () => {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const open = false;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const onOpenChange = () => {};
 
 figma.connect(
   Dialog,
@@ -33,6 +52,7 @@ figma.connect(
       }),
 
       // Dialog close handler
+      onOpenChange: onOpenChange,
       onClose: onClose,
       setOpen: setOpen,
       open: open,
@@ -47,8 +67,8 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/components-dialog--base',
       },
     ],
-    example: (props) => (
-      <Dialog open={props.open} onOpenChange={props.setOpen}>
+    example: (props: DialogProps & { sheetBar: SheetBarProps }) => (
+      <Dialog open={props.open} onOpenChange={props.onOpenChange}>
         <DialogTrigger asChild>
           <Button>Open Dialog</Button>
         </DialogTrigger>
@@ -58,7 +78,7 @@ figma.connect(
             title={props.sheetBar.title}
             description={props.sheetBar.description}
             onBack={props.sheetBar.onBack}
-            onClose={props.onClose}
+            onClose={props.sheetBar.onClose}
           />
           <div className='p-16'>
             <p>Dialog content goes here</p>

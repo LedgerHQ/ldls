@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Button } from './Button';
+import React from 'react';
+import { Button, ButtonProps } from './Button';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -45,7 +45,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/action-button-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: ButtonProps & { label: string }) => (
       <Button
         disabled={props.disabled}
         loading={props.loading}

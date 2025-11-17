@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
+import React from 'react';
 import { Checkbox } from './Checkbox';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -27,7 +27,10 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-checkbox-overview--docs',
       },
     ],
-    example: (props) =>
+    example: (props: {
+      checkbox: { checked: boolean; disabled: boolean };
+      label?: string;
+    }) =>
       props.label ? (
         <>
           <Checkbox

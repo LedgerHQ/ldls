@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { CardButton } from './CardButton';
+import React from 'react';
+import { CardButton, CardButtonProps } from './CardButton';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -37,7 +37,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-cardbutton-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: CardButtonProps) => (
       <CardButton
         title={props.title}
         description={props.description}

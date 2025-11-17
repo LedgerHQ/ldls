@@ -1,8 +1,8 @@
-// @ts-nocheck
-/* eslint-disable */
 import React from 'react';
 import { InteractiveIcon } from './InteractiveIcon';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+import { InteractiveIconProps } from './types';
 
 figma.connect(
   InteractiveIcon,
@@ -25,7 +25,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-interactiveicon-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: InteractiveIconProps) => (
       <InteractiveIcon
         iconType={props.iconType}
         disabled={props.disabled}

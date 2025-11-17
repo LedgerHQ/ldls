@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { IconButton } from './IconButton';
+import React from 'react';
+import { IconButton, IconButtonProps } from './IconButton';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -40,7 +40,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/action-iconbutton--docs',
       },
     ],
-    example: (props) => (
+    example: (props: IconButtonProps) => (
       <IconButton
         disabled={props.disabled}
         loading={props.loading}

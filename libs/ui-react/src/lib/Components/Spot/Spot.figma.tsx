@@ -1,7 +1,8 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Spot } from './Spot';
+import React from 'react';
+import { Spot, SpotAppearance, SpotSize } from './Spot';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+import { IconSize } from '../Icon/Icon';
 
 figma.connect(
   Spot,
@@ -25,11 +26,20 @@ figma.connect(
         bluetooth: 'bluetooth',
       }),
       icon: figma.instance('icon'),
+      number: figma.enum('appearance', {
+        number: 1,
+      }),
     },
-    example: (props) => (
+    example: (props: {
+      appearance: SpotAppearance;
+      icon: React.ComponentType<{ size?: IconSize; className?: string }>;
+      disabled: boolean;
+      number: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+    }) => (
       <Spot
         appearance={props.appearance}
         icon={props.icon}
+        number={props.number}
         disabled={props.disabled}
       />
     ),

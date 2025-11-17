@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { Tag } from './Tag';
+import React from 'react';
+import { Tag, TagProps } from './Tag';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -35,7 +35,7 @@ figma.connect(
       // No matching props could be found for these Figma properties:
       // "label": figma.string('label')
     },
-    example: (props) => (
+    example: (props: TagProps) => (
       <Tag
         label={props.label}
         appearance={props.appearance}

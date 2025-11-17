@@ -1,7 +1,11 @@
-// @ts-nocheck
-/* eslint-disable */
+import React from 'react';
 import { Tile } from './Tile';
+import { Spot } from '../Spot/Spot';
+import { InteractiveIcon } from '../InteractiveIcon/InteractiveIcon';
+import { Settings, MoreVertical } from '../../Symbols';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+import { TileProps } from './types';
 
 figma.connect(
   Tile,
@@ -28,9 +32,6 @@ figma.connect(
           <MoreVertical />
         </InteractiveIcon>
       ),
-      disabled: figma.enum('state', {
-        disabled: true,
-      }),
     },
     links: [
       {
@@ -38,14 +39,13 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: TileProps) => (
       <Tile
         title={props.title}
         description={props.description}
         leadingContent={props.leadingContent}
         trailingContent={props.trailingContent}
         secondaryAction={props.secondaryAction}
-        disabled={props.disabled}
       />
     ),
   },

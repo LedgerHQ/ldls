@@ -1,6 +1,6 @@
-// @ts-nocheck
-/* eslint-disable */
-import { ListItem } from './ListItem';
+import React from 'react';
+import { ListItem, ListItemProps } from './ListItem';
+// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 
 figma.connect(
@@ -53,7 +53,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-listitem-overview--docs',
       },
     ],
-    example: (props) => (
+    example: (props: ListItemProps) => (
       <ListItem
         title={props.title}
         description={props.description}
