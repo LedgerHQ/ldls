@@ -7,7 +7,6 @@ const listItemVariants = {
   root: cva(
     [
       'flex h-64 w-full flex-row items-center gap-16 rounded-md bg-base-transparent px-8 py-12 transition-colors',
-      '',
     ],
     {
       variants: {

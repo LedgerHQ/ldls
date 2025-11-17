@@ -58,10 +58,10 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 
 ### Requirements
 
-⚠️ **Important:** Tooltips require two global components in your app:
+To use tooltips, you must include two global components in your app setup:
 
-1. **ThemeProvider** - Wraps your entire app
-2. **TooltipsBottomSheet** - Placed at the root level
+1. **ThemeProvider** – Wrap your entire app and register theme and shared components context.
+2. **TooltipsBottomSheet** – Instance of the bottom sheet component that will be used to display the tooltip content.
 
 ```tsx
 import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
@@ -127,14 +127,15 @@ function MyComponent() {
 </Tooltip>
 ```
 
-### Controlled Mode
+### Callback function
 
 ```tsx
-function ControlledTooltip() {
-  const [open, setOpen] = useState(false);
+function CallbackFunctionTooltip() {
 
   return (
-    <Tooltip open={open} onOpenChange={setOpen}>
+    <Tooltip onOpenChange={() => {
+      // do stuff
+    }}>
       <TooltipTrigger asChild>
         <Button>Toggle Tooltip</Button>
       </TooltipTrigger>
