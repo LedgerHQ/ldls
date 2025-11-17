@@ -67,6 +67,11 @@ export function createThemePlugin(
 
 export function createTypographyPlugin() {
   return plugin(function ({ addUtilities }) {
+    const fontSmoothing = {
+      '-webkit-font-smoothing': 'antialiased',
+      '-moz-osx-font-smoothing': 'grayscale',
+    };
+
     const displayStyles = {
       '.responsive-display-1': {
         'font-family': 'var(--font-family-font)',
@@ -75,6 +80,7 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-responsive-display-1-line-height)',
         'letter-spacing':
           'var(--font-style-responsive-display-1-letter-spacing)',
+        ...fontSmoothing,
       },
       '.responsive-display-2': {
         'font-family': 'var(--font-family-font)',
@@ -83,6 +89,7 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-responsive-display-2-line-height)',
         'letter-spacing':
           'var(--font-style-responsive-display-2-letter-spacing)',
+        ...fontSmoothing,
       },
       '.responsive-display-3': {
         'font-family': 'var(--font-family-font)',
@@ -91,6 +98,7 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-responsive-display-3-line-height)',
         'letter-spacing':
           'var(--font-style-responsive-display-3-letter-spacing)',
+        ...fontSmoothing,
       },
       '.responsive-display-4': {
         'font-family': 'var(--font-family-font)',
@@ -99,6 +107,7 @@ export function createTypographyPlugin() {
         'line-height': 'var(--font-style-responsive-display-4-line-height)',
         'letter-spacing':
           'var(--font-style-responsive-display-4-letter-spacing)',
+        ...fontSmoothing,
       },
     };
 
@@ -109,6 +118,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-0-weight-medium)',
         'line-height': 'var(--font-style-heading-0-line-height)',
         'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-0-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -116,6 +126,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-0-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-0-line-height)',
         'letter-spacing': 'var(--font-style-heading-0-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-1': {
         'font-family': 'var(--font-family-font)',
@@ -123,6 +134,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-1-weight-medium)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-1-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -130,6 +142,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-1-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-1-line-height)',
         'letter-spacing': 'var(--font-style-heading-1-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-2': {
         'font-family': 'var(--font-family-font)',
@@ -137,6 +150,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-2-weight-medium)',
         'line-height': 'var(--font-style-heading-2-line-height)',
         'letter-spacing': 'var(--font-style-heading-2-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-2-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -144,6 +158,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-2-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-2-line-height)',
         'letter-spacing': 'var(--font-style-heading-2-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-3': {
         'font-family': 'var(--font-family-font)',
@@ -151,6 +166,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-3-weight-medium)',
         'line-height': 'var(--font-style-heading-3-line-height)',
         'letter-spacing': 'var(--font-style-heading-3-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-3-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -158,6 +174,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-3-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-3-line-height)',
         'letter-spacing': 'var(--font-style-heading-3-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-4': {
         'font-family': 'var(--font-family-font)',
@@ -165,6 +182,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-4-weight-medium)',
         'line-height': 'var(--font-style-heading-4-line-height)',
         'letter-spacing': 'var(--font-style-heading-4-letter-spacing)',
+        ...fontSmoothing,
       },
       '.heading-4-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -172,6 +190,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-heading-4-weight-semi-bold)',
         'line-height': 'var(--font-style-heading-4-line-height)',
         'letter-spacing': 'var(--font-style-heading-4-letter-spacing)',
+        ...fontSmoothing,
       },
     };
 
@@ -182,6 +201,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-1-weight-medium)',
         'line-height': 'var(--font-style-body-1-line-height)',
         'letter-spacing': 'var(--font-style-body-1-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-1-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -189,6 +209,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-1-weight-semi-bold)',
         'line-height': 'var(--font-style-body-1-line-height)',
         'letter-spacing': 'var(--font-style-body-1-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-2': {
         'font-family': 'var(--font-family-font)',
@@ -196,6 +217,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-2-weight-medium)',
         'line-height': 'var(--font-style-body-2-line-height)',
         'letter-spacing': 'var(--font-style-body-2-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-2-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -203,6 +225,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-2-weight-semi-bold)',
         'line-height': 'var(--font-style-body-2-line-height)',
         'letter-spacing': 'var(--font-style-body-2-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-3': {
         'font-family': 'var(--font-family-font)',
@@ -210,6 +233,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-3-weight-medium)',
         'line-height': 'var(--font-style-body-3-line-height)',
         'letter-spacing': 'var(--font-style-body-3-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-3-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -217,6 +241,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-3-weight-semi-bold)',
         'line-height': 'var(--font-style-body-3-line-height)',
         'letter-spacing': 'var(--font-style-body-3-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-4': {
         'font-family': 'var(--font-family-font)',
@@ -224,6 +249,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-4-weight-medium)',
         'line-height': 'var(--font-style-body-4-line-height)',
         'letter-spacing': 'var(--font-style-body-4-letter-spacing)',
+        ...fontSmoothing,
       },
       '.body-4-semi-bold': {
         'font-family': 'var(--font-family-font)',
@@ -231,6 +257,7 @@ export function createTypographyPlugin() {
         'font-weight': 'var(--font-style-body-4-weight-semi-bold)',
         'line-height': 'var(--font-style-body-4-line-height)',
         'letter-spacing': 'var(--font-style-body-4-letter-spacing)',
+        ...fontSmoothing,
       },
     };
 
