@@ -1,4 +1,8 @@
-import { ThemeProvider, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import {
+  ThemeProvider,
+  TooltipsBottomSheet,
+  useBottomSheetRef,
+} from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
@@ -15,6 +19,7 @@ import { Switches } from './blocks/Switches';
 import { Tags } from './blocks/Tags';
 import { Tiles } from './blocks/Tiles';
 import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
+import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
@@ -58,6 +63,9 @@ export const App = () => {
               <SandboxBlock title='Tiles'>
                 <Tiles />
               </SandboxBlock>
+              <SandboxBlock title='Tooltips'>
+                <Tooltips />
+              </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
                   onPress={() => bottomSheetFlatListsRef.current?.expand()}
@@ -70,6 +78,7 @@ export const App = () => {
           </ScrollView>
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
+          <TooltipsBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>

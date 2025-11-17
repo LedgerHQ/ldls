@@ -7,7 +7,7 @@ import { TagProps } from './Tag.types';
 
 const tagVariants = {
   root: cva(
-    'inline-flex flex-row items-center justify-center gap-4 rounded-xs',
+    'inline-flex w-fit flex-row items-center justify-center gap-4 rounded-xs',
     {
       variants: {
         appearance: {
