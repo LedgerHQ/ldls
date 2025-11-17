@@ -10,7 +10,6 @@ figma.connect(
   {
     imports: ["import { Spot } from '@ledgerhq/ldls-ui-react'"],
     props: {
-      // These props were automatically mapped based on your linked code:
       disabled: figma.enum('state', {
         disabled: true,
       }),
