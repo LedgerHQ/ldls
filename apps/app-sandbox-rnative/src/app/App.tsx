@@ -2,19 +2,20 @@ import { ThemeProvider, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
+  AmountInputs,
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
   BottomSheetsButton,
-} from './blocks/BottomSheets';
-import { Buttons } from './blocks/Buttons';
-import { Checkboxes } from './blocks/Checkboxes';
-import { IconButtons } from './blocks/IconButtons';
-import { Inputs } from './blocks/Inputs';
-import { Spots } from './blocks/Spots';
-import { Switches } from './blocks/Switches';
-import { Tags } from './blocks/Tags';
-import { Tiles } from './blocks/Tiles';
-import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
+  Buttons,
+  Checkboxes,
+  IconButtons,
+  Spots,
+  Switches,
+  Tags,
+  TextInputs,
+  Tiles,
+  ToggleThemeSwitch,
+} from './blocks';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
@@ -31,8 +32,11 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
-              <SandboxBlock title='Inputs'>
-                <Inputs />
+              <SandboxBlock title='Text inputs'>
+                <TextInputs />
+              </SandboxBlock>
+              <SandboxBlock title='Amount inputs'>
+                <AmountInputs />
               </SandboxBlock>
               <SandboxBlock title='Checkboxes'>
                 <Checkboxes />

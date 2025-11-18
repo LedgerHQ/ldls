@@ -1,12 +1,6 @@
 import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Text,
   TextInput,
@@ -64,16 +58,16 @@ export type AmountInputProps = Omit<
    * @default true
    */
   thousandsSeparator?: boolean;
+  /**
+   * Mark input as invalid (e.g. for error display)
+   * @default false
+   */
+  isInvalid?: boolean;
 };
 
 const inputStyles = cva(
   [
-    'caret-active heading-0 bg-transparent outline-none transition-colors',
-    'placeholder:text-muted-subtle text-base',
-    'disabled:bg-base-transparent disabled:text-disabled disabled:pointer-events-none disabled:cursor-not-allowed',
-    '[&[aria-invalid="true"]]:text-error',
-    '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
-    'h-56',
+    'h-56 bg-transparent text-base caret-active outline-none transition-colors heading-0',
   ],
   {
     variants: {
@@ -88,13 +82,7 @@ const inputStyles = cva(
   },
 );
 
-const currencyStyles = cn(
-  'heading-0 cursor-text',
-  'text-base',
-  'group-has-[input:placeholder-shown]:text-muted-subtle',
-  'group-has-[input:disabled]:text-disabled group-has-[input:disabled]:pointer-events-none',
-  'group-has-[input[aria-invalid="true"]]:text-error',
-);
+const currencyStyles = cn('shrink-0 heading-0 cursor-text text-base');
 
 // Font size calculation constants
 const MAX_FONT_SIZE = 48;
@@ -132,6 +120,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       thousandsSeparator = true,
       value,
       onChangeText,
+      isInvalid = false,
       ...props
     },
     ref,
@@ -147,15 +136,15 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
 
     // keep width in sync with hidden span
-    useLayoutEffect(() => {
-      if (spanRef.current && inputRef.current) {
-        const spanElement = spanRef.current as unknown as HTMLElement;
-        const inputElement = inputRef.current as unknown as HTMLInputElement;
-        const width = spanElement.offsetWidth;
-        const pxToAdd = inputValue === '' ? 33 : 8;
-        inputElement.style.width = `${width + pxToAdd}px`;
-      }
-    }, [inputValue]);
+    // useLayoutEffect(() => {
+    //   if (spanRef.current && inputRef.current) {
+    //     const spanElement = spanRef.current as unknown as HTMLElement;
+    //     const inputElement = inputRef.current as unknown as HTMLInputElement;
+    //     const width = spanElement.offsetWidth;
+    //     const pxToAdd = inputValue === '' ? 33 : 8;
+    //     inputElement.style.width = `${width + pxToAdd}px`;
+    //   }
+    // }, [inputValue]);
 
     useEffect(() => {
       setInputValue(value.toString());
@@ -201,14 +190,18 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           onPressIn={() => {
             const input = inputRef.current;
             if (!input) return;
-            window.requestAnimationFrame(() => {
-              input.focus();
-            });
+            // window.requestAnimationFrame(() => {
+            //   input.focus();
+            // });
           }}
         >
           {currencyText && currencyPosition === 'left' && (
             <Text
-              className={cn(currencyStyles, 'shrink-0')}
+              className={cn(
+                currencyStyles,
+                !editable && 'text-disabled',
+                isInvalid && 'text-error',
+              )}
               style={{ fontSize }}
             >
               {currencyText}
@@ -231,16 +224,18 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
             editable={editable}
             value={inputValue}
             onChange={handleChange}
-            className={cn(inputStyles({ isChanging }), className)}
+            className={cn(
+              inputStyles({ isChanging }),
+              isInvalid && 'text-error',
+              !editable && 'bg-base-transparent text-disabled',
+              className,
+            )}
             {...props}
             style={{ fontSize }}
           />
 
           {currencyText && currencyPosition === 'right' && (
-            <Text
-              className={cn(currencyStyles, 'shrink-0')}
-              style={{ fontSize }}
-            >
+            <Text className={cn(currencyStyles)} style={{ fontSize }}>
               {currencyText}
             </Text>
           )}
