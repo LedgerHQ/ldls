@@ -1,0 +1,59 @@
+---
+description: component usage patterns
+globs:
+alwaysApply: true
+---
+
+# LDLS Component Usage
+
+## Component Imports
+
+- Import components from `@ledgerhq/ldls-ui-react`
+- Import compound components together: `Select, SelectTrigger, SelectContent, SelectItem, SelectItemText`
+- Example: `import { Button, Banner, Tag } from '@ledgerhq/ldls-ui-react'`
+
+## Icons
+
+- Always import icons from `/symbols` entry point
+- Import: `import { ArrowRight, CheckCircle } from '@ledgerhq/ldls-ui-react/symbols'`
+- Use as components: `<ArrowRight size={20} />`
+- Pass as props: `<Button icon={ArrowRight}>Label</Button>`
+- Available sizes: 12, 16, 20, 24, 32, 40, 48, 56
+
+## Component Patterns
+
+### Compound Components
+
+Import all parts together:
+
+```tsx
+// Select
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectItemText,
+} from '@ledgerhq/ldls-ui-react';
+
+// Dialog
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+} from '@ledgerhq/ldls-ui-react';
+
+// Tooltip
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ledgerhq/ldls-ui-react';
+```
+
+## Dark Mode
+
+- LDLS components support dark mode automatically via CSS custom properties
+- Enable by adding `dark` class to root element: `<html className="dark">`
+- No component-level changes needed

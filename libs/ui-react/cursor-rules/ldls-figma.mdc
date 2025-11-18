@@ -1,0 +1,57 @@
+---
+description: Figma MCP integration rules for extracting components from Figma
+globs:
+alwaysApply: false
+---
+
+# LDLS Figma MCP Integration
+
+Use these rules when extracting components from Figma designs.
+
+## Token to Tailwind Mapping
+
+Combine the Tailwind prefix for the CSS property with the unique part of the token name.
+Use ONLY the unique part after the last hyphen of the CSS variable name.
+
+### Background Colors
+
+- Figma shows: `background-color: var(--background-base);`
+- Result: `bg-base` (NOT `bg-background-base`)
+
+### Text Colors
+
+- Figma shows: `color: var(--text-on-accent);`
+- Result: `text-on-accent` (NOT `text-text-on-accent`)
+
+### Border Colors
+
+- Figma shows: `border-color: var(--border-muted);`
+- Result: `border-muted` (NOT `border-border-muted`)
+
+### Spacing
+
+- Figma shows: `padding: var(--spacing-16);`
+- Result: `p-16` (NOT `p-spacing-16`)
+
+- Figma shows: `margin: var(--spacing-8);`
+- Result: `m-8` (NOT `m-spacing-8`)
+
+### Border Radius
+
+- Figma shows: `border-radius: var(--radius-lg);`
+- Result: `rounded-lg` (NOT `rounded-radius-lg`)
+
+### Border Width
+
+- Figma shows: `border-width: var(--border-width);`
+- Result: `border` (NOT `border-width`)
+
+- Figma shows: `border-width: var(--border-width-active);`
+- Result: `border-2` (NOT `border-width-active`)
+
+### Typography Styles
+
+- Figma shows: a comment with the style name, like `/* body/3 */`
+- Transform: replace `/` with `-`
+- Result: `body-3` (transform `body/3` → `body-3`)
+- Example: `/* heading/2-semi-bold */` → `heading-2-semi-bold`

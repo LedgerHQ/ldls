@@ -92,6 +92,14 @@ For the best development experience, we recommend the following setup:
      npm install -D eslint-plugin-tailwindcss
      ```
 
+3. **Cursor AI Rules** (Optional)
+   - For Cursor users, LDLS includes AI rules for better code suggestions
+   - Copy rules after installing the package:
+     ```bash
+     cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+     ```
+   - [View documentation →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-using-with-ai-assistants-cursor)
+
 ### 3. Utility Functions
 
 We recommend creating utility functions to help you work with Tailwind classes. Here's how to create powerful utilities that handle conditional classes, Tailwind class conflicts, and type-safe variants:
@@ -340,6 +348,26 @@ All design tokens automatically support dark mode:
 - Leverage the typography system for consistent text styling
 - Use the theme system for dark mode support
 - Avoid overriding preset configurations unless absolutely necessary
+
+---
+
+## 🤖 AI Assistant Support (Cursor)
+
+Working with Cursor AI? LDLS includes rules to help AI assistants suggest correct patterns:
+
+```bash
+# Copy after installing @ledgerhq/ldls-ui-react
+cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+```
+
+The rules help AI assistants:
+
+- ✅ Use LDLS design tokens instead of Tailwind defaults
+- ✅ Suggest correct import paths (`/symbols` for icons)
+- ✅ Configure Tailwind with required content paths
+- ✅ Map Figma variables to Tailwind classes correctly
+
+[View cursor rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-using-with-ai-assistants-cursor) | [Cursor Documentation](https://docs.cursor.com/context/rules-for-ai)
 
 ---
 

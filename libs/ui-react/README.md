@@ -33,10 +33,7 @@ import type { Config } from 'tailwindcss';
 import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset],
 } satisfies Config;
 
@@ -51,7 +48,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function App() {
   return (
-    <Button appearance="accent" icon={ArrowRight}>
+    <Button appearance='accent' icon={ArrowRight}>
       Get Started
     </Button>
   );
@@ -68,13 +65,9 @@ All components use design tokens from `@ledgerhq/ldls-design-core`:
 
 ```tsx
 // Components automatically use theme tokens
-<Button appearance="accent">Themed Button</Button>
+<Button appearance='accent'>Themed Button</Button>;
 
-const CustomCard = () => (
-  <div className="bg-base hover:bg-base-hover heading-0 p-12">
-    Custom themed content
-  </div>
-);
+const CustomCard = () => <div className='bg-base hover:bg-base-hover heading-0 p-12'>Custom themed content</div>;
 ```
 
 ### Dark Mode Support
@@ -87,13 +80,11 @@ Add the `dark` class to your root element or use CSS media queries:
 
 ```tsx
 // Manual dark mode toggle
-<html className="dark">
+<html className='dark'>
   <body>
     <App />
   </body>
 </html>
-
-
 ```
 
 ---
@@ -125,19 +116,51 @@ import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/
 // Available sizes: 16, 20, 24, 40, 48, 56
 ```
 
+---
+
+## 🤖 Using with AI Assistants (Cursor)
+
+LDLS includes Cursor AI rules to help AI assistants understand and suggest correct usage patterns.
+
+### Quick Setup
+
+After installing the package, copy the cursor rules to your project:
+
+```bash
+# Copy all LDLS rules to your project
+cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+```
+
+### Available Rules
+
+- **ldls-setup.mdc** - Package setup and Tailwind configuration (always applied)
+- **ldls-design-tokens.mdc** - Design tokens and Tailwind utilities (always applied)
+- **ldls-components.mdc** - Component usage patterns (always applied)
+- **ldls-figma.mdc** - Figma MCP integration for design extraction (apply when needed)
+
+### What These Rules Do
+
+The cursor rules help AI assistants:
+
+- ✅ Suggest correct import paths (`/symbols` for icons)
+- ✅ Use LDLS design tokens instead of Tailwind defaults
+- ✅ Configure Tailwind correctly with LDLS content paths
+- ✅ Extract components from Figma with proper token mapping
+- ✅ Recommend correct peer dependencies
+
+[View the rules →](./cursor-rules/)
+
+---
+
 ## 🔷 TypeScript Support
 
 Full TypeScript support with comprehensive type definitions:
 
 ```tsx
-import type {
-  ButtonProps,
-  BannerProps,
-  InputProps
-} from '@ledgerhq/ldls-ui-react';
+import type { ButtonProps, BannerProps, InputProps } from '@ledgerhq/ldls-ui-react';
 
 const CustomButton = (props: ButtonProps) => {
-  return <Button {...props} className="custom-button" />;
+  return <Button {...props} className='custom-button' />;
 };
 ```
 
