@@ -14,6 +14,7 @@ import {
   type TextInputProps,
   type NativeSyntheticEvent,
   type TextInputChangeEventData,
+  Pressable,
 } from 'react-native';
 
 export type AmountInputProps = Omit<
@@ -67,9 +68,9 @@ export type AmountInputProps = Omit<
 
 const inputStyles = cva(
   [
-    'bg-transparent caret-active outline-none transition-colors heading-0',
-    'text-base placeholder:text-muted-subtle',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    'caret-active heading-0 bg-transparent outline-none transition-colors',
+    'placeholder:text-muted-subtle text-base',
+    'disabled:bg-base-transparent disabled:text-disabled disabled:pointer-events-none disabled:cursor-not-allowed',
     '[&[aria-invalid="true"]]:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',
@@ -140,7 +141,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     const [inputValue, setInputValue] = useState(value.toString());
     const [isChanging, setIsChanging] = useState(false);
 
-    /** Track previous value for animation trigger */
+    // track previous value for animation trigger
     const prevValueRef = useRef<string>(inputValue);
 
     const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
@@ -195,46 +196,55 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       <View
         ref={ref}
         className='group relative flex items-center justify-center transition-transform'
-        onPointerDown={() => {
-          const input = inputRef.current;
-          if (!input) return;
-          window.requestAnimationFrame(() => {
-            input.focus();
-          });
-        }}
       >
-        {currencyText && currencyPosition === 'left' && (
-          <Text className={cn(currencyStyles, 'shrink-0')} style={{ fontSize }}>
-            {currencyText}
-          </Text>
-        )}
-
-        {/* Hidden span mirrors input value */}
-        <Text
-          ref={spanRef}
-          className={cn('invisible absolute heading-0')}
-          accessible={false}
-          style={{ fontSize }}
+        <Pressable
+          onPressIn={() => {
+            const input = inputRef.current;
+            if (!input) return;
+            window.requestAnimationFrame(() => {
+              input.focus();
+            });
+          }}
         >
-          {inputValue}
-        </Text>
+          {currencyText && currencyPosition === 'left' && (
+            <Text
+              className={cn(currencyStyles, 'shrink-0')}
+              style={{ fontSize }}
+            >
+              {currencyText}
+            </Text>
+          )}
 
-        <TextInput
-          ref={inputRef}
-          keyboardType='decimal-pad'
-          editable={editable}
-          value={inputValue}
-          onChange={handleChange}
-          className={cn(inputStyles({ isChanging }), className)}
-          {...props}
-          style={{ fontSize }}
-        />
-
-        {currencyText && currencyPosition === 'right' && (
-          <Text className={cn(currencyStyles, 'shrink-0')} style={{ fontSize }}>
-            {currencyText}
+          {/* Hidden span mirrors input value */}
+          <Text
+            ref={spanRef}
+            className={cn('invisible absolute heading-0')}
+            accessible={false}
+            style={{ fontSize }}
+          >
+            {inputValue}
           </Text>
-        )}
+
+          <TextInput
+            ref={inputRef}
+            keyboardType='decimal-pad'
+            editable={editable}
+            value={inputValue}
+            onChange={handleChange}
+            className={cn(inputStyles({ isChanging }), className)}
+            {...props}
+            style={{ fontSize }}
+          />
+
+          {currencyText && currencyPosition === 'right' && (
+            <Text
+              className={cn(currencyStyles, 'shrink-0')}
+              style={{ fontSize }}
+            >
+              {currencyText}
+            </Text>
+          )}
+        </Pressable>
       </View>
     );
   },
