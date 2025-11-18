@@ -65,6 +65,14 @@ const cardButtonVariants = {
       },
     },
   }),
+  icon: cva('shrink-0', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-base',
+      },
+    },
+  }),
 };
 
 /**
@@ -127,7 +135,12 @@ export const CardButton = React.forwardRef<
         disabled={disabled ?? false}
         {...props}
       >
-        {IconComponent && <IconComponent size={24} className='shrink-0' />}
+        {IconComponent && (
+          <IconComponent
+            size={24}
+            className={cardButtonVariants.icon({ disabled })}
+          />
+        )}
         <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
           <Text
             className={cardButtonVariants.title({ disabled })}
@@ -146,7 +159,12 @@ export const CardButton = React.forwardRef<
             </Text>
           )}
         </View>
-        {!hideChevron && <ChevronRight size={24} className='shrink-0' />}
+        {!hideChevron && (
+          <ChevronRight
+            size={24}
+            className={cardButtonVariants.icon({ disabled })}
+          />
+        )}
       </Pressable>
     );
   },

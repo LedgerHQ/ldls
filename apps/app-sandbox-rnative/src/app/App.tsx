@@ -5,12 +5,14 @@ import {
 } from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Banners } from './blocks/Banners';
 import {
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
   BottomSheetsButton,
 } from './blocks/BottomSheets';
 import { Buttons } from './blocks/Buttons';
+import { CardButtons } from './blocks/CardButtons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
 import { Inputs } from './blocks/Inputs';
@@ -36,6 +38,9 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='CardButtons'>
+                <CardButtons />
+              </SandboxBlock>
               <SandboxBlock title='Inputs'>
                 <Inputs />
               </SandboxBlock>
@@ -65,6 +70,9 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='Tooltips'>
                 <Tooltips />
+              </SandboxBlock>
+              <SandboxBlock title='Banners'>
+                <Banners />
               </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
