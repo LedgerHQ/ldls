@@ -1,13 +1,13 @@
 import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
-import { cva } from 'class-variance-authority';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  type TextInputProps,
-  Pressable,
-} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Text, TextInput, View, type TextInputProps } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSequence,
+  Easing,
+} from 'react-native-reanimated';
 
 export type AmountInputProps = Omit<
   TextInputProps,
@@ -63,24 +63,12 @@ export type AmountInputProps = Omit<
   isInvalid?: boolean;
 };
 
-const inputStyles = cva(
-  [
-    'caret-active heading-0 h-56 bg-transparent text-base outline-none transition-colors',
-  ],
-  {
-    variants: {
-      isChanging: {
-        true: 'animate-translate-from-right',
-        false: '',
-      },
-    },
-    defaultVariants: {
-      isChanging: false,
-    },
-  },
+const inputStyles = cn(
+  'caret-active heading-0 h-56 bg-transparent text-base outline-none transition-colors',
 );
-
 const currencyStyles = cn('shrink-0 heading-0 cursor-text text-base');
+
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 /**
  * AmountInput component for handling numeric input with currency display.
@@ -93,7 +81,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       className,
       currencyText,
       currencyPosition = 'left',
-      editable,
+      editable = true,
       maxIntegerLength = 9,
       maxDecimalLength = 9,
       allowDecimals = true,
@@ -108,12 +96,11 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     const spanRef = useRef<Text>(null);
     const inputRef = useRef<TextInput>(null);
     const [inputValue, setInputValue] = useState(value.toString());
-    const [isChanging, setIsChanging] = useState(false);
 
-    // track previous value for animation trigger
     const prevValueRef = useRef<string>(inputValue);
 
-    const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
+    const translateX = useSharedValue(0);
+    const animatedFontSize = useSharedValue(getFontSize(inputValue));
 
     // keep width in sync with hidden span
     // useLayoutEffect(() => {
@@ -126,22 +113,43 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     //   }
     // }, [inputValue]);
 
+    const animatedInputStyle = useAnimatedStyle(() => ({
+      transform: [{ translateX: translateX.value }],
+      fontSize: animatedFontSize.value,
+      // lineHeight: 56,
+    }));
+    const animatedCurrencyStyle = useAnimatedStyle(() => ({
+      fontSize: animatedFontSize.value,
+      // lineHeight: 56,
+    }));
+
     useEffect(() => {
       setInputValue(value.toString());
     }, [value]);
 
-    // reset animation state after animation duration
     useEffect(() => {
-      if (!isChanging) return;
+      const newFontSize = getFontSize(inputValue);
 
-      const timer = setTimeout(() => {
-        setIsChanging(false);
-      }, 300);
-      return () => clearTimeout(timer);
-    }, [isChanging]);
+      if (inputValue !== prevValueRef.current) {
+        translateX.value = withSequence(
+          withTiming(10, { duration: 0 }),
+          withTiming(0, {
+            duration: 300,
+            easing: Easing.out(Easing.cubic),
+          }),
+        );
+      }
+      animatedFontSize.value = withTiming(newFontSize, {
+        duration: 300,
+        easing: Easing.out(Easing.cubic),
+      });
+
+      prevValueRef.current = inputValue;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inputValue]);
 
     const handleChangeText = (text: string) => {
-      const cleaned = textFormatter(text, {
+      textFormatter(text, {
         allowDecimals,
         thousandsSeparator,
         maxIntegerLength,
@@ -150,74 +158,63 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
       setInputValue(text);
       onChangeText(text);
-
-      // trigger animation if value actually changes
-      if (cleaned !== prevValueRef.current) {
-        setIsChanging(true);
-      }
-
-      prevValueRef.current = cleaned;
     };
 
     return (
       <View
         ref={ref}
-        className='group relative flex items-center justify-center transition-transform'
+        className='group relative flex flex-row items-center justify-center transition-transform'
       >
-        <Pressable
-          onPressIn={() => {
-            const input = inputRef.current;
-            if (!input) return;
-            // window.requestAnimationFrame(() => {
-            //   input.focus();
-            // });
-          }}
-        >
-          {currencyText && currencyPosition === 'left' && (
-            <Text
-              className={cn(
-                currencyStyles,
-                !editable && 'text-disabled',
-                isInvalid && 'text-error',
-              )}
-              style={{ fontSize }}
-            >
-              {currencyText}
-            </Text>
-          )}
-
-          {/* Hidden span mirrors input value */}
-          <Text
-            ref={spanRef}
-            className={cn('invisible absolute heading-0')}
-            accessible={false}
-            style={{ fontSize }}
-          >
-            {inputValue}
-          </Text>
-
-          <TextInput
-            ref={inputRef}
-            keyboardType='decimal-pad'
-            editable={editable}
-            value={inputValue}
-            onChangeText={handleChangeText}
+        {currencyText && currencyPosition === 'left' && (
+          <Animated.Text
             className={cn(
-              inputStyles({ isChanging }),
+              currencyStyles,
+              !editable && 'text-disabled',
+              inputValue !== '' ? 'text-base' : 'text-muted-subtle', // TODO: move this to cva potentially
               isInvalid && 'text-error',
-              !editable && 'bg-base-transparent text-disabled',
-              className,
             )}
-            {...props}
-            style={{ fontSize }}
-          />
+            style={animatedCurrencyStyle}
+          >
+            {currencyText}
+          </Animated.Text>
+        )}
 
-          {currencyText && currencyPosition === 'right' && (
-            <Text className={cn(currencyStyles)} style={{ fontSize }}>
-              {currencyText}
-            </Text>
+        <Animated.Text
+          ref={spanRef}
+          className={cn('invisible absolute heading-0')}
+          accessible={false}
+          style={animatedCurrencyStyle}
+        >
+          {inputValue}
+        </Animated.Text>
+
+        <AnimatedTextInput
+          ref={inputRef}
+          keyboardType='decimal-pad'
+          editable={editable}
+          value={inputValue}
+          onChangeText={handleChangeText}
+          className={cn(
+            inputStyles,
+            isInvalid && 'text-error',
+            !editable && 'bg-base-transparent text-disabled',
+            className,
           )}
-        </Pressable>
+          {...props}
+          style={animatedInputStyle}
+        />
+
+        {currencyText && currencyPosition === 'right' && (
+          <Animated.Text
+            className={cn(
+              currencyStyles,
+              inputValue !== '' ? 'text-base' : 'text-muted-subtle', // TODO: move this to cva potentially
+            )}
+            style={animatedCurrencyStyle}
+          >
+            {currencyText}
+          </Animated.Text>
+        )}
       </View>
     );
   },
