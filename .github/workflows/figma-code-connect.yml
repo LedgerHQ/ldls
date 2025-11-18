@@ -5,8 +5,6 @@ on:
     paths:
       - 'libs/ui-react/src/lib/Components/**/*.figma.tsx'
       - 'libs/ui-rnative/src/lib/Components/**/*.figma.tsx'
-    branches:
-      - main
 
 jobs:
   code-connect:
