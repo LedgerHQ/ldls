@@ -6,8 +6,6 @@ import {
   TextInput,
   View,
   type TextInputProps,
-  type NativeSyntheticEvent,
-  type TextInputChangeEventData,
   Pressable,
 } from 'react-native';
 
@@ -142,18 +140,16 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       return () => clearTimeout(timer);
     }, [isChanging]);
 
-    const handleChange = (
-      e: NativeSyntheticEvent<TextInputChangeEventData>,
-    ) => {
-      const cleaned = textFormatter(e.nativeEvent.text, {
+    const handleChangeText = (text: string) => {
+      const cleaned = textFormatter(text, {
         allowDecimals,
         thousandsSeparator,
         maxIntegerLength,
         maxDecimalLength,
       });
 
-      setInputValue(cleaned);
-      onChangeText(cleaned);
+      setInputValue(text);
+      onChangeText(text);
 
       // trigger animation if value actually changes
       if (cleaned !== prevValueRef.current) {
@@ -205,7 +201,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
             keyboardType='decimal-pad'
             editable={editable}
             value={inputValue}
-            onChange={handleChange}
+            onChangeText={handleChangeText}
             className={cn(
               inputStyles({ isChanging }),
               isInvalid && 'text-error',
