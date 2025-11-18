@@ -2,15 +2,15 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Text, View } from 'react-native';
+import { GlobalTooltipBottomSheet } from './GlobalTooltipBottomSheet';
+import { GlobalTooltipProvider } from './GlobalTooltipContext';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
-import { TooltipsBottomSheet } from './TooltipsBottomSheet';
-import { TooltipsProvider } from './TooltipsBottomSheetContext';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <TooltipsProvider>
+  <GlobalTooltipProvider>
     {children}
-    <TooltipsBottomSheet />
-  </TooltipsProvider>
+    <GlobalTooltipBottomSheet />
+  </GlobalTooltipProvider>
 );
 
 describe('Tooltip', () => {
@@ -58,7 +58,7 @@ describe('Tooltip', () => {
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
-  it('requires TooltipsProvider', () => {
+  it('requires GlobalTooltipProvider', () => {
     const originalError = console.error;
     console.error = jest.fn();
 

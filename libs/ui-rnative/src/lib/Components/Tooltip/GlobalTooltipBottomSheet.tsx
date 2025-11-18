@@ -5,7 +5,7 @@ import {
   BottomSheetScrollView,
   useBottomSheetRef,
 } from '../BottomSheet';
-import { useTooltipsBottomSheetSafeContext } from './TooltipsBottomSheetContext';
+import { useGlobalTooltipSafeContext } from './GlobalTooltipContext';
 
 /**
  * BottomSheet component that displays tooltip content.
@@ -14,25 +14,25 @@ import { useTooltipsBottomSheetSafeContext } from './TooltipsBottomSheetContext'
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { TooltipsProvider, TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalTooltipProvider, GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
  *
  * function App() {
  *   return (
  *     <GestureHandlerRootView>
  *       <YourAppContent />
- *       <TooltipsBottomSheet />
+ *       <GlobalTooltipBottomSheet />
  *     </GestureHandlerRootView>
  *   );
  * }
  */
-export const TooltipsBottomSheet: React.FC = () => {
+export const GlobalTooltipBottomSheet: React.FC = () => {
   const bottomSheetRef = useBottomSheetRef();
   /**
    * This is the only component that subscribes to currentTooltip
    * All other components use refs to avoid re-renders
    */
-  const { currentTooltip, hideTooltipRef } = useTooltipsBottomSheetSafeContext({
-    consumerName: 'useTooltipsBottomSheetContext',
+  const { currentTooltip, hideTooltipRef } = useGlobalTooltipSafeContext({
+    consumerName: 'useGlobalTooltipBottomSheetContext',
     contextRequired: true,
   });
 

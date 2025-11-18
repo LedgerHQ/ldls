@@ -1,6 +1,6 @@
 import {
   ThemeProvider,
-  TooltipsBottomSheet,
+  GlobalTooltipBottomSheet,
   useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
@@ -86,7 +86,7 @@ export const App = () => {
           </ScrollView>
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
-          <TooltipsBottomSheet />
+          <GlobalTooltipBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>

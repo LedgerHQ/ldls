@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback, useId } from 'react';
 import { Pressable } from 'react-native';
 import { useControllableState } from '../../utils';
 import { SlotPressable } from '../Slot';
+import { useTooltipActions } from './GlobalTooltipContext';
 import {
   TooltipContentData,
   TooltipContextProvider,
   useTooltipSafeContext,
 } from './TooltipContext';
-import { useTooltipActions } from './TooltipsBottomSheetContext';
 import type {
   TooltipProps,
   TooltipTriggerProps,
@@ -18,12 +18,12 @@ import type {
  * The root component that manages a specific tooltip's state.
  *
  * This component coordinates between the trigger and content components.
- * It works with TooltipsProvider to ensure only one tooltip can be shown at a time.
+ * It works with GlobalTooltipProvider to ensure only one tooltip can be shown at a time.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { TooltipsProvider, Tooltip, TooltipTrigger, TooltipContent, TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalTooltipProvider, Tooltip, TooltipTrigger, TooltipContent, GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
  *
  * function App() {
  *   return (
@@ -34,7 +34,7 @@ import type {
  *         </TooltipTrigger>
  *         <TooltipContent title="Help" content={<Text>This is a tooltip!</Text>} />
  *       </Tooltip>
- *       <TooltipsBottomSheet />
+ *       <GlobalTooltipBottomSheet />
  *     </ThemeProvider>
  *   );
  * }
@@ -116,8 +116,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
     contextRequired: true,
   });
 
-  // Register content data with local context
-  // This is the only responsibility of this component now
   useEffect(() => {
     setContentData({ title, content });
     return () => {

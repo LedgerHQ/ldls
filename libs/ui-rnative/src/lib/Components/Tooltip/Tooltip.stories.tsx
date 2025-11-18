@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 import { Information } from '../../Symbols';
 import { Button } from '../Button';
 import { InteractiveIcon } from '../InteractiveIcon';
+import { GlobalTooltipBottomSheet } from './GlobalTooltipBottomSheet';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
-import { TooltipsBottomSheet } from './TooltipsBottomSheet';
 
 const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
@@ -15,25 +15,6 @@ const meta: Meta<typeof Tooltip> = {
 export default meta;
 
 type Story = StoryObj<typeof Tooltip>;
-
-export const Default: Story = {
-  render: () => (
-    <>
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button>Press me</Button>
-          </TooltipTrigger>
-          <TooltipContent
-            title='My tooltip title'
-            content={<Text>This is a helpful tooltip</Text>}
-          />
-        </Tooltip>
-      </View>
-      <TooltipsBottomSheet />
-    </>
-  ),
-};
 
 export const Base: Story = {
   render: () => (
@@ -49,7 +30,7 @@ export const Base: Story = {
           />
         </Tooltip>
       </View>
-      <TooltipsBottomSheet />
+      <GlobalTooltipBottomSheet />
     </>
   ),
 };
@@ -80,7 +61,7 @@ export const WithCustomContent: Story = {
           />
         </Tooltip>
       </View>
-      <TooltipsBottomSheet />
+      <GlobalTooltipBottomSheet />
     </>
   ),
 };
@@ -121,7 +102,7 @@ export const WithMultipleTooltips: Story = {
           />
         </Tooltip>
       </View>
-      <TooltipsBottomSheet />
+      <GlobalTooltipBottomSheet />
     </>
   ),
 };
@@ -143,7 +124,7 @@ export const WithChangeCallback: Story = {
             />
           </Tooltip>
         </View>
-        <TooltipsBottomSheet />
+        <GlobalTooltipBottomSheet />
       </>
     );
   },

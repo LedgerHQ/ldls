@@ -9,7 +9,7 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 <CustomTabs>
   <Tab label="Overview">
 
-View in Figma: [link](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=1234-5678&m=dev)
+View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9199-17893&m=dev)
 
 ## Introduction
 
@@ -19,11 +19,12 @@ Tooltips display contextual information in a bottom sheet when users press an in
 
 - **TooltipTrigger:** The interactive element that opens the tooltip
 - **TooltipContent:** Defines the title and content displayed in the bottom sheet
-- **TooltipsBottomSheet:** The shared bottom sheet that renders all tooltip content
+- **GlobalTooltipBottomSheet:** The shared bottom sheet that renders all tooltip content
 
 ## Properties
 
 ### Base Example
+⚠️ React-native-web doesn't support closing the tooltip by clicking outside of it.
 
 <Canvas of={TooltipStories.Base} />
 
@@ -40,7 +41,7 @@ Multiple tooltips can be used on the same page. Only one tooltip displays at a t
 <Canvas of={TooltipStories.WithMultipleTooltips} />
 
 ### With Change Callback
-When the tooltip is opened or closed, the `onOpenChange` callback is called with the new open state.
+The `onOpenChange` prop is called with the opened state whenever the tooltip opens or closes.
 <Canvas of={TooltipStories.WithChangeCallback} />
 
 ### Accessibility
@@ -61,17 +62,17 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 To use tooltips, you must include two global components in your app setup:
 
 1. **ThemeProvider** – Wrap your entire app and register theme and shared components context.
-2. **TooltipsBottomSheet** – Instance of the bottom sheet component that will be used to display the tooltip content.
+2. **GlobalTooltipBottomSheet** – Instance of the bottom sheet component that will be used to display the tooltip content.
 
 ```tsx
 import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
-import { TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+import { GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
 
 function App() {
   return (
     <ThemeProvider>
       <YourAppContent />
-      <TooltipsBottomSheet />
+      <GlobalTooltipBottomSheet />
     </ThemeProvider>
   );
 }
@@ -128,13 +129,15 @@ function MyComponent() {
 ```
 
 ### Callback function
+The `onOpenChange` callback is called when the tooltip is opened or closed.
 
 ```tsx
 function CallbackFunctionTooltip() {
 
   return (
-    <Tooltip onOpenChange={() => {
-      // do stuff
+    <Tooltip onOpenChange={(isOpen) => {
+      // handle action, like tracking an event for instance
+      trackService.event('tooltip_opened', { isOpen });
     }}>
       <TooltipTrigger asChild>
         <Button>Toggle Tooltip</Button>
@@ -209,12 +212,12 @@ function CallbackFunctionTooltip() {
 ✅ **Do**
 
 ```tsx
-// Include TooltipsBottomSheet once at root level
+// Include GlobalTooltipBottomSheet once at root level
 function App() {
   return (
     <ThemeProvider>
       <Navigation />
-      <TooltipsBottomSheet />
+      <GlobalTooltipBottomSheet />
     </ThemeProvider>
   );
 }

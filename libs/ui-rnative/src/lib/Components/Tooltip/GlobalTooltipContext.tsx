@@ -14,17 +14,18 @@ export type TooltipData = {
   setOpen?: (open: boolean) => void;
 };
 
-type TooltipsBottomSheetContextValue = {
+type GlobalTooltipBottomSheetContextValue = {
   currentTooltip: TooltipData | null;
   showTooltipRef: React.MutableRefObject<(data: TooltipData) => void>;
   hideTooltipRef: React.MutableRefObject<() => void>;
 };
 
-const [TooltipsBottomSheetProvider, _useTooltipsBottomSheetSafeContext] =
-  createSafeContext<TooltipsBottomSheetContextValue>('TooltipsBottomSheet');
+const [GlobalTooltipContextProvider, _useGlobalTooltipSafeContext] =
+  createSafeContext<GlobalTooltipBottomSheetContextValue>(
+    'GlobalTooltipContext',
+  );
 
-export const useTooltipsBottomSheetSafeContext =
-  _useTooltipsBottomSheetSafeContext;
+export const useGlobalTooltipSafeContext = _useGlobalTooltipSafeContext;
 
 /**
  * Hook that provides tooltip actions without subscribing to state changes.
@@ -37,7 +38,7 @@ export const useTooltipActions = (): {
   showTooltip: (data: TooltipData) => void;
   hideTooltip: () => void;
 } => {
-  const context = useTooltipsBottomSheetSafeContext({
+  const context = useGlobalTooltipSafeContext({
     consumerName: 'useTooltipActions',
     contextRequired: true,
   });
@@ -53,27 +54,27 @@ export const useTooltipActions = (): {
   );
 };
 
-type TooltipsProviderProps = {
+type GlobalTooltipProviderProps = {
   children: ReactNode;
 };
 
 /**
  * Global provider for the tooltips bottom sheet system.
- * This should wrap your app at the root level and include TooltipsBottomSheet.
+ * This should wrap your app at the root level and include GlobalTooltipBottomSheet.
  *
  * @example
- * import { TooltipsProvider, TooltipsBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalTooltipProvider, GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
  *
  * function App() {
  *   return (
- *     <TooltipsProvider>
+ *     <GlobalTooltipProvider>
  *       <YourAppContent />
- *       <TooltipsBottomSheet />
- *     </TooltipsProvider>
+ *       <GlobalTooltipBottomSheet />
+ *     </GlobalTooltipProvider>
  *   );
  * }
  */
-export const TooltipsProvider: React.FC<TooltipsProviderProps> = ({
+export const GlobalTooltipProvider: React.FC<GlobalTooltipProviderProps> = ({
   children,
 }) => {
   const [currentTooltip, setCurrentTooltip] = useState<TooltipData | null>(
@@ -117,8 +118,8 @@ export const TooltipsProvider: React.FC<TooltipsProviderProps> = ({
   );
 
   return (
-    <TooltipsBottomSheetProvider value={contextValue}>
+    <GlobalTooltipContextProvider value={contextValue}>
       {children}
-    </TooltipsBottomSheetProvider>
+    </GlobalTooltipContextProvider>
   );
 };
