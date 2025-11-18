@@ -1,7 +1,11 @@
 {
   "codeConnect": {
-    "include": ["libs/ui-react/src/lib/Components/**/*.{tsx,jsx}"],
+    "include": [
+      "libs/ui-react/src/lib/Components/**/*.{tsx,jsx}",
+      "libs/ui-rnative/src/lib/Components/**/*.{tsx,jsx}"
+    ],
     "label": "React",
-    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7"
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7",
+    "reactNativeInteractiveSetupFigmaFileUrl": "https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7"
   }
 }

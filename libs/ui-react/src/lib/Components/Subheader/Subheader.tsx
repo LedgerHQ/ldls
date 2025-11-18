@@ -1,7 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
 
-type SubheaderProps = {
+export type SubheaderProps = {
   /**
    * The title of the subheader.
    */
