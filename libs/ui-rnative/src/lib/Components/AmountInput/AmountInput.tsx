@@ -1,4 +1,4 @@
-import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
+import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -67,7 +67,7 @@ export type AmountInputProps = Omit<
 
 const inputStyles = cva(
   [
-    'h-56 bg-transparent text-base caret-active outline-none transition-colors heading-0',
+    'caret-active heading-0 h-56 bg-transparent text-base outline-none transition-colors',
   ],
   {
     variants: {
@@ -83,24 +83,6 @@ const inputStyles = cva(
 );
 
 const currencyStyles = cn('shrink-0 heading-0 cursor-text text-base');
-
-// Font size calculation constants
-const MAX_FONT_SIZE = 48;
-const MIN_FONT_SIZE = 17;
-const SCALE_FACTOR = 2;
-
-/**
- * Calculates the font size based on the number of digits in the input value.
- * Scales from 48px (max) to 17px (min) as digit count increases.
- */
-function getFontSize(val: string): number {
-  const digits = val.replace(/\D/g, '').length;
-  const fontSize = Math.max(
-    MIN_FONT_SIZE,
-    MAX_FONT_SIZE - digits * SCALE_FACTOR,
-  );
-  return fontSize;
-}
 
 /**
  * AmountInput component for handling numeric input with currency display.

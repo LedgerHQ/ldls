@@ -1,4 +1,4 @@
-import { cn, textFormatter } from '@ledgerhq/ldls-utils-shared';
+import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React, {
   useEffect,
@@ -87,24 +87,6 @@ const currencyStyles = cn(
   'group-has-[input[aria-invalid="true"]]:text-error',
 );
 
-// Font size calculation constants
-const MAX_FONT_SIZE = 48;
-const MIN_FONT_SIZE = 17;
-const SCALE_FACTOR = 2;
-
-/**
- * Calculates the font size based on the number of digits in the input value.
- * Scales from 48px (max) to 17px (min) as digit count increases.
- */
-function getFontSize(val: string): string {
-  const digits = val.replace(/\D/g, '').length;
-  const fontSize = Math.max(
-    MIN_FONT_SIZE,
-    MAX_FONT_SIZE - digits * SCALE_FACTOR,
-  );
-  return `${fontSize}px`;
-}
-
 /**
  * AmountInput component for handling numeric input with currency display.
  * This is a controlled component - both `value` and `onChange` props are required.
@@ -149,7 +131,10 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
       };
     }
 
-    const fontSize = useMemo(() => getFontSize(inputValue), [inputValue]);
+    const fontSize = useMemo(
+      () => getFontSize(inputValue) + 'px',
+      [inputValue],
+    );
 
     // Keep width in sync with hidden span
     useLayoutEffect(() => {
