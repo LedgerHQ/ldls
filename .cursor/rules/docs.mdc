@@ -46,21 +46,69 @@ Component documentation MUST use the two-tab structure with Overview and Impleme
 - Do's and Don'ts section
 - Performance considerations
 
+### Do's and Don'ts Section
+
+**ALWAYS** use `DoBlock` and `DontBlock` components:
+
+```tsx
+import { DoBlock, DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlock, DontBlockItem } from '../../../../.storybook/DontBlock';
+```
+
+**Usage:**
+
+````tsx
+<DoBlock>
+  <DoBlockItem title='Title' description='Why this is correct'>
+
+```tsx
+<Component prop='value' />
+````
+
+  </DoBlockItem>
+</DoBlock>
+
+<DontBlock>
+  <DontBlockItem title="Don't do this" description='Why this is wrong'>
+
+```tsx
+<Component wrongProp='value' />
+```
+
+  </DontBlockItem>
+</DontBlock>
+```
+
+See `Button.mdx` for examples.
+
 ### Required Structure
 
 ```tsx
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ComponentStories from './Component.stories';
+import { Component } from './Component';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoBlock, DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlock, DontBlockItem } from '../../../../.storybook/DontBlock';
+
+<Meta title='Components/Component' of={ComponentStories} />
+
+# Component Name
 
 <CustomTabs>
   <Tab label='Overview '>
     ## Introduction
     {/* Component description and Figma link */}
+
     ## Anatomy
     {/* Visual breakdown with Canvas */}
+
     ## Properties
     {/* Showcase stories for appearance, size, states, etc. */}
+
     ## Responsive Layout
     {/* Layout examples */}
+
     ## Accessibility
     {/* Accessibility guidelines */}
   </Tab>
@@ -68,17 +116,23 @@ import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
   <Tab label='Implementation '>
     ## Installation
     {/* npm install command and peer dependencies */}
+
     ## Basic Usage
     {/* Simple code example */}
+
     ## Advanced Patterns
     {/* Icons, routing, custom styling */}
+
     ## Do's and Don'ts
-    {/* Best practices with code examples */}
+    {/* Use DoBlock/DontBlock components - see section above */}
+
+    ## Performance Considerations
+    {/* Performance tips if applicable */}
   </Tab>
-</CustomTabs>;
+</CustomTabs>
 ```
 
-**Example**: See `Button.mdx` in ui-react for reference implementation
+**Example**: See `Button.mdx` in ui-react or ui-rnative for reference implementation
 
 # Table Documentation Guidelines
 
