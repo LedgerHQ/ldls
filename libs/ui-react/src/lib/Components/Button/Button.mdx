@@ -2,8 +2,9 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoBlock, DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlock, DontBlockItem } from '../../../../.storybook/DontBlock';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 import { Plus, Settings } from '../../Symbols';
 
 <Meta title='Components/Button' of={ButtonStories} />
@@ -211,13 +212,12 @@ Note: When using asChild, the child element handles its own content. Props like 
 
 The following guidelines are based on our [Button Component API Design ADR](https://ledgerhq.atlassian.net/wiki/spaces/DLS/pages/6003949581/ADR-001+Button+Component+API+Design). These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
-### Icon Usage
-
-<DoBlock>
-  <DoBlockItem
-    title='Use the icon prop'
-    description='Pass icon as a component reference for proper sizing'
-  >
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the icon prop'
+      description='Pass icon as a component reference for proper sizing'
+    >
 
 ```tsx
 <Button icon={Plus} size='md'>
@@ -225,27 +225,11 @@ The following guidelines are based on our [Button Component API Design ADR](http
 </Button>
 ```
 
-  </DoBlockItem>
-
-  <DoBlockItem
-    title='Let Button handle sizing'
-    description='Icon size adjusts automatically based on button size'
-  >
-
-```tsx
-<Button icon={Settings} size='sm'>
-  Settings
-</Button>
-```
-
-  </DoBlockItem>
-</DoBlock>
-
-<DontBlock>
-  <DontBlockItem
-    title="Don't include icon in children"
-    description='This breaks automatic sizing and alignment'
-  >
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't include icon in children"
+      description='This breaks automatic sizing and alignment'
+    >
 
 ```tsx
 <Button size='md'>
@@ -253,12 +237,27 @@ The following guidelines are based on our [Button Component API Design ADR](http
 </Button>
 ```
 
-  </DontBlockItem>
+    </DontBlockItem>
 
-  <DontBlockItem
-    title="Don't override icon size"
-    description='Avoid className or style props that affect icon dimensions'
-  >
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Let Button handle sizing'
+      description='Icon size adjusts automatically based on button size'
+    >
+
+```tsx
+<Button icon={Settings} size='sm'>
+  Settings
+</Button>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override icon size"
+      description='Avoid className or style props that affect icon dimensions'
+    >
 
 ```tsx
 <Button icon={Plus} size='md' className='w-6 h-6'>
@@ -266,108 +265,110 @@ The following guidelines are based on our [Button Component API Design ADR](http
 </Button>
 ```
 
-  </DontBlockItem>
-</DontBlock>
+    </DontBlockItem>
 
-### Layout and Styling
+  </DoVsDontRow>
+</div>
 
-<DoBlock>
-  <DoBlockItem
-    title='Use className for positioning'
-    description='Layout utilities like margins and display are allowed'
-  >
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for positioning'
+      description='Layout utilities like margins and display are allowed'
+    >
 
 ```tsx
 <Button className='mt-4'>Submit</Button>
 ```
 
-  </DoBlockItem>
-
-  <DoBlockItem
-    title='Use className for responsive behavior'
-    description='Control visibility and layout at different breakpoints'
-  >
-
-```tsx
-<Button className='hidden md:block'>Desktop Only</Button>
-```
-
-  </DoBlockItem>
-</DoBlock>
-
-<DontBlock>
-  <DontBlockItem
-    title="Don't override core styling"
-    description='Background colors are controlled by the appearance prop'
-  >
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for core styling"
+      description='Background colors are controlled by the appearance prop'
+    >
 
 ```tsx
 <Button className='bg-red-500'>Wrong Background</Button>
 ```
 
-  </DontBlockItem>
+    </DontBlockItem>
 
-  <DontBlockItem
-    title="Don't modify internal spacing"
-    description='Padding and gaps are managed by the size prop'
-  >
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for responsive behavior'
+      description='Control visibility and layout at different breakpoints'
+    >
+
+```tsx
+<Button className='hidden md:block'>Desktop Only</Button>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className to modify internal spacing"
+      description='Padding and gaps are managed by the size prop'
+    >
 
 ```tsx
 <Button className='p-8 gap-8'>Wrong Spacing</Button>
 ```
 
-  </DontBlockItem>
-</DontBlock>
+    </DontBlockItem>
 
-### Size Management
+  </DoVsDontRow>
+</div>
 
-<DoBlock>
-  <DoBlockItem
-    title='Use size prop'
-    description='Choose from predefined sizes: sm, md, lg'
-  >
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use size prop'
+      description='Choose from predefined sizes: sm, md, lg'
+    >
 
 ```tsx
 <Button size='sm'>Small Button</Button>
 ```
 
-  </DoBlockItem>
-
-  <DoBlockItem
-    title='Use isFull for width'
-    description='Use the isFull prop for full-width buttons'
-  >
-
-```tsx
-<Button isFull>Full Width</Button>
-```
-
-  </DoBlockItem>
-</DoBlock>
-
-<DontBlock>
-  <DontBlockItem
-    title="Don't use custom heights"
-    description='Avoid arbitrary height values'
-  >
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use custom heights"
+      description='Avoid arbitrary height values'
+    >
 
 ```tsx
 <Button className='h-[52px]'>Custom Height</Button>
 ```
 
-  </DontBlockItem>
+    </DontBlockItem>
 
-  <DontBlockItem
-    title="Don't override typography"
-    description='Font size is controlled by the size prop'
-  >
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use isFull for width'
+      description='Use the isFull prop for full-width buttons'
+    >
 
 ```tsx
-<Button className='heading-2'>Wrong Typography</Button>
+<Button isFull>Full Width</Button>
 ```
 
-  </DontBlockItem>
-</DontBlock>
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use fixed width"
+      description='Avoid arbitrary width values'
+    >
+
+```tsx
+<Button className='w-80'>Custom Width</Button>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 > **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The button's core styling (colors, padding, gap, hover states, borders, radius) and typography are controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
 

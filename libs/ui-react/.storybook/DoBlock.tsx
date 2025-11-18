@@ -41,16 +41,3 @@ export const DoBlockItem: React.FC<DoBlockItemProps> = ({
     </div>
   );
 };
-
-type DoBlockProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-export const DoBlock: React.FC<DoBlockProps> = ({ children, className }) => {
-  return (
-    <div className={cn('flex flex-col gap-16', className)}>
-      <div className='grid grid-cols-1 gap-16 md:grid-cols-2'>{children}</div>
-    </div>
-  );
-};
