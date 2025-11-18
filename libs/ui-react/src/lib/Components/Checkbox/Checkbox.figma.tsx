@@ -8,7 +8,6 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6688-3600',
   {
     imports: ["import { Checkbox } from '@ledgerhq/ldls-ui-react'"],
-    label: 'React',
     props: {
       checkbox: figma.nestedProps('.checkbox', {
         checked: figma.boolean('checked'),
@@ -17,7 +16,11 @@ figma.connect(
         }),
       }),
       label: figma.boolean('show-label', {
-        true: figma.string('label'),
+        true: (
+          <label htmlFor='checkbox-id' className='cursor-pointer body-2'>
+            Label
+          </label>
+        ),
         false: undefined,
       }),
     },
@@ -30,24 +33,16 @@ figma.connect(
     example: (props: {
       checkbox: { checked: boolean; disabled: boolean };
       label?: string;
-    }) =>
-      props.label ? (
-        <>
-          <Checkbox
-            id='checkbox-id'
-            name='checkbox-name'
-            checked={props.checkbox.checked}
-            disabled={props.checkbox.disabled}
-          />
-          <label htmlFor='checkbox-id' className='cursor-pointer body-2'>
-            {props.label}
-          </label>
-        </>
-      ) : (
+    }) => (
+      <>
         <Checkbox
+          id='checkbox-id'
+          name='checkbox-name'
           checked={props.checkbox.checked}
           disabled={props.checkbox.disabled}
         />
-      ),
+        {props.label}
+      </>
+    ),
   },
 );
