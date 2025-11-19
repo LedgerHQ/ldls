@@ -88,22 +88,33 @@ To verify or discover additional color tokens, explore:
 - Look for CSS variables: `--color-background-*`, `--color-text-*`, `--color-border-*`, `--color-crypto-*`, `--color-discover-*`
 - Plugin mapping: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-custom-plugin.js` shows how CSS variables map to Tailwind utilities
 
-### Spacing and Layout
+### Size (Width & Height)
+
+- Size utilities use a **pixel-based scale** (not rem-based like default Tailwind)
+- The number in each utility corresponds directly to pixels (e.g., `h-64` = `64px`, `w-160` = `160px`)
+- Available size utilities:
+  - Width: `w-{size}`, `min-w-{size}`, `max-w-{size}`
+  - Height: `h-{size}`, `min-h-{size}`, `max-h-{size}`
+  - Both: `size-{size}` (sets both width and height)
+- Available size scale: `1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 112, 128, 144, 160, 176, 208, 224, 256, 320, 400, 480, 560`
+
+### Spacing (Padding, Margin, Gap)
 
 - Spacing utilities use a **pixel-based scale** (not rem-based like default Tailwind)
-- The number in each utility corresponds directly to pixels (e.g., `p-16` = `16px`)
+- The number in each utility corresponds directly to pixels (e.g., `p-16` = `16px`, `gap-24` = `24px`)
 - Available spacing utilities:
-  - Padding: `p-{size}`, `px-{size}`, `py-{size}`, `pt-{size}`, etc.
-  - Margin: `m-{size}`, `mx-{size}`, `my-{size}`, `mt-{size}`, etc.
+  - Padding: `p-{size}`, `px-{size}`, `py-{size}`, `pt-{size}`, `pr-{size}`, `pb-{size}`, `pl-{size}`
+  - Margin: `m-{size}`, `mx-{size}`, `my-{size}`, `mt-{size}`, `mr-{size}`, `mb-{size}`, `ml-{size}`
+  - Gap: `gap-{size}`, `gap-x-{size}`, `gap-y-{size}`
 - Available spacing scale: `2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 256`
 
-#### Spacing Discovery
+#### Size & Spacing Discovery
 
-To verify or discover additional spacing values, explore:
+To verify or discover additional values, explore:
 
 - Primitives theme: `node_modules/@ledgerhq/ldls-design-core/dist/themes/primitives.js`
-- Look for CSS variables: `--spacing-*` and `--size-*`
-- Plugin configuration: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-primitives-plugin.js` shows spacing setup
+- Look for CSS variables: `--spacing-*` (for padding/margin/gap) and `--size-*` (for width/height)
+- Plugin configuration: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-primitives-plugin.js`
 
 ### Borders and Shadows
 
