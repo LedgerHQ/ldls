@@ -33,10 +33,7 @@ import type { Config } from 'tailwindcss';
 import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset],
 } satisfies Config;
 
@@ -51,7 +48,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function App() {
   return (
-    <Button appearance="accent" icon={ArrowRight}>
+    <Button appearance='accent' icon={ArrowRight}>
       Get Started
     </Button>
   );
@@ -68,13 +65,9 @@ All components use design tokens from `@ledgerhq/ldls-design-core`:
 
 ```tsx
 // Components automatically use theme tokens
-<Button appearance="accent">Themed Button</Button>
+<Button appearance='accent'>Themed Button</Button>;
 
-const CustomCard = () => (
-  <div className="bg-base hover:bg-base-hover heading-0 p-12">
-    Custom themed content
-  </div>
-);
+const CustomCard = () => <div className='bg-base hover:bg-base-hover heading-0 p-12'>Custom themed content</div>;
 ```
 
 ### Dark Mode Support
@@ -87,13 +80,11 @@ Add the `dark` class to your root element or use CSS media queries:
 
 ```tsx
 // Manual dark mode toggle
-<html className="dark">
+<html className='dark'>
   <body>
     <App />
   </body>
 </html>
-
-
 ```
 
 ---
@@ -125,19 +116,47 @@ import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/
 // Available sizes: 16, 20, 24, 40, 48, 56
 ```
 
+---
+
+## 🤖 AI Assistant Setup
+
+LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) understand and suggest correct usage patterns.
+
+### Quick Setup
+
+The AI rules are included in the package. Reference them from `node_modules`:
+
+**For Cursor users**, add to your `.cursorrules`:
+
+```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+**For other AI tools**, see our [AI Rules README](./ai-rules/README.md) for setup instructions.
+
+### What These Rules Do
+
+The AI rules help assistants:
+
+- ✅ Suggest correct import paths (`/symbols` for icons)
+- ✅ Use LDLS design tokens instead of Tailwind defaults
+- ✅ Configure Tailwind correctly with LDLS content paths
+- ✅ Extract components from Figma with proper token mapping
+- ✅ Recommend correct peer dependencies
+
+[View the rules →](./ai-rules/)
+
+---
+
 ## 🔷 TypeScript Support
 
 Full TypeScript support with comprehensive type definitions:
 
 ```tsx
-import type {
-  ButtonProps,
-  BannerProps,
-  InputProps
-} from '@ledgerhq/ldls-ui-react';
+import type { ButtonProps, BannerProps, InputProps } from '@ledgerhq/ldls-ui-react';
 
 const CustomButton = (props: ButtonProps) => {
-  return <Button {...props} className="custom-button" />;
+  return <Button {...props} className='custom-button' />;
 };
 ```
 
