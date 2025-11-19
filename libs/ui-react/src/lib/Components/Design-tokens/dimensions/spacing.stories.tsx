@@ -12,6 +12,8 @@ const SpacingShowcase = () => (
   <div className='mb-32'>
     <div className='grid grid-cols-1 place-items-start gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2'>
       {[
+        { name: '0px', class: 'p-0', token: 'p-0' },
+        { name: '1px', class: 'p-1', token: 'p-1' },
         { name: '2px', class: 'p-2', token: 'p-2' },
         { name: '4px', class: 'p-4', token: 'p-4' },
         { name: '6px', class: 'p-6', token: 'p-6' },

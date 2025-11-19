@@ -96,7 +96,7 @@ To verify or discover additional color tokens, explore:
   - Width: `w-{size}`, `min-w-{size}`, `max-w-{size}`
   - Height: `h-{size}`, `min-h-{size}`, `max-h-{size}`
   - Both: `size-{size}` (sets both width and height)
-- Available size scale: `1, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 112, 128, 144, 160, 176, 208, 224, 256, 320, 400, 480, 560`
+- Available size scale: `1, 2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 112, 128, 144, 160, 176, 208, 224, 256, 320, 400, 480, 560`
 
 ### Spacing (Padding, Margin, Gap)
 
@@ -106,7 +106,7 @@ To verify or discover additional color tokens, explore:
   - Padding: `p-{size}`, `px-{size}`, `py-{size}`, `pt-{size}`, `pr-{size}`, `pb-{size}`, `pl-{size}`
   - Margin: `m-{size}`, `mx-{size}`, `my-{size}`, `mt-{size}`, `mr-{size}`, `mb-{size}`, `ml-{size}`
   - Gap: `gap-{size}`, `gap-x-{size}`, `gap-y-{size}`
-- Available spacing scale: `2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 256`
+- Available spacing scale: `0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 256`
 
 #### Size & Spacing Discovery
 
