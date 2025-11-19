@@ -8,7 +8,7 @@ import {
 } from './Dialog';
 import { SheetBarProps } from '../SheetBar/SheetBar';
 import { Button } from '../Button/Button';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

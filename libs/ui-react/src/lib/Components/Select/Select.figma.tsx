@@ -6,7 +6,7 @@ import {
   SelectItemText,
   SelectTrigger,
 } from './Select';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 figma.connect(

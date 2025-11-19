@@ -1,6 +1,6 @@
 import React from 'react';
 import { InteractiveIcon } from './InteractiveIcon';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 import { InteractiveIconProps } from './types';
 

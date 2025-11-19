@@ -3,7 +3,7 @@ import { Subheader, SubheaderProps } from './Subheader';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import { Link } from '../Link/Link';
 import { Information } from '../../Symbols';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 // Base subheader with title only

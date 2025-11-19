@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, SearchProps } from './Search';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 figma.connect(
