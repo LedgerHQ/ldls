@@ -86,7 +86,7 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
           : children;
 
         return (
-          <View className={cn(buttonVariants({ iconType, pressed }))}>
+          <View className={cn(buttonVariants({ iconType, pressed, disabled }))}>
             {clonedChild}
           </View>
         );
