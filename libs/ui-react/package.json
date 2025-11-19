@@ -30,7 +30,7 @@
   },
   "files": [
     "dist",
-    "cursor-rules",
+    "ai-rules",
     "!**/*.tsbuildinfo"
   ],
   "nx": {

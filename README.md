@@ -65,12 +65,15 @@ function App() {
 
 ### 🤖 AI Assistant Support
 
-LDLS includes Cursor AI rules to help AI assistants suggest correct usage patterns:
+LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) suggest correct usage patterns.
 
-```bash
-# Copy rules after installing the package
-cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+**For Cursor users**, add to your `.cursorrules`:
+
 ```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+**For other AI tools**, see our [AI Rules README](./libs/ui-react/ai-rules/README.md).
 
 The rules help with:
 
@@ -79,7 +82,7 @@ The rules help with:
 - ✅ Proper Tailwind configuration
 - ✅ Figma-to-code token mapping
 
-[View the rules →](./libs/ui-react/cursor-rules/)
+[View the rules →](./libs/ui-react/ai-rules/)
 
 ---
 

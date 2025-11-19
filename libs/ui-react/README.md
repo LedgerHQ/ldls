@@ -118,29 +118,25 @@ import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/
 
 ---
 
-## 🤖 Using with AI Assistants (Cursor)
+## 🤖 AI Assistant Setup
 
-LDLS includes Cursor AI rules to help AI assistants understand and suggest correct usage patterns.
+LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) understand and suggest correct usage patterns.
 
 ### Quick Setup
 
-After installing the package, copy the cursor rules to your project:
+The AI rules are included in the package. Reference them from `node_modules`:
 
-```bash
-# Copy all LDLS rules to your project
-cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+**For Cursor users**, add to your `.cursorrules`:
+
+```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
 ```
 
-### Available Rules
-
-- **ldls-setup.mdc** - Package setup and Tailwind configuration (always applied)
-- **ldls-design-tokens.mdc** - Design tokens and Tailwind utilities (always applied)
-- **ldls-components.mdc** - Component usage patterns (always applied)
-- **ldls-figma.mdc** - Figma MCP integration for design extraction (apply when needed)
+**For other AI tools**, see our [AI Rules README](./ai-rules/README.md) for setup instructions.
 
 ### What These Rules Do
 
-The cursor rules help AI assistants:
+The AI rules help assistants:
 
 - ✅ Suggest correct import paths (`/symbols` for icons)
 - ✅ Use LDLS design tokens instead of Tailwind defaults
@@ -148,7 +144,7 @@ The cursor rules help AI assistants:
 - ✅ Extract components from Figma with proper token mapping
 - ✅ Recommend correct peer dependencies
 
-[View the rules →](./cursor-rules/)
+[View the rules →](./ai-rules/)
 
 ---
 

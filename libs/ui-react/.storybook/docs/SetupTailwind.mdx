@@ -92,13 +92,13 @@ For the best development experience, we recommend the following setup:
      npm install -D eslint-plugin-tailwindcss
      ```
 
-3. **Cursor AI Rules** (Optional)
-   - For Cursor users, LDLS includes AI rules for better code suggestions
-   - Copy rules after installing the package:
-     ```bash
-     cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+3. **AI Assistant Rules** (Optional)
+   - LDLS includes AI rules for better code suggestions across multiple AI tools
+   - For Cursor users, add to your `.cursorrules`:
      ```
-   - [View documentation →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-using-with-ai-assistants-cursor)
+     @node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+     ```
+   - [View documentation →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
 
 ### 3. Utility Functions
 
@@ -351,14 +351,17 @@ All design tokens automatically support dark mode:
 
 ---
 
-## 🤖 AI Assistant Support (Cursor)
+## 🤖 AI Assistant Support
 
-Working with Cursor AI? LDLS includes rules to help AI assistants suggest correct patterns:
+LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) suggest correct patterns.
 
-```bash
-# Copy after installing @ledgerhq/ldls-ui-react
-cp -r node_modules/@ledgerhq/ldls-ui-react/cursor-rules/* .cursor/rules/
+**For Cursor users**, add to your `.cursorrules`:
+
 ```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+**For other AI tools**, see our [AI Rules README](https://github.com/LedgerHQ/ldls/blob/main/libs/ui-react/ai-rules/README.md).
 
 The rules help AI assistants:
 
@@ -367,7 +370,7 @@ The rules help AI assistants:
 - ✅ Configure Tailwind with required content paths
 - ✅ Map Figma variables to Tailwind classes correctly
 
-[View cursor rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-using-with-ai-assistants-cursor) | [Cursor Documentation](https://docs.cursor.com/context/rules-for-ai)
+[View AI rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
 
 ---
 
