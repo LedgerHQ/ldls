@@ -1,11 +1,11 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
-import { FC } from 'react';
+import { FC, isValidElement, cloneElement } from 'react';
 import { Pressable, View } from 'react-native';
 import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
-  'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors',
+  'inline-flex size-fit items-center justify-center rounded-full',
   {
     variants: {
       iconType: {
@@ -17,27 +17,15 @@ const buttonVariants = cva(
         false: '',
       },
       disabled: {
-        true: 'text-disabled',
+        true: 'bg-disabled',
         false: '',
       },
     },
     compoundVariants: [
       {
-        iconType: 'filled',
-        pressed: true,
-        disabled: false,
-        className: 'text-muted-pressed',
-      },
-      {
         iconType: 'stroked',
         pressed: true,
-        disabled: false,
-        className: 'bg-base-transparent-pressed text-muted-pressed',
-      },
-      {
-        iconType: 'stroked',
-        disabled: true,
-        className: 'bg-disabled',
+        className: 'bg-base-transparent-pressed',
       },
     ],
   },
@@ -85,19 +73,24 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
       disabled={disabled}
       {...props}
     >
-      {({ pressed }) => (
-        <View
-          className={cn(
-            buttonVariants({
-              iconType,
-              pressed,
-              disabled,
-            }),
-          )}
-        >
-          {children}
-        </View>
-      )}
+      {({ pressed }) => {
+        const iconClass = cn(
+          pressed ? 'text-muted-pressed' : 'text-muted',
+          disabled && 'text-disabled',
+        );
+
+        const clonedChild = isValidElement(children)
+          ? cloneElement(children, {
+              className: cn(children.props.className, iconClass),
+            })
+          : children;
+
+        return (
+          <View className={cn(buttonVariants({ iconType, pressed }))}>
+            {clonedChild}
+          </View>
+        );
+      }}
     </Pressable>
   );
 };
