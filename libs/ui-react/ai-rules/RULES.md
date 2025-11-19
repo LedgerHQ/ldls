@@ -11,7 +11,7 @@
 ### Tailwind Configuration (REQUIRED)
 
 - Tailwind config MUST include LDLS in content array: `'./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'`
-- Always use a preset from `@ledgerhq/ldls-design-core`: ledgerLivePreset, enterprisePreset, websitesPreset, or allBrandsPreset
+- Always use a preset from `@ledgerhq/ldls-design-core`: ledgerLivePreset, enterprisePreset or websitesPreset
 - Import presets: `import { ledgerLivePreset } from '@ledgerhq/ldls-design-core'`
 
 ### Peer Dependencies
@@ -31,27 +31,79 @@
 
 - Do not use Tailwind Typography utilities (e.g., `font-bold`, `text-sm`, etc.)
 - Use LDLS custom typography utilities:
-  - `.responsive-display-1` to `.responsive-display-4`
-  - `.heading-0`, `.heading-0-semi-bold` through `.heading-4`, `.heading-4-semi-bold`
-  - `.body-1`, `.body-1-semi-bold` through `.body-4`, `.body-4-semi-bold`
+  - `responsive-display-1` to `responsive-display-4`
+  - `heading-0`, `heading-0-semi-bold` through `heading-4`, `heading-4-semi-bold`
+  - `body-1`, `body-1-semi-bold` through `body-4`, `body-4-semi-bold`
 
 ### Colors and Background
 
 - Do not use Tailwind default color palette (e.g., `text-gray-500`, `bg-blue-600`)
-- Use LDLS design tokens:
-  - Text colors: `text-base`, `text-on-accent`, `text-muted`, `text-disabled`
-  - Background colors: `bg-base`, `bg-muted`, `bg-accent`, `bg-canvas`
-  - Interactive states: `bg-base-hover`, `bg-base-pressed`, `bg-accent-hover`, `bg-accent-pressed`
-  - Border colors: `border-base`, `border-muted`, `border-accent`
-  - Status colors: `text-success`, `text-error`, `text-warning`, `text-info`
-  - Crypto colors: `crypto-btc`, `crypto-eth`, etc. (and variants like `crypto-btc-0`)
-  - Discovery colors: `discover-base`, `discover-muted`, etc.
+- Use LDLS design tokens
+
+#### Background Colors
+
+- **Canvas**: `bg-canvas`, `bg-canvas-muted`, `bg-canvas-sheet`, `bg-canvas-overlay`
+- **Base**: `bg-base`, `bg-base-hover`, `bg-base-pressed`
+- **Base Transparent**: `bg-base-transparent`, `bg-base-transparent-hover`, `bg-base-transparent-pressed`
+- **Muted**: `bg-muted`, `bg-muted-hover`, `bg-muted-pressed`
+- **Muted Transparent**: `bg-muted-transparent`, `bg-muted-transparent-hover`, `bg-muted-transparent-pressed`, `bg-muted-transparent-disabled`
+- **Muted Strong**: `bg-muted-strong`, `bg-muted-strong-hover`, `bg-muted-strong-pressed`
+- **Accent**: `bg-accent`, `bg-accent-hover`, `bg-accent-pressed`
+- **Interactive**: `bg-interactive`, `bg-interactive-hover`, `bg-interactive-pressed`
+- **Status**: `bg-error`, `bg-error-strong`, `bg-error-transparent`, `bg-warning`, `bg-warning-strong`, `bg-success`, `bg-success-strong`, `bg-success-transparent`
+- **Active**: `bg-active`, `bg-active-hover`, `bg-active-pressed`, `bg-active-subtle`, `bg-active-subtle-hover`, `bg-active-subtle-pressed`
+- **Surface**: `bg-surface`, `bg-surface-hover`, `bg-surface-pressed`
+- **Utility**: `bg-white`, `bg-black`, `bg-disabled`, `bg-disabled-strong`
+
+#### Text Colors
+
+- **Base**: `text-base`, `text-base-hover`, `text-base-pressed`
+- **Muted**: `text-muted`, `text-muted-hover`, `text-muted-pressed`, `text-muted-subtle`
+- **Interactive**: `text-interactive`, `text-interactive-hover`, `text-interactive-pressed`
+- **Status**: `text-error`, `text-warning`, `text-success`
+- **On Colors**: `text-on-accent`, `text-on-interactive`, `text-on-error-strong`, `text-on-warning`, `text-on-success-strong`
+- **Utility**: `text-white`, `text-black`, `text-grey`, `text-disabled`, `text-active`
+
+#### Border Colors
+
+- **Base**: `border-base`, `border-base-hover`, `border-base-pressed`
+- **Muted**: `border-muted`, `border-muted-hover`, `border-muted-pressed`, `border-muted-subtle`
+- **Status**: `border-error`, `border-warning`, `border-success`
+- **Interactive**: `border-focus`, `border-active`
+- **Utility**: `border-black`, `border-white`, `border-disabled`
+
+#### Crypto Colors
+
+Use with `bg-crypto-*` prefix. Available tokens include: `bitcoin`, `ethereum`, `bitcoin-cash`, `litecoin`, `cardano`, `polkadot`, `solana`, `avax`, `polygon`, `cosmos`, `tezos`, `algorand`, `stellar`, `dogecoin`, `chainlink`, `uniswap`, `compound`, `dai`, `usdc`, `tether-usdt`, and many more.
+
+#### Discover Colors
+
+Use with `bg-discover-*` prefix. Available for platform integrations: `1inch`, `changelly`, `compound`, `opensea`, `paraswap`, `rarible`, `zerion`, `bitrefill`, `simplex`, `mercuryo`, `lido`, etc.
+
+#### Color Discovery
+
+To verify or discover additional color tokens, explore:
+
+- Theme files: `node_modules/@ledgerhq/ldls-design-core/dist/themes/ledger-live/theme.light.js` (or `enterprise`, `websites`)
+- Look for CSS variables: `--color-background-*`, `--color-text-*`, `--color-border-*`, `--color-crypto-*`, `--color-discover-*`
+- Plugin mapping: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-custom-plugin.js` shows how CSS variables map to Tailwind utilities
 
 ### Spacing and Layout
 
-- Use pixel values for spacing: `p-{size}`, `px-{size}`, `py-{size}`, `pt-{size}`, etc.
-- Use pixel values for margins: `m-{size}`, `mx-{size}`, `my-{size}`, `mt-{size}`, etc.
-- Common spacing values: 4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64
+- Spacing utilities use a **pixel-based scale** (not rem-based like default Tailwind)
+- The number in each utility corresponds directly to pixels (e.g., `p-16` = `16px`)
+- Available spacing utilities:
+  - Padding: `p-{size}`, `px-{size}`, `py-{size}`, `pt-{size}`, etc.
+  - Margin: `m-{size}`, `mx-{size}`, `my-{size}`, `mt-{size}`, etc.
+- Available spacing scale: `2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 256`
+
+#### Spacing Discovery
+
+To verify or discover additional spacing values, explore:
+
+- Primitives theme: `node_modules/@ledgerhq/ldls-design-core/dist/themes/primitives.js`
+- Look for CSS variables: `--spacing-*` and `--size-*`
+- Plugin configuration: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-primitives-plugin.js` shows spacing setup
 
 ### Borders and Shadows
 
@@ -68,9 +120,83 @@
 - Tailwind utilities should never be concatenated
 - Always use complete class names as strings
 - Use conditional logic for dynamic class names
-- Example: `className="text-base bg-muted"` ✅
-- Example: `className={text-${color}}` ❌
-- Example: `className={cn("text-base", color && "bg-muted")}` ✅
+- Valid example: `className={cn("text-base", color && "bg-muted")}` ✅
+- Invalid Example: `className={text-${color}}`
+
+---
+
+## Component Pattern Examples
+
+### Building a Card Component
+
+```tsx
+import { Button } from '@ledgerhq/ldls-ui-react';
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+const Card = () => (
+  <div className='bg-base border border-base rounded-lg p-16'>
+    <h2 className='heading-3'>Card Title</h2>
+    <p className='body-2 text-muted mt-8'>This is a description using proper spacing and typography tokens.</p>
+    <Button icon={ArrowRight} className='mt-16'>
+      Learn More
+    </Button>
+  </div>
+);
+```
+
+### Building a Status Banner
+
+```tsx
+import { Banner, Button } from '@ledgerhq/ldls-ui-react';
+
+// Info banner
+<Banner
+  appearance='info'
+  title='New Feature Available'
+  description='Check out our latest update to improve your experience'
+/>
+
+// Warning banner with actions
+<Banner
+  appearance='warning'
+  title='Terms of Service Updated'
+  description='Please review and accept the updated terms to continue'
+  primaryAction={
+    <Button appearance='transparent' size='sm' onClick={() => console.log('Accept')}>
+      Accept
+    </Button>
+  }
+  secondaryAction={
+    <Button appearance='no-background' size='sm' onClick={() => console.log('Review')}>
+      Review Later
+    </Button>
+  }
+/>
+
+// Error banner with close
+<Banner
+  appearance='error'
+  title='Connection Failed'
+  description='Unable to connect to the server. Please try again.'
+  onClose={() => console.log('Closed')}
+  closeAriaLabel='Close error banner'
+/>
+```
+
+### Building a List with Interactive Items
+
+```tsx
+import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+const InteractiveList = () => (
+  <div className='flex flex-col gap-2'>
+    {items.map((item) => (
+      <ListItem key={item.id} title={item.title} description={item.subtitle} leadingContent={<Spot appearance='icon' icon={Settings} />} trailingContent={<ChevronRight size={24} />} onClick={() => console.log('Clicked:', item.id)} />
+    ))}
+  </div>
+);
+```
 
 ---
 
