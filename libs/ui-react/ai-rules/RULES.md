@@ -40,7 +40,7 @@
 - Do not use Tailwind default color palette (e.g., `text-gray-500`, `bg-blue-600`)
 - Use LDLS design tokens
 
-#### Background Colors
+#### Available background Colors
 
 - **Canvas**: `bg-canvas`, `bg-canvas-muted`, `bg-canvas-sheet`, `bg-canvas-overlay`
 - **Base**: `bg-base`, `bg-base-hover`, `bg-base-pressed`
@@ -55,7 +55,7 @@
 - **Surface**: `bg-surface`, `bg-surface-hover`, `bg-surface-pressed`
 - **Utility**: `bg-white`, `bg-black`, `bg-disabled`, `bg-disabled-strong`
 
-#### Text Colors
+#### Available Text Colors
 
 - **Base**: `text-base`, `text-base-hover`, `text-base-pressed`
 - **Muted**: `text-muted`, `text-muted-hover`, `text-muted-pressed`, `text-muted-subtle`
@@ -64,7 +64,7 @@
 - **On Colors**: `text-on-accent`, `text-on-interactive`, `text-on-error-strong`, `text-on-warning`, `text-on-success-strong`
 - **Utility**: `text-white`, `text-black`, `text-grey`, `text-disabled`, `text-active`
 
-#### Border Colors
+#### Available Border Colors
 
 - **Base**: `border-base`, `border-base-hover`, `border-base-pressed`
 - **Muted**: `border-muted`, `border-muted-hover`, `border-muted-pressed`, `border-muted-subtle`
@@ -72,15 +72,15 @@
 - **Interactive**: `border-focus`, `border-active`
 - **Utility**: `border-black`, `border-white`, `border-disabled`
 
-#### Crypto Colors
+#### Available Crypto Colors
 
 Use with `bg-crypto-*` prefix. Available tokens include: `bitcoin`, `ethereum`, `bitcoin-cash`, `litecoin`, `cardano`, `polkadot`, `solana`, `avax`, `polygon`, `cosmos`, `tezos`, `algorand`, `stellar`, `dogecoin`, `chainlink`, `uniswap`, `compound`, `dai`, `usdc`, `tether-usdt`, and many more.
 
-#### Discover Colors
+#### Available Discover Colors
 
 Use with `bg-discover-*` prefix. Available for platform integrations: `1inch`, `changelly`, `compound`, `opensea`, `paraswap`, `rarible`, `zerion`, `bitrefill`, `simplex`, `mercuryo`, `lido`, etc.
 
-#### Color Discovery
+#### Colors mapping
 
 To verify or discover additional color tokens, explore:
 
