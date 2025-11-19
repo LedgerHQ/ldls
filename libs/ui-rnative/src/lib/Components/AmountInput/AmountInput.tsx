@@ -208,6 +208,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           <Animated.Text
             className={cn(
               currencyStyles,
+              isInvalid && 'text-error',
               inputValue !== '' ? 'text-base' : 'text-muted-subtle', // TODO: move this to cva potentially
             )}
             style={animatedCurrencyStyle}
