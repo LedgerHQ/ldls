@@ -2,11 +2,11 @@ import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
 import React, { useEffect, useRef, useState } from 'react';
 import { TextInput, View, type TextInputProps } from 'react-native';
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSequence,
   Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
 } from 'react-native-reanimated';
 
 export type AmountInputProps = Omit<
@@ -66,7 +66,7 @@ export type AmountInputProps = Omit<
 const inputStyles = cn(
   'caret-active heading-0 h-56 bg-transparent text-base outline-none transition-colors',
 );
-const currencyStyles = cn('shrink-0 heading-0 cursor-text text-base');
+const currencyStyles = cn('shrink-0 heading-0 text-base');
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
@@ -112,10 +112,6 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     }));
 
     useEffect(() => {
-      setInputValue(value.toString());
-    }, [value]);
-
-    useEffect(() => {
       const newSize = getFontSize(inputValue);
 
       translateX.value = withSequence(
@@ -133,35 +129,33 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     }, [inputValue, animatedFontSize, translateX]);
 
     const handleChangeText = (text: string) => {
-      textFormatter(text, {
+      const formatted = textFormatter(text, {
         allowDecimals,
         thousandsSeparator,
         maxIntegerLength,
         maxDecimalLength,
       });
-
-      setInputValue(text);
-      onChangeText(text);
+      setInputValue(formatted);
+      onChangeText(formatted);
     };
 
-    return (
-      <View
-        ref={ref}
-        className='relative flex flex-row items-center justify-center'
-      >
-        {currencyText && currencyPosition === 'left' && (
-          <Animated.Text
-            className={cn(
-              currencyStyles,
-              !editable && 'text-disabled',
-              inputValue !== '' ? 'text-base' : 'text-muted-subtle',
-              isInvalid && 'text-error',
-            )}
-            style={animatedCurrencyStyle}
-          >
-            {currencyText}
-          </Animated.Text>
+    const CurrencyTextEl = currencyText ? (
+      <Animated.Text
+        className={cn(
+          currencyStyles,
+          !inputValue && 'text-muted-subtle',
+          !editable && 'text-disabled',
+          isInvalid && 'text-error',
         )}
+        style={animatedCurrencyStyle}
+      >
+        {currencyText}
+      </Animated.Text>
+    ) : null;
+
+    return (
+      <View ref={ref} className='relative flex flex-row'>
+        {currencyPosition === 'left' && CurrencyTextEl}
 
         <AnimatedTextInput
           ref={inputRef}
@@ -179,18 +173,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           {...props}
         />
 
-        {currencyText && currencyPosition === 'right' && (
-          <Animated.Text
-            className={cn(
-              currencyStyles,
-              inputValue !== '' ? 'text-base' : 'text-muted-subtle',
-              isInvalid && 'text-error',
-            )}
-            style={animatedCurrencyStyle}
-          >
-            {currencyText}
-          </Animated.Text>
-        )}
+        {currencyPosition === 'right' && CurrencyTextEl}
       </View>
     );
   },
