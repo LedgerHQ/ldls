@@ -5,7 +5,7 @@ import {
   TooltipProps,
   TooltipTrigger,
 } from './Tooltip';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 figma.connect(

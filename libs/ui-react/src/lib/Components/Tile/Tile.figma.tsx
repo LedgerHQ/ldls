@@ -3,7 +3,7 @@ import { Tile } from './Tile';
 import { Spot } from '../Spot/Spot';
 import { InteractiveIcon } from '../InteractiveIcon/InteractiveIcon';
 import { Settings, MoreVertical } from '../../Symbols';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 import { TileProps } from './types';
 
