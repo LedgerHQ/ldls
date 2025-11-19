@@ -1,0 +1,7 @@
+{
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "Scanner le QR code"
+    }
+  }
+}
