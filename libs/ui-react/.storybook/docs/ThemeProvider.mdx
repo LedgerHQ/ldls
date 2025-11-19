@@ -45,7 +45,7 @@ The ThemeProvider also manages the app’s locale using React Context.
 You can just pass the locale to the `ThemeProvider` and the translations will be lazy-loaded automatically.
 
 ```tsx
-import { I18nProvider } from '@ledgerhq/ldls-ui-react';
+import { ThemeProvider } from '@ledgerhq/ldls-ui-react';
 
 function AppProviders() {
   const [locale, setLocale] = useState('en');
@@ -54,4 +54,6 @@ function AppProviders() {
       <App />
       <Button onClick={() => setLocale('fr')}>Switch to French</Button>
     </ThemeProvider>
+  );
+}
 ```

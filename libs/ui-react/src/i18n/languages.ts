@@ -2,17 +2,17 @@
  * Mapping from languages to their respective infos.
  */
 export const Languages = {
+  de: {
+    id: 'de',
+  },
   en: {
     id: 'en',
-  },
-  fr: {
-    id: 'fr',
   },
   es: {
     id: 'es',
   },
-  de: {
-    id: 'de',
+  fr: {
+    id: 'fr',
   },
   ja: {
     id: 'ja',
@@ -26,18 +26,16 @@ export const Languages = {
   ru: {
     id: 'ru',
   },
+  th: {
+    id: 'th',
+  },
   tr: {
     id: 'tr',
   },
   zh: {
     id: 'zh',
   },
-  th: {
-    id: 'th',
-  },
-} as const satisfies {
-  [key in SupportedLocale]: { id: SupportedLocale };
-};
+} as const satisfies Record<string, { id: string }>;
 
 /**
  * Default loaded language
@@ -47,18 +45,7 @@ export const DEFAULT_LANGUAGE = Languages.en.id;
 /**
  * Supported locales type
  */
-export type SupportedLocale =
-  | 'en'
-  | 'fr'
-  | 'es'
-  | 'de'
-  | 'ja'
-  | 'ko'
-  | 'pt'
-  | 'ru'
-  | 'tr'
-  | 'zh'
-  | 'th';
+export type SupportedLocale = keyof typeof Languages;
 
 /**
  * Default namespace for i18n

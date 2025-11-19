@@ -1,8 +1,7 @@
 import { PropsWithChildren } from 'react';
+import { type SupportedLocale } from '../../../i18n';
 
 export type ThemeMode = 'dark' | 'light' | 'system';
-
-export type SupportedLocale = 'en' | 'fr';
 
 export type ThemeProviderProps = PropsWithChildren & {
   /**
