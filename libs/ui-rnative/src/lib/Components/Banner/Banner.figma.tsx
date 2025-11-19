@@ -1,5 +1,5 @@
-// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+import { Button } from '../Button';
 import { Banner } from './Banner';
 import { BannerProps } from './types';
 
@@ -22,22 +22,12 @@ figma.connect(
         false: undefined,
       }),
       primaryAction: figma.boolean('show-actions', {
-        true: {
-          label: 'Primary Action',
-          onClick: () => {
-            console.log('Primary Action clicked');
-          },
-        },
+        true: <Button>Primary Action</Button>,
         false: undefined,
       }),
       secondaryAction: figma.boolean('show-actions', {
         true: figma.boolean('show-secondary-action', {
-          true: {
-            label: 'Secondary Action',
-            onClick: () => {
-              console.log('Secondary Action clicked');
-            },
-          },
+          true: <Button>Secondary Action</Button>,
           false: undefined,
         }),
         false: undefined,

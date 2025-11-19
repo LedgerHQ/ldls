@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonProps } from './Button';
-// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
+import { IconSize } from '../Icon/Icon';
 
 figma.connect(
   Button,
@@ -19,10 +19,6 @@ figma.connect(
       loading: figma.enum('state', {
         loading: true,
       }),
-      content: figma.enum('content', {
-        text: 'text',
-        iconText: 'iconText',
-      }),
       appearance: figma.enum('appearance', {
         base: 'base',
         gray: 'gray',
@@ -36,7 +32,7 @@ figma.connect(
         md: 'md',
         lg: 'lg',
       }),
-      label: figma.string('label'),
+      children: figma.string('label'),
       icon: figma.instance('icon'),
     },
     links: [
@@ -45,15 +41,24 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/action-button-overview--docs',
       },
     ],
-    example: (props: ButtonProps & { label: string }) => (
+    example: (
+      props: Omit<ButtonProps, 'icon'> & {
+        icon?: any;
+      },
+    ) => (
       <Button
         disabled={props.disabled}
         loading={props.loading}
         appearance={props.appearance}
         size={props.size}
-        icon={props.icon}
+        icon={
+          props.icon as unknown as React.ComponentType<{
+            size?: IconSize;
+            className?: string;
+          }>
+        }
       >
-        {props.label}
+        {props.children}
       </Button>
     ),
   },

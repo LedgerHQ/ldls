@@ -1,4 +1,3 @@
-// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 import { Switch } from './Switch';
 
@@ -14,7 +13,6 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=802%3A186',
   {
     imports: ["import { Switch } from '@ledgerhq/ldls-ui-rnative'"],
-    label: 'React Native',
     links: [
       {
         name: '*',

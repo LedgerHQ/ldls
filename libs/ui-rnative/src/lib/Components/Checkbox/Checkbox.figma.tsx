@@ -1,4 +1,3 @@
-// @ts-expect-error - @figma/code-connect does not have type declarations
 import figma from '@figma/code-connect';
 import { Checkbox } from './Checkbox';
 import { CheckboxProps } from './types';
@@ -16,7 +15,6 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6688%3A3600',
   {
     imports: ["import { Checkbox } from '@ledgerhq/ldls-ui-rnative'"],
-    label: 'React Native',
     props: {
       checkbox: figma.nestedProps('.checkbox', {
         checked: figma.boolean('checked'),

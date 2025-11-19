@@ -1,7 +1,7 @@
 import React from 'react';
 import { Banner } from './Banner';
 import { Button } from '../Button/Button';
-// @ts-expect-error - @figma/code-connect does not have type declarations
+
 import figma from '@figma/code-connect';
 
 // Base banner without actions or close
