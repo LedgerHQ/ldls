@@ -1,6 +1,6 @@
 import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, TextInput, View, type TextInputProps } from 'react-native';
+import { TextInput, View, type TextInputProps } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -93,34 +93,22 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     },
     ref,
   ) => {
-    const spanRef = useRef<Text>(null);
     const inputRef = useRef<TextInput>(null);
     const [inputValue, setInputValue] = useState(value.toString());
-
-    const prevValueRef = useRef<string>(inputValue);
 
     const translateX = useSharedValue(0);
     const animatedFontSize = useSharedValue(getFontSize(inputValue));
 
-    // keep width in sync with hidden span
-    // useLayoutEffect(() => {
-    //   if (spanRef.current && inputRef.current) {
-    //     const spanElement = spanRef.current as unknown as HTMLElement;
-    //     const inputElement = inputRef.current as unknown as HTMLInputElement;
-    //     const width = spanElement.offsetWidth;
-    //     const pxToAdd = inputValue === '' ? 33 : 8;
-    //     inputElement.style.width = `${width + pxToAdd}px`;
-    //   }
-    // }, [inputValue]);
-
     const animatedInputStyle = useAnimatedStyle(() => ({
       transform: [{ translateX: translateX.value }],
       fontSize: animatedFontSize.value,
-      // lineHeight: 56,
+      lineHeight: animatedFontSize.value * 1.2,
+      letterSpacing: 0,
     }));
+
     const animatedCurrencyStyle = useAnimatedStyle(() => ({
       fontSize: animatedFontSize.value,
-      // lineHeight: 56,
+      letterSpacing: 0,
     }));
 
     useEffect(() => {
@@ -128,25 +116,21 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     }, [value]);
 
     useEffect(() => {
-      const newFontSize = getFontSize(inputValue);
+      const newSize = getFontSize(inputValue);
 
-      if (inputValue !== prevValueRef.current) {
-        translateX.value = withSequence(
-          withTiming(10, { duration: 0 }),
-          withTiming(0, {
-            duration: 300,
-            easing: Easing.out(Easing.cubic),
-          }),
-        );
-      }
-      animatedFontSize.value = withTiming(newFontSize, {
+      translateX.value = withSequence(
+        withTiming(10, { duration: 0 }),
+        withTiming(0, {
+          duration: 300,
+          easing: Easing.out(Easing.cubic),
+        }),
+      );
+
+      animatedFontSize.value = withTiming(newSize, {
         duration: 300,
         easing: Easing.out(Easing.cubic),
       });
-
-      prevValueRef.current = inputValue;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [inputValue]);
+    }, [inputValue, animatedFontSize, translateX]);
 
     const handleChangeText = (text: string) => {
       textFormatter(text, {
@@ -163,14 +147,14 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     return (
       <View
         ref={ref}
-        className='group relative flex flex-row items-center justify-center transition-transform'
+        className='relative flex flex-row items-center justify-center'
       >
         {currencyText && currencyPosition === 'left' && (
           <Animated.Text
             className={cn(
               currencyStyles,
               !editable && 'text-disabled',
-              inputValue !== '' ? 'text-base' : 'text-muted-subtle', // TODO: move this to cva potentially
+              inputValue !== '' ? 'text-base' : 'text-muted-subtle',
               isInvalid && 'text-error',
             )}
             style={animatedCurrencyStyle}
@@ -178,15 +162,6 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
             {currencyText}
           </Animated.Text>
         )}
-
-        <Animated.Text
-          ref={spanRef}
-          className={cn('invisible absolute heading-0')}
-          accessible={false}
-          style={animatedCurrencyStyle}
-        >
-          {inputValue}
-        </Animated.Text>
 
         <AnimatedTextInput
           ref={inputRef}
@@ -197,19 +172,19 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           className={cn(
             inputStyles,
             isInvalid && 'text-error',
-            !editable && 'bg-base-transparent text-disabled',
+            !editable && 'text-disabled',
             className,
           )}
-          {...props}
           style={animatedInputStyle}
+          {...props}
         />
 
         {currencyText && currencyPosition === 'right' && (
           <Animated.Text
             className={cn(
               currencyStyles,
+              inputValue !== '' ? 'text-base' : 'text-muted-subtle',
               isInvalid && 'text-error',
-              inputValue !== '' ? 'text-base' : 'text-muted-subtle', // TODO: move this to cva potentially
             )}
             style={animatedCurrencyStyle}
           >
