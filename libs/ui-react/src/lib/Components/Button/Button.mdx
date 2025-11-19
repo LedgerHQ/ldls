@@ -231,6 +231,7 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='This breaks automatic sizing and alignment'
     >
 
+{/* prettier-ignore */}
 ```tsx
 <Button size='md'>
   <Plus /> Add Item
@@ -259,9 +260,10 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Avoid className or style props that affect icon dimensions'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button icon={Plus} size='md' className='w-6 h-6'>
-  Add Item
+<Button icon={Settings} size='sm' className='w-6 h-6'>
+  Settings
 </Button>
 ```
 
@@ -277,8 +279,11 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Layout utilities like margins and display are allowed'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button className='mt-4'>Submit</Button>
+<Button className='mt-4'>
+  Submit
+</Button>
 ```
 
     </DoBlockItem>
@@ -287,37 +292,17 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Background colors are controlled by the appearance prop'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button className='bg-red-500'>Wrong Background</Button>
+<Button className='bg-red-500'>
+  Submit
+</Button>
 ```
 
     </DontBlockItem>
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for responsive behavior'
-      description='Control visibility and layout at different breakpoints'
-    >
-
-```tsx
-<Button className='hidden md:block'>Desktop Only</Button>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use className to modify internal spacing"
-      description='Padding and gaps are managed by the size prop'
-    >
-
-```tsx
-<Button className='p-8 gap-8'>Wrong Spacing</Button>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 </div>
 
 <div className='flex flex-col gap-24'>
@@ -327,8 +312,11 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Choose from predefined sizes: sm, md, lg'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button size='sm'>Small Button</Button>
+<Button size='sm'>
+  Small Button
+</Button>
 ```
 
     </DoBlockItem>
@@ -337,8 +325,11 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Avoid arbitrary height values'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button className='h-[52px]'>Custom Height</Button>
+<Button size='sm' className='h-[52px]'>
+  Small Button
+</Button>
 ```
 
     </DontBlockItem>
@@ -351,18 +342,24 @@ The following guidelines are based on our [Button Component API Design ADR](http
       description='Use the isFull prop for full-width buttons'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button isFull>Full Width</Button>
+<Button isFull>
+ Full Width
+</Button>
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use fixed width"
+      title="Don't use className for width"
       description='Avoid arbitrary width values'
     >
 
+{/* prettier-ignore */}
 ```tsx
-<Button className='w-80'>Custom Width</Button>
+<Button className='w-full'>
+  Full Width
+</Button>
 ```
 
     </DontBlockItem>
