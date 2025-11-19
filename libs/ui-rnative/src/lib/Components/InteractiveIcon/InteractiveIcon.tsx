@@ -1,7 +1,8 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
-import { FC, isValidElement, cloneElement } from 'react';
+import { FC } from 'react';
 import { Pressable, View } from 'react-native';
+import { InjectStylesIntoChildren } from '../../utils/inject-styles-into-children';
 import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
@@ -74,23 +75,15 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
       {...props}
     >
       {({ pressed }) => {
-        const iconClass = cn(
+        const iconStyles = cn(
           pressed ? 'text-muted-pressed' : 'text-muted',
           disabled && 'text-disabled',
         );
-
-        const clonedChild = isValidElement(children)
-          ? cloneElement(children, {
-              className: cn(
-                (children.props as { className?: string }).className,
-                iconClass,
-              ),
-            } as Partial<{ className: string }>)
-          : children;
-
         return (
           <View className={cn(buttonVariants({ iconType, pressed, disabled }))}>
-            {clonedChild}
+            <InjectStylesIntoChildren styles={iconStyles}>
+              {children}
+            </InjectStylesIntoChildren>
           </View>
         );
       }}
