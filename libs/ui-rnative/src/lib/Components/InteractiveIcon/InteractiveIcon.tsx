@@ -81,8 +81,11 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
 
         const clonedChild = isValidElement(children)
           ? cloneElement(children, {
-              className: cn(children.props.className, iconClass),
-            })
+              className: cn(
+                (children.props as { className?: string }).className,
+                iconClass,
+              ),
+            } as Partial<{ className: string }>)
           : children;
 
         return (
