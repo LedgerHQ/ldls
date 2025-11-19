@@ -1,4 +1,5 @@
 import type { Decorator } from '@storybook/react-vite';
+import { ThemeProvider } from '../src/lib/Components/ThemeProvider';
 
 const createThemeDecorator = (
   globalName: string,
@@ -14,7 +15,11 @@ const createThemeDecorator = (
       htmlElement.classList.add(selectedValue);
     }
 
-    return <Story />;
+    return (
+      <ThemeProvider>
+        <Story />
+      </ThemeProvider>
+    );
   };
 };
 
