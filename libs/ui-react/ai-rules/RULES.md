@@ -1,5 +1,13 @@
 # LDLS UI React - AI Assistant Rules
 
+## About LDLS
+
+**LDLS** (Ledger Design Language System), also known as **Lumen**, is Ledger's comprehensive design system providing:
+
+- **UI components** available via `@ledgerhq/ldls-ui-react`
+- **Design tokens** (colors, spacing, typography) available via `@ledgerhq/ldls-design-core`
+- **Multiple brand presets**: available via `@ledgerhq/ldls-design-core`
+
 ## Setup Requirements
 
 ### Package Installation
