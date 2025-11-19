@@ -139,7 +139,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       onChangeText(formatted);
     };
 
-    const CurrencyTextEl = currencyText ? (
+    const CurrencyText = currencyText ? (
       <Animated.Text
         className={cn(
           currencyStyles,
@@ -155,7 +155,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
     return (
       <View ref={ref} className='relative flex flex-row'>
-        {currencyPosition === 'left' && CurrencyTextEl}
+        {currencyPosition === 'left' && CurrencyText}
 
         <AnimatedTextInput
           ref={inputRef}
@@ -173,7 +173,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           {...props}
         />
 
-        {currencyPosition === 'right' && CurrencyTextEl}
+        {currencyPosition === 'right' && CurrencyText}
       </View>
     );
   },
