@@ -21,7 +21,6 @@ export function AmountInputs() {
         placeholder='0'
         currencyText='BTC'
         currencyPosition='right'
-        isInvalid
         maxLength={5}
       />
     </View>

@@ -1,5 +1,5 @@
 import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TextInput, View, type TextInputProps } from 'react-native';
 import Animated, {
   Easing,
@@ -64,9 +64,9 @@ export type AmountInputProps = Omit<
 };
 
 const inputStyles = cn(
-  'caret-active heading-0 h-56 bg-transparent text-base outline-none transition-colors',
+  'heading-0 h-56 bg-transparent text-base outline-none items-start',
 );
-const currencyStyles = cn('shrink-0 heading-0 text-base');
+const currencyStyles = cn('heading-0 text-base');
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
@@ -94,7 +94,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     ref,
   ) => {
     const inputRef = useRef<TextInput>(null);
-    const [inputValue, setInputValue] = useState(value.toString());
+    const inputValue = String(value);
 
     const translateX = useSharedValue(0);
     const animatedFontSize = useSharedValue(getFontSize(inputValue));
@@ -114,13 +114,13 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     useEffect(() => {
       const newSize = getFontSize(inputValue);
 
-      translateX.value = withSequence(
-        withTiming(10, { duration: 0 }),
-        withTiming(0, {
-          duration: 300,
-          easing: Easing.out(Easing.cubic),
-        }),
-      );
+      // translateX.value = withSequence(
+      //   withTiming(10, { duration: 0 }),
+      //   withTiming(0, {
+      //     duration: 300,
+      //     easing: Easing.out(Easing.cubic),
+      //   }),
+      // );
 
       animatedFontSize.value = withTiming(newSize, {
         duration: 300,
@@ -135,7 +135,6 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
         maxIntegerLength,
         maxDecimalLength,
       });
-      setInputValue(formatted);
       onChangeText(formatted);
     };
 
@@ -154,7 +153,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     ) : null;
 
     return (
-      <View ref={ref} className='relative flex flex-row'>
+      <View ref={ref} className='flex-row'>
         {currencyPosition === 'left' && CurrencyText}
 
         <AnimatedTextInput
