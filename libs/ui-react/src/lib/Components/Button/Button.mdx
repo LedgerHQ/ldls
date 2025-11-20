@@ -289,12 +289,12 @@ The following guidelines are based on our [Button Component API Design ADR](http
     </DoBlockItem>
     <DontBlockItem
       title="Don't use className for core styling"
-      description='Background colors are controlled by the appearance prop'
+      description='core styles cannot be overridden by className'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Button className='bg-red-500'>
+<Button className='bg-success'>
   Submit
 </Button>
 ```
@@ -306,35 +306,6 @@ The following guidelines are based on our [Button Component API Design ADR](http
 </div>
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use size prop'
-      description='Choose from predefined sizes: sm, md, lg'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Button size='sm'>
-  Small Button
-</Button>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use custom heights"
-      description='Avoid arbitrary height values'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Button size='sm' className='h-[52px]'>
-  Small Button
-</Button>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 
   <DoVsDontRow>
     <DoBlockItem
