@@ -2,7 +2,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import { FC } from 'react';
 import { Pressable, View } from 'react-native';
-import { InjectStylesIntoChildren } from '../../utils/inject-styles-into-children';
+import { InjectStylesIntoChildren } from '../../utils';
 import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
