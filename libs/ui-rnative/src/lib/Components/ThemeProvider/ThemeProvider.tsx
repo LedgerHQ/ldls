@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { RuntimeConstants } from '../../utils';
 
+import { GlobalTooltipProvider } from '../Tooltip/GlobalTooltipContext';
 import { ThemeProviderProps } from './ThemeProvider.types';
 
 const DARK_MODE = 'dark';
@@ -39,9 +40,11 @@ const ThemeProvider = forwardRef<View, ThemeProviderProps>(
 
     return (
       <ThemeProviderProvider value={value}>
-        <View className={cn(className, mode)} {...props} ref={ref}>
-          {children}
-        </View>
+        <GlobalTooltipProvider>
+          <View className={cn(className, mode)} {...props} ref={ref}>
+            {children}
+          </View>
+        </GlobalTooltipProvider>
       </ThemeProviderProvider>
     );
   },

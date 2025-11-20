@@ -2,39 +2,8 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { render } from '@testing-library/react-native';
 import { Text, View } from 'react-native';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Mock react-native-gesture-handler which is used by @gorhom/bottom-sheet
 jest.mock('react-native-gesture-handler', () => ({}));
-
-// Mock react-native-css-interop to pass through components unchanged
-jest.mock('react-native-css-interop', () => ({
-  cssInterop: (component: any) => component,
-}));
-
-// Mock @gorhom/bottom-sheet with more detailed prop tracking
-jest.mock('@gorhom/bottom-sheet', () => {
-  const mockReact = jest.requireActual<typeof import('react')>('react');
-  return {
-    __esModule: true,
-    default: mockReact.forwardRef((props: any, forwardedRef: any) => {
-      const mockRN =
-        jest.requireActual<typeof import('react-native')>('react-native');
-      return mockReact.createElement(mockRN.View, {
-        testID: props.testID,
-        ref: forwardedRef,
-        'data-snap-points': JSON.stringify(props.snapPoints),
-        'data-enable-dynamic-sizing': String(props.enableDynamicSizing),
-        'data-enable-pan-down-to-close': String(props.enablePanDownToClose),
-        'data-detached': String(props.detached),
-        'data-enable-handle-panning-gesture': String(
-          props.enableHandlePanningGesture,
-        ),
-        children: props.children,
-      } as any);
-    }),
-    BottomSheetBackdrop: () => null,
-  };
-});
 
 describe('BottomSheet', () => {
   it('exports BottomSheet component', () => {

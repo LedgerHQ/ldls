@@ -12,14 +12,13 @@ const buttonVariants = {
     {
       variants: {
         appearance: {
-          base: 'bg-interactive text-on-interactive active:bg-interactive-pressed',
-          gray: 'bg-muted text-base active:bg-muted-pressed',
-          accent: 'bg-accent text-on-accent active:bg-accent-pressed',
+          base: 'bg-interactive active:bg-interactive-pressed',
+          gray: 'bg-muted active:bg-muted-pressed',
+          accent: 'bg-accent active:bg-accent-pressed',
           transparent:
-            'bg-muted-transparent text-base active:bg-muted-transparent-pressed',
-          'no-background':
-            'bg-transparent text-base active:bg-base-transparent-pressed',
-          red: 'bg-error text-error active:bg-error-pressed',
+            'bg-muted-transparent active:bg-muted-transparent-pressed',
+          'no-background': 'bg-transparent active:bg-base-transparent-pressed',
+          red: 'bg-error active:bg-error-pressed',
         },
         size: {
           xs: 'px-12 py-8 body-2-semi-bold',
@@ -82,7 +81,21 @@ const buttonVariants = {
       },
     },
   ),
-  label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold'),
+  label: cva('line-clamp-2 text-left text-inherit body-1-semi-bold', {
+    variants: {
+      appearance: {
+        base: 'text-on-interactive',
+        accent: 'text-on-accent',
+        red: 'text-error',
+        gray: 'text-base',
+        'no-background': 'text-base',
+        transparent: 'text-base',
+      },
+      disabled: {
+        true: 'text-disabled',
+      },
+    },
+  }),
 };
 
 const iconVariants = cva('shrink-0', {
@@ -164,7 +177,11 @@ export const BaseButton = React.forwardRef<
             className={iconVariants({ appearance, disabled })}
           />
         )}
-        {children && <Text className={buttonVariants.label()}>{children}</Text>}
+        {children && (
+          <Text className={buttonVariants.label({ appearance, disabled })}>
+            {children}
+          </Text>
+        )}
       </Pressable>
     );
   },

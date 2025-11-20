@@ -75,7 +75,7 @@ export const BottomSheetDynamicSize = forwardRef<
       ref={ref}
       snapPoints={null}
       enableDynamicSizing
-      maxDynamicContentSize='fullWithOffset'
+      maxDynamicContentSize='full'
       backdropPressBehavior='close'
     >
       <BottomSheetView>

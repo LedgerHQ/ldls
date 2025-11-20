@@ -19,12 +19,12 @@ import { ListItem } from './ListItem';
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
     <View className='items-end'>
-      <View className={cn('body-2-semi-bold', disabled && 'text-disabled')}>
-        <Text>42.00</Text>
-      </View>
-      <View className={cn('text-muted body-3', disabled && 'text-disabled')}>
-        <Text>USD</Text>
-      </View>
+      <Text className={cn('body-2-semi-bold', disabled && 'text-disabled')}>
+        42.00
+      </Text>
+      <Text className={cn('text-muted body-3', disabled && 'text-disabled')}>
+        USD
+      </Text>
     </View>
   );
 };

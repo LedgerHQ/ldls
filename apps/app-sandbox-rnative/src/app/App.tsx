@@ -1,12 +1,18 @@
-import { ThemeProvider, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import {
+  ThemeProvider,
+  GlobalTooltipBottomSheet,
+  useBottomSheetRef,
+} from '@ledgerhq/ldls-ui-rnative';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Banners } from './blocks/Banners';
 import {
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
   BottomSheetsButton,
 } from './blocks/BottomSheets';
 import { Buttons } from './blocks/Buttons';
+import { CardButtons } from './blocks/CardButtons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
 import { Inputs } from './blocks/Inputs';
@@ -15,6 +21,7 @@ import { Switches } from './blocks/Switches';
 import { Tags } from './blocks/Tags';
 import { Tiles } from './blocks/Tiles';
 import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
+import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
@@ -31,6 +38,9 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='CardButtons'>
+                <CardButtons />
+              </SandboxBlock>
               <SandboxBlock title='Inputs'>
                 <Inputs />
               </SandboxBlock>
@@ -58,6 +68,12 @@ export const App = () => {
               <SandboxBlock title='Tiles'>
                 <Tiles />
               </SandboxBlock>
+              <SandboxBlock title='Tooltips'>
+                <Tooltips />
+              </SandboxBlock>
+              <SandboxBlock title='Banners'>
+                <Banners />
+              </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
                   onPress={() => bottomSheetFlatListsRef.current?.expand()}
@@ -70,6 +86,7 @@ export const App = () => {
           </ScrollView>
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
+          <GlobalTooltipBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>

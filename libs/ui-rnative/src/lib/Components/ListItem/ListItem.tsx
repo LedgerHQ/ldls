@@ -1,7 +1,40 @@
+import { cva } from 'class-variance-authority';
 import React from 'react';
 import { Pressable, View, Text } from 'react-native';
-import { cn } from '../../utils';
 import { ListItemProps } from './ListItem.types';
+
+const listItemVariants = {
+  root: cva(
+    [
+      'flex h-64 w-full flex-row items-center gap-16 rounded-md bg-base-transparent px-8 py-12 transition-colors',
+    ],
+    {
+      variants: {
+        disabled: {
+          true: 'cursor-default bg-base-transparent active:bg-base-transparent',
+          false:
+            'cursor-pointer bg-base-transparent active:bg-base-transparent-pressed',
+        },
+      },
+    },
+  ),
+  title: cva('body-2-semi-bold', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-base',
+      },
+    },
+  }),
+  description: cva('min-w-0 shrink body-3', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-muted',
+      },
+    },
+  }),
+};
 
 /**
  * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
@@ -53,7 +86,7 @@ export const ListItem = React.forwardRef<
     descriptionTag,
     trailingContent,
     style,
-    disabled,
+    disabled = false,
     className,
     ...touchableProps
   } = props;
@@ -62,38 +95,29 @@ export const ListItem = React.forwardRef<
     <Pressable
       ref={ref}
       disabled={disabled}
-      className={cn(
-        'flex h-64 w-full cursor-pointer flex-row items-center gap-16 rounded-md bg-base-transparent px-8 py-12 transition-colors',
-        'active:bg-base-transparent-pressed',
-        disabled &&
-          'cursor-default bg-base-transparent active:bg-base-transparent',
-        className,
-      )}
+      className={listItemVariants.root({ disabled, className })}
       style={style}
       {...touchableProps}
     >
       <View className='flex min-w-0 flex-1 flex-row items-center gap-12'>
         {leadingContent}
         <View className='flex min-w-0 flex-1 flex-col gap-4'>
-          <View
-            className={cn(
-              'body-2-semi-bold',
-              disabled ? 'text-disabled' : 'text-base',
-            )}
+          <Text
+            numberOfLines={1}
+            ellipsizeMode='tail'
+            className={listItemVariants.title({ disabled })}
           >
-            <Text numberOfLines={1} ellipsizeMode='tail'>
-              {title}
-            </Text>
-          </View>
+            {title}
+          </Text>
+
           {description && (
             <View className='flex flex-row items-center gap-4'>
-              <View
-                className={cn(
-                  'min-w-0 shrink body-3',
-                  disabled ? 'text-disabled' : 'text-muted',
-                )}
-              >
-                <Text numberOfLines={1} ellipsizeMode='tail'>
+              <View className='min-w-0 shrink'>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode='tail'
+                  className={listItemVariants.description({ disabled })}
+                >
                   {description}
                 </Text>
               </View>
