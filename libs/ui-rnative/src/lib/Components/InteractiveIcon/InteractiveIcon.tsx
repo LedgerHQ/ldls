@@ -2,10 +2,11 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import { FC } from 'react';
 import { Pressable, View } from 'react-native';
+import { InjectStylesIntoChildren } from '../../utils';
 import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
-  'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors',
+  'inline-flex size-fit items-center justify-center rounded-full',
   {
     variants: {
       iconType: {
@@ -17,27 +18,15 @@ const buttonVariants = cva(
         false: '',
       },
       disabled: {
-        true: 'text-disabled',
+        true: 'bg-disabled',
         false: '',
       },
     },
     compoundVariants: [
       {
-        iconType: 'filled',
-        pressed: true,
-        disabled: false,
-        className: 'text-muted-pressed',
-      },
-      {
         iconType: 'stroked',
         pressed: true,
-        disabled: false,
-        className: 'bg-base-transparent-pressed text-muted-pressed',
-      },
-      {
-        iconType: 'stroked',
-        disabled: true,
-        className: 'bg-disabled',
+        className: 'bg-base-transparent-pressed',
       },
     ],
   },
@@ -85,19 +74,19 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
       disabled={disabled}
       {...props}
     >
-      {({ pressed }) => (
-        <View
-          className={cn(
-            buttonVariants({
-              iconType,
-              pressed,
-              disabled,
-            }),
-          )}
-        >
-          {children}
-        </View>
-      )}
+      {({ pressed }) => {
+        const iconStyles = cn(
+          pressed ? 'text-muted-pressed' : 'text-muted',
+          disabled && 'text-disabled',
+        );
+        return (
+          <View className={cn(buttonVariants({ iconType, pressed, disabled }))}>
+            <InjectStylesIntoChildren styles={iconStyles}>
+              {children}
+            </InjectStylesIntoChildren>
+          </View>
+        );
+      }}
     </Pressable>
   );
 };
