@@ -7,7 +7,7 @@ import { TagProps } from './Tag.types';
 
 const tagVariants = {
   root: cva(
-    'inline-flex flex-row items-center justify-center gap-4 self-start rounded-xs',
+    'inline-flex w-fit flex-row items-center justify-center gap-4 rounded-xs',
     {
       variants: {
         appearance: {
@@ -20,8 +20,8 @@ const tagVariants = {
           disabled: 'bg-disabled',
         },
         size: {
-          lg: 'px-8 py-4 body-3',
-          sm: 'px-4 py-2 body-4',
+          lg: 'h-24 px-8 py-4 body-3',
+          sm: 'h-20 px-4 py-2 body-4',
         },
       },
       defaultVariants: {

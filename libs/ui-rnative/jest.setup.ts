@@ -38,6 +38,8 @@ jest.mock('@gorhom/bottom-sheet', () => {
     BottomSheetBackdrop: () => null,
     BottomSheetScrollView: ({ children }: any) =>
       mockReact.createElement(mockRN.ScrollView, { children }),
+    BottomSheetView: ({ children }: any) =>
+      mockReact.createElement(mockRN.View, { children }),
     useBottomSheet: () => mockRef,
   };
 });

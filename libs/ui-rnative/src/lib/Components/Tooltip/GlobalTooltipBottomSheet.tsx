@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import {
   BottomSheet,
   BottomSheetHeader,
-  BottomSheetScrollView,
+  BottomSheetView,
   useBottomSheetRef,
 } from '../BottomSheet';
 import { useGlobalTooltipSafeContext } from './GlobalTooltipContext';
@@ -59,7 +59,7 @@ export const GlobalTooltipBottomSheet: React.FC = () => {
       enableDynamicSizing
       enablePanDownToClose
     >
-      <BottomSheetScrollView>
+      <BottomSheetView>
         {(currentTooltip?.title || currentTooltip?.content) && (
           <BottomSheetHeader
             title={currentTooltip.title}
@@ -67,7 +67,7 @@ export const GlobalTooltipBottomSheet: React.FC = () => {
             description={currentTooltip.content}
           />
         )}
-      </BottomSheetScrollView>
+      </BottomSheetView>
     </BottomSheet>
   );
 };
