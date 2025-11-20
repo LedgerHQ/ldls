@@ -7,6 +7,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { I18nProvider } from '../../../i18n';
 import { RuntimeConstants } from '../../utils';
 
 import { GlobalTooltipProvider } from '../Tooltip/GlobalTooltipContext';
@@ -22,7 +23,10 @@ const [ThemeProviderProvider, useThemeProviderContext] = createSafeContext<{
 }>('ThemeProvider');
 
 const ThemeProvider = forwardRef<View, ThemeProviderProps>(
-  ({ defaultMode = SYSTEM_MODE, className, children, ...props }, ref) => {
+  (
+    { defaultMode = SYSTEM_MODE, className, children, locale, ...props },
+    ref,
+  ) => {
     const colorScheme = useColorScheme();
     const initialMode = defaultMode === SYSTEM_MODE ? colorScheme : defaultMode;
     const [mode, setMode] = useState<ColorSchemeName>(initialMode);
@@ -40,11 +44,13 @@ const ThemeProvider = forwardRef<View, ThemeProviderProps>(
 
     return (
       <ThemeProviderProvider value={value}>
-        <GlobalTooltipProvider>
-          <View className={cn(className, mode)} {...props} ref={ref}>
-            {children}
-          </View>
-        </GlobalTooltipProvider>
+        <I18nProvider locale={locale}>
+          <GlobalTooltipProvider>
+            <View className={cn(className, mode)} {...props} ref={ref}>
+              {children}
+            </View>
+          </GlobalTooltipProvider>
+        </I18nProvider>
       </ThemeProviderProvider>
     );
   },

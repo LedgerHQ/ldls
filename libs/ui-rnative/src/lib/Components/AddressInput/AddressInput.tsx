@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TextInput } from 'react-native';
+import { useCommonTranslation } from '../../../i18n';
 import { QrCode } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -30,6 +31,7 @@ export const AddressInput = React.forwardRef<
   React.ElementRef<typeof TextInput>,
   AddressInputProps
 >(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
+  const { t } = useCommonTranslation();
   const actualPrefix = (
     <Text
       className='text-nowrap text-base group-has-[:disabled]:text-disabled'
@@ -47,7 +49,7 @@ export const AddressInput = React.forwardRef<
       <InteractiveIcon
         iconType='filled'
         onPress={onQrCodeClick}
-        accessibilityLabel='Scan QR code'
+        accessibilityLabel={t('components.addressInput.qrCodeAriaLabel')}
       >
         <QrCode size={20} />
       </InteractiveIcon>

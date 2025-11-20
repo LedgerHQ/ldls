@@ -1,7 +1,6 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
 import { FC, useMemo, useState } from 'react';
 import { I18nProvider } from '../../../i18n';
-import { DEFAULT_LANGUAGE } from '../../../i18n/languages';
 import { ThemeMode, ThemeProviderProps } from './ThemeProvider.types';
 import {
   DARK_MODE,
@@ -22,7 +21,7 @@ const [ThemeProviderContext, useThemeContext] =
 const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
   defaultMode = SYSTEM_MODE,
-  locale = DEFAULT_LANGUAGE,
+  locale,
 }) => {
   const [mode, setMode] = useState(defaultMode);
 
