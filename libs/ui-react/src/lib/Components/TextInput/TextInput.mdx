@@ -437,41 +437,6 @@ The Input component uses floating labels that animate from inside the input fiel
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for container styling'
-      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TextInput 
-  className='w-full max-w-md' 
-  label='Email' 
-  value={value} 
-  onChange={(e) => setValue(e.target.value)} 
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use inputClassName or labelClassName"
-      description='These props are not available on TextInput. Use className for container-level styling only'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TextInput 
-  inputClassName='text-accent' 
-  labelClassName='font-semibold'
-  label='Email'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Import specific icons'
       description='Use tree-shaking to import specific icons for better bundle size'
     >

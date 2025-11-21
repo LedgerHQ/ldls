@@ -336,40 +336,6 @@ function MyComponent() {
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for container styling'
-      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Search 
-  className='w-full max-w-md' 
-  placeholder='Search products'
-  value={query} 
-  onChange={(e) => setQuery(e.target.value)} 
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use inputClassName or labelClassName"
-      description='These props are not available on Search. Use className for container-level styling only'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Search 
-  inputClassName='text-accent' 
-  labelClassName='font-semibold'
-  placeholder='Search products'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 </div>
 
 </Tab>
