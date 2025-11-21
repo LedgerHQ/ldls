@@ -250,14 +250,6 @@ const [value, setValue] = useState('');
   onChange={(e) => setValue(e.target.value)}
   currencyText='USD'
 />;
-
-const inputRef = useRef<HTMLInputElement>(null);
-<AmountInput
-  ref={inputRef}
-  value={value}
-  onChange={(e) => setValue(e.target.value)}
-  currencyText='USD'
-/>;
 ```
 
     </DoBlockItem>

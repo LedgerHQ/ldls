@@ -221,9 +221,8 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-// This will cause a TypeScript error - label is not supported
 <Search 
-  label='Search' 
+  label='Search' // This will cause a TypeScript error
   placeholder='Search products' 
 />
 ```
@@ -255,9 +254,8 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-// This will cause a TypeScript error - prefix is not supported
 <Search 
-  prefix={<CustomIcon />} 
+  prefix={<CustomIcon />} // This will cause a TypeScript error
   placeholder='Search products' 
 />
 ```
@@ -269,7 +267,7 @@ function MyComponent() {
   <DoVsDontRow>
     <DoBlockItem
       title='Use hideClearButton to hide the clear button'
-      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+      description='Use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
     >
 
 {/* prettier-ignore */}
@@ -290,18 +288,10 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-// DON'T - empty suffix won't hide the clear button
 <Search
   suffix={null}
   value={query}
   onChange={handleChange}
-/>
-
-// DON'T - create custom clear buttons
-<Search
-  value={query}
-  onChange={handleChange}
-  suffix={<Button onClick={() => setQuery('')}>Clear</Button>}
 />
 ```
 
@@ -370,7 +360,6 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-// These props don't exist on Search
 <Search 
   inputClassName='text-accent' 
   labelClassName='font-semibold'

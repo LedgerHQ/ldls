@@ -284,43 +284,13 @@ function MyComponent() {
 
 The Input component uses floating labels that animate from inside the input field. Using both simultaneously causes visual conflicts.
 
-### ✅ Correct Usage
-
-```tsx
-// Use floating label (recommended approach)
-<TextInput
-  label="Email Address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-
-// OR use placeholder (alternative approach)
-<TextInput
-  placeholder="Enter your email address"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
-
-### ❌ Incorrect Usage
-
-```tsx
-// DON'T DO THIS - causes visual overlap
-<TextInput
-  label='Email Address'
-  placeholder='Enter your email address' // This will overlap with the label
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
-```
-
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
       title='Use hideClearButton to hide the clear button'
-      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+      description='Use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
     >
 
 {/* prettier-ignore */}
@@ -335,20 +305,46 @@ The Input component uses floating labels that animate from inside the input fiel
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use empty prefix or create custom clear buttons"
-      description='Prefix is not available on TextInput component. Dont try to use empty prefix to hide the clear button - use hideClearButton instead. Also avoid creating custom clear buttons'
+      title="Don't use empty suffix to hide the clear button"
+      description='Do not try to use empty suffix to hide the clear button. Use hideClearButton instead'
     >
 
 {/* prettier-ignore */}
 ```tsx
-// DON'T - prefix is not available on TextInput
 <TextInput
-  prefix={null} // This will cause a TypeScript error
+  suffix={null}
   value={value}
   onChange={handleChange}
 />
+```
 
-// DON'T - create custom clear buttons
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the built-in clear button'
+      description='The clear button appears automatically when input has content. Use onClear to extend behavior with custom logic'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<TextInput 
+  label='Email'
+  value={value} 
+  onChange={(e) => setValue(e.target.value)}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override the clear button"
+      description='Do not create custom clear buttons or try to override the built-in clear button behavior'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <TextInput
   value={value}
   onChange={handleChange}
@@ -463,7 +459,6 @@ The Input component uses floating labels that animate from inside the input fiel
 
 {/* prettier-ignore */}
 ```tsx
-// These props don't exist on TextInput
 <TextInput 
   inputClassName='text-accent' 
   labelClassName='font-semibold'

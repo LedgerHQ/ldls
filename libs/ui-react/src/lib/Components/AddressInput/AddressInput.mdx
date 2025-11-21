@@ -324,9 +324,8 @@ The component includes comprehensive test coverage for:
 
 {/* prettier-ignore */}
 ```tsx
-// This will cause a TypeScript error - label is not supported
 <AddressInput 
-  label='Recipient Address' 
+  label='Recipient Address' // This will cause a TypeScript error
   placeholder='Enter address or ENS' 
 />
 ```
@@ -359,7 +358,6 @@ The component includes comprehensive test coverage for:
 
 {/* prettier-ignore */}
 ```tsx
-// DON'T - prefix is a string, not a ReactNode
 <AddressInput 
   prefix={<span>From:</span>} // This will cause a TypeScript error
   placeholder='Enter sender address'
@@ -411,7 +409,7 @@ The component includes comprehensive test coverage for:
   <DoVsDontRow>
     <DoBlockItem
       title='Use hideClearButton to hide the clear button'
-      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+      description='Use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
     >
 
 {/* prettier-ignore */}
@@ -432,19 +430,12 @@ The component includes comprehensive test coverage for:
 
 {/* prettier-ignore */}
 ```tsx
-// DON'T - empty suffix won't hide the clear button
 <AddressInput
   suffix={null}
   value={address}
   onChange={handleChange}
 />
 
-// DON'T - create custom clear buttons
-<AddressInput
-  value={address}
-  onChange={handleChange}
-  suffix={<Button onClick={() => setAddress('')}>Clear</Button>}
-/>
 ```
 
     </DontBlockItem>
@@ -512,10 +503,9 @@ The component includes comprehensive test coverage for:
 
 {/* prettier-ignore */}
 ```tsx
-// These props don't exist on AddressInput
 <AddressInput 
-  inputClassName='text-accent' 
-  labelClassName='font-semibold'
+  inputClassName='text-accent' // This will cause a TypeScript error
+  labelClassName='font-semibold' // This will cause a TypeScript error
   placeholder='Enter address or ENS'
 />
 ```
