@@ -124,7 +124,9 @@ describe('AddressInput', () => {
       />,
     );
 
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).toBeInTheDocument();
   });
 
@@ -137,7 +139,9 @@ describe('AddressInput', () => {
     );
 
     // When there's content, the clear button should be visible
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).toBeInTheDocument();
 
     // QR button should not be visible (no onQrCodeClick provided)
@@ -156,7 +160,9 @@ describe('AddressInput', () => {
       />,
     );
 
-    const clearButton = screen.queryByLabelText('Clear input');
+    const clearButton = screen.queryByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).not.toBeInTheDocument();
   });
 
@@ -170,7 +176,9 @@ describe('AddressInput', () => {
       />,
     );
 
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     fireEvent.click(clearButton);
 
     expect(handleClear).toHaveBeenCalled();
@@ -275,7 +283,9 @@ describe('AddressInput', () => {
     expect(qrButton).not.toBeInTheDocument();
 
     // And the clear button should be visible instead
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).toBeInTheDocument();
   });
 
