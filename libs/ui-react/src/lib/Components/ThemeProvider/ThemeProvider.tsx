@@ -1,5 +1,6 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
 import { FC, useMemo, useState } from 'react';
+import { I18nProvider } from '../../../i18n';
 import { ThemeMode, ThemeProviderProps } from './ThemeProvider.types';
 import {
   DARK_MODE,
@@ -11,6 +12,7 @@ import {
 type ThemeProviderState = {
   mode: ThemeMode;
   setMode: (mode: ThemeMode) => void;
+  locale: ThemeProviderProps['locale'];
 };
 
 const [ThemeProviderContext, useThemeContext] =
@@ -19,6 +21,7 @@ const [ThemeProviderContext, useThemeContext] =
 const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
   defaultMode = SYSTEM_MODE,
+  locale,
 }) => {
   const [mode, setMode] = useState(defaultMode);
 
@@ -28,11 +31,16 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
     () => ({
       mode,
       setMode,
+      locale,
     }),
-    [mode, setMode],
+    [mode, locale],
   );
 
-  return <ThemeProviderContext value={value}>{children}</ThemeProviderContext>;
+  return (
+    <ThemeProviderContext value={value}>
+      <I18nProvider locale={locale}>{children}</I18nProvider>
+    </ThemeProviderContext>
+  );
 };
 
 const useTheme = () => {

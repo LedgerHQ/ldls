@@ -2,7 +2,9 @@ import {
   ThemeProvider,
   GlobalTooltipBottomSheet,
   useBottomSheetRef,
+  SupportedLocale,
 } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Banners } from './blocks/Banners';
@@ -20,6 +22,7 @@ import { Spots } from './blocks/Spots';
 import { Switches } from './blocks/Switches';
 import { Tags } from './blocks/Tags';
 import { Tiles } from './blocks/Tiles';
+import { ToggleLocaleSwitch } from './blocks/ToggleLocaleSwitch';
 import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
 import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
@@ -27,11 +30,12 @@ import { SandboxBlock } from './SandboxBlock';
 export const App = () => {
   const bottomSheetFlatListsRef = useBottomSheetRef();
   const bottomSheetDynamicSizeRef = useBottomSheetRef();
+  const [locale, setLocale] = useState<SupportedLocale>('en');
 
   return (
     <SafeAreaView className='flex flex-1 bg-canvas'>
       <StatusBar />
-      <ThemeProvider defaultMode='dark' className='flex flex-1'>
+      <ThemeProvider defaultMode='dark' className='flex flex-1' locale={locale}>
         <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
@@ -62,8 +66,11 @@ export const App = () => {
               <SandboxBlock title='IconButtons'>
                 <IconButtons />
               </SandboxBlock>
-              <SandboxBlock title='ToggleThemeSwitch'>
-                <ToggleThemeSwitch />
+              <SandboxBlock title='Theme Provider toggles'>
+                <View className='gap-12'>
+                  <ToggleThemeSwitch />
+                  <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
+                </View>
               </SandboxBlock>
               <SandboxBlock title='Tiles'>
                 <Tiles />

@@ -43,7 +43,9 @@ describe('Search', () => {
   it('shows clear button when input has content', () => {
     render(<Search placeholder='Search' defaultValue='some text' />);
 
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).toBeInTheDocument();
   });
 
@@ -56,7 +58,9 @@ describe('Search', () => {
       />,
     );
 
-    const clearButton = screen.queryByLabelText('Clear input');
+    const clearButton = screen.queryByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     expect(clearButton).not.toBeInTheDocument();
   });
 
@@ -70,7 +74,9 @@ describe('Search', () => {
       />,
     );
 
-    const clearButton = screen.getByLabelText('Clear input');
+    const clearButton = screen.getByLabelText(
+      'components.baseInput.clearInputAriaLabel',
+    );
     fireEvent.click(clearButton);
 
     expect(handleClear).toHaveBeenCalled();

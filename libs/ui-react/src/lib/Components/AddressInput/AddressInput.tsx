@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCommonTranslation } from '../../../i18n';
 import { QrCode as QrCodeIcon } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -89,6 +90,7 @@ export const AddressInput = React.forwardRef<
   HTMLInputElement,
   AddressInputProps
 >(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
+  const { t } = useCommonTranslation();
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
     <span
@@ -107,7 +109,7 @@ export const AddressInput = React.forwardRef<
       <InteractiveIcon
         iconType='filled'
         onClick={onQrCodeClick}
-        aria-label='Scan QR code'
+        aria-label={t('components.addressInput.qrCodeAriaLabel')}
         className='group-has-[:disabled]:text-disabled'
       >
         <QrCodeIcon size={20} />
