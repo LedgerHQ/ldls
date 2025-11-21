@@ -8,4 +8,5 @@ export * from './Switches';
 export * from './Tags';
 export * from './TextInputs';
 export * from './Tiles';
+export * from './ToggleLocaleSwitch';
 export * from './ToggleThemeSwitch';
