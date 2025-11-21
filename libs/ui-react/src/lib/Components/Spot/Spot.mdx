@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SpotStories from './Spot.stories';
 import { Spot } from './Spot';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/Spot' of={SpotStories} />
 
@@ -172,127 +175,86 @@ function StatusIndicators() {
 
 ## Do's and Don'ts
 
-### Icon and Number Props
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon and number props correctly'
+      description='Import specific icons and use appropriate number values (0-9)'
+    >
 
 ```tsx
-// Import specific icons for better tree-shaking
-import { Settings, Heart } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Use icon prop for custom icons
-<Spot appearance="icon" icon={Settings} />
-
-// Use number prop for numeric display
-<Spot appearance="number" number={5} />
-
-// Use appropriate number values
-<Spot appearance="number" number={0} /> // Valid: 0-9
+<Spot appearance='icon' icon={Settings} />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't import all icons or use invalid values"
+      description='Avoid importing entire library, invalid numbers, or omitting required props'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't pass invalid number values
-<Spot appearance="number" number={10} /> // Invalid: only 0-9 allowed
-
-// Don't omit required props for discriminated types
-<Spot appearance="icon" /> // Missing required 'icon' prop
-<Spot appearance="number" /> // Missing required 'number' prop
-
-// Don't use wrong prop types
-<Spot appearance="icon" icon="settings" /> // Should be component, not string
+<Spot appearance='icon' /> // Missing required 'icon' prop
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Layout positioning and responsive behavior are allowed'
+    >
 
 ```tsx
-// Use className for layout positioning
-<Spot appearance="check" className="mt-4 ml-2" />
-
-// Use className for positioning
-<Spot appearance="error" className="absolute top-0 right-0" />
-
-// Use className for different positions between mobile and desktop
-<Spot appearance="info" className="hidden md:block" />
+<Spot appearance='check' className='mt-4 ml-2' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, spacing, typography, and shape should not be modified'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override spot's core styling
-<Spot appearance="check" className="bg-error" />
-
-// Don't modify internal spacing/padding
-<Spot appearance="error" className="p-6" />
-
-// Don't override typography - spot has fixed sizing
-<Spot appearance="number" className="body-3" />
-
-// Don't override border radius
-<Spot appearance="check" className="rounded-lg" />
+<Spot appearance='check' className='bg-error' />
 ```
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The spot's core styling (colors, size, shape) should be controlled through the `appearance` prop to maintain design system consistency. The Spot component has a fixed 48px size and circular shape that cannot be modified.
+    </DontBlockItem>
 
-### Status vs Interaction
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use for status indication'
+      description='Spot is designed for status indication only'
+    >
 
 ```tsx
-// Use Spot for status indication only
-<Spot appearance='check' /> // Status indicator
+<Spot appearance='check' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't make spots interactive"
+      description='Avoid making spots directly clickable or interactive'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't make spots directly interactive
 <Spot appearance='check' className='cursor-pointer' onClick={handleClick} />
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+</div>
 
-```tsx
-// Import specific symbols for better tree-shaking
-import { Settings, Bluetooth } from '@ledgerhq/ldls-ui-react/symbols';
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all symbols
-import * as AllSymbols from '@ledgerhq/ldls-ui-react/symbols';
-```
-
-### TypeScript Usage
-
-✅ **Do**
-
-```tsx
-// Literal type for better type safety
-<Spot appearance="check" />
-
-// Discriminated union
-<Spot appearance="icon" icon={Settings} />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use string literals for appearance
-<Spot appearance={'check'} />
-
-// Don't bypass discriminated union
-<Spot appearance="icon" /> // Missing required icon prop
-```
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The spot's core styling (colors, size, shape) should be controlled through the `appearance` prop to maintain design system consistency. The Spot component has a fixed 48px size and circular shape that cannot be modified.
 
 </Tab>
 </CustomTabs>

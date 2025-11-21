@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CheckboxStories from './Checkbox.stories';
 import { Checkbox } from './Checkbox';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/Checkbox' of={CheckboxStories} />
 
@@ -151,90 +154,88 @@ The Checkbox component automatically supports:
 
 The following guidelines ensure consistent usage of the Checkbox component and maintain design system principles.
 
-### Layout and Styling
-
-✅ **Do**
-
-````tsx
-// Use className for responsive behavior
-<Checkbox className="hidden md:block" />
-
-// Use className for margins and positioning
-<Checkbox className="mt-2 mr-4" />
-
-❌ **Don't**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Responsive behavior, margins, and positioning are allowed'
+    >
 
 ```tsx
-// Don't override checkbox's core styling
-<Checkbox className="bg-base border-muted" />
-
-// Don't modify checkbox size or appearance
-<Checkbox className="w-24 h-24 rounded-lg" />
-
-// Don't modify internal spacing or padding
-<Checkbox className="p-2" />
-````
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The checkbox's core styling (colors, size, border, focus states, etc.) should be controlled through the design system to maintain consistency.
-
-### Accessibility and Labels
-
-✅ **Do**
-
-```tsx
-// Associate labels properly
-<div className="flex items-center space-x-8">
-  <Checkbox id="newsletter" />
-  <label htmlFor="newsletter">Subscribe to newsletter</label>
-</div>
-
-// Use aria-label for standalone checkboxes
-<Checkbox aria-label="Select all items" />
-
-// Provide descriptions when needed
-<Checkbox
-  id="terms"
-  aria-describedby="terms-description"
-/>
+<Checkbox className='hidden md:block' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, size, appearance, and spacing should not be modified'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Checkbox className='bg-base border-muted' />
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Associate labels properly'
+      description='Use aria-label for standalone checkboxes'
+    >
 
 ```tsx
-// Don't use unlabeled checkboxes
+<div className='flex items-center space-x-8'>
+  <Checkbox id='newsletter' />
+  <label htmlFor='newsletter'>Subscribe to newsletter</label>
+</div>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use unlabeled checkboxes"
+      description='All checkboxes must have proper labels for accessibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Checkbox />
 ```
 
-### State Management
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use controlled components'
+      description='Handle form integration properly or use defaultChecked for simple cases'
+    >
 
 ```tsx
-// Use controlled components for form state
 const [isChecked, setIsChecked] = useState(false);
 <Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
-
-// Handle form integration properly
-<form onSubmit={handleSubmit}>
-  <Checkbox name="preferences" value="marketing" />
-</form>
-
-// Use defaultChecked for simple uncontrolled cases
-<Checkbox defaultChecked={false} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't mix patterns"
+      description='Avoid mixing controlled/uncontrolled or using string values'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't mix controlled and uncontrolled patterns
 <Checkbox checked={isChecked} defaultChecked={true} />
-
-// Don't ignore state change handlers
-<Checkbox checked={isChecked} />
-
-// Don't use string values for checked state
-<Checkbox checked="true" />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The checkbox's core styling (colors, size, border, focus states, etc.) should be controlled through the design system to maintain consistency.
 
 </Tab>
 </CustomTabs>

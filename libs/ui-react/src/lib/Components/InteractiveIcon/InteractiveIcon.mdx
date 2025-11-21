@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as InteractiveIconStories from './InteractiveIcon.stories';
 import { InteractiveIcon } from './InteractiveIcon';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/InteractiveIcon' of={InteractiveIconStories} />
 
@@ -187,162 +190,139 @@ function SizeExamples() {
 
 The following guidelines are based on our design system principles and accessibility best practices for icon-only interactive elements.
 
-### Icon Selection and Usage
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use appropriate icon types'
+      description='Match icon style with variant and use consistent sizes'
+    >
 
 ```tsx
-// Use appropriate icon types for each variant
-import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Filled icons work best with filled variant
-<InteractiveIcon iconType="filled" aria-label="Delete">
+<InteractiveIcon iconType='filled' aria-label='Delete'>
   <DeleteCircleFill size={20} />
-</InteractiveIcon>
-
-// Outlined icons work best with stroked variant
-<InteractiveIcon iconType="stroked" aria-label="Settings">
-  <Settings size={20} />
-</InteractiveIcon>
-
-// Use consistent icon sizes within the same context
-<div className="flex gap-2">
-  <InteractiveIcon iconType="stroked" aria-label="Edit">
-    <PenEdit size={20} />
-  </InteractiveIcon>
-  <InteractiveIcon iconType="stroked" aria-label="Delete">
-    <DeleteCircle size={20} />
-  </InteractiveIcon>
-</div>
+</InteractiveIcon>;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't mix icon styles"
+      description='Avoid mismatched icon styles or inconsistent sizes in same context'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't mix filled icons with stroked variant (creates visual inconsistency)
-<InteractiveIcon iconType="stroked" aria-label="Delete">
+<InteractiveIcon iconType='stroked' aria-label='Delete'>
   <DeleteCircleFill size={20} />
 </InteractiveIcon>
-
-// Don't use inconsistent sizes in the same context
-<div className="flex gap-2">
-  <InteractiveIcon iconType="stroked" aria-label="Edit">
-    <PenEdit size={16} />
-  </InteractiveIcon>
-  <InteractiveIcon iconType="stroked" aria-label="Delete">
-    <DeleteCircle size={24} />
-  </InteractiveIcon>
-</div>
 ```
 
-### Accessibility
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always provide descriptive aria-label'
+      description='Ensure proper accessibility for screen readers'
+    >
 
 ```tsx
-// Always provide descriptive aria-label
 <InteractiveIcon iconType='stroked' aria-label='Download PDF document'>
   <Download size={20} />
 </InteractiveIcon>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit aria-label"
+      description='Avoid omitting labels or using generic/icon names as labels'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't omit aria-label (breaks accessibility)
-<InteractiveIcon iconType="stroked">
+<InteractiveIcon iconType='stroked'>
   <Settings size={20} />
 </InteractiveIcon>
 
-// Don't use generic labels
-<InteractiveIcon iconType="stroked" aria-label="Click here">
-  <Settings size={20} />
-</InteractiveIcon>
-
-// Don't use icon names as labels
-<InteractiveIcon iconType="stroked" aria-label="Settings icon">
-  <Settings size={20} />
-</InteractiveIcon>
 ```
 
-### Styling and Layout
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Positioning and responsive behavior are allowed'
+    >
 
 ```tsx
-// Use className for positioning and layout
 <InteractiveIcon
-  iconType="stroked"
-  className="absolute top-4 right-4"
-  aria-label="Close"
+  iconType='stroked'
+  className='absolute top-4 right-4'
+  aria-label='Close'
 >
   <Close size={20} />
 </InteractiveIcon>
+```
 
-// Use className for responsive behavior
-<InteractiveIcon
-  iconType="stroked"
-  className="md:hidden"
-  aria-label="Menu"
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core appearance, size constraints, and padding should not be modified'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<InteractiveIcon 
+  iconType='stroked' 
+  aria-label='Settings'
+  className='bg-interactive text-on-interactive'
 >
-  <MenuBurger size={20} />
-</InteractiveIcon>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't modify the core appearance
-<InteractiveIcon iconType="stroked" className="bg-interactive text-on-interactive">
-  <Settings size={20} />
-</InteractiveIcon>
-
-// Don't override size constraints
-<InteractiveIcon iconType="stroked" className="w-32 h-32">
-  <Settings size={20} />
-</InteractiveIcon>
-
-// Don't modify padding
-<InteractiveIcon iconType="stroked" className="pl-8">
   <Settings size={20} />
 </InteractiveIcon>
 ```
 
-### Component Composition
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Only render icon components'
+      description='Import specific icons for better tree-shaking'
+    >
 
 ```tsx
-// Only render icon components as children
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
 <InteractiveIcon iconType='stroked' aria-label='More actions'>
   <MoreVertical size={20} />
-</InteractiveIcon>
+</InteractiveIcon>;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't render arbitrary content"
+      description='Avoid rendering text or importing entire icon library'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't render arbitrary content as children
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
 <InteractiveIcon iconType='stroked' aria-label='More actions'>
   Settings
 </InteractiveIcon>
+
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
-
-```tsx
-// Import only the icons you need for better tree-shaking
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import entire icon library
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
-```
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

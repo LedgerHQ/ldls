@@ -2,7 +2,10 @@ import React from 'react';
 import { Search as SearchIcon } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 
-export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
+export type SearchProps = Omit<
+  BaseInputProps,
+  'prefix' | 'label' | 'labelClassName' | 'inputClassName'
+>;
 
 /**
  * A customizable search input component with built-in search icon, automatic clear button, error states, and focus/hover effects.
@@ -13,7 +16,7 @@ export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
  * - **No label support** - uses placeholder text for optimal search UX
  * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with aria-invalid and errorMessage support
- * - **Flexible styling** via className, inputClassName, labelClassName props
+ * - **Flexible styling** via className prop
  *
  * ## Clear Button Behavior
  * - Shows automatically when input has content and is not disabled
