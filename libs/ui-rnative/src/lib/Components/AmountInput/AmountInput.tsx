@@ -120,7 +120,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
       const newSize = getFontSize(inputValue);
 
       translateX.value = withSequence(
-        withTiming(4, { duration: 100 }),
+        withTiming(4, { duration: 0 }),
         withTiming(0, {
           duration: 250,
           easing: Easing.bezier(0.4, 0, 0.2, 1),
@@ -158,6 +158,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
         maxIntegerLength,
         maxDecimalLength,
       });
+
       onChangeText(formatted);
     };
 
@@ -199,7 +200,10 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           className='absolute size-full opacity-0'
           {...props}
         />
-        <Pressable onPress={handlePress} className='flex-row items-center'>
+        <Pressable
+          onPress={handlePress}
+          className='flex-row items-center justify-center'
+        >
           {currencyPosition === 'left' && CurrencyText}
 
           {/** display text that mirrors the hidden input's value */}
@@ -218,7 +222,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
           {/** custom caret */}
           <Animated.View
-            className='ml-4'
+            className='mx-2'
             style={[
               animatedCaretStyle,
               {
