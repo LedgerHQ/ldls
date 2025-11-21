@@ -1,6 +1,9 @@
 import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
 import * as AddressInputStories from './AddressInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta of={AddressInputStories} title='Components/AddressInput' />
 
@@ -295,45 +298,232 @@ The component includes comprehensive test coverage for:
 - **Validation states**: Error messages and ARIA attributes
 - **Interaction handling**: onChange, onClear, onQrCodeClick, focus states
 
-## Best Practices
+## Do's and Don'ts
 
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use placeholder text for AddressInput'
+      description='AddressInput component uses placeholder text instead of labels for optimal address entry UX'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout and width control (preferred)
-<AddressInput placeholder="Enter address or ENS" className="max-w-md" />
+<AddressInput 
+  placeholder='Enter address or ENS' 
+  value={address} 
+  onChange={(e) => setAddress(e.target.value)} 
+/>
+```
 
-// Use className for responsive design
-<AddressInput placeholder="Enter address or ENS" className="w-full md:max-w-lg" />
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use label prop"
+      description='AddressInput component does not support labels. The label prop is not available and will cause TypeScript errors'
+    >
 
-// Use custom prefix for different contexts
-<AddressInput
-  prefix="From:"
-  placeholder="Enter sender address"
+{/* prettier-ignore */}
+```tsx
+// This will cause a TypeScript error - label is not supported
+<AddressInput 
+  label='Recipient Address' 
+  placeholder='Enter address or ENS' 
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use prefix prop for custom prefix text'
+      description='Prefix is a string prop that customizes the prefix text. Defaults to "To:" but can be customized for different contexts'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput 
+  prefix='From:'
+  placeholder='Enter sender address'
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't pass ReactNode to prefix prop"
+      description='Prefix accepts only string values, not React elements. Keep it concise and meaningful'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - prefix is a string, not a ReactNode
+<AddressInput 
+  prefix={<span>From:</span>} // This will cause a TypeScript error
+  placeholder='Enter sender address'
 />
 
-// Implement proper validation for address formats
-const validateAddress = (address) => {
-  const isEthereumAddress = address.startsWith('0x') && address.length === 42;
-  const isENS = address.endsWith('.eth');
-  return isEthereumAddress || isENS;
-};
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use onQrCodeClick for QR code scanner'
+      description='Provide onQrCodeClick handler to show QR code scanner icon when input is empty. The icon automatically switches to clear button when content is entered'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Don't use generic wrapper divs when className is available
-<div className="max-w-md">
-  <AddressInput placeholder="Enter address or ENS" />
-</div>
-
-// Don't disable QR code functionality without good reason
-<AddressInput onQrCodeClick={undefined} />
-
-// Don't use overly long prefix text that affects readability
-<AddressInput prefix="This is a very long prefix that takes up too much space:" />
+<AddressInput 
+  placeholder='Enter address or ENS'
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+  onQrCodeClick={() => openQrScanner()}
+/>
 ```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override QR code with custom suffix when you want QR scanner"
+      description='If you provide a custom suffix, it will override the QR code icon. Use onQrCodeClick instead of custom suffix for QR scanner functionality'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput 
+  placeholder='Enter address or ENS'
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+  suffix={<QrCodeIcon />} // This prevents the built-in QR code behavior
+/>
+
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use hideClearButton to hide the clear button'
+      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput 
+  placeholder='Enter address or ENS'
+  value={address} 
+  onChange={(e) => setAddress(e.target.value)}
+  hideClearButton // Hide the clear button
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use empty suffix or create custom clear buttons"
+      description='Do not try to use empty suffix to hide the clear button. Use hideClearButton instead. Also avoid creating custom clear buttons'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - empty suffix won't hide the clear button
+<AddressInput
+  suffix={null}
+  value={address}
+  onChange={handleChange}
+/>
+
+// DON'T - create custom clear buttons
+<AddressInput
+  value={address}
+  onChange={handleChange}
+  suffix={<Button onClick={() => setAddress('')}>Clear</Button>}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use aria-invalid for errors'
+      description='Use aria-invalid to control the error state styling'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput
+  placeholder='Enter address or ENS'
+  value={address}
+  onChange={handleChange}
+  aria-invalid={hasError}
+  errorMessage={hasError ? 'Invalid address' : undefined}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit aria-invalid"
+      description='Always provide aria-invalid when showing error messages for proper accessibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput 
+  placeholder='Enter address or ENS'
+  value={address}
+  onChange={handleChange}
+  errorMessage={hasError ? 'Invalid address' : undefined}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for container styling'
+      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<AddressInput 
+  className='w-full max-w-md' 
+  placeholder='Enter address or ENS'
+  value={address} 
+  onChange={(e) => setAddress(e.target.value)} 
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use inputClassName or labelClassName"
+      description='These props are not available on AddressInput. Use className for container-level styling only'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// These props don't exist on AddressInput
+<AddressInput 
+  inputClassName='text-accent' 
+  labelClassName='font-semibold'
+  placeholder='Enter address or ENS'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

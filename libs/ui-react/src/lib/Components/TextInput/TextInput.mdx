@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TextInputStories from './TextInput.stories';
 import { TextInput } from './TextInput';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/TextInput' of={TextInputStories} />
 
@@ -313,51 +316,58 @@ The Input component uses floating labels that animate from inside the input fiel
 
 ## Do's and Don'ts
 
-With Custom Right Element
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use hideClearButton to hide the clear button'
+      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+    >
 
-### Value Management
-
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use controlled input pattern
-const [value, setValue] = useState('');
-<TextInput
-  value={value}
+<TextInput 
+  label='Email'
+  value={value} 
   onChange={(e) => setValue(e.target.value)}
+  hideClearButton // Hide the clear button
 />
+```
 
-// Or use uncontrolled inputs (also valid)
-<TextInput defaultValue="initial value" />
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use empty prefix or create custom clear buttons"
+      description='Prefix is not available on TextInput component. Dont try to use empty prefix to hide the clear button - use hideClearButton instead. Also avoid creating custom clear buttons'
+    >
 
-// Uncontrolled with ref access
-const inputRef = useRef<HTMLInputElement>(null);
-<TextInput ref={inputRef} defaultValue="" />
-
-// Clear button appears automatically - hideClearButton is false by default
+{/* prettier-ignore */}
+```tsx
+// DON'T - prefix is not available on TextInput
 <TextInput
+  prefix={null} // This will cause a TypeScript error
   value={value}
   onChange={handleChange}
 />
 
-// Use onClear to extend default clear behavior with custom logic
+// DON'T - create custom clear buttons
 <TextInput
   value={value}
   onChange={handleChange}
-  onClear={() => {
-    // Default clearing happens automatically
-    customClearLogic();
-  }}
+  suffix={<Button onClick={() => setValue('')}>Clear</Button>}
 />
+```
 
-// Hide clear button when needed
-<TextInput
-  value={value}
-  onChange={handleChange}
-  hideClearButton
-/>
+    </DontBlockItem>
 
-// Use aria-invalid for error states
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use aria-invalid for errors'
+      description='Use aria-invalid to control the error state styling'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <TextInput
   value={value}
   onChange={handleChange}
@@ -366,131 +376,139 @@ const inputRef = useRef<HTMLInputElement>(null);
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit aria-invalid"
+      description='Avoid omitting aria-invalid'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't create custom clear buttons - use the built-in one
-
-<TextInput
+<TextInput 
   value={value}
   onChange={handleChange}
-  suffix={<Button onClick={() => setValue('')}>Clear</Button>}
+  errorMessage={hasError ? 'Invalid input' : undefined}
 />
+```
 
-// Don't manually clear the value in onClear - it happens automatically
+    </DontBlockItem>
 
-<TextInput
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use either label or placeholder, not both'
+      description='Choose one approach - use floating label for better UX, or placeholder as an alternative. They serve the same purpose'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// Use floating label (recommended)
+<TextInput 
+  label='Email Address'
   value={value}
-  onChange={handleChange}
-  onClear={() => setValue('')} // Redundant - clearing happens by default
+  onChange={(e) => setValue(e.target.value)} 
 />
 
-// Don't use custom error props
-
-<TextInput error={true} errorText="Invalid input" />
+// OR use placeholder (alternative)
+<TextInput 
+  placeholder='Enter your email address'
+  value={value}
+  onChange={(e) => setValue(e.target.value)} 
+/>
 ```
 
-### Layout and Styling
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't combine label and placeholder"
+      description='They will visually overlap and create a poor user experience. The floating label animates from inside the input field'
+    >
 
-The Input component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
-
+{/* prettier-ignore */}
 ```tsx
-// ✅ Preferred: Direct width control
-<TextInput label="Email" className="max-w-md" />
-
-// ✅ Responsive width control
-<TextInput label="Email" className="w-full md:max-w-md" />
-
-// Alternative: Container wrapper
-<div className="max-w-md">
-  <TextInput label="Email" />
-</div>
-
-// Full width in form (default behavior)
-<form>
-  <TextInput label="Search products..." />
-</form>
+// DON'T DO THIS - causes visual overlap
+<TextInput 
+  label='Email Address'
+  placeholder='Enter your email address'
+  value={value}
+  onChange={(e) => setValue(e.target.value)} 
+/>
 ```
 
-✅ **Do**
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for container styling'
+      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for input-specific styling
-<TextInput className="heading-0" label="Title" />
-
-// Use className for layout and width control (preferred)
-<TextInput label="Email" className="max-w-md" />
-
-// Use className for responsive design
-<TextInput label="Email" className="w-full md:max-w-lg" />
+<TextInput 
+  className='w-full max-w-md' 
+  label='Email' 
+  value={value} 
+  onChange={(e) => setValue(e.target.value)} 
+/>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use inputClassName or labelClassName"
+      description='These props are not available on TextInput. Use className for container-level styling only'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core input styling
-<TextInput className="bg-white border-gray-300" />
-
-// Don't modify internal padding/spacing
-<TextInput className="px-6 py-4" />
-
-// Don't override typography
-<TextInput className="body-4" />
-
-// Don't modify hover/focus states
-<TextInput className="hover:border-accent" />
+// These props don't exist on TextInput
+<TextInput 
+  inputClassName='text-accent' 
+  labelClassName='font-semibold'
+  label='Email'
+/>
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Import specific icons'
+      description='Use tree-shaking to import specific icons for better bundle size'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Import specific icons
 import { InformationFill } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Memoize complex right elements
-const InfoButton = React.memo(() => (
-  <button
-    type='button'
-    aria-label='Show information'
-    className='rounded-full p-2 hover:bg-muted-hover'
-  >
-    <InformationFill size={20} className='text-muted' />
-  </button>
-));
-
-<TextInput suffix={<InfoButton />} />;
-
-// Use stable callbacks for extending clear behavior
-const handleCustomClear = useCallback(() => {
-  // Default clearing happens automatically
-  customClearLogic();
-}, []);
-<TextInput onClear={handleCustomClear} />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't manually clear in onClear - it's automatic
-<TextInput onClear={() => setValue('')} /> // Redundant
-
-// Don't create new functions in render for extending behavior
-<TextInput onClear={() => { customLogic(); }} /> // Use useCallback instead
-
-// Don't create complex elements inline
-<TextInput
-  suffix={
-    <ComplexComponent>
-      <NestedComponents />
-    </ComplexComponent>
-  }
+<TextInput 
+  suffix={<InformationFill size={20}/>}
 />
 ```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't import all icons"
+      description='Avoid importing all icons or creating complex elements inline'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+
+<TextInput 
+  suffix={<Icons.InformationFill size={20}/>}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

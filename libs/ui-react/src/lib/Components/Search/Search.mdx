@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SearchStories from './Search.stories';
 import { Search } from './Search';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/Search' of={SearchStories} />
 
@@ -192,43 +195,193 @@ function MyComponent() {
 />
 ```
 
-## Best Practices
+## Do's and Don'ts
 
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use placeholder text for Search'
+      description='Search component uses placeholder text instead of labels for optimal search UX patterns'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Use controlled components
-const [query, setQuery] = useState('');
-<Search value={query} onChange={(e) => setQuery(e.target.value)} />
-
-// Use className for layout and width control (preferred)
-<Search placeholder="Search..." className="max-w-md" />
-
-// Use className for responsive design
-<Search placeholder="Search..." className="w-full md:max-w-lg" />
-
-// Provide clear placeholder text
-<Search placeholder="Search by name or email" />
-
-// Debounce search operations
-const debouncedSearch = useMemo(() => debounce(performSearch, 300), []);
-
-// Use stable callbacks
-const handleClear = useCallback(() => analytics.track('search_cleared'), []);
+<Search 
+  placeholder='Search products' 
+  value={query} 
+  onChange={(e) => setQuery(e.target.value)} 
+/>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use label prop"
+      description='Search component does not support labels. The label prop is not available and will cause TypeScript errors'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use labels with Search
-<Search label="Search" placeholder="Search products" />
-
-// Don't search on every keystroke
-<Search onChange={(e) => performSearch(e.target.value)} />
-
-// Don't override the built-in icon
-<Search prefix={<CustomIcon />} />
+// This will cause a TypeScript error - label is not supported
+<Search 
+  label='Search' 
+  placeholder='Search products' 
+/>
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the built-in search icon'
+      description='The search icon is automatically included and properly styled. It cannot be changed or removed'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search 
+  placeholder='Search products' 
+  value={query} 
+  onChange={handleChange} 
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override or remove the search icon"
+      description='The search icon (prefix) is built-in and immutable. The prefix prop is not available on Search component'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// This will cause a TypeScript error - prefix is not supported
+<Search 
+  prefix={<CustomIcon />} 
+  placeholder='Search products' 
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use hideClearButton to hide the clear button'
+      description='When you want to hide the clear button, use the hideClearButton prop. The clear button appears automatically when input has content; use onClear to extend behavior'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search 
+  placeholder='Search'
+  value={query} 
+  onChange={(e) => setQuery(e.target.value)}
+  hideClearButton // Hide the clear button
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use empty suffix or create custom clear buttons"
+      description='Do not try to use empty suffix to hide the clear button. Use hideClearButton instead. Also avoid creating custom clear buttons'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - empty suffix won't hide the clear button
+<Search
+  suffix={null}
+  value={query}
+  onChange={handleChange}
+/>
+
+// DON'T - create custom clear buttons
+<Search
+  value={query}
+  onChange={handleChange}
+  suffix={<Button onClick={() => setQuery('')}>Clear</Button>}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use aria-invalid for errors'
+      description='Use aria-invalid to control the error state styling'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search
+  placeholder='Search users'
+  value={query}
+  onChange={handleChange}
+  aria-invalid={hasError}
+  errorMessage={hasError ? 'Search failed' : undefined}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit aria-invalid"
+      description='Always provide aria-invalid when showing error messages for proper accessibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search 
+  placeholder='Search users'
+  value={query}
+  onChange={handleChange}
+  errorMessage={hasError ? 'Search failed' : undefined}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for container styling'
+      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search 
+  className='w-full max-w-md' 
+  placeholder='Search products'
+  value={query} 
+  onChange={(e) => setQuery(e.target.value)} 
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use inputClassName or labelClassName"
+      description='These props are not available on Search. Use className for container-level styling only'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// These props don't exist on Search
+<Search 
+  inputClassName='text-accent' 
+  labelClassName='font-semibold'
+  placeholder='Search products'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

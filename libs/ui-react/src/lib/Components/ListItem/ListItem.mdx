@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ListItemStories from './ListItem.stories';
 import { ListItem } from './ListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/ListItem' of={ListItemStories} />
 
@@ -217,16 +220,16 @@ function ListVariants() {
 Add a tag to the description for additional status information:
 
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { Bolt } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Tag } from '@ledgerhq/ldls-ui-react';
+import { Bolt, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 function MyComponent() {
   return (
     <ListItem
-      trailingContentVariant='caret'
       title='New Item'
       description='Recently added'
       descriptionTag={<Tag label='New' appearance='accent' icon={Bolt} />}
+      trailingContent={<ChevronRight size={24} />}
     />
   );
 }
@@ -237,12 +240,14 @@ function MyComponent() {
 Disable the ListItem to prevent interaction:
 
 ```tsx
+import { ListItem, Switch } from '@ledgerhq/ldls-ui-react';
+
 <ListItem
-  trailingContentVariant='toggle'
   title='Disabled Option'
   description='Cannot be changed'
+  trailingContent={<Switch selected={false} disabled />}
   disabled
-/>
+/>;
 ```
 
 ### Responsive Layout
@@ -250,14 +255,17 @@ Disable the ListItem to prevent interaction:
 ListItem handles truncation responsively. Use container widths to control behavior:
 
 ```tsx
+import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { User, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+
 <div className='w-240 bg-base p-4'>
   <ListItem
-    trailingContentVariant='caret'
     title='Very Long Title That Will Truncate'
     description='Very long description that will also truncate appropriately'
     leadingContent={<Spot appearance='icon' icon={User} />}
+    trailingContent={<ChevronRight size={24} />}
   />
-</div>
+</div>;
 ```
 
 ### Custom Styling
@@ -265,86 +273,153 @@ ListItem handles truncation responsively. Use container widths to control behavi
 Use `className` for layout purposes only, such as maximum width:
 
 ```tsx
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+
 <ListItem
-  trailingContentVariant='caret'
   title='Constrained Width'
   description='This item has a maximum width applied'
+  trailingContent={<ChevronRight size={24} />}
   className='max-w-md'
-/>
+/>;
 ```
 
 ## Do's and Don'ts
 
 The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
 
-### Layout and Styling
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Layout constraints and proper list grouping are allowed'
+    >
 
 ```tsx
-// Use className for layout constraints
-<ListItem
-  title="Item"
-  className="max-w-md"
-/>
-
-// Use in lists with proper grouping
-<div className="flex flex-col max-w-320">
-  <ListItem title="Item 1" />
-  <ListItem title="Item 2" />
-</div>
+<ListItem title='Item' className='max-w-md' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, spacing, and typography should not be modified'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core styling
-<ListItem
-  title="Custom"
-  className="bg-base text-active"
-/>
-
-// Don't modify internal spacing
-<ListItem
-  title="Wrong"
-  className="gap-2 p-2"
-/>
-
-// Don't override typography
-<ListItem
-  title="Bad"
-  className="heading-3"
-/>
-
-// Don't use for non-list contexts
-<ListItem title="Standalone" className="m-4 border" />
+<ListItem title='Custom' className='bg-base text-active' />
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use descriptionTag to add Tag components'
+      description='descriptionTag prop accepts Tag components to display status or labels next to the description'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItem
+  title='New Item'
+  description='Recently added'
+  descriptionTag={<Tag label='New' appearance='accent' icon={Bolt} />}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use descriptionTag for other elements"
+      description='descriptionTag only accepts Tag components. Use trailingContent for other elements like icons or text'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - descriptionTag only accepts Tag components
+<ListItem
+  title='New Item'
+  description='Recently added'
+  descriptionTag={<span>New</span>}
+/>
+
+
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use concise text for title and description'
+      description='Keep title and description short since they truncate to one line'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+<ListItem
+  title='Account Settings'
+  description='Manage preferences'
+  trailingContent={<ChevronRight size={24} />}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use long text"
+      description='Title and description truncate to one line.'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { ListItem } from '@ledgerhq/ldls-ui-react';
+import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+<ListItem
+  title='This is a very long title that will be truncated and users will not be able to read the full text'
+  description='This is also a very long description that will be truncated and users will not be able to read the full text'
+  trailingContent={<ChevronRight size={24} />}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Import specific icons'
+      description='Use specific icons for better performance'
+    >
 
 ```tsx
-// Import specific icons for tree-shaking
 import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Use proper event handlers
-<ListItem onClick={handleClick} />;
+<ListItem trailingContent={<Check />} />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't import all icons"
+      description='Avoid importing entire icon set or complex inline handlers'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon set
 import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
 
-// Don't use complex inline handlers
-<ListItem
-  onClick={() => {
-    // Complex logic...
-  }}
-/>;
+<ListItem trailingContent={<AllIcons.Check />} />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

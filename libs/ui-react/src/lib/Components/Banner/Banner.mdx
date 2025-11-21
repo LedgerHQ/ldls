@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './Banner.stories';
 import { Banner } from './Banner';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/Banner' of={BannerStories} />
 
@@ -356,71 +359,122 @@ While the component comes with predefined styles, you can extend them using Tail
 
 The following guidelines ensure consistent usage of the Banner component and maintain design system principles.
 
-### Layout and Styling
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Layout positioning and responsive behavior are allowed'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
 <Banner
-  title="Update Available"
-  description="A new version is ready to install"
-  className="mb-6"
-  appearance="info"
+  title='Update Available'
+  description='A new version is ready to install'
+  className='mb-6'
+  appearance='info'
 />
+```
 
-// Use className for responsive behavior
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, internal spacing, and typography should not be modified'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Banner
-  title="Desktop Feature"
-  description="This feature is only available on desktop"
-  className="hidden lg:flex"
-  appearance="info"
+  title='Update Available'
+  description='A new version is ready to install'
+  className='bg-base text-active'
+  appearance='info'
 />
+```
 
-// Use container elements to control banner width
-<div className="w-full">
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use appearance prop to control background'
+      description='The appearance prop controls the background color and styling. Use info, success, warning, or error'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Banner
+  title='Update Available'
+  description='A new version is ready to install'
+  appearance='info'
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for background colors"
+      description='Background colors are controlled by the appearance prop. Do not override with className'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Banner
+  title='Update Available'
+  description='A new version is ready to install'
+  className='bg-success'
+  appearance='info'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use container elements for width'
+      description='Banner without container constraints - takes full parent width' >
+
+{/* prettier-ignore */}
+```tsx
+<div className='w-full'>
   <Banner
-    title="System Notice"
-    description="Maintenance scheduled for tonight"
-    appearance="warning"
+    title='System Notice'
+    description='Maintenance scheduled for tonight'
+    appearance='warning'
   />
 </div>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Do not use className for full width"
+      description='Do not use className for full width'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core banner styling
 <Banner
-  title="Custom Colors"
-  description="Wrong styling approach"
-  className="bg-base text-active"
-  appearance="info"
-/>
-
-// Don't modify internal spacing
-<Banner
-  title="Wrong Spacing"
-  description="Don't override internal gaps"
-  className="gap-2 p-2"
-  appearance="info"
-/>
-
-// Don't override typography classes
-<Banner
-  title="Bad Typography"
-  description="Don't override text styles"
-  className="body-3"
-  appearance="info"
+  title='System Notice'
+  description='Maintenance scheduled for tonight'
+  className='w-full'
+  appearance='warning'
 />
 ```
 
-### Action Button Usage
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Pass complete Button components'
+      description='Action buttons should be properly styled Button components'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Pass complete Button components with proper styling
 <Banner
   title='Confirm Action'
   description='This action cannot be undone'
@@ -433,17 +487,26 @@ The following guidelines ensure consistent usage of the Banner component and mai
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't pass incomplete elements"
+      description='Avoid unstyled or incomplete button elements'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't pass incomplete or unstyled elements
 <Banner
-  title='Broken Action'
-  description="This won't work properly"
-  primaryAction={<button onClick={handleSubmit}>Submit</button>}
-  appearance='error'
+  title='Confirm Action'
+  description='This action cannot be undone'
+  primaryAction={<button onClick={handleConfirm}>Confirm</button>}
+  appearance='warning'
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

@@ -8,6 +8,9 @@ import {
 import * as Icons from '../../Symbols';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as IconsStories from './Icon.stories';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Symbols/Interface Icons/Docs' of={IconsStories} />
 
@@ -160,124 +163,110 @@ function SemanticIcons() {
 
 ## Do's and Don'ts
 
-### Icon Importing
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Import specific icons'
+      description='Use tree-shaking for better bundle size'
+    >
 
 ```tsx
-// Import specific icons for better tree-shaking
 import { ArrowUp, Settings, Plus } from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't import all icons"
+      description='Avoid importing entire library or dynamic icon selection'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import all icons (impacts bundle size)
 import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
-// Don't use dynamic icon selection
 const iconName = 'ArrowUp';
 const Icon = Icons[iconName]; // Prevents tree-shaking
 ```
 
-### Size Usage
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use predefined size variants'
+      description='Standard sizes ensure consistent visual hierarchy'
+    >
 
 ```tsx
-// Use predefined size variants
 <ArrowUp size={24} />
-<Settings size={20} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use custom sizes"
+      description='Avoid CSS sizing, prop overrides, or non-standard sizes'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use custom sizes via CSS
-<ArrowUp className="w-6 h-6" />
-
-// Don't override width/height via props
-<ArrowUp size={24} width={32} height={32} />
-
-// Don't use non-standard sizes
-<ArrowUp size={22} /> // Not a defined variant
+<ArrowUp className='w-6 h-6' />
 ```
 
-### Styling and Layout
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Color, positioning, spacing, and responsive behavior are allowed'
+    >
 
 ```tsx
-// Use className for color and layout
-<ArrowUp size={24} className="text-on-interactive" />
-
-// Use className for positioning
-<ArrowUp size={20} className="absolute top-2 right-2" />
-
-// Use className for spacing in layouts
-<ArrowUp size={16} className="mr-2" />
-
-// Use className for responsive behavior
-<ArrowUp size={16} className="md:hidden" />
+<ArrowUp size={24} className='text-on-interactive' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core properties"
+      description='Core dimensions, stroke, arbitrary colors, or SVG props should not be modified'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core icon dimensions
-<ArrowUp className="w-[35px] h-[32px]" />
-
-// Don't modify stroke width
-<ArrowUp className="icon-stroke-24" />
-
-// Don't use arbitrary colors
-<ArrowUp className="text-[#FF0000]" />
-
-// Don't override viewBox or xmlns
-<ArrowUp viewBox="0 0 32 32" />
+<ArrowUp className='w-[35px] h-[32px]' />
 ```
 
-### Interactive Usage
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use semantic wrappers for interaction'
+      description='Use semantic color tokens and inherit text color'
+    >
 
 ```tsx
-// Wrap in semantic elements for interaction
 <Button icon={Close} aria-label='Close' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't make icons directly clickable"
+      description='Avoid arbitrary colors or overriding currentColor unnecessarily'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't make icons clickable without semantic wrapper
 <ArrowUp size={24} onClick={handleClick} />
 ```
 
-### Color and Theming
+    </DontBlockItem>
 
-✅ **Do**
-
-```tsx
-// Use semantic color tokens
-<CheckmarkCircle className="text-base" />
-<DeleteCircle className="text-error" />
-
-// Inherit text color for consistent theming
-<ArrowUp size={24} /> // Will use current text color
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use arbitrary color values
-<ArrowUp className="text-[#3B82F6]" />
-
-// Don't override currentColor unless necessary
-<ArrowUp style={{ color: '#000000' }} />
-
-// Don't use non-semantic color classes
-<Settings className="text-blue-500" />
-```
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

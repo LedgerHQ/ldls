@@ -1,6 +1,9 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as AmountInputStories from './AmountInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Components/AmountInput' of={AmountInputStories} />
 
@@ -196,61 +199,51 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Input Validation
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use appropriate validation'
+      description='Use integer-only for quantities, custom length for specific cases'
+    >
 
 ```tsx
-// Use integer-only for whole number scenarios (quantity, age, etc.)
 <AmountInput
-  value={quantity}
-  onChange={handleQuantityChange}
-  currencyText="items"
+  value={value}
+  onChange={handleChange}
+  currencyText='$'
   allowDecimals={false}
-  maxIntegerLength={4}
-  maxDecimalLength={0} // No decimals for quantity
-/>
-
-// Use custom max length for specific use cases
-<AmountInput
-  value={pin}
-  onChange={handlePinChange}
-  currencyText=""
-  maxIntegerLength={4} // PIN code
-  maxDecimalLength={0} // No decimals for PIN
-  allowDecimals={false}
-/>
-
-// Use default length limits for currency amounts (9+9=18 digits)
-<AmountInput
-  value={amount}
-  onChange={handleAmountChange}
-  currencyText="$"
-  allowDecimals={true}
+  maxIntegerLength={8}
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use incorrect lengths"
+      description='do not use maxIntegerLength and maxDecimalLength props incorrectly'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use overly restrictive lengths for currency
-<AmountInput maxIntegerLength={1} maxDecimalLength={1} currencyText="$" /> // Too short for real amounts
-
-// Don't allow decimals for count-based inputs
-<AmountInput currencyText="items" allowDecimals={true} /> // Items should be whole numbers
-
-// Don't use extremely long lengths without good reason
-<AmountInput maxIntegerLength={25} maxDecimalLength={25} currencyText="$" /> // Unnecessarily long
+<AmountInput 
+  value={value}
+  onChange={handleChange}
+  currencyText='$'
+  maxIntegerLength={20}
+  maxDecimalLength={20}
+/>
 ```
 
-### Value Management
+    </DontBlockItem>
 
-AmountInput is a **controlled component only** - it requires both `value` and `onChange` props.
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always use controlled pattern'
+      description='AmountInput is controlled only - requires value and onChange'
+    >
 
 ```tsx
-// Always use controlled input pattern
 const [value, setValue] = useState('');
 <AmountInput
   value={value}
@@ -258,20 +251,6 @@ const [value, setValue] = useState('');
   currencyText='USD'
 />;
 
-// Use with validation state
-const [value, setValue] = useState('');
-const [hasError, setHasError] = useState(false);
-<AmountInput
-  value={value}
-  onChange={(e) => {
-    setValue(e.target.value);
-    setHasError(!e.target.value || isNaN(Number(e.target.value)));
-  }}
-  currencyText='USD'
-  aria-invalid={hasError}
-/>;
-
-// Access the input element via ref
 const inputRef = useRef<HTMLInputElement>(null);
 <AmountInput
   ref={inputRef}
@@ -281,59 +260,48 @@ const inputRef = useRef<HTMLInputElement>(null);
 />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use uncontrolled patterns"
+      description='Uncontrolled patterns or custom error props are not supported'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use uncontrolled patterns - not supported
-<AmountInput defaultValue="0.00" currencyText="USD" />
-
-// Don't use without value prop
-<AmountInput onChange={handleChange} currencyText="USD" />
-
-// Don't use without onChange prop
-<AmountInput value="100" currencyText="USD" />
-
-// Don't use custom error props - use aria-invalid instead
-<AmountInput error={true} errorText="Invalid amount" />
-
-// Don't try to modify the currency text styling directly
-<AmountInput currencyText={<span className="custom-style">USD</span>} />
+<AmountInput defaultValue='0.00' currencyText='USD' />
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-The AmountInput component takes the **full width** of its parent container by default.
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use container for width control'
+      description='Control width using wrapper containers with responsive design'
+    >
 
 ```tsx
-
-// Use container wrapper for width control
-<div className="max-w-md">
-  <AmountInput currencyText="USD" />
-</div>
-
-// Use responsive design
-<div className="w-full md:max-w-lg">
-  <AmountInput currencyText="USD" />
+<div className='max-w-md'>
+  <AmountInput currencyText='USD' />
 </div>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, padding, typography, and states should not be modified'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core input styling
-<AmountInput className="bg-white border-gray-300" />
-
-// Don't modify internal padding/spacing
-<AmountInput className="px-6 py-4" />
-
-// Don't override typography
-<AmountInput className="body-4" />
-
-// Don't modify hover/focus states
-<AmountInput className="hover:border-accent" />
+<AmountInput className='bg-white border-accent' />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>

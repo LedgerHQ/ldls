@@ -2,6 +2,9 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
+import { DoBlockItem } from '../../../../.storybook/DoBlock';
+import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 <Meta title='Containment/Tile' of={TileStories} />
 
@@ -110,58 +113,108 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Layout and Styling
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for layout'
+      description='Layout positioning and responsive behavior are allowed'
+    >
 
 ```tsx
-// Use className for layout positioning
 <Tile
-  title="Settings"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="mb-6"
+  title='Settings'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  className='mb-6'
 />
+```
 
-// Use className for responsive behavior
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styling"
+      description='Core styling, internal spacing, and typography should not be modified'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Tile
-  title="Desktop Item"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="hidden lg:flex"
+  title='Custom Colors'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  className='bg-base text-active'
 />
+```
 
-// Use container elements to control width
-<div className="w-128">
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use concise text for title and description'
+      description='Keep title and description short since they truncate to one line'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Tile
+  title='Settings'
+  description='Manage preferences'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use long text"
+      description='Title and description truncate to one line.'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Tile
+  title='This is a very long title that will be truncated and users will not be able to read the full text'
+  description='This is also a very long description that will be truncated and users will not be able to read the full text'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='By default the tile fill the width of its container'
+      description='Control width using wrapper containers'
+    >
+
+```tsx
+<div className='w-128'>
   <Tile
-    title="Fixed Width"
-    leadingContent={<Spot appearance="icon" icon={Settings} />}
+    title='Fixed Width'
+    leadingContent={<Spot appearance='icon' icon={Settings} />}
   />
 </div>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for full width"
+      description='Do not use className for width'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core styling
 <Tile
-  title="Custom Colors"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="bg-base text-active"
-/>
-
-// Don't modify internal spacing
-<Tile
-  title="Wrong Spacing"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="gap-2 p-2"
-/>
-
-// Don't override typography classes
-<Tile
-  title="Bad Typography"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="body-3"
+  title='Bad Typography'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  className='w-full'
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
 
 </Tab>
 </CustomTabs>
