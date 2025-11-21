@@ -1,0 +1,20 @@
+{
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "Scanner le QR code"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "Effacer la saisie"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Chargement"
+    },
+    "sheetBar": {
+      "goBackAriaLabel": "Retour",
+      "closeAriaLabel": "Fermer"
+    },
+    "banner": {
+      "closeAriaLabel": "Fermer"
+    }
+  }
+}

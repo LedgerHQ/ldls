@@ -34,11 +34,13 @@ const WidthShowcase = () => (
         { name: '20px', class: 'w-20', token: 'w-20' },
         { name: '16px', class: 'w-16', token: 'w-16' },
         { name: '12px', class: 'w-12', token: 'w-12' },
+        { name: '10px', class: 'w-10', token: 'w-10' },
         { name: '8px', class: 'w-8', token: 'w-8' },
         { name: '6px', class: 'w-6', token: 'w-6' },
         { name: '4px', class: 'w-4', token: 'w-4' },
         { name: '2px', class: 'w-2', token: 'p-2' },
         { name: '1px', class: 'w-1', token: 'w-1' },
+        { name: '0px', class: 'w-0', token: 'w-0' },
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className='flex items-center gap-8'>
           <div>

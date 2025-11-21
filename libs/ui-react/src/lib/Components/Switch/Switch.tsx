@@ -14,11 +14,11 @@ const switchVariants = cva(
     variants: {
       size: {
         sm: 'h-16 max-h-16 w-24 max-w-24',
-        lg: 'h-24 max-h-24 w-40 max-w-40',
+        md: 'h-24 max-h-24 w-40 max-w-40',
       },
     },
     defaultVariants: {
-      size: 'lg',
+      size: 'md',
     },
   },
 );
@@ -29,11 +29,11 @@ const thumbVariants = cva(
     variants: {
       size: {
         sm: 'size-12 group-data-[state=checked]:translate-x-8',
-        lg: 'size-20 group-data-[state=checked]:translate-x-16',
+        md: 'size-20 group-data-[state=checked]:translate-x-16',
       },
     },
     defaultVariants: {
-      size: 'lg',
+      size: 'md',
     },
   },
 );
@@ -53,9 +53,9 @@ export type SwitchProps = {
   onChange?: (selected: boolean) => void;
   /**
    * The size of the switch.
-   * @default 'lg'
+   * @default 'md'
    */
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md';
 } & Omit<
   React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
   'onChange' | 'checked' | 'defaultChecked' | 'onCheckedChange'
@@ -87,7 +87,7 @@ export const Switch = React.forwardRef<
   SwitchProps
 >(
   (
-    { className, selected, defaultSelected, onChange, size = 'lg', ...props },
+    { className, selected, defaultSelected, onChange, size = 'md', ...props },
     ref,
   ) => (
     <SwitchPrimitive.Root

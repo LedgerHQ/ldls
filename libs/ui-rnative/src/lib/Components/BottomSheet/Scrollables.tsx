@@ -10,7 +10,7 @@ import { cva } from 'class-variance-authority';
 import { cssInterop } from 'nativewind';
 import { FC, forwardRef } from 'react';
 
-const styles = cva('flex-1 px-16');
+const styles = cva('flex-1 px-16 pb-16');
 
 export type BottomSheetViewProps = Parameters<typeof GorhomBottomSheetView>[0];
 export type BottomSheetFlatListProps = Parameters<

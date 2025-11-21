@@ -1,4 +1,10 @@
-import { ThemeProvider, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import {
+  GlobalTooltipBottomSheet,
+  SupportedLocale,
+  ThemeProvider,
+  useBottomSheetRef,
+} from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
@@ -14,18 +20,23 @@ import {
   Tags,
   TextInputs,
   Tiles,
+  ToggleLocaleSwitch,
   ToggleThemeSwitch,
 } from './blocks';
+import { Banners } from './blocks/Banners';
+import { CardButtons } from './blocks/CardButtons';
+import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
   const bottomSheetFlatListsRef = useBottomSheetRef();
   const bottomSheetDynamicSizeRef = useBottomSheetRef();
+  const [locale, setLocale] = useState<SupportedLocale>('en');
 
   return (
     <SafeAreaView className='flex flex-1 bg-canvas'>
       <StatusBar />
-      <ThemeProvider defaultMode='dark' className='flex flex-1'>
+      <ThemeProvider defaultMode='dark' className='flex flex-1' locale={locale}>
         <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
@@ -37,6 +48,9 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='Amount inputs'>
                 <AmountInputs />
+              </SandboxBlock>
+              <SandboxBlock title='CardButtons'>
+                <CardButtons />
               </SandboxBlock>
               <SandboxBlock title='Checkboxes'>
                 <Checkboxes />
@@ -56,11 +70,20 @@ export const App = () => {
               <SandboxBlock title='IconButtons'>
                 <IconButtons />
               </SandboxBlock>
-              <SandboxBlock title='ToggleThemeSwitch'>
-                <ToggleThemeSwitch />
+              <SandboxBlock title='Theme Provider toggles'>
+                <View className='gap-12'>
+                  <ToggleThemeSwitch />
+                  <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
+                </View>
               </SandboxBlock>
               <SandboxBlock title='Tiles'>
                 <Tiles />
+              </SandboxBlock>
+              <SandboxBlock title='Tooltips'>
+                <Tooltips />
+              </SandboxBlock>
+              <SandboxBlock title='Banners'>
+                <Banners />
               </SandboxBlock>
               <SandboxBlock title='BottomSheets'>
                 <BottomSheetsButton
@@ -74,6 +97,7 @@ export const App = () => {
           </ScrollView>
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
+          <GlobalTooltipBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>

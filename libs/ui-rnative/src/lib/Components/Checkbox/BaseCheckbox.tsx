@@ -150,6 +150,7 @@ const BaseCheckboxIndicator = React.forwardRef<
   }
 
   const Component = asChild ? SlotView : View;
+
   return (
     <Component
       ref={ref}

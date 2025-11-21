@@ -13,9 +13,9 @@ export type SwitchProps = {
   checked?: boolean;
   /**
    * The size of the switch.
-   * @default 'lg'
+   * @default 'md'
    */
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md';
   /**
    * The callback function called when the checked state changes.
    */

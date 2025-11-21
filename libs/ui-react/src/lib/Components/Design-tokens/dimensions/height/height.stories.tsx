@@ -34,11 +34,13 @@ const HeightShowcase = () => (
         { name: '20px', class: 'h-20', token: 'h-20' },
         { name: '16px', class: 'h-16', token: 'h-16' },
         { name: '12px', class: 'h-12', token: 'h-12' },
+        { name: '10px', class: 'h-10', token: 'h-10' },
         { name: '8px', class: 'h-8', token: 'h-8' },
         { name: '6px', class: 'h-6', token: 'h-6' },
         { name: '4px', class: 'h-4', token: 'h-4' },
         { name: '2px', class: 'h-2', token: 'h-2' },
         { name: '1px', class: 'h-1', token: 'h-1' },
+        { name: '0px', class: 'h-0', token: 'h-0' },
       ].map(({ name, class: heightClass, token }) => (
         <div key={name}>
           <div

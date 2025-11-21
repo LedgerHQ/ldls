@@ -1,0 +1,94 @@
+# LDLS AI Rules for Consumers
+
+AI assistant rules to help you use `@ledgerhq/ldls-ui-react` correctly in your projects.
+
+## What These Rules Do
+
+These rules help AI assistants:
+
+✅ **Correct imports** - Suggest proper import paths (e.g., `/symbols` for icons)  
+✅ **Design tokens** - Use LDLS tokens instead of Tailwind defaults  
+✅ **Configuration** - Set up Tailwind with required LDLS content paths  
+✅ **Figma extraction** - Map Figma variables to Tailwind classes correctly  
+✅ **Dependencies** - Recommend required Radix UI peer dependencies
+
+## Usage by AI Tool
+
+### Cursor
+
+Add to your project's `.cursorrules` file:
+
+```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+Or create `.cursor/rules/ldls.mdc`:
+
+```markdown
+---
+description: LDLS UI React design system rules
+globs:
+alwaysApply: true
+---
+
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+### Claude / Claude Code
+
+Reference the rules file in your conversation:
+
+```
+Use the design system rules from: node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+Or copy the content from `node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md` into your custom instructions.
+
+### VS Code / GitHub Copilot
+
+Add to your workspace settings (`.vscode/settings.json`):
+
+```json
+{
+  "github.copilot.advanced": {
+    "contextFiles": ["node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md"]
+  }
+}
+```
+
+### WebStorm / JetBrains AI
+
+Add the file `node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md` to your AI Assistant settings under "Additional Context".
+
+### Manual Setup
+
+Copy the rules from `node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md` into your preferred AI assistant's configuration.
+
+## Example Results
+
+With these rules, AI assistants will suggest:
+
+```tsx
+// ❌ Without rules
+import { ArrowRight } from '@ledgerhq/ldls-ui-react';
+<div className='text-gray-500 font-bold'>Text</div>;
+
+// ✅ With rules
+import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+<div className='text-muted heading-2'>Text</div>;
+```
+
+## Auto-Sync Benefits
+
+By referencing the file from node_modules instead of copying:
+
+- ✅ Always get the latest rules when you update the package
+- ✅ No manual copy/paste needed
+- ✅ Consistent across your team
+- ✅ Rules are version-locked with your package version
+
+## Learn More
+
+- [LDLS Documentation](https://ldls.vercel.app)
+- [Package README](../README.md)
+- [Main Repository](https://github.com/LedgerHQ/ldls)

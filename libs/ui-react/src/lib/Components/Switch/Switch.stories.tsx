@@ -45,7 +45,7 @@ export const SizesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-32'>
       <Switch size='sm' />
-      <Switch size='lg' />
+      <Switch size='md' />
     </div>
   ),
 };

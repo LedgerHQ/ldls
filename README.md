@@ -30,8 +30,8 @@ import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
 
 const config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
+    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -52,7 +52,7 @@ npm install @radix-ui/react-slot
 import { Button } from '@ledgerhq/ldls-ui-react';
 
 function App() {
-  return <Button appearance="accent">Get Started</Button>;
+  return <Button appearance='accent'>Get Started</Button>;
 }
 ```
 
@@ -60,8 +60,29 @@ function App() {
 
 - [📖 Full User Guide](./USER_GUIDE.md) - Comprehensive guide for using LDLS
 - [🎨 Design Guidelines](./USER_GUIDE.md#design-tokens) - Learn about our design tokens and principles
-- [🧩 Component Library](https://your-storybook-url.com) - Explore available components
+- [🧩 Component Library](https://ldls.vercel.app) - Explore available components
 - [⚙️ Configuration Guide](./USER_GUIDE.md#configuration) - Advanced configuration options
+
+### 🤖 AI Assistant Support
+
+LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) suggest correct usage patterns.
+
+**For Cursor users**, add to your `.cursorrules`:
+
+```
+@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+```
+
+**For other AI tools**, see our [AI Rules README](./libs/ui-react/ai-rules/README.md).
+
+The rules help with:
+
+- ✅ Correct import paths and package usage
+- ✅ LDLS design tokens instead of Tailwind defaults
+- ✅ Proper Tailwind configuration
+- ✅ Figma-to-code token mapping
+
+[View the rules →](./libs/ui-react/ai-rules/)
 
 ---
 
