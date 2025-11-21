@@ -1,6 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
+import { useCommonTranslation } from '../../../i18n';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
@@ -14,6 +15,7 @@ const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
 });
 
 const BackButton = ({ onBack }: { onBack: () => void }) => {
+  const { t } = useCommonTranslation();
   return (
     <IconButton
       appearance='no-background'
@@ -21,12 +23,13 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
       icon={ArrowLeft}
       onClick={onBack}
       className='shrink-0'
-      aria-label='Go back'
+      aria-label={t('components.sheetBar.goBackAriaLabel')}
     />
   );
 };
 
 const CloseButton = ({ onClose }: { onClose: () => void }) => {
+  const { t } = useCommonTranslation();
   return (
     <IconButton
       appearance='gray'
@@ -34,7 +37,7 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
       icon={Close}
       onClick={onClose}
       className='shrink-0'
-      aria-label='Close'
+      aria-label={t('components.sheetBar.closeAriaLabel')}
     />
   );
 };

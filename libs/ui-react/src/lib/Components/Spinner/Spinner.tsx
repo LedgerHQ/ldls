@@ -1,5 +1,6 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { forwardRef } from 'react';
+import { useCommonTranslation } from '../../../i18n';
 import { IconSize } from '../../Components/Icon/Icon';
 
 export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
@@ -18,6 +19,7 @@ export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
  */
 export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
   ({ className, size = 16, ...props }, ref) => {
+    const { t } = useCommonTranslation();
     return (
       <svg
         className={cn('shrink-0 animate-spin text-base', className)}
@@ -26,7 +28,7 @@ export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
         height={size}
         viewBox='0 0 16 16'
         fill='none'
-        aria-label='Loading'
+        aria-label={t('components.spinner.loadingAriaLabel')}
         role='img'
         ref={ref}
         {...props}

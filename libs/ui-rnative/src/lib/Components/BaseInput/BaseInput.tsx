@@ -18,6 +18,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useCommonTranslation } from '../../../i18n';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
 
@@ -89,6 +90,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     },
     ref,
   ) => {
+    const { t } = useCommonTranslation();
     const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -202,7 +204,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             <InteractiveIcon
               iconType='filled'
               onPress={handleClear}
-              accessibilityLabel='Clear input'
+              accessibilityLabel={t('components.baseInput.clearInputAriaLabel')}
             >
               <DeleteCircleFill size={20} />
             </InteractiveIcon>

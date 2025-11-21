@@ -1,6 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
+import { useCommonTranslation } from '../../../i18n';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -80,6 +81,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     },
     ref,
   ) => {
+    const { t } = useCommonTranslation();
     const icon = iconMap[appearance];
 
     return (
@@ -109,7 +111,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             size='xs'
             icon={Close}
             onClick={() => onClose()}
-            aria-label={closeAriaLabel || 'Close'}
+            aria-label={closeAriaLabel || t('components.banner.closeAriaLabel')}
           />
         )}
       </div>

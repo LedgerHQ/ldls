@@ -2,6 +2,7 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 import { forwardRef } from 'react';
 import { View } from 'react-native';
 import Svg, { Path, type SvgProps } from 'react-native-svg';
+import { useCommonTranslation } from '../../../i18n';
 import { IconSize } from '../../Components/Icon/Icon.types';
 
 export type SpinnerProps = SvgProps & {
@@ -20,6 +21,7 @@ export type SpinnerProps = SvgProps & {
  */
 export const Spinner = forwardRef<Svg, SpinnerProps>(
   ({ className, size = 16, ...props }, ref) => {
+    const { t } = useCommonTranslation();
     return (
       <View className='shrink-0 animate-spin'>
         <Svg
@@ -28,7 +30,7 @@ export const Spinner = forwardRef<Svg, SpinnerProps>(
           height={size}
           viewBox='0 0 16 16'
           fill='none'
-          accessibilityLabel='Loading'
+          accessibilityLabel={t('components.spinner.loadingAriaLabel')}
           ref={ref}
           {...props}
         >
