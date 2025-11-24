@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import { Search as SearchIcon } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
+import { InteractiveIcon } from '../InteractiveIcon';
 
 export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'>;
 
@@ -13,11 +14,9 @@ export const Search = React.forwardRef<
     <BaseInput
       ref={ref}
       prefix={
-        <SearchIcon
-          size={20}
-          className='text-muted group-has-[:disabled]:text-disabled'
-          accessible={false}
-        />
+        <InteractiveIcon iconType='filled' disabled>
+          <SearchIcon size={20} accessible={false} />
+        </InteractiveIcon>
       }
       style={{ fontSize: 16, fontWeight: '500' }}
       {...props}

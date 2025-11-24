@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 import { useMemo } from 'react';
 import { View, Text } from 'react-native';
 import {
-  Bluetooth,
+  BluetoothCircleFill,
   CheckmarkCircleFill,
   DeleteCircleFill,
   InformationFill,
@@ -121,9 +121,8 @@ export const Spot = (props: SpotProps) => {
         );
       }
       case 'bluetooth':
-        // TODO: Replace with BluetoothCircleFill
         return (
-          <Bluetooth
+          <BluetoothCircleFill
             className={spotVariants.inner({ appearance, disabled })}
             size={calculatedIconSize}
           />

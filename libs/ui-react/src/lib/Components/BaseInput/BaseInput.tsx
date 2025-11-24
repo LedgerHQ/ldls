@@ -1,5 +1,6 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React from 'react';
+import { useCommonTranslation } from '../../../i18n';
 import { DeleteCircleFill } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
 
@@ -115,6 +116,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     },
     ref,
   ) => {
+    const { t } = useCommonTranslation();
     const inputRef = React.useRef<HTMLInputElement>(null);
 
     const reactId = React.useId();
@@ -258,7 +260,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             <InteractiveIcon
               iconType='filled'
               onClick={handleClear}
-              aria-label='Clear input'
+              aria-label={t('components.baseInput.clearInputAriaLabel')}
             >
               <DeleteCircleFill size={20} />
             </InteractiveIcon>

@@ -179,13 +179,17 @@ describe('Input Component', () => {
         {...createControlledProps({ value: 'test content' })}
       />,
     );
-    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    const clearButton = screen.getByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     expect(clearButton).toBeInTheDocument();
   });
 
   it('should not show clear button when input is empty', () => {
     render(<TextInput label='Username' {...createControlledProps()} />);
-    const clearButton = screen.queryByRole('button', { name: /clear input/i });
+    const clearButton = screen.queryByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     expect(clearButton).not.toBeInTheDocument();
   });
 
@@ -197,7 +201,9 @@ describe('Input Component', () => {
         disabled
       />,
     );
-    const clearButton = screen.queryByRole('button', { name: /clear input/i });
+    const clearButton = screen.queryByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     expect(clearButton).not.toBeInTheDocument();
   });
 
@@ -215,7 +221,9 @@ describe('Input Component', () => {
       />,
     );
 
-    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    const clearButton = screen.getByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     fireEvent.click(clearButton);
 
     // Both default clearing (onChange) and custom onClear should be called
@@ -243,11 +251,13 @@ describe('Input Component', () => {
         hideClearButton={true}
       />,
     );
-    const clearButton = screen.queryByRole('button', { name: /clear input/i });
+    const clearButton = screen.queryByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     expect(clearButton).not.toBeInTheDocument();
   });
 
-  it('should clear input with default behavior when no onClear provided', () => {
+  it('should components.baseInput.clearInputAriaLabel with default behavior when no onClear provided', () => {
     const handleChange = vi.fn();
     render(
       <TextInput
@@ -259,7 +269,9 @@ describe('Input Component', () => {
       />,
     );
 
-    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    const clearButton = screen.getByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     fireEvent.click(clearButton);
 
     // Default clearing should trigger onChange with empty value
@@ -293,7 +305,9 @@ describe('Input Component', () => {
     expect(screen.queryByTestId('custom-suffix')).not.toBeInTheDocument();
 
     // Clear button should be visible
-    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    const clearButton = screen.getByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
     expect(clearButton).toBeInTheDocument();
   });
 
@@ -310,7 +324,9 @@ describe('Input Component', () => {
     );
 
     const inputElement = screen.getByRole('textbox');
-    const clearButton = screen.getByRole('button', { name: /clear input/i });
+    const clearButton = screen.getByRole('button', {
+      name: /components.baseInput.clearInputAriaLabel/i,
+    });
 
     // Clear the input
     fireEvent.click(clearButton);

@@ -18,7 +18,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useCommonTranslation } from '../../../i18n';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
+import { InteractiveIcon } from '../InteractiveIcon';
 
 export type BaseInputProps = TextInputProps & {
   /**
@@ -88,6 +90,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     },
     ref,
   ) => {
+    const { t } = useCommonTranslation();
     const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -171,7 +174,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             )}
             // TODO: eventually move to token system
             // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
-            style={{ fontWeight: '500' }}
+            style={{ fontWeight: '500', lineHeight: 0 }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -198,16 +201,13 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           )}
 
           {showClearButton && (
-            <Pressable
-              className='group'
+            <InteractiveIcon
+              iconType='filled'
               onPress={handleClear}
-              accessibilityLabel='Clear input'
+              accessibilityLabel={t('components.baseInput.clearInputAriaLabel')}
             >
-              <DeleteCircleFill
-                size={20}
-                className='text-muted group-active:text-muted-pressed'
-              />
-            </Pressable>
+              <DeleteCircleFill size={20} />
+            </InteractiveIcon>
           )}
 
           {!showClearButton && suffix}

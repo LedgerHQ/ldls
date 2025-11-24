@@ -2,6 +2,7 @@ import { useBottomSheet } from '@gorhom/bottom-sheet';
 import { cva } from 'class-variance-authority';
 import { FC, useCallback } from 'react';
 import { Text, View } from 'react-native';
+import { useCommonTranslation } from '../../../i18n';
 import { ArrowLeft, Close } from '../../Symbols';
 import { cn } from '../../utils';
 import { IconButton } from '../IconButton';
@@ -63,6 +64,7 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   spacing = false,
   ...props
 }) => {
+  const { t } = useCommonTranslation();
   const { close } = useBottomSheet();
   const { onBack, hideCloseButton } = useBottomSheetContext({
     consumerName: 'BottomSheetHeader',
@@ -109,7 +111,9 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
         <View className='size-32'>
           {onBack && (
             <IconButton
-              accessibilityLabel='Go back'
+              accessibilityLabel={t(
+                'components.bottomSheetHeader.goBackAriaLabel',
+              )}
               size='xs'
               onPress={onBack}
               icon={ArrowLeft}
@@ -121,7 +125,9 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
         <View className='size-32'>
           {!hideCloseButton && (
             <IconButton
-              accessibilityLabel='Close'
+              accessibilityLabel={t(
+                'components.bottomSheetHeader.closeAriaLabel',
+              )}
               size='xs'
               onPress={handleClose}
               icon={Close}

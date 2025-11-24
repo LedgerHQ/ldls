@@ -42,3 +42,22 @@ function AppProviders() {
 ```
 
 When updating the mode, the react-native `Appearance.setColorScheme` API method is called to update the application scheme.
+
+
+## Internationalization
+The ThemeProvider also manages the app’s locale using React Context.  
+You can just pass the locale to the `ThemeProvider` and the translations will be loaded automatically.
+
+```tsx
+import { ThemeProvider, type SupportedLocale } from '@ledgerhq/ldls-ui-rnative';
+
+function AppProviders() {
+  const [locale, setLocale] = useState<SupportedLocale>('en');
+  return (
+    <ThemeProvider locale={locale}>
+      <App />
+      <Button onClick={() => setLocale('fr')}>Switch to French</Button>
+    </ThemeProvider>
+  );
+}
+```

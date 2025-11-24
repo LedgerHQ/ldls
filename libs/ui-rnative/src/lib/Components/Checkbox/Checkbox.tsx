@@ -11,6 +11,14 @@ import { CheckboxProps } from './types';
 
 const checkboxVariants = {
   root: cva(['flex flex-row items-center gap-8']),
+  icon: cva('shrink-0', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-black',
+      },
+    },
+  }),
 };
 
 /**
@@ -47,7 +55,7 @@ export const Checkbox = React.forwardRef<
       checked: checkedProp,
       onCheckedChange: onCheckedChangeProp,
       defaultChecked = false,
-      disabled,
+      disabled = false,
       label,
       ...props
     },
@@ -69,7 +77,7 @@ export const Checkbox = React.forwardRef<
           {...props}
         >
           <BaseCheckboxIndicator>
-            <Check size={16} />
+            <Check size={16} className={checkboxVariants.icon({ disabled })} />
           </BaseCheckboxIndicator>
         </BaseCheckboxRoot>
         {label && (
