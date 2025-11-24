@@ -76,7 +76,7 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
    */
   icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
   /**
-   * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
+   * If true, displays an external link icon next to the link text.
    * @default false
    */
   isExternal?: boolean;
@@ -89,12 +89,6 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
    */
   onPress?: () => void;
   /**
-   * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
-   * Useful for creating router links or other semantic elements with link appearance.
-   * @default false
-   */
-  asChild?: boolean;
-  /**
    * The link's content, typically text.
    */
   children: React.ReactNode;
@@ -102,6 +96,7 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
 
 /**
  * A customizable link component that supports base and accent color appearances, optional underline, sizes, icons, and external link handling.
+ * Opens URLs using React Native's Linking API.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
@@ -110,34 +105,29 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` and `underline` props instead.
  *
  * @example
- * import { Link } from '@ledgerhq/ldls-ui-react';
+ * import { Link } from '@ledgerhq/ldls-ui-rnative';
  *
- * // Default link with underline and inherited appearance and size
- * <Link href="/page">
+ * // Default link with underline
+ * <Link href="https://example.com">
  *   Go to Page
  * </Link>
  *
- * // Accent link with icon
- * import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+ * // Accent link with icon and external indicator
+ * import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
  *
  * <Link appearance="accent" size="sm" href="https://example.com" isExternal icon={ArrowRight}>
  *   External Site
  * </Link>
  *
- * // Link with inherited styles
- * <Link appearance="inherit" size="inherit" href="/page">
- *   Inherit Styles
+ * // Small base link without underline
+ * <Link appearance="base" size="sm" underline={false} href="https://example.com">
+ *   Simple Link
  * </Link>
  *
- * // Link as a router link (asChild pattern)
- * import { Link as RouterLink } from 'react-router-dom';
- *
- * <Link asChild>
- *   <RouterLink to="/dashboard">Dashboard</RouterLink>
+ * // Link with custom press handler
+ * <Link onPress={() => navigation.navigate('Dashboard')}>
+ *   Dashboard
  * </Link>
- *
- * // Note: When using asChild, the child element is responsible for its own content.
- * // Icons and other Link props like 'icon' are ignored when asChild is true - handle these in the child if needed.
  */
 export const Link = React.forwardRef<
   React.ElementRef<typeof Pressable>,
@@ -153,7 +143,6 @@ export const Link = React.forwardRef<
       icon,
       isExternal = false,
       href,
-      asChild,
       onPress,
       ...props
     },

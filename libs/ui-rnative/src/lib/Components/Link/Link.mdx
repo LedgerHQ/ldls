@@ -1,0 +1,394 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as LinkStories from './Link.stories';
+import { Link } from './Link';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+
+<Meta title='Components/Link' of={LinkStories} />
+
+# 🔗 Link
+
+<CustomTabs>
+  <Tab label="Overview ">
+
+## Introduction
+
+Links are essential navigation elements that direct users to internal screens or external resources. This React Native implementation provides base and accent color appearances, optional underline decoration, and predefined sizing options. Links use React Native's Linking API to open URLs across mobile platforms.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=770-11743&p=f).
+
+## Anatomy
+
+<Canvas of={LinkStories.ExternalLinkWithIcon} />
+
+- **Label**: Describes the destination or action of the link
+- **Icon (optional)**: Leading icon to enhance visual communication
+- **External indicator (optional)**: Appears when the link opens in a new tab
+
+## Properties
+
+### Overview
+
+<Canvas of={LinkStories.Base} />
+<Controls of={LinkStories.Base} />
+
+### Appearance
+
+There are two link appearance variants:
+
+- **base** (default): Standard link with base text color and pressed states
+- **accent**: Interactive accent color for emphasis
+
+<Canvas of={LinkStories.AppearanceShowcase} />
+
+### Underline
+
+The `underline` prop controls text decoration independently from appearance (default: `true`):
+
+<Canvas of={LinkStories.UnderlineShowcase} />
+
+### Size
+
+Links come in two size options:
+
+- **sm**: Small size with **body-2-semi-bold** typography
+- **md** (default): Medium size with **body-1-semi-bold** typography
+
+<Canvas of={LinkStories.SizesShowcase} />
+
+> **⚠️ Important**: Icon sizes are automatically managed by the Link component based on the selected size. Never override the icon size using className or style props, as this will break the visual consistency of the design system. The Link component ensures proper scaling and alignment of icons across all sizes.
+>
+> ```tsx
+> // ✅ Correct: Let Link handle icon sizing
+> <Link size="sm" icon={ArrowRight} href="https://example.com">Continue</Link>
+>
+> // ❌ Wrong: Don't override icon size [it's not gonna work even if you try]
+> <Link size="sm" icon={ArrowRight} className="w-6 h-6" href="https://example.com">Continue</Link>
+> ```
+
+### States
+
+Links respond to press interactions with visual feedback:
+
+<Canvas of={LinkStories.StatesShowcase} />
+
+## Responsive Layout
+
+Links adapt to their container, truncating long text to prevent overflow:
+
+<Canvas of={LinkStories.ResponsiveLayout} />
+
+## Accessibility
+
+To be implemented:
+
+- Color contrast
+- Text zoom
+- Touch target sizing (minimum 44px)
+- Screen reader compatibility
+- Semantic labeling
+
+</Tab>
+  <Tab label="Implementation ">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+## Basic Usage
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-rnative';
+
+function MyComponent() {
+  return <Link href='https://example.com'>Go to Page</Link>;
+}
+```
+
+### Custom Styling
+
+While the component comes with predefined styles, you can extend them using NativeWind classes:
+
+```tsx
+<Link
+  href='https://example.com'
+  className='mt-4' // Custom margin top
+>
+  Custom Link
+</Link>
+```
+
+### With or Without Underline
+
+Links are underlined by default. Use `underline={false}` to remove the underline:
+
+```tsx
+// Default: with underline
+<Link href="https://example.com">
+  Underlined Link (default)
+</Link>
+
+// Explicitly without underline
+<Link underline={false} href="https://example.com">
+  Link without underline
+</Link>
+```
+
+### With Icons
+
+The Link component supports icons with automatic size adjustment based on the link size:
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-rnative';
+import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+function MyComponent() {
+  return (
+    <Link
+      appearance='accent'
+      size='sm'
+      href='https://example.com'
+      icon={ArrowRight}
+    >
+      Continue
+    </Link>
+  );
+}
+```
+
+### External Links
+
+Use the `isExternal` prop to automatically add an external link icon:
+
+```tsx
+<Link href='https://example.com' isExternal>
+  Visit External Site
+</Link>
+```
+
+### Custom Navigation
+
+For custom navigation (e.g., React Navigation), use the `onPress` prop which takes precedence over `href`:
+
+```tsx
+import { Link } from '@ledgerhq/ldls-ui-rnative';
+import { useNavigation } from '@react-navigation/native';
+
+function MyComponent() {
+  const navigation = useNavigation();
+
+  return (
+    <Link onPress={() => navigation.navigate('Dashboard')}>Dashboard</Link>
+  );
+}
+```
+
+### Pressable Integration
+
+The Link component is built on React Native's `Pressable` and accepts all its props:
+
+```tsx
+<Link
+  href='https://example.com'
+  onPressIn={() => console.log('Press started')}
+  onPressOut={() => console.log('Press ended')}
+>
+  Interactive Link
+</Link>
+```
+
+## Do's and Don'ts
+
+The following guidelines are based on our design system principles. These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
+
+### Content Composition
+
+✅ **Do**
+
+```tsx
+// Use children for content composition
+<Link href='https://example.com'>
+  See <Text className='heading-1'>Terms and Conditions</Text>
+</Link>;
+
+// Pass icon as a component reference
+import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+<Link icon={ArrowRight} href='https://example.com'>
+  Next
+</Link>;
+```
+
+❌ **Don't**
+
+```tsx
+// Don't use text prop
+<Link text="Accept Terms and Conditions" href="https://example.com" />
+
+// Don't pass icon as a string
+<Link icon="ArrowRight" href="https://example.com">Next</Link>
+
+// Don't include icon in children
+<Link href="https://example.com">
+  <ArrowRight /> Next
+</Link>
+```
+
+### Layout and Styling
+
+✅ **Do**
+
+```tsx
+// Use className for layout positioning
+<Link className="mt-4 ml-2" href="https://example.com">Submit</Link>
+
+// Use className for positioning
+<Link className="absolute top-0 right-0" isExternal href="https://example.com">Go to shop</Link>
+
+// Use className for margins and spacing in layout
+<Link className="mx-auto my-4" href="https://example.com">Centered</Link>
+
+// Use className for responsive behavior
+<Link className="hidden md:flex" href="https://example.com">Desktop Only</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't override link's core styling
+<Link className="bg-accent p-6" href="https://example.com">Custom</Link>
+
+// Don't modify internal spacing/gap
+<Link className="gap-4" href="https://example.com">Wrong Spacing</Link>
+
+// Don't override typography - use size prop instead
+<Link className="heading-2" href="https://example.com">Wrong Typography</Link>
+
+// Don't use className for underline - use underline prop instead
+<Link className="underline" href="https://example.com">Wrong Approach</Link>
+```
+
+> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The link's core styling (colors, underline, gap, pressed states, etc.) and typography should be controlled through the component's props (`appearance`, `size`, `underline`) to maintain design system consistency.
+
+### Icon Usage
+
+✅ **Do**
+
+```tsx
+// Import icons explicitly
+import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Use icon prop for consistent sizing
+<Link icon={ArrowRight} appearance="accent" href="https://example.com">Continue</Link>
+
+// Let Link handle icon sizing
+<Link icon={ArrowRight} size="sm" href="https://example.com">Small</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import entire icon library
+import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't modify icon size directly
+<Link href="https://example.com">
+  <ArrowRight size={24} />
+  Next
+</Link>
+
+// Don't use string-based icon names
+<Link icon="arrow-right" href="https://example.com">Next</Link>
+```
+
+### Touch Interaction
+
+✅ **Do**
+
+```tsx
+// Provide href for URL navigation
+<Link href="https://example.com">
+  Visit External Site
+</Link>
+
+// Use onPress for custom navigation
+<Link onPress={() => navigation.navigate('Details')}>
+  View Details
+</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't omit both href and onPress
+<Link>Clickable Looking Link</Link>
+
+// Don't use Pressable directly when Link suffices
+<Pressable onPress={() => Linking.openURL('https://example.com')}>
+  <Text>Custom Link</Text>
+</Pressable>
+
+// Don't prevent press events manually
+<Link onPress={isLoading ? undefined : handlePress} href="https://example.com">
+  Link
+</Link>
+```
+
+### Performance Considerations
+
+✅ **Do**
+
+```tsx
+// Import specific icons for better tree-shaking
+import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+<Link icon={Plus} href='https://example.com'>
+  Add
+</Link>;
+
+// Use React.useCallback for onPress handlers in lists
+const handlePress = React.useCallback(() => {
+  navigation.navigate('Details');
+}, [navigation]);
+
+<Link onPress={handlePress}>Action</Link>;
+```
+
+❌ **Don't**
+
+```tsx
+// Don't import all icons
+import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
+
+// Don't create inline functions in render for frequently re-rendered components
+<FlatList
+  data={items}
+  renderItem={({ item }) => (
+    <Link onPress={() => handleItem(item.id)}>{item.name}</Link>
+  )}
+/>;
+```
+
+## Platform Considerations
+
+### iOS Specific
+
+- Links automatically adapt to iOS design guidelines
+- Touch feedback uses appropriate opacity transitions
+- Respects iOS accessibility settings like reduced motion
+- URLs open in Safari or the app specified by the system
+
+### Android Specific
+
+- Material Design touch feedback is supported through React Native
+- Handles Android back button interactions appropriately
+- Respects Android accessibility services
+- URLs open in Chrome or the user's default browser
+
+### Cross-Platform
+
+- Consistent visual appearance across platforms
+- Platform-appropriate touch feedback
+- Unified API regardless of platform
+- React Native's Linking API handles URL opening across platforms
+
+</Tab>
+</CustomTabs>
