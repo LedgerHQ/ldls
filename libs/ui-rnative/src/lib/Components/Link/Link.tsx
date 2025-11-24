@@ -1,82 +1,104 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import React from 'react';
 import { Linking, Pressable, PressableProps, Text, View } from 'react-native';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
 
-const linkVariants = cva(
-  'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
-  {
-    variants: {
-      appearance: {
-        base: 'text-base hover:text-base-hover active:text-base-pressed',
-        accent:
-          'text-interactive hover:text-interactive-hover active:text-interactive-pressed',
-      },
-      size: {
-        sm: 'gap-4 body-2-semi-bold',
-        md: 'gap-8 body-1-semi-bold',
-      },
-      underline: {
-        true: 'underline underline-offset-2',
-        false: '',
-      },
+const linkTextVariants = cva('', {
+  variants: {
+    appearance: {
+      base: '',
+      accent: '',
     },
-    defaultVariants: {
-      appearance: 'base',
-      size: 'md',
-      underline: true,
+    underline: {
+      true: 'underline underline-offset-2',
+      false: '',
+    },
+    size: {
+      sm: 'body-2-semi-bold',
+      md: 'body-1-semi-bold',
+    },
+    pressed: {
+      true: '',
+      false: '',
     },
   },
-);
+  compoundVariants: [
+    {
+      appearance: 'base',
+      pressed: false,
+      className: 'text-base',
+    },
+    {
+      appearance: 'base',
+      pressed: true,
+      className: 'text-base-pressed',
+    },
+    {
+      appearance: 'accent',
+      pressed: false,
+      className: 'text-interactive',
+    },
+    {
+      appearance: 'accent',
+      pressed: true,
+      className: 'text-interactive-pressed',
+    },
+  ],
+  defaultVariants: {
+    appearance: 'base',
+    size: 'md',
+    underline: true,
+    pressed: false,
+  },
+});
 
-export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> &
-  VariantProps<typeof linkVariants> & {
-    /**
-     * The visual style of the link.
-     * @default base
-     */
-    appearance?: 'base' | 'accent';
-    /**
-     * The size variant of the link.
-     * @default md
-     */
-    size?: 'sm' | 'md';
-    /**
-     * Whether to underline the link text.
-     * @default true
-     */
-    underline?: boolean;
-    /**
-     * An optional icon component to render inside the link.
-     * The icon styles are defined by the link. Please do not override them.
-     */
-    icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-    /**
-     * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
-     * @default false
-     */
-    isExternal?: boolean;
-    /**
-     * The URL to navigate to
-     */
-    href?: string;
-    /**
-     * Custom press handler (overrides default href navigation)
-     */
-    onPress?: () => void;
-    /**
-     * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
-     * Useful for creating router links or other semantic elements with link appearance.
-     * @default false
-     */
-    asChild?: boolean;
-    /**
-     * The link's content, typically text.
-     */
-    children: React.ReactNode;
-  };
+export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
+  /**
+   * The visual style of the link.
+   * @default base
+   */
+  appearance?: 'base' | 'accent';
+  /**
+   * The size variant of the link.
+   * @default md
+   */
+  size?: 'sm' | 'md';
+  /**
+   * Whether to underline the link text.
+   * @default true
+   */
+  underline?: boolean;
+  /**
+   * An optional icon component to render inside the link.
+   * The icon styles are defined by the link. Please do not override them.
+   */
+  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  /**
+   * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
+   * @default false
+   */
+  isExternal?: boolean;
+  /**
+   * The URL to navigate to
+   */
+  href?: string;
+  /**
+   * Custom press handler (overrides default href navigation)
+   */
+  onPress?: () => void;
+  /**
+   * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
+   * Useful for creating router links or other semantic elements with link appearance.
+   * @default false
+   */
+  asChild?: boolean;
+  /**
+   * The link's content, typically text.
+   */
+  children: React.ReactNode;
+};
 
 /**
  * A customizable link component that supports base and accent color appearances, optional underline, sizes, icons, and external link handling.
@@ -117,7 +139,10 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> &
  * // Note: When using asChild, the child element is responsible for its own content.
  * // Icons and other Link props like 'icon' are ignored when asChild is true - handle these in the child if needed.
  */
-export const Link = React.forwardRef<Text, LinkProps>(
+export const Link = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  LinkProps
+>(
   (
     {
       className,
@@ -155,30 +180,51 @@ export const Link = React.forwardRef<Text, LinkProps>(
     };
 
     return (
-      <Pressable ref={ref} onPress={handlePress} {...props}>
-        <View className='flex-row items-center gap-8'>
-          {IconComponent && (
-            <IconComponent
-              className={linkVariants({ appearance, size, underline })}
-              size={calculatedIconSize}
-            />
-          )}
-          <Text
+      <Pressable
+        ref={ref}
+        onPress={handlePress}
+        {...props}
+        style={({ pressed }) => pressed && { opacity: 0.6 }}
+      >
+        {({ pressed }) => (
+          <View
             className={cn(
-              'truncate',
-              linkVariants({ appearance, size, underline }),
+              'flex-row items-center gap-8',
+              size === 'sm' && 'gap-4',
             )}
           >
-            {children}
-          </Text>
-          {isExternal && (
-            <ExternalLink
-              size={calculatedIconSize}
-              className={linkVariants({ appearance, size, underline })}
-              accessible={false}
-            />
-          )}
-        </View>
+            {IconComponent && (
+              <IconComponent
+                className={linkTextVariants({
+                  appearance,
+                  size,
+                  underline,
+                  pressed,
+                })}
+                size={calculatedIconSize}
+              />
+            )}
+            <Text
+              className={cn(
+                linkTextVariants({ appearance, size, underline, pressed }),
+              )}
+            >
+              {children}
+            </Text>
+            {isExternal && (
+              <ExternalLink
+                size={calculatedIconSize}
+                className={linkTextVariants({
+                  appearance,
+                  size,
+                  underline,
+                  pressed,
+                })}
+                accessible={false}
+              />
+            )}
+          </View>
+        )}
       </Pressable>
     );
   },

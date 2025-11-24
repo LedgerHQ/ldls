@@ -1,23 +1,29 @@
 import { Link as LdlsLink } from '@ledgerhq/ldls-ui-rnative';
-import { Information } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Github, LedgerLogo, Screens } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Alert, Text, View } from 'react-native';
 
 export function Link() {
   return (
     <View className='gap-8'>
-      <LdlsLink href={'https://www.ledger.com/'} isExternal>
-        <Text className='text-base'>Open Ledger store</Text>
+      <LdlsLink
+        href={'https://github.com/LedgerHQ/ldls'}
+        icon={Github}
+        isExternal
+      >
+        Set up LDLS in your project
       </LdlsLink>
       <LdlsLink
         appearance='accent'
         href={'https://www.ledger.com/'}
         isExternal
         underline={false}
+        icon={LedgerLogo}
       >
-        <Text>Open Ledger store</Text>
+        Open Ledger store
       </LdlsLink>
       <LdlsLink
-        icon={Information}
+        icon={Screens}
+        size='sm'
         onPress={() =>
           Alert.alert(
             'Use your router here',
@@ -26,7 +32,7 @@ export function Link() {
           )
         }
       >
-        <Text>Custom navigation</Text>
+        Custom navigation
       </LdlsLink>
       <Text className='flex-row items-center justify-center text-base'>
         If you require assistance, please contact us via our{' '}
