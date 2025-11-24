@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import React from 'react';
 import { View, Text } from 'react-native';
 import { Settings, Information, ArrowRight } from '../../Symbols';
 import { Link } from './Link';
@@ -281,8 +280,8 @@ export const ResponsiveLayout: Story = {
         Short Link
       </Link>
       <Link appearance='base' href='https://ledger.com' size='md'>
-        This is a longer link text to show line clamping behavior over two lines
-        if necessary
+        This is a longer link text that will be truncated with ellipsis when it
+        exceeds the container width
       </Link>
       <Link
         appearance='base'

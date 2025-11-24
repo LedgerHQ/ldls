@@ -171,14 +171,14 @@ export const Link = React.forwardRef<
     return (
       <Pressable
         ref={ref}
+        className={cn('shrink', className)}
         onPress={handlePress}
         {...props}
-        style={({ pressed }) => pressed && { opacity: 0.6 }}
       >
         {({ pressed }) => (
           <View
             className={cn(
-              'flex-row items-center gap-8',
+              'flex-row items-center gap-8 flex-shrink',
               size === 'sm' && 'gap-4',
             )}
           >
@@ -193,16 +193,19 @@ export const Link = React.forwardRef<
                 size={calculatedIconSize}
               />
             )}
-            <Text
-              className={linkTextVariants({
-                appearance,
-                size,
-                underline,
-                pressed,
-              })}
-            >
-              {children}
-            </Text>
+            <View className='shrink'>
+              <Text
+                numberOfLines={1}
+                className={linkTextVariants({
+                  appearance,
+                  size,
+                  underline,
+                  pressed,
+                })}
+              >
+                {children}
+              </Text>
+            </View>
             {isExternal && (
               <ExternalLink
                 size={calculatedIconSize}
