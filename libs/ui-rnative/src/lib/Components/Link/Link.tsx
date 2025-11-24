@@ -205,9 +205,12 @@ export const Link = React.forwardRef<
               />
             )}
             <Text
-              className={cn(
-                linkTextVariants({ appearance, size, underline, pressed }),
-              )}
+              className={linkTextVariants({
+                appearance,
+                size,
+                underline,
+                pressed,
+              })}
             >
               {children}
             </Text>

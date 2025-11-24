@@ -34,13 +34,15 @@ export function Link() {
       >
         Custom navigation
       </LdlsLink>
-      <Text className='flex-row items-center justify-center text-base'>
-        If you require assistance, please contact us via our{' '}
-        <LdlsLink size='sm' isExternal>
+      <View className='flex-row flex-wrap items-center'>
+        <Text className='text-base'>
+          If you require assistance, please contact us via our{' '}
+        </Text>
+        <LdlsLink size='sm' isExternal href='https://github.com/LedgerHQ/ldls'>
           support page
-        </LdlsLink>{' '}
-        during business hours (9am-5pm).
-      </Text>
+        </LdlsLink>
+        <Text className='text-base'> during business hours (9am-5pm).</Text>
+      </View>
     </View>
   );
 }
