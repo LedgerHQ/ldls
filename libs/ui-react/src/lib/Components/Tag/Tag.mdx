@@ -1,7 +1,11 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Tag' of={TagStories} />
@@ -111,7 +115,7 @@ function MyComponent() {
 
 ```tsx
 import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
-<Tag icon={Plus} label='Add Item' />
+<Tag icon={Plus} label='Add Item' />;
 ```
 
     </DoBlockItem>
@@ -127,21 +131,6 @@ import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
 
     </DontBlockItem>
 
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Import icons explicitly'
-      description='Use specific imports for better tree-shaking'
-    >
-
-```tsx
-import { Check } from '@ledgerhq/ldls-ui-react/symbols';
-
-<Tag icon={Check} label='Success' />
-```
-
-    </DoBlockItem>
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
