@@ -23,15 +23,29 @@ figma.connect(
         true: figma.instance('tag'),
         false: undefined,
       }),
-      secondaryAction: (
-        <InteractiveIcon
-          iconType='stroked'
-          aria-label='More actions'
-          onClick={() => console.log('secondary action clicked')}
-        >
-          <MoreVertical />
-        </InteractiveIcon>
-      ),
+      secondaryAction: figma.boolean('show-secondary-action', {
+        true: (
+          <InteractiveIcon
+            iconType='stroked'
+            aria-label='More actions'
+            onClick={() => console.log('secondary action clicked')}
+          >
+            <MoreVertical />
+          </InteractiveIcon>
+        ),
+        false: undefined,
+      }),
+      size: figma.enum('size', {
+        md: 'md',
+        sm: 'sm',
+      }),
+      appearance: figma.enum('appearance', {
+        'no-background': 'no-background',
+        card: 'card',
+      }),
+      disabled: figma.enum('state', {
+        disabled: true,
+      }),
     },
     links: [
       {
@@ -46,6 +60,10 @@ figma.connect(
         leadingContent={props.leadingContent}
         trailingContent={props.trailingContent}
         secondaryAction={props.secondaryAction}
+        size={props.size}
+        appearance={props.appearance}
+        disabled={props.disabled}
+        onClick={() => console.log('Tile clicked')}
       />
     ),
   },

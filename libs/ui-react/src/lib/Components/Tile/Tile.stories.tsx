@@ -25,6 +25,15 @@ const secondaryAction = (
   </InteractiveIcon>
 );
 
+const secondaryActionSmall = (
+  <InteractiveIcon
+    iconType='stroked'
+    aria-label='More actions'
+    onClick={() => console.log('secondary action clicked')}
+  >
+    <MoreVertical size={16} />
+  </InteractiveIcon>
+);
 const meta: Meta<typeof Tile> = {
   component: Tile,
   title: 'Containment/Tile',
@@ -78,8 +87,10 @@ export const Base: Story = {
     title: 'Item with Spot and Description',
     description: 'Additional information',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
-    className: 'max-w-256',
+    className: 'w-112',
     secondaryAction,
+    size: 'md',
+    appearance: 'no-background',
   },
   parameters: {
     docs: {
@@ -98,7 +109,9 @@ export const Base: Story = {
       <MoreVertical />
     </InteractiveIcon>
   )}
-  className="max-w-256"
+  size="md"
+  appearance="no-background"
+  className="w-112"
 />
 `,
       },
@@ -292,6 +305,120 @@ export const ResponsiveLayout: Story = {
           description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
           leadingContent={<Spot appearance='icon' icon={Plus} />}
         />
+      </div>
+    </div>
+  ),
+};
+
+export const SizeShowcase: Story = {
+  render: () => (
+    <div>
+      <Tile
+        title='Medium Size'
+        description='Default tile size'
+        leadingContent={<Spot appearance='icon' icon={Settings} />}
+        size='md'
+        secondaryAction={secondaryAction}
+        className='w-112'
+      />
+      <Tile
+        title='Small Size'
+        description='Compact tile'
+        leadingContent={<Spot appearance='icon' icon={User} />}
+        size='sm'
+        secondaryAction={secondaryActionSmall}
+        className='w-96'
+      />
+    </div>
+  ),
+};
+
+export const AppearanceShowcase: Story = {
+  render: () => (
+    <div className='flex gap-16'>
+      <Tile
+        title='No Background'
+        description='Transparent tile'
+        leadingContent={<Spot appearance='icon' icon={Settings} />}
+        appearance='no-background'
+        className='w-112'
+      />
+      <Tile
+        title='Card'
+        description='Surface background'
+        leadingContent={<Spot appearance='icon' icon={User} />}
+        appearance='card'
+        className='w-112'
+      />
+    </div>
+  ),
+};
+
+export const DisabledShowcase: Story = {
+  render: () => (
+    <div className='flex gap-16'>
+      <Tile
+        title='Disabled Tile'
+        description='Non-interactive'
+        leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
+        disabled
+        className='w-112'
+      />
+      <Tile
+        title='Disabled Card'
+        description='Non-interactive'
+        leadingContent={<Spot appearance='icon' icon={User} disabled />}
+        secondaryAction={secondaryAction}
+        appearance='card'
+        disabled
+        className='w-112'
+      />
+    </div>
+  ),
+};
+
+export const StateShowcase: Story = {
+  render: () => (
+    <div className='flex flex-col gap-24'>
+      <div>
+        <h3 className='mb-8 heading-3'>No Background</h3>
+        <div className='flex gap-16'>
+          <Tile
+            title='Hover me'
+            description='Hover state'
+            leadingContent={<Spot appearance='icon' icon={Settings} />}
+            appearance='no-background'
+            className='w-112'
+          />
+          <Tile
+            title='Disabled'
+            description='Disabled state'
+            leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
+            appearance='no-background'
+            disabled
+            className='w-112'
+          />
+        </div>
+      </div>
+      <div>
+        <h3 className='mb-8 heading-3'>Card</h3>
+        <div className='flex gap-16'>
+          <Tile
+            title='Hover me'
+            description='Hover state'
+            leadingContent={<Spot appearance='icon' icon={User} />}
+            appearance='card'
+            className='w-112'
+          />
+          <Tile
+            title='Disabled'
+            description='Disabled state'
+            leadingContent={<Spot appearance='icon' icon={User} disabled />}
+            appearance='card'
+            disabled
+            className='w-112'
+          />
+        </div>
       </div>
     </div>
   ),

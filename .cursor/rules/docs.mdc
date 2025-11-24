@@ -1,7 +1,7 @@
 ---
 description:
 globs: *.mdx, *.stories.tsx
-alwaysApply: When asked to write documentation and markdown files 
+alwaysApply: true
 ---
 
 # Documentation Guidelines
