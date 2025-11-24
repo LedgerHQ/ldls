@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Containment/Tile' of={TileStories} />
 
@@ -116,39 +119,6 @@ function MyComponent() {
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed'
-    >
-
-```tsx
-<Tile
-  title='Settings'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
-  className='mb-6'
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, internal spacing, and typography should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Tile
-  title='Custom Colors'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
-  className='bg-base text-active'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use concise text for title and description'
       description='Keep title and description short since they truncate to one line'
     >
@@ -214,6 +184,8 @@ function MyComponent() {
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

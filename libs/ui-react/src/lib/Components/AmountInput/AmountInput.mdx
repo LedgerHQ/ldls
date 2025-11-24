@@ -1,9 +1,12 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as AmountInputStories from './AmountInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/AmountInput' of={AmountInputStories} />
 
@@ -267,33 +270,9 @@ const [value, setValue] = useState('');
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use container for width control'
-      description='Control width using wrapper containers with responsive design'
-    >
-
-```tsx
-<div className='max-w-md'>
-  <AmountInput currencyText='USD' />
 </div>
-```
 
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, padding, typography, and states should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<AmountInput className='bg-white border-accent' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-</div>
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

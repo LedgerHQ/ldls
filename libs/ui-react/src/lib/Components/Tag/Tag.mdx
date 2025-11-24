@@ -1,9 +1,8 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Tag' of={TagStories} />
 
@@ -132,31 +131,6 @@ import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed'
-    >
-
-```tsx
-<Tag className='mt-4 ml-2' label='Submit' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description="Core styling, spacing, and typography should not be modified"
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Tag className='bg-black' label='Custom Background' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Import icons explicitly'
       description='Use specific imports for better tree-shaking'
     >
@@ -168,22 +142,10 @@ import { Check } from '@ledgerhq/ldls-ui-react/symbols';
 ```
 
     </DoBlockItem>
-    <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing entire icon library or using string-based names'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-```
-
-    </DontBlockItem>
-
   </DoVsDontRow>
-</div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The tag's core styling (colors, padding, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

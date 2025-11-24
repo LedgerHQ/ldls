@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SpotStories from './Spot.stories';
 import { Spot } from './Spot';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Spot' of={SpotStories} />
 
@@ -205,31 +208,6 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed'
-    >
-
-```tsx
-<Spot appearance='check' className='mt-4 ml-2' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, spacing, typography, and shape should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Spot appearance='check' className='bg-error' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use for status indication'
       description='Spot is designed for status indication only'
     >
@@ -254,7 +232,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
   </DoVsDontRow>
 </div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The spot's core styling (colors, size, shape) should be controlled through the `appearance` prop to maintain design system consistency. The Spot component has a fixed 48px size and circular shape that cannot be modified.
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

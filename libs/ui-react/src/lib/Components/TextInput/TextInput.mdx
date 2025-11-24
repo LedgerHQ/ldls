@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TextInputStories from './TextInput.stories';
 import { TextInput } from './TextInput';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/TextInput' of={TextInputStories} />
 
@@ -435,39 +438,7 @@ The Input component uses floating labels that animate from inside the input fiel
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Import specific icons'
-      description='Use tree-shaking to import specific icons for better bundle size'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import { InformationFill } from '@ledgerhq/ldls-ui-react/symbols';
-
-<TextInput 
-  suffix={<InformationFill size={20}/>}
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing all icons or creating complex elements inline'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-<TextInput 
-  suffix={<Icons.InformationFill size={20}/>}
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

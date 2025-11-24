@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ListItemStories from './ListItem.stories';
 import { ListItem } from './ListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/ListItem' of={ListItemStories} />
 
@@ -291,31 +294,6 @@ The following guidelines ensure consistent usage of the ListItem component and m
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout constraints and proper list grouping are allowed'
-    >
-
-```tsx
-<ListItem title='Item' className='max-w-md' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, spacing, and typography should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<ListItem title='Custom' className='bg-base text-active' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use descriptionTag to add Tag components'
       description='descriptionTag prop accepts Tag components to display status or labels next to the description'
     >
@@ -391,34 +369,7 @@ import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Import specific icons'
-      description='Use specific icons for better performance'
-    >
-
-```tsx
-import { Check } from '@ledgerhq/ldls-ui-react/symbols';
-
-<ListItem trailingContent={<Check />} />;
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing entire icon set or complex inline handlers'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
-
-<ListItem trailingContent={<AllIcons.Check />} />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

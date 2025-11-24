@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CheckboxStories from './Checkbox.stories';
 import { Checkbox } from './Checkbox';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Checkbox' of={CheckboxStories} />
 
@@ -157,31 +160,6 @@ The following guidelines ensure consistent usage of the Checkbox component and m
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Responsive behavior, margins, and positioning are allowed'
-    >
-
-```tsx
-<Checkbox className='hidden md:block' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, size, appearance, and spacing should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Checkbox className='bg-base border-muted' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Associate labels properly'
       description='Use aria-label for standalone checkboxes'
     >
@@ -216,7 +194,7 @@ The following guidelines ensure consistent usage of the Checkbox component and m
 
 ```tsx
 const [isChecked, setIsChecked] = useState(false);
-<Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
+<Checkbox checked={isChecked} onCheckedChange={setIsChecked} />;
 ```
 
     </DoBlockItem>
@@ -235,7 +213,7 @@ const [isChecked, setIsChecked] = useState(false);
   </DoVsDontRow>
 </div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The checkbox's core styling (colors, size, border, focus states, etc.) should be controlled through the design system to maintain consistency.
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

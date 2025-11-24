@@ -2,9 +2,11 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as DialogStories from './Dialog.stories';
 import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
 
 <Meta title='Components/Dialog' of={DialogStories} />
 
@@ -329,8 +331,6 @@ const [open, setOpen] = useState(false);
 
   </DoVsDontRow>
 </div>
-
-> **Note**: Use `className` primarily for content layout (like width). The dialog's core styling (colors, positioning etc.) should not be overridden to maintain design system consistency. Always include DialogHeader for header consistency and accessibility.
 
 </Tab>
 </CustomTabs>

@@ -8,9 +8,8 @@ import {
 import * as Icons from '../../Symbols';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as IconsStories from './Icon.stories';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Symbols/Interface Icons/Docs' of={IconsStories} />
 
@@ -164,33 +163,6 @@ function SemanticIcons() {
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Import specific icons'
-      description='Use tree-shaking for better bundle size'
-    >
-
-```tsx
-import { ArrowUp, Settings, Plus } from '@ledgerhq/ldls-ui-react/symbols';
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing entire library or dynamic icon selection'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-const iconName = 'ArrowUp';
-const Icon = Icons[iconName]; // Prevents tree-shaking
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 
   <DoVsDontRow>
     <DoBlockItem
@@ -211,31 +183,6 @@ const Icon = Icons[iconName]; // Prevents tree-shaking
 {/* prettier-ignore */}
 ```tsx
 <ArrowUp className='w-6 h-6' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for layout'
-      description='Color, positioning, spacing, and responsive behavior are allowed'
-    >
-
-```tsx
-<ArrowUp size={24} className='text-on-interactive' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core properties"
-      description='Core dimensions, stroke, arbitrary colors, or SVG props should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<ArrowUp className='w-[35px] h-[32px]' />
 ```
 
     </DontBlockItem>
@@ -266,6 +213,8 @@ const Icon = Icons[iconName]; // Prevents tree-shaking
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

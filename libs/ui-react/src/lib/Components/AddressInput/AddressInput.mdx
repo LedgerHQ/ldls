@@ -1,9 +1,12 @@
 import { Canvas, Meta, Controls } from '@storybook/addon-docs/blocks';
 import * as AddressInputStories from './AddressInput.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta of={AddressInputStories} title='Components/AddressInput' />
 
@@ -479,24 +482,7 @@ The component includes comprehensive test coverage for:
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for container styling'
-      description='Use className to style the container element (including error message area) for layout, spacing, and responsive design'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<AddressInput 
-  className='w-full max-w-md' 
-  placeholder='Enter address or ENS'
-  value={address} 
-  onChange={(e) => setAddress(e.target.value)} 
-/>
-```
-
-    </DoBlockItem>
-
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

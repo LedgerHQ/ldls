@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CardButtonStories from './CardButton.stories';
 import { CardButton } from './CardButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/CardButton' of={CardButtonStories} />
 
@@ -222,39 +225,6 @@ The following guidelines ensure consistent usage of the CardButton component and
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed'
-    >
-
-```tsx
-<CardButton
-  title='Payment'
-  description='Manage payment methods'
-  className='mt-4'
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<CardButton
-  title='Payment'
-  description='Manage payment methods'
-  className='bg-black text-white'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use icon prop correctly'
       description='Pass icon as a component reference for proper sizing'
     >
@@ -289,6 +259,8 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

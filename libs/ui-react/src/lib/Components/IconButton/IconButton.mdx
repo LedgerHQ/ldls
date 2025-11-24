@@ -2,9 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as IconButtonStories from './IconButton.stories';
 import { IconButton } from './IconButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Action/IconButton' of={IconButtonStories} />
 
@@ -136,7 +139,7 @@ Note: When using asChild, the child element handles its own content. The icon pr
   <DoVsDontRow>
     <DoBlockItem
       title='Use icon prop correctly'
-      description='Import icons explicitly and let IconButton handle sizing'
+      description='Pass icon as a component reference using the icon prop'
     >
 
 ```tsx
@@ -147,16 +150,17 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing entire library, modifying size, or using string names'
+      title="Don't pass icon in children"
+      description='Do not pass icon components as children'
     >
 
 {/* prettier-ignore */}
 ```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-<IconButton icon={Icons.Settings} aria-label='Settings' />;
-
+<IconButton aria-label='Settings'>
+  <Settings />
+</IconButton>
 ```
 
     </DontBlockItem>
@@ -165,23 +169,28 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Positioning and responsive visibility are allowed'
+      title='Let IconButton handle icon sizing'
+      description='Icon size adjusts automatically based on button size'
     >
 
 ```tsx
-<IconButton aria-label='Close' icon={Close} className='mt-4 ml-2' />
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<IconButton icon={Settings} aria-label='Settings' />;
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, spacing, and icon sizing should not be modified'
+      title="Don't customize icon size"
+      description='Do not customize icon size or pass strings'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<IconButton aria-label='Settings' icon={Settings} className='bg-base' />
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<IconButton icon={() => <Settings size={20} />} aria-label='Settings' />;
+
 ```
 
     </DontBlockItem>
@@ -212,6 +221,8 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
   </Tab>

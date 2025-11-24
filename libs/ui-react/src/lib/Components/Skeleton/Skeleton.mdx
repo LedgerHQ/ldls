@@ -2,9 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SkeletonStories from './Skeleton.stories';
 import { Skeleton } from './Skeleton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Communication/Skeleton' of={SkeletonStories} />
 
@@ -137,33 +140,9 @@ While the component comes with predefined styles, you can extend them using Tail
 
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive design are allowed'
-    >
-
-```tsx
-<Skeleton className='mt-4 ml-2' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styles and animation properties should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Skeleton className='bg-accent' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 </div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The skeleton's core styling (colors, animation) should be controlled through the component's built-in styles to maintain design system consistency.
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

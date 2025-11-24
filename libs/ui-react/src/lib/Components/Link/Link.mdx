@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as LinkStories from './Link.stories';
 import { Link } from './Link';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Link' of={LinkStories} />
 
@@ -266,60 +269,6 @@ These guidelines ensure consistency, maintainability, and proper implementation 
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning, margins, and responsive behavior are allowed'
-    >
-
-```tsx
-<Link className='mt-4 ml-2'>Dashboard</Link>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, spacing, typography, and states should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Link className='text-base no-underline rounded-full'>Custom</Link>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Import specific icons'
-      description='Let Link handle icon sizing automatically'
-    >
-
-```tsx
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
-
-<Link icon={ArrowRight} appearance='accent' />;
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't import all icons"
-      description='Avoid importing entire icon library or modifying icon size directly'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-<Link icon={Icons.ArrowRight} />;
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use underline prop'
       description='Control underline decoration using the underline prop'
     >
@@ -404,9 +353,9 @@ import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
     </DontBlockItem>
 
   </DoVsDontRow>
-</div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The link's core styling (colors, underline, gap, hover states, etc.) and typography should be controlled through the component's props (`appearance`, `size`, `underline`) to maintain design system consistency.
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

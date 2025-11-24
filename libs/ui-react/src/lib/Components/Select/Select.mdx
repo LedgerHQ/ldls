@@ -1,9 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SelectStories from './Select.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Select' of={SelectStories} />
 
@@ -347,46 +350,6 @@ function MyComponent() {
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed on SelectTrigger and SelectContent'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Category' className='max-w-md' />
-  <SelectContent className='max-h-64'>
-    <SelectItem value='option1'>
-      <SelectItemText>Option 1</SelectItemText>
-    </SelectItem>
-  </SelectContent>
-</Select>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, internal spacing, and typography should not be modified by className'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Category' className='bg-base text-active' />
-  <SelectContent className='bg-base text-active'>
-    <SelectItem value='option1'>
-      <SelectItemText>Option 1</SelectItemText>
-    </SelectItem>
-  </SelectContent>
-</Select>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use proper component composition'
       description='Use all required sub-components: SelectTrigger, SelectContent, SelectItem, and SelectItemText'
     >
@@ -470,6 +433,8 @@ function MyComponent() {
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

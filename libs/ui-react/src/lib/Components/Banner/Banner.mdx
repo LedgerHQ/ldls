@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './Banner.stories';
 import { Banner } from './Banner';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Banner' of={BannerStories} />
 
@@ -362,42 +365,6 @@ The following guidelines ensure consistent usage of the Banner component and mai
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Layout positioning and responsive behavior are allowed'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Banner
-  title='Update Available'
-  description='A new version is ready to install'
-  className='mb-6'
-  appearance='info'
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, internal spacing, and typography should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Banner
-  title='Update Available'
-  description='A new version is ready to install'
-  className='bg-base text-active'
-  appearance='info'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use appearance prop to control background'
       description='The appearance prop controls the background color and styling. Use info, success, warning, or error'
     >
@@ -506,6 +473,8 @@ The following guidelines ensure consistent usage of the Banner component and mai
     </DontBlockItem>
 
   </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
 </div>
 
 </Tab>

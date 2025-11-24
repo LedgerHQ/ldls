@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as InteractiveIconStories from './InteractiveIcon.stories';
 import { InteractiveIcon } from './InteractiveIcon';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/InteractiveIcon' of={InteractiveIconStories} />
 
@@ -254,43 +257,6 @@ import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Positioning and responsive behavior are allowed'
-    >
-
-```tsx
-<InteractiveIcon
-  iconType='stroked'
-  className='absolute top-4 right-4'
-  aria-label='Close'
->
-  <Close size={20} />
-</InteractiveIcon>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core appearance, size constraints, and padding should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<InteractiveIcon 
-  iconType='stroked' 
-  aria-label='Settings'
-  className='bg-interactive text-on-interactive'
->
-  <Settings size={20} />
-</InteractiveIcon>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Only render icon components'
       description='Import specific icons for better tree-shaking'
     >
@@ -323,6 +289,8 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
   </DoVsDontRow>
 </div>
+
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

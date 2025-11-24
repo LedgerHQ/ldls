@@ -2,9 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SwitchStories from './Switch.stories';
 import { Switch } from './Switch';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Switch' of={SwitchStories} />
 
@@ -144,31 +147,6 @@ The following guidelines ensure consistent usage of the Switch component and mai
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use className for layout'
-      description='Responsive behavior, margins, and positioning are allowed'
-    >
-
-```tsx
-<Switch className='hidden md:block' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styling"
-      description='Core styling, appearance, and spacing should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Switch className='bg-base border-muted' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
       title='Use controlled components'
       description='Use defaultSelected for simple uncontrolled cases'
     >
@@ -196,7 +174,9 @@ const [isSelected, setIsSelected] = useState(false);
   </DoVsDontRow>
 </div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
+<CommonRulesDoAndDont />
+
+> `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
 
 </Tab>
 </CustomTabs>
