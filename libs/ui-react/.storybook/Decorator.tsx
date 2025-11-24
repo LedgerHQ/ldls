@@ -1,5 +1,5 @@
 import type { Decorator } from '@storybook/react-vite';
-import { ThemeProvider } from '../src/lib/Components/ThemeProvider';
+import { ThemeMode, ThemeProvider } from '../src/lib/Components/ThemeProvider';
 
 const createThemeDecorator = (
   globalName: string,
@@ -16,7 +16,7 @@ const createThemeDecorator = (
     }
 
     return (
-      <ThemeProvider>
+      <ThemeProvider defaultMode={context.globals.mode as ThemeMode}>
         <Story />
       </ThemeProvider>
     );
@@ -27,9 +27,4 @@ export const withBrandDecorator = createThemeDecorator('brand', [
   'ledger-live',
   'enterprise',
   'websites',
-]);
-
-export const withModeDecorator = createThemeDecorator('mode', [
-  'light',
-  'dark',
 ]);

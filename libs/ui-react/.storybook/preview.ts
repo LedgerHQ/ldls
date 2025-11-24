@@ -69,7 +69,7 @@ const preview: Preview = {
     },
   },
 
-  decorators: [withBrandDecorator, withModeDecorator],
+  decorators: [withBrandDecorator],
 };
 
 export default preview;
