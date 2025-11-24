@@ -1,6 +1,6 @@
 import plugin from 'tailwindcss/plugin.js';
 import { CSSRuleObject } from 'tailwindcss/types/config.js';
-import { primitivesTheme } from '../themes/index.js';
+import { primitivesTheme } from '../themes/css';
 import { createIconUtilities } from './create-icon-utilities.js';
 import { createSpotUtilities } from './create-spot-utilities.js';
 import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
