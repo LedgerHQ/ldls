@@ -109,6 +109,9 @@
     "build": {
       "dependsOn": ["^build"]
     },
+    "bundle-cross-platform": {
+      "dependsOn": ["^build"]
+    },
     "test": {
       "dependsOn": ["^build"]
     }
