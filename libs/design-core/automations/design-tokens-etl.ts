@@ -106,7 +106,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
     source: sources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'css',
         files: [
           {
@@ -124,7 +124,7 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
         actions: ['remove-default-suffix', 'prettier'],
       },
       JavaScriptThemeObject: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'js',
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
         files: [
@@ -154,7 +154,7 @@ function getSDThemeConfig(brand: string, theme: string) {
     source: themeSpecificSources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/css/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
           {
@@ -170,7 +170,7 @@ function getSDThemeConfig(brand: string, theme: string) {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `src/themes/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/css/${brand.toLowerCase()}/`,
         files: [
           {
             destination: `theme.${theme.toLowerCase()}.ts`,
@@ -195,7 +195,7 @@ function getSDPrimitivesConfig() {
     source: sources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'css',
         files: [
           {
@@ -210,7 +210,7 @@ function getSDPrimitivesConfig() {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         files: [
           {
             destination: 'primitives.ts',
