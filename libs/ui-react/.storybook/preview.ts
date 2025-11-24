@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
-import { withBrandDecorator, withModeDecorator } from './Decorator';
+import { withBrandDecorator } from './Decorator';
 import '../src/styles.css';
 import './font.css';
 
