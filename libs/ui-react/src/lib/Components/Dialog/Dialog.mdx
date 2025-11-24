@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as DialogStories from './Dialog.stories';
 import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Dialog' of={DialogStories} />
 
@@ -221,32 +227,36 @@ Control dialog width via className on DialogContent:
 
 ## Do's and Don'ts
 
-### Composition
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always use DialogHeader'
+      description='Use asChild for trigger composition'
+    >
 
 ```tsx
-// Always use DialogHeader as header
 <DialogContent>
-  <DialogHeader title="Title" onClose={handleClose} />
-  <div className="p-16">Content</div>
+  <DialogHeader title='Title' onClose={handleClose} />
+  <div className='p-16'>Content</div>
 </DialogContent>
 
-// Use asChild for trigger composition
 <DialogTrigger asChild>
   <Button>Open</Button>
 </DialogTrigger>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit DialogHeader"
+      description='Avoid omitting DialogHeader or nesting dialogs'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't omit DialogHeader
 <DialogContent>
   <h2>Custom Title</h2>
 </DialogContent>
 
-// Don't nest dialogs
 <Dialog>
   <DialogContent>
     <Dialog>{/* Invalid */}</Dialog>
@@ -254,54 +264,76 @@ Control dialog width via className on DialogContent:
 </Dialog>
 ```
 
-### Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for width'
+      description='Default width is 400px'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for width control
-<DialogContent className='max-w-512'>Content</DialogContent>
+<DialogContent className='max-w-512'>
+  Content
+</DialogContent>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override core styles"
+      description='Core styling and padding should not be modified'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't change core styles
-<DialogContent className="bg-base">Custom bg</DialogContent>
+<DialogContent className='bg-base'>
+  Custom bg
+</DialogContent>
 
-// Don't override padding
-<DialogContent className="p-0">No padding</DialogContent>
 ```
 
-> **Note**: Use `className` primarily for content layout (like width). The dialog's core styling (colors, positioning etc.) should not be overridden to maintain design system consistency. Always include DialogHeader for header consistency and accessibility.
+    </DontBlockItem>
 
-### Performance Considerations
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Keep content simple'
+      description='Use state to control open/close behavior'
+    >
 
 ```tsx
-// Keep content simple
 <DialogContent>
   <DialogHeader ... />
   <p>Simple text</p>
 </DialogContent>
 
-// Use state to control open
 const [open, setOpen] = useState(false);
 <Dialog open={open} onOpenChange={setOpen}>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't put heavy content"
+      description='Avoid heavy content or forcing dialog to always stay open'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't put heavy content
 <DialogContent>
   <ComplexChart />
 </DialogContent>
-
-// Don't force always open
-<Dialog open={true}>
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

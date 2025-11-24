@@ -1,6 +1,8 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as SpinnerStories from './Spinner.stories';
+import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Communication/Spinner/Docs' of={SpinnerStories} />
 
@@ -120,58 +122,60 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Size Usage
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Match spinner size to context'
+      description='Use appropriate sizes for different loading contexts'
+    >
 
 ```tsx
-// Match spinner size to context
 <Spinner size={12} /> // For small inline loading
-<Spinner size={40} /> // For prominent loading states
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override spinner size"
+      description='Avoid overriding size with CSS or using non-standard sizes'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override the spinner's size
-<Spinner className="w-6 h-6" />
-<Spinner size={24} width={32} height={32} />
-
-// Don't use non-standard sizes
-<Spinner size={22} />
+<Spinner className='w-6 h-6' />
 ```
 
-### Loading States
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Show spinners for async operations'
+      description='Provide context and disable interactions during loading'
+    >
 
 ```tsx
-// Show spinners for operations over 1-2 seconds
 {isLoading && <Spinner />}
-
-// Provide context with descriptive text
-<div className="flex items-center gap-2">
-  <Spinner size={16} />
-  <span>Syncing wallet...</span>
-</div>
-
-// Disable interactions during loading
-<Button disabled={isLoading}>
-  {isLoading ? <Spinner size={16} /> : 'Submit'}
-</Button>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't show for instant operations"
+      description='Avoid spinners for synchronous operations or modifying animations'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't show spinners for instant operations
 const data = getLocalData(); // Synchronous
 return <Spinner />; // Not needed
-
-// Don't modify or disable animation properties
-<Spinner className="animate-bounce" />
-<Spinner className="animate-none" />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

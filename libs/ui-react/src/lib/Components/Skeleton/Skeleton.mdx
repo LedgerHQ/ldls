@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SkeletonStories from './Skeleton.stories';
 import { Skeleton } from './Skeleton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Communication/Skeleton' of={SkeletonStories} />
 
@@ -108,51 +114,35 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ## Do's and Don'ts
 
-### Content Composition
-
-✅ **Do**
-
-```tsx
-// Use className for sizing and styling
-<Skeleton className="h-16 w-256" />
-
-// Use pixel values for consistent sizing
-<Skeleton className="h-48 w-48 rounded-full" />
-```
-
-❌ **Don't**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use className for sizing'
+      description='Use pixel values for consistent sizing and styling'
+    >
 
 ```tsx
-// Don't use arbitrary values
-<Skeleton className="h-4 w-[200px]" />
-
-// Don't override core animation
-<Skeleton className="animate-none" />
+<Skeleton className='h-16 w-256' />
 ```
 
-### Layout and Styling
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use arbitrary values"
+      description='Avoid arbitrary values or overriding core animation'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Skeleton className="mt-4 ml-2" />
-
-// Use className for responsive design
-<Skeleton className="hidden md:block" />
+<Skeleton className='h-4 w-[200px]' />
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
-```tsx
-// Don't override core styling
-<Skeleton className="bg-accent" />
+  </DoVsDontRow>
 
-// Don't modify animation properties
-<Skeleton className="animate-bounce" />
-```
+</div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The skeleton's core styling (colors, animation) should be controlled through the component's built-in styles to maintain design system consistency.
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

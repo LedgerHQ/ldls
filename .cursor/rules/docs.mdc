@@ -112,6 +112,42 @@ import { DontBlockItem } from '../../../../.storybook/DontBlock';
 
 See `Button.mdx` for complete examples.
 
+## Do's and Don'ts Best Practices
+
+When creating Do's and Don'ts sections, follow these critical rules:
+
+### Use Same Examples in Do and Don't Blocks
+
+**CRITICAL**: Always use the **same example code** in both the Do and Don't blocks within the same row. Only change what makes it wrong in the Don't block.
+
+### Code Block Formatting
+
+- Use `{/* prettier-ignore */}` before code blocks in both Don't and Do blocks to prevent code from going on one line (always keep multi-line for readability, making it easy to detect what not to do)
+- Include necessary imports in code examples when showing component usage
+- Use consistent variable names across examples (e.g., `value`, `setValue`, `hasError`)
+
+### Writing Effective Do's and Don'ts
+
+1. **Be Specific**: Focus on one concept per row
+2. **Show Real Examples**: Use realistic, practical code examples
+3. **Explain Why**: Include descriptions that explain why something is correct/incorrect
+4. **Check Component API**: Always verify which props are actually available before documenting them
+5. **Consistent Formatting**: Use the same code structure, variable names, and formatting in both Do and Don't blocks
+
+### Verification Checklist
+
+Before finalizing Do's and Don'ts sections:
+
+- [ ] Both Do and Don't blocks use the same base example (only changing what's wrong)
+- [ ] All code examples include necessary imports
+- [ ] Props mentioned actually exist on the component (check TypeScript types)
+- [ ] Descriptions explain why something is correct/incorrect
+- [ ] Code examples are realistic and practical
+- [ ] Formatting is consistent (use `{/* prettier-ignore */}` for both blocks)
+- [ ] Variable names are consistent across examples
+
+See `Button.mdx`, `Search.mdx`, `AddressInput.mdx`, `Banner.mdx`, `ListItem.mdx`, and `Tile.mdx` for reference implementations.
+
 ### Required Structure
 
 ```tsx

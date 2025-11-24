@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as IconButtonStories from './IconButton.stories';
 import { IconButton } from './IconButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Action/IconButton' of={IconButtonStories} />
 
@@ -129,119 +135,95 @@ Note: When using asChild, the child element handles its own content. The icon pr
 
 ## Do's and Don'ts
 
-### Icon Usage
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon prop correctly'
+      description='Pass icon as a component reference using the icon prop'
+    >
 
 ```tsx
-// Import icons explicitly
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Use icon prop for consistent sizing
-<IconButton aria-label="Settings" icon={Settings} />
-
-// Let IconButton handle icon sizing
-<IconButton aria-label="Add item" icon={Plus} size="xs" />
+<IconButton icon={Settings} aria-label='Settings' />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't pass icon in children"
+      description='Do not pass icon components as children'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Don't modify icon size directly
-<IconButton aria-label="Settings">
-  <Settings size={24} />
+<IconButton aria-label='Settings'>
+  <Settings />
 </IconButton>
-
-// Don't use string-based icon names
-<IconButton aria-label="Settings" icon="settings" />
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Use className for layout positioning
-<IconButton
-  aria-label="Close"
-  icon={Close}
-  className="mt-4 ml-2"
-/>
-
-// Use className for positioning
-<IconButton
-  aria-label="Close"
-  icon={Close}
-  className="absolute top-0 right-0"
-/>
-
-// Use className for responsive visibility
-<IconButton
-  aria-label="Menu"
-  icon={Menu}
-  className="md:hidden"
-/>
-```
-
-❌ **Don't**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Let IconButton handle icon sizing'
+      description='Icon size adjusts automatically based on button size'
+    >
 
 ```tsx
-// Don't override button's core styling
-<IconButton
-  aria-label="Settings"
-  icon={Settings}
-  className="bg-base"
-/>
-
-// Don't modify internal spacing/padding
-<IconButton
-  aria-label="Settings"
-  icon={Settings}
-  className="p-6"
-/>
-
-// Don't override icon sizing
-<IconButton
-  aria-label="Settings"
-  icon={Settings}
-  className="w-8 h-8"
-/>
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Use appropriate size variant
-<IconButton aria-label="Settings" icon={Settings} size="xs" />
-
-// Always provide descriptive aria-labels
-<IconButton aria-label="Open settings menu" icon={Settings} />
+<IconButton icon={Settings} aria-label='Settings' />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't customize icon size"
+      description='Do not customize icon size or pass strings'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<IconButton icon={() => <Settings size={20} />} aria-label='Settings' />;
+
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always provide descriptive aria-labels'
+      description='Ensure proper accessibility for screen readers'
+    >
 
 ```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
+<IconButton aria-label='Open settings menu' />
+```
 
-// Don't use custom sizes when standard ones exist
-<IconButton
-  aria-label="Settings"
-  icon={Settings}
-  className="h-[52px]"
-/>
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit aria-label"
+      description='Avoid omitting aria-label'
+    >
 
-// Don't omit aria-label
+{/* prettier-ignore */}
+```tsx
 <IconButton icon={Settings} />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
   </Tab>
 </CustomTabs>

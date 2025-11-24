@@ -2,9 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 import { Plus, Settings } from '../../Symbols';
 
 <Meta title='Components/Button' of={ButtonStories} />
@@ -273,39 +276,6 @@ The following guidelines are based on our [Button Component API Design ADR](http
 </div>
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for positioning'
-      description='Layout utilities like margins and display are allowed'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Button className='mt-4'>
-  Submit
-</Button>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use className for core styling"
-      description='core styles cannot be overridden by className'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Button className='bg-success'>
-  Submit
-</Button>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-</div>
-
-<div className='flex flex-col gap-24'>
 
   <DoVsDontRow>
     <DoBlockItem
@@ -336,9 +306,9 @@ The following guidelines are based on our [Button Component API Design ADR](http
     </DontBlockItem>
 
   </DoVsDontRow>
-</div>
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The button's core styling (colors, padding, gap, hover states, borders, radius) and typography are controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

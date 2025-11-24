@@ -1,4 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../.storybook/DoVsDont';
 
 <Meta title='Getting Started/Setup Tailwind' />
 
@@ -298,50 +303,131 @@ All design tokens automatically support dark mode:
 
 ## ✅ Best Practices
 
-### 1. Use Semantic Color Tokens
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use semantic color tokens'
+      description='Use design system color tokens for consistency and dark mode support'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// ✅ Do
-<div className="bg-canvas text-base">
-
-// ❌ Don't
-<div className="bg-[#ffffff] text-[#000000]">
+<div className='bg-canvas text-base'>
+  Content
+</div>
 ```
 
-### 2. Follow the 4px Grid
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use arbitrary color values"
+      description='Avoid hardcoded colors that break theming and dark mode'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// ✅ Do
-<div className="p-4 gap-2">    {/* 4px padding, 2px gap */}
-
-// ❌ Don't
-<div className="p-[5px] gap-[7px]">
+<div className='bg-[#ffffff] text-[#000000]'>
+  Content
+</div>
 ```
 
-### 3. Use Typography System
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Follow the 4px spacing grid'
+      description='Use spacing values that align with our 4px grid system'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// ✅ Do
-<h1 className="heading-1">Title</h1>
-
-// ❌ Don't use tailwind classes for typography
-// these classes are not part of our tailwind preset - they are disabled by default.
-<h1 className="text-2xl font-semibold">Title</h1>
+<div className='p-4 gap-8'>
+  Content
+</div>
 ```
 
-### 4. Leverage Dark Mode
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use arbitrary spacing values"
+      description='Avoid spacing that breaks the design system grid'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// ✅ Do
-<div className="bg-canvas dark:bg-canvas-dark">
+<div className='p-[5px] gap-[7px]'>
+  Content
+</div>
+```
 
-// ❌ Don't
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use typography system classes'
+      description='Use predefined typography classes for consistent text styling'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<h1 className='heading-1'>
+  Title
+</h1>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use Tailwind's default text utilities"
+      description='These classes are disabled in our preset and will not work'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<h1 className='text-2xl font-semibold'>
+  Title
+</h1>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Leverage dark mode utilities'
+      description='Use Tailwind dark mode modifiers for automatic theming'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<div className='bg-canvas dark:bg-canvas-dark'>
+  Content
+</div>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use inline styles for theming"
+      description='Inline styles bypass the design system and make maintenance harder'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <div style={{
   backgroundColor: isDark ? 'var(--color-canvas-dark)' : 'var(--color-canvas)'
 }}>
+  Content
+</div>
 ```
 
-### 5. Avoid Overriding Preset Configurations
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+### Key Principles
 
 - Use our preset's semantic utilities instead of raw Tailwind classes
 - Follow our color system and spacing scale

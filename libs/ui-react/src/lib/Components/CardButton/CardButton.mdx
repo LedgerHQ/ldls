@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CardButtonStories from './CardButton.stories';
 import { CardButton } from './CardButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/CardButton' of={CardButtonStories} />
 
@@ -164,17 +170,13 @@ CardButtons automatically flow to fit their parent container width. No additiona
 To control card button width, use container elements:
 
 ```tsx
-{
-  /* Full container width */
-}
+/* Full container width */
 <CardButton
   title='Full Width'
   description='This button fills the container width'
 />;
 
-{
-  /* Constrained width */
-}
+/* Constrained width */
 <div className='max-w-md'>
   <CardButton
     title='Constrained'
@@ -182,9 +184,7 @@ To control card button width, use container elements:
   />
 </div>;
 
-{
-  /* Responsive width */
-}
+/* Responsive width */
 <div className='w-full lg:max-w-lg'>
   <CardButton
     title='Responsive'
@@ -222,145 +222,46 @@ While the component comes with predefined styles, you can extend them using Tail
 
 The following guidelines ensure consistent usage of the CardButton component and maintain design system principles.
 
-### Layout and Styling
-
-✅ **Do**
-
-```tsx
-// Use className for layout positioning
-<CardButton
-  title="Payment"
-  description="Manage payment methods"
-  className="mt-4 ml-2"
-/>
-
-// Use className for responsive behavior
-<CardButton
-  title="Desktop Feature"
-  description="This feature is only available on desktop"
-  className="hidden md:block"
-/>
-
-// Use container elements to control button width
-<div className="w-full">
-  <CardButton
-    title="Continue"
-    description="Proceed to the next step"
-  />
-</div>
-```
-
-❌ **Don't**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon prop correctly'
+      description='Pass icon as a component reference for proper sizing'
+    >
 
 ```tsx
-// Don't override core button styling
-<CardButton
-  title="Custom"
-  description="Wrong styling"
-  className="bg-black text-white"
-/>
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Don't modify internal spacing
-<CardButton
-  title="Wrong"
-  description="Don't do this"
-  className="gap-8 p-6"
-/>
-
-// Don't override typography classes
-<CardButton
-  title="Bad"
-  description="Typography override"
-  className="heading-2"
-/>
-
-// Don't modify border radius or outline styles
-<CardButton
-  title="Wrong"
-  description="Don't override borders"
-  className="rounded-full border-2"
-  appearance="outline"
-/>
-```
-
-### Icon Usage
-
-✅ **Do**
-
-```tsx
-// Import icons explicitly for better tree-shaking
-import { Settings, CreditCard, Shield } from '@ledgerhq/ldls-ui-react/symbols';
-
-// Use semantically appropriate icons
 <CardButton
   icon={Settings}
-  title="Settings"
-  description="Configure your preferences"
-/>
-
-// Let CardButton handle icon sizing automatically
-<CardButton
-  icon={CreditCard}
-  title="Payment"
-  description="Manage payment methods"
-/>
+  title='Settings'
+  description='Configure preferences'
+/>;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't customize icon size"
+      description='Avoid customizing icon size or passing strings'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
-// Don't try to customize icon size
 <CardButton
-  title="Wrong"
-  description="Don't customize icon size"
   icon={() => <Settings size={20} />}
-/>
-
-// Don't use string-based icon references
-<CardButton
-  icon="settings" // Wrong - should be component reference
-  title="Settings"
-  description="Configure preferences"
+  title='Settings'
+  description='Configure preferences'
 />
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Import specific icons for better tree-shaking
-import { CreditCard } from '@ledgerhq/ldls-ui-react/symbols';
-
-// Use proper event handlers
-<CardButton
-  title='Process Payment'
-  description='Complete your transaction'
-  onClick={handlePayment}
-/>;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't use inline functions for complex operations
-<CardButton
-  title='Complex Action'
-  description='This will take some time'
-  onClick={() => {
-    // Complex inline logic here...
-    performComplexOperation();
-    updateMultipleStates();
-    makeAPICall();
-  }}
-/>;
-```
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

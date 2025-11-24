@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TooltipStories from './Tooltip.stories';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Tooltip' of={TooltipStories} />
 
@@ -185,100 +191,75 @@ The tooltip uses smooth slide animations that match its placement:
 
 ## Do's and Don'ts
 
-### Timing and Animation
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use default delay'
+      description='Let animations handle themselves for consistent experience'
+    >
 
 ```tsx
-// Use the default 200ms delay for consistent experience
 <Tooltip>
   <TooltipTrigger>Hover</TooltipTrigger>
   <TooltipContent>Default delay</TooltipContent>
 </Tooltip>
-
-// Let animations handle themselves
-<TooltipContent side="right">
-  Auto-animated content
-</TooltipContent>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override animations"
+      description='Avoid instant tooltips or overriding animation classes'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use instant tooltips unless necessary
 <Tooltip delayDuration={0}>
   <TooltipContent>Instant show</TooltipContent>
 </Tooltip>
-
-// Don't override animation classes
-<TooltipContent className="animate-none">
-  No animations
-</TooltipContent>
 ```
 
-### Composition
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use asChild for composition'
+      description='Keep content simple for smooth animations'
+    >
 
 ```tsx
-// Use asChild for trigger composition
 <Tooltip>
   <TooltipTrigger asChild>
     <Button>Hover</Button>
   </TooltipTrigger>
   <TooltipContent>Animated info</TooltipContent>
 </Tooltip>
-
-// Keep content simple for smooth animations
-<TooltipContent>
-  <p>Clean content</p>
-</TooltipContent>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't nest or overload tooltips"
+      description='Avoid nested tooltips or heavy content that affects animations'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't nest tooltips
 <Tooltip>
   <TooltipTrigger>
     <Tooltip> {/* Invalid nesting */}
     </Tooltip>
   </TooltipTrigger>
 </Tooltip>
-
-// Don't put heavy content that might affect animations
-<TooltipContent>
-  <ComplexComponent />
-</TooltipContent>
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Use global provider for consistent delays
-<TooltipProvider delayDuration={200}>
-  <App />
-</TooltipProvider>
+</div>
 
-// Keep content light for smooth animations
-<TooltipContent>Short text</TooltipContent>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't set extremely long delays
-<Tooltip delayDuration={2000}>
-  Too long delay
-</Tooltip>
-
-// Don't override animation timing
-<TooltipContent className="duration-1000">
-  Custom duration
-</TooltipContent>
-```
+<CommonRulesDoAndDont />
 
   </Tab>
 </CustomTabs>
