@@ -216,6 +216,8 @@ import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
+import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+
 <InteractiveIcon iconType='stroked' aria-label='Delete'>
   <DeleteCircleFill size={20} />
 </InteractiveIcon>
@@ -258,7 +260,7 @@ import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
   <DoVsDontRow>
     <DoBlockItem
       title='Only render icon components'
-      description='Import specific icons for better tree-shaking'
+      description='Always render icon components as children'
     >
 
 ```tsx
@@ -272,7 +274,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
     </DoBlockItem>
     <DontBlockItem
       title="Don't render arbitrary content"
-      description='Avoid rendering text or importing entire icon library'
+      description='Do not render text or arbitrary content as children'
     >
 
 {/* prettier-ignore */}

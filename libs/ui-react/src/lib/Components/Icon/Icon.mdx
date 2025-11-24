@@ -8,7 +8,11 @@ import {
 import * as Icons from '../../Symbols';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import * as IconsStories from './Icon.stories';
-import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Symbols/Interface Icons/Docs' of={IconsStories} />
@@ -191,23 +195,23 @@ function SemanticIcons() {
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use semantic wrappers for interaction'
+      title='Use semantic colors for icons'
       description='Use semantic color tokens and inherit text color'
     >
 
 ```tsx
-<Button icon={Close} aria-label='Close' />
+<ArrowUp className='text-success' />
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't make icons directly clickable"
-      description='Avoid arbitrary colors or overriding currentColor unnecessarily'
+      title="Don't use arbitrary colors"
+      description='Don not use arbitrary colors or overriding currentColor unnecessarily'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<ArrowUp size={24} onClick={handleClick} />
+<ArrowUp className='text-[red]' />
 ```
 
     </DontBlockItem>
