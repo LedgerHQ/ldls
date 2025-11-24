@@ -18,6 +18,7 @@ import { CardButtons } from './blocks/CardButtons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
 import { Inputs } from './blocks/Inputs';
+import { Link } from './blocks/Link';
 import { Spots } from './blocks/Spots';
 import { Switches } from './blocks/Switches';
 import { Tags } from './blocks/Tags';
@@ -88,6 +89,9 @@ export const App = () => {
                 <BottomSheetsButton
                   onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
                 />
+              </SandboxBlock>
+              <SandboxBlock title='Link'>
+                <Link />
               </SandboxBlock>
             </View>
           </ScrollView>
