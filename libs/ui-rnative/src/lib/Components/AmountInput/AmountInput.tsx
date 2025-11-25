@@ -1,5 +1,5 @@
 import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, TextInput, View, type TextInputProps } from 'react-native';
 import Animated, {
   Easing,
@@ -100,6 +100,8 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     const animatedFontSize = useSharedValue(getFontSize(inputValue));
     const caretOpacity = useSharedValue(0);
 
+    useImperativeHandle(ref, () => inputRef.current as TextInput, []);
+
     const animatedInputStyle = useAnimatedStyle(() => ({
       transform: [{ translateX: translateX.value }],
       fontSize: animatedFontSize.value,
@@ -181,7 +183,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     };
 
     return (
-      <View ref={ref} className='relative'>
+      <View className='relative'>
         {/** hidden text input because of flickering issue */}
         <TextInput
           ref={inputRef}
