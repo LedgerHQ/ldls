@@ -160,11 +160,7 @@ export const Link = React.forwardRef<
       if (onPress) {
         onPress();
       } else if (href) {
-        try {
-          await Linking.openURL(href);
-        } catch (err) {
-          console.error('Failed to open URL:', err);
-        }
+        await Linking.openURL(href);
       }
     };
 
