@@ -1,18 +1,14 @@
-import { Link as LdlsLink } from '@ledgerhq/ldls-ui-rnative';
+import { Link } from '@ledgerhq/ldls-ui-rnative';
 import { Github, LedgerLogo, Screens } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { Alert, Text, View } from 'react-native';
 
-export function Link() {
+export function Links() {
   return (
     <View className='gap-8'>
-      <LdlsLink
-        href={'https://github.com/LedgerHQ/ldls'}
-        icon={Github}
-        isExternal
-      >
+      <Link href={'https://github.com/LedgerHQ/ldls'} icon={Github} isExternal>
         Set up LDLS in your project
-      </LdlsLink>
-      <LdlsLink
+      </Link>
+      <Link
         appearance='accent'
         href={'https://www.ledger.com/'}
         isExternal
@@ -20,8 +16,8 @@ export function Link() {
         icon={LedgerLogo}
       >
         Open Ledger store
-      </LdlsLink>
-      <LdlsLink
+      </Link>
+      <Link
         icon={Screens}
         size='sm'
         onPress={() =>
@@ -33,14 +29,14 @@ export function Link() {
         }
       >
         Custom navigation
-      </LdlsLink>
+      </Link>
       <View className='flex-row flex-wrap items-center'>
         <Text className='text-base'>
           If you require assistance, please contact us via our{' '}
         </Text>
-        <LdlsLink size='sm' isExternal href='https://github.com/LedgerHQ/ldls'>
+        <Link size='sm' isExternal href='https://github.com/LedgerHQ/ldls'>
           support page
-        </LdlsLink>
+        </Link>
         <Text className='text-base'> during business hours (9am-5pm).</Text>
       </View>
     </View>

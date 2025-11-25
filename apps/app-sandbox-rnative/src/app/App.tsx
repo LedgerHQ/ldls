@@ -18,7 +18,7 @@ import { CardButtons } from './blocks/CardButtons';
 import { Checkboxes } from './blocks/Checkboxes';
 import { IconButtons } from './blocks/IconButtons';
 import { Inputs } from './blocks/Inputs';
-import { Link } from './blocks/Link';
+import { Links } from './blocks/Links';
 import { Spots } from './blocks/Spots';
 import { Switches } from './blocks/Switches';
 import { Tags } from './blocks/Tags';
@@ -91,7 +91,7 @@ export const App = () => {
                 />
               </SandboxBlock>
               <SandboxBlock title='Link'>
-                <Link />
+                <Links />
               </SandboxBlock>
             </View>
           </ScrollView>
