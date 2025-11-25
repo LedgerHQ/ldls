@@ -1,6 +1,6 @@
 import { PrimitiveTokens } from './types';
 
-export const primitiveTokens: PrimitiveTokens = {
+export const primitiveTokens = {
   colors: {
     light: {
       constant: {
@@ -809,4 +809,4 @@ export const primitiveTokens: PrimitiveTokens = {
     md: 12,
     lg: 64,
   },
-};
+} satisfies PrimitiveTokens;

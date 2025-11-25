@@ -63,3 +63,33 @@ export type PrimitiveTokens = {
   stroke: Record<string, number>;
   blur: Record<string, number>;
 };
+
+type ShadowTokenDefinition = {
+  x: number;
+  y: number;
+  blur: number;
+  spread: number;
+  color: string;
+};
+
+export type ShadowTokens = {
+  sm: {
+    first: ShadowTokenDefinition;
+    second: ShadowTokenDefinition;
+  };
+  md: {
+    first: ShadowTokenDefinition;
+    second: ShadowTokenDefinition;
+  };
+  lg: {
+    first: ShadowTokenDefinition;
+    second: ShadowTokenDefinition;
+  };
+  xl: {
+    first: ShadowTokenDefinition;
+    second: ShadowTokenDefinition;
+  };
+  '2xl': {
+    first: ShadowTokenDefinition;
+  };
+};
