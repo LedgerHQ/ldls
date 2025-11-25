@@ -179,7 +179,9 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     ) : null;
 
     const handlePress = () => {
-      inputRef.current?.focus();
+      if (editable) {
+        inputRef.current?.focus();
+      }
     };
 
     return (
@@ -205,6 +207,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
         <Pressable
           onPress={handlePress}
           className='flex-row items-center justify-center'
+          accessibilityLabel={props.accessibilityLabel || 'Amount input'}
         >
           {currencyPosition === 'left' && CurrencyText}
 
@@ -225,11 +228,12 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
           {/** custom caret */}
           <Animated.View
             className='mx-2'
+            // TODO: use theme object here
             style={[
               animatedCaretStyle,
               {
                 width: 3,
-                borderRadius: '100%',
+                borderRadius: 1.5,
                 backgroundColor: '#007AFF',
               },
             ]}
