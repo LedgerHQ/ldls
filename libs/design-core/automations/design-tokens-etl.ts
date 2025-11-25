@@ -106,11 +106,11 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
     source: sources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'css',
         files: [
           {
-            destination: `typography.${breakpoint}.css`,
+            destination: `typographies/typography.${breakpoint}.css`,
             format: 'css/variables',
             filter: filterPrimitives,
             options: {
@@ -124,12 +124,12 @@ function getSDTypographyConfigForBreakpoint(breakpoint: string) {
         actions: ['remove-default-suffix', 'prettier'],
       },
       JavaScriptThemeObject: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'js',
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
         files: [
           {
-            destination: `typography.${breakpoint}.ts`,
+            destination: `typographies/typography.${breakpoint}-css.ts`,
             format: 'javascript/custom-nested-object',
             filter: filterPrimitives,
           },
@@ -154,7 +154,7 @@ function getSDThemeConfig(brand: string, theme: string) {
     source: themeSpecificSources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/css/${brand.toLowerCase()}/`,
         transformGroup: 'css',
         files: [
           {
@@ -170,10 +170,10 @@ function getSDThemeConfig(brand: string, theme: string) {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `src/themes/${brand.toLowerCase()}/`,
+        buildPath: `src/themes/css/${brand.toLowerCase()}/`,
         files: [
           {
-            destination: `theme.${theme.toLowerCase()}.ts`,
+            destination: `theme.${theme.toLowerCase()}-css.ts`,
             format: 'javascript/custom-nested-object',
             filter: filterPrimitives,
           },
@@ -195,7 +195,7 @@ function getSDPrimitivesConfig() {
     source: sources,
     platforms: {
       CSS: {
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         transformGroup: 'css',
         files: [
           {
@@ -210,10 +210,10 @@ function getSDPrimitivesConfig() {
       },
       JavaScriptThemeObject: {
         transforms: ['attribute/cti', 'name/custom/direct-css-var'],
-        buildPath: `src/themes/`,
+        buildPath: `src/themes/css/`,
         files: [
           {
-            destination: 'primitives.ts',
+            destination: 'primitives-css.ts',
             format: 'javascript/custom-nested-object',
           },
         ],
@@ -277,7 +277,7 @@ brands.forEach(function (brand) {
 
       config.files.forEach(async (file) => {
         if (
-          file.destination?.endsWith('.ts') ||
+          file.destination?.endsWith('-css.ts') ||
           file.destination?.endsWith('.css')
         ) {
           const filePath = path.join(buildPath, file.destination);
