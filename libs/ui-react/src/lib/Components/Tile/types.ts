@@ -42,7 +42,7 @@ export type TileProps = {
   appearance?: 'no-background' | 'card';
   /**
    * Whether the tile is disabled.
-   * When disabled, the tile is non-interactive and has reduced opacity.
+   * When disabled, the tile is non-interactive and has disabled styles.
    * @default false
    */
   disabled?: boolean;
