@@ -155,7 +155,7 @@ export const primitiveColorTokens = {
       bitcoinSv: '#eab300',
       bitcoinSv0: '#eab30000',
       binance: '#f5bc00',
-      bincance0: '#f5bc0000',
+      binance0: '#f5bc0000',
       bytecoin: '#f04086',
       bytecoin0: '#f0408600',
       cardano: '#0033ad',

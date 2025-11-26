@@ -22,7 +22,7 @@ export const ledgerLiveLightTheme = {
     bitcoinSv: primitiveColorTokens.light.crypto.bitcoinSv,
     bitcoinSv0: primitiveColorTokens.light.crypto.bitcoinSv0,
     binance: primitiveColorTokens.light.crypto.binance,
-    binance0: primitiveColorTokens.light.crypto.bincance0,
+    binance0: primitiveColorTokens.light.crypto.binance0,
     bytecoin: primitiveColorTokens.light.crypto.bytecoin,
     bytecoin0: primitiveColorTokens.light.crypto.bytecoin0,
     cardano: primitiveColorTokens.light.crypto.cardano,

@@ -316,5 +316,6 @@ export const ledgerLiveDarkTheme = {
     errorPressed: primitiveColorTokens.dark.red['800'],
     warning: primitiveColorTokens.dark.yellow['600'],
     success: primitiveColorTokens.dark.green['600'],
+    icon: primitiveColorTokens.dark.grey['950-5'],
   },
 } satisfies ThemeColorTokens;
