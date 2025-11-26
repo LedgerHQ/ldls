@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-react",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "license": "Apache-2.0",
   "sideEffects": false,
   "keywords": [
@@ -41,7 +41,7 @@
     ]
   },
   "dependencies": {
-    "@ledgerhq/ldls-utils-shared": "0.0.9",
+    "@ledgerhq/ldls-utils-shared": "0.0.10",
     "i18next": "^23.7.0",
     "react-i18next": "^14.0.0"
   },
