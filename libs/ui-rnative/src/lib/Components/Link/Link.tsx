@@ -175,18 +175,21 @@ export const Link = React.forwardRef<
         {({ pressed }) => (
           <View
             className={cn(
-              'flex-row items-center gap-8 flex-shrink',
+              'flex-row items-center gap-8',
               size === 'sm' && 'gap-4',
             )}
           >
             {IconComponent && (
               <IconComponent
-                className={linkTextVariants({
-                  appearance,
-                  size,
-                  underline,
-                  pressed,
-                })}
+                className={cn(
+                  'flex-shrink-0',
+                  linkTextVariants({
+                    appearance,
+                    size,
+                    underline,
+                    pressed,
+                  }),
+                )}
                 size={calculatedIconSize}
               />
             )}
@@ -206,12 +209,15 @@ export const Link = React.forwardRef<
             {isExternal && (
               <ExternalLink
                 size={calculatedIconSize}
-                className={linkTextVariants({
-                  appearance,
-                  size,
-                  underline,
-                  pressed,
-                })}
+                className={cn(
+                  'flex-shrink-0',
+                  linkTextVariants({
+                    appearance,
+                    size,
+                    underline,
+                    pressed,
+                  }),
+                )}
                 accessible={false}
               />
             )}

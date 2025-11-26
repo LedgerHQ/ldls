@@ -276,21 +276,20 @@ export const StatesShowcase: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <View className='w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
-      <Link underline href='https://ledger.com' size='md'>
+      <Link underline href='https://ledger.com'>
         Short Link
       </Link>
-      <Link appearance='base' href='https://ledger.com' size='md'>
+      <Link appearance='base' href='https://ledger.com'>
         This is a longer link text that will be truncated with ellipsis when it
         exceeds the container width
       </Link>
       <Link
         appearance='base'
-        size='md'
         href='https://ledger.com'
         icon={Information}
         isExternal
       >
-        Base with long text that should fit
+        Base with long text that is cut off
       </Link>
     </View>
   ),
