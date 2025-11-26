@@ -151,7 +151,7 @@ const itemStyles = cn(
   'outline-none',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:pointer-events-none data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
+  'data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
 );
 
 const SelectItem = React.forwardRef<
