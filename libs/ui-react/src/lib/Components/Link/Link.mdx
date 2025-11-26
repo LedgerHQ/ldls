@@ -57,6 +57,8 @@ There are three link appearance variants:
 
 The `underline` prop controls text decoration independently from appearance (default: `true`):
 
+<Canvas of={LinkStories.UnderlineShowcase} />
+
 ### Size
 
 Links come in three size options:
@@ -347,6 +349,36 @@ These guidelines ensure consistency, maintainability, and proper implementation 
 ```tsx
 <Link href='/page' className='body-2'>
   Small Link
+</Link>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Keep underline for base appearance'
+      description='Base links should remain underlined for accessibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Link appearance='base' href='/page'>
+  Go to Ledger store
+</Link>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't remove underline from base appearance"
+      description='Makes it hard to distinguish from regular bold text, hurting accessibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Link appearance='base' underline={false} href='/page'>
+  Go to Ledger store
 </Link>
 ```
 

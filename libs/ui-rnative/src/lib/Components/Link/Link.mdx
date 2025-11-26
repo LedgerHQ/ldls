@@ -200,6 +200,27 @@ The Link component is built on React Native's `Pressable` and accepts all its pr
 
 The following guidelines are based on our design system principles. These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
+### Accessibility
+
+✅ **Do**
+
+```tsx
+// Keep underline for base appearance for accessibility
+<Link appearance='base' href='https://example.com'>
+  Accessible Link
+</Link>
+```
+
+❌ **Don't**
+
+```tsx
+// Don't remove underline from base appearance
+// This makes links hard to distinguish from regular bold text, hurting accessibility
+<Link appearance='base' underline={false} href='https://example.com'>
+  Hard to Distinguish
+</Link>
+```
+
 ### Content Composition
 
 ✅ **Do**

@@ -181,33 +181,16 @@ export const AppearanceShowcase: Story = {
 export const UnderlineShowcase: Story = {
   render: () => (
     <View className='flex-col gap-16 p-8'>
-      <Link appearance='base' size='md' href='https://ledger.com'>
-        Link with underline (default)
-      </Link>
-      <Link
-        appearance='base'
-        size='md'
-        underline={false}
-        href='https://ledger.com'
-      >
-        Link without underline
-      </Link>
-      <Link
-        appearance='accent'
-        size='md'
-        href='https://ledger.com'
-        icon={ArrowRight}
-      >
-        Accent with underline
+      <Link appearance='accent' size='md' href='https://ledger.com'>
+        With underline
       </Link>
       <Link
         appearance='accent'
         size='md'
         underline={false}
         href='https://ledger.com'
-        icon={ArrowRight}
       >
-        Accent without underline
+        Without underline
       </Link>
     </View>
   ),
