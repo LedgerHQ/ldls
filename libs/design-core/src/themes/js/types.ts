@@ -1,7 +1,5 @@
 export type PrimitiveTokens = {
-  /**
-   * Colors
-   */
+  // colors
   colors: {
     light: {
       constant: Record<string, string>;
@@ -28,10 +26,7 @@ export type PrimitiveTokens = {
       discover: Record<string, string>;
     };
   };
-
-  /**
-   * Sizes & Spacing
-   */
+  // sizes & spacing
   spacing: Record<string, number>;
   size: Record<string, number>;
   icon: {
@@ -46,19 +41,13 @@ export type PrimitiveTokens = {
   spinner: {
     borderWidth: Record<string, number>;
   };
-
-  /**
-   * Font
-   */
+  // font
   fontFamily: Record<string, string>;
   fontWeight: Record<string, string>;
   fontSize: Record<string, number>;
   fontLineHeight: Record<string, number>;
   fontLetterSpacing: Record<string, number>;
-
-  /**
-   * Others
-   */
+  // others
   borderRadius: Record<string, number>;
   stroke: Record<string, number>;
   blur: Record<string, number>;
@@ -74,22 +63,55 @@ type ShadowTokenDefinition = {
 
 export type ShadowTokens = {
   sm: {
-    first: ShadowTokenDefinition;
-    second: ShadowTokenDefinition;
+    primary: ShadowTokenDefinition;
+    secondary: ShadowTokenDefinition;
   };
   md: {
-    first: ShadowTokenDefinition;
-    second: ShadowTokenDefinition;
+    primary: ShadowTokenDefinition;
+    secondary: ShadowTokenDefinition;
   };
   lg: {
-    first: ShadowTokenDefinition;
-    second: ShadowTokenDefinition;
+    primary: ShadowTokenDefinition;
+    secondary: ShadowTokenDefinition;
   };
   xl: {
-    first: ShadowTokenDefinition;
-    second: ShadowTokenDefinition;
+    primary: ShadowTokenDefinition;
+    secondary: ShadowTokenDefinition;
   };
   '2xl': {
-    first: ShadowTokenDefinition;
+    primary: ShadowTokenDefinition;
   };
+};
+
+export type TypographyBreakpoint = {
+  responsiveDisplay: {
+    '1': Record<string, string | number>;
+    '2': Record<string, string | number>;
+    '3': Record<string, string | number>;
+    '4': Record<string, string | number>;
+  };
+  heading: {
+    '0': Record<string, string | number>;
+    '1': Record<string, string | number>;
+    '2': Record<string, string | number>;
+    '3': Record<string, string | number>;
+    '4': Record<string, string | number>;
+  };
+  body: {
+    '1': Record<string, string | number>;
+    '2': Record<string, string | number>;
+    '3': Record<string, string | number>;
+    '4': Record<string, string | number>;
+  };
+  grid: {
+    columnCount: number;
+    gutter: number;
+  };
+};
+
+export type TypographyTokens = {
+  sm: TypographyBreakpoint;
+  md?: TypographyBreakpoint;
+  lg?: TypographyBreakpoint;
+  xl?: TypographyBreakpoint;
 };
