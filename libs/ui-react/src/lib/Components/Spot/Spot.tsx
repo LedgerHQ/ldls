@@ -17,7 +17,7 @@ const spotVariants = cva(
     variants: {
       appearance: {
         icon: 'text-base',
-        bluetooth: 'text-[#0082FC]',
+        bluetooth: ' text-[#0082FC]',
         check: 'text-success',
         error: 'text-error',
         warning: 'text-warning',
@@ -140,7 +140,7 @@ export const Spot = (props: SpotProps) => {
   };
 
   const numberTypographyMap: Record<SpotSize, string> = {
-    32: 'body-3',
+    32: 'body-2-semi-bold',
     48: 'heading-4',
     56: 'heading-3',
     72: 'heading-1',
