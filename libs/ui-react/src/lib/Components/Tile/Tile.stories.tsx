@@ -324,7 +324,7 @@ export const SizeShowcase: Story = {
       <Tile
         title='Small Size'
         description='Compact tile'
-        leadingContent={<Spot appearance='icon' icon={User} />}
+        leadingContent={<Spot appearance='icon' icon={User} size={32} />}
         size='sm'
         secondaryAction={secondaryActionSmall}
         className='w-96'

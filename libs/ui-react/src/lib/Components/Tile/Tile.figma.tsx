@@ -23,18 +23,21 @@ figma.connect(
         true: figma.instance('tag'),
         false: undefined,
       }),
-      secondaryAction: figma.boolean('show-secondary-action', {
-        true: (
-          <InteractiveIcon
-            iconType='stroked'
-            aria-label='More actions'
-            onClick={() => console.log('secondary action clicked')}
-          >
-            <MoreVertical />
-          </InteractiveIcon>
-        ),
-        false: undefined,
+      secondaryAction: figma.enum('state', {
+        hovered: figma.boolean('show-secondary-action', {
+          true: (
+            <InteractiveIcon
+              iconType='stroked'
+              aria-label='More actions'
+              onClick={() => console.log('secondary action clicked')}
+            >
+              <MoreVertical />
+            </InteractiveIcon>
+          ),
+          false: undefined,
+        }),
       }),
+
       size: figma.enum('size', {
         md: 'md',
         sm: 'sm',

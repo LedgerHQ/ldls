@@ -48,6 +48,8 @@ Tiles come in two sizes:
 
 <Canvas of={TileStories.SizeShowcase} />
 
+> **Note**: Use a `32` Spot for small size tiles.
+
 ### Appearance
 
 Two appearance variants are available:
@@ -366,6 +368,59 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
     />
   }
   disabled
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use size 32 for Spot when Tile size is small'
+      description='When using a small Tile, reduce the Spot size to 32 to maintain proper proportions'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<Tile
+  title='Settings'
+  description='Configure app'
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+      size={32}
+    />
+  }
+  size='sm'
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use default Spot size with small Tile"
+      description='Using the default Spot size (48) with a small Tile creates poor visual proportions'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<Tile
+  title='Settings'
+  description='Configure app'
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+    />
+  }
+  size='sm'
 />
 ```
 
