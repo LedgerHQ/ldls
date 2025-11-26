@@ -169,6 +169,7 @@ export const Link = React.forwardRef<
         ref={ref}
         className={cn('shrink', className)}
         onPress={handlePress}
+        accessibilityRole='link'
         {...props}
       >
         {({ pressed }) => (
