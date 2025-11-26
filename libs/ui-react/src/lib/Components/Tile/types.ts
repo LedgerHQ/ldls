@@ -29,11 +29,6 @@ export type TileProps = {
    */
   onClick?: React.HTMLAttributes<HTMLButtonElement>['onClick'];
   /**
-   * The size of the tile.
-   * @default "md"
-   */
-  size?: 'sm' | 'md';
-  /**
    * The visual appearance of the tile background.
    * - `no-background`: Transparent background (shows hover state)
    * - `card`: Surface background color

@@ -8,13 +8,10 @@ const tileVariants = {
     [
       'group relative flex flex-col items-center text-base transition-colors',
       'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
+      'gap-8 px-8 py-16',
     ],
     {
       variants: {
-        size: {
-          md: 'gap-8 px-8 py-16',
-          sm: 'gap-8 p-8',
-        },
         appearance: {
           'no-background': 'bg-base-transparent',
           card: 'bg-surface',
@@ -55,26 +52,20 @@ const tileVariants = {
         },
       ],
       defaultVariants: {
-        size: 'md',
         appearance: 'no-background',
         isActive: false,
         disabled: false,
       },
     },
   ),
-  title: cva('truncate', {
+  title: cva('truncate body-2-semi-bold', {
     variants: {
-      size: {
-        md: 'body-2-semi-bold',
-        sm: 'body-3-semi-bold',
-      },
       disabled: {
         true: 'text-disabled',
         false: '',
       },
     },
     defaultVariants: {
-      size: 'md',
       disabled: false,
     },
   }),
@@ -152,7 +143,6 @@ export const Tile = ({
   secondaryAction,
   trailingContent,
   onClick,
-  size = 'md',
   appearance = 'no-background',
   disabled = false,
   'aria-label': ariaLabel,
@@ -167,7 +157,6 @@ export const Tile = ({
         event.preventDefault();
         return;
       }
-      // Otherwise, call the original onClick handler if it was provided.
       onClick?.(event);
     },
     [disabled, onClick],
@@ -211,7 +200,6 @@ export const Tile = ({
     <div
       {...props}
       className={tileVariants.root({
-        size,
         appearance,
         isActive,
         disabled,
@@ -240,9 +228,7 @@ export const Tile = ({
         <div className='flex items-center justify-center'>{leadingContent}</div>
         <div className='flex w-full flex-col items-center gap-4'>
           <div className='flex w-full flex-col text-center'>
-            <div className={tileVariants.title({ size, disabled })}>
-              {title}
-            </div>
+            <div className={tileVariants.title({ disabled })}>{title}</div>
             {description && (
               <div className={tileVariants.description({ disabled })}>
                 {description}

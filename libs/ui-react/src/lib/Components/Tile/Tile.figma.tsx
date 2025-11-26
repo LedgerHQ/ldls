@@ -37,11 +37,6 @@ figma.connect(
           false: undefined,
         }),
       }),
-
-      size: figma.enum('size', {
-        md: 'md',
-        sm: 'sm',
-      }),
       appearance: figma.enum('appearance', {
         'no-background': 'no-background',
         card: 'card',
@@ -63,7 +58,6 @@ figma.connect(
         leadingContent={props.leadingContent}
         trailingContent={props.trailingContent}
         secondaryAction={props.secondaryAction}
-        size={props.size}
         appearance={props.appearance}
         disabled={props.disabled}
         onClick={() => console.log('Tile clicked')}

@@ -12,12 +12,12 @@ import { IconSize } from '../Icon/Icon';
 import { Spinner } from '../Spinner';
 
 const spotVariants = cva(
-  'flex items-center justify-center rounded-full bg-muted',
+  'flex items-center justify-center rounded-full bg-muted-transparent',
   {
     variants: {
       appearance: {
         icon: 'text-base',
-        bluetooth: ' text-[#0082FC]',
+        bluetooth: 'text-[#0082FC]',
         check: 'text-success',
         error: 'text-error',
         warning: 'text-warning',

@@ -49,7 +49,6 @@ figma.connect(
           true: onBack,
           false: undefined,
         }),
-        onClose: onClose,
       }),
 
       // Dialog close handler
@@ -68,7 +67,9 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/components-dialog--base',
       },
     ],
-    example: (props: DialogProps & { dialogHeader: SheetBarProps }) => (
+    example: (
+      props: DialogProps & { dialogHeader: Omit<SheetBarProps, 'onClose'> },
+    ) => (
       <Dialog open={props.open} onOpenChange={props.onOpenChange}>
         <DialogTrigger asChild>
           <Button>Open Dialog</Button>
@@ -79,7 +80,7 @@ figma.connect(
             title={props.dialogHeader.title}
             description={props.dialogHeader.description}
             onBack={props.dialogHeader.onBack}
-            onClose={props.dialogHeader.onClose}
+            onClose={onClose}
           />
           <div className='p-16'>
             <p>Dialog content goes here</p>

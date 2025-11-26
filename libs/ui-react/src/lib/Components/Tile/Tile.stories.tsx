@@ -25,15 +25,6 @@ const secondaryAction = (
   </InteractiveIcon>
 );
 
-const secondaryActionSmall = (
-  <InteractiveIcon
-    iconType='stroked'
-    aria-label='More actions'
-    onClick={() => console.log('secondary action clicked')}
-  >
-    <MoreVertical size={16} />
-  </InteractiveIcon>
-);
 const meta: Meta<typeof Tile> = {
   component: Tile,
   title: 'Containment/Tile',
@@ -89,7 +80,6 @@ export const Base: Story = {
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     className: 'w-112',
     secondaryAction,
-    size: 'md',
     appearance: 'no-background',
   },
   parameters: {
@@ -109,7 +99,6 @@ export const Base: Story = {
       <MoreVertical />
     </InteractiveIcon>
   )}
-  size="md"
   appearance="no-background"
   className="w-112"
 />
@@ -306,29 +295,6 @@ export const ResponsiveLayout: Story = {
           leadingContent={<Spot appearance='icon' icon={Plus} />}
         />
       </div>
-    </div>
-  ),
-};
-
-export const SizeShowcase: Story = {
-  render: () => (
-    <div>
-      <Tile
-        title='Medium Size'
-        description='Default tile size'
-        leadingContent={<Spot appearance='icon' icon={Settings} />}
-        size='md'
-        secondaryAction={secondaryAction}
-        className='w-112'
-      />
-      <Tile
-        title='Small Size'
-        description='Compact tile'
-        leadingContent={<Spot appearance='icon' icon={User} size={32} />}
-        size='sm'
-        secondaryAction={secondaryActionSmall}
-        className='w-96'
-      />
     </div>
   ),
 };
