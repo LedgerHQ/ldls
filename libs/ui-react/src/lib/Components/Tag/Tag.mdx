@@ -1,6 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Tag' of={TagStories} />
 
@@ -100,96 +106,35 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Content Composition
-
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use label for text content'
+      description='Pass icon as a component reference for proper sizing'
+    >
 
 ```tsx
-// Use label for text content
-<Tag label='My Tag' />;
-
-// Pass icon as a component reference
 import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
 <Tag icon={Plus} label='Add Item' />;
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't include icon in label"
+      description='Avoid including icon elements directly in label text'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't include icon in label
 <Tag label='<Plus /> Add Item' />
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Use className for layout positioning
-<Tag className="mt-4 ml-2" label="Submit" />
-
-// Use className for positioning
-<Tag className="absolute top-0 right-0" label="New" />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't override tag's core styling
-<Tag className="bg-black" label="Custom Background" />
-
-// Don't modify internal spacing/padding
-<Tag className="p-6" label="Wrong Spacing" />
-
-// Don't override typography - use size prop instead
-<Tag className="heading-2" label="Wrong Typography" />
-```
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The tag's core styling (colors, padding, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
-
-### Icon Usage
-
-✅ **Do**
-
-```tsx
-// Import icons explicitly
-import { Check } from '@ledgerhq/ldls-ui-react/symbols';
-
-// Use icon prop for consistent sizing
-<Tag icon={Check} label='Success' />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't use string-based icon names
-<Tag icon='check' label='Success' />;
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
-import { Check } from '@ledgerhq/ldls-ui-react/symbols';
-
-// Use appropriate size variant
-<Tag size='sm' icon={Check} label='Success' />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't use custom sizes when standard ones exist
-<Tag className='h-[52px]' label='Custom Height' />;
-```
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

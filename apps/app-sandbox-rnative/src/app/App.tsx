@@ -1,30 +1,31 @@
 import {
-  ThemeProvider,
   GlobalTooltipBottomSheet,
-  useBottomSheetRef,
   SupportedLocale,
+  ThemeProvider,
+  useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
 import { useState } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Banners } from './blocks/Banners';
 import {
+  AmountInputs,
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
   BottomSheetsButton,
-} from './blocks/BottomSheets';
-import { Buttons } from './blocks/Buttons';
+  Buttons,
+  Checkboxes,
+  IconButtons,
+  Links,
+  Spots,
+  Switches,
+  Tags,
+  TextInputs,
+  Tiles,
+  ToggleLocaleSwitch,
+  ToggleThemeSwitch,
+} from './blocks';
+import { Banners } from './blocks/Banners';
 import { CardButtons } from './blocks/CardButtons';
-import { Checkboxes } from './blocks/Checkboxes';
-import { IconButtons } from './blocks/IconButtons';
-import { Inputs } from './blocks/Inputs';
-import { Links } from './blocks/Links';
-import { Spots } from './blocks/Spots';
-import { Switches } from './blocks/Switches';
-import { Tags } from './blocks/Tags';
-import { Tiles } from './blocks/Tiles';
-import { ToggleLocaleSwitch } from './blocks/ToggleLocaleSwitch';
-import { ToggleThemeSwitch } from './blocks/ToggleThemeSwitch';
 import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
@@ -43,11 +44,14 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='Text inputs'>
+                <TextInputs />
+              </SandboxBlock>
+              <SandboxBlock title='Amount inputs'>
+                <AmountInputs />
+              </SandboxBlock>
               <SandboxBlock title='CardButtons'>
                 <CardButtons />
-              </SandboxBlock>
-              <SandboxBlock title='Inputs'>
-                <Inputs />
               </SandboxBlock>
               <SandboxBlock title='Checkboxes'>
                 <Checkboxes />

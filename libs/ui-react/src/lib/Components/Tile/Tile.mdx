@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Containment/Tile' of={TileStories} />
 
@@ -59,7 +65,7 @@ Horizontal lists are used to display a list of tiles in a horizontal scrollable 
 
 ### Responsive layout
 
-By default the tile fill the width of its container. The title and description will be truncated to one line.
+By default the tile fills the width of its container. The title and description will be truncated to one line.
 
 <Canvas of={TileStories.ResponsiveLayout} />
 
@@ -110,58 +116,77 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Layout and Styling
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use concise text for title and description'
+      description='Keep title and description short since they truncate to one line'
+    >
 
-✅ **Do**
+{/* prettier-ignore */}
+```tsx
+<Tile
+  title='Settings'
+  description='Manage preferences'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use long text"
+      description='Title and description truncate to one line'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Tile
+  title='This is a very long title that will be truncated and users will not be able to read the full text'
+  description='This is also a very long description that will be truncated and users will not be able to read the full text'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='By default the tile fills the width of its container'
+      description='Control width using wrapper containers'
+    >
 
 ```tsx
-// Use className for layout positioning
-<Tile
-  title="Settings"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="mb-6"
-/>
-
-// Use className for responsive behavior
-<Tile
-  title="Desktop Item"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="hidden lg:flex"
-/>
-
-// Use container elements to control width
-<div className="w-128">
+<div className='w-128'>
   <Tile
-    title="Fixed Width"
-    leadingContent={<Spot appearance="icon" icon={Settings} />}
+    title='Fixed Width'
+    leadingContent={<Spot appearance='icon' icon={Settings} />}
   />
 </div>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for full width"
+      description='Do not use className for width'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core styling
 <Tile
-  title="Custom Colors"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="bg-base text-active"
-/>
-
-// Don't modify internal spacing
-<Tile
-  title="Wrong Spacing"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="gap-2 p-2"
-/>
-
-// Don't override typography classes
-<Tile
-  title="Bad Typography"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="body-3"
+  title='Bad Typography'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  className='w-full'
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

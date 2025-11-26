@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SwitchStories from './Switch.stories';
 import { Switch } from './Switch';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Switch' of={SwitchStories} />
 
@@ -138,55 +144,39 @@ The Switch component automatically supports:
 
 The following guidelines ensure consistent usage of the Switch component and maintain design system principles.
 
-### Layout and Styling
-
-✅ **Do**
-
-````tsx
-// Use className for responsive behavior
-<Switch className="hidden md:block" />
-
-// Use className for margins and positioning
-<Switch className="mt-2 mr-4" />
-
-// Use the size prop
-<Switch size="sm" />
-
-❌ **Don't**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use controlled components'
+      description='Use defaultSelected for simple uncontrolled cases'
+    >
 
 ```tsx
-// Don't override the core styling
-<Switch className="bg-base border-muted" />
-// Don't modify the appearance
-<Switch className="w-32 h-20 rounded-lg" />
-// Don't modify internal spacing or padding
-<Switch className="p-4" />
-````
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
-
-### State Management
-
-✅ **Do**
-
-```tsx
-// Use controlled components for form state
 const [isSelected, setIsSelected] = useState(false);
 <Switch selected={isSelected} onChange={setIsSelected} />
-// Use defaultSelected for simple uncontrolled cases
+
 <Switch defaultSelected={false} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't mix patterns"
+      description='Avoid mixing controlled/uncontrolled patterns or string values'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't mix controlled and uncontrolled patterns
 <Switch selected={isSelected} defaultSelected={true} />
-// Don't ignore state change handlers
-<Switch selected={isSelected} />
-// Don't use string values for selected state
-<Switch selected="true" />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+<CommonRulesDoAndDont />
+
+> `className` only for layout-related utilities (positioning, margins, display properties). The switch's core styling (colors, size, focus states, etc.) should be controlled through the design system to maintain consistency.
 
 </Tab>
 </CustomTabs>

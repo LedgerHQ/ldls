@@ -29,7 +29,10 @@ export type AddressInputProps = {
    * When not provided, no QR code scanner icon will be shown.
    */
   onQrCodeClick?: () => void;
-} & Omit<BaseInputProps, 'prefix' | 'label'>;
+} & Omit<
+  BaseInputProps,
+  'prefix' | 'label' | 'labelClassName' | 'inputClassName'
+>;
 
 /**
  * A customizable address field input component for cryptocurrency addresses with fixed "To:" prefix, QR code scanner, automatic clear button, error states, and focus/hover effects.
@@ -41,7 +44,7 @@ export type AddressInputProps = {
  * - **Conditional QR code scanner** appears only when onQrCodeClick handler is provided
  * - **ENS and address support** optimized for cryptocurrency address entry
  * - **Error state styling** with aria-invalid and errorMessage support
- * - **Flexible styling** via className, inputClassName, labelClassName props
+ * - **Flexible styling** via className prop
  *
  * ## Clear Button Behavior
  * - Shows automatically when input has content and is not disabled

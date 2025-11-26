@@ -1,6 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SelectStories from './Select.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Select' of={SelectStories} />
 
@@ -178,34 +184,40 @@ function MyComponent() {
 
 **Important:** Always use `SelectItemText` for the main option text. Description text should be placed in separate elements alongside `SelectItemText`, never inside it.
 
-✅ **Do:**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use SelectItemText for main text'
+      description='Place description text in separate elements alongside SelectItemText'
+    >
 
 ```tsx
 <SelectItem value='option1' className='flex flex-col items-start gap-4'>
   <SelectItemText>Option Title</SelectItemText>
-  <div className='body-4 text-muted'>This is a description</div>
+  <div className='body-4 text-muted'>This is a correct description</div>
 </SelectItem>
 ```
 
-❌ **Don't:**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't nest description inside SelectItemText"
+      description='Avoid nesting description or using raw text without SelectItemText'
+    >
 
+{/* prettier-ignore */}
 ```tsx
 <SelectItem value='option1'>
   <SelectItemText>
     Option Title
-    <div>This is a description</div>{' '}
-    {/* Don't nest description inside SelectItemText */}
+    <div>This a wrong description</div>
   </SelectItemText>
 </SelectItem>
 ```
 
-❌ **Don't:**
+    </DontBlockItem>
 
-```tsx
-<SelectItem value='option1'>
-  Option Title {/* Don't use raw text - always wrap with SelectItemText */}
-</SelectItem>
-```
+  </DoVsDontRow>
+</div>
 
 ### With Groups
 
@@ -331,7 +343,99 @@ function MyComponent() {
 }
 ```
 
-> **Note:** `SelectScrollUpButton` and `SelectScrollDownButton` are automatically rendered inside `SelectContent`. 
+> **Note:** `SelectScrollUpButton` and `SelectScrollDownButton` are automatically rendered inside `SelectContent`.
+
+## Do's and Don'ts
+
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use proper component composition'
+      description='Use all required sub-components: SelectTrigger, SelectContent, SelectItem, and SelectItemText'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger label='Category' />
+  <SelectContent>
+    <SelectItem value='option1'>
+      <SelectItemText>Option 1</SelectItemText>
+    </SelectItem>
+  </SelectContent>
+</Select>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't skip required components"
+      description='All sub-components are required. Do not skip SelectItemText or use raw text in SelectItem'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger label='Category' />
+  <SelectContent>
+    <SelectItem value='option1'>
+      Option 1
+    </SelectItem>
+  </SelectContent>
+</Select>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use labelClassName for label styling'
+      description='Use labelClassName prop on SelectTrigger to style the floating label specifically'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger 
+    label='Category' 
+    labelClassName='font-semibold'
+  />
+  <SelectContent>
+    <SelectItem value='option1'>
+      <SelectItemText>Option 1</SelectItemText>
+    </SelectItem>
+  </SelectContent>
+</Select>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className to style the label"
+      description='className on SelectTrigger styles the trigger element, not the label. Use labelClassName instead'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger 
+    label='Category' 
+    className='font-semibold'
+  />
+  <SelectContent>
+    <SelectItem value='option1'>
+      <SelectItemText>Option 1</SelectItemText>
+    </SelectItem>
+  </SelectContent>
+</Select>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

@@ -2,6 +2,8 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SubheaderStories from './Subheader.stories';
 import { Subheader } from './Subheader';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Communication/Subheader' of={SubheaderStories} />
 
@@ -238,82 +240,40 @@ While the component comes with predefined styles, you can extend them using Tail
 
 The following guidelines ensure consistent usage of the Subheader component and maintain design system principles.
 
-### Layout and Styling
-
-✅ **Do**
-
-```tsx
-// Use className for layout positioning
-<Subheader
-  title="Section Title"
-  className="mb-6"
-/>
-
-// Use className for responsive behavior
-<Subheader
-  title="Desktop Section"
-  className="hidden lg:flex"
-/>
-
-// Use container elements to control width
-<div className="w-full">
-  <Subheader title="Full Width" />
-</div>
-```
-
-❌ **Don't**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use proper slot composition'
+      description='Combine Info and Action slots as needed'
+    >
 
 ```tsx
-// Don't override core styling
-<Subheader
-  title="Custom Colors"
-  className="bg-base text-active"
-/>
-
-// Don't modify internal spacing
-<Subheader
-  title="Wrong Spacing"
-  className="gap-2 p-2"
-/>
-
-// Don't override typography classes
-<Subheader
-  title="Bad Typography"
-  className="body-3"
-/>
-```
-
-### Slot Usage
-
-✅ **Do**
-
-```tsx
-// Use proper slot composition
-<Subheader title="With Action">
+<Subheader title='With Action'>
   <Subheader.Action>
-    <Link href="#">Link</Link>
-  </Subheader.Action>
-</Subheader>
-
-// Combine multiple slots
-<Subheader title="Complete">
-  <Subheader.Info>
-    <Tooltip>...</Tooltip>
-  </Subheader.Info>
-  <Subheader.Action>
-    <Link href="#">Action</Link>
+    <Link href='#'>Link</Link>
   </Subheader.Action>
 </Subheader>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use non-slot children"
+      description='Only use Subheader.Info and Subheader.Action slots'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't put non-slot children
 <Subheader title='Wrong'>
-  <div>Random child</div> {/* Only use Subheader.Info and Subheader.Action */}
+  <div>Random child</div>
 </Subheader>
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+<CommonRulesDoAndDont />
 
 </Tab>
 </CustomTabs>

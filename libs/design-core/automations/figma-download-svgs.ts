@@ -1,8 +1,8 @@
 import { mkdirSync } from 'fs';
 import { dirname } from 'path';
 import { config } from 'dotenv';
-import { downloadSvgs } from './src/figma/download-svgs.js';
-import { getSvgs } from './src/figma/get-svgs.js';
+import { downloadSvgs } from '../src/figma/download-svgs.js';
+import { getSvgs } from '../src/figma/get-svgs.js';
 
 config({ path: '../../../../.env' });
 

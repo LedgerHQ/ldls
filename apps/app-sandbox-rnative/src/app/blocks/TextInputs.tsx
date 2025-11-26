@@ -3,7 +3,7 @@ import { Eye, EyeCross } from '@ledgerhq/ldls-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
 
-export function Inputs() {
+export function TextInputs() {
   const [team, setTeam] = useState<string>();
   const [isTeamValid, setIsTeamValid] = useState(true);
 
