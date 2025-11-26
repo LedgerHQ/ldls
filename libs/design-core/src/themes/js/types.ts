@@ -1,32 +1,48 @@
-export type PrimitiveTokens = {
-  // colors
-  colors: {
-    light: {
-      constant: Record<string, string>;
-      grey: Record<string, string>;
-      orange: Record<string, string>;
-      purple: Record<string, string>;
-      blue: Record<string, string>;
-      green: Record<string, string>;
-      yellow: Record<string, string>;
-      red: Record<string, string>;
-      crypto: Record<string, string>;
-      discover: Record<string, string>;
-    };
-    dark: {
-      constant: Record<string, string>;
-      grey: Record<string, string>;
-      purple: Record<string, string>;
-      orange: Record<string, string>;
-      blue: Record<string, string>;
-      green: Record<string, string>;
-      yellow: Record<string, string>;
-      red: Record<string, string>;
-      crypto: Record<string, string>;
-      discover: Record<string, string>;
-    };
+/**
+ * Color primitives
+ */
+export type PrimitiveColorTokens = {
+  light: {
+    constant: Record<string, string>;
+    grey: Record<string, string>;
+    orange: Record<string, string>;
+    purple: Record<string, string>;
+    blue: Record<string, string>;
+    green: Record<string, string>;
+    yellow: Record<string, string>;
+    red: Record<string, string>;
+    crypto: Record<string, string>;
+    discover: Record<string, string>;
   };
-  // sizes & spacing
+  dark: {
+    constant: Record<string, string>;
+    grey: Record<string, string>;
+    purple: Record<string, string>;
+    orange: Record<string, string>;
+    blue: Record<string, string>;
+    green: Record<string, string>;
+    yellow: Record<string, string>;
+    red: Record<string, string>;
+    crypto: Record<string, string>;
+    discover: Record<string, string>;
+  };
+};
+
+/**
+ * Typography primitives
+ */
+export type PrimitiveTypographyTokens = {
+  fontFamily: Record<string, string>;
+  fontWeight: Record<string, string>;
+  fontSize: Record<string, number>;
+  fontLineHeight: Record<string, number>;
+  fontLetterSpacing: Record<string, number>;
+};
+
+/**
+ * Size & Spacing & Other primitives
+ */
+export type PrimitiveOtherTokens = {
   spacing: Record<string, number>;
   size: Record<string, number>;
   icon: {
@@ -41,13 +57,6 @@ export type PrimitiveTokens = {
   spinner: {
     borderWidth: Record<string, number>;
   };
-  // font
-  fontFamily: Record<string, string>;
-  fontWeight: Record<string, string>;
-  fontSize: Record<string, number>;
-  fontLineHeight: Record<string, number>;
-  fontLetterSpacing: Record<string, number>;
-  // others
   borderRadius: Record<string, number>;
   stroke: Record<string, number>;
   blur: Record<string, number>;
@@ -114,4 +123,21 @@ export type TypographyTokens = {
   md?: TypographyBreakpoint;
   lg?: TypographyBreakpoint;
   xl?: TypographyBreakpoint;
+};
+
+export type ThemeColorTokens = {
+  border: Record<string, string>;
+  background: Record<string, string>;
+  text: Record<string, string>;
+  discover: Record<string, string>;
+  crypto: Record<string, string>;
+};
+
+export type ThemeTokens = PrimitiveOtherTokens & {
+  colors: {
+    dark: ThemeColorTokens;
+    light: ThemeColorTokens;
+  };
+  shadows: ShadowTokens;
+  typographies: TypographyTokens;
 };

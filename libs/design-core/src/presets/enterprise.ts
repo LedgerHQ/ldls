@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { enterpriseTheme } from '../themes/css';
+import { enterpriseCSSTheme } from '../themes/css';
 import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 
@@ -22,9 +22,9 @@ export const enterprisePreset = {
   },
   plugins: [
     createPrimitivesPlugin(),
-    createThemePlugin(enterpriseTheme),
+    createThemePlugin(enterpriseCSSTheme),
     createTypographyPlugin(),
-    createGradientPlugin(enterpriseTheme),
+    createGradientPlugin(enterpriseCSSTheme),
     createShadowPlugin(),
     createAnimationsPlugin(),
   ],

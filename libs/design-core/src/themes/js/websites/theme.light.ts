@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const ledgerLiveLightTheme = {
+export const websitesLightTheme = {
   crypto: {
     aion: primitiveColorTokens.light.crypto.aion,
     aion0: primitiveColorTokens.light.crypto.aion0,
@@ -183,7 +183,7 @@ export const ledgerLiveLightTheme = {
     baseTransparentHover: primitiveColorTokens.light.grey['950-5'],
     baseTransparentPressed: primitiveColorTokens.light.grey['950-10'],
     disabled: primitiveColorTokens.light.grey['200'],
-    disabledStrong: primitiveColorTokens.light.grey['300'],
+    disabledStrong: primitiveColorTokens.dark.grey['300'],
     muted: primitiveColorTokens.light.grey['200'],
     mutedHover: primitiveColorTokens.light.grey['300'],
     mutedPressed: primitiveColorTokens.light.grey['400'],

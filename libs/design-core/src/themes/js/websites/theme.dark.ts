@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const ledgerLiveDarkTheme = {
+export const websitesDarkTheme = {
   crypto: {
     aion: primitiveColorTokens.dark.crypto.aion,
     aion0: primitiveColorTokens.dark.crypto.aion0,
@@ -183,17 +183,17 @@ export const ledgerLiveDarkTheme = {
     baseTransparentHover: primitiveColorTokens.dark.grey['950-10'],
     baseTransparentPressed: primitiveColorTokens.dark.grey['950-20'],
     disabled: primitiveColorTokens.dark.grey['200'],
-    disabledStrong: primitiveColorTokens.light.grey['300'],
+    disabledStrong: primitiveColorTokens.dark.grey['300'],
     muted: primitiveColorTokens.dark.grey['200'],
     mutedHover: primitiveColorTokens.dark.grey['300'],
     mutedPressed: primitiveColorTokens.dark.grey['400'],
+    mutedStrong: primitiveColorTokens.dark.grey['600'],
+    mutedStrongHover: primitiveColorTokens.dark.grey['700'],
+    mutedStrongPressed: primitiveColorTokens.dark.grey['800'],
     mutedTransparent: primitiveColorTokens.dark.grey['950-5'],
     mutedTransparentHover: primitiveColorTokens.light.grey['050-10'],
     mutedTransparentPressed: primitiveColorTokens.light.grey['050-20'],
     mutedTransparentDisabled: primitiveColorTokens.dark.grey['950-5'],
-    mutedStrong: primitiveColorTokens.dark.grey['600'],
-    mutedStrongHover: primitiveColorTokens.dark.grey['700'],
-    mutedStrongPressed: primitiveColorTokens.dark.grey['800'],
     accentLedgerLive: primitiveColorTokens.dark.purple['400'],
     accentLedgerLiveHover: primitiveColorTokens.dark.purple['500'],
     accentLedgerLivePressed: primitiveColorTokens.dark.purple['600'],
@@ -316,5 +316,6 @@ export const ledgerLiveDarkTheme = {
     errorPressed: primitiveColorTokens.dark.red['800'],
     warning: primitiveColorTokens.dark.yellow['600'],
     success: primitiveColorTokens.dark.green['600'],
+    icon: primitiveColorTokens.dark.grey['950-5'],
   },
 } satisfies ThemeColorTokens;

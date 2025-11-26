@@ -1,3 +1,4 @@
+import { TypographyTokens } from '../types';
 import { typographyLgTokens } from './typography.lg';
 import { typographyMdTokens } from './typography.md';
 import { typographySmTokens } from './typography.sm';
@@ -8,4 +9,4 @@ export const typographyTokens = {
   md: typographyMdTokens,
   lg: typographyLgTokens,
   xl: typographyXlTokens,
-};
+} satisfies TypographyTokens;
