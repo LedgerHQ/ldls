@@ -32,7 +32,7 @@ figma.connect(
     ],
     props: {
       // Access nested SheetBar properties using figma.nestedProps()
-      sheetBar: figma.nestedProps('.sheet-bar', {
+      dialogHeader: figma.nestedProps('.dialog-header', {
         appearance: figma.enum('appearance', {
           compact: 'compact',
           extended: 'extended',
@@ -67,18 +67,20 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/components-dialog--base',
       },
     ],
-    example: (props: DialogProps & { sheetBar: SheetBarProps }) => (
+    example: (
+      props: DialogProps & { dialogHeader: Omit<SheetBarProps, 'onClose'> },
+    ) => (
       <Dialog open={props.open} onOpenChange={props.onOpenChange}>
         <DialogTrigger asChild>
           <Button>Open Dialog</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader
-            appearance={props.sheetBar.appearance}
-            title={props.sheetBar.title}
-            description={props.sheetBar.description}
-            onBack={props.sheetBar.onBack}
-            onClose={props.sheetBar.onClose}
+            appearance={props.dialogHeader.appearance}
+            title={props.dialogHeader.title}
+            description={props.dialogHeader.description}
+            onBack={props.dialogHeader.onBack}
+            onClose={onClose}
           />
           <div className='p-16'>
             <p>Dialog content goes here</p>

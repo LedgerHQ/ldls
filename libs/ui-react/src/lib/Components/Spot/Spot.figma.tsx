@@ -2,7 +2,6 @@ import React from 'react';
 import { Spot, SpotAppearance } from './Spot';
 
 import figma from '@figma/code-connect';
-import { IconSize } from '../Icon/Icon';
 
 figma.connect(
   Spot,
@@ -14,14 +13,13 @@ figma.connect(
         disabled: true,
       }),
       appearance: figma.enum('appearance', {
-        'interface-icon': 'interface-icon',
+        'interface-icon': 'icon',
         loader: 'loader',
         number: 'number',
-        'info-muted': 'info-muted',
+        'info-muted': 'info',
         warning: 'warning',
         error: 'error',
         check: 'check',
-        'bluetooth-disabled': 'bluetooth-disabled',
         bluetooth: 'bluetooth',
       }),
       icon: figma.instance('icon'),
@@ -30,14 +28,14 @@ figma.connect(
       }),
     },
     example: (props: {
-      appearance: SpotAppearance;
-      icon: React.ComponentType<{ size?: IconSize; className?: string }>;
       disabled: boolean;
+      appearance: SpotAppearance;
+      icon: React.ReactElement;
       number: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }) => (
       <Spot
         appearance={props.appearance}
-        icon={props.icon}
+        icon={props.icon as any}
         number={props.number}
         disabled={props.disabled}
       />

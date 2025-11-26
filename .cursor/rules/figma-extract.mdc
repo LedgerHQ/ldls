@@ -1,5 +1,6 @@
 ---
-description: implement a figma component
+description: When Asked to implement or update a component using a figma Link
+keywords: figma, mcp, figma.com, design, extract, implement from figma
 globs:
 alwaysApply: false
 ---
@@ -50,3 +51,19 @@ alwaysApply: false
   No prefix is needed — use directly the name of the font style.
   Transform: replace `/` with `-` (so `body/3` becomes `body-3`).
   Result: You write the single class `body-3`.
+
+## When Figma Sizes Don't Match Design Tokens
+
+If Figma specifies a size not in our token system (e.g., 108px or 90px):
+
+1. **Use the closest available token** (e.g., 112px instead of 108px, 96px instead of 90px)
+2. **Document the deviation** in code comments
+3. **Consider requesting the token be added** to Figma if it's frequently needed
+
+```tsx
+// ✅ Do - Use closest token and document
+<Tile
+  className='w-112' // Using 112px (closest to Figma's 108px)
+  size='md'
+/>
+```

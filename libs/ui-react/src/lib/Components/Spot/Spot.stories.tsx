@@ -146,7 +146,7 @@ export const SizesShowcase: Story = {
       { name: 'Number', appearance: 'number', number: 5 },
     ];
 
-    const sizes = [48, 56, 72] as const;
+    const sizes = [32, 48, 56, 72] as const;
 
     return (
       <div className='flex flex-col gap-16 p-8 text-base'>

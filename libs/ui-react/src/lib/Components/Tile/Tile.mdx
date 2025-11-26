@@ -39,6 +39,33 @@ Tile components are compact, card-like interactive elements designed for horizon
 <Canvas of={TileStories.Base} />
 <Controls of={TileStories.Base} />
 
+### Appearance
+
+Two appearance variants are available:
+
+- **no-background** (default): Transparent background with hover/pressed states
+- **card**: Surface background color with hover/pressed states
+
+<Canvas of={TileStories.AppearanceShowcase} />
+
+### States
+
+Tiles support multiple interactive states:
+
+- **Default**: Base state with no interaction
+- **Hover**: Background color changes on hover
+- **Pressed**: Darker background when clicked
+- **Focused**: Focus ring appears on keyboard navigation
+- **Disabled**: Non-interactive state with disabled styles
+
+<Canvas of={TileStories.StateShowcase} />
+
+### Disabled State
+
+When disabled, tiles become non-interactive and display with disabled styles.
+
+<Canvas of={TileStories.DisabledShowcase} />
+
 ### Spot Variants
 
 Tile components support various spot icons to categorize or visualize the content, including coin icons.
@@ -92,9 +119,39 @@ function MyComponent() {
       title='Settings'
       leadingContent={<Spot appearance='icon' icon={Settings} />}
       onClick={() => console.log('Clicked!')}
+      appearance='no-background'
     />
   );
 }
+```
+
+### Appearance Variants
+
+```tsx
+// Transparent background (default)
+<Tile
+  title='Settings'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  appearance='no-background'
+/>
+
+// Card/Surface background
+<Tile
+  title='Settings'
+  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  appearance='card'
+/>
+```
+
+### Disabled State
+
+```tsx
+<Tile
+  title='Settings'
+  description='Unavailable'
+  leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
+  disabled
+/>
 ```
 
 ### With Coin Icon
@@ -114,6 +171,21 @@ function MyComponent() {
 }
 ```
 
+### Horizontal List
+
+```tsx
+<div className='flex overflow-x-auto'>
+  {items.map((item, i) => (
+    <Tile
+      key={item.id}
+      title={item.title}
+      description={item.description}
+      leadingContent={<Spot appearance='icon' icon={item.icon} />}
+    />
+  ))}
+</div>
+```
+
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
@@ -128,7 +200,12 @@ function MyComponent() {
 <Tile
   title='Settings'
   description='Manage preferences'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+    />
+  }
 />
 ```
 
@@ -143,7 +220,12 @@ function MyComponent() {
 <Tile
   title='This is a very long title that will be truncated and users will not be able to read the full text'
   description='This is also a very long description that will be truncated and users will not be able to read the full text'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+    />
+  }
 />
 ```
 
@@ -157,11 +239,14 @@ function MyComponent() {
       description='Control width using wrapper containers'
     >
 
+{/* prettier-ignore */}
 ```tsx
 <div className='w-128'>
   <Tile
     title='Fixed Width'
-    leadingContent={<Spot appearance='icon' icon={Settings} />}
+    leadingContent={
+      <Spot appearance='icon' icon={Settings} />
+      }
   />
 </div>
 ```
@@ -176,8 +261,81 @@ function MyComponent() {
 ```tsx
 <Tile
   title='Bad Typography'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+    />
+  }
   className='w-full'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Pass disabled to trailing and leading content'
+      description='When the Tile is disabled, ensure trailing and leading content components also receive the disabled prop'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { Tile, Spot, Tag } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<Tile
+  title='Settings'
+  description='Configure app'
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+      disabled
+    />
+  }
+  trailingContent={
+    <Tag
+      label='New'
+      appearance='base'
+      size='sm'
+      disabled
+    />
+  }
+  disabled
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't forget to disable trailing and leading content"
+      description='Trailing and leading content will remain interactive if you only disable the Tile'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { Tile, Spot, Tag } from '@ledgerhq/ldls-ui-react';
+import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+
+<Tile
+  title='Settings'
+  description='Configure app'
+  leadingContent={
+    <Spot
+      appearance='icon'
+      icon={Settings}
+    />
+  }
+  trailingContent={
+    <Tag
+      label='New'
+      appearance='base'
+      size='sm'
+    />
+  }
+  disabled
 />
 ```
 

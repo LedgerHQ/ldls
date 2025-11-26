@@ -28,4 +28,17 @@ export type TileProps = {
    * The function to call when the tile is clicked.
    */
   onClick?: React.HTMLAttributes<HTMLButtonElement>['onClick'];
+  /**
+   * The visual appearance of the tile background.
+   * - `no-background`: Transparent background (shows hover state)
+   * - `card`: Surface background color
+   * @default "no-background"
+   */
+  appearance?: 'no-background' | 'card';
+  /**
+   * Whether the tile is disabled.
+   * When disabled, the tile is non-interactive and has disabled styles.
+   * @default false
+   */
+  disabled?: boolean;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;

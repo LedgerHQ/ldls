@@ -27,7 +27,7 @@ const triggerStyles = cn(
   'bg-muted rounded-sm px-16',
   'text-base body-2',
   'hover:bg-muted-hover',
-  'focus:outline-none focus:ring-2 focus:ring-focus',
+  'focus:outline-none focus:ring-2 focus:ring-focus transition-colors duration-200',
   'disabled:cursor-not-allowed disabled:text-disabled',
 );
 

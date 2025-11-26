@@ -6,18 +6,80 @@ import { TileProps } from './types';
 const tileVariants = {
   root: cva(
     [
-      'group relative flex flex-col items-center gap-8 p-8',
-      'rounded-sm bg-base-transparent text-base transition-colors focus-visible:outline-2 focus-visible:outline-focus',
+      'group relative flex flex-col items-center text-base transition-colors',
+      'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
+      'gap-8 px-8 py-16',
     ],
     {
       variants: {
-        isActive: {
-          true: 'bg-base-transparent-pressed',
-          false: 'hover:bg-base-transparent-hover',
+        appearance: {
+          'no-background': 'bg-base-transparent',
+          card: 'bg-surface',
         },
+        isActive: {
+          true: '',
+          false: '',
+        },
+        disabled: {
+          true: '',
+          false: '',
+        },
+      },
+      compoundVariants: [
+        {
+          appearance: 'no-background',
+          isActive: false,
+          disabled: false,
+          className: 'hover:bg-base-transparent-hover',
+        },
+        {
+          appearance: 'no-background',
+          isActive: true,
+          disabled: false,
+          className: 'bg-base-transparent-pressed',
+        },
+        {
+          appearance: 'card',
+          isActive: false,
+          disabled: false,
+          className: 'hover:bg-surface-hover',
+        },
+        {
+          appearance: 'card',
+          isActive: true,
+          disabled: false,
+          className: 'bg-surface-pressed',
+        },
+      ],
+      defaultVariants: {
+        appearance: 'no-background',
+        isActive: false,
+        disabled: false,
       },
     },
   ),
+  title: cva('truncate body-2-semi-bold', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      disabled: false,
+    },
+  }),
+  description: cva('truncate body-3', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-muted',
+      },
+    },
+    defaultVariants: {
+      disabled: false,
+    },
+  }),
 };
 
 /**
@@ -81,10 +143,24 @@ export const Tile = ({
   secondaryAction,
   trailingContent,
   onClick,
+  appearance = 'no-background',
+  disabled = false,
   'aria-label': ariaLabel,
   ...props
 }: TileProps) => {
   const [isActive, setIsActive] = useState(false);
+
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      // If the tile is disabled, prevent the default action (e.g., navigation).
+      if (disabled) {
+        event.preventDefault();
+        return;
+      }
+      onClick?.(event);
+    },
+    [disabled, onClick],
+  );
 
   const onSecondaryActionClickHandler = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -96,6 +172,7 @@ export const Tile = ({
 
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
+      if (disabled) return;
       // Only set parent as active if the click is not on the secondary action container
       if (
         !(event.target as HTMLElement).closest(
@@ -105,22 +182,29 @@ export const Tile = ({
         setIsActive(true);
       }
     },
-    [],
+    [disabled],
   );
 
   const handleMouseUp: MouseEventHandler<HTMLDivElement> = useCallback(() => {
+    if (disabled) return;
     setIsActive(false);
-  }, []);
+  }, [disabled]);
 
   const handleMouseLeave: MouseEventHandler<HTMLDivElement> =
     useCallback(() => {
+      if (disabled) return;
       setIsActive(false);
-    }, []);
+    }, [disabled]);
 
   return (
     <div
       {...props}
-      className={tileVariants.root({ isActive, className })}
+      className={tileVariants.root({
+        appearance,
+        isActive,
+        disabled,
+        className,
+      })}
       onMouseDown={(e) => {
         props?.onMouseDown?.(e);
         handleMouseDown(e);
@@ -136,21 +220,25 @@ export const Tile = ({
     >
       <button
         aria-label={ariaLabel || title}
-        onClick={onClick}
-        className='flex w-full flex-col items-center gap-8 rounded-sm p-8 focus-visible:outline-2 focus-visible:outline-focus'
+        onClick={handleClick}
+        disabled={disabled}
+        data-disabled={disabled || undefined}
+        className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
       >
         <div className='flex items-center justify-center'>{leadingContent}</div>
         <div className='flex w-full flex-col items-center gap-4'>
-          <div className='flex w-full flex-col'>
-            <div className='truncate body-3-semi-bold'>{title}</div>
+          <div className='flex w-full flex-col text-center'>
+            <div className={tileVariants.title({ disabled })}>{title}</div>
             {description && (
-              <div className='truncate text-muted body-3'>{description}</div>
+              <div className={tileVariants.description({ disabled })}>
+                {description}
+              </div>
             )}
           </div>
           {trailingContent}
         </div>
       </button>
-      {secondaryAction && (
+      {secondaryAction && !disabled && (
         <div
           className='absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100'
           data-secondary-button-container
