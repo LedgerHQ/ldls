@@ -29,6 +29,7 @@ const spotVariants = cva(
         true: 'text-disabled',
       },
       size: {
+        32: 'spot-w-32 spot-h-32',
         48: 'spot-w-48 spot-h-48',
         56: 'spot-w-56 spot-h-56',
         72: 'spot-w-72 spot-h-72',
@@ -78,7 +79,7 @@ type DiscriminatedSpotProps =
       appearance: Exclude<SpotAppearance, 'icon' | 'number'>;
     };
 
-export type SpotSize = 48 | 56 | 72;
+export type SpotSize = 32 | 48 | 56 | 72;
 
 export type SpotProps = DiscriminatedSpotProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -132,12 +133,14 @@ export const Spot = (props: SpotProps) => {
   const { appearance, className, disabled, size = 48, ...rest } = props;
 
   const sizeMap: Record<SpotSize, IconSize> = {
+    32: 12,
     48: 20,
     56: 24,
     72: 40,
   };
 
   const numberTypographyMap: Record<SpotSize, string> = {
+    32: 'body-3',
     48: 'heading-4',
     56: 'heading-3',
     72: 'heading-1',
