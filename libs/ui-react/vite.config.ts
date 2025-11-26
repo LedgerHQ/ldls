@@ -47,6 +47,9 @@ export default defineConfig(() => ({
       formats: ['es' as const],
     },
     rollupOptions: {
+      treeshake: {
+        preset: 'smallest',
+      },
       // External packages that should not be bundled into your library.
       external: [
         'react',
