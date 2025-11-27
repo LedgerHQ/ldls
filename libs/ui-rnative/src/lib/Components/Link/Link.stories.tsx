@@ -5,7 +5,7 @@ import { Link } from './Link';
 
 const meta: Meta<typeof Link> = {
   component: Link,
-  title: 'Components/Link',
+  title: 'Action/Link',
   parameters: {
     docs: {
       source: {
