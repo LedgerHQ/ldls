@@ -61,7 +61,7 @@ const inputStyles = cva(
   [
     'bg-transparent caret-active outline-none transition-colors heading-0',
     'text-base placeholder:text-muted-subtle',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
+    'disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
     '[&[aria-invalid="true"]]:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',
@@ -83,7 +83,7 @@ const currencyStyles = cn(
   'heading-0 cursor-text',
   'text-base',
   'group-has-[input:placeholder-shown]:text-muted-subtle',
-  'group-has-[input:disabled]:text-disabled group-has-[input:disabled]:pointer-events-none',
+  'group-has-[input:disabled]:text-disabled group-has-[input:disabled]:cursor-not-allowed',
   'group-has-[input[aria-invalid="true"]]:text-error',
 );
 

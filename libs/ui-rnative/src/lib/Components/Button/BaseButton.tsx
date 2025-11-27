@@ -8,7 +8,7 @@ import { BaseButtonProps } from './BaseButton.types';
 
 const buttonVariants = {
   root: cva(
-    'inline-flex size-fit cursor-pointer flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
+    'inline-flex size-fit flex-row items-center justify-center rounded-full transition-colors body-1-semi-bold',
     {
       variants: {
         appearance: {
@@ -37,7 +37,7 @@ const buttonVariants = {
           false: '',
         },
         disabled: {
-          true: 'pointer-events-none cursor-default bg-disabled text-disabled active:bg-disabled',
+          true: 'bg-disabled text-disabled active:bg-disabled',
           false: '',
         },
       },
