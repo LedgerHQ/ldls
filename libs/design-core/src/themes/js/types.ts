@@ -59,6 +59,7 @@ export type PrimitiveOtherTokens = {
   };
   borderRadius: Record<string, number>;
   stroke: Record<string, number>;
+  borderWidth: Record<string, number>;
   blur: Record<string, number>;
 };
 
@@ -70,7 +71,7 @@ type ShadowTokenDefinition = {
   color: string;
 };
 
-export type ShadowTokens = {
+export type PrimitiveShadowTokens = {
   sm: {
     primary: ShadowTokenDefinition;
     secondary: ShadowTokenDefinition;
@@ -138,6 +139,6 @@ export type ThemeTokens = PrimitiveOtherTokens & {
     dark: ThemeColorTokens;
     light: ThemeColorTokens;
   };
-  shadows: ShadowTokens;
+  shadows: PrimitiveShadowTokens;
   typographies: TypographyTokens;
 };

@@ -137,6 +137,10 @@ export const primitiveLayoutTokens = {
     '1': 1,
     '2': 2,
   },
+  borderWidth: {
+    '1': 1,
+    '2': 2,
+  },
   blur: {
     md: 12,
     lg: 64,

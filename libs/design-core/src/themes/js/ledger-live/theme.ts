@@ -1,7 +1,7 @@
 import { ledgerLiveDarkTheme } from '../ledger-live/theme.dark';
 import { ledgerLiveLightTheme } from '../ledger-live/theme.light';
 import { primitiveLayoutTokens } from '../primitives/primitives.others';
-import { shadowTokens } from '../shadows';
+import { primitiveShadowTokens } from '../primitives/primitives.shadows';
 import { ThemeTokens } from '../types';
 import { typographyTokens } from '../typographies';
 
@@ -11,6 +11,6 @@ export const ledgerLiveTheme = {
     dark: ledgerLiveDarkTheme,
   },
   ...primitiveLayoutTokens,
-  shadows: shadowTokens,
+  shadows: primitiveShadowTokens,
   typographies: typographyTokens,
 } satisfies ThemeTokens;

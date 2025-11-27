@@ -1,10 +1,10 @@
-import { primitiveColorTokens } from './primitives/primitive.colors';
-import { ShadowTokens } from './types';
+import { PrimitiveShadowTokens } from '../types';
+import { primitiveColorTokens } from './primitive.colors';
 
 const defaultColor = primitiveColorTokens.light.grey['050-10'];
 const darkerColor = primitiveColorTokens.light.grey['050-20'];
 
-export const shadowTokens: ShadowTokens = {
+export const primitiveShadowTokens: PrimitiveShadowTokens = {
   sm: {
     primary: { x: 0, y: 1, blur: 2, spread: -1, color: defaultColor },
     secondary: { x: 0, y: 1, blur: 3, spread: 0, color: defaultColor },
