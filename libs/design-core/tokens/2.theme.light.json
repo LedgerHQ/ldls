@@ -2048,10 +2048,8 @@
           "$description": "",
           "$extensions": {
             "com.figma": {
-              "hiddenFromPublishing": false,
-              "scopes": [
-                "STROKE_COLOR"
-              ],
+              "hiddenFromPublishing": true,
+              "scopes": [],
               "codeSyntax": {}
             }
           }
@@ -2327,7 +2325,7 @@
       },
       "binance-0%": {
         "$type": "color",
-        "$value": "{color.light.crypto.bincance-0%}",
+        "$value": "{color.light.crypto.binance-0%}",
         "$description": "",
         "$extensions": {
           "com.figma": {

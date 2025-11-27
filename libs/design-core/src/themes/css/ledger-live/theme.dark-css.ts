@@ -22,20 +22,20 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-base-transparent-pressed':
       'var(--color-dark-grey-950-20)',
     '--color-background-disabled': 'var(--color-dark-grey-200)',
-    '--color-background-disabled-strong': 'var(--color-light-grey-300)',
+    '--color-background-disabled-strong': 'var(--color-dark-grey-300)',
     '--color-background-muted': 'var(--color-dark-grey-200)',
     '--color-background-muted-hover': 'var(--color-dark-grey-300)',
     '--color-background-muted-pressed': 'var(--color-dark-grey-400)',
     '--color-background-muted-strong': 'var(--color-dark-grey-600)',
     '--color-background-muted-strong-hover': 'var(--color-dark-grey-700)',
     '--color-background-muted-strong-pressed': 'var(--color-dark-grey-800)',
-    '--color-background-muted-transparent': 'var(--color-dark-grey-950-5)',
+    '--color-background-muted-transparent': 'var(--color-dark-grey-950-10)',
     '--color-background-muted-transparent-hover':
-      'var(--color-light-grey-050-10)',
+      'var(--color-dark-grey-950-20)',
     '--color-background-muted-transparent-pressed':
-      'var(--color-light-grey-050-20)',
+      'var(--color-dark-grey-950-30)',
     '--color-background-muted-transparent-disabled':
-      'var(--color-dark-grey-950-5)',
+      'var(--color-dark-grey-950-10)',
     '--color-background-accent-ledger-live': 'var(--color-dark-purple-400)',
     '--color-background-accent-ledger-live-hover':
       'var(--color-dark-purple-500)',
@@ -109,9 +109,9 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-gradient-on-accent-enterprise-0':
       'var(--color-dark-grey-950-0)',
     '--color-background-gradient-on-accent-website-100':
-      'var(--color-light-grey-050)',
+      'var(--color-dark-grey-950)',
     '--color-background-gradient-on-accent-website-0':
-      'var(--color-light-grey-050-0)',
+      'var(--color-dark-grey-950-0)',
     '--color-background-gradient-muted-0': 'var(--color-dark-grey-100-0)',
     '--color-background-gradient-muted-100': 'var(--color-dark-grey-100)',
     '--color-text-black': 'var(--color-dark-constant-950)',
@@ -476,6 +476,7 @@ export const tokens: Record<string, Record<string, string>> = {
     '--border-active-hover': 'var(--color-border-active-ledger-live-hover)',
     '--border-active-pressed': 'var(--color-border-active-ledger-live-pressed)',
     '--border-focus': 'var(--color-border-focus-ledger-live)',
+    '--border-icon': 'var(--color-border-icon)',
     '--border-width': 'var(--stroke-1)',
     '--border-width-active': 'var(--stroke-2)',
     '--border-width-focus': 'var(--stroke-2)',

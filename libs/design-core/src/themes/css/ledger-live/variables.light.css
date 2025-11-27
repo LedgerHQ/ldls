@@ -190,7 +190,7 @@
   --color-crypto-bitcoin-sv: var(--color-light-crypto-bitcoin-sv);
   --color-crypto-bitcoin-sv-0: var(--color-light-crypto-bitcoin-sv-0);
   --color-crypto-binance: var(--color-light-crypto-binance);
-  --color-crypto-binance-0: var(--color-light-crypto-bincance-0);
+  --color-crypto-binance-0: var(--color-light-crypto-binance-0);
   --color-crypto-bytecoin: var(--color-light-crypto-bytecoin);
   --color-crypto-bytecoin-0: var(--color-light-crypto-bytecoin-0);
   --color-crypto-cardano: var(--color-light-crypto-cardano);
@@ -479,4 +479,5 @@
   --border-active-hover: var(--color-border-active-ledger-live-hover);
   --border-active-pressed: var(--color-border-active-ledger-live-pressed);
   --border-focus: var(--color-border-focus-ledger-live-default);
+  --border-icon: var(--color-border-icon-default);
 }

@@ -68,5 +68,33 @@
         "codeSyntax": {}
       }
     }
+  },
+  "number-size": {
+    "$type": "number",
+    "$value": "{font-style.body.2.size}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "FONT_SIZE"
+        ],
+        "codeSyntax": {}
+      }
+    }
+  },
+  "number-weight": {
+    "$type": "string",
+    "$value": "{font-style.body.2.weight-semi-bold}",
+    "$description": "",
+    "$extensions": {
+      "com.figma": {
+        "hiddenFromPublishing": false,
+        "scopes": [
+          "FONT_STYLE"
+        ],
+        "codeSyntax": {}
+      }
+    }
   }
 }

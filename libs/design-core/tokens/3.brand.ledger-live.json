@@ -1782,6 +1782,22 @@
           }
         }
       }
+    },
+    "icon": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.border.icon.default}",
+        "$description": "",
+        "$extensions": {
+          "com.figma": {
+            "hiddenFromPublishing": false,
+            "scopes": [
+              "STROKE_COLOR"
+            ],
+            "codeSyntax": {}
+          }
+        }
+      }
     }
   },
   "border-width": {
@@ -1829,24 +1845,6 @@
           ],
           "codeSyntax": {
             "WEB": "var(--border-2)"
-          }
-        }
-      }
-    }
-  },
-  "color": {
-    "background": {
-      "disabled-strong": {
-        "default": {
-          "$type": "color",
-          "$value": "{color.light.grey.300}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {}
-            }
           }
         }
       }
