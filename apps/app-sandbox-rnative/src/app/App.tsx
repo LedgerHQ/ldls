@@ -15,6 +15,7 @@ import {
   Buttons,
   Checkboxes,
   IconButtons,
+  Links,
   Spots,
   Switches,
   Tags,
@@ -92,6 +93,9 @@ export const App = () => {
                 <BottomSheetsButton
                   onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
                 />
+              </SandboxBlock>
+              <SandboxBlock title='Link'>
+                <Links />
               </SandboxBlock>
             </View>
           </ScrollView>

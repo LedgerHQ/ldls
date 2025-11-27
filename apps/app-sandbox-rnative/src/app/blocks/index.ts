@@ -3,6 +3,7 @@ export * from './BottomSheets';
 export * from './Buttons';
 export * from './Checkboxes';
 export * from './IconButtons';
+export * from './Links';
 export * from './Spots';
 export * from './Switches';
 export * from './Tags';

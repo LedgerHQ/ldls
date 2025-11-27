@@ -161,6 +161,25 @@ export const AppearanceShowcase: Story = {
   },
 };
 
+export const UnderlineShowcase: Story = {
+  render: () => (
+    <div className='flex flex-col gap-16 p-8'>
+      <Link appearance='accent' size='md' href='#' onClick={onClick}>
+        With underline
+      </Link>
+      <Link
+        appearance='accent'
+        size='md'
+        underline={false}
+        href='#'
+        onClick={onClick}
+      >
+        Without underline
+      </Link>
+    </div>
+  ),
+};
+
 export const SizesShowcase: Story = {
   render: () => (
     <>
