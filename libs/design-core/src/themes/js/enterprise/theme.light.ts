@@ -183,7 +183,7 @@ export const enterpriseLightTheme = {
     baseTransparentHover: primitiveColorTokens.light.grey['950-5'],
     baseTransparentPressed: primitiveColorTokens.light.grey['950-10'],
     disabled: primitiveColorTokens.light.grey['200'],
-    disabledStrong: primitiveColorTokens.dark.grey['300'],
+    disabledStrong: primitiveColorTokens.light.grey['300'],
     muted: primitiveColorTokens.light.grey['200'],
     mutedHover: primitiveColorTokens.light.grey['300'],
     mutedPressed: primitiveColorTokens.light.grey['400'],
