@@ -140,7 +140,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--color-light-crypto-bitcoin-sv': '#eab300',
     '--color-light-crypto-bitcoin-sv-0': '#eab30000',
     '--color-light-crypto-binance': '#f5bc00',
-    '--color-light-crypto-bincance-0': '#f5bc0000',
+    '--color-light-crypto-binance-0': '#f5bc0000',
     '--color-light-crypto-bytecoin': '#f04086',
     '--color-light-crypto-bytecoin-0': '#f0408600',
     '--color-light-crypto-cardano': '#0033ad',

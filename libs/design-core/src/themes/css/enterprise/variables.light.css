@@ -22,7 +22,7 @@
   --color-background-base-transparent-hover: var(--color-light-grey-950-5);
   --color-background-base-transparent-pressed: var(--color-light-grey-950-10);
   --color-background-disabled: var(--color-light-grey-200);
-  --color-background-disabled-strong: var(--color-dark-grey-300);
+  --color-background-disabled-strong: var(--color-light-grey-300);
   --color-background-muted: var(--color-light-grey-200);
   --color-background-muted-hover: var(--color-light-grey-300);
   --color-background-muted-pressed: var(--color-light-grey-400);
@@ -190,7 +190,7 @@
   --color-crypto-bitcoin-sv: var(--color-light-crypto-bitcoin-sv);
   --color-crypto-bitcoin-sv-0: var(--color-light-crypto-bitcoin-sv-0);
   --color-crypto-binance: var(--color-light-crypto-binance);
-  --color-crypto-binance-0: var(--color-light-crypto-bincance-0);
+  --color-crypto-binance-0: var(--color-light-crypto-binance-0);
   --color-crypto-bytecoin: var(--color-light-crypto-bytecoin);
   --color-crypto-bytecoin-0: var(--color-light-crypto-bytecoin-0);
   --color-crypto-cardano: var(--color-light-crypto-cardano);
@@ -479,4 +479,5 @@
   --border-active-hover: var(--color-border-active-enterprise-pressed);
   --border-active-pressed: var(--color-border-active-enterprise-pressed);
   --border-focus: var(--color-border-focus-enterprise-default);
+  --border-icon: var(--color-border-icon-default);
 }
