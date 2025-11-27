@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-react",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "license": "Apache-2.0",
   "sideEffects": false,
   "keywords": [
