@@ -21,22 +21,22 @@ export const primitivesTheme = {
   },
 };
 
-export const enterpriseTheme = {
+export const enterpriseCSSTheme = {
   ...enterpriseLightThemeTokens,
   ...enterpriseDarkThemeTokens,
 };
 
-export const ledgerLiveTheme = {
+export const ledgerLiveCSSTheme = {
   ...ledgerLiveLightThemeTokens,
   ...ledgerLiveDarkThemeTokens,
 };
 
-export const websitesTheme = {
+export const websitesCSSTheme = {
   ...websitesLightThemeTokens,
   ...websitesDarkThemeTokens,
 };
 
-export const allBrandsTheme = {
+export const allBrandsCSSTheme = {
   '.ledger-live': ledgerLiveLightThemeTokens[':root'],
   '.ledger-live.dark': ledgerLiveDarkThemeTokens['.dark'],
 
