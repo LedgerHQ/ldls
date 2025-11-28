@@ -4,6 +4,7 @@ export * from './Buttons';
 export * from './Checkboxes';
 export * from './IconButtons';
 export * from './Links';
+export * from './Selects';
 export * from './Spots';
 export * from './Switches';
 export * from './Tags';

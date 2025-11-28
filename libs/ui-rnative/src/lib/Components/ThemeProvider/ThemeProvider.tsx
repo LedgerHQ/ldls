@@ -10,6 +10,7 @@ import {
 import { I18nProvider } from '../../../i18n';
 import { RuntimeConstants } from '../../utils';
 
+import { GlobalSelectProvider } from '../Select/GlobalSelectContext';
 import { GlobalTooltipProvider } from '../Tooltip/GlobalTooltipContext';
 import { ThemeProviderProps } from './ThemeProvider.types';
 
@@ -45,11 +46,13 @@ const ThemeProvider = forwardRef<View, ThemeProviderProps>(
     return (
       <ThemeProviderProvider value={value}>
         <I18nProvider locale={locale}>
-          <GlobalTooltipProvider>
-            <View className={cn(className, mode)} {...props} ref={ref}>
-              {children}
-            </View>
-          </GlobalTooltipProvider>
+          <GlobalSelectProvider>
+            <GlobalTooltipProvider>
+              <View className={cn(className, mode)} {...props} ref={ref}>
+                {children}
+              </View>
+            </GlobalTooltipProvider>
+          </GlobalSelectProvider>
         </I18nProvider>
       </ThemeProviderProvider>
     );

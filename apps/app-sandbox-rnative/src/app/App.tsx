@@ -1,4 +1,5 @@
 import {
+  GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
@@ -16,6 +17,7 @@ import {
   Checkboxes,
   IconButtons,
   Links,
+  Selects,
   Spots,
   Switches,
   Tags,
@@ -44,6 +46,9 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='Select'>
+                <Selects />
+              </SandboxBlock>
               <SandboxBlock title='Text inputs'>
                 <TextInputs />
               </SandboxBlock>
@@ -102,6 +107,7 @@ export const App = () => {
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
           <GlobalTooltipBottomSheet />
+          <GlobalSelectBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>
