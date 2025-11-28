@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BottomSheetStories from './BottomSheet.stories';
 import { BottomSheet } from './BottomSheet';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title="Components/BottomSheet" of={BottomSheetStories} />
 
@@ -223,44 +229,121 @@ import {
 
 ## Do's and Don'ts
 
-✅ **Do**
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use specialized scrollable components'
+      description='Always use BottomSheet-specific components for scrollable content'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Use specialized scrollable components
-<BottomSheet ref={bottomSheetRef} snapPoints="full">
+<BottomSheet ref={bottomSheetRef} snapPoints='full'>
   <BottomSheetScrollView>
-    <BottomSheetHeader title="Title" appearance="compact" />
-    {/* Content */}
+    <BottomSheetHeader title='Title' appearance='compact' />
+    <Text>Content</Text>
   </BottomSheetScrollView>
 </BottomSheet>
-
-// Use the provided hook
-const bottomSheetRef = useBottomSheetRef();
-bottomSheetRef.current?.expand();
-
-// Disable both for non-dismissible sheets
-<BottomSheet 
-  hideCloseButton 
-  enablePanDownToClose={false}
->
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use regular React Native components"
+      description='Avoid using regular ScrollView, FlatList, etc. - they will not work properly'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use regular React Native components
-<BottomSheet ref={ref}>
-  <ScrollView> {/* Wrong! Use BottomSheetScrollView */}
+<BottomSheet ref={bottomSheetRef} snapPoints='full'>
+  <ScrollView>
+    <BottomSheetHeader title='Title' appearance='compact' />
     <Text>Content</Text>
   </ScrollView>
 </BottomSheet>
-
-// Don't mix snapPoints with enableDynamicSizing
-<BottomSheet snapPoints="half" enableDynamicSizing> {/* Conflicting! */}
-
-// Don't call methods without optional chaining
-bottomSheetRef.current.expand(); // May crash! Use current?.expand()
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use useBottomSheetRef with optional chaining'
+      description='Use the provided hook and always use optional chaining to call methods safely'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const bottomSheetRef = useBottomSheetRef();
+
+bottomSheetRef.current?.expand();
+bottomSheetRef.current?.close();
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't call methods without optional chaining"
+      description='Calling methods without optional chaining may crash if ref is not yet mounted'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const bottomSheetRef = useBottomSheetRef();
+
+bottomSheetRef.current.expand();
+bottomSheetRef.current.close();
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Disable both props for non-dismissible sheets'
+      description='For critical flows, disable both close button and pan-down gesture'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<BottomSheet
+  ref={bottomSheetRef}
+  snapPoints='full'
+  hideCloseButton
+  enablePanDownToClose={false}
+  backdropPressBehavior='none'
+>
+  <BottomSheetView>
+    <Text>Critical content</Text>
+  </BottomSheetView>
+</BottomSheet>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't disable only one dismissal method"
+      description='Partially blocking dismissal creates confusing UX - disable all methods or none'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<BottomSheet
+  ref={bottomSheetRef}
+  snapPoints='full'
+  hideCloseButton
+>
+  <BottomSheetView>
+    <Text>Critical content</Text>
+  </BottomSheetView>
+</BottomSheet>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 ## Learn More
 

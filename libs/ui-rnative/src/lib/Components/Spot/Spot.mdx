@@ -2,8 +2,14 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SpotStories from './Spot.stories';
 import { Spot } from './Spot';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
-<Meta title="Components/Spot" of={SpotStories} />
+<Meta title='Components/Spot' of={SpotStories} />
 
 # 🔵 Spot
 
@@ -78,6 +84,7 @@ To be implemented:
 <Tab label="Implementation">
 
 ## Setup
+
 Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
@@ -86,9 +93,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 import { Spot } from '@ledgerhq/ldls-ui-rnative';
 
 function MyComponent() {
-  return (
-    <Spot appearance="check" />
-  );
+  return <Spot appearance='check' />;
 }
 ```
 
@@ -97,11 +102,7 @@ function MyComponent() {
 While the component comes with predefined styles, you can extend them using Tailwind classes:
 
 ```tsx
-<Spot
-  appearance="icon"
-  icon={Settings}
-  className="mt-4 ml-2"
-/>
+<Spot appearance='icon' icon={Settings} className='mt-4 ml-2' />
 ```
 
 ### With Icons
@@ -115,10 +116,10 @@ import { View } from 'react-native';
 
 function MyComponent() {
   return (
-    <View className="flex gap-4">
-      <Spot appearance="icon" icon={Settings} />
-      <Spot appearance="icon" icon={Heart} />
-      <Spot appearance="icon" icon={Star} />
+    <View className='flex gap-4'>
+      <Spot appearance='icon' icon={Settings} />
+      <Spot appearance='icon' icon={Heart} />
+      <Spot appearance='icon' icon={Star} />
     </View>
   );
 }
@@ -134,10 +135,10 @@ import { View } from 'react-native';
 
 function MyComponent() {
   return (
-    <View className="flex gap-4">
-      <Spot appearance="number" number={1} />
-      <Spot appearance="number" number={2} />
-      <Spot appearance="number" number={3} />
+    <View className='flex gap-4'>
+      <Spot appearance='number' number={1} />
+      <Spot appearance='number' number={2} />
+      <Spot appearance='number' number={3} />
     </View>
   );
 }
@@ -153,24 +154,24 @@ import { View } from 'react-native';
 
 function StatusIndicators() {
   return (
-    <View className="flex gap-4">
+    <View className='flex gap-4'>
       {/* Success state */}
-      <Spot appearance="check" />
+      <Spot appearance='check' />
 
       {/* Error state */}
-      <Spot appearance="error" />
+      <Spot appearance='error' />
 
       {/* Warning state */}
-      <Spot appearance="warning" />
+      <Spot appearance='warning' />
 
       {/* Info state */}
-      <Spot appearance="info" />
+      <Spot appearance='info' />
 
       {/* Loading state */}
-      <Spot appearance="loader" />
+      <Spot appearance='loader' />
 
       {/* Connectivity */}
-      <Spot appearance="bluetooth" />
+      <Spot appearance='bluetooth' />
     </View>
   );
 }
@@ -178,127 +179,97 @@ function StatusIndicators() {
 
 ## Do's and Don'ts
 
-### Icon and Number Props
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use required props for discriminated types'
+      description='Icon appearance requires icon prop, number appearance requires number prop'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Import specific icons for better tree-shaking
-import { Settings, Heart } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use icon prop for custom icons
-<Spot appearance="icon" icon={Settings} />
-
-// Use number prop for numeric display
-<Spot appearance="number" number={5} />
-
-// Use appropriate number values
-<Spot appearance="number" number={0} /> // Valid: 0-9
+<Spot appearance='icon' icon={Settings} />
+<Spot appearance='number' number={5} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit required props"
+      description='Discriminated union types require their specific props'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't pass invalid number values
-<Spot appearance="number" number={10} /> // Invalid: only 0-9 allowed
-
-// Don't omit required props for discriminated types
-<Spot appearance="icon" /> // Missing required 'icon' prop
-<Spot appearance="number" /> // Missing required 'number' prop
-
-// Don't use wrong prop types
-<Spot appearance="icon" icon="settings" /> // Should be component, not string
+<Spot appearance='icon' /> // Missing required 'icon' prop
+<Spot appearance='number' /> // Missing required 'number' prop
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use valid number values'
+      description='Number appearance only accepts values from 0 to 9'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Spot appearance="check" className="mt-4 ml-2" />
-
-// Use className for positioning
-<Spot appearance="error" className="absolute top-0 right-0" />
-
-// Use className for different positions between mobile and desktop
-<Spot appearance="info" className="hidden md:block" />
+<Spot appearance='number' number={5} />
+<Spot appearance='number' number={0} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't pass invalid number values"
+      description='Only values 0-9 are allowed for number appearance'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override spot's core styling
-<Spot appearance="check" className="bg-error" />
-
-// Don't modify internal spacing/padding
-<Spot appearance="error" className="p-6" />
-
-// Don't override typography - spot has fixed sizing
-<Spot appearance="number" className="body-3" />
-
-// Don't override border radius
-<Spot appearance="check" className="rounded-lg" />
+<Spot appearance='number' number={10} />
+<Spot appearance='number' number={0} />
 ```
 
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The spot's core styling (colors, size, shape) should be controlled through the `appearance` prop to maintain design system consistency. The Spot component has a fixed 48px size and circular shape that cannot be modified.
+    </DontBlockItem>
 
-### Status vs Interaction
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use Spot for status indication only'
+      description='Spots are designed to display status, not to be interactive elements'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Use Spot for status indication only
-<Spot appearance="check" /> // Status indicator
+<Spot appearance='check' />
+<Spot appearance='error' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't make spots interactive"
+      description='Avoid adding press handlers or making spots clickable'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't make spots directly interactive
-<Spot appearance="check" className="cursor-pointer" onPress={handlePress} />
+<Spot appearance='check' onPress={handlePress} />
+<Spot appearance='error' className='cursor-pointer' />
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Import specific symbols for better tree-shaking
-import { Settings, Bluetooth } from '@ledgerhq/ldls-ui-rnative/symbols';
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all symbols
-import * as AllSymbols from '@ledgerhq/ldls-ui-rnative/symbols';
-```
-
-### TypeScript Usage
-
-✅ **Do**
-
-```tsx
-// Literal type for better type safety
-<Spot appearance="check" />
-
-// Discriminated union
-<Spot appearance="icon" icon={Settings} />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use string literals for appearance
-<Spot appearance={'check'} />
-
-// Don't bypass discriminated union
-<Spot appearance="icon" /> // Missing required icon prop
-```
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

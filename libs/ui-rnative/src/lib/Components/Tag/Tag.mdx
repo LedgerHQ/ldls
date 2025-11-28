@@ -1,6 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Tag' of={TagStories} />
 
@@ -99,121 +105,71 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Content Composition
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use standard size variants'
+      description='Use the size prop with predefined variants (xs, sm, md, lg)'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use label for text content
-<Tag label='My Tag' />;
-
-// Pass icon as a component reference
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-<Tag icon={Plus} label='Add Item' />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't include icon in label
-<Tag label='<Plus /> Add Item' />
-```
-
-### Layout and Styling
-
-✅ **Do**
-
-```tsx
-// Use className for layout positioning
-<Tag className="mt-4 ml-2" label="Submit" />
-
-// Use className for positioning
-<Tag className="absolute top-0 right-0" label="New" />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't override tag's core styling
-<Tag className="bg-black" label="Custom Background" />
-
-// Don't modify internal spacing/padding
-<Tag className="p-6" label="Wrong Spacing" />
-
-// Don't override typography - use size prop instead
-<Tag className="body-1" label="Wrong Typography" />
-```
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The tag's core styling (colors, padding, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
-
-### Icon Usage
-
-✅ **Do**
-
-```tsx
-// Import icons explicitly
 import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use icon prop for consistent sizing
-<Tag icon={Check} label='Success' />;
+<Tag size='sm' icon={Check} label='Success' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use custom sizes"
+      description='Avoid using style prop to override standard sizes'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't use string-based icon names
-<Tag icon='check' label='Success' />;
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
 import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use appropriate size variant
-<Tag size='sm' icon={Check} label='Success' />;
+<Tag style={{ height: 52 }} icon={Check} label='Success' />
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Provide proper accessibility props'
+      description='Use accessible and accessibilityRole props for screen reader support'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't use custom sizes when standard ones exist
-<Tag style={{ height: 52 }} label='Custom Height' />;
-```
-
-### React Native Specific Considerations
-
-✅ **Do**
-
-```tsx
-// Use onPress for touch interactions (if needed for custom wrapper)
-<Pressable onPress={handlePress}>
-  <Tag label="Touchable Tag" />
-</Pressable>
-
-// Use proper accessibility props
 <Tag
-  label="Important Tag"
+  label='Important'
   accessible={true}
-  accessibilityRole="text"
+  accessibilityRole='text'
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit accessibility props"
+      description='Avoid creating tags without accessibility support for screen readers'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use web-specific styling
-<Tag className='hover:bg-accent' label='No Hover States' />
+<Tag
+  label='Important'
+/>
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>
