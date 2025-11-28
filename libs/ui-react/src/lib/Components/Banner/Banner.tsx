@@ -20,7 +20,7 @@ const iconMap = {
 };
 
 const bannerVariants = {
-  root: cva('flex w-full items-start gap-8 rounded-md p-16 text-base', {
+  root: cva('flex w-full items-start gap-8 rounded-md p-12 text-base', {
     variants: {
       appearance: {
         info: 'bg-surface',
@@ -93,9 +93,13 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         <div className='flex shrink-0 items-start py-4'>{icon}</div>
         <div className='mr-8 flex flex-1 flex-col gap-8 py-4'>
           <div className='flex flex-col gap-4'>
-            <h3 className='line-clamp-2 body-1-semi-bold'>{title}</h3>
+            {title && (
+              <h3 className='line-clamp-2 body-1-semi-bold'>{title}</h3>
+            )}
             {description && (
-              <div className='line-clamp-5 body-2'>{description}</div>
+              <div className={cn('line-clamp-5 body-2', !title && 'mt-2')}>
+                {description}
+              </div>
             )}
           </div>
           {(primaryAction || secondaryAction) && (

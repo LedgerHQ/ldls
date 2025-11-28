@@ -9,7 +9,7 @@ export type BannerProps = ViewProps & {
   /**
    * The main title of the banner.
    */
-  title: string;
+  title?: string;
   /**
    * Optional descriptive text.
    */

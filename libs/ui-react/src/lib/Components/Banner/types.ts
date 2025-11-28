@@ -6,9 +6,8 @@ export type BannerProps = React.HTMLAttributes<HTMLDivElement> & {
   appearance?: 'info' | 'success' | 'warning' | 'error';
   /**
    * The main title of the banner.
-   * @required
    */
-  title: string;
+  title?: string;
   /**
    * Optional descriptive text.
    */

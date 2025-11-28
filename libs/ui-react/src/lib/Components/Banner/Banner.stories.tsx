@@ -266,6 +266,7 @@ export const ContentVariations: Story = {
     // max-w-md container for visual presentation - not required for Banner component
     <div className='flex max-w-md flex-col gap-16 p-8'>
       <Banner title='Title Only' />
+      <Banner description='Description only without title' />
       <Banner title='With Description' description='Additional details here.' />
       <Banner
         title='With Primary Action'
