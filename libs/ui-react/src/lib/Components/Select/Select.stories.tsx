@@ -31,16 +31,21 @@ const meta: Meta<typeof Select> = {
       control: false,
     },
     open: {
-      control: false,
+      control: 'boolean',
     },
     defaultOpen: {
-      control: false,
+      control: 'boolean',
     },
     onOpenChange: {
       action: false,
     },
     value: {
-      control: false,
+      control: 'select',
+      options: ['option 1', 'option 3'],
+      mapping: {
+        'option 1': 'option1',
+        'option 3': 'option3',
+      },
     },
     defaultValue: {
       control: false,
@@ -52,10 +57,10 @@ const meta: Meta<typeof Select> = {
       control: false,
     },
     required: {
-      control: false,
+      control: 'boolean',
     },
     disabled: {
-      control: false,
+      control: 'boolean',
     },
   },
 };
@@ -64,12 +69,12 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Base: Story = {
-  render: () => {
+  render: (args) => {
     const [value, setValue] = useState('');
 
     return (
       <div className='w-400'>
-        <Select value={value} onValueChange={setValue}>
+        <Select value={value} onValueChange={setValue} {...args}>
           <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>
@@ -85,6 +90,9 @@ export const Base: Story = {
         </Select>
       </div>
     );
+  },
+  args: {
+    disabled: false,
   },
 };
 
