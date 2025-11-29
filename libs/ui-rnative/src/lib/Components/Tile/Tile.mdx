@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Containment/Tile' of={TileStories} />
 
@@ -109,58 +115,50 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-### Layout and Styling
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use container elements to control width'
+      description='Wrap Tile in container elements to control its width'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Tile
-  title="Settings"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="mb-6"
-/>
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use className for responsive behavior
-<Tile
-  title="Desktop Item"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="hidden lg:flex"
-/>
-
-// Use container elements to control width
-<div className="w-128">
+<View className='w-128'>
   <Tile
-    title="Fixed Width"
-    leadingContent={<Spot appearance="icon" icon={Settings} />}
+    title='Settings'
+    leadingContent={<Spot appearance='icon' icon={Settings} />}
   />
-</div>
+</View>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for width control"
+      description='Avoid using className to set width directly on Tile'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core styling
-<Tile
-  title="Custom Colors"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="bg-base text-active"
-/>
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't modify internal spacing
-<Tile
-  title="Wrong Spacing"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="gap-2 p-2"
-/>
-
-// Don't override typography classes
-<Tile
-  title="Bad Typography"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="body-3"
-/>
+<View className='w-128'>
+  <Tile
+    title='Settings'
+    leadingContent={<Spot appearance='icon' icon={Settings} />}
+    className='w-96'
+  />
+</View>
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

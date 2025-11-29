@@ -2,6 +2,12 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ListItemStories from './ListItem.stories';
 import { ListItem } from './ListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/ListItem' of={ListItemStories} />
 
@@ -271,78 +277,41 @@ Use `className` for layout purposes only, such as maximum width:
 
 The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
 
-### Layout and Styling
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use in ScrollView with proper grouping'
+      description='ListItems work best when grouped in ScrollView containers for list contexts'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout constraints
-<ListItem
-  title="Item"
-  className="max-w-md"
-  onPress={() => {}}
-/>
-
-// Use in ScrollView with proper grouping
-<ScrollView className="flex flex-col max-w-320">
-  <ListItem title="Item 1" onPress={() => {}} />
-  <ListItem title="Item 2" onPress={() => {}} />
+<ScrollView className='max-w-320'>
+  <ListItem title='Item 1' onPress={() => {}} />
+  <ListItem title='Item 2' onPress={() => {}} />
 </ScrollView>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use for non-list contexts"
+      description='Avoid using ListItem as standalone elements with custom borders or margins'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core styling
-<ListItem
-  title="Custom"
-  className="bg-base text-active"
-  onPress={() => {}}
-/>
-
-// Don't modify internal spacing
-<ListItem
-  title="Wrong"
-  className="gap-2 p-2"
-  onPress={() => {}}
-/>
-
-// Don't override typography
-<ListItem
-  title="Bad"
-  className="heading-3"
-  onPress={() => {}}
-/>
-
-// Don't use for non-list contexts
-<ListItem title="Standalone" className="m-4 border" onPress={() => {}} />
+<ScrollView className='max-w-320'>
+  <ListItem title='Standalone' className='m-4 border' onPress={() => {}} />
+  <ListItem title='Another' className='m-4 border' onPress={() => {}} />
+</ScrollView>
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
-```tsx
-// Import specific icons for bundle size
-import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Use proper React Native event handlers
-<ListItem onPress={handlePress} onLongPress={handleLongPress} />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import entire icon set
-import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't use complex inline handlers that can cause re-renders
-<ListItem
-  onPress={() => {
-    // Complex logic that should be memoized...
-  }}
-/>;
-```
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

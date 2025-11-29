@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import * as Icons from '../../Symbols';
+import { Search } from '../Search/Search';
 import { IconSize } from './Icon.types';
 
 const meta: Meta = {
@@ -148,13 +149,10 @@ export const Gallery: StoryObj = {
         {/* Search bar */}
         <div className='mb-32'>
           <div className='mb-8 max-w-md'>
-            {/* TODO: Replace with Search component */}
-            <input
-              type='text'
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+            <Search
               placeholder='Search icons...'
-              className='rounded w-full border border-muted-subtle p-2'
+              value={searchTerm}
+              onChangeText={setSearchTerm}
             />
           </div>
 

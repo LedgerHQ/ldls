@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Action/Button' of={ButtonStories} />
 
@@ -205,173 +211,137 @@ The Button component is built on React Native's `Pressable` and accepts all its 
 
 The following guidelines are based on our [Button Component API Design ADR](https://ledgerhq.atlassian.net/wiki/spaces/DLS/pages/6003949581/ADR-001+Button+Component+API+Design). These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
-### Content Composition
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon prop'
+      description='Pass icon as a component reference for proper sizing and alignment'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use children for content composition
-<Button onPress={() => {}}>
-  Accept <Text className='heading-1'>Terms and Conditions</Text>
-</Button>;
-
-// Pass icon as a component reference
 import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+
 <Button icon={Plus} onPress={() => {}}>
   Add Item
-</Button>;
+</Button>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't include icon in children"
+      description='Avoid placing icons inside children as this breaks automatic sizing'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use text prop
-<Button text="Accept Terms and Conditions" onPress={() => {}}></Button>
+import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't pass icon as a string
-<Button icon="Plus" onPress={() => {}}>Add Item</Button>
-
-// Don't include icon in children
 <Button onPress={() => {}}>
   <Plus /> Add Item
 </Button>
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Let Button handle icon sizing'
+      description='Icon size adjusts automatically based on button size'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Button className="mt-4 ml-2" onPress={() => {}}>Submit</Button>
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use className for positioning
-<Button className="absolute top-0 right-0" onPress={() => {}}>Close</Button>
-
-// Use className for margins and spacing in layout
-<Button className="mx-auto my-4" onPress={() => {}}>Centered</Button>
-
-// Use className for responsive behavior
-<Button className="w-full md:w-fit" onPress={() => {}}>Responsive</Button>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't override button's core styling
-<Button className="bg-red-500" onPress={() => {}}>Custom Background</Button>
-
-// Don't modify internal spacing/padding
-<Button className="p-6" onPress={() => {}}>Wrong Spacing</Button>
-
-// Don't override typography - use size prop instead
-<Button className="body-1-semi-bold" onPress={() => {}}>Wrong Typography</Button>
-
-// Don't modify border radius
-<Button className="rounded-none" onPress={() => {}}>Custom Radius</Button>
-```
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The button's core styling (colors, padding, hover states, etc.) and typography should be controlled through the component's props (`appearance`, `size`) to maintain design system consistency.
-
-### Icon Usage
-
-✅ **Do**
-
-```tsx
-// Import icons explicitly
-import { Settings, Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Use icon prop for consistent sizing
-<Button icon={Settings} accessibilityLabel="Settings" onPress={() => {}}>Settings</Button>
-
-// Let Button handle icon sizing
-<Button icon={Plus} size="sm" onPress={() => {}}>Add</Button>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't modify icon size directly
-<Button onPress={() => {}}>
-  <Settings size={24} />
+<Button icon={Settings} size='sm' onPress={() => {}}>
   Settings
 </Button>
-
-// Don't use string-based icon names
-<Button icon="settings" onPress={() => {}}>Settings</Button>
 ```
 
-### Touch Interaction
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't modify icon size directly"
+      description='Avoid overriding icon dimensions in children'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Provide proper onPress handlers
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+
+<Button size='sm' onPress={() => {}}>
+  <Settings size={24} /> Settings
+</Button>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use isFull for width'
+      description='Use the isFull prop for full-width buttons'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Button isFull onPress={() => {}}>
+  Full Width
+</Button>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for width"
+      description='Avoid using className to control button width'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Button className='w-full' onPress={() => {}}>
+  Full Width
+</Button>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Provide proper onPress handlers'
+      description='Always provide an onPress handler for interactive buttons'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Button onPress={() => navigation.navigate('Details')}>
   View Details
 </Button>
+```
 
-// Use disabled prop for non-interactive states
-<Button disabled={isSubmitting} onPress={handleSubmit}>
-  Submit
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit onPress"
+      description='Avoid creating buttons without onPress handlers'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Button>
+  Clickable Looking Button
 </Button>
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
-```tsx
-// Don't omit onPress for interactive buttons
-<Button>Clickable Looking Button</Button>
+  </DoVsDontRow>
 
-// Don't use Pressable directly when Button suffices
-<Pressable>
-  <Text>Custom Button</Text>
-</Pressable>
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Use appropriate size variant
-<Button size='sm' icon={Plus} accessibilityLabel='Add' onPress={() => {}}>
-  Add
-</Button>;
-
-// Use React.useCallback for onPress handlers in lists
-const handlePress = React.useCallback(() => {
-  // handler logic
-}, [dependencies]);
-
-<Button onPress={handlePress}>Action</Button>;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't create inline functions in render for frequently re-rendered components
-<FlatList
-  data={items}
-  renderItem={({ item }) => (
-    <Button onPress={() => handleItem(item.id)}>
-      {item.name}
-    </Button>
-  )}
-/>
-
-// Don't use custom heights when standard sizes exist
-<Button style={{ height: 52 }} onPress={() => {}}>Custom Height</Button>
-```
+  <CommonRulesDoAndDont />
+</div>
 
 ## Platform Considerations
 

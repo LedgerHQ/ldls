@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TextInputStories from './TextInput.stories';
 import { TextInput } from './TextInput';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Input/TextInput' of={TextInputStories} />
 
@@ -256,191 +262,180 @@ Use the `editable` prop to disable the input:
 
 ## Do's and Don'ts
 
-The following guidelines ensure consistent usage of the TextInput component and maintain design system principles.
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use controlled input pattern'
+      description='Use value and onChangeText props for controlled input state management'
+    >
 
-### Value Management
-
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use controlled input pattern
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
 const [value, setValue] = useState('');
+
 <TextInput
-  label="Email"
+  label='Email'
   value={value}
   onChangeText={setValue}
 />
-
-// Or use uncontrolled inputs (also valid)
-<TextInput label="Email" defaultValue="initial value" />
-
-// Uncontrolled with ref access
-const inputRef = useRef<TextInput>(null);
-<TextInput ref={inputRef} label="Email" defaultValue="" />
-
-// Clear button appears automatically - hideClearButton is false by default
-<TextInput
-  label="Search"
-  value={value}
-  onChangeText={handleChange}
-/>
-
-// Use onClear to extend default clear behavior with custom logic
-<TextInput
-  label="Search"
-  value={value}
-  onChangeText={handleChange}
-  onClear={() => {
-    // Default clearing happens automatically
-    customClearLogic();
-  }}
-/>
-
-// Hide clear button when needed
-<TextInput
-  label="Search"
-  value={value}
-  onChangeText={handleChange}
-  hideClearButton
-/>
-
-// Use errorMessage for error states
-<TextInput
-  label="Email"
-  value={value}
-  onChangeText={handleChange}
-  errorMessage={hasError ? 'Invalid email' : undefined}
-/>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't mix controlled and uncontrolled patterns"
+      description='Avoid using both value and defaultValue props together'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't manually clear the value in onClear - it happens automatically
-<TextInput
-  label="Search"
-  value={value}
-  onChangeText={setValue}
-  onClear={() => setValue('')} // Redundant - clearing happens by default
-/>
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 
-// Don't mix controlled and uncontrolled patterns
+const [value, setValue] = useState('');
+
 <TextInput
+  label='Email'
   value={value}
-  defaultValue="initial"
+  defaultValue='initial'
   onChangeText={setValue}
 />
-
-// Don't use custom error props
-<TextInput error={true} errorText="Invalid input" />
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-The Input component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+  </DoVsDontRow>
 
-✅ **Do**
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use onClear for custom logic only'
+      description='Let the component handle clearing automatically, add onClear only for additional logic'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Preferred: Direct width control
-<TextInput label="Email" className="max-w-md" />
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 
-// Responsive width control
-<TextInput label="Email" className="w-full md:max-w-md" />
-
-// Use className for margins and positioning
-<TextInput label="Email" className="mt-4 mx-auto" />
-
-// Alternative: Container wrapper
-<View className="max-w-md">
-  <TextInput label="Email" />
-</View>
-```
-
-### Accessibility and Labels
-
-✅ **Do**
-
-```tsx
-// Always provide labels
-<TextInput label="Email Address" value={email} onChangeText={setEmail} />
-
-// Use appropriate keyboard types
-<TextInput
-  label="Email"
-  value={email}
-  onChangeText={setEmail}
-  keyboardType="email-address"
-/>
-
-// Provide error messages
-<TextInput
-  label="Password"
-  value={password}
-  onChangeText={setPassword}
-  errorMessage="Password must be at least 8 characters"
-/>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't omit labels
-<TextInput value={email} onChangeText={setEmail} />
-
-// Don't use placeholder as a replacement for label
-<TextInput placeholder="Enter your email" value={email} onChangeText={setEmail} />
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Use stable callbacks with useCallback
-const handleChange = useCallback((text: string) => {
-  setValue(text);
-}, []);
-
-<TextInput label='Email' value={value} onChangeText={handleChange} />;
-
-// Use stable callbacks for extending clear behavior
-const handleCustomClear = useCallback(() => {
-  // Default clearing happens automatically
-  customClearLogic();
-}, []);
+const [value, setValue] = useState('');
 
 <TextInput
   label='Search'
   value={value}
-  onChangeText={handleChange}
-  onClear={handleCustomClear}
-/>;
+  onChangeText={setValue}
+  onClear={() => {
+    // Default clearing happens automatically
+    analytics.track('search_cleared');
+  }}
+/>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't manually clear value in onClear"
+      description='Value clearing happens automatically - no need to call setValue'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't create new functions in render for frequently re-rendered components
-<FlatList
-  data={items}
-  renderItem={({ item }) => (
-    <TextInput
-      label="Name"
-      value={item.name}
-      onChangeText={(text) => handleChange(item.id, text)}
-    />
-  )}
-/>
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 
-// Don't manually clear in onClear - it's automatic
+const [value, setValue] = useState('');
+
 <TextInput
-  label="Search"
+  label='Search'
   value={value}
   onChangeText={setValue}
-  onClear={() => setValue('')} // Redundant
+  onClear={() => setValue('')}
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always provide labels'
+      description='Use label prop to provide clear, descriptive labels for inputs'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+
+<TextInput
+  label='Email Address'
+  value={email}
+  onChangeText={setEmail}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use placeholder as label replacement"
+      description='Placeholder text disappears when typing - use label prop instead'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+
+<TextInput
+  placeholder='Enter your email'
+  value={email}
+  onChangeText={setEmail}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use appropriate keyboard types'
+      description='Provide the right keyboardType to show contextually appropriate keyboards'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+
+<TextInput
+  label='Email'
+  value={email}
+  onChangeText={setEmail}
+  keyboardType='email-address'
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use default keyboard for specialized inputs"
+      description='Avoid using default keyboard when specialized keyboards would improve UX'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { TextInput } from '@ledgerhq/ldls-ui-rnative';
+
+<TextInput
+  label='Email'
+  value={email}
+  onChangeText={setEmail}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 ## Platform Considerations
 
