@@ -277,6 +277,59 @@ function App() {
 
   </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use multiple separate tooltips'
+      description='Create independent tooltip instances for different trigger elements'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<View>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 1</Button>
+    </TooltipTrigger>
+    <TooltipContent title='First' content={<Text>Info</Text>} />
+  </Tooltip>
+
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 2</Button>
+    </TooltipTrigger>
+    <TooltipContent title='Second' content={<Text>Info</Text>} />
+  </Tooltip>
+</View>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't nest tooltips"
+      description='Avoid nesting Tooltip components inside each other'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<View>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 1</Button>
+    </TooltipTrigger>
+    <TooltipContent title='First' content={<Text>Info</Text>} />
+  </Tooltip>
+
+  <Tooltip>
+    <TooltipTrigger>
+      <Tooltip>...</Tooltip>
+    </TooltipTrigger>
+  </Tooltip>
+</View>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
   <CommonRulesDoAndDont />
 </div>
 
