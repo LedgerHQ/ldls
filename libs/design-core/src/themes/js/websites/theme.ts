@@ -1,16 +1,13 @@
 import { primitiveLayoutTokens } from '../primitives/primitives.others';
 import { primitiveShadowTokens } from '../primitives/primitives.shadows';
-import { ThemeTokens } from '../types';
+import { ThemeCoreTokens } from '../types';
 import { typographyTokens } from '../typographies';
-import { websitesDarkTheme } from './theme.dark';
-import { websitesLightTheme } from './theme.light';
 
-export const websiteTheme = {
-  colors: {
-    light: websitesLightTheme,
-    dark: websitesDarkTheme,
-  },
+export const websitesCoreTokens = {
   ...primitiveLayoutTokens,
   shadows: primitiveShadowTokens,
   typographies: typographyTokens,
-} satisfies ThemeTokens;
+} satisfies ThemeCoreTokens;
+
+export { websitesDarkTheme } from './theme.dark';
+export { websitesLightTheme } from './theme.light';

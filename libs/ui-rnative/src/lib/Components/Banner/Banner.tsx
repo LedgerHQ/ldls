@@ -105,7 +105,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
               </Text>
             )}
             {description && (
-              <View className={cn('line-clamp-5 body-2', !title && 'mt-2')}>
+              <View className='line-clamp-5 body-2'>
                 <Wrap
                   if={isTextChildren(description)}
                   with={(children) => (
