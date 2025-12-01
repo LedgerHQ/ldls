@@ -60,6 +60,30 @@ jobs:
         uses: nrwl/nx-set-shas@v4
 
       - run: npx nx affected -t build
+  
+  bundle-checks:
+    name: Bundle checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v4
+
+      - run: npx nx affected -t test:tree-shaking
+      
 
   unit-testing:
     name: Unit Testing
