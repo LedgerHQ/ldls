@@ -61,6 +61,13 @@ export type PrimitiveOtherTokens = {
   stroke: Record<string, number>;
   borderWidth: Record<string, number>;
   blur: Record<string, number>;
+  breakpoints: {
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    '2xl': number;
+  };
 };
 
 type ShadowTokenDefinition = {
