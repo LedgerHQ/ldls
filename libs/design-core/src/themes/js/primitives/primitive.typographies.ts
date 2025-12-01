@@ -30,7 +30,7 @@ export const primitiveTypographyTokens = {
     '80': 80,
     '112': 112,
   },
-  fontLineHeight: {
+  lineHeight: {
     '10': 16,
     '12': 16,
     '14': 20,
@@ -49,7 +49,7 @@ export const primitiveTypographyTokens = {
     '80': 88,
     '112': 120,
   },
-  fontLetterSpacing: {
+  letterSpacing: {
     '10': 0,
     '12': 0,
     '14': 0,

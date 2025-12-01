@@ -35,8 +35,8 @@ export type PrimitiveTypographyTokens = {
   fontFamily: Record<string, string>;
   fontWeight: Record<string, string>;
   fontSize: Record<string, number>;
-  fontLineHeight: Record<string, number>;
-  fontLetterSpacing: Record<string, number>;
+  lineHeight: Record<string, number>;
+  letterSpacing: Record<string, number>;
 };
 
 /**
@@ -93,26 +93,46 @@ export type PrimitiveShadowTokens = {
   };
 };
 
+export type TypographyDefinition = {
+  fontWeight: any;
+  fontSize: number;
+  lineHeight: number;
+  letterSpacing: number;
+};
+
 export type TypographyBreakpoint = {
-  responsiveDisplay: {
-    '1': Record<string, string | number>;
-    '2': Record<string, string | number>;
-    '3': Record<string, string | number>;
-    '4': Record<string, string | number>;
-  };
-  heading: {
-    '0': Record<string, string | number>;
-    '1': Record<string, string | number>;
-    '2': Record<string, string | number>;
-    '3': Record<string, string | number>;
-    '4': Record<string, string | number>;
-  };
-  body: {
-    '1': Record<string, string | number>;
-    '2': Record<string, string | number>;
-    '3': Record<string, string | number>;
-    '4': Record<string, string | number>;
-  };
+  /**
+   * responsive display
+   */
+  responsiveDisplay1: TypographyDefinition;
+  responsiveDisplay2: TypographyDefinition;
+  responsiveDisplay3: TypographyDefinition;
+  responsiveDisplay4: TypographyDefinition;
+  /**
+   * headings
+   */
+  heading0: TypographyDefinition;
+  heading0SemiBold: TypographyDefinition;
+  heading1: TypographyDefinition;
+  heading1SemiBold: TypographyDefinition;
+  heading2: TypographyDefinition;
+  heading2SemiBold: TypographyDefinition;
+  heading3: TypographyDefinition;
+  heading3SemiBold: TypographyDefinition;
+  heading4: TypographyDefinition;
+  heading4SemiBold: TypographyDefinition;
+  /**
+   * body
+   */
+  body1: TypographyDefinition;
+  body1SemiBold: TypographyDefinition;
+  body2: TypographyDefinition;
+  body2SemiBold: TypographyDefinition;
+  body3: TypographyDefinition;
+  body3SemiBold: TypographyDefinition;
+  body4: TypographyDefinition;
+  body4SemiBold: TypographyDefinition;
+
   grid: {
     columnCount: number;
     gutter: number;
@@ -128,17 +148,13 @@ export type TypographyTokens = {
 
 export type ThemeColorTokens = {
   border: Record<string, string>;
-  background: Record<string, string>;
+  bg: Record<string, string>;
   text: Record<string, string>;
   discover: Record<string, string>;
   crypto: Record<string, string>;
 };
 
-export type ThemeTokens = PrimitiveOtherTokens & {
-  colors: {
-    dark: ThemeColorTokens;
-    light: ThemeColorTokens;
-  };
+export type ThemeCoreTokens = PrimitiveOtherTokens & {
   shadows: PrimitiveShadowTokens;
   typographies: TypographyTokens;
 };

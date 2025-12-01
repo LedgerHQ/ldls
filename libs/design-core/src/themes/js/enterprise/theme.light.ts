@@ -166,7 +166,7 @@ export const enterpriseLightTheme = {
     juno: primitiveColorTokens.light.discover.juno,
     sardine: primitiveColorTokens.light.discover.sardine,
   },
-  background: {
+  bg: {
     canvas: primitiveColorTokens.light.grey['050'],
     canvasMuted: primitiveColorTokens.light.grey['100'],
     canvasSheet: primitiveColorTokens.light.grey['050'],

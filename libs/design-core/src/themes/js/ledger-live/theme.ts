@@ -1,16 +1,13 @@
-import { ledgerLiveDarkTheme } from '../ledger-live/theme.dark';
-import { ledgerLiveLightTheme } from '../ledger-live/theme.light';
 import { primitiveLayoutTokens } from '../primitives/primitives.others';
 import { primitiveShadowTokens } from '../primitives/primitives.shadows';
-import { ThemeTokens } from '../types';
+import { ThemeCoreTokens } from '../types';
 import { typographyTokens } from '../typographies';
 
-export const ledgerLiveTheme = {
-  colors: {
-    light: ledgerLiveLightTheme,
-    dark: ledgerLiveDarkTheme,
-  },
+export const ledgerLiveCoreTokens = {
   ...primitiveLayoutTokens,
   shadows: primitiveShadowTokens,
   typographies: typographyTokens,
-} satisfies ThemeTokens;
+} satisfies ThemeCoreTokens;
+
+export { ledgerLiveDarkTheme } from './theme.dark';
+export { ledgerLiveLightTheme } from './theme.light';
