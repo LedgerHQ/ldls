@@ -44,12 +44,12 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
 
 export type SheetBarProps = {
   /**
-   * The appearance variant of the sheet bar.
+   * The appearance variant of the header.
    * @default 'compact'
    */
   appearance?: 'compact' | 'extended';
   /**
-   * The main title to display in the sheet bar.
+   * The main title to display in the header.
    */
   title?: string;
   /**
@@ -67,7 +67,7 @@ export type SheetBarProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
- * A customizable sheet bar component that displays title, description, and navigation buttons for sheets/modals.
+ * A customizable Header component that displays title, description, and navigation buttons for sheets/dialogs.
  *
  * This component is typically used as the header for sheet-like interfaces, providing
  * back and close functionality along with optional title and description.
@@ -132,9 +132,11 @@ export const SheetBar = ({
       )}
       {appearance === 'extended' && (
         <>
-          <div className='flex flex-row items-center justify-between'>
+          <div className='flex flex-row items-center'>
             {onBack && <BackButton onBack={onBack} />}
-            <CloseButton onClose={onClose} />
+            <div className='ml-auto'>
+              <CloseButton onClose={onClose} />
+            </div>
           </div>
           {(title || description) && (
             <div className='flex flex-col gap-4 ps-16'>

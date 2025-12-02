@@ -86,9 +86,8 @@ export const Base: Story = {
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent >
+  <DialogContent>
     <DialogHeader appearance="compact" title="Sheet Title" onClose={() => setOpen(false)} />
-    <div>Content goes here</div>
   </DialogContent>
 </Dialog>
         `,
@@ -127,27 +126,64 @@ export const WithDescription: Story = {
   },
 };
 
-export const WithBack: Story = {
-  render: () => (
-    <DialogTemplate
-      dialogHeaderProps={{
-        appearance: 'compact',
-        title: 'Sheet Title',
-        onBack: () => console.log('Back clicked'),
-      }}
-    />
-  ),
+export const AppearanceVariants: Story = {
+  render: () => {
+    const [openCompact, setOpenCompact] = React.useState(false);
+    const [openExtended, setOpenExtended] = React.useState(false);
+
+    return (
+      <div className='flex gap-16'>
+        <Dialog open={openCompact} onOpenChange={setOpenCompact}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Compact</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenCompact(false)}
+            />
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={openExtended} onOpenChange={setOpenExtended}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Extended</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='extended'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenExtended(false)}
+            />
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       source: {
         code: `
+// Compact appearance
 <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent >
-    <DialogHeader appearance="compact" title="Sheet Title" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
-    <div>Content goes here </div>
+  <DialogContent>
+    <DialogHeader appearance="compact" title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
+  </DialogContent>
+</Dialog>
+
+// Extended appearance
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader appearance="extended" title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
   </DialogContent>
 </Dialog>
         `,
@@ -156,28 +192,78 @@ export const WithBack: Story = {
   },
 };
 
-export const Extended: Story = {
-  render: () => (
-    <DialogTemplate
-      dialogHeaderProps={{
-        appearance: 'extended',
-        title: 'Extended Sheet Title',
-        description: 'Additional information',
-        onBack: () => console.log('Back clicked'),
-      }}
-    />
-  ),
+export const WithBack: Story = {
+  render: () => {
+    const [openCompact, setOpenCompact] = React.useState(false);
+    const [openExtended, setOpenExtended] = React.useState(false);
+
+    return (
+      <div className='flex gap-16'>
+        <Dialog open={openCompact} onOpenChange={setOpenCompact}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Compact with Back</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenCompact(false)}
+              onBack={() => console.log('Back clicked')}
+            />
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={openExtended} onOpenChange={setOpenExtended}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Extended with Back</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='extended'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenExtended(false)}
+              onBack={() => console.log('Back clicked')}
+            />
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
   parameters: {
     docs: {
       source: {
         code: `
+// Compact appearance with back button
 <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
-  <DialogContent >
-    <DialogHeader appearance="extended" title="Extended Sheet Title" onClose={() => setOpen(false)} />
-    <div>Content goes here </div>
+  <DialogContent>
+    <DialogHeader 
+      appearance="compact" 
+      title="Sheet Title" 
+      description="Additional information"
+      onBack={() => console.log('Back clicked')}
+      onClose={() => setOpen(false)} 
+    />
+  </DialogContent>
+</Dialog>
+
+// Extended appearance with back button
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader 
+      appearance="extended" 
+      title="Sheet Title" 
+      description="Additional information"
+      onBack={() => console.log('Back clicked')}
+      onClose={() => setOpen(false)} 
+    />
   </DialogContent>
 </Dialog>
         `,
@@ -226,7 +312,7 @@ export const InfoStateError: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='absolute inset-x-0 top-0 h-full bg-gradient-error' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
 
             <Spot appearance='error' size={72} />
 
@@ -259,7 +345,7 @@ export const InfoStateError: Story = {
   <DialogContent>
     <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
     <div className="flex flex-col items-center gap-24 overflow-hidden">
-      <div className='absolute inset-x-0 top-0 h-full bg-gradient-error' />
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
       
       <Spot appearance="error" size={72} />
       
@@ -297,7 +383,7 @@ export const InfoStateSuccess: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='absolute inset-x-0 top-0 h-full bg-gradient-success' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
 
             <Spot appearance='check' size={72} />
 
@@ -330,7 +416,7 @@ export const InfoStateSuccess: Story = {
   <DialogContent>
     <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
        <div className="flex flex-col items-center gap-24 overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-full bg-gradient-success" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
       
       <Spot appearance="check" size={72} />
       

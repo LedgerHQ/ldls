@@ -32,7 +32,7 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 
 - **Trigger**: The element that opens the dialog when interacted with
 - **Overlay**: Dimmed background that covers the underlying content
-- **Header**: Use DialogHeader component for a consistent dialog header with title, description, and controls
+- **Header**: Use `DialogHeader` component for a consistent dialog header with title, description, and controls
 - **Content**: The main container for dialog content
 
 > **Note**:
@@ -43,38 +43,27 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 
 ## Properties
 
-### Basic Usage
-
 ### Header Configuration
 
-Always use the DialogHeader component as the header for dialogs to maintain consistency. DialogHeader provides:
+Always use the `DialogHeader` component as the header for dialogs to maintain consistency. `DialogHeader` provides:
 
 - Title and optional description
 - Close button
 - Optional back button
-- Two appearance variants: compact and extended
+- Two appearance variants: `compact` and `extended`
 - Automatic accessibility with proper ARIA roles
 
-<Canvas of={DialogStories.WithDescription} />
-
-### Appearance Variants
-
-Use DialogHeader's appearance prop to adjust the header layout:
-
-- compact: Compact layout with centered title
-- extended: Larger layout with left-aligned title and more space
-
-<Canvas of={DialogStories.Extended} />
+<Canvas of={DialogStories.AppearanceVariants} />
 
 ### With Back Button
 
-Add navigation with DialogHeader's onBack prop.
+Add navigation with `DialogHeader`'s `onBack` prop.
 
 <Canvas of={DialogStories.WithBack} />
 
 ### Content Area
 
-The content area after the DialogHeader can contain any components. Ensure proper padding and scrolling if needed.
+The content area after the `DialogHeader` can contain any components. Ensure proper padding and scrolling if needed.
 
 ## Examples
 
@@ -180,7 +169,7 @@ function MyComponent() {
 
 ### Extended Appearance
 
-Use extended DialogHeader for bigger dialogs:
+Use extended `DialogHeader` for bigger dialogs:
 
 ```tsx
 <Dialog>

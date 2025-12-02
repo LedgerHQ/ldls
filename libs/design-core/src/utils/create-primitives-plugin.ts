@@ -47,8 +47,8 @@ export function createPrimitivesPlugin() {
         spotWidth,
         spotHeight,
         iconStrokeWidth,
-        zIndex,
         extend: {
+          zIndex,
           height: size,
           width: size,
           size,
