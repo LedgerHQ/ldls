@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SearchStories from './Search.stories';
 import { Search } from './Search';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Input/Search' of={SearchStories} />
 
@@ -309,187 +315,124 @@ function MyComponent() {
 
 The following guidelines ensure consistent usage of the Search component and maintain design system principles.
 
-### Value Management
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use placeholder text'
+      description='Search uses placeholder text instead of labels for optimal search UX'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use controlled input pattern (recommended)
-const [query, setQuery] = useState('');
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={setQuery}
-/>
-
-// Or use uncontrolled inputs (also valid)
-<Search placeholder='Search' defaultValue='' />
-
-// Clear button appears automatically - hideClearButton is false by default
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={handleChange}
-/>
-
-// Use onClear to extend default clear behavior with custom logic
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={handleChange}
-  onClear={() => {
-    // Default clearing happens automatically
-    analytics.track('search_cleared');
-  }}
-/>
-
-// Hide clear button when needed
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={handleChange}
-  hideClearButton
-/>
-
-// Use errorMessage for error states
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={handleChange}
-  errorMessage={hasError ? 'Search failed' : undefined}
-/>
-
-// Debounce search operations
-const debouncedSearch = useCallback(
-  debounce((text: string) => performSearch(text), 500),
-  []
-);
-```
-
-❌ **Don't**
-
-```tsx
-// Don't manually clear the value in onClear - it happens automatically
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={setQuery}
-  onClear={() => setQuery('')} // Redundant - clearing happens by default
-/>
-
-// Don't mix controlled and uncontrolled patterns
-<Search
-  value={query}
-  defaultValue='initial'
-  onChangeText={setQuery}
-/>
-
-// Don't search on every keystroke without debouncing
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={(text) => performExpensiveSearch(text)} // Bad performance
-/>
-
-// Don't use labels with Search
-<Search label='Search' placeholder='Search products' /> // label is not supported
-
-// Don't override the built-in search icon
-<Search prefix={<CustomIcon />} /> // prefix is not customizable
-```
-
-### Layout and Styling
-
-The Search component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
-
-✅ **Do**
-
-```tsx
-// Preferred: Direct width control
-<Search placeholder='Search' className='max-w-md' />
-
-// Responsive width control
-<Search placeholder='Search' className='w-full md:max-w-md' />
-
-// Use className for margins and positioning
-<Search placeholder='Search' className='mt-4 mx-auto' />
-
-// Alternative: Container wrapper
-<View className='max-w-md'>
-  <Search placeholder='Search' />
-</View>
-```
-
-### Accessibility and Placeholders
-
-✅ **Do**
-
-```tsx
-// Always provide clear, descriptive placeholder text
 <Search
   placeholder='Search by name or email'
   value={query}
   onChangeText={setQuery}
 />
+```
 
-// Use appropriate keyboard types when needed
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use label prop"
+      description='Search component does not support labels as they are not suitable for search UX patterns'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Search
-  placeholder='Search by email'
+  label='Search' // Not supported, will cause error
+  placeholder='Search by name or email'
   value={query}
-  onChangeText={setQuery}
-  keyboardType='email-address'
 />
+```
 
-// Provide error messages when search fails
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the built-in search icon'
+      description='The search icon is automatically included and cannot be changed'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <Search
   placeholder='Search products'
   value={query}
-  onChangeText={setQuery}
-  errorMessage='Search failed. Please try again.'
+  onChangeText={handleChange}
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't override the search icon"
+      description='The prefix prop is not available on Search component'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use vague placeholder text
-<Search placeholder='Type here' value={query} onChangeText={setQuery} />
-
-// Don't omit placeholder text
-<Search value={query} onChangeText={setQuery} />
+<Search
+  prefix={<CustomIcon />} // Not supported, will cause error
+  placeholder='Search products'
+/>
 ```
 
-### Performance Considerations
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use onClear for custom logic only'
+      description='Let the component handle clearing automatically, add onClear only for additional logic'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use stable callbacks with useCallback
-const handleChange = useCallback((text: string) => {
-  setQuery(text);
-}, []);
-
-<Search placeholder='Search' value={query} onChangeText={handleChange} />;
-
-// Use stable callbacks for extending clear behavior
-const handleCustomClear = useCallback(() => {
-  // Default clearing happens automatically
-  analytics.track('search_cleared');
-}, []);
-
 <Search
   placeholder='Search'
   value={query}
-  onChangeText={handleChange}
-  onClear={handleCustomClear}
-/>;
+  onChangeText={setQuery}
+  onClear={() => {
+    // Default clearing happens automatically
+    analytics.track('search_cleared');
+  }}
+/>
+```
 
-// Debounce expensive operations
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't manually clear in onClear"
+      description='Value clearing happens automatically - no need to call setQuery'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search
+  placeholder='Search'
+  value={query}
+  onChangeText={setQuery}
+  onClear={() => setQuery('')}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Debounce expensive search operations'
+      description='Use debouncing for API calls or expensive filtering to improve performance'
+    >
+
+{/* prettier-ignore */}
+```tsx
 const debouncedSearch = useCallback(
-  debounce((text: string) => {
-    performSearch(text);
-  }, 500),
-  [],
+  debounce((text: string) => performSearch(text), 500),
+  []
 );
 
 <Search
@@ -499,42 +442,72 @@ const debouncedSearch = useCallback(
     setQuery(text);
     debouncedSearch(text);
   }}
-/>;
+/>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't perform expensive operations on every keystroke"
+      description='Avoid running expensive operations on every input change without debouncing'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't create new functions in render for frequently re-rendered components
-<FlatList
-  data={items}
-  renderItem={({ item }) => (
-    <Search
-      placeholder='Search'
-      value={item.query}
-      onChangeText={(text) => handleChange(item.id, text)}
-    />
-  )}
-/>
+const debouncedSearch = useCallback(
+  debounce((text: string) => performSearch(text), 500),
+  []
+);
 
-// Don't manually clear in onClear - it's automatic
-<Search
-  placeholder='Search'
-  value={query}
-  onChangeText={setQuery}
-  onClear={() => setQuery('')} // Redundant
-/>
-
-// Don't perform expensive operations on every keystroke
 <Search
   placeholder='Search'
   value={query}
   onChangeText={(text) => {
     setQuery(text);
-    performExpensiveAPICall(text); // Bad - should be debounced
+    performExpensiveAPICall(text); // Should be debounced
   }}
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Provide descriptive placeholder text'
+      description='Use clear, specific placeholder text that describes what users can search for'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search
+  placeholder='Search by name or email'
+  value={query}
+  onChangeText={setQuery}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use vague placeholder text"
+      description='Avoid generic or unclear placeholder text that does not help users'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Search
+  placeholder='Type here'
+  value={query}
+  onChangeText={setQuery}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 ## Platform Considerations
 

@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as IconButtonStories from './IconButton.stories';
 import { IconButton } from './IconButton';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Action/IconButton' of={IconButtonStories} />
 
@@ -132,119 +138,69 @@ The Button component is built on React Native's `Pressable` and accepts all its 
 
 ## Do's and Don'ts
 
-### Icon Usage
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon prop for consistent sizing'
+      description='Pass icon as a component reference and let IconButton handle sizing automatically'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Import icons explicitly
 import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use icon prop for consistent sizing
-<IconButton accessibilityLabel="Settings" icon={Settings} />
-
-// Let IconButton handle icon sizing
-<IconButton accessibilityLabel="Add item" icon={Plus} size="xs" />
+<IconButton accessibilityLabel='Settings' icon={Settings} size='md' />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't modify icon size directly"
+      description='Avoid passing icon size prop or overriding dimensions through className'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't modify icon size directly
-<IconButton accessibilityLabel="Settings">
-  <Settings size={24} />
-</IconButton>
-
-// Don't use string-based icon names
-<IconButton accessibilityLabel="Settings" icon="settings" />
+<IconButton accessibilityLabel='Settings' icon={Settings} className='w-8 h-8' />
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always provide accessibilityLabel'
+      description='Icon-only buttons require descriptive accessibility labels for screen readers'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<IconButton
-  accessibilityLabel="Close"
-  icon={Close}
-  className="mt-4 ml-2"
-/>
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Use className for positioning
-<IconButton
-  accessibilityLabel="Close"
-  icon={Close}
-  className="absolute top-0 right-0"
-/>
-
-// Use className for responsive visibility
-<IconButton
-  accessibilityLabel="Menu"
-  icon={Menu}
-  className="md:hidden"
-/>
+<IconButton accessibilityLabel='Open settings menu' icon={Settings} />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit accessibilityLabel"
+      description='Icon buttons without labels are not accessible to screen reader users'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override button's core styling
-<IconButton
-  accessibilityLabel="Settings"
-  icon={Settings}
-  className="bg-base"
-/>
+import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't modify internal spacing/padding
-<IconButton
-  accessibilityLabel="Settings"
-  icon={Settings}
-  className="p-6"
-/>
-
-// Don't override icon sizing
-<IconButton
-  accessibilityLabel="Settings"
-  icon={Settings}
-  className="w-8 h-8"
-/>
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
-
-// Use appropriate size variant
-<IconButton accessibilityLabel="Settings" icon={Settings} size="xs" />
-
-// Always provide descriptive accessibility labels
-<IconButton accessibilityLabel="Open settings menu" icon={Settings} />
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-react/symbols';
-
-// Don't use custom sizes when standard ones exist
-<IconButton
-  accessibilityLabel="Settings"
-  icon={Settings}
-  className="h-[52px]"
-/>
-
-// Don't omit accessibilityLabel
 <IconButton icon={Settings} />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
   </Tab>
 </CustomTabs>

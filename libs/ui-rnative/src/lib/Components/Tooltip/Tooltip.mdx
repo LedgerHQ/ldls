@@ -1,6 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TooltipStories from './Tooltip.stories';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Communication/Tooltip' of={TooltipStories} />
 
@@ -24,6 +30,7 @@ Tooltips display contextual information in a bottom sheet when users press an in
 ## Properties
 
 ### Base Example
+
 ⚠️ React-native-web doesn't support closing the tooltip by clicking outside of it.
 
 <Canvas of={TooltipStories.Base} />
@@ -41,7 +48,9 @@ Multiple tooltips can be used on the same page. Only one tooltip displays at a t
 <Canvas of={TooltipStories.WithMultipleTooltips} />
 
 ### With Change Callback
+
 The `onOpenChange` prop is called with the opened state whenever the tooltip opens or closes.
+
 <Canvas of={TooltipStories.WithChangeCallback} />
 
 ### Accessibility
@@ -129,16 +138,18 @@ function MyComponent() {
 ```
 
 ### Callback function
+
 The `onOpenChange` callback is called when the tooltip is opened or closed.
 
 ```tsx
 function CallbackFunctionTooltip() {
-
   return (
-    <Tooltip onOpenChange={(isOpen) => {
-      // handle action, like tracking an event for instance
-      trackService.event('tooltip_opened', { isOpen });
-    }}>
+    <Tooltip
+      onOpenChange={(isOpen) => {
+        // handle action, like tracking an event for instance
+        trackService.event('tooltip_opened', { isOpen });
+      }}
+    >
       <TooltipTrigger asChild>
         <Button>Toggle Tooltip</Button>
       </TooltipTrigger>
@@ -150,17 +161,19 @@ function CallbackFunctionTooltip() {
 
 ## Do's and Don'ts
 
-### Trigger Usage
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use asChild to merge props with existing components'
+      description='Use asChild prop on TooltipTrigger to merge tooltip functionality with interactive components'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use asChild to merge props with existing components
 <TooltipTrigger asChild>
   <Button>Help</Button>
 </TooltipTrigger>
 
-// Use with interactive icons
 <TooltipTrigger asChild>
   <InteractiveIcon iconType='filled'>
     <Information />
@@ -168,51 +181,69 @@ function CallbackFunctionTooltip() {
 </TooltipTrigger>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't wrap non-interactive elements"
+      description='Avoid using TooltipTrigger with static text or non-interactive elements'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't wrap non-interactive elements
-<TooltipTrigger>
+<TooltipTrigger asChild>
   <Text>Static Text</Text>
 </TooltipTrigger>
 
-// Don't nest tooltips
-<Tooltip>
-  <TooltipTrigger>
-    <Tooltip>...</Tooltip>
-  </TooltipTrigger>
-</Tooltip>
+<TooltipTrigger asChild>
+  <View>
+    <Text>Non-interactive</Text>
+  </View>
+</TooltipTrigger>
 ```
 
-### Content Guidelines
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Keep content concise and helpful'
+      description='Provide brief, clear explanations in tooltip content'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Keep content concise and helpful
 <TooltipContent
   title='Short Title'
   content={<Text>Brief, helpful explanation.</Text>}
 />
+```
 
-// Use rich content when needed
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use overly long or complex content"
+      description='Avoid verbose explanations or complex layouts in tooltips'
+    >
+
+{/* prettier-ignore */}
+```tsx
 <TooltipContent
-  title='Details'
-  content={
-    <View className='gap-8'>
-      <Text>Explanation</Text>
-      <Button size='xs'>Action</Button>
-    </View>
-  }
+  title='Very Long Detailed Title That Goes On Forever'
+  content={<Text>This is a very long explanation that contains too much information...</Text>}
 />
 ```
 
-### Setup
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Include GlobalTooltipBottomSheet at root level'
+      description='Add GlobalTooltipBottomSheet once in your app root, after ThemeProvider'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Include GlobalTooltipBottomSheet once at root level
 function App() {
   return (
     <ThemeProvider>
@@ -223,6 +254,84 @@ function App() {
 }
 ```
 
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't include GlobalTooltipBottomSheet multiple times"
+      description='Only include GlobalTooltipBottomSheet once at the root level'
+    >
+
+{/* prettier-ignore */}
+```tsx
+function App() {
+  return (
+    <ThemeProvider>
+      <Navigation />
+      <GlobalTooltipBottomSheet />
+      <GlobalTooltipBottomSheet /> {/* Don't duplicate */}
+    </ThemeProvider>
+  );
+}
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use multiple separate tooltips'
+      description='Create independent tooltip instances for different trigger elements'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<View>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 1</Button>
+    </TooltipTrigger>
+    <TooltipContent title='First' content={<Text>Info</Text>} />
+  </Tooltip>
+
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 2</Button>
+    </TooltipTrigger>
+    <TooltipContent title='Second' content={<Text>Info</Text>} />
+  </Tooltip>
+</View>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't nest tooltips"
+      description='Avoid nesting Tooltip components inside each other'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<View>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button>Help 1</Button>
+    </TooltipTrigger>
+    <TooltipContent title='First' content={<Text>Info</Text>} />
+  </Tooltip>
+
+  <Tooltip>
+    <TooltipTrigger>
+      <Tooltip>...</Tooltip>
+    </TooltipTrigger>
+  </Tooltip>
+</View>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 ### Performance
 
@@ -230,4 +339,3 @@ The Tooltip system is optimized to prevent unnecessary re-renders. When one tool
 
 </Tab>
 </CustomTabs>
-

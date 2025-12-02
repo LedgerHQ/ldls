@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as AmountInputStories from './AmountInput.stories';
 import { AmountInput } from './AmountInput';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Input/AmountInput' of={AmountInputStories} />
 
@@ -242,171 +248,192 @@ Use the `editable` prop to disable the input:
 
 ## Do's and Don'ts
 
-The following guidelines ensure consistent usage of the AmountInput component and maintain design system principles.
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use integer-only for whole number scenarios'
+      description='Disable decimals for quantities, counts, or other whole number inputs'
+    >
 
-### Input Validation
-
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+const [quantity, setQuantity] = useState('');
+
 // Use integer-only for whole number scenarios (quantity, age, etc.)
 <AmountInput
   value={quantity}
-  onChangeText={handleQuantityChange}
-  currencyText="items"
+  onChangeText={setQuantity}
+  currencyText='items'
   allowDecimals={false}
   maxIntegerLength={4}
-  maxDecimalLength={0} // No decimals for quantity
 />
+```
 
-// Use custom max length for specific use cases
-<AmountInput
-  value={pin}
-  onChangeText={handlePinChange}
-  currencyText=""
-  maxIntegerLength={4} // PIN code
-  maxDecimalLength={0} // No decimals for PIN
-  allowDecimals={false}
-/>
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't allow decimals for count-based inputs"
+      description='Items, quantities, and counts should always be whole numbers'
+    >
 
-// Use default length limits for currency amounts (9+9=18 digits)
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+const [quantity, setQuantity] = useState('');
+
 <AmountInput
-  value={amount}
-  onChangeText={handleAmountChange}
-  currencyText="$"
+  value={quantity}
+  onChangeText={setQuantity}
+  currencyText='items'
   allowDecimals={true}
+  maxIntegerLength={4}
 />
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Always use controlled input pattern'
+      description='AmountInput requires both value and onChangeText props'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Don't use overly restrictive lengths for currency
-<AmountInput maxIntegerLength={1} maxDecimalLength={1} currencyText="$" /> // Too short for real amounts
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
 
-// Don't allow decimals for count-based inputs
-<AmountInput currencyText="items" allowDecimals={true} /> // Items should be whole numbers
-
-// Don't use extremely long lengths without good reason
-<AmountInput maxIntegerLength={25} maxDecimalLength={25} currencyText="$" /> // Unnecessarily long
-```
-
-### Value Management
-
-AmountInput is a **controlled component only** - it requires both `value` and `onChangeText` props.
-
-✅ **Do**
-
-```tsx
-// Always use controlled input pattern
 const [value, setValue] = useState('');
-<AmountInput value={value} onChangeText={setValue} currencyText='USD' />;
 
-// Use with validation state
-const [value, setValue] = useState('');
-const [hasError, setHasError] = useState(false);
 <AmountInput
-  value={value}
-  onChangeText={(text) => {
-    setValue(text);
-    setHasError(!text || isNaN(Number(text)));
-  }}
-  currencyText='USD'
-  isInvalid={hasError}
-/>;
-
-// Access the input element via ref
-const inputRef = useRef<TextInput>(null);
-<AmountInput
-  ref={inputRef}
   value={value}
   onChangeText={setValue}
   currencyText='USD'
-/>;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't use uncontrolled patterns - not supported
-<AmountInput defaultValue="0.00" currencyText="USD" />
-
-// Don't use without value prop
-<AmountInput onChangeText={handleChange} currencyText="USD" />
-
-// Don't use without onChangeText prop
-<AmountInput value="100" currencyText="USD" />
-
-// Don't use custom error props - use isInvalid instead
-<AmountInput error={true} errorMessage="Invalid amount" />
-
-// Don't try to modify the currency text styling directly
-<AmountInput currencyText={<Text className="custom-style">USD</Text>} />
-```
-
-### Layout and Styling
-
-The AmountInput component takes the **full width** of its parent container by default.
-
-✅ **Do**
-
-```tsx
-// Use className for width control
-<AmountInput currencyText="USD" className="max-w-md" />
-
-// Use responsive design
-<AmountInput currencyText="USD" className="w-full md:max-w-lg" />
-
-// Use container wrapper for width control
-<View className="max-w-md">
-  <AmountInput currencyText="USD" />
-</View>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't override core input styling
-<AmountInput className="bg-base border-muted" />
-
-// Don't modify internal padding/spacing
-<AmountInput className="px-6 py-4" />
-
-// Don't override typography
-<AmountInput className="body-4" />
-
-// Don't modify hover/focus states
-<AmountInput className="focus:border-accent" />
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Use stable callbacks with useCallback
-const handleChange = useCallback((text: string) => {
-  setValue(text);
-}, []);
-
-<AmountInput value={value} onChangeText={handleChange} currencyText='USD' />;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't create new functions in render for frequently re-rendered components
-<FlatList
-  data={items}
-  renderItem={({ item }) => (
-    <AmountInput
-      value={item.amount}
-      onChangeText={(text) => handleChange(item.id, text)}
-      currencyText='USD'
-    />
-  )}
 />
 ```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use uncontrolled pattern"
+      description='AmountInput does not support defaultValue - always use controlled pattern'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+const [value, setValue] = useState('');
+
+<AmountInput
+  defaultValue='0.00'
+  currencyText='USD'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use isInvalid for error states'
+      description='Use the isInvalid prop to indicate validation errors'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+const [value, setValue] = useState('');
+const [hasError, setHasError] = useState(false);
+
+<AmountInput
+  value={value}
+  onChangeText={setValue}
+  currencyText='USD'
+  isInvalid={hasError}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use custom error props"
+      description='Use isInvalid prop, not error or errorMessage props'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+import { useState } from 'react';
+
+const [value, setValue] = useState('');
+const [hasError, setHasError] = useState(false);
+
+<AmountInput
+  value={value}
+  onChangeText={setValue}
+  currencyText='USD'
+  error={true}
+  errorMessage='Invalid amount'
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use appropriate length limits'
+      description='Set maxIntegerLength and maxDecimalLength based on your use case'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+
+<AmountInput
+  value={amount}
+  onChangeText={setAmount}
+  currencyText='$'
+  maxIntegerLength={9}
+  maxDecimalLength={2}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use overly restrictive or excessive limits"
+      description='Length limits should match real-world requirements'
+    >
+
+{/* prettier-ignore */}
+```tsx
+import { AmountInput } from '@ledgerhq/ldls-ui-rnative';
+
+<AmountInput
+  value={amount}
+  onChangeText={setAmount}
+  currencyText='$'
+  maxIntegerLength={1}
+  maxDecimalLength={25}
+/>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 ## Platform Considerations
 
