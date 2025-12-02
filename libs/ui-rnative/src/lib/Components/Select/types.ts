@@ -140,14 +140,29 @@ export type SelectSeparatorProps = {
 } & ViewProps;
 
 export type SelectItemData = {
+  type: 'item';
   value: string;
   label: string;
   disabled?: boolean;
 };
 
+export type SelectGroupData = {
+  type: 'group-label';
+  label: string;
+};
+
+export type SelectSeparatorData = {
+  type: 'separator';
+};
+
+export type SelectContentItem =
+  | SelectItemData
+  | SelectGroupData
+  | SelectSeparatorData;
+
 export type SelectData = {
   id: string;
-  items: SelectItemData[];
+  items: SelectContentItem[];
   selectedValue: string | undefined;
   onSelectValue: (value: string) => void;
   setOpen?: (open: boolean) => void;

@@ -83,7 +83,27 @@ export const GlobalSelectBottomSheet: React.FC = () => {
               />
             )}
             <View className='gap-4'>
-              {currentSelect.items.map((item) => {
+              {currentSelect.items.map((item, index) => {
+                if (item.type === 'separator') {
+                  return (
+                    <View
+                      key={`separator-${index}`}
+                      className={cn('my-4 mx-8 h-1 bg-muted')}
+                    />
+                  );
+                }
+                if (item.type === 'group-label') {
+                  return (
+                    <Text
+                      key={`label-${index}`}
+                      className={cn(
+                        'mb-4 px-8 pt-8 pb-0 text-muted body-3-semi-bold',
+                      )}
+                    >
+                      {item.label}
+                    </Text>
+                  );
+                }
                 const isSelected = currentSelect.selectedValue === item.value;
                 return (
                   <Pressable

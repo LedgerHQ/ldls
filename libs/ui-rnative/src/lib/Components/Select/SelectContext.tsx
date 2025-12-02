@@ -1,6 +1,6 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
 import React, { ReactNode } from 'react';
-import { SelectItemData } from './types';
+import { SelectContentItem } from './types';
 
 export type SelectContextValue = {
   selectId: string;
@@ -9,8 +9,8 @@ export type SelectContextValue = {
   value: string | undefined;
   onValueChange: (value: string) => void;
   disabled: boolean;
-  items: SelectItemData[];
-  setItems: (items: SelectItemData[]) => void;
+  items: SelectContentItem[];
+  setItems: (items: SelectContentItem[]) => void;
   label?: string;
 };
 
@@ -26,8 +26,8 @@ type SelectContextProviderProps = {
   value: string | undefined;
   onValueChange: (value: string) => void;
   disabled: boolean;
-  items: SelectItemData[];
-  setItems: (items: SelectItemData[]) => void;
+  items: SelectContentItem[];
+  setItems: (items: SelectContentItem[]) => void;
   label?: string;
   children: ReactNode;
 };

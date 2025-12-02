@@ -1,6 +1,11 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import React, { useState, useEffect, useCallback, useId } from 'react';
 import { View, Text, Pressable } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { ChevronDown } from '../../Symbols';
 import { useControllableState } from '../../utils';
 import { SlotPressable } from '../Slot';
@@ -15,7 +20,7 @@ import type {
   SelectItemProps,
   SelectItemTextProps,
   SelectSeparatorProps,
-  SelectItemData,
+  SelectContentItem,
 } from './types';
 
 /**
@@ -78,7 +83,7 @@ export const Select: React.FC<SelectProps> = ({
     },
   });
 
-  const [items, setItems] = useState<SelectItemData[]>([]);
+  const [items, setItems] = useState<SelectContentItem[]>([]);
 
   const setOpen = useCallback(
     (newOpen: boolean) => {
@@ -113,12 +118,11 @@ export const Select: React.FC<SelectProps> = ({
 };
 Select.displayName = 'Select';
 
-const triggerStyles = cn('group relative h-48 bg-muted rounded-sm px-16');
-
-const labelStyles = cn(
-  'absolute left-16 text-muted transition-all duration-300',
-  'top-10 body-4 -translate-y-4',
+const triggerStyles = cn(
+  'group relative h-48 bg-muted rounded-sm px-16 flex-row items-center justify-between',
 );
+
+const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
 
 export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   children,
@@ -170,6 +174,28 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   ]);
 
   const hasValue = value !== undefined && value !== '';
+  const isFloatingLabel = hasValue;
+
+  const labelFontSize = useSharedValue(hasValue ? 10 : 14);
+  const labelTop = useSharedValue(hasValue ? 8 : 14);
+
+  const animatedLabelStyle = useAnimatedStyle(
+    () => ({
+      fontSize: labelFontSize.value,
+      top: labelTop.value,
+    }),
+    [],
+  );
+
+  useEffect(() => {
+    labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14, {
+      duration: 200,
+    });
+    labelTop.value = withTiming(isFloatingLabel ? 8 : 14, {
+      duration: 200,
+    });
+  }, [isFloatingLabel, labelFontSize, labelTop]);
+
   const Comp = asChild ? SlotPressable : Pressable;
 
   return (
@@ -180,32 +206,30 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
       {...props}
     >
       {finalLabel && (
-        <Text
+        <AnimatedLabel
           className={cn(
-            labelStyles,
-            hasValue ? 'body-4' : 'body-2 top-14 translate-y-0',
+            'absolute left-16 text-muted w-full',
             disabled && 'text-disabled',
             labelClassName,
           )}
+          style={animatedLabelStyle}
+          numberOfLines={1}
         >
           {finalLabel}
-        </Text>
+        </AnimatedLabel>
       )}
       <View
         className={cn(
           'flex-1',
-          finalLabel && hasValue && 'mt-16',
-          finalLabel && !hasValue && 'mt-0',
+          finalLabel && hasValue && 'pt-16 pb-2',
+          finalLabel && !hasValue && 'py-0',
         )}
       >
         {children}
       </View>
       <ChevronDown
         size={20}
-        className={cn(
-          'absolute right-0 text-muted',
-          disabled && 'text-disabled',
-        )}
+        className={cn('text-muted ml-8', disabled && 'text-disabled')}
       />
     </Comp>
   );
@@ -213,31 +237,30 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 SelectTrigger.displayName = 'SelectTrigger';
 
 /**
- * Displays the current selected value or placeholder
+ * Displays the current selected value
  */
 export const SelectValue: React.FC<{
-  placeholder?: string;
   className?: string;
-}> = ({ placeholder = 'Select...', className }) => {
+}> = ({ className }) => {
   const { value, items } = useSelectSafeContext({
     consumerName: 'SelectValue',
     contextRequired: true,
   });
 
-  const selectedItem = items.find((item) => item.value === value);
-  const displayText = selectedItem?.label ?? placeholder;
+  const selectedItem = items.find(
+    (item) => item.type === 'item' && item.value === value,
+  );
+
+  if (!selectedItem || selectedItem.type !== 'item') {
+    return null;
+  }
 
   return (
     <Text
-      className={cn(
-        'truncate text-left body-2',
-        !selectedItem && 'text-muted',
-        selectedItem && 'text-base translate-y-4',
-        className,
-      )}
+      className={cn('truncate text-left text-base body-2', className)}
       numberOfLines={1}
     >
-      {displayText}
+      {selectedItem.label}
     </Text>
   );
 };
@@ -254,7 +277,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({ children }) => {
   });
 
   useEffect(() => {
-    const items: SelectItemData[] = [];
+    const items: SelectContentItem[] = [];
 
     const extractItems = (child: React.ReactNode): void => {
       React.Children.forEach(child, (element) => {
@@ -265,17 +288,24 @@ export const SelectContent: React.FC<SelectContentProps> = ({ children }) => {
           const textValue =
             props.textValue ?? extractTextFromChildren(props.children);
           items.push({
+            type: 'item',
             value: props.value,
             label: textValue,
             disabled: props.disabled,
           });
-        }
-
-        if (element.type === SelectGroup && element.props.children) {
+        } else if (element.type === SelectGroup) {
           extractItems(element.props.children);
-        }
-
-        if (element.props?.children) {
+        } else if (element.type === SelectLabel) {
+          const labelText = extractTextFromChildren(element.props.children);
+          items.push({
+            type: 'group-label',
+            label: labelText,
+          });
+        } else if (element.type === SelectSeparator) {
+          items.push({
+            type: 'separator',
+          });
+        } else if (element.props?.children) {
           extractItems(element.props.children);
         }
       });
