@@ -11,20 +11,16 @@ import {
   SelectValue,
 } from '@ledgerhq/ldls-ui-rnative';
 import { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 function Base() {
   const [value, setValue] = useState<string>();
 
   return (
     <View>
-      <Text className='text-base body-2'>
-        Selected value: {value || 'None'}
-      </Text>
-
       <Select value={value} onValueChange={setValue}>
         <SelectTrigger label='Italian dish'>
-          <SelectValue placeholder='Choose a dish...' />
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value='lasagna'>
@@ -53,13 +49,9 @@ function WithGroups() {
 
   return (
     <View>
-      <Text className='text-base body-2'>
-        Selected value: {value || 'None'}
-      </Text>
-
       <Select value={value} onValueChange={setValue}>
         <SelectTrigger label='City'>
-          <SelectValue placeholder='Choose a city...' />
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
