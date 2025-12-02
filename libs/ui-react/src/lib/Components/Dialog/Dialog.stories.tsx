@@ -225,7 +225,7 @@ export const InfoStateError: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='z-0 absolute inset-x-0 top-0 h-full bg-gradient-error' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
 
             <Spot appearance='error' size={72} />
 
@@ -258,7 +258,7 @@ export const InfoStateError: Story = {
   <DialogContent>
     <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
     <div className="flex flex-col items-center gap-24 overflow-hidden">
-      <div className='z-0 absolute inset-x-0 top-0 h-full bg-gradient-error' />
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
       
       <Spot appearance="error" size={72} />
       
@@ -296,7 +296,7 @@ export const InfoStateSuccess: Story = {
             className='relative'
           />
           <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='z-0 absolute inset-x-0 top-0 h-full bg-gradient-success' />
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
 
             <Spot appearance='check' size={72} />
 
@@ -329,7 +329,7 @@ export const InfoStateSuccess: Story = {
   <DialogContent>
     <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
        <div className="flex flex-col items-center gap-24 overflow-hidden">
-        <div className="z-0 absolute inset-x-0 top-0 h-full bg-gradient-success" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
       
       <Spot appearance="check" size={72} />
       
