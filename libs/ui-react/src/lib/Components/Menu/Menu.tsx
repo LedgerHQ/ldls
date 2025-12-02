@@ -18,7 +18,7 @@ import type {
 } from './types';
 
 const contentStyles = cn(
-  'z-dropdown min-w-160 overflow-hidden rounded-sm bg-muted p-8',
+  'z-menu min-w-160 overflow-hidden rounded-sm bg-muted p-8',
   'shadow-sm',
   'data-[state=open]:animate-fade-in',
   'data-[state=closed]:animate-fade-out',
