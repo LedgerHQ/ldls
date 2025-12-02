@@ -132,9 +132,11 @@ export const SheetBar = ({
       )}
       {appearance === 'extended' && (
         <>
-          <div className='flex flex-row items-center justify-between'>
+          <div className='flex flex-row items-center'>
             {onBack && <BackButton onBack={onBack} />}
-            <CloseButton onClose={onClose} />
+            <div className='ml-auto'>
+              <CloseButton onClose={onClose} />
+            </div>
           </div>
           {(title || description) && (
             <div className='flex flex-col gap-4 ps-16'>
