@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const websitesDarkTheme = {
+export const sDarkTheme = {
   crypto: {
     aion: primitiveColorTokens.dark.crypto.aion,
     aion0: primitiveColorTokens.dark.crypto.aion0,
@@ -203,9 +203,9 @@ export const websitesDarkTheme = {
     active: primitiveColorTokens.dark.orange['400'],
     activeHover: primitiveColorTokens.dark.orange['500'],
     activePressed: primitiveColorTokens.dark.orange['600'],
-    activeSubtleWebsite: primitiveColorTokens.dark.orange['050'],
-    activeSubtleWebsiteHover: primitiveColorTokens.dark.orange['100'],
-    activeSubtleWebsitePressed: primitiveColorTokens.dark.orange['200'],
+    activeSubtle: primitiveColorTokens.dark.orange['050'],
+    activeSubtleHover: primitiveColorTokens.dark.orange['100'],
+    activeSubtlePressed: primitiveColorTokens.dark.orange['200'],
     error: primitiveColorTokens.dark.red['600-15'],
     errorHover: primitiveColorTokens.dark.red['600-30'],
     errorPressed: primitiveColorTokens.dark.red['600-40'],
@@ -223,8 +223,8 @@ export const websitesDarkTheme = {
     gradient0: primitiveColorTokens.dark.grey['050-0'],
     gradientOnInteractive100: primitiveColorTokens.dark.grey['050'],
     gradientOnInteractive0: primitiveColorTokens.dark.grey['050-0'],
-    gradientOnAccentWebsite100: primitiveColorTokens.light.grey['050'],
-    gradientOnAccentWebsite0: primitiveColorTokens.light.grey['050-0'],
+    gradientOnAccent100: primitiveColorTokens.light.grey['050'],
+    gradientOnAccent0: primitiveColorTokens.light.grey['050-0'],
     gradientMuted0: primitiveColorTokens.dark.grey['100-0'],
     gradientMuted100: primitiveColorTokens.dark.grey['100'],
   },
