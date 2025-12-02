@@ -28,6 +28,7 @@
 - Checkbox requires `@radix-ui/react-checkbox`
 - Switch requires `@radix-ui/react-switch`
 - Dialog requires `@radix-ui/react-dialog`
+- Menu requires `@radix-ui/react-dropdown-menu`
 - Tooltip requires `@radix-ui/react-tooltip`
 - Select requires `@radix-ui/react-select`
 
@@ -309,3 +310,11 @@ Use ONLY the unique part after the last hyphen of the CSS variable name.
 - Transform: replace `/` with `-`
 - Result: `body-3` (transform `body/3` → `body-3`)
 - Example: `/* heading/2-semi-bold */` → `heading-2-semi-bold`
+
+#### Drop Shadow Styles
+
+- Figma shows: a comment with the style name, like /_ drop-shadow/sm _/.
+- The prefix for box-shadow is: shadow-
+- Transform: replace `/` with `-` and use only the unique part after the last hyphen (so `drop-shadow/sm` becomes `sm`).
+- Result: You write `shadow-sm`, not `shadow-drop-shadow-sm`.
+- Available values: `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`.

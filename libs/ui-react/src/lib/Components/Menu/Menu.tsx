@@ -1,0 +1,224 @@
+import { cn } from '@ledgerhq/ldls-utils-shared';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import * as React from 'react';
+import { Check, ChevronRight } from '../../Symbols';
+import type {
+  MenuProps,
+  MenuTriggerProps,
+  MenuContentProps,
+  MenuItemProps,
+  MenuCheckboxItemProps,
+  MenuRadioItemProps,
+  MenuLabelProps,
+  MenuSeparatorProps,
+  MenuSubTriggerProps,
+  MenuSubContentProps,
+  MenuGroupProps,
+  MenuRadioGroupProps,
+} from './types';
+
+const contentStyles = cn(
+  'z-dropdown overflow-hidden rounded-sm bg-muted p-8',
+  'shadow-sm',
+  'data-[state=open]:animate-fade-in',
+  'data-[state=closed]:animate-fade-out',
+);
+
+const itemStyles = cn(
+  'relative flex cursor-default select-none items-center gap-12',
+  'rounded-sm px-8 h-44 outline-none',
+  'text-base body-2-semi-bold',
+  'transition-colors',
+  'focus:bg-base-transparent-hover',
+  'active:bg-base-transparent-pressed',
+  'data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+);
+
+const labelStyles = cn('px-8 py-4 text-muted body-3-semi-bold');
+
+const separatorStyles = cn('h-px mx-8 my-4 border-b border-muted-subtle');
+
+const subTriggerStyles = cn(
+  itemStyles,
+  'data-[state=open]:bg-base-transparent-hover',
+);
+
+function Menu({ ...props }: MenuProps) {
+  return <DropdownMenuPrimitive.Root data-slot='menu' {...props} />;
+}
+
+const MenuTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
+  MenuTriggerProps
+>(({ ...props }, ref) => (
+  <DropdownMenuPrimitive.Trigger
+    ref={ref}
+    data-slot='menu-trigger'
+    {...props}
+  />
+));
+MenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
+
+function MenuGroup({ ...props }: MenuGroupProps) {
+  return <DropdownMenuPrimitive.Group data-slot='menu-group' {...props} />;
+}
+
+function MenuPortal({
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
+  return <DropdownMenuPrimitive.Portal {...props} />;
+}
+
+function MenuSub({
+  ...props
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
+  return <DropdownMenuPrimitive.Sub {...props} />;
+}
+
+function MenuRadioGroup({ ...props }: MenuRadioGroupProps) {
+  return (
+    <DropdownMenuPrimitive.RadioGroup data-slot='menu-radio-group' {...props} />
+  );
+}
+
+const MenuSubTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
+  MenuSubTriggerProps
+>(({ className, inset, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubTrigger
+    ref={ref}
+    data-slot='menu-sub-trigger'
+    className={cn(subTriggerStyles, inset && 'pl-32', className)}
+    {...props}
+  >
+    {children}
+    <ChevronRight size={20} className='text-muted ml-auto' />
+  </DropdownMenuPrimitive.SubTrigger>
+));
+MenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
+
+const MenuSubContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
+  MenuSubContentProps
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubContent
+    ref={ref}
+    data-slot='menu-sub-content'
+    className={cn(contentStyles, className)}
+    {...props}
+  />
+));
+MenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName;
+
+const MenuContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Content>,
+  MenuContentProps
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content
+      ref={ref}
+      data-slot='menu-content'
+      sideOffset={sideOffset}
+      className={cn(contentStyles, className)}
+      {...props}
+    />
+  </DropdownMenuPrimitive.Portal>
+));
+MenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
+
+const MenuItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Item>,
+  MenuItemProps
+>(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Item
+    ref={ref}
+    data-slot='menu-item'
+    className={cn(itemStyles, inset && 'pl-32', className)}
+    {...props}
+  />
+));
+MenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
+
+const MenuCheckboxItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+  MenuCheckboxItemProps
+>(({ className, children, checked, ...props }, ref) => (
+  <DropdownMenuPrimitive.CheckboxItem
+    ref={ref}
+    data-slot='menu-checkbox-item'
+    className={cn(itemStyles, className)}
+    checked={checked}
+    {...props}
+  >
+    {children}
+    <span className='ml-auto flex size-24 items-center justify-center'>
+      <DropdownMenuPrimitive.ItemIndicator>
+        <Check size={24} className='text-active' />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+  </DropdownMenuPrimitive.CheckboxItem>
+));
+MenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;
+
+const MenuRadioItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  MenuRadioItemProps
+>(({ className, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    data-slot='menu-radio-item'
+    className={cn(itemStyles, className)}
+    {...props}
+  >
+    {children}
+    <span className='ml-auto flex size-24 items-center justify-center'>
+      <DropdownMenuPrimitive.ItemIndicator>
+        <Check size={24} className='text-active' />
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+  </DropdownMenuPrimitive.RadioItem>
+));
+MenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
+
+const MenuLabel = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
+  MenuLabelProps
+>(({ className, inset, ...props }, ref) => (
+  <DropdownMenuPrimitive.Label
+    ref={ref}
+    data-slot='menu-label'
+    className={cn(labelStyles, inset && 'pl-32 drop-', className)}
+    {...props}
+  />
+));
+MenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
+
+const MenuSeparator = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
+  MenuSeparatorProps
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Separator
+    ref={ref}
+    data-slot='menu-separator'
+    className={cn(separatorStyles, className)}
+    {...props}
+  />
+));
+MenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
+
+export {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuCheckboxItem,
+  MenuRadioItem,
+  MenuLabel,
+  MenuSeparator,
+  MenuGroup,
+  MenuPortal,
+  MenuSub,
+  MenuSubContent,
+  MenuSubTrigger,
+  MenuRadioGroup,
+};

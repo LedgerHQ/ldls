@@ -64,6 +64,7 @@ export default defineConfig(() => ({
         '@radix-ui/react-switch',
         '@radix-ui/react-select',
         '@radix-ui/react-tooltip',
+        '@radix-ui/react-dropdown-menu',
       ],
       preserveEntrySignatures: 'strict' as const,
       output: {

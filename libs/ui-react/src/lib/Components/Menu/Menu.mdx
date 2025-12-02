@@ -1,0 +1,547 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MenuStories from './Menu.stories';
+import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
+
+<Meta title='Components/Menu' of={MenuStories} />
+
+# 📋 Menu
+
+<CustomTabs>
+  <Tab label='Overview'>
+
+## Introduction
+
+The Menu component provides a dropdown menu triggered by clicking a button or trigger element. It offers contextual actions and options to users in a clean, organized interface.
+
+Built on top of [Radix UI Menu](https://www.radix-ui.com/primitives/docs/components/dropdown-menu) primitives, it provides excellent accessibility, keyboard navigation, and customization options.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=7966-3068&m=dev).
+
+## Anatomy
+
+<Canvas of={MenuStories.Base} />
+
+- **Trigger**: The button or element that activates the menu when clicked
+- **Content**: The container for menu items with background and shadow
+- **Item**: Individual selectable menu items
+- **Label**: Non-interactive text labels for grouping
+- **Separator**: Visual dividers between groups
+- **CheckboxItem**: Items with checkbox selection
+- **RadioItem**: Items with radio selection (single choice in group)
+- **SubMenu**: Nested menus for hierarchical options
+
+## Properties
+
+### Basic Items
+
+Simple menu items for actions:
+
+<Canvas of={MenuStories.Base} />
+<Controls of={MenuStories.Base} />
+
+### Checkbox Items
+
+For toggleable options:
+
+<Canvas of={MenuStories.WithCheckboxItems} />
+
+### Radio Items
+
+For single selection from multiple options:
+
+<Canvas of={MenuStories.WithRadioItems} />
+
+### Submenus
+
+For hierarchical menu structures:
+
+<Canvas of={MenuStories.WithSubmenu} />
+
+### Groups and Labels
+
+Organize related items:
+
+<Canvas of={MenuStories.WithGroups} />
+
+### Disabled State
+
+Items can be disabled to prevent interaction:
+
+<Canvas of={MenuStories.Disabled} />
+
+### Position
+
+The menu can be positioned on any side of the trigger using the `side` prop:
+
+<Canvas of={MenuStories.PositionShowcase} />
+
+Available positions: `top`, `bottom`, `left`, `right` (default: `bottom`)
+
+### Complete Example
+
+Full-featured menu with all components:
+
+<Canvas of={MenuStories.CompleteExample} />
+
+## Responsive Behavior
+
+- Menus automatically position themselves to stay within viewport
+- Menu content width is customizable via className
+- Default minimum width is 256px
+- Collision detection prevents menus from going offscreen
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support with Arrow keys, Enter, Space, and Escape
+- **Screen Reader Support**: Proper ARIA attributes and roles
+- **Focus Management**: Clear focus indicators and logical tab order
+- **RTL Support**: Automatic layout adjustment for right-to-left languages
+- **High Contrast**: Compatible with high contrast mode
+
+### Keyboard Shortcuts
+
+<div className='my-24 overflow-hidden rounded-lg'>
+  <table className='w-full'>
+    <thead>
+      <tr className='border-b border-muted bg-muted'>
+        <th className='p-12 text-left text-on-accent body-2'>Key</th>
+        <th className='p-12 text-left text-on-accent body-2'>Action</th>
+      </tr>
+    </thead>
+    <tbody className='bg-canvas'>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12'>Space / Enter</td>
+        <td className='p-12 text-muted'>Activates the focused item</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12'>ArrowDown</td>
+        <td className='p-12 text-muted'>Moves focus to the next item</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12'>ArrowUp</td>
+        <td className='p-12 text-muted'>Moves focus to the previous item</td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12'>ArrowRight / ArrowLeft</td>
+        <td className='p-12 text-muted'>
+          Opens/closes submenu (based on direction)
+        </td>
+      </tr>
+      <tr className='border-b border-muted'>
+        <td className='text-accent p-12'>Esc</td>
+        <td className='p-12 text-muted'>Closes the menu</td>
+      </tr>
+      <tr>
+        <td className='text-accent p-12'>Home / End</td>
+        <td className='p-12 text-muted'>Moves to first/last item</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</Tab>
+
+<Tab label='Implementation'>
+
+## Installation
+
+```bash
+npm install @ledgerhq/ldls-ui-react @radix-ui/react-dropdown-menu
+```
+
+> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+
+The Radix UI dependency provides accessible menu behavior with proper keyboard navigation, focus management, and screen reader support.
+
+## Basic Usage
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Open Menu</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuItem>Edit</MenuItem>
+        <MenuItem>Delete</MenuItem>
+        <MenuItem>Share</MenuItem>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+## Advanced Patterns
+
+### With Checkbox Items
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuCheckboxItem,
+  MenuSeparator,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [showPanel, setShowPanel] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
+
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>View</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+          Show Panel
+        </MenuCheckboxItem>
+        <MenuCheckboxItem
+          checked={showSidebar}
+          onCheckedChange={setShowSidebar}
+        >
+          Show Sidebar
+        </MenuCheckboxItem>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+### With Radio Items
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuLabel,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [position, setPosition] = useState('bottom');
+
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Position</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuLabel>Panel Position</MenuLabel>
+        <MenuRadioGroup value={position} onValueChange={setPosition}>
+          <MenuRadioItem value='top'>Top</MenuRadioItem>
+          <MenuRadioItem value='bottom'>Bottom</MenuRadioItem>
+          <MenuRadioItem value='right'>Right</MenuRadioItem>
+        </MenuRadioGroup>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+### With Submenus
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuSub,
+  MenuSubTrigger,
+  MenuSubContent,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Options</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuItem>New File</MenuItem>
+        <MenuSub>
+          <MenuSubTrigger>Share</MenuSubTrigger>
+          <MenuSubContent>
+            <MenuItem>Email</MenuItem>
+            <MenuItem>Messages</MenuItem>
+            <MenuItem>Copy Link</MenuItem>
+          </MenuSubContent>
+        </MenuSub>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+### With Groups and Labels
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuLabel,
+  MenuSeparator,
+  MenuGroup,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Account</Button>
+      </MenuTrigger>
+      <MenuContent className='w-56'>
+        <MenuLabel>My Account</MenuLabel>
+        <MenuSeparator />
+        <MenuGroup>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Billing</MenuItem>
+          <MenuItem>Settings</MenuItem>
+        </MenuGroup>
+        <MenuSeparator />
+        <MenuItem>Log out</MenuItem>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+### Custom Widths
+
+```tsx
+<MenuContent className='w-80'>{/* Menu items */}</MenuContent>
+```
+
+### Custom Positioning
+
+Control where the menu appears using the `side` prop:
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Options</Button>
+      </MenuTrigger>
+      <MenuContent side='top' sideOffset={8}>
+        <MenuItem>Edit</MenuItem>
+        <MenuItem>Delete</MenuItem>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
+
+## Do's and Don'ts
+
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use clear, action-oriented labels'
+      description='Menu items should clearly describe what will happen when selected'
+    >
+      ```tsx
+      {/* prettier-ignore */}
+      <Menu>
+        <MenuTrigger asChild>
+          <Button>Options</Button>
+        </MenuTrigger>
+        <MenuContent>
+          <MenuItem>Edit Profile</MenuItem>
+          <MenuItem>Change Password</MenuItem>
+          <MenuItem>Delete Account</MenuItem>
+        </MenuContent>
+      </Menu>
+      ```
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use vague or unclear labels"
+      description='Avoid ambiguous text that leaves users uncertain'
+    >
+      ```tsx
+      {/* prettier-ignore */}
+      <Menu>
+        <MenuTrigger asChild>
+          <Button>Options</Button>
+        </MenuTrigger>
+        <MenuContent>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>Password</MenuItem>
+          <MenuItem>Account</MenuItem>
+        </MenuContent>
+      </Menu>
+      ```
+    </DontBlockItem>
+  </DoVsDontRow>
+
+<DoVsDontRow>
+  <DoBlockItem
+    title='Group related items with labels and separators'
+    description='Use labels and separators to organize menu items logically'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuContent>
+        <MenuLabel>Account</MenuLabel>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>Settings</MenuItem>
+        <MenuSeparator />
+        <MenuLabel>Actions</MenuLabel>
+        <MenuItem>Share</MenuItem>
+      </MenuContent>
+    ```
+  </DoBlockItem>
+  <DontBlockItem
+    title="Don't mix unrelated items without grouping"
+    description='Avoid flat lists of unrelated actions'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuContent>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>Share</MenuItem>
+        <MenuItem>Settings</MenuItem>
+        <MenuItem>Export</MenuItem>
+      </MenuContent>
+    ```
+  </DontBlockItem>
+</DoVsDontRow>
+
+<DoVsDontRow>
+  <DoBlockItem
+    title='Use CheckboxItem for toggles'
+    description='Use checkbox items for options that can be toggled on/off'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuCheckboxItem
+        checked={showPanel}
+        onCheckedChange={setShowPanel}
+      >
+        Show Panel
+      </MenuCheckboxItem>
+    ```
+  </DoBlockItem>
+  <DontBlockItem
+    title="Don't use regular items for toggles"
+    description='Regular items should be used for actions, not toggleable states'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuItem onClick={() => setShowPanel(!showPanel)}>
+        Show Panel
+      </MenuItem>
+    ```
+  </DontBlockItem>
+</DoVsDontRow>
+
+<DoVsDontRow>
+  <DoBlockItem
+    title='Use RadioGroup for single selection'
+    description='When user should select one option from multiple choices'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuRadioGroup value={theme} onValueChange={setTheme}>
+        <MenuRadioItem value='light'>Light</MenuRadioItem>
+        <MenuRadioItem value='dark'>Dark</MenuRadioItem>
+        <MenuRadioItem value='system'>System</MenuRadioItem>
+      </MenuRadioGroup>
+    ```
+  </DoBlockItem>
+  <DontBlockItem
+    title="Don't use multiple checkboxes for single selection"
+    description='Multiple checkboxes suggest multiple selections are allowed'
+  >
+    ```tsx
+    {/* prettier-ignore */}
+    <MenuCheckboxItem checked={theme === 'light'}>
+        Light
+      </MenuCheckboxItem>
+    <MenuCheckboxItem checked={theme === 'dark'}>Dark</MenuCheckboxItem>
+    ```
+  </DontBlockItem>
+</DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Limit menu depth to 2-3 levels'
+      description='Keep menu hierarchies shallow for better usability'
+    >
+      ```tsx
+      {/* prettier-ignore */}
+      <MenuSub>
+        <MenuSubTrigger>Share</MenuSubTrigger>
+        <MenuSubContent>
+          <MenuItem>Email</MenuItem>
+          <MenuItem>Messages</MenuItem>
+        </MenuSubContent>
+      </MenuSub>
+      ```
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't create deeply nested menus"
+      description='Deep nesting makes navigation difficult'
+    >
+      ```tsx
+      {/* prettier-ignore */}
+      <MenuSub>
+        <MenuSubTrigger>Share</MenuSubTrigger>
+        <MenuSubContent>
+          <MenuSub>
+            <MenuSubTrigger>Social</MenuSubTrigger>
+            {/* Too deep! */}
+          </MenuSub>
+        </MenuSubContent>
+      </MenuSub>
+      ```
+    </DontBlockItem>
+  </DoVsDontRow>
+</div>
+
+## Performance Considerations
+
+- Menu content is only rendered when open (Portal-based)
+- Use `asChild` on trigger to avoid wrapper divs
+- Memoize expensive menu item content when needed
+- For very long lists, consider virtualization or search
+
+</Tab>
+</CustomTabs>
