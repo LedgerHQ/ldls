@@ -188,7 +188,7 @@ const MenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     data-slot='menu-label'
-    className={cn(labelStyles, inset && 'pl-32 drop-', className)}
+    className={cn(labelStyles, inset && 'pl-32', className)}
     {...props}
   />
 ));
