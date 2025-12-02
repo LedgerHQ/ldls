@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const sDarkTheme = {
+export const websitesDarkTheme = {
   crypto: {
     aion: primitiveColorTokens.dark.crypto.aion,
     aion0: primitiveColorTokens.dark.crypto.aion0,
