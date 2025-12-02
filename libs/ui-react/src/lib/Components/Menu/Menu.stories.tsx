@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import * as React from 'react';
+import { MoreVertical } from '../../Symbols/Icons/MoreVertical';
 import { Button } from '../Button/Button';
+import { IconButton } from '../IconButton';
 import {
   Menu,
   MenuTrigger,
@@ -53,9 +55,11 @@ export const Base: Story = {
   render: (args) => (
     <Menu {...args}>
       <MenuTrigger asChild>
-        <Button appearance='base' size='md'>
-          Open Menu
-        </Button>
+        <IconButton
+          icon={MoreVertical}
+          aria-label='Open Menu'
+          appearance='gray'
+        />
       </MenuTrigger>
       <MenuContent className='w-208'>
         <MenuItem>Profile</MenuItem>
@@ -72,13 +76,14 @@ export const WithGroups: Story = {
   render: () => (
     <Menu>
       <MenuTrigger asChild>
-        <Button appearance='base' size='md'>
-          Open Menu
-        </Button>
+        <IconButton
+          icon={MoreVertical}
+          aria-label='Open Menu'
+          appearance='gray'
+        />
       </MenuTrigger>
       <MenuContent className='w-208'>
         <MenuLabel>My Account</MenuLabel>
-        <MenuSeparator />
         <MenuGroup>
           <MenuItem>Profile</MenuItem>
           <MenuItem>Billing</MenuItem>
@@ -104,13 +109,12 @@ export const WithCheckboxItems: Story = {
     return (
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button size='md' appearance='gray'>
             View Options
           </Button>
         </MenuTrigger>
         <MenuContent className='w-208'>
           <MenuLabel>Appearance</MenuLabel>
-          <MenuSeparator />
           <MenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
             Show Panel
           </MenuCheckboxItem>
@@ -139,7 +143,7 @@ export const WithRadioItems: Story = {
     return (
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Panel Position
           </Button>
         </MenuTrigger>
@@ -160,7 +164,7 @@ export const WithSubmenu: Story = {
   render: () => (
     <Menu>
       <MenuTrigger asChild>
-        <Button appearance='base' size='md'>
+        <Button appearance='gray' size='md'>
           Open Menu
         </Button>
       </MenuTrigger>
@@ -188,7 +192,7 @@ export const Disabled: Story = {
   render: () => (
     <Menu>
       <MenuTrigger asChild>
-        <Button appearance='base' size='md'>
+        <Button appearance='gray' size='md'>
           Open Menu
         </Button>
       </MenuTrigger>
@@ -208,7 +212,7 @@ export const PositionShowcase: Story = {
     <div className='flex items-center gap-16'>
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Top
           </Button>
         </MenuTrigger>
@@ -221,7 +225,7 @@ export const PositionShowcase: Story = {
 
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Bottom
           </Button>
         </MenuTrigger>
@@ -234,7 +238,7 @@ export const PositionShowcase: Story = {
 
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Left
           </Button>
         </MenuTrigger>
@@ -247,7 +251,7 @@ export const PositionShowcase: Story = {
 
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Right
           </Button>
         </MenuTrigger>
@@ -270,13 +274,12 @@ export const CompleteExample: Story = {
     return (
       <Menu>
         <MenuTrigger asChild>
-          <Button appearance='base' size='md'>
+          <Button appearance='gray' size='md'>
             Settings
           </Button>
         </MenuTrigger>
         <MenuContent className='w-208'>
           <MenuLabel>My Account</MenuLabel>
-          <MenuSeparator />
           <MenuGroup>
             <MenuItem>Profile</MenuItem>
             <MenuItem>Billing</MenuItem>

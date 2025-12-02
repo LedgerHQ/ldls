@@ -141,7 +141,7 @@ export type MenuContentProps = {
    * The preferred alignment against the trigger.
    * May change when collisions occur.
    *
-   * @default 'center'
+   * @default 'start'
    */
   align?: 'start' | 'center' | 'end';
 

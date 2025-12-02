@@ -18,7 +18,7 @@ import type {
 } from './types';
 
 const contentStyles = cn(
-  'z-dropdown overflow-hidden rounded-sm bg-muted p-8',
+  'z-dropdown min-w-160 overflow-hidden rounded-sm bg-muted p-8',
   'shadow-sm',
   'data-[state=open]:animate-fade-in',
   'data-[state=closed]:animate-fade-out',
@@ -92,7 +92,7 @@ const MenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight size={20} className='text-muted ml-auto' />
+    <ChevronRight size={20} className='ml-auto text-muted' />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 MenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
@@ -113,13 +113,14 @@ MenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName;
 const MenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   MenuContentProps
->(({ className, sideOffset = 4, ...props }, ref) => (
+>(({ className, sideOffset = 4, align = 'start', ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       ref={ref}
       data-slot='menu-content'
       sideOffset={sideOffset}
       className={cn(contentStyles, className)}
+      align={align}
       {...props}
     />
   </DropdownMenuPrimitive.Portal>

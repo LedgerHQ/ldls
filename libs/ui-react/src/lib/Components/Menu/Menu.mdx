@@ -335,6 +335,8 @@ function MyComponent() {
 
 ### Custom Widths
 
+Control the width of the menu content using the `className` prop, by default, the menu content has a minimum width of `160px`.
+
 ```tsx
 <MenuContent className='w-80'>{/* Menu items */}</MenuContent>
 ```
@@ -372,60 +374,20 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use clear, action-oriented labels'
-      description='Menu items should clearly describe what will happen when selected'
-    >
-      ```tsx
-      {/* prettier-ignore */}
-      <Menu>
-        <MenuTrigger asChild>
-          <Button>Options</Button>
-        </MenuTrigger>
-        <MenuContent>
-          <MenuItem>Edit Profile</MenuItem>
-          <MenuItem>Change Password</MenuItem>
-          <MenuItem>Delete Account</MenuItem>
-        </MenuContent>
-      </Menu>
-      ```
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use vague or unclear labels"
-      description='Avoid ambiguous text that leaves users uncertain'
-    >
-      ```tsx
-      {/* prettier-ignore */}
-      <Menu>
-        <MenuTrigger asChild>
-          <Button>Options</Button>
-        </MenuTrigger>
-        <MenuContent>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>Password</MenuItem>
-          <MenuItem>Account</MenuItem>
-        </MenuContent>
-      </Menu>
-      ```
-    </DontBlockItem>
-  </DoVsDontRow>
-
 <DoVsDontRow>
   <DoBlockItem
     title='Group related items with labels and separators'
     description='Use labels and separators to organize menu items logically'
   >
     ```tsx
-    {/* prettier-ignore */}
     <MenuContent>
-        <MenuLabel>Account</MenuLabel>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>Settings</MenuItem>
-        <MenuSeparator />
-        <MenuLabel>Actions</MenuLabel>
-        <MenuItem>Share</MenuItem>
-      </MenuContent>
+      <MenuLabel>Account</MenuLabel>
+      <MenuItem>Profile</MenuItem>
+      <MenuItem>Settings</MenuItem>
+      <MenuSeparator />
+      <MenuLabel>Actions</MenuLabel>
+      <MenuItem>Share</MenuItem>
+    </MenuContent>
     ```
   </DoBlockItem>
   <DontBlockItem
@@ -433,13 +395,12 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
     description='Avoid flat lists of unrelated actions'
   >
     ```tsx
-    {/* prettier-ignore */}
     <MenuContent>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>Share</MenuItem>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem>Export</MenuItem>
-      </MenuContent>
+      <MenuItem>Profile</MenuItem>
+      <MenuItem>Share</MenuItem>
+      <MenuItem>Settings</MenuItem>
+      <MenuItem>Export</MenuItem>
+    </MenuContent>
     ```
   </DontBlockItem>
 </DoVsDontRow>
@@ -450,13 +411,9 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
     description='Use checkbox items for options that can be toggled on/off'
   >
     ```tsx
-    {/* prettier-ignore */}
-    <MenuCheckboxItem
-        checked={showPanel}
-        onCheckedChange={setShowPanel}
-      >
-        Show Panel
-      </MenuCheckboxItem>
+    <MenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+      Show Panel
+    </MenuCheckboxItem>
     ```
   </DoBlockItem>
   <DontBlockItem
@@ -464,10 +421,7 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
     description='Regular items should be used for actions, not toggleable states'
   >
     ```tsx
-    {/* prettier-ignore */}
-    <MenuItem onClick={() => setShowPanel(!showPanel)}>
-        Show Panel
-      </MenuItem>
+    <MenuItem onClick={() => setShowPanel(!showPanel)}>Show Panel</MenuItem>
     ```
   </DontBlockItem>
 </DoVsDontRow>
@@ -478,12 +432,11 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
     description='When user should select one option from multiple choices'
   >
     ```tsx
-    {/* prettier-ignore */}
     <MenuRadioGroup value={theme} onValueChange={setTheme}>
-        <MenuRadioItem value='light'>Light</MenuRadioItem>
-        <MenuRadioItem value='dark'>Dark</MenuRadioItem>
-        <MenuRadioItem value='system'>System</MenuRadioItem>
-      </MenuRadioGroup>
+      <MenuRadioItem value='light'>Light</MenuRadioItem>
+      <MenuRadioItem value='dark'>Dark</MenuRadioItem>
+      <MenuRadioItem value='system'>System</MenuRadioItem>
+    </MenuRadioGroup>
     ```
   </DoBlockItem>
   <DontBlockItem
@@ -491,10 +444,7 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
     description='Multiple checkboxes suggest multiple selections are allowed'
   >
     ```tsx
-    {/* prettier-ignore */}
-    <MenuCheckboxItem checked={theme === 'light'}>
-        Light
-      </MenuCheckboxItem>
+    <MenuCheckboxItem checked={theme === 'light'}>Light</MenuCheckboxItem>
     <MenuCheckboxItem checked={theme === 'dark'}>Dark</MenuCheckboxItem>
     ```
   </DontBlockItem>
@@ -506,7 +456,7 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
       description='Keep menu hierarchies shallow for better usability'
     >
       ```tsx
-      {/* prettier-ignore */}
+
       <MenuSub>
         <MenuSubTrigger>Share</MenuSubTrigger>
         <MenuSubContent>
@@ -521,7 +471,7 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
       description='Deep nesting makes navigation difficult'
     >
       ```tsx
-      {/* prettier-ignore */}
+
       <MenuSub>
         <MenuSubTrigger>Share</MenuSubTrigger>
         <MenuSubContent>
@@ -533,8 +483,11 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
       </MenuSub>
       ```
     </DontBlockItem>
+
   </DoVsDontRow>
 </div>
+
+<CommonRulesDoAndDont />
 
 ## Performance Considerations
 
