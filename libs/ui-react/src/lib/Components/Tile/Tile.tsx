@@ -8,7 +8,7 @@ const tileVariants = {
     [
       'group relative flex flex-col items-center text-base transition-colors',
       'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
-      'gap-8 px-8 py-16',
+      'gap-8 px-8 py-12',
     ],
     {
       variants: {
