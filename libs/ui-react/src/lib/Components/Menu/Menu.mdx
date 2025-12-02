@@ -371,6 +371,38 @@ function MyComponent() {
 
 Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
 
+### Custom Alignment
+
+Control the alignment of the menu relative to the trigger using the `align` prop:
+
+```tsx
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+} from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/ldls-ui-react';
+
+function MyComponent() {
+  return (
+    <Menu>
+      <MenuTrigger asChild>
+        <Button>Options</Button>
+      </MenuTrigger>
+      <MenuContent align='start' alignOffset={0}>
+        <MenuItem>Edit</MenuItem>
+        <MenuItem>Delete</MenuItem>
+      </MenuContent>
+    </Menu>
+  );
+}
+```
+
+Available alignments: `'start'` (default), `'center'`, `'end'`
+
+You can also use `alignOffset` to fine-tune the position with a pixel offset.
+
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
@@ -471,7 +503,6 @@ Available positions: `'top'`, `'bottom'` (default), `'left'`, `'right'`
       description='Deep nesting makes navigation difficult'
     >
       ```tsx
-
       <MenuSub>
         <MenuSubTrigger>Share</MenuSubTrigger>
         <MenuSubContent>
