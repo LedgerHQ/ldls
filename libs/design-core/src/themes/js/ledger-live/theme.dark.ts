@@ -221,12 +221,6 @@ export const ledgerLiveDarkColorTokens = {
     gradient80: primitiveColorTokens.dark.grey['050-80'],
     gradient70: primitiveColorTokens.dark.grey['050-70'],
     gradient0: primitiveColorTokens.dark.grey['050-0'],
-    gradientOnInteractive100: primitiveColorTokens.dark.grey['050'],
-    gradientOnInteractive0: primitiveColorTokens.dark.grey['050-0'],
-    gradientOnAccent100: primitiveColorTokens.dark.grey['050'],
-    gradientOnAccent0: primitiveColorTokens.dark.grey['050-0'],
-    gradientMuted0: primitiveColorTokens.dark.grey['100-0'],
-    gradientMuted100: primitiveColorTokens.dark.grey['100'],
   },
   text: {
     black: primitiveColorTokens.dark.constant['950'],
