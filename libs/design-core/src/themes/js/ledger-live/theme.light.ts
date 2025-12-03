@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const ledgerLiveLightTheme = {
+export const ledgerLiveLightColorTokens = {
   crypto: {
     aion: primitiveColorTokens.light.crypto.aion,
     aion0: primitiveColorTokens.light.crypto.aion0,

@@ -1,6 +1,6 @@
-import { TypographyBreakpoint } from '../types';
+import { TypographyTokens } from '../types';
 import { typographyMdTokens } from './typography.md';
 
 export const typographyXlTokens = {
   ...typographyMdTokens,
-} satisfies TypographyBreakpoint;
+} satisfies TypographyTokens;
