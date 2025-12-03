@@ -132,14 +132,14 @@ export const SheetBar = ({
       )}
       {appearance === 'extended' && (
         <>
-          <div className='flex flex-row items-center'>
+          <div className='flex h-40 flex-row items-center'>
             {onBack && <BackButton onBack={onBack} />}
             <div className='ml-auto'>
               <CloseButton onClose={onClose} />
             </div>
           </div>
           {(title || description) && (
-            <div className='flex flex-col gap-4 ps-16'>
+            <div className='flex flex-col gap-4 ps-14'>
               {title && <div className='heading-2-semi-bold'>{title}</div>}
               {description && (
                 <div className='text-muted body-2'>{description}</div>

@@ -135,7 +135,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         data-slot='dialog-overlay'
         className={cn(
           className,
-          'fixed inset-0 z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+          'fixed inset-0 z-dialog-overlay backdrop-blur-sm bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
         )}
         {...props}
       />
@@ -255,7 +255,7 @@ export function DialogHeader({
         appearance={appearance}
         {...props}
         /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
-        className={cn('-ml-16 -mr-8', appearance === 'extended' && 'pt-16')}
+        className={cn('-ml-14 -mr-8', appearance === 'extended' && 'pt-10')}
       />
       {/* Accessibility Note: Even though the visible header/description are
       rendered by SheetBar, Radix Dialog still requires DialogTitle (and
