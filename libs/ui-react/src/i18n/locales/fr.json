@@ -9,7 +9,7 @@
     "spinner": {
       "loadingAriaLabel": "Chargement"
     },
-    "sheetBar": {
+    "dialogHeader": {
       "goBackAriaLabel": "Retour",
       "closeAriaLabel": "Fermer"
     },

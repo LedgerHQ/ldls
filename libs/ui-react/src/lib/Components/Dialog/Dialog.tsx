@@ -1,7 +1,7 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
-import { SheetBar, SheetBarProps } from '../SheetBar';
+import { DialogHeader, DialogHeaderProps } from '../DialogHeader';
 
 export type DialogProps = {
   /**
@@ -207,9 +207,9 @@ export function DialogContent({
 }
 
 /**
- * A convenient wrapper that combines SheetBar with accessible DialogTitle and DialogDescription.
+ * A convenient wrapper that combines DialogHeader with accessible DialogTitle and DialogDescription.
  *
- * This component provides a consistent header for dialogs by combining the visual SheetBar
+ * This component provides a consistent header for dialogs by combining the visual DialogHeader
  * component with the necessary accessibility components (DialogTitle and DialogDescription).
  * It automatically handles the accessibility requirements while maintaining the visual design.
  *
@@ -246,10 +246,10 @@ export function DialogHeader({
   description,
   appearance = 'compact',
   ...props
-}: SheetBarProps & { title?: string }) {
+}: DialogHeaderProps & { title?: string }) {
   return (
     <>
-      <SheetBar
+      <DialogHeader
         title={title}
         description={description}
         appearance={appearance}
@@ -258,7 +258,7 @@ export function DialogHeader({
         className={cn('-ml-14 -mr-8', appearance === 'extended' && 'pt-10')}
       />
       {/* Accessibility Note: Even though the visible header/description are
-      rendered by SheetBar, Radix Dialog still requires DialogTitle (and
+      rendered by DialogHeader, Radix Dialog still requires DialogTitle (and
       optionally DialogDescription) for proper labeling. These hidden elements
       ensure assistive technologies announce the dialog correctly without
       duplicating visible text. */}

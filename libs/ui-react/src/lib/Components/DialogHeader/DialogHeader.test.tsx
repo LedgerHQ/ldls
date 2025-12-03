@@ -2,12 +2,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { SheetBar } from './SheetBar';
+import { DialogHeader } from './DialogHeader';
 
-describe('SheetBar', () => {
+describe('DialogHeader', () => {
   it('renders compact appearance with title and description', () => {
     render(
-      <SheetBar
+      <DialogHeader
         appearance='compact'
         title='Test Title'
         description='Test Desc'
@@ -22,7 +22,7 @@ describe('SheetBar', () => {
 
   it('calls onClose when close button is clicked in compact appearance', () => {
     const onClose = vi.fn();
-    render(<SheetBar appearance='compact' onClose={onClose} />);
+    render(<DialogHeader appearance='compact' onClose={onClose} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
@@ -32,7 +32,9 @@ describe('SheetBar', () => {
   it('renders back button and calls onBack when clicked in compact appearance', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
-    render(<SheetBar appearance='compact' onClose={onClose} onBack={onBack} />);
+    render(
+      <DialogHeader appearance='compact' onClose={onClose} onBack={onBack} />,
+    );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
     fireEvent.click(buttons[0]);
@@ -43,7 +45,7 @@ describe('SheetBar', () => {
 
   it('renders extended appearance with title and description', () => {
     render(
-      <SheetBar
+      <DialogHeader
         appearance='extended'
         title='Test Title'
         description='Test Desc'
@@ -58,7 +60,7 @@ describe('SheetBar', () => {
 
   it('calls onClose when close button is clicked in extended appearance', () => {
     const onClose = vi.fn();
-    render(<SheetBar appearance='extended' onClose={onClose} />);
+    render(<DialogHeader appearance='extended' onClose={onClose} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
@@ -69,7 +71,7 @@ describe('SheetBar', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
     render(
-      <SheetBar appearance='extended' onClose={onClose} onBack={onBack} />,
+      <DialogHeader appearance='extended' onClose={onClose} onBack={onBack} />,
     );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);

@@ -5,7 +5,7 @@ import { useCommonTranslation } from '../../../i18n';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const sheetBarVariants = cva('flex bg-canvas-sheet text-base', {
+const dialogHeaderVariants = cva('flex bg-canvas-sheet text-base', {
   variants: {
     appearance: {
       compact: 'h-64 flex-row items-center gap-12',
@@ -23,7 +23,7 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
       icon={ArrowLeft}
       onClick={onBack}
       className='shrink-0'
-      aria-label={t('components.sheetBar.goBackAriaLabel')}
+      aria-label={t('components.dialogHeader.goBackAriaLabel')}
     />
   );
 };
@@ -37,12 +37,12 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
       icon={Close}
       onClick={onClose}
       className='shrink-0'
-      aria-label={t('components.sheetBar.closeAriaLabel')}
+      aria-label={t('components.dialogHeader.closeAriaLabel')}
     />
   );
 };
 
-export type SheetBarProps = {
+export type DialogHeaderProps = {
   /**
    * The appearance variant of the header.
    * @default 'compact'
@@ -72,24 +72,24 @@ export type SheetBarProps = {
  * This component is typically used as the header for sheet-like interfaces, providing
  * back and close functionality along with optional title and description.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-sheetbar-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-sheetbar-implementation--docs#dos-and-donts Guidelines}
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialogheader-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialogheader-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the sheet bar's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { SheetBar } from '@ledgerhq/ldls-ui-react';
+ * import { DialogHeader } from '@ledgerhq/ldls-ui-react';
  *
  * // Basic compact sheet bar with title and close
- * <SheetBar
+ * <DialogHeader
  *   appearance="compact"
  *   title="Settings"
  *   onClose={() => console.log('Closed!')}
  * />
  *
  * // Extended sheet bar with back button and description
- * <SheetBar
+ * <DialogHeader
  *   appearance="extended"
  *   title="Account Details"
  *   description="View and edit your account information"
@@ -97,7 +97,7 @@ export type SheetBarProps = {
  *   onBack={() => handleBack()}
  * />
  */
-export const SheetBar = ({
+export const DialogHeader = ({
   className,
   appearance = 'compact',
   title,
@@ -105,9 +105,12 @@ export const SheetBar = ({
   onClose,
   onBack,
   ...props
-}: SheetBarProps) => {
+}: DialogHeaderProps) => {
   return (
-    <div className={cn(className, sheetBarVariants({ appearance }))} {...props}>
+    <div
+      className={cn(className, dialogHeaderVariants({ appearance }))}
+      {...props}
+    >
       {appearance === 'compact' && (
         <>
           {onBack && <BackButton onBack={onBack} />}
