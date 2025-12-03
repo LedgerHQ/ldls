@@ -1,8 +1,18 @@
-import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { render } from '@testing-library/react-native';
-// eslint-disable-next-line no-restricted-imports
-import * as ReactNative from 'react-native';
-import { ThemeProvider } from './ThemeProvider';
+import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react-native';
+import ReactNative, { Text } from 'react-native';
+import { ThemeProvider, useColorScheme } from './ThemeProvider';
+
+// Mock styles module to avoid hook-at-module-level issue
+jest.mock('../../../styles', () => ({
+  LumenStyleSheetProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+}));
+
+const themes: any = {
+  light: {},
+  dark: {},
+};
 
 // Mock isNative to be true so Appearance.setColorScheme is called
 jest.mock('../../utils', () => ({
@@ -25,47 +35,59 @@ beforeEach(() => {
     .mockReturnValue('light' as ReactNative.ColorSchemeName);
 });
 
+const Consumer = () => {
+  const { mode } = useColorScheme();
+  return <Text testID='mode-value'>{mode}</Text>;
+};
+
 describe('ThemeProvider (React Native)', () => {
   it('calls Appearance.setColorScheme with provided mode on mount (light)', () => {
-    const { getByTestId } = render(
-      <ThemeProvider defaultMode='light' testID='root' />,
+    render(
+      <ThemeProvider defaultMode='light' themes={themes}>
+        <Consumer />
+      </ThemeProvider>,
     );
     expect(setColorSchemeSpy).toHaveBeenCalledWith('light');
-    expect(getByTestId('root').props.className).toContain('light');
+    expect(screen.getByTestId('mode-value')).toHaveTextContent('light');
   });
 
   it('calls Appearance.setColorScheme with provided mode on mount (dark)', () => {
-    const { getByTestId } = render(
-      <ThemeProvider defaultMode='dark' testID='root' />,
+    render(
+      <ThemeProvider defaultMode='dark' themes={themes}>
+        <Consumer />
+      </ThemeProvider>,
     );
     expect(setColorSchemeSpy).toHaveBeenCalledWith('dark');
-    expect(getByTestId('root').props.className).toContain('dark');
+    expect(screen.getByTestId('mode-value')).toHaveTextContent('dark');
   });
 
   it('defaults to system color scheme when no defaultMode is provided', () => {
     useColorSchemeSpy.mockReturnValue('dark' as ReactNative.ColorSchemeName);
-    render(<ThemeProvider testID='root' />);
+    render(
+      <ThemeProvider themes={themes}>
+        <Consumer />
+      </ThemeProvider>,
+    );
     expect(setColorSchemeSpy).toHaveBeenCalledWith('dark');
+    expect(screen.getByTestId('mode-value')).toHaveTextContent('dark');
   });
 
   it('ignores defaultMode prop changes after mount', () => {
-    const { rerender, getByTestId } = render(
-      <ThemeProvider defaultMode='light' testID='root' />,
+    const { rerender } = render(
+      <ThemeProvider defaultMode='light' themes={themes}>
+        <Consumer />
+      </ThemeProvider>,
     );
     expect(setColorSchemeSpy).toHaveBeenLastCalledWith('light');
+    expect(screen.getByTestId('mode-value')).toHaveTextContent('light');
 
     setColorSchemeSpy.mockClear();
-    rerender(<ThemeProvider defaultMode='dark' testID='root' />);
-    expect(setColorSchemeSpy).not.toHaveBeenCalled();
-    expect(getByTestId('root').props.className).toContain('light');
-  });
-
-  it('merges custom className with color scheme', () => {
-    const { getByTestId } = render(
-      <ThemeProvider defaultMode='dark' className='mt-12' testID='root' />,
+    rerender(
+      <ThemeProvider defaultMode='dark' themes={themes}>
+        <Consumer />
+      </ThemeProvider>,
     );
-    const cls = getByTestId('root').props.className as string;
-    expect(cls).toContain('dark');
-    expect(cls).toContain('mt-12');
+    expect(setColorSchemeSpy).not.toHaveBeenCalled();
+    expect(screen.getByTestId('mode-value')).toHaveTextContent('light');
   });
 });

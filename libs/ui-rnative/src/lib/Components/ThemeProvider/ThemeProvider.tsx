@@ -1,13 +1,13 @@
-import { cn, createSafeContext } from '@ledgerhq/ldls-utils-shared';
-import { forwardRef, useEffect, useMemo, useState } from 'react';
+import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import {
   Appearance,
   ColorSchemeName,
-  useColorScheme,
-  View,
+  useColorScheme as useReactNativeColorScheme,
 } from 'react-native';
 import { I18nProvider } from '../../../i18n';
+import { LumenStyleSheetProvider } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 
 import { GlobalTooltipProvider } from '../Tooltip/GlobalTooltipContext';
@@ -17,46 +17,44 @@ const DARK_MODE = 'dark';
 const LIGHT_MODE = 'light';
 const SYSTEM_MODE = 'system';
 
-const [ThemeProviderProvider, useThemeProviderContext] = createSafeContext<{
+const [ThemeContextProvider, useThemeProviderContext] = createSafeContext<{
   mode: ColorSchemeName;
   setMode: (mode: ColorSchemeName) => void;
 }>('ThemeProvider');
 
-const ThemeProvider = forwardRef<View, ThemeProviderProps>(
-  (
-    { defaultMode = SYSTEM_MODE, className, children, locale, ...props },
-    ref,
-  ) => {
-    const colorScheme = useColorScheme();
-    const initialMode = defaultMode === SYSTEM_MODE ? colorScheme : defaultMode;
-    const [mode, setMode] = useState<ColorSchemeName>(initialMode);
+const ThemeProvider: FC<ThemeProviderProps> = ({
+  defaultMode = SYSTEM_MODE,
+  themes,
+  children,
+  locale,
+}) => {
+  const colorScheme = useReactNativeColorScheme();
+  const initialMode = defaultMode === SYSTEM_MODE ? colorScheme : defaultMode;
+  const [mode, setMode] = useState<ColorSchemeName>(initialMode);
 
-    /**
-     * Side-effect to update the color scheme of the app when the mode changes.
-     */
-    useEffect(() => {
-      if (mode !== null && mode !== undefined && RuntimeConstants.isNative) {
-        Appearance.setColorScheme(mode as ColorSchemeName);
-      }
-    }, [mode]);
+  /**
+   * Side-effect to update the color scheme of the app when the mode changes.
+   */
+  useEffect(() => {
+    if (mode !== null && mode !== undefined && RuntimeConstants.isNative) {
+      Appearance.setColorScheme(mode as ColorSchemeName);
+    }
+  }, [mode]);
 
-    const value = useMemo(() => ({ mode, setMode }), [mode]);
+  const value = useMemo(() => ({ mode, setMode }), [mode]);
 
-    return (
-      <ThemeProviderProvider value={value}>
+  return (
+    <ThemeContextProvider value={value}>
+      <LumenStyleSheetProvider colorScheme={colorScheme} themes={themes}>
         <I18nProvider locale={locale}>
-          <GlobalTooltipProvider>
-            <View className={cn(className, mode)} {...props} ref={ref}>
-              {children}
-            </View>
-          </GlobalTooltipProvider>
+          <GlobalTooltipProvider>{children}</GlobalTooltipProvider>
         </I18nProvider>
-      </ThemeProviderProvider>
-    );
-  },
-);
+      </LumenStyleSheetProvider>
+    </ThemeContextProvider>
+  );
+};
 
-const useTheme = () => {
+const useColorScheme = () => {
   const context = useThemeProviderContext({
     consumerName: 'useTheme',
     contextRequired: true,
@@ -74,4 +72,4 @@ const useTheme = () => {
   };
 };
 
-export { ThemeProvider, useTheme };
+export { ThemeProvider, useColorScheme };
