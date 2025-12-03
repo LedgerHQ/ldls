@@ -5,23 +5,77 @@ const defaultColor = primitiveColorTokens.light.grey['050-10'];
 const darkerColor = primitiveColorTokens.light.grey['050-20'];
 
 export const primitiveShadowTokens: PrimitiveShadowTokens = {
-  sm: {
-    primary: { x: 0, y: 1, blur: 2, spread: -1, color: defaultColor },
-    secondary: { x: 0, y: 1, blur: 3, spread: 0, color: defaultColor },
-  },
-  md: {
-    primary: { x: 0, y: 2, blur: 4, spread: -2, color: defaultColor },
-    secondary: { x: 0, y: 4, blur: 6, spread: -1, color: defaultColor },
-  },
-  lg: {
-    primary: { x: 0, y: 4, blur: 6, spread: -4, color: defaultColor },
-    secondary: { x: 0, y: 10, blur: 15, spread: -3, color: defaultColor },
-  },
-  xl: {
-    primary: { x: 0, y: 8, blur: 10, spread: -6, color: defaultColor },
-    secondary: { x: 0, y: 20, blur: 25, spread: -5, color: defaultColor },
-  },
-  '2xl': {
-    primary: { x: 0, y: 25, blur: 50, spread: -12, color: darkerColor },
-  },
+  sm: [
+    {
+      offsetX: 0,
+      offsetY: 1,
+      blurRadius: 2,
+      spreadDistance: -1,
+      color: defaultColor,
+    },
+    {
+      offsetX: 0,
+      offsetY: 1,
+      blurRadius: 3,
+      spreadDistance: 0,
+      color: defaultColor,
+    },
+  ],
+  md: [
+    {
+      offsetX: 0,
+      offsetY: 2,
+      blurRadius: 4,
+      spreadDistance: -2,
+      color: defaultColor,
+    },
+    {
+      offsetX: 0,
+      offsetY: 4,
+      blurRadius: 6,
+      spreadDistance: -1,
+      color: defaultColor,
+    },
+  ],
+  lg: [
+    {
+      offsetX: 0,
+      offsetY: 4,
+      blurRadius: 6,
+      spreadDistance: -4,
+      color: defaultColor,
+    },
+    {
+      offsetX: 0,
+      offsetY: 10,
+      blurRadius: 15,
+      spreadDistance: -3,
+      color: defaultColor,
+    },
+  ],
+  xl: [
+    {
+      offsetX: 0,
+      offsetY: 8,
+      blurRadius: 10,
+      spreadDistance: -6,
+      color: defaultColor,
+    },
+    {
+      offsetX: 0,
+      offsetY: 20,
+      blurRadius: 25,
+      spreadDistance: -5,
+      color: defaultColor,
+    },
+  ],
+  '2xl': [
+    {
+      offsetX: 0,
+      offsetY: 25,
+      blurRadius: 50,
+      spreadDistance: -12,
+      color: darkerColor,
+    },
+  ],
 };
