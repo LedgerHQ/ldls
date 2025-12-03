@@ -24,6 +24,14 @@ const testThemes: any = {
         accent: '#007AFF',
       },
     },
+    typographies: {
+      sm: {
+        body1: {
+          fontSize: 16,
+          fontWeight: 'normal',
+        },
+      },
+    },
     spacing: {
       sm: 8,
       md: 16,
@@ -50,6 +58,14 @@ const testThemes: any = {
       sm: 8,
       md: 16,
       lg: 24,
+    },
+    typographies: {
+      sm: {
+        body1: {
+          fontSize: 16,
+          fontWeight: 'normal',
+        },
+      },
     },
   },
 };
@@ -88,11 +104,11 @@ describe('useCreate', () => {
       const text = getByTestId('text');
 
       expect(container.props.style).toEqual({
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#000000',
         padding: 16,
       });
       expect(text.props.style).toEqual({
-        color: '#000000',
+        color: '#FFFFFF',
         fontSize: 16,
       });
     });
@@ -110,7 +126,7 @@ describe('useCreate', () => {
         return (
           <View testID='wrapper'>
             <View style={styles.container} testID='container' />
-            <Pressable testID='toggle' onPress={() => setColorScheme('dark')}>
+            <Pressable testID='toggle' onPress={() => setColorScheme('light')}>
               <Text>Toggle</Text>
             </Pressable>
           </View>
@@ -125,19 +141,19 @@ describe('useCreate', () => {
 
       const container = getByTestId('container');
 
-      // Initially light theme
-      expect(container.props.style).toEqual({
-        backgroundColor: '#FFFFFF',
-        borderColor: '#E0E0E0',
-      });
-
-      // Switch to dark theme
-      fireEvent.press(getByTestId('toggle'));
-
-      // Should update to dark theme colors
+      // Initially dark theme
       expect(container.props.style).toEqual({
         backgroundColor: '#000000',
         borderColor: '#38383A',
+      });
+
+      // Switch to light theme
+      fireEvent.press(getByTestId('toggle'));
+
+      // Should update to light theme colors
+      expect(container.props.style).toEqual({
+        backgroundColor: '#FFFFFF',
+        borderColor: '#E0E0E0',
       });
     });
 
@@ -162,10 +178,10 @@ describe('useCreate', () => {
       );
 
       expect(getByTestId('card').props.style).toEqual({
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#1C1C1E',
         padding: 24,
         borderWidth: 1,
-        borderColor: '#007AFF',
+        borderColor: '#0A84FF',
       });
     });
   });
@@ -199,17 +215,17 @@ describe('useCreate', () => {
       );
 
       expect(getByTestId('container-1').props.style).toEqual({
-        backgroundColor: '#007AFF',
+        backgroundColor: '#0A84FF',
         width: 200,
         borderWidth: 2,
-        borderColor: '#007AFF',
+        borderColor: '#0A84FF',
       });
 
       expect(getByTestId('container-2').props.style).toEqual({
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#000000',
         width: 150,
         borderWidth: 1,
-        borderColor: '#007AFF',
+        borderColor: '#0A84FF',
       });
     });
 
@@ -229,7 +245,7 @@ describe('useCreate', () => {
           <View testID='wrapper'>
             <View style={styles.container(true)} testID='active' />
             <View style={styles.container(false)} testID='inactive' />
-            <Pressable testID='toggle' onPress={() => setColorScheme('dark')}>
+            <Pressable testID='toggle' onPress={() => setColorScheme('light')}>
               <Text>Toggle</Text>
             </Pressable>
           </View>
@@ -242,19 +258,6 @@ describe('useCreate', () => {
         </LumenStyleSheetProvider>,
       );
 
-      // Light theme
-      expect(getByTestId('active').props.style).toEqual({
-        backgroundColor: '#007AFF',
-        borderColor: '#E0E0E0',
-      });
-      expect(getByTestId('inactive').props.style).toEqual({
-        backgroundColor: '#FFFFFF',
-        borderColor: '#E0E0E0',
-      });
-
-      // Switch to dark
-      fireEvent.press(getByTestId('toggle'));
-
       // Dark theme
       expect(getByTestId('active').props.style).toEqual({
         backgroundColor: '#0A84FF',
@@ -263,6 +266,19 @@ describe('useCreate', () => {
       expect(getByTestId('inactive').props.style).toEqual({
         backgroundColor: '#000000',
         borderColor: '#38383A',
+      });
+
+      // Switch to light
+      fireEvent.press(getByTestId('toggle'));
+
+      // Light theme
+      expect(getByTestId('active').props.style).toEqual({
+        backgroundColor: '#007AFF',
+        borderColor: '#E0E0E0',
+      });
+      expect(getByTestId('inactive').props.style).toEqual({
+        backgroundColor: '#FFFFFF',
+        borderColor: '#E0E0E0',
       });
     });
 
@@ -344,18 +360,18 @@ describe('useCreate', () => {
       );
 
       expect(getByTestId('container').props.style).toEqual({
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#000000',
         padding: 16,
       });
 
       expect(getByTestId('text-1').props.style).toEqual({
-        color: '#000000',
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: '400',
       });
 
       expect(getByTestId('text-2').props.style).toEqual({
-        color: '#000000',
+        color: '#FFFFFF',
         fontSize: 20,
         fontWeight: '700',
       });
@@ -381,7 +397,7 @@ describe('useCreate', () => {
           <View testID='wrapper'>
             <View style={styles.container} testID='container' />
             <Text testID='color-scheme'>{colorScheme}</Text>
-            <Pressable testID='toggle' onPress={() => setColorScheme('dark')}>
+            <Pressable testID='toggle' onPress={() => setColorScheme('light')}>
               <Text>Toggle</Text>
             </Pressable>
           </View>
@@ -400,10 +416,10 @@ describe('useCreate', () => {
       // Change theme - should recalculate styles
       fireEvent.press(getByTestId('toggle'));
 
-      expect(getByTestId('color-scheme').props.children).toBe('dark');
+      expect(getByTestId('color-scheme').props.children).toBe('light');
       expect(styleCreationCount).toBeGreaterThan(initialCount);
       expect(getByTestId('container').props.style.backgroundColor).toBe(
-        '#000000',
+        '#FFFFFF',
       );
     });
   });

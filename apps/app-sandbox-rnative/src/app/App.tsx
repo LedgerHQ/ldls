@@ -1,4 +1,8 @@
 import {
+  ledgerLiveDarkTheme,
+  ledgerLiveLightTheme,
+} from '@ledgerhq/ldls-design-core';
+import {
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
@@ -37,7 +41,15 @@ export const App = () => {
   return (
     <SafeAreaView className='flex flex-1 bg-canvas'>
       <StatusBar />
-      <ThemeProvider defaultMode='dark' className='flex flex-1' locale={locale}>
+      <ThemeProvider
+        themes={{
+          dark: ledgerLiveDarkTheme,
+          light: ledgerLiveLightTheme,
+        }}
+        defaultMode='dark'
+        className='flex flex-1'
+        locale={locale}
+      >
         <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
