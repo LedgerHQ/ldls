@@ -177,7 +177,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   const isFloatingLabel = hasValue;
 
   const labelFontSize = useSharedValue(hasValue ? 10 : 14);
-  const labelTop = useSharedValue(hasValue ? 8 : 14);
+  const labelTop = useSharedValue(hasValue ? 10 : 16);
 
   const animatedLabelStyle = useAnimatedStyle(
     () => ({
@@ -191,7 +191,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
     labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14, {
       duration: 200,
     });
-    labelTop.value = withTiming(isFloatingLabel ? 8 : 14, {
+    labelTop.value = withTiming(isFloatingLabel ? 10 : 16, {
       duration: 200,
     });
   }, [isFloatingLabel, labelFontSize, labelTop]);

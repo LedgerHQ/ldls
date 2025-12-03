@@ -79,7 +79,7 @@ export const GlobalSelectBottomSheet: React.FC = () => {
             {currentSelect.label && (
               <BottomSheetHeader
                 title={currentSelect.label}
-                appearance='expanded'
+                appearance='compact'
               />
             )}
             <View className='gap-4'>
