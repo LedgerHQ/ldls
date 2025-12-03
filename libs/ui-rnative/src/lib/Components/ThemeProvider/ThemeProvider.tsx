@@ -45,7 +45,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
 
   return (
     <ThemeContextProvider value={value}>
-      <LumenStyleSheetProvider colorScheme={colorScheme} themes={themes}>
+      <LumenStyleSheetProvider colorScheme={mode} themes={themes}>
         <I18nProvider locale={locale}>
           <GlobalTooltipProvider>{children}</GlobalTooltipProvider>
         </I18nProvider>
@@ -56,7 +56,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
 
 const useColorScheme = () => {
   const context = useThemeProviderContext({
-    consumerName: 'useTheme',
+    consumerName: 'useColorScheme',
     contextRequired: true,
   });
 

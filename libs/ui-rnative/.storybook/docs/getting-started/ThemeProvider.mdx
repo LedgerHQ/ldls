@@ -51,10 +51,10 @@ The `defaultMode` prop controls the initial theme:
 Use the `useTheme` hook to control theme mode at runtime:
 
 ```tsx
-import { useTheme } from '@ledgerhq/ldls-ui-rnative';
+import { useColorScheme } from '@ledgerhq/ldls-ui-rnative';
 
 const ThemeToggle = () => {
-  const { mode, toggleMode, setMode } = useTheme();
+  const { mode, toggleMode, setMode } = useColorScheme();
   
   return (
     <Button onPress={toggleMode}>

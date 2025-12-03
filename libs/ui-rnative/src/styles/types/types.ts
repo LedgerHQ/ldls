@@ -33,7 +33,7 @@ const createFn = <S extends LumenStyleSheet>(
 export type LumenCreateStyleSheet = typeof createFn;
 
 /**
- * Instead of exposing the full typography tokens by breakpoint, we only expose one typography tokens.
+ * Instead of exposing the full typography tokens by breakpoint, exposes only one set of typography tokens.
  */
 type ThemeWithOneTypographyTokens<Theme> = Omit<Theme, 'typographies'> & {
   typographies: TypographyTokens;

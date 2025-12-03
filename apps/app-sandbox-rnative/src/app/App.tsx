@@ -47,7 +47,6 @@ export const App = () => {
           light: ledgerLiveLightTheme,
         }}
         defaultMode='dark'
-        className='flex flex-1'
         locale={locale}
       >
         <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
