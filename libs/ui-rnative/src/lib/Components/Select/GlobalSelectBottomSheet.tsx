@@ -73,7 +73,7 @@ export const GlobalSelectBottomSheet: React.FC = () => {
       enableDynamicSizing
       enablePanDownToClose
     >
-      <BottomSheetView>
+      <BottomSheetView className='!px-8'>
         {currentSelect && (
           <>
             {currentSelect.label && (
