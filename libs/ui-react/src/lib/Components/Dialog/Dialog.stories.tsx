@@ -437,3 +437,121 @@ export const InfoStateSuccess: Story = {
     },
   },
 };
+
+export const WithMultiSteps: Story = {
+  render: () => {
+    const [open, setOpen] = React.useState(false);
+    const [step, setStep] = React.useState(1);
+
+    const handleOpenChange = (isOpen: boolean) => {
+      setOpen(isOpen);
+      if (!isOpen) {
+        setStep(1);
+      }
+    };
+
+    return (
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogTrigger asChild>
+          <Button appearance='base'>Open Dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader
+            appearance='extended'
+            title={step === 1 ? 'Step 1' : 'Step 2'}
+            onClose={() => setOpen(false)}
+            onBack={step > 1 ? () => setStep(step - 1) : undefined}
+          />
+          <div className='flex flex-col gap-24'>
+            {step === 1 && (
+              <>
+                <p className='text-base body-2'>
+                  Please review the information and click Continue to proceed.
+                </p>
+                <Button
+                  appearance='base'
+                  size='lg'
+                  isFull
+                  onClick={() => setStep(2)}
+                >
+                  Continue
+                </Button>
+              </>
+            )}
+
+            {step === 2 && (
+              <>
+                <p className='text-base body-2'>
+                  You are now on step 2. Use the back button to return to the
+                  previous step.
+                </p>
+                <Button
+                  appearance='base'
+                  size='lg'
+                  isFull
+                  onClick={() => setOpen(false)}
+                >
+                  Done
+                </Button>
+              </>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+const [open, setOpen] = React.useState(false);
+const [step, setStep] = React.useState(1);
+
+const handleOpenChange = (isOpen: boolean) => {
+  setOpen(isOpen);
+  if (!isOpen) {
+    setStep(1);
+  }
+};
+
+<Dialog open={open} onOpenChange={handleOpenChange}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader
+      appearance="compact"
+      title={step === 1 ? 'Step 1' : 'Step 2'}
+      onClose={() => setOpen(false)}
+      onBack={step > 1 ? () => setStep(step - 1) : undefined}
+    />
+    <div className="flex flex-col gap-24">
+      {step === 1 && (
+        <>
+          <p className="text-base body-2">
+            Please review the information and click Continue to proceed.
+          </p>
+          <Button appearance="base" size="lg" isFull onClick={() => setStep(2)}>
+            Continue
+          </Button>
+        </>
+      )}
+
+      {step === 2 && (
+        <>
+          <p className="text-base body-2">
+            You are now on step 2. Use the back button to return to the previous step.
+          </p>
+          <Button appearance="base" size="lg" isFull onClick={() => setOpen(false)}>
+            Done
+          </Button>
+        </>
+      )}
+    </div>
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
+};
