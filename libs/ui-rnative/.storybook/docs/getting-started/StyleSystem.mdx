@@ -1,0 +1,131 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Style System" />
+
+# Style System
+
+The Ledger Design System provides `LumenStyleSheet` for creating theme-aware styles in React Native.
+
+## LumenStyleSheet.useCreate
+
+Use `LumenStyleSheet.useCreate` to create styles that automatically adapt to the current theme (light/dark mode).
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative';
+import { View, Text } from 'react-native';
+
+const MyComponent = () => {
+  const styles = LumenStyleSheet.useCreate((theme) => ({
+    container: {
+      backgroundColor: theme.colors.bg.base,
+      padding: theme.spacing.s16,
+      borderRadius: theme.radii.md,
+    },
+    text: {
+      ...theme.typographies.body1,
+      color: theme.colors.text.base,
+    },
+  }));
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Hello World</Text>
+    </View>
+  );
+};
+```
+
+## Dynamic Styles
+
+Create dynamic style functions that adapt to props or state:
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative';
+import { View, Text } from 'react-native';
+
+const Button = ({ variant, disabled }) => {
+  const styles = LumenStyleSheet.useCreate((theme) => {
+    const getBackgroundColor = () => {
+      if (disabled) return theme.colors.bg.muted;
+      if (variant === 'primary') return theme.colors.bg.accent;
+      return theme.colors.bg.base;
+    };
+
+    return {
+      button: {
+        backgroundColor: getBackgroundColor(),
+        padding: theme.spacing.s16,
+        opacity: disabled ? 0.5 : 1,
+      },
+      text: {
+        ...theme.typographies.body2,
+        color: variant === 'primary' ? theme.colors.text.onAccent : theme.colors.text.base,
+      },
+    };
+  });
+
+  return (
+    <View style={styles.button}>
+      <Text style={styles.text}>Press me</Text>
+    </View>
+  );
+};
+```
+
+## Theme Integration
+
+`LumenStyleSheet.useCreate` automatically receives the current theme from the [ThemeProvider](/docs/getting-started-theme--docs).
+When the theme mode changes (light/dark), your styles update automatically.
+
+
+## Theme Tokens Reference
+
+### Typographies
+
+Typography semantic tokens are available in the theme.
+It provides a preset of font size, weight, line height and letter spacing.
+
+```tsx
+const styles = LumenStyleSheet.useCreate((theme) => ({
+  title: { 
+    display: 'flex',
+    ...theme.typographies.heading1 
+    },
+  body: {
+    flex: 1,
+    ...theme.typographies.body1 
+  },
+}));
+```
+
+### Spacing
+
+Use for width, height, padding, margin, and gap.
+
+```tsx
+const styles = LumenStyleSheet.useCreate((theme) => ({
+  container: {
+    padding: theme.spacing.s16,
+    marginBottom: theme.spacing.s24,
+    gap: theme.spacing.s8,
+  },
+}));
+```
+
+### Colors & Shadows
+
+Apply semantic colors for backgrounds, text, borders, and elevation.
+
+```tsx
+const styles = LumenStyleSheet.useCreate((theme) => ({
+  card: {
+    backgroundColor: theme.colors.bg.surface,
+    borderColor: theme.colors.border.base,
+    ...theme.shadows.md,
+  },
+  label: {
+    color: theme.colors.text.muted,
+  },
+}));
+```
+

@@ -1,12 +1,12 @@
-import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as TooltipStories from './Tooltip.stories';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import {
-  DoVsDontRow,
   DoBlockItem,
   DontBlockItem,
+  DoVsDontRow,
 } from '../../../../.storybook/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
+import * as TooltipStories from './Tooltip.stories';
 
 <Meta title='Communication/Tooltip' of={TooltipStories} />
 
@@ -34,6 +34,7 @@ Tooltips display contextual information in a bottom sheet when users press an in
 ⚠️ React-native-web doesn't support closing the tooltip by clicking outside of it.
 
 <Canvas of={TooltipStories.Base} />
+<Controls of={TooltipStories.Base} />
 
 ### With Custom Content
 

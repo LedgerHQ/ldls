@@ -1,7 +1,7 @@
-import { describe, it, expect } from '@jest/globals';
-import { render, fireEvent } from '@testing-library/react-native';
+import { describe, expect, it } from '@jest/globals';
+import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
 import { useTheme } from '../Provider/useTheme';
 import { useCreate } from './useCreate';
@@ -79,7 +79,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -118,7 +118,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -156,7 +156,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -193,7 +193,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -237,7 +237,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -287,7 +287,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -338,7 +338,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -389,7 +389,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider value={{ themes: testThemes }}>
+        <LumenStyleSheetProvider themes={testThemes}>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );

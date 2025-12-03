@@ -1,4 +1,4 @@
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import React from 'react';
 import { createSafeContext } from './create-safe-context.js';
 
@@ -18,7 +18,7 @@ describe('createSafeContext', () => {
     };
 
     expect(() => render(React.createElement(Consumer))).toThrow(
-      '`Consumer` must be used within `RootComponent`',
+      'Consumer must be used within RootComponent',
     );
   });
 
