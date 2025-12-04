@@ -7,7 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { ChevronDown } from '../../Symbols';
-import { useControllableState } from '../../utils';
+import { useControllableState, extractTextFromChildren } from '../../utils';
 import { SlotPressable } from '../Slot';
 import { useSelectActions } from './GlobalSelectContext';
 import { SelectContextProvider, useSelectSafeContext } from './SelectContext';
@@ -22,6 +22,10 @@ import type {
   SelectSeparatorProps,
   SelectContentItem,
 } from './types';
+
+const triggerStyles = cn(
+  'group relative h-48 bg-muted rounded-sm px-16 flex-row items-center justify-between',
+);
 
 /**
  * The root component that manages a select's state.
@@ -72,11 +76,11 @@ export const Select: React.FC<SelectProps> = ({
   });
 
   const [internalValue, setInternalValue] = useControllableState<
-    string | undefined
+    SelectProps['value']
   >({
     prop: controlledValue,
     defaultProp: defaultValue ?? undefined,
-    onChange: (value: string | undefined) => {
+    onChange: (value: SelectProps['value']) => {
       if (value !== undefined) {
         onValueChange?.(value);
       }
@@ -117,10 +121,6 @@ export const Select: React.FC<SelectProps> = ({
   );
 };
 Select.displayName = 'Select';
-
-const triggerStyles = cn(
-  'group relative h-48 bg-muted rounded-sm px-16 flex-row items-center justify-between',
-);
 
 const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
 
@@ -286,7 +286,8 @@ export const SelectContent: React.FC<SelectContentProps> = ({ children }) => {
         if (element.type === SelectItem) {
           const props = element.props as SelectItemProps;
           const textValue =
-            props.textValue ?? extractTextFromChildren(props.children);
+            props.textValue ??
+            extractTextFromChildren(props.children, SelectItemText);
           items.push({
             type: 'item',
             value: props.value,
@@ -296,7 +297,10 @@ export const SelectContent: React.FC<SelectContentProps> = ({ children }) => {
         } else if (element.type === SelectGroup) {
           extractItems(element.props.children);
         } else if (element.type === SelectLabel) {
-          const labelText = extractTextFromChildren(element.props.children);
+          const labelText = extractTextFromChildren(
+            element.props.children,
+            SelectItemText,
+          );
           items.push({
             type: 'group-label',
             label: labelText,
@@ -318,27 +322,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({ children }) => {
   return null;
 };
 SelectContent.displayName = 'SelectContent';
-
-/**
- * Helper function to extract text from children
- */
-const extractTextFromChildren = (children: React.ReactNode): string => {
-  let text = '';
-
-  React.Children.forEach(children, (child) => {
-    if (typeof child === 'string' || typeof child === 'number') {
-      text += child;
-    } else if (React.isValidElement(child)) {
-      if (child.type === SelectItemText && child.props.children) {
-        text += extractTextFromChildren(child.props.children);
-      } else if (child.props?.children) {
-        text += extractTextFromChildren(child.props.children);
-      }
-    }
-  });
-
-  return text;
-};
 
 export const SelectGroup: React.FC<SelectGroupProps> = ({
   children,
