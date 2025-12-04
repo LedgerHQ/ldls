@@ -1,4 +1,4 @@
-import { describe, it, expect } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import { ledgerLiveCoreTokens } from '@ledgerhq/ldls-design-core';
 import { create } from './create';
 
@@ -125,11 +125,11 @@ describe('create', () => {
         },
         textContainer: {
           flex: 1,
-          marginTop: theme.spacing.s16,
+          marginTop: theme.spacings.s16,
         },
         button: {
           backgroundColor: theme.colors.bgAccent,
-          padding: theme.spacing.s8,
+          padding: theme.spacings.s8,
         },
       }));
 
@@ -140,11 +140,11 @@ describe('create', () => {
         },
         textContainer: {
           flex: 1,
-          marginTop: customTheme.spacing.s16,
+          marginTop: customTheme.spacings.s16,
         },
         button: {
           backgroundColor: customTheme.colors.bgAccent,
-          padding: customTheme.spacing.s8,
+          padding: customTheme.spacings.s8,
         },
       });
     });
@@ -221,7 +221,7 @@ describe('create', () => {
       const styles = create(customTheme, (theme: any) => ({
         textContainer: {
           flex: 1,
-          marginTop: theme.spacing.s16,
+          marginTop: theme.spacings.s16,
         },
         container: (maxWidth: number, isOdd: boolean) => ({
           backgroundColor: theme.colors.bg,
@@ -232,7 +232,7 @@ describe('create', () => {
           borderBottomWidth: isOdd ? 1 : undefined,
         }),
         staticBox: {
-          padding: theme.spacing.s24,
+          padding: theme.spacings.s24,
           backgroundColor: theme.colors.bgAccent,
         },
       }));
@@ -249,11 +249,11 @@ describe('create', () => {
 
       expect(styles.textContainer).toEqual({
         flex: 1,
-        marginTop: customTheme.spacing.s16,
+        marginTop: customTheme.spacings.s16,
       });
 
       expect(styles.staticBox).toEqual({
-        padding: customTheme.spacing.s24,
+        padding: customTheme.spacings.s24,
         backgroundColor: customTheme.colors.bgAccent,
       });
     });

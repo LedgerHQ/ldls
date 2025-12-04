@@ -148,6 +148,6 @@ export const typographyMdTokens = {
 
   grid: {
     columnCount: 12,
-    gutter: primitiveLayoutTokens.spacing.s40,
+    gutter: primitiveLayoutTokens.spacings.s40,
   },
 } satisfies TypographyTokens;

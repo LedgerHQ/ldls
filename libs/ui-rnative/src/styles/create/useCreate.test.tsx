@@ -32,10 +32,10 @@ const testThemes: any = {
         },
       },
     },
-    spacing: {
-      sm: 8,
-      md: 16,
-      lg: 24,
+    spacings: {
+      s8: 8,
+      s16: 16,
+      s24: 24,
     },
   },
   dark: {
@@ -54,10 +54,10 @@ const testThemes: any = {
         accent: '#0A84FF',
       },
     },
-    spacing: {
-      sm: 8,
-      md: 16,
-      lg: 24,
+    spacings: {
+      s8: 8,
+      s16: 16,
+      s24: 24,
     },
     typographies: {
       sm: {
@@ -77,7 +77,7 @@ describe('useCreate', () => {
         const styles = useCreate((theme: any) => ({
           container: {
             backgroundColor: theme.colors.bg.base,
-            padding: theme.spacing.md,
+            padding: theme.spacings.s8,
           },
           text: {
             color: theme.colors.text.base,
@@ -162,7 +162,7 @@ describe('useCreate', () => {
         const styles = useCreate((theme: any) => ({
           card: {
             backgroundColor: theme.colors.bg.surface,
-            padding: theme.spacing.lg,
+            padding: theme.spacings.s24,
             borderWidth: 1,
             borderColor: theme.colors.border.accent,
           },
@@ -290,7 +290,7 @@ describe('useCreate', () => {
             height: size,
             backgroundColor: color,
             borderRadius: rounded ? size / 2 : 0,
-            padding: theme.spacing.sm,
+            padding: theme.spacings.s8,
           }),
         }));
 
@@ -332,7 +332,7 @@ describe('useCreate', () => {
         const styles = useCreate((theme: any) => ({
           staticContainer: {
             backgroundColor: theme.colors.bg.base,
-            padding: theme.spacing.md,
+            padding: theme.spacings.s16,
           },
           dynamicText: (size: number, bold: boolean) => ({
             color: theme.colors.text.base,
