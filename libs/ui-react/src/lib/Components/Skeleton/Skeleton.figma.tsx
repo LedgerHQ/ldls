@@ -1,5 +1,6 @@
 import React from 'react';
 import { Skeleton } from './Skeleton';
+import type { SkeletonProps } from './types';
 
 import figma from '@figma/code-connect';
 
@@ -11,20 +12,22 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/feedback-skeleton--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/communication-skeleton--docs',
       },
     ],
-    example: () => {
-      return (
-        <>
-          {/* circle Skeleton */}
-          <Skeleton className='h-56 w-56 rounded-full' />
-          {/* square Skeleton */}
-          <Skeleton className='h-56 w-112 rounded-md' />
-          {/* line Skeleton */}
-          <Skeleton className='h-16 w-112 rounded-md' />
-        </>
-      );
+    props: {
+      component: figma.enum('appearance', {
+        'list-item': 'list-item',
+        tile: 'tile',
+      }),
+      className: figma.enum('appearance', {
+        circle: 'size-48 rounded-full',
+        square: 'h-56 w-112 rounded-md',
+        line: 'h-12 w-112 rounded-full',
+      }),
     },
+    example: (props: SkeletonProps) => (
+      <Skeleton component={props.component} className={props.className} />
+    ),
   },
 );
