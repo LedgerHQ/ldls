@@ -26,7 +26,7 @@ const meta: Meta<typeof Select> = {
     SelectLabel,
     SelectSeparator,
   },
-  title: 'Input/Select',
+  title: 'Selection/Select',
 };
 
 export default meta;
