@@ -3,7 +3,7 @@ import * as SelectStories from './Select.stories.tsx';
 import { Select } from './Select';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 
-<Meta title='Input/Select' of={SelectStories} />
+<Meta title='Selection/Select' of={SelectStories} />
 
 # 📋 Select
 
@@ -16,7 +16,7 @@ The Select component provides a dropdown interface for choosing from a list of o
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6397-463&m=dev).
 
-<Canvas of={SelectStories.WebPreviewWarning} />
+<Canvas of={SelectStories.Base} />
 
 ## Anatomy
 
@@ -52,6 +52,32 @@ The label text automatically floats above the input when a value is selected, pr
 ### Disabled State
 
 The select can be disabled to prevent user interaction, with visual feedback indicating the disabled state.
+
+## Properties
+
+### Grouped Options
+
+Organize options with groups, labels, and separators:
+
+<Canvas of={SelectStories.WithGroups} />
+
+### Disabled Items
+
+Individual items can be disabled while keeping the select interactive:
+
+<Canvas of={SelectStories.WithDisabledItems} />
+
+### Disabled Select
+
+The entire select can be disabled:
+
+<Canvas of={SelectStories.DisabledSelect} />
+
+### With Callbacks
+
+Listen to value changes and open/close events:
+
+<Canvas of={SelectStories.WithChangeCallback} />
 
 ## Controlled vs Uncontrolled
 
