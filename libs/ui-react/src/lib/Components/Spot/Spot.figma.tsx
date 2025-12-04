@@ -30,12 +30,12 @@ figma.connect(
     example: (props: {
       disabled: boolean;
       appearance: SpotAppearance;
-      icon: React.ReactElement;
+      icon: any;
       number: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }) => (
       <Spot
         appearance={props.appearance}
-        icon={props.icon as any}
+        icon={props.icon}
         number={props.number}
         disabled={props.disabled}
       />
