@@ -2,6 +2,18 @@ import { cn } from '@ledgerhq/ldls-utils-shared';
 
 import type { SkeletonProps } from './types';
 
+type BaseSkeletonProps = React.ComponentProps<'div'>;
+
+/** Internal base skeleton element */
+function BaseSkeleton({ className, ...props }: BaseSkeletonProps) {
+  return (
+    <div
+      className={cn('animate-pulse rounded-md bg-surface', className)}
+      {...props}
+    />
+  );
+}
+
 function Skeleton({ className, component, ...props }: SkeletonProps) {
   if (component === 'list-item') {
     return (
@@ -11,10 +23,10 @@ function Skeleton({ className, component, ...props }: SkeletonProps) {
         className={cn('flex w-full items-center gap-16 py-8', className)}
         {...props}
       >
-        <Skeleton className='size-48 shrink-0 rounded-full' />
+        <BaseSkeleton className='size-48 shrink-0 rounded-full' />
         <div className='flex flex-1 flex-col gap-10'>
-          <Skeleton className='h-12 w-176 rounded-full' />
-          <Skeleton className='h-12 w-112 rounded-full' />
+          <BaseSkeleton className='h-12 w-176 rounded-full' />
+          <BaseSkeleton className='h-12 w-112 rounded-full' />
         </div>
       </div>
     );
@@ -31,20 +43,20 @@ function Skeleton({ className, component, ...props }: SkeletonProps) {
         )}
         {...props}
       >
-        <Skeleton className='size-48 shrink-0 rounded-full' />
+        <BaseSkeleton className='size-48 shrink-0 rounded-full' />
         <div className='flex w-full flex-col items-center gap-8'>
-          <Skeleton className='h-12 w-48 rounded-full' />
-          <Skeleton className='h-12 w-64 rounded-full' />
+          <BaseSkeleton className='h-12 w-48 rounded-full' />
+          <BaseSkeleton className='h-12 w-64 rounded-full' />
         </div>
       </div>
     );
   }
 
   return (
-    <div
+    <BaseSkeleton
       data-slot='skeleton'
       data-testid='skeleton'
-      className={cn('animate-pulse rounded-md bg-surface', className)}
+      className={className}
       {...props}
     />
   );
