@@ -21,7 +21,7 @@ function App() {
         dark: ledgerLiveDarkTheme, 
         light: ledgerLiveLightTheme 
       }}
-      defaultMode="system"
+      colorScheme="dark"
     >
       <YourApp />
     </ThemeProvider>
@@ -29,18 +29,23 @@ function App() {
 }
 ```
 
-## Theme Modes
+## Color Scheme
 
-The `defaultMode` prop controls the initial theme:
+The `colorScheme` prop controls the theme color scheme.
+If not provided, the theme will follow the device settings.
 
-- `"system"` - Follows device settings (default)
 - `"dark"` - Forces dark mode
 - `"light"` - Forces light mode
 
+
+
 ```tsx
 <ThemeProvider 
-  themes={{ dark: ledgerLiveDarkTheme, light: ledgerLiveLightTheme }}
-  defaultMode="dark"
+  themes={{ 
+    dark: ledgerLiveDarkTheme, 
+    light: ledgerLiveLightTheme 
+  }}
+  colorScheme="dark"
 >
   <App />
 </ThemeProvider>
@@ -48,23 +53,23 @@ The `defaultMode` prop controls the initial theme:
 
 ## Changing Theme Mode
 
-Use the `useTheme` hook to control theme mode at runtime:
+If the ThemeProvider is uncontrolled, you can use the `LumenStyleSheet.useTheme` hook to control theme mode at runtime:
 
 ```tsx
-import { useColorScheme } from '@ledgerhq/ldls-ui-rnative';
+import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative/styles';
 
 const ThemeToggle = () => {
-  const { mode, toggleMode, setMode } = useColorScheme();
+  const { colorScheme, toggleColorScheme, setColorScheme } = LumenStyleSheet.useTheme();
   
   return (
-    <Button onPress={toggleMode}>
-      Current: {mode}
+    <Button onPress={toggleColorScheme}>
+      Current: {colorScheme}
     </Button>
   );
 };
 ```
 
-When the mode changes, `Appearance.setColorScheme` is automatically called to update the system theme.
+When the colorScheme changes, `Appearance.setColorScheme` is automatically called to update the system theme.
 
 
 ## Internationalization

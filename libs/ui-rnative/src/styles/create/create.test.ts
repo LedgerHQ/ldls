@@ -16,7 +16,7 @@ const customTheme = {
   shadows: {
     sm: ledgerLiveCoreTokens.shadows.sm,
   },
-  spacing: {
+  spacings: {
     s8: 8,
     s16: 16,
     s24: 24,

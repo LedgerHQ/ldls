@@ -1,10 +1,34 @@
 import { describe, expect, it } from '@jest/globals';
-import { fireEvent, render } from '@testing-library/react-native';
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { fireEvent, render, userEvent } from '@testing-library/react-native';
+import React, { useState } from 'react';
+import { ColorSchemeName, Pressable, Text, View } from 'react-native';
 import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
 import { useTheme } from '../Provider/useTheme';
 import { useCreate } from './useCreate';
+
+// Wrapper that allows testing uncontrolled theme switching
+const TestProviderWrapper = ({
+  children,
+  themes,
+  initialColorScheme = 'dark',
+}: {
+  children: React.ReactNode;
+  themes: any;
+  initialColorScheme?: ColorSchemeName;
+}): React.JSX.Element => {
+  const [colorScheme, setColorScheme] =
+    useState<ColorSchemeName>(initialColorScheme);
+
+  return (
+    <LumenStyleSheetProvider
+      themes={themes}
+      colorScheme={colorScheme}
+      onColorSchemeChange={setColorScheme}
+    >
+      {children}
+    </LumenStyleSheetProvider>
+  );
+};
 
 // Test themes
 const testThemes: any = {
@@ -95,7 +119,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <LumenStyleSheetProvider themes={testThemes} colorScheme='dark'>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -105,7 +129,7 @@ describe('useCreate', () => {
 
       expect(container.props.style).toEqual({
         backgroundColor: '#000000',
-        padding: 16,
+        padding: 8,
       });
       expect(text.props.style).toEqual({
         color: '#FFFFFF',
@@ -113,9 +137,9 @@ describe('useCreate', () => {
       });
     });
 
-    it('updates styles when theme changes', () => {
+    it('updates styles when theme changes', async () => {
       const TestComponent = (): React.JSX.Element => {
-        const { setColorScheme } = useTheme();
+        const { toggleColorScheme } = useTheme();
         const styles = useCreate((theme: any) => ({
           container: {
             backgroundColor: theme.colors.bg.base,
@@ -126,7 +150,12 @@ describe('useCreate', () => {
         return (
           <View testID='wrapper'>
             <View style={styles.container} testID='container' />
-            <Pressable testID='toggle' onPress={() => setColorScheme('light')}>
+            <Pressable
+              testID='toggle'
+              onPress={() => {
+                toggleColorScheme();
+              }}
+            >
               <Text>Toggle</Text>
             </Pressable>
           </View>
@@ -134,9 +163,9 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
           <TestComponent />
-        </LumenStyleSheetProvider>,
+        </TestProviderWrapper>,
       );
 
       const container = getByTestId('container');
@@ -148,7 +177,7 @@ describe('useCreate', () => {
       });
 
       // Switch to light theme
-      fireEvent.press(getByTestId('toggle'));
+      await userEvent.press(getByTestId('toggle'));
 
       // Should update to light theme colors
       expect(container.props.style).toEqual({
@@ -172,7 +201,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <LumenStyleSheetProvider themes={testThemes} colorScheme='dark'>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -209,7 +238,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <LumenStyleSheetProvider themes={testThemes} colorScheme='dark'>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -253,9 +282,9 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
           <TestComponent />
-        </LumenStyleSheetProvider>,
+        </TestProviderWrapper>,
       );
 
       // Dark theme
@@ -303,7 +332,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <LumenStyleSheetProvider themes={testThemes} colorScheme='dark'>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -354,7 +383,7 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <LumenStyleSheetProvider themes={testThemes} colorScheme='dark'>
           <TestComponent />
         </LumenStyleSheetProvider>,
       );
@@ -405,9 +434,9 @@ describe('useCreate', () => {
       };
 
       const { getByTestId } = render(
-        <LumenStyleSheetProvider themes={testThemes}>
+        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
           <TestComponent />
-        </LumenStyleSheetProvider>,
+        </TestProviderWrapper>,
       );
 
       const initialCount = styleCreationCount;

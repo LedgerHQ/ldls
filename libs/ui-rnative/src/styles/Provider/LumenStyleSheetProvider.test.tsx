@@ -64,7 +64,7 @@ const TestComponent = (): React.JSX.Element => {
 describe('LumenStyleSheetProvider', () => {
   it('provides dark theme by default', () => {
     const { getByTestId } = render(
-      <LumenStyleSheetProvider themes={testThemes}>
+      <LumenStyleSheetProvider colorScheme='dark' themes={testThemes}>
         <TestComponent />
       </LumenStyleSheetProvider>,
     );
@@ -91,19 +91,19 @@ describe('LumenStyleSheetProvider', () => {
       </LumenStyleSheetProvider>,
     );
 
-    // Initially dark
-    expect(getByTestId('color-scheme').props.children).toBe('dark');
-    expect(getByTestId('bg-color').props.children).toBe('#000000');
-
-    // Toggle to light
-    await userEvent.press(getByTestId('toggle-button'));
+    // Initially light
     expect(getByTestId('color-scheme').props.children).toBe('light');
     expect(getByTestId('bg-color').props.children).toBe('#FFFFFF');
 
-    // Toggle back to dark
+    // Toggle to dark
     await userEvent.press(getByTestId('toggle-button'));
     expect(getByTestId('color-scheme').props.children).toBe('dark');
     expect(getByTestId('bg-color').props.children).toBe('#000000');
+
+    // Toggle back to light
+    await userEvent.press(getByTestId('toggle-button'));
+    expect(getByTestId('color-scheme').props.children).toBe('light');
+    expect(getByTestId('bg-color').props.children).toBe('#FFFFFF');
   });
 
   it('throws error when useTheme is used outside provider', () => {

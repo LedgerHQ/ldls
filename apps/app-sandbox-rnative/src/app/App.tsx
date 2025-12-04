@@ -9,7 +9,13 @@ import {
   useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
 import { useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, View } from 'react-native';
+import {
+  ColorSchemeName,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  View,
+} from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   AmountInputs,
@@ -34,19 +40,20 @@ import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
+  const [colorScheme, setColorScheme] = useState<ColorSchemeName>('dark');
   const bottomSheetFlatListsRef = useBottomSheetRef();
   const bottomSheetDynamicSizeRef = useBottomSheetRef();
   const [locale, setLocale] = useState<SupportedLocale>('en');
 
   return (
-    <SafeAreaView className='flex flex-1 bg-canvas'>
+    <SafeAreaView className={`${colorScheme} flex flex-1 bg-canvas`}>
       <StatusBar />
       <ThemeProvider
         themes={{
           dark: ledgerLiveDarkTheme,
           light: ledgerLiveLightTheme,
         }}
-        defaultMode='dark'
+        colorScheme={colorScheme}
         locale={locale}
       >
         <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
@@ -84,7 +91,10 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='Theme Provider toggles'>
                 <View className='gap-12'>
-                  <ToggleThemeSwitch />
+                  <ToggleThemeSwitch
+                    colorScheme={colorScheme}
+                    setColorScheme={setColorScheme}
+                  />
                   <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
                 </View>
               </SandboxBlock>

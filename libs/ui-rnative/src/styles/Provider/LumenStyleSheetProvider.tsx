@@ -1,18 +1,26 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
-import { FC, useMemo } from 'react';
-import { ColorSchemeName } from 'react-native';
+import { FC, useEffect, useMemo } from 'react';
+import {
+  Appearance,
+  ColorSchemeName,
+  useColorScheme as useReactNativeColorScheme,
+} from 'react-native';
+import { RuntimeConstants } from '../../lib/utils';
 import { useControllableState } from '../../lib/utils/use-controllable-state/use-controllable-state';
 
 import { type LumenStyleSheetTheme } from '../types';
 import { adaptThemeForStylesheet } from '../utils/adaptThemeForStylesheet';
 import { LumenStyleSheetProviderProps } from './LumenStyleSheetProvider.types';
 
-const DEFAULT_COLOR_SCHEME = 'dark';
+const DARK_MODE = 'dark';
+const LIGHT_MODE = 'light';
+const DEFAULT_COLOR_SCHEME = DARK_MODE;
 
 export type LumenStyleSheetContextValue = {
   theme: LumenStyleSheetTheme;
   colorScheme: ColorSchemeName;
   setColorScheme: (scheme: ColorSchemeName) => void;
+  toggleColorScheme: () => void;
 };
 
 const [LumenStyleSheetContextProvider, _useLumenStyleSheetContext] =
@@ -26,19 +34,39 @@ export const LumenStyleSheetProvider: FC<LumenStyleSheetProviderProps> = ({
   onColorSchemeChange,
   children,
 }) => {
+  const nativeColorScheme = useReactNativeColorScheme();
+  const initialColorScheme =
+    colorScheme ?? nativeColorScheme ?? DEFAULT_COLOR_SCHEME;
+
   const [colorSchemeState, setColorScheme] =
     useControllableState<ColorSchemeName>({
-      defaultProp: colorScheme ?? DEFAULT_COLOR_SCHEME,
+      defaultProp: initialColorScheme,
       prop: colorScheme,
       onChange: onColorSchemeChange,
     });
 
+  /**
+   * Side-effect to update the color scheme of the app when the colorScheme changes.
+   */
+  useEffect(() => {
+    if (
+      colorSchemeState !== null &&
+      colorSchemeState !== undefined &&
+      RuntimeConstants.isNative
+    ) {
+      Appearance.setColorScheme(colorSchemeState as ColorSchemeName);
+    }
+  }, [colorSchemeState]);
+
   const contextValue = useMemo(() => {
-    const currentTheme = themes[colorSchemeState || DEFAULT_COLOR_SCHEME];
+    const currentTheme = themes[colorSchemeState as 'dark' | 'light'];
     return {
       theme: adaptThemeForStylesheet(currentTheme),
       colorScheme: colorSchemeState,
       setColorScheme,
+      toggleColorScheme: () => {
+        setColorScheme(colorSchemeState === DARK_MODE ? LIGHT_MODE : DARK_MODE);
+      },
     };
   }, [themes, colorSchemeState, setColorScheme]);
 

@@ -8,8 +8,9 @@ import {
 } from '@ledgerhq/ldls-design-core';
 import type { Decorator } from '@storybook/react-native-web-vite';
 
+import { ColorSchemeName } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeMode, ThemeProvider } from '../src/lib/Components';
+import { ThemeProvider } from '../src/lib/Components';
 
 const createThemeDecorator = (
   globalName: string,
@@ -56,12 +57,12 @@ const mappingThemes = {
 };
 
 export const withProvidersDecorator: Decorator = (Story, context) => {
-  const mode = context.globals.mode as ThemeMode;
+  const mode = context.globals.mode as ColorSchemeName;
   const currentTheme =
     mappingThemes[context.globals.brand as keyof typeof mappingThemes];
 
   return (
-    <ThemeProvider defaultMode={mode} themes={currentTheme}>
+    <ThemeProvider colorScheme={mode} themes={currentTheme}>
       <GestureHandlerRootView style={{ flex: 1, width: '100%' }}>
         <Story />
       </GestureHandlerRootView>
