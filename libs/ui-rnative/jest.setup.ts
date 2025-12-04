@@ -53,3 +53,62 @@ jest.mock('react-native-css-interop', () => {
       mockReact.createElement(component, ...args),
   };
 });
+
+// Mock react-native-reanimated
+jest.mock('react-native-reanimated', () => {
+  const mockReact = jest.requireActual<typeof import('react')>('react');
+  const mockRN =
+    jest.requireActual<typeof import('react-native')>('react-native');
+
+  const AnimatedView = mockRN.View;
+  const AnimatedText = mockRN.Text;
+  const AnimatedImage = mockRN.Image;
+  const AnimatedScrollView = mockRN.ScrollView;
+
+  const Reanimated = {
+    __esModule: true,
+    default: {
+      View: AnimatedView,
+      Text: AnimatedText,
+      Image: AnimatedImage,
+      ScrollView: AnimatedScrollView,
+      createAnimatedComponent: (component: any) => component,
+    },
+    View: AnimatedView,
+    Text: AnimatedText,
+    Image: AnimatedImage,
+    ScrollView: AnimatedScrollView,
+    createAnimatedComponent: (component: any) => component,
+    useSharedValue: (value: any) => ({ value }),
+    useAnimatedStyle: (cb: any) => {
+      return {};
+    },
+    withTiming: (value: any) => value,
+    withSpring: (value: any) => value,
+    withDecay: (value: any) => value,
+    withDelay: (value: any) => value,
+    withSequence: (...values: any[]) => values[0],
+    withRepeat: (value: any) => value,
+    useAnimatedGestureHandler: (handlers: any) => handlers,
+    useAnimatedScrollHandler: () => () => {
+      return;
+    },
+    useAnimatedReaction: () => {
+      return;
+    },
+    runOnJS: (fn: any) => fn,
+    runOnUI: (fn: any) => fn,
+    Easing: {
+      linear: (t: number) => t,
+      ease: (t: number) => t,
+      quad: (t: number) => t * t,
+      cubic: (t: number) => t * t * t,
+      bezier: () => (t: number) => t,
+      in: (easing: any) => easing,
+      out: (easing: any) => easing,
+      inOut: (easing: any) => easing,
+    },
+  };
+
+  return Reanimated;
+});

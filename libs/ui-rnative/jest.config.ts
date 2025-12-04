@@ -4,6 +4,7 @@ const transformIncludePatterns = [
   '@react-native/polyfills',
   'react-native-css-interop',
   'react-native-svg',
+  'react-native-reanimated',
   '(jest-)?react-native',
   '@react-native(-community)?',
 ];
