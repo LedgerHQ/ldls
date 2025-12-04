@@ -43,7 +43,7 @@ Create dynamic style functions that adapt to props or state:
 import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative';
 import { View, Text } from 'react-native';
 
-const Button = ({ variant, disabled }) => {
+const Button = ({ appearance, disabled }) => {
   const styles = LumenStyleSheet.useCreate((theme) => {
     const getBackgroundColor = () => {
       if (disabled) return theme.colors.bg.muted;
