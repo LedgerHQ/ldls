@@ -59,7 +59,7 @@ const Button = ({ variant, disabled }) => {
       },
       text: {
         ...theme.typographies.body2,
-        color: variant === 'primary' ? theme.colors.text.onAccent : theme.colors.text.base,
+        color: appearance === 'accent' ? theme.colors.text.onAccent : theme.colors.text.base,
       },
     };
   });
