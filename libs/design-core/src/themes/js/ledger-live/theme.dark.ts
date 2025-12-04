@@ -170,7 +170,7 @@ export const ledgerLiveDarkColorTokens = {
     canvas: primitiveColorTokens.dark.grey['050'],
     canvasMuted: primitiveColorTokens.dark.grey['050'],
     canvasSheet: primitiveColorTokens.dark.grey['075'],
-    canvasOverlay: primitiveColorTokens.dark.grey['050-30'],
+    canvasOverlay: primitiveColorTokens.dark.grey['050-60'],
     white: primitiveColorTokens.dark.constant['050'],
     black: primitiveColorTokens.dark.constant['950'],
     surface: primitiveColorTokens.dark.grey['100'],
