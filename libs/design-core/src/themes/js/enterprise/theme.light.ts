@@ -221,12 +221,6 @@ export const enterpriseLightColorTokens = {
     gradient80: primitiveColorTokens.light.grey['950-80'],
     gradient70: primitiveColorTokens.light.grey['950-70'],
     gradient0: primitiveColorTokens.light.grey['950-0'],
-    gradientOnInteractive100: primitiveColorTokens.light.grey['050'],
-    gradientOnInteractive0: primitiveColorTokens.light.grey['050-0'],
-    gradientOnAccent100: primitiveColorTokens.light.grey['050'],
-    gradientOnAccent0: primitiveColorTokens.light.grey['050-0'],
-    gradientMuted0: primitiveColorTokens.light.grey['100-0'],
-    gradientMuted100: primitiveColorTokens.light.grey['100'],
   },
   text: {
     black: primitiveColorTokens.light.constant['950'],
