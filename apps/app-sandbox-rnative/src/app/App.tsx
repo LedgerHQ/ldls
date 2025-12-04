@@ -6,6 +6,7 @@ import {
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
+  ToRemove,
   useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
 import { useState } from 'react';
@@ -62,6 +63,12 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='To Remove'>
+                <ToRemove variant='primary' />
+                <ToRemove variant='secondary' />
+                <ToRemove variant='error' />
+                <ToRemove />
+              </SandboxBlock>
               <SandboxBlock title='Text inputs'>
                 <TextInputs />
               </SandboxBlock>
