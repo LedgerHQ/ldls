@@ -1,11 +1,5 @@
 import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
-import React, {
-  useState,
-  useCallback,
-  useRef,
-  useMemo,
-  ReactNode,
-} from 'react';
+import React, { useState, useRef, useMemo, ReactNode } from 'react';
 import { SelectData } from './types';
 
 type GlobalSelectBottomSheetContextValue = {
@@ -79,13 +73,13 @@ export const GlobalSelectProvider: React.FC<GlobalSelectProviderProps> = ({
    * Update the ref implementations when needed
    * These closures capture the current setCurrentSelect
    */
-  showSelectRef.current = useCallback((data: SelectData) => {
+  showSelectRef.current = (data: SelectData) => {
     setCurrentSelect(data);
-  }, []);
+  };
 
-  hideSelectRef.current = useCallback(() => {
+  hideSelectRef.current = () => {
     setCurrentSelect(null);
-  }, []);
+  };
 
   /**
    * Memoize the context value - only currentSelect changes cause re-renders
