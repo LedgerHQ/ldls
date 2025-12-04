@@ -108,7 +108,13 @@ export const DialogHeader = ({
 }: DialogHeaderProps) => {
   return (
     <div
-      className={cn(className, dialogHeaderVariants({ appearance }))}
+      className={cn(
+        /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
+        '-ml-14 -mr-8',
+        appearance === 'extended' && 'pt-10',
+        className,
+        dialogHeaderVariants({ appearance }),
+      )}
       {...props}
     >
       {appearance === 'compact' && (
