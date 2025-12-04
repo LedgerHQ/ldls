@@ -149,6 +149,6 @@ export const typographySmTokens = {
 
   grid: {
     columnCount: 8,
-    gutter: primitiveLayoutTokens.spacing.s24,
+    gutter: primitiveLayoutTokens.spacings.s24,
   },
 } satisfies TypographyTokens;

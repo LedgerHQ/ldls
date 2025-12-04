@@ -43,8 +43,8 @@ export type PrimitiveTypographyTokens = {
  * Size & Spacing & Other primitives
  */
 export type PrimitiveOtherTokens = {
-  spacing: Record<string, number>;
-  size: Record<string, number>;
+  spacings: Record<string, number>;
+  sizes: Record<string, number>;
   icon: {
     width: Record<string, number>;
     height: Record<string, number>;
