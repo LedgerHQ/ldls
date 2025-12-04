@@ -47,7 +47,7 @@ const Button = ({ appearance, disabled }) => {
   const styles = LumenStyleSheet.useCreate((theme) => {
     const getBackgroundColor = () => {
       if (disabled) return theme.colors.bg.muted;
-      if (variant === 'primary') return theme.colors.bg.accent;
+      if (appearance === 'accent') return theme.colors.bg.accent;
       return theme.colors.bg.base;
     };
 
