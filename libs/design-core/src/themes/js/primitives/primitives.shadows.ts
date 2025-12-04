@@ -1,10 +1,10 @@
 import { PrimitiveShadowTokens } from '../types';
 import { primitiveColorTokens } from './primitive.colors';
 
-const defaultColor = primitiveColorTokens.light.grey['050-10'];
-const darkerColor = primitiveColorTokens.light.grey['050-20'];
+const defaultColor = primitiveColorTokens.dark.grey['050-10'];
+const darkerColor = primitiveColorTokens.dark.grey['050-20'];
 
-export const primitiveShadowTokens: PrimitiveShadowTokens = {
+export const primitiveShadowTokens = {
   sm: [
     {
       offsetX: 0,
@@ -78,4 +78,4 @@ export const primitiveShadowTokens: PrimitiveShadowTokens = {
       color: darkerColor,
     },
   ],
-};
+} as const satisfies PrimitiveShadowTokens;

@@ -152,4 +152,4 @@ export const primitiveLayoutTokens = {
     xl: 1280,
     '2xl': 1536,
   },
-} satisfies PrimitiveOtherTokens;
+} as const satisfies PrimitiveOtherTokens;

@@ -68,4 +68,4 @@ export const primitiveTypographyTokens = {
     '80': -3,
     '112': -4,
   },
-} satisfies PrimitiveTypographyTokens;
+} as const satisfies PrimitiveTypographyTokens;

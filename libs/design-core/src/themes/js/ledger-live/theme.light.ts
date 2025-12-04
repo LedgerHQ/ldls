@@ -272,4 +272,4 @@ export const ledgerLiveLightColorTokens = {
     success: primitiveColorTokens.light.green['600'],
     icon: primitiveColorTokens.light.grey['950-5'],
   },
-} satisfies ThemeColorTokens;
+} as const satisfies ThemeColorTokens;
