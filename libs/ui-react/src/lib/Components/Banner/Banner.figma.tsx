@@ -18,7 +18,10 @@ figma.connect(
         warning: 'warning',
         error: 'error',
       }),
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
@@ -55,7 +58,10 @@ figma.connect(
       "import { Button } from '@ledgerhq/ldls-ui-react'",
     ],
     props: {
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
@@ -104,7 +110,10 @@ figma.connect(
         warning: 'warning',
         error: 'error',
       }),
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
@@ -147,7 +156,10 @@ figma.connect(
       "import { Button } from '@ledgerhq/ldls-ui-react'",
     ],
     props: {
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
@@ -190,7 +202,10 @@ figma.connect(
       "import { Button } from '@ledgerhq/ldls-ui-react'",
     ],
     props: {
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
@@ -237,7 +252,10 @@ figma.connect(
         warning: 'warning',
         error: 'error',
       }),
-      title: figma.string('title'),
+      title: figma.boolean('show-title', {
+        true: figma.string('title'),
+        false: undefined,
+      }),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,

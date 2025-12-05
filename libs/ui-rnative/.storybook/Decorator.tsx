@@ -1,7 +1,16 @@
+import {
+  enterpriseDarkTheme,
+  enterpriseLightTheme,
+  ledgerLiveDarkTheme,
+  ledgerLiveLightTheme,
+  websitesDarkTheme,
+  websitesLightTheme,
+} from '@ledgerhq/ldls-design-core';
 import type { Decorator } from '@storybook/react-native-web-vite';
 
+import { ColorSchemeName } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeMode, ThemeProvider } from '../src/lib/Components';
+import { ThemeProvider } from '../src/lib/Components';
 
 const createThemeDecorator = (
   globalName: string,
@@ -32,9 +41,27 @@ export const withModeDecorator = createThemeDecorator('mode', [
   'dark',
 ]);
 
+const mappingThemes = {
+  'ledger-live': {
+    dark: ledgerLiveDarkTheme,
+    light: ledgerLiveLightTheme,
+  },
+  enterprise: {
+    dark: enterpriseDarkTheme,
+    light: enterpriseLightTheme,
+  },
+  websites: {
+    dark: websitesDarkTheme,
+    light: websitesLightTheme,
+  },
+} as any;
+
 export const withProvidersDecorator: Decorator = (Story, context) => {
+  const mode = context.globals.mode as ColorSchemeName;
+  const currentTheme = mappingThemes[context.globals.brand];
+
   return (
-    <ThemeProvider defaultMode={context.globals.mode as ThemeMode}>
+    <ThemeProvider colorScheme={mode} themes={currentTheme}>
       <GestureHandlerRootView style={{ flex: 1, width: '100%' }}>
         <Story />
       </GestureHandlerRootView>

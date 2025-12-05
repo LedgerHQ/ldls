@@ -2,8 +2,14 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './Banner.stories';
 import { Banner } from './Banner';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
-<Meta title="Components/Banner" of={BannerStories} />
+<Meta title='Components/Banner' of={BannerStories} />
 
 # 🃏 Banner
 
@@ -91,8 +97,8 @@ To be implemented:
 <Tab label="Implementation">
 
 ## Setup
-Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ### Basic Usage
 
@@ -102,9 +108,9 @@ import { Banner } from '@ledgerhq/ldls-ui-react';
 function MyComponent() {
   return (
     <Banner
-      title="Information"
-      description="This is an informational message for the user"
-      appearance="info"
+      title='Information'
+      description='This is an informational message for the user'
+      appearance='info'
     />
   );
 }
@@ -119,33 +125,33 @@ import { Banner } from '@ledgerhq/ldls-ui-react';
 
 function NotificationSystem() {
   return (
-    <View className="space-y-4">
+    <View className='space-y-4'>
       {/* Info - Default informational messages */}
       <Banner
-        appearance="info"
-        title="Information"
-        description="General information or tips"
+        appearance='info'
+        title='Information'
+        description='General information or tips'
       />
 
       {/* Success - Positive feedback or completion */}
       <Banner
-        appearance="success"
-        title="Success"
-        description="Action completed successfully"
+        appearance='success'
+        title='Success'
+        description='Action completed successfully'
       />
 
       {/* Warning - Caution or important notices */}
       <Banner
-        appearance="warning"
-        title="Warning"
-        description="Please review this important information"
+        appearance='warning'
+        title='Warning'
+        description='Please review this important information'
       />
 
       {/* Error - Error states or critical issues */}
       <Banner
-        appearance="error"
-        title="Error"
-        description="Something went wrong, please try again"
+        appearance='error'
+        title='Error'
+        description='Something went wrong, please try again'
       />
     </View>
   );
@@ -170,16 +176,16 @@ function ActionableBanner() {
 
   return (
     <Banner
-      appearance="warning"
-      title="Terms of Service Updated"
-      description="Please review and accept the updated terms of service to continue using our platform"
+      appearance='warning'
+      title='Terms of Service Updated'
+      description='Please review and accept the updated terms of service to continue using our platform'
       primaryAction={
-        <Button appearance="transparent" size="sm" onPress={handleAccept}>
+        <Button appearance='transparent' size='sm' onPress={handleAccept}>
           Accept
         </Button>
       }
       secondaryAction={
-        <Button appearance="no-background" size="sm" onPress={handleDecline}>
+        <Button appearance='no-background' size='sm' onPress={handleDecline}>
           Review Later
         </Button>
       }
@@ -203,11 +209,11 @@ function DismissibleBanner() {
 
   return (
     <Banner
-      appearance="info"
-      title="Welcome!"
-      description="Thanks for joining our platform. Here are some tips to get started."
+      appearance='info'
+      title='Welcome!'
+      description='Thanks for joining our platform. Here are some tips to get started.'
       onClose={() => setIsVisible(false)}
-      closeAriaLabel="Close welcome banner"
+      closeAriaLabel='Close welcome banner'
     />
   );
 }
@@ -219,29 +225,41 @@ Banners automatically flow to fill their parent container width. No additional p
 
 ```tsx
 <Banner
-  title="System Maintenance"
-  description="Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST"
-  appearance="warning"
+  title='System Maintenance'
+  description='Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST'
+  appearance='warning'
   onClose={() => handleDismiss()}
-  closeAriaLabel="Dismiss"
+  closeAriaLabel='Dismiss'
 />
 ```
 
 To control banner width, use container elements:
 
 ```tsx
-{/* Full viewport width */}
-<Banner title="Full Width" description="This banner fills the viewport width" />
+{
+  /* Full viewport width */
+}
+<Banner
+  title='Full Width'
+  description='This banner fills the viewport width'
+/>;
 
-{/* Constrained width */}
-<View className="max-w-4xl mx-auto">
-  <Banner title="Constrained" description="This banner is limited by its container" />
-</View>
+{
+  /* Constrained width */
+}
+<View className='max-w-4xl mx-auto'>
+  <Banner
+    title='Constrained'
+    description='This banner is limited by its container'
+  />
+</View>;
 
-{/* Responsive width */}
-<View className="w-full lg:max-w-2xl">
-  <Banner title="Responsive" description="Width adapts based on screen size" />
-</View>
+{
+  /* Responsive width */
+}
+<View className='w-full lg:max-w-2xl'>
+  <Banner title='Responsive' description='Width adapts based on screen size' />
+</View>;
 ```
 
 ### Complete Example
@@ -265,14 +283,15 @@ function NotificationCenter() {
       id: '2',
       type: 'warning',
       title: 'Verification Required',
-      description: 'Please verify your email address to continue using all features.',
+      description:
+        'Please verify your email address to continue using all features.',
       dismissible: true,
       actions: true,
     },
   ]);
 
   const dismissNotification = (id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
   const handleVerify = () => {
@@ -284,25 +303,37 @@ function NotificationCenter() {
   };
 
   return (
-    <View className="space-y-4">
-      {notifications.map(notification => (
+    <View className='space-y-4'>
+      {notifications.map((notification) => (
         <Banner
           key={notification.id}
           appearance={notification.type as any}
           title={notification.title}
           description={notification.description}
-          onClose={notification.dismissible ? () => dismissNotification(notification.id) : undefined}
-          closeAriaLabel="Close notification"
-          primaryAction={notification.actions ? (
-            <Button appearance="transparent" size="sm" onPress={handleVerify}>
-              Verify Now
-            </Button>
-          ) : undefined}
-          secondaryAction={notification.actions ? (
-            <Button appearance="no-background" size="sm" onPress={handleLater}>
-              Later
-            </Button>
-          ) : undefined}
+          onClose={
+            notification.dismissible
+              ? () => dismissNotification(notification.id)
+              : undefined
+          }
+          closeAriaLabel='Close notification'
+          primaryAction={
+            notification.actions ? (
+              <Button appearance='transparent' size='sm' onPress={handleVerify}>
+                Verify Now
+              </Button>
+            ) : undefined
+          }
+          secondaryAction={
+            notification.actions ? (
+              <Button
+                appearance='no-background'
+                size='sm'
+                onPress={handleLater}
+              >
+                Later
+              </Button>
+            ) : undefined
+          }
         />
       ))}
     </View>
@@ -316,10 +347,10 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Banner
-  title="Mobile Alert"
-  description="This banner only shows on mobile devices"
-  className="md:hidden mb-4" // Custom responsive display and margin
-  appearance="info"
+  title='Mobile Alert'
+  description='This banner only shows on mobile devices'
+  className='md:hidden mb-4' // Custom responsive display and margin
+  appearance='info'
 />
 ```
 
@@ -327,94 +358,88 @@ While the component comes with predefined styles, you can extend them using Tail
 
 The following guidelines ensure consistent usage of the Banner component and maintain design system principles.
 
-### Layout and Styling
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use container elements to control width'
+      description='Wrap Banner in container elements to control its width and layout'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Banner
-  title="Update Available"
-  description="A new version is ready to install"
-  className="mb-6"
-  appearance="info"
-/>
-
-// Use className for responsive behavior
-<Banner
-  title="Desktop Feature"
-  description="This feature is only available on desktop"
-  className="hidden lg:flex"
-  appearance="info"
-/>
-
-// Use container elements to control banner width
-<View className="w-full">
+<View className='max-w-md'>
   <Banner
-    title="System Notice"
-    description="Maintenance scheduled for tonight"
-    appearance="warning"
+    title='System Notice'
+    description='Maintenance scheduled for tonight'
+    appearance='warning'
   />
 </View>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for width control"
+      description='Avoid using className to set width directly on Banner'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't override core banner styling
-<Banner
-  title="Custom Colors"
-  description="Wrong styling approach"
-  className="bg-base text-active"
-  appearance="info"
-/>
-
-// Don't modify internal spacing
-<Banner
-  title="Wrong Spacing"
-  description="Don't override internal gaps"
-  className="gap-2 p-2"
-  appearance="info"
-/>
-
-// Don't override typography classes
-<Banner
-  title="Bad Typography"
-  description="Don't override text styles"
-  className="body-3"
-  appearance="info"
-/>
+<View className='max-w-md'>
+  <Banner
+    title='System Notice'
+    description='Maintenance scheduled for tonight'
+    className='w-80'
+    appearance='warning'
+  />
+</View>
 ```
 
-### Action Button Usage
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Pass complete Button components with proper styling'
+      description='Always provide fully styled Button components with appearance and size props for actions'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Pass complete Button components with proper styling
 <Banner
-  title="Confirm Action"
-  description="This action cannot be undone"
+  title='Confirm Action'
+  description='This action cannot be undone'
   primaryAction={
-    <Button appearance="transparent" size="sm" onPress={handleConfirm}>
+    <Button appearance='transparent' size='sm' onPress={handleConfirm}>
       Confirm
     </Button>
   }
-  appearance="warning"
+  appearance='warning'
 />
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't pass incomplete or unstyled buttons"
+      description='Avoid passing Button components without proper appearance and size props'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't pass incomplete or unstyled elements
 <Banner
-  title="Broken Action"
+  title='Broken Action'
   description="This won't work properly"
   primaryAction={<Button onPress={handleSubmit}>Submit</Button>}
-  appearance="error"
+  appearance='warning'
 />
 ```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
 
 </Tab>
 </CustomTabs>

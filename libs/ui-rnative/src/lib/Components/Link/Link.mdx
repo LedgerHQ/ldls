@@ -2,6 +2,12 @@ import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as LinkStories from './Link.stories';
 import { Link } from './Link';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Link' of={LinkStories} />
 
@@ -200,193 +206,133 @@ The Link component is built on React Native's `Pressable` and accepts all its pr
 
 The following guidelines are based on our design system principles. These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
-### Accessibility
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Keep underline for base appearance'
+      description='Base appearance links should keep underlines for accessibility'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Keep underline for base appearance for accessibility
 <Link appearance='base' href='https://example.com'>
   Accessible Link
 </Link>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't remove underline from base appearance"
+      description='This makes links hard to distinguish from regular bold text, hurting accessibility'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't remove underline from base appearance
-// This makes links hard to distinguish from regular bold text, hurting accessibility
 <Link appearance='base' underline={false} href='https://example.com'>
   Hard to Distinguish
 </Link>
 ```
 
-### Content Composition
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use icon prop for consistent sizing'
+      description='Pass icon as a component reference and let Link handle sizing'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use children for content composition
-<Link href='https://example.com'>
-  See <Text className='heading-1'>Terms and Conditions</Text>
-</Link>;
-
-// Pass icon as a component reference
 import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
-<Link icon={ArrowRight} href='https://example.com'>
+
+<Link icon={ArrowRight} size='sm' href='https://example.com'>
   Next
-</Link>;
+</Link>
 ```
 
-❌ **Don't**
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't include icon in children"
+      description='Avoid placing icons inside children as this breaks automatic sizing'
+    >
 
+{/* prettier-ignore */}
 ```tsx
-// Don't use text prop
-<Link text="Accept Terms and Conditions" href="https://example.com" />
+import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
 
-// Don't pass icon as a string
-<Link icon="ArrowRight" href="https://example.com">Next</Link>
-
-// Don't include icon in children
-<Link href="https://example.com">
+<Link size='sm' href='https://example.com'>
   <ArrowRight /> Next
 </Link>
 ```
 
-### Layout and Styling
+    </DontBlockItem>
 
-✅ **Do**
+  </DoVsDontRow>
 
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use underline prop to control text decoration'
+      description='Use the underline prop instead of className for text decoration'
+    >
+
+{/* prettier-ignore */}
 ```tsx
-// Use className for layout positioning
-<Link className="mt-4 ml-2" href="https://example.com">Submit</Link>
-
-// Use className for positioning
-<Link className="absolute top-0 right-0" isExternal href="https://example.com">Go to shop</Link>
-
-// Use className for margins and spacing in layout
-<Link className="mx-auto my-4" href="https://example.com">Centered</Link>
-
-// Use className for responsive behavior
-<Link className="hidden md:flex" href="https://example.com">Desktop Only</Link>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't override link's core styling
-<Link className="bg-accent p-6" href="https://example.com">Custom</Link>
-
-// Don't modify internal spacing/gap
-<Link className="gap-4" href="https://example.com">Wrong Spacing</Link>
-
-// Don't override typography - use size prop instead
-<Link className="heading-2" href="https://example.com">Wrong Typography</Link>
-
-// Don't use className for underline - use underline prop instead
-<Link className="underline" href="https://example.com">Wrong Approach</Link>
-```
-
-> **Note**: Use `className` only for layout-related utilities (positioning, margins, display properties). The link's core styling (colors, underline, gap, pressed states, etc.) and typography should be controlled through the component's props (`appearance`, `size`, `underline`) to maintain design system consistency.
-
-### Icon Usage
-
-✅ **Do**
-
-```tsx
-// Import icons explicitly
-import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Use icon prop for consistent sizing
-<Link icon={ArrowRight} appearance="accent" href="https://example.com">Continue</Link>
-
-// Let Link handle icon sizing
-<Link icon={ArrowRight} size="sm" href="https://example.com">Small</Link>
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import entire icon library
-import * as Icons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't modify icon size directly
-<Link href="https://example.com">
-  <ArrowRight size={24} />
-  Next
+<Link underline={false} href='https://example.com'>
+  Link without underline
 </Link>
-
-// Don't use string-based icon names
-<Link icon="arrow-right" href="https://example.com">Next</Link>
 ```
 
-### Touch Interaction
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use className for underline"
+      description='Avoid using className to control underline decoration'
+    >
 
-✅ **Do**
-
+{/* prettier-ignore */}
 ```tsx
-// Provide href for URL navigation
-<Link href="https://example.com">
+<Link className='underline' href='https://example.com'>
+  Link without underline
+</Link>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Provide href or onPress'
+      description='Always provide either href for URL navigation or onPress for custom navigation'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Link href='https://example.com'>
   Visit External Site
 </Link>
+```
 
-// Use onPress for custom navigation
-<Link onPress={() => navigation.navigate('Details')}>
-  View Details
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't omit both href and onPress"
+      description='Links need either href or onPress to function properly'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Link>
+  Clickable Looking Link
 </Link>
 ```
 
-❌ **Don't**
+    </DontBlockItem>
 
-```tsx
-// Don't omit both href and onPress
-<Link>Clickable Looking Link</Link>
+  </DoVsDontRow>
 
-// Don't use Pressable directly when Link suffices
-<Pressable onPress={() => Linking.openURL('https://example.com')}>
-  <Text>Custom Link</Text>
-</Pressable>
-
-// Don't prevent press events manually
-<Link onPress={isLoading ? undefined : handlePress} href="https://example.com">
-  Link
-</Link>
-```
-
-### Performance Considerations
-
-✅ **Do**
-
-```tsx
-// Import specific icons for better tree-shaking
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
-
-<Link icon={Plus} href='https://example.com'>
-  Add
-</Link>;
-
-// Use React.useCallback for onPress handlers in lists
-const handlePress = React.useCallback(() => {
-  navigation.navigate('Details');
-}, [navigation]);
-
-<Link onPress={handlePress}>Action</Link>;
-```
-
-❌ **Don't**
-
-```tsx
-// Don't import all icons
-import * as AllIcons from '@ledgerhq/ldls-ui-rnative/symbols';
-
-// Don't create inline functions in render for frequently re-rendered components
-<FlatList
-  data={items}
-  renderItem={({ item }) => (
-    <Link onPress={() => handleItem(item.id)}>{item.name}</Link>
-  )}
-/>;
-```
+  <CommonRulesDoAndDont />
+</div>
 
 ## Platform Considerations
 

@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { allBrandsTheme } from '../themes/css';
+import { allBrandsCSSTheme } from '../themes/css';
 import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
 import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
 import {
@@ -21,9 +21,9 @@ export const allBrandsPreset = {
   },
   plugins: [
     createPrimitivesPlugin(),
-    createThemePlugin(allBrandsTheme),
+    createThemePlugin(allBrandsCSSTheme),
     createTypographyPlugin(),
-    createGradientPlugin(allBrandsTheme),
+    createGradientPlugin(allBrandsCSSTheme),
     createShadowPlugin(),
     createAnimationsPlugin(),
   ],
