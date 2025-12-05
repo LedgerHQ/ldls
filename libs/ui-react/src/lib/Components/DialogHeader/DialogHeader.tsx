@@ -6,14 +6,17 @@ import { useCommonTranslation } from '../../../i18n';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 
-const dialogHeaderVariants = cva('flex bg-canvas-sheet text-base', {
-  variants: {
-    appearance: {
-      compact: 'h-64 flex-row items-center gap-12',
-      extended: 'flex-col gap-16 pb-12',
+const dialogHeaderVariants = cva(
+  '-ml-14 -mr-8 flex bg-canvas-sheet text-base',
+  {
+    variants: {
+      appearance: {
+        compact: 'h-64 flex-row items-center gap-12',
+        extended: 'flex-col gap-16 pb-12 pt-10',
+      },
     },
   },
-});
+);
 
 const BackButton = ({ onBack }: { onBack: () => void }) => {
   const { t } = useCommonTranslation();
@@ -154,16 +157,7 @@ const DialogHeaderComponent = ({
   ...props
 }: DialogHeaderProps) => {
   return (
-    <div
-      className={cn(
-        /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
-        '-ml-14 -mr-8',
-        appearance === 'extended' && 'pt-10',
-        className,
-        dialogHeaderVariants({ appearance }),
-      )}
-      {...props}
-    >
+    <div className={dialogHeaderVariants({ appearance, className })} {...props}>
       {appearance === 'compact' && (
         <>
           {onBack && <BackButton onBack={onBack} />}
