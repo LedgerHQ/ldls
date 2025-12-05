@@ -51,9 +51,12 @@ Component documentation MUST use the two-tab structure with Overview and Impleme
 **ALWAYS** use `DoVsDontRow` with `DoBlockItem` and `DontBlockItem` for side-by-side comparisons:
 
 ```tsx
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 ```
 
 **Structure:**
@@ -154,10 +157,12 @@ See `Button.mdx`, `Search.mdx`, `AddressInput.mdx`, `Banner.mdx`, `ListItem.mdx`
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ComponentStories from './Component.stories';
 import { Component } from './Component';
-import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
-import { DoVsDontRow } from '../../../../.storybook/DoVsDontRow';
-import { DoBlockItem } from '../../../../.storybook/DoBlock';
-import { DontBlockItem } from '../../../../.storybook/DontBlock';
+import {
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/DoVsDont';
+import CommonRulesDoAndDont from '../../../../.storybook/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Component' of={ComponentStories} />
 
