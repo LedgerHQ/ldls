@@ -6,9 +6,9 @@ import {
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
-  ToRemove,
   useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
+import { ToRemove } from '@ledgerhq/ldls-ui-rnative/ToRemove';
 import { useState } from 'react';
 import {
   ColorSchemeName,

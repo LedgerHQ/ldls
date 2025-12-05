@@ -42,13 +42,12 @@ type ThemeWithOneTypographyTokens<Theme> = Omit<Theme, 'typographies'> & {
 
 export type LumenDarkTheme = typeof ledgerLiveDarkTheme;
 export type LumenLightTheme = typeof ledgerLiveLightTheme;
-export type LumenStyleSheetTheme = ThemeWithOneTypographyTokens<
-  LumenDarkTheme | LumenLightTheme
->;
+export type LumenTheme = LumenDarkTheme | LumenLightTheme;
+export type LumenStyleSheetTheme = ThemeWithOneTypographyTokens<LumenTheme>;
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export interface LumenStyleSheetThemes {
-  light: LumenLightTheme;
+  light: LumenStyleSheetTheme;
   dark: LumenStyleSheetTheme;
 }
 
