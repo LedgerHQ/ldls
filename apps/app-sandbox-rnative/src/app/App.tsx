@@ -3,6 +3,7 @@ import {
   ledgerLiveLightTheme,
 } from '@ledgerhq/ldls-design-core';
 import {
+  GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
@@ -27,6 +28,7 @@ import {
   Checkboxes,
   IconButtons,
   Links,
+  Selects,
   Spots,
   Switches,
   Tags,
@@ -68,6 +70,9 @@ export const App = () => {
                 <ToRemove variant='secondary' />
                 <ToRemove variant='error' />
                 <ToRemove />
+              </SandboxBlock>
+              <SandboxBlock title='Select'>
+                <Selects />
               </SandboxBlock>
               <SandboxBlock title='Text inputs'>
                 <TextInputs />
@@ -130,6 +135,7 @@ export const App = () => {
           <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
           <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
           <GlobalTooltipBottomSheet />
+          <GlobalSelectBottomSheet />
         </GestureHandlerRootView>
       </ThemeProvider>
     </SafeAreaView>
