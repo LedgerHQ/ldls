@@ -150,4 +150,4 @@ export const typographyMdTokens = {
     columnCount: 12,
     gutter: primitiveLayoutTokens.spacings.s40,
   },
-} satisfies TypographyTokens;
+} as const satisfies TypographyTokens;

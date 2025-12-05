@@ -151,4 +151,4 @@ export const typographySmTokens = {
     columnCount: 8,
     gutter: primitiveLayoutTokens.spacings.s24,
   },
-} satisfies TypographyTokens;
+} as const satisfies TypographyTokens;

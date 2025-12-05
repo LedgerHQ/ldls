@@ -1,5 +1,6 @@
 import {
   ledgerLiveDarkTheme,
+  ledgerLiveLightTheme,
   TypographyTokens,
 } from '@ledgerhq/ldls-design-core';
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
@@ -39,7 +40,9 @@ type ThemeWithOneTypographyTokens<Theme> = Omit<Theme, 'typographies'> & {
   typographies: TypographyTokens;
 };
 
-export type LumenTheme = typeof ledgerLiveDarkTheme;
+export type LumenDarkTheme = typeof ledgerLiveDarkTheme;
+export type LumenLightTheme = typeof ledgerLiveLightTheme;
+export type LumenTheme = LumenDarkTheme | LumenLightTheme;
 export type LumenStyleSheetTheme = ThemeWithOneTypographyTokens<LumenTheme>;
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
@@ -49,6 +52,6 @@ export interface LumenStyleSheetThemes {
 }
 
 export type LumenThemes = {
-  light: LumenTheme;
-  dark: LumenTheme;
+  light: LumenLightTheme;
+  dark: LumenDarkTheme;
 };

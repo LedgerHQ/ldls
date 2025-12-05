@@ -8,6 +8,7 @@ import {
   ThemeProvider,
   useBottomSheetRef,
 } from '@ledgerhq/ldls-ui-rnative';
+import { ToRemove } from '@ledgerhq/ldls-ui-rnative/ToRemove';
 import { useState } from 'react';
 import {
   ColorSchemeName,
@@ -62,6 +63,12 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
+              <SandboxBlock title='To Remove'>
+                <ToRemove variant='primary' />
+                <ToRemove variant='secondary' />
+                <ToRemove variant='error' />
+                <ToRemove />
+              </SandboxBlock>
               <SandboxBlock title='Text inputs'>
                 <TextInputs />
               </SandboxBlock>

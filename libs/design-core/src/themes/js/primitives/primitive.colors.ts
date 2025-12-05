@@ -600,4 +600,4 @@ export const primitiveColorTokens = {
       bitrefill: '#449bf7',
     },
   },
-} satisfies PrimitiveColorTokens;
+} as const satisfies PrimitiveColorTokens;

@@ -54,12 +54,11 @@ const mappingThemes = {
     dark: websitesDarkTheme,
     light: websitesLightTheme,
   },
-};
+} as any;
 
 export const withProvidersDecorator: Decorator = (Story, context) => {
   const mode = context.globals.mode as ColorSchemeName;
-  const currentTheme =
-    mappingThemes[context.globals.brand as keyof typeof mappingThemes];
+  const currentTheme = mappingThemes[context.globals.brand];
 
   return (
     <ThemeProvider colorScheme={mode} themes={currentTheme}>

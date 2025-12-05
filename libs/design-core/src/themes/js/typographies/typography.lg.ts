@@ -3,4 +3,4 @@ import { typographyMdTokens } from './typography.md';
 
 export const typographyLgTokens = {
   ...typographyMdTokens,
-} satisfies TypographyTokens;
+} as const satisfies TypographyTokens;

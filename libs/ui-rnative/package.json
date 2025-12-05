@@ -26,7 +26,7 @@
       "default": "./src/lib/Symbols/index.ts"
     },
     "./styles": "./src/styles/index.ts",
-    "./*": "./src/lib/Components/*/index.ts"
+    "./ToRemove": "./src/lib/Components/_ToRemove/ToRemove.tsx"
   },
   "dependencies": {
     "@ledgerhq/ldls-utils-shared": "0.0.10",
