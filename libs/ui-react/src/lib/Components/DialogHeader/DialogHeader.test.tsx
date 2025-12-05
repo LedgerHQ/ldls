@@ -2,27 +2,36 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
+import { Dialog } from '../Dialog';
 import { DialogHeader } from './DialogHeader';
 
 describe('DialogHeader', () => {
   it('renders compact appearance with title and description', () => {
     render(
-      <DialogHeader
-        appearance='compact'
-        title='Test Title'
-        description='Test Desc'
-        onClose={() => {
-          console.log('close');
-        }}
-      />,
+      <Dialog open>
+        <DialogHeader
+          appearance='compact'
+          title='Test Title'
+          description='Test Desc'
+          onClose={() => {
+            console.log('close');
+          }}
+        />
+      </Dialog>,
     );
-    expect(screen.getByText('Test Title')).toBeInTheDocument();
-    expect(screen.getByText('Test Desc')).toBeInTheDocument();
+    const titles = screen.getAllByText('Test Title');
+    expect(titles.length).toBeGreaterThanOrEqual(1);
+    const descriptions = screen.getAllByText('Test Desc');
+    expect(descriptions.length).toBeGreaterThanOrEqual(1);
   });
 
   it('calls onClose when close button is clicked in compact appearance', () => {
     const onClose = vi.fn();
-    render(<DialogHeader appearance='compact' onClose={onClose} />);
+    render(
+      <Dialog open>
+        <DialogHeader appearance='compact' onClose={onClose} />
+      </Dialog>,
+    );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
@@ -33,7 +42,9 @@ describe('DialogHeader', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
     render(
-      <DialogHeader appearance='compact' onClose={onClose} onBack={onBack} />,
+      <Dialog open>
+        <DialogHeader appearance='compact' onClose={onClose} onBack={onBack} />
+      </Dialog>,
     );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
@@ -45,22 +56,30 @@ describe('DialogHeader', () => {
 
   it('renders extended appearance with title and description', () => {
     render(
-      <DialogHeader
-        appearance='extended'
-        title='Test Title'
-        description='Test Desc'
-        onClose={() => {
-          console.log('close');
-        }}
-      />,
+      <Dialog open>
+        <DialogHeader
+          appearance='extended'
+          title='Test Title'
+          description='Test Desc'
+          onClose={() => {
+            console.log('close');
+          }}
+        />
+      </Dialog>,
     );
-    expect(screen.getByText('Test Title')).toBeInTheDocument();
-    expect(screen.getByText('Test Desc')).toBeInTheDocument();
+    const titles = screen.getAllByText('Test Title');
+    expect(titles.length).toBeGreaterThanOrEqual(1);
+    const descriptions = screen.getAllByText('Test Desc');
+    expect(descriptions.length).toBeGreaterThanOrEqual(1);
   });
 
   it('calls onClose when close button is clicked in extended appearance', () => {
     const onClose = vi.fn();
-    render(<DialogHeader appearance='extended' onClose={onClose} />);
+    render(
+      <Dialog open>
+        <DialogHeader appearance='extended' onClose={onClose} />
+      </Dialog>,
+    );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(1);
     fireEvent.click(buttons[0]);
@@ -71,7 +90,9 @@ describe('DialogHeader', () => {
     const onBack = vi.fn();
     const onClose = vi.fn();
     render(
-      <DialogHeader appearance='extended' onClose={onClose} onBack={onBack} />,
+      <Dialog open>
+        <DialogHeader appearance='extended' onClose={onClose} onBack={onBack} />
+      </Dialog>,
     );
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
