@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Button } from '../Button';
+import { DialogHeader } from '../DialogHeader';
 import { Spot } from '../Spot';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
+import { Dialog, DialogContent, DialogTrigger } from './Dialog';
 
 const DialogTemplate = ({
   dialogHeaderProps,

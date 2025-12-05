@@ -1,4 +1,5 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { useCommonTranslation } from '../../../i18n';
@@ -67,6 +68,52 @@ export type DialogHeaderProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
+ * Internal component for accessible dialog titles.
+ *
+ * @internal
+ * This component is used internally by DialogHeader to provide proper
+ * accessibility labeling. It ensures screen readers announce the dialog
+ * correctly by providing a title element that Radix Dialog requires.
+ */
+function DialogTitle({
+  hidden,
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }) {
+  return (
+    <DialogPrimitive.Title
+      data-slot='dialog-title'
+      className={cn(hidden && 'sr-only', className)}
+      {...props}
+    />
+  );
+}
+
+/**
+ * Internal component for accessible dialog descriptions.
+ *
+ * @internal
+ * This component is used internally by DialogHeader to provide optional
+ * accessibility context. It works with DialogTitle to give screen readers
+ * a complete understanding of the dialog's purpose.
+ */
+function DialogDescription({
+  hidden,
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Description> & {
+  hidden?: boolean;
+}) {
+  return (
+    <DialogPrimitive.Description
+      data-slot='dialog-description'
+      className={cn(hidden && 'sr-only', className)}
+      {...props}
+    />
+  );
+}
+
+/**
  * A customizable Header component that displays title, description, and navigation buttons for sheets/dialogs.
  *
  * This component is typically used as the header for sheet-like interfaces, providing
@@ -97,7 +144,7 @@ export type DialogHeaderProps = {
  *   onBack={() => handleBack()}
  * />
  */
-export const DialogHeader = ({
+const DialogHeaderComponent = ({
   className,
   appearance = 'compact',
   title,
@@ -160,3 +207,65 @@ export const DialogHeader = ({
     </div>
   );
 };
+
+/**
+ * A convenient wrapper that combines DialogHeader with accessible DialogTitle and DialogDescription.
+ *
+ * This component provides a consistent header for dialogs by combining the visual DialogHeader
+ * component with the necessary accessibility components (DialogTitle and DialogDescription).
+ * It automatically handles the accessibility requirements while maintaining the visual design.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @example
+ * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
+ *
+ * <Dialog>
+ *   <DialogTrigger asChild>
+ *     <Button>Open Dialog</Button>
+ *   </DialogTrigger>
+ *   <DialogContent>
+ *     <DialogHeader
+ *       title="Dialog Title"
+ *       onClose={() => setOpen(false)}
+ *     />
+ *     <p>Dialog content here</p>
+ *   </DialogContent>
+ * </Dialog>
+ *
+ * @example
+ * // With description and back button
+ * <DialogHeader
+ *   appearance="extended"
+ *   title="Settings"
+ *   description="Manage your account preferences"
+ *   onBack={() => goToPreviousStep()}
+ *   onClose={() => setOpen(false)}
+ * />
+ */
+export function DialogHeader({
+  title = '',
+  description,
+  appearance = 'compact',
+  ...props
+}: DialogHeaderProps & { title?: string }) {
+  return (
+    <>
+      <DialogHeaderComponent
+        title={title}
+        description={description}
+        appearance={appearance}
+        {...props}
+      />
+      {/* Accessibility Note: Even though the visible header/description are
+      rendered by DialogHeader, Radix Dialog still requires DialogTitle (and
+      optionally DialogDescription) for proper labeling. These hidden elements
+      ensure assistive technologies announce the dialog correctly without
+      duplicating visible text. */}
+      <DialogTitle hidden>{title}</DialogTitle>
+      {description && (
+        <DialogDescription hidden>{description}</DialogDescription>
+      )}
+    </>
+  );
+}
