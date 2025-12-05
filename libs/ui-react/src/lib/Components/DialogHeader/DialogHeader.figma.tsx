@@ -1,5 +1,5 @@
 import React from 'react';
-import { SheetBar, SheetBarProps } from './SheetBar';
+import { DialogHeader, DialogHeaderProps } from './DialogHeader';
 
 import figma from '@figma/code-connect';
 
@@ -9,10 +9,10 @@ const handleClose = () => {};
 const handleBack = () => {};
 
 figma.connect(
-  SheetBar,
+  DialogHeader,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2135-3079',
   {
-    imports: ["import { SheetBar } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { DialogHeader } from '@ledgerhq/ldls-ui-react'"],
     props: {
       // Size variant mapping
       appearance: figma.enum('appearance', {
@@ -44,15 +44,15 @@ figma.connect(
     links: [
       {
         name: 'Documentation',
-        url: 'https://ldls.vercel.app/?path=/docs/components-sheetbar--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/components-dialogheader--docs',
       },
       {
         name: 'Storybook',
-        url: 'https://ldls.vercel.app/?path=/story/components-sheetbar--base',
+        url: 'https://ldls.vercel.app/?path=/story/components-dialogheader--base',
       },
     ],
-    example: (props: SheetBarProps) => (
-      <SheetBar
+    example: (props: DialogHeaderProps) => (
+      <DialogHeader
         appearance={props.appearance}
         title={props.title}
         description={props.description}

@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogProps,
 } from './Dialog';
-import { SheetBarProps } from '../SheetBar/SheetBar';
+import { DialogHeaderProps } from '../DialogHeader/DialogHeader';
 import { Button } from '../Button/Button';
 
 import figma from '@figma/code-connect';
@@ -31,7 +31,7 @@ figma.connect(
       "import { Button } from '@ledgerhq/ldls-ui-react'",
     ],
     props: {
-      // Access nested SheetBar properties using figma.nestedProps()
+      // Access nested DialogHeader properties using figma.nestedProps()
       dialogHeader: figma.nestedProps('.dialog-header', {
         appearance: figma.enum('appearance', {
           compact: 'compact',
@@ -68,7 +68,7 @@ figma.connect(
       },
     ],
     example: (
-      props: DialogProps & { dialogHeader: Omit<SheetBarProps, 'onClose'> },
+      props: DialogProps & { dialogHeader: Omit<DialogHeaderProps, 'onClose'> },
     ) => (
       <Dialog open={props.open} onOpenChange={props.onOpenChange}>
         <DialogTrigger asChild>
