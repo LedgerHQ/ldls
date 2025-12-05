@@ -27,12 +27,44 @@ figma.connect(
         none: undefined,
         chevron: '{<ChevronRight size={24} />}',
         value: figma.boolean('show-subvalue', {
-          true: (
-            <div className='text-right'>
-              <div className='body-2-semi-bold'>42.00</div>
-              <div className='text-muted body-3'>USD</div>
-            </div>
-          ),
+          true: figma.enum('state', {
+            disabled: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold text-disabled'>42.00</div>
+                <div className='text-disabled body-3'>USD</div>
+              </div>
+            ),
+            default: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold'>42.00</div>
+                <div className='text-muted body-3'>USD</div>
+              </div>
+            ),
+            hovered: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold'>42.00</div>
+                <div className='text-muted body-3'>USD</div>
+              </div>
+            ),
+            pressed: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold'>42.00</div>
+                <div className='text-muted body-3'>USD</div>
+              </div>
+            ),
+            focused: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold'>42.00</div>
+                <div className='text-muted body-3'>USD</div>
+              </div>
+            ),
+            enabled: (
+              <div className='flex flex-col items-end justify-center gap-4'>
+                <div className='body-2-semi-bold'>42.00</div>
+                <div className='text-muted body-3'>USD</div>
+              </div>
+            ),
+          }),
           false: <div className='body-2-semi-bold'>42.00</div>,
         }),
         icon: figma.instance('trailing-icon'),
