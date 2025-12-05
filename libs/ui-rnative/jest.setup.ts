@@ -56,7 +56,6 @@ jest.mock('react-native-css-interop', () => {
 
 // Mock react-native-reanimated
 jest.mock('react-native-reanimated', () => {
-  const mockReact = jest.requireActual<typeof import('react')>('react');
   const mockRN =
     jest.requireActual<typeof import('react-native')>('react-native');
 
@@ -80,7 +79,7 @@ jest.mock('react-native-reanimated', () => {
     ScrollView: AnimatedScrollView,
     createAnimatedComponent: (component: any) => component,
     useSharedValue: (value: any) => ({ value }),
-    useAnimatedStyle: (cb: any) => {
+    useAnimatedStyle: (_cb: any) => {
       return {};
     },
     withTiming: (value: any) => value,
