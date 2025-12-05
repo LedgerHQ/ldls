@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/ldls-ui-rnative",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
