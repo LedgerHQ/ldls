@@ -131,7 +131,7 @@ function DialogDescription({
  * @example
  * import { DialogHeader } from '@ledgerhq/ldls-ui-react';
  *
- * // Basic compact sheet bar with title and close
+ * // Basic compact dialog header with title and close
  * <DialogHeader
  *   appearance="compact"
  *   title="Settings"
