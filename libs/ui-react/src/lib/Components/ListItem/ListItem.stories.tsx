@@ -155,6 +155,12 @@ export const TrailingContentVariantsShowcase: Story = {
           trailingContent={<Balance />}
         />
         <ListItem
+          title='Value Only Variant'
+          description='With description'
+          leadingContent={<Spot appearance='icon' icon={Wallet} />}
+          trailingContent={<div className='body-2-semi-bold'>$3,000</div>}
+        />
+        <ListItem
           title='Tag Variant'
           description='With description'
           leadingContent={<Spot appearance='icon' icon={Apps} />}
