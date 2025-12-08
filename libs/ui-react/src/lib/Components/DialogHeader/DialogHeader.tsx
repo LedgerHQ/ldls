@@ -138,7 +138,7 @@ function DialogDescription({
  *   onClose={() => console.log('Closed!')}
  * />
  *
- * // Extended sheet bar with back button and description
+ * // Extended dialog header with back button and description
  * <DialogHeader
  *   appearance="extended"
  *   title="Account Details"
