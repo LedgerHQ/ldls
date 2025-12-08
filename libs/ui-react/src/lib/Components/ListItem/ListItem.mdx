@@ -287,6 +287,52 @@ import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 />;
 ```
 
+### Virtual Lists
+
+When rendering long lists of ListItems, we recommend using [TanStack Virtual](https://tanstack.com/virtual/latest) for optimal performance. Virtual lists only render visible items, significantly improving performance with large datasets.
+
+```tsx
+import { useVirtualizer } from '@tanstack/react-virtual';
+import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
+import { User, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+
+function VirtualListItemList({ items }) {
+  const parentRef = React.useRef<HTMLDivElement>(null);
+
+  const virtualizer = useVirtualizer({
+    count: items.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 64, // Approximate height of ListItem
+  });
+
+  return (
+    <div ref={parentRef} className='h-400 overflow-auto'>
+      <div
+        className='relative w-full'
+        style={{ height: `${virtualizer.getTotalSize()}px` }}
+      >
+        {virtualizer.getVirtualItems().map((virtualItem) => (
+          <div
+            key={virtualItem.key}
+            className='absolute left-0 top-0 w-full'
+            style={{ transform: `translateY(${virtualItem.start}px)` }}
+          >
+            <ListItem
+              title={items[virtualItem.index].title}
+              description={items[virtualItem.index].description}
+              leadingContent={<Spot appearance='icon' icon={User} />}
+              trailingContent={<ChevronRight size={24} />}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+> 📦 Install with `npm install @tanstack/react-virtual`. See the [TanStack Virtual documentation](https://tanstack.com/virtual/latest/docs/introduction) for more details.
+
 ## Do's and Don'ts
 
 The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
