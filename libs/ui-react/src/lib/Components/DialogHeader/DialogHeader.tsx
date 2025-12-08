@@ -126,7 +126,7 @@ function DialogDescription({
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialogheader-implementation--docs#dos-and-donts Guidelines}
  *
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the sheet bar's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ * Do not use it to modify the dialog header's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
  * import { DialogHeader } from '@ledgerhq/ldls-ui-react';
