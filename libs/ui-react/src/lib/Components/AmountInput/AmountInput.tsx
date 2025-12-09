@@ -80,10 +80,10 @@ const inputStyles = cva(
 );
 
 const currencyStyles = cn(
-  'heading-0 cursor-text',
+  'cursor-text heading-0',
   'text-base',
   'group-has-[input:placeholder-shown]:text-muted-subtle',
-  'group-has-[input:disabled]:text-disabled group-has-[input:disabled]:cursor-not-allowed',
+  'group-has-[input:disabled]:cursor-not-allowed group-has-[input:disabled]:text-disabled',
   'group-has-[input[aria-invalid="true"]]:text-error',
 );
 

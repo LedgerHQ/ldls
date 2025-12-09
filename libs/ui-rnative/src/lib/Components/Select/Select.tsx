@@ -385,7 +385,7 @@ export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
 }) => {
   return (
     <View
-      className={cn('h-px mx-8 my-4 bg-muted-subtle', className)}
+      className={cn('mx-8 my-4 h-1 bg-muted-subtle', className)}
       {...props}
     />
   );
