@@ -85,17 +85,17 @@ Example of a large amount display interface with currency toggle:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 AmountInput is a **controlled component only**. You must provide both `value` and `onChange` props.
 
 ```tsx
-import { AmountInput } from '@ledgerhq/ldls-ui-react';
+import { AmountInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -176,7 +176,7 @@ The currency text can be positioned on either side of the input:
 The AmountInput component supports error states through the `aria-invalid` prop:
 
 ```tsx
-import { AmountInput } from '@ledgerhq/ldls-ui-react';
+import { AmountInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');

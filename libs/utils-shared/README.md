@@ -1,6 +1,6 @@
 # utils-shared
 
-Shared utility functions for the LDLS design system.
+Shared utility functions for the Lumen design system.
 
 ## Contributing
 
@@ -15,13 +15,13 @@ Shared utility functions for the LDLS design system.
 
 ```bash
 # Build the library
-npx nx build @ledgerhq/ldls-utils-shared
+npx nx build @ledgerhq/lumen-utils-shared
 
 # Run tests
-npx nx test @ledgerhq/ldls-utils-shared
+npx nx test @ledgerhq/lumen-utils-shared
 
 # Lint code
-npx nx lint @ledgerhq/ldls-utils-shared
+npx nx lint @ledgerhq/lumen-utils-shared
 ```
 
 ### Guidelines

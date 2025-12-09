@@ -72,15 +72,15 @@ Skeletons can take various shapes depending on the content they're representing.
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { Skeleton } from '@ledgerhq/ldls-ui-react';
+import { Skeleton } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return <Skeleton className='h-16 w-256' />;
@@ -92,7 +92,7 @@ function MyComponent() {
 Use the `component` prop for pre-built skeleton patterns:
 
 ```tsx
-import { Skeleton } from '@ledgerhq/ldls-ui-react';
+import { Skeleton } from '@ledgerhq/lumen-ui-react';
 
 // List item skeleton - horizontal layout with avatar and text lines
 <Skeleton component='list-item' />

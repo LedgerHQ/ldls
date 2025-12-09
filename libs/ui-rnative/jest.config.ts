@@ -10,7 +10,7 @@ const transformIncludePatterns = [
 ];
 
 export default {
-  displayName: '@ledgerhq/ldls-ui-rnative',
+  displayName: '@ledgerhq/lumen-ui-rnative',
   preset: 'react-native',
   setupFiles: ['<rootDir>/jest.setup.ts'],
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
@@ -18,7 +18,7 @@ export default {
     `node_modules/(?!(.pnpm|${transformIncludePatterns.join('|')})/)`,
   ],
   moduleNameMapper: {
-    '@ledgerhq/ldls-utils-shared':
+    '@ledgerhq/lumen-utils-shared':
       '<rootDir>/../../libs/utils-shared/src/index.ts',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],

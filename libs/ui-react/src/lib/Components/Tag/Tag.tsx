@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { IconSize } from '../Icon/Icon';

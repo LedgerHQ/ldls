@@ -3,8 +3,8 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@ledgerhq/ldls-ui-rnative';
-import { InformationFill } from '@ledgerhq/ldls-ui-rnative/symbols';
+} from '@ledgerhq/lumen-ui-rnative';
+import { InformationFill } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { Text, View } from 'react-native';
 
 export const Tooltips = () => {

@@ -104,17 +104,17 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-slot
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-slot` dependency enables flexible composition patterns, allowing the Link to merge its props with child elements when needed.
 
 ## Basic Usage
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-react';
+import { Link } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return <Link href='/page'>Go to Page</Link>;
@@ -163,8 +163,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Link component supports icons with automatic size adjustment based on the link size:
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-react';
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { Link } from '@ledgerhq/lumen-ui-react';
+import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -215,7 +215,7 @@ By default, links inherit their appearance and size from the parent element. Thi
 The `asChild` prop allows integration with routing libraries by merging Link styles with child elements:
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-react';
+import { Link } from '@ledgerhq/lumen-ui-react';
 import { Link as RouterLink } from 'react-router-dom';
 
 function MyComponent() {

@@ -12,7 +12,7 @@ figma.connect(
   SheetBar,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2135-3079',
   {
-    imports: ["import { SheetBar } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { SheetBar } from '@ledgerhq/lumen-ui-react'"],
     props: {
       // Size variant mapping
       appearance: figma.enum('appearance', {

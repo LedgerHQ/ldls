@@ -11,8 +11,8 @@ The ThemeProvider manages your app's theme mode (light/dark) and provides theme 
 Wrap your app with `ThemeProvider` and pass your theme objects:
 
 ```tsx
-import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
-import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
+import { ThemeProvider } from '@ledgerhq/lumen-ui-rnative';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 
 function App() {
   return (
@@ -50,7 +50,7 @@ If not provided, the theme will follow the device settings.
 If the ThemeProvider is uncontrolled, you can use the `LumenStyleSheet.useTheme` hook to control theme mode at runtime:
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative/styles';
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 
 const ThemeToggle = () => {
   const { colorScheme, toggleColorScheme, setColorScheme } = LumenStyleSheet.useTheme();
@@ -71,7 +71,7 @@ The ThemeProvider also manages the app’s locale using React Context.
 You can just pass the locale to the `ThemeProvider` and the translations will be loaded automatically.
 
 ```tsx
-import { ThemeProvider, type SupportedLocale } from '@ledgerhq/ldls-ui-rnative';
+import { ThemeProvider, type SupportedLocale } from '@ledgerhq/lumen-ui-rnative';
 
 function AppProviders() {
   const [locale, setLocale] = useState<SupportedLocale>('en');

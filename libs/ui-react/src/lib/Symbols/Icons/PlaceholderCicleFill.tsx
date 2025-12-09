@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { PlaceholderCicleFill } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { PlaceholderCicleFill } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <PlaceholderCicleFill />
  *

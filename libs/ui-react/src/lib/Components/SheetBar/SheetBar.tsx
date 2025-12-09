@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { useCommonTranslation } from '../../../i18n';
@@ -79,7 +79,7 @@ export type SheetBarProps = {
  * Do not use it to modify the sheet bar's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { SheetBar } from '@ledgerhq/ldls-ui-react';
+ * import { SheetBar } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic compact sheet bar with title and close
  * <SheetBar

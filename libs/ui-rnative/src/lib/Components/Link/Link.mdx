@@ -99,7 +99,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ## Basic Usage
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-rnative';
+import { Link } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return <Link href='https://example.com'>Go to Page</Link>;
@@ -140,8 +140,8 @@ Links are underlined by default. Use `underline={false}` to remove the underline
 The Link component supports icons with automatic size adjustment based on the link size:
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-rnative';
-import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Link } from '@ledgerhq/lumen-ui-rnative';
+import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
@@ -172,7 +172,7 @@ Use the `isExternal` prop to automatically add an external link icon:
 For custom navigation (e.g., React Navigation), use the `onPress` prop which takes precedence over `href`:
 
 ```tsx
-import { Link } from '@ledgerhq/ldls-ui-rnative';
+import { Link } from '@ledgerhq/lumen-ui-rnative';
 import { useNavigation } from '@react-navigation/native';
 
 function MyComponent() {
@@ -241,7 +241,7 @@ The following guidelines are based on our design system principles. These decisi
 
 {/* prettier-ignore */}
 ```tsx
-import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Link icon={ArrowRight} size='sm' href='https://example.com'>
   Next
@@ -256,7 +256,7 @@ import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Link size='sm' href='https://example.com'>
   <ArrowRight /> Next

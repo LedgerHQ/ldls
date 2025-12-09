@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { useCommonTranslation } from '../../../i18n';
@@ -44,7 +44,7 @@ const bannerVariants = {
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Banner } from '@ledgerhq/ldls-ui-react';
+ * import { Banner } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic info banner
  * <Banner title="Information" appearance="info" />

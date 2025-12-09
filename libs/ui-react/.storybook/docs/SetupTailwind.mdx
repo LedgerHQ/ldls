@@ -35,10 +35,10 @@ Install `ldls-design-core` and `ldls-ui-react` packages:
 
 ```bash
 # Install the Design Core package where the tailwind preset lives
-npm install @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-design-core
 
 # Install the React UI Kit package where the components lives
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -56,12 +56,12 @@ Available presets are: `ledgerLivePreset`, `websitesPreset`, `enterprisePreset`.
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+    './node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -101,9 +101,9 @@ For the best development experience, we recommend the following setup:
    - LDLS includes AI rules for better code suggestions across multiple AI tools
    - For Cursor users, add to your `.cursorrules`:
      ```
-     @node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+     @node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
      ```
-   - [View documentation →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
+   - [View documentation →](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react#-ai-assistant-setup)
 
 ### 3. Utility Functions
 
@@ -444,7 +444,7 @@ LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.
 **For Cursor users**, add to your `.cursorrules`:
 
 ```
-@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+@node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
 ```
 
 **For other AI tools**, see our [AI Rules README](https://github.com/LedgerHQ/ldls/blob/main/libs/ui-react/ai-rules/README.md).
@@ -456,7 +456,7 @@ The rules help AI assistants:
 - ✅ Configure Tailwind with required content paths
 - ✅ Map Figma variables to Tailwind classes correctly
 
-[View AI rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
+[View AI rules →](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react#-ai-assistant-setup)
 
 ---
 

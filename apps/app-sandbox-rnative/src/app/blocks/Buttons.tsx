@@ -1,5 +1,5 @@
-import { Button } from '@ledgerhq/ldls-ui-rnative';
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Button } from '@ledgerhq/lumen-ui-rnative';
+import { Plus } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 export const Buttons = () => {
   return (

@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ClockFill } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ClockFill } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <ClockFill />
  *

@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { BaseButton, BaseButtonProps } from './BaseButton';
@@ -46,7 +46,7 @@ export type ButtonProps = {
  * Do not use it to modify the button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Button } from '@ledgerhq/ldls-ui-react';
+ * import { Button } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic primary button
  * <Button appearance="base" size="md" onClick={() => console.log('Clicked!')}>

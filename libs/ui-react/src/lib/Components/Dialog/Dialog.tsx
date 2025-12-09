@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { SheetBar, SheetBarProps } from '../SheetBar';
@@ -30,7 +30,7 @@ export type DialogProps = {
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/ldls-ui-react';
+ * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/lumen-ui-react';
  *
  * function MyComponent() {
  *   return (
@@ -74,7 +74,7 @@ export type DialogTriggerProps = {
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { DialogTrigger, Button } from '@ledgerhq/ldls-ui-react';
+ * import { DialogTrigger, Button } from '@ledgerhq/lumen-ui-react';
  *
  * <DialogTrigger asChild>
  *   <Button>Click me for a dialog</Button>
@@ -170,7 +170,7 @@ export type DialogContentProps = {
  * Do not use it to modify the dialog's core appearance (colors, padding, etc).
  *
  * @example
- * import { DialogContent } from '@ledgerhq/ldls-ui-react';
+ * import { DialogContent } from '@ledgerhq/lumen-ui-react';
  *
  * <DialogContent>
  *   <p>This is a dialog!</p>
@@ -216,7 +216,7 @@ export function DialogContent({
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
+ * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/lumen-ui-react';
  *
  * <Dialog>
  *   <DialogTrigger asChild>

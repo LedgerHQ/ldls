@@ -1,5 +1,5 @@
-import { CardButton } from '@ledgerhq/ldls-ui-rnative';
-import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { CardButton } from '@ledgerhq/lumen-ui-rnative';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { View } from 'react-native';
 
 export const CardButtons = () => {

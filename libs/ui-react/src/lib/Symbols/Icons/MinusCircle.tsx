@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { MinusCircle } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { MinusCircle } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <MinusCircle />
  *

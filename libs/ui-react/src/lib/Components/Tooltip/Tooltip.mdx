@@ -90,10 +90,10 @@ Works with any trigger while maintaining smooth animations:
   <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-tooltip
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-tooltip
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-tooltip` dependency provides accessible tooltip behavior primitives, enhanced with our custom animations and styling.
 
@@ -105,7 +105,7 @@ import {
   TooltipTrigger,
   TooltipContent,
   Button,
-} from '@ledgerhq/ldls-ui-react';
+} from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
@@ -161,7 +161,7 @@ function MyComponent() {
 ### Global Provider with Default Delay
 
 ```tsx
-import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
+import { TooltipProvider } from '@ledgerhq/lumen-ui-react';
 
 function App() {
   return (

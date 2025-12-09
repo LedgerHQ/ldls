@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Switch2 } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Switch2 } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Switch2 />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={Switch2} size="md">
  *   Click me

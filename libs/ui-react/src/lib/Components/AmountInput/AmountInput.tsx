@@ -1,4 +1,4 @@
-import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
+import { cn, getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React, {
   useEffect,

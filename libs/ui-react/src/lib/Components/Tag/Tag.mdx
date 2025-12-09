@@ -63,15 +63,15 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { Tag } from '@ledgerhq/ldls-ui-react';
+import { Tag } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return <Tag size='lg' appearance='accent' label='My Tag' />;
@@ -96,8 +96,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Tag component supports icons with automatic size adjustment based on the tag size:
 
 ```tsx
-import { Tag } from '@ledgerhq/ldls-ui-react';
-import { Check } from '@ledgerhq/ldls-ui-react/symbols';
+import { Tag } from '@ledgerhq/lumen-ui-react';
+import { Check } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return <Tag size='lg' appearance='success' icon={Check} label='Success' />;
@@ -114,7 +114,7 @@ function MyComponent() {
     >
 
 ```tsx
-import { Plus } from '@ledgerhq/ldls-ui-react/symbols';
+import { Plus } from '@ledgerhq/lumen-ui-react/symbols';
 <Tag icon={Plus} label='Add Item' />;
 ```
 

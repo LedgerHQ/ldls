@@ -84,15 +84,15 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-react';
+import { Spot } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return <Spot appearance='check' />;
@@ -112,8 +112,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Spot component supports custom icons through the discriminated union type system:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-react';
-import { Settings, Heart, Star } from '@ledgerhq/ldls-ui-react/symbols';
+import { Spot } from '@ledgerhq/lumen-ui-react';
+import { Settings, Heart, Star } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -131,7 +131,7 @@ function MyComponent() {
 The Spot component can display numeric values from 0-9:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-react';
+import { Spot } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
@@ -149,7 +149,7 @@ function MyComponent() {
 Spot is designed for status indication with predefined appearances:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-react';
+import { Spot } from '@ledgerhq/lumen-ui-react';
 
 function StatusIndicators() {
   return (
@@ -186,7 +186,7 @@ function StatusIndicators() {
     >
 
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <Spot appearance='icon' icon={Settings} />;
 ```

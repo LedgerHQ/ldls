@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import React from 'react';
@@ -32,7 +32,7 @@ const tooltipContentVariants = cva(
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { TooltipProvider } from '@ledgerhq/ldls-ui-react';
+ * import { TooltipProvider } from '@ledgerhq/lumen-ui-react';
  *
  * function App() {
  *   return (
@@ -76,7 +76,7 @@ export type TooltipProps = {
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+ * import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react';
  *
  * function MyComponent() {
  *   return (
@@ -120,7 +120,7 @@ export type TooltipTriggerProps = {
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { TooltipTrigger } from '@ledgerhq/ldls-ui-react';
+ * import { TooltipTrigger } from '@ledgerhq/lumen-ui-react';
  *
  * <TooltipTrigger>
  *   <button>Hover me for a tooltip</button>
@@ -170,7 +170,7 @@ export type TooltipContentProps = {
  * Do not use it to modify the tooltip's core appearance (colors, padding, etc).
  *
  * @example
- * import { TooltipContent } from '@ledgerhq/ldls-ui-react';
+ * import { TooltipContent } from '@ledgerhq/lumen-ui-react';
  *
  * <TooltipContent sideOffset={8}>
  *   <p className="text-accent">This tooltip provides helpful information</p>

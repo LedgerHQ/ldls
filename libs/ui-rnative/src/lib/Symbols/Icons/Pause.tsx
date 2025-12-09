@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Pause } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Pause } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Pause />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={Pause} size="md">
  *   Click me

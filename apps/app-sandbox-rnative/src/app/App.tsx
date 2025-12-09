@@ -1,12 +1,12 @@
-import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import {
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
   useBottomSheetRef,
-} from '@ledgerhq/ldls-ui-rnative';
-import { ToRemove } from '@ledgerhq/ldls-ui-rnative/ToRemove';
+} from '@ledgerhq/lumen-ui-rnative';
+import { ToRemove } from '@ledgerhq/lumen-ui-rnative/ToRemove';
 import { useState } from 'react';
 import {
   ColorSchemeName,
@@ -46,17 +46,17 @@ export const App = () => {
   const [locale, setLocale] = useState<SupportedLocale>('en');
 
   return (
-    <SafeAreaView className={`${colorScheme} flex flex-1 bg-canvas`}>
+    <SafeAreaView className={`${colorScheme} bg-canvas flex flex-1`}>
       <StatusBar />
       <ThemeProvider
         themes={ledgerLiveThemes}
         colorScheme={colorScheme}
         locale={locale}
       >
-        <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
+        <GestureHandlerRootView className='bg-accent flex w-full flex-1'>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
-            className='h-screen bg-canvas px-16 '
+            className='bg-canvas h-screen px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
               <SandboxBlock title='To Remove'>

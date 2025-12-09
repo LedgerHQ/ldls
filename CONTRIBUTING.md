@@ -1,4 +1,4 @@
-# Contributing to LDLS Design System
+# Contributing to Lumen Design System
 
 <h3 align="center">Development and Contribution Guidelines</h3>
 
@@ -13,32 +13,32 @@
 
 ## Architecture
 
-The LDLS Design System is structured as a monorepo using Nx, with the following key libraries:
+The Lumen Design System is structured as a monorepo using Nx, with the following key libraries:
 
 ```sh
-ldls
+lumen
   ├──libs/
   │    ├── ui-core/        # Shared utilities and types
-  │    │                   # name: @ledgerhq/ldls-ui-core
+  │    │                   # name: @ledgerhq/lumen-ui-core
   │    │
   │    ├── ui-react/       # React components
-  │    │                   # name: @ledgerhq/ldls-ui-react
+  │    │                   # name: @ledgerhq/lumen-ui-react
   │    │
   │    ├── ui-rnative/     # React Native components
-  │    │                   # name: @ledgerhq/ldls-ui-rnative
+  │    │                   # name: @ledgerhq/lumen-ui-rnative
   │    │
   │    ├── design-core/    # Design tokens and themes
-  │    │                   # name: @ledgerhq/ldls-design-core
+  │    │                   # name: @ledgerhq/lumen-design-core
   │    │
   │    └── utils-shared/   # Shared utilities
-  │                        # name: @ledgerhq/ldls-utils-shared
+  │                        # name: @ledgerhq/lumen-utils-shared
   │
   └──apps/
        ├── app-sandbox-rnative   # Demo React-Native application
        └── app-sandbox-react     # Demo React application
 ```
 
-- NXJS libraries are prefixed by `@ledgerhq/ldls-*` - defined in the project.json
+- NXJS libraries are prefixed by `@ledgerhq/lumen-*` - defined in the project.json
 - NPM package will match the name of the NXJS library, to make a library publishable a private:false needs to be set
 
 ### Technology Stack
@@ -52,8 +52,8 @@ ldls
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-org/ldls.git
-cd ldls
+git clone https://github.com/your-org/lumen.git
+cd lumen
 ```
 
 2. Install dependencies:
@@ -66,7 +66,7 @@ npm install --legacy-peer-deps
 
 ```bash
 # Start React Storybook
-npx nx run @ledgerhq/ldls-ui-react:serve:storybook
+npx nx run @ledgerhq/lumen-ui-react:serve:storybook
 
 # Build all libraries
 npx nx run-many --target=build --all
@@ -78,16 +78,16 @@ npx nx run-many --target=build --all
 
 ```bash
 # Start React components in Storybook
-npx nx run @ledgerhq/ldls-ui-react:serve:storybook
+npx nx run @ledgerhq/lumen-ui-react:serve:storybook
 
 # Build React components
-npx nx run @ledgerhq/ldls-ui-react:build
+npx nx run @ledgerhq/lumen-ui-react:build
 
 # Build React Native components
-npx nx run @ledgerhq/ldls-ui-rnative:build
+npx nx run @ledgerhq/lumen-ui-rnative:build
 
 # Build shared core library
-npx nx run @ledgerhq/ldls-ui-core:build
+npx nx run @ledgerhq/lumen-ui-core:build
 ```
 
 ### Branch Strategy
@@ -275,4 +275,4 @@ export const WithInteraction: Story = {
 
 ---
 
-Thank you for contributing to LDLS! 🎉
+Thank you for contributing to Lumen! 🎉

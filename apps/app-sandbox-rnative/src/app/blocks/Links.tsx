@@ -1,12 +1,12 @@
-import { Link } from '@ledgerhq/ldls-ui-rnative';
-import { Github, LedgerLogo, Screens } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Link } from '@ledgerhq/lumen-ui-rnative';
+import { Github, LedgerLogo, Screens } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { Alert, Text, View } from 'react-native';
 
 export function Links() {
   return (
     <View className='gap-8'>
       <Link href={'https://github.com/LedgerHQ/ldls'} icon={Github} isExternal>
-        Set up LDLS in your project
+        Set up Lumen in your project
       </Link>
       <Link
         appearance='accent'

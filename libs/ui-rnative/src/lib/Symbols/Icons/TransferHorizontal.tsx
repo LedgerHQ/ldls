@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { TransferHorizontal } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { TransferHorizontal } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <TransferHorizontal />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={TransferHorizontal} size="md">
  *   Click me

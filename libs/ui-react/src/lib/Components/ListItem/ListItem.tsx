@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
 import { Tag } from '../Tag';
 
@@ -40,7 +40,7 @@ export type ListItemProps = {
  *
  * @example
  * // Basic item
- * import { ListItem } from '@ledgerhq/ldls-ui-react';
+ * import { ListItem } from '@ledgerhq/lumen-ui-react';
  *
  * <ListItem
  *   title="Basic Item"
@@ -49,8 +49,8 @@ export type ListItemProps = {
  * />
  *
  * // Icon trailing content with leading Spot
- * import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
- * import { Wallet, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+ * import { Wallet, Settings } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <ListItem
  *   title="Balance"
@@ -59,8 +59,8 @@ export type ListItemProps = {
  * />
  *
  * // Chevron trailing content
- * import { ListItem } from '@ledgerhq/ldls-ui-react';
- * import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ListItem } from '@ledgerhq/lumen-ui-react';
+ * import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <ListItem
  *   title="Settings"

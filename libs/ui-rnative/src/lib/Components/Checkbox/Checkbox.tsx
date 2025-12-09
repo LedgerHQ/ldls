@@ -32,7 +32,7 @@ const checkboxVariants = {
  * Do not use it to modify the checkbox's core appearance.
  *
  * @example
- * import { Checkbox } from '@ledgerhq/ldls-ui-react';
+ * import { Checkbox } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic controlled checkbox
  * const [checked, setChecked] = useState(false);

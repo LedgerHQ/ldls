@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';

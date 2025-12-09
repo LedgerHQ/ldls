@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { ChevronRight } from '../../Symbols';
@@ -59,13 +59,13 @@ export type CardButtonProps = {
  *
  * @example
  * // Basic card button
- * import { CardButton } from '@ledgerhq/ldls-ui-react';
+ * import { CardButton } from '@ledgerhq/lumen-ui-react';
  *
  * <CardButton title="Click Me" onClick={() => console.log('Clicked!')} />
  *
  * // Card button with icon and description
- * import { CardButton } from '@ledgerhq/ldls-ui-react';
- * import { Info } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { CardButton } from '@ledgerhq/lumen-ui-react';
+ * import { Info } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <CardButton
  *   icon={Info}

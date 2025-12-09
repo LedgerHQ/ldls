@@ -1,4 +1,4 @@
-import { allBrandsPreset } from '@ledgerhq/ldls-design-core';
+import { allBrandsPreset } from '@ledgerhq/lumen-design-core';
 import type { Config } from 'tailwindcss';
 
 const config = {

@@ -12,7 +12,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5609-1117',
   {
     variant: { 'show-info': false, 'show-action': false },
-    imports: ["import { Subheader } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Subheader } from '@ledgerhq/lumen-ui-react'"],
     props: {
       title: figma.string('title'),
     },
@@ -37,9 +37,9 @@ figma.connect(
   {
     variant: { 'show-info': true, 'show-action': false },
     imports: [
-      "import { Subheader } from '@ledgerhq/ldls-ui-react'",
-      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react'",
-      "import { Information } from '@ledgerhq/ldls-ui-react/symbols'",
+      "import { Subheader } from '@ledgerhq/lumen-ui-react'",
+      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react'",
+      "import { Information } from '@ledgerhq/lumen-ui-react/symbols'",
     ],
     props: {
       title: figma.string('title'),
@@ -69,7 +69,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5609-1117',
   {
     variant: { 'show-info': false, 'show-action': true },
-    imports: ["import { Subheader } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Subheader } from '@ledgerhq/lumen-ui-react'"],
     props: {
       title: figma.string('title'),
     },
@@ -92,9 +92,9 @@ figma.connect(
   {
     variant: { 'show-info': true, 'show-action': true },
     imports: [
-      "import { Subheader } from '@ledgerhq/ldls-ui-react'",
-      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react'",
-      "import { Information } from '@ledgerhq/ldls-ui-react/symbols'",
+      "import { Subheader } from '@ledgerhq/lumen-ui-react'",
+      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react'",
+      "import { Information } from '@ledgerhq/lumen-ui-react/symbols'",
     ],
     props: {
       title: figma.string('title'),

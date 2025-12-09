@@ -92,18 +92,18 @@ InteractiveIcons support full keyboard navigation:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Usage examples
 
 ### Basic usage
 
 ```tsx
-import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
-import { Settings, DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
+import { Settings, DeleteCircleFill } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -133,11 +133,11 @@ function MyComponent() {
 ### With Event Handlers
 
 ```tsx
-import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
+import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
 import {
   CheckmarkCircle,
   CheckmarkCircleFill,
-} from '@ledgerhq/ldls-ui-react/symbols';
+} from '@ledgerhq/lumen-ui-react/symbols';
 
 function LikeButton({ isSelected, onToggle }) {
   return (
@@ -159,8 +159,8 @@ function LikeButton({ isSelected, onToggle }) {
 ### Different Icon Sizes
 
 ```tsx
-import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function SizeExamples() {
   return (
@@ -201,7 +201,7 @@ The following guidelines are based on our design system principles and accessibi
     >
 
 ```tsx
-import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+import { DeleteCircleFill } from '@ledgerhq/lumen-ui-react/symbols';
 
 <InteractiveIcon iconType='filled' aria-label='Delete'>
   <DeleteCircleFill size={20} />
@@ -216,7 +216,7 @@ import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
+import { DeleteCircleFill } from '@ledgerhq/lumen-ui-react/symbols';
 
 <InteractiveIcon iconType='stroked' aria-label='Delete'>
   <DeleteCircleFill size={20} />
@@ -264,7 +264,7 @@ import { DeleteCircleFill } from '@ledgerhq/ldls-ui-react/symbols';
     >
 
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <InteractiveIcon iconType='stroked' aria-label='More actions'>
   <MoreVertical size={20} />
@@ -279,7 +279,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <InteractiveIcon iconType='stroked' aria-label='More actions'>
   Settings

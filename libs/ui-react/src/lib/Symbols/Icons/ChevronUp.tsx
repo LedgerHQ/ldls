@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ChevronUp } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ChevronUp } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <ChevronUp />
  *

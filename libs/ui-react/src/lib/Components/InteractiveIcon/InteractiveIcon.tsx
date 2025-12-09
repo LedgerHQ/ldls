@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { InteractiveIconProps } from './types';
@@ -32,8 +32,8 @@ const buttonVariants = cva(
  * @warning The `className` prop should only be used for layout adjustments like margins or positioning. Do not use it to modify the component's core appearance (colors, padding, etc).
  *
  * @example
- * import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
- * import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
+ * import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * // Filled interactive icon for destructive actions
  * <InteractiveIcon iconType="filled" aria-label="Delete item" onClick={handleDelete}>

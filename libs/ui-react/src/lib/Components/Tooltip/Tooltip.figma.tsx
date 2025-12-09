@@ -13,7 +13,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6387%3A409',
   {
     imports: [
-      "import { Tooltip, TooltipContent, TooltipTrigger } from '@ledgerhq/ldls-ui-react'",
+      "import { Tooltip, TooltipContent, TooltipTrigger } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       label: figma.string('label'),

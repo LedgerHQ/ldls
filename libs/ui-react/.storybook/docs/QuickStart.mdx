@@ -8,9 +8,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Our design system is available as npm packages:
 
-- **[@ledgerhq/ldls-design-core](https://www.npmjs.com/package/@ledgerhq/ldls-design-core)** - Design tokens, themes, and core utilities all in one tailwind preset.
-- **[@ledgerhq/ldls-ui-react](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react)** - React components built with Tailwind CSS V3 and Radix UI primitives.
-- **[@ledgerhq/ldls-ui-rnative](https://www.npmjs.com/package/@ledgerhq/ldls-ui-rnative)** - React Native components built with NativeWind.
+- **[@ledgerhq/lumen-design-core](https://www.npmjs.com/package/@ledgerhq/lumen-design-core)** - Design tokens, themes, and core utilities all in one tailwind preset.
+- **[@ledgerhq/lumen-ui-react](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react)** - React components built with Tailwind CSS V3 and Radix UI primitives.
+- **[@ledgerhq/lumen-ui-rnative](https://www.npmjs.com/package/@ledgerhq/lumen-ui-rnative)** - React Native components built with NativeWind.
 
 ### 🛠️ Setup Steps
 
@@ -22,7 +22,7 @@ See our [Setup Tailwind](?path=/docs/getting-started-setup-tailwind--docs) guide
 Install the package:
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
 And its peer dependencies:
@@ -41,7 +41,7 @@ npm install @radix-ui/react-slot
 `@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 
 function App() {
   return <Button appearance='base'>Get Started</Button>;
@@ -55,10 +55,10 @@ For better AI assistance (Cursor, Claude, VS Code Copilot, etc.), reference the 
 **For Cursor**, add to your `.cursorrules`:
 
 ```
-@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+@node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
 ```
 
-[Learn more about AI rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
+[Learn more about AI rules →](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react#-ai-assistant-setup)
 
 **Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
 

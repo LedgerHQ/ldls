@@ -1,5 +1,5 @@
-import { Button, ThemeProvider } from '@ledgerhq/ldls-ui-react';
-import { Incognito } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button, ThemeProvider } from '@ledgerhq/lumen-ui-react';
+import { Incognito } from '@ledgerhq/lumen-ui-react/symbols';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

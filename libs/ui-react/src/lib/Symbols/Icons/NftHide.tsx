@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { NftHide } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { NftHide } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <NftHide />
  *

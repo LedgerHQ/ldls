@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
 
 export type SubheaderProps = {
@@ -44,7 +44,7 @@ const SubheaderAction = ({ children }: SubheaderActionProps) => {
  * Do not use it to modify the subheader's core appearance (colors, padding, etc).
  *
  * @example
- * import { Subheader } from '@ledgerhq/ldls-ui-react';
+ * import { Subheader } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic subheader with title only
  * <Subheader title="Section Title" />
