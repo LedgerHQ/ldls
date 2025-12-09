@@ -1,5 +1,4 @@
 import { primitiveTypographyTokens } from '../primitives/primitive.typographies';
-import { primitiveLayoutTokens } from '../primitives/primitives.others';
 import { TypographyTokens } from '../types';
 
 export const typographySmTokens = {
@@ -145,10 +144,5 @@ export const typographySmTokens = {
     fontWeight: primitiveTypographyTokens.fontWeight.semiBold,
     lineHeight: primitiveTypographyTokens.lineHeight['10'],
     letterSpacing: primitiveTypographyTokens.letterSpacing['10'],
-  },
-
-  grid: {
-    columnCount: 8,
-    gutter: primitiveLayoutTokens.spacings.s24,
   },
 } as const satisfies TypographyTokens;

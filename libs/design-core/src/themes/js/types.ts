@@ -44,7 +44,7 @@ export type PrimitiveTypographyTokens = {
  */
 export type PrimitiveOtherTokens = {
   spacings: Record<string, number>;
-  sizes: Record<string, number>;
+  sizes: Record<string, number | '100%'>;
   icon: {
     width: Record<string, number>;
     height: Record<string, number>;
@@ -70,7 +70,7 @@ export type PrimitiveOtherTokens = {
   };
 };
 
-type ShadowTokenDefinition = {
+export type ShadowTokenDefinition = {
   offsetX: number;
   offsetY: number;
   blurRadius: number;
@@ -125,11 +125,6 @@ export type TypographyTokens = {
   body3SemiBold: TypographyDefinition;
   body4: TypographyDefinition;
   body4SemiBold: TypographyDefinition;
-
-  grid: {
-    columnCount: number;
-    gutter: number;
-  };
 };
 
 export type TypographyTokensByBreakpoint = {

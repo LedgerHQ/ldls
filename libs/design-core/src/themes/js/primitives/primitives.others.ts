@@ -122,6 +122,7 @@ export const primitiveLayoutTokens = {
     s400: 400,
     s480: 480,
     s560: 560,
+    full: '100%',
   },
   borderRadius: {
     none: 0,
