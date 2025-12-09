@@ -29,4 +29,3 @@ export const getObjectPath = <T = unknown>(
 
   return current as T | undefined;
 };
-

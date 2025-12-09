@@ -114,9 +114,11 @@ describe('createStyledText', () => {
       </StyledText>,
     );
 
-    const styles = screen.getByTestId('text').props.style;
-    expect(styles[0].fontSize).toBe(16);
-    expect(styles[1].textDecorationLine).toBe('underline');
+    const [stylesFromProps, otherStyles] =
+      screen.getByTestId('text').props.style;
+
+    expect(stylesFromProps.fontSize).toBe(16);
+    expect(otherStyles.textDecorationLine).toBe('underline');
   });
 
   it('should forward ref', () => {

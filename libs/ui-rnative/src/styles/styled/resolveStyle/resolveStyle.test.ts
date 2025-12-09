@@ -497,11 +497,10 @@ describe('resolve-style', () => {
 
       const { lumenStyle, rest } = extractLumenViewStyleProps(props);
 
-      expect(lumenStyle).toEqual({});
+      expect(lumenStyle).toEqual({ padding: undefined });
       expect(rest).toEqual({
         customProp: 'test',
         anotherProp: true,
-        padding: undefined,
       });
     });
   });

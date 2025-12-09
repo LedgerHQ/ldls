@@ -70,4 +70,3 @@ describe('getObjectPath', () => {
     expect(result).toBe('#ffffff');
   });
 });
-

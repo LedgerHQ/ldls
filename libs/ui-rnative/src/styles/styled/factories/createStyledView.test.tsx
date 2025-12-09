@@ -68,9 +68,11 @@ describe('createStyledView', () => {
       <StyledView testID='view' padding='s16' style={{ opacity: 0.5 }} />,
     );
 
-    const styles = screen.getByTestId('view').props.style;
-    expect(styles[0].padding).toBe(16);
-    expect(styles[1].opacity).toBe(0.5);
+    const [stylesFromProps, otherStyles] =
+      screen.getByTestId('view').props.style;
+
+    expect(stylesFromProps.padding).toBe(16);
+    expect(otherStyles.opacity).toBe(0.5);
   });
 
   it('should forward ref', () => {
