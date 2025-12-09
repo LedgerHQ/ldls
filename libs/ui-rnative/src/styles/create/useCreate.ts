@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useTheme } from '../Provider/useTheme';
-import type { LumenStyleSheet, LumenStyleSheetWithSuperPowers } from '../types';
+import type { LumenStyleSheet, LumenStyleSheetExtended } from '../types';
 import { create } from './create';
 
 export const useCreate = <S extends LumenStyleSheet>(
-  styleCreator: LumenStyleSheetWithSuperPowers<S>,
+  styleCreator: LumenStyleSheetExtended<S>,
 ): S => {
   const { theme } = useTheme();
 
