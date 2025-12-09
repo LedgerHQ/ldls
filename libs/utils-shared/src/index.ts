@@ -4,3 +4,4 @@ export * from './lib/create-safe-context';
 export * from './lib/cn';
 export * from './lib/is-text-children';
 export * from './lib/use-merge-ref';
+export * from './lib/get-object-path';
