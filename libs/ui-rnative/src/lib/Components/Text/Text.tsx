@@ -1,5 +1,5 @@
 import { Text as RNText } from 'react-native';
-import type { LumenTextProps } from '../../../styles';
+import type { LumenTextInputProps } from '../../../styles';
 import { createStyledText } from '../../../styles/styled';
 
 /**
@@ -33,4 +33,4 @@ import { createStyledText } from '../../../styles/styled';
  */
 export const Text = createStyledText(RNText);
 
-export type TextProps = LumenTextProps;
+export type TextProps = LumenTextInputProps;

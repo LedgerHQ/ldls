@@ -3,8 +3,8 @@ import type { ViewStyle, TextStyle, ViewProps, TextProps } from 'react-native';
 import type {
   LumenStyleSheetTheme,
   LumenTextStyleProps,
-  LumenTextProps,
-  LumenViewProps,
+  LumenTextInputProps,
+  LumenViewInputProps,
   LumenViewStyleProps,
 } from '../../types';
 import {
@@ -94,7 +94,7 @@ const extractStyleProps = <StyleProps, RestProps>(
  * Extract styled view props from component props
  */
 export const extractLumenViewStyleProps = (
-  props: LumenViewProps,
+  props: LumenViewInputProps,
 ): { lumenStyle: LumenViewStyleProps; rest: ViewProps } =>
   extractStyleProps(props as Record<string, unknown>, LUMEN_VIEW_STYLE_PROPS);
 
@@ -102,6 +102,6 @@ export const extractLumenViewStyleProps = (
  * Extract styled text props from component props
  */
 export const extractLumenTextStyleProps = (
-  props: LumenTextProps,
+  props: LumenTextInputProps,
 ): { lumenStyle: LumenTextStyleProps; rest: TextProps } =>
   extractStyleProps(props as Record<string, unknown>, LUMEN_TEXT_STYLE_PROPS);

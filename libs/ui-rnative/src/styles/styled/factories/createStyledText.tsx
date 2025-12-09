@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../../Provider/useTheme';
-import type { LumenTextProps } from '../../types';
+import type { LumenTextInputProps } from '../../types';
 import {
   resolveTextStyle,
   extractLumenTextStyleProps,
@@ -39,26 +39,28 @@ type TextRef = React.ElementRef<typeof Text>;
 export function createStyledText(
   Component: React.ComponentType<TextProps>,
 ): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<LumenTextProps> & React.RefAttributes<TextRef>
+  React.PropsWithoutRef<LumenTextInputProps> & React.RefAttributes<TextRef>
 > {
-  const StyledComponent = forwardRef<TextRef, LumenTextProps>((props, ref) => {
-    const { theme } = useTheme();
-    const { lumenStyle, rest } = extractLumenTextStyleProps(props);
-    const resolvedStyle = resolveTextStyle(theme, lumenStyle);
+  const StyledComponent = forwardRef<TextRef, LumenTextInputProps>(
+    (props, ref) => {
+      const { theme } = useTheme();
+      const { lumenStyle, rest } = extractLumenTextStyleProps(props);
+      const resolvedStyle = resolveTextStyle(theme, lumenStyle);
 
-    const { style: propsStyle, ...componentProps } = rest;
-    const finalStyle = propsStyle
-      ? ([resolvedStyle, propsStyle] as TextStyle[])
-      : resolvedStyle;
+      const { style: propsStyle, ...componentProps } = rest;
+      const finalStyle = propsStyle
+        ? ([resolvedStyle, propsStyle] as TextStyle[])
+        : resolvedStyle;
 
-    return (
-      <Component
-        {...({ ...componentProps, ref, style: finalStyle } as TextProps & {
-          ref: React.Ref<Text>;
-        })}
-      />
-    );
-  });
+      return (
+        <Component
+          {...({ ...componentProps, ref, style: finalStyle } as TextProps & {
+            ref: React.Ref<Text>;
+          })}
+        />
+      );
+    },
+  );
 
   // Set display name for debugging
   const componentName =

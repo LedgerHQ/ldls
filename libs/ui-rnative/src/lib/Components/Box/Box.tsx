@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import type { LumenViewProps } from '../../../styles';
+import type { LumenViewInputProps } from '../../../styles';
 import { createStyledView } from '../../../styles/styled';
 
 /**
@@ -39,4 +39,4 @@ import { createStyledView } from '../../../styles/styled';
  */
 export const Box = createStyledView(View);
 
-export type BoxProps = LumenViewProps;
+export type BoxProps = LumenViewInputProps;

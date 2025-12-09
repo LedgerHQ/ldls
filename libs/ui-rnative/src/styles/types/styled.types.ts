@@ -128,7 +128,7 @@ type TypographyVariantProps = {
 /**
  * Main public types - combine token props with RN props
  */
-export type LumenViewProps = SpacingProps &
+export type LumenViewInputProps = SpacingProps &
   SizeProps &
   BackgroundColorProps &
   BorderProps &
@@ -137,13 +137,7 @@ export type LumenViewProps = SpacingProps &
   OtherViewStyleProps &
   ViewProps;
 
-export type LumenTextProps = SpacingProps &
-  SizeProps &
-  BackgroundColorProps &
-  BorderProps &
-  ShadowProps &
-  FlexLayoutProps &
-  OtherViewStyleProps &
+export type LumenTextInputProps = LumenViewInputProps &
   TextColorProps &
   TypographyVariantProps &
   TextProps;
@@ -151,5 +145,5 @@ export type LumenTextProps = SpacingProps &
 /**
  * Derived style-only types (for internal resolver use)
  */
-export type LumenViewStyleProps = Omit<LumenViewProps, keyof ViewProps>;
-export type LumenTextStyleProps = Omit<LumenTextProps, keyof TextProps>;
+export type LumenViewStyleProps = Omit<LumenViewInputProps, keyof ViewProps>;
+export type LumenTextStyleProps = Omit<LumenTextInputProps, keyof TextProps>;

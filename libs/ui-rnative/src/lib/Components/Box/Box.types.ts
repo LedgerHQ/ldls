@@ -1,3 +1,3 @@
-import { LumenViewProps } from '../../../styles';
+import { LumenViewInputProps } from '../../../styles';
 
-export type BoxProps = LumenViewProps;
+export type BoxProps = LumenViewInputProps;

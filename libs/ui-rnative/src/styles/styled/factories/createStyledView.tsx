@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import type { View, ViewProps, ViewStyle } from 'react-native';
 import { useTheme } from '../../Provider/useTheme';
-import type { LumenViewProps } from '../../types';
+import type { LumenViewInputProps } from '../../types';
 import {
   resolveViewStyle,
   extractLumenViewStyleProps,
@@ -38,9 +38,9 @@ type ViewRef = React.ElementRef<typeof View>;
 export function createStyledView(
   Component: React.ComponentType<ViewProps>,
 ): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<LumenViewProps> & React.RefAttributes<ViewRef>
+  React.PropsWithoutRef<LumenViewInputProps> & React.RefAttributes<ViewRef>
 > {
-  const StyledComponent = forwardRef<ViewRef, LumenViewProps>((props, ref) => {
+  const StyledComponent = forwardRef<ViewRef, LumenViewInputProps>((props, ref) => {
     const { theme } = useTheme();
     const { lumenStyle, rest } = extractLumenViewStyleProps(props);
     const resolvedStyle = resolveViewStyle(theme, lumenStyle);
