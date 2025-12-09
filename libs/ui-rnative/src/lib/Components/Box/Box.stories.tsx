@@ -25,7 +25,6 @@ export const Base: Story = {
     backgroundColor: 'accent',
     borderRadius: 'md',
     alignSelf: 'center',
-    justifyContent: 'center',
   },
   render: (args) => <Box {...args}></Box>,
   parameters: {
@@ -37,6 +36,7 @@ export const Base: Story = {
   width='s48'
   backgroundColor='accent'
   borderRadius='md'
+  alignSelf='center'
 />
 `,
       },

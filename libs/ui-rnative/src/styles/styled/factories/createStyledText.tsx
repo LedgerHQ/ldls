@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo, MemoExoticComponent } from 'react';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../../Provider/useTheme';
 import type { LumenTextInputProps } from '../../types';
@@ -8,6 +8,11 @@ import {
 } from '../resolveStyle/resolveStyle';
 
 type TextRef = React.ElementRef<typeof Text>;
+type ReturnComponentType = MemoExoticComponent<
+  React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<LumenTextInputProps> & React.RefAttributes<TextRef>
+  >
+>;
 
 /**
  * Factory function to create a styled Text component.
@@ -36,13 +41,11 @@ type TextRef = React.ElementRef<typeof Text>;
  * <StyledText variant='body1' style={{ letterSpacing: 2 }} />
  * ```
  */
-export function createStyledText(
+export const createStyledText = (
   Component: React.ComponentType<TextProps>,
-): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<LumenTextInputProps> & React.RefAttributes<TextRef>
-> {
-  const StyledComponent = forwardRef<TextRef, LumenTextInputProps>(
-    (props, ref) => {
+): ReturnComponentType => {
+  const StyledComponent = memo(
+    forwardRef<TextRef, LumenTextInputProps>((props, ref) => {
       const { theme } = useTheme();
       const { lumenStyle, rest } = extractLumenTextStyleProps(props);
       const resolvedStyle = resolveTextStyle(theme, lumenStyle);
@@ -59,7 +62,7 @@ export function createStyledText(
           })}
         />
       );
-    },
+    }),
   );
 
   // Set display name for debugging
@@ -70,4 +73,4 @@ export function createStyledText(
   StyledComponent.displayName = `StyledText(${componentName})`;
 
   return StyledComponent;
-}
+};

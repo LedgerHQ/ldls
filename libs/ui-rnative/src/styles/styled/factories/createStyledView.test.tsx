@@ -1,7 +1,7 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react-native';
 import React, { createRef } from 'react';
-import { View } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import { LumenStyleSheetProvider } from '../../Provider/LumenStyleSheetProvider';
 import { createStyledView } from './createStyledView';
 
@@ -79,5 +79,57 @@ describe('createStyledView', () => {
     const ref = createRef<View>();
     renderWithProvider(<StyledView ref={ref} testID='view' />);
     expect(ref.current).toBeTruthy();
+  });
+
+  describe('performance (memo)', () => {
+    it('should not re-render when props are unchanged', () => {
+      const renderCount = jest.fn();
+      const TrackedView = (props: ViewProps) => {
+        renderCount();
+        return <View {...props} />;
+      };
+      const StyledTracked = createStyledView(TrackedView);
+
+      const { rerender } = renderWithProvider(
+        <StyledTracked testID='view' padding='s16' />,
+      );
+
+      expect(renderCount).toHaveBeenCalledTimes(1);
+
+      // Re-render with same props
+      rerender(
+        <LumenStyleSheetProvider themes={testThemes}>
+          <StyledTracked testID='view' padding='s16' />
+        </LumenStyleSheetProvider>,
+      );
+
+      // memo should prevent re-render
+      expect(renderCount).toHaveBeenCalledTimes(1);
+    });
+
+    it('should re-render when token props change', () => {
+      const renderCount = jest.fn();
+      const TrackedView = (props: ViewProps) => {
+        renderCount();
+        return <View {...props} />;
+      };
+      const StyledTracked = createStyledView(TrackedView);
+
+      const { rerender } = renderWithProvider(
+        <StyledTracked testID='view' padding='s16' />,
+      );
+
+      expect(renderCount).toHaveBeenCalledTimes(1);
+
+      // Re-render with different props
+      rerender(
+        <LumenStyleSheetProvider themes={testThemes}>
+          <StyledTracked testID='view' width='s48' />
+        </LumenStyleSheetProvider>,
+      );
+
+      // Should re-render due to prop change
+      expect(renderCount).toHaveBeenCalledTimes(2);
+    });
   });
 });

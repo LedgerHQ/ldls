@@ -1,7 +1,7 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react-native';
 import React, { createRef } from 'react';
-import { Text } from 'react-native';
+import { Text, TextProps } from 'react-native';
 import { LumenStyleSheetProvider } from '../../Provider/LumenStyleSheetProvider';
 import { createStyledText } from './createStyledText';
 
@@ -129,5 +129,94 @@ describe('createStyledText', () => {
       </StyledText>,
     );
     expect(ref.current).toBeTruthy();
+  });
+
+  describe('performance (memo)', () => {
+    it('should not re-render when props are unchanged', () => {
+      const renderCount = jest.fn();
+      const TrackedText = (props: TextProps) => {
+        renderCount();
+        return <Text {...props} />;
+      };
+      const StyledTracked = createStyledText(TrackedText);
+
+      const { rerender } = renderWithProvider(
+        <StyledTracked testID='text' variant='body1'>
+          Hello
+        </StyledTracked>,
+      );
+
+      expect(renderCount).toHaveBeenCalledTimes(1);
+
+      // Re-render with same props
+      rerender(
+        <LumenStyleSheetProvider themes={testThemes}>
+          <StyledTracked testID='text' variant='body1'>
+            Hello
+          </StyledTracked>
+        </LumenStyleSheetProvider>,
+      );
+
+      // memo should prevent re-render
+      expect(renderCount).toHaveBeenCalledTimes(1);
+    });
+
+    it('should re-render when token props change', () => {
+      const renderCount = jest.fn();
+      const TrackedText = (props: TextProps) => {
+        renderCount();
+        return <Text {...props} />;
+      };
+      const StyledTracked = createStyledText(TrackedText);
+
+      const { rerender } = renderWithProvider(
+        <StyledTracked testID='text' variant='body1'>
+          Hello
+        </StyledTracked>,
+      );
+
+      expect(renderCount).toHaveBeenCalledTimes(1);
+
+      // Re-render with different props
+      rerender(
+        <LumenStyleSheetProvider themes={testThemes}>
+          <StyledTracked testID='text' color='muted'>
+            Hello
+          </StyledTracked>
+        </LumenStyleSheetProvider>,
+      );
+
+      // Should re-render due to prop change
+      expect(renderCount).toHaveBeenCalledTimes(2);
+    });
+
+    it('should re-render when children change', () => {
+      const renderCount = jest.fn();
+      const TrackedText = (props: TextProps) => {
+        renderCount();
+        return <Text {...props} />;
+      };
+      const StyledTracked = createStyledText(TrackedText);
+
+      const { rerender } = renderWithProvider(
+        <StyledTracked testID='text' variant='body1'>
+          Hello
+        </StyledTracked>,
+      );
+
+      expect(renderCount).toHaveBeenCalledTimes(1);
+
+      // Re-render with different children
+      rerender(
+        <LumenStyleSheetProvider themes={testThemes}>
+          <StyledTracked testID='text' variant='body1'>
+            World
+          </StyledTracked>
+        </LumenStyleSheetProvider>,
+      );
+
+      // Should re-render due to children change
+      expect(renderCount).toHaveBeenCalledTimes(2);
+    });
   });
 });
