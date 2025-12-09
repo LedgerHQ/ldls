@@ -191,6 +191,7 @@ function MyComponent() {
 When rendering long lists or grids of Tiles, we recommend using [TanStack Virtual](https://tanstack.com/virtual/latest) for optimal performance. Virtual lists only render visible items, significantly improving performance with large datasets.
 
 ```tsx
+import React from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
 import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
