@@ -1,5 +1,9 @@
 import { Link } from '@ledgerhq/lumen-ui-rnative';
-import { Github, LedgerLogo, Screens } from '@ledgerhq/lumen-ui-rnative/symbols';
+import {
+  Github,
+  LedgerLogo,
+  Screens,
+} from '@ledgerhq/lumen-ui-rnative/symbols';
 import { Alert, Text, View } from 'react-native';
 
 export function Links() {
