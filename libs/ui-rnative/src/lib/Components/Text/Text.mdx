@@ -1,0 +1,70 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TextStories from './Text.stories';
+
+<Meta title='Typography/Text' of={TextStories} />
+
+# Text
+
+Text is a typography component that wraps React Native's `Text` with a `variant` prop for typography presets and token-constrained style props from the design system theme.
+
+## Interactive Example
+
+<Canvas of={TextStories.Base} />
+<Controls of={TextStories.Base} />
+
+## Available Variants
+
+The `variant` property should be used to apply a typography preset that includes font size, font weight, line height, and letter spacing.
+
+### Body
+Used for content text like paragraphs.
+- `body1`, `body1SemiBold`
+- `body2`, `body2SemiBold`
+- `body3`, `body3SemiBold` (deprecated)
+- `body4`, `body4SemiBold` (deprecated)
+
+### Headings
+Used for section titles like page titles.
+- `heading0`, `heading0SemiBold`
+- `heading1`, `heading1SemiBold`
+- `heading2`, `heading2SemiBold`
+- `heading3`, `heading3SemiBold`
+- `heading4`, `heading4SemiBold`
+
+
+### Responsive Display
+Used for large hero text like page titles.
+- `responsiveDisplay1`
+- `responsiveDisplay2`
+- `responsiveDisplay3`
+- `responsiveDisplay4`
+
+
+
+## Usage
+
+```tsx
+import { Text } from '@ledgerhq/ldls-ui-rnative';
+
+// Basic usage with typography variant
+<Text variant='body1'>Hello World</Text>
+
+// With custom color
+<Text variant='heading2SemiBold' color='muted'>
+  Subtitle
+</Text>
+
+// With spacing
+<Text variant='body2' marginTop='s8' color='base'>
+  Description text
+</Text>
+```
+
+## Escape Hatch
+
+For values not covered by tokens, use the `style` prop:
+
+```tsx
+<Text variant='body1' style={{ letterSpacing: 2 }} />
+```
+
