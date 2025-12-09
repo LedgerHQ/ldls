@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { Dialog } from '../Dialog';
+import { Dialog } from '..';
 import { DialogHeader } from './DialogHeader';
 
 describe('DialogHeader', () => {

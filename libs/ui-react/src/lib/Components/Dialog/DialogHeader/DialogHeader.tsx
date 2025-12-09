@@ -1,10 +1,11 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
-import React from 'react';
-import { useCommonTranslation } from '../../../i18n';
-import { ArrowLeft, Close } from '../../Symbols';
-import { IconButton } from '../IconButton';
+import React, { FC } from 'react';
+import { useCommonTranslation } from '../../../../i18n';
+import { ArrowLeft, Close } from '../../../Symbols';
+import { IconButton } from '../../IconButton';
+import { DialogHeaderProps } from '../types';
 
 const dialogHeaderVariants = cva(
   '-ml-14 -mr-8 flex bg-canvas-sheet text-base',
@@ -18,8 +19,9 @@ const dialogHeaderVariants = cva(
   },
 );
 
-const BackButton = ({ onBack }: { onBack: () => void }) => {
+const BackButton: FC<{ onBack: () => void }> = ({ onBack }) => {
   const { t } = useCommonTranslation();
+
   return (
     <IconButton
       appearance='no-background'
@@ -32,8 +34,9 @@ const BackButton = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-const CloseButton = ({ onClose }: { onClose: () => void }) => {
+const CloseButton: FC<{ onClose: () => void }> = ({ onClose }) => {
   const { t } = useCommonTranslation();
+
   return (
     <IconButton
       appearance='gray'
@@ -46,30 +49,6 @@ const CloseButton = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
-export type DialogHeaderProps = {
-  /**
-   * The appearance variant of the header.
-   * @default 'compact'
-   */
-  appearance?: 'compact' | 'extended';
-  /**
-   * The main title to display in the header.
-   */
-  title?: string;
-  /**
-   * Optional description text to show below or beside the title.
-   */
-  description?: string;
-  /**
-   * Callback function to handle close action.
-   */
-  onClose: () => void;
-  /**
-   * Optional callback for back navigation.
-   */
-  onBack?: () => void;
-} & React.HTMLAttributes<HTMLDivElement>;
-
 /**
  * Internal component for accessible dialog titles.
  *
@@ -78,11 +57,9 @@ export type DialogHeaderProps = {
  * accessibility labeling. It ensures screen readers announce the dialog
  * correctly by providing a title element that Radix Dialog requires.
  */
-function DialogTitle({
-  hidden,
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }) {
+const DialogTitle: FC<
+  React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }
+> = ({ hidden, className, ...props }) => {
   return (
     <DialogPrimitive.Title
       data-slot='dialog-title'
@@ -90,7 +67,7 @@ function DialogTitle({
       {...props}
     />
   );
-}
+};
 
 /**
  * Internal component for accessible dialog descriptions.
@@ -100,13 +77,11 @@ function DialogTitle({
  * accessibility context. It works with DialogTitle to give screen readers
  * a complete understanding of the dialog's purpose.
  */
-function DialogDescription({
-  hidden,
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Description> & {
-  hidden?: boolean;
-}) {
+const DialogDescription: FC<
+  React.ComponentProps<typeof DialogPrimitive.Description> & {
+    hidden?: boolean;
+  }
+> = ({ hidden, className, ...props }) => {
   return (
     <DialogPrimitive.Description
       data-slot='dialog-description'
@@ -114,40 +89,9 @@ function DialogDescription({
       {...props}
     />
   );
-}
+};
 
-/**
- * A customizable Header component that displays title, description, and navigation buttons for sheets/dialogs.
- *
- * This component is typically used as the header for sheet-like interfaces, providing
- * back and close functionality along with optional title and description.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialogheader-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialogheader-implementation--docs#dos-and-donts Guidelines}
- *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the dialog header's core appearance (colors, padding, etc). Use the `appearance` prop instead.
- *
- * @example
- * import { DialogHeader } from '@ledgerhq/ldls-ui-react';
- *
- * // Basic compact dialog header with title and close
- * <DialogHeader
- *   appearance="compact"
- *   title="Settings"
- *   onClose={() => console.log('Closed!')}
- * />
- *
- * // Extended dialog header with back button and description
- * <DialogHeader
- *   appearance="extended"
- *   title="Account Details"
- *   description="View and edit your account information"
- *   onClose={() => handleClose()}
- *   onBack={() => handleBack()}
- * />
- */
-const DialogHeaderComponent = ({
+const DialogHeaderComponent: FC<DialogHeaderProps> = ({
   className,
   appearance = 'compact',
   title,
@@ -155,7 +99,7 @@ const DialogHeaderComponent = ({
   onClose,
   onBack,
   ...props
-}: DialogHeaderProps) => {
+}) => {
   return (
     <div className={dialogHeaderVariants({ appearance, className })} {...props}>
       {appearance === 'compact' && (
@@ -202,47 +146,12 @@ const DialogHeaderComponent = ({
   );
 };
 
-/**
- * A convenient wrapper that combines DialogHeader with accessible DialogTitle and DialogDescription.
- *
- * This component provides a consistent header for dialogs by combining the visual DialogHeader
- * component with the necessary accessibility components (DialogTitle and DialogDescription).
- * It automatically handles the accessibility requirements while maintaining the visual design.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @example
- * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
- *
- * <Dialog>
- *   <DialogTrigger asChild>
- *     <Button>Open Dialog</Button>
- *   </DialogTrigger>
- *   <DialogContent>
- *     <DialogHeader
- *       title="Dialog Title"
- *       onClose={() => setOpen(false)}
- *     />
- *     <p>Dialog content here</p>
- *   </DialogContent>
- * </Dialog>
- *
- * @example
- * // With description and back button
- * <DialogHeader
- *   appearance="extended"
- *   title="Settings"
- *   description="Manage your account preferences"
- *   onBack={() => goToPreviousStep()}
- *   onClose={() => setOpen(false)}
- * />
- */
-export function DialogHeader({
+export const DialogHeader: FC<DialogHeaderProps> = ({
   title = '',
   description,
   appearance = 'compact',
   ...props
-}: DialogHeaderProps & { title?: string }) {
+}) => {
   return (
     <>
       <DialogHeaderComponent
@@ -262,4 +171,4 @@ export function DialogHeader({
       )}
     </>
   );
-}
+};

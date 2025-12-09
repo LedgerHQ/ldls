@@ -1,25 +1,8 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
-
-export type DialogProps = {
-  /**
-   * Callback function to handle open state change.
-   * @param open - The new open state of the dialog.
-   */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * The open state of the dialog.
-   * @default false
-   */
-  open?: boolean;
-  /**
-   * The default open state of the dialog.
-   * @default false
-   */
-  defaultOpen?: boolean;
-} & React.ComponentProps<typeof DialogPrimitive.Root>;
-
+import { DialogHeader } from './DialogHeader/DialogHeader';
+import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -38,6 +21,13 @@ export type DialogProps = {
  *         <Button>Open Dialog</Button>
  *       </DialogTrigger>
  *       <DialogContent>
+ *         <DialogHeader
+ *           appearance='compact'
+ *           title='Dialog Title'
+ *           description='Dialog Description'
+ *           onBack={() => {}}
+ *           onClose={() => {}}
+ *         />
  *         <p>This is a dialog!</p>
  *       </DialogContent>
  *     </Dialog>
@@ -47,21 +37,6 @@ export type DialogProps = {
 export function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
-
-export type DialogTriggerProps = {
-  /**
-   * The element that will trigger the dialog (e.g., button, icon, text).
-   */
-  children?: React.ReactNode;
-  /**
-   * Change the default rendered element for the one passed as a child, merging their props and behavior.
-   */
-  asChild?: boolean;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Trigger>;
 
 /**
  * The element that triggers the dialog to appear when interacted with.
@@ -79,7 +54,9 @@ export type DialogTriggerProps = {
  *   <Button>Click me for a dialog</Button>
  * </DialogTrigger>
  */
-export function DialogTrigger({ ...props }: DialogTriggerProps) {
+export function DialogTrigger({
+  ...props
+}: DialogPrimitive.DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
@@ -103,13 +80,6 @@ function DialogPortal({
 }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
   return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
-
-export type DialogOverlayProps = {
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Overlay>;
 
 /**
  * The overlay that covers the background when the dialog is open.
@@ -141,21 +111,6 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
     );
   },
 );
-
-export type DialogContentProps = {
-  /**
-   * The content to display inside the dialog.
-   */
-  children?: React.ReactNode;
-  /**
-   * Change the default rendered element for the one passed as a child, merging their props and behavior.
-   */
-  asChild?: boolean;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Content>;
 
 /**
  * The content container that displays the dialog information.
@@ -204,3 +159,5 @@ export function DialogContent({
     </DialogPortal>
   );
 }
+
+export { DialogHeader };
