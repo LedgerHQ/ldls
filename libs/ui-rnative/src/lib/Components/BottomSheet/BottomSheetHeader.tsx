@@ -18,7 +18,7 @@ const bottomSheetHeaderVariants = {
       },
     },
   }),
-  inner: cva('flex flex-row items-start justify-between gap-16', {
+  inner: cva('flex flex-row items-center justify-between gap-16', {
     variants: {
       appearance: {
         compact: '',

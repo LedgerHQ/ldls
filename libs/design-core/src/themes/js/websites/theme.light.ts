@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const websitesLightTheme = {
+export const websitesLightColorTokens = {
   crypto: {
     aion: primitiveColorTokens.light.crypto.aion,
     aion0: primitiveColorTokens.light.crypto.aion0,
@@ -221,12 +221,6 @@ export const websitesLightTheme = {
     gradient80: primitiveColorTokens.light.grey['950-80'],
     gradient70: primitiveColorTokens.light.grey['950-70'],
     gradient0: primitiveColorTokens.light.grey['950-0'],
-    gradientOnInteractive100: primitiveColorTokens.light.grey['050'],
-    gradientOnInteractive0: primitiveColorTokens.light.grey['050-0'],
-    gradientOnAccent100: primitiveColorTokens.light.grey['050'],
-    gradientOnAccent0: primitiveColorTokens.light.grey['050-0'],
-    gradientMuted0: primitiveColorTokens.light.grey['100-0'],
-    gradientMuted100: primitiveColorTokens.light.grey['100'],
   },
   text: {
     black: primitiveColorTokens.light.constant['950'],
@@ -278,4 +272,4 @@ export const websitesLightTheme = {
     success: primitiveColorTokens.light.green['600'],
     icon: primitiveColorTokens.light.grey['950-5'],
   },
-} satisfies ThemeColorTokens;
+} as const satisfies ThemeColorTokens;

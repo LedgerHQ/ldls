@@ -97,24 +97,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-gradient-80': 'var(--color-light-grey-950-80)',
     '--color-background-gradient-70': 'var(--color-light-grey-950-70)',
     '--color-background-gradient-0': 'var(--color-light-grey-950-0)',
-    '--color-background-gradient-on-interactive-100':
-      'var(--color-light-grey-050)',
-    '--color-background-gradient-on-interactive-0':
-      'var(--color-light-grey-050-0)',
-    '--color-background-gradient-on-accent-ledger-live-100':
-      'var(--color-light-grey-950)',
-    '--color-background-gradient-on-accent-ledger-live-0':
-      'var(--color-light-grey-950-0)',
-    '--color-background-gradient-on-accent-enterprise-100':
-      'var(--color-light-grey-050)',
-    '--color-background-gradient-on-accent-enterprise-0':
-      'var(--color-light-grey-050-0)',
-    '--color-background-gradient-on-accent-website-100':
-      'var(--color-light-grey-050)',
-    '--color-background-gradient-on-accent-website-0':
-      'var(--color-light-grey-050-0)',
-    '--color-background-gradient-muted-0': 'var(--color-light-grey-100-0)',
-    '--color-background-gradient-muted-100': 'var(--color-light-grey-100)',
     '--color-text-black': 'var(--color-light-constant-950)',
     '--color-text-white': 'var(--color-light-constant-050)',
     '--color-text-grey': 'var(--color-light-grey-300)',
@@ -422,17 +404,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-gradient-80': 'var(--color-background-gradient-80)',
     '--background-gradient-70': 'var(--color-background-gradient-70)',
     '--background-gradient-0': 'var(--color-background-gradient-0)',
-    '--background-gradient-on-interactive-100':
-      'var(--color-background-gradient-on-interactive-100)',
-    '--background-gradient-on-interactive-0':
-      'var(--color-background-gradient-on-interactive-0)',
-    '--background-gradient-on-accent-100':
-      'var(--color-background-gradient-on-accent-website-100)',
-    '--background-gradient-on-accent-0':
-      'var(--color-background-gradient-on-accent-website-0)',
-    '--background-gradient-muted-100':
-      'var(--color-background-gradient-muted-100)',
-    '--background-gradient-muted-0': 'var(--color-background-gradient-muted-0)',
     '--text-black': 'var(--color-text-black)',
     '--text-white': 'var(--color-text-white)',
     '--text-grey': 'var(--color-text-grey)',

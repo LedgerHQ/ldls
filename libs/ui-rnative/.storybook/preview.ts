@@ -1,11 +1,11 @@
 import type { Preview } from '@storybook/react-native-web-vite';
-import '../src/styles.css';
-import './font.css';
+import '../src/global.css';
 import {
   withBrandDecorator,
   withModeDecorator,
   withProvidersDecorator,
 } from './Decorator';
+import './font.css';
 
 const preview: Preview = {
   globalTypes: {

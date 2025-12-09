@@ -1,47 +1,75 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Getting Started/Theme Provider" />
+<Meta title="Getting Started/Theme" />
 
-## Ledger Design System Theme Provider
-The ThemeProvider from @ledgerhq/ldls-ui-rnative manages the app’s visual theme (light or dark mode).
-Define the `ThemeProvider` at the top-level of your app.
+# Theme Provider
+
+The ThemeProvider manages your app's theme mode (light/dark) and provides theme tokens to all components.
+
+## Basic Setup
+
+Wrap your app with `ThemeProvider` and pass your theme objects:
 
 ```tsx
 import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
+import { ledgerLiveDarkTheme, ledgerLiveLightTheme } from '@ledgerhq/ldls-design-core';
 
-function AppProviders() {
+function App() {
   return (
-    <ThemeProvider defaultMode="system">
-      <App />
+    <ThemeProvider 
+      themes={{ 
+        dark: ledgerLiveDarkTheme, 
+        light: ledgerLiveLightTheme 
+      }}
+      colorScheme="dark"
+    >
+      <YourApp />
     </ThemeProvider>
   );
 }
 ```
 
+## Color Scheme
 
-Updates the mode using the `useTheme` context hook.
+The `colorScheme` prop controls the theme color scheme.
+If not provided, the theme will follow the device settings.
+
+- `"dark"` - Forces dark mode
+- `"light"` - Forces light mode
+
+
+
 ```tsx
-import { ThemeProvider, useTheme } from '@ledgerhq/ldls-ui-rnative';
+<ThemeProvider 
+  themes={{ 
+    dark: ledgerLiveDarkTheme, 
+    light: ledgerLiveLightTheme 
+  }}
+  colorScheme="dark"
+>
+  <App />
+</ThemeProvider>
+```
 
-const UpdateThemeModeButton = () => {
-  const { mode, toggleMode, setMode } = useTheme();
+## Changing Theme Mode
+
+If the ThemeProvider is uncontrolled, you can use the `LumenStyleSheet.useTheme` hook to control theme mode at runtime:
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/ldls-ui-rnative/styles';
+
+const ThemeToggle = () => {
+  const { colorScheme, toggleColorScheme, setColorScheme } = LumenStyleSheet.useTheme();
+  
   return (
-    <Button onPress={toggleMode}>
-      {mode}
+    <Button onPress={toggleColorScheme}>
+      Current: {colorScheme}
     </Button>
   );
 };
-
-function AppProviders() {
-  return (
-    <ThemeProvider defaultMode="dark">
-      <UpdateThemeModeButton />
-    </ThemeProvider>
-  );
-}
 ```
 
-When updating the mode, the react-native `Appearance.setColorScheme` API method is called to update the application scheme.
+When the colorScheme changes, `Appearance.setColorScheme` is automatically called to update the system theme.
 
 
 ## Internationalization

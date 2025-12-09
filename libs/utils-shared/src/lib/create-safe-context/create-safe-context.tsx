@@ -35,7 +35,7 @@ export function createSafeContext<ContextValue extends object>(
     }
     if (contextRequired) {
       throw new Error(
-        `\`${consumerName}\` must be used within \`${rootComponentName}\``,
+        `${consumerName} must be used within ${rootComponentName}`,
       );
     }
 

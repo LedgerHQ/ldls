@@ -1,7 +1,7 @@
 import { primitiveColorTokens } from '../primitives/primitive.colors';
 import { ThemeColorTokens } from '../types';
 
-export const ledgerLiveDarkTheme = {
+export const ledgerLiveDarkColorTokens = {
   crypto: {
     aion: primitiveColorTokens.dark.crypto.aion,
     aion0: primitiveColorTokens.dark.crypto.aion0,
@@ -170,7 +170,7 @@ export const ledgerLiveDarkTheme = {
     canvas: primitiveColorTokens.dark.grey['050'],
     canvasMuted: primitiveColorTokens.dark.grey['050'],
     canvasSheet: primitiveColorTokens.dark.grey['075'],
-    canvasOverlay: primitiveColorTokens.dark.grey['050-30'],
+    canvasOverlay: primitiveColorTokens.dark.grey['050-60'],
     white: primitiveColorTokens.dark.constant['050'],
     black: primitiveColorTokens.dark.constant['950'],
     surface: primitiveColorTokens.dark.grey['100'],
@@ -221,12 +221,6 @@ export const ledgerLiveDarkTheme = {
     gradient80: primitiveColorTokens.dark.grey['050-80'],
     gradient70: primitiveColorTokens.dark.grey['050-70'],
     gradient0: primitiveColorTokens.dark.grey['050-0'],
-    gradientOnInteractive100: primitiveColorTokens.dark.grey['050'],
-    gradientOnInteractive0: primitiveColorTokens.dark.grey['050-0'],
-    gradientOnAccent100: primitiveColorTokens.dark.grey['050'],
-    gradientOnAccent0: primitiveColorTokens.dark.grey['050-0'],
-    gradientMuted0: primitiveColorTokens.dark.grey['100-0'],
-    gradientMuted100: primitiveColorTokens.dark.grey['100'],
   },
   text: {
     black: primitiveColorTokens.dark.constant['950'],
@@ -278,4 +272,4 @@ export const ledgerLiveDarkTheme = {
     success: primitiveColorTokens.dark.green['600'],
     icon: primitiveColorTokens.dark.grey['950-5'],
   },
-} satisfies ThemeColorTokens;
+} as const satisfies ThemeColorTokens;

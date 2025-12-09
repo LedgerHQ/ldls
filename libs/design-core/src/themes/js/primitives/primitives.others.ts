@@ -1,7 +1,7 @@
 import { PrimitiveOtherTokens } from '../types';
 
 export const primitiveLayoutTokens = {
-  spacing: {
+  spacings: {
     s0: 0,
     s1: 1,
     s2: 2,
@@ -85,7 +85,7 @@ export const primitiveLayoutTokens = {
       s56: 3.799999952316284,
     },
   },
-  size: {
+  sizes: {
     s0: 0,
     s1: 1,
     s2: 2,
@@ -152,4 +152,4 @@ export const primitiveLayoutTokens = {
     xl: 1280,
     '2xl': 1536,
   },
-} satisfies PrimitiveOtherTokens;
+} as const satisfies PrimitiveOtherTokens;

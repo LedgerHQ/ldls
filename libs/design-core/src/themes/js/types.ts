@@ -43,8 +43,8 @@ export type PrimitiveTypographyTokens = {
  * Size & Spacing & Other primitives
  */
 export type PrimitiveOtherTokens = {
-  spacing: Record<string, number>;
-  size: Record<string, number>;
+  spacings: Record<string, number>;
+  sizes: Record<string, number>;
   icon: {
     width: Record<string, number>;
     height: Record<string, number>;
@@ -71,33 +71,19 @@ export type PrimitiveOtherTokens = {
 };
 
 type ShadowTokenDefinition = {
-  x: number;
-  y: number;
-  blur: number;
-  spread: number;
+  offsetX: number;
+  offsetY: number;
+  blurRadius: number;
+  spreadDistance: number;
   color: string;
 };
 
 export type PrimitiveShadowTokens = {
-  sm: {
-    primary: ShadowTokenDefinition;
-    secondary: ShadowTokenDefinition;
-  };
-  md: {
-    primary: ShadowTokenDefinition;
-    secondary: ShadowTokenDefinition;
-  };
-  lg: {
-    primary: ShadowTokenDefinition;
-    secondary: ShadowTokenDefinition;
-  };
-  xl: {
-    primary: ShadowTokenDefinition;
-    secondary: ShadowTokenDefinition;
-  };
-  '2xl': {
-    primary: ShadowTokenDefinition;
-  };
+  sm: [ShadowTokenDefinition, ShadowTokenDefinition];
+  md: [ShadowTokenDefinition, ShadowTokenDefinition];
+  lg: [ShadowTokenDefinition, ShadowTokenDefinition];
+  xl: [ShadowTokenDefinition, ShadowTokenDefinition];
+  '2xl': [ShadowTokenDefinition];
 };
 
 export type TypographyDefinition = {
@@ -107,7 +93,7 @@ export type TypographyDefinition = {
   letterSpacing: number;
 };
 
-export type TypographyBreakpoint = {
+export type TypographyTokens = {
   /**
    * responsive display
    */
@@ -146,11 +132,11 @@ export type TypographyBreakpoint = {
   };
 };
 
-export type TypographyTokens = {
-  sm: TypographyBreakpoint;
-  md?: TypographyBreakpoint;
-  lg?: TypographyBreakpoint;
-  xl?: TypographyBreakpoint;
+export type TypographyTokensByBreakpoint = {
+  sm: TypographyTokens;
+  md?: TypographyTokens;
+  lg?: TypographyTokens;
+  xl?: TypographyTokens;
 };
 
 export type ThemeColorTokens = {
@@ -163,5 +149,5 @@ export type ThemeColorTokens = {
 
 export type ThemeCoreTokens = PrimitiveOtherTokens & {
   shadows: PrimitiveShadowTokens;
-  typographies: TypographyTokens;
+  typographies: TypographyTokensByBreakpoint;
 };

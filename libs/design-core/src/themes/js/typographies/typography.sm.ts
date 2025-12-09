@@ -1,6 +1,6 @@
 import { primitiveTypographyTokens } from '../primitives/primitive.typographies';
 import { primitiveLayoutTokens } from '../primitives/primitives.others';
-import { TypographyBreakpoint } from '../types';
+import { TypographyTokens } from '../types';
 
 export const typographySmTokens = {
   /**
@@ -149,6 +149,6 @@ export const typographySmTokens = {
 
   grid: {
     columnCount: 8,
-    gutter: primitiveLayoutTokens.spacing.s24,
+    gutter: primitiveLayoutTokens.spacings.s24,
   },
-} satisfies TypographyBreakpoint;
+} as const satisfies TypographyTokens;
