@@ -5,9 +5,16 @@ const meta: Meta<typeof Skeleton> = {
   title: 'Communication/Skeleton',
   component: Skeleton,
   parameters: {
-    layout: 'centered',
     backgrounds: { default: 'light' },
+    layout: 'centered',
   },
+  decorators: [
+    (Story) => (
+      <div className='rounded-md bg-canvas p-16'>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     component: {
       control: 'select',
@@ -20,28 +27,25 @@ const meta: Meta<typeof Skeleton> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic skeleton
 export const Base: Story = {
   args: {
     className: 'h-16 w-256',
   },
+  render: (args) => (
+    <Skeleton
+      component={args.component}
+      className={args.component ? undefined : args.className}
+    />
+  ),
 };
-
-// List item skeleton component
 export const WithListItem: Story = {
-  args: {
-    component: 'list-item',
-  },
+  render: () => <Skeleton component='list-item' className='w-320' />,
 };
 
-// Tile skeleton component
 export const WithTile: Story = {
-  args: {
-    component: 'tile',
-  },
+  render: () => <Skeleton component='tile' />,
 };
 
-// Different sizes
 export const SizeShowcase: Story = {
   render: () => (
     <div className='space-y-4'>
@@ -52,7 +56,6 @@ export const SizeShowcase: Story = {
   ),
 };
 
-// Different shapes
 export const ShapeShowcase: Story = {
   render: () => (
     <div className='space-y-4'>

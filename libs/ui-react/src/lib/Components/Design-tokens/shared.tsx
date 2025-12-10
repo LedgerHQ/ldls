@@ -33,7 +33,7 @@ export const ColorSwatch = ({
           <>
             <div
               className={cn(
-                'bg- h-64 rounded-lg border-2 p-16',
+                'h-64 rounded-lg border-2 p-16',
                 className.replace('bg-base', ''),
               )}
             ></div>

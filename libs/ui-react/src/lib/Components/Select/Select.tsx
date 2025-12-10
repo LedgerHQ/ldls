@@ -24,19 +24,19 @@ function SelectGroup({ ...props }: SelectGroupProps) {
 
 const triggerStyles = cn(
   'group relative flex h-48 w-full items-center justify-between gap-8',
-  'bg-muted rounded-sm px-16',
+  'rounded-sm bg-muted px-16',
   'text-base body-2',
   'hover:bg-muted-hover',
-  'focus:outline-none focus:ring-2 focus:ring-focus transition-colors duration-200',
+  'transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-focus',
   'disabled:cursor-not-allowed disabled:text-disabled',
 );
 
 const labelStyles = cn(
-  'pointer-events-none absolute left-16 text-muted origin-left transition-all duration-300',
-  'top-10 body-4 -translate-y-4',
-  'group-data-[placeholder]:body-2 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:top-14',
-  'group-data-[:disabled]:text-disabled group-data-[disabled]:text-disabled disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
-  'truncate max-w-[calc(100%-var(--size-56))]',
+  'pointer-events-none absolute left-16 origin-left text-muted transition-all duration-300',
+  'top-10 -translate-y-4 body-4',
+  'group-data-[placeholder]:top-14 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:body-2',
+  'group-data-[:disabled]:text-disabled disabled:text-disabled group-data-[disabled]:text-disabled group-data-[placeholder][disabled]:text-disabled',
+  'max-w-[calc(100%-var(--size-56))] truncate',
 );
 
 const SelectTrigger = React.forwardRef<
@@ -138,15 +138,15 @@ const SelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     data-slot='select-label'
-    className={cn('px-8 pb-0 pt-8 text-muted body-3-semi-bold mb-4', className)}
+    className={cn('mb-4 px-8 pb-0 pt-8 text-muted body-3-semi-bold', className)}
     {...props}
   />
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const itemStyles = cn(
-  'relative flex w-full cursor-default bg-base-transparent select-none items-center',
-  'rounded-sm px-8 py-8',
+  'relative flex w-full cursor-default select-none items-center bg-base-transparent',
+  'rounded-sm p-8',
   'text-base body-2',
   'outline-none',
   'focus:bg-base-transparent-hover',
@@ -181,7 +181,7 @@ const SelectSeparator = React.forwardRef<
   <SelectPrimitive.Separator
     ref={ref}
     data-slot='select-separator'
-    className={cn('h-px mx-8 my-4 border-b border-muted-subtle', className)}
+    className={cn('mx-8 my-4 h-1 border-b border-muted-subtle', className)}
     {...props}
   />
 ));

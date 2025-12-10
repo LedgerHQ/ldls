@@ -12,12 +12,10 @@ import {
 export const ledgerLivePreset = {
   content: [],
   theme: {
-    extend: {
-      boxShadow: {},
-      fontSize: {},
-      fontWeight: {},
-      lineHeight: {},
-    },
+    boxShadow: {},
+    fontSize: {},
+    fontWeight: {},
+    lineHeight: {},
   },
   plugins: [
     createPrimitivesPlugin(),

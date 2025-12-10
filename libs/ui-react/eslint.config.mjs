@@ -26,5 +26,12 @@ export default [
       '**/*.figma.jsx',
     ],
   },
+  {
+    settings: {
+      tailwindcss: {
+        callees: ['classnames', 'clsx', 'ctl', 'cn', 'cva'],
+      },
+    },
+  },
   ...storybook.configs['flat/recommended'],
 ];
