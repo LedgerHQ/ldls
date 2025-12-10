@@ -53,10 +53,10 @@ alwaysApply: false
   Result: You write the single class `body-3`.
 
 - Drop Shadow Styles:
-  Figma shows: a comment with the style name, like /_ drop-shadow/sm _/.
+  Figma shows: a comment with the style name, like /_ box-shadow/sm _/.
   The prefix for box-shadow is: shadow-
   Transform: replace `/` with `-` and use only the unique part after the last hyphen (so `drop-shadow/sm` becomes `sm`).
-  Result: You write `shadow-sm`, not `shadow-drop-shadow-sm`.
+  Result: You write `shadow-sm`, not `shadow-box-shadow-sm`.
   Available values: `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`.
 
 ## When Figma Sizes Don't Match Design Tokens
