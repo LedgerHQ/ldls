@@ -1,17 +1,24 @@
-import type { ViewStyle, FlexStyle, ViewProps, TextProps } from 'react-native';
+import type {
+  ViewStyle,
+  FlexStyle,
+  TextStyle,
+  ViewProps,
+  TextProps,
+} from 'react-native';
 import type { LumenStyleSheetTheme } from './theme.types';
 
 /**
  * Extract token keys from theme
  */
-export type SpacingToken = keyof LumenStyleSheetTheme['spacings'];
-export type SizeToken = keyof LumenStyleSheetTheme['sizes'];
-export type BackgroundColorToken = keyof LumenStyleSheetTheme['colors']['bg'];
-export type TextColorToken = keyof LumenStyleSheetTheme['colors']['text'];
-export type BorderColorToken = keyof LumenStyleSheetTheme['colors']['border'];
-export type BorderRadiusToken = keyof LumenStyleSheetTheme['borderRadius'];
-export type ShadowToken = keyof LumenStyleSheetTheme['shadows'];
-export type TypographyVariant = keyof LumenStyleSheetTheme['typographies'];
+type SpacingToken = keyof LumenStyleSheetTheme['spacings'];
+type BorderWidthToken = keyof LumenStyleSheetTheme['borderWidth'];
+type SizeToken = keyof LumenStyleSheetTheme['sizes'];
+type BackgroundColorToken = keyof LumenStyleSheetTheme['colors']['bg'];
+type TextColorToken = keyof LumenStyleSheetTheme['colors']['text'];
+type BorderColorToken = keyof LumenStyleSheetTheme['colors']['border'];
+type BorderRadiusToken = keyof LumenStyleSheetTheme['borderRadius'];
+type ShadowToken = keyof LumenStyleSheetTheme['shadows'];
+type TypographyVariant = keyof LumenStyleSheetTheme['typographies'];
 
 /**
  * Spacing props - use spacing tokens only
@@ -22,6 +29,8 @@ type SpacingProps = {
   paddingBottom?: SpacingToken;
   paddingLeft?: SpacingToken;
   paddingRight?: SpacingToken;
+  paddingStart?: SpacingToken;
+  paddingEnd?: SpacingToken;
   paddingHorizontal?: SpacingToken;
   paddingVertical?: SpacingToken;
   margin?: SpacingToken;
@@ -29,6 +38,8 @@ type SpacingProps = {
   marginBottom?: SpacingToken;
   marginLeft?: SpacingToken;
   marginRight?: SpacingToken;
+  marginStart?: SpacingToken;
+  marginEnd?: SpacingToken;
   marginHorizontal?: SpacingToken;
   marginVertical?: SpacingToken;
   gap?: SpacingToken;
@@ -56,14 +67,33 @@ type BackgroundColorProps = {
 };
 
 /**
- * Border props - use border color tokens and border radius tokens only
+ * Border props
  */
 type BorderProps = {
+  /**
+   * width of the border
+   */
+  borderWidth?: BorderWidthToken;
+  borderLeftWidth?: BorderWidthToken;
+  borderRightWidth?: BorderWidthToken;
+  borderTopWidth?: BorderWidthToken;
+  borderBottomWidth?: BorderWidthToken;
+  borderStartWidth?: BorderWidthToken;
+  borderEndWidth?: BorderWidthToken;
+  /**
+   * color of the border
+   */
   borderColor?: BorderColorToken;
   borderTopColor?: BorderColorToken;
   borderBottomColor?: BorderColorToken;
   borderLeftColor?: BorderColorToken;
   borderRightColor?: BorderColorToken;
+  borderStartColor?: BorderColorToken;
+  borderEndColor?: BorderColorToken;
+
+  /**
+   * Radius
+   */
   borderRadius?: BorderRadiusToken;
   borderTopLeftRadius?: BorderRadiusToken;
   borderTopRightRadius?: BorderRadiusToken;
@@ -98,9 +128,12 @@ type FlexLayoutProps = Pick<
   | 'bottom'
   | 'left'
   | 'right'
+  | 'start'
+  | 'end'
   | 'zIndex'
   | 'overflow'
   | 'display'
+  | 'aspectRatio'
 >;
 
 /**
@@ -108,7 +141,7 @@ type FlexLayoutProps = Pick<
  */
 type OtherViewStyleProps = Pick<
   ViewStyle,
-  'opacity' | 'borderWidth' | 'borderStyle'
+  'opacity' | 'borderStyle' | 'transform'
 >;
 
 /**
@@ -126,6 +159,14 @@ type TypographyVariantProps = {
 };
 
 /**
+ * Text style props - passthrough from React Native
+ */
+type OtherTextStyleProps = Pick<
+  TextStyle,
+  'textAlign' | 'textTransform' | 'textDecorationLine'
+>;
+
+/**
  * Main public types - combine token props with RN props
  */
 export type LumenViewInputProps = SpacingProps &
@@ -140,6 +181,7 @@ export type LumenViewInputProps = SpacingProps &
 export type LumenTextInputProps = LumenViewInputProps &
   TextColorProps &
   TypographyVariantProps &
+  OtherTextStyleProps &
   TextProps;
 
 /**

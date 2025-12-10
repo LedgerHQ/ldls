@@ -72,10 +72,17 @@ export const resolveTextStyle = (
  * Unified style props extractor
  * Loops only through input props with O(1) Set lookup
  */
-const extractStyleProps = <StyleProps, RestProps>(
+const extractStyleProps = <
+  StyleProps,
+  RestProps,
+  ReturnType = {
+    lumenStyle: StyleProps;
+    rest: RestProps;
+  },
+>(
   props: Record<string, unknown>,
   stylePropsSet: Set<string>,
-): { lumenStyle: StyleProps; rest: RestProps } => {
+): ReturnType => {
   const lumenStyle: Record<string, unknown> = {};
   const rest: Record<string, unknown> = {};
 
@@ -87,7 +94,7 @@ const extractStyleProps = <StyleProps, RestProps>(
     }
   }
 
-  return { lumenStyle: lumenStyle as StyleProps, rest: rest as RestProps };
+  return { lumenStyle, rest } as ReturnType;
 };
 
 /**

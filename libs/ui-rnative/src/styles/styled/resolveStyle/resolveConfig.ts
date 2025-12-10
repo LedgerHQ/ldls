@@ -14,13 +14,15 @@ export type PropConfig = {
 /**
  * View style props configuration
  */
-export const VIEW_PROP_CONFIG: Record<string, PropConfig> = {
+export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
   // Spacing props
   padding: { path: ['spacings'] },
   paddingTop: { path: ['spacings'] },
   paddingBottom: { path: ['spacings'] },
   paddingLeft: { path: ['spacings'] },
   paddingRight: { path: ['spacings'] },
+  paddingStart: { path: ['spacings'] },
+  paddingEnd: { path: ['spacings'] },
   paddingHorizontal: { path: ['spacings'] },
   paddingVertical: { path: ['spacings'] },
   margin: { path: ['spacings'] },
@@ -28,6 +30,8 @@ export const VIEW_PROP_CONFIG: Record<string, PropConfig> = {
   marginBottom: { path: ['spacings'] },
   marginLeft: { path: ['spacings'] },
   marginRight: { path: ['spacings'] },
+  marginStart: { path: ['spacings'] },
+  marginEnd: { path: ['spacings'] },
   marginHorizontal: { path: ['spacings'] },
   marginVertical: { path: ['spacings'] },
   gap: { path: ['spacings'] },
@@ -51,6 +55,17 @@ export const VIEW_PROP_CONFIG: Record<string, PropConfig> = {
   borderBottomColor: { path: ['colors', 'border'] },
   borderLeftColor: { path: ['colors', 'border'] },
   borderRightColor: { path: ['colors', 'border'] },
+  borderStartColor: { path: ['colors', 'border'] },
+  borderEndColor: { path: ['colors', 'border'] },
+
+  // Border width
+  borderWidth: { path: ['borderWidth'] },
+  borderLeftWidth: { path: ['borderWidth'] },
+  borderRightWidth: { path: ['borderWidth'] },
+  borderTopWidth: { path: ['borderWidth'] },
+  borderBottomWidth: { path: ['borderWidth'] },
+  borderStartWidth: { path: ['borderWidth'] },
+  borderEndWidth: { path: ['borderWidth'] },
 
   // Border radius
   borderRadius: { path: ['borderRadius'] },
@@ -78,12 +93,15 @@ export const VIEW_PROP_CONFIG: Record<string, PropConfig> = {
   bottom: {},
   left: {},
   right: {},
+  start: {},
+  end: {},
   zIndex: {},
   overflow: {},
   display: {},
+  aspectRatio: {},
   opacity: {},
-  borderWidth: {},
   borderStyle: {},
+  transform: {},
 } as const;
 
 /**
@@ -93,6 +111,9 @@ export const TEXT_PROP_CONFIG: Record<string, PropConfig> = {
   ...VIEW_PROP_CONFIG,
   color: { path: ['colors', 'text'] },
   variant: { path: ['typographies'], spread: true },
+  textAlign: {},
+  textTransform: {},
+  textDecorationLine: {},
 } as const;
 
 /**

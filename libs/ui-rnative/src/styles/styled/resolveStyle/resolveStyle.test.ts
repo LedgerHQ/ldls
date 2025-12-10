@@ -72,6 +72,20 @@ describe('resolve-style', () => {
         expect(result.rowGap).toBe(4);
         expect(result.columnGap).toBe(16);
       });
+
+      it('should handle RTL spacing props', () => {
+        const result = resolveViewStyle(mockTheme, {
+          paddingStart: 's8',
+          paddingEnd: 's16',
+          marginStart: 's4',
+          marginEnd: 's24',
+        });
+
+        expect(result.paddingStart).toBe(8);
+        expect(result.paddingEnd).toBe(16);
+        expect(result.marginStart).toBe(4);
+        expect(result.marginEnd).toBe(24);
+      });
     });
 
     describe('Size props', () => {
@@ -193,6 +207,16 @@ describe('resolve-style', () => {
         expect(result.borderLeftColor).toBe(mockTheme.colors.border.error);
         expect(result.borderRightColor).toBe(mockTheme.colors.border.muted);
       });
+
+      it('should handle RTL border color props', () => {
+        const result = resolveViewStyle(mockTheme, {
+          borderStartColor: 'base',
+          borderEndColor: 'muted',
+        });
+
+        expect(result.borderStartColor).toBe(mockTheme.colors.border.base);
+        expect(result.borderEndColor).toBe(mockTheme.colors.border.muted);
+      });
     });
 
     describe('Border radius props', () => {
@@ -300,12 +324,40 @@ describe('resolve-style', () => {
         expect(result.zIndex).toBe(100);
       });
 
+      it('should pass through RTL position props unchanged', () => {
+        const result = resolveViewStyle(mockTheme, {
+          position: 'absolute',
+          start: 10,
+          end: 20,
+        });
+
+        expect(result.position).toBe('absolute');
+        expect(result.start).toBe(10);
+        expect(result.end).toBe(20);
+      });
+
+      it('should pass through aspectRatio unchanged', () => {
+        const result = resolveViewStyle(mockTheme, {
+          aspectRatio: 16 / 9,
+        });
+
+        expect(result.aspectRatio).toBeCloseTo(16 / 9);
+      });
+
+      it('should pass through transform unchanged', () => {
+        const result = resolveViewStyle(mockTheme, {
+          transform: [{ rotate: '45deg' }, { scale: 1.5 }],
+        });
+
+        expect(result.transform).toEqual([{ rotate: '45deg' }, { scale: 1.5 }]);
+      });
+
       it('should pass through other props unchanged', () => {
         const result = resolveViewStyle(mockTheme, {
           overflow: 'hidden',
           display: 'flex',
           opacity: 0.5,
-          borderWidth: 2,
+          borderWidth: 's2',
           borderStyle: 'solid',
         });
 
@@ -326,7 +378,7 @@ describe('resolve-style', () => {
           backgroundColor: 'surface',
           borderRadius: 'md',
           borderColor: 'muted',
-          borderWidth: 1,
+          borderWidth: 's2',
           boxShadow: 'sm',
           flex: 1,
           flexDirection: 'column',
@@ -339,7 +391,7 @@ describe('resolve-style', () => {
         expect(result.backgroundColor).toBe(mockTheme.colors.bg.surface);
         expect(result.borderRadius).toBe(12);
         expect(result.borderColor).toBe(mockTheme.colors.border.muted);
-        expect(result.borderWidth).toBe(1);
+        expect(result.borderWidth).toBe(2);
         expect(result.boxShadow).toBeDefined();
         expect((result.boxShadow as BoxShadowValue[])[0].color).toBe(
           mockTheme.shadows.sm[0].color,
@@ -431,6 +483,46 @@ describe('resolve-style', () => {
       expect(result.color).toBe(mockTheme.colors.text.base);
       expect(result.padding).toBe(8);
       expect(result.fontSize).toBeUndefined();
+    });
+
+    it('should pass through textAlign unchanged', () => {
+      const result = resolveTextStyle(mockTheme, {
+        textAlign: 'center',
+      });
+
+      expect(result.textAlign).toBe('center');
+    });
+
+    it('should pass through textTransform unchanged', () => {
+      const result = resolveTextStyle(mockTheme, {
+        textTransform: 'uppercase',
+      });
+
+      expect(result.textTransform).toBe('uppercase');
+    });
+
+    it('should pass through textDecorationLine unchanged', () => {
+      const result = resolveTextStyle(mockTheme, {
+        textDecorationLine: 'underline',
+      });
+
+      expect(result.textDecorationLine).toBe('underline');
+    });
+
+    it('should combine all text style props', () => {
+      const result = resolveTextStyle(mockTheme, {
+        color: 'active',
+        variant: 'body1',
+        textAlign: 'center',
+        textTransform: 'uppercase',
+        textDecorationLine: 'underline',
+      });
+
+      expect(result.color).toBe(mockTheme.colors.text.active);
+      expect(result.fontSize).toBe(mockTheme.typographies.body1.fontSize);
+      expect(result.textAlign).toBe('center');
+      expect(result.textTransform).toBe('uppercase');
+      expect(result.textDecorationLine).toBe('underline');
     });
   });
 
