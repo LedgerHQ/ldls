@@ -9,7 +9,7 @@ import { RuntimeConstants } from '../../lib/utils';
 import { useControllableState } from '../../lib/utils/use-controllable-state/use-controllable-state';
 
 import { type LumenStyleSheetTheme } from '../types';
-import { createStylesheetTheme } from '../utils/createStylesheetTheme';
+import { createStylesheetTheme } from './createStylesheetTheme';
 import { LumenStyleSheetProviderProps } from './LumenStyleSheetProvider.types';
 
 const DARK_MODE = 'dark';

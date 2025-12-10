@@ -1,10 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import {
-  ledgerLiveDarkTheme,
-  ledgerLiveLightTheme,
-} from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
 import type { BoxShadowValue } from 'react-native';
-import { createStylesheetTheme } from '../utils/createStylesheetTheme';
+import { createStylesheetTheme } from '../Provider/createStylesheetTheme';
 import {
   resolveViewStyle,
   resolveTextStyle,
@@ -15,8 +12,8 @@ import {
 /**
  * Use actual theme from design-core for type-safe testing
  */
-const mockTheme = createStylesheetTheme(ledgerLiveDarkTheme);
-const lightTheme = createStylesheetTheme(ledgerLiveLightTheme);
+const mockTheme = createStylesheetTheme(ledgerLiveThemes.dark);
+const lightTheme = createStylesheetTheme(ledgerLiveThemes.light);
 
 describe('resolve-style', () => {
   describe('resolveViewStyle', () => {
