@@ -11,12 +11,17 @@ export const ledgerLiveCoreTokens = {
   typographies: typographyTokens,
 } satisfies ThemeCoreTokens;
 
-export const ledgerLiveDarkTheme = {
+const ledgerLiveDarkTheme = {
   ...ledgerLiveCoreTokens,
   colors: ledgerLiveDarkColorTokens,
 };
 
-export const ledgerLiveLightTheme = {
+const ledgerLiveLightTheme = {
   ...ledgerLiveCoreTokens,
   colors: ledgerLiveLightColorTokens,
+};
+
+export const ledgerLiveThemes = {
+  dark: ledgerLiveDarkTheme,
+  light: ledgerLiveLightTheme,
 };

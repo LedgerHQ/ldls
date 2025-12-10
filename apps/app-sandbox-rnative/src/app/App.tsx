@@ -1,7 +1,4 @@
-import {
-  ledgerLiveDarkTheme,
-  ledgerLiveLightTheme,
-} from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
 import {
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
@@ -52,10 +49,7 @@ export const App = () => {
     <SafeAreaView className={`${colorScheme} flex flex-1 bg-canvas`}>
       <StatusBar />
       <ThemeProvider
-        themes={{
-          dark: ledgerLiveDarkTheme,
-          light: ledgerLiveLightTheme,
-        }}
+        themes={ledgerLiveThemes}
         colorScheme={colorScheme}
         locale={locale}
       >

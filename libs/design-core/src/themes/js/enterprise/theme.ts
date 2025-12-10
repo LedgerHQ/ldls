@@ -11,12 +11,17 @@ export const enterpriseCoreTokens = {
   typographies: typographyTokens,
 } satisfies ThemeCoreTokens;
 
-export const enterpriseDarkTheme = {
+const enterpriseDarkTheme = {
   ...enterpriseCoreTokens,
   colors: enterpriseDarkColorTokens,
 };
 
-export const enterpriseLightTheme = {
+const enterpriseLightTheme = {
   ...enterpriseCoreTokens,
   colors: enterpriseLightColorTokens,
+};
+
+export const enterpriseThemes = {
+  dark: enterpriseDarkTheme,
+  light: enterpriseLightTheme,
 };

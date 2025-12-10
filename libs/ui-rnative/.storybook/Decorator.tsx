@@ -1,10 +1,7 @@
 import {
-  enterpriseDarkTheme,
-  enterpriseLightTheme,
-  ledgerLiveDarkTheme,
-  ledgerLiveLightTheme,
-  websitesDarkTheme,
-  websitesLightTheme,
+  enterpriseThemes,
+  ledgerLiveThemes,
+  websitesThemes,
 } from '@ledgerhq/ldls-design-core';
 import type { Decorator } from '@storybook/react-native-web-vite';
 
@@ -42,18 +39,9 @@ export const withModeDecorator = createThemeDecorator('mode', [
 ]);
 
 const mappingThemes = {
-  'ledger-live': {
-    dark: ledgerLiveDarkTheme,
-    light: ledgerLiveLightTheme,
-  },
-  enterprise: {
-    dark: enterpriseDarkTheme,
-    light: enterpriseLightTheme,
-  },
-  websites: {
-    dark: websitesDarkTheme,
-    light: websitesLightTheme,
-  },
+  'ledger-live': ledgerLiveThemes,
+  enterprise: enterpriseThemes,
+  websites: websitesThemes,
 } as any;
 
 export const withProvidersDecorator: Decorator = (Story, context) => {

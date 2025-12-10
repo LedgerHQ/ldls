@@ -12,15 +12,12 @@ Wrap your app with `ThemeProvider` and pass your theme objects:
 
 ```tsx
 import { ThemeProvider } from '@ledgerhq/ldls-ui-rnative';
-import { ledgerLiveDarkTheme, ledgerLiveLightTheme } from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
 
 function App() {
   return (
     <ThemeProvider 
-      themes={{ 
-        dark: ledgerLiveDarkTheme, 
-        light: ledgerLiveLightTheme 
-      }}
+      themes={ledgerLiveThemes}
       colorScheme="dark"
     >
       <YourApp />
@@ -41,10 +38,7 @@ If not provided, the theme will follow the device settings.
 
 ```tsx
 <ThemeProvider 
-  themes={{ 
-    dark: ledgerLiveDarkTheme, 
-    light: ledgerLiveLightTheme 
-  }}
+  themes={ledgerLiveThemes}
   colorScheme="dark"
 >
   <App />
