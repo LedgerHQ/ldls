@@ -172,23 +172,21 @@ type OtherTextStyleProps = Pick<
 /**
  * Main public types - combine token props with RN props
  */
-export type LumenViewInputProps = SpacingProps &
+export type LumenViewStyleProps = SpacingProps &
   SizeProps &
   BackgroundColorProps &
   BorderProps &
   ShadowProps &
   FlexLayoutProps &
-  OtherViewStyleProps &
-  ViewProps;
+  OtherViewStyleProps;
 
-export type LumenTextInputProps = LumenViewInputProps &
+export type LumenTextStyleProps = LumenViewStyleProps &
   TextColorProps &
   TypographyProps &
-  OtherTextStyleProps &
-  TextProps;
+  OtherTextStyleProps;
 
 /**
  * Derived style-only types (for internal resolver use)
  */
-export type LumenViewStyleProps = Omit<LumenViewInputProps, keyof ViewProps>;
-export type LumenTextStyleProps = Omit<LumenTextInputProps, keyof TextProps>;
+export type LumenViewProps = LumenViewStyleProps & ViewProps;
+export type LumenTextProps = LumenTextStyleProps & TextProps;

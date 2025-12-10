@@ -5,12 +5,12 @@ import {
   resolveViewStyle,
   extractLumenViewStyleProps,
 } from '../resolveStyle/resolveStyle';
-import type { LumenViewInputProps } from '../types';
+import type { LumenViewProps } from '../types';
 
 type ViewRef = React.ElementRef<typeof View>;
 type ReturnComponentType = MemoExoticComponent<
   React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<LumenViewInputProps> & React.RefAttributes<ViewRef>
+    React.PropsWithoutRef<LumenViewProps> & React.RefAttributes<ViewRef>
   >
 >;
 /**
@@ -40,10 +40,10 @@ type ReturnComponentType = MemoExoticComponent<
  * ```
  */
 export const createStyledView = (
-  Component: React.ComponentType<ViewProps>,
+  Component: React.ComponentType<LumenViewProps>,
 ): ReturnComponentType => {
   const StyledComponent = memo(
-    forwardRef<ViewRef, LumenViewInputProps>((props, ref) => {
+    forwardRef<ViewRef, LumenViewProps>((props, ref) => {
       const { theme } = useTheme();
 
       const { lumenStyle, rest } = extractLumenViewStyleProps(props);

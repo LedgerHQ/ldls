@@ -5,12 +5,12 @@ import {
   resolveTextStyle,
   extractLumenTextStyleProps,
 } from '../resolveStyle/resolveStyle';
-import type { LumenTextInputProps } from '../types';
+import type { LumenTextProps } from '../types';
 
 type TextRef = React.ElementRef<typeof Text>;
 type ReturnComponentType = MemoExoticComponent<
   React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<LumenTextInputProps> & React.RefAttributes<TextRef>
+    React.PropsWithoutRef<LumenTextProps> & React.RefAttributes<TextRef>
   >
 >;
 
@@ -42,10 +42,10 @@ type ReturnComponentType = MemoExoticComponent<
  * ```
  */
 export const createStyledText = (
-  Component: React.ComponentType<TextProps>,
+  Component: React.ComponentType<LumenTextProps>,
 ): ReturnComponentType => {
   const StyledComponent = memo(
-    forwardRef<TextRef, LumenTextInputProps>((props, ref) => {
+    forwardRef<TextRef, LumenTextProps>((props, ref) => {
       const { theme } = useTheme();
       const { lumenStyle, rest } = extractLumenTextStyleProps(props);
       const resolvedStyle = resolveTextStyle(theme, lumenStyle);

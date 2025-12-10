@@ -107,7 +107,7 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
 /**
  * Text style props configuration (extends view props + color + typo)
  */
-export const TEXT_PROP_CONFIG: Record<string, PropConfig> = {
+export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyleProps, PropConfig> = {
   ...VIEW_PROP_CONFIG,
   color: { path: ['colors', 'text'] },
   typo: { path: ['typographies'], spread: true },
