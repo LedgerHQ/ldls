@@ -8,7 +8,7 @@ export const getNegativeSpacings = <
   Input extends LumenTheme['spacings'],
   Output = AddEntriesNegative<Input>,
 >(
-  spacings: Input,
+  spacings: Input = {} as Input,
 ): Output => {
   return Object.fromEntries(
     Object.entries(spacings).map(([key, value]) => [`-${key}`, value * -1]),
@@ -30,8 +30,8 @@ export const createStylesheetTheme = (
   return {
     ...theme,
     spacings: {
-      ...theme.spacings,
-      ...getNegativeSpacings(theme.spacings),
+      ...theme?.spacings,
+      ...getNegativeSpacings(theme?.spacings),
     },
     typographies: theme.typographies.sm,
   };

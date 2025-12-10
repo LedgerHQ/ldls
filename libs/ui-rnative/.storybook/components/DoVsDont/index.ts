@@ -1,3 +1,3 @@
-export { DoVsDontRow } from './DoVsDontRow';
-export { DoBlockItem } from './DoBlock';
-export { DontBlockItem } from './DontBlock';
+export * from './DoVsDontRow';
+export * from './DoBlock';
+export * from './DontBlock';

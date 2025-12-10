@@ -25,4 +25,7 @@
     "javascript",
     "html"
   ],
+  "[mdx]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
 }

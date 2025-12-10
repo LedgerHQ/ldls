@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-native-web-vite';
 import { mergeConfig } from 'vite';
-import { commonjsExportsShim } from './vite-plugins/commonjs-exports-shim.ts';
+import { commonjsExportsShim } from './vite-plugins/commonjs-exports-shim';
 
 const config: StorybookConfig = {
   stories: [
