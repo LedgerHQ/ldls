@@ -64,9 +64,9 @@ describe('createStyledText', () => {
     expect(StyledText.displayName).toBe('StyledText(Text)');
   });
 
-  it('should apply typography variant', () => {
+  it('should apply typography typo', () => {
     renderWithProvider(
-      <StyledText testID='text' variant='body1'>
+      <StyledText testID='text' typo='body1'>
         Hello
       </StyledText>,
     );
@@ -88,9 +88,9 @@ describe('createStyledText', () => {
     expect(screen.getByTestId('text').props.style.color).toBe('#666666');
   });
 
-  it('should combine variant, color and spacing', () => {
+  it('should combine typo, color and spacing', () => {
     renderWithProvider(
-      <StyledText testID='text' variant='body1' color='base' marginTop='s8'>
+      <StyledText testID='text' typo='body1' color='base' marginTop='s8'>
         Styled
       </StyledText>,
     );
@@ -107,7 +107,7 @@ describe('createStyledText', () => {
     renderWithProvider(
       <StyledText
         testID='text'
-        variant='body1'
+        typo='body1'
         style={{ textDecorationLine: 'underline' }}
       >
         Underlined
@@ -141,7 +141,7 @@ describe('createStyledText', () => {
       const StyledTracked = createStyledText(TrackedText);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' variant='body1'>
+        <StyledTracked testID='text' typo='body1'>
           Hello
         </StyledTracked>,
       );
@@ -151,7 +151,7 @@ describe('createStyledText', () => {
       // Re-render with same props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='text' variant='body1'>
+          <StyledTracked testID='text' typo='body1'>
             Hello
           </StyledTracked>
         </LumenStyleSheetProvider>,
@@ -170,7 +170,7 @@ describe('createStyledText', () => {
       const StyledTracked = createStyledText(TrackedText);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' variant='body1'>
+        <StyledTracked testID='text' typo='body1'>
           Hello
         </StyledTracked>,
       );
@@ -199,7 +199,7 @@ describe('createStyledText', () => {
       const StyledTracked = createStyledText(TrackedText);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' variant='body1'>
+        <StyledTracked testID='text' typo='body1'>
           Hello
         </StyledTracked>,
       );
@@ -209,7 +209,7 @@ describe('createStyledText', () => {
       // Re-render with different children
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='text' variant='body1'>
+          <StyledTracked testID='text' typo='body1'>
             World
           </StyledTracked>
         </LumenStyleSheetProvider>,

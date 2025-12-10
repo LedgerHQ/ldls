@@ -1,11 +1,11 @@
 import React, { forwardRef, memo, MemoExoticComponent } from 'react';
 import type { Text, TextProps, TextStyle } from 'react-native';
-import { useTheme } from '../../Provider/useTheme';
-import type { LumenTextInputProps } from '../../types';
+import { useTheme } from '../Provider/useTheme';
 import {
   resolveTextStyle,
   extractLumenTextStyleProps,
 } from '../resolveStyle/resolveStyle';
+import type { LumenTextInputProps } from '../types';
 
 type TextRef = React.ElementRef<typeof Text>;
 type ReturnComponentType = MemoExoticComponent<
@@ -18,7 +18,7 @@ type ReturnComponentType = MemoExoticComponent<
  * Factory function to create a styled Text component.
  *
  * Creates a component that accepts token-constrained style props directly,
- * plus a `variant` prop for typography presets, resolving them to actual
+ * plus a `typo` prop for typography presets, resolving them to actual
  * values at runtime using the current theme.
  *
  * @param Component - The base Text-like component to wrap
@@ -31,14 +31,14 @@ type ReturnComponentType = MemoExoticComponent<
  * // Create a basic Text
  * const StyledText = createStyledText(Text);
  *
- * // Usage - token props and variant are resolved
- * <StyledText variant='body1'>Hello World</StyledText>
- * <StyledText variant='heading2SemiBold' marginTop='s8' color='muted'>
+ * // Usage - token props and typo are resolved
+ * <StyledText typo='body1'>Hello World</StyledText>
+ * <StyledText typo='heading2SemiBold' marginTop='s8' color='muted'>
  *   Subtitle
  * </StyledText>
  *
  * // style prop for escape hatch
- * <StyledText variant='body1' style={{ letterSpacing: 2 }} />
+ * <StyledText typo='body1' style={{ letterSpacing: 2 }} />
  * ```
  */
 export const createStyledText = (

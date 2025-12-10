@@ -1,4 +1,5 @@
 export { LumenStyleSheetProvider } from './Provider/LumenStyleSheetProvider';
 export { LumenStyleSheet } from './LumenStyleSheet';
 export * from './types';
-export * from './styled';
+export * from './factories/createStyledText';
+export * from './factories/createStyledView';

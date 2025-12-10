@@ -18,12 +18,12 @@ type TextColorToken = keyof LumenStyleSheetTheme['colors']['text'];
 type BorderColorToken = keyof LumenStyleSheetTheme['colors']['border'];
 type BorderRadiusToken = keyof LumenStyleSheetTheme['borderRadius'];
 type ShadowToken = keyof LumenStyleSheetTheme['shadows'];
-type TypographyVariant = keyof LumenStyleSheetTheme['typographies'];
+type TypographyToken = keyof LumenStyleSheetTheme['typographies'];
 
-/**
- * Spacing props - use spacing tokens only
- */
 type SpacingProps = {
+  /**
+   * Padding
+   */
   padding?: SpacingToken;
   paddingTop?: SpacingToken;
   paddingBottom?: SpacingToken;
@@ -33,6 +33,9 @@ type SpacingProps = {
   paddingEnd?: SpacingToken;
   paddingHorizontal?: SpacingToken;
   paddingVertical?: SpacingToken;
+  /**
+   * Margin
+   */
   margin?: SpacingToken;
   marginTop?: SpacingToken;
   marginBottom?: SpacingToken;
@@ -42,6 +45,9 @@ type SpacingProps = {
   marginEnd?: SpacingToken;
   marginHorizontal?: SpacingToken;
   marginVertical?: SpacingToken;
+  /**
+   * Gaps
+   */
   gap?: SpacingToken;
   rowGap?: SpacingToken;
   columnGap?: SpacingToken;
@@ -66,12 +72,9 @@ type BackgroundColorProps = {
   backgroundColor?: BackgroundColorToken;
 };
 
-/**
- * Border props
- */
 type BorderProps = {
   /**
-   * width of the border
+   * Border width
    */
   borderWidth?: BorderWidthToken;
   borderLeftWidth?: BorderWidthToken;
@@ -81,7 +84,7 @@ type BorderProps = {
   borderStartWidth?: BorderWidthToken;
   borderEndWidth?: BorderWidthToken;
   /**
-   * color of the border
+   * Border Color
    */
   borderColor?: BorderColorToken;
   borderTopColor?: BorderColorToken;
@@ -92,7 +95,7 @@ type BorderProps = {
   borderEndColor?: BorderColorToken;
 
   /**
-   * Radius
+   * Border Radius
    */
   borderRadius?: BorderRadiusToken;
   borderTopLeftRadius?: BorderRadiusToken;
@@ -152,10 +155,10 @@ type TextColorProps = {
 };
 
 /**
- * Typography variant prop
+ * Typography prop
  */
-type TypographyVariantProps = {
-  variant?: TypographyVariant;
+type TypographyProps = {
+  typo?: TypographyToken;
 };
 
 /**
@@ -180,7 +183,7 @@ export type LumenViewInputProps = SpacingProps &
 
 export type LumenTextInputProps = LumenViewInputProps &
   TextColorProps &
-  TypographyVariantProps &
+  TypographyProps &
   OtherTextStyleProps &
   TextProps;
 

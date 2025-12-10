@@ -6,7 +6,7 @@ import type {
   LumenTextInputProps,
   LumenViewInputProps,
   LumenViewStyleProps,
-} from '../../types';
+} from '../types';
 import {
   VIEW_PROP_CONFIG,
   TEXT_PROP_CONFIG,
@@ -41,7 +41,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
       value as string,
     ]);
 
-    // Spread props (like variant) merge into resolved styles
+    // Spread props (like typo) merge into resolved styles
     if (propConfig.spread && resolvedValue) {
       Object.assign(resolved, resolvedValue);
     } else {

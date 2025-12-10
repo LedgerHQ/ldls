@@ -1,6 +1,5 @@
 import { View } from 'react-native';
-import type { LumenViewInputProps } from '../../../styles';
-import { createStyledView } from '../../../styles/styled';
+import { createStyledView, type LumenViewInputProps } from '../../../styles';
 
 /**
  * Box - A layout primitive component with token-constrained style props.

@@ -1,27 +1,27 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TextStories from './Text.stories';
 
-<Meta title='Typography/Text' of={TextStories} />
+<Meta title='Utility/Text' of={TextStories} />
 
 # Text
 
-Text is a typography component that wraps React Native's `Text` with a `variant` prop for typography presets and token-constrained style props from the design system theme.
+Text is a typography component that wraps React Native's `Text` with a `typo` prop for typography presets and token-constrained style props from the design system theme.
 
 ## Interactive Example
 
 <Canvas of={TextStories.Base} />
 <Controls of={TextStories.Base} />
 
-## Available Variants
+## Available Typographies
 
-The `variant` property should be used to apply a typography preset that includes font size, font weight, line height, and letter spacing.
+The `typo` property should be used to apply a typography preset that includes font size, font weight, line height, and letter spacing.
 
 ### Body
 Used for content text like paragraphs.
 - `body1`, `body1SemiBold`
 - `body2`, `body2SemiBold`
-- `body3`, `body3SemiBold` (deprecated)
-- `body4`, `body4SemiBold` (deprecated)
+- `body3`, `body3SemiBold` 
+- `body4`, `body4SemiBold` 
 
 ### Headings
 Used for section titles like page titles.

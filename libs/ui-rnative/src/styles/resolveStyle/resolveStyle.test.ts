@@ -4,7 +4,7 @@ import {
   ledgerLiveLightTheme,
 } from '@ledgerhq/ldls-design-core';
 import type { BoxShadowValue } from 'react-native';
-import { adaptThemeForStylesheet } from '../../utils/adaptThemeForStylesheet';
+import { adaptThemeForStylesheet } from '../utils/adaptThemeForStylesheet';
 import {
   resolveViewStyle,
   resolveTextStyle,
@@ -443,8 +443,8 @@ describe('resolve-style', () => {
       expect(result.color).toBe(mockTheme.colors.text.muted);
     });
 
-    it('should resolve typography variant', () => {
-      const result = resolveTextStyle(mockTheme, { variant: 'body1' });
+    it('should resolve typography typo', () => {
+      const result = resolveTextStyle(mockTheme, { typo: 'body1' });
 
       expect(result.fontSize).toBe(mockTheme.typographies.body1.fontSize);
       expect(result.fontWeight).toBe(mockTheme.typographies.body1.fontWeight);
@@ -459,7 +459,7 @@ describe('resolve-style', () => {
         color: 'active',
         marginTop: 's8',
         padding: 's4',
-        variant: 'heading1',
+        typo: 'heading1',
       });
 
       expect(result.color).toBe(mockTheme.colors.text.active);
@@ -474,7 +474,7 @@ describe('resolve-style', () => {
       );
     });
 
-    it('should handle text without variant', () => {
+    it('should handle text without typo', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'base',
         padding: 's8',
@@ -512,7 +512,7 @@ describe('resolve-style', () => {
     it('should combine all text style props', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'active',
-        variant: 'body1',
+        typo: 'body1',
         textAlign: 'center',
         textTransform: 'uppercase',
         textDecorationLine: 'underline',
@@ -612,23 +612,23 @@ describe('resolve-style', () => {
       expect(rest).toEqual({ customProp: 'test-text' });
     });
 
-    it('should extract variant prop', () => {
+    it('should extract typo prop', () => {
       const props = {
-        variant: 'body1',
+        typo: 'body1',
         color: 'muted',
         customProp: 'test',
       } as const;
 
       const { lumenStyle, rest } = extractLumenTextStyleProps(props);
 
-      expect(lumenStyle.variant).toBe('body1');
+      expect(lumenStyle.typo).toBe('body1');
       expect(lumenStyle.color).toBe('muted');
       expect(rest).toEqual({ customProp: 'test' });
     });
 
     it('should extract all text style props', () => {
       const props = {
-        variant: 'heading1',
+        typo: 'heading1',
         color: 'active',
         padding: 's16',
         marginTop: 's8',
@@ -639,7 +639,7 @@ describe('resolve-style', () => {
       const { lumenStyle, rest } = extractLumenTextStyleProps(props);
 
       expect(lumenStyle).toEqual({
-        variant: 'heading1',
+        typo: 'heading1',
         color: 'active',
         padding: 's16',
         marginTop: 's8',

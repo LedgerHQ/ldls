@@ -1,11 +1,11 @@
 import React, { forwardRef, memo, MemoExoticComponent } from 'react';
 import type { View, ViewProps, ViewStyle } from 'react-native';
-import { useTheme } from '../../Provider/useTheme';
-import type { LumenViewInputProps } from '../../types';
+import { useTheme } from '../Provider/useTheme';
 import {
   resolveViewStyle,
   extractLumenViewStyleProps,
 } from '../resolveStyle/resolveStyle';
+import type { LumenViewInputProps } from '../types';
 
 type ViewRef = React.ElementRef<typeof View>;
 type ReturnComponentType = MemoExoticComponent<
