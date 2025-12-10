@@ -5,7 +5,7 @@ import baseConfig from '../../eslint.config.mjs';
 export default [
   ...baseConfig,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}'],
     plugins: {
       storybook,
     },

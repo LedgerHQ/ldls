@@ -9,7 +9,7 @@ import { RuntimeConstants } from '../../lib/utils';
 import { useControllableState } from '../../lib/utils/use-controllable-state/use-controllable-state';
 
 import { type LumenStyleSheetTheme } from '../types';
-import { adaptThemeForStylesheet } from '../utils/adaptThemeForStylesheet';
+import { createStylesheetTheme } from './createStylesheetTheme';
 import { LumenStyleSheetProviderProps } from './LumenStyleSheetProvider.types';
 
 const DARK_MODE = 'dark';
@@ -61,7 +61,7 @@ export const LumenStyleSheetProvider: FC<LumenStyleSheetProviderProps> = ({
   const contextValue = useMemo(() => {
     const currentTheme = themes[colorSchemeState as 'dark' | 'light'];
     return {
-      theme: adaptThemeForStylesheet(currentTheme),
+      theme: createStylesheetTheme(currentTheme),
       colorScheme: colorSchemeState,
       setColorScheme,
       toggleColorScheme: () => {

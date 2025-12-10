@@ -11,12 +11,17 @@ export const websitesCoreTokens = {
   typographies: typographyTokens,
 } satisfies ThemeCoreTokens;
 
-export const websitesDarkTheme = {
+const websitesDarkTheme = {
   ...websitesCoreTokens,
   colors: websitesDarkColorTokens,
 };
 
-export const websitesLightTheme = {
+const websitesLightTheme = {
   ...websitesCoreTokens,
   colors: websitesLightColorTokens,
+};
+
+export const websitesThemes = {
+  dark: websitesDarkTheme,
+  light: websitesLightTheme,
 };

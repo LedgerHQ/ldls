@@ -1,6 +1,6 @@
 import React from 'react';
-import { Folder } from '../src/lib/Symbols/Icons/Folder';
-import { cn } from '../src/lib/utils';
+import { Folder } from '../../src/lib/Symbols/Icons/Folder';
+import { cn } from '../../src/lib/utils';
 
 type TabProps = {
   label: string;
