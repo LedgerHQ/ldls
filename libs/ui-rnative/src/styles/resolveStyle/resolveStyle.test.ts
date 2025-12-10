@@ -4,7 +4,7 @@ import {
   ledgerLiveLightTheme,
 } from '@ledgerhq/ldls-design-core';
 import type { BoxShadowValue } from 'react-native';
-import { adaptThemeForStylesheet } from '../utils/adaptThemeForStylesheet';
+import { createStylesheetTheme } from '../utils/createStylesheetTheme';
 import {
   resolveViewStyle,
   resolveTextStyle,
@@ -15,8 +15,8 @@ import {
 /**
  * Use actual theme from design-core for type-safe testing
  */
-const mockTheme = adaptThemeForStylesheet(ledgerLiveDarkTheme);
-const lightTheme = adaptThemeForStylesheet(ledgerLiveLightTheme);
+const mockTheme = createStylesheetTheme(ledgerLiveDarkTheme);
+const lightTheme = createStylesheetTheme(ledgerLiveLightTheme);
 
 describe('resolve-style', () => {
   describe('resolveViewStyle', () => {
