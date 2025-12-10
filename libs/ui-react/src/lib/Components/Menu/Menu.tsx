@@ -26,7 +26,7 @@ const contentStyles = cn(
 
 const itemStyles = cn(
   'relative flex cursor-default select-none items-center gap-12',
-  'rounded-sm px-8 h-44 outline-none',
+  'h-44 rounded-sm px-8 outline-none',
   'text-base body-2-semi-bold',
   'transition-colors',
   'focus:bg-base-transparent-hover',
@@ -36,7 +36,7 @@ const itemStyles = cn(
 
 const labelStyles = cn('px-8 py-4 text-muted body-3-semi-bold');
 
-const separatorStyles = cn('h-px mx-8 my-4 border-b border-muted-subtle');
+const separatorStyles = cn('mx-8 my-4 h-1 border-b border-muted-subtle');
 
 const subTriggerStyles = cn(
   itemStyles,
