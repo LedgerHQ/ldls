@@ -4,6 +4,7 @@ import type {
   TextStyle,
   ViewProps,
   TextProps,
+  PressableProps,
 } from 'react-native';
 import type { LumenStyleSheetTheme } from './theme.types';
 
@@ -190,3 +191,4 @@ export type LumenTextStyleProps = LumenViewStyleProps &
  */
 export type LumenViewProps = LumenViewStyleProps & ViewProps;
 export type LumenTextProps = LumenTextStyleProps & TextProps;
+export type LumenPressableProps = LumenViewStyleProps & PressableProps;
