@@ -86,4 +86,4 @@ All design tokens are automatically kept in sync with Figma design files through
 
 - [📚 Full Documentation](https://ldls.vercel.app)
 - [🎨 Setup Tailwind](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
-- [🏠 Repository](https://github.com/LedgerHQ/ldls)
+- [🏠 Repository](https://github.com/LedgerHQ/lumen)

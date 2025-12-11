@@ -176,20 +176,20 @@ For detailed API documentation, visit our [Storybook](https://ldls.vercel.app).
 
 ## 🤝 Contributing
 
-This package is part of the [Ledger Design System monorepo](https://github.com/LedgerHQ/ldls).
+This package is part of the [Ledger Design System monorepo](https://github.com/LedgerHQ/lumen).
 
 To contribute:
 
-1. Visit the [main repository](https://github.com/LedgerHQ/ldls)
-2. Read our [Contributing Guide](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md)
-3. Check the [Development Setup](https://github.com/LedgerHQ/ldls#setup-development-environment)
+1. Visit the [main repository](https://github.com/LedgerHQ/lumen)
+2. Read our [Contributing Guide](https://github.com/LedgerHQ/lumen/blob/main/CONTRIBUTING.md)
+3. Check the [Development Setup](https://github.com/LedgerHQ/lumen#setup-development-environment)
 
 ---
 
 ## 🔗 Links
 
 - [📚 Storybook Documentation](https://ldls.vercel.app)
-- [🏠 Main Repository](https://github.com/LedgerHQ/ldls)
+- [🏠 Main Repository](https://github.com/LedgerHQ/lumen)
 - [📦 npm Package](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react)
 - [🎨 Design System SetUp Guide](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
-- [🐛 Report Issues](https://github.com/LedgerHQ/ldls/issues)
+- [🐛 Report Issues](https://github.com/LedgerHQ/lumen/issues)

@@ -91,4 +91,4 @@ By referencing the file from node_modules instead of copying:
 
 - [Lumen Documentation](https://ldls.vercel.app)
 - [Package README](../README.md)
-- [Main Repository](https://github.com/LedgerHQ/ldls)
+- [Main Repository](https://github.com/LedgerHQ/lumen)

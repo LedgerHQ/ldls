@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://ldls.vercel.app" target="_blank">📚 View Storybook</a> |
-  <a href="https://github.com/LedgerHQ/ldls/releases">📋 Changelog</a>
+  <a href="https://github.com/LedgerHQ/lumen/releases">📋 Changelog</a>
 </p>
 
 ---

@@ -79,4 +79,4 @@ import { Settings, ArrowRight, CheckCircle } from '@ledgerhq/lumen-ui-rnative/sy
 ## 📚 Documentation
 
 - [📱 React Native Setup Guide](https://nativewind.dev/getting-started/react-native)
-- [🏠 Main Repository](https://github.com/LedgerHQ/ldls)
+- [🏠 Main Repository](https://github.com/LedgerHQ/lumen)

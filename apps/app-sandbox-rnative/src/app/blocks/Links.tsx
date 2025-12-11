@@ -9,7 +9,7 @@ import { Alert, Text, View } from 'react-native';
 export function Links() {
   return (
     <View className='gap-8'>
-      <Link href={'https://github.com/LedgerHQ/ldls'} icon={Github} isExternal>
+      <Link href={'https://github.com/LedgerHQ/lumen'} icon={Github} isExternal>
         Set up Lumen in your project
       </Link>
       <Link
@@ -38,7 +38,7 @@ export function Links() {
         <Text className='text-base'>
           If you require assistance, please contact us via our{' '}
         </Text>
-        <Link size='sm' isExternal href='https://github.com/LedgerHQ/ldls'>
+        <Link size='sm' isExternal href='https://github.com/LedgerHQ/lumen'>
           support page
         </Link>
         <Text className='text-base'> during business hours (9am-5pm).</Text>
