@@ -1,5 +1,5 @@
 import { Text as RNText } from 'react-native';
-import { createStyledText, type LumenTextStyleProps } from '../../../styles';
+import { createStyledText, type LumenTextStyleProps } from '../../../../styles';
 
 /**
  * Text - A typography component with typo support and token-constrained style props.
