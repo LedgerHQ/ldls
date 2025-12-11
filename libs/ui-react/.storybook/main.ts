@@ -28,7 +28,7 @@ const config: StorybookConfig = {
   refs: {
     'react-native': {
       title: 'React Native',
-      url: 'https://lumen-react-native.vercel.app/',
+      url: 'https://ldls-react-native.vercel.app/',
     },
   },
 

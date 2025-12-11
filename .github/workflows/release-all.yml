@@ -13,7 +13,7 @@ on:
 
 env:
   NX_NO_CLOUD: true
-  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/ldls-npm-prod-public
+  NPM_REGISTRY: jfrog.ledgerlabs.net/artifactory/api/npm/lumen-npm-prod-public
 
 jobs:
   release:
