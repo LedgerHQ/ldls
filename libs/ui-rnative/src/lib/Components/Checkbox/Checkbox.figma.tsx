@@ -14,7 +14,7 @@ figma.connect(
   Checkbox,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6688%3A3600',
   {
-    imports: ["import { Checkbox } from '@ledgerhq/ldls-ui-rnative'"],
+    imports: ["import { Checkbox } from '@ledgerhq/lumen-ui-rnative'"],
     props: {
       checkbox: figma.nestedProps('.checkbox', {
         checked: figma.boolean('checked'),

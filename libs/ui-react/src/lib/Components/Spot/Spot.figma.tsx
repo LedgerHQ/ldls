@@ -7,7 +7,7 @@ figma.connect(
   Spot,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6786%3A4738',
   {
-    imports: ["import { Spot } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Spot } from '@ledgerhq/lumen-ui-react'"],
     props: {
       disabled: figma.enum('state', {
         disabled: true,

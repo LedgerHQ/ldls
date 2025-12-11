@@ -1,5 +1,5 @@
-import { Spot } from '@ledgerhq/ldls-ui-rnative';
-import { ExternalLink } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Spot } from '@ledgerhq/lumen-ui-rnative';
+import { ExternalLink } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { View } from 'react-native';
 
 export const Spots = () => {

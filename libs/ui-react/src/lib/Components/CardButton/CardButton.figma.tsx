@@ -7,7 +7,7 @@ figma.connect(
   CardButton,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=89%3A525',
   {
-    imports: ["import { CardButton } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { CardButton } from '@ledgerhq/lumen-ui-react'"],
     props: {
       // These props were automatically mapped based on your linked code:
       title: figma.string('title'),

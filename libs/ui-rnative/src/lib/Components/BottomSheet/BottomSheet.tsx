@@ -1,5 +1,5 @@
 import GorghomBottomSheet, { SNAP_POINT_TYPE } from '@gorhom/bottom-sheet';
-import { createSafeContext, useMergedRef } from '@ledgerhq/ldls-utils-shared';
+import { createSafeContext, useMergedRef } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { cssInterop } from 'nativewind';
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';

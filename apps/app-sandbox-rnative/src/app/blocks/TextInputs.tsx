@@ -1,5 +1,5 @@
-import { AddressInput, Search, TextInput } from '@ledgerhq/ldls-ui-rnative';
-import { Eye, EyeCross } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { AddressInput, Search, TextInput } from '@ledgerhq/lumen-ui-rnative';
+import { Eye, EyeCross } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
 
@@ -9,7 +9,7 @@ export function TextInputs() {
 
   useEffect(() => {
     if (team) {
-      setIsTeamValid(team.toLowerCase() === 'ldls');
+      setIsTeamValid(team.toLowerCase() === 'lumen');
     }
   }, [team]);
 
@@ -54,7 +54,7 @@ export function TextInputs() {
         onChangeText={setTeam}
         errorMessage={
           !isTeamValid && team !== undefined
-            ? 'Team must match "ldls"!'
+            ? 'Team must match "lumen"!'
             : undefined
         }
       />

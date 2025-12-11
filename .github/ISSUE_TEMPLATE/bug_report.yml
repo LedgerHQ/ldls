@@ -13,9 +13,9 @@ body:
     attributes:
       label: Which package(s) are affected?
       options:
-        - label: "@ledgerhq/ldls-design-core (design tokens)"
-        - label: "@ledgerhq/ldls-ui-react (React UI kit)"
-        - label: "@ledgerhq/ldls-ui-rnative (React Native UI kit)"
+        - label: "@ledgerhq/lumen-design-core (design tokens)"
+        - label: "@ledgerhq/lumen-ui-react (React UI kit)"
+        - label: "@ledgerhq/lumen-ui-rnative (React Native UI kit)"
     validations:
       required: true
 
@@ -23,7 +23,7 @@ body:
     id: package-version
     attributes:
       label: Package version(s)
-      placeholder: "e.g., @ledgerhq/ldls-ui-react@1.2.3"
+      placeholder: "e.g., @ledgerhq/lumen-ui-react@1.2.3"
     validations:
       required: true
 

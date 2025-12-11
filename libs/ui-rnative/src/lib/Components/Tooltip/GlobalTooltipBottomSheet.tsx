@@ -14,7 +14,7 @@ import { useGlobalTooltipSafeContext } from './GlobalTooltipContext';
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { GlobalTooltipProvider, GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalTooltipProvider, GlobalTooltipBottomSheet } from '@ledgerhq/lumen-ui-rnative';
  *
  * function App() {
  *   return (

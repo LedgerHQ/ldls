@@ -31,8 +31,8 @@ const tileVariants = {
  *
  * @example
  * // Basic tile item
- * import { Tile, Spot } from '@ledgerhq/ldls-ui-rnative';
- * import { Wallet } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Tile, Spot } from '@ledgerhq/lumen-ui-rnative';
+ * import { Wallet } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Tile
  *   title="Ethereum"

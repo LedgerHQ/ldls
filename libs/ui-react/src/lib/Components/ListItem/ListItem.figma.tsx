@@ -7,7 +7,7 @@ figma.connect(
   ListItem,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2255%3A4155',
   {
-    imports: ["import { ListItem } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { ListItem } from '@ledgerhq/lumen-ui-react'"],
     props: {
       // These props were automatically mapped based on your linked code:
       title: figma.string('title'),

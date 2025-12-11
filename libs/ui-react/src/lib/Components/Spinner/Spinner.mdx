@@ -63,7 +63,7 @@ Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core
 
 # Install peer dependencies
 npm install tailwindcss@^3.4.0 react@^18.3.1 clsx tailwind-merge class-variance-authority
@@ -75,12 +75,12 @@ To use Spinner components with our custom Tailwind preset, you need to configure
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+    './node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -93,7 +93,7 @@ export default config;
 Import and use the Spinner component:
 
 ```tsx
-import { Spinner } from '@ledgerhq/ldls-ui-react';
+import { Spinner } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [isLoading, setIsLoading] = useState(false);
@@ -107,7 +107,7 @@ function MyComponent() {
 Spinners support predefined size variants that ensure consistent visual hierarchy:
 
 ```tsx
-import { Spinner } from '@ledgerhq/ldls-ui-react';
+import { Spinner } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (

@@ -1,4 +1,4 @@
-import { Banner } from '@ledgerhq/ldls-ui-rnative';
+import { Banner } from '@ledgerhq/lumen-ui-rnative';
 import { View } from 'react-native';
 
 export const Banners = () => {

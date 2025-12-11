@@ -58,10 +58,10 @@ const spotVariants = {
  * Do not use it to modify the spot's core appearance (colors, size, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Spot } from '@ledgerhq/ldls-ui-rnative';
+ * import { Spot } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Custom icon spot
- * import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Spot appearance="icon" icon={Settings} />
  *

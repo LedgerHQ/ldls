@@ -1,11 +1,11 @@
-# @ledgerhq/ldls-design-core
+# @ledgerhq/lumen-design-core
 
 **Design tokens and Tailwind presets for Ledger Design System** - Centralized design tokens that ensure consistency across React and React Native applications. All design tokens are automatically synchronized with Figma via the Figma REST API.
 
 ## 📦 Installation
 
 ```bash
-npm install @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-design-core
 
 # Install required peer dependency
 npm install tailwindcss
@@ -19,10 +19,10 @@ Create or update your `tailwind.config.js`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset],
 } satisfies Config;
 
@@ -86,4 +86,4 @@ All design tokens are automatically kept in sync with Figma design files through
 
 - [📚 Full Documentation](https://ldls.vercel.app)
 - [🎨 Setup Tailwind](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
-- [🏠 Repository](https://github.com/LedgerHQ/ldls)
+- [🏠 Repository](https://github.com/LedgerHQ/lumen)

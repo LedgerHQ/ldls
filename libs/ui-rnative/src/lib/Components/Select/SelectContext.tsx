@@ -1,4 +1,4 @@
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { ReactNode } from 'react';
 import { SelectContentItem } from './types';
 

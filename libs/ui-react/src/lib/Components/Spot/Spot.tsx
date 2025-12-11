@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { HTMLAttributes, useMemo } from 'react';
 import {
@@ -109,10 +109,10 @@ export type SpotProps = DiscriminatedSpotProps &
  * Do not use it to modify the spot's core appearance (colors, size, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Spot } from '@ledgerhq/ldls-ui-react';
+ * import { Spot } from '@ledgerhq/lumen-ui-react';
  *
  * // Custom icon spot
- * import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Spot appearance="icon" icon={Settings} />
  *

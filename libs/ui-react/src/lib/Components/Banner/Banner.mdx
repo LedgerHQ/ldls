@@ -97,17 +97,17 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-slot
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-slot` dependency enables flexible composition patterns for the Banner component's action buttons.
 
 ## Basic Usage
 
 ```tsx
-import { Banner } from '@ledgerhq/ldls-ui-react';
+import { Banner } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
@@ -125,7 +125,7 @@ function MyComponent() {
 The Banner component supports four different appearances, each with its own semantic meaning and visual styling:
 
 ```tsx
-import { Banner } from '@ledgerhq/ldls-ui-react';
+import { Banner } from '@ledgerhq/lumen-ui-react';
 
 function NotificationSystem() {
   return (
@@ -167,7 +167,7 @@ function NotificationSystem() {
 Banners can include primary and secondary action buttons to allow user interaction:
 
 ```tsx
-import { Banner, Button } from '@ledgerhq/ldls-ui-react';
+import { Banner, Button } from '@ledgerhq/lumen-ui-react';
 
 function ActionableBanner() {
   const handleAccept = () => {
@@ -203,7 +203,7 @@ function ActionableBanner() {
 Add a close button to make banners dismissible by the user:
 
 ```tsx
-import { Banner } from '@ledgerhq/ldls-ui-react';
+import { Banner } from '@ledgerhq/lumen-ui-react';
 import { useState } from 'react';
 
 function DismissibleBanner() {
@@ -271,7 +271,7 @@ To control banner width, use container elements:
 Here's a comprehensive example showing all Banner features:
 
 ```tsx
-import { Banner, Button } from '@ledgerhq/ldls-ui-react';
+import { Banner, Button } from '@ledgerhq/lumen-ui-react';
 import { useState } from 'react';
 
 function NotificationCenter() {

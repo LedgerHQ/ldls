@@ -119,7 +119,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { Search } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -142,7 +142,7 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { Search } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -164,7 +164,7 @@ function MyComponent() {
 Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { Search } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -193,7 +193,7 @@ function MyComponent() {
 The Search component supports error states and messages:
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { Search } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -271,7 +271,7 @@ Use the `editable` prop to disable the search input:
 For better performance, especially when dealing with API calls or expensive filtering operations, implement debounced search:
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-rnative';
+import { Search } from '@ledgerhq/lumen-ui-rnative';
 import { useState, useCallback } from 'react';
 import { debounce } from 'lodash'; // or your preferred debounce utility
 

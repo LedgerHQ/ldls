@@ -7,7 +7,7 @@ figma.connect(
   Banner,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=129%3A201',
   {
-    imports: ["import { Banner } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Banner } from '@ledgerhq/lumen-ui-react'"],
     props: {
       // These props were automatically mapped based on your linked code:
       appearance: figma.enum('appearance', {

@@ -17,7 +17,7 @@ const template: Template = (variables, { tpl }) => {
  * 
  * @example
  * // Basic usage with default size (24px)
- * import { ${componentName} } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { ${componentName} } from '@ledgerhq/lumen-ui-rnative/symbols';
  * 
  * <${componentName} />
  * 
@@ -27,7 +27,7 @@ const template: Template = (variables, { tpl }) => {
  * 
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  * 
  * <Button icon={${componentName}} size="md">
  *   Click me

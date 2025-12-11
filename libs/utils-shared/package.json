@@ -1,5 +1,5 @@
 {
-  "name": "@ledgerhq/ldls-utils-shared",
+  "name": "@ledgerhq/lumen-utils-shared",
   "version": "0.0.10",
   "type": "module",
   "main": "./dist/index.js",

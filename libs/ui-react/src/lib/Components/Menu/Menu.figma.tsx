@@ -29,26 +29,6 @@ figma.connect(
   },
 );
 
-// Menu Section
-figma.connect(
-  'div',
-  'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=7966-3068',
-  {
-    props: {
-      showSectionTitle: figma.boolean('showSectionTitle'),
-      showDivider: figma.boolean('showDivider'),
-    },
-    example: ({ showSectionTitle, showDivider }) => (
-      <>
-        {showSectionTitle && <MenuLabel>Title</MenuLabel>}
-        <MenuItem>Item 1</MenuItem>
-        <MenuItem>Item 2</MenuItem>
-        {showDivider && <MenuSeparator />}
-      </>
-    ),
-  },
-);
-
 // Menu Content
 figma.connect(
   MenuContent,
@@ -58,8 +38,16 @@ figma.connect(
       showSection2: figma.boolean('showSection2'),
       showSection3: figma.boolean('showSection3'),
       showSection4: figma.boolean('showSection4'),
+      showSectionTitle: figma.boolean('showSectionTitle'),
+      showDivider: figma.boolean('showDivider'),
     },
-    example: ({ showSection2, showSection3, showSection4 }) => (
+    example: ({
+      showSection2,
+      showSection3,
+      showSection4,
+      showSectionTitle,
+      showDivider,
+    }) => (
       <MenuContent className='w-64'>
         <MenuItem>Item 1</MenuItem>
         <MenuItem>Item 2</MenuItem>

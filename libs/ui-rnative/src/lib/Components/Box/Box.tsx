@@ -11,7 +11,7 @@ import { createStyledView, type LumenViewStyleProps } from '../../../styles';
  *
  * @example
  * ```tsx
- * import { Box } from '@ledgerhq/ldls-ui-rnative';
+ * import { Box } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic usage with token props
  * <Box width='s400' marginTop='s4' gap='s12' alignItems='center'>

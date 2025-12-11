@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
@@ -82,7 +82,7 @@ export type LinkProps = {
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` and `underline` props instead.
  *
  * @example
- * import { Link } from '@ledgerhq/ldls-ui-react';
+ * import { Link } from '@ledgerhq/lumen-ui-react';
  *
  * // Default link with underline and inherited appearance and size
  * <Link href="/page">
@@ -90,7 +90,7 @@ export type LinkProps = {
  * </Link>
  *
  * // Accent link with icon
- * import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Link appearance="accent" size="sm" href="https://example.com" isExternal icon={ArrowRight}>
  *   External Site

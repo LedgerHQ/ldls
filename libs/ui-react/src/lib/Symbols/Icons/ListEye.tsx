@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ListEye } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ListEye } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <ListEye />
  *

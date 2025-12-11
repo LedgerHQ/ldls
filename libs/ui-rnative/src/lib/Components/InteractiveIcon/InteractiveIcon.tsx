@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { FC } from 'react';
 import { Pressable, View } from 'react-native';
@@ -48,8 +48,8 @@ const buttonVariants = cva(
  * @warning The `style` prop should only be used for layout adjustments like margins or positioning. Do not use it to modify the component's core appearance (colors, padding, etc).
  *
  * @example
- * import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative';
- * import { DeleteCircleFill, Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { InteractiveIcon } from '@ledgerhq/lumen-ui-rnative';
+ * import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * // Filled interactive icon for destructive actions
  * <InteractiveIcon iconType="filled" aria-label="Delete item" onPress={handleDelete}>

@@ -7,7 +7,7 @@ figma.connect(
   TextInput,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2248-3905',
   {
-    imports: ["import { TextInput } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { TextInput } from '@ledgerhq/lumen-ui-react'"],
     props: {
       label: figma.string('label-text'),
       placeholder: figma.string('placeholder-text'),

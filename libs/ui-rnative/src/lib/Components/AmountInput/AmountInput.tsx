@@ -1,4 +1,4 @@
-import { cn, getFontSize, textFormatter } from '@ledgerhq/ldls-utils-shared';
+import { cn, getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, TextInput, View, type TextInputProps } from 'react-native';
 import Animated, {

@@ -1,4 +1,4 @@
-import { Switch } from '@ledgerhq/ldls-ui-rnative';
+import { Switch } from '@ledgerhq/lumen-ui-rnative';
 
 export const Switches = () => {
   return (

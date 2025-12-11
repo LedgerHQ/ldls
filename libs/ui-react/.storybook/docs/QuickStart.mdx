@@ -8,21 +8,21 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Our design system is available as npm packages:
 
-- **[@ledgerhq/ldls-design-core](https://www.npmjs.com/package/@ledgerhq/ldls-design-core)** - Design tokens, themes, and core utilities all in one tailwind preset.
-- **[@ledgerhq/ldls-ui-react](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react)** - React components built with Tailwind CSS V3 and Radix UI primitives.
-- **[@ledgerhq/ldls-ui-rnative](https://www.npmjs.com/package/@ledgerhq/ldls-ui-rnative)** - React Native components built with NativeWind.
+- **[@ledgerhq/lumen-design-core](https://www.npmjs.com/package/@ledgerhq/lumen-design-core)** - Design tokens, themes, and core utilities all in one tailwind preset.
+- **[@ledgerhq/lumen-ui-react](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react)** - React components built with Tailwind CSS V3 and Radix UI primitives.
+- **[@ledgerhq/lumen-ui-rnative](https://www.npmjs.com/package/@ledgerhq/lumen-ui-rnative)** - React Native components built with NativeWind.
 
 ### 🛠️ Setup Steps
 
 1 . Configure Tailwind:
 See our [Setup Tailwind](?path=/docs/getting-started-setup-tailwind--docs) guide for complete setup instructions.
 
-2 . Install `ldls-ui-react` package:
+2 . Install `lumen-ui-react` package:
 
 Install the package:
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
 And its peer dependencies:
@@ -41,7 +41,7 @@ npm install @radix-ui/react-slot
 `@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 
 function App() {
   return <Button appearance='base'>Get Started</Button>;
@@ -55,12 +55,12 @@ For better AI assistance (Cursor, Claude, VS Code Copilot, etc.), reference the 
 **For Cursor**, add to your `.cursorrules`:
 
 ```
-@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+@node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
 ```
 
-[Learn more about AI rules →](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react#-ai-assistant-setup)
+[Learn more about AI rules →](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react#-ai-assistant-setup)
 
-**Check out our [User Guide](https://github.com/LedgerHQ/ldls/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
+**Check out our [User Guide](https://github.com/LedgerHQ/lumen/blob/main/USER_GUIDE.md) for more information on how to use the UI Kit.**
 
 ### 5. Design Resources
 
@@ -71,10 +71,10 @@ For better AI assistance (Cursor, Claude, VS Code Copilot, etc.), reference the 
 
 We welcome contributions! Please check our:
 
-- [Contribution Guidelines](https://github.com/LedgerHQ/ldls/blob/main/CONTRIBUTING.md) - Contribution guidelines
-- [GitHub Repository](https://github.com/LedgerHQ/ldls) - Source code and documentation
+- [Contribution Guidelines](https://github.com/LedgerHQ/lumen/blob/main/CONTRIBUTING.md) - Contribution guidelines
+- [GitHub Repository](https://github.com/LedgerHQ/lumen) - Source code and documentation
 
 > ⚠️ **Private Design System Notice**
 >
-> The Ledger Design Language System (LDLS) is a private design system for internal Ledger products and authorized partners.
+> The Ledger Design Language System (Lumen) is a private design system for internal Ledger products and authorized partners.
 > It is not intended for public use at this time. Access to this system requires proper authorization.

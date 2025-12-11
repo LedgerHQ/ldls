@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Note } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Note } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Note />
  *

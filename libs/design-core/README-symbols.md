@@ -9,24 +9,24 @@ Automated system to convert SVG files from Figma into React/React Native icon co
 SVGs are automatically downloaded from Figma using the design tokens pipeline:
 
 ```bash
-npx nx download-svgs @ledgerhq/ldls-design-core
+npx nx download-svgs @ledgerhq/lumen-design-core
 ```
 
 ### 2. Generate Components
 
 ```bash
 # React
-npx nx generate-symbols-react @ledgerhq/ldls-design-core
+npx nx generate-symbols-react @ledgerhq/lumen-design-core
 
 # React Native
-npx nx generate-symbols-react-native @ledgerhq/ldls-design-core
+npx nx generate-symbols-react-native @ledgerhq/lumen-design-core
 ```
 
 ### 3. Use Icons (Tree-Shakeable)
 
 ```tsx
 // ✅ GOOD - Only imports what you need (tree-shakeable)
-import { ArrowUp, Home } from '@ledgerhq/ldls-ui-react/Symbols';
+import { ArrowUp, Home } from '@ledgerhq/lumen-ui-react/Symbols';
 
 <Home size={24} className="text-base" />;
 ```
@@ -36,19 +36,19 @@ import { ArrowUp, Home } from '@ledgerhq/ldls-ui-react/Symbols';
 **✅ DO - Named imports (tree-shakeable):**
 
 ```tsx
-import { Home, ArrowUp, Settings } from '@ledgerhq/ldls-ui-react';
+import { Home, ArrowUp, Settings } from '@ledgerhq/lumen-ui-react';
 ```
 
 **❌ DON'T - Namespace imports (bundles everything):**
 
 ```tsx
-import * as Icons from '@ledgerhq/ldls-ui-react'; // Imports ALL icons!
+import * as Icons from '@ledgerhq/lumen-ui-react'; // Imports ALL icons!
 ```
 
 **❌ DON'T - Default imports:**
 
 ```tsx
-import Icons from '@ledgerhq/ldls-ui-react'; // Not supported
+import Icons from '@ledgerhq/lumen-ui-react'; // Not supported
 ```
 
 ## Styling with Tailwind
@@ -102,6 +102,6 @@ Icons use `currentColor` by default, so you can style them using Tailwind's `tex
 
 ```bash
 # Re-download from Figma and regenerate
-npx nx download-svgs @ledgerhq/ldls-design-core
-npx nx generate-symbols-react @ledgerhq/ldls-design-core
+npx nx download-svgs @ledgerhq/lumen-design-core
+npx nx generate-symbols-react @ledgerhq/lumen-design-core
 ```

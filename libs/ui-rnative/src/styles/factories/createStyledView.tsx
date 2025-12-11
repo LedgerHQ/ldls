@@ -24,7 +24,7 @@ type ReturnComponentType = MemoExoticComponent<
  * @example
  * ```tsx
  * import { View } from 'react-native';
- * import { createStyledView } from '@ledgerhq/ldls-ui-rnative/styles';
+ * import { createStyledView } from '@ledgerhq/lumen-ui-rnative/styles';
  *
  * // Create a basic Box
  * const Box = createStyledView(View);

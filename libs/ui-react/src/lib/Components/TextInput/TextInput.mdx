@@ -139,15 +139,15 @@ The Input component uses **floating labels** that animate from inside the input 
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { TextInput } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -169,7 +169,7 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { TextInput } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -190,7 +190,7 @@ function MyComponent() {
 Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
-import { TextInput } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');
@@ -217,8 +217,8 @@ You can add custom elements to the right side of the input.
 > **Note:** Define reusable components for better organization and performance:
 
 ```tsx
-import { TextInput } from '@ledgerhq/ldls-ui-react';
-import { InformationFill, SparksFill } from '@ledgerhq/ldls-ui-react/symbols';
+import { TextInput } from '@ledgerhq/lumen-ui-react';
+import { InformationFill, SparksFill } from '@ledgerhq/lumen-ui-react/symbols';
 
 // Action button component
 const GeneratePasswordButton = () => (
@@ -255,7 +255,7 @@ function MyComponent() {
 The Input component supports error states and messages:
 
 ```tsx
-import { TextInput } from '@ledgerhq/ldls-ui-react';
+import { TextInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [value, setValue] = React.useState('');

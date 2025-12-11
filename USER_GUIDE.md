@@ -1,4 +1,4 @@
-# LDLS Design System User Guide
+# Lumen Design System User Guide
 
 <h3 align="center">A cross-platform design system for React and React Native applications</h3>
 
@@ -15,7 +15,7 @@
 
 ## Introduction
 
-LDLS is a comprehensive design system built to provide a consistent user experience across both web and mobile platforms. It leverages modern technologies to create a flexible, maintainable, and scalable component library that can be used across different applications.
+Lumen is a comprehensive design system built to provide a consistent user experience across both web and mobile platforms. It leverages modern technologies to create a flexible, maintainable, and scalable component library that can be used across different applications.
 
 ### Key Features
 
@@ -33,7 +33,7 @@ LDLS is a comprehensive design system built to provide a consistent user experie
 - **Utility Libraries**: clsx, tailwind-merge, lodash-es
 
 > Alpha Release Information
-> The LDLS Design System is currently in alpha, with the following limitations:
+> The Lumen Design System is currently in alpha, with the following limitations:
 >
 > - **React Support Only**: The alpha version is only available for React applications. React Native support will be added in future releases.
 > - **Limited Component Set**: The initial release includes a small set of core components. More will be added in future releases.
@@ -54,13 +54,13 @@ Install the packages:
 
 ```bash
 # Using npm
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core clsx tailwind-merge class-variance-authority
 
 # Using yarn
-yarn add @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
+yarn add @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core clsx tailwind-merge class-variance-authority
 ```
 
-The LDLS Design System requires the following peer dependencies:
+The Lumen Design System requires the following peer dependencies:
 
 - `clsx`: For conditional class name composition
 - `tailwind-merge`: For merging Tailwind CSS classes without conflicts
@@ -70,14 +70,14 @@ The LDLS Design System requires the following peer dependencies:
 
 #### Tailwind Configuration
 
-Add the LDLS Design System preset to your Tailwind configuration:
+Add the Lumen Design System preset to your Tailwind configuration:
 
 ```js
 // tailwind.config.js or tailwind.config.ts
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/lumen-ui-react/dist/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset], // Choose the preset that matches your brand
 };
 
@@ -103,7 +103,7 @@ npm install @radix-ui/react-slot
 Import and use components in your React application:
 
 ```jsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (

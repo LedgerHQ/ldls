@@ -84,16 +84,16 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -107,8 +107,8 @@ function MyComponent() {
 Add a description below the title for additional context:
 
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -126,8 +126,8 @@ function MyComponent() {
 Include a Spot component as leading icon for visual identification:
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
-import { Settings, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import { Settings, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -147,14 +147,14 @@ The ListItem supports arbitrary trailing content variants. Below are some exampl
 
 ```tsx
 import { useState } from 'react';
-import { ListItem, Switch, Tag } from '@ledgerhq/ldls-ui-react';
+import { ListItem, Switch, Tag } from '@ledgerhq/lumen-ui-react';
 import {
   Settings,
   Check,
   Bolt,
   ChevronRight,
   User,
-} from '@ledgerhq/ldls-ui-react/symbols';
+} from '@ledgerhq/lumen-ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
@@ -223,8 +223,8 @@ function ListVariants() {
 Add a tag to the description for additional status information:
 
 ```tsx
-import { ListItem, Tag } from '@ledgerhq/ldls-ui-react';
-import { Bolt, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Tag } from '@ledgerhq/lumen-ui-react';
+import { Bolt, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -243,7 +243,7 @@ function MyComponent() {
 Disable the ListItem to prevent interaction:
 
 ```tsx
-import { ListItem, Switch } from '@ledgerhq/ldls-ui-react';
+import { ListItem, Switch } from '@ledgerhq/lumen-ui-react';
 
 <ListItem
   title='Disabled Option'
@@ -258,8 +258,8 @@ import { ListItem, Switch } from '@ledgerhq/ldls-ui-react';
 ListItem handles truncation responsively. Use container widths to control behavior:
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
-import { User, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import { User, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 <div className='w-240 bg-base p-4'>
   <ListItem
@@ -276,8 +276,8 @@ import { User, ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 Use `className` for layout purposes only, such as maximum width:
 
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 <ListItem
   title='Constrained Width'
@@ -337,8 +337,8 @@ The following guidelines ensure consistent usage of the ListItem component and m
 
 {/* prettier-ignore */}
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 <ListItem
   title='Account Settings'
@@ -355,8 +355,8 @@ import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { ListItem } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 <ListItem
   title='This is a very long title that will be truncated and users will not be able to read the full text'

@@ -1,4 +1,4 @@
-import { Checkbox } from '@ledgerhq/ldls-ui-rnative';
+import { Checkbox } from '@ledgerhq/lumen-ui-rnative';
 
 export const Checkboxes = () => {
   return (

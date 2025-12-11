@@ -1,4 +1,4 @@
-import { Switch, SupportedLocale } from '@ledgerhq/ldls-ui-rnative';
+import { Switch, SupportedLocale } from '@ledgerhq/lumen-ui-rnative';
 import { Text, View } from 'react-native';
 
 export const ToggleLocaleSwitch = ({

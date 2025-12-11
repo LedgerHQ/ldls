@@ -7,7 +7,7 @@ figma.connect(
   Tag,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=722%3A5547',
   {
-    imports: ["import { Tag } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Tag } from '@ledgerhq/lumen-ui-react'"],
     links: [
       {
         name: '*',

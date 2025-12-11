@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import * as os from 'os';
 import path from 'path';
-import { toPascalCase } from '@ledgerhq/ldls-utils-shared';
+import { toPascalCase } from '@ledgerhq/lumen-utils-shared';
 import { transform } from '@svgr/core';
 import { findFilesByExtension } from '../src/utils/fs-utils.js';
 import { parseCliArgs } from '../src/utils/parse-cli-args.js';

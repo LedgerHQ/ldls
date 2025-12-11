@@ -5,7 +5,7 @@ import {
   BottomSheetFlatList,
   BottomSheetScrollView,
   BottomSheetView,
-} from '@ledgerhq/ldls-ui-rnative';
+} from '@ledgerhq/lumen-ui-rnative';
 import { forwardRef } from 'react';
 import { Text, View } from 'react-native';
 

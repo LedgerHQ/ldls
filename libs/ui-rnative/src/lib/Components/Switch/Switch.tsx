@@ -16,7 +16,7 @@ import { SwitchProps } from './types';
  * Do not use it to modify the switch's core appearance.
  *
  * @example
- * import { Switch } from '@ledgerhq/ldls-ui-react';
+ * import { Switch } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic controlled switch
  * const [checked, setChecked] = useState(false);

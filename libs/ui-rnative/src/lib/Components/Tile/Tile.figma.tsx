@@ -14,7 +14,7 @@ figma.connect(
   Tile,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=5783-1328',
   {
-    imports: ["import { Tile } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Tile } from '@ledgerhq/lumen-ui-react'"],
     props: {
       title: figma.string('title'),
       description: figma.boolean('show-description', {

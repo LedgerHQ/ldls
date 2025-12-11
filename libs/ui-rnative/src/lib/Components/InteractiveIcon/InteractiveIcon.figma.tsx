@@ -6,8 +6,8 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6975%3A2571',
   {
     imports: [
-      "import { InteractiveIcon } from '@ledgerhq/ldls-ui-rnative'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-rnative/symbols'",
+      "import { InteractiveIcon } from '@ledgerhq/lumen-ui-rnative'",
+      "// import { YourIconName } from '@ledgerhq/lumen-ui-rnative/symbols'",
     ],
     props: {
       iconType: figma.enum('appearance', {

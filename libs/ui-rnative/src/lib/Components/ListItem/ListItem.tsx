@@ -48,7 +48,7 @@ const listItemVariants = {
  *
  * @example
  * // Basic item
- * import { ListItem } from '@ledgerhq/ldls-ui-rnative';
+ * import { ListItem } from '@ledgerhq/lumen-ui-rnative';
  *
  * <ListItem
  *   title="Basic Item"
@@ -57,8 +57,8 @@ const listItemVariants = {
  * />
  *
  * // Icon trailing content with leading Spot
- * import { ListItem, Spot } from '@ledgerhq/ldls-ui-rnative';
- * import { Wallet, Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { ListItem, Spot } from '@ledgerhq/lumen-ui-rnative';
+ * import { Wallet, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <ListItem
  *   title="Balance"
@@ -67,8 +67,8 @@ const listItemVariants = {
  * />
  *
  * // Chevron trailing content
- * import { ListItem } from '@ledgerhq/ldls-ui-rnative';
- * import { ChevronRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { ListItem } from '@ledgerhq/lumen-ui-rnative';
+ * import { ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <ListItem
  *   title="Settings"

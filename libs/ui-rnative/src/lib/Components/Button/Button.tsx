@@ -20,7 +20,7 @@ export type ButtonProps = {
  *
  * @example
  * // Basic primary button
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button appearance="base" size="md" onPress={() => console.log('Clicked!')}>
  *   Click Me

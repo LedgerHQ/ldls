@@ -20,7 +20,7 @@ const template: Template = (variables, { tpl }) => {
  * 
  * @example
  * // Basic usage with default size (24px)
- * import { ${componentName} } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { ${componentName} } from '@ledgerhq/lumen-ui-react/symbols';
  * 
  * <${componentName} />
  * 

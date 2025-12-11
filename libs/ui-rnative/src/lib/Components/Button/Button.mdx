@@ -117,7 +117,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-rnative';
+import { Button } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return (
@@ -148,8 +148,8 @@ While the component comes with predefined styles, you can extend them using Nati
 The Button component supports icons with automatic size adjustment based on the button size:
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-rnative';
-import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Button } from '@ledgerhq/lumen-ui-rnative';
+import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
@@ -216,7 +216,7 @@ The following guidelines are based on our [Button Component API Design ADR](http
 
 {/* prettier-ignore */}
 ```tsx
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Plus } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Button icon={Plus} onPress={() => {}}>
   Add Item
@@ -231,7 +231,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Plus } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Button onPress={() => {}}>
   <Plus /> Add Item
@@ -250,7 +250,7 @@ import { Plus } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Button icon={Settings} size='sm' onPress={() => {}}>
   Settings
@@ -265,7 +265,7 @@ import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Button size='sm' onPress={() => {}}>
   <Settings size={24} /> Settings

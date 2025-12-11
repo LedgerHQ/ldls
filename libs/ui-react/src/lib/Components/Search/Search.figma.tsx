@@ -7,7 +7,7 @@ figma.connect(
   Search,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2248%3A3468',
   {
-    imports: ["import { Search } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Search } from '@ledgerhq/lumen-ui-react'"],
     props: {
       placeholder: figma.string('label'),
       value: figma.enum('search-state', {

@@ -26,7 +26,7 @@ type ReturnComponentType = MemoExoticComponent<
  * @example
  * ```tsx
  * import { Text } from 'react-native';
- * import { createStyledText } from '@ledgerhq/ldls-ui-rnative/styles';
+ * import { createStyledText } from '@ledgerhq/lumen-ui-rnative/styles';
  *
  * // Create a basic Text
  * const StyledText = createStyledText(Text);

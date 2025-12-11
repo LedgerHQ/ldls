@@ -63,7 +63,7 @@ Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
 
 # Install peer dependencies
 npm install react@~18.3.1 react-native@~0.77.3 react-native-svg@^15.0.0 nativewind@^4.1.23
@@ -75,12 +75,12 @@ To use Spinner components with our custom NativeWind preset, you need to configu
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-rnative/src/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+    './node_modules/@ledgerhq/lumen-ui-rnative/src/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -95,7 +95,7 @@ Import and use the Spinner component:
 ```tsx
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+import { Spinner } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   const [isLoading, setIsLoading] = useState(false);
@@ -111,7 +111,7 @@ Spinners support predefined size variants that ensure consistent visual hierarch
 ```tsx
 import React from 'react';
 import { View } from 'react-native';
-import { Spinner } from '@ledgerhq/ldls-ui-rnative';
+import { Spinner } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return (

@@ -10,7 +10,7 @@ figma.connect(
   AddressInput,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=7887-67',
   {
-    imports: ["import { AddressInput } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { AddressInput } from '@ledgerhq/lumen-ui-react'"],
     props: {
       state: figma.enum('state', {
         enabled: 'enabled',

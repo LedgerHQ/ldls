@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Bank } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Bank } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Bank />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={Bank} size="md">
  *   Click me

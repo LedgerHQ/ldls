@@ -73,18 +73,18 @@ This is useful when you want to use the IconButton as a child of a Link componen
   <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-slot
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-slot` dependency enables flexible composition patterns, allowing the IconButton to merge its props with child elements when needed.
 
 ## Basic Usage
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { IconButton } from '@ledgerhq/lumen-ui-react';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -116,9 +116,9 @@ While the component comes with predefined styles, you can extend them using Tail
 The `asChild` prop allows integration with routing libraries by merging IconButton styles with child elements:
 
 ```tsx
-import { IconButton } from '@ledgerhq/ldls-ui-react';
+import { IconButton } from '@ledgerhq/lumen-ui-react';
 import { Link } from 'react-router-dom';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -143,7 +143,7 @@ Note: When using asChild, the child element handles its own content. The icon pr
     >
 
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <IconButton icon={Settings} aria-label='Settings' />;
 ```
@@ -156,7 +156,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <IconButton aria-label='Settings'>
   <Settings />
@@ -174,7 +174,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
     >
 
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <IconButton icon={Settings} aria-label='Settings' />;
 ```
@@ -187,7 +187,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <IconButton icon={() => <Settings size={20} />} aria-label='Settings' />;
 

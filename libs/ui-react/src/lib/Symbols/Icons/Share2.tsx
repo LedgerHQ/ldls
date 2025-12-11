@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Share2 } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Share2 } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Share2 />
  *

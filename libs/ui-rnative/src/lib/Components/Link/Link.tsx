@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { Linking, Pressable, PressableProps, Text, View } from 'react-native';
@@ -105,7 +105,7 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` and `underline` props instead.
  *
  * @example
- * import { Link } from '@ledgerhq/ldls-ui-rnative';
+ * import { Link } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Default link with underline
  * <Link href="https://example.com">
@@ -113,7 +113,7 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
  * </Link>
  *
  * // Accent link with icon and external indicator
- * import { ArrowRight } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Link appearance="accent" size="sm" href="https://example.com" isExternal icon={ArrowRight}>
  *   External Site

@@ -61,17 +61,17 @@ Here's a preview of all the icons available in our design system. To use an icon
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 Import and use specific icons from the symbols library:
 
 ```tsx
-import { ArrowUp, Settings, Plus } from '@ledgerhq/ldls-ui-react/symbols';
+import { ArrowUp, Settings, Plus } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -89,7 +89,7 @@ function MyComponent() {
 Icons support predefined size variants that ensure consistent visual hierarchy:
 
 ```tsx
-import { ArrowUp } from '@ledgerhq/ldls-ui-react/symbols';
+import { ArrowUp } from '@ledgerhq/lumen-ui-react/symbols';
 
 function IconSizes() {
   return (
@@ -110,8 +110,8 @@ function IconSizes() {
 The Button component supports icons with automatic size adjustment based on the button size:
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button } from '@ledgerhq/lumen-ui-react';
+import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -125,8 +125,8 @@ function MyComponent() {
 The Button component can accept an icon and no label:
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button } from '@ledgerhq/lumen-ui-react';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 <Button icon={Settings} />;
 ```
 
@@ -135,7 +135,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 Always provide proper accessibility attributes for interactive icons:
 
 ```tsx
-import { Information } from '@ledgerhq/ldls-ui-react/symbols';
+import { Information } from '@ledgerhq/lumen-ui-react/symbols';
 
 function AccessibleIcon() {
   return <Information size={20} aria-label='Account verification required' />;
@@ -151,7 +151,7 @@ import {
   CheckmarkCircle,
   DeleteCircle,
   Clock,
-} from '@ledgerhq/ldls-ui-react/symbols';
+} from '@ledgerhq/lumen-ui-react/symbols';
 
 function SemanticIcons() {
   return (

@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { forwardRef } from 'react';
 import { useCommonTranslation } from '../../../i18n';
 import { IconSize } from '../../Components/Icon/Icon';

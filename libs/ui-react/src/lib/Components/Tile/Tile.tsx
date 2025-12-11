@@ -95,8 +95,8 @@ const tileVariants = {
  *
  * @example
  * // Basic tile item
- * import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
- * import { Wallet } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+ * import { Wallet } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Tile
  *   title="My Wallet"
@@ -105,9 +105,9 @@ const tileVariants = {
  * />
  *
  * // With subtitle and trailing content
- * import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
- * import { Tag } from '@ledgerhq/ldls-ui-react';
- * import { Bitcoin } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+ * import { Tag } from '@ledgerhq/lumen-ui-react';
+ * import { Bitcoin } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Tile
  *   title="Bitcoin"
@@ -117,9 +117,9 @@ const tileVariants = {
  * />
  *
  * // With secondary action
- * import { Tile } from '@ledgerhq/ldls-ui-react';
- * import { InteractiveIcon } from '@ledgerhq/ldls-ui-react';
- * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { Tile } from '@ledgerhq/lumen-ui-react';
+ * import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
+ * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <Tile
  *   title="Ethereum"

@@ -8,8 +8,8 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=9%3A28',
   {
     imports: [
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
+      "import { Button } from '@ledgerhq/lumen-ui-react'",
+      "// import { YourIconName } from '@ledgerhq/lumen-ui-react/Symbols'",
     ],
     props: {
       // These props were automatically mapped based on your linked code:
