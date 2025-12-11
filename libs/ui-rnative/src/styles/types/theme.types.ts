@@ -1,4 +1,7 @@
-import { ledgerLiveThemes, TypographyTokens } from '@ledgerhq/lumen-design-core';
+import {
+  ledgerLiveThemes,
+  TypographyTokens,
+} from '@ledgerhq/lumen-design-core';
 import { AddEntriesNegative } from './utility.types';
 
 /**
