@@ -193,8 +193,8 @@ When rendering long lists or grids of Tiles, we recommend using [TanStack Virtua
 ```tsx
 import React from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Tile, Spot } from '@ledgerhq/ldls-ui-react';
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function VirtualTileList({ items }) {
   const parentRef = React.useRef<HTMLDivElement>(null);
