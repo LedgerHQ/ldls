@@ -1,26 +1,8 @@
 import { cn } from '@ledgerhq/ldls-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
-import { SheetBar, SheetBarProps } from '../SheetBar';
-
-export type DialogProps = {
-  /**
-   * Callback function to handle open state change.
-   * @param open - The new open state of the dialog.
-   */
-  onOpenChange?: (open: boolean) => void;
-  /**
-   * The open state of the dialog.
-   * @default false
-   */
-  open?: boolean;
-  /**
-   * The default open state of the dialog.
-   * @default false
-   */
-  defaultOpen?: boolean;
-} & React.ComponentProps<typeof DialogPrimitive.Root>;
-
+import { DialogHeader } from './DialogHeader/DialogHeader';
+import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -39,6 +21,13 @@ export type DialogProps = {
  *         <Button>Open Dialog</Button>
  *       </DialogTrigger>
  *       <DialogContent>
+ *         <DialogHeader
+ *           appearance='compact'
+ *           title='Dialog Title'
+ *           description='Dialog Description'
+ *           onBack={() => {}}
+ *           onClose={() => {}}
+ *         />
  *         <p>This is a dialog!</p>
  *       </DialogContent>
  *     </Dialog>
@@ -48,21 +37,6 @@ export type DialogProps = {
 export function Dialog({ ...props }: DialogProps) {
   return <DialogPrimitive.Root data-slot='dialog' {...props} />;
 }
-
-export type DialogTriggerProps = {
-  /**
-   * The element that will trigger the dialog (e.g., button, icon, text).
-   */
-  children?: React.ReactNode;
-  /**
-   * Change the default rendered element for the one passed as a child, merging their props and behavior.
-   */
-  asChild?: boolean;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Trigger>;
 
 /**
  * The element that triggers the dialog to appear when interacted with.
@@ -80,7 +54,9 @@ export type DialogTriggerProps = {
  *   <Button>Click me for a dialog</Button>
  * </DialogTrigger>
  */
-export function DialogTrigger({ ...props }: DialogTriggerProps) {
+export function DialogTrigger({
+  ...props
+}: DialogPrimitive.DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
@@ -104,13 +80,6 @@ function DialogPortal({
 }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
   return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />;
 }
-
-export type DialogOverlayProps = {
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Overlay>;
 
 /**
  * The overlay that covers the background when the dialog is open.
@@ -142,21 +111,6 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
     );
   },
 );
-
-export type DialogContentProps = {
-  /**
-   * The content to display inside the dialog.
-   */
-  children?: React.ReactNode;
-  /**
-   * Change the default rendered element for the one passed as a child, merging their props and behavior.
-   */
-  asChild?: boolean;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof DialogPrimitive.Content>;
 
 /**
  * The content container that displays the dialog information.
@@ -206,118 +160,4 @@ export function DialogContent({
   );
 }
 
-/**
- * A convenient wrapper that combines SheetBar with accessible DialogTitle and DialogDescription.
- *
- * This component provides a consistent header for dialogs by combining the visual SheetBar
- * component with the necessary accessibility components (DialogTitle and DialogDescription).
- * It automatically handles the accessibility requirements while maintaining the visual design.
- *
- * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
- *
- * @example
- * import { Dialog, DialogContent, DialogTrigger, DialogHeader } from '@ledgerhq/ldls-ui-react';
- *
- * <Dialog>
- *   <DialogTrigger asChild>
- *     <Button>Open Dialog</Button>
- *   </DialogTrigger>
- *   <DialogContent>
- *     <DialogHeader
- *       title="Dialog Title"
- *       onClose={() => setOpen(false)}
- *     />
- *     <p>Dialog content here</p>
- *   </DialogContent>
- * </Dialog>
- *
- * @example
- * // With description and back button
- * <DialogHeader
- *   appearance="extended"
- *   title="Settings"
- *   description="Manage your account preferences"
- *   onBack={() => goToPreviousStep()}
- *   onClose={() => setOpen(false)}
- * />
- */
-export function DialogHeader({
-  title = '',
-  description,
-  appearance = 'compact',
-  ...props
-}: SheetBarProps & { title?: string }) {
-  return (
-    <>
-      <SheetBar
-        title={title}
-        description={description}
-        appearance={appearance}
-        {...props}
-        /* This is needed to have a smaller spacing for the sheet bar compared to the dialog content */
-        className={cn('-ml-14 -mr-8', appearance === 'extended' && 'pt-10')}
-      />
-      {/* Accessibility Note: Even though the visible header/description are
-      rendered by SheetBar, Radix Dialog still requires DialogTitle (and
-      optionally DialogDescription) for proper labeling. These hidden elements
-      ensure assistive technologies announce the dialog correctly without
-      duplicating visible text. */}
-      <DialogTitle hidden>{title}</DialogTitle>
-      {description && (
-        <DialogDescription hidden>{description}</DialogDescription>
-      )}
-    </>
-  );
-}
-
-/**
- * Internal component for accessible dialog titles.
- *
- * @internal
- * This component is used internally by DialogHeader to provide proper
- * accessibility labeling. It ensures screen readers announce the dialog
- * correctly by providing a title element that Radix Dialog requires.
- *
- * **Consumers should use `DialogHeader` instead**, which automatically
- * handles the title and accessibility requirements.
- */
-function DialogTitle({
-  hidden,
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Title> & { hidden?: boolean }) {
-  return (
-    <DialogPrimitive.Title
-      data-slot='dialog-title'
-      className={cn(hidden && 'sr-only', className)}
-      {...props}
-    />
-  );
-}
-
-/**
- * Internal component for accessible dialog descriptions.
- *
- * @internal
- * This component is used internally by DialogHeader to provide optional
- * accessibility context. It works with DialogTitle to give screen readers
- * a complete understanding of the dialog's purpose.
- *
- * **Consumers should use `DialogHeader` with the `description` prop instead**,
- * which automatically handles the description and accessibility requirements.
- */
-function DialogDescription({
-  hidden,
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.Description> & {
-  hidden?: boolean;
-}) {
-  return (
-    <DialogPrimitive.Description
-      data-slot='dialog-description'
-      className={cn(hidden && 'sr-only', className)}
-      {...props}
-    />
-  );
-}
+export { DialogHeader };
