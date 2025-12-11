@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import React from 'react';
 import { Check } from '../../Symbols/Icons/Check';
@@ -53,7 +53,7 @@ export type CheckboxProps = {
  * Do not use it to modify the checkbox's core appearance.
  *
  * @example
- * import { Checkbox } from '@ledgerhq/ldls-ui-react';
+ * import { Checkbox } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic controlled checkbox
  * const [checked, setChecked] = useState(false);

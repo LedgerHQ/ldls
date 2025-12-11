@@ -3,11 +3,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 <Meta title="Getting Started/Theme Provider" />
 
 ## Ledger Design System Theme Provider
-The ThemeProvider from @ledgerhq/ldls-ui-react manages the app’s visual theme (light or dark mode) using React Context.
+The ThemeProvider from @ledgerhq/lumen-ui-react manages the app’s visual theme (light or dark mode) using React Context.
 Define the `ThemeProvider` at the top-level of your app.
 
 ```tsx
-import { ThemeProvider } from '@ledgerhq/ldls-ui-react';
+import { ThemeProvider } from '@ledgerhq/lumen-ui-react';
 
 function AppProviders() {
   return (
@@ -20,7 +20,7 @@ function AppProviders() {
 
 Updates the mode using the `useTheme` context hook.
 ```tsx
-import { ThemeProvider, useTheme } from '@ledgerhq/ldls-ui-react';
+import { ThemeProvider, useTheme } from '@ledgerhq/lumen-ui-react';
 
 const UpdateThemeModeButton = () => {
   const { mode, toggleMode, setMode } = useTheme();
@@ -45,7 +45,7 @@ The ThemeProvider also manages the app’s locale using React Context.
 You can just pass the locale to the `ThemeProvider` and the translations will be lazy-loaded automatically.
 
 ```tsx
-import { ThemeProvider, type SupportedLocale } from '@ledgerhq/ldls-ui-react';
+import { ThemeProvider, type SupportedLocale } from '@ledgerhq/lumen-ui-react';
 
 function AppProviders() {
   const [locale, setLocale] = useState<SupportedLocale>('en');

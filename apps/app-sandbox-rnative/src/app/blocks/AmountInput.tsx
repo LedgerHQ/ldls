@@ -1,5 +1,5 @@
-import { AmountInput, IconButton } from '@ledgerhq/ldls-ui-rnative';
-import { TransferVertical } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { AmountInput, IconButton } from '@ledgerhq/lumen-ui-rnative';
+import { TransferVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 

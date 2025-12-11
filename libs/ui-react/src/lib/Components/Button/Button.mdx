@@ -130,17 +130,17 @@ To be implemented:
 </Tab> <Tab label="Implementation ">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-slot
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-slot
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-slot` dependency enables flexible composition patterns, allowing the Button to merge its props with child elements when needed.
 
 ## Basic Usage
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
@@ -170,8 +170,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Button component supports icons with automatic size adjustment based on the button size:
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button } from '@ledgerhq/lumen-ui-react';
+import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -197,7 +197,7 @@ Use the `isFull` prop to make the button take the full width of its container:
 The `asChild` prop allows integration with routing libraries by merging Button styles with child elements:
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 import { Link } from 'react-router-dom';
 
 function MyComponent() {

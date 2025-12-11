@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { Medal1 } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { Medal1 } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <Medal1 />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={Medal1} size="md">
  *   Click me

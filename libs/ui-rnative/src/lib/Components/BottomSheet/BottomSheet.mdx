@@ -103,7 +103,7 @@ BottomSheet is built on top of [@gorhom/bottom-sheet v5](https://gorhom.dev/reac
 ### Basic Usage
 
 ```tsx
-import { BottomSheet, BottomSheetView, BottomSheetHeader, useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import { BottomSheet, BottomSheetView, BottomSheetHeader, useBottomSheetRef } from '@ledgerhq/lumen-ui-rnative';
 import { Button, View, Text } from 'react-native';
 
 function MyComponent() {
@@ -135,7 +135,7 @@ function MyComponent() {
 The `useBottomSheetRef` hook provides a typed ref for programmatic control:
 
 ```tsx
-import { useBottomSheetRef } from '@ledgerhq/ldls-ui-rnative';
+import { useBottomSheetRef } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   const bottomSheetRef = useBottomSheetRef();
@@ -207,7 +207,7 @@ import {
   BottomSheetScrollView,      // Scrollable content
   BottomSheetFlatList,        // Large lists (100+ items)
   BottomSheetVirtualizedList, // Custom data access patterns
-} from '@ledgerhq/ldls-ui-rnative';
+} from '@ledgerhq/lumen-ui-rnative';
 
 // Use spacing prop on header when using list components
 <BottomSheet ref={ref} snapPoints="full">

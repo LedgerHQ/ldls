@@ -40,7 +40,7 @@ export default defineConfig(() => ({
           'src/lib/Symbols/index.ts',
         ),
       },
-      name: '@ledgerhq/ldls-ui-react',
+      name: '@ledgerhq/lumen-ui-react',
       fileName: (_format) => 'index.js',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.

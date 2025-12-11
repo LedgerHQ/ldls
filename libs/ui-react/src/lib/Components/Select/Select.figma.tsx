@@ -14,7 +14,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6397-463',
   {
     imports: [
-      "import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger } from '@ledgerhq/ldls-ui-react'",
+      "import { Select, SelectContent, SelectItem, SelectItemText, SelectTrigger } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       opened: figma.boolean('opened', {

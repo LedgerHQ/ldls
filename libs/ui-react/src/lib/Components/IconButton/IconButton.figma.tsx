@@ -8,8 +8,8 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=8166-17796',
   {
     imports: [
-      "import { IconButton } from '@ledgerhq/ldls-ui-react'",
-      "// import { YourIconName } from '@ledgerhq/ldls-ui-react/Symbols'",
+      "import { IconButton } from '@ledgerhq/lumen-ui-react'",
+      "// import { YourIconName } from '@ledgerhq/lumen-ui-react/Symbols'",
     ],
     props: {
       disabled: figma.enum('state', {

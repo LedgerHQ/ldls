@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { ledgerLiveCoreTokens } from '@ledgerhq/ldls-design-core';
+import { ledgerLiveCoreTokens } from '@ledgerhq/lumen-design-core';
 import { create } from './create';
 
 // Custom theme for testing - simpler structure than full LumenStyleSheetTheme

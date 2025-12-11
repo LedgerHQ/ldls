@@ -8,7 +8,7 @@ figma.connect(
   InteractiveIcon,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=6975%3A2571',
   {
-    imports: ["import { InteractiveIcon } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { InteractiveIcon } from '@ledgerhq/lumen-ui-react'"],
     props: {
       iconType: figma.enum('appearance', {
         filled: 'filled',

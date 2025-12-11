@@ -1,26 +1,26 @@
-# LDLS UI React - AI Assistant Rules
+# Lumen UI React - AI Assistant Rules
 
-## About LDLS
+## About Lumen
 
-**LDLS** (Ledger Design Language System), also known as **Lumen**, is Ledger's comprehensive design system providing:
+**Lumen** (Ledger Design Language System), also known as **Lumen**, is Ledger's comprehensive design system providing:
 
-- **UI components** available via `@ledgerhq/ldls-ui-react`
-- **Design tokens** (colors, spacing, typography) available via `@ledgerhq/ldls-design-core`
-- **Multiple brand presets**: available via `@ledgerhq/ldls-design-core`
+- **UI components** available via `@ledgerhq/lumen-ui-react`
+- **Design tokens** (colors, spacing, typography) available via `@ledgerhq/lumen-design-core`
+- **Multiple brand presets**: available via `@ledgerhq/lumen-design-core`
 
 ## Setup Requirements
 
 ### Package Installation
 
-- Import components from `@ledgerhq/ldls-ui-react`
-- Import icons from `@ledgerhq/ldls-ui-react/symbols` (not from main package)
-- Import design tokens/presets from `@ledgerhq/ldls-design-core`
+- Import components from `@ledgerhq/lumen-ui-react`
+- Import icons from `@ledgerhq/lumen-ui-react/symbols` (not from main package)
+- Import design tokens/presets from `@ledgerhq/lumen-design-core`
 
 ### Tailwind Configuration (REQUIRED)
 
-- Tailwind config MUST include LDLS in content array: `'./node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'`
-- Always use a preset from `@ledgerhq/ldls-design-core`: ledgerLivePreset, enterprisePreset or websitesPreset
-- Import presets: `import { ledgerLivePreset } from '@ledgerhq/ldls-design-core'`
+- Tailwind config MUST include Lumen in content array: `'./node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'`
+- Always use a preset from `@ledgerhq/lumen-design-core`: ledgerLivePreset, enterprisePreset or websitesPreset
+- Import presets: `import { ledgerLivePreset } from '@ledgerhq/lumen-design-core'`
 
 ### Peer Dependencies
 
@@ -28,7 +28,6 @@
 - Checkbox requires `@radix-ui/react-checkbox`
 - Switch requires `@radix-ui/react-switch`
 - Dialog requires `@radix-ui/react-dialog`
-- Menu requires `@radix-ui/react-dropdown-menu`
 - Tooltip requires `@radix-ui/react-tooltip`
 - Select requires `@radix-ui/react-select`
 
@@ -39,7 +38,7 @@
 ### Typography Utilities
 
 - Do not use Tailwind Typography utilities (e.g., `font-bold`, `text-sm`, etc.)
-- Use LDLS custom typography utilities:
+- Use Lumen custom typography utilities:
   - `responsive-display-1` to `responsive-display-4`
   - `heading-0`, `heading-0-semi-bold` through `heading-4`, `heading-4-semi-bold`
   - `body-1`, `body-1-semi-bold` through `body-4`, `body-4-semi-bold`
@@ -47,7 +46,7 @@
 ### Colors and Background
 
 - Do not use Tailwind default color palette (e.g., `text-gray-500`, `bg-blue-600`)
-- Use LDLS design tokens
+- Use Lumen design tokens
 
 #### Available background Colors
 
@@ -93,9 +92,9 @@ Use with `bg-discover-*` prefix. Available for platform integrations: `1inch`, `
 
 To verify or discover additional color tokens, explore:
 
-- Theme files: `node_modules/@ledgerhq/ldls-design-core/dist/themes/ledger-live/theme.light.js` (or `enterprise`, `websites`)
+- Theme files: `node_modules/@ledgerhq/lumen-design-core/dist/themes/ledger-live/theme.light.js` (or `enterprise`, `websites`)
 - Look for CSS variables: `--color-background-*`, `--color-text-*`, `--color-border-*`, `--color-crypto-*`, `--color-discover-*`
-- Plugin mapping: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-custom-plugin.js` shows how CSS variables map to Tailwind utilities
+- Plugin mapping: `node_modules/@ledgerhq/lumen-design-core/dist/utils/create-custom-plugin.js` shows how CSS variables map to Tailwind utilities
 
 ### Size (Width & Height)
 
@@ -121,9 +120,9 @@ To verify or discover additional color tokens, explore:
 
 To verify or discover additional values, explore:
 
-- Primitives theme: `node_modules/@ledgerhq/ldls-design-core/dist/themes/primitives.js`
+- Primitives theme: `node_modules/@ledgerhq/lumen-design-core/dist/themes/primitives.js`
 - Look for CSS variables: `--spacing-*` (for padding/margin/gap) and `--size-*` (for width/height)
-- Plugin configuration: `node_modules/@ledgerhq/ldls-design-core/dist/utils/create-primitives-plugin.js`
+- Plugin configuration: `node_modules/@ledgerhq/lumen-design-core/dist/utils/create-primitives-plugin.js`
 
 ### Borders and Shadows
 
@@ -150,8 +149,8 @@ To verify or discover additional values, explore:
 ### Building a Card Component
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button } from '@ledgerhq/lumen-ui-react';
+import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 const Card = () => (
   <div className='bg-base border border-base rounded-lg p-16'>
@@ -167,7 +166,7 @@ const Card = () => (
 ### Building a Status Banner
 
 ```tsx
-import { Banner, Button } from '@ledgerhq/ldls-ui-react';
+import { Banner, Button } from '@ledgerhq/lumen-ui-react';
 
 // Info banner
 <Banner
@@ -206,8 +205,8 @@ import { Banner, Button } from '@ledgerhq/ldls-ui-react';
 ### Building a List with Interactive Items
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/ldls-ui-react';
-import { ChevronRight, Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import { ChevronRight, Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 const InteractiveList = () => (
   <div className='flex flex-col gap-2'>
@@ -224,14 +223,14 @@ const InteractiveList = () => (
 
 ### Component Imports
 
-- Import components from `@ledgerhq/ldls-ui-react`
+- Import components from `@ledgerhq/lumen-ui-react`
 - Import compound components together: `Select, SelectTrigger, SelectContent, SelectItem, SelectItemText`
-- Example: `import { Button, Banner, Tag } from '@ledgerhq/ldls-ui-react'`
+- Example: `import { Button, Banner, Tag } from '@ledgerhq/lumen-ui-react'`
 
 ### Icons
 
 - Always import icons from `/symbols` entry point
-- Import: `import { ArrowRight, CheckCircle } from '@ledgerhq/ldls-ui-react/symbols'`
+- Import: `import { ArrowRight, CheckCircle } from '@ledgerhq/lumen-ui-react/symbols'`
 - Use as components: `<ArrowRight size={20} />`
 - Pass as props: `<Button icon={ArrowRight}>Label</Button>`
 - Available sizes: 12, 16, 20, 24, 32, 40, 48, 56
@@ -242,18 +241,18 @@ Import all parts together:
 
 ```tsx
 // Select
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectItemText } from '@ledgerhq/ldls-ui-react';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectItemText } from '@ledgerhq/lumen-ui-react';
 
 // Dialog
-import { Dialog, DialogTrigger, DialogContent, DialogHeader } from '@ledgerhq/ldls-ui-react';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader } from '@ledgerhq/lumen-ui-react';
 
 // Tooltip
-import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/ldls-ui-react';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react';
 ```
 
 ### Dark Mode
 
-- LDLS components support dark mode automatically via CSS custom properties
+- Lumen components support dark mode automatically via CSS custom properties
 - Enable by adding `dark` class to root element: `<html className="dark">`
 - No component-level changes needed
 
@@ -310,11 +309,3 @@ Use ONLY the unique part after the last hyphen of the CSS variable name.
 - Transform: replace `/` with `-`
 - Result: `body-3` (transform `body/3` → `body-3`)
 - Example: `/* heading/2-semi-bold */` → `heading-2-semi-bold`
-
-#### Drop Shadow Styles
-
-- Figma shows: a comment with the style name, like /_ box-shadow/sm _/.
-- The prefix for box-shadow is: shadow-
-- Transform: replace `/` with `-` and use only the unique part after the last hyphen (so `box-shadow/sm` becomes `sm`).
-- Result: You write `shadow-sm`, not `shadow-box-shadow-sm`.
-- Available values: `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`.

@@ -1,5 +1,5 @@
-import { Tag } from '@ledgerhq/ldls-ui-rnative';
-import { ExternalLink } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Tag } from '@ledgerhq/lumen-ui-rnative';
+import { ExternalLink } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { View } from 'react-native';
 
 export const Tags = () => {

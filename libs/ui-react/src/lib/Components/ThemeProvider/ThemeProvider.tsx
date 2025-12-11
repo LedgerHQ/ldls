@@ -1,4 +1,4 @@
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import { FC, useMemo, useState } from 'react';
 import { I18nProvider } from '../../../i18n';
 import { ThemeMode, ThemeProviderProps } from './ThemeProvider.types';

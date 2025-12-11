@@ -1,5 +1,5 @@
 {
-  "name": "@ledgerhq/ldls-ui-core",
+  "name": "@ledgerhq/lumen-ui-core",
   "version": "0.0.3",
   "private": true,
   "type": "module",

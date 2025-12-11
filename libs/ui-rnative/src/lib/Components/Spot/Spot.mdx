@@ -86,7 +86,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Spot } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return <Spot appearance='check' />;
@@ -106,8 +106,8 @@ While the component comes with predefined styles, you can extend them using Tail
 The Spot component supports custom icons through the discriminated union type system:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-rnative';
-import { Settings, Heart, Star } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Spot } from '@ledgerhq/lumen-ui-rnative';
+import { Settings, Heart, Star } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { View } from 'react-native';
 
 function MyComponent() {
@@ -126,7 +126,7 @@ function MyComponent() {
 The Spot component can display numeric values from 0-9:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Spot } from '@ledgerhq/lumen-ui-rnative';
 import { View } from 'react-native';
 
 function MyComponent() {
@@ -145,7 +145,7 @@ function MyComponent() {
 Spot is designed for status indication with predefined appearances:
 
 ```tsx
-import { Spot } from '@ledgerhq/ldls-ui-rnative';
+import { Spot } from '@ledgerhq/lumen-ui-rnative';
 import { View } from 'react-native';
 
 function StatusIndicators() {
@@ -184,7 +184,7 @@ function StatusIndicators() {
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Spot appearance='icon' icon={Settings} />
 <Spot appearance='number' number={5} />
@@ -198,7 +198,7 @@ import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Spot appearance='icon' /> // Missing required 'icon' prop
 <Spot appearance='number' /> // Missing required 'number' prop

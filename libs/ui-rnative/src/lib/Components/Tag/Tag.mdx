@@ -66,7 +66,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Tag } from '@ledgerhq/ldls-ui-rnative';
+import { Tag } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return <Tag size='lg' appearance='accent' label='My Tag' />;
@@ -91,8 +91,8 @@ While the component comes with predefined styles, you can extend them using Nati
 The Tag component supports icons with automatic size adjustment based on the tag size:
 
 ```tsx
-import { Tag } from '@ledgerhq/ldls-ui-rnative';
-import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Tag } from '@ledgerhq/lumen-ui-rnative';
+import { Check } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return <Tag size='lg' appearance='success' icon={Check} label='Success' />;
@@ -110,7 +110,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Check } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Tag size='sm' icon={Check} label='Success' />
 ```
@@ -123,7 +123,7 @@ import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Check } from '@ledgerhq/ldls-ui-rnative/symbols';
+import { Check } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 <Tag style={{ height: 52 }} icon={Check} label='Success' />
 ```

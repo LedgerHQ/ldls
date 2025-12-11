@@ -2,7 +2,7 @@ import {
   enterpriseThemes,
   ledgerLiveThemes,
   websitesThemes,
-} from '@ledgerhq/ldls-design-core';
+} from '@ledgerhq/lumen-design-core';
 import type { Decorator } from '@storybook/react-native-web-vite';
 
 import { ColorSchemeName } from 'react-native';

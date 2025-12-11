@@ -1,9 +1,9 @@
-import { IconButton } from '@ledgerhq/ldls-ui-rnative';
+import { IconButton } from '@ledgerhq/lumen-ui-rnative';
 import {
   ExternalLink,
   Link,
   Settings,
-} from '@ledgerhq/ldls-ui-rnative/symbols';
+} from '@ledgerhq/lumen-ui-rnative/symbols';
 
 export const IconButtons = () => {
   return (

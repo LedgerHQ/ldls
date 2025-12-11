@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback, useEffect } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Check } from '../../Symbols';
@@ -17,7 +17,7 @@ import { useGlobalSelectSafeContext } from './GlobalSelectContext';
  * @see {@link https://ldls.vercel.app/?path=/docs/components-select-overview--docs Storybook}
  *
  * @example
- * import { GlobalSelectProvider, GlobalSelectBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalSelectProvider, GlobalSelectBottomSheet } from '@ledgerhq/lumen-ui-rnative';
  *
  * function App() {
  *   return (

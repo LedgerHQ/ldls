@@ -82,15 +82,15 @@ Use Search for search functionality and data querying. Use Input for form data c
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-react';
+import { Search } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');
@@ -132,7 +132,7 @@ The Search component takes the **full width** of its parent container by default
 #### **Controlled Search**
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-react';
+import { Search } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');
@@ -152,7 +152,7 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Search } from '@ledgerhq/ldls-ui-react';
+import { Search } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');

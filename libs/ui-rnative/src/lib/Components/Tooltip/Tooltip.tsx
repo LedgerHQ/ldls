@@ -23,7 +23,7 @@ import type {
  * @see {@link https://ldls.vercel.app/?path=/docs/components-tooltip-overview--docs Storybook}
  *
  * @example
- * import { GlobalTooltipProvider, Tooltip, TooltipTrigger, TooltipContent, GlobalTooltipBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalTooltipProvider, Tooltip, TooltipTrigger, TooltipContent, GlobalTooltipBottomSheet } from '@ledgerhq/lumen-ui-rnative';
  *
  * function App() {
  *   return (

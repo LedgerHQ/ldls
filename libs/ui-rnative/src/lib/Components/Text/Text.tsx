@@ -11,7 +11,7 @@ import { createStyledText, type LumenTextStyleProps } from '../../../styles';
  *
  * @example
  * ```tsx
- * import { Text } from '@ledgerhq/ldls-ui-rnative';
+ * import { Text } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic usage with typography typo
  * <Text typo='body1'>Hello World</Text>

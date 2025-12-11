@@ -15,7 +15,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { ShieldLock } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { ShieldLock } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <ShieldLock />
  *
@@ -25,7 +25,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Used within a Button component
- * import { Button } from '@ledgerhq/ldls-ui-rnative';
+ * import { Button } from '@ledgerhq/lumen-ui-rnative';
  *
  * <Button icon={ShieldLock} size="md">
  *   Click me

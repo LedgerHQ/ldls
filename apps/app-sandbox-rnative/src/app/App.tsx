@@ -1,12 +1,12 @@
-import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import {
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
   useBottomSheetRef,
-} from '@ledgerhq/ldls-ui-rnative';
-import { ToRemove } from '@ledgerhq/ldls-ui-rnative/ToRemove';
+} from '@ledgerhq/lumen-ui-rnative';
+import { ToRemove } from '@ledgerhq/lumen-ui-rnative/ToRemove';
 import { useState } from 'react';
 import {
   ColorSchemeName,

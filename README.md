@@ -9,9 +9,9 @@
 
 ---
 
-## 👩‍💻 Using LDLS in Your Project
+## 👩‍💻 Using Lumen in Your Project
 
-LDLS is a comprehensive design system that provides consistent UI components for both web and mobile applications.
+Lumen is a comprehensive design system that provides consistent UI components for both web and mobile applications.
 
 ### Quick Start
 
@@ -19,19 +19,19 @@ LDLS is a comprehensive design system that provides consistent UI components for
 
 ```bash
 # Install the UI Kit and required peer dependencies
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core clsx tailwind-merge class-variance-authority
+npm install @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core clsx tailwind-merge class-variance-authority
 ```
 
 2. Configure Tailwind:
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
+    './node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;
@@ -49,7 +49,7 @@ npm install @radix-ui/react-slot
 `@radix-ui/react-slot`: This dependency is used internally by the Button component to enable flexible composition patterns. It allows the Button to merge its props with child elements when needed.
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
+import { Button } from '@ledgerhq/lumen-ui-react';
 
 function App() {
   return <Button appearance='accent'>Get Started</Button>;
@@ -58,19 +58,19 @@ function App() {
 
 ### Learn More
 
-- [📖 Full User Guide](./USER_GUIDE.md) - Comprehensive guide for using LDLS
+- [📖 Full User Guide](./USER_GUIDE.md) - Comprehensive guide for using Lumen
 - [🎨 Design Guidelines](./USER_GUIDE.md#design-tokens) - Learn about our design tokens and principles
 - [🧩 Component Library](https://ldls.vercel.app) - Explore available components
 - [⚙️ Configuration Guide](./USER_GUIDE.md#configuration) - Advanced configuration options
 
 ### 🤖 AI Assistant Support
 
-LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) suggest correct usage patterns.
+Lumen includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) suggest correct usage patterns.
 
 **For Cursor users**, add to your `.cursorrules`:
 
 ```
-@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+@node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
 ```
 
 **For other AI tools**, see our [AI Rules README](./libs/ui-react/ai-rules/README.md).
@@ -78,7 +78,7 @@ LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.
 The rules help with:
 
 - ✅ Correct import paths and package usage
-- ✅ LDLS design tokens instead of Tailwind defaults
+- ✅ Lumen design tokens instead of Tailwind defaults
 - ✅ Proper Tailwind configuration
 - ✅ Figma-to-code token mapping
 
@@ -86,9 +86,9 @@ The rules help with:
 
 ---
 
-## 🛠 Contributing to LDLS
+## 🛠 Contributing to Lumen
 
-LDLS is built with Nx, supporting both React and React Native development. Here's how to get started with development:
+Lumen is built with Nx, supporting both React and React Native development. Here's how to get started with development:
 
 ### Setup Development Environment
 
@@ -102,7 +102,7 @@ npm install --legacy-peer-deps
 
 ```bash
 # Start React Storybook
-npx nx run @ledgerhq/ldls-ui-react:serve:storybook
+npx nx run @ledgerhq/lumen-ui-react:serve:storybook
 
 # Build all libraries
 npx nx run-many --target=build --all
@@ -111,7 +111,7 @@ npx nx run-many --target=build --all
 ### Project Structure
 
 ```
-ldls/
+lumen/
 ├── libs/
 │   ├── ui-core/       # Shared utilities and types
 │   ├── ui-react/      # React components

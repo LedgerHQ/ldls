@@ -101,15 +101,15 @@ To be implemented:
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react
+npm install @ledgerhq/lumen-ui-react
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 ## Basic Usage
 
 ```tsx
-import { CardButton } from '@ledgerhq/ldls-ui-react';
+import { CardButton } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
@@ -127,8 +127,8 @@ function MyComponent() {
 The CardButton component supports icons that automatically scale to 24px size:
 
 ```tsx
-import { CardButton } from '@ledgerhq/ldls-ui-react';
-import { CreditCard } from '@ledgerhq/ldls-ui-react/symbols';
+import { CardButton } from '@ledgerhq/lumen-ui-react';
+import { CreditCard } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
@@ -230,7 +230,7 @@ The following guidelines ensure consistent usage of the CardButton component and
     >
 
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <CardButton
   icon={Settings}
@@ -247,7 +247,7 @@ import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { Settings } from '@ledgerhq/ldls-ui-react/symbols';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 <CardButton
   icon={() => <Settings size={20} />}

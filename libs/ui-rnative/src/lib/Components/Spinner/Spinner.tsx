@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { forwardRef } from 'react';
 import { View } from 'react-native';
 import Svg, { Path, type SvgProps } from 'react-native-svg';

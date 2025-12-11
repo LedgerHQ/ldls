@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { ledgerLiveThemes } from '@ledgerhq/ldls-design-core';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import type { BoxShadowValue } from 'react-native';
 import { createStylesheetTheme } from '../Provider/createStylesheetTheme';
 import {

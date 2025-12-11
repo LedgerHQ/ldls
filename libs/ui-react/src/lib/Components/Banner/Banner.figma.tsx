@@ -10,7 +10,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=129%3A201',
   {
     variant: { 'show-actions': false, 'show-close': false },
-    imports: ["import { Banner } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Banner } from '@ledgerhq/lumen-ui-react'"],
     props: {
       appearance: figma.enum('appearance', {
         info: 'info',
@@ -54,8 +54,8 @@ figma.connect(
   {
     variant: { appearance: 'info', 'show-actions': true },
     imports: [
-      "import { Banner } from '@ledgerhq/ldls-ui-react'",
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
+      "import { Banner } from '@ledgerhq/lumen-ui-react'",
+      "import { Button } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       title: figma.boolean('show-title', {
@@ -101,8 +101,8 @@ figma.connect(
   {
     variant: { appearance: 'success', 'show-actions': true },
     imports: [
-      "import { Banner } from '@ledgerhq/ldls-ui-react'",
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
+      "import { Banner } from '@ledgerhq/lumen-ui-react'",
+      "import { Button } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       appearance: figma.enum('appearance', {
@@ -152,8 +152,8 @@ figma.connect(
   {
     variant: { appearance: 'warning', 'show-actions': true },
     imports: [
-      "import { Banner } from '@ledgerhq/ldls-ui-react'",
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
+      "import { Banner } from '@ledgerhq/lumen-ui-react'",
+      "import { Button } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       title: figma.boolean('show-title', {
@@ -198,8 +198,8 @@ figma.connect(
   {
     variant: { appearance: 'error', 'show-actions': true },
     imports: [
-      "import { Banner } from '@ledgerhq/ldls-ui-react'",
-      "import { Button } from '@ledgerhq/ldls-ui-react'",
+      "import { Banner } from '@ledgerhq/lumen-ui-react'",
+      "import { Button } from '@ledgerhq/lumen-ui-react'",
     ],
     props: {
       title: figma.boolean('show-title', {
@@ -244,7 +244,7 @@ figma.connect(
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=129%3A201',
   {
     variant: { 'show-close': true },
-    imports: ["import { Banner } from '@ledgerhq/ldls-ui-react'"],
+    imports: ["import { Banner } from '@ledgerhq/lumen-ui-react'"],
     props: {
       appearance: figma.enum('appearance', {
         info: 'info',

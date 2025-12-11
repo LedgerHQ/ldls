@@ -3,7 +3,7 @@ import {
   ThemeProvider,
   Switch,
   useTheme,
-} from '@ledgerhq/ldls-ui-react';
+} from '@ledgerhq/lumen-ui-react';
 
 const ToggleThemeButton = () => {
   const { mode, toggleMode } = useTheme();

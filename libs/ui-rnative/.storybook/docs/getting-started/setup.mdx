@@ -7,7 +7,7 @@ Install the packages and their peer dependencies:
 
 ```bash
 # Install the UI Kit
-npm install @ledgerhq/ldls-ui-rnative @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
 
 # Install peer dependencies
 npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
@@ -24,12 +24,12 @@ Setup ledger custom tailwind preset in your `tailwind.config.ts`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/ldls-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
+    "./node_modules/@ledgerhq/lumen-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
   ],
   presets: [ledgerLivePreset], // the installed tailwind preset
 } satisfies Config;

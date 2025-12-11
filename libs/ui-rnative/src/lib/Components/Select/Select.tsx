@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, { useState, useEffect, useCallback, useId } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Animated, {
@@ -36,7 +36,7 @@ const triggerStyles = cn(
  * @see {@link https://ldls.vercel.app/?path=/docs/components-select-overview--docs Storybook}
  *
  * @example
- * import { Select, SelectTrigger, SelectContent, SelectItem, SelectItemText } from '@ledgerhq/ldls-ui-rnative';
+ * import { Select, SelectTrigger, SelectContent, SelectItem, SelectItemText } from '@ledgerhq/lumen-ui-rnative';
  *
  * function App() {
  *   const [value, setValue] = useState('option1');

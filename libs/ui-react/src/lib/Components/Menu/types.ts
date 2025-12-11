@@ -15,13 +15,6 @@ export type MenuProps = {
   children?: React.ReactNode;
 
   /**
-   * The reading direction of the dropdown menu.
-   *
-   * @default 'ltr'
-   */
-  dir?: 'ltr' | 'rtl';
-
-  /**
    * The controlled open state of the dropdown menu.
    * Must be used in conjunction with `onOpenChange`.
    */

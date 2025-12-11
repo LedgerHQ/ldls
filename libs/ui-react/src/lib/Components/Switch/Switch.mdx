@@ -59,17 +59,17 @@ Includes small and large sizes.
 <Tab label="Implementation">
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @radix-ui/react-switch
+npm install @ledgerhq/lumen-ui-react @radix-ui/react-switch
 ```
 
-> **Note**: `@ledgerhq/ldls-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
 
 The `@radix-ui/react-switch` dependency provides accessible switch functionality with proper keyboard navigation, focus management, and screen reader support.
 
 ## Basic Usage
 
 ```tsx
-import { Switch } from '@ledgerhq/ldls-ui-react';
+import { Switch } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return <Switch />;
@@ -84,7 +84,7 @@ Use the `selected` and `onChange` props for full control:
 
 ```tsx
 import { useState } from 'react';
-import { Switch } from '@ledgerhq/ldls-ui-react';
+import { Switch } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [selected, setSelected] = useState(false);

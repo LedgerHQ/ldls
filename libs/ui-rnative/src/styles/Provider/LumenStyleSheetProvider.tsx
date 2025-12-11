@@ -1,4 +1,4 @@
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import { FC, useEffect, useMemo } from 'react';
 import {
   Appearance,

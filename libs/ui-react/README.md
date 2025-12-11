@@ -1,6 +1,6 @@
-# @ledgerhq/ldls-ui-react
+# @ledgerhq/lumen-ui-react
 
-**React UI component library for Ledger Design System (LDLS)** - A comprehensive collection of accessible, customizable React components built with Tailwind CSS and Radix UI primitives.
+**React UI component library for Ledger Design System (Lumen)** - A comprehensive collection of accessible, customizable React components built with Tailwind CSS and Radix UI primitives.
 
 ## 🎨 [View Components in Storybook →](https://ldls.vercel.app)
 
@@ -11,7 +11,7 @@
 Install the package and its required peer dependencies:
 
 ```bash
-npm install @ledgerhq/ldls-ui-react @ledgerhq/ldls-design-core
+npm install @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core
 
 # Install peer dependencies
 npm install @radix-ui/react-checkbox @radix-ui/react-dialog @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tooltip class-variance-authority clsx tailwind-merge
@@ -20,7 +20,7 @@ npm install @radix-ui/react-checkbox @radix-ui/react-dialog @radix-ui/react-slot
 npm install react react-dom
 ```
 
-→ [View @ledgerhq/ldls-design-core on npm](https://www.npmjs.com/package/@ledgerhq/ldls-design-core?activeTab=readme)
+→ [View @ledgerhq/lumen-design-core on npm](https://www.npmjs.com/package/@ledgerhq/lumen-design-core?activeTab=readme)
 
 ## ⚡ Quick Setup
 
@@ -30,10 +30,10 @@ Create or update your `tailwind.config.js`:
 
 ```typescript
 import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/ldls-design-core';
+import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
 
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/ldls-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/@ledgerhq/lumen-ui-react/dist/lib/**/*.{js,ts,jsx,tsx}'],
   presets: [ledgerLivePreset],
 } satisfies Config;
 
@@ -43,8 +43,8 @@ export default config;
 ### 2. Start Using Components
 
 ```tsx
-import { Button } from '@ledgerhq/ldls-ui-react';
-import { ArrowRight } from '@ledgerhq/ldls-ui-react/symbols';
+import { Button } from '@ledgerhq/lumen-ui-react';
+import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function App() {
   return (
@@ -61,7 +61,7 @@ function App() {
 
 ### Using Design Tokens
 
-All components use design tokens from `@ledgerhq/ldls-design-core`:
+All components use design tokens from `@ledgerhq/lumen-design-core`:
 
 ```tsx
 // Components automatically use theme tokens
@@ -72,7 +72,7 @@ const CustomCard = () => <div className='bg-base hover:bg-base-hover heading-0 p
 
 ### Dark Mode Support
 
-LDLS components automatically support dark mode through CSS custom properties. The design system includes both light and dark theme tokens.
+Lumen components automatically support dark mode through CSS custom properties. The design system includes both light and dark theme tokens.
 
 #### Enable Dark Mode
 
@@ -106,7 +106,7 @@ All components are built with accessibility in mind:
 Import icons directly from the symbols export:
 
 ```tsx
-import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/symbols';
+import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/lumen-ui-react/symbols';
 
 // Use icons as components with size prop
 <ArrowRight size={24} />
@@ -120,7 +120,7 @@ import { ArrowRight, CheckCircle, AlertTriangle } from '@ledgerhq/ldls-ui-react/
 
 ## 🤖 AI Assistant Setup
 
-LDLS includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) understand and suggest correct usage patterns.
+Lumen includes AI rules to help assistants (Cursor, Claude, VS Code Copilot, etc.) understand and suggest correct usage patterns.
 
 ### Quick Setup
 
@@ -129,7 +129,7 @@ The AI rules are included in the package. Reference them from `node_modules`:
 **For Cursor users**, add to your `.cursorrules`:
 
 ```
-@node_modules/@ledgerhq/ldls-ui-react/ai-rules/RULES.md
+@node_modules/@ledgerhq/lumen-ui-react/ai-rules/RULES.md
 ```
 
 **For other AI tools**, see our [AI Rules README](./ai-rules/README.md) for setup instructions.
@@ -139,8 +139,8 @@ The AI rules are included in the package. Reference them from `node_modules`:
 The AI rules help assistants:
 
 - ✅ Suggest correct import paths (`/symbols` for icons)
-- ✅ Use LDLS design tokens instead of Tailwind defaults
-- ✅ Configure Tailwind correctly with LDLS content paths
+- ✅ Use Lumen design tokens instead of Tailwind defaults
+- ✅ Configure Tailwind correctly with Lumen content paths
 - ✅ Extract components from Figma with proper token mapping
 - ✅ Recommend correct peer dependencies
 
@@ -153,7 +153,7 @@ The AI rules help assistants:
 Full TypeScript support with comprehensive type definitions:
 
 ```tsx
-import type { ButtonProps, BannerProps, InputProps } from '@ledgerhq/ldls-ui-react';
+import type { ButtonProps, BannerProps, InputProps } from '@ledgerhq/lumen-ui-react';
 
 const CustomButton = (props: ButtonProps) => {
   return <Button {...props} className='custom-button' />;
@@ -190,6 +190,6 @@ To contribute:
 
 - [📚 Storybook Documentation](https://ldls.vercel.app)
 - [🏠 Main Repository](https://github.com/LedgerHQ/ldls)
-- [📦 npm Package](https://www.npmjs.com/package/@ledgerhq/ldls-ui-react)
+- [📦 npm Package](https://www.npmjs.com/package/@ledgerhq/lumen-ui-react)
 - [🎨 Design System SetUp Guide](https://ldls.vercel.app/?path=/docs/getting-started-setup-tailwind--docs)
 - [🐛 Report Issues](https://github.com/LedgerHQ/ldls/issues)

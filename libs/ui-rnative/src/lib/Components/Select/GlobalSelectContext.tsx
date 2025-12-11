@@ -1,4 +1,4 @@
-import { createSafeContext } from '@ledgerhq/ldls-utils-shared';
+import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useState, useRef, useMemo, ReactNode } from 'react';
 import { SelectData } from './types';
 
@@ -47,7 +47,7 @@ type GlobalSelectProviderProps = {
  * This should wrap your app at the root level and include GlobalSelectBottomSheet.
  *
  * @example
- * import { GlobalSelectProvider, GlobalSelectBottomSheet } from '@ledgerhq/ldls-ui-rnative';
+ * import { GlobalSelectProvider, GlobalSelectBottomSheet } from '@ledgerhq/lumen-ui-rnative';
  *
  * function App() {
  *   return (

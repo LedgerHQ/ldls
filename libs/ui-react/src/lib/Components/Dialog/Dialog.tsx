@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { DialogHeader } from './DialogHeader/DialogHeader';
@@ -12,7 +12,7 @@ import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/ldls-ui-react';
+ * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/lumen-ui-react';
  *
  * function MyComponent() {
  *   return (
@@ -48,7 +48,7 @@ export function Dialog({ ...props }: DialogProps) {
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { DialogTrigger, Button } from '@ledgerhq/ldls-ui-react';
+ * import { DialogTrigger, Button } from '@ledgerhq/lumen-ui-react';
  *
  * <DialogTrigger asChild>
  *   <Button>Click me for a dialog</Button>
@@ -124,7 +124,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
  * Do not use it to modify the dialog's core appearance (colors, padding, etc).
  *
  * @example
- * import { DialogContent } from '@ledgerhq/ldls-ui-react';
+ * import { DialogContent } from '@ledgerhq/lumen-ui-react';
  *
  * <DialogContent>
  *   <p>This is a dialog!</p>

@@ -1,4 +1,4 @@
-import { toPascalCase } from '@ledgerhq/ldls-utils-shared';
+import { toPascalCase } from '@ledgerhq/lumen-utils-shared';
 import { createElement, forwardRef, SVGProps } from 'react';
 import { Icon, IconProps } from './Icon';
 

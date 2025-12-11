@@ -16,7 +16,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @example
  * // Basic usage with default size (24px)
- * import { CoinsCross } from '@ledgerhq/ldls-ui-react/symbols';
+ * import { CoinsCross } from '@ledgerhq/lumen-ui-react/symbols';
  *
  * <CoinsCross />
  *

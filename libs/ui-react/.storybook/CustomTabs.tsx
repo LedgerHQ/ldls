@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
 import { Folder } from '../src/lib/Symbols/Icons/Folder';
 

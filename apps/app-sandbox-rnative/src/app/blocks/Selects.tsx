@@ -9,7 +9,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '@ledgerhq/ldls-ui-rnative';
+} from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 import { View } from 'react-native';
 

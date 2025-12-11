@@ -1,4 +1,4 @@
-import { getObjectPath } from '@ledgerhq/ldls-utils-shared';
+import { getObjectPath } from '@ledgerhq/lumen-utils-shared';
 import type { ViewStyle, TextStyle, ViewProps, TextProps } from 'react-native';
 import type {
   LumenStyleSheetTheme,

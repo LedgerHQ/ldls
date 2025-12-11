@@ -88,13 +88,13 @@ const cardButtonVariants = {
  *
  * @example
  * // Basic card button
- * import { CardButton } from '@ledgerhq/ldls-ui-rnative';
+ * import { CardButton } from '@ledgerhq/lumen-ui-rnative';
  *
  * <CardButton title="Click Me" onPress={() => console.log('Clicked!')} />
  *
  * // Card button with icon and description
- * import { CardButton } from '@ledgerhq/ldls-ui-rnative';
- * import { Info } from '@ledgerhq/ldls-ui-rnative/symbols';
+ * import { CardButton } from '@ledgerhq/lumen-ui-rnative';
+ * import { Info } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * <CardButton
  *   icon={Info}

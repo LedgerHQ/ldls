@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/ldls-utils-shared';
+import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cloneElement, isValidElement, memo, PropsWithChildren } from 'react';
 
 function _InjectStylesIntoChildren({
