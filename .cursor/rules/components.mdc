@@ -4,7 +4,6 @@ globs:
 alwaysApply: true
 ---
 
-
 # class-variance-authority (cva)
 - Use cva at the top of the file to compose classnames when there is variants composition
 - Use cva at the top of the file when there are lots of classnames to declare for a given element
