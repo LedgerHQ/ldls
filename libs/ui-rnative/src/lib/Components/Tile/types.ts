@@ -21,6 +21,12 @@ export type TileProps = {
    */
   trailingContent?: ReactNode;
   /**
+   * Whether the tile is disabled.
+   * When disabled, the tile will not respond to press events and will appear dimmed.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
    * Callback function when the tile is pressed.
    */
   onPress?: PressableProps['onPress'];
@@ -29,4 +35,4 @@ export type TileProps = {
    * Can be used to perform secondary actions.
    */
   onLongPress?: PressableProps['onLongPress'];
-} & Omit<PressableProps, 'onPress' | 'onLongPress'>;
+} & Omit<PressableProps, 'onPress' | 'onLongPress' | 'disabled'>;

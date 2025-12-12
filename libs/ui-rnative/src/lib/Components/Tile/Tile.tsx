@@ -8,17 +8,63 @@ const tileVariants = {
   root: cva(
     [
       'relative flex w-full items-center gap-8 p-8',
-      'rounded-sm bg-base-transparent text-base transition-colors',
+      'bg-base-transparent rounded-sm text-base transition-colors',
     ],
     {
       variants: {
         pressed: {
-          true: 'bg-base-transparent-pressed',
-          false: 'bg-base-transparent',
+          true: '',
+          false: '',
         },
+        disabled: {
+          true: '',
+          false: '',
+        },
+      },
+      compoundVariants: [
+        {
+          pressed: false,
+          disabled: false,
+          className: 'bg-base-transparent',
+        },
+        {
+          pressed: true,
+          disabled: false,
+          className: 'bg-base-transparent-pressed',
+        },
+        {
+          disabled: true,
+          className: 'bg-base-transparent',
+        },
+      ],
+      defaultVariants: {
+        pressed: false,
+        disabled: false,
       },
     },
   ),
+  title: cva('body-3-semi-bold w-full truncate text-center', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-base',
+      },
+    },
+    defaultVariants: {
+      disabled: false,
+    },
+  }),
+  description: cva('body-3 w-full overflow-hidden truncate text-center', {
+    variants: {
+      disabled: {
+        true: 'text-disabled',
+        false: 'text-muted',
+      },
+    },
+    defaultVariants: {
+      disabled: false,
+    },
+  }),
 };
 
 /**
@@ -49,6 +95,7 @@ export const Tile: FC<TileProps> = forwardRef<PressableRef, TileProps>(
       description,
       leadingContent,
       trailingContent,
+      disabled = false,
       onPress,
       onLongPress,
       ...props
@@ -60,26 +107,27 @@ export const Tile: FC<TileProps> = forwardRef<PressableRef, TileProps>(
         ref={ref}
         onPress={onPress}
         onLongPress={onLongPress}
+        disabled={disabled}
         {...props}
       >
         {({ pressed }) => (
-          <View className={tileVariants.root({ pressed })}>
-            <View className='flex w-full items-center gap-8'>
-              <View className='flex items-center justify-center'>
+          <View className={tileVariants.root({ pressed, disabled })}>
+            <View className='w-full items-center gap-8'>
+              <View className='items-center justify-center'>
                 {leadingContent}
               </View>
-              <View className='flex w-full items-center gap-4'>
-                <View className='flex w-full items-center'>
+              <View className='w-full items-center gap-4'>
+                <View className='w-full items-center'>
                   <Text
                     numberOfLines={1}
-                    className='w-full truncate text-center text-base body-3-semi-bold'
+                    className={tileVariants.title({ disabled })}
                   >
                     {title}
                   </Text>
                   {description && (
                     <Text
                       numberOfLines={1}
-                      className='w-full overflow-hidden truncate text-center text-muted body-3'
+                      className={tileVariants.description({ disabled })}
                     >
                       {description}
                     </Text>
