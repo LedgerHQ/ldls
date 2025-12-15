@@ -64,9 +64,9 @@ describe('createStyledText', () => {
     expect(StyledText.displayName).toBe('StyledText(Text)');
   });
 
-  it('should apply typography typo', () => {
+  it('should apply typography typography', () => {
     renderWithProvider(
-      <StyledText testID='text' typo='body1'>
+      <StyledText testID='text' typography='body1'>
         Hello
       </StyledText>,
     );
@@ -92,11 +92,11 @@ describe('createStyledText', () => {
     expect(screen.getByTestId('text').props.style[0].color).toBe('#666666');
   });
 
-  it('should combine typo, color and spacing', () => {
+  it('should combine typography, color and spacing', () => {
     renderWithProvider(
       <StyledText
         testID='text'
-        typo='body1'
+        typography='body1'
         lx={{ color: 'base', marginTop: 's8' }}
       >
         Styled
@@ -115,7 +115,7 @@ describe('createStyledText', () => {
     renderWithProvider(
       <StyledText
         testID='text'
-        typo='body1'
+        typography='body1'
         style={{ textDecorationLine: 'underline' }}
       >
         Underlined
@@ -146,10 +146,10 @@ describe('createStyledText', () => {
         renderCount();
         return <Text {...props} />;
       };
-      const StyledTracked = createStyledText(TrackedText);
+      const StyledTracked = createStyledText(TrackedText as any);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' typo='body1'>
+        <StyledTracked testID='text' typography='body1'>
           Hello
         </StyledTracked>,
       );
@@ -159,7 +159,7 @@ describe('createStyledText', () => {
       // Re-render with same props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='text' typo='body1'>
+          <StyledTracked testID='text' typography='body1'>
             Hello
           </StyledTracked>
         </LumenStyleSheetProvider>,
@@ -175,10 +175,10 @@ describe('createStyledText', () => {
         renderCount();
         return <Text {...props} />;
       };
-      const StyledTracked = createStyledText(TrackedText);
+      const StyledTracked = createStyledText(TrackedText as any);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' typo='body1'>
+        <StyledTracked testID='text' typography='body1'>
           Hello
         </StyledTracked>,
       );
@@ -204,10 +204,10 @@ describe('createStyledText', () => {
         renderCount();
         return <Text {...props} />;
       };
-      const StyledTracked = createStyledText(TrackedText);
+      const StyledTracked = createStyledText(TrackedText as any);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='text' typo='body1'>
+        <StyledTracked testID='text' typography='body1'>
           Hello
         </StyledTracked>,
       );
@@ -217,7 +217,7 @@ describe('createStyledText', () => {
       // Re-render with different children
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='text' typo='body1'>
+          <StyledTracked testID='text' typography='body1'>
             World
           </StyledTracked>
         </LumenStyleSheetProvider>,

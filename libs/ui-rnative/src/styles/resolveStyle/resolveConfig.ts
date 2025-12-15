@@ -3,7 +3,7 @@ import { LumenTextStyle, LumenViewStyle } from '../types';
 /**
  * Configuration for each style prop
  * - path: Theme path for token lookup (array of keys)
- * - spread: true for props that spread into multiple style properties (typo)
+ * - spread: true for props that spread into multiple style properties (typography)
  * - No path = passthrough prop (value passed as-is)
  */
 export type PropConfig = {
@@ -105,12 +105,12 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyle, PropConfig> = {
 } as const;
 
 /**
- * Text style props configuration (extends view props + color + typo)
+ * Text style props configuration (extends view props + color + typography)
  */
 export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyle, PropConfig> = {
   ...VIEW_PROP_CONFIG,
   color: { path: ['colors', 'text'] },
-  typo: { path: ['typographies'], spread: true },
+  typography: { path: ['typographies'], spread: true },
   textAlign: {},
   textTransform: {},
   textDecorationLine: {},

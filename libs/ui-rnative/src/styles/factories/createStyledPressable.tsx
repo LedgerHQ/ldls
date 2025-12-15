@@ -9,7 +9,7 @@ import type {
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
 import { LumenViewStyleLX } from '../types';
-import { arePropsEqualLx } from './arePropsEqualLx';
+import { areLxPropsEqual } from './areLxPropsEqual';
 
 type PressableRef = React.ElementRef<typeof Pressable>;
 export type StyledPressableProps = LumenViewStyleLX & PressableProps;
@@ -45,9 +45,7 @@ export type StyledPressableProps = LumenViewStyleLX & PressableProps;
  * </Pressable>
  * ```
  */
-export const createStyledPressable = (
-  Component: React.ComponentType<PressableProps>,
-) => {
+export const createStyledPressable = (Component: typeof Pressable) => {
   const StyledComponent = memo(
     forwardRef<PressableRef, StyledPressableProps>(
       ({ lx = {}, style, ...props }, ref) => {
@@ -63,20 +61,10 @@ export const createStyledPressable = (
           return [resolvedStyle, computeStyle];
         };
 
-        return (
-          <Component
-            {...({
-              ...props,
-              ref,
-              style: mergedStyle,
-            } as StyledPressableProps & {
-              ref: React.Ref<typeof Pressable>;
-            })}
-          />
-        );
+        return <Component ref={ref} {...props} style={mergedStyle} />;
       },
     ),
-    arePropsEqualLx,
+    areLxPropsEqual,
   );
 
   // Set display name for debugging

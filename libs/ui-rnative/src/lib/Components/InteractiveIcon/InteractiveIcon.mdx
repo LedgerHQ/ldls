@@ -104,7 +104,7 @@ function MyComponent() {
       {/* Stroked interactive icon */}
       <InteractiveIcon
         iconType='stroked'
-        aria-label='Open settings'
+        accessibilityLabel='Open settings'
         onPress={handleSettings}
       >
         <Settings size={20} />
@@ -113,7 +113,7 @@ function MyComponent() {
       {/* Filled interactive icon */}
       <InteractiveIcon
         iconType='filled'
-        aria-label='Delete item'
+        accessibilityLabel='Delete item'
         onPress={handleDelete}
       >
         <DeleteCircleFill size={20} />
@@ -136,7 +136,7 @@ function LikeButton({ isSelected, onToggle }) {
   return (
     <InteractiveIcon
       iconType={isSelected ? 'filled' : 'stroked'}
-      aria-label={isSelected ? 'Deselect' : 'Select'}
+      accessibilityLabel={isSelected ? 'Deselect' : 'Select'}
       onPress={onToggle}
     >
       {isSelected ? (
@@ -159,22 +159,22 @@ function SizeExamples() {
   return (
     <Box lx={{ alignItems: 'center', gap: 's4' }}>
       {/* Compact size for dense interfaces */}
-      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={16} />
       </InteractiveIcon>
 
       {/* Standard size */}
-      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={20} />
       </InteractiveIcon>
 
       {/* Prominent size */}
-      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={24} />
       </InteractiveIcon>
 
       {/* Large touch target for mobile */}
-      <InteractiveIcon iconType='stroked' aria-label='Settings'>
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={40} />
       </InteractiveIcon>
     </Box>
@@ -198,12 +198,12 @@ The following guidelines are based on our design system principles and accessibi
 import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 // Filled icon with filled variant
-<InteractiveIcon iconType='filled' aria-label='Delete'>
+<InteractiveIcon iconType='filled' accessibilityLabel='Delete'>
   <DeleteCircleFill size={20} />
 </InteractiveIcon>
 
 // Outlined icon with stroked variant
-<InteractiveIcon iconType='stroked' aria-label='Settings'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
   <Settings size={20} />
 </InteractiveIcon>
 ```
@@ -219,12 +219,12 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 // Filled icon with stroked variant (wrong)
-<InteractiveIcon iconType='stroked' aria-label='Delete'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='Delete'>
   <DeleteCircleFill size={20} />
 </InteractiveIcon>
 
 // Outlined icon with filled variant (wrong)
-<InteractiveIcon iconType='filled' aria-label='Settings'>
+<InteractiveIcon iconType='filled' accessibilityLabel='Settings'>
   <Settings size={20} />
 </InteractiveIcon>
 ```
@@ -235,7 +235,7 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Always provide descriptive aria-label'
+      title='Always provide descriptive accessibilityLabel'
       description='Use clear, action-oriented labels that describe what the icon does'
     >
 
@@ -243,14 +243,14 @@ import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 ```tsx
 import { Download } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<InteractiveIcon iconType='stroked' aria-label='Download PDF document'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='Download PDF document'>
   <Download size={20} />
 </InteractiveIcon>
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't omit or use generic aria-label"
+      title="Don't omit or use generic accessibilityLabel"
       description='Avoid missing labels, generic labels like "Click here", or icon names as labels'
     >
 
@@ -258,7 +258,7 @@ import { Download } from '@ledgerhq/lumen-ui-rnative/symbols';
 ```tsx
 import { Download } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<InteractiveIcon iconType='stroked' aria-label='Click here'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='Click here'>
   <Download size={20} />
 </InteractiveIcon>
 ```
@@ -277,7 +277,7 @@ import { Download } from '@ledgerhq/lumen-ui-rnative/symbols';
 ```tsx
 import { MoreVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<InteractiveIcon iconType='stroked' aria-label='More actions'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='More actions'>
   <MoreVertical size={20} />
 </InteractiveIcon>
 ```
@@ -292,7 +292,7 @@ import { MoreVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
 ```tsx
 import { MoreVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<InteractiveIcon iconType='stroked' aria-label='More actions'>
+<InteractiveIcon iconType='stroked' accessibilityLabel='More actions'>
   Settings
 </InteractiveIcon>
 ```

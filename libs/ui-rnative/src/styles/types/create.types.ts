@@ -8,7 +8,7 @@ type FlatLumensValues = {
   [propName in AllAvailableKeys]?: AllAvailableStyles[propName];
 };
 
-type LumensValues = FlatLumensValues;
+type LumensValues = FlatLumensValues | FlatLumensValues[];
 
 export type LumenStyleSheet = {
   [styleName: string]:

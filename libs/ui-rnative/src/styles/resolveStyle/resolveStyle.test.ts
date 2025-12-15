@@ -435,8 +435,8 @@ describe('resolve-style', () => {
       expect(result.color).toBe(mockTheme.colors.text.muted);
     });
 
-    it('should resolve typography typo', () => {
-      const result = resolveTextStyle(mockTheme, { typo: 'body1' });
+    it('should resolve typography typography', () => {
+      const result = resolveTextStyle(mockTheme, { typography: 'body1' });
 
       expect(result.fontSize).toBe(mockTheme.typographies.body1.fontSize);
       expect(result.fontWeight).toBe(mockTheme.typographies.body1.fontWeight);
@@ -451,7 +451,7 @@ describe('resolve-style', () => {
         color: 'active',
         marginTop: 's8',
         padding: 's4',
-        typo: 'heading1',
+        typography: 'heading1',
       });
 
       expect(result.color).toBe(mockTheme.colors.text.active);
@@ -466,7 +466,7 @@ describe('resolve-style', () => {
       );
     });
 
-    it('should handle text without typo', () => {
+    it('should handle text without typography', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'base',
         padding: 's8',
@@ -504,7 +504,7 @@ describe('resolve-style', () => {
     it('should combine all text style props', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'active',
-        typo: 'body1',
+        typography: 'body1',
         textAlign: 'center',
         textTransform: 'uppercase',
         textDecorationLine: 'underline',

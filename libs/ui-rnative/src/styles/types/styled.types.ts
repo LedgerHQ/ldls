@@ -152,7 +152,7 @@ type TextColorProps = {
  * Typography prop
  */
 type TypographyProps = {
-  typo?: TypographyToken;
+  typography?: TypographyToken;
 };
 
 /**

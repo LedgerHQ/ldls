@@ -147,7 +147,7 @@ describe('createStyledPressable', () => {
         renderCount();
         return <Pressable {...props} />;
       };
-      const StyledTracked = createStyledPressable(TrackedPressable);
+      const StyledTracked = createStyledPressable(TrackedPressable as any);
 
       const { rerender } = renderWithProvider(
         <StyledTracked testID='pressable' lx={{ padding: 's16' }} />,
@@ -172,7 +172,7 @@ describe('createStyledPressable', () => {
         renderCount();
         return <Pressable {...props} />;
       };
-      const StyledTracked = createStyledPressable(TrackedPressable);
+      const StyledTracked = createStyledPressable(TrackedPressable as any);
 
       const { rerender } = renderWithProvider(
         <StyledTracked testID='pressable' lx={{ padding: 's16' }} />,

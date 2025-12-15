@@ -5,7 +5,7 @@ import * as TextStories from './Text.stories';
 
 # Text
 
-Text is a typography component that wraps React Native's `Text` with a `typo` prop for typography presets and token-constrained style props from the design system theme.
+Text is a typography component that wraps React Native's `Text` with a `typography` prop for typography presets and token-constrained style props from the design system theme.
 
 ## Interactive Example
 
@@ -14,7 +14,7 @@ Text is a typography component that wraps React Native's `Text` with a `typo` pr
 
 ## Available Typographies
 
-The `typo` property should be used to apply a typography preset that includes font size, font weight, line height, and letter spacing.
+The `typography` property should be used to apply a typography preset that includes font size, font weight, line height, and letter spacing.
 
 ### Body
 Used for content text like paragraphs.
@@ -46,16 +46,16 @@ Used for large hero text like page titles.
 ```tsx
 import { Text } from '@ledgerhq/lumen-ui-rnative';
 
-// Basic usage with typography typo
-<Text typo='body1'>Hello World</Text>
+// Basic usage with typography typography
+<Text typography='body1'>Hello World</Text>
 
 // With custom color
-<Text typo='heading2SemiBold' lx={{ color: 'muted' }}>
+<Text typography='heading2SemiBold' lx={{ color: 'muted' }}>
   Subtitle
 </Text>
 
 // With spacing
-<Text typo='body2' lx={{ marginTop: 's8', color: 'base' }}>
+<Text typography='body2' lx={{ marginTop: 's8', color: 'base' }}>
   Description text
 </Text>
 ```
@@ -65,6 +65,6 @@ import { Text } from '@ledgerhq/lumen-ui-rnative';
 For values not covered by tokens, use the `style` prop:
 
 ```tsx
-<Text typo='body1' style={{ letterSpacing: 2 }} />
+<Text typography='body1' style={{ letterSpacing: 2 }} />
 ```
 

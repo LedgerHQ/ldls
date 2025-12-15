@@ -9,7 +9,7 @@ const shallowEqual = (
   return keysA.every((k) => a[k] === b[k]);
 };
 
-export const arePropsEqualLx = (
+export const areLxPropsEqual = (
   prevProps: LumenViewStyleLX | LumenTextStyleLX,
   nextProps: LumenViewStyleLX | LumenTextStyleLX,
 ): boolean => {

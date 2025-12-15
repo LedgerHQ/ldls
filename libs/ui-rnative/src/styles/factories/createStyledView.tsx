@@ -3,7 +3,7 @@ import { View, type ViewProps, type ViewStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { LumenViewStyleLX } from '../types';
-import { arePropsEqualLx } from './arePropsEqualLx';
+import { areLxPropsEqual } from './areLxPropsEqual';
 
 type ViewRef = React.ElementRef<typeof View>;
 export type StyledViewProps = LumenViewStyleLX & ViewProps;
@@ -33,7 +33,7 @@ export type StyledViewProps = LumenViewStyleLX & ViewProps;
  * <Box marginTop='s4' style={{ width: 127 }} />
  * ```
  */
-export const createStyledView = (Component: React.ComponentType<ViewProps>) => {
+export const createStyledView = (Component: typeof View) => {
   const StyledComponent = memo(
     forwardRef<ViewRef, StyledViewProps>(
       ({ lx = {}, style, ...props }, ref) => {
@@ -44,16 +44,10 @@ export const createStyledView = (Component: React.ComponentType<ViewProps>) => {
           ? ([resolvedStyle, style] as ViewStyle[])
           : ([resolvedStyle] as ViewStyle[]);
 
-        return (
-          <Component
-            {...({ ...props, ref, style: finalStyle } as StyledViewProps & {
-              ref: React.Ref<View>;
-            })}
-          />
-        );
+        return <Component ref={ref} {...props} style={finalStyle} />;
       },
     ),
-    arePropsEqualLx,
+    areLxPropsEqual,
   );
 
   // Set display name for debugging

@@ -44,12 +44,12 @@ export const Base: Story = {
   args: {
     iconType: 'filled',
     children: <DeleteCircleFill />,
-    'aria-label': 'Delete',
+    accessibilityLabel: 'Delete',
   },
   render: () => {
     return (
       <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
-        <InteractiveIcon iconType='filled' aria-label='Delete'>
+        <InteractiveIcon iconType='filled' accessibilityLabel='Delete'>
           <DeleteCircleFill />
         </InteractiveIcon>
       </Box>
@@ -59,7 +59,7 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<InteractiveIcon iconType="filled" aria-label="Delete">
+<InteractiveIcon iconType="filled" accessibilityLabel="Delete">
   <DeleteCircleFill />
 </InteractiveIcon>
 `,
@@ -72,13 +72,13 @@ export const Stroked: Story = {
   args: {
     iconType: 'stroked',
     children: <MoreVertical />,
-    'aria-label': 'More actions',
+    accessibilityLabel: 'More actions',
   },
   parameters: {
     docs: {
       source: {
         code: `
-<InteractiveIcon iconType="stroked" aria-label="More actions">
+<InteractiveIcon iconType="stroked" accessibilityLabel="More actions">
   <MoreVertical />
 </InteractiveIcon>
 `,
@@ -92,18 +92,18 @@ export const IconTypeShowcase: Story = {
     return (
       <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Filled
           </Text>
-          <InteractiveIcon iconType='filled' aria-label='Delete'>
+          <InteractiveIcon iconType='filled' accessibilityLabel='Delete'>
             <DeleteCircleFill />
           </InteractiveIcon>
         </Box>
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Stroked
           </Text>
-          <InteractiveIcon iconType='stroked' aria-label='More actions'>
+          <InteractiveIcon iconType='stroked' accessibilityLabel='More actions'>
             <MoreVertical />
           </InteractiveIcon>
         </Box>
@@ -126,11 +126,15 @@ export const SizesShowcase: Story = {
                 justifyContent: 'center',
               }}
             >
-              <InteractiveIcon key={size} iconType='stroked' aria-label='More'>
+              <InteractiveIcon
+                key={size}
+                iconType='stroked'
+                accessibilityLabel='More'
+              >
                 <DeleteCircleFill size={size} />
               </InteractiveIcon>
             </Box>
-            <Text lx={{ textAlign: 'center' }} typo='body3'>
+            <Text lx={{ textAlign: 'center' }} typography='body3'>
               {size}px
             </Text>
           </Box>
@@ -152,36 +156,40 @@ export const StatesShowcase: Story = {
         }}
       >
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Filled enabled
           </Text>
-          <InteractiveIcon iconType='filled' aria-label='Delete'>
+          <InteractiveIcon iconType='filled' accessibilityLabel='Delete'>
             <DeleteCircleFill />
           </InteractiveIcon>
         </Box>
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Stroked enabled
           </Text>
-          <InteractiveIcon iconType='stroked' aria-label='More actions'>
+          <InteractiveIcon iconType='stroked' accessibilityLabel='More actions'>
             <MoreVertical />
           </InteractiveIcon>
         </Box>
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Filled disabled
           </Text>
-          <InteractiveIcon iconType='filled' aria-label='Delete' disabled>
+          <InteractiveIcon
+            iconType='filled'
+            accessibilityLabel='Delete'
+            disabled
+          >
             <DeleteCircleFill />
           </InteractiveIcon>
         </Box>
         <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
-          <Text lx={{ color: 'muted' }} typo='body3'>
+          <Text lx={{ color: 'muted' }} typography='body3'>
             Stroked disabled
           </Text>
           <InteractiveIcon
             iconType='stroked'
-            aria-label='More actions'
+            accessibilityLabel='More actions'
             disabled
           >
             <MoreVertical />

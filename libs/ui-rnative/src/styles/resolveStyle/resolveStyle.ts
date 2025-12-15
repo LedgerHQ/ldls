@@ -34,7 +34,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
       value as string,
     ]);
 
-    // Spread props (like typo) merge into resolved styles
+    // Spread props (like typography) merge into resolved styles
     if (propConfig.spread && resolvedValue) {
       Object.assign(resolved, resolvedValue);
     } else {

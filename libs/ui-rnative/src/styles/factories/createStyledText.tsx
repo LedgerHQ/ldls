@@ -3,7 +3,7 @@ import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveTextStyle } from '../resolveStyle/resolveStyle';
 import type { LumenStyleSheetTheme, LumenTextStyleLX } from '../types';
-import { arePropsEqualLx } from './arePropsEqualLx';
+import { areLxPropsEqual } from './areLxPropsEqual';
 
 type TextRef = React.ElementRef<typeof Text>;
 export type StyledTextProps = LumenTextStyleLX &
@@ -11,14 +11,14 @@ export type StyledTextProps = LumenTextStyleLX &
     /**
      * Typography preset
      */
-    typo?: keyof LumenStyleSheetTheme['typographies'];
+    typography?: keyof LumenStyleSheetTheme['typographies'];
   };
 
 /**
  * Factory function to create a styled Text component.
  *
  * Creates a component that accepts token-constrained style props directly,
- * plus a `typo` prop for typography presets, resolving them to actual
+ * plus a `typography` prop for typography presets, resolving them to actual
  * values at runtime using the current theme.
  *
  * @param Component - The base Text-like component to wrap
@@ -31,40 +31,34 @@ export type StyledTextProps = LumenTextStyleLX &
  * // Create a basic Text
  * const StyledText = createStyledText(Text);
  *
- * // Usage - token props and typo are resolved
- * <StyledText typo='body1'>Hello World</StyledText>
- * <StyledText typo='heading2SemiBold' marginTop='s8' color='muted'>
+ * // Usage - token props and typography are resolved
+ * <StyledText typography='body1'>Hello World</StyledText>
+ * <StyledText typography='heading2SemiBold' marginTop='s8' color='muted'>
  *   Subtitle
  * </StyledText>
  *
  * // style prop for escape hatch
- * <StyledText typo='body1' style={{ letterSpacing: 2 }} />
+ * <StyledText typography='body1' style={{ letterSpacing: 2 }} />
  * ```
  */
-export const createStyledText = (
-  Component: React.ComponentType<StyledTextProps>,
-) => {
+export const createStyledText = (Component: typeof Text) => {
   const StyledComponent = memo(
     forwardRef<TextRef, StyledTextProps>(
-      ({ typo = 'body3', lx = {}, style, ...props }, ref) => {
+      ({ typography = 'body3', lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
         const resolvedStyle = resolveTextStyle(theme, lx);
-        const resolvedTypographyStyles = theme.typographies[typo] as TextStyle;
+        const resolvedTypographyStyles = theme.typographies[
+          typography
+        ] as TextStyle;
 
         const finalStyle = style
           ? ([resolvedStyle, resolvedTypographyStyles, style] as TextStyle[])
           : ([resolvedStyle, resolvedTypographyStyles] as TextStyle[]);
 
-        return (
-          <Component
-            {...({ ...props, ref, style: finalStyle } as StyledTextProps & {
-              ref: React.Ref<Text>;
-            })}
-          />
-        );
+        return <Component ref={ref} {...props} style={finalStyle} />;
       },
     ),
-    arePropsEqualLx,
+    areLxPropsEqual,
   );
 
   // Set display name for debugging

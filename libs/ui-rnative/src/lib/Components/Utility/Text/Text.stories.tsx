@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Text>;
 
 export const Base: Story = {
   args: {
-    typo: 'body1',
+    typography: 'body1',
     lx: { color: 'base' },
     children: 'Hello World',
   },
@@ -28,7 +28,7 @@ export const Base: Story = {
     docs: {
       source: {
         code: `
-<Text typo='body1' lx={{ color: 'base' }}>
+<Text typography='body1' lx={{ color: 'base' }}>
   Hello World
 </Text>
 `,

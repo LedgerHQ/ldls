@@ -96,7 +96,7 @@ describe('createStyledView', () => {
         renderCount();
         return <View {...props} />;
       };
-      const StyledTracked = createStyledView(TrackedView);
+      const StyledTracked = createStyledView(TrackedView as any);
 
       const { rerender } = renderWithProvider(
         <StyledTracked testID='view' lx={{ padding: 's16' }} />,
@@ -121,7 +121,8 @@ describe('createStyledView', () => {
         renderCount();
         return <View {...props} />;
       };
-      const StyledTracked = createStyledView(TrackedView);
+
+      const StyledTracked = createStyledView(TrackedView as any);
 
       const { rerender } = renderWithProvider(
         <StyledTracked testID='view' lx={{ padding: 's16' }} />,
