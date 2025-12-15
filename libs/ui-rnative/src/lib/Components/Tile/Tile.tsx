@@ -6,12 +6,13 @@ import { TileProps } from './types';
 
 const tileVariants = {
   root: cva(
-    [
-      'relative flex w-full items-center gap-8 p-8',
-      'bg-base-transparent rounded-sm text-base transition-colors',
-    ],
+    ['relative flex w-full items-center gap-8 p-8', 'rounded-sm text-base'],
     {
       variants: {
+        appearance: {
+          'no-background': 'bg-base-transparent',
+          card: 'bg-surface',
+        },
         pressed: {
           true: '',
           false: '',
@@ -23,21 +24,20 @@ const tileVariants = {
       },
       compoundVariants: [
         {
-          pressed: false,
-          disabled: false,
-          className: 'bg-base-transparent',
-        },
-        {
+          appearance: 'no-background',
           pressed: true,
           disabled: false,
           className: 'bg-base-transparent-pressed',
         },
         {
-          disabled: true,
-          className: 'bg-base-transparent',
+          appearance: 'card',
+          pressed: true,
+          disabled: false,
+          className: 'bg-surface-pressed',
         },
       ],
       defaultVariants: {
+        appearance: 'no-background',
         pressed: false,
         disabled: false,
       },
@@ -95,6 +95,7 @@ export const Tile: FC<TileProps> = forwardRef<PressableRef, TileProps>(
       description,
       leadingContent,
       trailingContent,
+      appearance = 'no-background',
       disabled = false,
       onPress,
       onLongPress,
@@ -111,7 +112,9 @@ export const Tile: FC<TileProps> = forwardRef<PressableRef, TileProps>(
         {...props}
       >
         {({ pressed }) => (
-          <View className={tileVariants.root({ pressed, disabled })}>
+          <View
+            className={tileVariants.root({ appearance, pressed, disabled })}
+          >
             <View className='w-full items-center gap-8'>
               <View className='items-center justify-center'>
                 {leadingContent}

@@ -21,6 +21,13 @@ export type TileProps = {
    */
   trailingContent?: ReactNode;
   /**
+   * The visual style of the tile.
+   * - `no-background`: Transparent background with pressed state
+   * - `card`: Surface background with pressed state
+   * @default 'no-background'
+   */
+  appearance?: 'no-background' | 'card';
+  /**
    * Whether the tile is disabled.
    * When disabled, the tile will not respond to press events and will appear dimmed.
    * @default false
