@@ -146,7 +146,7 @@ export type LumenTextStyle = LumenViewStyle & {
  * Typography prop
  */
 type TypographyProps = {
-  typo?: TypographyToken;
+  typography?: TypographyToken;
 };
 
 /**
