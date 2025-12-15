@@ -49,7 +49,11 @@ export const Base: Story = {
   render: () => {
     return (
       <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
-        <InteractiveIcon iconType='filled' accessibilityLabel='Delete'>
+        <InteractiveIcon
+          lx={{ top: '-s16', position: 'absolute' }}
+          iconType='filled'
+          accessibilityLabel='Delete'
+        >
           <DeleteCircleFill />
         </InteractiveIcon>
       </Box>

@@ -301,17 +301,17 @@ describe('resolve-style', () => {
       it('should pass through position props unchanged', () => {
         const result = resolveViewStyle(mockTheme, {
           position: 'absolute',
-          top: 10,
-          bottom: 20,
-          left: 30,
-          right: 40,
+          top: 's10',
+          bottom: 's20',
+          left: 's32',
+          right: 's40',
           zIndex: 100,
         });
 
         expect(result.position).toBe('absolute');
         expect(result.top).toBe(10);
         expect(result.bottom).toBe(20);
-        expect(result.left).toBe(30);
+        expect(result.left).toBe(32);
         expect(result.right).toBe(40);
         expect(result.zIndex).toBe(100);
       });
@@ -319,8 +319,8 @@ describe('resolve-style', () => {
       it('should pass through RTL position props unchanged', () => {
         const result = resolveViewStyle(mockTheme, {
           position: 'absolute',
-          start: 10,
-          end: 20,
+          start: 's10',
+          end: 's20',
         });
 
         expect(result.position).toBe('absolute');

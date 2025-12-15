@@ -37,6 +37,13 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyle, PropConfig> = {
   gap: { path: ['spacings'] },
   rowGap: { path: ['spacings'] },
   columnGap: { path: ['spacings'] },
+  position: {},
+  top: { path: ['spacings'] },
+  bottom: { path: ['spacings'] },
+  left: { path: ['spacings'] },
+  right: { path: ['spacings'] },
+  start: { path: ['spacings'] },
+  end: { path: ['spacings'] },
 
   // Size props
   width: { path: ['sizes'] },
@@ -88,13 +95,7 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyle, PropConfig> = {
   flexGrow: {},
   flexShrink: {},
   flexBasis: {},
-  position: {},
-  top: {},
-  bottom: {},
-  left: {},
-  right: {},
-  start: {},
-  end: {},
+
   zIndex: {},
   overflow: {},
   display: {},
