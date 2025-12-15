@@ -21,14 +21,14 @@ type Story = StoryObj<typeof Text>;
 export const Base: Story = {
   args: {
     typo: 'body1',
-    color: 'base',
+    lx: { color: 'base' },
     children: 'Hello World',
   },
   parameters: {
     docs: {
       source: {
         code: `
-<Text typo='body1' color='base'>
+<Text typo='body1' lx={{ color: 'base' }}>
   Hello World
 </Text>
 `,

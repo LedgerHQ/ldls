@@ -1,5 +1,5 @@
 import { Text as RNText } from 'react-native';
-import { createStyledText, type LumenTextStyleProps } from '../../../../styles';
+import { createStyledText, type StyledTextProps } from '../../../../styles';
 
 /**
  * Text - A typography component with typo support and token-constrained style props.
@@ -17,19 +17,23 @@ import { createStyledText, type LumenTextStyleProps } from '../../../../styles';
  * <Text typo='body1'>Hello World</Text>
  *
  * // With custom color
- * <Text typo='heading2SemiBold' color='muted'>
+ * <Text typo='heading2SemiBold' lx={{ color: 'muted' }}>
  *   Subtitle
  * </Text>
  *
  * // With spacing
- * <Text typo='body2' marginTop='s8' color='base'>
+ * <Text typo='body2' lx={{ marginTop: 's8', color: 'base' }}>
  *   Description text
  * </Text>
  *
- * // style prop for complete override
- * <Text typo='body1' style={{ letterSpacing: 127 }} />
+ * // Style prop for complete override
+ * <Text
+ *  typo='body1'
+ *  lx={{ marginTop: 's8' }}
+ *  style={{ letterSpacing: 127 }}
+ * />
  * ```
  */
 export const Text = createStyledText(RNText);
 
-export type TextProps = LumenTextStyleProps;
+export type TextProps = StyledTextProps;

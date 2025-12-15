@@ -20,10 +20,12 @@ import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
 function Card() {
   return (
     <Box
-      padding='s16'
-      backgroundColor='accent'
-      borderRadius='md'
-      gap='s8'
+      lx={{
+        padding: 's16',
+        backgroundColor: 'accent',
+        borderRadius: 'md',
+        gap: 's8',
+      }}
     >
       <Text>Card content</Text>
     </Box>
@@ -40,9 +42,6 @@ Box consumes tokens from the `ledgerLiveTheme` for spacing, sizes, colors, and b
 For values not covered by tokens, use raw numbers or the `style` prop:
 
 ```tsx
-// Raw number for one-off values
-<Box width={127} marginTop='s4' />
-
 // Style prop for complete override
-<Box marginTop='s4' style={{ width: 127 }} />
+<Box lx={{ marginTop:'s4' }} style={{ width: 127 }} />
 ```

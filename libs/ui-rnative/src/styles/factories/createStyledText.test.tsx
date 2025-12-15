@@ -72,35 +72,43 @@ describe('createStyledText', () => {
     );
 
     const style = screen.getByTestId('text').props.style;
-    expect(style).toMatchObject({
-      fontSize: 16,
-      fontWeight: '500',
-      lineHeight: 24,
-    });
+    expect(style).toMatchObject([
+      {},
+      {
+        fontSize: 16,
+        fontWeight: '500',
+        lineHeight: 24,
+      },
+    ]);
   });
 
   it('should apply color token', () => {
     renderWithProvider(
-      <StyledText testID='text' color='muted'>
+      <StyledText testID='text' lx={{ color: 'muted' }}>
         Muted
       </StyledText>,
     );
-    expect(screen.getByTestId('text').props.style.color).toBe('#666666');
+
+    expect(screen.getByTestId('text').props.style[0].color).toBe('#666666');
   });
 
   it('should combine typo, color and spacing', () => {
     renderWithProvider(
-      <StyledText testID='text' typo='body1' color='base' marginTop='s8'>
+      <StyledText
+        testID='text'
+        typo='body1'
+        lx={{ color: 'base', marginTop: 's8' }}
+      >
         Styled
       </StyledText>,
     );
 
     const style = screen.getByTestId('text').props.style;
-    expect(style).toMatchObject({
-      fontSize: 16,
-      color: '#000000',
-      marginTop: 8,
-    });
+
+    expect(style).toMatchObject([
+      { color: '#000000', marginTop: 8 },
+      { fontSize: 16, fontWeight: '500', lineHeight: 24, letterSpacing: 0 },
+    ]);
   });
 
   it('should merge style prop with resolved tokens', () => {
@@ -114,10 +122,10 @@ describe('createStyledText', () => {
       </StyledText>,
     );
 
-    const [stylesFromProps, otherStyles] =
+    const [, typographyStyles, otherStyles] =
       screen.getByTestId('text').props.style;
 
-    expect(stylesFromProps.fontSize).toBe(16);
+    expect(typographyStyles.fontSize).toBe(16);
     expect(otherStyles.textDecorationLine).toBe('underline');
   });
 
@@ -180,7 +188,7 @@ describe('createStyledText', () => {
       // Re-render with different props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='text' color='muted'>
+          <StyledTracked testID='text' lx={{ color: 'muted' }}>
             Hello
           </StyledTracked>
         </LumenStyleSheetProvider>,

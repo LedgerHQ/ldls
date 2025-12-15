@@ -1,11 +1,4 @@
-import type {
-  ViewStyle,
-  FlexStyle,
-  TextStyle,
-  ViewProps,
-  TextProps,
-  PressableProps,
-} from 'react-native';
+import type { ViewStyle, FlexStyle, TextStyle } from 'react-native';
 import type { LumenStyleSheetTheme } from './theme.types';
 
 /**
@@ -173,7 +166,7 @@ type OtherTextStyleProps = Pick<
 /**
  * Main public types - combine token props with RN props
  */
-export type LumenViewStyleProps = SpacingProps &
+export type LumenViewStyle = SpacingProps &
   SizeProps &
   BackgroundColorProps &
   BorderProps &
@@ -181,7 +174,7 @@ export type LumenViewStyleProps = SpacingProps &
   FlexLayoutProps &
   OtherViewStyleProps;
 
-export type LumenTextStyleProps = LumenViewStyleProps &
+export type LumenTextStyle = LumenViewStyle &
   TextColorProps &
   TypographyProps &
   OtherTextStyleProps;
@@ -189,6 +182,15 @@ export type LumenTextStyleProps = LumenViewStyleProps &
 /**
  * Derived style-only types (for internal resolver use)
  */
-export type LumenViewProps = LumenViewStyleProps & ViewProps;
-export type LumenTextProps = LumenTextStyleProps & TextProps;
-export type LumenPressableProps = LumenViewStyleProps & PressableProps;
+export type LumenViewStyleLX = {
+  /**
+   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   */
+  lx?: LumenViewStyle;
+};
+export type LumenTextStyleLX = {
+  /**
+   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   */
+  lx?: LumenTextStyle;
+};

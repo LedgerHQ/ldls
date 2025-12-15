@@ -1,18 +1,18 @@
-import React, { forwardRef, memo, MemoExoticComponent } from 'react';
+import React, { forwardRef, memo } from 'react';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
-import {
-  resolveTextStyle,
-  extractLumenTextStyleProps,
-} from '../resolveStyle/resolveStyle';
-import type { LumenTextProps } from '../types';
+import { resolveTextStyle } from '../resolveStyle/resolveStyle';
+import type { LumenStyleSheetTheme, LumenTextStyleLX } from '../types';
+import { memoPropsComparisonLx } from './memoPropsComparisonLx';
 
 type TextRef = React.ElementRef<typeof Text>;
-type ReturnComponentType = MemoExoticComponent<
-  React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<LumenTextProps> & React.RefAttributes<TextRef>
-  >
->;
+export type StyledTextProps = LumenTextStyleLX &
+  TextProps & {
+    /**
+     * Typography preset
+     */
+    typo?: keyof LumenStyleSheetTheme['typographies'];
+  };
 
 /**
  * Factory function to create a styled Text component.
@@ -42,27 +42,29 @@ type ReturnComponentType = MemoExoticComponent<
  * ```
  */
 export const createStyledText = (
-  Component: React.ComponentType<LumenTextProps>,
-): ReturnComponentType => {
+  Component: React.ComponentType<StyledTextProps>,
+) => {
   const StyledComponent = memo(
-    forwardRef<TextRef, LumenTextProps>((props, ref) => {
-      const { theme } = useTheme();
-      const { lumenStyle, rest } = extractLumenTextStyleProps(props);
-      const resolvedStyle = resolveTextStyle(theme, lumenStyle);
+    forwardRef<TextRef, StyledTextProps>(
+      ({ typo = 'body3', lx = {}, style, ...props }, ref) => {
+        const { theme } = useTheme();
+        const resolvedStyle = resolveTextStyle(theme, lx);
+        const resolvedTypographyStyles = theme.typographies[typo] as TextStyle;
 
-      const { style: propsStyle, ...componentProps } = rest;
-      const finalStyle = propsStyle
-        ? ([resolvedStyle, propsStyle] as TextStyle[])
-        : resolvedStyle;
+        const finalStyle = style
+          ? ([resolvedStyle, resolvedTypographyStyles, style] as TextStyle[])
+          : ([resolvedStyle, resolvedTypographyStyles] as TextStyle[]);
 
-      return (
-        <Component
-          {...({ ...componentProps, ref, style: finalStyle } as TextProps & {
-            ref: React.Ref<Text>;
-          })}
-        />
-      );
-    }),
+        return (
+          <Component
+            {...({ ...props, ref, style: finalStyle } as StyledTextProps & {
+              ref: React.Ref<Text>;
+            })}
+          />
+        );
+      },
+    ),
+    memoPropsComparisonLx,
   );
 
   // Set display name for debugging

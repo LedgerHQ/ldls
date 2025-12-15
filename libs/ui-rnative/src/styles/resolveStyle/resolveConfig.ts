@@ -1,4 +1,4 @@
-import { LumenTextStyleProps, LumenViewStyleProps } from '../types';
+import { LumenTextStyle, LumenViewStyle } from '../types';
 
 /**
  * Configuration for each style prop
@@ -14,7 +14,7 @@ export type PropConfig = {
 /**
  * View style props configuration
  */
-export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
+export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyle, PropConfig> = {
   // Spacing props
   padding: { path: ['spacings'] },
   paddingTop: { path: ['spacings'] },
@@ -107,7 +107,7 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
 /**
  * Text style props configuration (extends view props + color + typo)
  */
-export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyleProps, PropConfig> = {
+export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyle, PropConfig> = {
   ...VIEW_PROP_CONFIG,
   color: { path: ['colors', 'text'] },
   typo: { path: ['typographies'], spread: true },
@@ -121,11 +121,11 @@ export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyleProps, PropConfig> = {
  */
 export const LUMEN_VIEW_STYLE_PROPS = new Set(
   Object.keys(VIEW_PROP_CONFIG),
-) as Set<keyof LumenViewStyleProps>;
+) as Set<keyof LumenViewStyle>;
 
 /**
  * Set for O(1) text prop lookup
  */
 export const LUMEN_TEXT_STYLE_PROPS = new Set(
   Object.keys(TEXT_PROP_CONFIG),
-) as Set<keyof LumenTextStyleProps>;
+) as Set<keyof LumenTextStyle>;

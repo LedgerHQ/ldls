@@ -55,10 +55,12 @@ describe('createStyledPressable', () => {
     renderWithProvider(
       <StyledPressable
         testID='pressable'
-        padding='s16'
-        width='s48'
-        backgroundColor='surface'
-        borderRadius='md'
+        lx={{
+          padding: 's16',
+          width: 's48',
+          backgroundColor: 'surface',
+          borderRadius: 'md',
+        }}
       />,
     );
 
@@ -74,7 +76,9 @@ describe('createStyledPressable', () => {
   });
 
   it('should resolve full size token to 100%', () => {
-    renderWithProvider(<StyledPressable testID='pressable' width='full' />);
+    renderWithProvider(
+      <StyledPressable testID='pressable' lx={{ width: 'full' }} />,
+    );
 
     const pressable = screen.getByTestId('pressable');
     const resolvedStyle = getResolvedStyle(pressable);
@@ -86,7 +90,7 @@ describe('createStyledPressable', () => {
     renderWithProvider(
       <StyledPressable
         testID='pressable'
-        padding='s16'
+        lx={{ padding: 's16' }}
         style={{ opacity: 0.5 }}
       />,
     );
@@ -104,7 +108,7 @@ describe('createStyledPressable', () => {
     renderWithProvider(
       <StyledPressable
         testID='pressable'
-        backgroundColor='surface'
+        lx={{ backgroundColor: 'surface' }}
         style={({ pressed }) => ({
           opacity: pressed ? 0.7 : 1,
         })}
@@ -146,7 +150,7 @@ describe('createStyledPressable', () => {
       const StyledTracked = createStyledPressable(TrackedPressable);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='pressable' padding='s16' />,
+        <StyledTracked testID='pressable' lx={{ padding: 's16' }} />,
       );
 
       expect(renderCount).toHaveBeenCalledTimes(1);
@@ -154,7 +158,7 @@ describe('createStyledPressable', () => {
       // Re-render with same props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='pressable' padding='s16' />
+          <StyledTracked testID='pressable' lx={{ padding: 's16' }} />
         </LumenStyleSheetProvider>,
       );
 
@@ -171,7 +175,7 @@ describe('createStyledPressable', () => {
       const StyledTracked = createStyledPressable(TrackedPressable);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='pressable' padding='s16' />,
+        <StyledTracked testID='pressable' lx={{ padding: 's16' }} />,
       );
 
       expect(renderCount).toHaveBeenCalledTimes(1);
@@ -179,7 +183,7 @@ describe('createStyledPressable', () => {
       // Re-render with different props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='pressable' width='s48' />
+          <StyledTracked testID='pressable' lx={{ width: 's48' }} />
         </LumenStyleSheetProvider>,
       );
 

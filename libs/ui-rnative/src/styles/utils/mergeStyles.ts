@@ -10,11 +10,6 @@ type StyleInput = StyleValue | false | null | undefined;
  * @example
  * const style = mergeStyles(
  *   baseStyle,
- *   match(iconType, {
- *     filled: { backgroundColor: 'blue' },
- *     stroked: { backgroundColor: 'transparent' },
- *   }),
- *   when({ condition: iconType === 'stroked' && pressed, style: pressedStyle }),
  *   disabled && disabledStyle,
  * );
  */
