@@ -6,7 +6,6 @@ import {
   ThemeProvider,
   useBottomSheetRef,
 } from '@ledgerhq/lumen-ui-rnative';
-import { ToRemove } from '@ledgerhq/lumen-ui-rnative/ToRemove';
 import { useState } from 'react';
 import {
   ColorSchemeName,
@@ -33,10 +32,11 @@ import {
   Tiles,
   ToggleLocaleSwitch,
   ToggleThemeSwitch,
+  InteractiveIcons,
+  Banners,
+  CardButtons,
+  Tooltips,
 } from './blocks';
-import { Banners } from './blocks/Banners';
-import { CardButtons } from './blocks/CardButtons';
-import { Tooltips } from './blocks/Tooltips';
 import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
@@ -59,11 +59,8 @@ export const App = () => {
             className='h-screen bg-canvas px-16 '
           >
             <View className='flex flex-col gap-32 py-40'>
-              <SandboxBlock title='To Remove'>
-                <ToRemove variant='primary' />
-                <ToRemove variant='secondary' />
-                <ToRemove variant='error' />
-                <ToRemove />
+              <SandboxBlock title='InteractiveIcons'>
+                <InteractiveIcons />
               </SandboxBlock>
               <SandboxBlock title='Select'>
                 <Selects />
