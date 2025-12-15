@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import { View, Text } from 'react-native';
+import { LUMEN_VIEW_STYLE_PROPS } from '../../../styles/resolveStyle/resolveConfig';
 import {
   Settings,
   PenEdit,
   DeleteCircleFill,
   MoreVertical,
 } from '../../Symbols';
+import { Box, Text } from '../Utility';
 import { InteractiveIcon } from './InteractiveIcon';
 
 const meta: Meta<typeof InteractiveIcon> = {
@@ -18,6 +19,9 @@ const meta: Meta<typeof InteractiveIcon> = {
         format: true,
         type: 'code',
       },
+    },
+    controls: {
+      exclude: Array.from(LUMEN_VIEW_STYLE_PROPS),
     },
   },
   argTypes: {
@@ -36,11 +40,20 @@ const meta: Meta<typeof InteractiveIcon> = {
 export default meta;
 type Story = StoryObj<typeof InteractiveIcon>;
 
-export const Filled: Story = {
+export const Base: Story = {
   args: {
     iconType: 'filled',
     children: <DeleteCircleFill />,
     'aria-label': 'Delete',
+  },
+  render: () => {
+    return (
+      <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
+        <InteractiveIcon iconType='filled' aria-label='Delete'>
+          <DeleteCircleFill />
+        </InteractiveIcon>
+      </Box>
+    );
   },
   parameters: {
     docs: {
@@ -77,20 +90,24 @@ export const Stroked: Story = {
 export const IconTypeShowcase: Story = {
   render: () => {
     return (
-      <View className='flex flex-row gap-16 p-8'>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Filled</Text>
+      <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Filled
+          </Text>
           <InteractiveIcon iconType='filled' aria-label='Delete'>
             <DeleteCircleFill />
           </InteractiveIcon>
-        </View>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Stroked</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Stroked
+          </Text>
           <InteractiveIcon iconType='stroked' aria-label='More actions'>
             <MoreVertical />
           </InteractiveIcon>
-        </View>
-      </View>
+        </Box>
+      </Box>
     );
   },
 };
@@ -99,18 +116,26 @@ export const SizesShowcase: Story = {
   render: () => {
     const iconSizes = [16, 20, 24, 40] as const;
     return (
-      <View className='flex flex-col gap-16 p-8'>
+      <Box lx={{ flexDirection: 'row', gap: 's12', padding: 's8' }}>
         {iconSizes.map((size) => (
-          <View className='flex flex-row gap-16' key={size}>
-            <View className='flex w-72 items-center justify-center'>
+          <Box key={size} lx={{ flexDirection: 'column', gap: 's16' }}>
+            <Box
+              lx={{
+                width: 's72',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
               <InteractiveIcon key={size} iconType='stroked' aria-label='More'>
-                <MoreVertical size={size} />
+                <DeleteCircleFill size={size} />
               </InteractiveIcon>
-            </View>
-            <Text className='body-3'>{size}px</Text>
-          </View>
+            </Box>
+            <Text lx={{ textAlign: 'center' }} typo='body3'>
+              {size}px
+            </Text>
+          </Box>
         ))}
-      </View>
+      </Box>
     );
   },
 };
@@ -118,27 +143,42 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <View className='flex flex-row gap-16 bg-base p-8'>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Filled enabled</Text>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          gap: 's16',
+          backgroundColor: 'base',
+          padding: 's8',
+        }}
+      >
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Filled enabled
+          </Text>
           <InteractiveIcon iconType='filled' aria-label='Delete'>
             <DeleteCircleFill />
           </InteractiveIcon>
-        </View>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Stroked enabled</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Stroked enabled
+          </Text>
           <InteractiveIcon iconType='stroked' aria-label='More actions'>
             <MoreVertical />
           </InteractiveIcon>
-        </View>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Filled disabled</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Filled disabled
+          </Text>
           <InteractiveIcon iconType='filled' aria-label='Delete' disabled>
             <DeleteCircleFill />
           </InteractiveIcon>
-        </View>
-        <View className='flex flex-col items-center gap-4'>
-          <Text className='text-muted body-3'>Stroked disabled</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <Text lx={{ color: 'muted' }} typo='body3'>
+            Stroked disabled
+          </Text>
           <InteractiveIcon
             iconType='stroked'
             aria-label='More actions'
@@ -146,8 +186,8 @@ export const StatesShowcase: Story = {
           >
             <MoreVertical />
           </InteractiveIcon>
-        </View>
-      </View>
+        </Box>
+      </Box>
     );
   },
 };

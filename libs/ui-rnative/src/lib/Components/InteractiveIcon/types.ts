@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { PressableProps } from 'react-native';
+import { PropsWithChildren } from 'react';
+import { StyledPressableProps } from '../../../styles';
 
 export type InteractiveIconProps = {
   /**
@@ -7,8 +7,5 @@ export type InteractiveIconProps = {
    * Choose 'filled' for icons with solid backgrounds or 'stroked' for outlined icons.
    */
   iconType: 'filled' | 'stroked';
-  /**
-   * The icon component to display inside the button. Should be a single icon element from the design system.
-   */
-  children: ReactNode;
-} & PressableProps;
+} & PropsWithChildren &
+  Omit<StyledPressableProps, 'children'>;

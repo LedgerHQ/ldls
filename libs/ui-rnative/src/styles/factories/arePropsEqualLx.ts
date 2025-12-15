@@ -1,4 +1,4 @@
-import { LumenTextStyleLX, LumenViewStyleLX } from '../types';
+import { LumenViewStyleLX, LumenTextStyleLX } from '../types';
 
 const shallowEqual = (
   a: Record<string, unknown>,
@@ -9,7 +9,7 @@ const shallowEqual = (
   return keysA.every((k) => a[k] === b[k]);
 };
 
-export const memoPropsComparisonLx = (
+export const arePropsEqualLx = (
   prevProps: LumenViewStyleLX | LumenTextStyleLX,
   nextProps: LumenViewStyleLX | LumenTextStyleLX,
 ): boolean => {

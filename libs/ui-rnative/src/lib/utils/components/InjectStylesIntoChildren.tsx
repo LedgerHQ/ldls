@@ -1,16 +1,25 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
-import { cloneElement, isValidElement, memo, PropsWithChildren } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  memo,
+  PropsWithChildren,
+  ReactElement,
+} from 'react';
+import { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-function _InjectStylesIntoChildren({
-  styles,
-  children,
-}: PropsWithChildren<{ styles: string }>) {
-  if (!isValidElement(children)) {
-    return children;
-  }
-  return cloneElement(children, {
-    className: cn((children.props as { className?: string }).className, styles),
-  } as Partial<{ className: string }>);
-}
+type StyleValue = ViewStyle | TextStyle | ImageStyle;
 
-export const InjectStylesIntoChildren = memo(_InjectStylesIntoChildren);
+type StylableProps = { style?: StyleProp<StyleValue> };
+
+export const InjectStylesIntoChildren = memo(
+  ({ style, children }: PropsWithChildren<{ style: StyleValue }>) => {
+    if (!isValidElement(children)) {
+      return children;
+    }
+    const childProps = children.props as StylableProps;
+    return cloneElement(children as ReactElement<StylableProps>, {
+      style: childProps.style ? [childProps.style, style] : style,
+    });
+  },
+);
+InjectStylesIntoChildren.displayName = 'InjectStylesIntoChildren';

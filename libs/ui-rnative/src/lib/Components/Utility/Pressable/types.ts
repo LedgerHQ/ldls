@@ -1,3 +1,3 @@
-import { LumenPressableProps } from '../../../../styles';
+import { StyledPressableProps } from '../../../../styles';
 
-export type PressableProps = LumenPressableProps;
+export type PressableProps = StyledPressableProps;

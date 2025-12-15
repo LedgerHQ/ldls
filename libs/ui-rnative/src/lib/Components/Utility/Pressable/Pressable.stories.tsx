@@ -20,11 +20,13 @@ type Story = StoryObj<typeof Pressable>;
 
 export const Base: Story = {
   args: {
-    height: 's48',
-    width: 's48',
-    backgroundColor: 'accent',
-    borderRadius: 'md',
-    alignSelf: 'center',
+    lx: {
+      height: 's48',
+      width: 's48',
+      backgroundColor: 'accent',
+      borderRadius: 'md',
+      alignSelf: 'center',
+    },
   },
   render: (args) => <Pressable {...args}></Pressable>,
   parameters: {
@@ -32,11 +34,13 @@ export const Base: Story = {
       source: {
         code: `
 <Pressable
-  height='s48'
-  width='s48'
-  backgroundColor='accent'
-  borderRadius='md'
-  alignSelf='center'
+  lx={{
+    height: 's48',
+    width: 's48',
+    backgroundColor: 'accent',
+    borderRadius: 'md',
+    alignSelf: 'center',
+  }}
 />
 `,
       },

@@ -3,7 +3,7 @@ import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveTextStyle } from '../resolveStyle/resolveStyle';
 import type { LumenStyleSheetTheme, LumenTextStyleLX } from '../types';
-import { memoPropsComparisonLx } from './memoPropsComparisonLx';
+import { arePropsEqualLx } from './arePropsEqualLx';
 
 type TextRef = React.ElementRef<typeof Text>;
 export type StyledTextProps = LumenTextStyleLX &
@@ -64,7 +64,7 @@ export const createStyledText = (
         );
       },
     ),
-    memoPropsComparisonLx,
+    arePropsEqualLx,
   );
 
   // Set display name for debugging

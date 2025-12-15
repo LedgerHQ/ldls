@@ -29,8 +29,8 @@ InteractiveIcons are specialized interactive elements designed exclusively for i
 
 ### Overview
 
-<Canvas of={InteractiveIconStories.Filled} />
-<Controls of={InteractiveIconStories.Filled} />
+<Canvas of={InteractiveIconStories.Base} />
+<Controls of={InteractiveIconStories.Base} />
 
 ### Icon Types
 
@@ -95,13 +95,12 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic usage
 
 ```tsx
-import { InteractiveIcon } from '@ledgerhq/lumen-ui-rnative';
+import { InteractiveIcon, Box } from '@ledgerhq/lumen-ui-rnative';
 import { Settings, DeleteCircleFill } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View } from 'react-native';
 
 function MyComponent() {
   return (
-    <View>
+    <Box lx={{ gap: 's8' }}>
       {/* Stroked interactive icon */}
       <InteractiveIcon
         iconType='stroked'
@@ -119,7 +118,7 @@ function MyComponent() {
       >
         <DeleteCircleFill size={20} />
       </InteractiveIcon>
-    </View>
+    </Box>
   );
 }
 ```
@@ -153,13 +152,12 @@ function LikeButton({ isSelected, onToggle }) {
 ### Different Icon Sizes
 
 ```tsx
-import { InteractiveIcon } from '@ledgerhq/lumen-ui-rnative';
+import { InteractiveIcon, Box } from '@ledgerhq/lumen-ui-rnative';
 import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View } from 'react-native';
 
 function SizeExamples() {
   return (
-    <View className='flex items-center gap-4'>
+    <Box lx={{ alignItems: 'center', gap: 's4' }}>
       {/* Compact size for dense interfaces */}
       <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={16} />
@@ -179,7 +177,7 @@ function SizeExamples() {
       <InteractiveIcon iconType='stroked' aria-label='Settings'>
         <Settings size={40} />
       </InteractiveIcon>
-    </View>
+    </Box>
   );
 }
 ```

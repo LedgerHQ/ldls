@@ -1,9 +1,9 @@
 import React, { forwardRef, memo } from 'react';
-import type { View, ViewProps, ViewStyle } from 'react-native';
+import { View, type ViewProps, type ViewStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { LumenViewStyleLX } from '../types';
-import { memoPropsComparisonLx } from './memoPropsComparisonLx';
+import { arePropsEqualLx } from './arePropsEqualLx';
 
 type ViewRef = React.ElementRef<typeof View>;
 export type StyledViewProps = LumenViewStyleLX & ViewProps;
@@ -53,7 +53,7 @@ export const createStyledView = (Component: React.ComponentType<ViewProps>) => {
         );
       },
     ),
-    memoPropsComparisonLx,
+    arePropsEqualLx,
   );
 
   // Set display name for debugging
