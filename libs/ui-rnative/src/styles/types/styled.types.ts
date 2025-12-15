@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { ViewStyle, TextStyle } from 'react-native';
+=======
+import type { ViewStyle, FlexStyle, TextStyle } from 'react-native';
+>>>>>>> 74ebe776 (feat(ui-rnative): change styles API to use LX property)
 import type { LumenStyleSheetTheme } from './theme.types';
 
 /**
@@ -137,6 +141,40 @@ export type LumenTextStyle = LumenViewStyle & {
 };
 
 /**
+<<<<<<< HEAD
+=======
+ * Typography prop
+ */
+type TypographyProps = {
+  typo?: TypographyToken;
+};
+
+/**
+ * Text style props - passthrough from React Native
+ */
+type OtherTextStyleProps = Pick<
+  TextStyle,
+  'textAlign' | 'textTransform' | 'textDecorationLine'
+>;
+
+/**
+ * Main public types - combine token props with RN props
+ */
+export type LumenViewStyle = SpacingProps &
+  SizeProps &
+  BackgroundColorProps &
+  BorderProps &
+  ShadowProps &
+  FlexLayoutProps &
+  OtherViewStyleProps;
+
+export type LumenTextStyle = LumenViewStyle &
+  TextColorProps &
+  TypographyProps &
+  OtherTextStyleProps;
+
+/**
+>>>>>>> 74ebe776 (feat(ui-rnative): change styles API to use LX property)
  * Derived style-only types (for internal resolver use)
  */
 export type LumenViewStyleLX = {
