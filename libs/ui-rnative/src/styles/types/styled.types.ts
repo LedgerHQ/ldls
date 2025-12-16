@@ -1,10 +1,4 @@
-import type {
-  ViewStyle,
-  FlexStyle,
-  TextStyle,
-  ViewProps,
-  TextProps,
-} from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
 import type { LumenStyleSheetTheme } from './theme.types';
 
 /**
@@ -20,7 +14,28 @@ type BorderRadiusToken = keyof LumenStyleSheetTheme['borderRadius'];
 type ShadowToken = keyof LumenStyleSheetTheme['shadows'];
 type TypographyToken = keyof LumenStyleSheetTheme['typographies'];
 
-type SpacingProps = {
+/**
+ * Main public types - combine token props with RN props
+ */
+export type LumenViewStyle = {
+  /**
+   * Flex layout
+   */
+  flex?: ViewStyle['flex'];
+  flexDirection?: ViewStyle['flexDirection'];
+  flexWrap?: ViewStyle['flexWrap'];
+  justifyContent?: ViewStyle['justifyContent'];
+  alignItems?: ViewStyle['alignItems'];
+  alignSelf?: ViewStyle['alignSelf'];
+  alignContent?: ViewStyle['alignContent'];
+  flexGrow?: ViewStyle['flexGrow'];
+  flexShrink?: ViewStyle['flexShrink'];
+  flexBasis?: ViewStyle['flexBasis'];
+  position?: ViewStyle['position'];
+  zIndex?: ViewStyle['zIndex'];
+  overflow?: ViewStyle['overflow'];
+  display?: ViewStyle['display'];
+  aspectRatio?: ViewStyle['aspectRatio'];
   /**
    * Padding
    */
@@ -46,33 +61,37 @@ type SpacingProps = {
   marginHorizontal?: SpacingToken;
   marginVertical?: SpacingToken;
   /**
-   * Gaps
+   * Position
+   */
+  top?: SpacingToken;
+  bottom?: SpacingToken;
+  left?: SpacingToken;
+  right?: SpacingToken;
+  start?: SpacingToken;
+  end?: SpacingToken;
+  /**
+   * Gap
    */
   gap?: SpacingToken;
   rowGap?: SpacingToken;
   columnGap?: SpacingToken;
-};
-
-/**
- * Size props - use size tokens only
- */
-type SizeProps = {
+  /**
+   * Size
+   */
   width?: SizeToken;
   height?: SizeToken;
   minWidth?: SizeToken;
   minHeight?: SizeToken;
   maxWidth?: SizeToken;
   maxHeight?: SizeToken;
-};
-
-/**
- * Background color props - use background color tokens only
- */
-type BackgroundColorProps = {
+  /**
+   * Background color
+   */
   backgroundColor?: BackgroundColorToken;
-};
-
-type BorderProps = {
+  /**
+   * Shadow
+   */
+  boxShadow?: ShadowToken;
   /**
    * Border width
    */
@@ -93,7 +112,6 @@ type BorderProps = {
   borderRightColor?: BorderColorToken;
   borderStartColor?: BorderColorToken;
   borderEndColor?: BorderColorToken;
-
   /**
    * Border Radius
    */
@@ -102,91 +120,34 @@ type BorderProps = {
   borderTopRightRadius?: BorderRadiusToken;
   borderBottomLeftRadius?: BorderRadiusToken;
   borderBottomRightRadius?: BorderRadiusToken;
+  /**
+   * Other styles
+   */
+  opacity?: ViewStyle['opacity'];
+  borderStyle?: ViewStyle['borderStyle'];
+  transform?: ViewStyle['transform'];
 };
 
-/**
- * Shadow props - use shadow tokens
- */
-type ShadowProps = {
-  boxShadow?: ShadowToken;
-};
-
-/**
- * Flex layout props - passthrough from React Native
- */
-type FlexLayoutProps = Pick<
-  FlexStyle,
-  | 'flex'
-  | 'flexDirection'
-  | 'flexWrap'
-  | 'justifyContent'
-  | 'alignItems'
-  | 'alignSelf'
-  | 'alignContent'
-  | 'flexGrow'
-  | 'flexShrink'
-  | 'flexBasis'
-  | 'position'
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right'
-  | 'start'
-  | 'end'
-  | 'zIndex'
-  | 'overflow'
-  | 'display'
-  | 'aspectRatio'
->;
-
-/**
- * Other view style props - passthrough from React Native
- */
-type OtherViewStyleProps = Pick<
-  ViewStyle,
-  'opacity' | 'borderStyle' | 'transform'
->;
-
-/**
- * Text color props - use text color tokens only
- */
-type TextColorProps = {
+export type LumenTextStyle = LumenViewStyle & {
   color?: TextColorToken;
+  typography?: TypographyToken;
+  textAlign?: TextStyle['textAlign'];
+  textTransform?: TextStyle['textTransform'];
+  textDecorationLine?: TextStyle['textDecorationLine'];
 };
-
-/**
- * Typography prop
- */
-type TypographyProps = {
-  typo?: TypographyToken;
-};
-
-/**
- * Text style props - passthrough from React Native
- */
-type OtherTextStyleProps = Pick<
-  TextStyle,
-  'textAlign' | 'textTransform' | 'textDecorationLine'
->;
-
-/**
- * Main public types - combine token props with RN props
- */
-export type LumenViewStyleProps = SpacingProps &
-  SizeProps &
-  BackgroundColorProps &
-  BorderProps &
-  ShadowProps &
-  FlexLayoutProps &
-  OtherViewStyleProps;
-
-export type LumenTextStyleProps = LumenViewStyleProps &
-  TextColorProps &
-  TypographyProps &
-  OtherTextStyleProps;
 
 /**
  * Derived style-only types (for internal resolver use)
  */
-export type LumenViewProps = LumenViewStyleProps & ViewProps;
-export type LumenTextProps = LumenTextStyleProps & TextProps;
+export type LumenViewStyleLX = {
+  /**
+   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   */
+  lx?: LumenViewStyle;
+};
+export type LumenTextStyleLX = {
+  /**
+   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   */
+  lx?: LumenTextStyle;
+};

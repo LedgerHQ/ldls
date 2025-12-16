@@ -1,18 +1,12 @@
-import React, { forwardRef, memo, MemoExoticComponent } from 'react';
-import type { View, ViewProps, ViewStyle } from 'react-native';
+import React, { forwardRef, memo } from 'react';
+import { View, type ViewProps, type ViewStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
-import {
-  resolveViewStyle,
-  extractLumenViewStyleProps,
-} from '../resolveStyle/resolveStyle';
-import type { LumenViewProps } from '../types';
+import { resolveViewStyle } from '../resolveStyle/resolveStyle';
+import type { LumenViewStyleLX } from '../types';
+import { areLxPropsEqual } from './areLxPropsEqual';
 
 type ViewRef = React.ElementRef<typeof View>;
-type ReturnComponentType = MemoExoticComponent<
-  React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<LumenViewProps> & React.RefAttributes<ViewRef>
-  >
->;
+export type StyledViewProps = LumenViewStyleLX & ViewProps;
 /**
  * Factory function to create a styled View component.
  *
@@ -39,29 +33,21 @@ type ReturnComponentType = MemoExoticComponent<
  * <Box marginTop='s4' style={{ width: 127 }} />
  * ```
  */
-export const createStyledView = (
-  Component: React.ComponentType<LumenViewProps>,
-): ReturnComponentType => {
+export const createStyledView = (Component: typeof View) => {
   const StyledComponent = memo(
-    forwardRef<ViewRef, LumenViewProps>((props, ref) => {
-      const { theme } = useTheme();
+    forwardRef<ViewRef, StyledViewProps>(
+      ({ lx = {}, style, ...props }, ref) => {
+        const { theme } = useTheme();
+        const resolvedStyle = resolveViewStyle(theme, lx);
 
-      const { lumenStyle, rest } = extractLumenViewStyleProps(props);
-      const resolvedStyle = resolveViewStyle(theme, lumenStyle);
+        const finalStyle = style
+          ? ([resolvedStyle, style] as ViewStyle[])
+          : ([resolvedStyle] as ViewStyle[]);
 
-      const { style: propsStyle, ...componentProps } = rest;
-      const style = propsStyle
-        ? ([resolvedStyle, propsStyle] as ViewStyle[])
-        : resolvedStyle;
-
-      return (
-        <Component
-          {...({ ...componentProps, ref, style } as ViewProps & {
-            ref: React.Ref<View>;
-          })}
-        />
-      );
-    }),
+        return <Component ref={ref} {...props} style={finalStyle} />;
+      },
+    ),
+    areLxPropsEqual,
   );
 
   // Set display name for debugging

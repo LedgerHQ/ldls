@@ -42,30 +42,38 @@ describe('createStyledView', () => {
     renderWithProvider(
       <StyledView
         testID='view'
-        padding='s16'
-        width='s48'
-        backgroundColor='surface'
-        borderRadius='md'
+        lx={{
+          padding: 's16',
+          width: 's48',
+          backgroundColor: 'surface',
+          borderRadius: 'md',
+        }}
       />,
     );
 
     const style = screen.getByTestId('view').props.style;
-    expect(style).toMatchObject({
-      padding: 16,
-      width: 48,
-      backgroundColor: '#F0F0F0',
-      borderRadius: 12,
-    });
+    expect(style).toMatchObject([
+      {
+        padding: 16,
+        width: 48,
+        backgroundColor: '#F0F0F0',
+        borderRadius: 12,
+      },
+    ]);
   });
 
   it('should resolve full size token to 100%', () => {
-    renderWithProvider(<StyledView testID='view' width='full' />);
-    expect(screen.getByTestId('view').props.style.width).toBe('100%');
+    renderWithProvider(<StyledView testID='view' lx={{ width: 'full' }} />);
+    expect(screen.getByTestId('view').props.style[0].width).toBe('100%');
   });
 
   it('should merge style prop with resolved tokens', () => {
     renderWithProvider(
-      <StyledView testID='view' padding='s16' style={{ opacity: 0.5 }} />,
+      <StyledView
+        testID='view'
+        lx={{ padding: 's16' }}
+        style={{ opacity: 0.5 }}
+      />,
     );
 
     const [stylesFromProps, otherStyles] =
@@ -88,10 +96,10 @@ describe('createStyledView', () => {
         renderCount();
         return <View {...props} />;
       };
-      const StyledTracked = createStyledView(TrackedView);
+      const StyledTracked = createStyledView(TrackedView as any);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='view' padding='s16' />,
+        <StyledTracked testID='view' lx={{ padding: 's16' }} />,
       );
 
       expect(renderCount).toHaveBeenCalledTimes(1);
@@ -99,7 +107,7 @@ describe('createStyledView', () => {
       // Re-render with same props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='view' padding='s16' />
+          <StyledTracked testID='view' lx={{ padding: 's16' }} />
         </LumenStyleSheetProvider>,
       );
 
@@ -113,10 +121,11 @@ describe('createStyledView', () => {
         renderCount();
         return <View {...props} />;
       };
-      const StyledTracked = createStyledView(TrackedView);
+
+      const StyledTracked = createStyledView(TrackedView as any);
 
       const { rerender } = renderWithProvider(
-        <StyledTracked testID='view' padding='s16' />,
+        <StyledTracked testID='view' lx={{ padding: 's16' }} />,
       );
 
       expect(renderCount).toHaveBeenCalledTimes(1);
@@ -124,7 +133,7 @@ describe('createStyledView', () => {
       // Re-render with different props
       rerender(
         <LumenStyleSheetProvider themes={testThemes}>
-          <StyledTracked testID='view' width='s48' />
+          <StyledTracked testID='view' lx={{ width: 's48' }} />
         </LumenStyleSheetProvider>,
       );
 

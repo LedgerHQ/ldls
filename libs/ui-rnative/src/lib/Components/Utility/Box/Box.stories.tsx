@@ -20,11 +20,12 @@ type Story = StoryObj<typeof Box>;
 
 export const Base: Story = {
   args: {
-    height: 's48',
-    width: 's48',
-    backgroundColor: 'accent',
-    borderRadius: 'md',
-    alignSelf: 'center',
+    lx: {
+      height: 's48',
+      width: 's48',
+      backgroundColor: 'accent',
+      borderRadius: 'md',
+    },
   },
   render: (args) => <Box {...args}></Box>,
   parameters: {
@@ -32,11 +33,13 @@ export const Base: Story = {
       source: {
         code: `
 <Box
-  height='s48'
-  width='s48'
-  backgroundColor='accent'
-  borderRadius='md'
-  alignSelf='center'
+  lx={{
+    height: 's48',
+    width: 's48',
+    backgroundColor: 'accent',
+    borderRadius: 'md',
+    alignSelf: 'center',
+  }}
 />
 `,
       },

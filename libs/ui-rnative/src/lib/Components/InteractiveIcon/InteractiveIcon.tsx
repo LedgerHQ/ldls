@@ -1,36 +1,51 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
-import { FC } from 'react';
-import { Pressable, View } from 'react-native';
-import { InjectStylesIntoChildren } from '../../utils';
+import { FC, PropsWithChildren } from 'react';
+import { View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
+
+import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
+import { Pressable } from '../Utility';
 import { InteractiveIconProps } from './types';
 
-const buttonVariants = cva(
-  'inline-flex size-fit items-center justify-center rounded-full',
-  {
-    variants: {
-      iconType: {
-        filled: '',
-        stroked: 'bg-base-transparent',
-      },
-      pressed: {
-        true: '',
-        false: '',
-      },
-      disabled: {
-        true: 'bg-disabled',
-        false: '',
-      },
+type IconType = InteractiveIconProps['iconType'];
+
+const useStyles = ({
+  iconType,
+  pressed,
+  disabled,
+}: {
+  iconType: IconType;
+  pressed: boolean;
+  disabled: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const backgroundStyle = {
+        filled: { backgroundColor: t.colors.bg.base },
+        stroked: { backgroundColor: t.colors.bg.baseTransparent },
+      };
+
+      return {
+        container: mergeStyles(
+          {
+            borderRadius: t.borderRadius.full,
+          },
+          backgroundStyle[iconType],
+          iconType === 'stroked' &&
+            pressed && { backgroundColor: t.colors.bg.baseTransparentPressed },
+          disabled && { backgroundColor: t.colors.bg.disabled },
+        ),
+        icon: {
+          color: disabled
+            ? t.colors.text.disabled
+            : pressed
+              ? t.colors.text.mutedPressed
+              : t.colors.text.muted,
+        },
+      };
     },
-    compoundVariants: [
-      {
-        iconType: 'stroked',
-        pressed: true,
-        className: 'bg-base-transparent-pressed',
-      },
-    ],
-  },
-);
+    [iconType, pressed, disabled],
+  );
+};
 
 /**
  * A specialized interactive component designed specifically for displaying pressable icons.
@@ -69,24 +84,42 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
 }) => {
   return (
     <Pressable
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
       accessibilityRole='button'
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}
       {...props}
     >
-      {({ pressed }) => {
-        const iconStyles = cn(
-          pressed ? 'text-muted-pressed' : 'text-muted',
-          disabled && 'text-disabled',
-        );
-        return (
-          <View className={cn(buttonVariants({ iconType, pressed, disabled }))}>
-            <InjectStylesIntoChildren styles={iconStyles}>
-              {children}
-            </InjectStylesIntoChildren>
-          </View>
-        );
-      }}
+      {({ pressed }) => (
+        <InteractiveIconContent
+          iconType={iconType}
+          pressed={pressed}
+          disabled={!!disabled}
+        >
+          {children}
+        </InteractiveIconContent>
+      )}
     </Pressable>
+  );
+};
+
+const InteractiveIconContent: FC<
+  PropsWithChildren<{
+    iconType: IconType;
+    pressed: boolean;
+    disabled: boolean;
+  }>
+> = ({ iconType, pressed, disabled, children }) => {
+  const styles = useStyles({ iconType, pressed, disabled });
+
+  return (
+    <View style={styles.container}>
+      <InjectStylesIntoChildren style={styles.icon}>
+        {children}
+      </InjectStylesIntoChildren>
+    </View>
   );
 };

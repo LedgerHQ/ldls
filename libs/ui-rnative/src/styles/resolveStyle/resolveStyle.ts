@@ -1,16 +1,11 @@
 import { getObjectPath } from '@ledgerhq/lumen-utils-shared';
-import type { ViewStyle, TextStyle, ViewProps, TextProps } from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
 import type {
   LumenStyleSheetTheme,
-  LumenTextStyleProps,
-  LumenViewStyleProps,
+  LumenTextStyle,
+  LumenViewStyle,
 } from '../types';
-import {
-  VIEW_PROP_CONFIG,
-  TEXT_PROP_CONFIG,
-  LUMEN_VIEW_STYLE_PROPS,
-  LUMEN_TEXT_STYLE_PROPS,
-} from './resolveConfig';
+import { VIEW_PROP_CONFIG, TEXT_PROP_CONFIG } from './resolveConfig';
 
 /**
  * Unified style resolver
@@ -18,7 +13,7 @@ import {
  */
 const resolveStyle = <T extends ViewStyle | TextStyle>(
   theme: LumenStyleSheetTheme,
-  lumenStyle: LumenViewStyleProps | LumenTextStyleProps,
+  lumenStyle: LumenViewStyle | LumenTextStyle,
   config: typeof VIEW_PROP_CONFIG | typeof TEXT_PROP_CONFIG,
 ): T => {
   const resolved: Record<string, unknown> = {};
@@ -39,7 +34,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
       value as string,
     ]);
 
-    // Spread props (like typo) merge into resolved styles
+    // Spread props (like typography) merge into resolved styles
     if (propConfig.spread && resolvedValue) {
       Object.assign(resolved, resolvedValue);
     } else {
@@ -55,7 +50,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
  */
 export const resolveViewStyle = (
   theme: LumenStyleSheetTheme,
-  lumenStyle: LumenViewStyleProps,
+  lumenStyle: LumenViewStyle,
 ): ViewStyle => resolveStyle<ViewStyle>(theme, lumenStyle, VIEW_PROP_CONFIG);
 
 /**
@@ -63,50 +58,5 @@ export const resolveViewStyle = (
  */
 export const resolveTextStyle = (
   theme: LumenStyleSheetTheme,
-  lumenStyle: LumenTextStyleProps,
+  lumenStyle: LumenTextStyle,
 ): TextStyle => resolveStyle<TextStyle>(theme, lumenStyle, TEXT_PROP_CONFIG);
-
-/**
- * Unified style props extractor
- * Loops only through input props with O(1) Set lookup
- */
-const extractStyleProps = <
-  StyleProps,
-  RestProps,
-  ReturnType = {
-    lumenStyle: StyleProps;
-    rest: RestProps;
-  },
->(
-  props: Record<string, unknown>,
-  stylePropsSet: Set<string>,
-): ReturnType => {
-  const lumenStyle: Record<string, unknown> = {};
-  const rest: Record<string, unknown> = {};
-
-  for (const key of Object.keys(props)) {
-    if (stylePropsSet.has(key)) {
-      lumenStyle[key] = props[key];
-    } else {
-      rest[key] = props[key];
-    }
-  }
-
-  return { lumenStyle, rest } as ReturnType;
-};
-
-/**
- * Extract styled view props from component props
- */
-export const extractLumenViewStyleProps = (
-  props: LumenViewStyleProps,
-): { lumenStyle: LumenViewStyleProps; rest: ViewProps } =>
-  extractStyleProps(props as Record<string, unknown>, LUMEN_VIEW_STYLE_PROPS);
-
-/**
- * Extract styled text props from component props
- */
-export const extractLumenTextStyleProps = (
-  props: LumenTextStyleProps,
-): { lumenStyle: LumenTextStyleProps; rest: TextProps } =>
-  extractStyleProps(props as Record<string, unknown>, LUMEN_TEXT_STYLE_PROPS);

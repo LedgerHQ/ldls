@@ -2,12 +2,7 @@ import { describe, expect, it } from '@jest/globals';
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import type { BoxShadowValue } from 'react-native';
 import { createStylesheetTheme } from '../Provider/createStylesheetTheme';
-import {
-  resolveViewStyle,
-  resolveTextStyle,
-  extractLumenViewStyleProps,
-  extractLumenTextStyleProps,
-} from './resolveStyle';
+import { resolveViewStyle, resolveTextStyle } from './resolveStyle';
 
 /**
  * Use actual theme from design-core for type-safe testing
@@ -306,17 +301,17 @@ describe('resolve-style', () => {
       it('should pass through position props unchanged', () => {
         const result = resolveViewStyle(mockTheme, {
           position: 'absolute',
-          top: 10,
-          bottom: 20,
-          left: 30,
-          right: 40,
+          top: 's10',
+          bottom: 's20',
+          left: 's32',
+          right: 's40',
           zIndex: 100,
         });
 
         expect(result.position).toBe('absolute');
         expect(result.top).toBe(10);
         expect(result.bottom).toBe(20);
-        expect(result.left).toBe(30);
+        expect(result.left).toBe(32);
         expect(result.right).toBe(40);
         expect(result.zIndex).toBe(100);
       });
@@ -324,8 +319,8 @@ describe('resolve-style', () => {
       it('should pass through RTL position props unchanged', () => {
         const result = resolveViewStyle(mockTheme, {
           position: 'absolute',
-          start: 10,
-          end: 20,
+          start: 's10',
+          end: 's20',
         });
 
         expect(result.position).toBe('absolute');
@@ -440,8 +435,8 @@ describe('resolve-style', () => {
       expect(result.color).toBe(mockTheme.colors.text.muted);
     });
 
-    it('should resolve typography typo', () => {
-      const result = resolveTextStyle(mockTheme, { typo: 'body1' });
+    it('should resolve typography typography', () => {
+      const result = resolveTextStyle(mockTheme, { typography: 'body1' });
 
       expect(result.fontSize).toBe(mockTheme.typographies.body1.fontSize);
       expect(result.fontWeight).toBe(mockTheme.typographies.body1.fontWeight);
@@ -456,7 +451,7 @@ describe('resolve-style', () => {
         color: 'active',
         marginTop: 's8',
         padding: 's4',
-        typo: 'heading1',
+        typography: 'heading1',
       });
 
       expect(result.color).toBe(mockTheme.colors.text.active);
@@ -471,7 +466,7 @@ describe('resolve-style', () => {
       );
     });
 
-    it('should handle text without typo', () => {
+    it('should handle text without typography', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'base',
         padding: 's8',
@@ -509,7 +504,7 @@ describe('resolve-style', () => {
     it('should combine all text style props', () => {
       const result = resolveTextStyle(mockTheme, {
         color: 'active',
-        typo: 'body1',
+        typography: 'body1',
         textAlign: 'center',
         textTransform: 'uppercase',
         textDecorationLine: 'underline',
@@ -520,129 +515,6 @@ describe('resolve-style', () => {
       expect(result.textAlign).toBe('center');
       expect(result.textTransform).toBe('uppercase');
       expect(result.textDecorationLine).toBe('underline');
-    });
-  });
-
-  describe('extractLumenViewStyleProps', () => {
-    it('should extract spacing props from mixed props', () => {
-      const props = {
-        padding: 's16',
-        marginTop: 's8',
-        customProp: 'test-value',
-        callback: () => 'result',
-      } as const;
-
-      const { lumenStyle, rest } = extractLumenViewStyleProps(props);
-
-      expect(lumenStyle.padding).toBe('s16');
-      expect(lumenStyle.marginTop).toBe('s8');
-      expect(rest).toEqual({
-        customProp: 'test-value',
-        callback: expect.any(Function),
-      });
-    });
-
-    it('should extract all style props', () => {
-      const props = {
-        padding: 's16',
-        width: 's192',
-        backgroundColor: 'surface',
-        borderColor: 'muted',
-        borderRadius: 'md',
-        boxShadow: 'sm',
-        flex: 1,
-        flexDirection: 'row',
-        customProp: 'test',
-      } as const;
-
-      const { lumenStyle, rest } = extractLumenViewStyleProps(props);
-
-      expect(lumenStyle).toEqual({
-        padding: 's16',
-        width: 's192',
-        backgroundColor: 'surface',
-        borderColor: 'muted',
-        borderRadius: 'md',
-        boxShadow: 'sm',
-        flex: 1,
-        flexDirection: 'row',
-      });
-      expect(rest).toEqual({ customProp: 'test' });
-    });
-
-    it('should handle empty props', () => {
-      const { lumenStyle, rest } = extractLumenViewStyleProps({});
-
-      expect(lumenStyle).toEqual({});
-      expect(rest).toEqual({});
-    });
-
-    it('should handle props with no style props', () => {
-      const props = {
-        customProp: 'test',
-        anotherProp: true,
-        padding: undefined,
-      };
-
-      const { lumenStyle, rest } = extractLumenViewStyleProps(props);
-
-      expect(lumenStyle).toEqual({ padding: undefined });
-      expect(rest).toEqual({
-        customProp: 'test',
-        anotherProp: true,
-      });
-    });
-  });
-
-  describe('extractLumenTextStyleProps', () => {
-    it('should extract color prop in addition to view style props', () => {
-      const props = {
-        color: 'muted',
-        padding: 's8',
-        customProp: 'test-text',
-      } as const;
-
-      const { lumenStyle, rest } = extractLumenTextStyleProps(props);
-
-      expect(lumenStyle.color).toBe('muted');
-      expect(lumenStyle.padding).toBe('s8');
-      expect(rest).toEqual({ customProp: 'test-text' });
-    });
-
-    it('should extract typo prop', () => {
-      const props = {
-        typo: 'body1',
-        color: 'muted',
-        customProp: 'test',
-      } as const;
-
-      const { lumenStyle, rest } = extractLumenTextStyleProps(props);
-
-      expect(lumenStyle.typo).toBe('body1');
-      expect(lumenStyle.color).toBe('muted');
-      expect(rest).toEqual({ customProp: 'test' });
-    });
-
-    it('should extract all text style props', () => {
-      const props = {
-        typo: 'heading1',
-        color: 'active',
-        padding: 's16',
-        marginTop: 's8',
-        backgroundColor: 'surface',
-        customProp: 2,
-      } as const;
-
-      const { lumenStyle, rest } = extractLumenTextStyleProps(props);
-
-      expect(lumenStyle).toEqual({
-        typo: 'heading1',
-        color: 'active',
-        padding: 's16',
-        marginTop: 's8',
-        backgroundColor: 'surface',
-      });
-      expect(rest).toEqual({ customProp: 2 });
     });
   });
 });

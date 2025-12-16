@@ -33,7 +33,7 @@ const bottomSheetVariants = {
   root: cva('mb-16 w-full flex-1 rounded-t-xl bg-canvas-sheet', {
     variants: {
       shadow: {
-        true: 'shadow-lg shadow-base',
+        true: 'shadow-base shadow-lg',
         false: '',
       },
     },

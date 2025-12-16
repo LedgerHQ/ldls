@@ -12,3 +12,8 @@ export * from './TextInputs';
 export * from './Tiles';
 export * from './ToggleLocaleSwitch';
 export * from './ToggleThemeSwitch';
+
+export * from './InteractiveIcons';
+export * from './Banners';
+export * from './CardButtons';
+export * from './Tooltips';

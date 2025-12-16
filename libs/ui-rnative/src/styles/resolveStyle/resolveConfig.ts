@@ -1,9 +1,9 @@
-import { LumenTextStyleProps, LumenViewStyleProps } from '../types';
+import { LumenTextStyle, LumenViewStyle } from '../types';
 
 /**
  * Configuration for each style prop
  * - path: Theme path for token lookup (array of keys)
- * - spread: true for props that spread into multiple style properties (typo)
+ * - spread: true for props that spread into multiple style properties (typography)
  * - No path = passthrough prop (value passed as-is)
  */
 export type PropConfig = {
@@ -14,7 +14,7 @@ export type PropConfig = {
 /**
  * View style props configuration
  */
-export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
+export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyle, PropConfig> = {
   // Spacing props
   padding: { path: ['spacings'] },
   paddingTop: { path: ['spacings'] },
@@ -37,6 +37,13 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
   gap: { path: ['spacings'] },
   rowGap: { path: ['spacings'] },
   columnGap: { path: ['spacings'] },
+  position: {},
+  top: { path: ['spacings'] },
+  bottom: { path: ['spacings'] },
+  left: { path: ['spacings'] },
+  right: { path: ['spacings'] },
+  start: { path: ['spacings'] },
+  end: { path: ['spacings'] },
 
   // Size props
   width: { path: ['sizes'] },
@@ -88,13 +95,7 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
   flexGrow: {},
   flexShrink: {},
   flexBasis: {},
-  position: {},
-  top: {},
-  bottom: {},
-  left: {},
-  right: {},
-  start: {},
-  end: {},
+
   zIndex: {},
   overflow: {},
   display: {},
@@ -105,12 +106,12 @@ export const VIEW_PROP_CONFIG: Record<keyof LumenViewStyleProps, PropConfig> = {
 } as const;
 
 /**
- * Text style props configuration (extends view props + color + typo)
+ * Text style props configuration (extends view props + color + typography)
  */
-export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyleProps, PropConfig> = {
+export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyle, PropConfig> = {
   ...VIEW_PROP_CONFIG,
   color: { path: ['colors', 'text'] },
-  typo: { path: ['typographies'], spread: true },
+  typography: { path: ['typographies'], spread: true },
   textAlign: {},
   textTransform: {},
   textDecorationLine: {},
@@ -121,11 +122,11 @@ export const TEXT_PROP_CONFIG: Record<keyof LumenTextStyleProps, PropConfig> = {
  */
 export const LUMEN_VIEW_STYLE_PROPS = new Set(
   Object.keys(VIEW_PROP_CONFIG),
-) as Set<keyof LumenViewStyleProps>;
+) as Set<keyof LumenViewStyle>;
 
 /**
  * Set for O(1) text prop lookup
  */
 export const LUMEN_TEXT_STYLE_PROPS = new Set(
   Object.keys(TEXT_PROP_CONFIG),
-) as Set<keyof LumenTextStyleProps>;
+) as Set<keyof LumenTextStyle>;

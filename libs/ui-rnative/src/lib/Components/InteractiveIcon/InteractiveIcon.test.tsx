@@ -1,12 +1,22 @@
 import { describe, it, expect, jest } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 
 import { Settings, Plus } from '../../Symbols';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { InteractiveIcon } from './InteractiveIcon';
+
+const renderWithProvider = (component: React.ReactElement) => {
+  return render(
+    <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+      {component}
+    </ThemeProvider>,
+  );
+};
 
 describe('InteractiveIcon Component', () => {
   it('should render correctly with children icon', () => {
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Settings'
@@ -20,7 +30,7 @@ describe('InteractiveIcon Component', () => {
   });
 
   it('should render with filled iconType variant', () => {
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Add item'
@@ -35,7 +45,7 @@ describe('InteractiveIcon Component', () => {
   });
 
   it('should render with stroked iconType variant', () => {
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='stroked'
         aria-label='Settings'
@@ -50,7 +60,7 @@ describe('InteractiveIcon Component', () => {
   });
 
   it('should have correct accessibility label', () => {
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Open menu'
@@ -64,7 +74,7 @@ describe('InteractiveIcon Component', () => {
   });
 
   it('should be disabled when the disabled prop is true', () => {
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Disabled button'
@@ -80,7 +90,7 @@ describe('InteractiveIcon Component', () => {
 
   it('should call the onPress handler when pressed', () => {
     const handlePress = jest.fn();
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Pressable'
@@ -99,7 +109,7 @@ describe('InteractiveIcon Component', () => {
 
   it('should not call the onPress handler when disabled', () => {
     const handlePress = jest.fn();
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Disabled'
@@ -119,7 +129,7 @@ describe('InteractiveIcon Component', () => {
 
   it('should call the onLongPress handler when long pressed', () => {
     const handleLongPress = jest.fn();
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='stroked'
         aria-label='Long pressable'
@@ -138,7 +148,7 @@ describe('InteractiveIcon Component', () => {
 
   it('should apply custom style', () => {
     const customStyle = { marginTop: 8 };
-    render(
+    renderWithProvider(
       <InteractiveIcon
         iconType='filled'
         aria-label='Custom'
@@ -149,6 +159,7 @@ describe('InteractiveIcon Component', () => {
       </InteractiveIcon>,
     );
     const buttonElement = screen.getByTestId('custom-icon');
-    expect(buttonElement.props.style).toEqual(customStyle);
+    // Style is merged as an array [resolvedStyle, customStyle]
+    expect(buttonElement.props.style).toContainEqual(customStyle);
   });
 });
