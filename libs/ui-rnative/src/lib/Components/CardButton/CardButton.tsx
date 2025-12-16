@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
-import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { Pressable } from '../Utility';
 
 import { CardButtonProps } from './types';
@@ -183,11 +182,7 @@ const CardButtonContent: React.FC<CardButtonContentProps> = ({
 
   return (
     <View style={styles.container} testID='card-button-content'>
-      {IconComponent && (
-        <InjectStylesIntoChildren style={styles.icon}>
-          <IconComponent size={24} />
-        </InjectStylesIntoChildren>
-      )}
+      {IconComponent && <IconComponent size={24} style={styles.icon} />}
       <View style={styles.contentWrapper}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>
           {title}
@@ -202,11 +197,7 @@ const CardButtonContent: React.FC<CardButtonContentProps> = ({
           </Text>
         )}
       </View>
-      {!hideChevron && (
-        <InjectStylesIntoChildren style={styles.icon}>
-          <ChevronRight size={24} />
-        </InjectStylesIntoChildren>
-      )}
+      {!hideChevron && <ChevronRight size={24} style={styles.icon} />}
     </View>
   );
 };

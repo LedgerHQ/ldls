@@ -32,7 +32,6 @@ const useStyles = ({
           backgroundStyle[iconType],
           iconType === 'stroked' &&
             pressed && { backgroundColor: t.colors.bg.baseTransparentPressed },
-          disabled && { backgroundColor: t.colors.bg.disabled },
         ),
         icon: {
           color: disabled

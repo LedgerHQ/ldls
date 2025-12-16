@@ -145,7 +145,7 @@ export const Gallery: StoryObj = {
     );
 
     return (
-      <div className='p-8'>
+      <div className='flex w-full flex-col items-stretch p-8'>
         {/* Search bar */}
         <div className='mb-32'>
           <div className='mb-8 max-w-md'>

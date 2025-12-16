@@ -1,81 +1,171 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import { render, fireEvent } from '@testing-library/react-native';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
+import { render, fireEvent, screen } from '@testing-library/react-native';
+import React from 'react';
 import { Linking } from 'react-native';
+
+import { Information } from '../../Symbols';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Link } from './Link';
+import { LinkProps } from './types';
 
 jest.mock('react-native/Libraries/Linking/Linking', () => ({
   openURL: jest.fn(() => Promise.resolve()),
 }));
+
+const renderWithProvider = (component: React.ReactElement) => {
+  return render(
+    <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+      {component}
+    </ThemeProvider>,
+  );
+};
+
+const typographies = ledgerLiveThemes.dark.typographies.sm;
+const { colors, spacings } = ledgerLiveThemes.dark;
 
 describe('Link Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should render correctly with children text', () => {
-    const { getByText } = render(
-      <Link href='https://example.com'>Click me</Link>,
-    );
+  describe('Rendering', () => {
+    it('should render children and have link accessibility role', () => {
+      renderWithProvider(
+        <Link href='https://example.com' testID='link'>
+          Click me
+        </Link>,
+      );
 
-    expect(getByText('Click me')).toBeTruthy();
+      expect(screen.getByText('Click me').props.children).toBe('Click me');
+      expect(screen.getByTestId('link').props.accessibilityRole).toBe('link');
+    });
+
+    it('should truncate text to single line', () => {
+      renderWithProvider(<Link href='https://example.com'>Link</Link>);
+      expect(screen.getByText('Link').props.numberOfLines).toBe(1);
+    });
   });
 
-  it('should call Linking.openURL with href when pressed', async () => {
-    const { getByText } = render(
-      <Link href='https://example.com'>Click me</Link>,
+  describe('Appearances', () => {
+    it.each([
+      ['base', colors.text.base],
+      ['accent', colors.text.interactive],
+    ])(
+      'should apply %s appearance with correct text color',
+      (appearance, expectedColor) => {
+        renderWithProvider(
+          <Link
+            href='https://example.com'
+            appearance={appearance as LinkProps['appearance']}
+          >
+            Link
+          </Link>,
+        );
+        expect(screen.getByText('Link').props.style.color).toBe(expectedColor);
+      },
     );
-
-    fireEvent.press(getByText('Click me'));
-
-    expect(Linking.openURL).toHaveBeenCalledWith('https://example.com');
-    expect(Linking.openURL).toHaveBeenCalledTimes(1);
   });
 
-  it('should call custom onPress handler instead of Linking.openURL when provided', () => {
-    const onPress = jest.fn();
-    const { getByText } = render(
-      <Link href='https://example.com' onPress={onPress}>
-        Custom Press
-      </Link>,
+  describe('Sizes', () => {
+    it.each([
+      ['sm', typographies.body2SemiBold, spacings.s4],
+      ['md', typographies.body1SemiBold, spacings.s8],
+    ])(
+      'should apply %s size with correct typography and gap',
+      (size, typography, expectedGap) => {
+        renderWithProvider(
+          <Link href='https://example.com' size={size as LinkProps['size']}>
+            Link
+          </Link>,
+        );
+
+        const textStyle = screen.getByText('Link').props.style;
+        expect(textStyle.fontSize).toBe(typography.fontSize);
+        expect(textStyle.fontWeight).toBe(typography.fontWeight);
+        expect(screen.getByTestId('link-content').props.style.gap).toBe(
+          expectedGap,
+        );
+      },
     );
-
-    fireEvent.press(getByText('Custom Press'));
-
-    expect(onPress).toHaveBeenCalledTimes(1);
-    expect(Linking.openURL).not.toHaveBeenCalled();
   });
 
-  it('should call onPress handler when no href is provided', () => {
-    const onPress = jest.fn();
-    const { getByText } = render(<Link onPress={onPress}>No Href Link</Link>);
-
-    fireEvent.press(getByText('No Href Link'));
-
-    expect(onPress).toHaveBeenCalledTimes(1);
-    expect(Linking.openURL).not.toHaveBeenCalled();
+  describe('Underline', () => {
+    it.each([
+      [true, 'underline'],
+      [false, 'none'],
+    ])(
+      'should have textDecorationLine=%s when underline=%s',
+      (underline, expectedDecoration) => {
+        renderWithProvider(
+          <Link href='https://example.com' underline={underline}>
+            Link
+          </Link>,
+        );
+        expect(screen.getByText('Link').props.style.textDecorationLine).toBe(
+          expectedDecoration,
+        );
+      },
+    );
   });
 
-  it('should have link accessibility role', () => {
-    const { getByTestId } = render(
-      <Link href='https://example.com' testID='accessible-link'>
-        Accessible Link
-      </Link>,
-    );
+  describe('Icons', () => {
+    it('should render leading icon when provided', () => {
+      renderWithProvider(
+        <Link href='https://example.com' icon={Information}>
+          With Icon
+        </Link>,
+      );
 
-    const linkElement = getByTestId('accessible-link');
-    expect(linkElement.props.accessibilityRole).toBe('link');
+      const children = React.Children.toArray(
+        screen.getByTestId('link-content').props.children,
+      );
+      expect(children.length).toBe(2); // icon + text wrapper
+    });
+
+    it('should render external link icon when isExternal is true', () => {
+      renderWithProvider(
+        <Link href='https://example.com' isExternal>
+          External
+        </Link>,
+      );
+
+      const children = React.Children.toArray(
+        screen.getByTestId('link-content').props.children,
+      );
+      expect(children.length).toBe(2); // text wrapper + external icon
+    });
   });
 
-  it('should handle different URL protocols', () => {
-    const { getByText, rerender } = render(
-      <Link href='mailto:test@example.com'>Email Link</Link>,
+  describe('Interactions', () => {
+    it.each([
+      ['https://example.com', 'https://example.com'],
+      ['mailto:test@example.com', 'mailto:test@example.com'],
+      ['tel:+1234567890', 'tel:+1234567890'],
+    ])(
+      'should call Linking.openURL with %s when pressed',
+      (href, expectedUrl) => {
+        renderWithProvider(<Link href={href}>Link</Link>);
+
+        fireEvent.press(screen.getByText('Link'));
+
+        expect(Linking.openURL).toHaveBeenCalledTimes(1);
+        expect(Linking.openURL).toHaveBeenCalledWith(expectedUrl);
+      },
     );
 
-    fireEvent.press(getByText('Email Link'));
-    expect(Linking.openURL).toHaveBeenCalledWith('mailto:test@example.com');
+    it('should call custom onPress instead of Linking.openURL', () => {
+      const onPress = jest.fn();
+      renderWithProvider(
+        <Link href='https://example.com' onPress={onPress}>
+          Custom
+        </Link>,
+      );
 
-    rerender(<Link href='tel:+1234567890'>Phone Link</Link>);
-    fireEvent.press(getByText('Phone Link'));
-    expect(Linking.openURL).toHaveBeenCalledWith('tel:+1234567890');
+      fireEvent.press(screen.getByText('Custom'));
+
+      expect(onPress).toHaveBeenCalledTimes(1);
+      expect(Linking.openURL).not.toHaveBeenCalled();
+    });
   });
 });

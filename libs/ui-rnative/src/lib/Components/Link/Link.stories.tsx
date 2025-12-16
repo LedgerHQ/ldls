@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { View, Text } from 'react-native';
 import { Settings, Information, ArrowRight } from '../../Symbols';
+import { Box, Text } from '../Utility';
 import { Link } from './Link';
 
 const meta: Meta<typeof Link> = {
@@ -160,7 +160,7 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <View className='flex-row gap-32 p-8'>
+      <Box lx={{ flexDirection: 'row', gap: 's32', padding: 's8' }}>
         {appearances.map(({ name, appearance }) => (
           <Link
             key={appearance}
@@ -173,14 +173,14 @@ export const AppearanceShowcase: Story = {
             {name}
           </Link>
         ))}
-      </View>
+      </Box>
     );
   },
 };
 
 export const UnderlineShowcase: Story = {
   render: () => (
-    <View className='flex-col gap-16 p-8'>
+    <Box lx={{ flexDirection: 'column', gap: 's16', padding: 's8' }}>
       <Link appearance='accent' size='md' href='https://ledger.com'>
         With underline
       </Link>
@@ -192,14 +192,21 @@ export const UnderlineShowcase: Story = {
       >
         Without underline
       </Link>
-    </View>
+    </Box>
   ),
 };
 
 export const SizesShowcase: Story = {
   render: () => (
-    <View className='flex-col gap-16'>
-      <View className='flex-row items-center gap-32 p-8'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 's32',
+          padding: 's8',
+        }}
+      >
         <Link
           appearance='base'
           size='sm'
@@ -218,8 +225,15 @@ export const SizesShowcase: Story = {
         >
           Medium
         </Link>
-      </View>
-      <View className='flex-row items-center gap-32 p-8'>
+      </Box>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 's32',
+          padding: 's8',
+        }}
+      >
         <Link
           appearance='accent'
           size='sm'
@@ -238,27 +252,44 @@ export const SizesShowcase: Story = {
         >
           Medium Accent
         </Link>
-      </View>
-    </View>
+      </Box>
+    </Box>
   ),
 };
 
 export const StatesShowcase: Story = {
   render: () => (
-    <View className='flex-row items-center gap-16 p-8'>
+    <Box
+      lx={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 's16',
+        padding: 's8',
+      }}
+    >
       <Link appearance='base' href='https://ledger.com'>
         Default
       </Link>
       <Link appearance='accent' href='https://ledger.com' icon={ArrowRight}>
         With Icon
       </Link>
-    </View>
+    </Box>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className='w-256 flex-col gap-8 rounded-sm bg-muted p-8'>
+    <Box
+      lx={{
+        width: 's256',
+        flexDirection: 'column',
+        gap: 's8',
+        borderRadius: 'sm',
+        borderColor: 'mutedSubtle',
+        borderWidth: 's1',
+        padding: 's8',
+      }}
+    >
       <Link underline href='https://ledger.com'>
         Short Link
       </Link>
@@ -274,7 +305,7 @@ export const ResponsiveLayout: Story = {
       >
         Base with long text that is cut off
       </Link>
-    </View>
+    </Box>
   ),
 };
 
@@ -286,7 +317,7 @@ export const WithCustomNavigation: Story = {
     };
 
     return (
-      <View className='flex-col gap-16 p-8'>
+      <Box lx={{ flexDirection: 'column', gap: 's16', padding: 's8' }}>
         <Link appearance='base' size='md' onPress={handlePress}>
           Navigate to Dashboard
         </Link>
@@ -298,7 +329,7 @@ export const WithCustomNavigation: Story = {
         >
           Continue to Next Screen
         </Link>
-      </View>
+      </Box>
     );
   },
   parameters: {
@@ -339,8 +370,8 @@ function MyComponent() {
 
 export const InTextUsage: Story = {
   render: () => (
-    <View className='flex-col gap-32 p-8'>
-      <Text className='text-base body-2'>
+    <Box lx={{ flexDirection: 'column', gap: 's32', padding: 's8' }}>
+      <Text typography='body2' lx={{ color: 'base' }}>
         By continuing, you agree to our{' '}
         <Link appearance='base' size='sm' href='https://ledger.com/terms'>
           Terms & Conditions
@@ -352,14 +383,14 @@ export const InTextUsage: Story = {
         .
       </Text>
 
-      <Text className='text-interactive body-1-semi-bold'>
+      <Text typography='body1SemiBold' lx={{ color: 'interactive' }}>
         Need help?{' '}
         <Link appearance='accent' size='md' href='https://ledger.com/support'>
           Contact Support
         </Link>
       </Text>
 
-      <Text className='text-base body-1-semi-bold'>
+      <Text typography='body1SemiBold' lx={{ color: 'base' }}>
         Already have an account?{' '}
         <Link
           appearance='accent'
@@ -370,14 +401,14 @@ export const InTextUsage: Story = {
           Sign in
         </Link>
       </Text>
-    </View>
+    </Box>
   ),
   parameters: {
     docs: {
       source: {
         code: `
 // Links within text content
-<Text className='text-base body-2'>
+<Text typography='body2' lx={{ color: 'base' }}>
   By continuing, you agree to our{' '}
   <Link appearance='base' size='sm' href='https://ledger.com/terms'>
     Terms & Conditions
@@ -389,7 +420,7 @@ export const InTextUsage: Story = {
 </Text>
 
 // Heading with inline link
-<Text className='text-interactive body-1-semi-bold'>
+<Text typography='body1SemiBold' lx={{ color: 'interactive' }}>
   Need help?{' '}
   <Link appearance='accent' size='md' href='https://ledger.com/support'>
     Contact Support
@@ -397,7 +428,7 @@ export const InTextUsage: Story = {
 </Text>
 
 // Bold text with ununderlined link
-<Text className='text-base body-1-semi-bold'>
+<Text typography='body1SemiBold' lx={{ color: 'base' }}>
   Already have an account?{' '}
   <Link
     appearance='accent'

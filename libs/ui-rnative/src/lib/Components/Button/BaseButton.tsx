@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
-import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
 import { Pressable } from '../Utility';
@@ -217,9 +216,7 @@ const BaseButtonContent: FC<BaseButtonContentProps> = ({
         <Spinner size={calculatedIconSize} color={styles.icon.color} />
       )}
       {!loading && IconProp && (
-        <InjectStylesIntoChildren style={styles.icon}>
-          <IconProp size={calculatedIconSize} />
-        </InjectStylesIntoChildren>
+        <IconProp size={calculatedIconSize} style={styles.icon} />
       )}
       {children && (
         <Text style={styles.label} numberOfLines={2}>

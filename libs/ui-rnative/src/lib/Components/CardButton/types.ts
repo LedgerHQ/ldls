@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { StyledPressableProps } from '../../../styles';
 import { IconSize } from '../Icon';
 
@@ -14,7 +15,7 @@ export type CardButtonProps = {
   /**
    * An optional icon component to render on the left side.
    */
-  icon?: React.ComponentType<{ size?: IconSize }>;
+  icon?: React.ComponentType<{ size?: IconSize; style?: StyleProp<ViewStyle> }>;
   /**
    * The main title of the card button.
    */

@@ -1,4 +1,5 @@
 import { ComponentType, ReactNode } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { StyledPressableProps } from '../../../styles';
 import { IconSize } from '../Icon';
 
@@ -28,7 +29,7 @@ export type BaseButtonProps = {
   /**
    * An optional icon component to render inside the button.
    */
-  icon?: ComponentType<{ size?: IconSize }>;
+  icon?: ComponentType<{ size?: IconSize; style?: StyleProp<ViewStyle> }>;
   /**
    * Whether the button is disabled.
    */
