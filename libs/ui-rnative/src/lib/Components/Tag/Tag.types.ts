@@ -6,14 +6,7 @@ export type TagProps = {
   /**
    * The appearance of the tag.
    */
-  appearance?:
-    | 'base'
-    | 'gray'
-    | 'accent'
-    | 'success'
-    | 'error'
-    | 'warning'
-    | 'disabled';
+  appearance?: 'base' | 'gray' | 'accent' | 'success' | 'error' | 'warning';
   /**
    * The icon of the tag.
    */
@@ -26,4 +19,10 @@ export type TagProps = {
    * The size of the tag.
    */
   size?: 'sm' | 'lg';
+  /**
+   * When `true`, prevents the user from interacting with the tag.
+   *
+   * @default false
+   */
+  disabled?: boolean;
 } & ViewProps;
