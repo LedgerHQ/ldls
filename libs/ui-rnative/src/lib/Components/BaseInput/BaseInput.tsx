@@ -159,7 +159,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             <Text
               className={cn(
                 'absolute left-16 text-muted w-full transition-all duration-200',
-                isFloatingLabel ? 'top-6 body-4' : 'top-14 body-2',
+                isFloatingLabel ? 'top-6 body-4' : 'top-12 body-2',
                 hasContent && showClearButton && 'w-[92%]',
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
