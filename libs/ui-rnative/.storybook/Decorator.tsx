@@ -50,7 +50,9 @@ export const withProvidersDecorator: Decorator = (Story, context) => {
 
   return (
     <ThemeProvider colorScheme={mode} themes={currentTheme}>
-      <GestureHandlerRootView style={{ flex: 1, width: '100%' }}>
+      <GestureHandlerRootView
+        style={{ flex: 1, width: '100%', alignItems: 'flex-start' }}
+      >
         <Story />
       </GestureHandlerRootView>
     </ThemeProvider>
