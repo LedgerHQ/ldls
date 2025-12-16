@@ -202,7 +202,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
           {showClearButton && (
             <InteractiveIcon
-              iconType='filled'
+              iconType='stroked'
               onPress={handleClear}
               accessibilityLabel={t('components.baseInput.clearInputAriaLabel')}
             >
