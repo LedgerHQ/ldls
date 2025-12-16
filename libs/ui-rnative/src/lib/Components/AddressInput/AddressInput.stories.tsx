@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AddressInput } from './AddressInput';
+import { AddressInput, type AddressInputProps } from './AddressInput';
 
 const meta: Meta<typeof AddressInput> = {
   component: AddressInput,
@@ -15,146 +15,140 @@ const meta: Meta<typeof AddressInput> = {
       },
     },
   },
+  argTypes: {
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text when input is empty',
+    },
+    prefix: {
+      control: 'text',
+      description: 'Custom prefix text (default: "To:")',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message to display below input',
+    },
+    editable: {
+      control: 'boolean',
+      description: 'Whether the input is editable',
+    },
+    hideClearButton: {
+      control: 'boolean',
+      description: 'Hide the clear button',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof AddressInput>;
 
-export const Base: Story = {
-  render: () => {
-    const [address, setAddress] = useState('');
+const AddressInputStory = (args: AddressInputProps) => {
+  const [address, setAddress] = useState(args.value?.toString() ?? '');
 
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={setAddress}
-            onQrCodeClick={() => alert('QR code scanner opened')}
-          />
-        </View>
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <AddressInput
+          {...args}
+          value={address}
+          onChangeText={setAddress}
+          onQrCodeClick={
+            args.onQrCodeClick ?? (() => alert('QR code scanner opened'))
+          }
+        />
       </View>
-    );
+    </View>
+  );
+};
+
+export const Base: Story = {
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    prefix: 'To:',
+    editable: true,
+    hideClearButton: false,
   },
 };
 
 export const WithContent: Story = {
-  render: () => {
-    const [address, setAddress] = useState(
-      '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27',
-    );
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={setAddress}
-            onQrCodeClick={() => alert('QR code scanner opened')}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    value: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27',
+    prefix: 'To:',
+    editable: true,
+    hideClearButton: false,
   },
 };
 
 export const WithCustomPrefix: Story = {
-  render: () => {
-    const [address, setAddress] = useState('');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            prefix='From:'
-            placeholder='Enter sender address'
-            value={address}
-            onChangeText={setAddress}
-            onQrCodeClick={() => alert('QR code scanner opened')}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter sender address',
+    prefix: 'From:',
+    editable: true,
+    hideClearButton: false,
   },
 };
 
-export const WithoutQrCode: Story = {
-  render: () => {
-    const [address, setAddress] = useState('');
+const AddressInputWithoutQrStory = (args: AddressInputProps) => {
+  const [address, setAddress] = useState(args.value?.toString() ?? '');
 
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={setAddress}
-          />
-        </View>
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <AddressInput
+          {...args}
+          value={address}
+          onChangeText={setAddress}
+          onQrCodeClick={undefined}
+        />
       </View>
-    );
+    </View>
+  );
+};
+
+export const WithoutQrCode: Story = {
+  render: (args) => <AddressInputWithoutQrStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    prefix: 'To:',
+    editable: true,
+    hideClearButton: false,
   },
 };
 
 export const WithError: Story = {
-  render: () => {
-    const [address, setAddress] = useState('invalid-address');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={setAddress}
-            errorMessage='Invalid address format'
-            onQrCodeClick={() => alert('QR code scanner opened')}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    value: 'invalid-address',
+    errorMessage: 'Invalid address format',
+    prefix: 'To:',
+    editable: true,
+    hideClearButton: false,
   },
 };
 
 export const DisabledAddressInput: Story = {
-  render: () => {
-    const [address] = useState('0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={() => {}}
-            editable={false}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    value: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27',
+    prefix: 'To:',
+    editable: false,
+    hideClearButton: false,
   },
 };
 
 export const WithHiddenClearButton: Story = {
-  render: () => {
-    const [address, setAddress] = useState(
-      '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27',
-    );
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AddressInput
-            placeholder='Enter address or ENS'
-            value={address}
-            onChangeText={setAddress}
-            hideClearButton
-            onQrCodeClick={() => alert('QR code scanner opened')}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AddressInputStory {...args} />,
+  args: {
+    placeholder: 'Enter address or ENS',
+    value: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb27',
+    prefix: 'To:',
+    editable: true,
+    hideClearButton: true,
   },
 };

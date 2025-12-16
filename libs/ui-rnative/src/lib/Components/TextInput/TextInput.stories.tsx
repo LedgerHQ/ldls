@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { TextInput } from './TextInput';
+import { TextInput, type TextInputProps } from './TextInput';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
@@ -15,149 +15,140 @@ const meta: Meta<typeof TextInput> = {
       },
     },
   },
+  argTypes: {
+    label: {
+      control: 'text',
+      description: 'Floating label text',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text when input is empty',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message to display below input',
+    },
+    editable: {
+      control: 'boolean',
+      description: 'Whether the input is editable',
+    },
+    hideClearButton: {
+      control: 'boolean',
+      description: 'Hide the clear button',
+    },
+    keyboardType: {
+      control: 'select',
+      options: ['default', 'email-address', 'numeric', 'phone-pad', 'url'],
+      description: 'Keyboard type for input',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof TextInput>;
 
-export const Base: Story = {
-  render: () => {
-    const [value, setValue] = useState('');
+const TextInputStory = (args: TextInputProps & { initialValue?: string }) => {
+  const [value, setValue] = useState(args.initialValue ?? '');
 
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput label='Username' value={value} onChangeText={setValue} />
-        </View>
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <TextInput
+          {...args}
+          value={value}
+          onChangeText={setValue}
+          onClear={args.onClear}
+        />
       </View>
-    );
+    </View>
+  );
+};
+
+export const Base: Story = {
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Username',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
   },
 };
 
 export const WithContent: Story = {
-  render: () => {
-    const [value, setValue] = useState('johndoe');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput label='Username' value={value} onChangeText={setValue} />
-        </View>
-      </View>
-    );
+  render: (args) => <TextInputStory {...args} initialValue='johndoe' />,
+  args: {
+    label: 'Username',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
   },
 };
 
 export const WithError: Story = {
-  render: () => {
-    const [value, setValue] = useState('ab');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Username'
-            value={value}
-            onChangeText={setValue}
-            errorMessage='Username must be at least 3 characters'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <TextInputStory {...args} initialValue='ab' />,
+  args: {
+    label: 'Username',
+    errorMessage: 'Username must be at least 3 characters',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
   },
 };
 
 export const DisabledTextInput: Story = {
-  render: () => {
-    const [value] = useState('johndoe');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Username'
-            value={value}
-            onChangeText={() => {}}
-            editable={false}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <TextInputStory {...args} initialValue='johndoe' />,
+  args: {
+    label: 'Username',
+    editable: false,
+    hideClearButton: false,
+    keyboardType: 'default',
   },
 };
 
 export const WithHiddenClearButton: Story = {
-  render: () => {
-    const [value, setValue] = useState('Content with hidden clear');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Label'
-            value={value}
-            onChangeText={setValue}
-            hideClearButton
-          />
-        </View>
-      </View>
-    );
+  render: (args) => (
+    <TextInputStory {...args} initialValue='Content with hidden clear' />
+  ),
+  args: {
+    label: 'Label',
+    editable: true,
+    hideClearButton: true,
+    keyboardType: 'default',
   },
 };
 
 export const WithClearCallback: Story = {
-  render: () => {
-    const [value, setValue] = useState('Click clear to see callback');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Label'
-            value={value}
-            onChangeText={setValue}
-            onClear={() => alert('Input cleared!')}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => (
+    <TextInputStory
+      {...args}
+      initialValue='Click clear to see callback'
+      onClear={() => alert('Input cleared!')}
+    />
+  ),
+  args: {
+    label: 'Label',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
   },
 };
 
 export const EmailKeyboard: Story = {
-  render: () => {
-    const [value, setValue] = useState('');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Email'
-            value={value}
-            onChangeText={setValue}
-            keyboardType='email-address'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Email',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'email-address',
   },
 };
 
 export const PhoneKeyboard: Story = {
-  render: () => {
-    const [value, setValue] = useState('');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <TextInput
-            label='Phone Number'
-            value={value}
-            onChangeText={setValue}
-            keyboardType='phone-pad'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Phone Number',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'phone-pad',
   },
 };

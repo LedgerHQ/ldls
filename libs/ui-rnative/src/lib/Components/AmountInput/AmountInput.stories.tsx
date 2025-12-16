@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AmountInput } from './AmountInput';
+import { AmountInput, type AmountInputProps } from './AmountInput';
 
 const meta: Meta<typeof AmountInput> = {
   component: AmountInput,
@@ -15,196 +15,187 @@ const meta: Meta<typeof AmountInput> = {
       },
     },
   },
+  argTypes: {
+    currencyText: {
+      control: 'text',
+      description: 'Currency text to display (e.g. USD, EUR, $)',
+    },
+    currencyPosition: {
+      control: 'radio',
+      options: ['left', 'right'],
+      description: 'Position of the currency text',
+    },
+    allowDecimals: {
+      control: 'boolean',
+      description: 'Whether to allow decimal values',
+    },
+    thousandsSeparator: {
+      control: 'boolean',
+      description: 'Whether to display thousands separator',
+    },
+    maxIntegerLength: {
+      control: 'number',
+      description: 'Maximum digits for integer part',
+    },
+    maxDecimalLength: {
+      control: 'number',
+      description: 'Maximum digits for decimal part',
+    },
+    isInvalid: {
+      control: 'boolean',
+      description: 'Whether the input is in error state',
+    },
+    editable: {
+      control: 'boolean',
+      description: 'Whether the input is editable',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof AmountInput>;
 
-export const Base: Story = {
-  render: () => {
-    const [value, setValue] = useState('');
+const AmountInputStory = (args: AmountInputProps) => {
+  const [value, setValue] = useState(args.value?.toString() ?? '');
 
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='USD'
-          />
-        </View>
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <AmountInput {...args} value={value} onChangeText={setValue} />
       </View>
-    );
+    </View>
+  );
+};
+
+export const Base: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    maxIntegerLength: 9,
+    maxDecimalLength: 9,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const WithValue: Story = {
-  render: () => {
-    const [value, setValue] = useState('1234.56');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='USD'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const CurrencyPositionLeft: Story = {
-  render: () => {
-    const [value, setValue] = useState('1000');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='$'
-            currencyPosition='left'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000',
+    currencyText: '$',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const CurrencyPositionRight: Story = {
-  render: () => {
-    const [value, setValue] = useState('1000');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='ETH'
-            currencyPosition='right'
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000',
+    currencyText: 'ETH',
+    currencyPosition: 'right',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const IntegerOnly: Story = {
-  render: () => {
-    const [value, setValue] = useState('1234');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='items'
-            allowDecimals={false}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234',
+    currencyText: 'items',
+    currencyPosition: 'right',
+    allowDecimals: false,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const WithThousandsSeparator: Story = {
-  render: () => {
-    const [value, setValue] = useState('1000000');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='USD'
-            thousandsSeparator={true}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000000',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const WithoutThousandsSeparator: Story = {
-  render: () => {
-    const [value, setValue] = useState('1000000');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='USD'
-            thousandsSeparator={false}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000000',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: false,
+    isInvalid: false,
+    editable: true,
   },
 };
 
 export const ErrorState: Story = {
-  render: () => {
-    const [value, setValue] = useState('1234.56');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='USD'
-            isInvalid={true}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: true,
+    editable: true,
   },
 };
 
 export const DisabledAmountInput: Story = {
-  render: () => {
-    const [value] = useState('1234.56');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={() => {}}
-            currencyText='USD'
-            editable={false}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: false,
   },
 };
 
 export const CustomLengthLimits: Story = {
-  render: () => {
-    const [value, setValue] = useState('123');
-
-    return (
-      <View className='flex min-h-400 items-center justify-center p-24'>
-        <View className='w-full max-w-320'>
-          <AmountInput
-            value={value}
-            onChangeText={setValue}
-            currencyText='$'
-            maxIntegerLength={6}
-            maxDecimalLength={2}
-          />
-        </View>
-      </View>
-    );
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '123',
+    currencyText: '$',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    maxIntegerLength: 6,
+    maxDecimalLength: 2,
+    isInvalid: false,
+    editable: true,
   },
 };
