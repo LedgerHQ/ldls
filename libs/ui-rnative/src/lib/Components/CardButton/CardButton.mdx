@@ -175,7 +175,7 @@ CardButtons automatically flow to fit their parent container width. No additiona
 To control card button width, use container elements:
 
 ```tsx
-import { View } from 'react-native';
+import { Box } from '@ledgerhq/lumen-ui-rnative';
 
 {
   /* Full container width */
@@ -187,26 +187,15 @@ import { View } from 'react-native';
 />;
 
 {
-  /* Constrained width */
+  /* Constrained width using Box with lx prop */
 }
-<View style={{ maxWidth: 300 }}>
+<Box lx={{ maxWidth: 's320' }}>
   <CardButton
     title='Constrained'
     description='This button is limited by its container'
     onPress={() => console.log('Constrained pressed')}
   />
-</View>;
-
-{
-  /* Using NativeWind classes */
-}
-<View className='max-w-md'>
-  <CardButton
-    title='Responsive'
-    description='Width adapts based on container'
-    onPress={() => console.log('Responsive pressed')}
-  />
-</View>;
+</Box>;
 ```
 
 ### Outline Appearance
@@ -237,13 +226,13 @@ Disable the card button to prevent user interaction:
 
 ### Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes for layout purposes:
+While the component comes with predefined styles, you can extend them using the `lx` prop for layout purposes:
 
 ```tsx
 <CardButton
   title='Mobile Only'
   description='This option is only available on mobile'
-  className='mt-4 mx-2' // Custom margins
+  lx={{ marginTop: 's4', marginHorizontal: 's2' }}
   appearance='base'
   onPress={() => console.log('Mobile only pressed')}
 />
@@ -262,31 +251,31 @@ The following guidelines ensure consistent usage of the CardButton component and
 
 {/* prettier-ignore */}
 ```tsx
-<View className='max-w-md'>
+<Box lx={{ maxWidth: 's400' }}>
   <CardButton
     title='Continue'
     description='Proceed to next step'
     onPress={() => console.log('Continue')}
   />
-</View>
+</Box>
 ```
 
     </DoBlockItem>
     <DontBlockItem
       title="Don't modify width directly"
-      description='Avoid using className to set width on CardButton itself'
+      description='Avoid using lx to set width on CardButton itself'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<View className='max-w-md'>
+<Box lx={{ maxWidth: 's400' }}>
   <CardButton
     title='Continue'
     description='Proceed to next step'
-    className='w-full'
+    lx={{ width: 's320' }}
     onPress={() => console.log('Continue')}
   />
-</View>
+</Box>
 ```
 
     </DontBlockItem>

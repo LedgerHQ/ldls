@@ -1,5 +1,5 @@
 import React from 'react';
-import { PressableProps } from 'react-native';
+import { StyledPressableProps } from '../../../styles';
 import { IconSize } from '../Icon';
 
 export type CardButtonProps = {
@@ -14,7 +14,7 @@ export type CardButtonProps = {
   /**
    * An optional icon component to render on the left side.
    */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  icon?: React.ComponentType<{ size?: IconSize }>;
   /**
    * The main title of the card button.
    */
@@ -27,4 +27,4 @@ export type CardButtonProps = {
    * If true, hides the chevron arrow on the right side.
    */
   hideChevron?: boolean;
-} & Omit<PressableProps, 'disabled'>;
+} & Omit<StyledPressableProps, 'disabled'>;

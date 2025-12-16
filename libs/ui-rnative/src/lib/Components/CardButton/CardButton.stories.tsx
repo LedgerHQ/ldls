@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { View, Text } from 'react-native';
 import { Settings, Plus, Coins, CreditCard, Bank } from '../../Symbols';
+import { Box, Text } from '../Utility';
 import { CardButton } from './CardButton';
 
 const meta: Meta<typeof CardButton> = {
@@ -66,7 +66,6 @@ export const Base: Story = {
 <CardButton
   appearance="base"
   title="Basic Card Button"
-  className="max-w-md"
 />
 `,
       },
@@ -79,7 +78,6 @@ export const WithIcon: Story = {
     appearance: 'base',
     title: 'Settings',
     icon: Settings,
-    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -89,7 +87,6 @@ export const WithIcon: Story = {
   appearance="base"
   title="Settings"
   icon={Settings}
-  className="max-w-md"
 />
 `,
       },
@@ -102,7 +99,6 @@ export const WithDescription: Story = {
     appearance: 'base',
     title: 'Payment Method',
     description: 'Add or manage your payment options',
-    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -112,7 +108,6 @@ export const WithDescription: Story = {
   appearance="base"
   title="Payment Method"
   description="Add or manage your payment options"
-  className="max-w-md"
 />
 `,
       },
@@ -125,7 +120,6 @@ export const WithoutChevron: Story = {
     appearance: 'base',
     title: 'Navigate Forward',
     hideChevron: true,
-    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -135,7 +129,6 @@ export const WithoutChevron: Story = {
   appearance="base"
   title="Navigate Forward"
   hideChevron
-  className="max-w-md"
 />
 `,
       },
@@ -149,7 +142,6 @@ export const FullFeatures: Story = {
     title: 'Account Settings',
     description: 'Manage your account preferences and security',
     icon: Settings,
-    className: 'max-w-md',
   },
   parameters: {
     docs: {
@@ -160,7 +152,6 @@ export const FullFeatures: Story = {
   title="Account Settings"
   description="Manage your account preferences and security"
   icon={Settings}
-  className="max-w-md"
 />
 `,
       },
@@ -170,8 +161,11 @@ export const FullFeatures: Story = {
 
 export const NaturalWidth: Story = {
   render: () => (
-    <View className='w-full bg-muted-pressed p-16'>
-      <Text className='mb-16 text-muted body-4-semi-bold'>
+    <Box lx={{ backgroundColor: 'mutedPressed', padding: 's16' }}>
+      <Text
+        typography='body4SemiBold'
+        lx={{ color: 'muted', marginBottom: 's16' }}
+      >
         CardButton naturally flows to fill parent container width
       </Text>
       <CardButton
@@ -180,7 +174,7 @@ export const NaturalWidth: Story = {
         description='This card button demonstrates how it flows naturally to fill the full width of its parent container without any max-width constraints'
         icon={CreditCard}
       />
-    </View>
+    </Box>
   ),
   parameters: {
     docs: {
@@ -209,7 +203,14 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <View className='flex max-w-md flex-col gap-16 p-8'>
+      <Box
+        lx={{
+          flexDirection: 'column',
+          gap: 's16',
+          padding: 's8',
+          maxWidth: 's400',
+        }}
+      >
         {appearances.map(({ name, appearance }) => (
           <CardButton
             key={appearance}
@@ -219,14 +220,21 @@ export const AppearanceShowcase: Story = {
             icon={Coins}
           />
         ))}
-      </View>
+      </Box>
     );
   },
 };
 
 export const ContentVariations: Story = {
   render: () => (
-    <View className='flex max-w-md flex-col gap-16 p-8'>
+    <Box
+      lx={{
+        flexDirection: 'column',
+        gap: 's16',
+        padding: 's8',
+        maxWidth: 's400',
+      }}
+    >
       <CardButton
         appearance='base'
         title='With Description'
@@ -253,13 +261,20 @@ export const ContentVariations: Story = {
       />
       <CardButton appearance='base' title='With Icon' icon={Plus} hideChevron />
       <CardButton appearance='base' title='With Chevron' />
-    </View>
+    </Box>
   ),
 };
 
 export const StatesShowcase: Story = {
   render: () => (
-    <View className='flex max-w-md flex-col gap-16 p-8'>
+    <Box
+      lx={{
+        flexDirection: 'column',
+        gap: 's16',
+        padding: 's8',
+        maxWidth: 's400',
+      }}
+    >
       <CardButton
         appearance='base'
         title='Base Default'
@@ -286,14 +301,24 @@ export const StatesShowcase: Story = {
         icon={Bank}
         disabled
       />
-    </View>
+    </Box>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className='w-320 flex-col gap-16 bg-muted-pressed p-16'>
-      <Text className='text-muted body-4-semi-bold'>Container: 320px wide</Text>
+    <Box
+      lx={{
+        width: 's320',
+        flexDirection: 'column',
+        gap: 's16',
+        backgroundColor: 'mutedPressed',
+        padding: 's16',
+      }}
+    >
+      <Text typography='body4SemiBold' lx={{ color: 'muted' }}>
+        Container: 320px wide
+      </Text>
       <CardButton
         appearance='base'
         title='Short Title'
@@ -312,6 +337,6 @@ export const ResponsiveLayout: Story = {
         description='This is a longer description that demonstrates how the card handles longer content within its constraints'
         icon={Settings}
       />
-    </View>
+    </Box>
   ),
 };

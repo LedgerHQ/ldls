@@ -93,7 +93,7 @@ const useStyles = ({
                 paddingVertical: currentSizeStyle.paddingV,
                 gap: t.spacings.s8,
               },
-          isFull && { width: '100%' },
+          isFull && { width: t.sizes.full },
           pressed && { backgroundColor: pressedBgColors[appearance] },
           disabled && { backgroundColor: t.colors.bg.disabled },
           appearance === 'no-background' &&

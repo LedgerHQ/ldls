@@ -153,14 +153,14 @@ import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
     </DoBlockItem>
     <DontBlockItem
       title="Don't modify icon size directly"
-      description='Avoid passing icon size prop or overriding dimensions through className'
+      description='Avoid passing icon size prop or overriding dimensions through lx'
     >
 
 {/* prettier-ignore */}
 ```tsx
 import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<IconButton accessibilityLabel='Settings' icon={Settings} className='w-8 h-8' />
+<IconButton accessibilityLabel='Settings' icon={Settings} lx={{ width: 's32', height: 's32' }} />
 ```
 
     </DontBlockItem>
