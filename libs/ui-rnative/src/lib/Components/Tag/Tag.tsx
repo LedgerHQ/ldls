@@ -7,7 +7,7 @@ import { TagProps } from './Tag.types';
 
 const tagVariants = {
   root: cva(
-    'rounded-xs inline-flex w-fit flex-row items-center justify-center gap-4',
+    'inline-flex w-fit flex-row items-center justify-center gap-4 rounded-xs',
     {
       variants: {
         appearance: {
@@ -19,8 +19,8 @@ const tagVariants = {
           warning: 'bg-warning',
         },
         size: {
-          lg: 'body-3 h-24 px-8 py-4',
-          sm: 'body-4 h-20 px-4 py-2',
+          lg: 'h-24 px-8 py-4 body-3',
+          sm: 'h-20 px-4 py-2 body-4',
         },
         disabled: {
           true: 'bg-disabled',
@@ -43,7 +43,6 @@ const tagVariants = {
         success: 'text-success',
         error: 'text-error',
         warning: 'text-warning',
-        disabled: 'text-disabled',
       },
       disabled: {
         true: 'text-disabled',
@@ -75,10 +74,16 @@ export const Tag = React.forwardRef<View, TagProps>(
         {IconComponent && (
           <IconComponent
             size={calculatedIconSize}
-            className={tagVariants.inner({ appearance, className: 'shrink-0' })}
+            className={tagVariants.inner({
+              appearance,
+              disabled,
+              className: 'shrink-0',
+            })}
           />
         )}
-        <Text className={tagVariants.inner({ appearance })}>{label}</Text>
+        <Text className={tagVariants.inner({ appearance, disabled })}>
+          {label}
+        </Text>
       </View>
     );
   },
