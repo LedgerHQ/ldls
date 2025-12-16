@@ -1,6 +1,8 @@
 import { describe, it, expect, jest } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { GlobalSelectBottomSheet } from './GlobalSelectBottomSheet';
 import { GlobalSelectProvider } from './GlobalSelectContext';
 import {
@@ -13,10 +15,12 @@ import {
 } from './Select';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <GlobalSelectProvider>
-    {children}
-    <GlobalSelectBottomSheet />
-  </GlobalSelectProvider>
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    <GlobalSelectProvider>
+      {children}
+      <GlobalSelectBottomSheet />
+    </GlobalSelectProvider>
+  </ThemeProvider>
 );
 
 describe('Select', () => {
