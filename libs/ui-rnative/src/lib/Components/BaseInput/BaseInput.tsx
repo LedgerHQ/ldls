@@ -1,7 +1,6 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, {
   useCallback,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -13,11 +12,6 @@ import {
   type TextInputProps,
   View,
 } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 import { useCommonTranslation } from '../../../i18n';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -71,8 +65,6 @@ const baseInputStyles = cn(
   'relative flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
 );
 
-const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
-
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
     {
@@ -106,29 +98,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       ? !!props.value && props.value.length > 0
       : uncontrolledValue.length > 0;
 
-    // floating label styling
-    const labelFontSize = useSharedValue(14);
-    const labelTop = useSharedValue(14);
     const isFloatingLabel = isFocused || hasContent;
-
-    const animatedLabelStyle = useAnimatedStyle(
-      () => ({
-        fontSize: labelFontSize.value,
-        top: labelTop.value,
-      }),
-      [],
-    );
-
     const showClearButton = hasContent && editable && !hideClearButton;
-
-    useEffect(() => {
-      labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14, {
-        duration: 200,
-      });
-      labelTop.value = withTiming(isFloatingLabel ? 8 : 14, {
-        duration: 200,
-      });
-    }, [isFloatingLabel, labelFontSize, labelTop]);
 
     const handleChangeText = useCallback(
       (text: string) => {
@@ -185,19 +156,19 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           />
 
           {label && (
-            <AnimatedLabel
+            <Text
               className={cn(
-                'absolute left-16 text-muted w-full',
+                'absolute left-16 text-muted w-full transition-all duration-200',
+                isFloatingLabel ? 'top-6 body-4' : 'top-14 body-2',
                 hasContent && showClearButton && 'w-[92%]',
                 !editable && 'text-disabled',
                 errorMessage && 'text-error',
                 labelClassName,
               )}
-              style={animatedLabelStyle}
               numberOfLines={1}
             >
               {label}
-            </AnimatedLabel>
+            </Text>
           )}
 
           {showClearButton && (
