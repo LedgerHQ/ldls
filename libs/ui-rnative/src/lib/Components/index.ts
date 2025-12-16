@@ -1,4 +1,3 @@
-export * from './_ToRemove/ToRemove';
 export * from './AddressInput';
 export * from './AmountInput';
 export * from './Banner';
