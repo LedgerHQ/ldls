@@ -12,7 +12,7 @@ export const Tags = () => {
         <Tag appearance='success' label='Success' icon={ExternalLink} />
         <Tag appearance='error' label='Error' icon={ExternalLink} />
         <Tag appearance='warning' label='Warning' icon={ExternalLink} />
-        <Tag appearance='disabled' label='Disabled' icon={ExternalLink} />
+        <Tag label='Disabled' icon={ExternalLink} disabled />
       </View>
       <View className='flex flex-row gap-8'>
         <Tag appearance='accent' label='Accent' size='lg' />
