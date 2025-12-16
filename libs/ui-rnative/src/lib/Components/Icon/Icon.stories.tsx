@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { LumenStyleSheet } from '../../../styles';
 import * as Icons from '../../Symbols';
 import { Search } from '../Search/Search';
-import { Box, Text } from '../Utility';
+import { Box, Text, Pressable } from '../Utility';
 import type { IconSize } from './types';
 
 const meta: Meta = {
@@ -50,14 +50,15 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
     <Pressable
       key={name}
       onPress={handleClick}
-      style={({ pressed }) => ({
+      lx={({ pressed }) => ({
         position: 'relative',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 8,
-        borderRadius: theme.borderRadius.sm,
-        padding: 16,
-        backgroundColor: pressed ? theme.colors.bg.mutedPressed : 'transparent',
+        gap: 's8',
+        borderRadius: 'sm',
+        padding: 's16',
+        width: 's144',
+        backgroundColor: pressed ? 'mutedPressed' : 'baseTransparent',
       })}
     >
       <IconComponent size={size} style={{ color: iconColor }} />

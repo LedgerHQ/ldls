@@ -21,6 +21,14 @@ import { createStyledPressable } from '../../../../styles';
  * >
  *   <Text>Content</Text>
  * </Pressable>
+ *
+ *  // With function-based style for pressed state
+ * <Pressable
+ *   lx={({ pressed }) => ({ padding: 's16', backgroundColor: pressed ? 'surface' : 'surfacePressed' })}
+ *   style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
+ * >
+ *   <Text>Press me</Text>
+ * </Pressable>
  * ```
  */
 export const Pressable = createStyledPressable(RNPressable);
