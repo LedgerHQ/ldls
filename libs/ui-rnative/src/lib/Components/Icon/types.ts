@@ -1,3 +1,4 @@
+import { StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
@@ -8,11 +9,11 @@ export type IconProps = {
    */
   size?: IconSize;
   /**
-   * Additional CSS classes to apply to the icon.
+   * Style object to apply to the icon (supports color via color property).
    */
-  className?: string;
+  style?: StyleProp<ViewStyle & { color?: string }>;
   /**
    * The children of the icon.
    */
   children: React.ReactNode;
-} & SvgProps;
+} & Omit<SvgProps, 'style'>;

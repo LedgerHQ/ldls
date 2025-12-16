@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
+import { Pressable, View } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 import * as Icons from '../../Symbols';
 import { Search } from '../Search/Search';
-import { IconSize } from './Icon.types';
+import { Box, Text } from '../Utility';
+import type { IconSize } from './types';
 
 const meta: Meta = {
   title: 'Symbols/Interface Icons',
@@ -18,22 +21,20 @@ const iconNames = Object.keys(Icons) as IconName[];
 type IconStoryProps = {
   size: IconSize;
   name: IconName;
-  className?: string;
+  color?: string;
 };
 
 type IconCardProps = {
   name: string;
   size?: IconSize;
-  className?: string;
+  color?: string;
 };
 
-const IconCard = ({
-  name,
-  size = 24,
-  className = 'text-base',
-}: IconCardProps) => {
+const IconCard = ({ name, size = 24, color }: IconCardProps) => {
+  const { theme } = LumenStyleSheet.useTheme();
   const [copied, setCopied] = useState(false);
   const IconComponent = Icons[name as keyof typeof Icons];
+  const iconColor = color ?? theme.colors.text.base;
 
   const handleClick = async () => {
     try {
@@ -46,19 +47,39 @@ const IconCard = ({
   };
 
   return (
-    <div
+    <Pressable
       key={name}
-      className='relative flex cursor-pointer flex-col items-center gap-2 rounded-lg p-4 transition-colors hover:bg-muted-pressed'
-      onClick={handleClick}
+      onPress={handleClick}
+      style={({ pressed }) => ({
+        position: 'relative',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 8,
+        borderRadius: theme.borderRadius.sm,
+        padding: 16,
+        backgroundColor: pressed ? theme.colors.bg.mutedPressed : 'transparent',
+      })}
     >
-      <IconComponent size={size} className={className} />
-      <span className='text-muted body-4'>{name}</span>
+      <IconComponent size={size} style={{ color: iconColor }} />
+      <Text lx={{ color: 'muted', typography: 'body4' }}>{name}</Text>
       {copied && (
-        <div className='absolute inset-0 flex items-center justify-center rounded-lg bg-muted'>
-          <span className='text-on-accent body-4'>Copied!</span>
-        </div>
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: theme.borderRadius.sm,
+            backgroundColor: theme.colors.bg.muted,
+          }}
+        >
+          <Text lx={{ color: 'onAccent', typography: 'body4' }}>Copied!</Text>
+        </View>
       )}
-    </div>
+    </Pressable>
   );
 };
 
@@ -66,7 +87,6 @@ export const Icon: StoryObj<IconStoryProps> = {
   args: {
     size: 24,
     name: 'Home',
-    className: 'text-base',
   },
   argTypes: {
     size: {
@@ -79,27 +99,30 @@ export const Icon: StoryObj<IconStoryProps> = {
       options: iconNames,
       description: 'The name of the icon to display',
     },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply (can be used for color)',
+    color: {
+      control: 'color',
+      description: 'The color of the icon',
     },
   },
   render: (args) => {
+    const { theme } = LumenStyleSheet.useTheme();
     const IconComponent = Icons[args.name];
+    const iconColor = args.color ?? theme.colors.text.base;
+
     return (
-      <div className='p-8'>
-        <div className='flex flex-col items-center gap-4'>
-          <IconComponent size={args.size} className={args.className} />
-          <span className='text-base'>{args.name}</span>
-        </div>
-      </div>
+      <Box lx={{ padding: 's8' }}>
+        <Box lx={{ flexDirection: 'column', alignItems: 'center', gap: 's4' }}>
+          <IconComponent size={args.size} style={{ color: iconColor }} />
+          <Text lx={{ color: 'base' }}>{args.name}</Text>
+        </Box>
+      </Box>
     );
   },
   parameters: {
     docs: {
       source: {
         code: `
-        <Information size={24} className="text-base" />
+        <Information size={24} style={{ color: theme.colors.text.base }} />
       `,
       },
     },
@@ -107,29 +130,47 @@ export const Icon: StoryObj<IconStoryProps> = {
 };
 
 export const IconSizes: StoryObj = {
-  render: () => (
-    <div className='space-y-16 text-base'>
-      {sizes.map((size) => (
-        <div key={size}>
-          <h3 className='mb-16 heading-3'>Size {size}px</h3>
-          <div className='flex max-w-fit flex-wrap gap-16 rounded-lg border border-muted-subtle p-16'>
-            {[
-              'Home',
-              'Settings',
-              'Heart',
-              'Star',
-              'ArrowDown',
-              'ArrowLeft',
-              'ArrowRight',
-              'ArrowUp',
-            ].map((iconName) => (
-              <IconCard key={iconName} name={iconName} size={size} />
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  ),
+  render: () => {
+    const { theme } = LumenStyleSheet.useTheme();
+
+    return (
+      <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+        {sizes.map((size) => (
+          <Box key={size} lx={{ flexDirection: 'column' }}>
+            <Text lx={{ marginBottom: 's16', typography: 'heading3' }}>
+              Size {size}px
+            </Text>
+            <Box
+              lx={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: 's16',
+                borderRadius: 'sm',
+                padding: 's16',
+              }}
+              style={{
+                borderWidth: 1,
+                borderColor: theme.colors.border.mutedSubtle,
+              }}
+            >
+              {[
+                'Home',
+                'Settings',
+                'Heart',
+                'Star',
+                'ArrowDown',
+                'ArrowLeft',
+                'ArrowRight',
+                'ArrowUp',
+              ].map((iconName) => (
+                <IconCard key={iconName} name={iconName} size={size} />
+              ))}
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    );
+  },
 };
 
 export const Gallery: StoryObj = {
@@ -137,6 +178,7 @@ export const Gallery: StoryObj = {
     layout: 'fullscreen',
   },
   render: () => {
+    const { theme } = LumenStyleSheet.useTheme();
     const [searchTerm, setSearchTerm] = useState('');
 
     // Filter icons based on search term
@@ -145,48 +187,71 @@ export const Gallery: StoryObj = {
     );
 
     return (
-      <div className='flex w-full flex-col items-stretch p-8'>
+      <Box
+        lx={{
+          width: 'full',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+          padding: 's8',
+        }}
+      >
         {/* Search bar */}
-        <div className='mb-32'>
-          <div className='mb-8 max-w-md'>
+        <Box lx={{ marginBottom: 's32' }}>
+          <Box lx={{ marginBottom: 's8', maxWidth: 's320' }}>
             <Search
               placeholder='Search icons...'
               value={searchTerm}
               onChangeText={setSearchTerm}
             />
-          </div>
+          </Box>
 
           {/* Results count */}
-          <div className='mb-4'>
-            <span className='ml-8 text-muted body-3'>
+          <Box lx={{ marginBottom: 's4' }}>
+            <Text
+              lx={{ marginLeft: 's8', color: 'muted', typography: 'body3' }}
+            >
               {filteredIcons.length} of {Object.keys(Icons).length} icons
               {searchTerm && ` matching "${searchTerm}"`}
-            </span>
-          </div>
-        </div>
+            </Text>
+          </Box>
+        </Box>
 
-        {/* Icon grid */}
-        <div className='grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-8'>
+        {/* Icon grid - using flexWrap for RN compatibility */}
+        <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's8' }}>
           {filteredIcons.map(([name]) => (
             <IconCard key={name} name={name} />
           ))}
-        </div>
+        </Box>
 
         {/* No results message */}
         {filteredIcons.length === 0 && searchTerm && (
-          <div className='flex flex-col items-center justify-center py-16'>
-            <p className='text-muted body-2'>
+          <Box
+            lx={{
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingVertical: 's16',
+            }}
+          >
+            <Text lx={{ color: 'muted', typography: 'body2' }}>
               No icons found matching "{searchTerm}"
-            </p>
-            <button
-              onClick={() => setSearchTerm('')}
-              className='mt-4 text-interactive body-2 hover:text-interactive-hover'
+            </Text>
+            <Pressable
+              onPress={() => setSearchTerm('')}
+              style={({ pressed }) => ({
+                marginTop: 16,
+                color: pressed
+                  ? theme.colors.text.interactivePressed
+                  : theme.colors.text.interactive,
+              })}
             >
-              Clear search
-            </button>
-          </div>
+              <Text lx={{ color: 'interactive', typography: 'body2' }}>
+                Clear search
+              </Text>
+            </Pressable>
+          </Box>
         )}
-      </div>
+      </Box>
     );
   },
 };

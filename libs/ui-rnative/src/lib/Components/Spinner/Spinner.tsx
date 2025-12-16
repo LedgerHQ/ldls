@@ -3,8 +3,8 @@ import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
 import { LumenStyleSheet, type StyledViewProps } from '../../../styles';
-import { IconSize } from '../../Components/Icon/Icon.types';
 import { RuntimeConstants } from '../../utils';
+import { IconSize } from '../Icon/types';
 import { Box } from '../Utility';
 
 export type SpinnerProps = Omit<StyledViewProps, 'children'> & {

@@ -1,42 +1,51 @@
-import { cva } from 'class-variance-authority';
-import { cssInterop } from 'nativewind';
 import { forwardRef } from 'react';
+import { StyleSheet } from 'react-native';
 import { Svg } from 'react-native-svg';
-import { cn } from '../../utils';
-import { IconProps } from './Icon.types';
+import { LumenStyleSheet } from '../../../styles';
+import { IconProps, IconSize } from './types';
 
-cssInterop(Svg, {
-  className: 'style',
-});
+const iconSizeMap = {
+  12: 's12',
+  16: 's16',
+  20: 's20',
+  24: 's24',
+  40: 's40',
+  48: 's48',
+  56: 's56',
+} as const;
 
-const iconVariants = cva('inline-block', {
-  variants: {
-    size: {
-      12: 'icon-w-12 icon-h-12 icon-stroke-12',
-      16: 'icon-w-16 icon-h-16 icon-stroke-16',
-      20: 'icon-w-20 icon-h-20 icon-stroke-20',
-      24: 'icon-w-24 icon-h-24 icon-stroke-24',
-      40: 'icon-w-40 icon-h-40 icon-stroke-40',
-      48: 'icon-w-48 icon-h-48 icon-stroke-48',
-      56: 'icon-w-56 icon-h-56 icon-stroke-56',
-    },
-  },
-  defaultVariants: {
-    size: 24,
-  },
-});
+const useStyles = (size: IconSize) => {
+  return LumenStyleSheet.useCreate(
+    (t) => ({
+      root: {
+        width: t.icon.width[iconSizeMap[size]],
+        height: t.icon.height[iconSizeMap[size]],
+      },
+      strokeWidth: {
+        borderWidth: t.icon.borderWidth[iconSizeMap[size]],
+      },
+    }),
+    [size],
+  );
+};
 
 export const Icon = forwardRef<Svg, IconProps>(
-  ({ size = 24, className = '', children, viewBox, ...props }, ref) => {
+  ({ size = 24, style, children, viewBox, ...props }, ref) => {
+    const styles = useStyles(size);
+    const flatStyle = StyleSheet.flatten(style);
+    const color = flatStyle?.color;
+
     return (
       <Svg
         ref={ref}
-        width={size}
-        height={size}
-        className={cn(className, iconVariants({ size }), 'inline-block')}
+        width={styles.root.width}
+        height={styles.root.height}
+        style={[styles.root, style]}
         viewBox={viewBox}
         fill='none'
         pointerEvents='none'
+        color={color}
+        strokeWidth={styles.strokeWidth.borderWidth}
         {...props}
       >
         {children}
