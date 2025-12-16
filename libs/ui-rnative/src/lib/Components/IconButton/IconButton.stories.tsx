@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { Close, Heart, Plus, Settings, Share } from '../../Symbols';
+import { Box } from '../Utility';
 import { IconButton } from './IconButton';
 
 const iconMap = {
@@ -13,9 +14,6 @@ const iconMap = {
 const meta: Meta<typeof IconButton> = {
   title: 'Action/IconButton',
   component: IconButton,
-  parameters: {
-    layout: 'centered',
-  },
   argTypes: {
     icon: {
       options: Object.keys(iconMap),
@@ -23,11 +21,11 @@ const meta: Meta<typeof IconButton> = {
       control: {
         type: 'select',
         labels: {
-          Heart: '❤️ Heart',
-          Plus: '➕ Plus',
-          Settings: '⚙️ Settings',
-          Share: '📤 Share',
-          Close: '✖️ Close',
+          Heart: 'Heart',
+          Plus: 'Plus',
+          Settings: 'Settings',
+          Share: 'Share',
+          Close: 'Close',
         },
       },
     },
@@ -70,7 +68,7 @@ export const Base: Story = {
 
 export const AppearanceShowcase: Story = {
   render: () => (
-    <div className='flex gap-8'>
+    <Box lx={{ flexDirection: 'row', gap: 's8' }}>
       <IconButton accessibilityLabel='Add' icon={Plus} appearance='accent' />
       <IconButton accessibilityLabel='Add' icon={Plus} appearance='base' />
       <IconButton accessibilityLabel='Add' icon={Plus} appearance='gray' />
@@ -85,13 +83,13 @@ export const AppearanceShowcase: Story = {
         appearance='no-background'
       />
       <IconButton accessibilityLabel='Add' icon={Plus} appearance='red' />
-    </div>
+    </Box>
   ),
 };
 
 export const SizesShowcase: Story = {
   render: () => (
-    <div className='flex items-center gap-8'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'flex-start', gap: 's8' }}>
       <IconButton
         accessibilityLabel='Add to favorites'
         icon={Heart}
@@ -112,7 +110,7 @@ export const SizesShowcase: Story = {
         icon={Heart}
         size='lg'
       />
-    </div>
+    </Box>
   ),
 };
 
@@ -121,7 +119,7 @@ export const StatesShowcase: Story = {
     appearance: 'base',
   },
   render: ({ appearance }) => (
-    <div className='flex items-center gap-8'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'flex-start', gap: 's8' }}>
       <IconButton
         accessibilityLabel='Settings'
         appearance={appearance}
@@ -134,6 +132,6 @@ export const StatesShowcase: Story = {
         icon={Settings}
         loading
       />
-    </div>
+    </Box>
   ),
 };

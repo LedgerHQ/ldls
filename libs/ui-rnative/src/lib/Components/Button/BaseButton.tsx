@@ -58,14 +58,14 @@ const useStyles = ({
 
       const sizeStyles: Record<Size, { paddingH: number; paddingV: number }> = {
         xs: { paddingH: t.spacings.s12, paddingV: t.spacings.s8 },
-        sm: { paddingH: t.spacings.s16, paddingV: 10 },
+        sm: { paddingH: t.spacings.s16, paddingV: t.spacings.s10 },
         md: { paddingH: t.spacings.s16, paddingV: t.spacings.s12 },
         lg: { paddingH: t.spacings.s16, paddingV: t.spacings.s16 },
       };
 
       const iconOnlyPadding: Record<Size, number> = {
         xs: t.spacings.s8,
-        sm: t.spacings.s12,
+        sm: t.spacings.s10,
         md: t.spacings.s12,
         lg: t.spacings.s16,
       };

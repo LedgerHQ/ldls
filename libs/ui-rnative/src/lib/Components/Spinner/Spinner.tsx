@@ -4,6 +4,7 @@ import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
 import { LumenStyleSheet, type StyledViewProps } from '../../../styles';
 import { IconSize } from '../../Components/Icon/Icon.types';
+import { RuntimeConstants } from '../../utils';
 import { Box } from '../Utility';
 
 export type SpinnerProps = Omit<StyledViewProps, 'children'> & {
@@ -38,7 +39,6 @@ export const Spinner = forwardRef<View, SpinnerProps>(
     const { t } = useCommonTranslation();
     const { theme } = LumenStyleSheet.useTheme();
     const spinValue = useRef(new Animated.Value(0)).current;
-
     const strokeColor = color ?? theme.colors.text.base;
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export const Spinner = forwardRef<View, SpinnerProps>(
           toValue: 1,
           duration: 1000,
           easing: Easing.linear,
-          useNativeDriver: true,
+          useNativeDriver: RuntimeConstants.isNative,
         }),
       );
       animation.start();
