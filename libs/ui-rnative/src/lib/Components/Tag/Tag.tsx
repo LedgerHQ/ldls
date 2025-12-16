@@ -17,16 +17,20 @@ const tagVariants = {
           success: 'bg-success',
           error: 'bg-error',
           warning: 'bg-warning',
-          disabled: 'bg-disabled',
         },
         size: {
           lg: 'h-24 px-8 py-4 body-3',
           sm: 'h-20 px-4 py-2 body-4',
         },
+        disabled: {
+          true: 'bg-disabled',
+          false: '',
+        },
       },
       defaultVariants: {
         appearance: 'accent',
         size: 'lg',
+        disabled: false,
       },
     },
   ),
@@ -39,14 +43,17 @@ const tagVariants = {
         success: 'text-success',
         error: 'text-error',
         warning: 'text-warning',
-        disabled: 'text-disabled',
+      },
+      disabled: {
+        true: 'text-disabled',
+        false: '',
       },
     },
   }),
 };
 
 export const Tag = React.forwardRef<View, TagProps>(
-  ({ className, appearance, size, icon, label, ...props }, ref) => {
+  ({ className, appearance, size, icon, label, disabled, ...props }, ref) => {
     const iconSizeMap: { [key: string]: IconSize } = {
       lg: 16,
       sm: 12,
@@ -57,17 +64,26 @@ export const Tag = React.forwardRef<View, TagProps>(
 
     return (
       <View
-        className={cn(className, tagVariants.root({ appearance, size }))}
+        className={cn(
+          className,
+          tagVariants.root({ appearance, size, disabled }),
+        )}
         ref={ref}
         {...props}
       >
         {IconComponent && (
           <IconComponent
             size={calculatedIconSize}
-            className={tagVariants.inner({ appearance, className: 'shrink-0' })}
+            className={tagVariants.inner({
+              appearance,
+              disabled,
+              className: 'shrink-0',
+            })}
           />
         )}
-        <Text className={tagVariants.inner({ appearance })}>{label}</Text>
+        <Text className={tagVariants.inner({ appearance, disabled })}>
+          {label}
+        </Text>
       </View>
     );
   },
