@@ -55,7 +55,7 @@ describe('Pressable Utility Component', () => {
       );
       const pressable = screen.getByTestId('pressable');
       const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle[0].padding).toBe(16);
+      expect(resolvedStyle.padding).toBe(16);
     });
 
     it('should resolve backgroundColor token', () => {
@@ -64,7 +64,7 @@ describe('Pressable Utility Component', () => {
       );
       const pressable = screen.getByTestId('pressable');
       const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle[0].backgroundColor).toBeDefined();
+      expect(resolvedStyle.backgroundColor).toBeDefined();
     });
 
     it('should resolve multiple token props', () => {
@@ -80,9 +80,9 @@ describe('Pressable Utility Component', () => {
       );
       const pressable = screen.getByTestId('pressable');
       const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle[0].padding).toBe(16);
-      expect(resolvedStyle[0].marginTop).toBe(8);
-      expect(resolvedStyle[0].borderRadius).toBeDefined();
+      expect(resolvedStyle.padding).toBe(16);
+      expect(resolvedStyle.marginTop).toBe(8);
+      expect(resolvedStyle.borderRadius).toBeDefined();
     });
   });
 
@@ -98,8 +98,8 @@ describe('Pressable Utility Component', () => {
       );
       const pressable = screen.getByTestId('pressable');
       const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle[0].padding).toBe(16);
-      expect(resolvedStyle[1]).toMatchObject({ opacity: 0.5 });
+      expect(resolvedStyle.padding).toBe(16);
+      expect(resolvedStyle).toMatchObject({ opacity: 0.5 });
     });
 
     it('should support function-based style prop', () => {
@@ -116,9 +116,9 @@ describe('Pressable Utility Component', () => {
       const resolvedStyle = getResolvedStyle(pressable);
 
       // Token styles should be resolved
-      expect(resolvedStyle[0].backgroundColor).toBeDefined();
+      expect(resolvedStyle.backgroundColor).toBeDefined();
       // Function-based style should be evaluated (default state is unpressed)
-      expect(resolvedStyle[1]).toMatchObject({ opacity: 1 });
+      expect(resolvedStyle).toMatchObject({ opacity: 1 });
     });
   });
 

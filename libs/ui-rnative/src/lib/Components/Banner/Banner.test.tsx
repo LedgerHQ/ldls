@@ -2,8 +2,8 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
-import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Button } from '../Button';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Banner } from './Banner';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -33,14 +33,22 @@ describe('Banner Component', () => {
 
     rerender(
       <TestWrapper>
-        <Banner testID='banner-id' title='Success Banner' appearance='success' />
+        <Banner
+          testID='banner-id'
+          title='Success Banner'
+          appearance='success'
+        />
       </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-success');
 
     rerender(
       <TestWrapper>
-        <Banner testID='banner-id' title='Warning Banner' appearance='warning' />
+        <Banner
+          testID='banner-id'
+          title='Warning Banner'
+          appearance='warning'
+        />
       </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-warning');

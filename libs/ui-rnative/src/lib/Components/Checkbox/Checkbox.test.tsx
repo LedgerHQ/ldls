@@ -36,7 +36,11 @@ describe('Checkbox', () => {
     const onChange = jest.fn();
     const { getByTestId, rerender } = render(
       <TestWrapper>
-        <Checkbox checked={false} onCheckedChange={onChange} testID='checkbox' />
+        <Checkbox
+          checked={false}
+          onCheckedChange={onChange}
+          testID='checkbox'
+        />
       </TestWrapper>,
     );
 

@@ -32,7 +32,7 @@ const renderWithProvider = (children: React.ReactElement) =>
   );
 
 // Helper to extract resolved style from Pressable
-// The style prop is a function that returns [resolvedTokenStyles, userStyles]
+// The style prop is a function that returns a flattened style object
 const getResolvedStyle = (
   pressable: ReturnType<typeof screen.getByTestId>,
   state: { pressed: boolean } = { pressed: false },
@@ -67,7 +67,7 @@ describe('createStyledPressable', () => {
     const pressable = screen.getByTestId('pressable');
     const resolvedStyle = getResolvedStyle(pressable);
 
-    expect(resolvedStyle[0]).toMatchObject({
+    expect(resolvedStyle).toMatchObject({
       padding: 16,
       width: 48,
       backgroundColor: '#F0F0F0',
@@ -83,7 +83,7 @@ describe('createStyledPressable', () => {
     const pressable = screen.getByTestId('pressable');
     const resolvedStyle = getResolvedStyle(pressable);
 
-    expect(resolvedStyle[0].width).toBe('100%');
+    expect(resolvedStyle.width).toBe('100%');
   });
 
   it('should merge static style prop with resolved tokens', () => {
@@ -98,8 +98,8 @@ describe('createStyledPressable', () => {
     const pressable = screen.getByTestId('pressable');
     const resolvedStyle = getResolvedStyle(pressable);
 
-    expect(resolvedStyle[0].padding).toBe(16);
-    expect(resolvedStyle[1]).toMatchObject({ opacity: 0.5 });
+    expect(resolvedStyle.padding).toBe(16);
+    expect(resolvedStyle.opacity).toBe(0.5);
   });
 
   it('should support function-based style prop', () => {
@@ -119,9 +119,9 @@ describe('createStyledPressable', () => {
     const resolvedStyle = getResolvedStyle(pressable);
 
     // Token styles should be resolved
-    expect(resolvedStyle[0].backgroundColor).toBe('#F0F0F0');
+    expect(resolvedStyle.backgroundColor).toBe('#F0F0F0');
     // User style function should be evaluated (default state is unpressed)
-    expect(resolvedStyle[1]).toMatchObject({ opacity: 1 });
+    expect(resolvedStyle.opacity).toBe(1);
   });
 
   it('should forward ref', () => {

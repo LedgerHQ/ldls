@@ -72,14 +72,11 @@ describe('createStyledText', () => {
     );
 
     const style = screen.getByTestId('text').props.style;
-    expect(style).toMatchObject([
-      {},
-      {
-        fontSize: 16,
-        fontWeight: '500',
-        lineHeight: 24,
-      },
-    ]);
+    expect(style).toMatchObject({
+      fontSize: 16,
+      fontWeight: '500',
+      lineHeight: 24,
+    });
   });
 
   it('should apply color token', () => {
@@ -89,7 +86,7 @@ describe('createStyledText', () => {
       </StyledText>,
     );
 
-    expect(screen.getByTestId('text').props.style[0].color).toBe('#666666');
+    expect(screen.getByTestId('text').props.style.color).toBe('#666666');
   });
 
   it('should combine typography, color and spacing', () => {
@@ -105,10 +102,14 @@ describe('createStyledText', () => {
 
     const style = screen.getByTestId('text').props.style;
 
-    expect(style).toMatchObject([
-      { color: '#000000', marginTop: 8 },
-      { fontSize: 16, fontWeight: '500', lineHeight: 24, letterSpacing: 0 },
-    ]);
+    expect(style).toMatchObject({
+      color: '#000000',
+      marginTop: 8,
+      fontSize: 16,
+      fontWeight: '500',
+      lineHeight: 24,
+      letterSpacing: 0,
+    });
   });
 
   it('should merge style prop with resolved tokens', () => {
@@ -122,11 +123,10 @@ describe('createStyledText', () => {
       </StyledText>,
     );
 
-    const [, typographyStyles, otherStyles] =
-      screen.getByTestId('text').props.style;
+    const style = screen.getByTestId('text').props.style;
 
-    expect(typographyStyles.fontSize).toBe(16);
-    expect(otherStyles.textDecorationLine).toBe('underline');
+    expect(style.fontSize).toBe(16);
+    expect(style.textDecorationLine).toBe('underline');
   });
 
   it('should forward ref', () => {

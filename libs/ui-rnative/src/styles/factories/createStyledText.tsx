@@ -1,4 +1,5 @@
 import React, { forwardRef, memo } from 'react';
+import { StyleSheet } from 'react-native';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveTextStyle } from '../resolveStyle/resolveStyle';
@@ -32,9 +33,11 @@ export const createStyledText = (Component: typeof Text) => {
           typography
         ] as TextStyle;
 
-        const finalStyle = style
-          ? ([resolvedStyle, resolvedTypographyStyles, style] as TextStyle[])
-          : ([resolvedStyle, resolvedTypographyStyles] as TextStyle[]);
+        const finalStyle = StyleSheet.flatten([
+          resolvedStyle,
+          resolvedTypographyStyles,
+          style,
+        ]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;
       },

@@ -160,6 +160,6 @@ describe('InteractiveIcon Component', () => {
     );
     const buttonElement = screen.getByTestId('custom-icon');
     // Style is merged as an array [resolvedStyle, customStyle]
-    expect(buttonElement.props.style).toContainEqual(customStyle);
+    expect(buttonElement.props.style).toMatchObject(customStyle);
   });
 });

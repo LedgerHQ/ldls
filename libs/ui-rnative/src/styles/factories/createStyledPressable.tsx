@@ -1,9 +1,9 @@
 import React, { forwardRef, memo } from 'react';
+import { StyleSheet } from 'react-native';
 import type {
   Pressable,
   PressableProps,
   PressableStateCallbackType,
-  StyleProp,
   ViewStyle,
 } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
@@ -29,15 +29,13 @@ export const createStyledPressable = (Component: typeof Pressable) => {
         const { theme } = useTheme();
 
         // Handle function-based style prop (Pressable supports (state) => style)
-        const mergedStyle = (
-          state: PressableStateCallbackType,
-        ): StyleProp<ViewStyle> => {
+        const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
           const computeLx = typeof lx === 'function' ? lx(state) : lx;
           const resolvedStyle = resolveViewStyle(theme, computeLx);
 
           const computeStyle =
             typeof style === 'function' ? style(state) : style;
-          return [resolvedStyle, computeStyle];
+          return StyleSheet.flatten([resolvedStyle, computeStyle]);
         };
 
         return <Component ref={ref} {...props} style={mergedStyle} />;

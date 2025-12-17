@@ -4,10 +4,10 @@ import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 
-import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Settings } from '../../Symbols';
 import { Spot } from '../Spot';
 import { Tag } from '../Tag';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Tile } from './Tile';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (

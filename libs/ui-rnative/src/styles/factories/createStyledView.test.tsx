@@ -52,19 +52,17 @@ describe('createStyledView', () => {
     );
 
     const style = screen.getByTestId('view').props.style;
-    expect(style).toMatchObject([
-      {
-        padding: 16,
-        width: 48,
-        backgroundColor: '#F0F0F0',
-        borderRadius: 12,
-      },
-    ]);
+    expect(style).toMatchObject({
+      padding: 16,
+      width: 48,
+      backgroundColor: '#F0F0F0',
+      borderRadius: 12,
+    });
   });
 
   it('should resolve full size token to 100%', () => {
     renderWithProvider(<StyledView testID='view' lx={{ width: 'full' }} />);
-    expect(screen.getByTestId('view').props.style[0].width).toBe('100%');
+    expect(screen.getByTestId('view').props.style.width).toBe('100%');
   });
 
   it('should merge style prop with resolved tokens', () => {
@@ -76,11 +74,10 @@ describe('createStyledView', () => {
       />,
     );
 
-    const [stylesFromProps, otherStyles] =
-      screen.getByTestId('view').props.style;
+    const style = screen.getByTestId('view').props.style;
 
-    expect(stylesFromProps.padding).toBe(16);
-    expect(otherStyles.opacity).toBe(0.5);
+    expect(style.padding).toBe(16);
+    expect(style.opacity).toBe(0.5);
   });
 
   it('should forward ref', () => {

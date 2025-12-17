@@ -43,7 +43,7 @@ const tileVariants = {
       },
     },
   ),
-  title: cva('body-3-semi-bold w-full truncate text-center', {
+  title: cva('w-full truncate text-center body-3-semi-bold', {
     variants: {
       disabled: {
         true: 'text-disabled',
@@ -54,7 +54,7 @@ const tileVariants = {
       disabled: false,
     },
   }),
-  description: cva('body-3 w-full overflow-hidden truncate text-center', {
+  description: cva('w-full overflow-hidden truncate text-center body-3', {
     variants: {
       disabled: {
         true: 'text-disabled',

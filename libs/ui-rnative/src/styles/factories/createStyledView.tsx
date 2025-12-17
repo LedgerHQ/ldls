@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react';
-import { View, type ViewProps, type ViewStyle } from 'react-native';
+import { StyleSheet, View, type ViewProps } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { LumenViewStyleLX } from '../types';
@@ -23,9 +23,7 @@ export const createStyledView = (Component: typeof View) => {
         const { theme } = useTheme();
         const resolvedStyle = resolveViewStyle(theme, lx);
 
-        const finalStyle = style
-          ? ([resolvedStyle, style] as ViewStyle[])
-          : ([resolvedStyle] as ViewStyle[]);
+        const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;
       },
