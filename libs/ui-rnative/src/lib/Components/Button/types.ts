@@ -16,6 +16,7 @@ export type BaseButtonProps = {
     | 'red';
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /**
@@ -40,4 +41,10 @@ export type BaseButtonProps = {
   children?: ReactNode;
 } & Omit<StyledPressableProps, 'children'>;
 
-export type ButtonProps = {} & BaseButtonProps;
+export type ButtonProps = {
+  /**
+   * The size variant of the button.
+   * @default md
+   */
+  size?: 'sm' | 'md' | 'lg';
+} & Omit<BaseButtonProps, 'size'>;

@@ -89,7 +89,7 @@ export const AppearanceShowcase: Story = {
 
 export const SizesShowcase: Story = {
   render: () => (
-    <Box lx={{ flexDirection: 'row', alignItems: 'flex-start', gap: 's8' }}>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
       <IconButton
         accessibilityLabel='Add to favorites'
         icon={Heart}

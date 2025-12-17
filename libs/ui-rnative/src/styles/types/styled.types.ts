@@ -153,6 +153,7 @@ export type LumenViewStyleLX = {
 export type LumenPressableStyleLX = {
   /**
    * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   * Can be a static object or a function that receives pressed state.
    */
   lx?: LumenViewStyle | ((state: PressableStateCallbackType) => LumenViewStyle);
 };

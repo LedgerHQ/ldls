@@ -1,6 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 import { View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import {
+  LumenStyleSheet,
+  mergePressableStyle,
+  mergeStyles,
+} from '../../../styles';
 
 import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { Pressable } from '../Utility';
@@ -66,12 +70,12 @@ const useStyles = ({
  * import { DeleteCircleFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
  * // Filled interactive icon for destructive actions
- * <InteractiveIcon iconType="filled" aria-label="Delete item" onPress={handleDelete}>
+ * <InteractiveIcon iconType="filled" accessibilityLabel="Delete item" onPress={handleDelete}>
  *   <DeleteCircleFill size={20} />
  * </InteractiveIcon>
  *
  * // Stroked interactive icon for secondary actions
- * <InteractiveIcon iconType="stroked" aria-label="Open settings" onPress={handleSettings}>
+ * <InteractiveIcon iconType="stroked" accessibilityLabel="Open settings" onPress={handleSettings}>
  *   <Settings size={20} />
  * </InteractiveIcon>
  */
@@ -79,14 +83,17 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
   iconType,
   children,
   disabled = false,
+  style,
+  lx,
   ...props
 }) => {
   return (
     <Pressable
-      style={{
+      lx={lx}
+      style={mergePressableStyle(style, {
         alignItems: 'center',
         justifyContent: 'center',
-      }}
+      })}
       accessibilityRole='button'
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}
@@ -122,3 +129,4 @@ const InteractiveIconContent: FC<
     </View>
   );
 };
+InteractiveIcon.displayName = 'InteractiveIcon';

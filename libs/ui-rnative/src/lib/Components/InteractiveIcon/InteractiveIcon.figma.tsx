@@ -33,7 +33,7 @@ figma.connect(
       <InteractiveIcon
         iconType={props.iconType}
         disabled={props.disabled}
-        aria-label='Interactive icon'
+        accessibilityLabel='Interactive icon'
       >
         {props.children}
       </InteractiveIcon>

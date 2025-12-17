@@ -15,18 +15,6 @@ const renderWithProvider = (component: React.ReactElement) => {
   );
 };
 
-// Helper to extract resolved style from Pressable
-const getResolvedStyle = (
-  pressable: ReturnType<typeof screen.getByTestId>,
-  state: { pressed: boolean } = { pressed: false },
-) => {
-  const styleProp = pressable.props.style;
-  if (typeof styleProp === 'function') {
-    return styleProp(state);
-  }
-  return styleProp;
-};
-
 describe('Pressable Utility Component', () => {
   describe('Rendering', () => {
     it('should render correctly', () => {
@@ -54,8 +42,7 @@ describe('Pressable Utility Component', () => {
         <Pressable testID='pressable' lx={{ padding: 's16' }} />,
       );
       const pressable = screen.getByTestId('pressable');
-      const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle.padding).toBe(16);
+      expect(pressable.props.style.padding).toBe(16);
     });
 
     it('should resolve backgroundColor token', () => {
@@ -63,8 +50,7 @@ describe('Pressable Utility Component', () => {
         <Pressable testID='pressable' lx={{ backgroundColor: 'surface' }} />,
       );
       const pressable = screen.getByTestId('pressable');
-      const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle.backgroundColor).toBeDefined();
+      expect(pressable.props.style.backgroundColor).toBeDefined();
     });
 
     it('should resolve multiple token props', () => {
@@ -79,10 +65,9 @@ describe('Pressable Utility Component', () => {
         />,
       );
       const pressable = screen.getByTestId('pressable');
-      const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle.padding).toBe(16);
-      expect(resolvedStyle.marginTop).toBe(8);
-      expect(resolvedStyle.borderRadius).toBeDefined();
+      expect(pressable.props.style.padding).toBe(16);
+      expect(pressable.props.style.marginTop).toBe(8);
+      expect(pressable.props.style.borderRadius).toBeDefined();
     });
   });
 
@@ -97,9 +82,21 @@ describe('Pressable Utility Component', () => {
         />,
       );
       const pressable = screen.getByTestId('pressable');
-      const resolvedStyle = getResolvedStyle(pressable);
-      expect(resolvedStyle.padding).toBe(16);
-      expect(resolvedStyle).toMatchObject({ opacity: 0.5 });
+      expect(pressable.props.style.padding).toBe(16);
+      expect(pressable.props.style).toMatchObject({ opacity: 0.5 });
+    });
+
+    it('should merge style prop with lx tokens', () => {
+      renderWithProvider(
+        <Pressable
+          testID='pressable'
+          lx={{ backgroundColor: 'surface' }}
+          style={{ opacity: 0.8 }}
+        />,
+      );
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.backgroundColor).toBeDefined();
+      expect(pressable.props.style).toMatchObject({ opacity: 0.8 });
     });
 
     it('should support function-based style prop', () => {
@@ -113,12 +110,38 @@ describe('Pressable Utility Component', () => {
         />,
       );
       const pressable = screen.getByTestId('pressable');
-      const resolvedStyle = getResolvedStyle(pressable);
+      expect(pressable.props.style.backgroundColor).toBeDefined();
+      expect(pressable.props.style.opacity).toBe(1);
+    });
 
-      // Token styles should be resolved
-      expect(resolvedStyle.backgroundColor).toBeDefined();
-      // Function-based style should be evaluated (default state is unpressed)
-      expect(resolvedStyle).toMatchObject({ opacity: 1 });
+    it('should support function-based lx prop', () => {
+      renderWithProvider(
+        <Pressable
+          testID='pressable'
+          lx={({ pressed }) => ({
+            padding: pressed ? 's16' : 's8',
+          })}
+        />,
+      );
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.padding).toBe(8);
+    });
+
+    it('should support both function-based lx and style props', () => {
+      renderWithProvider(
+        <Pressable
+          testID='pressable'
+          lx={({ pressed }) => ({
+            padding: pressed ? 's16' : 's8',
+          })}
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.7 : 1,
+          })}
+        />,
+      );
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.padding).toBe(8);
+      expect(pressable.props.style.opacity).toBe(1);
     });
   });
 

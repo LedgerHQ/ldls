@@ -22,7 +22,6 @@ export const createStyledView = (Component: typeof View) => {
       ({ lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
         const resolvedStyle = resolveViewStyle(theme, lx);
-
         const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;

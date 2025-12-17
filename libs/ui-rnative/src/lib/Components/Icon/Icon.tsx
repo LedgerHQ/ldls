@@ -1,5 +1,5 @@
 import { forwardRef, useMemo } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { LumenStyleSheet } from '../../../styles';
 import { IconProps, IconSize } from './types';
@@ -15,17 +15,14 @@ const iconSizeMap = {
 } as const;
 
 const useStyles = (size: IconSize) => {
-  return LumenStyleSheet.useCreate(
-    (t) => ({
-      dimensions: {
-        width: t.icon.width[iconSizeMap[size]],
-        height: t.icon.height[iconSizeMap[size]],
-      },
-      strokeWidth: {
-        borderWidth: t.icon.borderWidth[iconSizeMap[size]],
-      },
+  const { theme } = LumenStyleSheet.useTheme();
+  return useMemo(
+    () => ({
+      width: theme.icon.width[iconSizeMap[size]],
+      height: theme.icon.height[iconSizeMap[size]],
+      strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
     }),
-    [size],
+    [size, theme],
   );
 };
 
@@ -33,26 +30,17 @@ export const Icon = forwardRef<Svg, IconProps>(
   ({ size = 24, style, children, viewBox, ...props }, ref) => {
     const styles = useStyles(size);
     const flatStyle = StyleSheet.flatten(style);
-    const color = flatStyle?.color;
-
-    // Remove color from style to avoid applying it twice (once via color prop, once via style)
-    const styleWithoutColor = useMemo(() => {
-      if (!flatStyle || !('color' in flatStyle)) return style;
-      const { color: _, ...rest } = flatStyle;
-      return rest as ViewStyle;
-    }, [flatStyle, style]);
 
     return (
       <Svg
         ref={ref}
-        width={styles.dimensions.width}
-        height={styles.dimensions.height}
-        style={styleWithoutColor}
+        width={styles.width}
+        height={styles.height}
+        strokeWidth={styles.strokeWidth}
         viewBox={viewBox}
+        color={flatStyle?.color ?? 'currentColor'}
         fill='none'
         pointerEvents='none'
-        color={color}
-        strokeWidth={styles.strokeWidth.borderWidth}
         {...props}
       >
         {children}

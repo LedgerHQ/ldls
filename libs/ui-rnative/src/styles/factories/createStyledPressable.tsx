@@ -28,14 +28,22 @@ export const createStyledPressable = (Component: typeof Pressable) => {
       ({ lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
 
-        // Handle function-based style prop (Pressable supports (state) => style)
-        const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
-          const computeLx = typeof lx === 'function' ? lx(state) : lx;
-          const resolvedStyle = resolveViewStyle(theme, computeLx);
+        const isLxFunction = typeof lx === 'function';
+        const isStyleFunction = typeof style === 'function';
+        const hasFunction = isLxFunction || isStyleFunction;
 
-          const computeStyle =
-            typeof style === 'function' ? style(state) : style;
-          return StyleSheet.flatten([resolvedStyle, computeStyle]);
+        if (!hasFunction) {
+          const resolvedStyle = resolveViewStyle(theme, lx);
+          const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
+          return <Component ref={ref} {...props} style={finalStyle} />;
+        }
+
+        const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
+          const computedLx = isLxFunction ? lx(state) : lx;
+          const resolvedStyle = resolveViewStyle(theme, computedLx);
+          const computedStyle = isStyleFunction ? style(state) : style;
+
+          return StyleSheet.flatten([resolvedStyle, computedStyle]);
         };
 
         return <Component ref={ref} {...props} style={mergedStyle} />;

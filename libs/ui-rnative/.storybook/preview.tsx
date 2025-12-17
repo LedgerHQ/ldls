@@ -57,7 +57,6 @@ const preview: Preview = {
           ['Docs', 'Colors', 'Border', 'Spacing', 'Size', 'Height', 'Width'],
           'Symbols',
           'Action',
-          ['CardButton', 'InteractiveIcon', 'Link', 'Input', 'Search'],
           'Communication',
           'Containment',
           'Selection',

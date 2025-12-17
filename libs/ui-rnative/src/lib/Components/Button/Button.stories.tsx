@@ -19,46 +19,16 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     appearance: {
       control: 'select',
-      options: [
-        'base',
-        'gray',
-        'accent',
-        'transparent',
-        'no-background',
-        'red',
-      ],
-      description: 'The visual style appearance of the button',
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'The size of the button',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the button is disabled',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'Whether the button is in loading state',
-    },
-    icon: {
-      control: 'select',
-      description: 'Optional icon component to display',
-      options: ['None', 'Plus', 'Settings'],
-      mapping: {
-        None: undefined,
-        Plus: Plus,
-        Settings: Settings,
+      icon: {
+        control: 'select',
+        description: 'Optional icon component to display',
+        options: ['None', 'Plus', 'Settings'],
+        mapping: {
+          None: undefined,
+          Plus: Plus,
+          Settings: Settings,
+        },
       },
-    },
-    children: {
-      control: 'text',
-      description: 'The content to be displayed inside the button',
-    },
-    isFull: {
-      control: 'boolean',
-      description: 'Whether the button is full width',
     },
   },
 };
@@ -78,6 +48,7 @@ export const Base: Story = {
     appearance: 'base',
     children: 'Base Button',
   },
+  render: (args) => <Button {...args} />,
   parameters: {
     docs: {
       source: {

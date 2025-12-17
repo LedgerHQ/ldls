@@ -15,10 +15,9 @@ const createIcon = (
   iconJsx: React.ReactElement<SvgProps>,
 ) => {
   const Component = forwardRef<Svg, Omit<IconProps, 'children'>>(
-    ({ className, ...props }, ref) =>
+    ({ ...props }, ref) =>
       React.createElement(Icon, {
         ref,
-        className,
         viewBox: iconJsx.props.viewBox,
         ...props,
         children: iconJsx.props.children,

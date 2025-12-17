@@ -1,10 +1,19 @@
 import React from 'react';
 import { Linking, Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import {
+  LumenStyleSheet,
+  mergePressableStyle,
+  mergeStyles,
+} from '../../../styles';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
 import { Pressable } from '../Utility';
 import { LinkProps } from './types';
+
+const iconSizeMap: Record<Size, IconSize> = {
+  sm: 16,
+  md: 20,
+};
 
 type Appearance = NonNullable<LinkProps['appearance']>;
 type Size = NonNullable<LinkProps['size']>;
@@ -117,14 +126,6 @@ export const Link = React.forwardRef<
     },
     ref,
   ) => {
-    const iconSizeMap: Record<Size, IconSize> = {
-      sm: 16,
-      md: 20,
-    };
-
-    const calculatedIconSize = iconSizeMap[size];
-    const IconComponent = icon;
-
     const handlePress = async () => {
       if (onPress) {
         onPress();
@@ -136,8 +137,8 @@ export const Link = React.forwardRef<
     return (
       <Pressable
         ref={ref}
-        lx={{ flexShrink: 1, ...lx }}
-        style={style}
+        lx={lx}
+        style={mergePressableStyle(style, { flexShrink: 1 })}
         onPress={handlePress}
         accessibilityRole='link'
         {...props}
@@ -148,8 +149,7 @@ export const Link = React.forwardRef<
             size={size}
             underline={underline}
             pressed={pressed}
-            IconComponent={IconComponent}
-            calculatedIconSize={calculatedIconSize}
+            icon={icon}
             isExternal={isExternal}
           >
             {children}
@@ -165,8 +165,7 @@ type LinkContentProps = {
   size: Size;
   underline: boolean;
   pressed: boolean;
-  IconComponent: LinkProps['icon'];
-  calculatedIconSize: IconSize;
+  icon: LinkProps['icon'];
   isExternal: boolean;
   children: React.ReactNode;
 };
@@ -176,12 +175,18 @@ const LinkContent: React.FC<LinkContentProps> = ({
   size,
   underline,
   pressed,
-  IconComponent,
-  calculatedIconSize,
+  icon,
   isExternal,
   children,
 }) => {
-  const styles = useStyles({ appearance, size, underline, pressed });
+  const calculatedIconSize = iconSizeMap[size];
+  const IconComponent = icon;
+  const styles = useStyles({
+    appearance,
+    size,
+    underline,
+    pressed,
+  });
 
   return (
     <View style={styles.container} testID='link-content'>

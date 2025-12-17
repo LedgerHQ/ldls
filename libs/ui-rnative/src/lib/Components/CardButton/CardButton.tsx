@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import {
+  LumenStyleSheet,
+  mergePressableStyle,
+  mergeStyles,
+} from '../../../styles';
 import { ChevronRight } from '../../Symbols';
 import { Pressable } from '../Utility';
 
@@ -8,13 +12,15 @@ import { CardButtonProps } from './types';
 
 type Appearance = NonNullable<CardButtonProps['appearance']>;
 
-type StyleParams = {
+const useStyles = ({
+  appearance,
+  disabled,
+  pressed,
+}: {
   appearance: Appearance;
   disabled: boolean;
   pressed: boolean;
-};
-
-const useStyles = ({ appearance, disabled, pressed }: StyleParams) => {
+}) => {
   return LumenStyleSheet.useCreate(
     (t) => {
       const bgColors: Record<Appearance, string> = {
@@ -137,7 +143,7 @@ export const CardButton = React.forwardRef<
       <Pressable
         ref={ref}
         lx={lx}
-        style={style}
+        style={mergePressableStyle(style, { flex: 1 })}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}

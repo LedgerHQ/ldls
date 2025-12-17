@@ -19,7 +19,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Settings'
+        accessibilityLabel='Settings'
         testID='icon-button'
       >
         <Settings size={20} />
@@ -33,7 +33,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Add item'
+        accessibilityLabel='Add item'
         testID='filled-icon'
       >
         <Plus size={20} />
@@ -48,7 +48,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='stroked'
-        aria-label='Settings'
+        accessibilityLabel='Settings'
         testID='stroked-icon'
       >
         <Settings size={20} />
@@ -63,7 +63,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Open menu'
+        accessibilityLabel='Open menu'
         testID='menu-icon'
       >
         <Settings size={20} />
@@ -77,7 +77,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Disabled button'
+        accessibilityLabel='Disabled button'
         disabled
         testID='disabled-icon'
       >
@@ -93,7 +93,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Pressable'
+        accessibilityLabel='Pressable'
         onPress={handlePress}
         testID='pressable-icon'
       >
@@ -112,7 +112,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Disabled'
+        accessibilityLabel='Disabled'
         onPress={handlePress}
         disabled
         testID='disabled-pressable'
@@ -132,7 +132,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='stroked'
-        aria-label='Long pressable'
+        accessibilityLabel='Long pressable'
         onLongPress={handleLongPress}
         testID='long-pressable-icon'
       >
@@ -151,7 +151,7 @@ describe('InteractiveIcon Component', () => {
     renderWithProvider(
       <InteractiveIcon
         iconType='filled'
-        aria-label='Custom'
+        accessibilityLabel='Custom'
         style={customStyle}
         testID='custom-icon'
       >

@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { mergePressableStyle } from '../../../styles/utils';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
 import { Pressable } from '../Utility';
@@ -9,13 +10,25 @@ import { BaseButtonProps } from './types';
 type Appearance = NonNullable<BaseButtonProps['appearance']>;
 type Size = NonNullable<BaseButtonProps['size']>;
 
-type StyleParams = {
-  appearance: Appearance;
-  size: Size;
-  disabled: boolean;
-  pressed: boolean;
-  iconOnly: boolean;
-  isFull: boolean;
+const iconSizeMap: Record<Size, IconSize> = {
+  xs: 16,
+  sm: 20,
+  md: 24,
+  lg: 24,
+} as const;
+
+const useRootStyles = ({ isFull }: { isFull: boolean }) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        root: {
+          width: isFull ? t.sizes.full : 'auto',
+          borderRadius: t.borderRadius.full,
+        },
+      };
+    },
+    [isFull],
+  );
 };
 
 const useStyles = ({
@@ -25,7 +38,14 @@ const useStyles = ({
   pressed,
   iconOnly,
   isFull,
-}: StyleParams) => {
+}: {
+  appearance: Appearance;
+  size: Size;
+  disabled: boolean;
+  pressed: boolean;
+  iconOnly: boolean;
+  isFull: boolean;
+}) => {
   return LumenStyleSheet.useCreate(
     (t) => {
       const bgColors: Record<Appearance, string> = {
@@ -82,7 +102,6 @@ const useStyles = ({
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: t.borderRadius.full,
             backgroundColor: bgColors[appearance],
           },
           iconOnly
@@ -136,22 +155,13 @@ export const BaseButton = React.forwardRef<
     },
     ref,
   ) => {
-    const iconOnly = Boolean(IconProp && !children);
-
-    const iconSizeMap: Record<Size, IconSize> = {
-      xs: 16,
-      sm: 20,
-      md: 24,
-      lg: 24,
-    } as const;
-
-    const calculatedIconSize = iconSizeMap[size];
+    const rootStyles = useRootStyles({ isFull });
 
     return (
       <Pressable
         ref={ref}
         lx={lx}
-        style={style}
+        style={mergePressableStyle(style, rootStyles.root)}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}
@@ -163,11 +173,9 @@ export const BaseButton = React.forwardRef<
             size={size}
             disabled={disabled}
             pressed={pressed}
-            iconOnly={iconOnly}
             isFull={isFull}
             loading={loading}
             IconProp={IconProp}
-            calculatedIconSize={calculatedIconSize}
           >
             {children}
           </BaseButtonContent>
@@ -182,11 +190,9 @@ type BaseButtonContentProps = PropsWithChildren<{
   size: Size;
   disabled: boolean;
   pressed: boolean;
-  iconOnly: boolean;
   isFull: boolean;
   loading: boolean;
   IconProp?: BaseButtonProps['icon'];
-  calculatedIconSize: IconSize;
 }>;
 
 const BaseButtonContent: FC<BaseButtonContentProps> = ({
@@ -194,13 +200,13 @@ const BaseButtonContent: FC<BaseButtonContentProps> = ({
   size,
   disabled,
   pressed,
-  iconOnly,
   isFull,
   loading,
   IconProp,
-  calculatedIconSize,
   children,
 }) => {
+  const calculatedIconSize = iconSizeMap[size];
+  const iconOnly = Boolean(IconProp && !children);
   const styles = useStyles({
     appearance,
     size,
