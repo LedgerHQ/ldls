@@ -4,6 +4,7 @@ import {
   withBrandDecorator,
   withModeDecorator,
   withProvidersDecorator,
+  withProvidersDocsContainer,
 } from './Decorator';
 import './font.css';
 
@@ -65,6 +66,9 @@ const preview: Preview = {
       },
     },
     tags: ['autodocs'],
+    docs: {
+      container: withProvidersDocsContainer,
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
