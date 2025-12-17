@@ -1,5 +1,5 @@
-import { forwardRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { forwardRef, useMemo } from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
 import { Svg } from 'react-native-svg';
 import { LumenStyleSheet } from '../../../styles';
 import { IconProps, IconSize } from './types';
@@ -17,7 +17,7 @@ const iconSizeMap = {
 const useStyles = (size: IconSize) => {
   return LumenStyleSheet.useCreate(
     (t) => ({
-      root: {
+      dimensions: {
         width: t.icon.width[iconSizeMap[size]],
         height: t.icon.height[iconSizeMap[size]],
       },
@@ -35,12 +35,19 @@ export const Icon = forwardRef<Svg, IconProps>(
     const flatStyle = StyleSheet.flatten(style);
     const color = flatStyle?.color;
 
+    // Remove color from style to avoid applying it twice (once via color prop, once via style)
+    const styleWithoutColor = useMemo(() => {
+      if (!flatStyle || !('color' in flatStyle)) return style;
+      const { color: _, ...rest } = flatStyle;
+      return rest as ViewStyle;
+    }, [flatStyle, style]);
+
     return (
       <Svg
         ref={ref}
-        width={styles.root.width}
-        height={styles.root.height}
-        style={[styles.root, style]}
+        width={styles.dimensions.width}
+        height={styles.dimensions.height}
+        style={styleWithoutColor}
         viewBox={viewBox}
         fill='none'
         pointerEvents='none'

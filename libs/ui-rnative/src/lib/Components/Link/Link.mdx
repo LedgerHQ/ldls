@@ -272,13 +272,13 @@ import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use lx for underline"
-      description='Avoid using lx to control underline decoration'
+      title="Don't use lx to fake underline"
+      description='Avoid using lx with borderBottom to mimic underline styling'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Link lx={{ textDecorationLine: 'underline' }} href='https://example.com'>
+<Link style={{ textDecorationLine: 'underline' }} href='https://example.com'>
   Link without underline
 </Link>
 ```

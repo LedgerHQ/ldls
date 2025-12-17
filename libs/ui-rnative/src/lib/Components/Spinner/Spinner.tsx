@@ -2,23 +2,10 @@ import { forwardRef, useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet, type StyledViewProps } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
-import { IconSize } from '../Icon/types';
 import { Box } from '../Utility';
-
-export type SpinnerProps = Omit<StyledViewProps, 'children'> & {
-  /**
-   * The size of the spinner icon in pixels.
-   * @default 16
-   */
-  size?: IconSize;
-  /**
-   * The color of the spinner stroke.
-   * If not provided, defaults to the theme's text.base color.
-   */
-  color?: string;
-};
+import { SpinnerProps } from './types';
 
 /**
  * A basic spinner component for loading states.
