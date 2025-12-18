@@ -1,11 +1,12 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, {
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Animated, Text, TextInput, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
@@ -50,6 +51,18 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     const isFloatingLabel = isFocused || hasContent;
     const showClearButton = hasContent && editable && !hideClearButton;
 
+    const floatingAnimation = useRef(
+      new Animated.Value(isFloatingLabel ? 1 : 0),
+    ).current;
+
+    useEffect(() => {
+      Animated.timing(floatingAnimation, {
+        toValue: isFloatingLabel ? 1 : 0,
+        duration: 150,
+        useNativeDriver: false,
+      }).start();
+    }, [isFloatingLabel, floatingAnimation]);
+
     const handleChangeText = useCallback(
       (text: string) => {
         if (!isControlled) {
@@ -76,7 +89,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     });
 
     const floatingLabelStyles = useFloatingLabelStyles({
-      isFloating: isFloatingLabel,
+      floatingAnimation,
       hasContent,
       showClearButton,
       hasError: !!errorMessage,
@@ -96,9 +109,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             ref={inputRef}
             value={value}
             className={cn(inputClassName)}
-            // TODO: eventually move to token system
-            // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
-            style={styles.input}
+            style={[styles.input, { lineHeight: 0 }]}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -109,13 +120,15 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           />
 
           {label && (
-            <Text
-              className={cn(labelClassName)}
-              style={floatingLabelStyles.label}
+            <Animated.Text
+              style={[
+                floatingLabelStyles.label,
+                floatingLabelStyles.animatedLabel,
+              ]}
               numberOfLines={1}
             >
               {label}
-            </Text>
+            </Animated.Text>
           )}
 
           {showClearButton && (
@@ -218,48 +231,59 @@ const useStyles = ({
 };
 
 const useFloatingLabelStyles = ({
-  isFloating,
+  floatingAnimation,
   hasContent,
   showClearButton,
   hasError,
   isEditable,
 }: {
-  isFloating: boolean;
+  floatingAnimation: Animated.Value;
   hasContent: boolean;
   showClearButton: boolean;
   hasError: boolean;
   isEditable: boolean;
-}) =>
-  LumenStyleSheet.useCreate(
-    (t) => {
-      return {
-        label: mergeStyles(
-          {
-            position: 'absolute',
-            left: t.spacings.s16,
-            top: t.spacings.s12,
-            width: t.sizes.full,
-            color: t.colors.text.muted,
-            ...t.typographies.body2,
+}) => {
+  const { theme } = LumenStyleSheet.useTheme();
+
+  const label = LumenStyleSheet.useCreate(
+    (t) => ({
+      label: mergeStyles(
+        {
+          position: 'absolute',
+          left: t.spacings.s16,
+          width: t.sizes.full,
+          color: t.colors.text.muted,
+        },
+        hasContent &&
+          showClearButton && {
+            width: '92%',
           },
-          isFloating && {
-            ...t.typographies.body4,
-            top: t.spacings.s6,
-          },
-          hasContent &&
-            showClearButton && {
-              width: '92%',
-            },
-          !isEditable && {
-            color: t.colors.text.disabled,
-          },
-          hasError && {
-            color: t.colors.text.error,
-          },
-        ),
-      };
-    },
-    [isFloating, hasContent, showClearButton, hasError, isEditable],
+        !isEditable && {
+          color: t.colors.text.disabled,
+        },
+        hasError && {
+          color: t.colors.text.error,
+        },
+      ),
+    }),
+    [hasContent, showClearButton, hasError, isEditable],
   );
+
+  const animatedLabel = {
+    top: floatingAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [theme.spacings.s14, theme.spacings.s8],
+    }),
+    fontSize: floatingAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: [
+        theme.typographies.body2.fontSize,
+        theme.typographies.body4.fontSize,
+      ],
+    }),
+  };
+
+  return { label: label.label, animatedLabel };
+};
 
 BaseInput.displayName = 'BaseInput';
