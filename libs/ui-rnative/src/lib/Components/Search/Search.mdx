@@ -18,7 +18,10 @@ The Search component is a specialized input field designed specifically for sear
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2248-3468&m=dev).
 
-<Canvas of={SearchStories.WebPreviewWarning} />
+> ⚠️ **Note on Web Preview:** The Storybook preview below may display visual inconsistencies as certain React Native APIs (such as Reanimated animations) cannot be fully translated to web environments. While the component's functionality should accurately represent the native implementation, it may not render as intended. For the complete native experience, please refer to the component on an actual iOS or Android device.
+
+<Canvas of={SearchStories.Base} />
+<Controls of={SearchStories.Base} />
 
 ## Anatomy
 
@@ -36,23 +39,33 @@ Uses placeholder text instead of floating labels for better search UX. Styled wi
 
 A clear button (×) appears **automatically** when input has content.
 
+<Canvas of={SearchStories.WithContent} />
+
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
 #### **Hiding the Clear Button**
 
 Use `hideClearButton` to prevent the clear button from appearing.
 
+<Canvas of={SearchStories.WithHiddenClearButton} />
+
 #### **Extending the Clear Behavior**
 
 Use `onClear` to extend the default clear behavior with custom logic.
+
+<Canvas of={SearchStories.WithClearCallback} />
 
 ### Disabled State
 
 The search input can be disabled using the `editable` prop set to `false`.
 
+<Canvas of={SearchStories.DisabledSearch} />
+
 ### Error State
 
 The search component supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
+
+<Canvas of={SearchStories.WithError} />
 
 The error message will be automatically:
 

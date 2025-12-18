@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { Banner } from '../Banner';
-import { AmountInput } from './AmountInput';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { AmountInput, type AmountInputProps } from './AmountInput';
 
 const meta: Meta<typeof AmountInput> = {
   component: AmountInput,
@@ -14,25 +15,187 @@ const meta: Meta<typeof AmountInput> = {
       },
     },
   },
+  argTypes: {
+    currencyText: {
+      control: 'text',
+      description: 'Currency text to display (e.g. USD, EUR, $)',
+    },
+    currencyPosition: {
+      control: 'radio',
+      options: ['left', 'right'],
+      description: 'Position of the currency text',
+    },
+    allowDecimals: {
+      control: 'boolean',
+      description: 'Whether to allow decimal values',
+    },
+    thousandsSeparator: {
+      control: 'boolean',
+      description: 'Whether to display thousands separator',
+    },
+    maxIntegerLength: {
+      control: 'number',
+      description: 'Maximum digits for integer part',
+    },
+    maxDecimalLength: {
+      control: 'number',
+      description: 'Maximum digits for decimal part',
+    },
+    isInvalid: {
+      control: 'boolean',
+      description: 'Whether the input is in error state',
+    },
+    editable: {
+      control: 'boolean',
+      description: 'Whether the input is editable',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof AmountInput>;
 
-export const WebPreviewWarning: Story = {
-  render: () => (
-    <Banner
-      appearance='warning'
-      title='Unsupported previews on web'
-      description='For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, please test on-device. We plan to add screenshots or embed Expo Snack in the future.'
-    />
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          '⚠️ This component requires testing on a physical device or emulator due to Reanimated compatibility issues with web previews.',
-      },
-    },
+const AmountInputStory = (args: AmountInputProps) => {
+  const [value, setValue] = useState(args.value?.toString() ?? '');
+
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <AmountInput {...args} value={value} onChangeText={setValue} />
+      </View>
+    </View>
+  );
+};
+
+export const Base: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    maxIntegerLength: 9,
+    maxDecimalLength: 9,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const WithValue: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const CurrencyPositionLeft: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000',
+    currencyText: '$',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const CurrencyPositionRight: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000',
+    currencyText: 'ETH',
+    currencyPosition: 'right',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const IntegerOnly: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234',
+    currencyText: 'items',
+    currencyPosition: 'right',
+    allowDecimals: false,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const WithThousandsSeparator: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000000',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const WithoutThousandsSeparator: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1000000',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: false,
+    isInvalid: false,
+    editable: true,
+  },
+};
+
+export const ErrorState: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: true,
+    editable: true,
+  },
+};
+
+export const DisabledAmountInput: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '1234.56',
+    currencyText: 'USD',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    isInvalid: false,
+    editable: false,
+  },
+};
+
+export const CustomLengthLimits: Story = {
+  render: (args) => <AmountInputStory {...args} />,
+  args: {
+    value: '123',
+    currencyText: '$',
+    currencyPosition: 'left',
+    allowDecimals: true,
+    thousandsSeparator: true,
+    maxIntegerLength: 6,
+    maxDecimalLength: 2,
+    isInvalid: false,
+    editable: true,
   },
 };
