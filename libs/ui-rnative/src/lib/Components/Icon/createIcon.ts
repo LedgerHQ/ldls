@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Svg, SvgProps } from 'react-native-svg';
 import { toPascalCase } from '../../utils';
 import { Icon } from './Icon';
-import { IconProps } from './Icon.types';
+import { IconProps } from './types';
 
 /**
  * Create an Icon component for React Native
@@ -15,10 +15,9 @@ const createIcon = (
   iconJsx: React.ReactElement<SvgProps>,
 ) => {
   const Component = forwardRef<Svg, Omit<IconProps, 'children'>>(
-    ({ className, ...props }, ref) =>
+    ({ ...props }, ref) =>
       React.createElement(Icon, {
         ref,
-        className,
         viewBox: iconJsx.props.viewBox,
         ...props,
         children: iconJsx.props.children,

@@ -1,48 +1,63 @@
 import React, { forwardRef, memo } from 'react';
+import { StyleSheet } from 'react-native';
 import type {
   Pressable,
   PressableProps,
   PressableStateCallbackType,
-  StyleProp,
   ViewStyle,
 } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
-import { LumenViewStyleLX } from '../types';
+import { LumenPressableStyleLX } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
 type PressableRef = React.ElementRef<typeof Pressable>;
-export type StyledPressableProps = LumenViewStyleLX & PressableProps;
+type StyleFn = (state: PressableStateCallbackType) => ViewStyle;
+type StyleItem = ViewStyle | StyleFn | StyleItem[] | null | undefined;
+
+export type StyledPressableProps = LumenPressableStyleLX &
+  Omit<PressableProps, 'style'> & {
+    style?: StyleItem;
+  };
+
+/**
+ * Check if any style item (including nested arrays) is a function
+ */
+const hasStyleFunction = (style: StyleItem): boolean => {
+  if (Array.isArray(style)) {
+    return style.some((s) => hasStyleFunction(s));
+  }
+  return typeof style === 'function';
+};
+
+/**
+ * Resolve all style functions in a style tree
+ */
+const resolveStyleFunctions = (
+  style: StyleItem,
+  state: PressableStateCallbackType,
+): ViewStyle | (ViewStyle | null | undefined)[] | null | undefined => {
+  if (Array.isArray(style)) {
+    return style.map((s) => resolveStyleFunctions(s, state)) as (
+      | ViewStyle
+      | null
+      | undefined
+    )[];
+  }
+  return typeof style === 'function' ? style(state) : style;
+};
 
 /**
  * Factory function to create a styled Pressable component.
  *
- * Creates a component that accepts token-constrained style props directly,
- * resolving them to actual values at runtime using the current theme.
- * Supports function-based style props for pressed/focused states.
+ * Supports `style` as an object, function, or array of objects/functions (including nested).
  *
- * @param Component - The base Pressable-like component to wrap
- *
- * @example
  * ```tsx
- * import { Pressable as RNPressable } from 'react-native';
- * import { createStyledPressable } from '@ledgerhq/lumen-ui-rnative/styles';
- *
  * // Create a styled Pressable
  * const Pressable = createStyledPressable(RNPressable);
  *
- * // Usage - token props are resolved to actual values
- * <Pressable lx={{ width: 's400', marginTop: 's4', gap: 's12', alignItems: 'center' }}>
- *   <Text>Content</Text>
- * </Pressable>
- *
- * // With function-based style for pressed state
- * <Pressable
- *   lx={{ padding: 's16', backgroundColor: 'surface' }}
- *   style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
- * >
- *   <Text>Press me</Text>
- * </Pressable>
+ * // Usage with array of styles
+ * <Pressable style={[props.style, ({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })]} />
  * ```
  */
 export const createStyledPressable = (Component: typeof Pressable) => {
@@ -50,15 +65,19 @@ export const createStyledPressable = (Component: typeof Pressable) => {
     forwardRef<PressableRef, StyledPressableProps>(
       ({ lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
-        const resolvedStyle = resolveViewStyle(theme, lx);
+        const resolvedLxStyle = resolveViewStyle(theme, lx);
 
-        // Handle function-based style prop (Pressable supports (state) => style)
-        const mergedStyle = (
-          state: PressableStateCallbackType,
-        ): StyleProp<ViewStyle> => {
-          const computeStyle =
-            typeof style === 'function' ? style(state) : style;
-          return [resolvedStyle, computeStyle];
+        if (!hasStyleFunction(style)) {
+          const finalStyle = StyleSheet.flatten([
+            resolvedLxStyle,
+            style as ViewStyle,
+          ]);
+          return <Component ref={ref} {...props} style={finalStyle} />;
+        }
+
+        const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
+          const resolvedStyle = resolveStyleFunctions(style, state);
+          return StyleSheet.flatten([resolvedLxStyle, resolvedStyle]);
         };
 
         return <Component ref={ref} {...props} style={mergedStyle} />;

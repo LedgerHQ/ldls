@@ -1,97 +1,70 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
 import React from 'react';
-import { Linking, Pressable, PressableProps, Text, View } from 'react-native';
+import { Linking, Text, View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
+import { Pressable } from '../Utility';
+import { LinkProps } from './types';
 
-const linkTextVariants = cva('', {
-  variants: {
-    appearance: {
-      base: '',
-      accent: '',
-    },
-    underline: {
-      true: 'underline underline-offset-2',
-      false: '',
-    },
-    size: {
-      sm: 'body-2-semi-bold',
-      md: 'body-1-semi-bold',
-    },
-    pressed: {
-      true: '',
-      false: '',
-    },
-  },
-  compoundVariants: [
-    {
-      appearance: 'base',
-      pressed: false,
-      className: 'text-base',
-    },
-    {
-      appearance: 'base',
-      pressed: true,
-      className: 'text-base-pressed',
-    },
-    {
-      appearance: 'accent',
-      pressed: false,
-      className: 'text-interactive',
-    },
-    {
-      appearance: 'accent',
-      pressed: true,
-      className: 'text-interactive-pressed',
-    },
-  ],
-  defaultVariants: {
-    appearance: 'base',
-    size: 'md',
-    underline: true,
-    pressed: false,
-  },
-});
+const iconSizeMap: Record<Size, IconSize> = {
+  sm: 16,
+  md: 20,
+};
 
-export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
-  /**
-   * The visual style of the link.
-   * @default base
-   */
-  appearance?: 'base' | 'accent';
-  /**
-   * The size variant of the link.
-   * @default md
-   */
-  size?: 'sm' | 'md';
-  /**
-   * Whether to underline the link text.
-   * @default true
-   */
-  underline?: boolean;
-  /**
-   * An optional icon component to render inside the link.
-   * The icon styles are defined by the link. Please do not override them.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * If true, displays an external link icon next to the link text.
-   * @default false
-   */
-  isExternal?: boolean;
-  /**
-   * The URL to navigate to
-   */
-  href?: string;
-  /**
-   * Custom press handler (overrides default href navigation)
-   */
-  onPress?: () => void;
-  /**
-   * The link's content, typically text.
-   */
-  children: React.ReactNode;
+type Appearance = NonNullable<LinkProps['appearance']>;
+type Size = NonNullable<LinkProps['size']>;
+
+type StyleParams = {
+  appearance: Appearance;
+  size: Size;
+  underline: boolean;
+  pressed: boolean;
+};
+
+const useStyles = ({ appearance, size, underline, pressed }: StyleParams) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const textColors: Record<Appearance, string> = {
+        base: t.colors.text.base,
+        accent: t.colors.text.interactive,
+      };
+
+      const pressedTextColors: Record<Appearance, string> = {
+        base: t.colors.text.basePressed,
+        accent: t.colors.text.interactivePressed,
+      };
+
+      const typography =
+        size === 'sm'
+          ? t.typographies.body2SemiBold
+          : t.typographies.body1SemiBold;
+      const gap = size === 'sm' ? t.spacings.s4 : t.spacings.s8;
+
+      return {
+        container: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap,
+        },
+        textWrapper: {
+          flexShrink: 1,
+        },
+        text: mergeStyles(typography, {
+          color: pressed
+            ? pressedTextColors[appearance]
+            : textColors[appearance],
+          textDecorationLine: underline ? 'underline' : 'none',
+        }),
+        icon: {
+          flexShrink: 0,
+          color: pressed
+            ? pressedTextColors[appearance]
+            : textColors[appearance],
+        },
+      };
+    },
+    [appearance, size, underline, pressed],
+  );
 };
 
 /**
@@ -101,7 +74,7 @@ export type LinkProps = Omit<PressableProps, 'onPress' | 'children'> & {
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-link-implementation--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the link's core appearance (colors, padding, etc). Use the `appearance` and `underline` props instead.
  *
  * @example
@@ -135,10 +108,11 @@ export const Link = React.forwardRef<
 >(
   (
     {
-      className,
+      lx,
+      style,
       children,
-      appearance,
-      size,
+      appearance = 'base',
+      size = 'md',
       underline = true,
       icon,
       isExternal = false,
@@ -148,14 +122,6 @@ export const Link = React.forwardRef<
     },
     ref,
   ) => {
-    const iconSizeMap: { [key: string]: IconSize } = {
-      sm: 16,
-      md: 20,
-    };
-
-    const calculatedIconSize = size ? iconSizeMap[size] : 20;
-    const IconComponent = icon;
-
     const handlePress = async () => {
       if (onPress) {
         onPress();
@@ -167,64 +133,76 @@ export const Link = React.forwardRef<
     return (
       <Pressable
         ref={ref}
-        className={cn('shrink', className)}
+        lx={lx}
+        style={[style, { flexShrink: 1 }]}
         onPress={handlePress}
         accessibilityRole='link'
         {...props}
       >
         {({ pressed }) => (
-          <View
-            className={cn(
-              'flex-row items-center gap-8',
-              size === 'sm' && 'gap-4',
-            )}
+          <LinkContent
+            appearance={appearance}
+            size={size}
+            underline={underline}
+            pressed={pressed}
+            icon={icon}
+            isExternal={isExternal}
           >
-            {IconComponent && (
-              <IconComponent
-                className={cn(
-                  'flex-shrink-0',
-                  linkTextVariants({
-                    appearance,
-                    size,
-                    underline,
-                    pressed,
-                  }),
-                )}
-                size={calculatedIconSize}
-              />
-            )}
-            <View className='shrink'>
-              <Text
-                numberOfLines={1}
-                className={linkTextVariants({
-                  appearance,
-                  size,
-                  underline,
-                  pressed,
-                })}
-              >
-                {children}
-              </Text>
-            </View>
-            {isExternal && (
-              <ExternalLink
-                size={calculatedIconSize}
-                className={cn(
-                  'flex-shrink-0',
-                  linkTextVariants({
-                    appearance,
-                    size,
-                    underline,
-                    pressed,
-                  }),
-                )}
-                accessible={false}
-              />
-            )}
-          </View>
+            {children}
+          </LinkContent>
         )}
       </Pressable>
     );
   },
 );
+
+type LinkContentProps = {
+  appearance: Appearance;
+  size: Size;
+  underline: boolean;
+  pressed: boolean;
+  icon: LinkProps['icon'];
+  isExternal: boolean;
+  children: React.ReactNode;
+};
+
+const LinkContent: React.FC<LinkContentProps> = ({
+  appearance,
+  size,
+  underline,
+  pressed,
+  icon,
+  isExternal,
+  children,
+}) => {
+  const calculatedIconSize = iconSizeMap[size];
+  const IconComponent = icon;
+  const styles = useStyles({
+    appearance,
+    size,
+    underline,
+    pressed,
+  });
+
+  return (
+    <View style={styles.container} testID='link-content'>
+      {IconComponent && (
+        <IconComponent size={calculatedIconSize} style={styles.icon} />
+      )}
+      <View style={styles.textWrapper}>
+        <Text style={styles.text} numberOfLines={1}>
+          {children}
+        </Text>
+      </View>
+      {isExternal && (
+        <ExternalLink
+          size={calculatedIconSize}
+          style={styles.icon}
+          accessible={false}
+        />
+      )}
+    </View>
+  );
+};
+
 Link.displayName = 'Link';

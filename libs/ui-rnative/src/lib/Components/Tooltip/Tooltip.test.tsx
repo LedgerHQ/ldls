@@ -1,16 +1,20 @@
 import { describe, it, expect, jest } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Text, View } from 'react-native';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { GlobalTooltipBottomSheet } from './GlobalTooltipBottomSheet';
 import { GlobalTooltipProvider } from './GlobalTooltipContext';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <GlobalTooltipProvider>
-    {children}
-    <GlobalTooltipBottomSheet />
-  </GlobalTooltipProvider>
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    <GlobalTooltipProvider>
+      {children}
+      <GlobalTooltipBottomSheet />
+    </GlobalTooltipProvider>
+  </ThemeProvider>
 );
 
 describe('Tooltip', () => {

@@ -14,26 +14,25 @@ import { createStyledView, type StyledViewProps } from '../../../../styles';
  * import { Box } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic usage with token props
- * <Box width='s400' marginTop='s4' gap='s12' alignItems='center'>
+ * <Box lx={{ width: 's400', marginTop: 's4', gap: 's12', alignItems: 'center' }}>
  *   <Text>Content</Text>
  * </Box>
  *
  * // With background and border
  * <Box
- *   padding='s16'
- *   backgroundColor='surface'
- *   borderRadius='md'
- *   borderColor='muted'
- *   borderWidth={1}
+ *   lx={{
+ *    padding: 's16',
+ *    backgroundColor: 'surface',
+ *    borderRadius: 'md',
+ *    borderColor: 'muted',
+ *    borderWidth: 1
+ *   }}
  * >
  *   <Text>Card content</Text>
  * </Box>
  *
- * // Raw numbers allowed as escape hatch
- * <Box width={127} marginTop='s4' />
- *
  * // style prop for complete override
- * <Box marginTop='s4' style={{ width: 127 }} />
+ * <Box lx={{ marginTop: 's4' }} style={{ width: 127 }} />
  * ```
  */
 export const Box = createStyledView(View);

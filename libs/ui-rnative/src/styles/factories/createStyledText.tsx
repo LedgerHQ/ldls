@@ -1,4 +1,5 @@
 import React, { forwardRef, memo } from 'react';
+import { StyleSheet } from 'react-native';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveTextStyle } from '../resolveStyle/resolveStyle';
@@ -17,28 +18,9 @@ export type StyledTextProps = LumenTextStyleLX &
 /**
  * Factory function to create a styled Text component.
  *
- * Creates a component that accepts token-constrained style props directly,
- * plus a `typography` prop for typography presets, resolving them to actual
- * values at runtime using the current theme.
- *
- * @param Component - The base Text-like component to wrap
- *
- * @example
  * ```tsx
- * import { Text } from 'react-native';
- * import { createStyledText } from '@ledgerhq/lumen-ui-rnative/styles';
- *
  * // Create a basic Text
  * const StyledText = createStyledText(Text);
- *
- * // Usage - token props and typography are resolved
- * <StyledText typography='body1'>Hello World</StyledText>
- * <StyledText typography='heading2SemiBold' marginTop='s8' color='muted'>
- *   Subtitle
- * </StyledText>
- *
- * // style prop for escape hatch
- * <StyledText typography='body1' style={{ letterSpacing: 2 }} />
  * ```
  */
 export const createStyledText = (Component: typeof Text) => {
@@ -51,9 +33,11 @@ export const createStyledText = (Component: typeof Text) => {
           typography
         ] as TextStyle;
 
-        const finalStyle = style
-          ? ([resolvedStyle, resolvedTypographyStyles, style] as TextStyle[])
-          : ([resolvedStyle, resolvedTypographyStyles] as TextStyle[]);
+        const finalStyle = StyleSheet.flatten([
+          resolvedStyle,
+          resolvedTypographyStyles,
+          style,
+        ]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;
       },

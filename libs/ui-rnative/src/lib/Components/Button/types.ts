@@ -1,5 +1,6 @@
-import React from 'react';
-import { PressableProps } from 'react-native';
+import { ComponentType, ReactNode } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
+import { StyledPressableProps } from '../../../styles';
 import { IconSize } from '../Icon';
 
 export type BaseButtonProps = {
@@ -15,6 +16,7 @@ export type BaseButtonProps = {
     | 'red';
   /**
    * The size variant of the button.
+   * @default md
    */
   size?: 'xs' | 'sm' | 'md' | 'lg';
   /**
@@ -28,17 +30,21 @@ export type BaseButtonProps = {
   /**
    * An optional icon component to render inside the button.
    */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+  icon?: ComponentType<{ size?: IconSize; style?: StyleProp<ViewStyle> }>;
   /**
    * Whether the button is disabled.
    */
   disabled?: boolean;
   /**
-   * Additional custom CSS classes to apply.
-   */
-  className?: string;
-  /**
    * The content to display inside the button.
    */
-  children?: React.ReactNode;
-} & Omit<PressableProps, 'disabled' | 'children'>;
+  children?: ReactNode;
+} & Omit<StyledPressableProps, 'children'>;
+
+export type ButtonProps = {
+  /**
+   * The size variant of the button.
+   * @default md
+   */
+  size?: 'sm' | 'md' | 'lg';
+} & Omit<BaseButtonProps, 'size'>;

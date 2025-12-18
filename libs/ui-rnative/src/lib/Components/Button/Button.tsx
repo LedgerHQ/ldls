@@ -1,14 +1,7 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable } from '../Utility';
 import { BaseButton } from './BaseButton';
-import { BaseButtonProps } from './BaseButton.types';
-
-export type ButtonProps = {
-  /**
-   * The content to display inside the button.
-   */
-  children: React.ReactNode;
-} & BaseButtonProps;
+import { ButtonProps } from './types';
 
 /**
  * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.
@@ -26,8 +19,8 @@ export type ButtonProps = {
  *   Click Me
  * </Button>
  *
- * // Full-width button with custom class
- * <Button appearance="accent" isFull={true} className="my-custom-class">
+ * // Full-width button with lx props
+ * <Button appearance="accent" isFull={true} lx={{ marginTop: 's16' }}>
  *   Submit
  * </Button>
  */

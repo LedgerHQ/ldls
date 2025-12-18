@@ -98,7 +98,7 @@ export const Base: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -140,7 +140,7 @@ export const TitleExpanded: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -178,7 +178,7 @@ export const DynamicSizingWithoutSnapPoints: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -214,7 +214,7 @@ export const DynamicSizingWithSnapPoints: Story = {
     return (
       <View className='h-320 w-full items-center justify-center'>
         <Button
-          size='xs'
+          size='sm'
           onPress={() => bottomSheetRef.current?.snapToIndex(1)}
         >
           Toggle open
@@ -253,7 +253,7 @@ export const PreventClose: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -288,7 +288,7 @@ export const ScrollView: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center bg-base pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -336,7 +336,7 @@ export const VirtualList: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>
@@ -396,7 +396,7 @@ export const VirtualizedList: Story = {
 
     return (
       <View className='h-320 w-full items-center justify-center pt-32'>
-        <Button size='xs' onPress={() => bottomSheetRef.current?.expand()}>
+        <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
         <BottomSheet {...args} ref={bottomSheetRef}>

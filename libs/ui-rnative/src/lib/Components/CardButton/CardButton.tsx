@@ -1,78 +1,89 @@
-import { cva } from 'class-variance-authority';
 import React from 'react';
-import { Text, Pressable, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
-import { cn } from '../../utils';
+import { Pressable } from '../Utility';
 
-import { CardButtonProps } from './CardButton.types';
+import { CardButtonProps } from './types';
 
-const cardButtonVariants = {
-  root: cva(
-    'inline-flex h-fit w-full flex-row items-center gap-12 rounded-sm p-12 transition-colors',
-    {
-      variants: {
-        appearance: {
-          base: '',
-          outline: 'outline-dashed outline-1',
+type Appearance = NonNullable<CardButtonProps['appearance']>;
+
+const useStyles = ({
+  appearance,
+  disabled,
+  pressed,
+}: {
+  appearance: Appearance;
+  disabled: boolean;
+  pressed: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const bgColors: Record<Appearance, string> = {
+        base: t.colors.bg.muted,
+        outline: 'transparent',
+      };
+
+      const pressedBgColors: Record<Appearance, string> = {
+        base: t.colors.bg.mutedPressed,
+        outline: t.colors.bg.baseTransparentPressed,
+      };
+
+      return {
+        container: mergeStyles(
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: t.sizes.full,
+            gap: t.spacings.s12,
+            padding: t.spacings.s12,
+            borderRadius: t.borderRadius.sm,
+            backgroundColor: bgColors[appearance],
+          },
+          appearance === 'outline' && {
+            borderStyle: 'dashed',
+            borderWidth: t.borderWidth.s1,
+            borderColor: t.colors.border.mutedSubtle,
+          },
+          pressed && {
+            backgroundColor: pressedBgColors[appearance],
+          },
+          pressed &&
+            appearance === 'outline' && {
+              borderColor: t.colors.border.mutedSubtlePressed,
+            },
+          disabled && {
+            backgroundColor:
+              appearance === 'outline' ? 'transparent' : t.colors.bg.disabled,
+          },
+          disabled &&
+            appearance === 'outline' && {
+              borderColor: t.colors.border.disabled,
+            },
+        ),
+        contentWrapper: {
+          flex: 1,
+          minWidth: 0,
+          flexDirection: 'column',
+          gap: t.spacings.s4,
         },
-        disabled: {
-          true: 'text-disabled',
-          false: 'text-base',
+        title: mergeStyles(t.typographies.body1SemiBold, {
+          color: disabled ? t.colors.text.disabled : t.colors.text.base,
+          minWidth: 0,
+          textAlign: 'left',
+        }),
+        description: mergeStyles(t.typographies.body2, {
+          color: disabled ? t.colors.text.disabled : t.colors.text.base,
+          minWidth: 0,
+        }),
+        icon: {
+          flexShrink: 0,
+          color: disabled ? t.colors.text.disabled : t.colors.text.base,
         },
-      },
-      compoundVariants: [
-        {
-          appearance: 'base',
-          disabled: true,
-          className: 'bg-disabled',
-        },
-        {
-          appearance: 'base',
-          disabled: false,
-          className: 'bg-muted active:bg-muted-pressed',
-        },
-        {
-          appearance: 'outline',
-          disabled: true,
-          className: 'bg-base-transparent outline-disabled',
-        },
-        {
-          appearance: 'outline',
-          disabled: false,
-          className:
-            'bg-base-transparent outline-muted-subtle active:bg-base-transparent-pressed active:outline-muted-subtle-pressed',
-        },
-      ],
-      defaultVariants: {
-        appearance: 'base',
-        disabled: false,
-      },
+      };
     },
-  ),
-  title: cva('min-w-0 body-1-semi-bold', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-base',
-      },
-    },
-  }),
-  description: cva('min-w-0 body-2', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-base',
-      },
-    },
-  }),
-  icon: cva('shrink-0', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-base',
-      },
-    },
-  }),
+    [appearance, disabled, pressed],
+  );
 };
 
 /**
@@ -83,7 +94,7 @@ const cardButtonVariants = {
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_action-cardbutton--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_action-cardbutton--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the card button's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
@@ -92,6 +103,7 @@ const cardButtonVariants = {
  *
  * <CardButton title="Click Me" onPress={() => console.log('Clicked!')} />
  *
+ * @example
  * // Card button with icon and description
  * import { CardButton } from '@ledgerhq/lumen-ui-rnative';
  * import { Info } from '@ledgerhq/lumen-ui-rnative/symbols';
@@ -109,8 +121,9 @@ export const CardButton = React.forwardRef<
 >(
   (
     {
-      className,
-      appearance,
+      lx,
+      style,
+      appearance = 'base',
       icon,
       title,
       description,
@@ -120,53 +133,74 @@ export const CardButton = React.forwardRef<
     },
     ref,
   ) => {
-    const IconComponent = icon;
-
     return (
       <Pressable
         ref={ref}
-        className={cn(
-          className,
-          cardButtonVariants.root({
-            appearance,
-            disabled,
-          }),
-        )}
-        disabled={disabled ?? false}
+        lx={lx}
+        style={[style, { flex: 1 }]}
+        disabled={disabled}
+        accessibilityRole='button'
+        accessibilityState={{ disabled }}
         {...props}
       >
-        {IconComponent && (
-          <IconComponent
-            size={24}
-            className={cardButtonVariants.icon({ disabled })}
-          />
-        )}
-        <View className='flex min-w-0 flex-1 flex-col gap-4 text-left body-1-semi-bold'>
-          <Text
-            className={cardButtonVariants.title({ disabled })}
-            numberOfLines={1}
-            ellipsizeMode='tail'
-          >
-            {title}
-          </Text>
-          {description && (
-            <Text
-              className={cardButtonVariants.description({ disabled })}
-              numberOfLines={2}
-              ellipsizeMode='tail'
-            >
-              {description}
-            </Text>
-          )}
-        </View>
-        {!hideChevron && (
-          <ChevronRight
-            size={24}
-            className={cardButtonVariants.icon({ disabled })}
+        {({ pressed }) => (
+          <CardButtonContent
+            appearance={appearance}
+            disabled={disabled}
+            pressed={pressed}
+            icon={icon}
+            title={title}
+            description={description}
+            hideChevron={hideChevron}
           />
         )}
       </Pressable>
     );
   },
 );
+
+type CardButtonContentProps = {
+  appearance: Appearance;
+  disabled: boolean;
+  pressed: boolean;
+  icon: CardButtonProps['icon'];
+  title: string;
+  description?: string;
+  hideChevron?: boolean;
+};
+
+const CardButtonContent: React.FC<CardButtonContentProps> = ({
+  appearance,
+  disabled,
+  pressed,
+  icon,
+  title,
+  description,
+  hideChevron,
+}) => {
+  const IconComponent = icon;
+  const styles = useStyles({ appearance, disabled, pressed });
+
+  return (
+    <View style={styles.container} testID='card-button-content'>
+      {IconComponent && <IconComponent size={24} style={styles.icon} />}
+      <View style={styles.contentWrapper}>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>
+          {title}
+        </Text>
+        {description && (
+          <Text
+            style={styles.description}
+            numberOfLines={2}
+            ellipsizeMode='tail'
+          >
+            {description}
+          </Text>
+        )}
+      </View>
+      {!hideChevron && <ChevronRight size={24} style={styles.icon} />}
+    </View>
+  );
+};
+
 CardButton.displayName = 'CardButton';

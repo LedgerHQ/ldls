@@ -1,0 +1,144 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Style System/lx" />
+
+# lx Property
+
+The `lx` prop is a type-safe styling API that provides autocomplete for design tokens directly on components.
+
+## Overview
+
+Instead of writing raw style values, `lx` constrains you to design system tokens, ensuring consistency across your app.
+
+The `lx` prop is available on utility components that already integrate it:
+- [**Box**](/?path=/docs/utility-box--docs) - Layout container (wraps `View`)
+- [**Text**](/?path=/docs/utility-text--docs) - Typography (wraps `Text`)
+- [**Pressable**](/?path=/docs/utility-pressable--docs) - Interactive container (wraps `Pressable`)
+
+```tsx
+import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
+
+<Box lx={{ padding: 's16', backgroundColor: 'accent', borderRadius: 'md' }}>
+  <Text typography='body1' lx={{ color: 'onAccent' }}>Hello</Text>
+</Box>
+```
+
+---
+
+## View Style Tokens
+
+These tokens are available on `Box` and `Pressable` (and the `lx` prop of `Text` for layout).
+
+### Spacing
+
+Used for `padding`, `margin`, `gap`, and positioning (`top`, `left`, etc.):
+
+```tsx
+<Box lx={{ 
+  padding: 's16',
+  marginTop: 's8',
+  gap: 's12',
+  paddingHorizontal: 's24',
+}} />
+```
+
+### Sizes
+
+Used for `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`:
+
+```tsx
+<Box lx={{ width: 's48', height: 's48', maxWidth: 's320' }} />
+```
+
+### Background Colors
+
+```tsx
+<Box lx={{ backgroundColor: 'accent' }} />
+<Box lx={{ backgroundColor: 'surface' }} />
+<Box lx={{ backgroundColor: 'muted' }} />
+```
+
+### Border
+
+```tsx
+<Box lx={{ 
+  borderRadius: 'md',
+  borderWidth: 's1',
+  borderColor: 'base',
+}} />
+```
+
+### Flex Layout
+
+Standard React Native flex properties are passed through:
+
+```tsx
+<Box lx={{
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}} />
+```
+
+---
+
+## Text Style Tokens
+
+These tokens are **only available on the `Text` component**, in addition to view tokens.
+
+### Text Color
+
+```tsx
+<Text lx={{ color: 'base' }} />
+<Text lx={{ color: 'muted' }} />
+<Text lx={{ color: 'interactive' }} />
+<Text lx={{ color: 'onAccent' }} />
+```
+
+### Typography
+
+Preset font size, weight, line height, and letter spacing:
+
+```tsx
+<Text typography='heading1' />
+<Text typography='body1' />
+<Text typography='body2SemiBold' />
+```
+
+### Text Decoration
+
+```tsx
+<Text lx={{ textDecorationLine: 'underline' }} />
+<Text lx={{ textAlign: 'center' }} />
+<Text lx={{ textTransform: 'uppercase' }} />
+```
+
+---
+
+## Escape Hatch
+
+For values not covered by tokens, use the `style` prop:
+
+```tsx
+<Box 
+  lx={{ padding: 's16', borderRadius: 'md' }}
+  style={{ width: 127, shadowOpacity: 0.1 }}
+/>
+```
+
+## Pressable and Pressed State
+
+For `Pressable`, the `lx` prop only accepts static objects. Use the `style` prop for pressed-state styling:
+
+```tsx
+<Pressable
+  lx={{ padding: 's16', backgroundColor: 'accent' }}
+  style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
+>
+  <Text>Press me</Text>
+</Pressable>
+```
+
+See [Pressable documentation](/?path=/docs/utility-pressable--docs) for more details.
+

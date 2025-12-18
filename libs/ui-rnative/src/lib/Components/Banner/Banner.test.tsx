@@ -1,12 +1,23 @@
 import { describe, it, expect, jest } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { fireEvent, render } from '@testing-library/react-native';
+import React from 'react';
 import { Button } from '../Button';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Banner } from './Banner';
+
+const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    {children}
+  </ThemeProvider>
+);
 
 describe('Banner Component', () => {
   it('should render correctly with minimal props', () => {
     const { getByText } = render(
-      <Banner title='banner-title' description='banner-description' />,
+      <TestWrapper>
+        <Banner title='banner-title' description='banner-description' />
+      </TestWrapper>,
     );
     getByText('banner-title');
     getByText('banner-description');
@@ -14,33 +25,51 @@ describe('Banner Component', () => {
 
   it('should render with different appearances', () => {
     const { getByTestId, rerender } = render(
-      <Banner testID='banner-id' title='Info Banner' appearance='info' />,
+      <TestWrapper>
+        <Banner testID='banner-id' title='Info Banner' appearance='info' />
+      </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-surface');
 
     rerender(
-      <Banner testID='banner-id' title='Success Banner' appearance='success' />,
+      <TestWrapper>
+        <Banner
+          testID='banner-id'
+          title='Success Banner'
+          appearance='success'
+        />
+      </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-success');
 
     rerender(
-      <Banner testID='banner-id' title='Warning Banner' appearance='warning' />,
+      <TestWrapper>
+        <Banner
+          testID='banner-id'
+          title='Warning Banner'
+          appearance='warning'
+        />
+      </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-warning');
 
     rerender(
-      <Banner testID='banner-id' title='Error Banner' appearance='error' />,
+      <TestWrapper>
+        <Banner testID='banner-id' title='Error Banner' appearance='error' />
+      </TestWrapper>,
     );
     expect(getByTestId('banner-id').props.className).toContain('bg-error');
   });
 
   it('should render primary and secondary actions', () => {
     const { getByText } = render(
-      <Banner
-        title='Banner with Primary'
-        primaryAction={<Button>Primary</Button>}
-        secondaryAction={<Button>Secondary</Button>}
-      />,
+      <TestWrapper>
+        <Banner
+          title='Banner with Primary'
+          primaryAction={<Button>Primary</Button>}
+          secondaryAction={<Button>Secondary</Button>}
+        />
+      </TestWrapper>,
     );
 
     getByText('Primary');
@@ -50,10 +79,12 @@ describe('Banner Component', () => {
   it('should handle primaryAction button clicks', () => {
     const onPressMock = jest.fn();
     const { getByText } = render(
-      <Banner
-        title='Banner with Primary'
-        primaryAction={<Button onPress={onPressMock}>Primary</Button>}
-      />,
+      <TestWrapper>
+        <Banner
+          title='Banner with Primary'
+          primaryAction={<Button onPress={onPressMock}>Primary</Button>}
+        />
+      </TestWrapper>,
     );
 
     expect(onPressMock).not.toHaveBeenCalled();
@@ -64,7 +95,9 @@ describe('Banner Component', () => {
   it('should handle onClose button clicks', () => {
     const onCloseMock = jest.fn();
     const { getByTestId } = render(
-      <Banner title='Banner with Primary' onClose={onCloseMock} />,
+      <TestWrapper>
+        <Banner title='Banner with Primary' onClose={onCloseMock} />
+      </TestWrapper>,
     );
 
     expect(onCloseMock).not.toHaveBeenCalled();

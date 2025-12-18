@@ -4,6 +4,7 @@ import { Button } from './Button';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
+import { Box } from '../Utility';
 
 <Meta title='Action/Button' of={ButtonStories} />
 
@@ -60,23 +61,14 @@ Buttons' contents can be of two types:
 
 Buttons come in four different sizes:
 
-- S (**40 px** tall)
-- M (default, **48 px** tall)
-- L (**56 px** tall)
+- `sm` (**40px**)
+- `md` (**48px**, default)
+- `lg` (**56px**)
 
-> Note: For XS size (32 px tall), use the [IconButton](/docs/action-iconbutton--docs) component instead.
+> Note: For `xs` size (32 px), use the [IconButton](/docs/action-iconbutton--docs) component instead.
 
 <Canvas of={ButtonStories.SizesShowcase} />
 
-> **⚠️ Important**: Icon sizes are automatically managed by the Button component based on the selected size. Never override the icon size using className or style props, as this will break the visual consistency of the design system. The Button component ensures proper scaling and alignment of icons across all sizes.
->
-> ```tsx
-> // ✅ Correct: Let Button handle icon sizing
-> <Button size="sm" icon={Settings} accessibilityLabel="Settings">Settings</Button>
->
-> // ❌ Wrong: Don't override icon size [it's not gonna work even if you try]
-> <Button size="sm" icon={Settings} className="w-6 h-6" accessibilityLabel="Settings">Settings</Button>
-> ```
 
 ### States
 
@@ -90,7 +82,7 @@ Buttons dynamically adapt their width to the size of their content, while keepin
 
 When a label is too long, it's truncated to 2 lines, with a maximum width of the button's container:
 
-<Canvas of={ButtonStories.ResponsiveLayout2} />
+<Canvas of={ButtonStories.LabelTruncate} />
 
 > The Button must dynamically resize to its container constraints.
 
@@ -130,13 +122,26 @@ function MyComponent() {
 
 ### Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes:
+While the component comes with predefined styles, you can extend them using the `lx` prop for token-based styling:
 
 ```tsx
 <Button
   size='md'
   appearance='base'
-  className='mt-4' // Custom margin top
+  lx={{ marginTop: 's4' }} // Custom margin top using design tokens
+  onPress={() => {}}
+>
+  Custom Button
+</Button>
+```
+
+You can also use the `style` prop for escape-hatch styling when needed:
+
+```tsx
+<Button
+  size='md'
+  appearance='base'
+  style={{ marginTop: 16 }} // Raw style values
   onPress={() => {}}
 >
   Custom Button
@@ -207,12 +212,13 @@ The Button component is built on React Native's `Pressable` and accepts all its 
 
 The following guidelines are based on our [Button Component API Design ADR](https://ledgerhq.atlassian.net/wiki/spaces/DLS/pages/6003949581/ADR-001+Button+Component+API+Design). These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
-    <DoBlockItem
-      title='Use icon prop'
-      description='Pass icon as a component reference for proper sizing and alignment'
-    >
+  <DoBlockItem
+    title='Use icon prop'
+    description='Pass icon as a component reference for proper sizing and alignment'
+  >
+
 
 {/* prettier-ignore */}
 ```tsx
@@ -291,13 +297,13 @@ import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use className for width"
-      description='Avoid using className to control button width'
+      title="Don't use style for full width"
+      description='Avoid using style to control button width'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Button className='w-full' onPress={() => {}}>
+<Button style={{ width: '100%' }} onPress={() => {}}>
   Full Width
 </Button>
 ```
@@ -331,13 +337,10 @@ import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
   Clickable Looking Button
 </Button>
 ```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <CommonRulesDoAndDont />
-</div>
+</DontBlockItem>
+</DoVsDontRow>
+<CommonRulesDoAndDont />
+</Box>
 
 ## Platform Considerations
 

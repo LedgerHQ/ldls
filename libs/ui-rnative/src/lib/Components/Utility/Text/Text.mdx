@@ -1,11 +1,17 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TextStories from './Text.stories';
+import { CustomTabs, Tab } from '../../../../../.storybook/components';
 
 <Meta title='Utility/Text' of={TextStories} />
 
 # Text
 
-Text is a typography component that wraps React Native's `Text` with a `typography` prop for typography presets and token-constrained style props from the design system theme.
+<CustomTabs>
+  <Tab label="Overview ">
+
+Text is a typography component that wraps React Native's `Text` with a `typography` prop for typography presets and token-constrained style props from the design system theme.  
+
+Text expose the `lx` property to consume tokens from the `ledgerLiveTheme`, see [LX documentation](/?path=/docs/style-system-lx--docs).
 
 ## Interactive Example
 
@@ -68,3 +74,5 @@ For values not covered by tokens, use the `style` prop:
 <Text typography='body1' style={{ letterSpacing: 2 }} />
 ```
 
+</Tab>
+</CustomTabs>

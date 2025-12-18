@@ -1,5 +1,5 @@
 import React, { forwardRef, memo } from 'react';
-import { View, type ViewProps, type ViewStyle } from 'react-native';
+import { StyleSheet, View, type ViewProps } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { resolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { LumenViewStyleLX } from '../types';
@@ -7,30 +7,13 @@ import { areLxPropsEqual } from './areLxPropsEqual';
 
 type ViewRef = React.ElementRef<typeof View>;
 export type StyledViewProps = LumenViewStyleLX & ViewProps;
+
 /**
  * Factory function to create a styled View component.
  *
- * Creates a component that accepts token-constrained style props directly,
- * resolving them to actual values at runtime using the current theme.
- *
- * @param Component - The base View-like component to wrap
- *
- * @example
  * ```tsx
- * import { View } from 'react-native';
- * import { createStyledView } from '@ledgerhq/lumen-ui-rnative/styles';
- *
- * // Create a basic Box
- * const Box = createStyledView(View);
- *
- * // Usage - token props are resolved to actual values
- * <Box width='s400' marginTop='s4' gap='s12' alignItems='center' />
- * <Box padding='s16' backgroundColor='surface' borderRadius='md'>
- *   Content
- * </Box>
- *
- * // style prop for escape hatch
- * <Box marginTop='s4' style={{ width: 127 }} />
+ * // Create a basic View
+ * const StyledView = createStyledView(View);
  * ```
  */
 export const createStyledView = (Component: typeof View) => {
@@ -39,10 +22,7 @@ export const createStyledView = (Component: typeof View) => {
       ({ lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
         const resolvedStyle = resolveViewStyle(theme, lx);
-
-        const finalStyle = style
-          ? ([resolvedStyle, style] as ViewStyle[])
-          : ([resolvedStyle] as ViewStyle[]);
+        const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;
       },

@@ -27,7 +27,6 @@ export const Base: Story = {
       borderRadius: 'md',
     },
   },
-  render: (args) => <Box {...args}></Box>,
   parameters: {
     docs: {
       source: {

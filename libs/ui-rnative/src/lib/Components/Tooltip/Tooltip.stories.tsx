@@ -53,7 +53,7 @@ export const WithCustomContent: Story = {
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut aliquip ex ea commodo consequat.
                 </Text>
-                <Button size='xs' appearance='accent'>
+                <Button size='sm' appearance='accent'>
                   Custom tooltip action
                 </Button>
               </View>
@@ -92,7 +92,7 @@ export const WithMultipleTooltips: Story = {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <InteractiveIcon iconType='filled' aria-label='Info'>
+            <InteractiveIcon iconType='filled' accessibilityLabel='Info'>
               <Information />
             </InteractiveIcon>
           </TooltipTrigger>

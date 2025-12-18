@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import React from 'react';
 import { Plus, Settings } from '../../Symbols';
+import { Box, Text } from '../Utility';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -18,46 +19,16 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     appearance: {
       control: 'select',
-      options: [
-        'base',
-        'gray',
-        'accent',
-        'transparent',
-        'no-background',
-        'red',
-      ],
-      description: 'The visual style appearance of the button',
-    },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'The size of the button',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the button is disabled',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'Whether the button is in loading state',
-    },
-    icon: {
-      control: 'select',
-      description: 'Optional icon component to display',
-      options: ['None', 'Plus', 'Settings'],
-      mapping: {
-        None: undefined,
-        Plus: Plus,
-        Settings: Settings,
+      icon: {
+        control: 'select',
+        description: 'Optional icon component to display',
+        options: ['None', 'Plus', 'Settings'],
+        mapping: {
+          None: undefined,
+          Plus: Plus,
+          Settings: Settings,
+        },
       },
-    },
-    children: {
-      control: 'text',
-      description: 'The content to be displayed inside the button',
-    },
-    isFull: {
-      control: 'boolean',
-      description: 'Whether the button is full width',
     },
   },
 };
@@ -77,6 +48,7 @@ export const Base: Story = {
     appearance: 'base',
     children: 'Base Button',
   },
+  render: (args) => <Button {...args} />,
   parameters: {
     docs: {
       source: {
@@ -146,31 +118,31 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <div className='flex gap-16 p-8'>
+      <Box lx={{ flexDirection: 'row', gap: 's16', padding: 's8' }}>
         {appearances.map(({ name, appearance }) => (
           <Button key={appearance} appearance={appearance}>
             {name}
           </Button>
         ))}
-      </div>
+      </Box>
     );
   },
 };
 
 export const ContentTypesShowcase: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
       <Button appearance='base'>Text Only</Button>
       <Button appearance='base' icon={Plus}>
         With Icon
       </Button>
-    </div>
+    </Box>
   ),
 };
 
 export const SizesShowcase: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
       <Button appearance='base' size='sm'>
         Small
       </Button>
@@ -180,13 +152,13 @@ export const SizesShowcase: Story = {
       <Button appearance='base' size='lg' icon={Settings}>
         Large
       </Button>
-    </div>
+    </Box>
   ),
 };
 
 export const StatesShowcase: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
       <Button appearance='base'>Default</Button>
       <Button appearance='base' disabled>
         Disabled
@@ -194,35 +166,42 @@ export const StatesShowcase: Story = {
       <Button appearance='base' loading>
         Loading
       </Button>
-    </div>
+    </Box>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='flex flex-col gap-8 p-8'>
+    <Box
+      lx={{
+        flexDirection: 'column',
+        gap: 's8',
+        padding: 's8',
+        alignItems: 'flex-start',
+      }}
+    >
       <Button appearance='base'>Short</Button>
       <Button appearance='base'>Medium length button</Button>
       <Button appearance='base' icon={Plus}>
         This is a longer button text to show dynamic width
       </Button>
-    </div>
+    </Box>
   ),
 };
 
-export const ResponsiveLayout2: Story = {
+export const LabelTruncate: Story = {
   render: () => (
-    <>
-      <p className='text-muted body-4-semi-bold'>
+    <Box>
+      <Text typography='body4SemiBold' lx={{ color: 'muted' }}>
         This container has a fixed width.
-      </p>
-      <div className='w-400 bg-muted-pressed p-16'>
+      </Text>
+      <Box lx={{ width: 's400', padding: 's16' }}>
         <Button icon={Plus}>
           This Base button has a fixed width container that should fit the
           content width.
         </Button>
-      </div>
-    </>
+      </Box>
+    </Box>
   ),
 };
 
@@ -244,7 +223,7 @@ export const InteractiveLoadingStates: Story = {
     };
 
     return (
-      <div className='flex items-center gap-4'>
+      <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
         <Button
           appearance='red'
           loading={states.text === 'loading'}
@@ -261,7 +240,7 @@ export const InteractiveLoadingStates: Story = {
         >
           {states.withIcon === 'red' ? 'Settings Error!' : 'With Icon'}
         </Button>
-      </div>
+      </Box>
     );
   },
 };

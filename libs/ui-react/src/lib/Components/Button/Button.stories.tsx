@@ -176,13 +176,13 @@ export const ResponsiveLayout: Story = {
   ),
 };
 
-export const ResponsiveLayout2: Story = {
+export const LabelTruncate: Story = {
   render: () => (
     <>
       <p className='text-muted body-4-semi-bold'>
         This container has a fixed width.
       </p>
-      <div className='w-400 bg-muted-pressed p-16'>
+      <div className='w-400 p-16'>
         <Button icon={Plus}>
           This Base button has a fixed width container that should fit the
           content width.

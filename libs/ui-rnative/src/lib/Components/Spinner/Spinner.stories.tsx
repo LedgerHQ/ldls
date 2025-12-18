@@ -22,11 +22,7 @@ export const Base: Story = {
   args: {
     size: 40,
   },
-  render: ({ size }) => (
-    <div className='flex items-center justify-center'>
-      <Spinner size={size} />
-    </div>
-  ),
+  render: (args) => <Spinner {...args} />,
 };
 
 export const Sizes: Story = {

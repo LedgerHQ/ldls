@@ -87,6 +87,7 @@ export type PrimitiveShadowTokens = {
 };
 
 export type TypographyDefinition = {
+  fontFamily: string;
   fontWeight: any;
   fontSize: number;
   lineHeight: number;
