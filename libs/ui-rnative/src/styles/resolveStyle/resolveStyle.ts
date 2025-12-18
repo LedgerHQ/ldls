@@ -46,7 +46,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
 };
 
 /**
- * Resolve LumenViewStyleProps to React Native ViewStyle
+ * Transform lx props to StyleSheet style object for View
  */
 export const resolveViewStyle = (
   theme: LumenStyleSheetTheme,
@@ -54,7 +54,7 @@ export const resolveViewStyle = (
 ): ViewStyle => resolveStyle<ViewStyle>(theme, lumenStyle, VIEW_PROP_CONFIG);
 
 /**
- * Resolve LumenTextStyleProps to React Native TextStyle
+ * Transform lx props to StyleSheet style object for Text
  */
 export const resolveTextStyle = (
   theme: LumenStyleSheetTheme,

@@ -113,7 +113,6 @@ describe('Pressable Utility Component', () => {
       expect(pressable.props.style.backgroundColor).toBeDefined();
       expect(pressable.props.style.opacity).toBe(1);
     });
-
   });
 
   describe('Interactions', () => {

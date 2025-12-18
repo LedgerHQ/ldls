@@ -1,0 +1,103 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as PressableStories from './Pressable.stories';
+import { CustomTabs, Tab } from '../../../../../.storybook/components';
+
+<Meta title='Utility/Pressable' of={PressableStories} />
+
+# Pressable
+
+<CustomTabs>
+  <Tab label="Overview ">
+Pressable is a utility primitive that wraps React Native's `Pressable` component with token-constrained style props from the design system theme.
+
+Pressable exposes the `lx` property to consume tokens from the `ledgerLiveTheme`, see [lx documentation](/?path=/docs/style-system-lx--docs).
+
+## Interactive Example
+
+<Canvas of={PressableStories.Base} />
+<Controls of={PressableStories.Base} />
+
+## Usage
+
+```tsx
+import { Pressable, Text } from '@ledgerhq/lumen-ui-rnative';
+
+function InteractiveCard() {
+  return (
+    <Pressable
+      lx={{
+        padding: 's16',
+        backgroundColor: 'accent',
+        borderRadius: 'md',
+        gap: 's8',
+      }}
+      onPress={() => console.log('Pressed!')}
+    >
+      <Text>Press me</Text>
+    </Pressable>
+  );
+}
+```
+
+## Pressed State Styling
+
+The `lx` prop only accepts static token objects. For pressed-state styling, use the `style` prop with a function:
+
+```tsx
+import { Pressable, Text } from '@ledgerhq/lumen-ui-rnative';
+
+function ButtonWithFeedback() {
+  return (
+    <Pressable
+      lx={{
+        padding: 's16',
+        backgroundColor: 'accent',
+        borderRadius: 'md',
+      }}
+      style={({ pressed }) => ({
+        opacity: pressed ? 0.8 : 1,
+        transform: [{ scale: pressed ? 0.98 : 1 }],
+      })}
+      onPress={() => console.log('Pressed!')}
+    >
+      <Text>Press me</Text>
+    </Pressable>
+  );
+}
+```
+
+## Composing Styles
+
+The `style` prop supports arrays of objects and functions, making it easy to compose styles:
+
+```tsx
+import { Pressable, Text } from '@ledgerhq/lumen-ui-rnative';
+
+function ComposedButton({ style }) {
+  return (
+    <Pressable
+      lx={{ padding: 's16', borderRadius: 'md' }}
+      style={[
+        style, // Consumer's style (can be object, function, or array)
+        { flex: 1 },
+        ({ pressed }) => ({ opacity: pressed ? 0.8 : 1 }),
+      ]}
+    >
+      <Text>Composed</Text>
+    </Pressable>
+  );
+}
+```
+
+## Escape Hatch
+
+For values not covered by tokens, use raw numbers or the `style` prop:
+
+```tsx
+// Style prop for complete override
+<Pressable lx={{ marginTop: 's4' }} style={{ width: 127 }} />
+```
+
+</Tab>
+</CustomTabs>
+

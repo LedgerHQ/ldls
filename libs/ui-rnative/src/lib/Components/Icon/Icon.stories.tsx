@@ -64,7 +64,9 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
       })}
     >
       <IconComponent size={size} style={{ color: iconColor }} />
-      <Text lx={{ color: 'muted', typography: 'body4' }}>{name}</Text>
+      <Text typography='body4' lx={{ color: 'muted' }}>
+        {name}
+      </Text>
       {copied && (
         <View
           style={{
@@ -79,7 +81,9 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
             backgroundColor: theme.colors.bg.muted,
           }}
         >
-          <Text lx={{ color: 'onAccent', typography: 'body4' }}>Copied!</Text>
+          <Text typography='body4' lx={{ color: 'onAccent' }}>
+            Copied!
+          </Text>
         </View>
       )}
     </Pressable>
@@ -140,7 +144,7 @@ export const IconSizes: StoryObj = {
       <Box lx={{ flexDirection: 'column', gap: 's16' }}>
         {sizes.map((size) => (
           <Box key={size} lx={{ flexDirection: 'column' }}>
-            <Text lx={{ marginBottom: 's16', typography: 'heading3' }}>
+            <Text typography='heading3' lx={{ marginBottom: 's16' }}>
               Size {size}px
             </Text>
             <Box
@@ -210,9 +214,7 @@ export const Gallery: StoryObj = {
 
           {/* Results count */}
           <Box lx={{ marginBottom: 's4' }}>
-            <Text
-              lx={{ marginLeft: 's8', color: 'muted', typography: 'body3' }}
-            >
+            <Text typography='body3' lx={{ marginLeft: 's8', color: 'muted' }}>
               {filteredIcons.length} of {Object.keys(Icons).length} icons
               {searchTerm && ` matching "${searchTerm}"`}
             </Text>
@@ -236,7 +238,7 @@ export const Gallery: StoryObj = {
               paddingVertical: 's16',
             }}
           >
-            <Text lx={{ color: 'muted', typography: 'body2' }}>
+            <Text typography='body2' lx={{ color: 'muted' }}>
               No icons found matching "{searchTerm}"
             </Text>
             <Pressable
@@ -248,7 +250,7 @@ export const Gallery: StoryObj = {
                   : theme.colors.text.interactive,
               })}
             >
-              <Text lx={{ color: 'interactive', typography: 'body2' }}>
+              <Text typography='body2' lx={{ color: 'interactive' }}>
                 Clear search
               </Text>
             </Pressable>

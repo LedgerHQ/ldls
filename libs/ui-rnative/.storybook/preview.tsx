@@ -51,6 +51,8 @@ const preview: Preview = {
         order: [
           'Getting Started',
           ['Introduction', 'Quick Start'],
+          'Style System',
+          ['lx', 'useCreate', 'useTheme'],
           'Tailwind',
           ['Introduction', 'Setup guide', 'Configuration'],
           'Foundations',

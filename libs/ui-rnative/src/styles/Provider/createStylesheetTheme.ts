@@ -16,7 +16,6 @@ export const getNegativeSpacings = <
 };
 
 /**
-/**
  * The theme object from design-core is not directly compatible with React Native's StyleSheet.
  *
  * We must transform and extend the theme so it can be easily used with

@@ -142,19 +142,19 @@ export type LumenTextStyle = LumenViewStyle & {
  */
 export type LumenViewStyleLX = {
   /**
-   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
    */
   lx?: LumenViewStyle;
 };
 export type LumenPressableStyleLX = {
   /**
-   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
    */
   lx?: LumenViewStyle;
 };
 export type LumenTextStyleLX = {
   /**
-   * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
+   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
    */
   lx?: LumenTextStyle;
 };

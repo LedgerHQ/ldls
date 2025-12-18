@@ -215,7 +215,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
         {errorMessage && (
           <View className='mt-8 flex-row items-center gap-2'>
-            <DeleteCircleFill size={16} className='shrink-0 text-error' />
+            <DeleteCircleFill size={16} className='text-error shrink-0' />
             <Text className='text-error body-3'>{errorMessage}</Text>
           </View>
         )}

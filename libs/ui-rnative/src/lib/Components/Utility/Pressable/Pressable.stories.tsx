@@ -27,13 +27,15 @@ export const Base: Story = {
       borderRadius: 'md',
       alignSelf: 'center',
     },
+    style: ({ pressed }) => ({ opacity: pressed ? 0.5 : 1 }),
   },
-  render: (args) => <Pressable {...args}></Pressable>,
+  render: (args) => <Pressable {...args} />,
   parameters: {
     docs: {
       source: {
         code: `
 <Pressable
+  style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
   lx={{
     height: 's48',
     width: 's48',
