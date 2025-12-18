@@ -102,21 +102,30 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
     useImperativeHandle(ref, () => inputRef.current as TextInput, []);
 
-    const animatedInputStyle = useAnimatedStyle(() => ({
-      transform: [{ translateX: translateX.value }],
-      fontSize: animatedFontSize.value,
-      letterSpacing: 0,
-    }));
+    const animatedInputStyle = useAnimatedStyle(
+      () => ({
+        transform: [{ translateX: translateX.value }],
+        fontSize: animatedFontSize.value,
+        letterSpacing: 0,
+      }),
+      [translateX, animatedFontSize],
+    );
 
-    const animatedCurrencyStyle = useAnimatedStyle(() => ({
-      fontSize: animatedFontSize.value,
-      letterSpacing: 0,
-    }));
+    const animatedCurrencyStyle = useAnimatedStyle(
+      () => ({
+        fontSize: animatedFontSize.value,
+        letterSpacing: 0,
+      }),
+      [animatedFontSize],
+    );
 
-    const animatedCaretStyle = useAnimatedStyle(() => ({
-      opacity: caretOpacity.value,
-      height: animatedFontSize.value,
-    }));
+    const animatedCaretStyle = useAnimatedStyle(
+      () => ({
+        opacity: caretOpacity.value,
+        height: animatedFontSize.value,
+      }),
+      [caretOpacity, animatedFontSize],
+    );
 
     useEffect(() => {
       const newSize = getFontSize(inputValue);

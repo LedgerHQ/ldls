@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { Banner } from '../Banner';
-import { TextInput } from './TextInput';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { TextInput, type TextInputProps } from './TextInput';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
@@ -14,25 +15,140 @@ const meta: Meta<typeof TextInput> = {
       },
     },
   },
+  argTypes: {
+    label: {
+      control: 'text',
+      description: 'Floating label text',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text when input is empty',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message to display below input',
+    },
+    editable: {
+      control: 'boolean',
+      description: 'Whether the input is editable',
+    },
+    hideClearButton: {
+      control: 'boolean',
+      description: 'Hide the clear button',
+    },
+    keyboardType: {
+      control: 'select',
+      options: ['default', 'email-address', 'numeric', 'phone-pad', 'url'],
+      description: 'Keyboard type for input',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof TextInput>;
 
-export const WebPreviewWarning: Story = {
-  render: () => (
-    <Banner
-      appearance='warning'
-      title='Unsupported previews on web'
-      description='For this component, previewing stories is currently only supported on mobile. Reanimated causes compatibility issues with the web preview, so for now, please test on-device. We plan to add screenshots or embed Expo Snack in the future.'
+const TextInputStory = (args: TextInputProps & { initialValue?: string }) => {
+  const [value, setValue] = useState(args.initialValue ?? '');
+
+  return (
+    <View className='flex min-h-400 items-center justify-center p-24'>
+      <View className='w-full max-w-320'>
+        <TextInput
+          {...args}
+          value={value}
+          onChangeText={setValue}
+          onClear={args.onClear}
+        />
+      </View>
+    </View>
+  );
+};
+
+export const Base: Story = {
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Username',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
+  },
+};
+
+export const WithContent: Story = {
+  render: (args) => <TextInputStory {...args} initialValue='johndoe' />,
+  args: {
+    label: 'Username',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
+  },
+};
+
+export const WithError: Story = {
+  render: (args) => <TextInputStory {...args} initialValue='ab' />,
+  args: {
+    label: 'Username',
+    errorMessage: 'Username must be at least 3 characters',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
+  },
+};
+
+export const DisabledTextInput: Story = {
+  render: (args) => <TextInputStory {...args} initialValue='johndoe' />,
+  args: {
+    label: 'Username',
+    editable: false,
+    hideClearButton: false,
+    keyboardType: 'default',
+  },
+};
+
+export const WithHiddenClearButton: Story = {
+  render: (args) => (
+    <TextInputStory {...args} initialValue='Content with hidden clear' />
+  ),
+  args: {
+    label: 'Label',
+    editable: true,
+    hideClearButton: true,
+    keyboardType: 'default',
+  },
+};
+
+export const WithClearCallback: Story = {
+  render: (args) => (
+    <TextInputStory
+      {...args}
+      initialValue='Click clear to see callback'
+      onClear={() => alert('Input cleared!')}
     />
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          '⚠️ This component requires testing on a physical device or emulator due to Reanimated compatibility issues with web previews.',
-      },
-    },
+  args: {
+    label: 'Label',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'default',
+  },
+};
+
+export const EmailKeyboard: Story = {
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Email',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'email-address',
+  },
+};
+
+export const PhoneKeyboard: Story = {
+  render: (args) => <TextInputStory {...args} />,
+  args: {
+    label: 'Phone Number',
+    editable: true,
+    hideClearButton: false,
+    keyboardType: 'phone-pad',
   },
 };

@@ -18,7 +18,10 @@ The AddressInput component provides a specialized input field for entering crypt
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=6375-6974&m=dev).
 
-<Canvas of={AddressInputStories.WebPreviewWarning} />
+> ⚠️ **Note on Web Preview:** The Storybook preview below may display visual inconsistencies as certain React Native APIs (such as Reanimated animations) cannot be fully translated to web environments. While the component's functionality should accurately represent the native implementation, it may not render as intended. For the complete native experience, please refer to the component on an actual iOS or Android device.
+
+<Canvas of={AddressInputStories.Base} />
+<Controls of={AddressInputStories.Base} />
 
 ## Anatomy
 
@@ -28,13 +31,19 @@ The AddressInput component provides a specialized input field for entering crypt
 
 The component displays "To:" as the default prefix text, but this can be customized via the `prefix` prop for different use cases like "From:", "Withdraw to:", etc.
 
+<Canvas of={AddressInputStories.WithCustomPrefix} />
+
 ### QR Code Scanner
 
 When `onQrCodeClick` is provided, a QR code scanner icon appears when the input is empty, allowing users to scan addresses directly. Without `onQrCodeClick`, no QR code icon appears.
 
+<Canvas of={AddressInputStories.WithoutQrCode} />
+
 ### Clear Button
 
 A clear button appears **automatically** when input has content, replacing the QR code scanner icon (if present).
+
+<Canvas of={AddressInputStories.WithContent} />
 
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
@@ -42,13 +51,13 @@ A clear button appears **automatically** when input has content, replacing the Q
 
 Use `hideClearButton` to prevent the clear button from appearing.
 
-#### **Extending the Clear Behavior**
-
-Use `onClear` to extend the default clear behavior with custom logic.
+<Canvas of={AddressInputStories.WithHiddenClearButton} />
 
 ### Error State
 
 The input supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
+
+<Canvas of={AddressInputStories.WithError} />
 
 The error message will be automatically:
 
@@ -60,6 +69,8 @@ The error message will be automatically:
 ### Disabled State
 
 The input can be disabled using the `editable` prop set to `false`.
+
+<Canvas of={AddressInputStories.DisabledAddressInput} />
 
 ## Controlled vs Uncontrolled
 

@@ -1,11 +1,6 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, { useState, useEffect, useCallback, useId } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 import { ChevronDown } from '../../Symbols';
 import { useControllableState, extractTextFromChildren } from '../../utils';
 import { SlotPressable } from '../Slot';
@@ -122,8 +117,6 @@ export const Select: React.FC<SelectProps> = ({
 };
 Select.displayName = 'Select';
 
-const AnimatedLabel = Animated.createAnimatedComponent(Animated.Text);
-
 export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   children,
   className,
@@ -176,26 +169,6 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   const hasValue = value !== undefined && value !== '';
   const isFloatingLabel = hasValue;
 
-  const labelFontSize = useSharedValue(hasValue ? 10 : 14);
-  const labelTop = useSharedValue(hasValue ? 10 : 16);
-
-  const animatedLabelStyle = useAnimatedStyle(
-    () => ({
-      fontSize: labelFontSize.value,
-      top: labelTop.value,
-    }),
-    [],
-  );
-
-  useEffect(() => {
-    labelFontSize.value = withTiming(isFloatingLabel ? 10 : 14, {
-      duration: 200,
-    });
-    labelTop.value = withTiming(isFloatingLabel ? 10 : 16, {
-      duration: 200,
-    });
-  }, [isFloatingLabel, labelFontSize, labelTop]);
-
   const Comp = asChild ? SlotPressable : Pressable;
 
   return (
@@ -206,17 +179,17 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
       {...props}
     >
       {finalLabel && (
-        <AnimatedLabel
+        <Text
           className={cn(
-            'absolute left-16 text-muted w-full',
+            'absolute left-16 text-muted w-full transition-all duration-200',
+            isFloatingLabel ? 'top-6 body-4' : 'top-14 body-2',
             disabled && 'text-disabled',
             labelClassName,
           )}
-          style={animatedLabelStyle}
           numberOfLines={1}
         >
           {finalLabel}
-        </AnimatedLabel>
+        </Text>
       )}
       <View
         className={cn(

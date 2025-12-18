@@ -47,7 +47,7 @@ export const AddressInput = React.forwardRef<
     suffix ||
     (onQrCodeClick && (
       <InteractiveIcon
-        iconType='filled'
+        iconType='stroked'
         onPress={onQrCodeClick}
         accessibilityLabel={t('components.addressInput.qrCodeAriaLabel')}
       >
