@@ -1,10 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import {
-  LumenStyleSheet,
-  mergePressableStyle,
-  mergeStyles,
-} from '../../../styles';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
 import { Pressable } from '../Utility';
 
@@ -137,13 +133,11 @@ export const CardButton = React.forwardRef<
     },
     ref,
   ) => {
-    const IconComponent = icon;
-
     return (
       <Pressable
         ref={ref}
         lx={lx}
-        style={mergePressableStyle(style, { flex: 1 })}
+        style={[style, { flex: 1 }]}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}
@@ -154,7 +148,7 @@ export const CardButton = React.forwardRef<
             appearance={appearance}
             disabled={disabled}
             pressed={pressed}
-            IconComponent={IconComponent}
+            icon={icon}
             title={title}
             description={description}
             hideChevron={hideChevron}
@@ -169,7 +163,7 @@ type CardButtonContentProps = {
   appearance: Appearance;
   disabled: boolean;
   pressed: boolean;
-  IconComponent: CardButtonProps['icon'];
+  icon: CardButtonProps['icon'];
   title: string;
   description?: string;
   hideChevron?: boolean;
@@ -179,11 +173,12 @@ const CardButtonContent: React.FC<CardButtonContentProps> = ({
   appearance,
   disabled,
   pressed,
-  IconComponent,
+  icon,
   title,
   description,
   hideChevron,
 }) => {
+  const IconComponent = icon;
   const styles = useStyles({ appearance, disabled, pressed });
 
   return (

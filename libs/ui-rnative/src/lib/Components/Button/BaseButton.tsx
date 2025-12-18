@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
-import { mergePressableStyle } from '../../../styles/utils';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
 import { Pressable } from '../Utility';
@@ -161,7 +160,7 @@ export const BaseButton = React.forwardRef<
       <Pressable
         ref={ref}
         lx={lx}
-        style={mergePressableStyle(style, rootStyles.root)}
+        style={[style, rootStyles.root]}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}

@@ -1,10 +1,6 @@
 import React from 'react';
 import { Linking, Text, View } from 'react-native';
-import {
-  LumenStyleSheet,
-  mergePressableStyle,
-  mergeStyles,
-} from '../../../styles';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
 import { Pressable } from '../Utility';
@@ -138,7 +134,7 @@ export const Link = React.forwardRef<
       <Pressable
         ref={ref}
         lx={lx}
-        style={mergePressableStyle(style, { flexShrink: 1 })}
+        style={[style, { flexShrink: 1 }]}
         onPress={handlePress}
         accessibilityRole='link'
         {...props}

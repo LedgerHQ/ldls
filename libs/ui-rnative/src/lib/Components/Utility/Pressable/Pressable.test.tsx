@@ -114,35 +114,6 @@ describe('Pressable Utility Component', () => {
       expect(pressable.props.style.opacity).toBe(1);
     });
 
-    it('should support function-based lx prop', () => {
-      renderWithProvider(
-        <Pressable
-          testID='pressable'
-          lx={({ pressed }) => ({
-            padding: pressed ? 's16' : 's8',
-          })}
-        />,
-      );
-      const pressable = screen.getByTestId('pressable');
-      expect(pressable.props.style.padding).toBe(8);
-    });
-
-    it('should support both function-based lx and style props', () => {
-      renderWithProvider(
-        <Pressable
-          testID='pressable'
-          lx={({ pressed }) => ({
-            padding: pressed ? 's16' : 's8',
-          })}
-          style={({ pressed }) => ({
-            opacity: pressed ? 0.7 : 1,
-          })}
-        />,
-      );
-      const pressable = screen.getByTestId('pressable');
-      expect(pressable.props.style.padding).toBe(8);
-      expect(pressable.props.style.opacity).toBe(1);
-    });
   });
 
   describe('Interactions', () => {

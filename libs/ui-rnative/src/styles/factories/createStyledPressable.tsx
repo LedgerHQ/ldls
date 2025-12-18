@@ -12,14 +12,52 @@ import { LumenPressableStyleLX } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
 type PressableRef = React.ElementRef<typeof Pressable>;
-export type StyledPressableProps = LumenPressableStyleLX & PressableProps;
+type StyleFn = (state: PressableStateCallbackType) => ViewStyle;
+type StyleItem = ViewStyle | StyleFn | StyleItem[] | null | undefined;
+
+export type StyledPressableProps = LumenPressableStyleLX &
+  Omit<PressableProps, 'style'> & {
+    style?: StyleItem;
+  };
+
+/**
+ * Check if any style item (including nested arrays) is a function
+ */
+const hasStyleFunction = (style: StyleItem): boolean => {
+  if (Array.isArray(style)) {
+    return style.some((s) => hasStyleFunction(s));
+  }
+  return typeof style === 'function';
+};
+
+/**
+ * Resolve all style functions in a style tree
+ */
+const resolveStyleFunctions = (
+  style: StyleItem,
+  state: PressableStateCallbackType,
+): ViewStyle | (ViewStyle | null | undefined)[] | null | undefined => {
+  if (Array.isArray(style)) {
+    return style.map((s) => resolveStyleFunctions(s, state)) as (
+      | ViewStyle
+      | null
+      | undefined
+    )[];
+  }
+  return typeof style === 'function' ? style(state) : style;
+};
 
 /**
  * Factory function to create a styled Pressable component.
  *
+ * Supports `style` as an object, function, or array of objects/functions (including nested).
+ *
  * ```tsx
  * // Create a styled Pressable
  * const Pressable = createStyledPressable(RNPressable);
+ *
+ * // Usage with array of styles
+ * <Pressable style={[props.style, ({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })]} />
  * ```
  */
 export const createStyledPressable = (Component: typeof Pressable) => {
@@ -27,23 +65,19 @@ export const createStyledPressable = (Component: typeof Pressable) => {
     forwardRef<PressableRef, StyledPressableProps>(
       ({ lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
+        const resolvedLxStyle = resolveViewStyle(theme, lx);
 
-        const isLxFunction = typeof lx === 'function';
-        const isStyleFunction = typeof style === 'function';
-        const hasFunction = isLxFunction || isStyleFunction;
-
-        if (!hasFunction) {
-          const resolvedStyle = resolveViewStyle(theme, lx);
-          const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
+        if (!hasStyleFunction(style)) {
+          const finalStyle = StyleSheet.flatten([
+            resolvedLxStyle,
+            style as ViewStyle,
+          ]);
           return <Component ref={ref} {...props} style={finalStyle} />;
         }
 
         const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
-          const computedLx = isLxFunction ? lx(state) : lx;
-          const resolvedStyle = resolveViewStyle(theme, computedLx);
-          const computedStyle = isStyleFunction ? style(state) : style;
-
-          return StyleSheet.flatten([resolvedStyle, computedStyle]);
+          const resolvedStyle = resolveStyleFunctions(style, state);
+          return StyleSheet.flatten([resolvedLxStyle, resolvedStyle]);
         };
 
         return <Component ref={ref} {...props} style={mergedStyle} />;

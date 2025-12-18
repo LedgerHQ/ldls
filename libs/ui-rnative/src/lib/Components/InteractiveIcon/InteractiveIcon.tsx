@@ -1,10 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { View } from 'react-native';
-import {
-  LumenStyleSheet,
-  mergePressableStyle,
-  mergeStyles,
-} from '../../../styles';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 
 import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { Pressable } from '../Utility';
@@ -90,10 +86,7 @@ export const InteractiveIcon: FC<InteractiveIconProps> = ({
   return (
     <Pressable
       lx={lx}
-      style={mergePressableStyle(style, {
-        alignItems: 'center',
-        justifyContent: 'center',
-      })}
+      style={[style, { alignItems: 'center', justifyContent: 'center' }]}
       accessibilityRole='button'
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}

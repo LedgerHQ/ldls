@@ -50,7 +50,7 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
     <Pressable
       key={name}
       onPress={handleClick}
-      lx={({ pressed }) => ({
+      lx={{
         position: 'relative',
         flexDirection: 'column',
         alignItems: 'center',
@@ -58,7 +58,9 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
         borderRadius: 'sm',
         padding: 's16',
         width: 's144',
-        backgroundColor: pressed ? 'mutedPressed' : 'baseTransparent',
+      }}
+      style={({ pressed }) => ({
+        backgroundColor: pressed ? theme.colors.bg.mutedPressed : 'transparent',
       })}
     >
       <IconComponent size={size} style={{ color: iconColor }} />

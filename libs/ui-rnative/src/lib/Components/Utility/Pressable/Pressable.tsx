@@ -6,7 +6,7 @@ import { createStyledPressable } from '../../../../styles';
  *
  * Pressable is a wrapper around React Native's Pressable that accepts design
  * token-based style props directly, providing type-safe styling with autocomplete
- * for spacing, sizes, colors, etc. Supports function-based styles for pressed states.
+ * for spacing, sizes, colors, etc. Use the `style` prop for pressed-state styling.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/utility-pressable--docs Storybook}
  *
@@ -22,9 +22,9 @@ import { createStyledPressable } from '../../../../styles';
  *   <Text>Content</Text>
  * </Pressable>
  *
- *  // With function-based style for pressed state
+ * // With function-based style for pressed state
  * <Pressable
- *   lx={({ pressed }) => ({ padding: 's16', backgroundColor: pressed ? 'surface' : 'surfacePressed' })}
+ *   lx={{ padding: 's16', backgroundColor: 'surface' }}
  *   style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
  * >
  *   <Text>Press me</Text>

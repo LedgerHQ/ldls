@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { Pressable } from 'react-native';
 import { Box } from './Box';
 
 const meta: Meta<typeof Box> = {
@@ -27,7 +28,13 @@ export const Base: Story = {
       borderRadius: 'md',
     },
   },
-  render: (args) => <Box {...args}></Box>,
+  render: (args) => (
+    <Pressable
+      style={({ pressed }) => ({ backgroundColor: pressed ? 'red' : 'blue' })}
+    >
+      <Box {...args}></Box>
+    </Pressable>
+  ),
   parameters: {
     docs: {
       source: {

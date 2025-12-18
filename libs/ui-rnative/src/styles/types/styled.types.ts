@@ -1,8 +1,4 @@
-import type {
-  ViewStyle,
-  TextStyle,
-  PressableStateCallbackType,
-} from 'react-native';
+import type { ViewStyle, TextStyle } from 'react-native';
 
 import type { LumenStyleSheetTheme } from './theme.types';
 
@@ -153,9 +149,8 @@ export type LumenViewStyleLX = {
 export type LumenPressableStyleLX = {
   /**
    * Support LX property - [see documentation](/?path=/docs/getting-started-lx--docs).
-   * Can be a static object or a function that receives pressed state.
    */
-  lx?: LumenViewStyle | ((state: PressableStateCallbackType) => LumenViewStyle);
+  lx?: LumenViewStyle;
 };
 export type LumenTextStyleLX = {
   /**

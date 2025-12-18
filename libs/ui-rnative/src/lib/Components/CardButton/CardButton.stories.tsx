@@ -59,6 +59,7 @@ export const Base: Story = {
     appearance: 'base',
     title: 'Basic Card Button',
   },
+  render: (args) => <CardButton {...args} />,
   parameters: {
     docs: {
       source: {

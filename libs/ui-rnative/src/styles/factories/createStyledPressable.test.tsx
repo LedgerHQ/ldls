@@ -1,7 +1,12 @@
 import { describe, expect, it, jest } from '@jest/globals';
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import React, { createRef } from 'react';
-import { Pressable, PressableProps, View } from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  PressableStateCallbackType,
+  View,
+} from 'react-native';
 import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
 import { createStyledPressable } from './createStyledPressable';
 
@@ -113,36 +118,73 @@ describe('createStyledPressable', () => {
     expect(pressable.props.style.opacity).toBe(1);
   });
 
-  it('should support function-based lx prop', () => {
-    renderWithProvider(
-      <StyledPressable
-        testID='pressable'
-        lx={({ pressed }) => ({
-          backgroundColor: pressed ? 'accent' : 'surface',
-        })}
-      />,
-    );
+  describe('array style support', () => {
+    it('should support array of static styles', () => {
+      renderWithProvider(
+        <StyledPressable
+          testID='pressable'
+          lx={{ padding: 's16' }}
+          style={[{ opacity: 0.5 }, { flex: 1 }]}
+        />,
+      );
 
-    const pressable = screen.getByTestId('pressable');
-    expect(pressable.props.style.backgroundColor).toBe('#F0F0F0');
-  });
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.padding).toBe(16);
+      expect(pressable.props.style.opacity).toBe(0.5);
+      expect(pressable.props.style.flex).toBe(1);
+    });
 
-  it('should support both function-based lx and style props', () => {
-    renderWithProvider(
-      <StyledPressable
-        testID='pressable'
-        lx={({ pressed }) => ({
-          backgroundColor: pressed ? 'accent' : 'surface',
-        })}
-        style={({ pressed }) => ({
-          opacity: pressed ? 0.7 : 1,
-        })}
-      />,
-    );
+    it('should support array with function-based style', () => {
+      renderWithProvider(
+        <StyledPressable
+          testID='pressable'
+          lx={{ backgroundColor: 'surface' }}
+          style={[
+            { flex: 1 },
+            ({ pressed }: PressableStateCallbackType) => ({
+              opacity: pressed ? 0.7 : 1,
+            }),
+          ]}
+        />,
+      );
 
-    const pressable = screen.getByTestId('pressable');
-    expect(pressable.props.style.backgroundColor).toBe('#F0F0F0');
-    expect(pressable.props.style.opacity).toBe(1);
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.backgroundColor).toBe('#F0F0F0');
+      expect(pressable.props.style.flex).toBe(1);
+      expect(pressable.props.style.opacity).toBe(1);
+    });
+
+    it('should support array with mixed static and function styles', () => {
+      renderWithProvider(
+        <StyledPressable
+          testID='pressable'
+          style={[
+            { padding: 10 },
+            ({ pressed }: PressableStateCallbackType) => ({
+              opacity: pressed ? 0.5 : 1,
+            }),
+            { margin: 5 },
+          ]}
+        />,
+      );
+
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.padding).toBe(10);
+      expect(pressable.props.style.margin).toBe(5);
+      expect(pressable.props.style.opacity).toBe(1);
+    });
+
+    it('should handle null/undefined in style array', () => {
+      renderWithProvider(
+        <StyledPressable
+          testID='pressable'
+          style={[null, { opacity: 0.8 }, undefined]}
+        />,
+      );
+
+      const pressable = screen.getByTestId('pressable');
+      expect(pressable.props.style.opacity).toBe(0.8);
+    });
   });
 
   it('should forward ref', () => {
