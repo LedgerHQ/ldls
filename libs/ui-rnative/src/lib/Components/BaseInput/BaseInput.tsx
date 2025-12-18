@@ -98,7 +98,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             className={cn(inputClassName)}
             // TODO: eventually move to token system
             // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
-            style={[styles.input, { fontWeight: '500', lineHeight: 0 }]}
+            style={styles.input}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -132,9 +132,9 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
         </Pressable>
 
         {errorMessage && (
-          <View className='mt-8 flex-row items-center gap-2'>
-            <DeleteCircleFill size={16} className='text-error shrink-0' />
-            <Text className='text-error body-3'>{errorMessage}</Text>
+          <View style={styles.errorContainer}>
+            <DeleteCircleFill size={16} color={styles.errorIcon.color} />
+            <Text style={styles.errorText}>{errorMessage}</Text>
           </View>
         )}
       </View>
@@ -151,53 +151,70 @@ const useStyles = ({
   isFocused: boolean;
   isEditable: boolean;
 }) => {
-  return LumenStyleSheet.useCreate((t) => {
-    return {
-      container: mergeStyles(
-        {
-          position: 'relative',
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        container: mergeStyles(
+          {
+            position: 'relative',
+            flexDirection: 'row',
+            height: t.sizes.s48,
+            width: t.sizes.full,
+            alignItems: 'center',
+            gap: t.spacings.s8,
+            paddingHorizontal: t.spacings.s16,
+            borderRadius: t.borderRadius.sm,
+            backgroundColor: t.colors.bg.muted,
+            borderWidth: t.borderWidth.s2,
+            borderColor: 'transparent',
+            overflow: 'hidden',
+          },
+          hasError && {
+            borderColor: t.colors.border.error,
+          },
+          !isEditable && {
+            backgroundColor: t.colors.bg.disabled,
+          },
+          isFocused &&
+            !hasError &&
+            isEditable && { borderColor: t.colors.border.active },
+        ),
+        input: mergeStyles(
+          {
+            position: 'relative',
+            flex: 1,
+            paddingTop: t.spacings.s16,
+            paddingBottom: t.spacings.s2,
+            height: t.sizes.full,
+            width: t.sizes.full,
+            color: t.colors.text.base,
+            backgroundColor: t.colors.bg.muted,
+            outlineWidth: 0,
+            outlineColor: 'transparent',
+            ...t.typographies.body2SemiBold,
+          },
+          !isEditable && {
+            backgroundColor: t.colors.bg.disabled,
+            color: t.colors.text.disabled,
+          },
+        ),
+        errorContainer: {
+          marginTop: t.spacings.s8,
           flexDirection: 'row',
-          height: t.sizes.s48,
-          width: t.sizes.full,
           alignItems: 'center',
-          gap: t.spacings.s8,
-          paddingHorizontal: t.spacings.s16,
-          borderRadius: t.borderRadius.sm,
-          backgroundColor: t.colors.bg.muted,
-          borderWidth: t.borderWidth.s2,
-          borderColor: 'transparent',
-          overflow: 'hidden',
+          gap: t.spacings.s2,
         },
-        hasError && {
-          borderColor: t.colors.border.error,
+        errorIcon: {
+          color: t.colors.text.error,
         },
-        !isEditable && {
-          backgroundColor: t.colors.bg.disabled,
+        errorText: {
+          color: t.colors.text.error,
+          ...t.typographies.body3,
         },
-        isFocused &&
-          !hasError &&
-          isEditable && { borderColor: t.colors.border.active },
-      ),
-      input: mergeStyles(
-        {
-          position: 'relative',
-          flex: 1,
-          paddingTop: t.spacings.s16,
-          paddingBottom: t.spacings.s2,
-          height: t.sizes.full,
-          width: t.sizes.full,
-          color: t.colors.text.base,
-          backgroundColor: t.colors.bg.muted,
-          outlineWidth: 0,
-          outlineColor: 'transparent',
-        },
-        !isEditable && {
-          backgroundColor: t.colors.bg.disabled,
-          color: t.colors.text.disabled,
-        },
-      ),
-    };
-  });
+      };
+    },
+    [hasError, isFocused, isEditable],
+  );
 };
 
 const useFloatingLabelStyles = ({
@@ -213,30 +230,36 @@ const useFloatingLabelStyles = ({
   hasError: boolean;
   isEditable: boolean;
 }) =>
-  LumenStyleSheet.useCreate((t) => {
-    return {
-      label: mergeStyles(
-        {
-          position: 'absolute',
-          left: t.spacings.s16,
-          width: t.sizes.full,
-          color: t.colors.text.muted,
-        },
-        isFloating
-          ? { ...t.typographies.body4, top: t.spacings.s6 }
-          : { ...t.typographies.body2, top: t.spacings.s12 },
-        hasContent &&
-          showClearButton && {
-            width: '92%',
+  LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        label: mergeStyles(
+          {
+            position: 'absolute',
+            left: t.spacings.s16,
+            top: t.spacings.s12,
+            width: t.sizes.full,
+            color: t.colors.text.muted,
+            ...t.typographies.body2,
           },
-        !isEditable && {
-          color: t.colors.text.disabled,
-        },
-        hasError && {
-          color: t.colors.text.error,
-        },
-      ),
-    };
-  });
+          isFloating && {
+            ...t.typographies.body4,
+            top: t.spacings.s6,
+          },
+          hasContent &&
+            showClearButton && {
+              width: '92%',
+            },
+          !isEditable && {
+            color: t.colors.text.disabled,
+          },
+          hasError && {
+            color: t.colors.text.error,
+          },
+        ),
+      };
+    },
+    [isFloating, hasContent, showClearButton, hasError, isEditable],
+  );
 
 BaseInput.displayName = 'BaseInput';
