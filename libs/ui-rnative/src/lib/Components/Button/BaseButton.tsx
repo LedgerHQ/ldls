@@ -22,7 +22,6 @@ const useRootStyles = ({ isFull }: { isFull: boolean }) => {
       return {
         root: {
           width: isFull ? t.sizes.full : 'auto',
-          borderRadius: t.borderRadius.full,
         },
       };
     },
@@ -101,6 +100,7 @@ const useStyles = ({
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
+            borderRadius: t.borderRadius.full,
             backgroundColor: bgColors[appearance],
           },
           iconOnly
