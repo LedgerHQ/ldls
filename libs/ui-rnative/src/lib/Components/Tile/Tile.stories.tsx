@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { View } from 'react-native';
 import {
   Settings,
   Plus,
@@ -11,6 +10,7 @@ import {
 } from '../../Symbols';
 import { Spot } from '../Spot/Spot';
 import { Tag } from '../Tag/Tag';
+import { Box } from '../Utility';
 import { Tile } from './Tile';
 
 const meta: Meta<typeof Tile> = {
@@ -55,7 +55,7 @@ export const Base: Story = {
     title: 'Item with Spot and Description',
     description: 'Additional information',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
-    className: 'max-w-256',
+    lx: { maxWidth: 's256' },
   },
   parameters: {
     docs: {
@@ -67,7 +67,7 @@ export const Base: Story = {
   leadingContent={<Spot appearance="icon" icon={Settings} />}
   onLongPress={() => console.log('Secondary action')}
   onPress={() => console.log('Primary action')}
-  className="max-w-256"
+  lx={{ maxWidth: 's256' }}
 />
 `,
       },
@@ -81,7 +81,7 @@ export const WithTrailingContent: Story = {
     description: 'Additional information',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     trailingContent: <Tag label='New' appearance='base' />,
-    className: 'max-w-256',
+    lx: { maxWidth: 's256' },
   },
   parameters: {
     docs: {
@@ -93,7 +93,7 @@ export const WithTrailingContent: Story = {
   leadingContent={<Spot appearance="icon" icon={Settings} />}
   trailingContent={<Tag label="New" appearance="base" />}
   onLongPress={() => console.log('Long press - secondary action')}
-  className="max-w-256"
+  lx={{ maxWidth: 's256' }}
 />
 `,
       },
@@ -107,7 +107,7 @@ export const WithSecondaryAction: Story = {
     description: 'LongPress to trigger secondary action',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     onLongPress: () => alert('Long press - secondary action'),
-    className: 'max-w-256',
+    lx: { maxWidth: 's256' },
   },
   parameters: {
     docs: {
@@ -118,7 +118,7 @@ export const WithSecondaryAction: Story = {
   description="Additional information"
   onLongPress={() => // do stuff}
   leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="max-w-256"
+  lx={{ maxWidth: 's256' }}
 />
 `,
       },
@@ -128,45 +128,47 @@ export const WithSecondaryAction: Story = {
 
 export const LeadingContentVariantsShowcase: Story = {
   render: () => (
-    <View className='flex flex-row'>
+    <Box lx={{ flexDirection: 'row' }}>
       <Tile
         title='User'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={User} />}
-        className='max-w-128'
+        lx={{ maxWidth: 's128' }}
       />
       <Tile
         title='Wallet'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Wallet} />}
-        className='max-w-128'
+        lx={{ maxWidth: 's128' }}
       />
       <Tile
         title='Cart'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Cart} />}
-        className='max-w-128'
+        lx={{ maxWidth: 's128' }}
       />
       <Tile
         title='Apps'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Apps} />}
-        className='max-w-128'
+        lx={{ maxWidth: 's128' }}
       />
       <Tile
         title='Chart'
         description='With description'
         leadingContent={<Spot appearance='icon' icon={Chart1} />}
-        className='max-w-128'
+        lx={{ maxWidth: 's128' }}
       />
-    </View>
+    </Box>
   ),
 };
 
 export const HorizontalList: Story = {
   render: () => (
-    <View className='flex flex-col gap-16'>
-      <View className='flex w-480 flex-row bg-base'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+      <Box
+        lx={{ flexDirection: 'row', width: 's480', backgroundColor: 'base' }}
+      >
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
@@ -175,40 +177,47 @@ export const HorizontalList: Story = {
             leadingContent={<Spot appearance='icon' icon={Apps} />}
           />
         ))}
-      </View>
-      <View className='flex w-480 flex-row overflow-x-auto bg-base'>
+      </Box>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          width: 's480',
+          overflow: 'scroll',
+          backgroundColor: 'base',
+        }}
+      >
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}
             title='Long Title that should truncate appropriately'
             description='Long description that should truncate appropriately'
             leadingContent={<Spot appearance='icon' icon={Apps} />}
-            className='w-208 shrink-0'
+            lx={{ width: 's208', flexShrink: 0 }}
           />
         ))}
-      </View>
-    </View>
+      </Box>
+    </Box>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className='flex w-full flex-col gap-16'>
-      <View>
+    <Box lx={{ width: 'full', flexDirection: 'column', gap: 's16' }}>
+      <Box>
         <Tile
           title='Item fill width'
           description='Description fill width'
           leadingContent={<Spot appearance='icon' icon={Apps} />}
         />
-      </View>
-      <View className='flex items-center justify-center'>
+      </Box>
+      <Box lx={{ alignItems: 'center', justifyContent: 'center' }}>
         <Tile
-          className='w-224'
+          lx={{ width: 's224' }}
           title='Long Item with fixed width'
           description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
           leadingContent={<Spot appearance='icon' icon={Plus} />}
         />
-      </View>
-    </View>
+      </Box>
+    </Box>
   ),
 };
