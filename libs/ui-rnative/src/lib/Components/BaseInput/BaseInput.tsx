@@ -5,69 +5,18 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  Pressable,
-  Text,
-  TextInput,
-  type TextInputProps,
-  View,
-} from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
-
-export type BaseInputProps = TextInputProps & {
-  /**
-   *  The label text that floats above the input when focused or filled.
-   */
-  label?: string;
-  /**
-   *  Additional class names to apply to the container element.
-   */
-  className?: string;
-  /**
-   *  Additional class names to apply to the input element.
-   */
-  inputClassName?: string;
-  /**
-   *  Additional class names to apply to the label element.
-   */
-  labelClassName?: string;
-  /**
-   * An optional error message displayed below the input.
-   */
-  errorMessage?: string;
-  /**
-   * Custom content to render after the input (right side in LTR).
-   * @example suffix={<Icon />}
-   */
-  suffix?: React.ReactNode;
-  /**
-   * Custom content to render before the input (left side in LTR).
-   * @example prefix={<Icon />}
-   */
-  prefix?: React.ReactNode;
-  /**
-   * Optional function to extend the default clear behavior with custom logic.
-   */
-  onClear?: () => void;
-  /**
-   * Hide the clear button (shown by default when input has content).
-   */
-  hideClearButton?: boolean;
-};
-
-const baseContainerStyles = cn(
-  'relative flex-row h-48 w-full items-center gap-8 px-16 rounded-sm bg-muted transition-colors border-2 border-transparent overflow-hidden',
-);
-
-const baseInputStyles = cn(
-  'relative flex-1 pt-16 pb-2 size-full text-base transition-colors bg-muted outline-none',
-);
+import { Pressable } from '../Utility';
+import { BaseInputProps } from './BaseInput.types';
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
     {
+      style,
       label,
       errorMessage,
       className,
@@ -120,15 +69,24 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       props.onClear?.();
     };
 
+    const styles = useStyles({
+      hasError: !!errorMessage,
+      isFocused,
+      isEditable: editable,
+    });
+
+    const floatingLabelStyles = useFloatingLabelStyles({
+      isFloating: isFloatingLabel,
+      hasContent,
+      showClearButton,
+      hasError: !!errorMessage,
+      isEditable: editable,
+    });
+
     return (
       <View className={className}>
         <Pressable
-          className={cn(
-            baseContainerStyles,
-            errorMessage && 'border-error',
-            isFocused && !errorMessage && editable && 'border-active',
-            !editable && 'bg-disabled text-disabled',
-          )}
+          style={styles.container}
           onPress={() => inputRef.current?.focus()}
           disabled={!editable}
         >
@@ -137,15 +95,10 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           <TextInput
             ref={inputRef}
             value={value}
-            className={cn(
-              baseInputStyles,
-              !label && 'py-0',
-              !editable && 'bg-disabled text-disabled',
-              inputClassName,
-            )}
+            className={cn(inputClassName)}
             // TODO: eventually move to token system
             // `body-1` is inconsistent in RN, e.g., line-height is calculated differently
-            style={{ fontWeight: '500', lineHeight: 0 }}
+            style={[styles.input, { fontWeight: '500', lineHeight: 0 }]}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -157,14 +110,8 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
           {label && (
             <Text
-              className={cn(
-                'absolute left-16 text-muted w-full transition-all duration-200',
-                isFloatingLabel ? 'top-6 body-4' : 'top-12 body-2',
-                hasContent && showClearButton && 'w-[92%]',
-                !editable && 'text-disabled',
-                errorMessage && 'text-error',
-                labelClassName,
-              )}
+              className={cn(labelClassName)}
+              style={floatingLabelStyles.label}
               numberOfLines={1}
             >
               {label}
@@ -194,5 +141,102 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     );
   },
 );
+
+const useStyles = ({
+  hasError,
+  isFocused,
+  isEditable,
+}: {
+  hasError: boolean;
+  isFocused: boolean;
+  isEditable: boolean;
+}) => {
+  return LumenStyleSheet.useCreate((t) => {
+    return {
+      container: mergeStyles(
+        {
+          position: 'relative',
+          flexDirection: 'row',
+          height: t.sizes.s48,
+          width: t.sizes.full,
+          alignItems: 'center',
+          gap: t.spacings.s8,
+          paddingHorizontal: t.spacings.s16,
+          borderRadius: t.borderRadius.sm,
+          backgroundColor: t.colors.bg.muted,
+          borderWidth: t.borderWidth.s2,
+          borderColor: 'transparent',
+          overflow: 'hidden',
+        },
+        hasError && {
+          borderColor: t.colors.border.error,
+        },
+        !isEditable && {
+          backgroundColor: t.colors.bg.disabled,
+        },
+        isFocused &&
+          !hasError &&
+          isEditable && { borderColor: t.colors.border.active },
+      ),
+      input: mergeStyles(
+        {
+          position: 'relative',
+          flex: 1,
+          paddingTop: t.spacings.s16,
+          paddingBottom: t.spacings.s2,
+          height: t.sizes.full,
+          width: t.sizes.full,
+          color: t.colors.text.base,
+          backgroundColor: t.colors.bg.muted,
+          outlineWidth: 0,
+          outlineColor: 'transparent',
+        },
+        !isEditable && {
+          backgroundColor: t.colors.bg.disabled,
+          color: t.colors.text.disabled,
+        },
+      ),
+    };
+  });
+};
+
+const useFloatingLabelStyles = ({
+  isFloating,
+  hasContent,
+  showClearButton,
+  hasError,
+  isEditable,
+}: {
+  isFloating: boolean;
+  hasContent: boolean;
+  showClearButton: boolean;
+  hasError: boolean;
+  isEditable: boolean;
+}) =>
+  LumenStyleSheet.useCreate((t) => {
+    return {
+      label: mergeStyles(
+        {
+          position: 'absolute',
+          left: t.spacings.s16,
+          width: t.sizes.full,
+          color: t.colors.text.muted,
+        },
+        isFloating
+          ? { ...t.typographies.body4, top: t.spacings.s6 }
+          : { ...t.typographies.body2, top: t.spacings.s12 },
+        hasContent &&
+          showClearButton && {
+            width: '92%',
+          },
+        !isEditable && {
+          color: t.colors.text.disabled,
+        },
+        hasError && {
+          color: t.colors.text.error,
+        },
+      ),
+    };
+  });
 
 BaseInput.displayName = 'BaseInput';
