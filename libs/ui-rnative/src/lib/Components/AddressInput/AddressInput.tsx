@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput } from 'react-native';
-import { LumenStyleSheet } from 'src/styles';
 import { useCommonTranslation } from '../../../i18n';
+import { LumenStyleSheet } from '../../../styles';
 import { QrCode } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -58,7 +58,6 @@ export const AddressInput = React.forwardRef<
       ref={ref}
       prefix={actualPrefix}
       suffix={actualSuffix}
-      style={styles.input}
       {...props}
     />
   );
@@ -68,12 +67,8 @@ const useStyles = () => {
   return LumenStyleSheet.useCreate((t) => {
     return {
       prefix: {
-        fontSize: 16,
-        fontWeight: '500',
-        color: t.colors.text.base,
-      },
-      input: {
         ...t.typographies.body1,
+        color: t.colors.text.base,
       },
     };
   });

@@ -1,4 +1,3 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, {
   useCallback,
   useEffect,
@@ -17,17 +16,16 @@ import { BaseInputProps } from './BaseInput.types';
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
     {
-      style,
       label,
       errorMessage,
-      className,
-      inputClassName,
-      labelClassName,
       hideClearButton,
       onChangeText: onChangeTextProp,
       editable = true,
       prefix,
       suffix,
+      style,
+      inputStyle,
+      labelStyle,
       ...props
     },
     ref,
@@ -99,7 +97,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     });
 
     return (
-      <View className={className}>
+      <View style={style}>
         <Pressable
           style={styles.container}
           onPress={() => inputRef.current?.focus()}
@@ -110,8 +108,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           <TextInput
             ref={inputRef}
             value={value}
-            className={cn(inputClassName)}
-            style={[styles.input, { lineHeight: 0 }, style]}
+            style={[styles.input, { lineHeight: 0 }, inputStyle]}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
@@ -127,6 +124,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
               style={[
                 floatingLabelStyles.label,
                 floatingLabelStyles.animatedLabel,
+                labelStyle,
               ]}
               numberOfLines={1}
             >
@@ -207,11 +205,12 @@ const useStyles = ({
             backgroundColor: t.colors.bg.muted,
             outlineWidth: 0,
             outlineColor: 'transparent',
-            ...t.typographies.body2,
+            ...t.typographies.body1,
           },
           hasLabel && {
             paddingTop: t.spacings.s16,
             paddingBottom: t.spacings.s2,
+            ...t.typographies.body2,
           },
           !isEditable && {
             backgroundColor: t.colors.bg.disabled,

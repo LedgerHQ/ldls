@@ -1,22 +1,27 @@
-import { type TextInputProps } from 'react-native';
+import {
+  TextStyle,
+  type StyleProp,
+  type TextInputProps,
+  type ViewStyle,
+} from 'react-native';
 
-export type BaseInputProps = TextInputProps & {
+export type BaseInputProps = Omit<TextInputProps, 'style'> & {
   /**
-   *  The label text that floats above the input when focused or filled.
+   * The label text that floats above the input when focused or filled.
    */
   label?: string;
   /**
-   *  Additional class names to apply to the container element.
+   * Additional styles to apply to the container element.
    */
-  className?: string;
+  style?: StyleProp<ViewStyle>;
   /**
-   *  Additional class names to apply to the input element.
+   * Additional styles to apply to the input element.
    */
-  inputClassName?: string;
+  inputStyle: StyleProp<TextStyle>;
   /**
-   *  Additional class names to apply to the label element.
+   * Additional styles to apply to the label element.
    */
-  labelClassName?: string;
+  labelStyle: StyleProp<TextStyle>;
   /**
    * An optional error message displayed below the input.
    */
