@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AddressInput, type AddressInputProps } from './AddressInput';
+import { AddressInput } from './AddressInput';
+import { AddressInputProps } from './AddressInput.types';
 
 const meta: Meta<typeof AddressInput> = {
   component: AddressInput,

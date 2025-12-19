@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AmountInput, type AmountInputProps } from './AmountInput';
+import { AmountInput } from './AmountInput';
+import { type AmountInputProps } from './AmountInput.types';
 
 const meta: Meta<typeof AmountInput> = {
   component: AmountInput,

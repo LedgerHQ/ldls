@@ -11,7 +11,7 @@ import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Pressable } from '../Utility';
-import { BaseInputProps } from './BaseInput.types';
+import { type BaseInputProps } from './BaseInput.types';
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
