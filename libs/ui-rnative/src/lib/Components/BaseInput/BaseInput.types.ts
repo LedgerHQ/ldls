@@ -17,11 +17,11 @@ export type BaseInputProps = Omit<TextInputProps, 'style'> & {
   /**
    * Additional styles to apply to the input element.
    */
-  inputStyle: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   /**
    * Additional styles to apply to the label element.
    */
-  labelStyle: StyleProp<TextStyle>;
+  labelStyle?: StyleProp<TextStyle>;
   /**
    * An optional error message displayed below the input.
    */

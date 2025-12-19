@@ -115,6 +115,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             editable={editable}
             autoCapitalize='none'
             autoCorrect={false}
+            selectionColor={theme.colors.text.active}
             placeholderTextColor={theme.colors.text.muted}
             {...props}
           />
