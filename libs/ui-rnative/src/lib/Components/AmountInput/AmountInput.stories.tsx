@@ -59,7 +59,7 @@ const AmountInputStory = (args: AmountInputProps) => {
   const [value, setValue] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
+    <View className='flex min-h-96 items-center justify-center p-24'>
       <View className='w-full max-w-320'>
         <AmountInput {...args} value={value} onChangeText={setValue} />
       </View>

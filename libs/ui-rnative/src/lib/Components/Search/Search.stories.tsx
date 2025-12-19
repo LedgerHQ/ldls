@@ -42,7 +42,7 @@ const SearchStory = (args: SearchProps & { initialValue?: string }) => {
   const [query, setQuery] = useState(args.initialValue ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
+    <View className='flex min-h-96 items-center justify-center p-24'>
       <View className='w-full max-w-320'>
         <Search
           {...args}

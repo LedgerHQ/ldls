@@ -16,6 +16,9 @@ import { BaseInputProps } from './BaseInput.types';
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
     {
+      style,
+      inputStyle,
+      labelStyle,
       label,
       errorMessage,
       hideClearButton,
@@ -23,9 +26,6 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       editable = true,
       prefix,
       suffix,
-      style,
-      inputStyle,
-      labelStyle,
       ...props
     },
     ref,
