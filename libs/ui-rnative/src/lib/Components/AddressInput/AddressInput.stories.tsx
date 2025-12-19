@@ -56,7 +56,7 @@ const AddressInputStory = (args: AddressInputProps) => {
         padding: 24,
       }}
     >
-      <View style={{ width: '100%', maxWidth: 320 }}>
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <AddressInput
           {...args}
           value={address}
@@ -114,7 +114,7 @@ const AddressInputWithoutQrStory = (args: AddressInputProps) => {
         padding: 24,
       }}
     >
-      <View style={{ width: '100%', maxWidth: 320 }}>
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <AddressInput
           {...args}
           value={address}

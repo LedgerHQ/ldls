@@ -133,17 +133,23 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             </Animated.Text>
           )}
 
-          {showClearButton && (
-            <InteractiveIcon
-              iconType='stroked'
-              onPress={handleClear}
-              accessibilityLabel={t('components.baseInput.clearInputAriaLabel')}
-            >
-              <DeleteCircleFill size={20} />
-            </InteractiveIcon>
+          {(suffix || (!hideClearButton && editable)) && (
+            <View style={styles.suffixContainer}>
+              {showClearButton ? (
+                <InteractiveIcon
+                  iconType='stroked'
+                  onPress={handleClear}
+                  accessibilityLabel={t(
+                    'components.baseInput.clearInputAriaLabel',
+                  )}
+                >
+                  <DeleteCircleFill size={20} />
+                </InteractiveIcon>
+              ) : (
+                suffix
+              )}
+            </View>
           )}
-
-          {!showClearButton && suffix}
         </Pressable>
 
         {errorMessage && (
@@ -230,6 +236,11 @@ const useStyles = ({
         errorText: {
           color: t.colors.text.error,
           ...t.typographies.body3,
+        },
+        suffixContainer: {
+          minWidth: t.sizes.s20,
+          alignItems: 'center',
+          justifyContent: 'center',
         },
       };
     },

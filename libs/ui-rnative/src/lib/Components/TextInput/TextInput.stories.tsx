@@ -61,7 +61,7 @@ const TextInputStory = (args: TextInputProps & { initialValue?: string }) => {
         padding: 24,
       }}
     >
-      <View style={{ width: '100%', maxWidth: 320 }}>
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <TextInput
           {...args}
           value={value}
