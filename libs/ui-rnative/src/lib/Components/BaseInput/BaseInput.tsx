@@ -33,6 +33,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     ref,
   ) => {
     const { t } = useCommonTranslation();
+    const { theme } = LumenStyleSheet.useTheme();
     const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -86,6 +87,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
       hasError: !!errorMessage,
       isFocused,
       isEditable: editable,
+      hasLabel: !!label,
     });
 
     const floatingLabelStyles = useFloatingLabelStyles({
@@ -109,13 +111,14 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             ref={inputRef}
             value={value}
             className={cn(inputClassName)}
-            style={[styles.input, { lineHeight: 0 }]}
+            style={[styles.input, { lineHeight: 0 }, style]}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}
             editable={editable}
             autoCapitalize='none'
             autoCorrect={false}
+            placeholderTextColor={theme.colors.text.muted}
             {...props}
           />
 
@@ -159,10 +162,12 @@ const useStyles = ({
   hasError,
   isFocused,
   isEditable,
+  hasLabel,
 }: {
   hasError: boolean;
   isFocused: boolean;
   isEditable: boolean;
+  hasLabel: boolean;
 }) => {
   return LumenStyleSheet.useCreate(
     (t) => {
@@ -196,15 +201,17 @@ const useStyles = ({
           {
             position: 'relative',
             flex: 1,
-            paddingTop: t.spacings.s16,
-            paddingBottom: t.spacings.s2,
             height: t.sizes.full,
             width: t.sizes.full,
             color: t.colors.text.base,
             backgroundColor: t.colors.bg.muted,
             outlineWidth: 0,
             outlineColor: 'transparent',
-            ...t.typographies.body2SemiBold,
+            ...t.typographies.body2,
+          },
+          hasLabel && {
+            paddingTop: t.spacings.s16,
+            paddingBottom: t.spacings.s2,
           },
           !isEditable && {
             backgroundColor: t.colors.bg.disabled,
@@ -226,7 +233,7 @@ const useStyles = ({
         },
       };
     },
-    [hasError, isFocused, isEditable],
+    [hasError, isFocused, isEditable, hasLabel],
   );
 };
 

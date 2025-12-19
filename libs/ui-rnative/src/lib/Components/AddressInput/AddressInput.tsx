@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TextInput } from 'react-native';
+import { LumenStyleSheet } from 'src/styles';
 import { useCommonTranslation } from '../../../i18n';
 import { QrCode } from '../../Symbols';
 import { BaseInput, type BaseInputProps } from '../BaseInput';
@@ -32,13 +33,10 @@ export const AddressInput = React.forwardRef<
   AddressInputProps
 >(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
   const { t } = useCommonTranslation();
+  const styles = useStyles();
+
   const actualPrefix = (
-    <Text
-      className='text-nowrap text-base group-has-[:disabled]:text-disabled'
-      accessible={false}
-      // TODO: use theme object here
-      style={{ fontSize: 16, fontWeight: '500' }}
-    >
+    <Text accessible={false} style={styles.prefix}>
       {prefix}
     </Text>
   );
@@ -60,11 +58,25 @@ export const AddressInput = React.forwardRef<
       ref={ref}
       prefix={actualPrefix}
       suffix={actualSuffix}
-      // TODO: use theme object here
-      style={{ fontSize: 16, fontWeight: '500' }}
+      style={styles.input}
       {...props}
     />
   );
 });
+
+const useStyles = () => {
+  return LumenStyleSheet.useCreate((t) => {
+    return {
+      prefix: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: t.colors.text.base,
+      },
+      input: {
+        ...t.typographies.body1,
+      },
+    };
+  });
+};
 
 AddressInput.displayName = 'AddressInput';
