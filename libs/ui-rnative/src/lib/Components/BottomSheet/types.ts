@@ -1,5 +1,5 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import { ViewProps } from 'react-native';
+import { StyledViewProps } from '../../../styles';
 
 export type BottomSheetProps = PropsWithChildren & {
   /**
@@ -110,7 +110,7 @@ export type BottomSheetProps = PropsWithChildren & {
   enableBlurKeyboardOnGesture?: boolean;
 };
 
-export type BottomSheetHeaderProps = ViewProps & {
+export type BottomSheetHeaderProps = {
   /**
    * The appearance of the header.
    * @default 'compact'
@@ -130,4 +130,4 @@ export type BottomSheetHeaderProps = ViewProps & {
    * @default false
    */
   spacing?: boolean;
-};
+} & Omit<StyledViewProps, 'children'>;
