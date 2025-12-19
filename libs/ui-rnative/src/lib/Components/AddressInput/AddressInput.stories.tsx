@@ -47,8 +47,16 @@ const AddressInputStory = (args: AddressInputProps) => {
   const [address, setAddress] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-96 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 320 }}>
         <AddressInput
           {...args}
           value={address}
@@ -97,8 +105,16 @@ const AddressInputWithoutQrStory = (args: AddressInputProps) => {
   const [address, setAddress] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-96 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 320 }}>
         <AddressInput
           {...args}
           value={address}

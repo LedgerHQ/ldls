@@ -25,7 +25,7 @@ The AddressInput component provides a specialized input field for entering crypt
 
 ## Anatomy
 
-> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+> **Layout:** The AddressInput component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
 
 ### Customizable Prefix
 
@@ -296,14 +296,14 @@ function MyComponent() {
 
 ### With Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes:
+While the component comes with predefined styles, you can extend them using the `style` prop:
 
 ```tsx
 <AddressInput
   placeholder='Enter address or ENS'
   value={address}
   onChangeText={setAddress}
-  className='max-w-md' // Control width
+  style={{ maxWidth: 320 }} // Control width
   onQrCodeClick={() => openQrScanner()}
 />
 ```
@@ -398,7 +398,7 @@ function TransactionForm() {
         onChangeText={setRecipientAddress}
         errorMessage={addressError}
         onQrCodeClick={() => openQrScanner()}
-        className='max-w-md'
+        style={{ maxWidth: 320 }}
       />
       {/* Other transaction fields */}
     </View>
@@ -441,7 +441,7 @@ function AddressForm() {
 
 ## Do's and Don'ts
 
-<div className='flex flex-col gap-24'>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use controlled input pattern'
