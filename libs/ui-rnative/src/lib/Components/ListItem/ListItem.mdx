@@ -1,8 +1,8 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Box } from '../Utility';
 import * as ListItemStories from './ListItem.stories';
 import { ListItem } from './ListItem';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
-import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/ListItem' of={ListItemStories} />
@@ -144,18 +144,17 @@ function MyComponent() {
 The ListItem supports arbitrary trailing content variants. Below are some examples:
 
 ```tsx
-import { ListItem, Tag } from '@ledgerhq/lumen-ui-rnative';
+import { ListItem, Spot, Tag, Box, Text } from '@ledgerhq/lumen-ui-rnative';
 import {
   Settings,
   PenEdit,
   ChevronRight,
   User,
 } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View, Text } from 'react-native';
 
 function ListVariants() {
   return (
-    <View className='flex flex-col gap-2 max-w-md'>
+    <Box lx={{ flexDirection: 'column', gap: 's0', maxWidth: 's320' }}>
       {/* Chevron - For navigation items */}
       <ListItem
         title='Chevron Variant'
@@ -171,10 +170,12 @@ function ListVariants() {
         description='Current available funds'
         leadingContent={<Spot appearance='icon' icon={User} />}
         trailingContent={
-          <View className='text-right'>
-            <Text className='body-2-semi-bold'>42.00</Text>
-            <Text className='text-muted body-3'>USD</Text>
-          </View>
+          <Box lx={{ alignItems: 'flex-end' }}>
+            <Text typography='body2SemiBold'>42.00</Text>
+            <Text typography='body3' lx={{ color: 'muted' }}>
+              USD
+            </Text>
+          </Box>
         }
         onPress={() => console.log('View balance')}
       />
@@ -204,7 +205,7 @@ function ListVariants() {
         leadingContent={<Spot appearance='icon' icon={User} />}
         onPress={() => console.log('Simple action')}
       />
-    </View>
+    </Box>
   );
 }
 ```
@@ -215,7 +216,7 @@ Add a tag to the description for additional status information:
 
 ```tsx
 import { ListItem, Tag } from '@ledgerhq/lumen-ui-rnative';
-import { Bolt } from '@ledgerhq/lumen-ui-rnative/symbols';
+import { Bolt, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
@@ -242,10 +243,13 @@ Disable the ListItem to prevent interaction:
 
 ### Responsive Layout
 
-ListItem handles truncation responsively. Use container styles to control behavior:
+ListItem handles truncation responsively. Use `Box` to control the container:
 
 ```tsx
-<View className='w-240 bg-base p-4'>
+import { ListItem, Spot, Box } from '@ledgerhq/lumen-ui-rnative';
+import { User, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
+
+<Box lx={{ width: 's256', backgroundColor: 'base', padding: 's4' }}>
   <ListItem
     title='Very Long Title That Will Truncate'
     description='Very long description that will also truncate appropriately'
@@ -253,61 +257,27 @@ ListItem handles truncation responsively. Use container styles to control behavi
     trailingContent={<ChevronRight size={24} />}
     onPress={() => console.log('Pressed!')}
   />
-</View>
+</Box>
 ```
 
 ### Custom Styling
 
-Use `className` for layout purposes only, such as maximum width:
+Use `lx` prop for layout purposes only, such as maximum width:
 
 ```tsx
 <ListItem
   title='Constrained Width'
   description='This item has a maximum width applied'
-  className='max-w-md'
+  lx={{ maxWidth: 's320' }}
   onPress={() => console.log('Pressed!')}
 />
 ```
 
 ## Do's and Don'ts
 
-The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
-
-<div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use in ScrollView with proper grouping'
-      description='ListItems work best when grouped in ScrollView containers for list contexts'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<ScrollView className='max-w-320'>
-  <ListItem title='Item 1' onPress={() => {}} />
-  <ListItem title='Item 2' onPress={() => {}} />
-</ScrollView>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use for non-list contexts"
-      description='Avoid using ListItem as standalone elements with custom borders or margins'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<ScrollView className='max-w-320'>
-  <ListItem title='Standalone' className='m-4 border' onPress={() => {}} />
-  <ListItem title='Another' className='m-4 border' onPress={() => {}} />
-</ScrollView>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

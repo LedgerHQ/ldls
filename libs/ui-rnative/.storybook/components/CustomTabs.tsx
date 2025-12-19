@@ -25,7 +25,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
   }
 
   return (
-    <div>
+    <div className='max-w-full'>
       {/* Tab buttons */}
       <div className='mb-24 flex gap-24'>
         {tabs.map((tab, idx) => (

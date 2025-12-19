@@ -1,39 +1,82 @@
-import { cva } from 'class-variance-authority';
 import React from 'react';
-import { Pressable, View, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { Pressable } from '../Utility';
+
 import { ListItemProps } from './ListItem.types';
 
-const listItemVariants = {
-  root: cva(
-    [
-      'flex h-64 w-full flex-row items-center gap-16 rounded-md bg-base-transparent px-8 py-12 transition-colors',
-    ],
-    {
-      variants: {
-        disabled: {
-          true: 'cursor-default bg-base-transparent active:bg-base-transparent',
-          false:
-            'cursor-pointer bg-base-transparent active:bg-base-transparent-pressed',
+const useStyles = ({
+  disabled,
+  pressed,
+}: {
+  disabled: boolean;
+  pressed: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        container: mergeStyles(
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            height: t.sizes.s64,
+            width: t.sizes.full,
+            gap: t.spacings.s16,
+            borderRadius: t.borderRadius.md,
+            backgroundColor: 'transparent',
+            paddingHorizontal: t.spacings.s8,
+            paddingVertical: t.spacings.s12,
+          },
+          pressed && {
+            backgroundColor: t.colors.bg.baseTransparentPressed,
+          },
+          disabled && {
+            backgroundColor: 'transparent',
+          },
+        ),
+        contentWrapper: {
+          flex: 1,
+          minWidth: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: t.spacings.s12,
         },
-      },
+        textWrapper: {
+          flex: 1,
+          minWidth: 0,
+          flexDirection: 'column',
+          gap: t.spacings.s4,
+        },
+        title: mergeStyles(t.typographies.body2SemiBold, {
+          color: disabled ? t.colors.text.disabled : t.colors.text.base,
+        }),
+        descriptionRow: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: t.spacings.s4,
+        },
+        descriptionTextWrapper: {
+          minWidth: 0,
+          flexShrink: 1,
+        },
+        description: mergeStyles(t.typographies.body3, {
+          color: disabled ? t.colors.text.disabled : t.colors.text.muted,
+          minWidth: 0,
+          flexShrink: 1,
+        }),
+        descriptionTagWrapper: {
+          height: t.sizes.s16,
+          flexShrink: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+        },
+        trailingWrapper: {
+          flexShrink: 0,
+        },
+      };
     },
-  ),
-  title: cva('body-2-semi-bold', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-base',
-      },
-    },
-  }),
-  description: cva('min-w-0 shrink body-3', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-muted',
-      },
-    },
-  }),
+    [disabled, pressed],
+  );
 };
 
 /**
@@ -43,7 +86,7 @@ const listItemVariants = {
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-listitem--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-listitem--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
  *
  * @example
@@ -78,51 +121,90 @@ const listItemVariants = {
 export const ListItem = React.forwardRef<
   React.ElementRef<typeof Pressable>,
   ListItemProps
->((props, ref) => {
-  const {
-    title,
-    description,
-    leadingContent,
-    descriptionTag,
-    trailingContent,
-    style,
-    disabled = false,
-    className,
-    ...touchableProps
-  } = props;
+>(
+  (
+    {
+      title,
+      description,
+      leadingContent,
+      descriptionTag,
+      trailingContent,
+      lx,
+      style,
+      disabled = false,
+      ...touchableProps
+    },
+    ref,
+  ) => {
+    return (
+      <Pressable
+        ref={ref}
+        lx={lx}
+        style={style}
+        disabled={disabled}
+        accessibilityRole='button'
+        accessibilityState={{ disabled }}
+        {...touchableProps}
+      >
+        {({ pressed }) => (
+          <ListItemContent
+            disabled={disabled}
+            pressed={pressed}
+            title={title}
+            description={description}
+            leadingContent={leadingContent}
+            descriptionTag={descriptionTag}
+            trailingContent={trailingContent}
+          />
+        )}
+      </Pressable>
+    );
+  },
+);
+
+type ListItemContentProps = {
+  disabled: boolean;
+  pressed: boolean;
+  title: string;
+  description?: string;
+  leadingContent?: React.ReactNode;
+  descriptionTag?: React.ReactNode;
+  trailingContent?: React.ReactNode;
+};
+
+const ListItemContent: React.FC<ListItemContentProps> = ({
+  disabled,
+  pressed,
+  title,
+  description,
+  leadingContent,
+  descriptionTag,
+  trailingContent,
+}) => {
+  const styles = useStyles({ disabled, pressed });
 
   return (
-    <Pressable
-      ref={ref}
-      disabled={disabled}
-      className={listItemVariants.root({ disabled, className })}
-      style={style}
-      {...touchableProps}
-    >
-      <View className='flex min-w-0 flex-1 flex-row items-center gap-12'>
+    <View style={styles.container} testID='list-item-content'>
+      <View style={styles.contentWrapper}>
         {leadingContent}
-        <View className='flex min-w-0 flex-1 flex-col gap-4'>
-          <Text
-            numberOfLines={1}
-            ellipsizeMode='tail'
-            className={listItemVariants.title({ disabled })}
-          >
+        <View style={styles.textWrapper}>
+          <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>
             {title}
           </Text>
 
           {description && (
-            <View className='flex flex-row items-center gap-4'>
-              <View className='min-w-0 shrink'>
+            <View style={styles.descriptionRow}>
+              <View style={styles.descriptionTextWrapper}>
                 <Text
                   numberOfLines={1}
                   ellipsizeMode='tail'
-                  className={listItemVariants.description({ disabled })}
+                  style={styles.description}
                 >
                   {description}
                 </Text>
               </View>
               {descriptionTag && (
-                <View className='flex h-16 shrink-0 flex-row items-center'>
+                <View style={styles.descriptionTagWrapper}>
                   {descriptionTag}
                 </View>
               )}
@@ -130,9 +212,11 @@ export const ListItem = React.forwardRef<
           )}
         </View>
       </View>
-      {trailingContent && <View className='shrink-0'>{trailingContent}</View>}
-    </Pressable>
+      {trailingContent && (
+        <View style={styles.trailingWrapper}>{trailingContent}</View>
+      )}
+    </View>
   );
-});
+};
 
 ListItem.displayName = 'ListItem';

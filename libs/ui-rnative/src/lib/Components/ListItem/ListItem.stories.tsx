@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { View, Text } from 'react-native';
 import {
   Settings,
   Plus,
@@ -11,21 +10,24 @@ import {
   Bolt,
   ChevronRight,
 } from '../../Symbols';
-import { cn } from '../../utils';
 import { Spot } from '../Spot/Spot';
 import { Tag } from '../Tag/Tag';
+import { Box, Text } from '../Utility';
 import { ListItem } from './ListItem';
 
 const Balance = ({ disabled }: { disabled?: boolean }) => {
   return (
-    <View className='items-end'>
-      <Text className={cn('body-2-semi-bold', disabled && 'text-disabled')}>
+    <Box lx={{ alignItems: 'flex-end' }}>
+      <Text
+        typography='body2SemiBold'
+        lx={{ color: disabled ? 'disabled' : 'base' }}
+      >
         42.00
       </Text>
-      <Text className={cn('text-muted body-3', disabled && 'text-disabled')}>
+      <Text typography='body3' lx={{ color: disabled ? 'disabled' : 'muted' }}>
         USD
       </Text>
-    </View>
+    </Box>
   );
 };
 
@@ -95,7 +97,7 @@ export const Base: Story = {
     title: 'Item with Icon and Description',
     leadingContent: <Spot appearance='icon' icon={Settings} />,
     description: 'Additional information',
-    className: 'max-w-320',
+    lx: { maxWidth: 's320' },
   },
   parameters: {
     docs: {
@@ -122,16 +124,16 @@ export const WithDescriptionTag: Story = {
     ),
   },
   render: (args) => (
-    <View className='max-w-320'>
+    <Box lx={{ maxWidth: 's320' }}>
       <ListItem {...args} />
-    </View>
+    </Box>
   ),
 };
 
 export const TrailingContentVariantsShowcase: Story = {
   render: () => {
     return (
-      <View className='flex max-w-256 flex-col'>
+      <Box lx={{ flexDirection: 'column', maxWidth: 's256' }}>
         <ListItem
           title='Caret Variant'
           description='With description'
@@ -161,7 +163,7 @@ export const TrailingContentVariantsShowcase: Story = {
           description='With description'
           leadingContent={<Spot appearance='icon' icon={Chart1} />}
         />
-      </View>
+      </Box>
     );
   },
 };
@@ -169,13 +171,18 @@ export const TrailingContentVariantsShowcase: Story = {
 export const StateShowcase: Story = {
   render: () => {
     return (
-      <View className='flex flex-row gap-32'>
-        <View className='flex max-w-256 flex-col'>
+      <Box lx={{ flexDirection: 'row', gap: 's32' }}>
+        <Box lx={{ flexDirection: 'column', maxWidth: 's256' }}>
           <ListItem
             title='Caret Variant'
             description='With description'
             leadingContent={<Spot appearance='icon' icon={User} />}
-            trailingContent={<ChevronRight size={24} className='text-muted' />}
+            trailingContent={
+              <ChevronRight
+                size={24}
+                style={{ color: 'var(--color-text-muted)' }}
+              />
+            }
           />
           <ListItem
             title='Value Variant'
@@ -200,15 +207,18 @@ export const StateShowcase: Story = {
             description='With description'
             leadingContent={<Spot appearance='icon' icon={Chart1} />}
           />
-        </View>
-        <View className='flex max-w-256 flex-col'>
+        </Box>
+        <Box lx={{ flexDirection: 'column', maxWidth: 's256' }}>
           <ListItem
             title='Caret Variant'
             description='With description'
             leadingContent={<Spot appearance='icon' icon={User} disabled />}
             disabled
             trailingContent={
-              <ChevronRight size={24} className='text-disabled' />
+              <ChevronRight
+                size={24}
+                style={{ color: 'var(--color-text-disabled)' }}
+              />
             }
           />
           <ListItem
@@ -223,20 +233,19 @@ export const StateShowcase: Story = {
             description='With description'
             leadingContent={<Spot appearance='icon' icon={Apps} disabled />}
             disabled
-            trailingContent={
-              <Tag
-                label='New'
-                appearance='accent'
-                className='!bg-muted-transparent !text-disabled'
-              />
-            }
+            trailingContent={<Tag label='New' appearance='accent' disabled />}
           />
           <ListItem
             title='Icon Variant'
             description='With description'
             leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
             disabled
-            trailingContent={<PenEdit size={24} className='text-disabled' />}
+            trailingContent={
+              <PenEdit
+                size={24}
+                style={{ color: 'var(--color-text-disabled)' }}
+              />
+            }
           />
           <ListItem
             title='None Variant'
@@ -244,39 +253,63 @@ export const StateShowcase: Story = {
             leadingContent={<Spot appearance='icon' icon={Chart1} disabled />}
             disabled
           />
-        </View>
-      </View>
+        </Box>
+      </Box>
     );
   },
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <View className='w-320 bg-muted-pressed p-16'>
-      <Text className='mb-16 text-muted body-4-semi-bold'>
+    <Box
+      lx={{
+        width: 's320',
+        backgroundColor: 'mutedPressed',
+        padding: 's16',
+      }}
+    >
+      <Text
+        typography='body4SemiBold'
+        lx={{ marginBottom: 's16', color: 'muted' }}
+      >
         Container: 320px wide
       </Text>
-      <View className='flex flex-col gap-0'>
+      <Box lx={{ flexDirection: 'column', gap: 's0' }}>
         <ListItem
           title='Short Title'
           description='Short description'
           leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
+          trailingContent={
+            <ChevronRight
+              size={24}
+              style={{ color: 'var(--color-text-muted)' }}
+            />
+          }
         />
         <ListItem
           title='Long Title that should truncate appropriately'
           description='Long description that should truncate appropriately'
           leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
+          trailingContent={
+            <ChevronRight
+              size={24}
+              style={{ color: 'var(--color-text-muted)' }}
+            />
+          }
         />
         <ListItem
           title='Long Title that should truncate appropriately'
           description='Long description that should truncate appropriately'
           descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
           leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
+          trailingContent={
+            <ChevronRight
+              size={24}
+              style={{ color: 'var(--color-text-muted)' }}
+            />
+          }
         />
-      </View>
-    </View>
+      </Box>
+    </Box>
   ),
 };
