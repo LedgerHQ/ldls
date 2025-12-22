@@ -6,6 +6,8 @@ import { Button } from '../Button';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Banner } from './Banner';
 
+const { colors } = ledgerLiveThemes.dark;
+
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
     {children}
@@ -29,7 +31,9 @@ describe('Banner Component', () => {
         <Banner testID='banner-id' title='Info Banner' appearance='info' />
       </TestWrapper>,
     );
-    expect(getByTestId('banner-id').props.className).toContain('bg-surface');
+    expect(getByTestId('banner-id').props.style.backgroundColor).toBe(
+      colors.bg.surface,
+    );
 
     rerender(
       <TestWrapper>
@@ -40,7 +44,9 @@ describe('Banner Component', () => {
         />
       </TestWrapper>,
     );
-    expect(getByTestId('banner-id').props.className).toContain('bg-success');
+    expect(getByTestId('banner-id').props.style.backgroundColor).toBe(
+      colors.bg.success,
+    );
 
     rerender(
       <TestWrapper>
@@ -51,14 +57,18 @@ describe('Banner Component', () => {
         />
       </TestWrapper>,
     );
-    expect(getByTestId('banner-id').props.className).toContain('bg-warning');
+    expect(getByTestId('banner-id').props.style.backgroundColor).toBe(
+      colors.bg.warning,
+    );
 
     rerender(
       <TestWrapper>
         <Banner testID='banner-id' title='Error Banner' appearance='error' />
       </TestWrapper>,
     );
-    expect(getByTestId('banner-id').props.className).toContain('bg-error');
+    expect(getByTestId('banner-id').props.style.backgroundColor).toBe(
+      colors.bg.error,
+    );
   });
 
   it('should render primary and secondary actions', () => {

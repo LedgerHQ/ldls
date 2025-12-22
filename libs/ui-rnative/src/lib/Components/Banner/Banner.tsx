@@ -1,8 +1,12 @@
-import { cn, isTextChildren } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
-import React from 'react';
-import { Text, View } from 'react-native';
+import { isTextChildren } from '@ledgerhq/lumen-utils-shared';
+import React, { ComponentType } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
+import {
+  LumenStyleSheet,
+  mergeStyles,
+  resolveViewStyle,
+} from '../../../styles';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -11,31 +15,81 @@ import {
   Close,
 } from '../../Symbols';
 import { ViewRef } from '../../types';
+import { IconProps } from '../Icon';
 import { IconButton } from '../IconButton';
 import { Wrap } from '../Wrap';
 import { BannerProps } from './types';
 
-const iconMap = {
-  info: <InformationFill className='text-base' />,
-  success: <CheckmarkCircleFill className='text-success' />,
-  warning: <WarningFill className='text-warning' />,
-  error: <DeleteCircleFill className='text-error' />,
+type Appearance = NonNullable<BannerProps['appearance']>;
+
+const iconColorMap: Record<
+  Appearance,
+  'base' | 'success' | 'warning' | 'error'
+> = {
+  info: 'base',
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
 };
 
-const bannerVariants = {
-  root: cva(
-    'flex w-full flex-row items-start gap-8 rounded-md p-16 text-base',
-    {
-      variants: {
-        appearance: {
-          info: 'bg-surface',
-          success: 'bg-success',
-          warning: 'bg-warning',
-          error: 'bg-error',
+const useStyles = ({ appearance }: { appearance: Appearance }) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const bgColors: Record<Appearance, string> = {
+        info: t.colors.bg.surface,
+        success: t.colors.bg.success,
+        warning: t.colors.bg.warning,
+        error: t.colors.bg.error,
+      };
+
+      return {
+        root: {
+          flexDirection: 'row',
+          width: t.sizes.full,
+          alignItems: 'flex-start',
+          gap: t.spacings.s8,
+          borderRadius: t.borderRadius.md,
+          padding: t.spacings.s16,
+          backgroundColor: bgColors[appearance],
         },
-      },
+        iconWrapper: {
+          flexShrink: 0,
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          paddingVertical: t.spacings.s4,
+        },
+        contentWrapper: {
+          marginRight: t.spacings.s8,
+          flex: 1,
+          flexDirection: 'column',
+          gap: t.spacings.s8,
+          paddingVertical: t.spacings.s4,
+        },
+        textWrapper: {
+          flexDirection: 'column',
+          gap: t.spacings.s4,
+        },
+        title: mergeStyles(t.typographies.body1SemiBold, {
+          color: t.colors.text.base,
+        }),
+        description: mergeStyles(t.typographies.body2, {
+          color: t.colors.text.base,
+        }),
+        actionsWrapper: {
+          flexDirection: 'row',
+          gap: t.spacings.s4,
+        },
+      };
     },
-  ),
+    [appearance],
+  );
+};
+
+const iconsMap: Record<Appearance, ComponentType<IconProps>> = {
+  info: InformationFill,
+  success: CheckmarkCircleFill,
+  warning: WarningFill,
+  error: DeleteCircleFill,
 };
 
 /**
@@ -46,11 +100,11 @@ const bannerVariants = {
  * @see {@link https://ldls.vercel.app/?path=/docs/communication-banner-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/communication-banner-implementation--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the banner's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * import { Banner } from '@ledgerhq/lumen-ui-react';
+ * import { Banner } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic info banner
  * <Banner title="Information" appearance="info" />
@@ -80,7 +134,8 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
       description,
       primaryAction,
       secondaryAction,
-      className,
+      lx,
+      style,
       onClose,
       closeAriaLabel,
       ...props
@@ -88,28 +143,36 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
     ref,
   ) => {
     const { t } = useCommonTranslation();
-    const icon = iconMap[appearance];
+    const { theme } = LumenStyleSheet.useTheme();
+    const styles = useStyles({ appearance });
+    const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
+    const finalRootStyle = StyleSheet.flatten([
+      styles.root,
+      resolvedLxStyle,
+      style,
+    ]);
+
+    const IconComponent = iconsMap[appearance];
+    const iconColor = iconColorMap[appearance];
 
     return (
-      <View
-        ref={ref}
-        className={cn(className, bannerVariants.root({ appearance }))}
-        {...props}
-      >
-        <View className='flex shrink-0 flex-row items-start py-4'>{icon}</View>
-        <View className='mr-8 flex flex-1 flex-col gap-8 py-4'>
-          <View className='flex flex-col gap-4'>
+      <View ref={ref} style={finalRootStyle} {...props}>
+        <View style={styles.iconWrapper}>
+          <IconComponent lx={{ color: iconColor }} />
+        </View>
+        <View style={styles.contentWrapper}>
+          <View style={styles.textWrapper}>
             {title && (
-              <Text className='line-clamp-2 text-base body-1-semi-bold'>
+              <Text style={styles.title} numberOfLines={2}>
                 {title}
               </Text>
             )}
             {description && (
-              <View className='line-clamp-5 body-2'>
+              <View>
                 <Wrap
                   if={isTextChildren(description)}
                   with={(children) => (
-                    <Text className='text-base'>{children}</Text>
+                    <Text style={styles.description}>{children}</Text>
                   )}
                 >
                   {description}
@@ -118,7 +181,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
             )}
           </View>
           {(primaryAction || secondaryAction) && (
-            <View className='flex flex-row gap-4'>
+            <View style={styles.actionsWrapper}>
               {primaryAction}
               {secondaryAction}
             </View>
@@ -140,3 +203,5 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
     );
   },
 );
+
+Banner.displayName = 'Banner';

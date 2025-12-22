@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { ViewProps } from 'react-native';
+import { StyledViewProps } from '../../../styles';
 
-export type BannerProps = ViewProps & {
+export type BannerProps = {
   /**
    * The type of banner which affects color and icon.
    */
@@ -30,4 +30,4 @@ export type BannerProps = ViewProps & {
    * Optional aria label for the close button.
    */
   closeAriaLabel?: string;
-};
+} & StyledViewProps;

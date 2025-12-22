@@ -16,6 +16,6 @@ export type IconProps = {
   /**
    * The children of the icon.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 } & LumenTextStyleLX &
   Omit<SvgProps, 'style'>;
