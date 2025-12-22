@@ -67,12 +67,12 @@ Before using width/height utilities:
   - Use `border` for default width
   - Use `border-2` for active/emphasized states
 
-- Drop shadow utilities from `createDropShadowPlugin`:
-  - `drop-shadow-sm`: 1px 4px rgba(0, 0, 0, 0.16)
-  - `drop-shadow-md`: 2px 8px rgba(0, 0, 0, 0.16)
-  - `drop-shadow-lg`: 4px 16px rgba(0, 0, 0, 0.16)
-  - `drop-shadow-xl`: 6px 24px rgba(0, 0, 0, 0.16)
-  - `drop-shadow-2xl`: 8px 32px rgba(0, 0, 0, 0.16)
+- Shadow utilities from `createShadowPlugin`:
+  - `shadow-sm`: 1px 4px rgba(0, 0, 0, 0.16)
+  - `shadow-md`: 2px 8px rgba(0, 0, 0, 0.16)
+  - `shadow-lg`: 4px 16px rgba(0, 0, 0, 0.16)
+  - `shadow-xl`: 6px 24px rgba(0, 0, 0, 0.16)
+  - `shadow-2xl`: 8px 32px rgba(0, 0, 0, 0.16)
 
 # Gradients
 

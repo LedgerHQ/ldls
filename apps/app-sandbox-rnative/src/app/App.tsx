@@ -1,4 +1,3 @@
-import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import {
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
@@ -50,7 +49,7 @@ export const App = () => {
     <SafeAreaView className={`${colorScheme} flex flex-1 bg-canvas`}>
       <StatusBar />
       <ThemeProvider
-        themes={ledgerLiveThemes}
+        themes={{ test: 'yo' }}
         colorScheme={colorScheme}
         locale={locale}
       >
