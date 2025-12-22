@@ -3,7 +3,6 @@ import React from 'react';
 import { Apps, Settings } from '../../Symbols';
 import { Button } from '../Button';
 import { ListItem } from '../ListItem';
-import { Search } from '../Search/Search';
 import { Spot } from '../Spot';
 import { Tile } from '../Tile';
 import {
@@ -18,13 +17,13 @@ import {
 const DialogContentTemplate = () => {
   return (
     <div className='flex flex-col gap-16'>
-      <p className='body-2 text-base'>
+      <p className='text-base body-2'>
         The content area after the DialogHeader can contain any components.
         Ensure proper padding and scrolling if needed.
       </p>
-      <div className='bg-muted rounded-sm p-12'>
+      <div className='rounded-sm bg-muted p-12'>
         <p className='text-muted body-3'>
-          <strong className='body-3-semi-bold text-base'>Note:</strong> The
+          <strong className='text-base body-3-semi-bold'>Note:</strong> The
           dialog content defaults to a width of 400px and height auto-adjusts to
           content. Use the className prop on DialogContent to customize
           dimensions if needed.
@@ -409,7 +408,7 @@ export const WithMultiSteps: Story = {
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
           <DialogBody>
-            <p className='body-2 text-base'>
+            <p className='text-base body-2'>
               {step === 1
                 ? 'Please review the information and click Continue to proceed.'
                 : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -492,12 +491,8 @@ export const WithListsContent: Story = {
           <DialogHeader
             appearance='extended'
             title='Browse Options'
-            description={
-              <div className='flex flex-col gap-8'>
-                <div>Description content is fixed to the top of the dialog</div>
-                <Search placeholder='Search' />
-              </div>
-            }
+            description='Description content is fixed to the top of the dialog'
+            onBack={() => setOpen(false)}
             onClose={() => setOpen(false)}
           />
           <DialogBody className='gap-32'>
@@ -558,10 +553,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -589,10 +584,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
