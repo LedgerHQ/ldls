@@ -1,8 +1,40 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { DialogHeader } from './DialogHeader/DialogHeader';
-import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
+import {
+  DialogBodyProps,
+  DialogContentProps,
+  DialogFooterProps,
+  DialogHeight,
+  DialogOverlayProps,
+  DialogProps,
+  DialogTriggerProps,
+} from './types';
+
+const DialogContext = React.createContext<{ height: DialogHeight }>({
+  height: 'hug',
+});
+
+const dialogContentVariants = cva(
+  [
+    'w-400 bg-canvas-sheet flex max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl pb-24',
+    'z-dialog-content fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
+    'data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
+  ],
+  {
+    variants: {
+      height: {
+        hug: 'max-h-560',
+        fixed: 'h-560',
+      },
+    },
+    defaultVariants: {
+      height: 'hug',
+    },
+  },
+);
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -12,7 +44,7 @@ import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
  *
  * @example
- * import { Dialog, DialogTrigger, DialogContent, Button } from '@ledgerhq/lumen-ui-react';
+ * import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogBody, Button } from '@ledgerhq/lumen-ui-react';
  *
  * function MyComponent() {
  *   return (
@@ -28,14 +60,20 @@ import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
  *           onBack={() => {}}
  *           onClose={() => {}}
  *         />
- *         <p>This is a dialog!</p>
+ *         <DialogBody>
+ *           <p>This is a dialog!</p>
+ *         </DialogBody>
  *       </DialogContent>
  *     </Dialog>
  *   );
  * }
  */
-export function Dialog({ ...props }: DialogProps) {
-  return <DialogPrimitive.Root data-slot='dialog' {...props} />;
+export function Dialog({ height = 'hug', ...props }: DialogProps) {
+  return (
+    <DialogContext.Provider value={{ height }}>
+      <DialogPrimitive.Root data-slot='dialog' {...props} />
+    </DialogContext.Provider>
+  );
 }
 
 /**
@@ -54,9 +92,7 @@ export function Dialog({ ...props }: DialogProps) {
  *   <Button>Click me for a dialog</Button>
  * </DialogTrigger>
  */
-export function DialogTrigger({
-  ...props
-}: DialogPrimitive.DialogTriggerProps) {
+export function DialogTrigger({ ...props }: DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
 }
 
@@ -104,13 +140,14 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         data-slot='dialog-overlay'
         className={cn(
           className,
-          'fixed inset-0 z-dialog-overlay bg-canvas-overlay backdrop-blur-sm data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+          'z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 backdrop-blur-sm',
         )}
         {...props}
       />
     );
   },
 );
+DialogOverlay.displayName = 'DialogOverlay';
 
 /**
  * The content container that displays the dialog information.
@@ -143,15 +180,14 @@ export function DialogContent({
   children,
   ...props
 }: DialogContentProps) {
+  const { height } = React.useContext(DialogContext);
+
   return (
     <DialogPortal data-slot='dialog-portal'>
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot='dialog-content'
-        className={cn(
-          'fixed left-[50%] top-[50%] z-dialog-content w-400 max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
-          className,
-        )}
+        className={cn(dialogContentVariants({ height }), className)}
         {...props}
       >
         {children}
@@ -159,5 +195,80 @@ export function DialogContent({
     </DialogPortal>
   );
 }
+
+/**
+ * The scrollable body area of the dialog.
+ *
+ * This component provides a scrollable container that expands to fill the
+ * remaining space between the header and footer. Use it when you have
+ * content that may overflow the dialog height.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @example
+ * <DialogContent>
+ *   <DialogHeader title="Title" onClose={handleClose} />
+ *   <DialogBody>
+ *     <p>Scrollable content here</p>
+ *   </DialogBody>
+ *   <DialogFooter>
+ *     <Button>Action</Button>
+ *   </DialogFooter>
+ * </DialogContent>
+ */
+export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        data-slot='dialog-body'
+        className={cn(
+          '-mb-24 flex min-h-0 flex-1 flex-col overflow-y-auto px-24 pb-24 pt-4',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+DialogBody.displayName = 'DialogBody';
+
+/**
+ * The fixed footer area of the dialog.
+ *
+ * This component provides a fixed container at the bottom of the dialog
+ * for actions like buttons. It stays in place while the body content scrolls.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/containment-dialog-overview--docs Storybook}
+ *
+ * @example
+ * <DialogContent>
+ *   <DialogHeader title="Title" onClose={handleClose} />
+ *   <DialogBody>
+ *     <p>Content</p>
+ *   </DialogBody>
+ *   <DialogFooter>
+ *     <Button>Cancel</Button>
+ *     <Button>Confirm</Button>
+ *   </DialogFooter>
+ * </DialogContent>
+ */
+export const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
+  ({ className, children, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        data-slot='dialog-footer'
+        className={cn('flex shrink-0 flex-col px-24 pt-24', className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+DialogFooter.displayName = 'DialogFooter';
 
 export { DialogHeader };
