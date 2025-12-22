@@ -1,6 +1,6 @@
 {
   "name": "@ledgerhq/lumen-ui-rnative",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "license": "Apache-2.0",
   "keywords": [
     "react-native",
@@ -28,7 +28,7 @@
     "./styles": "./src/styles/index.ts"
   },
   "dependencies": {
-    "@ledgerhq/lumen-utils-shared": "0.0.11",
+    "@ledgerhq/lumen-utils-shared": "0.0.12",
     "i18next": "^23.7.0",
     "react-i18next": "^14.0.0"
   },
