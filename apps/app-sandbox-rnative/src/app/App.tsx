@@ -36,6 +36,7 @@ import {
   Banners,
   CardButtons,
   Tooltips,
+  ListItems,
 } from './blocks';
 import { SandboxBlock } from './SandboxBlock';
 
@@ -103,6 +104,9 @@ export const App = () => {
               </SandboxBlock>
               <SandboxBlock title='Tiles'>
                 <Tiles />
+              </SandboxBlock>
+              <SandboxBlock title='ListItems'>
+                <ListItems />
               </SandboxBlock>
               <SandboxBlock title='Tooltips'>
                 <Tooltips />

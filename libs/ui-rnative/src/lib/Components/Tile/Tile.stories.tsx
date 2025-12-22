@@ -167,9 +167,14 @@ export const HorizontalList: Story = {
   render: () => (
     <Box lx={{ flexDirection: 'column', gap: 's16' }}>
       <Box
-        lx={{ flexDirection: 'row', width: 's480', backgroundColor: 'base' }}
+        lx={{
+          position: 'relative',
+          flexDirection: 'row',
+          width: 's480',
+          backgroundColor: 'base',
+        }}
       >
-        {Array.from({ length: 5 }).map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <Tile
             key={`list-1-${i}`}
             title={`Item ${i + 1}`}
@@ -182,17 +187,17 @@ export const HorizontalList: Story = {
         lx={{
           flexDirection: 'row',
           width: 's480',
-          overflow: 'scroll',
+          position: 'relative',
           backgroundColor: 'base',
         }}
       >
-        {Array.from({ length: 5 }).map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <Tile
             key={`list-2-${i}`}
             title='Long Title that should truncate appropriately'
             description='Long description that should truncate appropriately'
             leadingContent={<Spot appearance='icon' icon={Apps} />}
-            lx={{ width: 's208', flexShrink: 0 }}
+            lx={{ width: 's176', flexShrink: 0 }}
           />
         ))}
       </Box>
