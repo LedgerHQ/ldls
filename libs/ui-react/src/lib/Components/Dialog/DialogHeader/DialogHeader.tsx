@@ -7,7 +7,7 @@ import { ArrowLeft, Close } from '../../../Symbols';
 import { IconButton } from '../../IconButton';
 import { DialogHeaderProps } from '../types';
 
-const dialogHeaderVariants = cva('-ml-14 -mr-8 flex px-24 text-base', {
+const dialogHeaderVariants = cva('flex px-24 text-base', {
   variants: {
     appearance: {
       compact: 'h-64 min-h-64 flex-row items-center gap-12',
@@ -25,7 +25,7 @@ const BackButton: FC<{ onBack: () => void }> = ({ onBack }) => {
       size='sm'
       icon={ArrowLeft}
       onClick={onBack}
-      className='shrink-0'
+      className='-ml-12 shrink-0'
       aria-label={t('components.dialogHeader.goBackAriaLabel')}
     />
   );
@@ -40,7 +40,7 @@ const CloseButton: FC<{ onClose: () => void }> = ({ onClose }) => {
       size='xs'
       icon={Close}
       onClick={onClose}
-      className='shrink-0'
+      className='-mr-8 shrink-0'
       aria-label={t('components.dialogHeader.closeAriaLabel')}
     />
   );
@@ -141,7 +141,7 @@ const DialogHeaderComponent = React.forwardRef<
               </div>
             </div>
             {(title || description) && (
-              <div className='flex flex-col gap-4 ps-14'>
+              <div className='flex flex-col gap-4'>
                 {title && <div className='heading-2-semi-bold'>{title}</div>}
                 {description && (
                   <div className='text-muted body-2'>{description}</div>
