@@ -1,6 +1,13 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as DialogStories from './Dialog.stories';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+} from './Dialog';
 import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
 import {
   DoVsDontRow,
@@ -34,6 +41,8 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 - **Overlay**: Dimmed background that covers the underlying content
 - **Header**: Use `DialogHeader` component for a consistent dialog header with title, description, and controls
 - **Content**: The main container for dialog content
+- **Body**: Scrollable area that expands to fill remaining space (use with `DialogBody`)
+- **Footer**: Fixed bottom area for actions like buttons (use with `DialogFooter`)
 
 > **Note**: The **width** of the dialog is `400px` by default, you can adjust the width of the dialog content by using the `className` prop on `DialogContent`.
 
@@ -46,54 +55,55 @@ The dialog supports two height modes via the `height` prop on `Dialog`:
 - **hug** (default): Content-fit height up to 560px max
 - **fixed**: Always exactly 560px height
 
-<Canvas of={DialogStories.HeightShowcase} />
+<Canvas of={DialogStories.HeightLayouts} />
 
-### Header Configuration
+### Footer
+
+Use `DialogFooter` for dialogs with scrollable content and fixed actions:
+
+- **DialogFooter**: Fixed at the bottom for action buttons
+- Best used with `height="fixed"` to ensure consistent layout. 
+
+
+<Canvas of={DialogStories.WithFooter} />
+
+### Header Variants
 
 Always use the `DialogHeader` component as the header for dialogs to maintain consistency. `DialogHeader` provides:
 
 - Title and optional description
 - Close button
-- Optional back button
+- Optional back button for navigation
 - Two appearance variants: `compact` and `extended`
 - Automatic accessibility with proper ARIA roles
 
-<Canvas of={DialogStories.AppearanceVariants} />
-
-### With Back Button
-
-Add navigation with `DialogHeader`'s `onBack` prop.
-
-<Canvas of={DialogStories.WithBack} />
+<Canvas of={DialogStories.HeaderVariants} />
 
 ### With multiple steps
 
-Use the `DialogHeader`'s `onBack` prop to navigate between steps.
+For multi-step dialogs:
+
+- Use `height="fixed"` to maintain consistent dialog height between steps
+- Use `DialogFooter` for action buttons to keep them fixed at the bottom
+- Use `DialogHeader`'s `onBack` prop to enable back navigation
 
 <Canvas of={DialogStories.WithMultiSteps} />
 
-### Content Area
-
-The content area after the `DialogHeader` can contain any components. Ensure proper padding and scrolling if needed.
-
 ## Examples
 
-### Info State Error
+### Info State Variants
 
-<Canvas of={DialogStories.InfoStateError} />
-
-### Info State Success
-
-<Canvas of={DialogStories.InfoStateSuccess} />
+<Canvas of={DialogStories.InfoStateVariants} />
 
 ## Accessibility
 
-To be implemented:
+Built-in accessibility features from Radix UI:
 
-- Proper ARIA roles (dialog, etc.)
-- Keyboard navigation (focus trapping, ESC to close)
-- Screen reader support for content
-- Focus management on open/close
+- **ARIA roles**: Automatically applies `role="dialog"` and `aria-modal="true"`
+- **Focus trapping**: Focus is contained within the dialog when open
+- **Keyboard navigation**: Press `ESC` to close the dialog
+- **Focus management**: Focus returns to the trigger element on close
+- **Screen reader support**: Uses `DialogTitle` and `DialogDescription` for proper announcements
 
 <div className='rounded-8 mt-8 p-12 text-base'>
   <p className='mb-4 body-2-semi-bold'>Important Notes:</p>
@@ -101,6 +111,9 @@ To be implemented:
     <li>
       Always include DialogHeader as the first child of DialogContent for
       consistent UX and accessibility
+    </li>
+    <li>
+      Always wrap your content in DialogBody - it is mandatory for proper layout
     </li>
     <li>Handle onClose in DialogHeader to properly close the dialog</li>
     <li>Use DialogPortal for correct positioning in the DOM</li>
@@ -114,6 +127,9 @@ To be implemented:
     </li>
     <li>
       Use height prop on Dialog for fixed or hug height behavior
+    </li>
+    <li>
+      Use DialogFooter for fixed action buttons at the bottom
     </li>
   </ul>
 </div>
@@ -134,9 +150,10 @@ The `@radix-ui/react-dialog` dependency provides accessible dialog behavior prim
 ```tsx
 import {
   Dialog,
+  DialogBody,
   DialogContent,
-  DialogTrigger,
   DialogHeader,
+  DialogTrigger,
 } from '@ledgerhq/lumen-ui-react';
 import { Button } from '@ledgerhq/lumen-ui-react'; // Example trigger
 
@@ -154,30 +171,13 @@ function MyComponent() {
             /* handle close */
           }}
         />
-        <p>Dialog content here</p>
+        <DialogBody>
+          Content here
+        </DialogBody>
       </DialogContent>
     </Dialog>
   );
 }
-```
-
-### With Description
-
-```tsx
-<Dialog>
-  <DialogTrigger>Open</DialogTrigger>
-  <DialogContent>
-    <DialogHeader
-      appearance='compact'
-      title='Title'
-      description='Additional details'
-      onClose={() => {
-        /* handle close */
-      }}
-    />
-    Content
-  </DialogContent>
-</Dialog>
 ```
 
 ### Extended Appearance
@@ -195,7 +195,9 @@ Use extended `DialogHeader` for bigger dialogs:
         /* handle close */
       }}
     />
-    Extended content
+    <DialogBody>
+      Extended content here
+    </DialogBody>
   </DialogContent>
 </Dialog>
 ```
@@ -214,7 +216,9 @@ Use extended `DialogHeader` for bigger dialogs:
         /* handle close */
       }}
     />
-    Content
+    <DialogBody>
+      Content here
+    </DialogBody>
   </DialogContent>
 </Dialog>
 ```
@@ -225,6 +229,30 @@ Control dialog width via className on DialogContent:
 
 ```tsx
 <DialogContent className='w-[600px]'>{/* Content */}</DialogContent>
+```
+
+### Scrollable Content with Fixed Footer
+
+Use `DialogBody` and `DialogFooter` for scrollable content with fixed actions:
+
+```tsx
+<Dialog height='fixed'>
+  <DialogTrigger asChild>
+    <Button>Open</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader title='Title' onClose={handleClose} />
+    <DialogBody>
+      {/* Scrollable content */}
+      <div className='space-y-16'>{items.map((item) => /* ... */)}</div>
+    </DialogBody>
+    <DialogFooter>
+      <Button appearance='base' size='lg' isFull>
+        Confirm
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
 ```
 
 ## Do's and Don'ts
@@ -240,7 +268,9 @@ Control dialog width via className on DialogContent:
 ```tsx
 <DialogContent>
   <DialogHeader ... />
-  <p>Simple text</p>
+  <DialogBody>
+    <p>Simple text</p>
+  </DialogBody>
 </DialogContent>
 
 const [open, setOpen] = useState(false);
@@ -256,7 +286,10 @@ const [open, setOpen] = useState(false);
 {/* prettier-ignore */}
 ```tsx
 <DialogContent>
-  <ComplexChart />
+  <DialogHeader ... />
+  <DialogBody>
+    <ComplexChart />
+  </DialogBody>
 </DialogContent>
 ```
 

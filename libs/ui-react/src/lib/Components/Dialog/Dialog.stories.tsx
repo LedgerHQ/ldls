@@ -2,7 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Button } from '../Button';
 import { Spot } from '../Spot';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
+import {
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+} from './Dialog';
 
 const DialogContentTemplate = () => {
   return (
@@ -39,7 +46,9 @@ const DialogTemplate = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
-        <DialogContentTemplate />
+        <DialogBody>
+          <DialogContentTemplate />
+        </DialogBody>
       </DialogContent>
     </Dialog>
   );
@@ -49,9 +58,11 @@ const meta: Meta<typeof Dialog> = {
   component: Dialog,
   title: 'Containment/Dialog',
   subcomponents: {
-    DialogHeader,
-    DialogContent,
     DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogBody,
+    DialogFooter,
   },
   parameters: {
     docs: {
@@ -60,14 +71,6 @@ const meta: Meta<typeof Dialog> = {
         format: true,
         type: 'code',
       },
-    },
-  },
-  argTypes: {
-    defaultOpen: {
-      control: false,
-    },
-    open: {
-      control: false,
     },
   },
 };
@@ -81,6 +84,10 @@ export const Base: Story = {
       dialogHeaderProps={{
         appearance: 'compact',
         title: 'Sheet Title',
+        description: 'Additional information',
+        onBack: () => {
+          return;
+        },
       }}
     />
   ),
@@ -93,37 +100,23 @@ export const Base: Story = {
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent>
-    <DialogHeader appearance="compact" title="Sheet Title" onClose={() => setOpen(false)} />
-  </DialogContent>
-</Dialog>
-        `,
-      },
-    },
-  },
-};
-
-export const WithDescription: Story = {
-  render: () => (
-    <DialogTemplate
-      dialogHeaderProps={{
-        appearance: 'compact',
-        title: 'Sheet Title',
-        description: 'Additional information',
-        onBack: () => console.log('Back clicked'),
-      }}
+    <DialogHeader 
+      appearance="compact" 
+      title="Sheet Title" 
+      description="Additional information" 
+      onClose={() => setOpen(false)} 
+      onBack={() => goBack()}
     />
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent >
-    <DialogHeader appearance="compact" title="Sheet Title" description="Additional information" onBack={() => console.log('Back clicked')} onClose={() => setOpen(false)} />
-    <div>Content goes here </div>
+    <DialogBody>
+      Content here ...
+    </DialogBody>
+    {/* Optional
+      <DialogFooter>
+        <Button appearance="base" size="lg" isFull>
+          Label
+        </Button>
+      </DialogFooter>
+    */}
   </DialogContent>
 </Dialog>
         `,
@@ -132,10 +125,11 @@ export const WithDescription: Story = {
   },
 };
 
-export const HeightShowcase: Story = {
+export const HeightLayouts: Story = {
   render: () => {
     const [openHug, setOpenHug] = React.useState(false);
     const [openFixed, setOpenFixed] = React.useState(false);
+    const [openScrollable, setOpenScrollable] = React.useState(false);
 
     return (
       <div className='flex gap-16'>
@@ -150,10 +144,12 @@ export const HeightShowcase: Story = {
               description='Content-fit height'
               onClose={() => setOpenHug(false)}
             />
-            <p className='text-muted body-2'>
-              The dialog height adjusts to fit the content, up to a maximum of
-              560px.
-            </p>
+            <DialogBody>
+              <p className='text-muted body-2'>
+                The dialog height adjusts to fit the content, up to a maximum of
+                560px.
+              </p>
+            </DialogBody>
           </DialogContent>
         </Dialog>
 
@@ -168,12 +164,42 @@ export const HeightShowcase: Story = {
               description='Always 560px'
               onClose={() => setOpenFixed(false)}
             />
-            <div className='flex flex-1 flex-col'>
+            <DialogBody>
               <p className='text-muted body-2'>
                 The dialog always has a fixed height of 560px, regardless of
                 content.
               </p>
-            </div>
+            </DialogBody>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog
+          height='fixed'
+          open={openScrollable}
+          onOpenChange={setOpenScrollable}
+        >
+          <DialogTrigger asChild>
+            <Button appearance='base'>Scrollable</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Scrollable Content'
+              description='Fixed height with scroll'
+              onClose={() => setOpenScrollable(false)}
+            />
+            <DialogBody>
+              <div className='space-y-16'>
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <div key={i} className='rounded-sm bg-muted p-12'>
+                    <p className='text-muted body-2'>
+                      Content item {i + 1}. This content is scrollable within
+                      the fixed height dialog.
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </DialogBody>
           </DialogContent>
         </Dialog>
       </div>
@@ -190,7 +216,9 @@ export const HeightShowcase: Story = {
   </DialogTrigger>
   <DialogContent>
     <DialogHeader title="Title" onClose={() => setOpen(false)} />
-    <p>Content adjusts to fit</p>
+    <DialogBody>
+      <p>Content adjusts to fit</p>
+    </DialogBody>
   </DialogContent>
 </Dialog>
 
@@ -201,9 +229,22 @@ export const HeightShowcase: Story = {
   </DialogTrigger>
   <DialogContent>
     <DialogHeader title="Title" onClose={() => setOpen(false)} />
-    <div className="flex-1">
-      <p>Content can fill remaining space with flex-1</p>
-    </div>
+    <DialogBody>
+      <p>Content fills remaining space</p>
+    </DialogBody>
+  </DialogContent>
+</Dialog>
+
+// Scrollable content with fixed height
+<Dialog height="fixed" open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader title="Title" onClose={() => setOpen(false)} />
+    <DialogBody>
+      {/* Long scrollable content */}
+    </DialogBody>
   </DialogContent>
 </Dialog>
         `,
@@ -212,13 +253,54 @@ export const HeightShowcase: Story = {
   },
 };
 
-export const AppearanceVariants: Story = {
+export const WithFooter: Story = {
+  render: () => {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <Dialog height='hug' open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button appearance='base'>Open with Footer</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader
+            appearance='compact'
+            title='Scrollable Content'
+            description='With fixed footer'
+            onClose={() => setOpen(false)}
+          />
+          <DialogBody>
+            <div className='space-y-16'>
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div key={i} className='rounded-sm bg-muted p-12'>
+                  <p className='text-muted body-2'>
+                    Content item {i + 1}. This content is scrollable while the
+                    footer stays fixed at the bottom.
+                  </p>
+                </div>
+              ))}
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <Button appearance='base' size='lg' isFull>
+              Confirm
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
+
+export const HeaderVariants: Story = {
   render: () => {
     const [openCompact, setOpenCompact] = React.useState(false);
     const [openExtended, setOpenExtended] = React.useState(false);
+    const [openCompactBack, setOpenCompactBack] = React.useState(false);
+    const [openExtendedBack, setOpenExtendedBack] = React.useState(false);
 
     return (
-      <div className='flex gap-16'>
+      <div className='flex flex-wrap gap-16'>
         <Dialog open={openCompact} onOpenChange={setOpenCompact}>
           <DialogTrigger asChild>
             <Button appearance='base'>Compact</Button>
@@ -230,7 +312,9 @@ export const AppearanceVariants: Story = {
               description='Additional information'
               onClose={() => setOpenCompact(false)}
             />
-            <DialogContentTemplate />
+            <DialogBody>
+              <DialogContentTemplate />
+            </DialogBody>
           </DialogContent>
         </Dialog>
 
@@ -245,7 +329,45 @@ export const AppearanceVariants: Story = {
               description='Additional information'
               onClose={() => setOpenExtended(false)}
             />
-            <DialogContentTemplate />
+            <DialogBody>
+              <DialogContentTemplate />
+            </DialogBody>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={openCompactBack} onOpenChange={setOpenCompactBack}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Compact with Back</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenCompactBack(false)}
+              onBack={() => console.log('Back clicked')}
+            />
+            <DialogBody>
+              <DialogContentTemplate />
+            </DialogBody>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={openExtendedBack} onOpenChange={setOpenExtendedBack}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Extended with Back</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='extended'
+              title='Sheet Title'
+              description='Additional information'
+              onClose={() => setOpenExtendedBack(false)}
+              onBack={() => console.log('Back clicked')}
+            />
+            <DialogBody>
+              <DialogContentTemplate />
+            </DialogBody>
           </DialogContent>
         </Dialog>
       </div>
@@ -262,6 +384,9 @@ export const AppearanceVariants: Story = {
   </DialogTrigger>
   <DialogContent>
     <DialogHeader appearance="compact" title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
+    <DialogBody>
+      Content here
+    </DialogBody>
   </DialogContent>
 </Dialog>
 
@@ -272,60 +397,13 @@ export const AppearanceVariants: Story = {
   </DialogTrigger>
   <DialogContent>
     <DialogHeader appearance="extended" title="Sheet Title" description="Additional information" onClose={() => setOpen(false)} />
+    <DialogBody>
+      Content here
+    </DialogBody>
   </DialogContent>
 </Dialog>
-        `,
-      },
-    },
-  },
-};
 
-export const WithBack: Story = {
-  render: () => {
-    const [openCompact, setOpenCompact] = React.useState(false);
-    const [openExtended, setOpenExtended] = React.useState(false);
-
-    return (
-      <div className='flex gap-16'>
-        <Dialog open={openCompact} onOpenChange={setOpenCompact}>
-          <DialogTrigger asChild>
-            <Button appearance='base'>Compact with Back</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader
-              appearance='compact'
-              title='Sheet Title'
-              description='Additional information'
-              onClose={() => setOpenCompact(false)}
-              onBack={() => console.log('Back clicked')}
-            />
-            <DialogContentTemplate />
-          </DialogContent>
-        </Dialog>
-
-        <Dialog open={openExtended} onOpenChange={setOpenExtended}>
-          <DialogTrigger asChild>
-            <Button appearance='base'>Extended with Back</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader
-              appearance='extended'
-              title='Sheet Title'
-              description='Additional information'
-              onClose={() => setOpenExtended(false)}
-              onBack={() => console.log('Back clicked')}
-            />
-            <DialogContentTemplate />
-          </DialogContent>
-        </Dialog>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-// Compact appearance with back button
+// With back button
 <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
@@ -334,168 +412,12 @@ export const WithBack: Story = {
     <DialogHeader 
       appearance="compact" 
       title="Sheet Title" 
-      description="Additional information"
       onBack={() => console.log('Back clicked')}
       onClose={() => setOpen(false)} 
     />
-  </DialogContent>
-</Dialog>
-
-// Extended appearance with back button
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader 
-      appearance="extended" 
-      title="Sheet Title" 
-      description="Additional information"
-      onBack={() => console.log('Back clicked')}
-      onClose={() => setOpen(false)} 
-    />
-  </DialogContent>
-</Dialog>
-        `,
-      },
-    },
-  },
-};
-
-export const InfoStateError: Story = {
-  render: () => {
-    const [open, setOpen] = React.useState(false);
-
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button appearance='base'>Open Error Dialog</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader
-            appearance='compact'
-            onClose={() => setOpen(false)}
-            className='relative'
-          />
-          <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
-
-            <Spot appearance='error' size={72} />
-
-            <div className='flex flex-col items-center gap-12 text-center'>
-              <h3 className='text-base heading-3-semi-bold'>Title</h3>
-              <p className='text-muted body-2'>Description</p>
-            </div>
-
-            <div className='flex w-full flex-col gap-8'>
-              <Button appearance='base' size='lg' isFull>
-                Label
-              </Button>
-              <Button appearance='no-background' size='lg' isFull>
-                Label
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Error Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
-    <div className="flex flex-col items-center gap-24 overflow-hidden">
-      <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
-      
-      <Spot appearance="error" size={72} />
-      
-      <div className="flex flex-col items-center gap-12 text-center">
-        <h3 className="heading-3-semi-bold text-base">Title</h3>
-        <p className="body-2 text-muted">Description</p>
-      </div>
-      
-      <div className="flex w-full flex-col gap-8">
-        <Button appearance="base" size="lg" isFull>Label</Button>
-        <Button appearance="no-background" size="lg" isFull>Label</Button>
-      </div>
-    </div>
-  </DialogContent>
-</Dialog>
-        `,
-      },
-    },
-  },
-};
-
-export const InfoStateSuccess: Story = {
-  render: () => {
-    const [open, setOpen] = React.useState(false);
-
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button appearance='base'>Open Success Dialog</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader
-            appearance='compact'
-            onClose={() => setOpen(false)}
-            className='relative'
-          />
-          <div className='flex flex-col items-center gap-24 overflow-hidden'>
-            <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
-
-            <Spot appearance='check' size={72} />
-
-            <div className='flex flex-col items-center gap-12 text-center'>
-              <h3 className='text-base heading-3-semi-bold'>Title</h3>
-              <p className='text-muted body-2'>Description</p>
-            </div>
-
-            <div className='flex w-full flex-col gap-8'>
-              <Button appearance='base' size='lg' isFull>
-                Label
-              </Button>
-              <Button appearance='no-background' size='lg' isFull>
-                Label
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Success Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative"/>
-       <div className="flex flex-col items-center gap-24 overflow-hidden">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
-      
-      <Spot appearance="check" size={72} />
-      
-      <div className="flex flex-col items-center gap-12 text-center">
-        <h3 className="heading-3-semi-bold text-base">Title</h3>
-        <p className="body-2 text-muted">Description</p>
-      </div>
-      
-      <div className="flex w-full flex-col gap-8">
-        <Button appearance="base" size="lg" isFull>Label</Button>
-        <Button appearance="no-background" size="lg" isFull>Label</Button>
-      </div>
-    </div>
+    <DialogBody>
+      Content here
+    </DialogBody>
   </DialogContent>
 </Dialog>
         `,
@@ -517,7 +439,7 @@ export const WithMultiSteps: Story = {
     };
 
     return (
-      <Dialog open={open} onOpenChange={handleOpenChange}>
+      <Dialog height='fixed' open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
           <Button appearance='base'>Open Dialog</Button>
         </DialogTrigger>
@@ -528,40 +450,23 @@ export const WithMultiSteps: Story = {
             onClose={() => setOpen(false)}
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
-          <div className='flex flex-col gap-24'>
-            {step === 1 && (
-              <>
-                <p className='text-base body-2'>
-                  Please review the information and click Continue to proceed.
-                </p>
-                <Button
-                  appearance='base'
-                  size='lg'
-                  isFull
-                  onClick={() => setStep(2)}
-                >
-                  Continue
-                </Button>
-              </>
-            )}
-
-            {step === 2 && (
-              <>
-                <p className='text-base body-2'>
-                  You are now on step 2. Use the back button to return to the
-                  previous step.
-                </p>
-                <Button
-                  appearance='base'
-                  size='lg'
-                  isFull
-                  onClick={() => setOpen(false)}
-                >
-                  Done
-                </Button>
-              </>
-            )}
-          </div>
+          <DialogBody>
+            <p className='text-base body-2'>
+              {step === 1
+                ? 'Please review the information and click Continue to proceed.'
+                : 'You are now on step 2. Use the back button to return to the previous step.'}
+            </p>
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              appearance='base'
+              size='lg'
+              isFull
+              onClick={() => (step === 1 ? setStep(2) : setOpen(false))}
+            >
+              {step === 1 ? 'Continue' : 'Done'}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     );
@@ -580,40 +485,162 @@ const handleOpenChange = (isOpen: boolean) => {
   }
 };
 
-<Dialog open={open} onOpenChange={handleOpenChange}>
+<Dialog height="fixed" open={open} onOpenChange={handleOpenChange}>
   <DialogTrigger asChild>
     <Button appearance="base">Open Dialog</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader
-      appearance="compact"
+      appearance="extended"
       title={step === 1 ? 'Step 1' : 'Step 2'}
       onClose={() => setOpen(false)}
       onBack={step > 1 ? () => setStep(step - 1) : undefined}
     />
-    <div className="flex flex-col gap-24">
-      {step === 1 && (
-        <>
-          <p className="text-base body-2">
-            Please review the information and click Continue to proceed.
-          </p>
-          <Button appearance="base" size="lg" isFull onClick={() => setStep(2)}>
-            Continue
-          </Button>
-        </>
-      )}
+    <DialogBody>
+      <p className="text-base body-2">
+        {step === 1
+          ? 'Please review the information and click Continue to proceed.'
+          : 'You are now on step 2. Use the back button to return to the previous step.'}
+      </p>
+    </DialogBody>
+    <DialogFooter>
+      <Button
+        appearance="base"
+        size="lg"
+        isFull
+        onClick={() => (step === 1 ? setStep(2) : setOpen(false))}
+      >
+        {step === 1 ? 'Continue' : 'Done'}
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
+};
 
-      {step === 2 && (
-        <>
-          <p className="text-base body-2">
-            You are now on step 2. Use the back button to return to the previous step.
-          </p>
-          <Button appearance="base" size="lg" isFull onClick={() => setOpen(false)}>
-            Done
-          </Button>
-        </>
-      )}
-    </div>
+export const InfoStateVariants: Story = {
+  render: () => {
+    const [openError, setOpenError] = React.useState(false);
+    const [openSuccess, setOpenSuccess] = React.useState(false);
+
+    return (
+      <div className='flex gap-16'>
+        <Dialog open={openError} onOpenChange={setOpenError}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Error</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              onClose={() => setOpenError(false)}
+              className='relative'
+            />
+            <DialogBody>
+              <div className='flex flex-col items-center gap-24 overflow-hidden'>
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
+                <Spot appearance='error' size={72} />
+                <div className='flex flex-col items-center gap-12 text-center'>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <p className='text-muted body-2'>Description</p>
+                </div>
+              </div>
+            </DialogBody>
+            <DialogFooter className='gap-8'>
+              <Button appearance='base' size='lg' isFull>
+                Label
+              </Button>
+              <Button appearance='no-background' size='lg' isFull>
+                Label
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={openSuccess} onOpenChange={setOpenSuccess}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Success</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              onClose={() => setOpenSuccess(false)}
+              className='relative'
+            />
+            <DialogBody>
+              <div className='flex flex-col items-center gap-24 overflow-hidden'>
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
+                <Spot appearance='check' size={72} />
+                <div className='flex flex-col items-center gap-12 text-center'>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <p className='text-muted body-2'>Description</p>
+                </div>
+              </div>
+            </DialogBody>
+            <DialogFooter className='gap-8'>
+              <Button appearance='base' size='lg' isFull>
+                Label
+              </Button>
+              <Button appearance='no-background' size='lg' isFull>
+                Label
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+// Error state
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Error Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative" />
+    <DialogBody>
+      <div className="flex flex-col items-center gap-24 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error" />
+        <Spot appearance="error" size={72} />
+        <div className="flex flex-col items-center gap-12 text-center">
+          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <p className="body-2 text-muted">Description</p>
+        </div>
+      </div>
+    </DialogBody>
+    <DialogFooter className="gap-8">
+      <Button appearance="base" size="lg" isFull>Label</Button>
+      <Button appearance="no-background" size="lg" isFull>Label</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+
+// Success state
+<Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Success Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader appearance="compact" onClose={() => setOpen(false)} className="relative" />
+    <DialogBody>
+      <div className="flex flex-col items-center gap-24 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
+        <Spot appearance="check" size={72} />
+        <div className="flex flex-col items-center gap-12 text-center">
+          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <p className="body-2 text-muted">Description</p>
+        </div>
+      </div>
+    </DialogBody>
+    <DialogFooter className="gap-8">
+      <Button appearance="base" size="lg" isFull>Label</Button>
+      <Button appearance="no-background" size="lg" isFull>Label</Button>
+    </DialogFooter>
   </DialogContent>
 </Dialog>
         `,
