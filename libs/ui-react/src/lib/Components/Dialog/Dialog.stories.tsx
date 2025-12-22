@@ -4,6 +4,25 @@ import { Button } from '../Button';
 import { Spot } from '../Spot';
 import { Dialog, DialogContent, DialogTrigger, DialogHeader } from './Dialog';
 
+const DialogContentTemplate = () => {
+  return (
+    <div className='space-y-16'>
+      <p className='text-base body-2'>
+        The content area after the DialogHeader can contain any components.
+        Ensure proper padding and scrolling if needed.
+      </p>
+      <div className='rounded-sm bg-muted p-12'>
+        <p className='text-muted body-3'>
+          <strong className='text-base body-3-semi-bold'>Note:</strong> The
+          dialog content defaults to a width of 400px and height auto-adjusts to
+          content. Use the className prop on DialogContent to customize
+          dimensions if needed.
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const DialogTemplate = ({
   dialogHeaderProps,
   triggerLabel = 'Open Dialog',
@@ -20,20 +39,7 @@ const DialogTemplate = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
-        <div className='space-y-16'>
-          <p className='text-base body-2'>
-            The content area after the DialogHeader can contain any components.
-            Ensure proper padding and scrolling if needed.
-          </p>
-          <div className='rounded-sm bg-muted p-12'>
-            <p className='text-muted body-3'>
-              <strong className='text-base body-3-semi-bold'>Note:</strong> The
-              dialog content defaults to a width of 400px and height
-              auto-adjusts to content. Use the className prop on DialogContent
-              to customize dimensions if needed.
-            </p>
-          </div>
-        </div>
+        <DialogContentTemplate />
       </DialogContent>
     </Dialog>
   );
@@ -126,6 +132,86 @@ export const WithDescription: Story = {
   },
 };
 
+export const HeightShowcase: Story = {
+  render: () => {
+    const [openHug, setOpenHug] = React.useState(false);
+    const [openFixed, setOpenFixed] = React.useState(false);
+
+    return (
+      <div className='flex gap-16'>
+        <Dialog height='hug' open={openHug} onOpenChange={setOpenHug}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Hug (default)</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Hug Height'
+              description='Content-fit height'
+              onClose={() => setOpenHug(false)}
+            />
+            <p className='text-muted body-2'>
+              The dialog height adjusts to fit the content, up to a maximum of
+              560px.
+            </p>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog height='fixed' open={openFixed} onOpenChange={setOpenFixed}>
+          <DialogTrigger asChild>
+            <Button appearance='base'>Fixed</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader
+              appearance='compact'
+              title='Fixed Height'
+              description='Always 560px'
+              onClose={() => setOpenFixed(false)}
+            />
+            <div className='flex flex-1 flex-col'>
+              <p className='text-muted body-2'>
+                The dialog always has a fixed height of 560px, regardless of
+                content.
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+// Hug height (default) - content-fit up to 560px max
+<Dialog height="hug" open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader title="Title" onClose={() => setOpen(false)} />
+    <p>Content adjusts to fit</p>
+  </DialogContent>
+</Dialog>
+
+// Fixed height - always 560px
+<Dialog height="fixed" open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <Button appearance="base">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader title="Title" onClose={() => setOpen(false)} />
+    <div className="flex-1">
+      <p>Content can fill remaining space with flex-1</p>
+    </div>
+  </DialogContent>
+</Dialog>
+        `,
+      },
+    },
+  },
+};
+
 export const AppearanceVariants: Story = {
   render: () => {
     const [openCompact, setOpenCompact] = React.useState(false);
@@ -144,6 +230,7 @@ export const AppearanceVariants: Story = {
               description='Additional information'
               onClose={() => setOpenCompact(false)}
             />
+            <DialogContentTemplate />
           </DialogContent>
         </Dialog>
 
@@ -158,6 +245,7 @@ export const AppearanceVariants: Story = {
               description='Additional information'
               onClose={() => setOpenExtended(false)}
             />
+            <DialogContentTemplate />
           </DialogContent>
         </Dialog>
       </div>
@@ -211,6 +299,7 @@ export const WithBack: Story = {
               onClose={() => setOpenCompact(false)}
               onBack={() => console.log('Back clicked')}
             />
+            <DialogContentTemplate />
           </DialogContent>
         </Dialog>
 
@@ -226,6 +315,7 @@ export const WithBack: Story = {
               onClose={() => setOpenExtended(false)}
               onBack={() => console.log('Back clicked')}
             />
+            <DialogContentTemplate />
           </DialogContent>
         </Dialog>
       </div>
@@ -270,30 +360,6 @@ export const WithBack: Story = {
       },
     },
   },
-};
-
-export const ExtendedWithDescription: Story = {
-  render: () => (
-    <DialogTemplate
-      dialogHeaderProps={{
-        appearance: 'extended',
-        title: 'Extended Sheet Title',
-        description: 'Additional information',
-      }}
-    />
-  ),
-};
-
-export const ExtendedWithBack: Story = {
-  render: () => (
-    <DialogTemplate
-      dialogHeaderProps={{
-        appearance: 'extended',
-        title: 'Extended Sheet Title',
-        onBack: () => console.log('Back clicked'),
-      }}
-    />
-  ),
 };
 
 export const InfoStateError: Story = {

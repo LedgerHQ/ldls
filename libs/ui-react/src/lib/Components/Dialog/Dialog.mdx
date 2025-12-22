@@ -35,13 +35,18 @@ Dialogs are modal windows that interrupt the normal workflow to grab the user's 
 - **Header**: Use `DialogHeader` component for a consistent dialog header with title, description, and controls
 - **Content**: The main container for dialog content
 
-> **Note**:
->
-> The **width** of the dialog is `400px` by default, you can adjust the width of the dialog content by using the `className` prop on `DialogContent`.
->
-> The **height** of the dialog is `auto-adjusted` to the content, you can adjust the height of the dialog content by using the `className` prop on `DialogContent`.
+> **Note**: The **width** of the dialog is `400px` by default, you can adjust the width of the dialog content by using the `className` prop on `DialogContent`.
 
 ## Properties
+
+### Height
+
+The dialog supports two height modes via the `height` prop on `Dialog`:
+
+- **hug** (default): Content-fit height up to 560px max
+- **fixed**: Always exactly 560px height
+
+<Canvas of={DialogStories.HeightShowcase} />
 
 ### Header Configuration
 
@@ -105,8 +110,10 @@ To be implemented:
     </li>
     <li>Ensure content is responsive and works on mobile devices</li>
     <li>
-      Use className prop on DialogContent to adjust the width and height of the
-      dialog
+      Use className prop on DialogContent to adjust the width of the dialog
+    </li>
+    <li>
+      Use height prop on Dialog for fixed or hug height behavior
     </li>
   </ul>
 </div>
@@ -223,76 +230,6 @@ Control dialog width via className on DialogContent:
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Always use DialogHeader'
-      description='Use asChild for trigger composition'
-    >
-
-```tsx
-<DialogContent>
-  <DialogHeader title='Title' onClose={handleClose} />
-  <div className='p-16'>Content</div>
-</DialogContent>
-
-<DialogTrigger asChild>
-  <Button>Open</Button>
-</DialogTrigger>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't omit DialogHeader"
-      description='Avoid omitting DialogHeader or nesting dialogs'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<DialogContent>
-  <h2>Custom Title</h2>
-</DialogContent>
-
-<Dialog>
-  <DialogContent>
-    <Dialog>{/* Invalid */}</Dialog>
-  </DialogContent>
-</Dialog>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use className for width'
-      description='Default width is 400px'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<DialogContent className='max-w-512'>
-  Content
-</DialogContent>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't override core styles"
-      description='Core styling and padding should not be modified'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<DialogContent className='bg-base'>
-  Custom bg
-</DialogContent>
-
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
 
   <DoVsDontRow>
     <DoBlockItem

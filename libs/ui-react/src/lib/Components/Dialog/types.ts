@@ -1,5 +1,7 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
+export type DialogHeight = 'hug' | 'fixed';
+
 export type DialogProps = {
   /**
    * Callback function to handle open state change.
@@ -16,6 +18,13 @@ export type DialogProps = {
    * @default false
    */
   defaultOpen?: boolean;
+  /**
+   * The height behavior of the dialog.
+   * - `hug`: Content-fit height up to max 560px (default)
+   * - `fixed`: Always exactly 560px height
+   * @default 'hug'
+   */
+  height?: DialogHeight;
 } & React.ComponentProps<typeof DialogPrimitive.Root>;
 
 export type DialogTriggerProps = {

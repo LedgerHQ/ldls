@@ -1,8 +1,36 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { DialogHeader } from './DialogHeader/DialogHeader';
-import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
+import {
+  DialogContentProps,
+  DialogHeight,
+  DialogOverlayProps,
+  DialogProps,
+} from './types';
+
+const DialogContext = React.createContext<{ height: DialogHeight }>({
+  height: 'hug',
+});
+
+const dialogContentVariants = cva(
+  [
+    'fixed left-[50%] top-[50%] z-dialog-content flex w-400 max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] flex-col rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0',
+    'data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
+  ],
+  {
+    variants: {
+      height: {
+        hug: 'max-h-560',
+        fixed: 'h-560',
+      },
+    },
+    defaultVariants: {
+      height: 'hug',
+    },
+  },
+);
 /**
  * The root component that manages the dialog's open/closed state and contains the trigger and content.
  *
@@ -34,8 +62,12 @@ import { DialogContentProps, DialogOverlayProps, DialogProps } from './types';
  *   );
  * }
  */
-export function Dialog({ ...props }: DialogProps) {
-  return <DialogPrimitive.Root data-slot='dialog' {...props} />;
+export function Dialog({ height = 'hug', ...props }: DialogProps) {
+  return (
+    <DialogContext.Provider value={{ height }}>
+      <DialogPrimitive.Root data-slot='dialog' {...props} />
+    </DialogContext.Provider>
+  );
 }
 
 /**
@@ -143,15 +175,14 @@ export function DialogContent({
   children,
   ...props
 }: DialogContentProps) {
+  const { height } = React.useContext(DialogContext);
+
   return (
     <DialogPortal data-slot='dialog-portal'>
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot='dialog-content'
-        className={cn(
-          'fixed left-[50%] top-[50%] z-dialog-content w-400 max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] overflow-hidden rounded-2xl bg-canvas-sheet px-24 pb-24 pt-0 data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
-          className,
-        )}
+        className={cn(dialogContentVariants({ height }), className)}
         {...props}
       >
         {children}

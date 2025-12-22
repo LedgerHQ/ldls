@@ -7,17 +7,14 @@ import { ArrowLeft, Close } from '../../../Symbols';
 import { IconButton } from '../../IconButton';
 import { DialogHeaderProps } from '../types';
 
-const dialogHeaderVariants = cva(
-  '-ml-14 -mr-8 flex bg-canvas-sheet text-base',
-  {
-    variants: {
-      appearance: {
-        compact: 'h-64 flex-row items-center gap-12',
-        extended: 'flex-col gap-16 pb-12 pt-10',
-      },
+const dialogHeaderVariants = cva('-ml-14 -mr-8 flex text-base', {
+  variants: {
+    appearance: {
+      compact: 'h-64 flex-row items-center gap-12',
+      extended: 'flex-col gap-16 pb-12 pt-10',
     },
   },
-);
+});
 
 const BackButton: FC<{ onBack: () => void }> = ({ onBack }) => {
   const { t } = useCommonTranslation();
@@ -111,12 +108,12 @@ const DialogHeaderComponent: FC<DialogHeaderProps> = ({
             })}
           >
             {title && (
-              <div className='truncate text-center heading-4-semi-bold'>
+              <div className='heading-4-semi-bold truncate text-center'>
                 {title}
               </div>
             )}
             {description && (
-              <div className='truncate text-center text-muted body-2'>
+              <div className='text-muted body-2 truncate text-center'>
                 {description}
               </div>
             )}
