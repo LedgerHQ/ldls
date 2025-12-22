@@ -7,7 +7,7 @@ import { ArrowLeft, Close } from '../../../Symbols';
 import { IconButton } from '../../IconButton';
 import { DialogHeaderProps } from '../types';
 
-const dialogHeaderVariants = cva('-ml-14 -mr-8 flex text-base', {
+const dialogHeaderVariants = cva('-ml-14 -mr-8 flex px-24 text-base', {
   variants: {
     appearance: {
       compact: 'h-64 min-h-64 flex-row items-center gap-12',

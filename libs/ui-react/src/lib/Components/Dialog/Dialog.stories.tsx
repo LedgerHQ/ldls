@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import { Apps, Settings } from '../../Symbols';
 import { Button } from '../Button';
+import { ListItem } from '../ListItem';
+import { Search } from '../Search/Search';
 import { Spot } from '../Spot';
+import { Tile } from '../Tile';
 import {
   Dialog,
   DialogBody,
@@ -13,14 +17,14 @@ import {
 
 const DialogContentTemplate = () => {
   return (
-    <div className='space-y-16'>
-      <p className='text-base body-2'>
+    <div className='flex flex-col gap-16'>
+      <p className='body-2 text-base'>
         The content area after the DialogHeader can contain any components.
         Ensure proper padding and scrolling if needed.
       </p>
-      <div className='rounded-sm bg-muted p-12'>
+      <div className='bg-muted rounded-sm p-12'>
         <p className='text-muted body-3'>
-          <strong className='text-base body-3-semi-bold'>Note:</strong> The
+          <strong className='body-3-semi-bold text-base'>Note:</strong> The
           dialog content defaults to a width of 400px and height auto-adjusts to
           content. Use the className prop on DialogContent to customize
           dimensions if needed.
@@ -45,7 +49,11 @@ const DialogTemplate = ({
         <Button appearance='base'>{triggerLabel}</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader {...dialogHeaderProps} onClose={() => setOpen(false)} />
+        <DialogHeader
+          {...dialogHeaderProps}
+          appearance='extended'
+          onClose={() => setOpen(false)}
+        />
         <DialogBody>
           <DialogContentTemplate />
         </DialogBody>
@@ -188,68 +196,20 @@ export const HeightLayouts: Story = {
               description='Fixed height with scroll'
               onClose={() => setOpenScrollable(false)}
             />
-            <DialogBody>
-              <div className='space-y-16'>
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <div key={i} className='rounded-sm bg-muted p-12'>
-                    <p className='text-muted body-2'>
-                      Content item {i + 1}. This content is scrollable within
-                      the fixed height dialog.
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <DialogBody className='gap-16'>
+              {Array.from({ length: 10 }).map((_, i) => (
+                <ListItem
+                  key={i}
+                  title='Content item'
+                  description={`Content item ${i + 1}.`}
+                  leadingContent={<Spot appearance='icon' icon={Apps} />}
+                />
+              ))}
             </DialogBody>
           </DialogContent>
         </Dialog>
       </div>
     );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-// Hug height (default) - content-fit up to 560px max
-<Dialog height="hug" open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader title="Title" onClose={() => setOpen(false)} />
-    <DialogBody>
-      <p>Content adjusts to fit</p>
-    </DialogBody>
-  </DialogContent>
-</Dialog>
-
-// Fixed height - always 560px
-<Dialog height="fixed" open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader title="Title" onClose={() => setOpen(false)} />
-    <DialogBody>
-      <p>Content fills remaining space</p>
-    </DialogBody>
-  </DialogContent>
-</Dialog>
-
-// Scrollable content with fixed height
-<Dialog height="fixed" open={open} onOpenChange={setOpen}>
-  <DialogTrigger asChild>
-    <Button appearance="base">Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader title="Title" onClose={() => setOpen(false)} />
-    <DialogBody>
-      {/* Long scrollable content */}
-    </DialogBody>
-  </DialogContent>
-</Dialog>
-        `,
-      },
-    },
   },
 };
 
@@ -269,17 +229,15 @@ export const WithFooter: Story = {
             description='With fixed footer'
             onClose={() => setOpen(false)}
           />
-          <DialogBody>
-            <div className='space-y-16'>
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div key={i} className='rounded-sm bg-muted p-12'>
-                  <p className='text-muted body-2'>
-                    Content item {i + 1}. This content is scrollable while the
-                    footer stays fixed at the bottom.
-                  </p>
-                </div>
-              ))}
-            </div>
+          <DialogBody className='gap-16'>
+            {Array.from({ length: 10 }).map((_, i) => (
+              <ListItem
+                key={i}
+                title='Content item'
+                description={`Content item ${i + 1}`}
+                leadingContent={<Spot appearance='icon' icon={Apps} />}
+              />
+            ))}
           </DialogBody>
           <DialogFooter>
             <Button appearance='base' size='lg' isFull>
@@ -451,7 +409,7 @@ export const WithMultiSteps: Story = {
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
           <DialogBody>
-            <p className='text-base body-2'>
+            <p className='body-2 text-base'>
               {step === 1
                 ? 'Please review the information and click Continue to proceed.'
                 : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -497,7 +455,7 @@ const handleOpenChange = (isOpen: boolean) => {
       onBack={step > 1 ? () => setStep(step - 1) : undefined}
     />
     <DialogBody>
-      <p className="text-base body-2">
+          <p className="text-base body-2">
         {step === 1
           ? 'Please review the information and click Continue to proceed.'
           : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -521,6 +479,66 @@ const handleOpenChange = (isOpen: boolean) => {
   },
 };
 
+export const WithListsContent: Story = {
+  render: () => {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <Dialog height='fixed' open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button appearance='base'>Open Dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader
+            appearance='extended'
+            title='Browse Options'
+            description={
+              <div className='flex flex-col gap-8'>
+                <div>Description content is fixed to the top of the dialog</div>
+                <Search placeholder='Search' />
+              </div>
+            }
+            onClose={() => setOpen(false)}
+          />
+          <DialogBody className='gap-32'>
+            {/* Horizontal Tile List */}
+            <div className='flex flex-col gap-8'>
+              <h4 className='heading-4-semi-bold'>Quick Actions</h4>
+              <div className='-mx-24 flex gap-8 overflow-x-auto px-24'>
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <Tile
+                    key={i}
+                    appearance='card'
+                    leadingContent={<Spot appearance='icon' icon={Apps} />}
+                    title={`Action ${i + 1}`}
+                    className='min-w-96'
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Vertical ListItem List */}
+            <div className='flex flex-col gap-8'>
+              <h4 className='heading-4-semi-bold'>Settings</h4>
+
+              <div className='-mx-8'>
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <ListItem
+                    key={i}
+                    leadingContent={<Spot appearance='icon' icon={Settings} />}
+                    title={`Setting ${i + 1}`}
+                    description={`Configure option ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </DialogBody>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
+
 export const InfoStateVariants: Story = {
   render: () => {
     const [openError, setOpenError] = React.useState(false);
@@ -540,10 +558,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
+                <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -571,10 +589,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
+                <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -635,7 +653,7 @@ export const InfoStateVariants: Story = {
           <h3 className="heading-3-semi-bold text-base">Title</h3>
           <p className="body-2 text-muted">Description</p>
         </div>
-      </div>
+    </div>
     </DialogBody>
     <DialogFooter className="gap-8">
       <Button appearance="base" size="lg" isFull>Label</Button>

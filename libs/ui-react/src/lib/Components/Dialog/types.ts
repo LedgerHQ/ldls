@@ -112,7 +112,7 @@ export type DialogHeaderProps = {
   /**
    * Optional description text to show below or beside the title.
    */
-  description?: string;
+  description?: ReactNode;
   /**
    * Callback function to handle close action.
    */

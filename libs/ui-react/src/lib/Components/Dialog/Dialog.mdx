@@ -89,6 +89,15 @@ For multi-step dialogs:
 
 <Canvas of={DialogStories.WithMultiSteps} />
 
+### With Lists Content
+
+When displaying lists (`ListItem`, `Tile`) inside a dialog, use **negative margins** to align content edge-to-edge with the dialog padding:
+
+- Use negative margin for `ListItem` to align with dialog horizontal padding
+- Use combination of negative margin and positive padding for horizontal scrollable `Tile` lists to allow edge-to-edge scrolling while maintaining content padding
+
+<Canvas of={DialogStories.WithListsContent} />
+
 ## Examples
 
 ### Info State Variants
@@ -105,36 +114,6 @@ Built-in accessibility features from Radix UI:
 - **Focus management**: Focus returns to the trigger element on close
 - **Screen reader support**: Uses `DialogTitle` and `DialogDescription` for proper announcements
 
-<div className='rounded-8 mt-8 p-12 text-base'>
-  <p className='mb-4 body-2-semi-bold'>Important Notes:</p>
-  <ul className='space-y-2 body-2'>
-    <li>
-      Always include DialogHeader as the first child of DialogContent for
-      consistent UX and accessibility
-    </li>
-    <li>
-      In most cases, wrap your main content in DialogBody to ensure proper
-      spacing and layout. For simple informational layouts, you may omit
-      DialogBody if the layout works as intended.
-    </li>
-    <li>Handle onClose in DialogHeader to properly close the dialog</li>
-    <li>Use DialogPortal for correct positioning in the DOM</li>
-    <li>
-      Avoid using for non-critical information - prefer tooltips or other UI
-      elements
-    </li>
-    <li>Ensure content is responsive and works on mobile devices</li>
-    <li>
-      Use className prop on DialogContent to adjust the width of the dialog
-    </li>
-    <li>
-      Use height prop on Dialog for fixed or hug height behavior
-    </li>
-    <li>
-      Use DialogFooter for fixed action buttons at the bottom
-    </li>
-  </ul>
-</div>
 
 </Tab>
 <Tab label="Implementation">
