@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { useTheme } from '../../../styles/Provider/useTheme';
 import {
   Settings,
   Plus,
@@ -171,7 +170,6 @@ export const TrailingContentVariantsShowcase: Story = {
 
 export const StateShowcase: Story = {
   render: () => {
-    const { theme } = useTheme();
     return (
       <Box lx={{ flexDirection: 'row', gap: 's32' }}>
         <Box lx={{ flexDirection: 'column', maxWidth: 's256' }}>
@@ -179,12 +177,7 @@ export const StateShowcase: Story = {
             title='Caret Variant'
             description='With description'
             leadingContent={<Spot appearance='icon' icon={User} />}
-            trailingContent={
-              <ChevronRight
-                size={24}
-                style={{ color: theme.colors.text.muted }}
-              />
-            }
+            trailingContent={<ChevronRight size={24} lx={{ color: 'muted' }} />}
           />
           <ListItem
             title='Value Variant'
@@ -217,10 +210,7 @@ export const StateShowcase: Story = {
             leadingContent={<Spot appearance='icon' icon={User} disabled />}
             disabled
             trailingContent={
-              <ChevronRight
-                size={24}
-                style={{ color: theme.colors.text.disabled }}
-              />
+              <ChevronRight size={24} lx={{ color: 'disabled' }} />
             }
           />
           <ListItem
@@ -235,12 +225,7 @@ export const StateShowcase: Story = {
             description='With description'
             leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
             disabled
-            trailingContent={
-              <PenEdit
-                size={24}
-                style={{ color: theme.colors.text.disabled }}
-              />
-            }
+            trailingContent={<PenEdit size={24} lx={{ color: 'disabled' }} />}
           />
           <ListItem
             title='None Variant'
@@ -256,7 +241,6 @@ export const StateShowcase: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => {
-    const { theme } = useTheme();
     return (
       <Box
         lx={{
@@ -276,35 +260,20 @@ export const ResponsiveLayout: Story = {
             title='Short Title'
             description='Short description'
             leadingContent={<Spot appearance='icon' icon={Plus} />}
-            trailingContent={
-              <ChevronRight
-                size={24}
-                style={{ color: theme.colors.text.muted }}
-              />
-            }
+            trailingContent={<ChevronRight size={24} lx={{ color: 'muted' }} />}
           />
           <ListItem
             title='Long Title that should truncate appropriately'
             description='Long description that should truncate appropriately'
             leadingContent={<Spot appearance='icon' icon={Plus} />}
-            trailingContent={
-              <ChevronRight
-                size={24}
-                style={{ color: theme.colors.text.muted }}
-              />
-            }
+            trailingContent={<ChevronRight size={24} lx={{ color: 'muted' }} />}
           />
           <ListItem
             title='Long Title that should truncate appropriately'
             description='Long description that should truncate appropriately'
             descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
             leadingContent={<Spot appearance='icon' icon={Plus} />}
-            trailingContent={
-              <ChevronRight
-                size={24}
-                style={{ color: theme.colors.text.muted }}
-              />
-            }
+            trailingContent={<ChevronRight size={24} lx={{ color: 'muted' }} />}
           />
         </Box>
       </Box>
