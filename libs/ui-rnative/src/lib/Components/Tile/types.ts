@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { PressableProps } from 'react-native';
+import { StyledPressableProps } from '../../../styles';
 
 export type TileProps = {
   /**
@@ -36,10 +36,10 @@ export type TileProps = {
   /**
    * Callback function when the tile is pressed.
    */
-  onPress?: PressableProps['onPress'];
+  onPress?: StyledPressableProps['onPress'];
   /**
    * Callback function when the tile is long pressed.
    * Can be used to perform secondary actions.
    */
-  onLongPress?: PressableProps['onLongPress'];
-} & Omit<PressableProps, 'onPress' | 'onLongPress' | 'disabled'>;
+  onLongPress?: StyledPressableProps['onLongPress'];
+} & Omit<StyledPressableProps, 'onPress' | 'onLongPress' | 'disabled'>;

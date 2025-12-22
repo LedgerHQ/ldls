@@ -2,8 +2,8 @@ import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
-import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
+import { Box } from '../Utility';
 
 <Meta title='Containment/Tile' of={TileStories} />
 
@@ -59,7 +59,7 @@ Horizontal lists are used to display a list of tiles in a horizontal scrollable 
 
 <Canvas of={TileStories.HorizontalList} />
 
-### ResponsiveLayout
+### Responsive Layout
 
 By default the tile fills the width of its container. The title and description will be truncated to one line.
 
@@ -75,12 +75,13 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ## Basic Usage
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/lumen-ui-rnative';
+import { Tile, Spot, Box } from '@ledgerhq/lumen-ui-rnative';
 import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
     <Tile
+      lx={{ width: 's128' }}
       title='Settings'
       description='BTC'
       leadingContent={<Spot appearance='icon' icon={Settings} />}
@@ -110,51 +111,9 @@ function MyComponent() {
 ```
 
 ## Do's and Don'ts
-
-<div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use container elements to control width'
-      description='Wrap Tile in container elements to control its width'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
-
-<View className='w-128'>
-  <Tile
-    title='Settings'
-    leadingContent={<Spot appearance='icon' icon={Settings} />}
-  />
-</View>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use className for width control"
-      description='Avoid using className to set width directly on Tile'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
-
-<View className='w-128'>
-  <Tile
-    title='Settings'
-    leadingContent={<Spot appearance='icon' icon={Settings} />}
-    className='w-96'
-  />
-</View>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

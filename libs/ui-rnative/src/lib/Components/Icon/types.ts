@@ -1,5 +1,6 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
+import { LumenTextStyleLX } from '../../../styles';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 
@@ -16,4 +17,5 @@ export type IconProps = {
    * The children of the icon.
    */
   children: React.ReactNode;
-} & Omit<SvgProps, 'style'>;
+} & LumenTextStyleLX &
+  Omit<SvgProps, 'style'>;

@@ -1,17 +1,11 @@
 import GorghomBottomSheet, { SNAP_POINT_TYPE } from '@gorhom/bottom-sheet';
 import { createSafeContext, useMergedRef } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
-import { cssInterop } from 'nativewind';
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 import { CustomBackdrop } from './CustomBackdrop';
 import { CustomHandle } from './CustomHandle';
 import { BottomSheetProps } from './types';
-
-const StyledGorghomBottomSheet = cssInterop(GorghomBottomSheet, {
-  className: 'style',
-  backgroundClassName: 'backgroundStyle',
-});
 
 const OFFSET_TOP = 25;
 const FULL_HEIGHT = RuntimeConstants.insetDimensions.height;
@@ -29,16 +23,29 @@ const MAX_DYNAMIC_CONTENT_SIZE = {
   fullWithOffset: FULL_WITH_OFFSET,
 };
 
-const bottomSheetVariants = {
-  root: cva('mb-16 w-full flex-1 rounded-t-xl bg-canvas-sheet', {
-    variants: {
-      shadow: {
-        true: 'shadow-base shadow-lg',
-        false: '',
+const useStyles = ({ shadow }: { shadow: boolean }) => {
+  return LumenStyleSheet.useCreate(
+    (t) => ({
+      root: mergeStyles(
+        {
+          marginBottom: t.spacings.s16,
+          width: t.sizes.full,
+          flex: 1,
+          borderTopLeftRadius: t.borderRadius.xl,
+          borderTopRightRadius: t.borderRadius.xl,
+          backgroundColor: t.colors.bg.canvasSheet,
+        },
+        shadow && {
+          boxShadow: t.shadows.lg,
+        },
+      ),
+      background: {
+        marginBottom: t.spacings.s16,
+        backgroundColor: t.colors.bg.canvasSheet,
       },
-    },
-  }),
-  background: cva('mb-16 bg-canvas-sheet'),
+    }),
+    [shadow],
+  );
 };
 
 const [BottomSheetProvider, useBottomSheetContext] =
@@ -77,6 +84,8 @@ const BottomSheet = forwardRef<
     const innerRef = useRef<GorghomBottomSheet>(null);
     const mergedRefs = useMergedRef<GorghomBottomSheet>(ref, innerRef);
     const [isOpen, setIsOpen] = useState(false);
+
+    const styles = useStyles({ shadow: hideBackdrop && isOpen });
 
     /**
      * Match the snap points to the preset or the custom snap points array
@@ -149,18 +158,16 @@ const BottomSheet = forwardRef<
         }
         onAnimate?.(fromIndex, toIndex, fromPosition, toPosition);
       },
-      [onAnimate],
+      [isOpen, onAnimate],
     );
 
     return (
       <BottomSheetProvider value={{ onBack, hideCloseButton }}>
-        <StyledGorghomBottomSheet
+        <GorghomBottomSheet
           {...props}
           ref={mergedRefs}
-          className={bottomSheetVariants.root({
-            shadow: hideBackdrop && isOpen,
-          })}
-          backgroundClassName={bottomSheetVariants.background()}
+          style={styles.root}
+          backgroundStyle={styles.background}
           onChange={handleChange}
           onAnimate={handleAnimate}
           /**
@@ -186,7 +193,7 @@ const BottomSheet = forwardRef<
           index={-1}
         >
           {children}
-        </StyledGorghomBottomSheet>
+        </GorghomBottomSheet>
       </BottomSheetProvider>
     );
   },

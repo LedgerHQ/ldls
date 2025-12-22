@@ -1,63 +1,88 @@
 import { useBottomSheet } from '@gorhom/bottom-sheet';
-import { cva } from 'class-variance-authority';
 import { FC, useCallback } from 'react';
-import { Text, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ArrowLeft, Close } from '../../Symbols';
-import { cn } from '../../utils';
 import { IconButton } from '../IconButton';
+import { Box, Text } from '../Utility';
 import { useBottomSheetContext } from './BottomSheet';
 import { BottomSheetHeaderProps } from './types';
 
-const bottomSheetHeaderVariants = {
-  root: cva('sticky top-0 z-dialog-content bg-canvas-sheet pb-12', {
-    variants: {
-      spacing: {
-        true: 'px-16',
-        false: '',
+type Appearance = NonNullable<BottomSheetHeaderProps['appearance']>;
+
+const Z_INDEX_DIALOG_CONTENT = 1000;
+
+const useStyles = ({
+  appearance,
+  spacing,
+  hidden,
+}: {
+  appearance: Appearance;
+  spacing: boolean;
+  hidden: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => ({
+      root: mergeStyles(
+        {
+          position: 'relative',
+          zIndex: Z_INDEX_DIALOG_CONTENT,
+          backgroundColor: t.colors.bg.canvasSheet,
+          paddingBottom: t.spacings.s12,
+        },
+        spacing && {
+          paddingHorizontal: t.spacings.s16,
+        },
+      ),
+      inner: mergeStyles(
+        {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: t.spacings.s16,
+        },
+        appearance === 'expanded' && {
+          marginBottom: t.spacings.s16,
+        },
+        hidden && {
+          display: 'none',
+        },
+      ),
+      textWrapper: mergeStyles(
+        {
+          flex: 1,
+        },
+        appearance === 'expanded' && {
+          gap: t.spacings.s4,
+        },
+      ),
+      title: mergeStyles(
+        appearance === 'compact'
+          ? t.typographies.heading4SemiBold
+          : t.typographies.heading2SemiBold,
+        {
+          color: t.colors.text.base,
+        },
+        appearance === 'compact' && {
+          textAlign: 'center',
+        },
+      ),
+      description: mergeStyles(t.typographies.body2, {
+        color: t.colors.text.muted,
+        textAlign: appearance === 'compact' ? 'center' : 'left',
+      }),
+      iconPlaceholder: {
+        width: t.sizes.s32,
+        height: t.sizes.s32,
       },
-    },
-  }),
-  inner: cva('flex flex-row items-center justify-between gap-16', {
-    variants: {
-      appearance: {
-        compact: '',
-        expanded: 'mb-16',
-      },
-      hidden: {
-        true: 'hidden',
-        false: '',
-      },
-    },
-  }),
-  textWrapper: cva('flex flex-1 text-center', {
-    variants: {
-      appearance: {
-        compact: '',
-        expanded: 'gap-4',
-      },
-    },
-  }),
-  title: cva('text-base', {
-    variants: {
-      appearance: {
-        compact: 'text-center heading-4-semi-bold',
-        expanded: 'heading-2-semi-bold',
-      },
-    },
-  }),
-  desc: cva('text-muted body-2', {
-    variants: {
-      appearance: {
-        compact: 'text-center',
-        expanded: 'text-left',
-      },
-    },
-  }),
+    }),
+    [appearance, spacing, hidden],
+  );
 };
 
 export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
-  className,
+  lx,
+  style,
   title,
   description,
   appearance = 'compact',
@@ -78,37 +103,27 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
   const hasTitleSection = Boolean(title || description);
   const hasIcons = Boolean(onBack || !hideCloseButton);
 
+  const styles = useStyles({
+    appearance,
+    spacing,
+    hidden: !hasIcons && appearance !== 'compact',
+  });
+
   if (!title && !description && !onBack && hideCloseButton) {
     return null;
   }
 
   const titleComponent = hasTitleSection ? (
-    <View className={bottomSheetHeaderVariants.textWrapper({ appearance })}>
-      {title && (
-        <Text className={bottomSheetHeaderVariants.title({ appearance })}>
-          {title}
-        </Text>
-      )}
-      {description && (
-        <Text className={bottomSheetHeaderVariants.desc({ appearance })}>
-          {description}
-        </Text>
-      )}
-    </View>
+    <Box style={styles.textWrapper}>
+      {title && <Text style={styles.title}>{title}</Text>}
+      {description && <Text style={styles.description}>{description}</Text>}
+    </Box>
   ) : null;
 
   return (
-    <View
-      {...props}
-      className={cn(bottomSheetHeaderVariants.root({ spacing }), className)}
-    >
-      <View
-        className={bottomSheetHeaderVariants.inner({
-          appearance,
-          hidden: !hasIcons && appearance !== 'compact',
-        })}
-      >
-        <View className='size-32'>
+    <Box {...props} lx={lx} style={[styles.root, style]}>
+      <Box style={styles.inner}>
+        <Box style={styles.iconPlaceholder}>
           {onBack && (
             <IconButton
               accessibilityLabel={t(
@@ -120,9 +135,9 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
               appearance='transparent'
             />
           )}
-        </View>
+        </Box>
         {appearance === 'compact' && titleComponent}
-        <View className='size-32'>
+        <Box style={styles.iconPlaceholder}>
           {!hideCloseButton && (
             <IconButton
               accessibilityLabel={t(
@@ -134,10 +149,10 @@ export const BottomSheetHeader: FC<BottomSheetHeaderProps> = ({
               appearance='transparent'
             />
           )}
-        </View>
-      </View>
+        </Box>
+      </Box>
       {appearance === 'expanded' && titleComponent}
-    </View>
+    </Box>
   );
 };
 BottomSheetHeader.displayName = 'BottomSheetHeader';

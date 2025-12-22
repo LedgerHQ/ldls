@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
-import { View } from 'react-native';
 import { LumenStyleSheet } from '../../../styles';
 import * as Icons from '../../Symbols';
 import { Search } from '../Search/Search';
@@ -68,23 +67,23 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
         {name}
       </Text>
       {copied && (
-        <View
-          style={{
+        <Box
+          lx={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            top: 's0',
+            left: 's0',
+            right: 's0',
+            bottom: 's0',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: theme.borderRadius.sm,
-            backgroundColor: theme.colors.bg.muted,
+            borderRadius: 'sm',
+            backgroundColor: 'muted',
           }}
         >
           <Text typography='body4' lx={{ color: 'onAccent' }}>
             Copied!
           </Text>
-        </View>
+        </Box>
       )}
     </Pressable>
   );

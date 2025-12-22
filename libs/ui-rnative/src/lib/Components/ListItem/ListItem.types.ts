@@ -1,4 +1,4 @@
-import { PressableProps } from 'react-native';
+import { StyledPressableProps } from '../../../styles';
 
 export type ListItemProps = {
   /**
@@ -24,4 +24,8 @@ export type ListItemProps = {
    * @example trailingContent={<Icon />}
    */
   trailingContent?: React.ReactNode;
-} & Omit<PressableProps, 'children'>;
+  /**
+   * Whether the list item is disabled.
+   */
+  disabled?: boolean;
+} & Omit<StyledPressableProps, 'disabled'>;

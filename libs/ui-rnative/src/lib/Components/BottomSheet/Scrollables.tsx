@@ -5,12 +5,9 @@ import {
   BottomSheetScrollView as GorhomBottomSheetScrollView,
   BottomSheetVirtualizedList as GorhomBottomSheetVirtualizedList,
 } from '@gorhom/bottom-sheet';
-import { cn } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
-import { cssInterop } from 'nativewind';
 import { FC, forwardRef } from 'react';
-
-const styles = cva('flex-1 px-16 pb-16');
+import { ViewStyle } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 
 export type BottomSheetViewProps = Parameters<typeof GorhomBottomSheetView>[0];
 export type BottomSheetFlatListProps = Parameters<
@@ -26,33 +23,30 @@ export type BottomSheetVirtualizedListProps = Parameters<
   typeof GorhomBottomSheetVirtualizedList
 >[0];
 
-// Apply cssInterop to map className to style prop for Gorhom components
-const StyledBottomSheetView = cssInterop(GorhomBottomSheetView, {
-  className: 'style',
-});
-const StyledBottomSheetFlatList = cssInterop(GorhomBottomSheetFlatList, {
-  className: 'style',
-});
-const StyledBottomSheetSectionList = cssInterop(GorhomBottomSheetSectionList, {
-  className: 'style',
-});
-const StyledBottomSheetScrollView = cssInterop(GorhomBottomSheetScrollView, {
-  className: 'style',
-});
-const StyledBottomSheetVirtualizedList = cssInterop(
-  GorhomBottomSheetVirtualizedList,
-  { className: 'style' },
-);
+const useScrollableStyles = () => {
+  return LumenStyleSheet.useCreate((t) => ({
+    container: {
+      flex: 1,
+      paddingHorizontal: t.spacings.s16,
+      paddingBottom: t.spacings.s16,
+    },
+  }));
+};
 
 export const BottomSheetView: FC<BottomSheetViewProps> = ({
   children,
-  className,
+  style,
   ...props
 }) => {
+  const styles = useScrollableStyles();
+
   return (
-    <StyledBottomSheetView className={cn(className, styles())} {...props}>
+    <GorhomBottomSheetView
+      style={[styles.container as ViewStyle, style]}
+      {...props}
+    >
       {children}
-    </StyledBottomSheetView>
+    </GorhomBottomSheetView>
   );
 };
 BottomSheetView.displayName = 'BottomSheetView';
@@ -60,15 +54,17 @@ BottomSheetView.displayName = 'BottomSheetView';
 export const BottomSheetFlatList = forwardRef<
   React.ElementRef<typeof GorhomBottomSheetFlatList>,
   BottomSheetFlatListProps
->(({ children, className, ...props }, ref) => {
+>(({ children, style, ...props }, ref) => {
+  const styles = useScrollableStyles();
+
   return (
-    <StyledBottomSheetFlatList
+    <GorhomBottomSheetFlatList
       ref={ref}
-      className={cn(className, styles())}
+      style={[styles.container as ViewStyle, style]}
       {...props}
     >
       {children}
-    </StyledBottomSheetFlatList>
+    </GorhomBottomSheetFlatList>
   );
 });
 BottomSheetFlatList.displayName = 'BottomSheetFlatList';
@@ -76,15 +72,17 @@ BottomSheetFlatList.displayName = 'BottomSheetFlatList';
 export const BottomSheetSectionList = forwardRef<
   React.ElementRef<typeof GorhomBottomSheetSectionList>,
   BottomSheetSectionListProps
->(({ children, className, ...props }, ref) => {
+>(({ children, style, ...props }, ref) => {
+  const styles = useScrollableStyles();
+
   return (
-    <StyledBottomSheetSectionList
+    <GorhomBottomSheetSectionList
       ref={ref}
-      className={cn(className, styles())}
+      style={[styles.container as ViewStyle, style]}
       {...props}
     >
       {children}
-    </StyledBottomSheetSectionList>
+    </GorhomBottomSheetSectionList>
   );
 });
 BottomSheetSectionList.displayName = 'BottomSheetSectionList';
@@ -92,15 +90,17 @@ BottomSheetSectionList.displayName = 'BottomSheetSectionList';
 export const BottomSheetScrollView = forwardRef<
   React.ElementRef<typeof GorhomBottomSheetScrollView>,
   BottomSheetScrollViewProps
->(({ children, className, ...props }, ref) => {
+>(({ children, style, ...props }, ref) => {
+  const styles = useScrollableStyles();
+
   return (
-    <StyledBottomSheetScrollView
+    <GorhomBottomSheetScrollView
       ref={ref}
-      className={cn(className, styles())}
+      style={[styles.container as ViewStyle, style]}
       {...props}
     >
       {children}
-    </StyledBottomSheetScrollView>
+    </GorhomBottomSheetScrollView>
   );
 });
 BottomSheetScrollView.displayName = 'BottomSheetScrollView';
@@ -108,15 +108,17 @@ BottomSheetScrollView.displayName = 'BottomSheetScrollView';
 export const BottomSheetVirtualizedList = forwardRef<
   React.ElementRef<typeof GorhomBottomSheetVirtualizedList>,
   BottomSheetVirtualizedListProps
->(({ children, className, ...props }, ref) => {
+>(({ children, style, ...props }, ref) => {
+  const styles = useScrollableStyles();
+
   return (
-    <StyledBottomSheetVirtualizedList
+    <GorhomBottomSheetVirtualizedList
       ref={ref}
-      className={cn(className, styles())}
+      style={[styles.container as ViewStyle, style]}
       {...props}
     >
       {children}
-    </StyledBottomSheetVirtualizedList>
+    </GorhomBottomSheetVirtualizedList>
   );
 });
 BottomSheetVirtualizedList.displayName = 'BottomSheetVirtualizedList';

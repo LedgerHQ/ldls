@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Text, View } from 'react-native';
 import { Button } from '../Button';
+import { Box, Text } from '../Utility';
 import { BottomSheet } from './BottomSheet';
 import { BottomSheetHeader } from './BottomSheetHeader';
 import {
@@ -97,7 +97,15 @@ export const Base: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -108,19 +116,19 @@ export const Base: Story = {
               appearance='compact'
               description='Description'
             />
-            <View className='flex flex-col gap-12'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
               {Array.from({ length: 3 }).map((_, index) => (
-                <Text className='text-base' key={index}>
+                <Text typography='body2' lx={{ color: 'base' }} key={index}>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Vitae excepturi odit, quis tenetur iste perspiciatis mollitia
                   porro velit laborum quasi numquam reiciendis dolor! Et quia
                   voluptates eum, sunt asperiores quod.
                 </Text>
               ))}
-            </View>
+            </Box>
           </BottomSheetView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -139,7 +147,15 @@ export const TitleExpanded: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -150,8 +166,8 @@ export const TitleExpanded: Story = {
               appearance='expanded'
               description='Expanded description.'
             />
-            <View className='flex flex-col gap-12'>
-              <Text className='text-base body-2'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
+              <Text typography='body2' lx={{ color: 'base' }}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
                 excepturi odit, quis tenetur iste perspiciatis mollitia porro
                 velit laborum quasi numquam reiciendis dolor! Maecenas sed diam
@@ -160,10 +176,10 @@ export const TitleExpanded: Story = {
                 consectetur adipiscing elit. Donec ullamcorper nulla non metus
                 auctor fringilla.
               </Text>
-            </View>
+            </Box>
           </BottomSheetView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -177,7 +193,14 @@ export const DynamicSizingWithoutSnapPoints: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -188,17 +211,17 @@ export const DynamicSizingWithoutSnapPoints: Story = {
               appearance='compact'
               description='This bottom sheet adapts to its content height'
             />
-            <View className='flex flex-col gap-12'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
               {Array.from({ length: 5 }).map((_, index) => (
-                <Text className='text-base' key={index}>
+                <Text typography='body2' lx={{ color: 'base' }} key={index}>
                   Item {index + 1}: Lorem ipsum, dolor sit amet consectetur
                   adipisicing elit.
                 </Text>
               ))}
-            </View>
+            </Box>
           </BottomSheetScrollView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -212,7 +235,14 @@ export const DynamicSizingWithSnapPoints: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Button
           size='sm'
           onPress={() => bottomSheetRef.current?.snapToIndex(1)}
@@ -226,17 +256,17 @@ export const DynamicSizingWithSnapPoints: Story = {
               appearance='compact'
               description='This bottom sheet adapts to its content height and has snap points'
             />
-            <View className='flex flex-col gap-12'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
               {Array.from({ length: 3 }).map((_, index) => (
-                <Text className='text-base' key={index}>
+                <Text typography='body2' lx={{ color: 'base' }} key={index}>
                   Item {index + 1}: Lorem ipsum, dolor sit amet consectetur
                   adipisicing elit.
                 </Text>
               ))}
-            </View>
+            </Box>
           </BottomSheetScrollView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -252,7 +282,15 @@ export const PreventClose: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -263,18 +301,18 @@ export const PreventClose: Story = {
               appearance='compact'
               description='This bottom sheet cannot be closed by dragging or button'
             />
-            <View className='flex flex-col gap-12'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
               {Array.from({ length: 3 }).map((_, index) => (
-                <Text className='text-base' key={index}>
+                <Text typography='body2' lx={{ color: 'base' }} key={index}>
                   Item {index + 1}: This bottom sheet stays open and cannot be
                   dismissed by the user. You would need to programmatically
                   close it using the ref.
                 </Text>
               ))}
-            </View>
+            </Box>
           </BottomSheetView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -287,7 +325,16 @@ export const ScrollView: Story = {
     const bottomSheetRef = useBottomSheetRef();
 
     return (
-      <View className='h-320 w-full items-center justify-center bg-base pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'base',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -298,19 +345,19 @@ export const ScrollView: Story = {
               appearance='compact'
               description='This bottom sheet contains a scrollable view'
             />
-            <View className='flex flex-col gap-12'>
+            <Box lx={{ flexDirection: 'column', gap: 's12' }}>
               {Array.from({ length: 20 }).map((_, index) => (
-                <Text className='text-base' key={index}>
+                <Text typography='body2' lx={{ color: 'base' }} key={index}>
                   Item {index + 1}: Lorem ipsum, dolor sit amet consectetur
                   adipisicing elit. Vitae excepturi odit, quis tenetur iste
                   perspiciatis mollitia porro velit laborum quasi numquam
                   reiciendis dolor!
                 </Text>
               ))}
-            </View>
+            </Box>
           </BottomSheetScrollView>
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -335,7 +382,15 @@ export const VirtualList: Story = {
     }));
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -352,19 +407,27 @@ export const VirtualList: Story = {
             renderItem={({ item }) => {
               const typedItem = item as ListItem;
               return (
-                <View className='flex flex-col gap-4 border-b border-base py-12'>
-                  <Text className='text-base body-2-semi-bold'>
+                <Box
+                  lx={{
+                    flexDirection: 'column',
+                    gap: 's4',
+                    borderBottomWidth: 's1',
+                    borderColor: 'base',
+                    paddingVertical: 's12',
+                  }}
+                >
+                  <Text typography='body2SemiBold' lx={{ color: 'base' }}>
                     {typedItem.title}
                   </Text>
-                  <Text className='text-muted body-3'>
+                  <Text typography='body3' lx={{ color: 'muted' }}>
                     {typedItem.description}
                   </Text>
-                </View>
+                </Box>
               );
             }}
           />
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };
@@ -395,7 +458,15 @@ export const VirtualizedList: Story = {
     }));
 
     return (
-      <View className='h-320 w-full items-center justify-center pt-32'>
+      <Box
+        lx={{
+          height: 's320',
+          width: 'full',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 's32',
+        }}
+      >
         <Button size='sm' onPress={() => bottomSheetRef.current?.expand()}>
           Toggle open
         </Button>
@@ -420,19 +491,27 @@ export const VirtualizedList: Story = {
             renderItem={({ item }) => {
               const typedItem = item as ListItem;
               return (
-                <View className='flex flex-col gap-4 border-b border-base py-12'>
-                  <Text className='text-base body-2-semi-bold'>
+                <Box
+                  lx={{
+                    flexDirection: 'column',
+                    gap: 's4',
+                    borderBottomWidth: 's1',
+                    borderColor: 'base',
+                    paddingVertical: 's12',
+                  }}
+                >
+                  <Text typography='body2SemiBold' lx={{ color: 'base' }}>
                     {typedItem.title}
                   </Text>
-                  <Text className='text-muted body-3'>
+                  <Text typography='body3' lx={{ color: 'muted' }}>
                     {typedItem.description}
                   </Text>
-                </View>
+                </Box>
               );
             }}
           />
         </BottomSheet>
-      </View>
+      </Box>
     );
   },
 };

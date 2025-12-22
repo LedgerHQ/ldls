@@ -1,15 +1,19 @@
 import { BottomSheetBackdrop as GorhomBottomSheetBackdrop } from '@gorhom/bottom-sheet';
-import { cssInterop } from 'nativewind';
 import React from 'react';
+import { LumenStyleSheet } from '../../../styles';
 import { BottomSheetProps } from './types';
-
-const StyledCustomBackdrop = cssInterop(GorhomBottomSheetBackdrop, {
-  className: 'style',
-});
 
 type BackDropProps = React.ComponentProps<typeof GorhomBottomSheetBackdrop> & {
   backdropPressBehavior?: BottomSheetProps['backdropPressBehavior'];
   onPress?: () => void;
+};
+
+const useStyles = () => {
+  return LumenStyleSheet.useCreate((t) => ({
+    backdrop: {
+      backgroundColor: t.colors.bg.canvasOverlay,
+    },
+  }));
 };
 
 export const CustomBackdrop = ({
@@ -17,10 +21,12 @@ export const CustomBackdrop = ({
   onPress,
   ...props
 }: BackDropProps) => {
+  const styles = useStyles();
+
   return (
-    <StyledCustomBackdrop
+    <GorhomBottomSheetBackdrop
       {...props}
-      className='bg-canvas-overlay'
+      style={styles.backdrop}
       opacity={1}
       appearsOnIndex={0}
       disappearsOnIndex={-1}
