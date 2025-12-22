@@ -51,7 +51,6 @@ const useStyles = ({
       textWrapper: mergeStyles(
         {
           flex: 1,
-          textAlign: 'center',
         },
         appearance === 'expanded' && {
           gap: t.spacings.s4,

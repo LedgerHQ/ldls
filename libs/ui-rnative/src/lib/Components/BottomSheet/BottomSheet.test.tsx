@@ -1,9 +1,23 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import { render } from '@testing-library/react-native';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
+import { render, RenderOptions } from '@testing-library/react-native';
+import React from 'react';
 import { Text, View } from 'react-native';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 
 // Mock react-native-gesture-handler which is used by @gorhom/bottom-sheet
 jest.mock('react-native-gesture-handler', () => ({}));
+
+const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    {children}
+  </ThemeProvider>
+);
+
+const renderWithTheme = (
+  ui: React.ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>,
+) => render(ui, { wrapper: TestWrapper, ...options });
 
 describe('BottomSheet', () => {
   it('exports BottomSheet component', () => {
@@ -29,7 +43,7 @@ describe('BottomSheet', () => {
   describe('rendering', () => {
     it('renders with children', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <BottomSheet testID='bottom-sheet'>
           <View>
             <Text>Test Content</Text>
@@ -42,7 +56,7 @@ describe('BottomSheet', () => {
 
     it('renders with testID', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet testID='my-bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -54,7 +68,7 @@ describe('BottomSheet', () => {
     it('forwards ref correctly', () => {
       const { BottomSheet } = require('./BottomSheet');
       const ref = { current: null };
-      render(
+      renderWithTheme(
         <BottomSheet ref={ref} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -67,7 +81,7 @@ describe('BottomSheet', () => {
   describe('snap points', () => {
     it('uses default snapPoints "fullWithOffset" when not specified', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -79,7 +93,7 @@ describe('BottomSheet', () => {
 
     it('renders with snapPoints preset "full"', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet snapPoints='full' testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -91,7 +105,7 @@ describe('BottomSheet', () => {
 
     it('renders with snapPoints preset "quarter"', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet snapPoints='small' testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -104,7 +118,7 @@ describe('BottomSheet', () => {
     it('renders with custom snapPoints array (percentages)', () => {
       const { BottomSheet } = require('./BottomSheet');
       const customSnapPoints = ['30%', '60%', '90%'];
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet snapPoints={customSnapPoints} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -119,7 +133,7 @@ describe('BottomSheet', () => {
     it('renders with custom snapPoints array (pixels)', () => {
       const { BottomSheet } = require('./BottomSheet');
       const customSnapPoints = [200, 400, 600];
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet snapPoints={customSnapPoints} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -135,7 +149,7 @@ describe('BottomSheet', () => {
   describe('configuration props', () => {
     it('enables dynamic sizing when specified', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet enableDynamicSizing testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -147,7 +161,7 @@ describe('BottomSheet', () => {
 
     it('respects enablePanDownToClose prop (true by default)', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -159,7 +173,7 @@ describe('BottomSheet', () => {
 
     it('respects enablePanDownToClose prop when set to false', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet enablePanDownToClose={false} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -171,7 +185,7 @@ describe('BottomSheet', () => {
 
     it('respects detached prop', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet detached testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -183,7 +197,7 @@ describe('BottomSheet', () => {
 
     it('respects enableHandlePanningGesture prop', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByTestId } = render(
+      const { getByTestId } = renderWithTheme(
         <BottomSheet enableHandlePanningGesture={false} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -198,7 +212,7 @@ describe('BottomSheet', () => {
     it('provides context with onBack callback', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onBack = jest.fn();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <BottomSheet onBack={onBack} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -210,7 +224,7 @@ describe('BottomSheet', () => {
 
     it('provides context with hideCloseButton prop', () => {
       const { BottomSheet } = require('./BottomSheet');
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <BottomSheet hideCloseButton testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -223,7 +237,7 @@ describe('BottomSheet', () => {
     it('provides context with both onBack and hideCloseButton', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onBack = jest.fn();
-      const { getByText } = render(
+      const { getByText } = renderWithTheme(
         <BottomSheet onBack={onBack} hideCloseButton testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -238,7 +252,7 @@ describe('BottomSheet', () => {
     it('accepts onOpen callback', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onOpen = jest.fn();
-      render(
+      renderWithTheme(
         <BottomSheet onOpen={onOpen} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -251,7 +265,7 @@ describe('BottomSheet', () => {
     it('accepts onClose callback', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onClose = jest.fn();
-      render(
+      renderWithTheme(
         <BottomSheet onClose={onClose} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -264,7 +278,7 @@ describe('BottomSheet', () => {
     it('accepts onChange callback', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onChange = jest.fn();
-      render(
+      renderWithTheme(
         <BottomSheet onChange={onChange} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -277,7 +291,7 @@ describe('BottomSheet', () => {
     it('accepts onBackdropPress callback', () => {
       const { BottomSheet } = require('./BottomSheet');
       const onBackdropPress = jest.fn();
-      render(
+      renderWithTheme(
         <BottomSheet onBackdropPress={onBackdropPress} testID='bottom-sheet'>
           <Text>Content</Text>
         </BottomSheet>,
@@ -294,7 +308,7 @@ describe('BottomSheet', () => {
       const onChange = jest.fn();
       const onBack = jest.fn();
 
-      render(
+      renderWithTheme(
         <BottomSheet
           onOpen={onOpen}
           onClose={onClose}

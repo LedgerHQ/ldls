@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { useTheme } from '../../../styles/Provider/useTheme';
 import {
   Settings,
   Plus,
@@ -170,6 +171,7 @@ export const TrailingContentVariantsShowcase: Story = {
 
 export const StateShowcase: Story = {
   render: () => {
+    const { theme } = useTheme();
     return (
       <Box lx={{ flexDirection: 'row', gap: 's32' }}>
         <Box lx={{ flexDirection: 'column', maxWidth: 's256' }}>
@@ -180,7 +182,7 @@ export const StateShowcase: Story = {
             trailingContent={
               <ChevronRight
                 size={24}
-                style={{ color: 'var(--color-text-muted)' }}
+                style={{ color: theme.colors.text.muted }}
               />
             }
           />
@@ -217,16 +219,9 @@ export const StateShowcase: Story = {
             trailingContent={
               <ChevronRight
                 size={24}
-                style={{ color: 'var(--color-text-disabled)' }}
+                style={{ color: theme.colors.text.disabled }}
               />
             }
-          />
-          <ListItem
-            title='Value Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Cart} disabled />}
-            disabled
-            trailingContent={<Balance disabled />}
           />
           <ListItem
             title='Tag Variant'
@@ -243,7 +238,7 @@ export const StateShowcase: Story = {
             trailingContent={
               <PenEdit
                 size={24}
-                style={{ color: 'var(--color-text-disabled)' }}
+                style={{ color: theme.colors.text.disabled }}
               />
             }
           />
@@ -260,56 +255,59 @@ export const StateShowcase: Story = {
 };
 
 export const ResponsiveLayout: Story = {
-  render: () => (
-    <Box
-      lx={{
-        width: 's320',
-        backgroundColor: 'mutedPressed',
-        padding: 's16',
-      }}
-    >
-      <Text
-        typography='body4SemiBold'
-        lx={{ marginBottom: 's16', color: 'muted' }}
+  render: () => {
+    const { theme } = useTheme();
+    return (
+      <Box
+        lx={{
+          width: 's320',
+          backgroundColor: 'mutedPressed',
+          padding: 's16',
+        }}
       >
-        Container: 320px wide
-      </Text>
-      <Box lx={{ flexDirection: 'column', gap: 's0' }}>
-        <ListItem
-          title='Short Title'
-          description='Short description'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={
-            <ChevronRight
-              size={24}
-              style={{ color: 'var(--color-text-muted)' }}
-            />
-          }
-        />
-        <ListItem
-          title='Long Title that should truncate appropriately'
-          description='Long description that should truncate appropriately'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={
-            <ChevronRight
-              size={24}
-              style={{ color: 'var(--color-text-muted)' }}
-            />
-          }
-        />
-        <ListItem
-          title='Long Title that should truncate appropriately'
-          description='Long description that should truncate appropriately'
-          descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={
-            <ChevronRight
-              size={24}
-              style={{ color: 'var(--color-text-muted)' }}
-            />
-          }
-        />
+        <Text
+          typography='body4SemiBold'
+          lx={{ marginBottom: 's16', color: 'muted' }}
+        >
+          Container: 320px wide
+        </Text>
+        <Box lx={{ flexDirection: 'column', gap: 's0' }}>
+          <ListItem
+            title='Short Title'
+            description='Short description'
+            leadingContent={<Spot appearance='icon' icon={Plus} />}
+            trailingContent={
+              <ChevronRight
+                size={24}
+                style={{ color: theme.colors.text.muted }}
+              />
+            }
+          />
+          <ListItem
+            title='Long Title that should truncate appropriately'
+            description='Long description that should truncate appropriately'
+            leadingContent={<Spot appearance='icon' icon={Plus} />}
+            trailingContent={
+              <ChevronRight
+                size={24}
+                style={{ color: theme.colors.text.muted }}
+              />
+            }
+          />
+          <ListItem
+            title='Long Title that should truncate appropriately'
+            description='Long description that should truncate appropriately'
+            descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
+            leadingContent={<Spot appearance='icon' icon={Plus} />}
+            trailingContent={
+              <ChevronRight
+                size={24}
+                style={{ color: theme.colors.text.muted }}
+              />
+            }
+          />
+        </Box>
       </Box>
-    </Box>
-  ),
+    );
+  },
 };
