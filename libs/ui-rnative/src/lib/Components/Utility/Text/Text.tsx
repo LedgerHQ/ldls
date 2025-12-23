@@ -1,5 +1,5 @@
 import { Text as RNText } from 'react-native';
-import { createStyledText, type StyledTextProps } from '../../../../styles';
+import { createStyledText } from '../../../../styles';
 
 /**
  * Text - A typography component with typography support and token-constrained style props.
@@ -35,5 +35,3 @@ import { createStyledText, type StyledTextProps } from '../../../../styles';
  * ```
  */
 export const Text = createStyledText(RNText);
-
-export type TextProps = StyledTextProps;

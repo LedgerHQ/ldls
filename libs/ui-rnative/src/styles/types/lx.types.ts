@@ -134,25 +134,3 @@ export type LumenTextStyle = LumenViewStyle & {
   textTransform?: TextStyle['textTransform'];
   textDecorationLine?: TextStyle['textDecorationLine'];
 };
-
-/**
- * Derived style-only types (for internal resolver use)
- */
-export type LumenViewStyleLX = {
-  /**
-   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
-   */
-  lx?: LumenViewStyle;
-};
-export type LumenPressableStyleLX = {
-  /**
-   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
-   */
-  lx?: LumenViewStyle;
-};
-export type LumenTextStyleLX = {
-  /**
-   * Support LX property - [see documentation](/?path=/docs/style-system-lx--docs).
-   */
-  lx?: LumenTextStyle;
-};

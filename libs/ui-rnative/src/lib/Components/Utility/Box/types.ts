@@ -1,3 +1,3 @@
 import { StyledViewProps } from '../../../../styles';
 
-export type PressableProps = StyledViewProps;
+export type BoxProps = StyledViewProps;

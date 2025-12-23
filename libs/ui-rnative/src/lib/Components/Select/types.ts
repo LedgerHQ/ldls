@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { PressableProps, ViewProps, TextProps } from 'react-native';
+import { PressableProps } from 'react-native';
 import {
   StyledViewProps,
   StyledPressableProps,

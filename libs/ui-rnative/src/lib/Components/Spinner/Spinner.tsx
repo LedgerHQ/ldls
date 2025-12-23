@@ -2,7 +2,7 @@ import { forwardRef, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet } from '../../../styles';
+import { LumenStyleSheet, useResolveTextStyle } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 import { Box } from '../Utility';
 import { SpinnerProps } from './types';
@@ -44,21 +44,22 @@ SpinAnimation.displayName = 'SpinAnimation';
  * <Spinner />
  *
  * @example
- * // With custom color
- * <Spinner color={theme.colors.text.base} />
+ * // With custom color using lx prop
+ * <Spinner lx={{ color: 'interactive' }} />
  *
  * @example
- * // With lx props for layout
- * <Spinner lx={{ marginTop: 's8' }} />
+ * // With lx props for layout and color
+ * <Spinner lx={{ marginTop: 's8', color: 'muted' }} />
  */
 export const Spinner = forwardRef<View, SpinnerProps>(
-  ({ lx = {}, style, size = 16, color, ...props }, ref) => {
+  ({ lx = {}, size = 16, color = 'base', ...props }, ref) => {
     const { t } = useCommonTranslation();
     const { theme } = LumenStyleSheet.useTheme();
-    const strokeColor = color ?? theme.colors.text.base;
+    const resolvedColorStyle = useResolveTextStyle({ color });
+    const strokeColor = resolvedColorStyle?.color ?? theme.colors.text.base;
 
     return (
-      <Box ref={ref} lx={{ flexShrink: 0, ...lx }} style={style} {...props}>
+      <Box ref={ref} lx={{ flexShrink: 0, ...lx }} {...props}>
         <SpinAnimation>
           <Svg
             width={size}

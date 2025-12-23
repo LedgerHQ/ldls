@@ -4,7 +4,7 @@ import {
   type TextInputProps,
   type ViewStyle,
 } from 'react-native';
-import type { LumenViewStyleLX } from '../../../styles';
+import { BoxProps } from '../Utility';
 
 export type BaseInputProps = {
   /**
@@ -46,4 +46,4 @@ export type BaseInputProps = {
    */
   hideClearButton?: boolean;
 } & Omit<TextInputProps, 'style'> &
-  LumenViewStyleLX;
+  BoxProps;

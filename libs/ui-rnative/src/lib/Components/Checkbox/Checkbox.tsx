@@ -1,5 +1,5 @@
 import React from 'react';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import { useControllableState } from '../../utils';
 import { Label } from '../Label';

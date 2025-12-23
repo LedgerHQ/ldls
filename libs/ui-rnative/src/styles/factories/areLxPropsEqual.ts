@@ -1,7 +1,7 @@
 import {
-  LumenViewStyleLX,
-  LumenTextStyleLX,
-  LumenPressableStyleLX,
+  StyledPressableProps,
+  StyledTextProps,
+  StyledViewProps,
 } from '../types';
 
 type UnknownRecord = Record<string, unknown>;
@@ -16,8 +16,8 @@ const shallowEqual = (a: UnknownRecord, b: UnknownRecord): boolean => {
 };
 
 export const areLxPropsEqual = (
-  prevProps: LumenViewStyleLX | LumenTextStyleLX | LumenPressableStyleLX,
-  nextProps: LumenViewStyleLX | LumenTextStyleLX | LumenPressableStyleLX,
+  prevProps: StyledViewProps | StyledTextProps | StyledPressableProps,
+  nextProps: StyledViewProps | StyledTextProps | StyledPressableProps,
 ): boolean => {
   const { lx: prevLx = {}, ...prevRest } = prevProps;
   const { lx: nextLx = {}, ...nextRest } = nextProps;

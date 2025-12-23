@@ -1,28 +1,18 @@
-import React, { forwardRef, memo } from 'react';
+import { ElementRef, forwardRef, memo } from 'react';
 import { StyleSheet } from 'react-native';
 import type {
   Pressable,
-  PressableProps,
   PressableStateCallbackType,
   ViewStyle,
 } from 'react-native';
 import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
-import { LumenPressableStyleLX } from '../types';
+import { StyledPressableProps, PressableStyleItem } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
-
-type PressableRef = React.ElementRef<typeof Pressable>;
-type StyleFn = (state: PressableStateCallbackType) => ViewStyle;
-type StyleItem = ViewStyle | StyleFn | StyleItem[] | null | undefined;
-
-export type StyledPressableProps = LumenPressableStyleLX &
-  Omit<PressableProps, 'style'> & {
-    style?: StyleItem;
-  };
 
 /**
  * Check if any style item (including nested arrays) is a function
  */
-const hasStyleFunction = (style: StyleItem): boolean => {
+const hasStyleFunction = (style: PressableStyleItem): boolean => {
   if (Array.isArray(style)) {
     return style.some((s) => hasStyleFunction(s));
   }
@@ -33,7 +23,7 @@ const hasStyleFunction = (style: StyleItem): boolean => {
  * Resolve all style functions in a style tree
  */
 const resolveStyleFunctions = (
-  style: StyleItem,
+  style: PressableStyleItem,
   state: PressableStateCallbackType,
 ): ViewStyle | (ViewStyle | null | undefined)[] | null | undefined => {
   if (Array.isArray(style)) {
@@ -61,7 +51,7 @@ const resolveStyleFunctions = (
  */
 export const createStyledPressable = (Component: typeof Pressable) => {
   const StyledComponent = memo(
-    forwardRef<PressableRef, StyledPressableProps>(
+    forwardRef<ElementRef<typeof Pressable>, StyledPressableProps>(
       ({ lx = {}, style, ...props }, ref) => {
         const resolvedStyle = useResolveViewStyle(lx);
 
