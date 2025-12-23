@@ -26,7 +26,7 @@ It also provides the ability to add custom elements on the right side of the inp
 
 ## Anatomy
 
-> **Layout:** The Input component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+> **Layout:** The Input component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
 
 ### Floating Label
 
@@ -227,14 +227,14 @@ function MyComponent() {
 
 ### With Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes:
+While the component comes with predefined styles, you can extend them using the `style` prop:
 
 ```tsx
 <TextInput
   label='Email'
   value={email}
   onChangeText={setEmail}
-  className='max-w-md' // Control width
+  style={{ maxWidth: 320 }} // Control width
 />
 ```
 
@@ -278,7 +278,7 @@ Use the `editable` prop to disable the input:
 
 ## Do's and Don'ts
 
-<div className='flex flex-col gap-24'>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use controlled input pattern'

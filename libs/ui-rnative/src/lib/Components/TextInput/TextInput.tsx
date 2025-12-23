@@ -1,11 +1,7 @@
 import React from 'react';
 import { TextInput as RNTextInput } from 'react-native';
-import { BaseInput, type BaseInputProps } from '../BaseInput';
-
-export type TextInputProps = Omit<
-  BaseInputProps,
-  'prefix' | 'labelClassName' | 'inputClassName'
->;
+import { BaseInput } from '../BaseInput';
+import { type TextInputProps } from './TextInput.types';
 
 /**
  * A customizable input component with floating label, automatic clear button, error states, and focus/blur effects.
@@ -16,7 +12,7 @@ export type TextInputProps = Omit<
  * - **Suffix elements** for icons, buttons, or custom content
  * - **Error state styling** with errorMessage support
  * - **Container-based spacing** with padding and gap for clean layout
- * - **Flexible styling** via className
+ * - **Flexible styling** via style props
  * - **React Native TextInput** with proper mobile behavior
  *
  * ## Clear Button Behavior
@@ -47,7 +43,7 @@ export type TextInputProps = Omit<
  *   label="Search"
  *   value={query}
  *   onChangeText={setQuery}
- *   suffix={<SearchIcon size={20} className="text-muted" />}
+ *   suffix={<SearchIcon size={20} />}
  *   hideClearButton={true} // Keep suffix visible
  * />
  *

@@ -1,73 +1,17 @@
-import { cn, getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
+import { getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Pressable, TextInput, View, type TextInputProps } from 'react-native';
+import { Pressable, TextInput } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
+  withRepeat,
   withSequence,
   withTiming,
-  withRepeat,
 } from 'react-native-reanimated';
-
-export type AmountInputProps = Omit<
-  TextInputProps,
-  'value' | 'onChangeText'
-> & {
-  /**
-   * The controlled value of the input
-   * @required
-   */
-  value: string | number;
-  /**
-   * Change handler
-   * @required
-   */
-  onChangeText: (text: string) => void;
-  /**
-   * The currency text (e.g. USD, EUR)
-   */
-  currencyText?: string;
-  /**
-   * Position of the currency text.
-   * @default 'left'
-   */
-  currencyPosition?: 'left' | 'right';
-  /**
-   * Maximum length for integer part (before decimal)
-   * @default 9
-   */
-  maxIntegerLength?: number;
-  /**
-   * Maximum length for decimal part (after decimal)
-   * @default 9
-   */
-  maxDecimalLength?: number;
-  /**
-   * Allow decimal values
-   * @default true
-   */
-  allowDecimals?: boolean;
-  /**
-   * Additional class names
-   */
-  className?: string;
-  /**
-   * Whether to use thousands separator (e.g. 1 000 for 1000)
-   * @default true
-   */
-  thousandsSeparator?: boolean;
-  /**
-   * Mark input as invalid (e.g. for error display)
-   * @default false
-   */
-  isInvalid?: boolean;
-};
-
-const inputStyles = cn(
-  'heading-0 h-56 bg-transparent text-base outline-none items-start',
-);
-const currencyStyles = cn('heading-0 text-base');
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { Box } from '../Utility';
+import { type AmountInputProps } from './AmountInput.types';
 
 /**
  * AmountInput component for handling numeric input with currency display.
@@ -77,7 +21,8 @@ const currencyStyles = cn('heading-0 text-base');
 export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
   (
     {
-      className,
+      lx,
+      style,
       currencyText,
       currencyPosition = 'left',
       editable = true,
@@ -101,6 +46,12 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     const caretOpacity = useSharedValue(0);
 
     useImperativeHandle(ref, () => inputRef.current as TextInput, []);
+
+    const styles = useStyles({
+      hasValue: !!inputValue,
+      isEditable: editable,
+      isInvalid,
+    });
 
     const animatedInputStyle = useAnimatedStyle(
       () => ({
@@ -146,7 +97,6 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
     useEffect(() => {
       if (isFocused && editable) {
-        // custom caret animation
         caretOpacity.value = withRepeat(
           withSequence(
             withTiming(1, { duration: 150, easing: Easing.ease }),
@@ -174,15 +124,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     };
 
     const CurrencyText = currencyText ? (
-      <Animated.Text
-        className={cn(
-          currencyStyles,
-          !inputValue && 'text-muted-subtle',
-          !editable && 'text-disabled',
-          isInvalid && 'text-error',
-        )}
-        style={animatedCurrencyStyle}
-      >
+      <Animated.Text style={[styles.currency, animatedCurrencyStyle]}>
         {currencyText}
       </Animated.Text>
     ) : null;
@@ -194,7 +136,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     };
 
     return (
-      <View className='relative'>
+      <Box lx={lx} style={styles.container}>
         {/** hidden text input because of flickering issue */}
         <TextInput
           ref={inputRef}
@@ -210,49 +152,99 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
             setIsFocused(false);
             props.onBlur?.(e);
           }}
-          className='absolute size-full opacity-0'
+          style={styles.hiddenInput}
           {...props}
         />
         <Pressable
           onPress={handlePress}
-          className='flex-row items-center justify-center'
+          style={styles.pressable}
           accessibilityLabel={props.accessibilityLabel || 'Amount input'}
         >
           {currencyPosition === 'left' && CurrencyText}
 
           {/** display text that mirrors the hidden input's value */}
           <Animated.Text
-            className={cn(
-              inputStyles,
-              isInvalid && 'text-error',
-              !editable && 'text-disabled',
-              !inputValue && 'text-muted-subtle',
-              className,
-            )}
-            style={animatedInputStyle}
+            style={[styles.displayText, animatedInputStyle, style]}
           >
             {inputValue || '0'}
           </Animated.Text>
 
           {/** custom caret */}
-          <Animated.View
-            className='mx-2'
-            // TODO: use theme object here
-            style={[
-              animatedCaretStyle,
-              {
-                width: 3,
-                borderRadius: 1.5,
-                backgroundColor: '#007AFF',
-              },
-            ]}
-          />
+          <Animated.View style={[styles.caret, animatedCaretStyle]} />
 
           {currencyPosition === 'right' && CurrencyText}
         </Pressable>
-      </View>
+      </Box>
     );
   },
 );
+
+const useStyles = ({
+  hasValue,
+  isEditable,
+  isInvalid,
+}: {
+  hasValue: boolean;
+  isEditable: boolean;
+  isInvalid: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => ({
+      container: {
+        position: 'relative',
+      },
+      hiddenInput: {
+        position: 'absolute',
+        width: t.sizes.full,
+        height: t.sizes.full,
+        opacity: 0,
+      },
+      pressable: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      displayText: mergeStyles(
+        {
+          height: t.sizes.s56,
+          backgroundColor: 'transparent',
+          color: t.colors.text.base,
+          alignItems: 'flex-start',
+          ...t.typographies.heading0SemiBold,
+        },
+        !hasValue && {
+          color: t.colors.text.mutedSubtle,
+        },
+        !isEditable && {
+          color: t.colors.text.disabled,
+        },
+        isInvalid && {
+          color: t.colors.text.error,
+        },
+      ),
+      currency: mergeStyles(
+        {
+          color: t.colors.text.base,
+          ...t.typographies.heading0SemiBold,
+        },
+        !hasValue && {
+          color: t.colors.text.mutedSubtle,
+        },
+        !isEditable && {
+          color: t.colors.text.disabled,
+        },
+        isInvalid && {
+          color: t.colors.text.error,
+        },
+      ),
+      caret: {
+        marginHorizontal: t.spacings.s2,
+        width: t.sizes.s2,
+        backgroundColor: t.colors.text.active,
+      },
+    }),
+    [hasValue, isEditable, isInvalid],
+  );
+};
 
 AmountInput.displayName = 'AmountInput';

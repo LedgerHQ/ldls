@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AddressInput, type AddressInputProps } from './AddressInput';
+import { AddressInput } from './AddressInput';
+import { AddressInputProps } from './AddressInput.types';
 
 const meta: Meta<typeof AddressInput> = {
   component: AddressInput,
@@ -46,8 +47,16 @@ const AddressInputStory = (args: AddressInputProps) => {
   const [address, setAddress] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <AddressInput
           {...args}
           value={address}
@@ -96,8 +105,16 @@ const AddressInputWithoutQrStory = (args: AddressInputProps) => {
   const [address, setAddress] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <AddressInput
           {...args}
           value={address}

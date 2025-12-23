@@ -27,7 +27,7 @@ AmountInput is a specialized input component designed for handling numeric value
 
 ## Anatomy
 
-> **Layout:** The AmountInput component takes the full width of its container by default. You can control the width using `className` or by wrapping in a container.
+> **Layout:** The AmountInput component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
 
 ### Currency Text Position
 
@@ -263,7 +263,7 @@ Use the `editable` prop to disable the input:
 
 ## Do's and Don'ts
 
-<div className='flex flex-col gap-24'>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use integer-only for whole number scenarios'

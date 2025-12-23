@@ -1,4 +1,5 @@
 import { AddressInput, Search, TextInput } from '@ledgerhq/lumen-ui-rnative';
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 import { Eye, EyeCross } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
@@ -14,12 +15,12 @@ export function TextInputs() {
   }, [team]);
 
   const [showPassword, setShowPassword] = useState(false);
+  const { theme } = LumenStyleSheet.useTheme();
 
   return (
-    <View className='gap-8'>
+    <View style={{ minWidth: '100%', gap: 8 }}>
       <TextInput
         label='Username'
-        className='min-w-full'
         onClear={() =>
           Alert.alert('Custom handler', 'You found an easter egg!', [
             { text: 'Okay', style: 'default' },
@@ -28,28 +29,21 @@ export function TextInputs() {
       />
       <TextInput
         label='Password'
-        className='min-w-full'
         secureTextEntry={!showPassword}
         hideClearButton
         suffix={
           <Pressable onPress={() => setShowPassword(!showPassword)}>
             {showPassword ? (
-              <EyeCross size={20} className='text-base' />
+              <EyeCross size={20} style={{ color: theme.colors.text.base }} />
             ) : (
-              <Eye size={20} className='text-base' />
+              <Eye size={20} style={{ color: theme.colors.text.base }} />
             )}
           </Pressable>
         }
       />
-      <TextInput
-        label='Company'
-        className='min-w-full'
-        defaultValue='Ledger'
-        editable={false}
-      />
+      <TextInput label='Company' defaultValue='Ledger' editable={false} />
       <TextInput
         label='Team'
-        className='min-w-full'
         value={team}
         onChangeText={setTeam}
         errorMessage={
@@ -60,12 +54,10 @@ export function TextInputs() {
       />
       <TextInput
         label='A very long label that should really be truncated at different breakpoints'
-        className='min-w-full'
         defaultValue='This is a default value!'
       />
-      <Search className='min-w-full' placeholder='Search for a component...' />
+      <Search placeholder='Search for a component...' />
       <AddressInput
-        className='min-w-full'
         placeholder='Enter address or ENS'
         onQrCodeClick={() =>
           Alert.alert(

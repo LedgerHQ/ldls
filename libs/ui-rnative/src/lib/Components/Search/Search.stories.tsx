@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Search, type SearchProps } from './Search';
+import { Search } from './Search';
+import { SearchProps } from './Search.types';
 
 const meta: Meta<typeof Search> = {
   component: Search,
@@ -42,8 +43,16 @@ const SearchStory = (args: SearchProps & { initialValue?: string }) => {
   const [query, setQuery] = useState(args.initialValue ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <Search
           {...args}
           value={query}

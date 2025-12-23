@@ -25,7 +25,7 @@ The Search component is a specialized input field designed specifically for sear
 
 ## Anatomy
 
-> **Layout:** The Search component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+> **Layout:** The Search component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
 
 ### Search Icon
 
@@ -238,14 +238,14 @@ function MyComponent() {
 
 ### With Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes:
+While the component comes with predefined styles, you can extend them using the `style` prop:
 
 ```tsx
 <Search
   placeholder='Search'
   value={query}
   onChangeText={setQuery}
-  className='max-w-md' // Control width
+  style={{ maxWidth: 320 }} // Control width
 />
 ```
 
@@ -324,7 +324,7 @@ function MyComponent() {
 
 The following guidelines ensure consistent usage of the Search component and maintain design system principles.
 
-<div className='flex flex-col gap-24'>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use placeholder text'

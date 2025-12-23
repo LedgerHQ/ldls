@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { TextInput, type TextInputProps } from './TextInput';
+import { TextInput } from './TextInput';
+import { type TextInputProps } from './TextInput.types';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,
@@ -51,8 +52,16 @@ const TextInputStory = (args: TextInputProps & { initialValue?: string }) => {
   const [value, setValue] = useState(args.initialValue ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 400 }}>
         <TextInput
           {...args}
           value={value}

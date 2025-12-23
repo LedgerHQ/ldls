@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { AmountInput, type AmountInputProps } from './AmountInput';
+import { AmountInput } from './AmountInput';
+import { type AmountInputProps } from './AmountInput.types';
 
 const meta: Meta<typeof AmountInput> = {
   component: AmountInput,
@@ -59,8 +60,16 @@ const AmountInputStory = (args: AmountInputProps) => {
   const [value, setValue] = useState(args.value?.toString() ?? '');
 
   return (
-    <View className='flex min-h-400 items-center justify-center p-24'>
-      <View className='w-full max-w-320'>
+    <View
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <View style={{ width: '100%', maxWidth: 320 }}>
         <AmountInput {...args} value={value} onChangeText={setValue} />
       </View>
     </View>
