@@ -5,7 +5,7 @@ import { LumenStyleSheet } from '../../../styles';
 import { QrCode } from '../../Symbols';
 import { BaseInput } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
-import { type AddressInputProps } from './AddressInput.types';
+import { type AddressInputProps } from './types';
 
 export const AddressInput = React.forwardRef<
   React.ElementRef<typeof TextInput>,

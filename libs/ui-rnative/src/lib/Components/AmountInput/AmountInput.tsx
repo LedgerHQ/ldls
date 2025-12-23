@@ -11,7 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { Box } from '../Utility';
-import { type AmountInputProps } from './AmountInput.types';
+import { type AmountInputProps } from './types';
 
 /**
  * AmountInput component for handling numeric input with currency display.
@@ -21,7 +21,7 @@ import { type AmountInputProps } from './AmountInput.types';
 export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
   (
     {
-      lx,
+      lx = {},
       style,
       currencyText,
       currencyPosition = 'left',

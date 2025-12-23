@@ -8,20 +8,13 @@ import {
 import { FC, forwardRef } from 'react';
 import { ViewStyle } from 'react-native';
 import { LumenStyleSheet } from '../../../styles';
-
-export type BottomSheetViewProps = Parameters<typeof GorhomBottomSheetView>[0];
-export type BottomSheetFlatListProps = Parameters<
-  typeof GorhomBottomSheetFlatList
->[0];
-export type BottomSheetSectionListProps = Parameters<
-  typeof GorhomBottomSheetSectionList
->[0];
-export type BottomSheetScrollViewProps = Parameters<
-  typeof GorhomBottomSheetScrollView
->[0];
-export type BottomSheetVirtualizedListProps = Parameters<
-  typeof GorhomBottomSheetVirtualizedList
->[0];
+import {
+  BottomSheetViewProps,
+  BottomSheetFlatListProps,
+  BottomSheetSectionListProps,
+  BottomSheetScrollViewProps,
+  BottomSheetVirtualizedListProps,
+} from './types';
 
 const useScrollableStyles = () => {
   return LumenStyleSheet.useCreate((t) => ({
