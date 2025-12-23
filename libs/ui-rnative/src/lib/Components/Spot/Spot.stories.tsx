@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import React from 'react';
-import { View, Text } from 'react-native';
 import { Settings, Plus, Heart, Star } from '../../Symbols';
-import { IconSize } from '../Icon';
+import { IconProps } from '../Icon';
+import { Box, Text } from '../Utility';
 import { Spot } from './Spot';
-import { SpotProps } from './Spot.types';
+import { SpotProps } from './types';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,
@@ -89,7 +89,7 @@ export const AppearanceShowcase: Story = {
     const appearances: Array<{
       name: string;
       appearance: SpotProps['appearance'];
-      icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
+      icon?: React.ComponentType<IconProps>;
       number?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
     }> = [
       { name: 'Icon', appearance: 'icon', icon: Settings },
@@ -103,21 +103,35 @@ export const AppearanceShowcase: Story = {
     ];
 
     return (
-      <View className='flex flex-row flex-wrap gap-16 p-8 text-base'>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          gap: 's16',
+          padding: 's8',
+        }}
+      >
         {appearances.map(({ name, appearance, icon, number }) => (
-          <View
+          <Box
             key={appearance}
-            className='flex w-64 flex-col items-center gap-4'
+            lx={{
+              width: 's64',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 's4',
+            }}
           >
             <Spot
               appearance={appearance as any}
               icon={icon}
               number={number as any}
             />
-            <Text className='text-center text-muted'>{name}</Text>
-          </View>
+            <Text typography='body3' lx={{ color: 'muted' }}>
+              {name}
+            </Text>
+          </Box>
         ))}
-      </View>
+      </Box>
     );
   },
 };
@@ -132,11 +146,11 @@ export const IconVariants: Story = {
     ];
 
     return (
-      <View className='flex flex-row gap-8 p-8'>
+      <Box lx={{ flexDirection: 'row', gap: 's8', padding: 's8' }}>
         {icons.map(({ name, component: Icon }) => (
           <Spot key={name} appearance='icon' icon={Icon} />
         ))}
-      </View>
+      </Box>
     );
   },
 };
@@ -146,59 +160,39 @@ export const NumberVariants: Story = {
     const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
     return (
-      <View className='flex flex-row flex-wrap gap-8 p-8'>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          gap: 's8',
+          padding: 's8',
+        }}
+      >
         {numbers.map((num) => (
           <Spot key={num} appearance='number' number={num} />
         ))}
-      </View>
+      </Box>
     );
   },
 };
 
 export const SizesShowcase: Story = {
   render: () => {
-    const appearances: Array<{
-      name: string;
-      appearance: SpotProps['appearance'];
-      icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-      number?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-    }> = [
-      { name: 'Icon', appearance: 'icon', icon: Settings },
-      { name: 'Bluetooth', appearance: 'bluetooth' },
-      { name: 'Check', appearance: 'check' },
-      { name: 'Error', appearance: 'error' },
-      { name: 'Warning', appearance: 'warning' },
-      { name: 'Info', appearance: 'info' },
-      { name: 'Loader', appearance: 'loader' },
-      { name: 'Number', appearance: 'number', number: 5 },
-    ];
-
     const sizes = [48, 56, 72] as const;
 
     return (
-      <View className='flex flex-col gap-16 p-8 text-base'>
+      <Box lx={{ flexDirection: 'column', gap: 's32', padding: 's16' }}>
         {sizes.map((size) => (
-          <View key={size} className='flex flex-col gap-4'>
-            <Text>Size {size}px</Text>
-            <View className='flex flex-row flex-wrap gap-16'>
-              {appearances.map(({ name, appearance, icon, number }) => (
-                <View
-                  key={`${appearance}-${size}`}
-                  className='flex flex-col items-center gap-4'
-                >
-                  <Spot
-                    appearance={appearance as any}
-                    icon={icon}
-                    number={number as any}
-                    size={size}
-                  />
-                  <Text className='text-center text-muted'>{name}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
+          <Box key={size} lx={{ flexDirection: 'column', gap: 's16' }}>
+            <Text typography='heading4SemiBold'>{size}px</Text>
+            <Box lx={{ flexDirection: 'row', gap: 's12' }}>
+              <Spot appearance='icon' icon={Settings} size={size} />
+              <Spot appearance='info' size={size} />
+              <Spot appearance='number' number={5} size={size} />
+            </Box>
+          </Box>
         ))}
-      </View>
+      </Box>
     );
   },
 };
@@ -206,30 +200,58 @@ export const SizesShowcase: Story = {
 export const StatesShowcase: Story = {
   render: () => {
     return (
-      <View className='flex flex-col gap-16 text-base'>
-        <View className='flex flex-col gap-8'>
-          <Text>Default</Text>
-          <View className='flex flex-row flex-wrap gap-16'>
-            <View className='flex w-64 flex-col items-center gap-4'>
+      <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+        <Box lx={{ flexDirection: 'column', gap: 's8' }}>
+          <Text typography='body2'>Default</Text>
+          <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's16' }}>
+            <Box
+              lx={{
+                width: 's64',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 's4',
+              }}
+            >
               <Spot appearance='icon' icon={Settings} />
-            </View>
-            <View className='flex w-64 flex-col items-center gap-4'>
+            </Box>
+            <Box
+              lx={{
+                width: 's64',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 's4',
+              }}
+            >
               <Spot appearance='bluetooth' />
-            </View>
-          </View>
-        </View>
-        <View className='flex flex-col gap-8'>
-          <Text>Disabled</Text>
-          <View className='flex flex-row flex-wrap gap-16'>
-            <View className='flex w-64 flex-col items-center gap-4'>
+            </Box>
+          </Box>
+        </Box>
+        <Box lx={{ flexDirection: 'column', gap: 's8' }}>
+          <Text typography='body2'>Disabled</Text>
+          <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's16' }}>
+            <Box
+              lx={{
+                width: 's64',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 's4',
+              }}
+            >
               <Spot appearance='icon' icon={Settings} disabled />
-            </View>
-            <View className='flex w-64 flex-col items-center gap-4'>
+            </Box>
+            <Box
+              lx={{
+                width: 's64',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 's4',
+              }}
+            >
               <Spot appearance='bluetooth' disabled />
-            </View>
-          </View>
-        </View>
-      </View>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     );
   },
 };

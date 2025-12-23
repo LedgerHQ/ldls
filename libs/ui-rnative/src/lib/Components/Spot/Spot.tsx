@@ -1,6 +1,10 @@
-import { cva } from 'class-variance-authority';
 import { useMemo } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import {
+  LumenStyleSheet,
+  mergeStyles,
+  resolveViewStyle,
+} from '../../../styles';
 import {
   BluetoothCircleFill,
   CheckmarkCircleFill,
@@ -8,40 +12,76 @@ import {
   InformationFill,
   WarningFill,
 } from '../../Symbols';
-import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
-import { SpotProps, SpotSize } from './Spot.types';
+import { SpotAppearance, SpotProps, SpotSize } from './types';
 
-const spotVariants = {
-  root: cva(
-    'flex items-center justify-center rounded-full bg-muted-transparent',
-    {
-      variants: {
-        size: {
-          48: 'spot-w-48 spot-h-48',
-          56: 'spot-w-56 spot-h-56',
-          72: 'spot-w-72 spot-h-72',
+const BLUETOOTH_COLOR = '#0082FC';
+
+const iconSizeMap = {
+  48: 20,
+  56: 24,
+  72: 40,
+} as const;
+
+const spotSizeMap: Record<SpotSize, number> = {
+  48: 48,
+  56: 56,
+  72: 72,
+} as const;
+
+const numberTypographyMap = {
+  48: 'heading4',
+  56: 'heading3',
+  72: 'heading1',
+} as const;
+
+const useStyles = ({
+  size,
+  appearance,
+  disabled,
+}: {
+  size: SpotSize;
+  appearance: SpotAppearance;
+  disabled: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const colorMap: Record<SpotAppearance, string> = {
+        icon: t.colors.text.base,
+        bluetooth: BLUETOOTH_COLOR,
+        check: t.colors.text.success,
+        error: t.colors.text.error,
+        warning: t.colors.text.warning,
+        info: t.colors.text.muted,
+        loader: t.colors.text.base,
+        number: t.colors.text.base,
+      };
+
+      const spotSize = spotSizeMap[size];
+      const typography = t.typographies[numberTypographyMap[size]];
+      const contentColor = disabled
+        ? t.colors.text.disabled
+        : colorMap[appearance];
+
+      return {
+        root: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: t.borderRadius.full,
+          backgroundColor: t.colors.bg.mutedTransparent,
+          width: spotSize,
+          height: spotSize,
         },
-      },
+        icon: {
+          color: contentColor,
+        },
+        numberText: mergeStyles(typography, {
+          color: contentColor,
+        }),
+      };
     },
-  ),
-  inner: cva('', {
-    variants: {
-      appearance: {
-        icon: 'text-base',
-        bluetooth: 'text-[#0082FC]',
-        check: 'text-success',
-        error: 'text-error',
-        warning: 'text-warning',
-        info: 'text-muted',
-        loader: '',
-        number: 'text-base',
-      },
-      disabled: {
-        true: 'text-disabled',
-      },
-    },
-  }),
+    [size, appearance, disabled],
+  );
 };
 
 /**
@@ -54,7 +94,7 @@ const spotVariants = {
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_media-graphics-spot--docs Storybook}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the spot's core appearance (colors, size, etc). Use the `appearance` prop instead.
  *
  * @example
@@ -79,98 +119,58 @@ const spotVariants = {
  * <Spot appearance="bluetooth" disabled />
  */
 export const Spot = (props: SpotProps) => {
-  const { appearance, className, disabled, size = 48, ...rest } = props;
+  const { appearance, disabled = false, size = 48, lx, style, ...rest } = props;
 
-  const sizeMap: Record<SpotSize, IconSize> = {
-    48: 20,
-    56: 24,
-    72: 40,
-  };
+  const { theme } = LumenStyleSheet.useTheme();
+  const styles = useStyles({ size, appearance, disabled });
+  const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
+  const finalRootStyle = StyleSheet.flatten([
+    styles.root,
+    resolvedLxStyle,
+    style,
+  ]);
 
-  const numberTypographyMap: Record<SpotSize, string> = {
-    48: 'heading-4',
-    56: 'heading-3',
-    72: 'heading-1',
-  };
-
-  const calculatedIconSize = sizeMap[size] ?? 20;
-  const calculatedNumberTypography = numberTypographyMap[size] ?? 'heading-4';
+  const calculatedIconSize = iconSizeMap[size];
 
   const content = useMemo(() => {
     switch (props.appearance) {
       case 'icon': {
         const { icon: Icon } = props;
-        return (
-          <Icon
-            size={calculatedIconSize}
-            className={spotVariants.inner({ appearance, disabled })}
-          />
-        );
+        return <Icon size={calculatedIconSize} style={styles.icon} />;
       }
       case 'number': {
-        return (
-          <Text
-            className={spotVariants.inner({
-              appearance,
-              disabled,
-              className: calculatedNumberTypography,
-            })}
-          >
-            {props.number}
-          </Text>
-        );
+        return <Text style={styles.numberText}>{props.number}</Text>;
       }
       case 'bluetooth':
         return (
-          <BluetoothCircleFill
-            className={spotVariants.inner({ appearance, disabled })}
-            size={calculatedIconSize}
-          />
+          <BluetoothCircleFill size={calculatedIconSize} style={styles.icon} />
         );
       case 'check':
         return (
-          <CheckmarkCircleFill
-            className={spotVariants.inner({ appearance, disabled })}
-            size={calculatedIconSize}
-          />
+          <CheckmarkCircleFill size={calculatedIconSize} style={styles.icon} />
         );
       case 'error':
         return (
-          <DeleteCircleFill
-            className={spotVariants.inner({ appearance, disabled })}
-            size={calculatedIconSize}
-          />
+          <DeleteCircleFill size={calculatedIconSize} style={styles.icon} />
         );
       case 'warning':
-        return (
-          <WarningFill
-            className={spotVariants.inner({ appearance, disabled })}
-            size={calculatedIconSize}
-          />
-        );
+        return <WarningFill size={calculatedIconSize} style={styles.icon} />;
       case 'info':
         return (
-          <InformationFill
-            className={spotVariants.inner({ appearance, disabled })}
-            size={calculatedIconSize}
-          />
+          <InformationFill size={calculatedIconSize} style={styles.icon} />
         );
       case 'loader':
         return (
           <Spinner
-            className={spotVariants.inner({ appearance, disabled })}
             size={calculatedIconSize}
+            color={styles.icon.color as string}
           />
         );
     }
-  }, [props, calculatedIconSize, calculatedNumberTypography]);
+  }, [props, calculatedIconSize, styles.icon, styles.numberText]);
 
   return (
-    <View
-      testID='spot-container'
-      className={spotVariants.root({ size, className })}
-      {...rest}
-    >
+    <View testID='spot-container' style={finalRootStyle} {...rest}>
       {content}
     </View>
   );
