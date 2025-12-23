@@ -70,9 +70,18 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, onOpenChange }) => {
 };
 Tooltip.displayName = 'Tooltip';
 
+/**
+ * The trigger element that opens the tooltip when pressed.
+ *
+ * @example
+ * <TooltipTrigger asChild>
+ *   <Button>Help</Button>
+ * </TooltipTrigger>
+ */
 export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
   children,
   asChild = false,
+  style,
   ...props
 }) => {
   const { tooltipId, setOpen, contentData } = useTooltipSafeContext({
@@ -100,7 +109,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
   const Comp = asChild ? SlotPressable : Pressable;
 
   return (
-    <Comp {...props} onPress={handlePress}>
+    <Comp {...props} style={style} onPress={handlePress}>
       {children}
     </Comp>
   );

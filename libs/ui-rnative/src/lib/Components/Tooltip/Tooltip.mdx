@@ -3,6 +3,7 @@ import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
 import * as TooltipStories from './Tooltip.stories';
+import { Box } from '../Utility/Box';
 
 <Meta title='Communication/Tooltip' of={TooltipStories} />
 
@@ -91,6 +92,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
+  Text,
 } from '@ledgerhq/lumen-ui-rnative';
 import { Button } from '@ledgerhq/lumen-ui-rnative';
 
@@ -102,7 +104,11 @@ function MyComponent() {
       </TooltipTrigger>
       <TooltipContent
         title='Help Information'
-        content={<Text>This is helpful information about the feature.</Text>}
+        content={
+          <Text typography='body2'>
+            This is helpful information about the feature.
+          </Text>
+        }
       />
     </Tooltip>
   );
@@ -121,14 +127,14 @@ function MyComponent() {
   <TooltipContent
     title='Feature Details'
     content={
-      <View className='flex gap-12'>
-        <Text className='text-muted'>
+      <Box lx={{ gap: 's12' }}>
+        <Text typography='body2' lx={{ color: 'muted' }}>
           Detailed explanation with rich formatting.
         </Text>
         <Button size='xs' appearance='accent'>
           Learn More
         </Button>
-      </View>
+      </Box>
     }
   />
 </Tooltip>
@@ -150,7 +156,10 @@ function CallbackFunctionTooltip() {
       <TooltipTrigger asChild>
         <Button>Toggle Tooltip</Button>
       </TooltipTrigger>
-      <TooltipContent title='Controlled' content={<Text>Content</Text>} />
+      <TooltipContent
+        title='Controlled'
+        content={<Text typography='body2'>Content</Text>}
+      />
     </Tooltip>
   );
 }
@@ -158,7 +167,7 @@ function CallbackFunctionTooltip() {
 
 ## Do's and Don'ts
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use asChild to merge props with existing components'
@@ -211,7 +220,7 @@ function CallbackFunctionTooltip() {
 ```tsx
 <TooltipContent
   title='Short Title'
-  content={<Text>Brief, helpful explanation.</Text>}
+  content={<Text typography='body2'>Brief, helpful explanation.</Text>}
 />
 ```
 
@@ -225,7 +234,7 @@ function CallbackFunctionTooltip() {
 ```tsx
 <TooltipContent
   title='Very Long Detailed Title That Goes On Forever'
-  content={<Text>This is a very long explanation that contains too much information...</Text>}
+  content={<Text typography='body2'>This is a very long explanation that contains too much information...</Text>}
 />
 ```
 
@@ -282,21 +291,27 @@ function App() {
 
 {/* prettier-ignore */}
 ```tsx
-<View>
+<Box>
   <Tooltip>
     <TooltipTrigger asChild>
       <Button>Help 1</Button>
     </TooltipTrigger>
-    <TooltipContent title='First' content={<Text>Info</Text>} />
+    <TooltipContent
+      title='First'
+      content={<Text typography='body2'>Info</Text>}
+    />
   </Tooltip>
 
   <Tooltip>
     <TooltipTrigger asChild>
       <Button>Help 2</Button>
     </TooltipTrigger>
-    <TooltipContent title='Second' content={<Text>Info</Text>} />
+    <TooltipContent
+      title='Second'
+      content={<Text typography='body2'>Info</Text>}
+    />
   </Tooltip>
-</View>
+</Box>
 ```
 
     </DoBlockItem>
@@ -307,12 +322,15 @@ function App() {
 
 {/* prettier-ignore */}
 ```tsx
-<View>
+<Box>
   <Tooltip>
     <TooltipTrigger asChild>
       <Button>Help 1</Button>
     </TooltipTrigger>
-    <TooltipContent title='First' content={<Text>Info</Text>} />
+    <TooltipContent
+      title='First'
+      content={<Text typography='body2'>Info</Text>}
+    />
   </Tooltip>
 
   <Tooltip>
@@ -320,7 +338,7 @@ function App() {
       <Tooltip>...</Tooltip>
     </TooltipTrigger>
   </Tooltip>
-</View>
+</Box>
 ```
 
     </DontBlockItem>
@@ -328,7 +346,7 @@ function App() {
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 ### Performance
 

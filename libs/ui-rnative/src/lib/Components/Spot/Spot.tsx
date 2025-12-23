@@ -1,10 +1,6 @@
 import { useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {
-  LumenStyleSheet,
-  mergeStyles,
-  resolveViewStyle,
-} from '../../../styles';
+import { StyleSheet, Text } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import {
   BluetoothCircleFill,
   CheckmarkCircleFill,
@@ -13,6 +9,7 @@ import {
   WarningFill,
 } from '../../Symbols';
 import { Spinner } from '../Spinner';
+import { Box } from '../Utility';
 import { SpotAppearance, SpotProps, SpotSize } from './types';
 
 const BLUETOOTH_COLOR = '#0082FC';
@@ -119,17 +116,15 @@ const useStyles = ({
  * <Spot appearance="bluetooth" disabled />
  */
 export const Spot = (props: SpotProps) => {
-  const { appearance, disabled = false, size = 48, lx, style, ...rest } = props;
-
-  const { theme } = LumenStyleSheet.useTheme();
-  const styles = useStyles({ size, appearance, disabled });
-  const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
-  const finalRootStyle = StyleSheet.flatten([
-    styles.root,
-    resolvedLxStyle,
+  const {
+    appearance,
+    disabled = false,
+    size = 48,
+    lx = {},
     style,
-  ]);
-
+    ...rest
+  } = props;
+  const styles = useStyles({ size, appearance, disabled });
   const calculatedIconSize = iconSizeMap[size];
 
   const content = useMemo(() => {
@@ -170,8 +165,13 @@ export const Spot = (props: SpotProps) => {
   }, [props, calculatedIconSize, styles.icon, styles.numberText]);
 
   return (
-    <View testID='spot-container' style={finalRootStyle} {...rest}>
+    <Box
+      testID='spot-container'
+      lx={lx}
+      style={StyleSheet.flatten([styles.root, style])}
+      {...rest}
+    >
       {content}
-    </View>
+    </Box>
   );
 };

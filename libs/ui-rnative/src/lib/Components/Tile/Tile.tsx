@@ -148,7 +148,7 @@ const TileContent: FC<TileContentProps> = ({
 export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
   (
     {
-      lx,
+      lx = {},
       style,
       title,
       description,

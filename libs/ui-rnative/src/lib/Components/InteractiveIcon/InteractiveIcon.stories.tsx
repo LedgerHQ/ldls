@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
-import { LUMEN_VIEW_STYLE_PROPS } from '../../../styles/resolveStyle/resolveConfig';
 import {
   Settings,
   PenEdit,
@@ -19,9 +18,6 @@ const meta: Meta<typeof InteractiveIcon> = {
         format: true,
         type: 'code',
       },
-    },
-    controls: {
-      exclude: Array.from(LUMEN_VIEW_STYLE_PROPS),
     },
   },
   argTypes: {

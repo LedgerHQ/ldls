@@ -2,11 +2,7 @@ import { isTextChildren } from '@ledgerhq/lumen-utils-shared';
 import React, { ComponentType } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import {
-  LumenStyleSheet,
-  mergeStyles,
-  resolveViewStyle,
-} from '../../../styles';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -17,6 +13,7 @@ import {
 import { ViewRef } from '../../types';
 import { IconProps } from '../Icon';
 import { IconButton } from '../IconButton';
+import { Box } from '../Utility';
 import { Wrap } from '../Wrap';
 import { BannerProps } from './types';
 
@@ -134,7 +131,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
       description,
       primaryAction,
       secondaryAction,
-      lx,
+      lx = {},
       style,
       onClose,
       closeAriaLabel,
@@ -143,20 +140,18 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
     ref,
   ) => {
     const { t } = useCommonTranslation();
-    const { theme } = LumenStyleSheet.useTheme();
     const styles = useStyles({ appearance });
-    const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
-    const finalRootStyle = StyleSheet.flatten([
-      styles.root,
-      resolvedLxStyle,
-      style,
-    ]);
-
     const IconComponent = iconsMap[appearance];
     const iconColor = iconColorMap[appearance];
 
+    console.log({ iconColor });
     return (
-      <View ref={ref} style={finalRootStyle} {...props}>
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.root, style])}
+        {...props}
+      >
         <View style={styles.iconWrapper}>
           <IconComponent lx={{ color: iconColor }} />
         </View>
@@ -199,7 +194,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
             }
           />
         )}
-      </View>
+      </Box>
     );
   },
 );

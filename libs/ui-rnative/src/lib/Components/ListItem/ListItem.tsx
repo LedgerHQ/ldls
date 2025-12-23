@@ -129,7 +129,7 @@ export const ListItem = React.forwardRef<
       leadingContent,
       descriptionTag,
       trailingContent,
-      lx,
+      lx = {},
       style,
       disabled = false,
       ...touchableProps

@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { Text, View } from 'react-native';
 import { Information } from '../../Symbols';
 import { Button } from '../Button';
 import { InteractiveIcon } from '../InteractiveIcon';
+import { Box } from '../Utility/Box';
+import { Text } from '../Utility/Text';
 import { GlobalTooltipBottomSheet } from './GlobalTooltipBottomSheet';
 import { Tooltip, TooltipTrigger, TooltipContent } from './Tooltip';
 
@@ -19,17 +20,24 @@ type Story = StoryObj<typeof Tooltip>;
 export const Base: Story = {
   render: () => (
     <>
-      <View className='flex min-h-400 items-center justify-center p-24'>
+      <Box
+        lx={{
+          minHeight: 's400',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 's24',
+        }}
+      >
         <Tooltip>
           <TooltipTrigger asChild>
             <Button>Press me</Button>
           </TooltipTrigger>
           <TooltipContent
             title='My tooltip title'
-            content={<Text>This is a helpful tooltip</Text>}
+            content={<Text typography='body2'>This is a helpful tooltip</Text>}
           />
         </Tooltip>
-      </View>
+      </Box>
       <GlobalTooltipBottomSheet />
     </>
   ),
@@ -38,7 +46,14 @@ export const Base: Story = {
 export const WithCustomContent: Story = {
   render: () => (
     <>
-      <View className='flex min-h-400 items-center justify-center p-24'>
+      <Box
+        lx={{
+          minHeight: 's400',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 's24',
+        }}
+      >
         <Tooltip>
           <TooltipTrigger asChild>
             <Button>Press me</Button>
@@ -46,8 +61,8 @@ export const WithCustomContent: Story = {
           <TooltipContent
             title='My tooltip title'
             content={
-              <View className='flex items-start gap-12'>
-                <Text className='text-muted'>
+              <Box lx={{ alignItems: 'flex-start', gap: 's12' }}>
+                <Text typography='body2' lx={{ color: 'muted' }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -56,11 +71,11 @@ export const WithCustomContent: Story = {
                 <Button size='sm' appearance='accent'>
                   Custom tooltip action
                 </Button>
-              </View>
+              </Box>
             }
           />
         </Tooltip>
-      </View>
+      </Box>
       <GlobalTooltipBottomSheet />
     </>
   ),
@@ -69,14 +84,23 @@ export const WithCustomContent: Story = {
 export const WithMultipleTooltips: Story = {
   render: () => (
     <>
-      <View className='flex min-h-400 flex-row items-center justify-center gap-16 p-24'>
+      <Box
+        lx={{
+          minHeight: 's400',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 's16',
+          padding: 's24',
+        }}
+      >
         <Tooltip>
           <TooltipTrigger asChild>
             <Button>Tooltip 1</Button>
           </TooltipTrigger>
           <TooltipContent
             title='First'
-            content={<Text>First tooltip content</Text>}
+            content={<Text typography='body2'>First tooltip content</Text>}
           />
         </Tooltip>
 
@@ -86,7 +110,7 @@ export const WithMultipleTooltips: Story = {
           </TooltipTrigger>
           <TooltipContent
             title='Second'
-            content={<Text>Second tooltip content</Text>}
+            content={<Text typography='body2'>Second tooltip content</Text>}
           />
         </Tooltip>
 
@@ -98,10 +122,10 @@ export const WithMultipleTooltips: Story = {
           </TooltipTrigger>
           <TooltipContent
             title='Third'
-            content={<Text>Third tooltip content</Text>}
+            content={<Text typography='body2'>Third tooltip content</Text>}
           />
         </Tooltip>
-      </View>
+      </Box>
       <GlobalTooltipBottomSheet />
     </>
   ),
@@ -111,7 +135,14 @@ export const WithChangeCallback: Story = {
   render: () => {
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
+        <Box
+          lx={{
+            minHeight: 's400',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 's24',
+          }}
+        >
           <Tooltip
             onOpenChange={(newOpen) => alert(`Opened changes to: ${newOpen}`)}
           >
@@ -120,10 +151,12 @@ export const WithChangeCallback: Story = {
             </TooltipTrigger>
             <TooltipContent
               title='My tooltip title'
-              content={<Text>This is a helpful tooltip</Text>}
+              content={
+                <Text typography='body2'>This is a helpful tooltip</Text>
+              }
             />
           </Tooltip>
-        </View>
+        </Box>
         <GlobalTooltipBottomSheet />
       </>
     );

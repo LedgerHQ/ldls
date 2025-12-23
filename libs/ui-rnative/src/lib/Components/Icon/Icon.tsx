@@ -4,7 +4,7 @@ import { Svg } from 'react-native-svg';
 import {
   LumenStyleSheet,
   LumenTextStyle,
-  resolveTextStyle,
+  useResolveTextStyle,
 } from '../../../styles';
 import { IconProps, IconSize } from './types';
 
@@ -20,22 +20,22 @@ const iconSizeMap = {
 
 const useStyles = (lx: LumenTextStyle, size: IconSize) => {
   const { theme } = LumenStyleSheet.useTheme();
+  const resolvedStyle = useResolveTextStyle(lx);
 
   return useMemo(() => {
-    const resolvedStyles = resolveTextStyle(theme, lx);
     return {
-      ...resolvedStyles,
+      ...resolvedStyle,
       width: theme.icon.width[iconSizeMap[size]],
       height: theme.icon.height[iconSizeMap[size]],
       strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
     };
-  }, [size, theme, lx]);
+  }, [size, theme, resolvedStyle]);
 };
 
 export const Icon = forwardRef<Svg, IconProps>(
   ({ size = 24, lx = {}, style, children, viewBox, ...props }, ref) => {
     const styles = useStyles(lx, size);
-    const flatStyle = StyleSheet.flatten(style);
+    const flatStyle = StyleSheet.flatten([styles, style]);
 
     return (
       <Svg

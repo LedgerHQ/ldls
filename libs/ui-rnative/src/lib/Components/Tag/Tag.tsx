@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {
-  LumenStyleSheet,
-  mergeStyles,
-  resolveViewStyle,
-} from '../../../styles';
+import { StyleSheet, Text } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ViewRef } from '../../types';
 import { IconSize } from '../Icon';
+import { Box } from '../Utility';
 import { TagProps } from './types';
 
 type Appearance = NonNullable<TagProps['appearance']>;
@@ -139,29 +136,27 @@ export const Tag = React.forwardRef<ViewRef, TagProps>(
       icon,
       label,
       disabled = false,
-      lx,
+      lx = {},
       style,
       ...props
     },
     ref,
   ) => {
-    const { theme } = LumenStyleSheet.useTheme();
     const styles = useStyles({ appearance, size, disabled });
-    const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
-    const finalRootStyle = StyleSheet.flatten([
-      styles.root,
-      resolvedLxStyle,
-      style,
-    ]);
 
     const IconComponent = icon;
     const iconSize = iconSizeMap[size];
 
     return (
-      <View ref={ref} style={finalRootStyle} {...props}>
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.root, style])}
+        {...props}
+      >
         {IconComponent && <IconComponent size={iconSize} style={styles.icon} />}
         <Text style={styles.text}>{label}</Text>
-      </View>
+      </Box>
     );
   },
 );
