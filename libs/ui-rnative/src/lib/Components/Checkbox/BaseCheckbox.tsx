@@ -1,7 +1,7 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import {
   ForceMountable,
   PressableRef,
@@ -9,57 +9,12 @@ import {
   SlottableViewProps,
   ViewRef,
 } from '../../types';
-import { cn } from '../../utils';
 import { SlotPressable, SlotView } from '../Slot';
 import { CheckboxProps } from './types';
 
 const ROOT_COMPONENT_NAME = 'BaseCheckbox';
 const TRIGGER_COMPONENT_NAME = 'BaseCheckboxTrigger';
 const INDICATOR_COMPONENT_NAME = 'BaseCheckboxIndicator';
-
-const baseCheckboxVariants = {
-  trigger: cva(
-    [
-      'size-20 shrink-0 rounded-xs transition-colors',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
-    ],
-    {
-      variants: {
-        checked: { true: '', false: 'border' },
-        disabled: { true: '', false: '' },
-      },
-      compoundVariants: [
-        {
-          checked: true,
-          disabled: false,
-          className:
-            'bg-active text-on-accent hover:bg-active-hover active:bg-active-pressed',
-        },
-        {
-          checked: false,
-          disabled: false,
-          className:
-            'border-muted bg-base hover:bg-base-hover active:bg-base-pressed',
-        },
-        {
-          checked: true,
-          disabled: true,
-          className: 'bg-disabled text-disabled',
-        },
-        {
-          checked: false,
-          disabled: true,
-          className: 'border-disabled bg-base',
-        },
-      ],
-      defaultVariants: {
-        checked: false,
-        disabled: false,
-      },
-    },
-  ),
-  indicator: cva(['flex size-full items-center justify-center']),
-};
 
 type BaseCheckboxRootProps = SlottablePressableProps & {
   checked?: CheckboxProps['checked'];
@@ -99,6 +54,8 @@ const BaseCheckboxTrigger = React.forwardRef<
       contextRequired: true,
     });
 
+  const styles = useStyles({ checked: !!checked, disabled: !!disabled });
+
   const onPress = useCallback(
     (ev: GestureResponderEvent) => {
       if (disabled) return;
@@ -118,10 +75,7 @@ const BaseCheckboxTrigger = React.forwardRef<
       role='checkbox'
       aria-checked={checked}
       onPress={onPress}
-      className={cn(
-        baseCheckboxVariants.trigger({ checked, disabled }),
-        className,
-      )}
+      style={styles.trigger}
       accessibilityState={{
         checked,
         disabled,
@@ -137,11 +91,13 @@ type BaseCheckboxIndicatorProps = ForceMountable & SlottableViewProps;
 const BaseCheckboxIndicator = React.forwardRef<
   ViewRef,
   BaseCheckboxIndicatorProps
->(({ asChild, forceMount, className, ...props }, ref) => {
+>(({ asChild, forceMount, ...props }, ref) => {
   const { checked, disabled } = useBaseCheckboxContext({
     consumerName: INDICATOR_COMPONENT_NAME,
     contextRequired: true,
   });
+
+  const styles = useStyles({ checked: !!checked, disabled: !!disabled });
 
   if (!forceMount) {
     if (!checked) {
@@ -154,7 +110,7 @@ const BaseCheckboxIndicator = React.forwardRef<
   return (
     <Component
       ref={ref}
-      className={baseCheckboxVariants.indicator({ className })}
+      style={styles.indicator}
       aria-disabled={disabled}
       aria-hidden={!(forceMount || checked)}
       role={'presentation'}
@@ -162,6 +118,61 @@ const BaseCheckboxIndicator = React.forwardRef<
     />
   );
 });
+
+const useStyles = ({
+  checked,
+  disabled,
+}: {
+  checked: boolean;
+  disabled: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        trigger: mergeStyles(
+          {
+            width: t.sizes.s20,
+            height: t.sizes.s20,
+            flexShrink: 0,
+            borderRadius: t.borderRadius.xs,
+          },
+          !checked && {
+            borderWidth: t.borderWidth.s1,
+          },
+          checked &&
+            !disabled && {
+              backgroundColor: t.colors.bg.active,
+              color: t.colors.text.onAccent,
+            },
+          !checked &&
+            !disabled && {
+              borderColor: t.colors.border.muted,
+              backgroundColor: t.colors.bg.base,
+            },
+          checked &&
+            disabled && {
+              backgroundColor: t.colors.bg.disabled,
+              color: t.colors.text.disabled,
+            },
+          !checked &&
+            disabled && {
+              borderColor: t.colors.border.disabled,
+              backgroundColor: t.colors.bg.base,
+            },
+        ),
+        indicator: {
+          flex: 1,
+          width: t.sizes.full,
+          height: t.sizes.full,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      };
+    },
+    [checked, disabled],
+  );
+};
+
 BaseCheckboxIndicator.displayName = INDICATOR_COMPONENT_NAME;
 
 export { BaseCheckboxIndicator, BaseCheckboxRoot, type BaseCheckboxRootProps };

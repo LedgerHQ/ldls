@@ -99,19 +99,19 @@ export default config;
 ## Basic Usage
 
 ```tsx
-import { Switch } from '@ledgerhq/lumen-ui-rnative';
+import { Switch, Box, Text } from '@ledgerhq/lumen-ui-rnative';
 
 function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="flex items-center space-x-8">
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
       <Switch
         checked={isChecked}
         onCheckedChange={setIsChecked}
       />
-      <label>Accept terms and conditions</label>
-    </div>
+      <Text>Accept terms and conditions</Text>
+    </Box>
   );
 }
 ```
@@ -144,26 +144,28 @@ Use `defaultChecked` for simple cases:
 ### Labels and ARIA
 
 ```tsx
-// ✅ Associated label
-<div className="flex items-center space-x-8">
+// ✅ Custom layout with Box and Text
+<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
   <Switch id="terms" />
-  <label htmlFor="terms">I agree to the terms</label>
-</div>
+  <Text>I agree to the terms</Text>
+</Box>
 
 // ✅ ARIA label for standalone switch
 <Switch accessibilityLabel="Select all items" />
 
 // ✅ ARIA described by for complex descriptions
-<div>
-  <Switch
-    id="marketing"
-    aria-describedby="marketing-description"
-  />
-  <label htmlFor="marketing">Marketing emails</label>
-  <p id="marketing-description" className="text-muted body-4">
+<Box lx={{ gap: 's4' }}>
+  <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
+    <Switch
+      id="marketing"
+      aria-describedby="marketing-description"
+    />
+    <Text>Marketing emails</Text>
+  </Box>
+  <Text id="marketing-description" lx={{ color: 'muted' }} typography="body4">
     Receive promotional offers and product updates
-  </p>
-</div>
+  </Text>
+</Box>
 ```
 
 ### Keyboard Navigation
@@ -181,16 +183,16 @@ The following guidelines ensure consistent usage of the Switch component and mai
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Associate labels properly'
-      description='Use htmlFor with id to properly associate labels with switches'
+      title='Use Box and Text for layout'
+      description='Use Box and Text components to create accessible layouts with switches'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<div className='flex items-center space-x-8'>
+<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
   <Switch id='notifications' />
-  <label htmlFor='notifications'>Enable notifications</label>
-</div>
+  <Text>Enable notifications</Text>
+</Box>
 ```
 
     </DoBlockItem>
@@ -201,9 +203,9 @@ The following guidelines ensure consistent usage of the Switch component and mai
 
 {/* prettier-ignore */}
 ```tsx
-<div className='flex items-center space-x-8'>
+<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
   <Switch id='notifications' />
-</div>
+</Box>
 ```
 
     </DontBlockItem>

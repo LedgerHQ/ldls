@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { Box, Text } from '../Utility';
 import { Switch } from './Switch';
 
 const meta: Meta<typeof Switch> = {
@@ -43,9 +44,16 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   render: (args) => {
     return (
-      <div className='flex size-80 items-center justify-center'>
+      <Box
+        lx={{
+          width: 's80',
+          height: 's80',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Switch {...args} />
-      </div>
+      </Box>
     );
   },
 };
@@ -55,29 +63,35 @@ export const Base: Story = {
  */
 export const AllStates: Story = {
   render: () => (
-    <div className='grid grid-cols-3 gap-48 p-16 text-base'>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Enabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
+    <Box
+      lx={{
+        flexDirection: 'row',
+        gap: 's48',
+        padding: 's16',
+      }}
+    >
+      <Box lx={{ gap: 's16' }}>
+        <Text typography='heading4'>Enabled</Text>
+        <Box lx={{ gap: 's8' }}>
+          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
             <Switch defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
+          </Box>
+          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
             <Switch aria-labelledby='' defaultChecked />
-          </div>
-        </div>
-      </div>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Disabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
+          </Box>
+        </Box>
+      </Box>
+      <Box lx={{ gap: 's16' }}>
+        <Text typography='heading4'>Disabled</Text>
+        <Box lx={{ gap: 's8' }}>
+          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
             <Switch disabled defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
+          </Box>
+          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
             <Switch disabled defaultChecked />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   ),
 };

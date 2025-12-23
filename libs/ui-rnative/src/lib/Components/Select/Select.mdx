@@ -23,7 +23,7 @@ The Select component provides a dropdown interface for choosing from a list of o
 
 ## Anatomy
 
-> **Layout:** The Select component takes the full width of its container by default. You can control the width directly using `className` or by wrapping in a container.
+> **Layout:** The Select component takes the full width of its container by default. You can control the width directly using `lx` prop or by wrapping in a container.
 
 The Select component consists of several sub-components:
 
@@ -292,19 +292,23 @@ Use the `disabled` prop to prevent user interaction:
 
 ### With Custom Styling
 
-While the component comes with predefined styles, you can extend them using NativeWind classes:
+While the component comes with predefined styles, you can extend them using the `lx` prop:
 
 ```tsx
-<Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Choose an option' className='max-w-md'>
-    <SelectValue className='heading-0' />
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value='option1'>
-      <SelectItemText>Option 1</SelectItemText>
-    </SelectItem>
-  </SelectContent>
-</Select>
+import { Box } from '@ledgerhq/lumen-ui-rnative';
+
+<Box lx={{ maxWidth: 's320' }}>
+  <Select value={value} onValueChange={setValue}>
+    <SelectTrigger label='Choose an option'>
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value='option1'>
+        <SelectItemText>Option 1</SelectItemText>
+      </SelectItem>
+    </SelectContent>
+  </Select>
+</Box>
 ```
 
 ## Do's and Don'ts
@@ -425,14 +429,14 @@ const [value, setValue] = useState('');
 
 ### Layout and Styling
 
-The Select component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+The Select component takes the **full width** of its parent container by default. You can control the width using `lx` prop or wrapper containers:
 
 ✅ **Do**
 
 ```tsx
-// Preferred: Direct width control
+// Preferred: Direct width control with lx
 <Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Option' className='max-w-md'>
+  <SelectTrigger label='Option' lx={{ maxWidth: 's320' }}>
     <SelectValue />
   </SelectTrigger>
   <SelectContent>
@@ -442,9 +446,9 @@ The Select component takes the **full width** of its parent container by default
   </SelectContent>
 </Select>
 
-// Use className for margins and positioning
+// Use lx for margins and positioning
 <Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Option' className='mt-4 mx-auto'>
+  <SelectTrigger label='Option' lx={{ marginTop: 's16', marginHorizontal: 'auto' }}>
     <SelectValue />
   </SelectTrigger>
   <SelectContent>
@@ -455,7 +459,7 @@ The Select component takes the **full width** of its parent container by default
 </Select>
 
 // Alternative: Container wrapper
-<View className='max-w-md'>
+<Box lx={{ maxWidth: 's320' }}>
   <Select value={value} onValueChange={setValue}>
     <SelectTrigger label='Option'>
       <SelectValue />
@@ -466,14 +470,14 @@ The Select component takes the **full width** of its parent container by default
       </SelectItem>
     </SelectContent>
   </Select>
-</View>
+</Box>
 ```
 
 ❌ **Don't**
 
 ```tsx
-// Don't use inline styles when className is available
-<SelectTrigger label='Option' style={{ maxWidth: 300 }}>
+// Don't use style prop for token-based values (use lx instead)
+<SelectTrigger label='Option' style={{ maxWidth: 320 }}>
   <SelectValue />
 </SelectTrigger>
 ```
@@ -495,9 +499,9 @@ The Select component takes the **full width** of its parent container by default
   </SelectContent>
 </Select>
 
-// Use labelClassName for label styling
+// Labels automatically float when a value is selected
 <Select value={value} onValueChange={setValue}>
-  <SelectTrigger label='Important' labelClassName='text-accent'>
+  <SelectTrigger label='Important'>
     <SelectValue />
   </SelectTrigger>
   <SelectContent>
@@ -523,8 +527,8 @@ The Select component takes the **full width** of its parent container by default
   </SelectContent>
 </Select>
 
-// Don't use className to style labels (use labelClassName instead)
-<SelectTrigger label='Option' className='text-accent'>
+// Don't use style prop to modify core appearance
+<SelectTrigger label='Option' style={{ backgroundColor: 'red' }}>
   <SelectValue />
 </SelectTrigger>
 ```

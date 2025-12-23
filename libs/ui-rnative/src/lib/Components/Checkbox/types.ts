@@ -1,4 +1,4 @@
-import { SlottablePressableProps } from '../../types';
+import { StyledViewProps } from '../../../styles';
 
 export type CheckboxProps = {
   /**
@@ -21,4 +21,4 @@ export type CheckboxProps = {
    * The label of the checkbox.
    */
   label?: React.ReactNode;
-} & SlottablePressableProps;
+} & StyledViewProps;

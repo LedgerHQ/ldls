@@ -1,4 +1,4 @@
-import { SlottablePressableProps } from '../../types';
+import { StyledPressableProps } from '../../../styles';
 
 export type SwitchProps = {
   /**
@@ -25,4 +25,4 @@ export type SwitchProps = {
    * @default false
    */
   defaultChecked?: boolean;
-} & SlottablePressableProps;
+} & Omit<StyledPressableProps, 'children'>;

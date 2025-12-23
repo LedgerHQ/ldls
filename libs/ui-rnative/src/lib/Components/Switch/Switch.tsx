@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useControllableState } from '../../utils';
+import { Pressable } from '../Utility';
 import { BaseSwitchThumb, BaseSwitchRoot } from './BaseSwitch';
 
 import { SwitchProps } from './types';
@@ -12,11 +13,11 @@ import { SwitchProps } from './types';
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-switch--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-switch--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the switch's core appearance.
  *
  * @example
- * import { Switch } from '@ledgerhq/lumen-ui-react';
+ * import { Switch } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic controlled switch
  * const [checked, setChecked] = useState(false);
@@ -29,16 +30,18 @@ import { SwitchProps } from './types';
  * <Switch defaultChecked={true} onCheckedChange={handleChange} />
  */
 export const Switch = React.forwardRef<
-  React.ElementRef<typeof BaseSwitchRoot>,
+  React.ElementRef<typeof Pressable>,
   SwitchProps
 >(
   (
     {
-      className,
+      lx,
+      style,
       checked: checkedProp,
       onCheckedChange: onCheckedChangeProp,
       defaultChecked = false,
       disabled,
+      size = 'md',
       ...props
     },
     ref,
@@ -50,15 +53,16 @@ export const Switch = React.forwardRef<
     });
 
     return (
-      <BaseSwitchRoot
-        ref={ref}
-        disabled={disabled}
-        checked={checked}
-        onCheckedChange={onCheckedChange}
-        {...props}
-      >
-        <BaseSwitchThumb />
-      </BaseSwitchRoot>
+      <Pressable ref={ref} lx={lx} style={style} {...props}>
+        <BaseSwitchRoot
+          disabled={disabled}
+          checked={checked}
+          onCheckedChange={onCheckedChange}
+          size={size}
+        >
+          <BaseSwitchThumb />
+        </BaseSwitchRoot>
+      </Pressable>
     );
   },
 );
