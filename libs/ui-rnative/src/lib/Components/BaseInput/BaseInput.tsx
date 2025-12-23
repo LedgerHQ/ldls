@@ -10,12 +10,13 @@ import { useCommonTranslation } from '../../../i18n';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
-import { Pressable } from '../Utility';
+import { Box, Pressable } from '../Utility';
 import { type BaseInputProps } from './BaseInput.types';
 
 export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
   (
     {
+      lx,
       style,
       inputStyle,
       labelStyle,
@@ -97,7 +98,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     });
 
     return (
-      <View style={style}>
+      <Box lx={lx} style={style}>
         <Pressable
           style={styles.container}
           onPress={() => inputRef.current?.focus()}
@@ -158,7 +159,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
             <Text style={styles.errorText}>{errorMessage}</Text>
           </View>
         )}
-      </View>
+      </Box>
     );
   },
 );
