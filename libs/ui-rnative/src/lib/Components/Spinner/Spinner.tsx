@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
@@ -7,7 +7,7 @@ import { RuntimeConstants } from '../../utils';
 import { Box } from '../Utility';
 import { SpinnerProps } from './types';
 
-const SpinAnimation = ({ children }: { children: React.ReactNode }) => {
+const SpinAnimation = memo(({ children }: { children: React.ReactNode }) => {
   const spinValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -34,7 +34,8 @@ const SpinAnimation = ({ children }: { children: React.ReactNode }) => {
       {children}
     </Animated.View>
   );
-};
+});
+SpinAnimation.displayName = 'SpinAnimation';
 
 /**
  * A basic spinner component for loading states.

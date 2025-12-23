@@ -50,7 +50,7 @@ export const useResolveViewStyle = (
 ): ViewStyle => {
   const { theme } = useTheme();
   const resolvedStyle = resolveStyle<ViewStyle>(theme, lx, VIEW_PROP_CONFIG);
-  return StyleSheet.flatten([resolvedStyle, bareStyle]);
+  return StyleSheet.flatten([bareStyle, resolvedStyle]);
 };
 
 /**
@@ -62,5 +62,5 @@ export const useResolveTextStyle = (
 ): TextStyle => {
   const { theme } = useTheme();
   const resolvedStyle = resolveStyle<TextStyle>(theme, lx, TEXT_PROP_CONFIG);
-  return StyleSheet.flatten([resolvedStyle, bareStyle]);
+  return StyleSheet.flatten([bareStyle, resolvedStyle]);
 };
