@@ -6,8 +6,7 @@ import type {
   PressableStateCallbackType,
   ViewStyle,
 } from 'react-native';
-import { useTheme } from '../Provider/useTheme';
-import { resolveViewStyle } from '../resolveStyle/resolveStyle';
+import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
 import { LumenPressableStyleLX } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
@@ -64,20 +63,19 @@ export const createStyledPressable = (Component: typeof Pressable) => {
   const StyledComponent = memo(
     forwardRef<PressableRef, StyledPressableProps>(
       ({ lx = {}, style, ...props }, ref) => {
-        const { theme } = useTheme();
-        const resolvedLxStyle = resolveViewStyle(theme, lx);
+        const resolvedStyle = useResolveViewStyle(lx);
 
         if (!hasStyleFunction(style)) {
           const finalStyle = StyleSheet.flatten([
-            resolvedLxStyle,
             style as ViewStyle,
+            resolvedStyle,
           ]);
           return <Component ref={ref} {...props} style={finalStyle} />;
         }
 
         const mergedStyle = (state: PressableStateCallbackType): ViewStyle => {
-          const resolvedStyle = resolveStyleFunctions(style, state);
-          return StyleSheet.flatten([resolvedLxStyle, resolvedStyle]);
+          const resolvedBareStyle = resolveStyleFunctions(style, state);
+          return StyleSheet.flatten([resolvedBareStyle, resolvedStyle]);
         };
 
         return <Component ref={ref} {...props} style={mergedStyle} />;

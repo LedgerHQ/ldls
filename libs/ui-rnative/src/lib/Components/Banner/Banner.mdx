@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as BannerStories from './Banner.stories';
 import { Banner } from './Banner';
+import { Box } from '../Utility';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
@@ -99,7 +100,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Banner } from '@ledgerhq/lumen-ui-react';
+import { Banner } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return (
@@ -117,11 +118,11 @@ function MyComponent() {
 The Banner component supports four different appearances, each with its own semantic meaning and visual styling:
 
 ```tsx
-import { Banner } from '@ledgerhq/lumen-ui-react';
+import { Banner, Box } from '@ledgerhq/lumen-ui-rnative';
 
 function NotificationSystem() {
   return (
-    <View className='space-y-4'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
       {/* Info - Default informational messages */}
       <Banner
         appearance='info'
@@ -149,7 +150,7 @@ function NotificationSystem() {
         title='Error'
         description='Something went wrong, please try again'
       />
-    </View>
+    </Box>
   );
 }
 ```
@@ -159,7 +160,7 @@ function NotificationSystem() {
 Banners can include primary and secondary action buttons to allow user interaction:
 
 ```tsx
-import { Banner, Button } from '@ledgerhq/lumen-ui-react';
+import { Banner, Button } from '@ledgerhq/lumen-ui-rnative';
 
 function ActionableBanner() {
   const handleAccept = () => {
@@ -195,7 +196,7 @@ function ActionableBanner() {
 Add a close button to make banners dismissible by the user:
 
 ```tsx
-import { Banner } from '@ledgerhq/lumen-ui-react';
+import { Banner } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function DismissibleBanner() {
@@ -229,33 +230,31 @@ Banners automatically flow to fill their parent container width. No additional p
 />
 ```
 
-To control banner width, use container elements:
+To control banner width, use container elements with the `lx` prop:
 
 ```tsx
-{
-  /* Full viewport width */
-}
+import { Banner, Box } from '@ledgerhq/lumen-ui-rnative';
+
+{/* Full viewport width */}
 <Banner
   title='Full Width'
   description='This banner fills the viewport width'
-/>;
+/>
 
-{
-  /* Constrained width */
-}
-<View className='max-w-4xl mx-auto'>
+{/* Constrained width */}
+<Box lx={{ maxWidth: 's400' }}>
   <Banner
     title='Constrained'
     description='This banner is limited by its container'
   />
-</View>;
+</Box>
 
-{
-  /* Responsive width */
-}
-<View className='w-full lg:max-w-2xl'>
-  <Banner title='Responsive' description='Width adapts based on screen size' />
-</View>;
+{/* With margin */}
+<Banner
+  title='With Layout Adjustment'
+  description='Use lx prop for layout adjustments'
+  lx={{ marginTop: 's16' }}
+/>
 ```
 
 ### Complete Example
@@ -263,7 +262,7 @@ To control banner width, use container elements:
 Here's a comprehensive example showing all Banner features:
 
 ```tsx
-import { Banner, Button } from '@ledgerhq/lumen-ui-react';
+import { Banner, Button, Box } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function NotificationCenter() {
@@ -299,7 +298,7 @@ function NotificationCenter() {
   };
 
   return (
-    <View className='space-y-4'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
       {notifications.map((notification) => (
         <Banner
           key={notification.id}
@@ -332,20 +331,20 @@ function NotificationCenter() {
           }
         />
       ))}
-    </View>
+    </Box>
   );
 }
 ```
 
-### Custom Styling
+### Layout Adjustments with lx
 
-While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
+Use the `lx` prop for layout adjustments like margins or positioning:
 
 ```tsx
 <Banner
-  title='Mobile Alert'
-  description='This banner only shows on mobile devices'
-  className='md:hidden mb-4' // Custom responsive display and margin
+  title='With Margin'
+  description='This banner has a top margin'
+  lx={{ marginTop: 's16', marginBottom: 's8' }}
   appearance='info'
 />
 ```
@@ -354,40 +353,38 @@ While the component comes with predefined styles, you can extend them using Tail
 
 The following guidelines ensure consistent usage of the Banner component and maintain design system principles.
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's16' }}>
+
   <DoVsDontRow>
     <DoBlockItem
-      title='Use container elements to control width'
-      description='Wrap Banner in container elements to control its width and layout'
+      title='Use lx for layout adjustments only'
+      description='Use the lx prop for margins, positioning, and other layout adjustments'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<View className='max-w-md'>
-  <Banner
-    title='System Notice'
-    description='Maintenance scheduled for tonight'
-    appearance='warning'
-  />
-</View>
+<Banner
+  title='System Notice'
+  description='Maintenance scheduled for tonight'
+  lx={{ marginTop: 's16' }}
+  appearance='warning'
+/>
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use className for width control"
-      description='Avoid using className to set width directly on Banner'
+      title="Don't use lx for appearance changes"
+      description='Avoid using lx to modify colors, padding, or other core appearance styles'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<View className='max-w-md'>
-  <Banner
-    title='System Notice'
-    description='Maintenance scheduled for tonight'
-    className='w-80'
-    appearance='warning'
-  />
-</View>
+<Banner
+  title='System Notice'
+  description='Maintenance scheduled for tonight'
+  lx={{ backgroundColor: 'accent', padding: 's24' }}
+  appearance='warning'
+/>
 ```
 
     </DontBlockItem>
@@ -435,7 +432,7 @@ The following guidelines ensure consistent usage of the Banner component and mai
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

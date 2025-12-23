@@ -1,2 +1,2 @@
 export * from './BaseInput';
-export * from './BaseInput.types';
+export * from './types';

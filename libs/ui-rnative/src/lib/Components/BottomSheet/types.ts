@@ -1,6 +1,13 @@
+import {
+  BottomSheetView as GorhomBottomSheetView,
+  BottomSheetFlatList as GorhomBottomSheetFlatList,
+  BottomSheetSectionList as GorhomBottomSheetSectionList,
+  BottomSheetScrollView as GorhomBottomSheetScrollView,
+  BottomSheetVirtualizedList as GorhomBottomSheetVirtualizedList,
+} from '@gorhom/bottom-sheet';
+
 import { PropsWithChildren, ReactNode } from 'react';
 import { StyledViewProps } from '../../../styles';
-
 export type BottomSheetProps = PropsWithChildren & {
   /**
    * Used to locate this view in end-to-end tests.
@@ -131,3 +138,17 @@ export type BottomSheetHeaderProps = {
    */
   spacing?: boolean;
 } & Omit<StyledViewProps, 'children'>;
+
+export type BottomSheetViewProps = Parameters<typeof GorhomBottomSheetView>[0];
+export type BottomSheetFlatListProps = Parameters<
+  typeof GorhomBottomSheetFlatList
+>[0];
+export type BottomSheetSectionListProps = Parameters<
+  typeof GorhomBottomSheetSectionList
+>[0];
+export type BottomSheetScrollViewProps = Parameters<
+  typeof GorhomBottomSheetScrollView
+>[0];
+export type BottomSheetVirtualizedListProps = Parameters<
+  typeof GorhomBottomSheetVirtualizedList
+>[0];

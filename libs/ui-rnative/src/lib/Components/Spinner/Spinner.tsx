@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
@@ -6,6 +6,36 @@ import { LumenStyleSheet } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 import { Box } from '../Utility';
 import { SpinnerProps } from './types';
+
+const SpinAnimation = memo(({ children }: { children: React.ReactNode }) => {
+  const spinValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const animation = Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.linear,
+        useNativeDriver: RuntimeConstants.isNative,
+      }),
+    );
+    animation.start();
+
+    return () => animation.stop();
+  }, [spinValue]);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  return (
+    <Animated.View style={{ transform: [{ rotate: spin }] }}>
+      {children}
+    </Animated.View>
+  );
+});
+SpinAnimation.displayName = 'SpinAnimation';
 
 /**
  * A basic spinner component for loading states.
@@ -22,34 +52,14 @@ import { SpinnerProps } from './types';
  * <Spinner lx={{ marginTop: 's8' }} />
  */
 export const Spinner = forwardRef<View, SpinnerProps>(
-  ({ lx, style, size = 16, color, ...props }, ref) => {
+  ({ lx = {}, style, size = 16, color, ...props }, ref) => {
     const { t } = useCommonTranslation();
     const { theme } = LumenStyleSheet.useTheme();
-    const spinValue = useRef(new Animated.Value(0)).current;
     const strokeColor = color ?? theme.colors.text.base;
-
-    useEffect(() => {
-      const animation = Animated.loop(
-        Animated.timing(spinValue, {
-          toValue: 1,
-          duration: 1000,
-          easing: Easing.linear,
-          useNativeDriver: RuntimeConstants.isNative,
-        }),
-      );
-      animation.start();
-
-      return () => animation.stop();
-    }, [spinValue]);
-
-    const spin = spinValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg'],
-    });
 
     return (
       <Box ref={ref} lx={{ flexShrink: 0, ...lx }} style={style} {...props}>
-        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+        <SpinAnimation>
           <Svg
             width={size}
             height={size}
@@ -64,7 +74,7 @@ export const Spinner = forwardRef<View, SpinnerProps>(
               strokeLinecap='round'
             />
           </Svg>
-        </Animated.View>
+        </SpinAnimation>
       </Box>
     );
   },

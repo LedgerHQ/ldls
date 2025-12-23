@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
 import { Pressable } from '../Utility';
@@ -137,7 +137,7 @@ export const CardButton = React.forwardRef<
       <Pressable
         ref={ref}
         lx={lx}
-        style={[style, { flex: 1 }]}
+        style={StyleSheet.flatten([style, { flex: 1 }])}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}

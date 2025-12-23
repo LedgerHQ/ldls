@@ -12,7 +12,7 @@ export const Tooltips = () => {
     <View className='flex flex-row gap-12'>
       <Tooltip>
         <TooltipTrigger>
-          <InformationFill className='text-base' size={20} />
+          <InformationFill lx={{ color: 'base' }} size={20} />
         </TooltipTrigger>
         <TooltipContent
           title='Tooltip title'
@@ -28,7 +28,7 @@ export const Tooltips = () => {
       </Tooltip>
       <Tooltip>
         <TooltipTrigger>
-          <InformationFill className='text-base' size={20} />
+          <InformationFill lx={{ color: 'base' }} size={20} />
         </TooltipTrigger>
         <TooltipContent
           title='Simple tooltip title'

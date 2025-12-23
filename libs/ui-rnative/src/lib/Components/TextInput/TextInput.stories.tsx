@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { TextInput } from './TextInput';
-import { type TextInputProps } from './TextInput.types';
+import { type TextInputProps } from './types';
 
 const meta: Meta<typeof TextInput> = {
   component: TextInput,

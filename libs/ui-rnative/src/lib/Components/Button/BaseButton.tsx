@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
@@ -160,7 +160,7 @@ export const BaseButton = React.forwardRef<
       <Pressable
         ref={ref}
         lx={lx}
-        style={[style, rootStyles.root]}
+        style={StyleSheet.flatten([style, rootStyles.root])}
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}

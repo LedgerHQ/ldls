@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle } from 'react-native';
+import { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { LumenTextStyleLX } from '../../../styles';
 
@@ -12,10 +12,10 @@ export type IconProps = {
   /**
    * Style object to apply to the icon (supports color via color property).
    */
-  style?: StyleProp<ViewStyle & { color?: string }>;
+  style?: StyleProp<ViewStyle & { color?: ColorValue }>;
   /**
    * The children of the icon.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 } & LumenTextStyleLX &
   Omit<SvgProps, 'style'>;

@@ -3,7 +3,7 @@ import { TextInput } from 'react-native';
 import { LumenStyleSheet } from '../../../styles';
 import { Search as SearchIcon } from '../../Symbols';
 import { BaseInput } from '../BaseInput';
-import { type SearchProps } from './Search.types';
+import { type SearchProps } from './types';
 
 export const Search = React.forwardRef<
   React.ElementRef<typeof TextInput>,

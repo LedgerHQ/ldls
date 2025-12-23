@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import React from 'react';
 import { Button } from '../Button';
+import { Box, Text } from '../Utility';
 import { Banner } from './Banner';
 
 const meta: Meta<typeof Banner> = {
@@ -92,13 +93,13 @@ export const Base: Story = {
     secondaryAction: 'None',
   },
   render: (args) => (
-    // max-w-md container for visual presentation - not required for Banner component
-    <div className='max-w-md'>
+    // maxWidth container for visual presentation - not required for Banner component
+    <Box lx={{ maxWidth: 's400' }}>
       <Banner
         {...args}
         description={'This is additional information about the banner.'}
       />
-    </div>
+    </Box>
   ),
   parameters: {
     docs: {
@@ -123,9 +124,9 @@ export const WithDescription: Story = {
     description: 'This is additional information about the banner.',
   },
   render: (args) => (
-    <div className='max-w-md'>
+    <Box lx={{ maxWidth: 's400' }}>
       <Banner {...args} />
-    </div>
+    </Box>
   ),
   parameters: {
     docs: {
@@ -152,9 +153,9 @@ export const WithActions: Story = {
     secondaryAction: 'Button',
   },
   render: (args) => (
-    <div className='max-w-md'>
+    <Box lx={{ maxWidth: 's400' }}>
       <Banner {...args} />
-    </div>
+    </Box>
   ),
   parameters: {
     docs: {
@@ -218,9 +219,9 @@ export const WithFullFeatures: Story = {
     closeAriaLabel: 'Close banner',
   },
   render: (args) => (
-    <div className='max-w-md'>
+    <Box lx={{ maxWidth: 's400' }}>
       <Banner {...args} />
-    </div>
+    </Box>
   ),
   parameters: {
     docs: {
@@ -267,8 +268,15 @@ export const AppearanceShowcase: Story = {
     ] as const;
 
     return (
-      // max-w-md container for visual presentation - not required for Banner component
-      <div className='flex max-w-md flex-col gap-16 p-8'>
+      // maxWidth container for visual presentation - not required for Banner component
+      <Box
+        lx={{
+          flexDirection: 'column',
+          maxWidth: 's400',
+          gap: 's16',
+          padding: 's8',
+        }}
+      >
         {appearances.map(({ name, appearance }) => (
           <Banner
             key={appearance}
@@ -279,15 +287,21 @@ export const AppearanceShowcase: Story = {
             closeAriaLabel={`Close ${name} banner`}
           />
         ))}
-      </div>
+      </Box>
     );
   },
 };
 
 export const ContentVariations: Story = {
   render: () => (
-    // max-w-md container for visual presentation - not required for Banner component
-    <div className='flex max-w-md flex-col gap-16 p-8'>
+    <Box
+      lx={{
+        flexDirection: 'column',
+        maxWidth: 's400',
+        gap: 's16',
+        padding: 's8',
+      }}
+    >
       <Banner title='Title Only' />
       <Banner description='Description only without title' />
       <Banner title='With Description' description='Additional details here.' />
@@ -356,16 +370,16 @@ export const ContentVariations: Story = {
         onClose={() => console.log('Closed')}
         closeAriaLabel='Close banner'
       />
-    </div>
+    </Box>
   ),
 };
 
 export const NaturalWidth: Story = {
   render: () => (
-    <div className='space-y-4'>
-      <p className='text-muted body-3'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+      <Text typography='body3' lx={{ color: 'muted' }}>
         Banner without container constraints - takes full parent width:
-      </p>
+      </Text>
       <Banner
         title='Full Width Banner'
         description='This banner demonstrates natural width behavior - it fills the full width of its parent container.'
@@ -381,16 +395,24 @@ export const NaturalWidth: Story = {
         onClose={() => console.log('Closed')}
         closeAriaLabel='Close full width banner'
       />
-    </div>
+    </Box>
   ),
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-400 grid-cols-1 gap-16 bg-muted-pressed p-16'>
-      <div className='text-muted body-4-semi-bold'>
+    <Box
+      lx={{
+        width: 's400',
+        flexDirection: 'column',
+        gap: 's16',
+        backgroundColor: 'mutedPressed',
+        padding: 's16',
+      }}
+    >
+      <Text typography='body4SemiBold' lx={{ color: 'muted' }}>
         Container with a fixed width
-      </div>
+      </Text>
       <Banner
         title='Short Title'
         description='Short description'
@@ -409,7 +431,7 @@ export const ResponsiveLayout: Story = {
         onClose={() => console.log('Closed')}
         closeAriaLabel='Close overflow banner'
       />
-    </div>
+    </Box>
   ),
 };
 
@@ -417,17 +439,17 @@ export const InteractiveDismiss: Story = {
   render: (args) => {
     const [visible, setVisible] = React.useState(true);
 
-    if (!visible) return <p>Banner dismissed</p>;
+    if (!visible) return <Text typography='body2'>Banner dismissed</Text>;
 
     return (
-      <div className='max-w-md'>
+      <Box lx={{ maxWidth: 's400' }}>
         <Banner
           {...args}
           title='Click close to dismiss'
           onClose={() => setVisible(false)}
           closeAriaLabel='Dismiss interactive banner'
         />
-      </div>
+      </Box>
     );
   },
 };
@@ -445,7 +467,7 @@ export const InteractiveActions: Story = {
     };
 
     return (
-      <div className='max-w-md'>
+      <Box lx={{ maxWidth: 's400' }}>
         <Banner
           {...args}
           appearance={
@@ -483,7 +505,7 @@ export const InteractiveActions: Story = {
           onClose={() => setState('idle')}
           closeAriaLabel='Reset banner state'
         />
-      </div>
+      </Box>
     );
   },
 };

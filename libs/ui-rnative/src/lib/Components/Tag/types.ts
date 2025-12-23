@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
-import { ViewProps } from 'react-native';
-import { IconSize } from '../Icon';
+import { StyledViewProps } from '../../../styles';
+import { IconProps } from '../Icon';
 
 export type TagProps = {
   /**
@@ -10,7 +10,7 @@ export type TagProps = {
   /**
    * The icon of the tag.
    */
-  icon?: ComponentType<{ size?: IconSize; className?: string }>;
+  icon?: ComponentType<IconProps>;
   /**
    * The label of the tag.
    */
@@ -25,4 +25,4 @@ export type TagProps = {
    * @default false
    */
   disabled?: boolean;
-} & ViewProps;
+} & StyledViewProps;
