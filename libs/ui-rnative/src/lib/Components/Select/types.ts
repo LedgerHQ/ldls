@@ -5,6 +5,7 @@ import {
   StyledPressableProps,
   StyledTextProps,
 } from '../../../styles';
+import { BoxProps } from '../Utility';
 
 export type SelectProps = {
   /**
@@ -117,7 +118,7 @@ export type SelectItemTextProps = {
 
 export type SelectSeparatorProps = {
   // No extra props needed
-} & StyledViewProps;
+} & BoxProps;
 
 export type SelectItemData = {
   type: 'item';

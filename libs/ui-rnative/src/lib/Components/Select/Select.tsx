@@ -447,7 +447,7 @@ export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
       marginHorizontal: t.spacings.s8,
       marginVertical: t.spacings.s4,
       height: t.sizes.s1,
-      backgroundColor: t.colors.bg.mutedSubtle,
+      backgroundColor: t.colors.border.mutedSubtle,
     },
   }));
 

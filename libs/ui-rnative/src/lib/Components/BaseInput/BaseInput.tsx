@@ -155,7 +155,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
 
         {errorMessage && (
           <View style={styles.errorContainer}>
-            <DeleteCircleFill size={16} color={styles.errorIcon.color} />
+            <DeleteCircleFill size={16} color='error' />
             <Text style={styles.errorText}>{errorMessage}</Text>
           </View>
         )}
@@ -230,9 +230,6 @@ const useStyles = ({
           flexDirection: 'row',
           alignItems: 'center',
           gap: t.spacings.s2,
-        },
-        errorIcon: {
-          color: t.colors.text.error,
         },
         errorText: {
           color: t.colors.text.error,
