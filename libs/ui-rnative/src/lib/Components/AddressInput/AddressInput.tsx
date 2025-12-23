@@ -5,12 +5,13 @@ import { LumenStyleSheet } from '../../../styles';
 import { QrCode } from '../../Symbols';
 import { BaseInput } from '../BaseInput';
 import { InteractiveIcon } from '../InteractiveIcon';
+import { Box } from '../Utility';
 import { type AddressInputProps } from './AddressInput.types';
 
 export const AddressInput = React.forwardRef<
   React.ElementRef<typeof TextInput>,
   AddressInputProps
->(({ prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
+>(({ lx, prefix = 'To:', suffix, onQrCodeClick, ...props }, ref) => {
   const { t } = useCommonTranslation();
   const styles = useStyles();
 
@@ -33,12 +34,14 @@ export const AddressInput = React.forwardRef<
     ));
 
   return (
-    <BaseInput
-      ref={ref}
-      prefix={actualPrefix}
-      suffix={actualSuffix}
-      {...props}
-    />
+    <Box lx={lx}>
+      <BaseInput
+        ref={ref}
+        prefix={actualPrefix}
+        suffix={actualSuffix}
+        {...props}
+      />
+    </Box>
   );
 });
 

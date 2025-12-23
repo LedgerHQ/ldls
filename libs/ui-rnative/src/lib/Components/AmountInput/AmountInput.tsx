@@ -1,6 +1,6 @@
 import { getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Pressable, TextInput, View } from 'react-native';
+import { Pressable, TextInput } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { Box } from '../Utility';
 import { type AmountInputProps } from './AmountInput.types';
 
 /**
@@ -20,6 +21,7 @@ import { type AmountInputProps } from './AmountInput.types';
 export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
   (
     {
+      lx,
       style,
       currencyText,
       currencyPosition = 'left',
@@ -134,7 +136,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
     };
 
     return (
-      <View style={styles.container}>
+      <Box lx={lx} style={styles.container}>
         {/** hidden text input because of flickering issue */}
         <TextInput
           ref={inputRef}
@@ -172,7 +174,7 @@ export const AmountInput = React.forwardRef<TextInput, AmountInputProps>(
 
           {currencyPosition === 'right' && CurrencyText}
         </Pressable>
-      </View>
+      </Box>
     );
   },
 );

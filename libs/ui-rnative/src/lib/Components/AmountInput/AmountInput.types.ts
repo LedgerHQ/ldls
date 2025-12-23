@@ -1,4 +1,5 @@
 import { TextInputProps, ViewStyle } from 'react-native';
+import { LumenViewStyleLX } from '../../../styles';
 
 export type AmountInputProps = Omit<
   TextInputProps,
@@ -52,4 +53,4 @@ export type AmountInputProps = Omit<
    * @default false
    */
   isInvalid?: boolean;
-};
+} & LumenViewStyleLX;

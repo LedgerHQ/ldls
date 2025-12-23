@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput as RNTextInput } from 'react-native';
 import { BaseInput } from '../BaseInput';
+import { Box } from '../Utility';
 import { type TextInputProps } from './TextInput.types';
 
 /**
@@ -60,8 +61,12 @@ import { type TextInputProps } from './TextInput.types';
 export const TextInput = React.forwardRef<
   React.ElementRef<typeof RNTextInput>,
   TextInputProps
->((props, ref) => {
-  return <BaseInput ref={ref} {...props} />;
+>(({ lx, ...props }, ref) => {
+  return (
+    <Box lx={lx}>
+      <BaseInput ref={ref} {...props} />
+    </Box>
+  );
 });
 
 TextInput.displayName = 'TextInput';

@@ -1,3 +1,4 @@
+import { LumenViewStyleLX } from '../../../styles';
 import { BaseInputProps } from '../BaseInput';
 
 export type AddressInputProps = Omit<BaseInputProps, 'prefix' | 'label'> & {
@@ -20,4 +21,4 @@ export type AddressInputProps = Omit<BaseInputProps, 'prefix' | 'label'> & {
    * When not provided, no QR code scanner icon will be shown.
    */
   onQrCodeClick?: () => void;
-};
+} & LumenViewStyleLX;
