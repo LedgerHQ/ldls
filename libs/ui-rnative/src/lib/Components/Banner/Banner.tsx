@@ -144,7 +144,6 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
     const IconComponent = iconsMap[appearance];
     const iconColor = iconColorMap[appearance];
 
-    console.log({ iconColor });
     return (
       <Box
         ref={ref}
