@@ -27,6 +27,9 @@ const meta: Meta<typeof Select> = {
     SelectSeparator,
   },
   title: 'Selection/Select',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -39,14 +42,14 @@ export const Base: Story = {
     return (
       <>
         <Box
-          lx={{
-            minHeight: 's400',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 's24',
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
           }}
         >
-          <Box lx={{ width: 'full', maxWidth: 's320' }}>
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Choose a fruit'>
                 <SelectValue />
@@ -84,14 +87,14 @@ export const WithGroups: Story = {
     return (
       <>
         <Box
-          lx={{
-            minHeight: 's400',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 's24',
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
           }}
         >
-          <Box lx={{ width: 'full', maxWidth: 's320' }}>
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Select cryptocurrency'>
                 <SelectValue />
@@ -136,14 +139,14 @@ export const WithDisabledItems: Story = {
     return (
       <>
         <Box
-          lx={{
-            minHeight: 's400',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 's24',
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
           }}
         >
-          <Box lx={{ width: 'full', maxWidth: 's320' }}>
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Select option'>
                 <SelectValue />
@@ -181,14 +184,14 @@ export const DisabledSelect: Story = {
     return (
       <>
         <Box
-          lx={{
-            minHeight: 's400',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 's24',
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
           }}
         >
-          <Box lx={{ width: 'full', maxWidth: 's320' }}>
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue} disabled>
               <SelectTrigger label='Disabled select'>
                 <SelectValue />
@@ -220,14 +223,14 @@ export const WithChangeCallback: Story = {
     return (
       <>
         <Box
-          lx={{
-            minHeight: 's400',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 's24',
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
           }}
         >
-          <Box lx={{ width: 'full', maxWidth: 's320' }}>
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select
               value={value}
               onValueChange={(newValue) => {

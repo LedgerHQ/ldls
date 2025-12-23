@@ -6,7 +6,7 @@ const meta: Meta<typeof Checkbox> = {
   title: 'Selection/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     docs: {
       source: {
         language: 'tsx',
@@ -52,14 +52,17 @@ export const Base: Story = {
   render: (args) => {
     return (
       <Box
-        lx={{
-          width: 's80',
-          height: 's80',
+        style={{
+          flex: 1,
+          minHeight: 96,
           alignItems: 'center',
           justifyContent: 'center',
+          padding: 24,
         }}
       >
-        <Checkbox {...args} />
+        <Box style={{ width: '100%', maxWidth: 400 }}>
+          <Checkbox {...args} />
+        </Box>
       </Box>
     );
   },
@@ -71,35 +74,38 @@ export const Base: Story = {
 export const AllStates: Story = {
   render: () => (
     <Box
-      lx={{
-        flexDirection: 'row',
-        gap: 's48',
-        padding: 's16',
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
       }}
     >
-      <Box lx={{ gap: 's16' }}>
-        <Text typography='heading4'>Enabled</Text>
-        <Box lx={{ gap: 's8' }}>
-          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-            <Checkbox
-              label='Unchecked'
-              accessibilityLabel='Unchecked'
-              defaultChecked={false}
-            />
+      <Box style={{ width: '100%', maxWidth: 400 }}>
+        <Box
+          style={{
+            flexDirection: 'row',
+            gap: 48,
+          }}
+        >
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Enabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Checkbox
+                label='Unchecked'
+                accessibilityLabel='Unchecked'
+                defaultChecked={false}
+              />
+              <Checkbox label='Checked' defaultChecked />
+            </Box>
           </Box>
-          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-            <Checkbox label='Checked' defaultChecked />
-          </Box>
-        </Box>
-      </Box>
-      <Box lx={{ gap: 's16' }}>
-        <Text typography='heading4'>Disabled</Text>
-        <Box lx={{ gap: 's8' }}>
-          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-            <Checkbox label='Unchecked' disabled defaultChecked={false} />
-          </Box>
-          <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-            <Checkbox label='Checked' disabled defaultChecked />
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Disabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Checkbox label='Unchecked' disabled defaultChecked={false} />
+              <Checkbox label='Checked' disabled defaultChecked />
+            </Box>
           </Box>
         </Box>
       </Box>

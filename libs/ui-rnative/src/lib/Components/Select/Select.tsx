@@ -206,6 +206,7 @@ const useTriggerStyles = ({
         trigger: mergeStyles(
           {
             position: 'relative',
+            width: t.sizes.full,
             height: t.sizes.s48,
             backgroundColor: t.colors.bg.muted,
             borderRadius: t.borderRadius.sm,
@@ -255,6 +256,7 @@ const useTriggerStyles = ({
         ),
         chevron: mergeStyles(
           {
+            flexShrink: 0,
             color: t.colors.text.muted,
             marginLeft: t.spacings.s8,
           },

@@ -1,6 +1,6 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
-import React, { useCallback } from 'react';
-import { Pressable, View, type GestureResponderEvent } from 'react-native';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Animated, Pressable, type GestureResponderEvent } from 'react-native';
 import { LumenStyleSheet, mergeStyles } from '../../../styles';
 
 import {
@@ -74,12 +74,14 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
           aria-disabled={disabled}
           role='switch'
           aria-checked={checked}
-          aria-valuetext={ariaValueText ?? (checked ? 'on' : 'off')}
           onPress={onPress}
           accessibilityState={{
             checked,
             disabled,
           }}
+          accessibilityValue={
+            ariaValueText ? { text: ariaValueText } : undefined
+          }
           disabled={disabled}
           {...props}
         />
@@ -102,12 +104,49 @@ const BaseSwitchThumb = React.forwardRef<ViewRef, SlottableViewProps>(
       size: size || 'md',
     });
 
-    const Component = asChild ? SlotView : View;
+    const translateX = useRef(new Animated.Value(checked ? 1 : 0)).current;
+
+    useEffect(() => {
+      Animated.timing(translateX, {
+        toValue: checked ? 1 : 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+    }, [checked, translateX]);
+
+    const getTranslateDistance = (): number => {
+      const sizeName = size || 'md';
+      return sizeName === 'sm' ? 8 : 16;
+    };
+
+    const animatedStyle = {
+      transform: [
+        {
+          translateX: translateX.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, getTranslateDistance()],
+          }),
+        },
+      ],
+    };
+
+    if (asChild) {
+      const Component = SlotView;
+      return (
+        <Component
+          ref={ref}
+          role='presentation'
+          style={styles.thumb}
+          {...props}
+        />
+      );
+    }
+
     return (
-      <Component
+      <Animated.View
         ref={ref}
         role='presentation'
-        style={styles.thumb}
+        style={[styles.thumbBase, animatedStyle]}
         {...props}
       />
     );
@@ -146,9 +185,11 @@ const useStyles = ({
         root: mergeStyles(
           {
             flexDirection: 'row',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
             borderRadius: t.borderRadius.full,
             padding: t.spacings.s2,
+            overflow: 'hidden',
             ...sizes[size],
             minWidth: sizes[size].width,
             maxWidth: sizes[size].width,
@@ -167,16 +208,24 @@ const useStyles = ({
             backgroundColor: t.colors.bg.disabled,
           },
         ),
+        thumbBase: mergeStyles(
+          {
+            borderRadius: t.borderRadius.full,
+            backgroundColor: 'white',
+            width: thumbSizes[size].size,
+            height: thumbSizes[size].size,
+          },
+          disabled && {
+            backgroundColor: t.colors.bg.base,
+          },
+        ),
         thumb: mergeStyles(
           {
             borderRadius: t.borderRadius.full,
             backgroundColor: 'white',
             width: thumbSizes[size].size,
             height: thumbSizes[size].size,
-            transform: [{ translateX: 0 }],
-          },
-          checked && {
-            transform: [{ translateX: thumbTranslations[size] }],
+            transform: [{ translateX: checked ? thumbTranslations[size] : 0 }],
           },
           disabled && {
             backgroundColor: t.colors.bg.base,
