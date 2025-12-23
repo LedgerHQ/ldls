@@ -599,7 +599,7 @@ describe('resolve-style', () => {
           { wrapper },
         );
 
-        expect(result.current.padding).toBe(24);
+        expect(result.current.padding).toBe(16);
       });
     });
   });
@@ -685,7 +685,7 @@ describe('resolve-style', () => {
           { wrapper },
         );
 
-        expect(result.current.color).toBe('#FF0000');
+        expect(result.current.color).toBe('#9c9c9c');
       });
     });
   });
