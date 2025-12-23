@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { View } from 'react-native';
 import { Check } from '../../Symbols/Icons/Check';
+import { Box } from '../Utility/Box';
 import { Tag } from './Tag';
 
 const meta: Meta<typeof Tag> = {
@@ -31,7 +31,7 @@ export default meta;
 
 type Story = StoryObj<typeof Tag>;
 
-export const Default: Story = {
+export const Base: Story = {
   args: {
     label: 'Label',
     appearance: 'accent',
@@ -40,10 +40,10 @@ export const Default: Story = {
   render: (args) => <Tag {...args} icon={args.icon ? Check : undefined} />,
 };
 
-export const Showcase: Story = {
+export const AppearanceShowcase: Story = {
   render: () => (
-    <View className='flex flex-col gap-16'>
-      <View className='flex flex-row gap-4'>
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+      <Box lx={{ flexDirection: 'row', gap: 's4' }}>
         <Tag appearance='base' label='Base' />
         <Tag appearance='gray' label='Gray' />
         <Tag appearance='accent' label='Accent' />
@@ -51,8 +51,8 @@ export const Showcase: Story = {
         <Tag appearance='error' label='Error' />
         <Tag appearance='warning' label='Warning' />
         <Tag label='Disabled' disabled />
-      </View>
-      <View className='flex flex-row gap-4'>
+      </Box>
+      <Box lx={{ flexDirection: 'row', gap: 's4' }}>
         <Tag appearance='base' label='Base' icon={Check} />
         <Tag appearance='gray' label='Gray' icon={Check} />
         <Tag appearance='accent' label='Accent' icon={Check} />
@@ -60,25 +60,25 @@ export const Showcase: Story = {
         <Tag appearance='error' label='Error' icon={Check} />
         <Tag appearance='warning' label='Warning' icon={Check} />
         <Tag label='Disabled' icon={Check} disabled />
-      </View>
-    </View>
+      </Box>
+    </Box>
   ),
 };
 
-export const SizesShowcase: Story = {
+export const SizeShowcase: Story = {
   render: () => (
-    <View className='flex flex-row items-center gap-4'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
       <Tag size='lg' label='Large Tag' />
       <Tag size='sm' label='Small Tag' />
-    </View>
+    </Box>
   ),
 };
 
-export const ContentTypesShowcase: Story = {
+export const ContentTypeShowcase: Story = {
   render: () => (
-    <View className='flex flex-row items-center gap-4'>
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
       <Tag label='Label only' />
       <Tag icon={Check} label='Icon and Label' />
-    </View>
+    </Box>
   ),
 };

@@ -1,89 +1,166 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import {
+  LumenStyleSheet,
+  mergeStyles,
+  resolveViewStyle,
+} from '../../../styles';
+import { ViewRef } from '../../types';
 import { IconSize } from '../Icon';
-import { TagProps } from './Tag.types';
+import { TagProps } from './types';
 
-const tagVariants = {
-  root: cva(
-    'inline-flex w-fit flex-row items-center justify-center gap-4 rounded-xs',
-    {
-      variants: {
-        appearance: {
-          base: 'bg-muted-transparent',
-          gray: 'bg-muted-transparent',
-          accent: 'bg-accent',
-          success: 'bg-success',
-          error: 'bg-error',
-          warning: 'bg-warning',
+type Appearance = NonNullable<TagProps['appearance']>;
+type Size = NonNullable<TagProps['size']>;
+
+const useStyles = ({
+  appearance,
+  size,
+  disabled,
+}: {
+  appearance: Appearance;
+  size: Size;
+  disabled: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const bgColors: Record<Appearance, string> = {
+        base: t.colors.bg.mutedTransparent,
+        gray: t.colors.bg.mutedTransparent,
+        accent: t.colors.bg.accent,
+        success: t.colors.bg.success,
+        error: t.colors.bg.error,
+        warning: t.colors.bg.warning,
+      };
+
+      const textColors: Record<Appearance, string> = {
+        base: t.colors.text.base,
+        gray: t.colors.text.muted,
+        accent: t.colors.text.onAccent,
+        success: t.colors.text.success,
+        error: t.colors.text.error,
+        warning: t.colors.text.warning,
+      };
+
+      const sizeStyles: Record<
+        Size,
+        { height: number; paddingHorizontal: number; paddingVertical: number }
+      > = {
+        lg: {
+          height: t.sizes.s24,
+          paddingHorizontal: t.spacings.s8,
+          paddingVertical: t.spacings.s4,
         },
-        size: {
-          lg: 'h-24 px-8 py-4 body-3',
-          sm: 'h-20 px-4 py-2 body-4',
+        sm: {
+          height: t.sizes.s20,
+          paddingHorizontal: t.spacings.s4,
+          paddingVertical: t.spacings.s2,
         },
-        disabled: {
-          true: 'bg-disabled',
-          false: '',
-        },
-      },
-      defaultVariants: {
-        appearance: 'accent',
-        size: 'lg',
-        disabled: false,
-      },
+      };
+
+      const textTypography =
+        size === 'lg' ? t.typographies.body3 : t.typographies.body4;
+
+      return {
+        root: mergeStyles(
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: t.spacings.s4,
+            borderRadius: t.borderRadius.xs,
+            backgroundColor: bgColors[appearance],
+            ...sizeStyles[size],
+          },
+          disabled && {
+            backgroundColor: t.colors.bg.disabled,
+          },
+        ),
+        text: mergeStyles(
+          textTypography,
+          {
+            color: textColors[appearance],
+          },
+          disabled && {
+            color: t.colors.text.disabled,
+          },
+        ),
+        icon: mergeStyles(
+          {
+            flexShrink: 0,
+            color: textColors[appearance],
+          },
+          disabled && {
+            color: t.colors.text.disabled,
+          },
+        ),
+      };
     },
-  ),
-  inner: cva('', {
-    variants: {
-      appearance: {
-        base: 'text-base',
-        gray: 'text-muted',
-        accent: 'text-on-accent',
-        success: 'text-success',
-        error: 'text-error',
-        warning: 'text-warning',
-      },
-      disabled: {
-        true: 'text-disabled',
-        false: '',
-      },
-    },
-  }),
+    [appearance, size, disabled],
+  );
 };
 
-export const Tag = React.forwardRef<View, TagProps>(
-  ({ className, appearance, size, icon, label, disabled, ...props }, ref) => {
-    const iconSizeMap: { [key: string]: IconSize } = {
-      lg: 16,
-      sm: 12,
-    };
+const iconSizeMap: Record<Size, IconSize> = {
+  lg: 16,
+  sm: 12,
+};
 
-    const calculatedIconSize = size ? iconSizeMap[size] : 16;
+/**
+ * A compact label used to categorize, classify, or highlight information with optional icon support.
+ *
+ * The appearance determines the color scheme used.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-tag-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-tag-implementation--docs#dos-and-donts Guidelines}
+ *
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
+ * Do not use it to modify the tag's core appearance (colors, padding, etc). Use the `appearance` prop instead.
+ *
+ * @example
+ * import { Tag } from '@ledgerhq/lumen-ui-rnative';
+ *
+ * // Basic tag
+ * <Tag label="Label" appearance="accent" />
+ *
+ * // Tag with icon
+ * <Tag
+ *   label="Success"
+ *   appearance="success"
+ *   icon={Check}
+ * />
+ *
+ * // Small tag
+ * <Tag label="Small" size="sm" />
+ */
+export const Tag = React.forwardRef<ViewRef, TagProps>(
+  (
+    {
+      appearance = 'accent',
+      size = 'lg',
+      icon,
+      label,
+      disabled = false,
+      lx,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
+    const { theme } = LumenStyleSheet.useTheme();
+    const styles = useStyles({ appearance, size, disabled });
+    const resolvedLxStyle = resolveViewStyle(theme, lx ?? {});
+    const finalRootStyle = StyleSheet.flatten([
+      styles.root,
+      resolvedLxStyle,
+      style,
+    ]);
+
     const IconComponent = icon;
+    const iconSize = iconSizeMap[size];
 
     return (
-      <View
-        className={cn(
-          className,
-          tagVariants.root({ appearance, size, disabled }),
-        )}
-        ref={ref}
-        {...props}
-      >
-        {IconComponent && (
-          <IconComponent
-            size={calculatedIconSize}
-            className={tagVariants.inner({
-              appearance,
-              disabled,
-              className: 'shrink-0',
-            })}
-          />
-        )}
-        <Text className={tagVariants.inner({ appearance, disabled })}>
-          {label}
-        </Text>
+      <View ref={ref} style={finalRootStyle} {...props}>
+        {IconComponent && <IconComponent size={iconSize} style={styles.icon} />}
+        <Text style={styles.text}>{label}</Text>
       </View>
     );
   },
