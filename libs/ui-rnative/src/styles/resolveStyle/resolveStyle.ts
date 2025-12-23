@@ -1,5 +1,6 @@
 import { getObjectPath } from '@ledgerhq/lumen-utils-shared';
-import type { ViewStyle, TextStyle } from 'react-native';
+import { type ViewStyle, type TextStyle, StyleSheet } from 'react-native';
+import { useTheme } from '../Provider/useTheme';
 import type {
   LumenStyleSheetTheme,
   LumenTextStyle,
@@ -13,12 +14,12 @@ import { VIEW_PROP_CONFIG, TEXT_PROP_CONFIG } from './resolveConfig';
  */
 const resolveStyle = <T extends ViewStyle | TextStyle>(
   theme: LumenStyleSheetTheme,
-  lumenStyle: LumenViewStyle | LumenTextStyle,
+  lx: LumenViewStyle | LumenTextStyle,
   config: typeof VIEW_PROP_CONFIG | typeof TEXT_PROP_CONFIG,
 ): T => {
   const resolved: Record<string, unknown> = {};
 
-  for (const [prop, value] of Object.entries(lumenStyle)) {
+  for (const [prop, value] of Object.entries(lx)) {
     const propConfig = config[prop as keyof typeof config];
     if (!propConfig) continue;
 
@@ -34,12 +35,7 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
       value as string,
     ]);
 
-    // Spread props (like typography) merge into resolved styles
-    if (propConfig.spread && resolvedValue) {
-      Object.assign(resolved, resolvedValue);
-    } else {
-      resolved[prop] = resolvedValue;
-    }
+    resolved[prop] = resolvedValue;
   }
 
   return resolved as T;
@@ -48,15 +44,23 @@ const resolveStyle = <T extends ViewStyle | TextStyle>(
 /**
  * Transform lx props to StyleSheet style object for View
  */
-export const resolveViewStyle = (
-  theme: LumenStyleSheetTheme,
-  lumenStyle: LumenViewStyle,
-): ViewStyle => resolveStyle<ViewStyle>(theme, lumenStyle, VIEW_PROP_CONFIG);
+export const useResolveViewStyle = (
+  lx: LumenViewStyle,
+  bareStyle?: ViewStyle,
+): ViewStyle => {
+  const { theme } = useTheme();
+  const resolvedStyle = resolveStyle<ViewStyle>(theme, lx, VIEW_PROP_CONFIG);
+  return StyleSheet.flatten([resolvedStyle, bareStyle]);
+};
 
 /**
  * Transform lx props to StyleSheet style object for Text
  */
-export const resolveTextStyle = (
-  theme: LumenStyleSheetTheme,
-  lumenStyle: LumenTextStyle,
-): TextStyle => resolveStyle<TextStyle>(theme, lumenStyle, TEXT_PROP_CONFIG);
+export const useResolveTextStyle = (
+  lx: LumenTextStyle,
+  bareStyle?: TextStyle,
+): TextStyle => {
+  const { theme } = useTheme();
+  const resolvedStyle = resolveStyle<TextStyle>(theme, lx, TEXT_PROP_CONFIG);
+  return StyleSheet.flatten([resolvedStyle, bareStyle]);
+};

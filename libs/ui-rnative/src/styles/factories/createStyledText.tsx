@@ -2,7 +2,7 @@ import React, { forwardRef, memo } from 'react';
 import { StyleSheet } from 'react-native';
 import type { Text, TextProps, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
-import { resolveTextStyle } from '../resolveStyle/resolveStyle';
+import { useResolveTextStyle } from '../resolveStyle/resolveStyle';
 import type { LumenStyleSheetTheme, LumenTextStyleLX } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
@@ -28,15 +28,13 @@ export const createStyledText = (Component: typeof Text) => {
     forwardRef<TextRef, StyledTextProps>(
       ({ typography = 'body3', lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
-        const resolvedStyle = resolveTextStyle(theme, lx);
-        const resolvedTypographyStyles = theme.typographies[
-          typography
-        ] as TextStyle;
+        const resolvedStyle = useResolveTextStyle(lx);
+        const typographyStyle = theme.typographies[typography] as TextStyle;
 
         const finalStyle = StyleSheet.flatten([
-          resolvedStyle,
-          resolvedTypographyStyles,
+          typographyStyle,
           style,
+          resolvedStyle,
         ]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;

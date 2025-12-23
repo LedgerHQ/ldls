@@ -1,7 +1,6 @@
 import React, { forwardRef, memo } from 'react';
 import { StyleSheet, View, type ViewProps } from 'react-native';
-import { useTheme } from '../Provider/useTheme';
-import { resolveViewStyle } from '../resolveStyle/resolveStyle';
+import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { LumenViewStyleLX } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
@@ -20,9 +19,8 @@ export const createStyledView = (Component: typeof View) => {
   const StyledComponent = memo(
     forwardRef<ViewRef, StyledViewProps>(
       ({ lx = {}, style, ...props }, ref) => {
-        const { theme } = useTheme();
-        const resolvedStyle = resolveViewStyle(theme, lx);
-        const finalStyle = StyleSheet.flatten([resolvedStyle, style]);
+        const resolvedStyle = useResolveViewStyle(lx);
+        const finalStyle = StyleSheet.flatten([style, resolvedStyle]);
 
         return <Component ref={ref} {...props} style={finalStyle} />;
       },

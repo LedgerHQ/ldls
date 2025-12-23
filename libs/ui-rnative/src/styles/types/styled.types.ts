@@ -13,7 +13,6 @@ type TextColorToken = keyof LumenStyleSheetTheme['colors']['text'];
 type BorderColorToken = keyof LumenStyleSheetTheme['colors']['border'];
 type BorderRadiusToken = keyof LumenStyleSheetTheme['borderRadius'];
 type ShadowToken = keyof LumenStyleSheetTheme['shadows'];
-type TypographyToken = keyof LumenStyleSheetTheme['typographies'];
 
 /**
  * Main public types - combine token props with RN props
@@ -131,7 +130,6 @@ export type LumenViewStyle = {
 
 export type LumenTextStyle = LumenViewStyle & {
   color?: TextColorToken;
-  typography?: TypographyToken;
   textAlign?: TextStyle['textAlign'];
   textTransform?: TextStyle['textTransform'];
   textDecorationLine?: TextStyle['textDecorationLine'];
