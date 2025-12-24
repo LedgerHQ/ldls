@@ -61,34 +61,8 @@ Our spinners are designed to be scalable and available in 7 standard sizes to fi
 
 ## Installation
 
-Install the packages and their peer dependencies:
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
-```bash
-# Install the UI Kit
-npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
-
-# Install peer dependencies
-npm install react@~18.3.1 react-native@~0.77.3 react-native-svg@^15.0.0 nativewind@^4.1.23
-```
-
-### NativeWind Configuration
-
-To use Spinner components with our custom NativeWind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
-
-const config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}', // Your project's files
-    './node_modules/@ledgerhq/lumen-ui-rnative/src/**/*.{js,ts,jsx,tsx}', // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
 
 ### Basic Usage
 
@@ -127,7 +101,7 @@ function MyComponent() {
 
 ### Color Variants
 
-Customize the spinner color using the `lx` prop with color tokens:
+Use the `color` property with design token values to set spinner color.
 
 ```tsx
 import React from 'react';
@@ -136,9 +110,9 @@ import { Spinner } from '@ledgerhq/lumen-ui-rnative';
 function MyComponent() {
   return (
     <>
-      <Spinner lx={{ color: 'base' }} />
-      <Spinner lx={{ color: 'muted' }} />
-      <Spinner lx={{ color: 'interactive' }} />
+      <Spinner color='base' />
+      <Spinner color='muted' />
+      <Spinner color='interactive' />
     </>
   );
 }

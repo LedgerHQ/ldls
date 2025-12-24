@@ -31,16 +31,14 @@ const useStyles = (
         height: theme.icon.height[iconSizeMap[size]],
         strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
       },
-      color: resolvedColor.color,
+      color:
+        resolvedColor.color || resolvedStyle.color || theme.colors.text.base,
     };
   }, [size, theme, resolvedStyle, resolvedColor.color]);
 };
 
 export const Icon = forwardRef<Svg, IconProps>(
-  (
-    { size = 24, color = 'base', lx = {}, children, viewBox, ...props },
-    ref,
-  ) => {
+  ({ size = 24, color, lx = {}, children, viewBox, ...props }, ref) => {
     const styles = useStyles(lx, size, color);
 
     return (

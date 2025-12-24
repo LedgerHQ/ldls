@@ -104,19 +104,19 @@ export const Colors: Story = {
       }}
     >
       <Box lx={{ alignItems: 'center', gap: 's4' }}>
-        <Spinner size={40} lx={{ color: 'base' }} />
+        <Spinner size={40} color='base' />
         <Text typography='body4' lx={{ color: 'muted' }}>
           base
         </Text>
       </Box>
       <Box lx={{ alignItems: 'center', gap: 's4' }}>
-        <Spinner size={40} lx={{ color: 'muted' }} />
+        <Spinner size={40} color='muted' />
         <Text typography='body4' lx={{ color: 'muted' }}>
           muted
         </Text>
       </Box>
       <Box lx={{ alignItems: 'center', gap: 's4' }}>
-        <Spinner size={40} lx={{ color: 'interactive' }} />
+        <Spinner size={40} color='interactive' />
         <Text typography='body4' lx={{ color: 'muted' }}>
           interactive
         </Text>

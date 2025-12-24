@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as InteractiveIconStories from './InteractiveIcon.stories';
+import { Box } from '../Utility';
 import { InteractiveIcon } from './InteractiveIcon';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
@@ -54,7 +55,7 @@ Common sizes include:
 - **24px**: Prominent actions in toolbars
 - **40px**: Large touch targets for mobile interfaces
 
-> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through CSS classes. Always use the `size` prop on your icon component (e.g., `<Settings size={20} />`) to ensure proper scaling and visual consistency.
+> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through InteractiveIcon.
 
 ### Icon States
 
@@ -176,6 +177,11 @@ function SizeExamples() {
       {/* Large touch target for mobile */}
       <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={40} />
+      </InteractiveIcon>
+      
+      {/* Large touch target for mobile */}
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
+        <Settings size={64} />
       </InteractiveIcon>
     </Box>
   );
