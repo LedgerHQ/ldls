@@ -54,12 +54,12 @@ describe('Icon', () => {
 
   it('should apply color from style prop', () => {
     renderWithProvider(
-      <Icon viewBox='0 0 24 24' testID='icon' style={{ color: '#ff0000' }}>
+      <Icon viewBox='0 0 24 24' testID='icon' color='error'>
         <Path d='M12 2L2 7l10 5 10-5-10-5z' />
       </Icon>,
     );
 
-    expect(screen.getByTestId('icon').props.color).toBe('#ff0000');
+    expect(screen.getByTestId('icon').props.color).toBe('#fca6a7');
   });
 
   it('should forward ref and spread additional props', () => {

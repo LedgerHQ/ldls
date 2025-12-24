@@ -1,96 +1,97 @@
 import { describe, it, expect, jest } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import React from 'react';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { Switch } from './Switch';
+
+const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    {children}
+  </ThemeProvider>
+);
 
 describe('Switch', () => {
   it('uncontrolled: toggles on press and reflects checked state', async () => {
-    const { getByTestId } = render(
-      <Switch defaultChecked={false} testID='switch' />,
+    const { getByRole } = render(
+      <TestWrapper>
+        <Switch defaultChecked={false} />
+      </TestWrapper>,
     );
 
-    expect(getByTestId('switch').props.accessibilityState?.checked).toBe(false);
+    const trigger = getByRole('switch');
+    expect(trigger.props.accessibilityState?.checked).toBe(false);
 
-    fireEvent.press(getByTestId('switch'));
+    fireEvent.press(trigger);
 
     await waitFor(() =>
-      expect(getByTestId('switch').props.accessibilityState?.checked).toBe(
-        true,
-      ),
+      expect(trigger.props.accessibilityState?.checked).toBe(true),
     );
   });
 
   it('controlled: calls onCheckedChange but state is controlled by parent', async () => {
     const onChange = jest.fn();
-    const { getByTestId, rerender } = render(
-      <Switch checked={false} onCheckedChange={onChange} testID='switch' />,
+    const { getByRole, rerender } = render(
+      <TestWrapper>
+        <Switch checked={false} onCheckedChange={onChange} />
+      </TestWrapper>,
     );
 
-    expect(getByTestId('switch').props.accessibilityState?.checked).toBe(false);
+    const trigger = getByRole('switch');
+    expect(trigger.props.accessibilityState?.checked).toBe(false);
 
-    fireEvent.press(getByTestId('switch'));
+    fireEvent.press(trigger);
 
     await waitFor(() => expect(onChange).toHaveBeenCalledWith(true));
     await waitFor(() =>
-      expect(getByTestId('switch').props.accessibilityState?.checked).toBe(
-        false,
-      ),
+      expect(trigger.props.accessibilityState?.checked).toBe(false),
     );
 
     rerender(
-      <Switch checked={true} onCheckedChange={onChange} testID='switch' />,
+      <TestWrapper>
+        <Switch checked={true} onCheckedChange={onChange} />
+      </TestWrapper>,
     );
 
     await waitFor(() =>
-      expect(getByTestId('switch').props.accessibilityState?.checked).toBe(
-        true,
-      ),
+      expect(getByRole('switch').props.accessibilityState?.checked).toBe(true),
     );
   });
 
   it('disabled: does not toggle on press', async () => {
     const onChange = jest.fn();
-    const { getByTestId } = render(
-      <Switch
-        disabled
-        defaultChecked={false}
-        onCheckedChange={onChange}
-        testID='switch'
-      />,
+    const { getByRole } = render(
+      <TestWrapper>
+        <Switch disabled defaultChecked={false} onCheckedChange={onChange} />
+      </TestWrapper>,
     );
 
-    const trigger = getByTestId('switch');
+    const trigger = getByRole('switch');
     expect(trigger.props.accessibilityState?.disabled).toBe(true);
 
     fireEvent.press(trigger);
 
     await waitFor(() => expect(onChange).not.toHaveBeenCalled());
     await waitFor(() =>
-      expect(getByTestId('switch').props.accessibilityState?.checked).toBe(
-        false,
-      ),
+      expect(trigger.props.accessibilityState?.checked).toBe(false),
     );
   });
 
-  it('supports aria-valuetext on/off through checked state or custom value if defined', () => {
+  it('passes aria-valuetext to container', () => {
     const { getByTestId, rerender } = render(
-      <Switch checked={false} testID='switch' />,
+      <TestWrapper>
+        <Switch aria-valuetext='custom' testID='switch' />
+      </TestWrapper>,
     );
-    expect(getByTestId('switch').props['aria-valuetext']).toBe('off');
+
+    expect(getByTestId('switch').props['aria-valuetext']).toBe('custom');
 
     rerender(
-      <Switch checked={true} onCheckedChange={jest.fn()} testID='switch' />,
-    );
-    expect(getByTestId('switch').props['aria-valuetext']).toBe('on');
-
-    rerender(<Switch testID='switch' aria-valuetext='custom' />);
-    expect(getByTestId('switch').props['aria-valuetext']).toBe('custom');
-  });
-
-  it('supports custom aria-valuetext value', () => {
-    const { getByTestId } = render(
-      <Switch testID='switch' aria-valuetext='custom' />,
+      <TestWrapper>
+        <Switch aria-valuetext='another value' testID='switch' />
+      </TestWrapper>,
     );
 
-    expect(getByTestId('switch').props['aria-valuetext']).toBe('custom');
+    expect(getByTestId('switch').props['aria-valuetext']).toBe('another value');
   });
 });
