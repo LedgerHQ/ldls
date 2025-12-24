@@ -10,7 +10,6 @@ export default function (api) {
           useBuiltIns: 'usage',
         },
       ],
-      'nativewind/babel',
     ],
     plugins: ['react-native-worklets/plugin'],
     env: {

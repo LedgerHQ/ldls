@@ -1,4 +1,3 @@
-export * from './cn';
 export * from './constants';
 export * from './components';
 export * from './react';

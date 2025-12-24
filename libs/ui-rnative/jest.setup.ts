@@ -44,16 +44,6 @@ jest.mock('@gorhom/bottom-sheet', () => {
   };
 });
 
-// Mock react-native-css-interop to pass through components unchanged
-jest.mock('react-native-css-interop', () => {
-  const mockReact = jest.requireActual<typeof import('react')>('react');
-  return {
-    cssInterop: (component: any) => component,
-    createInteropElement: (component: any, ...args: any[]) =>
-      mockReact.createElement(component, ...args),
-  };
-});
-
 // Mock react-native-reanimated
 jest.mock('react-native-reanimated', () => {
   const mockRN =
