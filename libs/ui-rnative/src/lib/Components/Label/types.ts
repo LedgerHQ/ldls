@@ -1,8 +1,8 @@
-import { TextProps } from 'react-native';
+import { TextProps } from '../Utility';
 
 export type LabelProps = {
   /**
    * The disabled state of the label.
    */
   disabled?: boolean;
-} & TextProps;
+} & Omit<TextProps, 'typography'>;
