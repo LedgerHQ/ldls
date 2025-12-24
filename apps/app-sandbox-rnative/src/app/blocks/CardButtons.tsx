@@ -1,16 +1,15 @@
-import { CardButton } from '@ledgerhq/lumen-ui-rnative';
+import { Box, CardButton } from '@ledgerhq/lumen-ui-rnative';
 import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View } from 'react-native';
 
 export const CardButtons = () => {
   return (
-    <View className='flex w-full flex-row gap-8'>
+    <Box lx={{ width: 'full', flexDirection: 'row', gap: 's8' }}>
       <CardButton
         appearance='base'
         title='Info'
         icon={Settings}
         description='Info description'
       />
-    </View>
+    </Box>
   );
 };

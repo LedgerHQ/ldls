@@ -1,5 +1,5 @@
+import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
 import React from 'react';
-import { Text, View } from 'react-native';
 
 type SandboxBlockProps = {
   title: string;
@@ -8,9 +8,28 @@ type SandboxBlockProps = {
 
 export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
   return (
-    <View className='flex flex-col gap-8 border-t border-muted-subtle pt-16'>
-      <Text className='text-base heading-3-semi-bold'>{title}</Text>
-      <View className='flex-row flex-wrap items-start gap-12'>{children}</View>
-    </View>
+    <Box
+      lx={{
+        flexDirection: 'column',
+        gap: 's8',
+        borderTopWidth: 's1',
+        borderColor: 'muted',
+        paddingTop: 's16',
+      }}
+    >
+      <Text typography='heading3SemiBold' lx={{ color: 'base' }}>
+        {title}
+      </Text>
+      <Box
+        lx={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          alignItems: 'flex-start',
+          gap: 's12',
+        }}
+      >
+        {children}
+      </Box>
+    </Box>
   );
 };

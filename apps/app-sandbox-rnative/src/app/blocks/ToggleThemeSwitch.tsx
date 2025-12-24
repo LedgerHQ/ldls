@@ -1,5 +1,5 @@
-import { Switch } from '@ledgerhq/lumen-ui-rnative';
-import { ColorSchemeName, Text, View } from 'react-native';
+import { Box, Switch, Text } from '@ledgerhq/lumen-ui-rnative';
+import { ColorSchemeName } from 'react-native';
 
 export const ToggleThemeSwitch = ({
   colorScheme,
@@ -9,14 +9,16 @@ export const ToggleThemeSwitch = ({
   setColorScheme: (colorScheme: ColorSchemeName) => void;
 }) => {
   return (
-    <View className='flex flex-row gap-8 text-muted'>
-      <Text className='text-base'>Dark mode</Text>
+    <Box lx={{ flexDirection: 'row', gap: 's8' }}>
+      <Text typography='body3' lx={{ color: 'base' }}>
+        Dark mode
+      </Text>
       <Switch
         checked={colorScheme === 'dark'}
         onCheckedChange={() =>
           setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')
         }
       />
-    </View>
+    </Box>
   );
 };

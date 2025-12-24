@@ -1,18 +1,19 @@
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import {
+  Box,
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
   useBottomSheetRef,
 } from '@ledgerhq/lumen-ui-rnative';
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 import { useState } from 'react';
 import {
   ColorSchemeName,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  View,
 } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
@@ -42,97 +43,135 @@ import { SandboxBlock } from './SandboxBlock';
 
 export const App = () => {
   const [colorScheme, setColorScheme] = useState<ColorSchemeName>('dark');
-  const bottomSheetFlatListsRef = useBottomSheetRef();
-  const bottomSheetDynamicSizeRef = useBottomSheetRef();
   const [locale, setLocale] = useState<SupportedLocale>('en');
 
   return (
-    <SafeAreaView className={`${colorScheme} flex flex-1 bg-canvas`}>
-      <StatusBar />
-      <ThemeProvider
-        themes={ledgerLiveThemes}
-        colorScheme={colorScheme}
+    <ThemeProvider
+      themes={ledgerLiveThemes}
+      colorScheme={colorScheme}
+      locale={locale}
+    >
+      <AppContent
         locale={locale}
+        colorScheme={colorScheme}
+        setLocale={setLocale}
+        setColorScheme={setColorScheme}
+      />
+    </ThemeProvider>
+  );
+};
+
+const AppContent = ({
+  locale,
+  colorScheme,
+  setLocale,
+  setColorScheme,
+}: any) => {
+  const { theme } = LumenStyleSheet.useTheme();
+  const bottomSheetFlatListsRef = useBottomSheetRef();
+  const bottomSheetDynamicSizeRef = useBottomSheetRef();
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: theme.colors.bg.canvas,
+      }}
+    >
+      <StatusBar />
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          width: '100%',
+          backgroundColor: theme.colors.bg.accent,
+        }}
       >
-        <GestureHandlerRootView className='flex w-full flex-1 bg-accent'>
-          <ScrollView
-            contentInsetAdjustmentBehavior='automatic'
-            className='h-screen bg-canvas px-16 '
+        <ScrollView
+          contentInsetAdjustmentBehavior='automatic'
+          style={{
+            height: '100%',
+            backgroundColor: theme.colors.bg.canvas,
+            paddingHorizontal: theme.spacings.s16,
+          }}
+        >
+          <Box
+            lx={{
+              flexDirection: 'column',
+              gap: 's32',
+              paddingVertical: 's40',
+            }}
           >
-            <View className='flex flex-col gap-32 py-40'>
-              <SandboxBlock title='InteractiveIcons'>
-                <InteractiveIcons />
-              </SandboxBlock>
-              <SandboxBlock title='Select'>
-                <Selects />
-              </SandboxBlock>
-              <SandboxBlock title='Text inputs'>
-                <TextInputs />
-              </SandboxBlock>
-              <SandboxBlock title='Amount inputs'>
-                <AmountInputs />
-              </SandboxBlock>
-              <SandboxBlock title='CardButtons'>
-                <CardButtons />
-              </SandboxBlock>
-              <SandboxBlock title='Checkboxes'>
-                <Checkboxes />
-              </SandboxBlock>
-              <SandboxBlock title='Spots'>
-                <Spots />
-              </SandboxBlock>
-              <SandboxBlock title='Tags'>
-                <Tags />
-              </SandboxBlock>
-              <SandboxBlock title='Switches'>
-                <Switches />
-              </SandboxBlock>
-              <SandboxBlock title='Buttons'>
-                <Buttons />
-              </SandboxBlock>
-              <SandboxBlock title='IconButtons'>
-                <IconButtons />
-              </SandboxBlock>
-              <SandboxBlock title='Theme Provider toggles'>
-                <View className='gap-12'>
-                  <ToggleThemeSwitch
-                    colorScheme={colorScheme}
-                    setColorScheme={setColorScheme}
-                  />
-                  <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
-                </View>
-              </SandboxBlock>
-              <SandboxBlock title='Tiles'>
-                <Tiles />
-              </SandboxBlock>
-              <SandboxBlock title='ListItems'>
-                <ListItems />
-              </SandboxBlock>
-              <SandboxBlock title='Tooltips'>
-                <Tooltips />
-              </SandboxBlock>
-              <SandboxBlock title='Banners'>
-                <Banners />
-              </SandboxBlock>
-              <SandboxBlock title='BottomSheets'>
-                <BottomSheetsButton
-                  onPress={() => bottomSheetFlatListsRef.current?.expand()}
+            <SandboxBlock title='InteractiveIcons'>
+              <InteractiveIcons />
+            </SandboxBlock>
+            <SandboxBlock title='Select'>
+              <Selects />
+            </SandboxBlock>
+            <SandboxBlock title='Text inputs'>
+              <TextInputs />
+            </SandboxBlock>
+            <SandboxBlock title='Amount inputs'>
+              <AmountInputs />
+            </SandboxBlock>
+            <SandboxBlock title='CardButtons'>
+              <CardButtons />
+            </SandboxBlock>
+            <SandboxBlock title='Checkboxes'>
+              <Checkboxes />
+            </SandboxBlock>
+            <SandboxBlock title='Spots'>
+              <Spots />
+            </SandboxBlock>
+            <SandboxBlock title='Tags'>
+              <Tags />
+            </SandboxBlock>
+            <SandboxBlock title='Switches'>
+              <Switches />
+            </SandboxBlock>
+            <SandboxBlock title='Buttons'>
+              <Buttons />
+            </SandboxBlock>
+            <SandboxBlock title='IconButtons'>
+              <IconButtons />
+            </SandboxBlock>
+            <SandboxBlock title='Theme Provider toggles'>
+              <Box lx={{ gap: 's12' }}>
+                <ToggleThemeSwitch
+                  colorScheme={colorScheme}
+                  setColorScheme={setColorScheme}
                 />
-                <BottomSheetsButton
-                  onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
-                />
-              </SandboxBlock>
-              <SandboxBlock title='Link'>
-                <Links />
-              </SandboxBlock>
-            </View>
-          </ScrollView>
-          <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
-          <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
-          <GlobalTooltipBottomSheet />
-          <GlobalSelectBottomSheet />
-        </GestureHandlerRootView>
-      </ThemeProvider>
+                <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
+              </Box>
+            </SandboxBlock>
+            <SandboxBlock title='Tiles'>
+              <Tiles />
+            </SandboxBlock>
+            <SandboxBlock title='ListItems'>
+              <ListItems />
+            </SandboxBlock>
+            <SandboxBlock title='Tooltips'>
+              <Tooltips />
+            </SandboxBlock>
+            <SandboxBlock title='Banners'>
+              <Banners />
+            </SandboxBlock>
+            <SandboxBlock title='BottomSheets'>
+              <BottomSheetsButton
+                onPress={() => bottomSheetFlatListsRef.current?.expand()}
+              />
+              <BottomSheetsButton
+                onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
+              />
+            </SandboxBlock>
+            <SandboxBlock title='Link'>
+              <Links />
+            </SandboxBlock>
+          </Box>
+        </ScrollView>
+        <BottomSheetFlatLists ref={bottomSheetFlatListsRef} />
+        <BottomSheetDynamicSize ref={bottomSheetDynamicSizeRef} />
+        <GlobalTooltipBottomSheet />
+        <GlobalSelectBottomSheet />
+      </GestureHandlerRootView>
     </SafeAreaView>
   );
 };

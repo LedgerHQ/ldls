@@ -1,13 +1,11 @@
 const path = require('path');
 const { withNxMetro } = require('@nx/react-native');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const { withNativeWind } = require('nativewind/metro');
 
 const processConfig = async () => {
   const defaultConfig = getDefaultConfig(__dirname);
   const { assetExts, sourceExts } = defaultConfig.resolver;
   const monorepoRoot = path.resolve(__dirname, '../..');
-  const cssEntry = path.resolve(__dirname, 'global.css');
 
   /**
    * Metro configuration
@@ -22,7 +20,7 @@ const processConfig = async () => {
     },
     resolver: {
       assetExts: assetExts.filter((ext) => ext !== 'svg'),
-      sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg', 'css'],
+      sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg'],
     },
     watchFolders: [
       monorepoRoot,
@@ -31,20 +29,14 @@ const processConfig = async () => {
     ],
   };
 
-  const nxMetroConfig = await withNxMetro(
-    mergeConfig(defaultConfig, customConfig),
-    {
-      // Change this to true to see debugging info.
-      // Useful if you have issues resolving modules
-      debug: false,
-      // all the file extensions used for imports other than 'ts', 'tsx', 'js', 'jsx', 'json'
-      extensions: [],
-      // Specify folders to watch, in addition to Nx defaults (workspace libraries and node_modules)
-      watchFolders: [],
-    },
-  );
-  return withNativeWind(nxMetroConfig, {
-    input: cssEntry,
+  return await withNxMetro(mergeConfig(defaultConfig, customConfig), {
+    // Change this to true to see debugging info.
+    // Useful if you have issues resolving modules
+    debug: false,
+    // all the file extensions used for imports other than 'ts', 'tsx', 'js', 'jsx', 'json'
+    extensions: [],
+    // Specify folders to watch, in addition to Nx defaults (workspace libraries and node_modules)
+    watchFolders: [],
   });
 };
 

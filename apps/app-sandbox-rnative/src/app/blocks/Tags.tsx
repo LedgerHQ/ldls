@@ -1,11 +1,10 @@
-import { Tag } from '@ledgerhq/lumen-ui-rnative';
+import { Box, Tag } from '@ledgerhq/lumen-ui-rnative';
 import { ExternalLink } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View } from 'react-native';
 
 export const Tags = () => {
   return (
-    <View className='gap-32'>
-      <View className='flex flex-row flex-wrap gap-8'>
+    <Box lx={{ gap: 's32' }}>
+      <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's8' }}>
         <Tag appearance='accent' label='Accent' icon={ExternalLink} />
         <Tag appearance='base' label='Base' icon={ExternalLink} />
         <Tag appearance='gray' label='Gray' icon={ExternalLink} />
@@ -13,11 +12,11 @@ export const Tags = () => {
         <Tag appearance='error' label='Error' icon={ExternalLink} />
         <Tag appearance='warning' label='Warning' icon={ExternalLink} />
         <Tag label='Disabled' icon={ExternalLink} disabled />
-      </View>
-      <View className='flex flex-row gap-8'>
+      </Box>
+      <Box lx={{ flexDirection: 'row', gap: 's8' }}>
         <Tag appearance='accent' label='Accent' size='lg' />
         <Tag appearance='accent' label='Accent' size='sm' />
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };

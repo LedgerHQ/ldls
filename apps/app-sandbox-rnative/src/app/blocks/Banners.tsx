@@ -1,9 +1,8 @@
-import { Banner } from '@ledgerhq/lumen-ui-rnative';
-import { View } from 'react-native';
+import { Banner, Box } from '@ledgerhq/lumen-ui-rnative';
 
 export const Banners = () => {
   return (
-    <View className='flex flex-row flex-wrap gap-8'>
+    <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's8' }}>
       <Banner appearance='info' title='Info' description='Info description' />
       <Banner
         appearance='success'
@@ -20,6 +19,6 @@ export const Banners = () => {
         title='Error'
         description='Error description'
       />
-    </View>
+    </Box>
   );
 };

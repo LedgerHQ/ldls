@@ -4,8 +4,7 @@
     "outDir": "dist",
     "types": [
       "node",
-      "react-native",
-      "nativewind/types"
+      "react-native"
     ],
     "rootDir": "src",
     "jsx": "react-jsx",

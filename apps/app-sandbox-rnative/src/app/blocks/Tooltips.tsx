@@ -1,15 +1,16 @@
 import {
+  Box,
   Tag,
+  Text,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from '@ledgerhq/lumen-ui-rnative';
 import { InformationFill } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { Text, View } from 'react-native';
 
 export const Tooltips = () => {
   return (
-    <View className='flex flex-row gap-12'>
+    <Box lx={{ flexDirection: 'row', gap: 's12' }}>
       <Tooltip>
         <TooltipTrigger>
           <InformationFill lx={{ color: 'base' }} size={20} />
@@ -17,12 +18,12 @@ export const Tooltips = () => {
         <TooltipContent
           title='Tooltip title'
           content={
-            <View className='flex flex-row items-center gap-4'>
-              <Text className='text-muted'>
+            <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
+              <Text typography='body3' lx={{ color: 'muted' }}>
                 Custom tooltip content ReactNode!{' '}
               </Text>
               <Tag label='Tag' appearance='accent' />
-            </View>
+            </Box>
           }
         />
       </Tooltip>
@@ -35,6 +36,6 @@ export const Tooltips = () => {
           content='Simple tooltip content'
         />
       </Tooltip>
-    </View>
+    </Box>
   );
 };
