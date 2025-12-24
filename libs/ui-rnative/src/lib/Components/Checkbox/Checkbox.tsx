@@ -1,25 +1,12 @@
-import { cva } from 'class-variance-authority';
 import React from 'react';
-
-import { View } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import { useControllableState } from '../../utils';
 import { Label } from '../Label';
+import { Box } from '../Utility';
 import { BaseCheckboxIndicator, BaseCheckboxRoot } from './BaseCheckbox';
 
 import { CheckboxProps } from './types';
-
-const checkboxVariants = {
-  root: cva(['flex flex-row items-center gap-8']),
-  icon: cva('shrink-0', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-black',
-      },
-    },
-  }),
-};
 
 /**
  * The checkbox follows the design system tokens and supports checked, unchecked,
@@ -28,11 +15,11 @@ const checkboxVariants = {
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-checkbox--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_selection-checkbox--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the checkbox's core appearance.
  *
  * @example
- * import { Checkbox } from '@ledgerhq/lumen-ui-react';
+ * import { Checkbox } from '@ledgerhq/lumen-ui-rnative';
  *
  * // Basic controlled checkbox
  * const [checked, setChecked] = useState(false);
@@ -46,12 +33,13 @@ const checkboxVariants = {
  * <Checkbox defaultChecked={true} onCheckedChange={handleChange} />
  */
 export const Checkbox = React.forwardRef<
-  React.ElementRef<typeof BaseCheckboxRoot>,
+  React.ElementRef<typeof Box>,
   CheckboxProps
 >(
   (
     {
-      className,
+      lx,
+      style,
       checked: checkedProp,
       onCheckedChange: onCheckedChangeProp,
       defaultChecked = false,
@@ -67,17 +55,17 @@ export const Checkbox = React.forwardRef<
       defaultProp: defaultChecked,
     });
 
+    const styles = useStyles({ disabled });
+
     return (
-      <View className={checkboxVariants.root({ className })}>
+      <Box ref={ref} lx={lx} style={[styles.root, style]} {...props}>
         <BaseCheckboxRoot
-          ref={ref}
           disabled={disabled}
           checked={checked}
           onCheckedChange={onCheckedChange}
-          {...props}
         >
           <BaseCheckboxIndicator>
-            <Check size={16} className={checkboxVariants.icon({ disabled })} />
+            <Check size={16} style={styles.icon} />
           </BaseCheckboxIndicator>
         </BaseCheckboxRoot>
         {label && (
@@ -85,9 +73,28 @@ export const Checkbox = React.forwardRef<
             {label}
           </Label>
         )}
-      </View>
+      </Box>
     );
   },
 );
+
+const useStyles = ({ disabled }: { disabled: boolean }) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        root: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: t.spacings.s8,
+        },
+        icon: {
+          flexShrink: 0,
+          color: disabled ? t.colors.text.disabled : t.colors.text.black,
+        },
+      };
+    },
+    [disabled],
+  );
+};
 
 Checkbox.displayName = 'Checkbox';

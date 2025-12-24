@@ -1,19 +1,10 @@
-import React, { forwardRef, memo } from 'react';
+import { ElementRef, forwardRef, memo } from 'react';
 import { StyleSheet } from 'react-native';
-import type { Text, TextProps, TextStyle } from 'react-native';
+import type { Text, TextStyle } from 'react-native';
 import { useTheme } from '../Provider/useTheme';
 import { useResolveTextStyle } from '../resolveStyle/resolveStyle';
-import type { LumenStyleSheetTheme, LumenTextStyleLX } from '../types';
+import { StyledTextProps } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
-
-type TextRef = React.ElementRef<typeof Text>;
-export type StyledTextProps = LumenTextStyleLX &
-  TextProps & {
-    /**
-     * Typography preset
-     */
-    typography?: keyof LumenStyleSheetTheme['typographies'];
-  };
 
 /**
  * Factory function to create a styled Text component.
@@ -25,7 +16,7 @@ export type StyledTextProps = LumenTextStyleLX &
  */
 export const createStyledText = (Component: typeof Text) => {
   const StyledComponent = memo(
-    forwardRef<TextRef, StyledTextProps>(
+    forwardRef<ElementRef<typeof Text>, StyledTextProps>(
       ({ typography = 'body3', lx = {}, style, ...props }, ref) => {
         const { theme } = useTheme();
         const resolvedStyle = useResolveTextStyle(lx);

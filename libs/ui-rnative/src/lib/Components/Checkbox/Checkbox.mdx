@@ -67,19 +67,19 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ## Basic Usage
 
 ```tsx
-import { Checkbox } from '@ledgerhq/lumen-ui-rnative';
+import { Checkbox, Box, Text } from '@ledgerhq/lumen-ui-rnative';
 
 function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="flex items-center space-x-8">
+    <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
       <Checkbox
         checked={isChecked}
         onCheckedChange={setIsChecked}
       />
-      <label>Accept terms and conditions</label>
-    </div>
+      <Text>Accept terms and conditions</Text>
+    </Box>
   );
 }
 ```
@@ -112,26 +112,31 @@ Use `defaultChecked` for simple cases:
 ### Labels and ARIA
 
 ```tsx
-// ✅ Associated label
-<div className="flex items-center space-x-8">
-  <Checkbox id="terms" />
-  <label htmlFor="terms">I agree to the terms</label>
-</div>
+// ✅ Using built-in label prop
+<Checkbox label="I agree to the terms" />
 
 // ✅ ARIA label for standalone checkbox
 <Checkbox accessibilityLabel="Select all items" />
 
+// ✅ Custom layout with Box and Text
+<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
+  <Checkbox id="terms" />
+  <Text>I agree to the terms</Text>
+</Box>
+
 // ✅ ARIA described by for complex descriptions
-<div>
-  <Checkbox
-    id="marketing"
-    aria-describedby="marketing-description"
-  />
-  <label htmlFor="marketing">Marketing emails</label>
-  <p id="marketing-description" className="text-muted body-4">
+<Box lx={{ gap: 's4' }}>
+  <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
+    <Checkbox
+      id="marketing"
+      aria-describedby="marketing-description"
+    />
+    <Text>Marketing emails</Text>
+  </Box>
+  <Text id="marketing-description" lx={{ color: 'muted' }} typography="body4">
     Receive promotional offers and product updates
-  </p>
-</div>
+  </Text>
+</Box>
 ```
 
 ### Keyboard Navigation
@@ -149,16 +154,13 @@ The following guidelines ensure consistent usage of the Checkbox component and m
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Associate labels properly'
-      description='Use htmlFor with id to properly associate labels with checkboxes'
+      title='Use the built-in label prop'
+      description='Use the label prop for simple text labels'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<div className='flex items-center space-x-8'>
-  <Checkbox id='newsletter' />
-  <label htmlFor='newsletter'>Subscribe to newsletter</label>
-</div>
+<Checkbox label='Subscribe to newsletter' />
 ```
 
     </DoBlockItem>
@@ -169,9 +171,7 @@ The following guidelines ensure consistent usage of the Checkbox component and m
 
 {/* prettier-ignore */}
 ```tsx
-<div className='flex items-center space-x-8'>
-  <Checkbox id='newsletter' />
-</div>
+<Checkbox id='newsletter' />
 ```
 
     </DontBlockItem>
@@ -188,7 +188,11 @@ The following guidelines ensure consistent usage of the Checkbox component and m
 ```tsx
 const [isChecked, setIsChecked] = useState(false);
 
-<Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
+<Checkbox 
+  label='Accept terms'
+  checked={isChecked} 
+  onCheckedChange={setIsChecked} 
+/>
 ```
 
     </DoBlockItem>
@@ -201,7 +205,11 @@ const [isChecked, setIsChecked] = useState(false);
 ```tsx
 const [isChecked, setIsChecked] = useState(false);
 
-<Checkbox checked={isChecked} defaultChecked={true} />
+<Checkbox 
+  label='Accept terms'
+  checked={isChecked} 
+  defaultChecked={true} 
+/>
 ```
 
     </DontBlockItem>

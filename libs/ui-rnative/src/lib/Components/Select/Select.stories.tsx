@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
-import { View } from 'react-native';
+import { Box } from '../Utility';
 import { GlobalSelectBottomSheet } from './GlobalSelectBottomSheet';
 import {
   Select,
@@ -27,6 +27,9 @@ const meta: Meta<typeof Select> = {
     SelectSeparator,
   },
   title: 'Selection/Select',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export default meta;
@@ -38,8 +41,15 @@ export const Base: Story = {
 
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
-          <View className='w-full max-w-320'>
+        <Box
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Choose a fruit'>
                 <SelectValue />
@@ -62,8 +72,8 @@ export const Base: Story = {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </View>
-        </View>
+          </Box>
+        </Box>
         <GlobalSelectBottomSheet />
       </>
     );
@@ -76,8 +86,15 @@ export const WithGroups: Story = {
 
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
-          <View className='w-full max-w-320'>
+        <Box
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Select cryptocurrency'>
                 <SelectValue />
@@ -107,8 +124,8 @@ export const WithGroups: Story = {
                 </SelectGroup>
               </SelectContent>
             </Select>
-          </View>
-        </View>
+          </Box>
+        </Box>
         <GlobalSelectBottomSheet />
       </>
     );
@@ -121,8 +138,15 @@ export const WithDisabledItems: Story = {
 
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
-          <View className='w-full max-w-320'>
+        <Box
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue}>
               <SelectTrigger label='Select option'>
                 <SelectValue />
@@ -145,8 +169,8 @@ export const WithDisabledItems: Story = {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </View>
-        </View>
+          </Box>
+        </Box>
         <GlobalSelectBottomSheet />
       </>
     );
@@ -159,8 +183,15 @@ export const DisabledSelect: Story = {
 
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
-          <View className='w-full max-w-320'>
+        <Box
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select value={value} onValueChange={setValue} disabled>
               <SelectTrigger label='Disabled select'>
                 <SelectValue />
@@ -177,8 +208,8 @@ export const DisabledSelect: Story = {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </View>
-        </View>
+          </Box>
+        </Box>
         <GlobalSelectBottomSheet />
       </>
     );
@@ -191,8 +222,15 @@ export const WithChangeCallback: Story = {
 
     return (
       <>
-        <View className='flex min-h-400 items-center justify-center p-24'>
-          <View className='w-full max-w-320'>
+        <Box
+          style={{
+            flex: 1,
+            minHeight: 400,
+            padding: 24,
+            width: '100%',
+          }}
+        >
+          <Box style={{ width: '100%', maxWidth: 400 }}>
             <Select
               value={value}
               onValueChange={(newValue) => {
@@ -218,8 +256,8 @@ export const WithChangeCallback: Story = {
                 </SelectItem>
               </SelectContent>
             </Select>
-          </View>
-        </View>
+          </Box>
+        </Box>
         <GlobalSelectBottomSheet />
       </>
     );

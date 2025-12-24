@@ -1,17 +1,19 @@
-import { cva } from 'class-variance-authority';
 import React, { forwardRef } from 'react';
-import { Text } from 'react-native';
-import { cn } from '../../utils';
+import { LumenStyleSheet } from '../../../styles';
+import { Text } from '../Utility';
 import { LabelProps } from './types';
 
-const labelVariants = cva(['body-2'], {
-  variants: {
-    disabled: {
-      true: 'text-disabled',
-      false: 'text-base',
-    },
-  },
-});
+const useStyles = ({ disabled }: { disabled: boolean }) => {
+  return LumenStyleSheet.useCreate(
+    (t) => ({
+      label: {
+        color: disabled ? t.colors.text.disabled : t.colors.text.base,
+        ...t.typographies.body2,
+      },
+    }),
+    [disabled],
+  );
+};
 
 /**
  * A label that should be used to describe a form field.
@@ -21,16 +23,27 @@ const labelVariants = cva(['body-2'], {
  */
 export const Label = forwardRef<React.ElementRef<typeof Text>, LabelProps>(
   (
-    { className, disabled = false, children, onPress, onLongPress, ...props },
+    {
+      style,
+      lx = {},
+      disabled = false,
+      children,
+      onPress,
+      onLongPress,
+      ...props
+    },
     ref,
   ) => {
+    const styles = useStyles({ disabled });
+
     return (
       <Text
+        lx={lx}
         ref={ref}
+        style={[styles.label, style]}
         disabled={disabled}
         onPress={disabled ? undefined : onPress}
         onLongPress={disabled ? undefined : onLongPress}
-        className={cn(labelVariants({ disabled }), className)}
         {...props}
       >
         {children}

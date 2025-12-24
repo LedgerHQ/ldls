@@ -1,6 +1,6 @@
-import { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
-import { LumenTextStyleLX } from '../../../styles';
+import { LumenTextStyle } from '../../../styles';
+import { TextProps } from '../Utility';
 
 export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
 
@@ -10,12 +10,12 @@ export type IconProps = {
    */
   size?: IconSize;
   /**
-   * Style object to apply to the icon (supports color via color property).
+   * The color of the icon.
    */
-  style?: StyleProp<ViewStyle & { color?: ColorValue }>;
+  color?: LumenTextStyle['color'];
   /**
    * The children of the icon.
    */
   children?: React.ReactNode;
-} & LumenTextStyleLX &
+} & TextProps &
   Omit<SvgProps, 'style'>;

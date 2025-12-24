@@ -8,7 +8,7 @@ import {
   InformationFill,
   WarningFill,
 } from '../../Symbols';
-import { Spinner } from '../Spinner';
+import { Spinner, SpinnerProps } from '../Spinner';
 import { Box } from '../Utility';
 import { SpotAppearance, SpotProps, SpotSize } from './types';
 
@@ -158,7 +158,7 @@ export const Spot = (props: SpotProps) => {
         return (
           <Spinner
             size={calculatedIconSize}
-            color={styles.icon.color as string}
+            color={styles.icon.color as SpinnerProps['color']}
           />
         );
     }

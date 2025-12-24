@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { Box, Text } from '../Utility';
 import { Switch } from './Switch';
 
 const meta: Meta<typeof Switch> = {
   title: 'Selection/Switch',
   component: Switch,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     docs: {
       source: {
         language: 'tsx',
@@ -43,9 +44,19 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   render: (args) => {
     return (
-      <div className='flex size-80 items-center justify-center'>
-        <Switch {...args} />
-      </div>
+      <Box
+        style={{
+          flex: 1,
+          minHeight: 96,
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 24,
+        }}
+      >
+        <Box style={{ width: '100%', maxWidth: 400 }}>
+          <Switch {...args} />
+        </Box>
+      </Box>
     );
   },
 };
@@ -55,29 +66,38 @@ export const Base: Story = {
  */
 export const AllStates: Story = {
   render: () => (
-    <div className='grid grid-cols-3 gap-48 p-16 text-base'>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Enabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
-            <Switch defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
-            <Switch aria-labelledby='' defaultChecked />
-          </div>
-        </div>
-      </div>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Disabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
-            <Switch disabled defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
-            <Switch disabled defaultChecked />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Box
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <Box style={{ width: '100%', maxWidth: 400 }}>
+        <Box
+          style={{
+            flexDirection: 'row',
+            gap: 48,
+          }}
+        >
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Enabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Switch defaultChecked={false} />
+              <Switch aria-labelledby='' defaultChecked />
+            </Box>
+          </Box>
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Disabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Switch disabled defaultChecked={false} />
+              <Switch disabled defaultChecked />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   ),
 };

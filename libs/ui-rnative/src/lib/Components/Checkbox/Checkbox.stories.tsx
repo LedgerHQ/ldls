@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { Box, Text } from '../Utility';
 import { Checkbox } from './Checkbox';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Selection/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     docs: {
       source: {
         language: 'tsx',
@@ -50,9 +51,19 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   render: (args) => {
     return (
-      <div className='flex size-80 items-center justify-center'>
-        <Checkbox {...args} />
-      </div>
+      <Box
+        style={{
+          flex: 1,
+          minHeight: 96,
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 24,
+        }}
+      >
+        <Box style={{ width: '100%', maxWidth: 400 }}>
+          <Checkbox {...args} />
+        </Box>
+      </Box>
     );
   },
 };
@@ -62,33 +73,42 @@ export const Base: Story = {
  */
 export const AllStates: Story = {
   render: () => (
-    <div className='grid grid-cols-3 gap-48 p-16 text-base'>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Enabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
-            <Checkbox
-              label='Unchecked'
-              accessibilityLabel='Unchecked'
-              defaultChecked={false}
-            />
-          </div>
-          <div className='flex items-center space-x-8'>
-            <Checkbox label='Checked' defaultChecked />
-          </div>
-        </div>
-      </div>
-      <div className='space-y-16'>
-        <h3 className='heading-4'>Disabled</h3>
-        <div className='space-y-8'>
-          <div className='flex items-center space-x-8'>
-            <Checkbox label='Unchecked' disabled defaultChecked={false} />
-          </div>
-          <div className='flex items-center space-x-8'>
-            <Checkbox label='Checked' disabled defaultChecked />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Box
+      style={{
+        flex: 1,
+        minHeight: 96,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 24,
+      }}
+    >
+      <Box style={{ width: '100%', maxWidth: 400 }}>
+        <Box
+          style={{
+            flexDirection: 'row',
+            gap: 48,
+          }}
+        >
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Enabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Checkbox
+                label='Unchecked'
+                accessibilityLabel='Unchecked'
+                defaultChecked={false}
+              />
+              <Checkbox label='Checked' defaultChecked />
+            </Box>
+          </Box>
+          <Box style={{ gap: 16 }}>
+            <Text typography='heading4'>Disabled</Text>
+            <Box style={{ gap: 8 }}>
+              <Checkbox label='Unchecked' disabled defaultChecked={false} />
+              <Checkbox label='Checked' disabled defaultChecked />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   ),
 };

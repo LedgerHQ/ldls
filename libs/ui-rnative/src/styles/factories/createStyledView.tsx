@@ -1,11 +1,10 @@
 import React, { forwardRef, memo } from 'react';
-import { StyleSheet, View, type ViewProps } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
-import type { LumenViewStyleLX } from '../types';
+import type { StyledViewProps } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
 
 type ViewRef = React.ElementRef<typeof View>;
-export type StyledViewProps = LumenViewStyleLX & ViewProps;
 
 /**
  * Factory function to create a styled View component.

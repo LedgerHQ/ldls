@@ -1,7 +1,7 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
-import { cva } from 'class-variance-authority';
-import React, { useCallback } from 'react';
-import { Pressable, View, type GestureResponderEvent } from 'react-native';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Animated, Pressable, type GestureResponderEvent } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 
 import {
   PressableRef,
@@ -15,69 +15,6 @@ import { SwitchProps } from './types';
 
 const ROOT_COMPONENT_NAME = 'BaseSwitch';
 const THUMB_COMPONENT_NAME = 'BaseSwitchThumb';
-
-const baseSwitchVariants = {
-  root: cva(
-    [
-      'group flex justify-center rounded-full p-2 transition-colors duration-200 ease-in-out',
-      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-    ],
-    {
-      variants: {
-        checked: { true: '', false: '' },
-        disabled: { true: '', false: '' },
-        size: {
-          sm: 'h-16 max-h-16 min-h-16 w-24 min-w-24 max-w-24',
-          md: 'h-24 max-h-24 min-h-24 w-40 min-w-40 max-w-40',
-        },
-      },
-      compoundVariants: [
-        {
-          checked: false,
-          disabled: false,
-          className: 'bg-muted-strong',
-        },
-        {
-          checked: true,
-          disabled: false,
-          className: 'bg-active',
-        },
-        {
-          checked: true,
-          disabled: true,
-          className: 'bg-disabled',
-        },
-        {
-          checked: false,
-          disabled: true,
-          className: 'bg-disabled',
-        },
-      ],
-    },
-  ),
-  thumb: cva(
-    'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out',
-    {
-      variants: {
-        size: { sm: 'size-12', md: 'size-20' },
-        checked: { true: '', false: '' },
-        disabled: { true: 'bg-base', false: '' },
-      },
-      compoundVariants: [
-        {
-          checked: true,
-          size: 'sm',
-          className: 'translate-x-8',
-        },
-        {
-          checked: true,
-          size: 'md',
-          className: 'translate-x-16',
-        },
-      ],
-    },
-  ),
-};
 
 type BaseSwitchRootProps = SlottablePressableProps & {
   checked: SwitchProps['checked'];
@@ -105,6 +42,12 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
     },
     ref,
   ) => {
+    const styles = useStyles({
+      checked: !!checked,
+      disabled: !!disabled,
+      size,
+    });
+
     const onPress = useCallback(
       (ev: GestureResponderEvent) => {
         if (disabled) return;
@@ -126,22 +69,19 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
         }}
       >
         <Component
-          className={baseSwitchVariants.root({
-            className,
-            checked,
-            disabled,
-            size,
-          })}
+          style={styles.root}
           ref={ref}
           aria-disabled={disabled}
           role='switch'
           aria-checked={checked}
-          aria-valuetext={ariaValueText ?? (checked ? 'on' : 'off')}
           onPress={onPress}
           accessibilityState={{
             checked,
             disabled,
           }}
+          accessibilityValue={
+            ariaValueText ? { text: ariaValueText } : undefined
+          }
           disabled={disabled}
           {...props}
         />
@@ -152,28 +92,151 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
 BaseSwitchRoot.displayName = ROOT_COMPONENT_NAME;
 
 const BaseSwitchThumb = React.forwardRef<ViewRef, SlottableViewProps>(
-  ({ asChild, className, ...props }, ref) => {
+  ({ asChild, ...props }, ref) => {
     const { checked, disabled, size } = useBaseSwitchContext({
       consumerName: THUMB_COMPONENT_NAME,
       contextRequired: true,
     });
 
-    const Component = asChild ? SlotView : View;
+    const styles = useStyles({
+      checked: !!checked,
+      disabled: !!disabled,
+      size: size || 'md',
+    });
+
+    const translateX = useRef(new Animated.Value(checked ? 1 : 0)).current;
+
+    useEffect(() => {
+      Animated.timing(translateX, {
+        toValue: checked ? 1 : 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+    }, [checked, translateX]);
+
+    const getTranslateDistance = (): number => {
+      const sizeName = size || 'md';
+      return sizeName === 'sm' ? 8 : 16;
+    };
+
+    const animatedStyle = {
+      transform: [
+        {
+          translateX: translateX.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, getTranslateDistance()],
+          }),
+        },
+      ],
+    };
+
+    if (asChild) {
+      const Component = SlotView;
+      return (
+        <Component
+          ref={ref}
+          role='presentation'
+          style={styles.thumb}
+          {...props}
+        />
+      );
+    }
+
     return (
-      <Component
+      <Animated.View
         ref={ref}
         role='presentation'
-        className={baseSwitchVariants.thumb({
-          className,
-          checked,
-          disabled,
-          size,
-        })}
+        style={[styles.thumbBase, animatedStyle]}
         {...props}
       />
     );
   },
 );
+
+type Size = NonNullable<SwitchProps['size']>;
+
+const useStyles = ({
+  checked,
+  disabled,
+  size,
+}: {
+  checked: boolean;
+  disabled: boolean;
+  size: Size;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      const sizes: Record<Size, { width: number; height: number }> = {
+        sm: { width: t.sizes.s24, height: t.sizes.s16 },
+        md: { width: t.sizes.s40, height: t.sizes.s24 },
+      };
+
+      const thumbSizes: Record<Size, { size: number }> = {
+        sm: { size: t.sizes.s12 },
+        md: { size: t.sizes.s20 },
+      };
+
+      const thumbTranslations: Record<Size, number> = {
+        sm: t.spacings.s8,
+        md: t.spacings.s16,
+      };
+
+      return {
+        root: mergeStyles(
+          {
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            borderRadius: t.borderRadius.full,
+            padding: t.spacings.s2,
+            overflow: 'hidden',
+            ...sizes[size],
+            minWidth: sizes[size].width,
+            maxWidth: sizes[size].width,
+            minHeight: sizes[size].height,
+            maxHeight: sizes[size].height,
+          },
+          !checked &&
+            !disabled && {
+              backgroundColor: t.colors.bg.mutedStrong,
+            },
+          checked &&
+            !disabled && {
+              backgroundColor: t.colors.bg.active,
+            },
+          disabled && {
+            backgroundColor: t.colors.bg.disabled,
+          },
+        ),
+        thumbBase: mergeStyles(
+          {
+            borderRadius: t.borderRadius.full,
+            backgroundColor: 'white',
+            width: thumbSizes[size].size,
+            height: thumbSizes[size].size,
+          },
+          disabled && {
+            backgroundColor: t.colors.bg.base,
+          },
+        ),
+        thumb: mergeStyles(
+          {
+            borderRadius: t.borderRadius.full,
+            backgroundColor: 'white',
+            width: thumbSizes[size].size,
+            height: thumbSizes[size].size,
+            transform: [{ translateX: checked ? thumbTranslations[size] : 0 }],
+          },
+          disabled && {
+            backgroundColor: t.colors.bg.base,
+          },
+        ),
+      };
+    },
+    [checked, disabled, size],
+  );
+};
+
 BaseSwitchThumb.displayName = THUMB_COMPONENT_NAME;
 
 export { BaseSwitchRoot, BaseSwitchThumb };

@@ -12,7 +12,7 @@ const template: Template = (variables, { tpl }) => {
  * 
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
- * @param {string} [className] - Additional CSS classes to apply to the icon (via NativeWind).
+ * @param {string} [color] - The color of the icon.
  * @param {SVGProps} [...props] - All standard SVG element props (from react-native-svg).
  * 
  * @example
@@ -22,8 +22,8 @@ const template: Template = (variables, { tpl }) => {
  * <${componentName} />
  * 
  * @example
- * // With custom size and className (NativeWind)
- * <${componentName} size={40} className="text-warning" />
+ * // With custom size and style
+ * <${componentName} size={40} color="warning" lx={{ marginTop: 's4' }} />
  * 
  * @example
  * // Used within a Button component

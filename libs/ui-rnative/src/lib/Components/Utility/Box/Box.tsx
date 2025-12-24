@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { createStyledView, type StyledViewProps } from '../../../../styles';
+import { createStyledView } from '../../../../styles';
 
 /**
  * Box - A layout primitive component with token-constrained style props.
@@ -36,5 +36,3 @@ import { createStyledView, type StyledViewProps } from '../../../../styles';
  * ```
  */
 export const Box = createStyledView(View);
-
-export type BoxProps = StyledViewProps;

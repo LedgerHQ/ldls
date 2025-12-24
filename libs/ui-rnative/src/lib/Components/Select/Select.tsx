@@ -1,9 +1,10 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, { useState, useEffect, useCallback, useId } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View } from 'react-native';
+import { LumenStyleSheet, mergeStyles } from '../../../styles';
 import { ChevronDown } from '../../Symbols';
 import { useControllableState, extractTextFromChildren } from '../../utils';
 import { SlotPressable } from '../Slot';
+import { Box, Pressable, Text } from '../Utility';
 import { useSelectActions } from './GlobalSelectContext';
 import { SelectContextProvider, useSelectSafeContext } from './SelectContext';
 import type {
@@ -17,10 +18,6 @@ import type {
   SelectSeparatorProps,
   SelectContentItem,
 } from './types';
-
-const triggerStyles = cn(
-  'group relative h-48 bg-muted rounded-sm px-16 flex-row items-center justify-between',
-);
 
 /**
  * The root component that manages a select's state.
@@ -119,9 +116,9 @@ Select.displayName = 'Select';
 
 export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   children,
-  className,
+  lx,
+  style,
   label,
-  labelClassName,
   asChild = false,
   disabled: triggerDisabled,
   ...props
@@ -167,58 +164,129 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   ]);
 
   const hasValue = value !== undefined && value !== '';
-  const isFloatingLabel = hasValue;
+  const styles = useTriggerStyles({
+    disabled: !!disabled,
+    hasValue,
+    hasLabel: !!finalLabel,
+  });
 
   const Comp = asChild ? SlotPressable : Pressable;
 
   return (
     <Comp
+      lx={lx}
+      style={[styles.trigger, style]}
       disabled={disabled}
       onPress={handlePress}
-      className={cn(triggerStyles, disabled && 'opacity-50', className)}
       {...props}
     >
       {finalLabel && (
-        <Text
-          className={cn(
-            'absolute left-16 text-muted w-full transition-all duration-200',
-            isFloatingLabel ? 'top-6 body-4' : 'top-14 body-2',
-            disabled && 'text-disabled',
-            labelClassName,
-          )}
-          numberOfLines={1}
-        >
+        <Text style={styles.label} numberOfLines={1}>
           {finalLabel}
         </Text>
       )}
-      <View
-        className={cn(
-          'flex-1',
-          finalLabel && hasValue && 'pt-16 pb-2',
-          finalLabel && !hasValue && 'py-0',
-        )}
-      >
-        {children}
-      </View>
-      <ChevronDown
-        size={20}
-        className={cn('text-muted ml-8', disabled && 'text-disabled')}
-      />
+      <View style={styles.contentWrapper}>{children}</View>
+      <ChevronDown size={20} style={styles.chevron} />
     </Comp>
   );
 };
+
+const useTriggerStyles = ({
+  disabled,
+  hasValue,
+  hasLabel,
+}: {
+  disabled: boolean;
+  hasValue: boolean;
+  hasLabel: boolean;
+}) => {
+  return LumenStyleSheet.useCreate(
+    (t) => {
+      return {
+        trigger: mergeStyles(
+          {
+            position: 'relative',
+            width: t.sizes.full,
+            height: t.sizes.s48,
+            backgroundColor: t.colors.bg.muted,
+            borderRadius: t.borderRadius.sm,
+            paddingHorizontal: t.spacings.s16,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          },
+          disabled && {
+            opacity: 0.5,
+          },
+        ),
+        label: mergeStyles(
+          t.typographies.body2,
+          {
+            position: 'absolute',
+            left: t.spacings.s16,
+            color: t.colors.text.muted,
+            width: '100%',
+          },
+          hasValue
+            ? {
+                top: t.spacings.s6,
+                ...t.typographies.body4,
+              }
+            : {
+                top: t.spacings.s14,
+                ...t.typographies.body2,
+              },
+          disabled && {
+            color: t.colors.text.disabled,
+          },
+        ),
+        contentWrapper: mergeStyles(
+          {
+            flex: 1,
+          },
+          hasLabel &&
+            hasValue && {
+              paddingTop: t.spacings.s16,
+              paddingBottom: t.spacings.s2,
+            },
+          hasLabel &&
+            !hasValue && {
+              paddingVertical: 0,
+            },
+        ),
+        chevron: mergeStyles(
+          {
+            flexShrink: 0,
+            color: t.colors.text.muted,
+            marginLeft: t.spacings.s8,
+          },
+          disabled && {
+            color: t.colors.text.disabled,
+          },
+        ),
+      };
+    },
+    [disabled, hasValue, hasLabel],
+  );
+};
+
 SelectTrigger.displayName = 'SelectTrigger';
 
 /**
  * Displays the current selected value
  */
-export const SelectValue: React.FC<{
-  className?: string;
-}> = ({ className }) => {
+export const SelectValue: React.FC = () => {
   const { value, items } = useSelectSafeContext({
     consumerName: 'SelectValue',
     contextRequired: true,
   });
+
+  const styles = LumenStyleSheet.useCreate((t) => ({
+    text: mergeStyles(t.typographies.body2, {
+      color: t.colors.text.base,
+      textAlign: 'left',
+    }),
+  }));
 
   const selectedItem = items.find(
     (item) => item.type === 'item' && item.value === value,
@@ -229,10 +297,7 @@ export const SelectValue: React.FC<{
   }
 
   return (
-    <Text
-      className={cn('truncate text-left text-base body-2', className)}
-      numberOfLines={1}
-    >
+    <Text style={styles.text} numberOfLines={1} ellipsizeMode='tail'>
       {selectedItem.label}
     </Text>
   );
@@ -298,30 +363,43 @@ SelectContent.displayName = 'SelectContent';
 
 export const SelectGroup: React.FC<SelectGroupProps> = ({
   children,
-  className,
+  lx,
+  style,
   ...props
 }) => {
+  const styles = LumenStyleSheet.useCreate((t) => ({
+    group: {
+      width: t.sizes.full,
+      gap: t.spacings.s4,
+    },
+  }));
+
   return (
-    <View className={cn('flex w-full gap-4', className)} {...props}>
+    <Box lx={lx} style={[styles.group, style]} {...props}>
       {children}
-    </View>
+    </Box>
   );
 };
 SelectGroup.displayName = 'SelectGroup';
 
 export const SelectLabel: React.FC<SelectLabelProps> = ({
   children,
-  className,
+  lx,
+  style,
   ...props
 }) => {
+  const styles = LumenStyleSheet.useCreate((t) => ({
+    label: mergeStyles(t.typographies.body3SemiBold, {
+      paddingHorizontal: t.spacings.s8,
+      paddingBottom: 0,
+      paddingTop: t.spacings.s8,
+      color: t.colors.text.muted,
+      marginBottom: t.spacings.s4,
+    }),
+  }));
+
   return (
-    <Text
-      className={cn(
-        'px-8 pb-0 pt-8 text-muted body-3-semi-bold mb-4',
-        className,
-      )}
-      {...props}
-    >
+    <Text lx={lx} style={[styles.label, style]} {...props}>
       {children}
     </Text>
   );
@@ -341,11 +419,18 @@ SelectItem.displayName = 'SelectItem';
 
 export const SelectItemText: React.FC<SelectItemTextProps> = ({
   children,
-  className,
+  lx,
+  style,
   ...props
 }) => {
+  const styles = LumenStyleSheet.useCreate((t) => ({
+    text: mergeStyles(t.typographies.body2, {
+      color: t.colors.text.base,
+    }),
+  }));
+
   return (
-    <Text className={cn('text-base body-2', className)} {...props}>
+    <Text lx={lx} style={[styles.text, style]} {...props}>
       {children}
     </Text>
   );
@@ -353,14 +438,19 @@ export const SelectItemText: React.FC<SelectItemTextProps> = ({
 SelectItemText.displayName = 'SelectItemText';
 
 export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
-  className,
+  lx,
+  style,
   ...props
 }) => {
-  return (
-    <View
-      className={cn('mx-8 my-4 h-1 bg-muted-subtle', className)}
-      {...props}
-    />
-  );
+  const styles = LumenStyleSheet.useCreate((t) => ({
+    separator: {
+      marginHorizontal: t.spacings.s8,
+      marginVertical: t.spacings.s4,
+      height: t.sizes.s1,
+      backgroundColor: t.colors.border.mutedSubtle,
+    },
+  }));
+
+  return <Box lx={lx} style={[styles.separator, style]} {...props} />;
 };
 SelectSeparator.displayName = 'SelectSeparator';

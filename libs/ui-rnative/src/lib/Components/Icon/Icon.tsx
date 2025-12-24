@@ -1,11 +1,7 @@
 import { forwardRef, useMemo } from 'react';
-import { StyleSheet } from 'react-native';
 import { Svg } from 'react-native-svg';
-import {
-  LumenStyleSheet,
-  LumenTextStyle,
-  useResolveTextStyle,
-} from '../../../styles';
+import { LumenStyleSheet, useResolveTextStyle } from '../../../styles';
+import { TextProps } from '../Utility';
 import { IconProps, IconSize } from './types';
 
 const iconSizeMap = {
@@ -18,33 +14,43 @@ const iconSizeMap = {
   56: 's56',
 } as const;
 
-const useStyles = (lx: LumenTextStyle, size: IconSize) => {
+const useStyles = (
+  lx: TextProps['lx'],
+  size: IconSize,
+  color: IconProps['color'],
+) => {
   const { theme } = LumenStyleSheet.useTheme();
-  const resolvedStyle = useResolveTextStyle(lx);
+  const resolvedStyle = useResolveTextStyle(lx || {});
+  const resolvedColor = useResolveTextStyle({ color });
 
   return useMemo(() => {
     return {
-      ...resolvedStyle,
-      width: theme.icon.width[iconSizeMap[size]],
-      height: theme.icon.height[iconSizeMap[size]],
-      strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
+      container: {
+        ...resolvedStyle,
+        width: theme.icon.width[iconSizeMap[size]],
+        height: theme.icon.height[iconSizeMap[size]],
+        strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
+      },
+      color: resolvedColor.color,
     };
-  }, [size, theme, resolvedStyle]);
+  }, [size, theme, resolvedStyle, resolvedColor.color]);
 };
 
 export const Icon = forwardRef<Svg, IconProps>(
-  ({ size = 24, lx = {}, style, children, viewBox, ...props }, ref) => {
-    const styles = useStyles(lx, size);
-    const flatStyle = StyleSheet.flatten([styles, style]);
+  (
+    { size = 24, color = 'base', lx = {}, children, viewBox, ...props },
+    ref,
+  ) => {
+    const styles = useStyles(lx, size, color);
 
     return (
       <Svg
         ref={ref}
-        width={styles.width}
-        height={styles.height}
-        strokeWidth={styles.strokeWidth}
+        width={styles.container.width}
+        height={styles.container.height}
+        strokeWidth={styles.container.strokeWidth}
         viewBox={viewBox}
-        color={flatStyle?.color ?? 'currentColor'}
+        color={styles.color}
         fill='none'
         pointerEvents='none'
         {...props}

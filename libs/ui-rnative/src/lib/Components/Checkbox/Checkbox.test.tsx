@@ -13,58 +13,48 @@ const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 describe('Checkbox', () => {
   it('uncontrolled: toggles on press and reflects checked state', async () => {
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <TestWrapper>
-        <Checkbox defaultChecked={false} testID='checkbox' />
+        <Checkbox defaultChecked={false} />
       </TestWrapper>,
     );
 
-    expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
-      false,
-    );
+    const trigger = getByRole('checkbox');
+    expect(trigger.props.accessibilityState?.checked).toBe(false);
 
-    fireEvent.press(getByTestId('checkbox'));
+    fireEvent.press(trigger);
 
     await waitFor(() =>
-      expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
-        true,
-      ),
+      expect(trigger.props.accessibilityState?.checked).toBe(true),
     );
   });
 
   it('controlled: calls onCheckedChange but state is controlled by parent', async () => {
     const onChange = jest.fn();
-    const { getByTestId, rerender } = render(
+    const { getByRole, rerender } = render(
       <TestWrapper>
-        <Checkbox
-          checked={false}
-          onCheckedChange={onChange}
-          testID='checkbox'
-        />
+        <Checkbox checked={false} onCheckedChange={onChange} />
       </TestWrapper>,
     );
 
-    expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
-      false,
-    );
+    const trigger = getByRole('checkbox');
+    expect(trigger.props.accessibilityState?.checked).toBe(false);
 
-    fireEvent.press(getByTestId('checkbox'));
+    fireEvent.press(trigger);
 
     await waitFor(() => expect(onChange).toHaveBeenCalledWith(true));
     await waitFor(() =>
-      expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
-        false,
-      ),
+      expect(trigger.props.accessibilityState?.checked).toBe(false),
     );
 
     rerender(
       <TestWrapper>
-        <Checkbox checked={true} onCheckedChange={onChange} testID='checkbox' />
+        <Checkbox checked={true} onCheckedChange={onChange} />
       </TestWrapper>,
     );
 
     await waitFor(() =>
-      expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
+      expect(getByRole('checkbox').props.accessibilityState?.checked).toBe(
         true,
       ),
     );
@@ -72,13 +62,12 @@ describe('Checkbox', () => {
 
   it('label: renders and toggles when pressed', async () => {
     const onChange = jest.fn();
-    const { getByText, getByTestId } = render(
+    const { getByText, getByRole } = render(
       <TestWrapper>
         <Checkbox
           defaultChecked={false}
           label='Accept'
           onCheckedChange={onChange}
-          testID='checkbox'
         />
       </TestWrapper>,
     );
@@ -87,7 +76,7 @@ describe('Checkbox', () => {
 
     await waitFor(() => expect(onChange).toHaveBeenCalledWith(true));
     await waitFor(() =>
-      expect(getByTestId('checkbox').props.accessibilityState?.checked).toBe(
+      expect(getByRole('checkbox').props.accessibilityState?.checked).toBe(
         true,
       ),
     );
@@ -95,19 +84,18 @@ describe('Checkbox', () => {
 
   it('disabled: does not toggle on trigger or label press', async () => {
     const onChange = jest.fn();
-    const { getByText, getByTestId } = render(
+    const { getByText, getByRole } = render(
       <TestWrapper>
         <Checkbox
           disabled
           defaultChecked={false}
           label='Terms'
           onCheckedChange={onChange}
-          testID='checkbox'
         />
       </TestWrapper>,
     );
 
-    const trigger = getByTestId('checkbox');
+    const trigger = getByRole('checkbox');
     expect(trigger.props.accessibilityState?.disabled).toBe(true);
 
     fireEvent.press(trigger);
@@ -116,7 +104,7 @@ describe('Checkbox', () => {
     await waitFor(() => expect(onChange).toHaveBeenCalled());
   });
 
-  it('passes through nativeID to trigger for a11y mapping', () => {
+  it('passes through nativeID to container for a11y mapping', () => {
     const { getByTestId } = render(
       <TestWrapper>
         <Checkbox defaultChecked={false} nativeID='check-1' testID='checkbox' />

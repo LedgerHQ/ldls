@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
-import { PressableProps, ViewProps, TextProps } from 'react-native';
+import { PressableProps } from 'react-native';
+import {
+  StyledViewProps,
+  StyledPressableProps,
+  StyledTextProps,
+} from '../../../styles';
+import { BoxProps } from '../Utility';
 
 export type SelectProps = {
   /**
@@ -47,27 +53,17 @@ export type SelectTriggerProps = {
    */
   children?: ReactNode;
   /**
-   * Extra class names to apply to the trigger element
-   * @example className='border-error'
-   */
-  className?: string;
-  /**
    * The label text that floats above the input when focused or filled
    * @example label='Select an option'
    */
   label?: string;
-  /**
-   * Additional class names to apply to the label element
-   * @example labelClassName='text-error'
-   */
-  labelClassName?: string;
   /**
    * Change the default rendered element for the one passed as a child,
    * merging their props and behavior.
    * @default false
    */
   asChild?: boolean;
-} & Omit<PressableProps, 'children' | 'onPress'>;
+} & Omit<StyledPressableProps, 'children'>;
 
 export type SelectContentProps = {
   /**
@@ -81,7 +77,7 @@ export type SelectGroupProps = {
    * The children of the select group (SelectLabel, SelectItem)
    */
   children: ReactNode;
-} & ViewProps;
+} & StyledViewProps;
 
 export type SelectLabelProps = {
   /**
@@ -89,11 +85,7 @@ export type SelectLabelProps = {
    * @required
    */
   children: ReactNode;
-  /**
-   * Extra class names to apply to the label element
-   */
-  className?: string;
-} & TextProps;
+} & StyledTextProps;
 
 export type SelectItemProps = {
   /**
@@ -114,10 +106,6 @@ export type SelectItemProps = {
    * The disabled state of the select item
    */
   disabled?: boolean;
-  /**
-   * Extra class names to apply to the item element
-   */
-  className?: string;
 } & Omit<PressableProps, 'children' | 'onPress' | 'disabled'>;
 
 export type SelectItemTextProps = {
@@ -126,18 +114,11 @@ export type SelectItemTextProps = {
    * @required
    */
   children: ReactNode;
-  /**
-   * Extra class names to apply to the item text element
-   */
-  className?: string;
-} & TextProps;
+} & StyledTextProps;
 
 export type SelectSeparatorProps = {
-  /**
-   * Extra class names to apply to the separator element
-   */
-  className?: string;
-} & ViewProps;
+  // No extra props needed
+} & BoxProps;
 
 export type SelectItemData = {
   type: 'item';

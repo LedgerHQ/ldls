@@ -10,7 +10,7 @@ import createIcon from '../../Components/Icon/createIcon';
  *
  * @component
  * @param {16 | 20 | 24 | 40 | 48 | 56} [size=24] - The size of the icon in pixels.
- * @param {string} [className] - Additional CSS classes to apply to the icon (via NativeWind).
+ * @param {string} [color] - The color of the icon.
  * @param {SVGProps} [...props] - All standard SVG element props (from react-native-svg).
  *
  * @example
@@ -20,8 +20,8 @@ import createIcon from '../../Components/Icon/createIcon';
  * <Clock />
  *
  * @example
- * // With custom size and className (NativeWind)
- * <Clock size={40} className="text-warning" />
+ * // With custom size and style
+ * <Clock size={40} color="warning" lx={{ marginTop: 's4' }} />
  *
  * @example
  * // Used within a Button component

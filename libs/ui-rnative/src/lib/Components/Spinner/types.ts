@@ -1,5 +1,6 @@
-import { StyledViewProps } from '../../../styles';
+import { LumenTextStyle } from '../../../styles';
 import { IconSize } from '../Icon';
+import { TextProps } from '../Utility';
 
 export type SpinnerProps = {
   /**
@@ -8,8 +9,8 @@ export type SpinnerProps = {
    */
   size?: IconSize;
   /**
-   * The color of the spinner stroke.
-   * @default text.base color.
+   * The color of the spinner icon.
+   * @default 'base'
    */
-  color?: string;
-} & Omit<StyledViewProps, 'children'>;
+  color?: LumenTextStyle['color'];
+} & Omit<TextProps, 'children'>;

@@ -1,4 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { Box } from '../Utility/Box';
+import { Text } from '../Utility/Text';
 import { Spinner } from './Spinner';
 
 const meta: Meta<typeof Spinner> = {
@@ -32,35 +34,93 @@ export const Sizes: Story = {
     },
   },
   render: () => (
-    <div className='flex items-center justify-center gap-32'>
-      <div className='flex flex-col items-center gap-4'>
+    <Box
+      lx={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 's32',
+      }}
+    >
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={12} />
-        <span className='text-muted body-4'>12</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          12
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={16} />
-        <span className='text-muted body-4'>16</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          16
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={20} />
-        <span className='text-muted body-4'>20</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          20
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={24} />
-        <span className='text-muted body-4'>24</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          24
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={40} />
-        <span className='text-muted body-4'>40</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          40
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={48} />
-        <span className='text-muted body-4'>48</span>
-      </div>
-      <div className='flex flex-col items-center gap-4'>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          48
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
         <Spinner size={56} />
-        <span className='text-muted body-4'>56</span>
-      </div>
-    </div>
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          56
+        </Text>
+      </Box>
+    </Box>
+  ),
+};
+
+export const Colors: Story = {
+  argTypes: {
+    size: {
+      control: false,
+    },
+  },
+  render: () => (
+    <Box
+      lx={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 's32',
+      }}
+    >
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
+        <Spinner size={40} lx={{ color: 'base' }} />
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          base
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
+        <Spinner size={40} lx={{ color: 'muted' }} />
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          muted
+        </Text>
+      </Box>
+      <Box lx={{ alignItems: 'center', gap: 's4' }}>
+        <Spinner size={40} lx={{ color: 'interactive' }} />
+        <Text typography='body4' lx={{ color: 'muted' }}>
+          interactive
+        </Text>
+      </Box>
+    </Box>
   ),
 };

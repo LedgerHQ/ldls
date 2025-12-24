@@ -150,10 +150,6 @@ function mergeProps(slotProps: AnyProps, childProps: AnyProps) {
     // if it's `style`, we merge them
     else if (propName === 'style') {
       overrideProps[propName] = combineStyles(slotPropValue, childPropValue);
-    } else if (propName === 'className') {
-      overrideProps[propName] = [slotPropValue, childPropValue]
-        .filter(Boolean)
-        .join(' ');
     }
   }
 
