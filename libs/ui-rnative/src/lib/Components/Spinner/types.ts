@@ -1,4 +1,4 @@
-import { LumenTextStyle } from 'src/styles';
+import { LumenTextStyle } from '../../../styles';
 import { IconSize } from '../Icon';
 import { TextProps } from '../Utility';
 

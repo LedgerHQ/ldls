@@ -1,10 +1,7 @@
 import { forwardRef, useMemo } from 'react';
 import { Svg } from 'react-native-svg';
-import {
-  LumenStyleSheet,
-  LumenTextStyle,
-  useResolveTextStyle,
-} from '../../../styles';
+import { LumenStyleSheet, useResolveTextStyle } from '../../../styles';
+import { TextProps } from '../Utility';
 import { IconProps, IconSize } from './types';
 
 const iconSizeMap = {
@@ -18,12 +15,12 @@ const iconSizeMap = {
 } as const;
 
 const useStyles = (
-  lx: LumenTextStyle,
+  lx: TextProps['lx'],
   size: IconSize,
   color: IconProps['color'],
 ) => {
   const { theme } = LumenStyleSheet.useTheme();
-  const resolvedStyle = useResolveTextStyle(lx);
+  const resolvedStyle = useResolveTextStyle(lx || {});
   const resolvedColor = useResolveTextStyle({ color });
 
   return useMemo(() => {
