@@ -151,7 +151,7 @@ The Checkbox component automatically supports:
 
 The following guidelines ensure consistent usage of the Checkbox component and maintain design system principles.
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use the built-in label prop'
@@ -217,7 +217,7 @@ const [isChecked, setIsChecked] = useState(false);
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

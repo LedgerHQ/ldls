@@ -61,40 +61,9 @@ Switches support multiple states to provide clear feedback to users:
 </Tab>
 <Tab label="Implementation">
 
-## Installation
+## Setup
 
-Install the packages and their peer dependencies:
-
-```bash
-# Install the UI Kit
-npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
-
-# Install peer dependencies
-npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
-```
-
-#### **About NativeWind**
-
-The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities. It provides the `className` prop support and ensures consistent styling across platforms.
-
-### NativeWind Configuration
-
-To use the Button component with our custom Tailwind preset, you need to configure your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/lumen-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
 ## Basic Usage
 
@@ -180,38 +149,7 @@ The Switch component automatically supports:
 
 The following guidelines ensure consistent usage of the Switch component and maintain design system principles.
 
-<div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use Box and Text for layout'
-      description='Use Box and Text components to create accessible layouts with switches'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-  <Switch id='notifications' />
-  <Text>Enable notifications</Text>
-</Box>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use unlabeled switches"
-      description='Always provide labels for accessibility and clarity'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
-  <Switch id='notifications' />
-</Box>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use controlled components for form state'
@@ -243,7 +181,7 @@ const [isChecked, setIsChecked] = useState(false);
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

@@ -10,42 +10,5 @@ Install the packages and their peer dependencies:
 npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
 
 # Install peer dependencies
-npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
-```
-
-#### **About NativeWind**
-
-The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities.  
-It provides the `className` prop support and ensures consistent styling across platforms.
-
-### NativeWind Configuration
-
-Setup ledger custom tailwind preset in your `tailwind.config.ts`:
-
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
-
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/lumen-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
-```
-
-### Metro Configuration
-
-Add NativeWind to your `metro.config.js`:
-
-```javascript
-const { getDefaultConfig } = require('expo/metro-config');
-const { withNativeWind } = require('nativewind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withNativeWind(config, { input: './global.css' });
+npm install react-native@^0.77.0 react@^18.3.1
 ```

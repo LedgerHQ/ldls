@@ -1,6 +1,6 @@
 import React from 'react';
+import { Box, Pressable, Text } from '../../src/lib/Components/Utility';
 import { Folder } from '../../src/lib/Symbols/Icons/Folder';
-import { cn } from '../../src/lib/utils';
 
 type TabProps = {
   label: string;
@@ -21,62 +21,65 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
   );
 
   if (tabs.length === 0) {
-    return <div className='text-muted'>No tabs found</div>;
+    return (
+      <Text typography='body3' lx={{ color: 'muted' }}>
+        No tabs found
+      </Text>
+    );
   }
 
   return (
-    <div className='max-w-full'>
+    <Box style={{ maxWidth: '100%' }}>
       {/* Tab buttons */}
-      <div className='mb-24 flex gap-24'>
-        {tabs.map((tab, idx) => (
-          <button
-            key={idx}
-            className={cn(
-              'group relative flex flex-col items-center gap-8 rounded-lg p-12 transition-all duration-200 focus:outline-none',
-              active === idx
-                ? 'text-active-subtle'
-                : 'text-muted hover:text-active',
-            )}
-            onClick={() => setActive(idx)}
-          >
-            {/* Folder Icon */}
-            <div
-              className={cn(
-                'rounded-lg p-8 transition-all duration-200',
-                active === idx
-                  ? 'bg-accent text-base'
-                  : 'group-hover:opacity-80',
-              )}
+      <Box lx={{ flexDirection: 'row', gap: 's24', marginBottom: 's24' }}>
+        {tabs.map((tab, idx) => {
+          const isActive = active === idx;
+          return (
+            <Pressable
+              key={idx}
+              lx={{
+                alignItems: 'center',
+                gap: 's8',
+                borderRadius: 'lg',
+                padding: 's12',
+              }}
+              style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
+              onPress={() => setActive(idx)}
             >
-              <Folder size={24} />
-            </div>
+              {/* Folder Icon */}
+              <Box
+                lx={{
+                  borderRadius: 'lg',
+                  padding: 's8',
+                  ...(isActive && { backgroundColor: 'accent' }),
+                }}
+              >
+                <Folder size={24} />
+              </Box>
 
-            {/* Label */}
-            <span
-              className={cn(
-                'transition-colors duration-200 body-3',
-                active === idx
-                  ? 'text-black'
-                  : 'group-hover:text-active group-hover:opacity-80',
-              )}
-            >
-              {tab.props.label}
-            </span>
-          </button>
-        ))}
-      </div>
+              {/* Label */}
+              <Text
+                typography='body3'
+                lx={{ color: isActive ? 'base' : 'muted' }}
+              >
+                {tab.props.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </Box>
 
       {/* Tab content */}
-      <div className='p-24'>
+      <Box lx={{ padding: 's24' }}>
         {tabs.map((tab, idx) => {
           if (idx !== active) return null;
-          return <div key={idx}>{tab.props.children}</div>;
+          return <Box key={idx}>{tab.props.children}</Box>;
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
 export const Tab: React.FC<TabProps> = ({ children }) => {
-  return <div>{children}</div>;
+  return <Box>{children}</Box>;
 };

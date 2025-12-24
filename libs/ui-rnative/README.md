@@ -68,7 +68,7 @@ import { Settings, ArrowRight, CheckCircle } from '@ledgerhq/lumen-ui-rnative/sy
 
 // Use icons directly as components with size prop
 <Settings size={24} />
-<ArrowRight size={20} className="text-accent" />
+<ArrowRight size={20} color="accent" />
 <CheckCircle size={16} />
 
 // Available sizes: 16, 20, 24, 40, 48, 56
