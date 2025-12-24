@@ -47,7 +47,7 @@ BaseCheckboxRoot.displayName = ROOT_COMPONENT_NAME;
 const BaseCheckboxTrigger = React.forwardRef<
   PressableRef,
   SlottablePressableProps
->(({ asChild, onPress: onPressProp, className, ...props }, ref) => {
+>(({ asChild, onPress: onPressProp, ...props }, ref) => {
   const { disabled, checked, onCheckedChange, nativeID } =
     useBaseCheckboxContext({
       consumerName: TRIGGER_COMPONENT_NAME,

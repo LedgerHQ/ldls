@@ -1,6 +1,6 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback, useEffect } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import {
   BottomSheet,
@@ -8,7 +8,50 @@ import {
   BottomSheetView,
   useBottomSheetRef,
 } from '../BottomSheet';
+import { Box, Text } from '../Utility';
 import { useGlobalSelectSafeContext } from './GlobalSelectContext';
+
+const useStyles = () => {
+  return LumenStyleSheet.useCreate((t) => ({
+    bottomSheetView: {
+      paddingHorizontal: t.spacings.s8,
+    },
+    separator: {
+      marginVertical: t.spacings.s4,
+      marginHorizontal: t.spacings.s8,
+      height: 1,
+      backgroundColor: t.colors.bg.muted,
+    },
+    groupLabel: {
+      marginBottom: t.spacings.s4,
+      paddingHorizontal: t.spacings.s8,
+      paddingTop: t.spacings.s8,
+      color: t.colors.text.muted,
+      ...t.typographies.body3SemiBold,
+    },
+    item: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderRadius: t.borderRadius.sm,
+      padding: t.spacings.s8,
+      backgroundColor: t.colors.bg.baseTransparent,
+    },
+    itemPressed: {
+      backgroundColor: t.colors.bg.baseTransparentPressed,
+    },
+    itemDisabled: {
+      opacity: 0.5,
+    },
+    itemLabel: {
+      flex: 1,
+      color: t.colors.text.base,
+      ...t.typographies.body2,
+    },
+    itemLabelDisabled: {
+      color: t.colors.text.disabled,
+    },
+  }));
+};
 
 /**
  * BottomSheet component that displays select options.
@@ -30,6 +73,7 @@ import { useGlobalSelectSafeContext } from './GlobalSelectContext';
  */
 export const GlobalSelectBottomSheet: React.FC = () => {
   const bottomSheetRef = useBottomSheetRef();
+  const styles = useStyles();
   /**
    * This is the only component that subscribes to currentSelect
    * All other components use refs to avoid re-renders
@@ -73,7 +117,7 @@ export const GlobalSelectBottomSheet: React.FC = () => {
       enableDynamicSizing
       enablePanDownToClose
     >
-      <BottomSheetView className='!px-8'>
+      <BottomSheetView style={styles.bottomSheetView}>
         {currentSelect && (
           <>
             {currentSelect.label && (
@@ -82,24 +126,16 @@ export const GlobalSelectBottomSheet: React.FC = () => {
                 appearance='compact'
               />
             )}
-            <View className='gap-4'>
+            <Box lx={{ gap: 's4' }}>
               {currentSelect.items.map((item, index) => {
                 if (item.type === 'separator') {
                   return (
-                    <View
-                      key={`separator-${index}`}
-                      className={cn('my-4 mx-8 h-1 bg-muted')}
-                    />
+                    <Box key={`separator-${index}`} style={styles.separator} />
                   );
                 }
                 if (item.type === 'group-label') {
                   return (
-                    <Text
-                      key={`label-${index}`}
-                      className={cn(
-                        'mb-4 px-8 pt-8 pb-0 text-muted body-3-semi-bold',
-                      )}
-                    >
+                    <Text key={`label-${index}`} style={styles.groupLabel}>
                       {item.label}
                     </Text>
                   );
@@ -112,31 +148,29 @@ export const GlobalSelectBottomSheet: React.FC = () => {
                     onPress={() => handleSelectItem(item.value)}
                   >
                     {({ pressed }) => (
-                      <View
-                        className={cn(
-                          'flex-row items-center rounded-sm p-8 bg-base-transparent',
-                          pressed && 'bg-base-transparent-pressed',
-                          item.disabled && 'opacity-50',
-                        )}
+                      <Box
+                        style={[
+                          styles.item,
+                          pressed && styles.itemPressed,
+                          item.disabled && styles.itemDisabled,
+                        ]}
                       >
                         <Text
-                          className={cn(
-                            'flex-1 text-base body-2',
-                            item.disabled && 'text-disabled',
-                          )}
+                          style={[
+                            styles.itemLabel,
+                            item.disabled && styles.itemLabelDisabled,
+                          ]}
                           numberOfLines={1}
                         >
                           {item.label}
                         </Text>
-                        {isSelected && (
-                          <Check size={24} className='text-active' />
-                        )}
-                      </View>
+                        {isSelected && <Check size={24} color='active' />}
+                      </Box>
                     )}
                   </Pressable>
                 );
               })}
-            </View>
+            </Box>
           </>
         )}
       </BottomSheetView>
