@@ -8,7 +8,7 @@ import { useTheme } from './useTheme';
 
 export const useStyleSheet = <S extends LumenStyleSheet>(
   styleCreator: LumenStyleSheetExtended<S>,
-  deps: DependencyList = [],
+  deps: DependencyList,
 ): S => {
   const { theme } = useTheme();
   const styleCreatorRef = useRef(styleCreator);
