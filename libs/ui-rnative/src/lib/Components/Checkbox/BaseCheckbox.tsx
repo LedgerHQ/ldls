@@ -1,7 +1,12 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback } from 'react';
-import { GestureResponderEvent, Pressable, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import {
+  GestureResponderEvent,
+  Pressable,
+  View,
+  StyleSheet,
+} from 'react-native';
+import { useStyleSheet } from '../../../styles';
 import {
   ForceMountable,
   PressableRef,
@@ -126,7 +131,7 @@ const useStyles = ({
   checked: boolean;
   disabled: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         trigger: StyleSheet.flatten([

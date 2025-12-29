@@ -2,7 +2,7 @@ import { forwardRef, memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet, useResolveTextStyle } from '../../../styles';
+import { useResolveTextStyle, useTheme } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 import { Box } from '../Utility';
 import { SpinnerProps } from './types';
@@ -54,7 +54,7 @@ SpinAnimation.displayName = 'SpinAnimation';
 export const Spinner = forwardRef<View, SpinnerProps>(
   ({ lx = {}, size = 16, color, ...props }, ref) => {
     const { t } = useCommonTranslation();
-    const { theme } = LumenStyleSheet.useTheme();
+    const { theme } = useTheme();
     const resolvedColorStyle = useResolveTextStyle({ color });
     const strokeColor = resolvedColorStyle?.color ?? theme.colors.text.base;
 

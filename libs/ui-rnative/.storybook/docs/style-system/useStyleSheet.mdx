@@ -1,19 +1,19 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Style System/useCreate" />
+<Meta title="Style System/useStyleSheet" />
 
-# useCreate
+# useStyleSheet
 
-`LumenStyleSheet.useCreate` is a hook for creating memoized, theme-aware stylesheets in React Native.
+`useStyleSheet` is a hook for creating memoized, theme-aware stylesheets in React Native.
 
 ### Basic Usage
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 import { View, Text } from 'react-native';
 
 const MyComponent = () => {
-  const styles = LumenStyleSheet.useCreate((theme) => ({
+  const styles = useStyleSheet((theme) => ({
     container: {
       backgroundColor: theme.colors.bg.base,
       padding: theme.spacings.s16,
@@ -38,7 +38,7 @@ const MyComponent = () => {
 Styles are memoized based on the dependency array (second argument). Re-renders only create new styles when dependencies change:
 
 ```tsx
-const styles = LumenStyleSheet.useCreate(
+const styles = useStyleSheet(
   (theme) => ({
     container: {
       backgroundColor: isActive ? theme.colors.bg.accent : theme.colors.bg.base,
@@ -51,10 +51,10 @@ const styles = LumenStyleSheet.useCreate(
 
 ### Pressed State Pattern
 
-For Pressable components, pass `pressed` state to `useCreate`:
+For Pressable components, pass `pressed` state to `useStyleSheet`:
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 import { Pressable } from '@ledgerhq/lumen-ui-rnative';
 
 const InteractiveCard = () => {
@@ -66,7 +66,7 @@ const InteractiveCard = () => {
 };
 
 const CardContent = ({ pressed }: { pressed: boolean }) => {
-  const styles = LumenStyleSheet.useCreate(
+  const styles = useStyleSheet(
     (theme) => ({
       container: {
         backgroundColor: pressed 

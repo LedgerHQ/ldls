@@ -1,10 +1,10 @@
 import { BottomSheetVariables } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { forwardRef } from 'react';
 import { View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 
 const useStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
+  return useStyleSheet((t) => ({
     container: {
       height: t.spacings.s16,
       width: t.sizes.s80,

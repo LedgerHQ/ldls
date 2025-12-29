@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { Pressable } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import {
   BottomSheet,
@@ -12,7 +12,7 @@ import { Box, Text } from '../Utility';
 import { useGlobalSelectSafeContext } from './GlobalSelectContext';
 
 const useStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
+  return useStyleSheet((t) => ({
     bottomSheetView: {
       paddingHorizontal: t.spacings.s8,
     },

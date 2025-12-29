@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useId } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { ChevronDown } from '../../Symbols';
 import { useControllableState, extractTextFromChildren } from '../../utils';
 import { SlotPressable } from '../Slot';
@@ -200,7 +200,7 @@ const useTriggerStyles = ({
   hasValue: boolean;
   hasLabel: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         trigger: StyleSheet.flatten([
@@ -281,7 +281,7 @@ export const SelectValue: React.FC = () => {
     contextRequired: true,
   });
 
-  const styles = LumenStyleSheet.useCreate((t) => ({
+  const styles = useStyleSheet((t) => ({
     text: StyleSheet.flatten([
       t.typographies.body2,
       {
@@ -370,7 +370,7 @@ export const SelectGroup: React.FC<SelectGroupProps> = ({
   style,
   ...props
 }) => {
-  const styles = LumenStyleSheet.useCreate((t) => ({
+  const styles = useStyleSheet((t) => ({
     group: {
       width: t.sizes.full,
       gap: t.spacings.s4,
@@ -391,7 +391,7 @@ export const SelectLabel: React.FC<SelectLabelProps> = ({
   style,
   ...props
 }) => {
-  const styles = LumenStyleSheet.useCreate((t) => ({
+  const styles = useStyleSheet((t) => ({
     label: StyleSheet.flatten([
       t.typographies.body3SemiBold,
       {
@@ -429,7 +429,7 @@ export const SelectItemText: React.FC<SelectItemTextProps> = ({
   style,
   ...props
 }) => {
-  const styles = LumenStyleSheet.useCreate((t) => ({
+  const styles = useStyleSheet((t) => ({
     text: StyleSheet.flatten([
       t.typographies.body2,
       {
@@ -451,7 +451,7 @@ export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
   style,
   ...props
 }) => {
-  const styles = LumenStyleSheet.useCreate((t) => ({
+  const styles = useStyleSheet((t) => ({
     separator: {
       marginHorizontal: t.spacings.s8,
       marginVertical: t.spacings.s4,

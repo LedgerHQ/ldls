@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Text } from '../Utility';
 import { LabelProps } from './types';
 
 const useStyles = ({ disabled }: { disabled: boolean }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => ({
       label: {
         color: disabled ? t.colors.text.disabled : t.colors.text.base,

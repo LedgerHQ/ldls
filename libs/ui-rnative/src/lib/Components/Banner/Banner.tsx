@@ -2,7 +2,7 @@ import { isTextChildren } from '@ledgerhq/lumen-utils-shared';
 import React, { ComponentType } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -30,7 +30,7 @@ const iconColorMap: Record<
 };
 
 const useStyles = ({ appearance }: { appearance: Appearance }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         info: t.colors.bg.surface,

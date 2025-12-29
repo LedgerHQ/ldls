@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
 import { Pressable } from '../Utility';
 
@@ -17,7 +17,7 @@ const useStyles = ({
   disabled: boolean;
   pressed: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         base: t.colors.bg.muted,

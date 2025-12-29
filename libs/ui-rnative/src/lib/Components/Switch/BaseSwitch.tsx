@@ -1,7 +1,12 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, Pressable, type GestureResponderEvent } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  type GestureResponderEvent,
+} from 'react-native';
+import { useStyleSheet } from '../../../styles';
 
 import {
   PressableRef,
@@ -163,7 +168,7 @@ const useStyles = ({
   disabled: boolean;
   size: Size;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const sizes: Record<Size, { width: number; height: number }> = {
         sm: { width: t.sizes.s24, height: t.sizes.s16 },

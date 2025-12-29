@@ -9,7 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Box } from '../Utility';
 import { type AmountInputProps } from './types';
 
@@ -188,7 +188,7 @@ const useStyles = ({
   isEditable: boolean;
   isInvalid: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => ({
       container: {
         position: 'relative',

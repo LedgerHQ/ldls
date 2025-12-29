@@ -7,7 +7,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Three approaches for styling, from constrained to fully customizable:
 
 - [**lx prop**](/?path=/docs/style-system-lx--docs) — Design tokens only → Layout composition, quick styling
-- [**useCreate**](/?path=/docs/style-system-usecreate--docs) — Full customizability, built-in memoization → Complex styles, custom components
+- [**useStyleSheet**](/?path=/docs/style-system-useStylesheet--docs) — Full customizability, built-in memoization → Complex styles, custom components
 - [**useTheme**](/?path=/docs/style-system-usetheme--docs) — Full customizability → Theme/color scheme control
 
 ---
@@ -26,14 +26,14 @@ import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
 </Box>
 ```
 
-### useCreate
+### useStyleSheet
 
 Wrapper on top of useTheme to create theme-aware stylesheets with **built-in memoization**. Allow full customizability.
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
 
-const styles = LumenStyleSheet.useCreate((theme) => ({
+const styles = useStyleSheet((theme) => ({
   container: {
     backgroundColor: theme.colors.bg.base,
     padding: theme.spacings.s16,
@@ -46,9 +46,9 @@ const styles = LumenStyleSheet.useCreate((theme) => ({
 Direct design-tokens access from the theme object.
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 
-const { theme } = LumenStyleSheet.useTheme();
+const { theme } = useTheme();
 ```
 
 ---

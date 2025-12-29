@@ -2,7 +2,7 @@ import { useBottomSheet } from '@gorhom/bottom-sheet';
 import { FC, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 import { Box, Text } from '../Utility';
@@ -22,7 +22,7 @@ const useStyles = ({
   spacing: boolean;
   hidden: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => ({
       root: StyleSheet.flatten([
         {

@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 
 import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { Pressable } from '../Utility';
@@ -17,7 +17,7 @@ const useStyles = ({
   pressed: boolean;
   disabled: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const backgroundStyle = {
         filled: { backgroundColor: t.colors.bg.base },

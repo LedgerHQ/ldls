@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import {
   BluetoothCircleFill,
   CheckmarkCircleFill,
@@ -41,7 +41,7 @@ const useStyles = ({
   appearance: SpotAppearance;
   disabled: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const colorMap: Record<SpotAppearance, string> = {
         icon: t.colors.text.base,

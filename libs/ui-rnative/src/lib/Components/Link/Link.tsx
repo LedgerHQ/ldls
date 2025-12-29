@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linking, StyleSheet, Text, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
 import { Pressable } from '../Utility';
@@ -22,7 +22,7 @@ type StyleParams = {
 };
 
 const useStyles = ({ appearance, size, underline, pressed }: StyleParams) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const textColors: Record<Appearance, string> = {
         base: t.colors.text.base,

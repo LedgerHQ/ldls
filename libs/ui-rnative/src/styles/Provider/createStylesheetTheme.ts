@@ -19,7 +19,7 @@ export const getNegativeSpacings = <
  * The theme object from design-core is not directly compatible with React Native's StyleSheet.
  *
  * We must transform and extend the theme so it can be easily used with
- * LumenStyleSheet utilities like `useCreate`, as well as components such as
+ * utilities like `useStyleSheet`, as well as components such as
  * `createStyledText` and `createStyledView`. This process augments the design system
  * theme with React Native–specific structure and shorthand.
  */

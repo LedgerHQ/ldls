@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { Animated, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet, useTheme } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Box, Pressable } from '../Utility';
@@ -32,7 +32,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     ref,
   ) => {
     const { t } = useCommonTranslation();
-    const { theme } = LumenStyleSheet.useTheme();
+    const { theme } = useTheme();
     const inputRef = useRef<TextInput>(null);
     useImperativeHandle(ref, () => inputRef.current as TextInput);
 
@@ -175,7 +175,7 @@ const useStyles = ({
   isEditable: boolean;
   hasLabel: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         container: StyleSheet.flatten([
@@ -259,9 +259,9 @@ const useFloatingLabelStyles = ({
   hasError: boolean;
   isEditable: boolean;
 }) => {
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
 
-  const label = LumenStyleSheet.useCreate(
+  const label = useStyleSheet(
     (t) => ({
       label: StyleSheet.flatten([
         {

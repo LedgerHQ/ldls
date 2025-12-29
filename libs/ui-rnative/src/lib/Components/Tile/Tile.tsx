@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Pressable } from '../Utility';
 import { TileProps } from './types';
 
@@ -15,7 +15,7 @@ const useStyles = ({
   disabled: boolean;
   pressed: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         'no-background': t.colors.bg.baseTransparent,

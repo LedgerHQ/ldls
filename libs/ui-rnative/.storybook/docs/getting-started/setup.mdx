@@ -76,13 +76,13 @@ If not provided, the theme will follow the device settings.
 </ThemeProvider>
 ```
 
-If the ThemeProvider is uncontrolled, you can use the [`LumenStyleSheet.useTheme`](/?path=/docs/style-system-usetheme--docs) hook to control theme mode at runtime:
+If the ThemeProvider is uncontrolled, you can use the [`useTheme`](/?path=/docs/style-system-usetheme--docs) hook to control theme mode at runtime:
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 
 const ThemeToggle = () => {
-  const { colorScheme, toggleColorScheme, setColorScheme } = LumenStyleSheet.useTheme();
+  const { colorScheme, toggleColorScheme, setColorScheme } = useTheme();
   
   return (
     <Button onPress={toggleColorScheme}>

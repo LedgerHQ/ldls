@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Pressable } from '../Utility';
 
 import { ListItemProps } from './ListItem.types';
@@ -12,7 +12,7 @@ const useStyles = ({
   disabled: boolean;
   pressed: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         container: StyleSheet.flatten([

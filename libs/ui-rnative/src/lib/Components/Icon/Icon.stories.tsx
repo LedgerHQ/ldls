@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
-import { LumenStyleSheet } from '../../../styles';
+import { useTheme } from '../../../styles';
 import * as Icons from '../../Symbols';
 import { Search } from '../Search/Search';
 import { Box, Text, Pressable } from '../Utility';
@@ -30,7 +30,7 @@ type IconCardProps = {
 };
 
 const IconCard = ({ name, size = 24, color }: IconCardProps) => {
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
   const [copied, setCopied] = useState(false);
   const IconComponent = Icons[name as keyof typeof Icons];
   const iconColor = color ?? theme.colors.text.base;
@@ -111,7 +111,7 @@ export const Icon: StoryObj<IconStoryProps> = {
     },
   },
   render: (args) => {
-    const { theme } = LumenStyleSheet.useTheme();
+    const { theme } = useTheme();
     const IconComponent = Icons[args.name];
     const iconColor = args.color ?? theme.colors.text.base;
 
@@ -137,7 +137,7 @@ export const Icon: StoryObj<IconStoryProps> = {
 
 export const IconSizes: StoryObj = {
   render: () => {
-    const { theme } = LumenStyleSheet.useTheme();
+    const { theme } = useTheme();
 
     return (
       <Box lx={{ flexDirection: 'column', gap: 's16' }}>
@@ -184,7 +184,7 @@ export const Gallery: StoryObj = {
     layout: 'fullscreen',
   },
   render: () => {
-    const { theme } = LumenStyleSheet.useTheme();
+    const { theme } = useTheme();
     const [searchTerm, setSearchTerm] = useState('');
 
     // Filter icons based on search term

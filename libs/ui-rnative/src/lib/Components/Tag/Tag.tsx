@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { ViewRef } from '../../types';
 import { IconSize } from '../Icon';
 import { Box } from '../Utility';
@@ -18,7 +18,7 @@ const useStyles = ({
   size: Size;
   disabled: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         base: t.colors.bg.mutedTransparent,

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ColorSchemeName, Pressable, Text, View } from 'react-native';
 import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
 import { useTheme } from '../Provider/useTheme';
-import { useCreate } from './useCreate';
+import { useStyleSheet } from './useStyleSheet';
 
 // Wrapper that allows testing uncontrolled theme switching
 const TestProviderWrapper = ({
@@ -94,11 +94,11 @@ const testThemes: any = {
   },
 };
 
-describe('useCreate', () => {
+describe('useStyleSheet', () => {
   describe('Static styles', () => {
     it('creates static styles with theme tokens', () => {
       const TestComponent = (): React.JSX.Element => {
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           container: {
             backgroundColor: theme.colors.bg.base,
             padding: theme.spacings.s8,
@@ -140,7 +140,7 @@ describe('useCreate', () => {
     it('updates styles when theme changes', async () => {
       const TestComponent = (): React.JSX.Element => {
         const { toggleColorScheme } = useTheme();
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           container: {
             backgroundColor: theme.colors.bg.base,
             borderColor: theme.colors.border.base,
@@ -188,7 +188,7 @@ describe('useCreate', () => {
 
     it('handles nested theme properties', () => {
       const TestComponent = (): React.JSX.Element => {
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           card: {
             backgroundColor: theme.colors.bg.surface,
             padding: theme.spacings.s24,
@@ -218,7 +218,7 @@ describe('useCreate', () => {
   describe('Dynamic functions', () => {
     it('creates dynamic styles with function parameters', () => {
       const TestComponent = (): React.JSX.Element => {
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           container: (width: number, highlighted: boolean) => ({
             backgroundColor: highlighted
               ? theme.colors.bg.accent
@@ -261,7 +261,7 @@ describe('useCreate', () => {
     it('updates dynamic styles when theme changes', () => {
       const TestComponent = (): React.JSX.Element => {
         const { setColorScheme } = useTheme();
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           container: (isActive: boolean) => ({
             backgroundColor: isActive
               ? theme.colors.bg.accent
@@ -313,7 +313,7 @@ describe('useCreate', () => {
 
     it('handles multiple parameters in dynamic functions', () => {
       const TestComponent = (): React.JSX.Element => {
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           box: (size: number, color: string, rounded: boolean) => ({
             width: size,
             height: size,
@@ -358,7 +358,7 @@ describe('useCreate', () => {
   describe('Mixed static and dynamic styles', () => {
     it('supports both static and dynamic styles in the same stylesheet', () => {
       const TestComponent = (): React.JSX.Element => {
-        const styles = useCreate((theme: any) => ({
+        const styles = useStyleSheet((theme: any) => ({
           staticContainer: {
             backgroundColor: theme.colors.bg.base,
             padding: theme.spacings.s16,
@@ -413,7 +413,7 @@ describe('useCreate', () => {
 
       const TestComponent = (): React.JSX.Element => {
         const { setColorScheme, colorScheme } = useTheme();
-        const styles = useCreate((theme: any) => {
+        const styles = useStyleSheet((theme: any) => {
           styleCreationCount++;
           return {
             container: {
