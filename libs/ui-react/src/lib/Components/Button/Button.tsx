@@ -1,7 +1,8 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
-import { BaseButton, BaseButtonProps } from './BaseButton';
+import { BaseButton } from './BaseButton';
+import { ButtonProps } from './types';
 
 const buttonVariants = cva('', {
   variants: {
@@ -15,24 +16,6 @@ const buttonVariants = cva('', {
     size: 'md',
   },
 });
-
-export type ButtonProps = {
-  /**
-   * If true, shows a loading spinner and disables the button.
-   * @default false
-   */
-  loading?: boolean;
-  /**
-   * The content of the button. This is required to ensure buttons always have a label.
-   * @required
-   */
-  children: React.ReactNode;
-  /**
-   * The size variant of the button.
-   * @default md
-   */
-  size?: 'sm' | 'md' | 'lg';
-} & Omit<BaseButtonProps, 'children' | 'size'>;
 
 /**
  * A customizable button component that supports various appearances, sizes, full-width mode, loading states, and optional icons.

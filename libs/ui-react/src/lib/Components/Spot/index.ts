@@ -1,1 +1,2 @@
-export * from './Spot';
+export { Spot } from './Spot';
+export * from './types';

@@ -1,1 +1,2 @@
-export * from './CardButton';
+export { CardButton } from './CardButton';
+export * from './types';

@@ -1,9 +1,10 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import { Slot } from '@radix-ui/react-slot';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import React from 'react';
 import { ExternalLink } from '../../Symbols';
-import { IconSize } from '../Icon/Icon';
+import { IconSize } from '../Icon/types';
+import { LinkProps } from './types';
 
 const linkVariants = cva(
   'inline-flex w-fit max-w-full items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus',
@@ -32,45 +33,6 @@ const linkVariants = cva(
     },
   },
 );
-
-export type LinkProps = {
-  /**
-   * The visual style of the link.
-   * @default inherit
-   */
-  appearance?: 'base' | 'accent' | 'inherit';
-  /**
-   * The size variant of the link.
-   * @default inherit
-   */
-  size?: 'sm' | 'md' | 'inherit';
-  /**
-   * Whether to underline the link text.
-   * @default true
-   */
-  underline?: boolean;
-  /**
-   * An optional icon component to render inside the link.
-   * The icon styles are defined by the link. Please do not override them.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * If true, adds target="_blank" and rel="noopener noreferrer" for external links.
-   * @default false
-   */
-  isExternal?: boolean;
-  /**
-   * If true, renders the child element directly with link styles instead of wrapping in an anchor element.
-   * Useful for creating router links or other semantic elements with link appearance.
-   * @default false
-   */
-  asChild?: boolean;
-  /**
-   * The link's content, typically text.
-   */
-  children: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  VariantProps<typeof linkVariants>;
 
 /**
  * A customizable link component that supports base and accent color appearances, optional underline, sizes, icons, and external link handling.

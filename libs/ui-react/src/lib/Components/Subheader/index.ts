@@ -1,1 +1,2 @@
-export * from './Subheader';
+export { Subheader } from './Subheader';
+export * from './types';

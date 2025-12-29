@@ -1,8 +1,8 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
-import { IconSize } from '../Icon/Icon';
-import { TagProps } from './Tag.types';
+import { IconSize } from '../Icon/types';
+import { TagProps } from './types';
 
 const tagVariants = cva(
   'inline-flex items-center justify-center gap-4 rounded-xs',

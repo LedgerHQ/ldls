@@ -1,10 +1,6 @@
 import React from 'react';
-import { BaseInput, type BaseInputProps } from '../BaseInput';
-
-export type TextInputProps = Omit<
-  BaseInputProps,
-  'prefix' | 'labelClassName' | 'inputClassName'
->;
+import { BaseInput } from '../BaseInput';
+import { TextInputProps } from './types';
 
 /**
  * A customizable input component with floating label, automatic clear button, error states, and focus/hover effects.

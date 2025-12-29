@@ -3,6 +3,7 @@ import React from 'react';
 import { useCommonTranslation } from '../../../i18n';
 import { DeleteCircleFill } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
+import { BaseInputProps } from './types';
 
 const baseContainerStyles = cn(
   'group relative flex h-48 w-full cursor-text items-center gap-8 rounded-sm bg-muted px-16 transition-colors',
@@ -28,53 +29,6 @@ const baseLabelStyles = cn(
   'peer-focus:top-6 peer-focus:-translate-y-0 peer-focus:body-4',
   'w-[calc(100%-var(--size-56))] truncate',
 );
-
-export type BaseInputProps = {
-  /**
-   * The label text that floats above the input when focused or filled.
-   */
-  label?: string;
-  /**
-   * An optional error message displayed below the input
-   */
-  errorMessage?: string;
-  /**
-   * Indicates whether the input value is invalid
-   * @default false
-   */
-  'aria-invalid'?: boolean;
-  /**
-   * Custom content to render after the input.
-   * @example suffix={<Icon />}
-   */
-  suffix?: React.ReactNode;
-  /**
-   * Custom content to render before the input (left side in LTR).
-   * @example prefix={<Icon />}
-   */
-  prefix?: React.ReactNode;
-  /**
-   * Optional function to extend the default clear behavior with custom logic
-   */
-  onClear?: () => void;
-  /**
-   * Hide the clear button (shown by default when input has content)
-   * @default false
-   */
-  hideClearButton?: boolean;
-  /**
-   * Additional class names to apply to the container element
-   */
-  className?: string;
-  /**
-   * Additional class names to apply to the input element
-   */
-  inputClassName?: string;
-  /**
-   * Additional class names to apply to the label element
-   */
-  labelClassName?: string;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'>;
 
 /**
  * Base input component with floating label, error state styling, and clear button functionality.

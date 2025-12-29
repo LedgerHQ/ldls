@@ -1,1 +1,2 @@
-export * from './AddressInput';
+export { AddressInput } from './AddressInput';
+export * from './types';

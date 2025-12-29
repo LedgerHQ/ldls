@@ -2,6 +2,11 @@ import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import React from 'react';
+import {
+  TooltipContentProps,
+  TooltipProps,
+  TooltipTriggerProps,
+} from './types';
 
 const tooltipContentVariants = cva(
   'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
@@ -59,13 +64,6 @@ export const TooltipProvider = ({
   );
 };
 
-export type TooltipProps = {
-  /**
-   * The delay in milliseconds before the tooltip appears.
-   * @default 200
-   */
-  delayDuration?: number;
-} & React.ComponentProps<typeof TooltipPrimitive.Root>;
 /**
  * The root component that manages the tooltip's open/closed state and contains the trigger and content.
  *
@@ -99,17 +97,6 @@ export const Tooltip = ({ delayDuration = 200, ...props }: TooltipProps) => {
   );
 };
 
-export type TooltipTriggerProps = {
-  /**
-   * The element that will trigger the tooltip (e.g., button, icon, text).
-   */
-  children?: React.ReactNode;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof TooltipPrimitive.Trigger>;
-
 /**
  * The element that triggers the tooltip to appear when interacted with.
  *
@@ -134,27 +121,6 @@ export type TooltipTriggerProps = {
 export const TooltipTrigger = ({ ...props }: TooltipTriggerProps) => {
   return <TooltipPrimitive.Trigger data-slot='tooltip-trigger' {...props} />;
 };
-
-export type TooltipContentProps = {
-  /**
-   * The content to display inside the tooltip.
-   */
-  children?: React.ReactNode;
-  /**
-   * The side of the trigger element to position the tooltip on.
-   * @default top
-   */
-  side?: 'top' | 'right' | 'bottom' | 'left';
-  /**
-   * The distance in pixels between the tooltip and the trigger element.
-   * @default 0
-   */
-  sideOffset?: number;
-  /**
-   * Additional custom CSS classes to apply. Do not use this prop to modify the component's core appearance.
-   */
-  className?: string;
-} & React.ComponentProps<typeof TooltipPrimitive.Content>;
 
 /**
  * The content container that displays the tooltip information.

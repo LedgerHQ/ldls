@@ -1,14 +1,7 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { createElement, forwardRef } from 'react';
-
-export type IconSize = 12 | 16 | 20 | 24 | 40 | 48 | 56;
-
-export type IconProps = {
-  size?: IconSize;
-  className?: string;
-  children: React.ReactNode;
-} & React.SVGProps<SVGSVGElement>;
+import { IconProps } from './types';
 
 const iconVariants = cva('inline-block', {
   variants: {
