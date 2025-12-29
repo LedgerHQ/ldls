@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import type { StorybookConfig } from '@storybook/react-native-web-vite';
 import { mergeConfig } from 'vite';
-import { commonjsExportsShim } from './vite-plugins/commonjs-exports-shim';
 
 const config: StorybookConfig = {
   stories: [
@@ -17,11 +16,7 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-native-web-vite'),
-    options: {
-      pluginReactOptions: {
-        jsxImportSource: 'nativewind',
-      },
-    },
+    options: {},
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
@@ -36,15 +31,7 @@ const config: StorybookConfig = {
     };
 
     return mergeConfig(config, {
-      plugins: [nxViteTsPaths(), commonjsExportsShim()],
-      css: {
-        postcss: {
-          plugins: [
-            (await import('tailwindcss')).default,
-            (await import('autoprefixer')).default,
-          ],
-        },
-      },
+      plugins: [nxViteTsPaths()],
     });
   },
 

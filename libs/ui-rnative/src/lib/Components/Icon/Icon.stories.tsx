@@ -56,7 +56,7 @@ const IconCard = ({ name, size = 24, color }: IconCardProps) => {
         gap: 's8',
         borderRadius: 'sm',
         padding: 's16',
-        width: 's144',
+        width: 's96',
       }}
       style={({ pressed }) => ({
         backgroundColor: pressed ? theme.colors.bg.mutedPressed : 'transparent',
@@ -150,9 +150,9 @@ export const IconSizes: StoryObj = {
               lx={{
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                gap: 's16',
+                gap: 's8',
                 borderRadius: 'sm',
-                padding: 's16',
+                padding: 's8',
               }}
               style={{
                 borderWidth: 1,

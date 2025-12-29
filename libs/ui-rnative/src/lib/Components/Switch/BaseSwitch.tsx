@@ -35,7 +35,6 @@ const BaseSwitchRoot = React.forwardRef<PressableRef, BaseSwitchRootProps>(
       size = 'md',
       onCheckedChange,
       disabled = false,
-      className,
       onPress: onPressProp,
       'aria-valuetext': ariaValueText,
       ...props

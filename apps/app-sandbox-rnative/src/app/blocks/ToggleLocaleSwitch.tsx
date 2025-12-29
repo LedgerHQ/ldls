@@ -1,5 +1,4 @@
-import { Switch, SupportedLocale } from '@ledgerhq/lumen-ui-rnative';
-import { Text, View } from 'react-native';
+import { Box, Switch, SupportedLocale, Text } from '@ledgerhq/lumen-ui-rnative';
 
 export const ToggleLocaleSwitch = ({
   locale,
@@ -9,13 +8,17 @@ export const ToggleLocaleSwitch = ({
   setLocale: (locale: SupportedLocale) => void;
 }) => {
   return (
-    <View className='flex flex-row gap-8 text-muted'>
-      <Text className='text-base'>FR</Text>
+    <Box lx={{ flexDirection: 'row', gap: 's8' }}>
+      <Text typography='body3' lx={{ color: 'base' }}>
+        FR
+      </Text>
       <Switch
         checked={locale === 'en'}
         onCheckedChange={() => setLocale(locale === 'en' ? 'fr' : 'en')}
       />
-      <Text className='text-base'>EN</Text>
-    </View>
+      <Text typography='body3' lx={{ color: 'base' }}>
+        EN
+      </Text>
+    </Box>
   );
 };

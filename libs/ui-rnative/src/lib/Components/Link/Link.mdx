@@ -3,7 +3,7 @@ import * as LinkStories from './Link.stories';
 import { Link } from './Link';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
-import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
+import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/Link' of={LinkStories} />
 
@@ -192,7 +192,7 @@ The Link component is built on React Native's `Pressable` and accepts all its pr
 
 The following guidelines are based on our design system principles. These decisions were made to ensure consistency, maintainability, and proper implementation of our design system principles.
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Keep underline for base appearance'
@@ -254,37 +254,6 @@ import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 ```
 
     </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use underline prop to control text decoration'
-      description='Use the underline prop instead of lx for text decoration'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Link underline={false} href='https://example.com'>
-  Link without underline
-</Link>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use lx to fake underline"
-      description='Avoid using lx with borderBottom to mimic underline styling'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Link style={{ textDecorationLine: 'underline' }} href='https://example.com'>
-  Link without underline
-</Link>
-```
-
-    </DontBlockItem>
-
   </DoVsDontRow>
 
   <DoVsDontRow>
@@ -318,7 +287,7 @@ import { ArrowRight } from '@ledgerhq/lumen-ui-rnative/symbols';
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 ## Platform Considerations
 

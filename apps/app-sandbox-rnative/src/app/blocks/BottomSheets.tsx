@@ -1,13 +1,14 @@
 import {
   BottomSheet,
   BottomSheetHeader,
+  Box,
   Button,
   BottomSheetFlatList,
   BottomSheetScrollView,
   BottomSheetView,
+  Text,
 } from '@ledgerhq/lumen-ui-rnative';
 import { forwardRef } from 'react';
-import { Text, View } from 'react-native';
 
 export const BottomSheetsButton = ({ onPress }: any) => {
   return (
@@ -45,12 +46,22 @@ export const BottomSheetFlatLists = forwardRef<
         renderItem={({ item }) => {
           const typedItem = item as any;
           return (
-            <View className='flex flex-col gap-4 border-b border-base py-12'>
-              <Text className='text-base body-2-semi-bold'>
+            <Box
+              lx={{
+                flexDirection: 'column',
+                gap: 's4',
+                borderBottomWidth: 's1',
+                borderColor: 'base',
+                paddingVertical: 's12',
+              }}
+            >
+              <Text typography='body2SemiBold' lx={{ color: 'base' }}>
                 {typedItem.title}
               </Text>
-              <Text className='text-muted body-3'>{typedItem.description}</Text>
-            </View>
+              <Text typography='body3' lx={{ color: 'muted' }}>
+                {typedItem.description}
+              </Text>
+            </Box>
           );
         }}
       />
@@ -85,16 +96,28 @@ export const BottomSheetDynamicSize = forwardRef<
           description='This bottom sheet adapts to its content height'
         />
       </BottomSheetView>
-      <BottomSheetScrollView className='flex flex-col gap-12'>
-        {data.map((item) => (
-          <View
-            key={item.id}
-            className='flex flex-col gap-4 border-b border-base py-12'
-          >
-            <Text className='text-base body-2-semi-bold'>{item.title}</Text>
-            <Text className='text-muted body-3'>{item.description}</Text>
-          </View>
-        ))}
+      <BottomSheetScrollView>
+        <Box lx={{ flexDirection: 'column', gap: 's12' }}>
+          {data.map((item) => (
+            <Box
+              key={item.id}
+              lx={{
+                flexDirection: 'column',
+                gap: 's4',
+                borderBottomWidth: 's1',
+                borderColor: 'base',
+                paddingVertical: 's12',
+              }}
+            >
+              <Text typography='body2SemiBold' lx={{ color: 'base' }}>
+                {item.title}
+              </Text>
+              <Text typography='body3' lx={{ color: 'muted' }}>
+                {item.description}
+              </Text>
+            </Box>
+          ))}
+        </Box>
       </BottomSheetScrollView>
     </BottomSheet>
   );

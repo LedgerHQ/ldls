@@ -10,42 +10,106 @@ Install the packages and their peer dependencies:
 npm install @ledgerhq/lumen-ui-rnative @ledgerhq/lumen-design-core
 
 # Install peer dependencies
-npm install react-native@^0.75.0 react@^18.3.1 nativewind@^4.1.0 tailwindcss@^3.4.0 class-variance-authority
+npm install react-native@^0.77.0 react@^18.3.1
 ```
 
-#### **About NativeWind**
 
-The `nativewind` dependency is used for styling React Native components with Tailwind CSS utilities.  
-It provides the `className` prop support and ensures consistent styling across platforms.
 
-### NativeWind Configuration
+## Setup ThemeProvider
 
-Setup ledger custom tailwind preset in your `tailwind.config.ts`:
+The `ThemeProvider` will manage themes, colorScheme, locale, rtl and other global state...
 
-```typescript
-import type { Config } from 'tailwindcss';
-import { ledgerLivePreset } from '@ledgerhq/lumen-design-core';
+```tsx
+import { ThemeProvider } from '@ledgerhq/lumen-ui-rnative';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 
-const config = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Your project's files
-    "./node_modules/@ledgerhq/lumen-ui-rnative/dist/**/*.{js,ts,jsx,tsx}" // Ledger UI Kit components
-  ],
-  presets: [ledgerLivePreset], // the installed tailwind preset
-} satisfies Config;
-
-export default config;
+function App() {
+  return (
+    <ThemeProvider 
+      themes={ledgerLiveThemes}
+      colorScheme="dark"
+      locale="en"
+    >
+      <YourApp />
+    </ThemeProvider>
+  );
+}
 ```
 
-### Metro Configuration
+## Themes
 
-Add NativeWind to your `metro.config.js`:
+Use the themes prop to pass theme objects to the ThemeProvider.
 
-```javascript
-const { getDefaultConfig } = require('expo/metro-config');
-const { withNativeWind } = require('nativewind/metro');
+Three themes are currently available:
+- enterprise
+- ledger-live
+- websites
 
-const config = getDefaultConfig(__dirname);
+Once provided, the active theme can be accessed using Lumen style-system utilities.
 
-module.exports = withNativeWind(config, { input: './global.css' });
+```tsx
+import { ThemeProvider } from '@ledgerhq/lumen-ui-rnative';
+import { ledgerLiveThemes, enterpriseThemes, websitesThemes } from '@ledgerhq/lumen-design-core';
+
+function App() {
+  return (
+    <ThemeProvider themes={ledgerLiveThemes}>
+      <App />
+    </ThemeProvider>
+```
+
+## Color Scheme
+
+The `colorScheme` prop controls the theme color scheme.
+If not provided, the theme will follow the device settings.
+
+- `"dark"` - Forces dark color scheme
+- `"light"` - Forces light color scheme
+
+
+```tsx
+<ThemeProvider 
+  themes={ledgerLiveThemes}
+  colorScheme="dark"
+>
+  <App />
+</ThemeProvider>
+```
+
+If the ThemeProvider is uncontrolled, you can use the [`LumenStyleSheet.useTheme`](/?path=/docs/style-system-usetheme--docs) hook to control theme mode at runtime:
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+
+const ThemeToggle = () => {
+  const { colorScheme, toggleColorScheme, setColorScheme } = LumenStyleSheet.useTheme();
+  
+  return (
+    <Button onPress={toggleColorScheme}>
+      Current: {colorScheme}
+    </Button>
+  );
+};
+```
+
+When the colorScheme changes, `Appearance.setColorScheme` is automatically called to update the system theme.
+
+
+## Internationalization
+
+The ThemeProvider also manages the app’s locale using React Context.  
+You can just pass the locale to the `ThemeProvider` and the translations will be loaded automatically.
+
+```tsx
+import { ThemeProvider, type SupportedLocale } from '@ledgerhq/lumen-ui-rnative';
+
+function AppProviders() {
+  const [locale, setLocale] = useState<SupportedLocale>('en');
+  return (
+    <ThemeProvider locale={locale}>
+      <App />
+      <Button onClick={() => setLocale('fr')}>Switch to French</Button>
+    </ThemeProvider>
+  );
+}
 ```

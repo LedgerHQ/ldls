@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import {
+  Box,
   Select,
   SelectContent,
   SelectGroup,
@@ -11,13 +12,12 @@ import {
   SelectValue,
 } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
-import { View } from 'react-native';
 
 function Base() {
   const [value, setValue] = useState<string>();
 
   return (
-    <View>
+    <Box>
       <Select value={value} onValueChange={setValue}>
         <SelectTrigger label='Italian dish'>
           <SelectValue />
@@ -40,7 +40,7 @@ function Base() {
           </SelectItem>
         </SelectContent>
       </Select>
-    </View>
+    </Box>
   );
 }
 
@@ -48,7 +48,7 @@ function WithGroups() {
   const [value, setValue] = useState<string>();
 
   return (
-    <View>
+    <Box>
       <Select value={value} onValueChange={setValue}>
         <SelectTrigger label='City'>
           <SelectValue />
@@ -81,15 +81,15 @@ function WithGroups() {
           </SelectGroup>
         </SelectContent>
       </Select>
-    </View>
+    </Box>
   );
 }
 
 export function Selects() {
   return (
-    <View className='w-full gap-8'>
+    <Box lx={{ width: 'full', gap: 's8' }}>
       <Base />
       <WithGroups />
-    </View>
+    </Box>
   );
 }

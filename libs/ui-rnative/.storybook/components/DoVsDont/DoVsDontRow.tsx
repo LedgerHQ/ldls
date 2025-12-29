@@ -1,20 +1,16 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
+import { Box } from '../../../src/lib/Components/Utility';
 
 type DoVsDontRowProps = {
   children: React.ReactNode;
-  className?: string;
 };
 
-export const DoVsDontRow: React.FC<DoVsDontRowProps> = ({
-  children,
-  className,
-}) => {
+export const DoVsDontRow: React.FC<DoVsDontRowProps> = ({ children }) => {
   return (
-    <div className={cn('flex flex-col gap-16', className)}>
-      <div className='!-mb-16 grid grid-cols-1 gap-16 md:grid-cols-2'>
+    <Box lx={{ gap: 's16' }}>
+      <Box lx={{ flexDirection: 'row', gap: 's16', flexWrap: 'wrap' }}>
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

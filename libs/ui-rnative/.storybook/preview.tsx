@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react-native-web-vite';
-import '../src/global.css';
+
 import {
   withBrandDecorator,
   withModeDecorator,
@@ -50,19 +50,15 @@ const preview: Preview = {
       storySort: {
         order: [
           'Getting Started',
-          ['Introduction', 'Quick Start'],
+          ['Setup', 'Changelog'],
           'Style System',
-          ['lx', 'useCreate', 'useTheme'],
-          'Tailwind',
-          ['Introduction', 'Setup guide', 'Configuration'],
-          'Foundations',
-          ['Docs', 'Colors', 'Border', 'Spacing', 'Size', 'Height', 'Width'],
+          ['Style System', 'useTheme', 'useCreate', 'lx'],
           'Symbols',
           'Action',
           'Communication',
           'Containment',
           'Selection',
-          'Text Input',
+          'Input',
         ],
       },
     },

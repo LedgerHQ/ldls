@@ -27,10 +27,9 @@ Lumen is a comprehensive design system built to provide a consistent user experi
 ### Technology Stack
 
 - **UI Development**: [React](https://reactjs.org/) & [React Native](https://reactnative.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [NativeWind](https://nativewind.dev/)
 - **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
 - **Component Variants**: [class-variance-authority](https://cva.style/docs)
-- **Utility Libraries**: clsx, tailwind-merge, lodash-es
+- **Utility Libraries**: clsx, tailwind-merge
 
 > Alpha Release Information
 > The Lumen Design System is currently in alpha, with the following limitations:

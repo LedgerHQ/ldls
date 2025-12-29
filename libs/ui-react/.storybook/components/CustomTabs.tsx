@@ -1,6 +1,6 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
-import { Folder } from '../src/lib/Symbols/Icons/Folder';
+import { Folder } from '../../src/lib/Symbols/Icons/Folder';
 
 type TabProps = {
   label: string;
@@ -52,7 +52,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
             {/* Label */}
             <span
               className={cn(
-                'transition-colors duration-200 body-3',
+                'body-3 transition-colors duration-200',
                 active === idx
                   ? 'text-black'
                   : 'group-hover:text-active group-hover:opacity-80',

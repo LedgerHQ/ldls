@@ -18,9 +18,6 @@ The Lumen Design System is structured as a monorepo using Nx, with the following
 ```sh
 lumen
   ├──libs/
-  │    ├── ui-core/        # Shared utilities and types
-  │    │                   # name: @ledgerhq/lumen-ui-core
-  │    │
   │    ├── ui-react/       # React components
   │    │                   # name: @ledgerhq/lumen-ui-react
   │    │
@@ -86,8 +83,6 @@ npx nx run @ledgerhq/lumen-ui-react:build
 # Build React Native components
 npx nx run @ledgerhq/lumen-ui-rnative:build
 
-# Build shared core library
-npx nx run @ledgerhq/lumen-ui-core:build
 ```
 
 ### Branch Strategy
@@ -188,7 +183,7 @@ Component documentation should use a two-tab structure for clarity:
 **Example Structure**:
 
 ```tsx
-import { CustomTabs, Tab } from '../../../../.storybook/CustomTabs';
+import { CustomTabs, Tab } from '../../../../.storybook/components';
 
 <CustomTabs>
   <Tab label='Overview '>{/* Design documentation, anatomy, properties, showcases */}</Tab>

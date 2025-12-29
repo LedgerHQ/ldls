@@ -1,43 +1,40 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
+import { Box, Text } from '../../../src/lib/Components/Utility';
 
 type DontBlockItemProps = {
   title?: string;
   description?: string;
   children: React.ReactNode;
-  className?: string;
 };
 
 export const DontBlockItem: React.FC<DontBlockItemProps> = ({
   title,
   description,
   children,
-  className,
 }) => {
   return (
-    <div
-      className={cn('flex flex-col gap-12', className)}
-      {...{ 'data-type': 'dont-item' }}
-    >
+    <Box lx={{ gap: 's12' }} {...{ 'data-type': 'dont-item' }}>
       {/* Header */}
       {(title || description) && (
-        <div className='!-mb-16 flex flex-col gap-4'>
+        <Box lx={{ gap: 's4' }}>
           {title && (
-            <div className='flex items-center gap-8'>
-              <span className='text-[#EF4444]'>✕</span>
-              <h4 className='!m-0 text-base body-2-semi-bold'>{title}</h4>
-            </div>
+            <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's8' }}>
+              <Text style={{ color: '#EF4444' }}>✕</Text>
+              <Text typography='body2SemiBold' lx={{ color: 'base' }}>
+                {title}
+              </Text>
+            </Box>
           )}
           {description && (
-            <p className='!m-0 text-muted body-3'>{description}</p>
+            <Text typography='body3' lx={{ color: 'muted' }}>
+              {description}
+            </Text>
           )}
-        </div>
+        </Box>
       )}
 
       {/* Code Block */}
-      <div className='[&_pre]:!m-0 [&_pre]:!rounded-xs [&_pre]:!border-2 [&_pre]:!border-[#EF4444] [&_pre]:!bg-[#FEF2F2]'>
-        {children}
-      </div>
-    </div>
+      <Box>{children}</Box>
+    </Box>
   );
 };

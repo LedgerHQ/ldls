@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The `lx` prop is a type-safe styling API that provides autocomplete for design tokens directly on components.
 
-## Overview
+### Overview
 
 Instead of writing raw style values, `lx` constrains you to design system tokens, ensuring consistency across your app.
 
@@ -25,11 +25,11 @@ import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
 
 ---
 
-## View Style Tokens
+### View Style Tokens
 
 These tokens are available on `Box` and `Pressable` (and the `lx` prop of `Text` for layout).
 
-### Spacing
+#### Spacing
 
 Used for `padding`, `margin`, `gap`, and positioning (`top`, `left`, etc.):
 
@@ -42,7 +42,7 @@ Used for `padding`, `margin`, `gap`, and positioning (`top`, `left`, etc.):
 }} />
 ```
 
-### Sizes
+#### Sizes
 
 Used for `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`:
 
@@ -50,7 +50,7 @@ Used for `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`:
 <Box lx={{ width: 's48', height: 's48', maxWidth: 's320' }} />
 ```
 
-### Background Colors
+#### Background Colors
 
 ```tsx
 <Box lx={{ backgroundColor: 'accent' }} />
@@ -58,7 +58,7 @@ Used for `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`:
 <Box lx={{ backgroundColor: 'muted' }} />
 ```
 
-### Border
+#### Border
 
 ```tsx
 <Box lx={{ 
@@ -68,7 +68,7 @@ Used for `width`, `height`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`:
 }} />
 ```
 
-### Flex Layout
+#### Flex Layout
 
 Standard React Native flex properties are passed through:
 
@@ -83,11 +83,11 @@ Standard React Native flex properties are passed through:
 
 ---
 
-## Text Style Tokens
+### Text Style Tokens
 
 These tokens are **only available on the `Text` component**, in addition to view tokens.
 
-### Text Color
+#### Text Color
 
 ```tsx
 <Text lx={{ color: 'base' }} />
@@ -96,7 +96,7 @@ These tokens are **only available on the `Text` component**, in addition to view
 <Text lx={{ color: 'onAccent' }} />
 ```
 
-### Typography
+#### Typography
 
 Preset font size, weight, line height, and letter spacing:
 
@@ -106,7 +106,7 @@ Preset font size, weight, line height, and letter spacing:
 <Text typography='body2SemiBold' />
 ```
 
-### Text Decoration
+#### Text Decoration
 
 ```tsx
 <Text lx={{ textDecorationLine: 'underline' }} />
@@ -116,7 +116,7 @@ Preset font size, weight, line height, and letter spacing:
 
 ---
 
-## Escape Hatch
+### Escape Hatch
 
 For values not covered by tokens, use the `style` prop:
 
@@ -127,7 +127,7 @@ For values not covered by tokens, use the `style` prop:
 />
 ```
 
-## Pressable and Pressed State
+### Pressable and Pressed State
 
 For `Pressable`, the `lx` prop only accepts static objects. Use the `style` prop for pressed-state styling:
 

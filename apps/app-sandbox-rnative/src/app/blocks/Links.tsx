@@ -1,14 +1,14 @@
-import { Link } from '@ledgerhq/lumen-ui-rnative';
+import { Box, Link, Text } from '@ledgerhq/lumen-ui-rnative';
 import {
   Github,
   LedgerLogo,
   Screens,
 } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { Alert, Text, View } from 'react-native';
+import { Alert } from 'react-native';
 
 export function Links() {
   return (
-    <View className='gap-8'>
+    <Box lx={{ gap: 's8' }}>
       <Link href={'https://github.com/LedgerHQ/lumen'} icon={Github} isExternal>
         Set up Lumen in your project
       </Link>
@@ -34,15 +34,20 @@ export function Links() {
       >
         Custom navigation
       </Link>
-      <View className='flex-row flex-wrap items-center'>
-        <Text className='text-base'>
+      <Box
+        lx={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}
+      >
+        <Text typography='body3' lx={{ color: 'base' }}>
           If you require assistance, please contact us via our{' '}
         </Text>
         <Link size='sm' isExternal href='https://github.com/LedgerHQ/lumen'>
           support page
         </Link>
-        <Text className='text-base'> during business hours (9am-5pm).</Text>
-      </View>
-    </View>
+        <Text typography='body3' lx={{ color: 'base' }}>
+          {' '}
+          during business hours (9am-5pm).
+        </Text>
+      </Box>
+    </Box>
   );
 }

@@ -1,9 +1,10 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as InteractiveIconStories from './InteractiveIcon.stories';
+import { Box } from '../Utility';
 import { InteractiveIcon } from './InteractiveIcon';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
-import CommonRulesDoAndDont from '../../../../.storybook/docs/CommonRulesDoAndDont.mdx';
+import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/InteractiveIcon' of={InteractiveIconStories} />
 
@@ -54,7 +55,7 @@ Common sizes include:
 - **24px**: Prominent actions in toolbars
 - **40px**: Large touch targets for mobile interfaces
 
-> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through CSS classes. Always use the `size` prop on your icon component (e.g., `<Settings size={20} />`) to ensure proper scaling and visual consistency.
+> **⚠️ Important**: Icon sizes are controlled by the icon component itself, not through InteractiveIcon.
 
 ### Icon States
 
@@ -177,6 +178,11 @@ function SizeExamples() {
       <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
         <Settings size={40} />
       </InteractiveIcon>
+      
+      {/* Large touch target for mobile */}
+      <InteractiveIcon iconType='stroked' accessibilityLabel='Settings'>
+        <Settings size={64} />
+      </InteractiveIcon>
     </Box>
   );
 }
@@ -186,7 +192,7 @@ function SizeExamples() {
 
 The following guidelines are based on our design system principles and accessibility best practices for icon-only interactive elements.
 
-<div className='flex flex-col gap-24'>
+<Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use appropriate icon types for variants'
@@ -302,7 +308,7 @@ import { MoreVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
   </DoVsDontRow>
 
   <CommonRulesDoAndDont />
-</div>
+</Box>
 
 </Tab>
 </CustomTabs>

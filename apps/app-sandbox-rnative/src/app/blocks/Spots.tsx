@@ -1,11 +1,10 @@
-import { Spot } from '@ledgerhq/lumen-ui-rnative';
+import { Box, Spot } from '@ledgerhq/lumen-ui-rnative';
 import { ExternalLink } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View } from 'react-native';
 
 export const Spots = () => {
   return (
-    <View className='gap-32'>
-      <View className='flex flex-row flex-wrap gap-8'>
+    <Box lx={{ gap: 's32' }}>
+      <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's8' }}>
         <Spot appearance='icon' icon={ExternalLink} />
         <Spot appearance='icon' icon={ExternalLink} disabled />
         <Spot appearance='number' number={5} />
@@ -15,12 +14,12 @@ export const Spots = () => {
         <Spot appearance='warning' />
         <Spot appearance='info' />
         <Spot appearance='loader' />
-      </View>
-      <View className='flex flex-row gap-8'>
+      </Box>
+      <Box lx={{ flexDirection: 'row', gap: 's8' }}>
         <Spot appearance='icon' icon={ExternalLink} size={48} />
         <Spot appearance='icon' icon={ExternalLink} size={56} />
         <Spot appearance='icon' icon={ExternalLink} size={72} />
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };

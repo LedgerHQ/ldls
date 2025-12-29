@@ -52,7 +52,7 @@ SpinAnimation.displayName = 'SpinAnimation';
  * <Spinner lx={{ marginTop: 's8', color: 'muted' }} />
  */
 export const Spinner = forwardRef<View, SpinnerProps>(
-  ({ lx = {}, size = 16, color = 'base', ...props }, ref) => {
+  ({ lx = {}, size = 16, color, ...props }, ref) => {
     const { t } = useCommonTranslation();
     const { theme } = LumenStyleSheet.useTheme();
     const resolvedColorStyle = useResolveTextStyle({ color });
