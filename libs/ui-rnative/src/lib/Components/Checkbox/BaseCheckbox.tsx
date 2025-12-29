@@ -1,7 +1,7 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback } from 'react';
 import { GestureResponderEvent, Pressable, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import {
   ForceMountable,
   PressableRef,
@@ -129,7 +129,7 @@ const useStyles = ({
   return LumenStyleSheet.useCreate(
     (t) => {
       return {
-        trigger: mergeStyles(
+        trigger: StyleSheet.flatten([
           {
             width: t.sizes.s20,
             height: t.sizes.s20,
@@ -159,7 +159,7 @@ const useStyles = ({
               borderColor: t.colors.border.disabled,
               backgroundColor: t.colors.bg.base,
             },
-        ),
+        ]),
         indicator: {
           flex: 1,
           width: t.sizes.full,

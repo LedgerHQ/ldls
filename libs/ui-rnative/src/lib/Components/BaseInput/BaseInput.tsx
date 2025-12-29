@@ -5,9 +5,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Animated, Text, TextInput, View } from 'react-native';
+import { Animated, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { DeleteCircleFill } from '../../Symbols/Icons/DeleteCircleFill';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Box, Pressable } from '../Utility';
@@ -178,7 +178,7 @@ const useStyles = ({
   return LumenStyleSheet.useCreate(
     (t) => {
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             position: 'relative',
             flexDirection: 'row',
@@ -202,8 +202,8 @@ const useStyles = ({
           isFocused &&
             !hasError &&
             isEditable && { borderColor: t.colors.border.active },
-        ),
-        input: mergeStyles(
+        ]),
+        input: StyleSheet.flatten([
           {
             position: 'relative',
             flex: 1,
@@ -224,7 +224,7 @@ const useStyles = ({
             backgroundColor: t.colors.bg.disabled,
             color: t.colors.text.disabled,
           },
-        ),
+        ]),
         errorContainer: {
           marginTop: t.spacings.s8,
           flexDirection: 'row',
@@ -263,7 +263,7 @@ const useFloatingLabelStyles = ({
 
   const label = LumenStyleSheet.useCreate(
     (t) => ({
-      label: mergeStyles(
+      label: StyleSheet.flatten([
         {
           position: 'absolute',
           left: t.spacings.s16,
@@ -280,7 +280,7 @@ const useFloatingLabelStyles = ({
         hasError && {
           color: t.colors.text.error,
         },
-      ),
+      ]),
     }),
     [hasContent, showClearButton, hasError, isEditable],
   );

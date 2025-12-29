@@ -2,7 +2,7 @@ import { isTextChildren } from '@ledgerhq/lumen-utils-shared';
 import React, { ComponentType } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import {
   InformationFill,
   CheckmarkCircleFill,
@@ -66,12 +66,18 @@ const useStyles = ({ appearance }: { appearance: Appearance }) => {
           flexDirection: 'column',
           gap: t.spacings.s4,
         },
-        title: mergeStyles(t.typographies.body1SemiBold, {
-          color: t.colors.text.base,
-        }),
-        description: mergeStyles(t.typographies.body2, {
-          color: t.colors.text.base,
-        }),
+        title: StyleSheet.flatten([
+          t.typographies.body1SemiBold,
+          {
+            color: t.colors.text.base,
+          },
+        ]),
+        description: StyleSheet.flatten([
+          t.typographies.body2,
+          {
+            color: t.colors.text.base,
+          },
+        ]),
         actionsWrapper: {
           flexDirection: 'row',
           gap: t.spacings.s4,

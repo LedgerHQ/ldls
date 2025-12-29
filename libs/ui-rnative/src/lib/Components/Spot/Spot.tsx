@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import {
   BluetoothCircleFill,
   CheckmarkCircleFill,
@@ -72,9 +72,12 @@ const useStyles = ({
         icon: {
           color: contentColor,
         },
-        numberText: mergeStyles(typography, {
-          color: contentColor,
-        }),
+        numberText: StyleSheet.flatten([
+          typography,
+          {
+            color: contentColor,
+          },
+        ]),
       };
     },
     [size, appearance, disabled],

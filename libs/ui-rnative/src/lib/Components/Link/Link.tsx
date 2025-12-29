@@ -1,6 +1,6 @@
 import React from 'react';
-import { Linking, Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { Linking, StyleSheet, Text, View } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 import { ExternalLink } from '../../Symbols';
 import { IconSize } from '../Icon';
 import { Pressable } from '../Utility';
@@ -49,12 +49,15 @@ const useStyles = ({ appearance, size, underline, pressed }: StyleParams) => {
         textWrapper: {
           flexShrink: 1,
         },
-        text: mergeStyles(typography, {
-          color: pressed
-            ? pressedTextColors[appearance]
-            : textColors[appearance],
-          textDecorationLine: underline ? 'underline' : 'none',
-        }),
+        text: StyleSheet.flatten([
+          typography,
+          {
+            color: pressed
+              ? pressedTextColors[appearance]
+              : textColors[appearance],
+            textDecorationLine: underline ? 'underline' : 'none',
+          },
+        ]),
         icon: {
           flexShrink: 0,
           color: pressed

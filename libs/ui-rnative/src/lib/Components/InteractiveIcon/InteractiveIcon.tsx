@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
-import { View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { StyleSheet, View } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 
 import { InjectStylesIntoChildren } from '../../utils/components/InjectStylesIntoChildren';
 import { Pressable } from '../Utility';
@@ -25,14 +25,14 @@ const useStyles = ({
       };
 
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             borderRadius: t.borderRadius.full,
           },
           backgroundStyle[iconType],
           iconType === 'stroked' &&
             pressed && { backgroundColor: t.colors.bg.baseTransparentPressed },
-        ),
+        ]),
         icon: {
           color: disabled
             ? t.colors.text.disabled

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { ViewRef } from '../../types';
 import { IconSize } from '../Icon';
 import { Box } from '../Utility';
@@ -58,7 +58,7 @@ const useStyles = ({
         size === 'lg' ? t.typographies.body3 : t.typographies.body4;
 
       return {
-        root: mergeStyles(
+        root: StyleSheet.flatten([
           {
             flexDirection: 'row',
             alignItems: 'center',
@@ -71,8 +71,8 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.disabled,
           },
-        ),
-        text: mergeStyles(
+        ]),
+        text: StyleSheet.flatten([
           textTypography,
           {
             color: textColors[appearance],
@@ -80,8 +80,8 @@ const useStyles = ({
           disabled && {
             color: t.colors.text.disabled,
           },
-        ),
-        icon: mergeStyles(
+        ]),
+        icon: StyleSheet.flatten([
           {
             flexShrink: 0,
             color: textColors[appearance],
@@ -89,7 +89,7 @@ const useStyles = ({
           disabled && {
             color: t.colors.text.disabled,
           },
-        ),
+        ]),
       };
     },
     [appearance, size, disabled],

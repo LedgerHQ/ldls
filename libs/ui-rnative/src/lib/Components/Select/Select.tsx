@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useId } from 'react';
-import { View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { StyleSheet, View } from 'react-native';
+import { LumenStyleSheet } from '../../../styles';
 import { ChevronDown } from '../../Symbols';
 import { useControllableState, extractTextFromChildren } from '../../utils';
 import { SlotPressable } from '../Slot';
@@ -203,7 +203,7 @@ const useTriggerStyles = ({
   return LumenStyleSheet.useCreate(
     (t) => {
       return {
-        trigger: mergeStyles(
+        trigger: StyleSheet.flatten([
           {
             position: 'relative',
             width: t.sizes.full,
@@ -218,8 +218,8 @@ const useTriggerStyles = ({
           disabled && {
             opacity: 0.5,
           },
-        ),
-        label: mergeStyles(
+        ]),
+        label: StyleSheet.flatten([
           t.typographies.body2,
           {
             position: 'absolute',
@@ -239,8 +239,8 @@ const useTriggerStyles = ({
           disabled && {
             color: t.colors.text.disabled,
           },
-        ),
-        contentWrapper: mergeStyles(
+        ]),
+        contentWrapper: StyleSheet.flatten([
           {
             flex: 1,
           },
@@ -253,8 +253,8 @@ const useTriggerStyles = ({
             !hasValue && {
               paddingVertical: 0,
             },
-        ),
-        chevron: mergeStyles(
+        ]),
+        chevron: StyleSheet.flatten([
           {
             flexShrink: 0,
             color: t.colors.text.muted,
@@ -263,7 +263,7 @@ const useTriggerStyles = ({
           disabled && {
             color: t.colors.text.disabled,
           },
-        ),
+        ]),
       };
     },
     [disabled, hasValue, hasLabel],
@@ -282,10 +282,13 @@ export const SelectValue: React.FC = () => {
   });
 
   const styles = LumenStyleSheet.useCreate((t) => ({
-    text: mergeStyles(t.typographies.body2, {
-      color: t.colors.text.base,
-      textAlign: 'left',
-    }),
+    text: StyleSheet.flatten([
+      t.typographies.body2,
+      {
+        color: t.colors.text.base,
+        textAlign: 'left',
+      },
+    ]),
   }));
 
   const selectedItem = items.find(
@@ -389,13 +392,16 @@ export const SelectLabel: React.FC<SelectLabelProps> = ({
   ...props
 }) => {
   const styles = LumenStyleSheet.useCreate((t) => ({
-    label: mergeStyles(t.typographies.body3SemiBold, {
-      paddingHorizontal: t.spacings.s8,
-      paddingBottom: 0,
-      paddingTop: t.spacings.s8,
-      color: t.colors.text.muted,
-      marginBottom: t.spacings.s4,
-    }),
+    label: StyleSheet.flatten([
+      t.typographies.body3SemiBold,
+      {
+        paddingHorizontal: t.spacings.s8,
+        paddingBottom: 0,
+        paddingTop: t.spacings.s8,
+        color: t.colors.text.muted,
+        marginBottom: t.spacings.s4,
+      },
+    ]),
   }));
 
   return (
@@ -424,9 +430,12 @@ export const SelectItemText: React.FC<SelectItemTextProps> = ({
   ...props
 }) => {
   const styles = LumenStyleSheet.useCreate((t) => ({
-    text: mergeStyles(t.typographies.body2, {
-      color: t.colors.text.base,
-    }),
+    text: StyleSheet.flatten([
+      t.typographies.body2,
+      {
+        color: t.colors.text.base,
+      },
+    ]),
   }));
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { ChevronRight } from '../../Symbols';
 import { Pressable } from '../Utility';
 
@@ -30,7 +30,7 @@ const useStyles = ({
       };
 
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             flexDirection: 'row',
             alignItems: 'center',
@@ -60,22 +60,28 @@ const useStyles = ({
             appearance === 'outline' && {
               borderColor: t.colors.border.disabled,
             },
-        ),
+        ]),
         contentWrapper: {
           flex: 1,
           minWidth: 0,
           flexDirection: 'column',
           gap: t.spacings.s4,
         },
-        title: mergeStyles(t.typographies.body1SemiBold, {
-          color: disabled ? t.colors.text.disabled : t.colors.text.base,
-          minWidth: 0,
-          textAlign: 'left',
-        }),
-        description: mergeStyles(t.typographies.body2, {
-          color: disabled ? t.colors.text.disabled : t.colors.text.base,
-          minWidth: 0,
-        }),
+        title: StyleSheet.flatten([
+          t.typographies.body1SemiBold,
+          {
+            color: disabled ? t.colors.text.disabled : t.colors.text.base,
+            minWidth: 0,
+            textAlign: 'left',
+          },
+        ]),
+        description: StyleSheet.flatten([
+          t.typographies.body2,
+          {
+            color: disabled ? t.colors.text.disabled : t.colors.text.base,
+            minWidth: 0,
+          },
+        ]),
         icon: {
           flexShrink: 0,
           color: disabled ? t.colors.text.disabled : t.colors.text.base,

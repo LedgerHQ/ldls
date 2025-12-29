@@ -1,6 +1,6 @@
 import { getFontSize, textFormatter } from '@ledgerhq/lumen-utils-shared';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Pressable, TextInput } from 'react-native';
+import { Pressable, StyleSheet, TextInput } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -9,7 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { Box } from '../Utility';
 import { type AmountInputProps } from './types';
 
@@ -204,7 +204,7 @@ const useStyles = ({
         alignItems: 'center',
         justifyContent: 'center',
       },
-      displayText: mergeStyles(
+      displayText: StyleSheet.flatten([
         {
           height: t.sizes.s56,
           backgroundColor: 'transparent',
@@ -221,8 +221,8 @@ const useStyles = ({
         isInvalid && {
           color: t.colors.text.error,
         },
-      ),
-      currency: mergeStyles(
+      ]),
+      currency: StyleSheet.flatten([
         {
           color: t.colors.text.base,
           ...t.typographies.heading0SemiBold,
@@ -236,7 +236,7 @@ const useStyles = ({
         isInvalid && {
           color: t.colors.text.error,
         },
-      ),
+      ]),
       caret: {
         marginHorizontal: t.spacings.s2,
         width: t.sizes.s2,

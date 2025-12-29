@@ -1,7 +1,7 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated, Pressable, type GestureResponderEvent } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 
 import {
   PressableRef,
@@ -181,7 +181,7 @@ const useStyles = ({
       };
 
       return {
-        root: mergeStyles(
+        root: StyleSheet.flatten([
           {
             flexDirection: 'row',
             justifyContent: 'flex-start',
@@ -206,8 +206,8 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.disabled,
           },
-        ),
-        thumbBase: mergeStyles(
+        ]),
+        thumbBase: StyleSheet.flatten([
           {
             borderRadius: t.borderRadius.full,
             backgroundColor: 'white',
@@ -217,8 +217,8 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.base,
           },
-        ),
-        thumb: mergeStyles(
+        ]),
+        thumb: StyleSheet.flatten([
           {
             borderRadius: t.borderRadius.full,
             backgroundColor: 'white',
@@ -229,7 +229,7 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.base,
           },
-        ),
+        ]),
       };
     },
     [checked, disabled, size],

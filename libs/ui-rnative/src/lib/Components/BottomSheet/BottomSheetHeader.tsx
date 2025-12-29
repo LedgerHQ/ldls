@@ -1,7 +1,8 @@
 import { useBottomSheet } from '@gorhom/bottom-sheet';
 import { FC, useCallback } from 'react';
+import { StyleSheet } from 'react-native';
 import { useCommonTranslation } from '../../../i18n';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { LumenStyleSheet } from '../../../styles';
 import { ArrowLeft, Close } from '../../Symbols';
 import { IconButton } from '../IconButton';
 import { Box, Text } from '../Utility';
@@ -23,7 +24,7 @@ const useStyles = ({
 }) => {
   return LumenStyleSheet.useCreate(
     (t) => ({
-      root: mergeStyles(
+      root: StyleSheet.flatten([
         {
           position: 'relative',
           zIndex: Z_INDEX_DIALOG_CONTENT,
@@ -33,8 +34,8 @@ const useStyles = ({
         spacing && {
           paddingHorizontal: t.spacings.s16,
         },
-      ),
-      inner: mergeStyles(
+      ]),
+      inner: StyleSheet.flatten([
         {
           flexDirection: 'row',
           alignItems: 'center',
@@ -47,16 +48,16 @@ const useStyles = ({
         hidden && {
           display: 'none',
         },
-      ),
-      textWrapper: mergeStyles(
+      ]),
+      textWrapper: StyleSheet.flatten([
         {
           flex: 1,
         },
         appearance === 'expanded' && {
           gap: t.spacings.s4,
         },
-      ),
-      title: mergeStyles(
+      ]),
+      title: StyleSheet.flatten([
         appearance === 'compact'
           ? t.typographies.heading4SemiBold
           : t.typographies.heading2SemiBold,
@@ -66,11 +67,14 @@ const useStyles = ({
         appearance === 'compact' && {
           textAlign: 'center',
         },
-      ),
-      description: mergeStyles(t.typographies.body2, {
-        color: t.colors.text.muted,
-        textAlign: appearance === 'compact' ? 'center' : 'left',
-      }),
+      ]),
+      description: StyleSheet.flatten([
+        t.typographies.body2,
+        {
+          color: t.colors.text.muted,
+          textAlign: appearance === 'compact' ? 'center' : 'left',
+        },
+      ]),
       iconPlaceholder: {
         width: t.sizes.s32,
         height: t.sizes.s32,
