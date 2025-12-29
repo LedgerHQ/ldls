@@ -5,9 +5,9 @@ import type {
   PressableStateCallbackType,
   ViewStyle,
 } from 'react-native';
-import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
 import { StyledPressableProps, PressableStyleItem } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
+import { useResolveViewStyle } from './resolveStyle';
 
 /**
  * Check if any style item (including nested arrays) is a function

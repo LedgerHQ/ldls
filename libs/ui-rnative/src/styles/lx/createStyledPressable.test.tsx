@@ -7,7 +7,7 @@ import {
   PressableStateCallbackType,
   View,
 } from 'react-native';
-import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
+import { LumenStyleSheetProvider } from '../provider/LumenStyleSheetProvider';
 import { createStyledPressable } from './createStyledPressable';
 
 const testThemes: any = {

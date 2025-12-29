@@ -1,10 +1,10 @@
 import { ElementRef, forwardRef, memo } from 'react';
 import { StyleSheet } from 'react-native';
 import type { Text, TextStyle } from 'react-native';
-import { useTheme } from '../Provider/useTheme';
-import { useResolveTextStyle } from '../resolveStyle/resolveStyle';
+import { useTheme } from '../hooks/useTheme';
 import { StyledTextProps } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
+import { useResolveTextStyle } from './resolveStyle';
 
 /**
  * Factory function to create a styled Text component.

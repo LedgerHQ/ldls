@@ -7,10 +7,9 @@ import {
 } from 'react-native';
 import { RuntimeConstants } from '../../lib/utils';
 import { useControllableState } from '../../lib/utils/use-controllable-state/use-controllable-state';
-
+import { createStylesheetTheme } from '../theme/createStylesheetTheme';
 import { type LumenStyleSheetTheme } from '../types';
-import { createStylesheetTheme } from './createStylesheetTheme';
-import { LumenStyleSheetProviderProps } from './LumenStyleSheetProvider.types';
+import { LumenStyleSheetProviderProps } from './types';
 
 const DARK_MODE = 'dark';
 const LIGHT_MODE = 'light';

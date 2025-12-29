@@ -1,8 +1,8 @@
 import React, { forwardRef, memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useResolveViewStyle } from '../resolveStyle/resolveStyle';
 import type { StyledViewProps } from '../types';
 import { areLxPropsEqual } from './areLxPropsEqual';
+import { useResolveViewStyle } from './resolveStyle';
 
 type ViewRef = React.ElementRef<typeof View>;
 

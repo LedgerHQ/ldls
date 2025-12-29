@@ -1,6 +1,6 @@
 import { getObjectPath } from '@ledgerhq/lumen-utils-shared';
 import { type ViewStyle, type TextStyle, StyleSheet } from 'react-native';
-import { useTheme } from '../Provider/useTheme';
+import { useTheme } from '../hooks/useTheme';
 import type {
   LumenStyleSheetTheme,
   LumenTextStyle,

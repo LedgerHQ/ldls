@@ -2,9 +2,9 @@ import { describe, expect, it } from '@jest/globals';
 import { fireEvent, render, userEvent } from '@testing-library/react-native';
 import React, { useState } from 'react';
 import { ColorSchemeName, Pressable, Text, View } from 'react-native';
-import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
-import { useTheme } from '../Provider/useTheme';
+import { LumenStyleSheetProvider } from '../provider/LumenStyleSheetProvider';
 import { useStyleSheet } from './useStyleSheet';
+import { useTheme } from './useTheme';
 
 // Wrapper that allows testing uncontrolled theme switching
 const TestProviderWrapper = ({

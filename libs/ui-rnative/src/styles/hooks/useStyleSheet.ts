@@ -1,10 +1,10 @@
 import { DependencyList, useMemo, useRef } from 'react';
-import { useTheme } from '../Provider/useTheme';
 import type {
   LumenStyleSheet,
   LumenStyleSheetExtended,
   LumenStyleSheetTheme,
 } from '../types';
+import { useTheme } from './useTheme';
 
 export const useStyleSheet = <S extends LumenStyleSheet>(
   styleCreator: LumenStyleSheetExtended<S>,

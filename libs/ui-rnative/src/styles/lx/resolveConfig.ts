@@ -5,7 +5,7 @@ import { LumenTextStyle, LumenViewStyle } from '../types';
  * - path: Theme path for token lookup (array of keys)
  * - No path = passthrough prop (value passed as-is)
  */
-export type PropConfig = {
+type PropConfig = {
   path?: string[];
 };
 

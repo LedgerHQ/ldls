@@ -1,7 +1,7 @@
 import {
   useLumenStyleSheetContext,
   type LumenStyleSheetContextValue,
-} from './LumenStyleSheetProvider';
+} from '../provider/LumenStyleSheetProvider';
 
 export const useTheme = (): LumenStyleSheetContextValue => {
   const context = useLumenStyleSheetContext({

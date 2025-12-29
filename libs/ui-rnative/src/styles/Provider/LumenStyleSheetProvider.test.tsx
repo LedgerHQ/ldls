@@ -2,8 +2,8 @@ import { describe, expect, it, jest } from '@jest/globals';
 import { render, userEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
+import { useTheme } from '../hooks/useTheme';
 import { LumenStyleSheetProvider } from './LumenStyleSheetProvider';
-import { useTheme } from './useTheme';
 
 // Test themes
 const testThemes: any = {

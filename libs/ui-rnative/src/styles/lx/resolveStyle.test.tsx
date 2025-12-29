@@ -3,8 +3,8 @@ import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { renderHook } from '@testing-library/react-native';
 import React from 'react';
 import type { BoxShadowValue } from 'react-native';
-import { createStylesheetTheme } from '../Provider/createStylesheetTheme';
-import { LumenStyleSheetProvider } from '../Provider/LumenStyleSheetProvider';
+import { LumenStyleSheetProvider } from '../provider/LumenStyleSheetProvider';
+import { createStylesheetTheme } from '../theme/createStylesheetTheme';
 import { useResolveViewStyle, useResolveTextStyle } from './resolveStyle';
 
 /**
