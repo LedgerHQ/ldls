@@ -9,11 +9,14 @@ type BackDropProps = React.ComponentProps<typeof GorhomBottomSheetBackdrop> & {
 };
 
 const useStyles = () => {
-  return useStyleSheet((t) => ({
-    backdrop: {
-      backgroundColor: t.colors.bg.canvasOverlay,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      backdrop: {
+        backgroundColor: t.colors.bg.canvasOverlay,
+      },
+    }),
+    [],
+  );
 };
 
 export const CustomBackdrop = ({

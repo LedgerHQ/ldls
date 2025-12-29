@@ -101,20 +101,23 @@ export function AmountInputs() {
 }
 
 const useStyles = () => {
-  return useStyleSheet((t) => ({
-    separator: {
-      marginVertical: t.spacings.s24,
-      height: t.sizes.s2,
-      width: '50%',
-      backgroundColor: t.colors.bg.surface,
-    },
-    sectionContainer: {
-      alignItems: 'center',
-    },
-    sectionDescription: {
-      marginTop: t.spacings.s8,
-      color: t.colors.text.muted,
-      ...t.typographies.body2,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      separator: {
+        marginVertical: t.spacings.s24,
+        height: t.sizes.s2,
+        width: '50%',
+        backgroundColor: t.colors.bg.surface,
+      },
+      sectionContainer: {
+        alignItems: 'center',
+      },
+      sectionDescription: {
+        marginTop: t.spacings.s8,
+        color: t.colors.text.muted,
+        ...t.typographies.body2,
+      },
+    }),
+    [],
+  );
 };

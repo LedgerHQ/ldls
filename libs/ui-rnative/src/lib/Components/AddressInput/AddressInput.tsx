@@ -50,7 +50,7 @@ const useStyles = () => {
         color: t.colors.text.base,
       },
     };
-  });
+  }, []);
 };
 
 AddressInput.displayName = 'AddressInput';

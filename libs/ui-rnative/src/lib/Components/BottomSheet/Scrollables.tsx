@@ -17,13 +17,16 @@ import {
 } from './types';
 
 const useScrollableStyles = () => {
-  return useStyleSheet((t) => ({
-    container: {
-      flex: 1,
-      paddingHorizontal: t.spacings.s16,
-      paddingBottom: t.spacings.s16,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        flex: 1,
+        paddingHorizontal: t.spacings.s16,
+        paddingBottom: t.spacings.s16,
+      },
+    }),
+    [],
+  );
 };
 
 export const BottomSheetView: FC<BottomSheetViewProps> = ({

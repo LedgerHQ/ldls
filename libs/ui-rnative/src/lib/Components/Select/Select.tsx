@@ -281,15 +281,18 @@ export const SelectValue: React.FC = () => {
     contextRequired: true,
   });
 
-  const styles = useStyleSheet((t) => ({
-    text: StyleSheet.flatten([
-      t.typographies.body2,
-      {
-        color: t.colors.text.base,
-        textAlign: 'left',
-      },
-    ]),
-  }));
+  const styles = useStyleSheet(
+    (t) => ({
+      text: StyleSheet.flatten([
+        t.typographies.body2,
+        {
+          color: t.colors.text.base,
+          textAlign: 'left',
+        },
+      ]),
+    }),
+    [],
+  );
 
   const selectedItem = items.find(
     (item) => item.type === 'item' && item.value === value,
@@ -370,12 +373,15 @@ export const SelectGroup: React.FC<SelectGroupProps> = ({
   style,
   ...props
 }) => {
-  const styles = useStyleSheet((t) => ({
-    group: {
-      width: t.sizes.full,
-      gap: t.spacings.s4,
-    },
-  }));
+  const styles = useStyleSheet(
+    (t) => ({
+      group: {
+        width: t.sizes.full,
+        gap: t.spacings.s4,
+      },
+    }),
+    [],
+  );
 
   return (
     <Box lx={lx} style={[styles.group, style]} {...props}>
@@ -391,18 +397,21 @@ export const SelectLabel: React.FC<SelectLabelProps> = ({
   style,
   ...props
 }) => {
-  const styles = useStyleSheet((t) => ({
-    label: StyleSheet.flatten([
-      t.typographies.body3SemiBold,
-      {
-        paddingHorizontal: t.spacings.s8,
-        paddingBottom: 0,
-        paddingTop: t.spacings.s8,
-        color: t.colors.text.muted,
-        marginBottom: t.spacings.s4,
-      },
-    ]),
-  }));
+  const styles = useStyleSheet(
+    (t) => ({
+      label: StyleSheet.flatten([
+        t.typographies.body3SemiBold,
+        {
+          paddingHorizontal: t.spacings.s8,
+          paddingBottom: 0,
+          paddingTop: t.spacings.s8,
+          color: t.colors.text.muted,
+          marginBottom: t.spacings.s4,
+        },
+      ]),
+    }),
+    [],
+  );
 
   return (
     <Text lx={lx} style={[styles.label, style]} {...props}>
@@ -429,14 +438,17 @@ export const SelectItemText: React.FC<SelectItemTextProps> = ({
   style,
   ...props
 }) => {
-  const styles = useStyleSheet((t) => ({
-    text: StyleSheet.flatten([
-      t.typographies.body2,
-      {
-        color: t.colors.text.base,
-      },
-    ]),
-  }));
+  const styles = useStyleSheet(
+    (t) => ({
+      text: StyleSheet.flatten([
+        t.typographies.body2,
+        {
+          color: t.colors.text.base,
+        },
+      ]),
+    }),
+    [],
+  );
 
   return (
     <Text lx={lx} style={[styles.text, style]} {...props}>
@@ -451,14 +463,17 @@ export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
   style,
   ...props
 }) => {
-  const styles = useStyleSheet((t) => ({
-    separator: {
-      marginHorizontal: t.spacings.s8,
-      marginVertical: t.spacings.s4,
-      height: t.sizes.s1,
-      backgroundColor: t.colors.border.mutedSubtle,
-    },
-  }));
+  const styles = useStyleSheet(
+    (t) => ({
+      separator: {
+        marginHorizontal: t.spacings.s8,
+        marginVertical: t.spacings.s4,
+        height: t.sizes.s1,
+        backgroundColor: t.colors.border.mutedSubtle,
+      },
+    }),
+    [],
+  );
 
   return <Box lx={lx} style={[styles.separator, style]} {...props} />;
 };
