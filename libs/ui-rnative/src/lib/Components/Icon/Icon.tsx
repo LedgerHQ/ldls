@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import { Svg } from 'react-native-svg';
-import { LumenStyleSheet, useResolveTextStyle } from '../../../styles';
+import { useResolveTextStyle, useTheme } from '../../../styles';
 import { TextProps } from '../Utility';
 import { IconProps, IconSize } from './types';
 
@@ -19,7 +19,7 @@ const useStyles = (
   size: IconSize,
   color: IconProps['color'],
 ) => {
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
   const resolvedStyle = useResolveTextStyle(lx || {});
   const resolvedColor = useResolveTextStyle({ color });
 

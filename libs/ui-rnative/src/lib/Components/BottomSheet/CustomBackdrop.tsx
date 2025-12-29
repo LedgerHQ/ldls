@@ -1,6 +1,6 @@
 import { BottomSheetBackdrop as GorhomBottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import React from 'react';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { BottomSheetProps } from './types';
 
 type BackDropProps = React.ComponentProps<typeof GorhomBottomSheetBackdrop> & {
@@ -9,11 +9,14 @@ type BackDropProps = React.ComponentProps<typeof GorhomBottomSheetBackdrop> & {
 };
 
 const useStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
-    backdrop: {
-      backgroundColor: t.colors.bg.canvasOverlay,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      backdrop: {
+        backgroundColor: t.colors.bg.canvasOverlay,
+      },
+    }),
+    [],
+  );
 };
 
 export const CustomBackdrop = ({

@@ -1,5 +1,5 @@
 import { AddressInput, Search, TextInput } from '@ledgerhq/lumen-ui-rnative';
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 import { Eye, EyeCross } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
@@ -15,7 +15,7 @@ export function TextInputs() {
   }, [team]);
 
   const [showPassword, setShowPassword] = useState(false);
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
 
   return (
     <View style={{ minWidth: '100%', gap: 8 }}>

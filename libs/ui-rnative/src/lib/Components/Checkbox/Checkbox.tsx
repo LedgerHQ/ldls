@@ -1,5 +1,5 @@
 import React from 'react';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import { useControllableState } from '../../utils';
 import { Label } from '../Label';
@@ -79,7 +79,7 @@ export const Checkbox = React.forwardRef<
 );
 
 const useStyles = ({ disabled }: { disabled: boolean }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         root: {

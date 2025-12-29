@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { IconSize } from '../Icon';
 import { Spinner } from '../Spinner';
 import { Pressable } from '../Utility';
@@ -17,7 +17,7 @@ const iconSizeMap: Record<Size, IconSize> = {
 } as const;
 
 const useRootStyles = ({ isFull }: { isFull: boolean }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
         root: {
@@ -44,7 +44,7 @@ const useStyles = ({
   iconOnly: boolean;
   isFull: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         base: t.colors.bg.interactive,
@@ -95,7 +95,7 @@ const useStyles = ({
       const currentSizeStyle = sizeStyles[size];
 
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             flexDirection: 'row',
             alignItems: 'center',
@@ -115,11 +115,14 @@ const useStyles = ({
           disabled && { backgroundColor: t.colors.bg.disabled },
           appearance === 'no-background' &&
             disabled && { backgroundColor: 'transparent' },
-        ),
-        label: mergeStyles(typography, {
-          color: disabled ? t.colors.text.disabled : textColors[appearance],
-          textAlign: 'left',
-        }),
+        ]),
+        label: StyleSheet.flatten([
+          typography,
+          {
+            color: disabled ? t.colors.text.disabled : textColors[appearance],
+            textAlign: 'left',
+          },
+        ]),
         icon: {
           flexShrink: 0,
           color: disabled ? t.colors.text.disabled : textColors[appearance],

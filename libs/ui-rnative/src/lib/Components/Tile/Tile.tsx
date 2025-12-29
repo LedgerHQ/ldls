@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from 'react';
-import { View, Text } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { StyleSheet, View, Text } from 'react-native';
+import { useStyleSheet } from '../../../styles';
 import { Pressable } from '../Utility';
 import { TileProps } from './types';
 
@@ -15,7 +15,7 @@ const useStyles = ({
   disabled: boolean;
   pressed: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const bgColors: Record<Appearance, string> = {
         'no-background': t.colors.bg.baseTransparent,
@@ -28,7 +28,7 @@ const useStyles = ({
       };
 
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             position: 'relative',
             flexDirection: 'column',
@@ -43,7 +43,7 @@ const useStyles = ({
             !disabled && {
               backgroundColor: pressedBgColors[appearance],
             },
-        ),
+        ]),
         contentWrapper: {
           width: t.sizes.full,
           alignItems: 'center',
@@ -62,16 +62,22 @@ const useStyles = ({
           width: t.sizes.full,
           alignItems: 'center',
         },
-        title: mergeStyles(t.typographies.body3SemiBold, {
-          width: t.sizes.full,
-          textAlign: 'center',
-          color: disabled ? t.colors.text.disabled : t.colors.text.base,
-        }),
-        description: mergeStyles(t.typographies.body3, {
-          width: t.sizes.full,
-          textAlign: 'center',
-          color: disabled ? t.colors.text.disabled : t.colors.text.muted,
-        }),
+        title: StyleSheet.flatten([
+          t.typographies.body3SemiBold,
+          {
+            width: t.sizes.full,
+            textAlign: 'center',
+            color: disabled ? t.colors.text.disabled : t.colors.text.base,
+          },
+        ]),
+        description: StyleSheet.flatten([
+          t.typographies.body3,
+          {
+            width: t.sizes.full,
+            textAlign: 'center',
+            color: disabled ? t.colors.text.disabled : t.colors.text.muted,
+          },
+        ]),
       };
     },
     [appearance, disabled, pressed],

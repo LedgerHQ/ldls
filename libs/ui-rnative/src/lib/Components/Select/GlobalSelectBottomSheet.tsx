@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { Pressable } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import { Check } from '../../Symbols';
 import {
   BottomSheet,
@@ -12,45 +12,48 @@ import { Box, Text } from '../Utility';
 import { useGlobalSelectSafeContext } from './GlobalSelectContext';
 
 const useStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
-    bottomSheetView: {
-      paddingHorizontal: t.spacings.s8,
-    },
-    separator: {
-      marginVertical: t.spacings.s4,
-      marginHorizontal: t.spacings.s8,
-      height: 1,
-      backgroundColor: t.colors.bg.muted,
-    },
-    groupLabel: {
-      marginBottom: t.spacings.s4,
-      paddingHorizontal: t.spacings.s8,
-      paddingTop: t.spacings.s8,
-      color: t.colors.text.muted,
-      ...t.typographies.body3SemiBold,
-    },
-    item: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderRadius: t.borderRadius.sm,
-      padding: t.spacings.s8,
-      backgroundColor: t.colors.bg.baseTransparent,
-    },
-    itemPressed: {
-      backgroundColor: t.colors.bg.baseTransparentPressed,
-    },
-    itemDisabled: {
-      opacity: 0.5,
-    },
-    itemLabel: {
-      flex: 1,
-      color: t.colors.text.base,
-      ...t.typographies.body2,
-    },
-    itemLabelDisabled: {
-      color: t.colors.text.disabled,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      bottomSheetView: {
+        paddingHorizontal: t.spacings.s8,
+      },
+      separator: {
+        marginVertical: t.spacings.s4,
+        marginHorizontal: t.spacings.s8,
+        height: 1,
+        backgroundColor: t.colors.bg.muted,
+      },
+      groupLabel: {
+        marginBottom: t.spacings.s4,
+        paddingHorizontal: t.spacings.s8,
+        paddingTop: t.spacings.s8,
+        color: t.colors.text.muted,
+        ...t.typographies.body3SemiBold,
+      },
+      item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: t.borderRadius.sm,
+        padding: t.spacings.s8,
+        backgroundColor: t.colors.bg.baseTransparent,
+      },
+      itemPressed: {
+        backgroundColor: t.colors.bg.baseTransparentPressed,
+      },
+      itemDisabled: {
+        opacity: 0.5,
+      },
+      itemLabel: {
+        flex: 1,
+        color: t.colors.text.base,
+        ...t.typographies.body2,
+      },
+      itemLabelDisabled: {
+        color: t.colors.text.disabled,
+      },
+    }),
+    [],
+  );
 };
 
 /**

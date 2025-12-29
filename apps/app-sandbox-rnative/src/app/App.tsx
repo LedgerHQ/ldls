@@ -7,7 +7,7 @@ import {
   ThemeProvider,
   useBottomSheetRef,
 } from '@ledgerhq/lumen-ui-rnative';
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 import { useState } from 'react';
 import {
   ColorSchemeName,
@@ -67,7 +67,7 @@ const AppContent = ({
   setLocale,
   setColorScheme,
 }: any) => {
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
   const bottomSheetFlatListsRef = useBottomSheetRef();
   const bottomSheetDynamicSizeRef = useBottomSheetRef();
   return (

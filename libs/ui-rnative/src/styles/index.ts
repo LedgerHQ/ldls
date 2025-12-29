@@ -1,6 +1,4 @@
-export { LumenStyleSheetProvider } from './Provider/LumenStyleSheetProvider';
-export { LumenStyleSheet } from './LumenStyleSheet';
-export * from './resolveStyle/resolveStyle';
+export { LumenStyleSheetProvider } from './provider/LumenStyleSheetProvider';
+export { useTheme, useStyleSheet } from './hooks';
 export * from './types';
-export * from './factories';
-export * from './utils';
+export * from './lx';

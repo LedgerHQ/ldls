@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { StyleSheet, Text, View } from 'react-native';
+import { useStyleSheet } from '../../../styles';
 import { Pressable } from '../Utility';
 
 import { ListItemProps } from './ListItem.types';
@@ -12,10 +12,10 @@ const useStyles = ({
   disabled: boolean;
   pressed: boolean;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       return {
-        container: mergeStyles(
+        container: StyleSheet.flatten([
           {
             flexDirection: 'row',
             alignItems: 'center',
@@ -33,7 +33,7 @@ const useStyles = ({
           disabled && {
             backgroundColor: 'transparent',
           },
-        ),
+        ]),
         contentWrapper: {
           flex: 1,
           minWidth: 0,
@@ -47,9 +47,12 @@ const useStyles = ({
           flexDirection: 'column',
           gap: t.spacings.s4,
         },
-        title: mergeStyles(t.typographies.body2SemiBold, {
-          color: disabled ? t.colors.text.disabled : t.colors.text.base,
-        }),
+        title: StyleSheet.flatten([
+          t.typographies.body2SemiBold,
+          {
+            color: disabled ? t.colors.text.disabled : t.colors.text.base,
+          },
+        ]),
         descriptionRow: {
           flexDirection: 'row',
           alignItems: 'center',
@@ -59,11 +62,14 @@ const useStyles = ({
           minWidth: 0,
           flexShrink: 1,
         },
-        description: mergeStyles(t.typographies.body3, {
-          color: disabled ? t.colors.text.disabled : t.colors.text.muted,
-          minWidth: 0,
-          flexShrink: 1,
-        }),
+        description: StyleSheet.flatten([
+          t.typographies.body3,
+          {
+            color: disabled ? t.colors.text.disabled : t.colors.text.muted,
+            minWidth: 0,
+            flexShrink: 1,
+          },
+        ]),
         descriptionTagWrapper: {
           height: t.sizes.s16,
           flexShrink: 0,

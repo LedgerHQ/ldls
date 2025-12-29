@@ -9,10 +9,10 @@ The `useTheme` hook provides access to the current theme and color scheme contro
 ### Basic Usage
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 
 const MyComponent = () => {
-  const { theme, colorScheme } = LumenStyleSheet.useTheme();
+  const { theme, colorScheme } = useTheme();
 
   return (
     <View style={{ backgroundColor: theme.colors.bg.base }}>
@@ -27,10 +27,10 @@ const MyComponent = () => {
 ### Theme Toggle Example
 
 ```tsx
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 
 const ThemeToggle = () => {
-  const { colorScheme, toggleColorScheme } = LumenStyleSheet.useTheme();
+  const { colorScheme, toggleColorScheme } = useTheme();
 
   return (
     <Button onPress={toggleColorScheme}>

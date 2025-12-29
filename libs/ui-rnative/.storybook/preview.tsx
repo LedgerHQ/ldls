@@ -52,7 +52,7 @@ const preview: Preview = {
           'Getting Started',
           ['Setup', 'Changelog'],
           'Style System',
-          ['Style System', 'useTheme', 'useCreate', 'lx'],
+          ['Style System', 'useTheme', 'useStyleSheet', 'lx'],
           'Symbols',
           'Action',
           'Communication',

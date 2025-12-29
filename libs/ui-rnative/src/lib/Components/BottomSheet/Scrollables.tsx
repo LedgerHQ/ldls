@@ -7,7 +7,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { FC, forwardRef } from 'react';
 import { ViewStyle } from 'react-native';
-import { LumenStyleSheet } from '../../../styles';
+import { useStyleSheet } from '../../../styles';
 import {
   BottomSheetViewProps,
   BottomSheetFlatListProps,
@@ -17,13 +17,16 @@ import {
 } from './types';
 
 const useScrollableStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
-    container: {
-      flex: 1,
-      paddingHorizontal: t.spacings.s16,
-      paddingBottom: t.spacings.s16,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        flex: 1,
+        paddingHorizontal: t.spacings.s16,
+        paddingBottom: t.spacings.s16,
+      },
+    }),
+    [],
+  );
 };
 
 export const BottomSheetView: FC<BottomSheetViewProps> = ({

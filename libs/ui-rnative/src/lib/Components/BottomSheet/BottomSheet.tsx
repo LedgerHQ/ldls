@@ -1,7 +1,8 @@
 import GorghomBottomSheet, { SNAP_POINT_TYPE } from '@gorhom/bottom-sheet';
 import { createSafeContext, useMergedRef } from '@ledgerhq/lumen-utils-shared';
 import { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import { StyleSheet } from 'react-native';
+import { useStyleSheet } from '../../../styles';
 import { RuntimeConstants } from '../../utils';
 import { CustomBackdrop } from './CustomBackdrop';
 import { CustomHandle } from './CustomHandle';
@@ -24,9 +25,9 @@ const MAX_DYNAMIC_CONTENT_SIZE = {
 };
 
 const useStyles = ({ shadow }: { shadow: boolean }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => ({
-      root: mergeStyles(
+      root: StyleSheet.flatten([
         {
           marginBottom: t.spacings.s16,
           width: t.sizes.full,
@@ -38,7 +39,7 @@ const useStyles = ({ shadow }: { shadow: boolean }) => {
         shadow && {
           boxShadow: t.shadows.lg,
         },
-      ),
+      ]),
       background: {
         marginBottom: t.spacings.s16,
         backgroundColor: t.colors.bg.canvasSheet,

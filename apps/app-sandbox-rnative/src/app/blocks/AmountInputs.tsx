@@ -1,5 +1,5 @@
 import { AmountInput, IconButton } from '@ledgerhq/lumen-ui-rnative';
-import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+import { useStyleSheet, useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 import { TransferVertical } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useState } from 'react';
 import { View, Text } from 'react-native';
@@ -14,7 +14,7 @@ export function AmountInputs() {
   const [isCoin, setIsCoin] = useState(false);
 
   const styles = useStyles();
-  const { theme } = LumenStyleSheet.useTheme();
+  const { theme } = useTheme();
 
   return (
     <View style={{ width: theme.sizes.full }}>
@@ -101,20 +101,23 @@ export function AmountInputs() {
 }
 
 const useStyles = () => {
-  return LumenStyleSheet.useCreate((t) => ({
-    separator: {
-      marginVertical: t.spacings.s24,
-      height: t.sizes.s2,
-      width: '50%',
-      backgroundColor: t.colors.bg.surface,
-    },
-    sectionContainer: {
-      alignItems: 'center',
-    },
-    sectionDescription: {
-      marginTop: t.spacings.s8,
-      color: t.colors.text.muted,
-      ...t.typographies.body2,
-    },
-  }));
+  return useStyleSheet(
+    (t) => ({
+      separator: {
+        marginVertical: t.spacings.s24,
+        height: t.sizes.s2,
+        width: '50%',
+        backgroundColor: t.colors.bg.surface,
+      },
+      sectionContainer: {
+        alignItems: 'center',
+      },
+      sectionDescription: {
+        marginTop: t.spacings.s8,
+        color: t.colors.text.muted,
+        ...t.typographies.body2,
+      },
+    }),
+    [],
+  );
 };

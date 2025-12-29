@@ -1,7 +1,12 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, Pressable, type GestureResponderEvent } from 'react-native';
-import { LumenStyleSheet, mergeStyles } from '../../../styles';
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  type GestureResponderEvent,
+} from 'react-native';
+import { useStyleSheet } from '../../../styles';
 
 import {
   PressableRef,
@@ -163,7 +168,7 @@ const useStyles = ({
   disabled: boolean;
   size: Size;
 }) => {
-  return LumenStyleSheet.useCreate(
+  return useStyleSheet(
     (t) => {
       const sizes: Record<Size, { width: number; height: number }> = {
         sm: { width: t.sizes.s24, height: t.sizes.s16 },
@@ -181,7 +186,7 @@ const useStyles = ({
       };
 
       return {
-        root: mergeStyles(
+        root: StyleSheet.flatten([
           {
             flexDirection: 'row',
             justifyContent: 'flex-start',
@@ -206,8 +211,8 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.disabled,
           },
-        ),
-        thumbBase: mergeStyles(
+        ]),
+        thumbBase: StyleSheet.flatten([
           {
             borderRadius: t.borderRadius.full,
             backgroundColor: 'white',
@@ -217,8 +222,8 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.base,
           },
-        ),
-        thumb: mergeStyles(
+        ]),
+        thumb: StyleSheet.flatten([
           {
             borderRadius: t.borderRadius.full,
             backgroundColor: 'white',
@@ -229,7 +234,7 @@ const useStyles = ({
           disabled && {
             backgroundColor: t.colors.bg.base,
           },
-        ),
+        ]),
       };
     },
     [checked, disabled, size],
