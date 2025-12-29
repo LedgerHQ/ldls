@@ -113,7 +113,6 @@ npx nx run-many --target=build --all
 ```
 lumen/
 ├── libs/
-│   ├── ui-core/       # Shared utilities and types
 │   ├── ui-react/      # React components
 │   ├── ui-rnative/    # React Native components
 │   ├── design-core/   # Design tokens and themes

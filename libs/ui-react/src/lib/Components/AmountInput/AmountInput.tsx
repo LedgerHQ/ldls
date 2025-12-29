@@ -117,7 +117,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, AmountInputProps>(
     /** Track previous value for animation trigger */
     const prevValueRef = useRef<string>(inputValue);
 
-    /** TODO: move to ui-core */
+    /** TODO: move to utils-shared */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
       return (node: T) => {
         refs.forEach((ref) => {

@@ -184,7 +184,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
       onClear?.();
     };
 
-    /** TODO: move to ui-core */
+    /** TODO: move to utils-shared */
     function composeRefs<T>(...refs: (React.Ref<T> | undefined)[]) {
       return (node: T) => {
         refs.forEach((ref) => {
