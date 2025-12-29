@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Style System/Get Started" />
+
+# Style System
+
+Three approaches for styling, from constrained to fully customizable:
+
+- [**lx prop**](/?path=/docs/style-system-lx--docs) — Design tokens only → Layout composition, quick styling
+- [**useCreate**](/?path=/docs/style-system-usecreate--docs) — Full customizability, built-in memoization → Complex styles, custom components
+- [**useTheme**](/?path=/docs/style-system-usetheme--docs) — Full customizability → Theme/color scheme control
+
+---
+
+## lx Prop (Recommended)
+
+The `lx` prop is available on **all Design System components**. 
+It enables type-safe, design-token-only styling for rapid, consistent layout styling.
+
+```tsx
+import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
+
+<Box lx={{ gap: 's16', backgroundColor: 'accent', borderRadius: 'md' }}>
+  <Text typography='body1' lx={{ color: 'onAccent' }}>Hello</Text>
+  <Button lx={{ marginTop: 's16' }}>Click me</Button>
+</Box>
+```
+
+## useCreate
+
+Theme-aware stylesheets with **built-in memoization**. Full customizability.
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+
+const styles = LumenStyleSheet.useCreate((theme) => ({
+  container: {
+    backgroundColor: theme.colors.bg.base,
+    padding: theme.spacings.s16,
+  },
+}), []);
+```
+
+## useTheme
+
+Direct design-tokens access from the theme object.
+
+```tsx
+import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
+
+const { theme } = LumenStyleSheet.useTheme();
+```
+
+---

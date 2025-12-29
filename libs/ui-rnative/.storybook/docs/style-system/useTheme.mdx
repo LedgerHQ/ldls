@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The `useTheme` hook provides access to the current theme and color scheme controls.
 
-## Basic Usage
+### Basic Usage
 
 ```tsx
 import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
@@ -24,7 +24,7 @@ const MyComponent = () => {
 };
 ```
 
-## Theme Toggle Example
+### Theme Toggle Example
 
 ```tsx
 import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
@@ -39,14 +39,3 @@ const ThemeToggle = () => {
   );
 };
 ```
-
-## When to Use
-
-Use `useTheme` when you need to:
-
-- Access raw theme values for calculations
-- Control the color scheme programmatically
-- Access tokens not available through `lx`
-
-For most styling needs, prefer [useCreate](/?path=/docs/style-system-usecreate--docs) or the [lx prop](/?path=/docs/style-system-lx--docs).
-

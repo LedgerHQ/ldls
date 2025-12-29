@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 `LumenStyleSheet.useCreate` is a hook for creating memoized, theme-aware stylesheets in React Native.
 
-## Basic Usage
+### Basic Usage
 
 ```tsx
 import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
@@ -33,7 +33,7 @@ const MyComponent = () => {
 };
 ```
 
-## Memoization
+### Memoization
 
 Styles are memoized based on the dependency array (second argument). Re-renders only create new styles when dependencies change:
 
@@ -49,7 +49,7 @@ const styles = LumenStyleSheet.useCreate(
 );
 ```
 
-## Pressed State Pattern
+### Pressed State Pattern
 
 For Pressable components, pass `pressed` state to `useCreate`:
 
@@ -81,15 +81,3 @@ const CardContent = ({ pressed }: { pressed: boolean }) => {
   return <View style={styles.container}>...</View>;
 };
 ```
-
-## When to Use
-
-Use `useCreate` when you need:
-
-- Complex conditional styling based on props/state
-- Access to raw theme values for calculations
-- Building custom components with multiple style objects
-- Performance-critical components with memoized styles
-
-For simpler cases, prefer the [lx prop](/?path=/docs/style-system-lx--docs) directly on components.
-
