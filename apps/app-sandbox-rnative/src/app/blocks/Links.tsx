@@ -34,7 +34,9 @@ export function Links() {
       >
         Custom navigation
       </Link>
-      <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+      <Box
+        lx={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}
+      >
         <Text typography='body3' lx={{ color: 'base' }}>
           If you require assistance, please contact us via our{' '}
         </Text>

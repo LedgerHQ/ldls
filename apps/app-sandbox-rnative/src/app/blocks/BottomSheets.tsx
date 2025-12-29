@@ -50,7 +50,7 @@ export const BottomSheetFlatLists = forwardRef<
               lx={{
                 flexDirection: 'column',
                 gap: 's4',
-                borderBottomWidth: 1,
+                borderBottomWidth: 's1',
                 borderColor: 'base',
                 paddingVertical: 's12',
               }}
@@ -104,7 +104,7 @@ export const BottomSheetDynamicSize = forwardRef<
               lx={{
                 flexDirection: 'column',
                 gap: 's4',
-                borderBottomWidth: 1,
+                borderBottomWidth: 's1',
                 borderColor: 'base',
                 paddingVertical: 's12',
               }}

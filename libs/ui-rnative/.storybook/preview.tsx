@@ -49,6 +49,7 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
+          'Getting Started',
           ['Setup', 'Changelog'],
           'Style System',
           ['Style System', 'useTheme', 'useCreate', 'lx'],

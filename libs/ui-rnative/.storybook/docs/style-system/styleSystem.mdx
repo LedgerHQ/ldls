@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Style System/Get Started" />
+<Meta title="Style System/Style System" />
 
 # Style System
 
@@ -12,9 +12,9 @@ Three approaches for styling, from constrained to fully customizable:
 
 ---
 
-## lx Prop (Recommended)
+### lx Prop (Recommended)
 
-The `lx` prop is available on **all Design System components**. 
+The `lx` prop is available on **all Design System components**.  
 It enables type-safe, design-token-only styling for rapid, consistent layout styling.
 
 ```tsx
@@ -26,9 +26,9 @@ import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
 </Box>
 ```
 
-## useCreate
+### useCreate
 
-Theme-aware stylesheets with **built-in memoization**. Full customizability.
+Wrapper on top of useTheme to create theme-aware stylesheets with **built-in memoization**. Allow full customizability.
 
 ```tsx
 import { LumenStyleSheet } from '@ledgerhq/lumen-ui-rnative/styles';
@@ -41,7 +41,7 @@ const styles = LumenStyleSheet.useCreate((theme) => ({
 }), []);
 ```
 
-## useTheme
+### useTheme
 
 Direct design-tokens access from the theme object.
 
