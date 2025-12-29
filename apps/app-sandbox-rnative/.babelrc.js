@@ -16,7 +16,7 @@ module.exports = function (api) {
       ],
       plugins: [
         ['@babel/plugin-proposal-decorators', { version: '2023-11' }],
-        'react-native-worklets/plugin',
+        'react-native-reanimated/plugin',
       ],
     };
   }
@@ -27,7 +27,7 @@ module.exports = function (api) {
     ],
     plugins: [
       ['@babel/plugin-proposal-decorators', { version: '2023-11' }],
-      'react-native-worklets/plugin',
+      'react-native-reanimated/plugin',
     ],
   };
 };
