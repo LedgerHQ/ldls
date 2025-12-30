@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Search } from './Search';
-import { SearchProps } from './types';
+import { SearchInput } from './SearchInput';
+import { SearchInputProps } from './types';
 
-const meta: Meta<typeof Search> = {
-  component: Search,
-  title: 'Input/Search',
+const meta: Meta<typeof SearchInput> = {
+  component: SearchInput,
+  title: 'Input/SearchInput',
   parameters: {
     docs: {
       source: {
@@ -37,9 +37,11 @@ const meta: Meta<typeof Search> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Search>;
+type Story = StoryObj<typeof SearchInput>;
 
-const SearchStory = (args: SearchProps & { initialValue?: string }) => {
+const SearchInputStory = (
+  args: SearchInputProps & { initialValue?: string },
+) => {
   const [query, setQuery] = useState(args.initialValue ?? '');
 
   return (
@@ -53,7 +55,7 @@ const SearchStory = (args: SearchProps & { initialValue?: string }) => {
       }}
     >
       <View style={{ width: '100%', maxWidth: 400 }}>
-        <Search
+        <SearchInput
           {...args}
           value={query}
           onChangeText={setQuery}
@@ -65,7 +67,7 @@ const SearchStory = (args: SearchProps & { initialValue?: string }) => {
 };
 
 export const Base: Story = {
-  render: (args) => <SearchStory {...args} />,
+  render: (args) => <SearchInputStory {...args} />,
   args: {
     placeholder: 'Search products',
     editable: true,
@@ -74,7 +76,7 @@ export const Base: Story = {
 };
 
 export const WithContent: Story = {
-  render: (args) => <SearchStory {...args} initialValue='Search text' />,
+  render: (args) => <SearchInputStory {...args} initialValue='Search text' />,
   args: {
     placeholder: 'Search products',
     editable: true,
@@ -83,7 +85,9 @@ export const WithContent: Story = {
 };
 
 export const WithError: Story = {
-  render: (args) => <SearchStory {...args} initialValue='Invalid search' />,
+  render: (args) => (
+    <SearchInputStory {...args} initialValue='Invalid search' />
+  ),
   args: {
     placeholder: 'Search products',
     errorMessage: 'Search term is invalid',
@@ -92,8 +96,10 @@ export const WithError: Story = {
   },
 };
 
-export const DisabledSearch: Story = {
-  render: (args) => <SearchStory {...args} initialValue='Disabled search' />,
+export const DisabledSearchInput: Story = {
+  render: (args) => (
+    <SearchInputStory {...args} initialValue='Disabled search' />
+  ),
   args: {
     placeholder: 'Search products',
     editable: false,
@@ -102,7 +108,7 @@ export const DisabledSearch: Story = {
 };
 
 export const WithHiddenClearButton: Story = {
-  render: (args) => <SearchStory {...args} initialValue='Search text' />,
+  render: (args) => <SearchInputStory {...args} initialValue='Search text' />,
   args: {
     placeholder: 'Search products',
     editable: true,
@@ -112,7 +118,7 @@ export const WithHiddenClearButton: Story = {
 
 export const WithClearCallback: Story = {
   render: (args) => (
-    <SearchStory
+    <SearchInputStory
       {...args}
       initialValue='Click clear to see callback'
       onClear={() => alert('Search cleared!')}
