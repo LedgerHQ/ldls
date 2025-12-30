@@ -68,7 +68,7 @@ export const AppearanceShowcase: Story = {
 export const SizeShowcase: Story = {
   render: () => (
     <Box lx={{ flexDirection: 'row', alignItems: 'center', gap: 's4' }}>
-      <Tag size='lg' label='Large Tag' />
+      <Tag size='md' label='Large Tag' />
       <Tag size='sm' label='Small Tag' />
     </Box>
   ),
