@@ -42,7 +42,7 @@ const useStyles = ({
         Size,
         { height: number; paddingHorizontal: number; paddingVertical: number }
       > = {
-        lg: {
+        md: {
           height: t.sizes.s24,
           paddingHorizontal: t.spacings.s8,
           paddingVertical: t.spacings.s4,
@@ -55,7 +55,7 @@ const useStyles = ({
       };
 
       const textTypography =
-        size === 'lg' ? t.typographies.body3 : t.typographies.body4;
+        size === 'md' ? t.typographies.body3 : t.typographies.body4;
 
       return {
         root: StyleSheet.flatten([
@@ -97,7 +97,7 @@ const useStyles = ({
 };
 
 const iconSizeMap: Record<Size, IconSize> = {
-  lg: 16,
+  md: 16,
   sm: 12,
 };
 
@@ -132,7 +132,7 @@ export const Tag = React.forwardRef<ViewRef, TagProps>(
   (
     {
       appearance = 'accent',
-      size = 'lg',
+      size = 'md',
       icon,
       label,
       disabled = false,
