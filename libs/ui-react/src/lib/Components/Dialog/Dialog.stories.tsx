@@ -540,7 +540,7 @@ export const WithListsContent: Story = {
             <div className='flex flex-col gap-8'>
               <h4 className='heading-4-semi-bold'>Settings</h4>
 
-              <div className='-mx-8 flex flex-col gap-4 '>
+              <div className='-mx-8 flex flex-col gap-4'>
                 <div className='bg-canvas sticky top-0 py-8'>
                   <Search className='mx-8' placeholder='Search item...' />
                 </div>
