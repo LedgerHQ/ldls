@@ -8,9 +8,9 @@ export type TagProps = {
   appearance?: 'base' | 'gray' | 'accent' | 'success' | 'error' | 'warning';
   /**
    * The size of the tag.
-   * @default lg
+   * @default md
    */
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md';
   /**
    * Icon component to render.
    */

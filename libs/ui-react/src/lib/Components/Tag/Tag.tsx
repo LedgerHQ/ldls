@@ -17,7 +17,7 @@ const tagVariants = cva(
         warning: 'bg-warning text-warning',
       },
       size: {
-        lg: 'px-8 py-4 body-3',
+        md: 'px-8 py-4 body-3',
         sm: 'px-4 py-2 body-4',
       },
       disabled: {
@@ -27,7 +27,7 @@ const tagVariants = cva(
     },
     defaultVariants: {
       appearance: 'accent',
-      size: 'lg',
+      size: 'md',
       disabled: false,
     },
   },
@@ -38,7 +38,7 @@ export const Tag = React.forwardRef<
   TagProps & VariantProps<typeof tagVariants>
 >(({ className, appearance, size, icon, label, disabled, ...props }, ref) => {
   const iconSizeMap: { [key: string]: IconSize } = {
-    lg: 16,
+    md: 16,
     sm: 12,
   };
 

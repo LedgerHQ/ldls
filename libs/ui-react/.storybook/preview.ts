@@ -52,7 +52,7 @@ const preview: Preview = {
           'Action',
           ['Button', 'CardButton', 'IconButton', 'Link', 'InteractiveIcon'],
           'Input',
-          ['TextInput', 'Search', 'AddressInput', 'AmountInput'],
+          ['TextInput', 'SearchInput', 'AddressInput', 'AmountInput'],
           'Communication',
           'Containment',
           ['Dialog', 'ListItem', 'Tile'],

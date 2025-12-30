@@ -1,4 +1,8 @@
-import { AddressInput, Search, TextInput } from '@ledgerhq/lumen-ui-rnative';
+import {
+  AddressInput,
+  SearchInput,
+  TextInput,
+} from '@ledgerhq/lumen-ui-rnative';
 import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 import { Eye, EyeCross } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useEffect, useState } from 'react';
@@ -56,7 +60,7 @@ export function TextInputs() {
         label='A very long label that should really be truncated at different breakpoints'
         defaultValue='This is a default value!'
       />
-      <Search placeholder='Search for a component...' />
+      <SearchInput placeholder='Search for a component...' />
       <AddressInput
         placeholder='Enter address or ENS'
         onQrCodeClick={() =>

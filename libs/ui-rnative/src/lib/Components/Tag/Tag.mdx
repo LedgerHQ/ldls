@@ -36,7 +36,7 @@ View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Component
 
 Tags come in two different sizes:
 
-- **lg** (default)
+- **md** (default)
 - **sm**
 
 <Canvas of={TagStories.SizeShowcase} />
@@ -70,7 +70,7 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 import { Tag } from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
-  return <Tag size="lg" appearance="accent" label="My Tag" />;
+  return <Tag size="md" appearance="accent" label="My Tag" />;
 }
 ```
 
@@ -80,7 +80,7 @@ While the component comes with predefined styles, you can extend them using the 
 
 ```tsx
 <Tag
-  size="lg"
+  size="md"
   appearance="accent"
   label="Custom Tag"
   lx={{ marginTop: 's4' }}
@@ -96,7 +96,7 @@ import { Tag } from '@ledgerhq/lumen-ui-rnative';
 import { Check } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
-  return <Tag size="lg" appearance="success" icon={Check} label="Success" />;
+  return <Tag size="md" appearance="success" icon={Check} label="Success" />;
 }
 ```
 
@@ -107,7 +107,7 @@ function MyComponent() {
   <DoVsDontRow>
     <DoBlockItem
       title='Use standard size variants'
-      description='Use the size prop with predefined variants (sm, lg)'
+      description='Use the size prop with predefined variants (sm, md)'
     >
 
 {/* prettier-ignore */}

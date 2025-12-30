@@ -2,11 +2,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-import { Search } from './Search';
+import { SearchInput } from './SearchInput';
 
-describe('Search', () => {
+describe('SearchInput', () => {
   it('renders with search icon', () => {
-    render(<Search placeholder='Search' />);
+    render(<SearchInput placeholder='Search' />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('Search', () => {
   });
 
   it('displays placeholder correctly', () => {
-    render(<Search placeholder='Search products' />);
+    render(<SearchInput placeholder='Search products' />);
 
     const input = screen.getByPlaceholderText('Search products');
     expect(input).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('Search', () => {
   it('handles controlled input', () => {
     const handleChange = vi.fn();
     render(
-      <Search
+      <SearchInput
         placeholder='Search'
         value='test query'
         onChange={handleChange}
@@ -41,7 +41,7 @@ describe('Search', () => {
   });
 
   it('shows clear button when input has content', () => {
-    render(<Search placeholder='Search' defaultValue='some text' />);
+    render(<SearchInput placeholder='Search' defaultValue='some text' />);
 
     const clearButton = screen.getByLabelText(
       'components.baseInput.clearInputAriaLabel',
@@ -51,7 +51,7 @@ describe('Search', () => {
 
   it('hides clear button when hideClearButton is true', () => {
     render(
-      <Search
+      <SearchInput
         placeholder='Search'
         defaultValue='some text'
         hideClearButton={true}
@@ -67,7 +67,7 @@ describe('Search', () => {
   it('clears input when clear button is clicked', () => {
     const handleClear = vi.fn();
     render(
-      <Search
+      <SearchInput
         placeholder='Search'
         defaultValue='test content'
         onClear={handleClear}
@@ -84,7 +84,7 @@ describe('Search', () => {
 
   it('displays error message when provided', () => {
     render(
-      <Search
+      <SearchInput
         placeholder='Search'
         errorMessage='Search failed'
         aria-invalid={true}
@@ -100,14 +100,14 @@ describe('Search', () => {
   });
 
   it('handles disabled state', () => {
-    render(<Search placeholder='Search' disabled />);
+    render(<SearchInput placeholder='Search' disabled />);
 
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
   });
 
   it('renders with fixed icon styling', () => {
-    const { container } = render(<Search placeholder='Search' />);
+    const { container } = render(<SearchInput placeholder='Search' />);
 
     // The search icon should have fixed styling
     const searchIcon = container.querySelector('svg');

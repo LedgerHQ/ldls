@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 import * as Icons from '../../Symbols';
-import { Search } from '../Search/Search';
+import { SearchInput } from '../SearchInput/SearchInput';
 import { IconSize } from './types';
 
 const meta: Meta = {
@@ -143,7 +143,7 @@ export const Gallery: StoryObj = {
         {/* Search bar */}
         <div className='mb-32'>
           <div className='mb-8 max-w-md'>
-            <Search
+            <SearchInput
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder='Search icons...'

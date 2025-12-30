@@ -14,7 +14,7 @@ export const Tags = () => {
         <Tag label='Disabled' icon={ExternalLink} disabled />
       </Box>
       <Box lx={{ flexDirection: 'row', gap: 's8' }}>
-        <Tag appearance='accent' label='Accent' size='lg' />
+        <Tag appearance='accent' label='Accent' size='md' />
         <Tag appearance='accent' label='Accent' size='sm' />
       </Box>
     </Box>

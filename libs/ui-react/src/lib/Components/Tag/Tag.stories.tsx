@@ -22,7 +22,7 @@ export const Default: Story = {
   args: {
     label: 'Label',
     appearance: 'accent',
-    size: 'lg',
+    size: 'md',
   },
   render: (args) => <Tag {...args} icon={args.icon ? Check : undefined} />,
 };
@@ -55,7 +55,7 @@ export const Showcase: Story = {
 export const SizesShowcase: Story = {
   render: () => (
     <div className='flex items-center gap-4'>
-      <Tag size='lg' label='Large Tag' />
+      <Tag size='md' label='Large Tag' />
       <Tag size='sm' label='Small Tag' />
     </div>
   ),

@@ -17,8 +17,9 @@ export type TagProps = {
   label: string;
   /**
    * The size of the tag.
+   * @default 'md'
    */
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md';
   /**
    * When `true`, prevents the user from interacting with the tag.
    *

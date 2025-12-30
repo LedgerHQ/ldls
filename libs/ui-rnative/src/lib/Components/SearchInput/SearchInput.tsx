@@ -2,11 +2,11 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import { Search as SearchIcon } from '../../Symbols';
 import { BaseInput } from '../BaseInput';
-import { type SearchProps } from './types';
+import { type SearchInputProps } from './types';
 
-export const Search = React.forwardRef<
+export const SearchInput = React.forwardRef<
   React.ElementRef<typeof TextInput>,
-  SearchProps
+  SearchInputProps
 >((props, ref) => {
   return (
     <BaseInput
@@ -17,4 +17,4 @@ export const Search = React.forwardRef<
   );
 });
 
-Search.displayName = 'Search';
+SearchInput.displayName = 'SearchInput';

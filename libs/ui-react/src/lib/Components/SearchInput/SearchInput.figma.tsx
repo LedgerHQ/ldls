@@ -1,13 +1,13 @@
 import React from 'react';
-import { Search, SearchProps } from './Search';
+import { SearchInput, SearchInputProps } from './SearchInput';
 
 import figma from '@figma/code-connect';
 
 figma.connect(
-  Search,
+  SearchInput,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2248%3A3468',
   {
-    imports: ["import { Search } from '@ledgerhq/lumen-ui-react'"],
+    imports: ["import { SearchInput } from '@ledgerhq/lumen-ui-react'"],
     props: {
       placeholder: figma.string('label'),
       value: figma.enum('search-state', {
@@ -21,11 +21,11 @@ figma.connect(
     links: [
       {
         name: '*',
-        url: 'https://ldls.vercel.app/?path=/docs/components-search-overview--docs',
+        url: 'https://ldls.vercel.app/?path=/docs/components-searchinput-overview--docs',
       },
     ],
-    example: (props: SearchProps) => (
-      <Search
+    example: (props: SearchInputProps) => (
+      <SearchInput
         placeholder={props.placeholder}
         value={props.value}
         disabled={props.disabled}
@@ -33,3 +33,4 @@ figma.connect(
     ),
   },
 );
+

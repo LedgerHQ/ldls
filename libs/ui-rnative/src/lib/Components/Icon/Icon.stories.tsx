@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
 import { useTheme } from '../../../styles';
 import * as Icons from '../../Symbols';
-import { Search } from '../Search/Search';
+import { SearchInput } from '../SearchInput/SearchInput';
 import { Box, Text, Pressable } from '../Utility';
 import type { IconSize } from './types';
 
@@ -204,7 +204,7 @@ export const Gallery: StoryObj = {
         {/* Search bar */}
         <Box lx={{ marginBottom: 's32' }}>
           <Box lx={{ marginBottom: 's8', maxWidth: 's320' }}>
-            <Search
+            <SearchInput
               placeholder='Search icons...'
               value={searchTerm}
               onChangeText={setSearchTerm}

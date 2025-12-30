@@ -149,7 +149,7 @@ Before finalizing Do's and Don'ts sections:
 - [ ] Formatting is consistent (use `{/* prettier-ignore */}` for both blocks)
 - [ ] Variable names are consistent across examples
 
-See `Button.mdx`, `Search.mdx`, `AddressInput.mdx`, `Banner.mdx`, `ListItem.mdx`, and `Tile.mdx` for reference implementations.
+See `Button.mdx`, `SearchInput.mdx`, `AddressInput.mdx`, `Banner.mdx`, `ListItem.mdx`, and `Tile.mdx` for reference implementations.
 
 ### Required Structure
 

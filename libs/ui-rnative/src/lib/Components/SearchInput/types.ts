@@ -1,4 +1,5 @@
 import { BaseInputProps } from '../BaseInput';
 import { BoxProps } from '../Utility';
 
-export type SearchProps = Omit<BaseInputProps, 'prefix' | 'label'> & BoxProps;
+export type SearchInputProps = Omit<BaseInputProps, 'prefix' | 'label'> &
+  BoxProps;

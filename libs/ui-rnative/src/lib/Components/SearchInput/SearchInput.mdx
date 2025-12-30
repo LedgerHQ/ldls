@@ -1,31 +1,31 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as SearchStories from './Search.stories';
-import { Search } from './Search';
+import * as SearchInputStories from './SearchInput.stories';
+import { SearchInput } from './SearchInput';
 import { CustomTabs, Tab } from '../../../../.storybook/components';
 import { DoVsDontRow, DoBlockItem, DontBlockItem } from '../../../../.storybook/components/DoVsDont';
 import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 
-<Meta title='Input/Search' of={SearchStories} />
+<Meta title='Input/SearchInput' of={SearchInputStories} />
 
-# 🔍 Search
+# 🔍 SearchInput
 
 <CustomTabs>
   <Tab label="Overview">
 
 ## Introduction
 
-The Search component is a specialized input field designed specifically for search functionality on mobile platforms. It features a built-in search icon, placeholder text, and automatic clear button for enhanced user experience. Unlike regular inputs, it uses placeholder text instead of floating labels for better search UX patterns.
+The SearchInput component is a specialized input field designed specifically for search functionality on mobile platforms. It features a built-in search icon, placeholder text, and automatic clear button for enhanced user experience. Unlike regular inputs, it uses placeholder text instead of floating labels for better search UX patterns.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2248-3468&m=dev).
 
 > ⚠️ **Note on Web Preview:** The Storybook preview below may display visual inconsistencies as certain React Native APIs (such as Reanimated animations) cannot be fully translated to web environments. While the component's functionality should accurately represent the native implementation, it may not render as intended. For the complete native experience, please refer to the component on an actual iOS or Android device.
 
-<Canvas of={SearchStories.Base} />
-<Controls of={SearchStories.Base} />
+<Canvas of={SearchInputStories.Base} />
+<Controls of={SearchInputStories.Base} />
 
 ## Anatomy
 
-> **Layout:** The Search component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
+> **Layout:** The SearchInput component takes the full width of its container by default. You can control the width by using the `style` prop or by wrapping in a container.
 
 ### Search Icon
 
@@ -39,7 +39,7 @@ Uses placeholder text instead of floating labels for better search UX. Styled wi
 
 A clear button (×) appears **automatically** when input has content.
 
-<Canvas of={SearchStories.WithContent} />
+<Canvas of={SearchInputStories.WithContent} />
 
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
@@ -47,25 +47,25 @@ A clear button (×) appears **automatically** when input has content.
 
 Use `hideClearButton` to prevent the clear button from appearing.
 
-<Canvas of={SearchStories.WithHiddenClearButton} />
+<Canvas of={SearchInputStories.WithHiddenClearButton} />
 
 #### **Extending the Clear Behavior**
 
 Use `onClear` to extend the default clear behavior with custom logic.
 
-<Canvas of={SearchStories.WithClearCallback} />
+<Canvas of={SearchInputStories.WithClearCallback} />
 
 ### Disabled State
 
 The search input can be disabled using the `editable` prop set to `false`.
 
-<Canvas of={SearchStories.DisabledSearch} />
+<Canvas of={SearchInputStories.DisabledSearchInput} />
 
 ### Error State
 
 The search component supports error handling through `errorMessage` which displays an error message below the input with error styling including a red border and text color.
 
-<Canvas of={SearchStories.WithError} />
+<Canvas of={SearchInputStories.WithError} />
 
 The error message will be automatically:
 
@@ -76,7 +76,7 @@ The error message will be automatically:
 
 ## Controlled vs Uncontrolled
 
-The Search component supports both controlled and uncontrolled usage.
+The SearchInput component supports both controlled and uncontrolled usage.
 
 ### Uncontrolled (with defaultValue)
 
@@ -99,7 +99,7 @@ Set these using the `keyboardType` prop.
 
 ## Accessibility
 
-The Search component follows accessibility best practices:
+The SearchInput component follows accessibility best practices:
 
 - Supports screen reader navigation
 - Placeholder text is properly announced
@@ -132,14 +132,14 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ### Basic Usage
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-rnative';
+import { SearchInput } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
   const [query, setQuery] = useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search products'
       value={query}
       onChangeText={setQuery}
@@ -155,14 +155,14 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-rnative';
+import { SearchInput } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
   const [query, setQuery] = useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search'
       value={query}
       onChangeText={setQuery}
@@ -177,7 +177,7 @@ function MyComponent() {
 Provide `onClear` to extend the default clear behavior with additional logic:
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-rnative';
+import { SearchInput } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -185,7 +185,7 @@ function MyComponent() {
   const [error, setError] = useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search users'
       value={query}
       onChangeText={setQuery}
@@ -203,10 +203,10 @@ function MyComponent() {
 
 ### With Error State
 
-The Search component supports error states and messages:
+The SearchInput component supports error states and messages:
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-rnative';
+import { SearchInput } from '@ledgerhq/lumen-ui-rnative';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -224,7 +224,7 @@ function MyComponent() {
   };
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search products'
       value={query}
       onChangeText={handleSearch}
@@ -241,7 +241,7 @@ function MyComponent() {
 While the component comes with predefined styles, you can extend them using the `style` prop:
 
 ```tsx
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChangeText={setQuery}
@@ -255,7 +255,7 @@ Use the `keyboardType` prop to show the appropriate keyboard:
 
 ```tsx
 // Email search keyboard
-<Search
+<SearchInput
   placeholder='Search by email'
   value={query}
   onChangeText={setQuery}
@@ -263,7 +263,7 @@ Use the `keyboardType` prop to show the appropriate keyboard:
 />
 
 // URL search keyboard
-<Search
+<SearchInput
   placeholder='Search by URL'
   value={query}
   onChangeText={setQuery}
@@ -276,7 +276,7 @@ Use the `keyboardType` prop to show the appropriate keyboard:
 Use the `editable` prop to disable the search input:
 
 ```tsx
-<Search placeholder='Search' value='Current search' editable={false} />
+<SearchInput placeholder='Search' value='Current search' editable={false} />
 ```
 
 ### Debounced Search Example
@@ -284,7 +284,7 @@ Use the `editable` prop to disable the search input:
 For better performance, especially when dealing with API calls or expensive filtering operations, implement debounced search:
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-rnative';
+import { SearchInput } from '@ledgerhq/lumen-ui-rnative';
 import { useState, useCallback } from 'react';
 import { debounce } from 'lodash'; // or your preferred debounce utility
 
@@ -311,7 +311,7 @@ function MyComponent() {
   };
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search products'
       value={query}
       onChangeText={handleChange}
@@ -322,18 +322,18 @@ function MyComponent() {
 
 ## Do's and Don'ts
 
-The following guidelines ensure consistent usage of the Search component and maintain design system principles.
+The following guidelines ensure consistent usage of the SearchInput component and maintain design system principles.
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
   <DoVsDontRow>
     <DoBlockItem
       title='Use placeholder text'
-      description='Search uses placeholder text instead of labels for optimal search UX'
+      description='SearchInput uses placeholder text instead of labels for optimal search UX'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search by name or email'
   value={query}
   onChangeText={setQuery}
@@ -343,12 +343,12 @@ The following guidelines ensure consistent usage of the Search component and mai
     </DoBlockItem>
     <DontBlockItem
       title="Don't use label prop"
-      description='Search component does not support labels as they are not suitable for search UX patterns'
+      description='SearchInput component does not support labels as they are not suitable for search UX patterns'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   label='Search' // Not supported, will cause error
   placeholder='Search by name or email'
   value={query}
@@ -367,7 +367,7 @@ The following guidelines ensure consistent usage of the Search component and mai
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search products'
   value={query}
   onChangeText={handleChange}
@@ -377,12 +377,12 @@ The following guidelines ensure consistent usage of the Search component and mai
     </DoBlockItem>
     <DontBlockItem
       title="Don't override the search icon"
-      description='The prefix prop is not available on Search component'
+      description='The prefix prop is not available on SearchInput component'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   prefix={<CustomIcon />} // Not supported, will cause error
   placeholder='Search products'
 />
@@ -400,7 +400,7 @@ The following guidelines ensure consistent usage of the Search component and mai
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChangeText={setQuery}
@@ -419,7 +419,7 @@ The following guidelines ensure consistent usage of the Search component and mai
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChangeText={setQuery}
@@ -444,7 +444,7 @@ const debouncedSearch = useCallback(
   []
 );
 
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChangeText={(text) => {
@@ -467,7 +467,7 @@ const debouncedSearch = useCallback(
   []
 );
 
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChangeText={(text) => {
@@ -489,7 +489,7 @@ const debouncedSearch = useCallback(
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search by name or email'
   value={query}
   onChangeText={setQuery}
@@ -504,7 +504,7 @@ const debouncedSearch = useCallback(
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Type here'
   value={query}
   onChangeText={setQuery}
@@ -544,14 +544,14 @@ const debouncedSearch = useCallback(
 
 ## Usage Guidelines
 
-Use Search for:
+Use SearchInput for:
 
 - Search functionality and data querying
 - Filtering lists or datasets
 - Quick find operations
 - Search bars in navigation
 
-Use TextInput (instead of Search) for:
+Use TextInput (instead of SearchInput) for:
 
 - Form data collection
 - User profile information
@@ -560,3 +560,4 @@ Use TextInput (instead of Search) for:
 
 </Tab>
 </CustomTabs>
+

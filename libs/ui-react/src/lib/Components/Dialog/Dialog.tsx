@@ -223,7 +223,7 @@ export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
         ref={ref}
         data-slot='dialog-body'
         className={cn(
-          '-mb-24 flex min-h-0 grow flex-col overflow-y-auto px-24 pb-24 pt-4',
+          '-mb-24 flex min-h-0 grow flex-col overflow-y-auto px-24 pb-24',
           className,
         )}
         {...props}
@@ -261,7 +261,7 @@ export const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
       <div
         ref={ref}
         data-slot='dialog-footer'
-        className={cn('flex shrink-0 flex-col px-24 pt-24', className)}
+        className={cn('flex shrink-0 justify-end gap-8 px-24 pt-24', className)}
         {...props}
       >
         {children}

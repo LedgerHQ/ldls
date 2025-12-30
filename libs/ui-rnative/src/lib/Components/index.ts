@@ -9,7 +9,7 @@ export * from './IconButton';
 export * from './InteractiveIcon';
 export * from './Link';
 export * from './ListItem';
-export * from './Search';
+export * from './SearchInput';
 export * from './Select';
 export * from './Spot';
 export * from './Switch';

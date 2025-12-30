@@ -11,7 +11,7 @@ export * from './InteractiveIcon';
 export * from './Link';
 export * from './ListItem';
 export * from './Menu';
-export * from './Search';
+export * from './SearchInput';
 export * from './Select';
 export * from './Skeleton';
 export * from './Spot';
