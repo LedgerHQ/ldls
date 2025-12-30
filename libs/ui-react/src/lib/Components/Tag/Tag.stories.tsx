@@ -22,7 +22,7 @@ export const Default: Story = {
   args: {
     label: 'Label',
     appearance: 'accent',
-    size: 'lg',
+    size: 'md',
   },
   render: (args) => <Tag {...args} icon={args.icon ? Check : undefined} />,
 };

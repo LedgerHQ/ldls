@@ -11,7 +11,6 @@ export * from './Link';
 export * from './ListItem';
 export * from './SearchInput';
 export * from './Select';
-export * from './SearchInput';
 export * from './Spot';
 export * from './Switch';
 export * from './Tag';

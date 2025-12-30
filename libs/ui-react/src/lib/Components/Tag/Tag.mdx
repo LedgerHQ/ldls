@@ -40,7 +40,7 @@ View in Figma: [link](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Com
 
 Tags come in two different sizes:
 
-- **lg** (default)
+- **md** (default)
 - **sm**
 
 <Canvas of={TagStories.SizesShowcase} />
@@ -75,7 +75,7 @@ npm install @ledgerhq/lumen-ui-react
 import { Tag } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
-  return <Tag size='lg' appearance='accent' label='My Tag' />;
+  return <Tag size='md' appearance='accent' label='My Tag' />;
 }
 ```
 
@@ -85,7 +85,7 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Tag
-  size='lg'
+  size='md'
   appearance='accent'
   label='Custom Tag'
   className='mt-4' // Custom margin
@@ -101,7 +101,7 @@ import { Tag } from '@ledgerhq/lumen-ui-react';
 import { Check } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
-  return <Tag size='lg' appearance='success' icon={Check} label='Success' />;
+  return <Tag size='md' appearance='success' icon={Check} label='Success' />;
 }
 ```
 

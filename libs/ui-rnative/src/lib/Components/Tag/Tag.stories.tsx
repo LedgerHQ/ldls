@@ -13,7 +13,7 @@ const meta: Meta<typeof Tag> = {
     },
     size: {
       control: 'radio',
-      options: ['sm', 'lg'],
+      options: ['sm', 'md'],
     },
     label: {
       control: 'text',
@@ -35,7 +35,7 @@ export const Base: Story = {
   args: {
     label: 'Label',
     appearance: 'accent',
-    size: 'lg',
+    size: 'md',
   },
   render: (args) => <Tag {...args} icon={args.icon ? Check : undefined} />,
 };
