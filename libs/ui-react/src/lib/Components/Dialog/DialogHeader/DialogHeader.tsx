@@ -10,7 +10,7 @@ import { DialogHeaderProps } from '../types';
 const dialogHeaderVariants = cva('flex px-24 text-base', {
   variants: {
     appearance: {
-      compact: 'h-64 min-h-64 flex-row items-center gap-12',
+      compact: 'mb-12 h-64 min-h-64 flex-row items-center gap-12',
       extended: 'flex-col gap-16 pb-12 pt-10',
     },
   },
@@ -119,12 +119,12 @@ const DialogHeaderComponent = React.forwardRef<
               })}
             >
               {title && (
-                <div className='truncate text-center heading-4-semi-bold'>
+                <div className='heading-4-semi-bold truncate text-center'>
                   {title}
                 </div>
               )}
               {description && (
-                <div className='truncate text-center text-muted body-2'>
+                <div className='text-muted body-2 truncate text-center'>
                   {description}
                 </div>
               )}
