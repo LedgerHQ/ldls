@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search as SearchIcon } from '../../Symbols';
 import { BaseInput } from '../BaseInput';
-import { SearchProps } from './types';
+import { SearchInputProps } from './types';
 
 /**
  * A customizable search input component with built-in search icon, automatic clear button, error states, and focus/hover effects.
@@ -27,10 +27,10 @@ import { SearchProps } from './types';
  *
  * @example
  * // Basic search with automatic clear button
- * <Search placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
+ * <SearchInput placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
  *
  * // Search with error state
- * <Search
+ * <SearchInput
  *   placeholder="Search products"
  *   value={searchTerm}
  *   onChange={(e) => setSearchTerm(e.target.value)}
@@ -39,7 +39,7 @@ import { SearchProps } from './types';
  * />
  *
  * // Search with suffix element
- * <Search
+ * <SearchInput
  *   placeholder="Search with filter"
  *   value={query}
  *   onChange={(e) => setQuery(e.target.value)}
@@ -48,7 +48,7 @@ import { SearchProps } from './types';
  * />
  *
  * // Extend clear behavior with analytics
- * <Search
+ * <SearchInput
  *   placeholder="Search users"
  *   value={userQuery}
  *   onChange={(e) => setUserQuery(e.target.value)}
@@ -57,7 +57,7 @@ import { SearchProps } from './types';
  *   }}
  * />
  */
-export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
+export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
   (props, ref) => {
     const searchIcon = (
       <SearchIcon
@@ -73,4 +73,4 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
   },
 );
 
-Search.displayName = 'Search';
+SearchInput.displayName = 'SearchInput';

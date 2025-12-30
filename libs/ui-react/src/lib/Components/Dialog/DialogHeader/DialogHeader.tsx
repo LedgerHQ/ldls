@@ -119,12 +119,12 @@ const DialogHeaderComponent = React.forwardRef<
               })}
             >
               {title && (
-                <div className='heading-4-semi-bold truncate text-center'>
+                <div className='truncate text-center heading-4-semi-bold'>
                   {title}
                 </div>
               )}
               {description && (
-                <div className='text-muted body-2 truncate text-center'>
+                <div className='truncate text-center text-muted body-2'>
                   {description}
                 </div>
               )}

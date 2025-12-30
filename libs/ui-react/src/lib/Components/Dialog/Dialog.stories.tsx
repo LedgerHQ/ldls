@@ -3,7 +3,7 @@ import React from 'react';
 import { Apps, Settings } from '../../Symbols';
 import { Button } from '../Button';
 import { ListItem } from '../ListItem';
-import { Search } from '../Search/Search';
+import { SearchInput } from '../SearchInput/SearchInput';
 import { Spot } from '../Spot';
 import { Tile } from '../Tile';
 import {
@@ -542,7 +542,7 @@ export const WithListsContent: Story = {
 
               <div className='-mx-8 flex flex-col gap-4'>
                 <div className='bg-canvas sticky top-0 py-8'>
-                  <Search className='mx-8' placeholder='Search item...' />
+                  <SearchInput className='mx-8' placeholder='Search item...' />
                 </div>
                 {Array.from({ length: 12 }).map((_, i) => (
                   <ListItem

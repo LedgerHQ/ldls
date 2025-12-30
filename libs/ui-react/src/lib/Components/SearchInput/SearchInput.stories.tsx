@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ListItem } from '../ListItem';
-import { Search } from './Search';
+import { SearchInput } from './SearchInput';
 
-const meta: Meta<typeof Search> = {
-  component: Search,
-  title: 'Input/Search',
+const meta: Meta<typeof SearchInput> = {
+  component: SearchInput,
+  title: 'Input/SearchInput',
   parameters: {
     docs: {
       source: {
@@ -18,7 +18,7 @@ const meta: Meta<typeof Search> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Search>;
+type Story = StoryObj<typeof SearchInput>;
 
 /**
  * The default search component with a search icon prefix and automatic clear button functionality.
@@ -30,7 +30,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" />',
+        code: '<SearchInput placeholder="Search text" />',
       },
     },
   },
@@ -47,7 +47,7 @@ export const Empty: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" className="max-w-md" />',
+        code: '<SearchInput placeholder="Search text" className="max-w-md" />',
       },
     },
   },
@@ -65,7 +65,7 @@ export const WithContent: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" defaultValue="Search text" className="max-w-md" />',
+        code: '<SearchInput placeholder="Search text" defaultValue="Search text" className="max-w-md" />',
       },
     },
   },
@@ -84,7 +84,7 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       source: {
-        code: '<Search placeholder="Search text" disabled defaultValue="Disabled input" className="max-w-md" />',
+        code: '<SearchInput placeholder="Search text" disabled defaultValue="Disabled input" className="max-w-md" />',
       },
     },
   },
@@ -104,7 +104,7 @@ export const Error: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Search 
+        code: `<SearchInput 
   placeholder="Search text"
   defaultValue="Invalid search"
   errorMessage="Search term is invalid"
@@ -121,7 +121,7 @@ export const Error: Story = {
  * The search query is debounced, not just the results rendering.
  * This prevents excessive API calls in real applications.
  */
-export const DebouncedSearch: Story = {
+export const DebouncedSearchInput: Story = {
   render: () => {
     const [inputValue, setInputValue] = React.useState(''); // Display value (updates immediately)
     const [searchQuery, setSearchQuery] = React.useState(''); // Debounced search query
@@ -194,7 +194,7 @@ export const DebouncedSearch: Story = {
 
     return (
       <div className='max-w-md space-y-16'>
-        <Search
+        <SearchInput
           placeholder='Search fruits (properly debounced)'
           value={inputValue}
           onChange={handleInputChange}

@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
-import * as SearchStories from './Search.stories';
-import { Search } from './Search';
+import * as SearchInputStories from './SearchInput.stories';
+import { SearchInput } from './SearchInput';
 import {
   CustomTabs,
   Tab,
@@ -10,31 +10,31 @@ import {
 } from '../../../../.storybook/components';
 import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 
-<Meta title='Components/Search' of={SearchStories} />
+<Meta title='Components/SearchInput' of={SearchInputStories} />
 
-# 🔍 Search
+# 🔍 SearchInput
 
 <CustomTabs>
   <Tab label="Overview">
 
 ## Introduction
 
-The Search component is a specialized input field designed specifically for search functionality. It features a built-in search icon, placeholder text, and automatic clear button for enhanced user experience. Unlike regular inputs, it uses placeholder text instead of floating labels for better search UX patterns.
+The SearchInput component is a specialized input field designed specifically for search functionality. It features a built-in search icon, placeholder text, and automatic clear button for enhanced user experience. Unlike regular inputs, it uses placeholder text instead of floating labels for better search UX patterns.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2248-3468&m=dev).
 
 ## Anatomy
 
-<Canvas of={SearchStories.Default} />
-<Controls of={SearchStories.Default} />
+<Canvas of={SearchInputStories.Default} />
+<Controls of={SearchInputStories.Default} />
 
-> **Layout:** The Search component takes the full width of its container by default. Use wrapper containers to control the desired width.
+> **Layout:** The SearchInput component takes the full width of its container by default. Use wrapper containers to control the desired width.
 
 ### Search Icon
 
 Fixed 20px search icon positioned on the left with muted color styling.
 
-<Canvas of={SearchStories.Empty} />
+<Canvas of={SearchInputStories.Empty} />
 
 ### Placeholder Text
 
@@ -46,17 +46,17 @@ Appears automatically when input has content. Use `hideClearButton` to hide it o
 
 > **Note:** The clear button only clears the input content/value. It does not clear error states - you must handle error state clearing separately in your component logic.
 
-<Canvas of={SearchStories.WithContent} />
+<Canvas of={SearchInputStories.WithContent} />
 
 ### Disabled State
 
-<Canvas of={SearchStories.Disabled} />
+<Canvas of={SearchInputStories.Disabled} />
 
 ### Error State
 
 Supports `aria-invalid` and `errorMessage` props for error handling with proper ARIA labeling.
 
-<Canvas of={SearchStories.Error} />
+<Canvas of={SearchInputStories.Error} />
 
 ## Accessibility
 
@@ -67,17 +67,17 @@ Supports `aria-invalid` and `errorMessage` props for error handling with proper 
 
 ## Advanced Usage
 
-### Debounced Search
+### Debounced SearchInput
 
 For better performance, especially when dealing with API calls or expensive filtering operations, implement debounced search to delay execution until the user stops typing.
 
-<Canvas of={SearchStories.DebouncedSearch} />
+<Canvas of={SearchInputStories.DebouncedSearchInput} />
 
 > For developers: Check the console to see that the search operation is debounced. The input updates immediately, but the actual "search" (console.log) only fires after you stop typing for 500ms.
 
 ## Usage
 
-Use Search for search functionality and data querying. Use Input for form data collection.
+Use SearchInput for search functionality and data querying. Use Input for form data collection.
 
 </Tab>
 <Tab label="Implementation">
@@ -91,13 +91,13 @@ npm install @ledgerhq/lumen-ui-react
 ## Basic Usage
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-react';
+import { SearchInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search products'
       value={query}
       onChange={(e) => setQuery(e.target.value)}
@@ -110,36 +110,36 @@ function MyComponent() {
 
 ### Layout & Styling
 
-The Search component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
+The SearchInput component takes the **full width** of its parent container by default. You can control the width using `className` (preferred) or wrapper containers:
 
 ```tsx
 // ✅ Preferred: Direct width control
-<Search placeholder="Search..." className="max-w-md" />
+<SearchInput placeholder="Search..." className="max-w-md" />
 
 // ✅ Responsive width control
-<Search placeholder="Search..." className="w-full md:max-w-md" />
+<SearchInput placeholder="Search..." className="w-full md:max-w-md" />
 
 // Alternative: Container wrapper
 <div className="max-w-md">
-  <Search placeholder="Search..." />
+  <SearchInput placeholder="Search..." />
 </div>
 
 // Full width in form (default behavior)
 <form>
-  <Search placeholder="Search products..." />
+  <SearchInput placeholder="Search products..." />
 </form>
 ```
 
-#### **Controlled Search**
+#### **Controlled SearchInput**
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-react';
+import { SearchInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search products'
       value={query}
       onChange={(e) => setQuery(e.target.value)}
@@ -153,13 +153,13 @@ function MyComponent() {
 Use `hideClearButton` to prevent the clear button from appearing:
 
 ```tsx
-import { Search } from '@ledgerhq/lumen-ui-react';
+import { SearchInput } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   const [query, setQuery] = React.useState('');
 
   return (
-    <Search
+    <SearchInput
       placeholder='Search'
       value={query}
       onChange={(e) => setQuery(e.target.value)}
@@ -172,7 +172,7 @@ function MyComponent() {
 #### **Custom Clear Behavior**
 
 ```tsx
-<Search
+<SearchInput
   placeholder='Search'
   value={query}
   onChange={(e) => setQuery(e.target.value)}
@@ -190,7 +190,7 @@ function MyComponent() {
 #### **With Error State**
 
 ```tsx
-<Search
+<SearchInput
   placeholder='Search users'
   value={query}
   onChange={(e) => setQuery(e.target.value)}
@@ -204,13 +204,13 @@ function MyComponent() {
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use placeholder text for Search'
-      description='Search component uses placeholder text instead of labels for optimal search UX patterns'
+      title='Use placeholder text for SearchInput'
+      description='SearchInput component uses placeholder text instead of labels for optimal search UX patterns'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   placeholder='Search products' 
   value={query} 
   onChange={(e) => setQuery(e.target.value)} 
@@ -220,12 +220,12 @@ function MyComponent() {
     </DoBlockItem>
     <DontBlockItem
       title="Don't use label prop"
-      description='Search component does not support labels. The label prop is not available and will cause TypeScript errors'
+      description='SearchInput component does not support labels. The label prop is not available and will cause TypeScript errors'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   label='Search' // This will cause a TypeScript error
   placeholder='Search products' 
 />
@@ -243,7 +243,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   placeholder='Search products' 
   value={query} 
   onChange={handleChange} 
@@ -253,12 +253,12 @@ function MyComponent() {
     </DoBlockItem>
     <DontBlockItem
       title="Don't override or remove the search icon"
-      description='The search icon (prefix) is built-in and immutable. The prefix prop is not available on Search component'
+      description='The search icon (prefix) is built-in and immutable. The prefix prop is not available on SearchInput component'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   prefix={<CustomIcon />} // This will cause a TypeScript error
   placeholder='Search products' 
 />
@@ -276,7 +276,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   placeholder='Search'
   value={query} 
   onChange={(e) => setQuery(e.target.value)}
@@ -292,7 +292,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   suffix={null}
   value={query}
   onChange={handleChange}
@@ -311,7 +311,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-<Search
+<SearchInput
   placeholder='Search users'
   value={query}
   onChange={handleChange}
@@ -328,7 +328,7 @@ function MyComponent() {
 
 {/* prettier-ignore */}
 ```tsx
-<Search 
+<SearchInput 
   placeholder='Search users'
   value={query}
   onChange={handleChange}
@@ -345,3 +345,4 @@ function MyComponent() {
 
 </Tab>
 </CustomTabs>
+

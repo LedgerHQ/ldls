@@ -1,6 +1,6 @@
 import { BaseInputProps } from '../BaseInput/types';
 
-export type SearchProps = Omit<
+export type SearchInputProps = Omit<
   BaseInputProps,
   'prefix' | 'label' | 'labelClassName' | 'inputClassName'
 >;
