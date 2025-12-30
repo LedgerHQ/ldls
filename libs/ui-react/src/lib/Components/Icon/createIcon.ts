@@ -1,6 +1,7 @@
 import { toPascalCase } from '@ledgerhq/lumen-utils-shared';
 import { createElement, forwardRef, SVGProps } from 'react';
-import { Icon, IconProps } from './Icon';
+import { Icon } from './Icon';
+import { IconProps } from './types';
 
 /**
  * Create an Icon component

@@ -2,8 +2,9 @@ import { cn } from '@ledgerhq/lumen-utils-shared';
 import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import React, { useCallback } from 'react';
-import { IconSize } from '../Icon/Icon';
+import { IconSize } from '../Icon/types';
 import { Spinner } from '../Spinner';
+import { BaseButtonProps } from './types';
 
 const baseButtonVariants = cva(
   'inline-flex size-fit cursor-pointer items-center justify-center rounded-full transition-colors duration-200 body-1-semi-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus [&[data-disabled="true"]]:bg-disabled [&[data-disabled="true"]]:text-disabled',
@@ -53,57 +54,6 @@ const iconVariants = cva('shrink-0', {
     },
   },
 });
-
-export type BaseButtonProps = {
-  /**
-   * The visual style of the button.
-   * @default base
-   */
-  appearance?:
-    | 'base'
-    | 'gray'
-    | 'accent'
-    | 'transparent'
-    | 'no-background'
-    | 'red';
-  /**
-   * The size variant of the button.
-   * @default md
-   */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  /**
-   * If true, the button expands to full width of its container.
-   * @default false
-   */
-  isFull?: boolean;
-  /**
-   * Whether the button is disabled.
-   * @default false
-   */
-  disabled?: boolean;
-  /**
-   * If true, shows a loading spinner instead of the icon.
-   * @default false
-   */
-  loading?: boolean;
-  /**
-   * Additional custom CSS classes to apply.
-   */
-  className?: string;
-  /**
-   * Optional prop to render the button as a child element.
-   * @default false
-   */
-  asChild?: boolean;
-  /**
-   * An optional icon component to render inside the button.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * Optional children to render inside the button.
-   */
-  children?: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
   (

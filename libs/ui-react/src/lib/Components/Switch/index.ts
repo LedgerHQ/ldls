@@ -1,1 +1,2 @@
-export * from './Switch';
+export { Switch } from './Switch';
+export * from './types';

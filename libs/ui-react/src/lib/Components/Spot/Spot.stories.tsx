@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Settings, Plus, Heart, Star } from '../../Symbols';
-import { IconSize } from '../Icon/Icon';
-import { Spot, SpotAppearance } from './Spot';
+import { IconSize } from '../Icon';
+import { Spot } from './Spot';
+import { SpotAppearance } from './types';
 
 const meta: Meta<typeof Spot> = {
   component: Spot,

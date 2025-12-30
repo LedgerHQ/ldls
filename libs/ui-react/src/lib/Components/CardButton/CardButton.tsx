@@ -2,7 +2,7 @@ import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import { ChevronRight } from '../../Symbols';
-import { IconSize } from '../Icon/Icon';
+import { CardButtonProps } from './types';
 
 const buttonVariants = cva(
   'inline-flex h-fit w-full items-center gap-12 rounded-sm p-12 transition-colors focus-visible:outline-2 focus-visible:outline-focus disabled:text-disabled',
@@ -19,32 +19,6 @@ const buttonVariants = cva(
     },
   },
 );
-
-export type CardButtonProps = {
-  /**
-   * The visual style of the card button.
-   * @default base
-   */
-  appearance?: 'base' | 'outline';
-  /**
-   * An optional icon component to render on the left side.
-   */
-  icon?: React.ComponentType<{ size?: IconSize; className?: string }>;
-  /**
-   * The main title of the card button.
-   * @required
-   */
-  title: string;
-  /**
-   * Optional descriptive text displayed below the title.
-   */
-  description?: string;
-  /**
-   * If true, hides the chevron arrow on the right side.
-   * @default false
-   */
-  hideChevron?: boolean;
-} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
 
 /**
  * A customizable card button component that displays an optional icon, a required title, an optional description, and an optional chevron arrow.

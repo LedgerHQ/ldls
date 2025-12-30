@@ -1,24 +1,10 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
-
-export type SubheaderProps = {
-  /**
-   * The title of the subheader.
-   */
-  title: string;
-  /**
-   * The children of the subheader, which can include Subheader.Info and Subheader.Action slots.
-   */
-  children?: React.ReactNode;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
-
-type SubheaderInfoProps = {
-  children: React.ReactNode;
-};
-
-type SubheaderActionProps = {
-  children: React.ReactNode;
-};
+import {
+  SubheaderActionProps,
+  SubheaderInfoProps,
+  SubheaderProps,
+} from './types';
 
 /**
  * Info slot component for the Subheader. Used to display additional information, like tooltips.

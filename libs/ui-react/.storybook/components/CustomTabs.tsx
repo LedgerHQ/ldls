@@ -52,7 +52,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
             {/* Label */}
             <span
               className={cn(
-                'body-3 transition-colors duration-200',
+                'transition-colors duration-200 body-3',
                 active === idx
                   ? 'text-black'
                   : 'group-hover:text-active group-hover:opacity-80',

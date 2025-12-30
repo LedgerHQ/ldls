@@ -1,11 +1,7 @@
 import React from 'react';
 import { Search as SearchIcon } from '../../Symbols';
-import { BaseInput, type BaseInputProps } from '../BaseInput';
-
-export type SearchProps = Omit<
-  BaseInputProps,
-  'prefix' | 'label' | 'labelClassName' | 'inputClassName'
->;
+import { BaseInput } from '../BaseInput';
+import { SearchProps } from './types';
 
 /**
  * A customizable search input component with built-in search icon, automatic clear button, error states, and focus/hover effects.

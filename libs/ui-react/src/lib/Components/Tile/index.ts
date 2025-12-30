@@ -1,1 +1,2 @@
-export * from './Tile';
+export { Tile } from './Tile';
+export * from './types';

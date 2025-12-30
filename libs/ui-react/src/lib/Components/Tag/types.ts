@@ -1,4 +1,4 @@
-import { IconSize } from '../Icon/Icon';
+import { IconSize } from '../Icon/types';
 
 export type TagProps = {
   /**

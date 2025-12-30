@@ -1,15 +1,7 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import { forwardRef } from 'react';
 import { useCommonTranslation } from '../../../i18n';
-import { IconSize } from '../../Components/Icon/Icon';
-
-export type SpinnerProps = React.SVGProps<SVGSVGElement> & {
-  /**
-   * The size of the spinner icon in pixels.
-   * @default 16
-   */
-  size?: IconSize;
-};
+import { SpinnerProps } from './types';
 
 /**
  * A basic spinner component for loading states.
