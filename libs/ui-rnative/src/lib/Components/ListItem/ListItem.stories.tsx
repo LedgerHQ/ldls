@@ -243,7 +243,20 @@ export const DisabledState: Story = {
           </ListItemContent>
         </ListItemLeading>
         <ListItemTrailing>
-          <ChevronRight size={24} />
+          <Switch checked={false} disabled={args.disabled} />
+        </ListItemTrailing>
+      </ListItem>
+
+      <ListItem {...args}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={Settings} />
+          <ListItemContent>
+            <ListItemTitle>Disabled Item</ListItemTitle>
+            <ListItemDescription>This item is disabled</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight lx={{ color: 'disabled' }} size={24} />
         </ListItemTrailing>
       </ListItem>
 

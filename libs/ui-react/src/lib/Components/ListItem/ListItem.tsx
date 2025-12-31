@@ -139,7 +139,7 @@ export const ListItemDescription = React.forwardRef<
 >(({ children, className }, ref) => {
   const { disabled } = useListItemContext({
     consumerName: 'ListItemDescription',
-    contextRequired: false,
+    contextRequired: true,
   });
 
   return (
@@ -166,8 +166,20 @@ export const ListItemTrailing = React.forwardRef<
   HTMLDivElement,
   ListItemTrailingProps
 >(({ children, className }, ref) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemTrailing',
+    contextRequired: true,
+  });
+
   return (
-    <div ref={ref} className={cn('flex shrink-0 items-center', className)}>
+    <div
+      ref={ref}
+      className={cn(
+        'flex shrink-0 items-center',
+        disabled && 'text-disabled',
+        className,
+      )}
+    >
       {children}
     </div>
   );
@@ -181,7 +193,7 @@ ListItemTrailing.displayName = 'ListItemTrailing';
 export const ListItemSpot = (props: ListItemSpotProps) => {
   const { disabled } = useListItemContext({
     consumerName: 'ListItemSpot',
-    contextRequired: false,
+    contextRequired: true,
   });
 
   return <Spot {...props} size={48} disabled={disabled} />;

@@ -94,7 +94,7 @@ export const VariantsShowcase: Story = {
     const [selected, setSelected] = useState(false);
 
     return (
-      <div className='flex max-w-320 flex-col gap-4'>
+      <div className='max-w-320 flex flex-col gap-4'>
         <ListItem>
           <ListItemLeading>
             <ListItemSpot appearance='icon' icon={Chart1} />
@@ -238,7 +238,7 @@ export const DisabledState: Story = {
     disabled: true,
   },
   render: (args) => (
-    <div className='flex w-320 flex-col gap-4'>
+    <div className='w-320 flex flex-col gap-4'>
       <ListItem {...args}>
         <ListItemLeading>
           <ListItemSpot appearance='icon' icon={Settings} />
@@ -248,7 +248,20 @@ export const DisabledState: Story = {
           </ListItemContent>
         </ListItemLeading>
         <ListItemTrailing>
-          <ChevronRight size={24} className='text-disabled' />
+          <Switch selected={false} disabled={args.disabled} />
+        </ListItemTrailing>
+      </ListItem>
+
+      <ListItem {...args}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={Settings} />
+          <ListItemContent>
+            <ListItemTitle>Disabled Item</ListItemTitle>
+            <ListItemDescription>This item is disabled</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight size={24} />
         </ListItemTrailing>
       </ListItem>
 
@@ -293,7 +306,7 @@ export const DisabledState: Story = {
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-400 grid-cols-1 gap-4 border border-muted-subtle p-16'>
+    <div className='w-400 border-muted-subtle grid grid-cols-1 gap-4 border p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
       <div>
         <ListItem>

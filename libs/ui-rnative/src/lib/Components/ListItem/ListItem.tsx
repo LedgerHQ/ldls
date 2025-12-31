@@ -199,7 +199,7 @@ export const ListItemTitle = React.forwardRef<View, ListItemTitleProps>(
   ({ children, lx = {}, style, ...viewProps }, ref) => {
     const { disabled } = useListItemContext({
       consumerName: 'ListItemTitle',
-      contextRequired: false,
+      contextRequired: true,
     });
 
     const styles = useStyleSheet(
@@ -262,7 +262,7 @@ export const ListItemDescription = React.forwardRef<
 >(({ children, lx = {}, style, ...viewProps }, ref) => {
   const { disabled } = useListItemContext({
     consumerName: 'ListItemDescription',
-    contextRequired: false,
+    contextRequired: true,
   });
 
   const styles = useStyleSheet(
@@ -352,7 +352,7 @@ ListItemTrailing.displayName = 'ListItemTrailing';
 export const ListItemSpot = (props: ListItemSpotProps) => {
   const { disabled } = useListItemContext({
     consumerName: 'ListItemSpot',
-    contextRequired: false,
+    contextRequired: true,
   });
 
   return <Spot {...props} size={48} disabled={disabled} />;
@@ -375,7 +375,7 @@ export const ListItemTruncate = React.forwardRef<
   ) => {
     const { disabled } = useListItemContext({
       consumerName: 'ListItemTruncate',
-      contextRequired: false,
+      contextRequired: true,
     });
 
     const styles = useStyleSheet(
