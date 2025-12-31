@@ -36,45 +36,13 @@ figma.connect(
         none: undefined,
         chevron: '{<ChevronRight size={24} />}',
         value: figma.boolean('show-subvalue', {
-          true: figma.enum('state', {
-            disabled: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold text-disabled'>42.00</div>
-                <div className='text-disabled body-3'>USD</div>
-              </div>
-            ),
-            default: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold'>42.00</div>
-                <div className='text-muted body-3'>USD</div>
-              </div>
-            ),
-            hovered: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold'>42.00</div>
-                <div className='text-muted body-3'>USD</div>
-              </div>
-            ),
-            pressed: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold'>42.00</div>
-                <div className='text-muted body-3'>USD</div>
-              </div>
-            ),
-            focused: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold'>42.00</div>
-                <div className='text-muted body-3'>USD</div>
-              </div>
-            ),
-            enabled: (
-              <div className='flex flex-col items-end justify-center gap-4'>
-                <div className='body-2-semi-bold'>42.00</div>
-                <div className='text-muted body-3'>USD</div>
-              </div>
-            ),
-          }),
-          false: <div className='body-2-semi-bold'>42.00</div>,
+          true: (
+            <ListItemContent align='end'>
+              <ListItemTitle>42.00</ListItemTitle>
+              <ListItemDescription>USD</ListItemDescription>
+            </ListItemContent>
+          ),
+          false: <ListItemTitle>42.00</ListItemTitle>,
         }),
         icon: figma.instance('trailing-icon'),
         tag: '{<Tag label="New" appearance="accent" />}',
@@ -93,7 +61,7 @@ figma.connect(
     example: (props) => (
       <ListItem disabled={props.disabled}>
         <ListItemLeading>
-        {props.leadingIcon && <ListItemSpot appearance='icon' icon={props.leadingIcon} />}
+          {props.leadingIcon && <ListItemSpot appearance='icon' icon={props.leadingIcon} />}
           <ListItemContent>
             <ListItemTitle>{props.title}</ListItemTitle>
             {props.description && (
