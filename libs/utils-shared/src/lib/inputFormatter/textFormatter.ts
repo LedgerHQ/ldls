@@ -1,4 +1,4 @@
-import { formatThousands } from './format-thousands';
+import { formatThousands } from './formatThousands';
 
 export type TextFormatterOptions = {
   /** Whether to allow decimal values */

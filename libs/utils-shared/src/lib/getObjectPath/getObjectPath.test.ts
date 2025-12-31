@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getObjectPath } from './get-object-path';
+import { getObjectPath } from './getObjectPath';
 
 describe('getObjectPath', () => {
   const testObj = {

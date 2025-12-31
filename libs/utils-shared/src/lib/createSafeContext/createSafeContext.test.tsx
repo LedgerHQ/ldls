@@ -1,6 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
 import React from 'react';
-import { createSafeContext } from './create-safe-context.js';
+import { createSafeContext } from './createSafeContext.js';
 
 afterEach(() => {
   cleanup();

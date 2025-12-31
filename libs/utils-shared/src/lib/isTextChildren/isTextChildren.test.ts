@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { describe, it, expect } from 'vitest';
-import { isTextChildren } from './is-text-children';
+import { isTextChildren } from './isTextChildren';
 
 describe('isAllowedTextChildren', () => {
   type Case = { name: string; input: unknown; expected: boolean };

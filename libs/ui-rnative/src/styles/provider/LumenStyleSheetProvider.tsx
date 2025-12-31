@@ -5,11 +5,10 @@ import {
   ColorSchemeName,
   useColorScheme as useReactNativeColorScheme,
 } from 'react-native';
-import { RuntimeConstants } from '../../lib/utils';
-import { useControllableState } from '../../lib/utils/use-controllable-state/use-controllable-state';
+import { RuntimeConstants, useControllableState } from '../../lib/utils';
 import { createStylesheetTheme } from '../theme/createStylesheetTheme';
 import { type LumenStyleSheetTheme } from '../types';
-import { LumenStyleSheetProviderProps } from './types';
+import { type LumenStyleSheetProviderProps } from './types';
 
 const DARK_MODE = 'dark';
 const LIGHT_MODE = 'light';

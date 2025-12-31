@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { toPascalCase } from './string-utils';
+import { toPascalCase } from './string';
 
 describe('toPascalCase', () => {
   it('should convert kebab-case to PascalCase', () => {

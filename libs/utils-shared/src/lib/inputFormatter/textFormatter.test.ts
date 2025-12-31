@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { textFormatter } from './text-formatter.js';
+import { textFormatter } from './textFormatter.js';
 
 describe('textFormatter', () => {
   describe('decimal handling with allowDecimals=true (default)', () => {

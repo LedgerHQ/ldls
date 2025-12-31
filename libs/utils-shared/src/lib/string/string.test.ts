@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { toPascalCase } from './string-utils.js';
+import { toPascalCase } from './string.js';
 
 describe('toPascalCase', () => {
   it('should convert kebab-case to PascalCase', () => {

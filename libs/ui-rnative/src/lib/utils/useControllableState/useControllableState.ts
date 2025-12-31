@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { startTransition } from '../start-transition';
-import { useEvent } from '../use-event';
+import { startTransition } from '../startTransition';
+import { useEvent } from '../useEvent';
 
 // can configure to allow most-recent-wins or prop-wins
 // defaults to prop-wins
