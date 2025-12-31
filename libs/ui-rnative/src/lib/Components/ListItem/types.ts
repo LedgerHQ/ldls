@@ -61,7 +61,7 @@ export type ListItemContentProps = {
  */
 export type ListItemTitleProps = {
   /**
-   * The title text or content (can include inline Tag via ListItemTruncate)
+   * The title text or custom content
    */
   children: React.ReactNode;
 } & Omit<StyledViewProps, 'children'>;
@@ -71,7 +71,7 @@ export type ListItemTitleProps = {
  */
 export type ListItemDescriptionProps = {
   /**
-   * The description text or content (can include inline Tag via ListItemTruncate)
+   * The description text or custom content
    */
   children: React.ReactNode;
 } & Omit<StyledViewProps, 'children'>;
@@ -88,7 +88,7 @@ export type ListItemTrailingProps = {
 
 /**
  * Props for the ListItemTruncate component
- * Used to wrap text that should truncate when next to a Tag
+ * Used to truncate text that should when ListItemDescription or ListItemTitle contain custom content
  */
 export type ListItemTruncateProps = {
   /**

@@ -30,10 +30,7 @@ const [ListItemProvider, useListItemContext] =
  *     <ListItemSpot appearance="icon" icon={Wallet} />
  *     <ListItemContent>
  *       <ListItemTitle>Balance</ListItemTitle>
- *       <ListItemDescription>
- *         Optional description
- *         <Tag label="New" appearance="accent" size="sm" />
- *       </ListItemDescription>
+ *       <ListItemDescription>Optional description</ListItemDescription>
  *     </ListItemContent>
  *   </ListItemLeading>
  *   <ListItemTrailing>
@@ -52,9 +49,9 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
           type='button'
           disabled={disabled}
           className={cn(
-            'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base transition-colors',
-            'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
-            'disabled:cursor-default disabled:bg-base-transparent disabled:text-disabled',
+            'bg-base-transparent flex h-64 w-full cursor-pointer items-center gap-16 rounded-md px-8 py-12 text-base transition-colors',
+            'hover:bg-base-transparent-hover focus-visible:outline-focus active:bg-base-transparent-pressed focus-visible:outline-2',
+            'disabled:bg-base-transparent disabled:text-disabled disabled:cursor-default',
             className,
           )}
           {...buttonProps}
@@ -123,7 +120,7 @@ export const ListItemTitle = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn('w-full truncate body-2-semi-bold', className)}
+      className={cn('body-2-semi-bold w-full truncate', className)}
     >
       {children}
     </div>
@@ -149,7 +146,7 @@ export const ListItemDescription = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'w-full items-center truncate text-muted body-3',
+        'text-muted body-3 w-full items-center truncate',
         disabled && 'text-disabled',
         className,
       )}

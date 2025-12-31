@@ -93,7 +93,7 @@ figma.connect(
     example: (props) => (
       <ListItem disabled={props.disabled}>
         <ListItemLeading>
-          {props.leadingIcon}
+        {props.leadingIcon && <ListItemSpot appearance='icon' icon={props.leadingIcon} />}
           <ListItemContent>
             <ListItemTitle>{props.title}</ListItemTitle>
             {props.description && (

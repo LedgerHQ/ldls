@@ -73,10 +73,7 @@ const useRootStyles = ({ pressed }: { pressed: boolean }) => {
  *     <ListItemSpot appearance="icon" icon={Wallet} />
  *     <ListItemContent>
  *       <ListItemTitle>Balance</ListItemTitle>
- *       <ListItemDescription>
- *         <ListItemTruncate>Optional description</ListItemTruncate>
- *         <Tag label="New" appearance="accent" size="sm" />
- *       </ListItemDescription>
+ *       <ListItemDescription>Optional description</ListItemDescription>
  *     </ListItemContent>
  *   </ListItemLeading>
  *   <ListItemTrailing>
