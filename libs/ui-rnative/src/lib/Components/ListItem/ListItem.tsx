@@ -1,93 +1,54 @@
+import {
+  createSafeContext,
+  isTextChildren,
+} from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
-import { Pressable } from '../Utility';
+import { Spot } from '../Spot';
+import { Box, Pressable, Text } from '../Utility';
+import {
+  ListItemContentProps,
+  ListItemContextValue,
+  ListItemDescriptionProps,
+  ListItemLeadingProps,
+  ListItemProps,
+  ListItemSpotProps,
+  ListItemTitleProps,
+  ListItemTrailingProps,
+  ListItemTruncateProps,
+} from './types';
 
-import { ListItemProps } from './ListItem.types';
+const [ListItemProvider, useListItemContext] =
+  createSafeContext<ListItemContextValue>('ListItem', {});
 
-const useStyles = ({
-  disabled,
-  pressed,
-}: {
-  disabled: boolean;
-  pressed: boolean;
-}) => {
+const useRootStyles = ({ pressed }: { pressed: boolean }) => {
   return useStyleSheet(
-    (t) => {
-      return {
-        container: StyleSheet.flatten([
-          {
-            flexDirection: 'row',
-            alignItems: 'center',
-            height: t.sizes.s64,
-            width: t.sizes.full,
-            gap: t.spacings.s16,
-            borderRadius: t.borderRadius.md,
-            backgroundColor: 'transparent',
-            paddingHorizontal: t.spacings.s8,
-            paddingVertical: t.spacings.s12,
-          },
-          pressed && {
-            backgroundColor: t.colors.bg.baseTransparentPressed,
-          },
-          disabled && {
-            backgroundColor: 'transparent',
-          },
-        ]),
-        contentWrapper: {
-          flex: 1,
-          minWidth: 0,
+    (t) => ({
+      container: StyleSheet.flatten([
+        {
           flexDirection: 'row',
           alignItems: 'center',
-          gap: t.spacings.s12,
+          height: t.sizes.s64,
+          width: t.sizes.full,
+          gap: t.spacings.s16,
+          borderRadius: t.borderRadius.md,
+          backgroundColor: 'transparent',
+          paddingHorizontal: t.spacings.s8,
+          paddingVertical: t.spacings.s12,
         },
-        textWrapper: {
-          flex: 1,
-          minWidth: 0,
-          flexDirection: 'column',
-          gap: t.spacings.s4,
+        pressed && {
+          backgroundColor: t.colors.bg.baseTransparentPressed,
         },
-        title: StyleSheet.flatten([
-          t.typographies.body2SemiBold,
-          {
-            color: disabled ? t.colors.text.disabled : t.colors.text.base,
-          },
-        ]),
-        descriptionRow: {
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: t.spacings.s4,
-        },
-        descriptionTextWrapper: {
-          minWidth: 0,
-          flexShrink: 1,
-        },
-        description: StyleSheet.flatten([
-          t.typographies.body3,
-          {
-            color: disabled ? t.colors.text.disabled : t.colors.text.muted,
-            minWidth: 0,
-            flexShrink: 1,
-          },
-        ]),
-        descriptionTagWrapper: {
-          height: t.sizes.s16,
-          flexShrink: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-        },
-        trailingWrapper: {
-          flexShrink: 0,
-        },
-      };
-    },
-    [disabled, pressed],
+      ]),
+    }),
+    [pressed],
   );
 };
 
 /**
- * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
- * It functions as a clickable button with hover and active states.
+ * A flexible list item component that provides a composable structure for displaying
+ * interactive list items with leading content, title, description, and trailing content.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-listitem--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-listitem--docs#dos-and-donts Guidelines}
@@ -96,53 +57,39 @@ const useStyles = ({
  * Do not use it to modify the list item's core appearance (colors, padding, etc).
  *
  * @example
- * // Basic item
- * import { ListItem } from '@ledgerhq/lumen-ui-rnative';
+ * import {
+ *   ListItem,
+ *   ListItemLeading,
+ *   ListItemSpot,
+ *   ListItemContent,
+ *   ListItemTitle,
+ *   ListItemDescription,
+ *   ListItemTrailing,
+ * } from '@ledgerhq/lumen-ui-rnative';
+ * import { Wallet, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
- * <ListItem
- *   title="Basic Item"
- *   description="Optional description"
- *   onPress={() => console.log('Clicked!')}
- * />
- *
- * // Icon trailing content with leading Spot
- * import { ListItem, Spot } from '@ledgerhq/lumen-ui-rnative';
- * import { Wallet, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
- *
- * <ListItem
- *   title="Balance"
- *   leadingContent={<Spot appearance="icon" icon={Wallet} />}
- *   trailingContent={<Settings />}
- * />
- *
- * // Chevron trailing content
- * import { ListItem } from '@ledgerhq/lumen-ui-rnative';
- * import { ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
- *
- * <ListItem
- *   title="Settings"
- *   trailingContent={<ChevronRight size={24} />}
- * />
+ * <ListItem onPress={() => console.log('Clicked!')}>
+ *   <ListItemLeading>
+ *     <ListItemSpot appearance="icon" icon={Wallet} />
+ *     <ListItemContent>
+ *       <ListItemTitle>Balance</ListItemTitle>
+ *       <ListItemDescription>
+ *         <ListItemTruncate>Optional description</ListItemTruncate>
+ *         <Tag label="New" appearance="accent" size="sm" />
+ *       </ListItemDescription>
+ *     </ListItemContent>
+ *   </ListItemLeading>
+ *   <ListItemTrailing>
+ *     <ChevronRight size={24} />
+ *   </ListItemTrailing>
+ * </ListItem>
  */
 export const ListItem = React.forwardRef<
   React.ElementRef<typeof Pressable>,
   ListItemProps
->(
-  (
-    {
-      title,
-      description,
-      leadingContent,
-      descriptionTag,
-      trailingContent,
-      lx = {},
-      style,
-      disabled = false,
-      ...touchableProps
-    },
-    ref,
-  ) => {
-    return (
+>(({ children, lx = {}, style, disabled = false, ...pressableProps }, ref) => {
+  return (
+    <ListItemProvider value={{ disabled }}>
       <Pressable
         ref={ref}
         lx={lx}
@@ -150,79 +97,323 @@ export const ListItem = React.forwardRef<
         disabled={disabled}
         accessibilityRole='button'
         accessibilityState={{ disabled }}
-        {...touchableProps}
+        {...pressableProps}
       >
         {({ pressed }) => (
-          <ListItemContent
-            disabled={disabled}
-            pressed={pressed}
-            title={title}
-            description={description}
-            leadingContent={leadingContent}
-            descriptionTag={descriptionTag}
-            trailingContent={trailingContent}
-          />
+          <ListItemInner pressed={pressed}>{children}</ListItemInner>
         )}
       </Pressable>
-    );
-  },
-);
+    </ListItemProvider>
+  );
+});
 
-type ListItemContentProps = {
-  disabled: boolean;
-  pressed: boolean;
-  title: string;
-  description?: string;
-  leadingContent?: React.ReactNode;
-  descriptionTag?: React.ReactNode;
-  trailingContent?: React.ReactNode;
-};
+ListItem.displayName = 'ListItem';
 
-const ListItemContent: React.FC<ListItemContentProps> = ({
-  disabled,
+/**
+ * Internal component to handle pressed state styling
+ */
+const ListItemInner = ({
   pressed,
-  title,
-  description,
-  leadingContent,
-  descriptionTag,
-  trailingContent,
+  children,
+}: {
+  pressed: boolean;
+  children: React.ReactNode;
 }) => {
-  const styles = useStyles({ disabled, pressed });
-
+  const styles = useRootStyles({ pressed });
   return (
     <View style={styles.container} testID='list-item-content'>
-      <View style={styles.contentWrapper}>
-        {leadingContent}
-        <View style={styles.textWrapper}>
-          <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>
-            {title}
-          </Text>
-
-          {description && (
-            <View style={styles.descriptionRow}>
-              <View style={styles.descriptionTextWrapper}>
-                <Text
-                  numberOfLines={1}
-                  ellipsizeMode='tail'
-                  style={styles.description}
-                >
-                  {description}
-                </Text>
-              </View>
-              {descriptionTag && (
-                <View style={styles.descriptionTagWrapper}>
-                  {descriptionTag}
-                </View>
-              )}
-            </View>
-          )}
-        </View>
-      </View>
-      {trailingContent && (
-        <View style={styles.trailingWrapper}>{trailingContent}</View>
-      )}
+      {children}
     </View>
   );
 };
 
-ListItem.displayName = 'ListItem';
+/**
+ * Container for the leading (left) part of the list item.
+ * Contains the visual element (ListItemSpot, Avatar, Icon) and the content (title + description).
+ */
+export const ListItemLeading = React.forwardRef<View, ListItemLeadingProps>(
+  ({ children, lx = {}, style, ...viewProps }, ref) => {
+    const styles = useStyleSheet(
+      (t) => ({
+        leading: {
+          flex: 1,
+          minWidth: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: t.spacings.s12,
+        },
+      }),
+      [],
+    );
+
+    return (
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.leading, style])}
+        {...viewProps}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+ListItemLeading.displayName = 'ListItemLeading';
+
+/**
+ * Container for the text content (title and description) within the leading area.
+ */
+export const ListItemContent = React.forwardRef<View, ListItemContentProps>(
+  ({ children, align = 'start', lx = {}, style, ...viewProps }, ref) => {
+    const styles = useStyleSheet(
+      (t) => ({
+        content: {
+          flex: 1,
+          minWidth: 0,
+          flexDirection: 'column',
+          gap: t.spacings.s4,
+          alignItems: align === 'end' ? 'flex-end' : 'flex-start',
+        },
+      }),
+      [align],
+    );
+
+    return (
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.content, style])}
+        {...viewProps}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+ListItemContent.displayName = 'ListItemContent';
+
+/**
+ * The main title of the list item. Can contain text directly or
+ * ListItemTruncate + Tag for more complex layouts.
+ */
+export const ListItemTitle = React.forwardRef<View, ListItemTitleProps>(
+  ({ children, lx = {}, style, ...viewProps }, ref) => {
+    const { disabled } = useListItemContext({
+      consumerName: 'ListItemTitle',
+      contextRequired: false,
+    });
+
+    const styles = useStyleSheet(
+      (t) => ({
+        title: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: t.spacings.s4,
+          width: '100%',
+        },
+        text: StyleSheet.flatten([
+          t.typographies.body2SemiBold,
+          {
+            color: disabled ? t.colors.text.disabled : t.colors.text.base,
+          },
+        ]),
+      }),
+      [disabled],
+    );
+
+    // If children is a string, render it directly as Text with truncation
+    if (isTextChildren(children)) {
+      return (
+        <Text
+          ref={ref as React.Ref<React.ElementRef<typeof Text>>}
+          lx={lx}
+          style={StyleSheet.flatten([styles.text, style])}
+          numberOfLines={1}
+          ellipsizeMode='tail'
+        >
+          {children}
+        </Text>
+      );
+    }
+
+    // Otherwise, render as a row container for ListItemTruncate + Tag
+    return (
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.title, style])}
+        {...viewProps}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+ListItemTitle.displayName = 'ListItemTitle';
+
+/**
+ * Optional description below the title. Can contain text directly or
+ * ListItemTruncate + Tag for more complex layouts.
+ * Automatically applies disabled styling when the parent ListItem is disabled.
+ */
+export const ListItemDescription = React.forwardRef<
+  View,
+  ListItemDescriptionProps
+>(({ children, lx = {}, style, ...viewProps }, ref) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemDescription',
+    contextRequired: false,
+  });
+
+  const styles = useStyleSheet(
+    (t) => ({
+      description: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: t.spacings.s4,
+        width: '100%',
+      },
+      text: StyleSheet.flatten([
+        t.typographies.body3,
+        {
+          color: disabled ? t.colors.text.disabled : t.colors.text.muted,
+        },
+      ]),
+    }),
+    [disabled],
+  );
+
+  // If children is a string, render it directly as Text with truncation
+  if (isTextChildren(children)) {
+    return (
+      <Text
+        ref={ref as React.Ref<React.ElementRef<typeof Text>>}
+        lx={lx}
+        style={StyleSheet.flatten([styles.text, style])}
+        numberOfLines={1}
+        ellipsizeMode='tail'
+      >
+        {children}
+      </Text>
+    );
+  }
+
+  // Otherwise, render as a row container for ListItemTruncate + Tag
+  return (
+    <Box
+      ref={ref}
+      lx={lx}
+      style={StyleSheet.flatten([styles.description, style])}
+      {...viewProps}
+    >
+      {children}
+    </Box>
+  );
+});
+
+ListItemDescription.displayName = 'ListItemDescription';
+
+/**
+ * Container for the trailing (right) content of the list item.
+ * Used for icons, switches, values, tags, chevrons, etc.
+ */
+export const ListItemTrailing = React.forwardRef<View, ListItemTrailingProps>(
+  ({ children, lx = {}, style, ...viewProps }, ref) => {
+    const styles = useStyleSheet(
+      () => ({
+        trailing: {
+          flexShrink: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+        },
+      }),
+      [],
+    );
+
+    return (
+      <Box
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.trailing, style])}
+        {...viewProps}
+      >
+        {children}
+      </Box>
+    );
+  },
+);
+
+ListItemTrailing.displayName = 'ListItemTrailing';
+
+/**
+ * Spot adapter for ListItem. Automatically inherits disabled state from parent ListItem.
+ * Fixed at size 48 for consistent list item appearance.
+ */
+export const ListItemSpot = (props: ListItemSpotProps) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemSpot',
+    contextRequired: false,
+  });
+
+  return <Spot {...props} size={48} disabled={disabled} />;
+};
+
+ListItemSpot.displayName = 'ListItemSpot';
+
+/**
+ * Text wrapper that truncates when space is limited.
+ * Use inside ListItemTitle or ListItemDescription when combining text with a Tag.
+ * Set variant='title' for title styling or variant='description' (default) for description styling.
+ */
+export const ListItemTruncate = React.forwardRef<
+  React.ElementRef<typeof Text>,
+  ListItemTruncateProps
+>(
+  (
+    { children, variant = 'description', lx = {}, style, ...textProps },
+    ref,
+  ) => {
+    const { disabled } = useListItemContext({
+      consumerName: 'ListItemTruncate',
+      contextRequired: false,
+    });
+
+    const styles = useStyleSheet(
+      (t) => ({
+        truncate: StyleSheet.flatten([
+          variant === 'title'
+            ? t.typographies.body2SemiBold
+            : t.typographies.body3,
+          {
+            color: disabled
+              ? t.colors.text.disabled
+              : variant === 'title'
+                ? t.colors.text.base
+                : t.colors.text.muted,
+            minWidth: 0,
+            flexShrink: 1,
+          },
+        ]),
+      }),
+      [disabled, variant],
+    );
+
+    return (
+      <Text
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([styles.truncate, style])}
+        numberOfLines={1}
+        ellipsizeMode='tail'
+        {...textProps}
+      >
+        {children}
+      </Text>
+    );
+  },
+);
+
+ListItemTruncate.displayName = 'ListItemTruncate';

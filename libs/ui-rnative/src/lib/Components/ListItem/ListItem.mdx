@@ -1,20 +1,35 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { Box } from '../Utility';
 import * as ListItemStories from './ListItem.stories';
-import { ListItem } from './ListItem';
-import { CustomTabs, Tab } from '../../../../.storybook/components';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  ListItemTruncate,
+} from './ListItem';
+import {
+  CustomTabs,
+  Tab,
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/components';
 import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 
 <Meta title='Components/ListItem' of={ListItemStories} />
 
-# 📋 ListItem
+# ListItem
 
 <CustomTabs>
   <Tab label="Overview">
 
 ## Introduction
 
-ListItems are flexible interactive elements designed for lists in React Native applications. They provide a structured way to display a title with optional description, leading content (usually a Spot), description tag, and flexible trailing content with native touch interactions.
+ListItems are flexible interactive elements designed for lists. They use a composite component pattern that provides full flexibility over layout and content through composable sub-components.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2255-4155).
 
@@ -22,11 +37,13 @@ ListItems are flexible interactive elements designed for lists in React Native a
 
 <Canvas of={ListItemStories.Base} />
 
-- **Title**: The main label of the item (required)
-- **Leading Content (optional)**: Visually represents the item's category or action, usually using a Spot component
-- **Description (optional)**: Provides additional context
-- **Description Tag (optional)**: Small tag next to description for status or labels
-- **Trailing Content (optional)**: Arbitrary content to be displayed on the right side
+- **ListItem**: Root interactive container (Pressable)
+- **ListItemLeading**: Left section containing visual element and content
+- **ListItemSpot**: Spot adapter that inherits disabled state from parent ListItem
+- **ListItemContent**: Container for title and description
+- **ListItemTitle**: The main label of the item (required)
+- **ListItemDescription**: Provides additional context, can include inline Tag
+- **ListItemTrailing**: Right section for trailing content (chevron, switch, value, etc.)
 
 ## Properties
 
@@ -37,20 +54,15 @@ ListItems are flexible interactive elements designed for lists in React Native a
 
 ### Trailing Content Variants
 
-ListItems support arbitrary trailing content to suit different interaction patterns:
+ListItems follow composite component pattern to allow for maximum flexibility over layout and content through composable sub-components.
 
-- **caret**: Navigation indicator (chevron right)
-- **value**: Displays a primary value with optional subvalue
-- **tag**: Shows a tag for status or category
-- **icon**: Custom trailing icon
+<Canvas of={ListItemStories.VariantsShowcase} />
 
-<Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
+### Disabled State
 
-### States
+When disabled, the ListItem becomes non-interactive. The disabled state is automatically propagated to ListItemSpot and ListItemDescription via context.
 
-ListItems support standard states including active and disabled for touch interactions.
-
-<Canvas of={ListItemStories.StateShowcase} />
+<Canvas of={ListItemStories.DisabledState} />
 
 ## Responsive Layout
 
@@ -70,9 +82,9 @@ ListItems adapt to their container width, truncating long titles and description
 React Native ListItem includes:
 
 - Native touch feedback with `Pressable`
-- Proper text truncation with ellipsis
-- Disabled state handling
-- Screen reader support through React Native's accessibility features
+- Proper text truncation with `numberOfLines` and `ellipsizeMode`
+- Disabled state handling with automatic context propagation
+- Screen reader support through React Native's accessibility features (`accessibilityRole`, `accessibilityState`)
 
 </Tab>
 <Tab label="Implementation">
@@ -81,19 +93,27 @@ React Native ListItem includes:
 
 Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
 
-### Basic Usage
+## Basic Usage
+
+The ListItem uses a composite component pattern for maximum flexibility:
 
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-rnative';
-import { ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+} from '@ledgerhq/lumen-ui-rnative';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='Settings'
-      trailingContent={<ChevronRight size={24} />}
-      onPress={() => console.log('Pressed!')}
-    />
+    <ListItem onPress={() => console.log('Pressed!')}>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>Settings</ListItemTitle>
+        </ListItemContent>
+      </ListItemLeading>
+    </ListItem>
   );
 }
 ```
@@ -103,38 +123,67 @@ function MyComponent() {
 Add a description below the title for additional context:
 
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-rnative';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+} from '@ledgerhq/lumen-ui-rnative';
 import { ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='Account Settings'
-      description='Manage your profile and preferences'
-      trailingContent={<ChevronRight size={24} />}
-      onPress={() => console.log('Pressed!')}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>Account Settings</ListItemTitle>
+          <ListItemDescription>
+            Manage your profile and preferences
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
 
 ### With Leading Content
 
-Include a Spot component as leading icon for visual identification:
+Include a ListItemSpot component as leading icon for visual identification. It automatically inherits the disabled state from the parent ListItem:
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/lumen-ui-rnative';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from '@ledgerhq/lumen-ui-rnative';
 import { Settings, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='Settings'
-      description='Manage your profile and preferences'
-      leadingContent={<Spot appearance='icon' icon={Settings} />}
-      trailingContent={<ChevronRight size={24} />}
-      onPress={() => console.log('Pressed!')}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemSpot appearance='icon' icon={Settings} />
+        <ListItemContent>
+          <ListItemTitle>Settings</ListItemTitle>
+          <ListItemDescription>
+            Manage your profile and preferences
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
@@ -144,67 +193,109 @@ function MyComponent() {
 The ListItem supports arbitrary trailing content variants. Below are some examples:
 
 ```tsx
-import { ListItem, Spot, Tag, Box, Text } from '@ledgerhq/lumen-ui-rnative';
+import { useState } from 'react';
 import {
-  Settings,
-  PenEdit,
-  ChevronRight,
-  User,
-} from '@ledgerhq/lumen-ui-rnative/symbols';
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  Switch,
+  Tag,
+  Box,
+} from '@ledgerhq/lumen-ui-rnative';
+import { Settings, Check, ChevronRight, User } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function ListVariants() {
+  const [selected, setSelected] = useState(false);
+
   return (
-    <Box lx={{ flexDirection: 'column', gap: 's0', maxWidth: 's320' }}>
+    <Box lx={{ flexDirection: 'column', maxWidth: 's320' }}>
       {/* Chevron - For navigation items */}
-      <ListItem
-        title='Chevron Variant'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<ChevronRight size={24} />}
-        onPress={() => console.log('Navigate')}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Chevron Variant</ListItemTitle>
+            <ListItemDescription>With description</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight size={24} />
+        </ListItemTrailing>
+      </ListItem>
+
+      {/* Switch - For switchable options */}
+      <ListItem onPress={() => setSelected(!selected)}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Enable Feature</ListItemTitle>
+            <ListItemDescription>Toggle this setting on/off</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Switch checked={selected} onCheckedChange={setSelected} />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Value - For displaying values */}
-      <ListItem
-        title='Account Balance'
-        description='Current available funds'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={
-          <Box lx={{ alignItems: 'flex-end' }}>
-            <Text typography='body2SemiBold'>42.00</Text>
-            <Text typography='body3' lx={{ color: 'muted' }}>
-              USD
-            </Text>
-          </Box>
-        }
-        onPress={() => console.log('View balance')}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Account Balance</ListItemTitle>
+            <ListItemDescription>Current available funds</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ListItemContent align='end'>
+            <ListItemTitle>42.00</ListItemTitle>
+            <ListItemDescription>USD</ListItemDescription>
+          </ListItemContent>
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Tag - For status indicators */}
-      <ListItem
-        title='New Feature'
-        description='Recently added functionality'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<Tag label='New' appearance='accent' />}
-        onPress={() => console.log('View feature')}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>New Feature</ListItemTitle>
+            <ListItemDescription>Recently added functionality</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Tag label='New' appearance='accent' />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Icon - For trailing icons */}
-      <ListItem
-        title='Edit Profile'
-        description='Modify your information'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<PenEdit size={24} />}
-        onPress={() => console.log('Edit')}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Edit Profile</ListItemTitle>
+            <ListItemDescription>Modify your information</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Check />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* None - No trailing content */}
-      <ListItem
-        title='Simple Item'
-        description='No trailing elements'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        onPress={() => console.log('Simple action')}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Simple Item</ListItemTitle>
+            <ListItemDescription>No trailing elements</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+      </ListItem>
     </Box>
   );
 }
@@ -212,52 +303,102 @@ function ListVariants() {
 
 ### With Description Tag
 
-Add a tag to the description for additional status information:
+Add a tag inline with the description for additional status information:
 
 ```tsx
-import { ListItem, Tag } from '@ledgerhq/lumen-ui-rnative';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTruncate,
+  ListItemTrailing,
+  Tag,
+} from '@ledgerhq/lumen-ui-rnative';
 import { Bolt, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='New Item'
-      description='Recently added'
-      descriptionTag={
-        <Tag label='New' appearance='accent' icon={Bolt} size='sm' />
-      }
-      trailingContent={<ChevronRight size={24} />}
-      onPress={() => console.log('Pressed!')}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>New Item</ListItemTitle>
+          <ListItemDescription>
+            <ListItemTruncate>Recently added</ListItemTruncate>
+            <Tag label='New' appearance='accent' icon={Bolt} size='sm' />
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
 
 ### Disabled State
 
-Disable the ListItem to prevent interaction:
+Disable the ListItem to prevent interaction. The disabled state is automatically propagated to ListItemDescription and ListItemSpot via context:
 
 ```tsx
-<ListItem title='Disabled Option' description='Cannot be changed' disabled />
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  Switch,
+} from '@ledgerhq/lumen-ui-rnative';
+import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
+
+<ListItem disabled>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Disabled Option</ListItemTitle>
+      <ListItemDescription>Cannot be changed</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <Switch checked={false} disabled />
+  </ListItemTrailing>
+</ListItem>
 ```
 
 ### Responsive Layout
 
-ListItem handles truncation responsively. Use `Box` to control the container:
+ListItem handles truncation responsively. Use `lx` prop to control container width:
 
 ```tsx
-import { ListItem, Spot, Box } from '@ledgerhq/lumen-ui-rnative';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from '@ledgerhq/lumen-ui-rnative';
 import { User, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 
-<Box lx={{ width: 's256', backgroundColor: 'base', padding: 's4' }}>
-  <ListItem
-    title='Very Long Title That Will Truncate'
-    description='Very long description that will also truncate appropriately'
-    leadingContent={<Spot appearance='icon' icon={User} />}
-    trailingContent={<ChevronRight size={24} />}
-    onPress={() => console.log('Pressed!')}
-  />
-</Box>
+<ListItem lx={{ maxWidth: 's256' }}>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={User} />
+    <ListItemContent>
+      <ListItemTitle>Very Long Title That Will Truncate</ListItemTitle>
+      <ListItemDescription>
+        Very long description that will also truncate appropriately
+      </ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} />
+  </ListItemTrailing>
+</ListItem>
 ```
 
 ### Custom Styling
@@ -265,17 +406,154 @@ import { User, ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
 Use `lx` prop for layout purposes only, such as maximum width:
 
 ```tsx
-<ListItem
-  title='Constrained Width'
-  description='This item has a maximum width applied'
-  lx={{ maxWidth: 's320' }}
-  onPress={() => console.log('Pressed!')}
-/>
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+} from '@ledgerhq/lumen-ui-rnative';
+import { ChevronRight } from '@ledgerhq/lumen-ui-rnative/symbols';
+
+<ListItem lx={{ maxWidth: 's320' }}>
+  <ListItemLeading>
+    <ListItemContent>
+      <ListItemTitle>Constrained Width</ListItemTitle>
+      <ListItemDescription>
+        This item has a maximum width applied
+      </ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} />
+  </ListItemTrailing>
+</ListItem>
 ```
 
 ## Do's and Don'ts
 
+The following guidelines ensure consistent usage of the ListItem component and maintain design system principles.
+
 <Box lx={{ flexDirection: 'column', gap: 's24' }}>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the composite pattern correctly'
+      description='ListItemContent should be nested inside ListItemLeading to group visual and text content together'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItem>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Settings</ListItemTitle>
+      <ListItemDescription>Manage preferences</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} />
+  </ListItemTrailing>
+</ListItem>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't place ListItemContent outside ListItemLeading"
+      description='ListItemContent must be inside ListItemLeading for proper layout'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - ListItemContent outside ListItemLeading
+<ListItem>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+  </ListItemLeading>
+  <ListItemContent>
+    <ListItemTitle>Settings</ListItemTitle>
+  </ListItemContent>
+</ListItem>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use ListItemTruncate with Tags'
+      description='Wrap text in ListItemTruncate when combining with Tags. Use variant="title" inside ListItemTitle.'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItemTitle>
+  <ListItemTruncate variant='title'>Title text</ListItemTruncate>
+  <Tag label='New' appearance='base' size='sm' />
+</ListItemTitle>
+<ListItemDescription>
+  <ListItemTruncate>Description text</ListItemTruncate>
+  <Tag label='New' appearance='accent' size='sm' />
+</ListItemDescription>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't mix text and Tags without ListItemTruncate"
+      description='Text will not truncate properly without ListItemTruncate wrapper'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - Text won't truncate correctly
+<ListItemDescription>
+  Recently added
+  <Tag label='New' appearance='accent' size='sm' />
+</ListItemDescription>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use concise text for title and description'
+      description='Keep title and description short since they truncate to one line'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItemContent>
+  <ListItemTitle>Account Settings</ListItemTitle>
+  <ListItemDescription>Manage preferences</ListItemDescription>
+</ListItemContent>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use long text"
+      description='Title and description truncate to one line'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItemContent>
+  <ListItemTitle>
+    This is a very long title that will be truncated
+  </ListItemTitle>
+  <ListItemDescription>
+    This is also a very long description that will be truncated
+  </ListItemDescription>
+</ListItemContent>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
   <CommonRulesDoAndDont />
 </Box>
 
