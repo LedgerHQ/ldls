@@ -1,97 +1,211 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
+import { cn, createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
-import { ListItemProps } from './types';
+import { Spot } from '../Spot/Spot';
+import {
+  ListItemContextValue,
+  ListItemContentProps,
+  ListItemDescriptionProps,
+  ListItemLeadingProps,
+  ListItemProps,
+  ListItemSpotProps,
+  ListItemTitleProps,
+  ListItemTrailingProps,
+  ListItemTruncateProps,
+} from './types';
+
+const [ListItemProvider, useListItemContext] =
+  createSafeContext<ListItemContextValue>('ListItem', {});
 
 /**
- * A flexible list item component that displays a required title and optional description (with possible tag), leading and trailing content.
- * It functions as a clickable button with hover and active states.
+ * A flexible list item component that provides a composable structure for displaying
+ * interactive list items with leading content, title, description, and trailing content.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-listitem--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/containment-listitem--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the list item's core appearance (colors, padding, etc).
- *
  * @example
- * // Basic item
- * import { ListItem } from '@ledgerhq/lumen-ui-react';
  *
- * <ListItem
- *   title="Basic Item"
- *   description="Optional description"
- *   onClick={() => console.log('Clicked!')}
- * />
- *
- * // Icon trailing content with leading Spot
- * import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
- * import { Wallet, Settings } from '@ledgerhq/lumen-ui-react/symbols';
- *
- * <ListItem
- *   title="Balance"
- *   leadingContent={<Spot appearance="icon" icon={Wallet} />}
- *   trailingContent={<Settings />}
- * />
- *
- * // Chevron trailing content
- * import { ListItem } from '@ledgerhq/lumen-ui-react';
- * import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
- *
- * <ListItem
- *   title="Settings"
- *   trailingContent={<ChevronRight size={24} />}
- * />
+ * <ListItem onClick={() => console.log('Clicked!')}>
+ *   <ListItemLeading>
+ *     <ListItemSpot appearance="icon" icon={Wallet} />
+ *     <ListItemContent>
+ *       <ListItemTitle>Balance</ListItemTitle>
+ *       <ListItemDescription>Optional description</ListItemDescription>
+ *     </ListItemContent>
+ *   </ListItemLeading>
+ *   <ListItemTrailing>
+ *     <ChevronRight size={24} />
+ *   </ListItemTrailing>
+ * </ListItem>
  */
 export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
   (props, ref) => {
-    const {
-      title,
-      description,
-      leadingContent,
-      descriptionTag,
-      trailingContent,
-      className,
-      ...buttonProps
-    } = props;
+    const { children, className, disabled, ...buttonProps } = props;
 
     return (
-      <button
-        ref={ref}
-        type='button'
-        className={cn(
-          'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base transition-colors',
-          'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
-          'disabled:cursor-default disabled:bg-base-transparent disabled:text-disabled',
-          className,
-        )}
-        {...buttonProps}
-      >
-        <div className='flex min-w-0 flex-1 items-center gap-12'>
-          {leadingContent}
-          <div className='flex min-w-0 flex-1 flex-col gap-4 text-left'>
-            <div className='truncate body-2-semi-bold'>{title}</div>
-            {description && (
-              <div className='flex items-center gap-4'>
-                <div
-                  className={cn(
-                    'truncate text-muted body-3',
-                    props.disabled && 'text-disabled',
-                  )}
-                >
-                  {description}
-                </div>
-                {descriptionTag && (
-                  <div className='flex h-16 shrink-0 items-center'>
-                    {descriptionTag}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-        {trailingContent}
-      </button>
+      <ListItemProvider value={{ disabled }}>
+        <button
+          ref={ref}
+          type='button'
+          disabled={disabled}
+          className={cn(
+            'bg-base-transparent flex h-64 w-full cursor-pointer items-center gap-16 rounded-md px-8 py-12 text-base transition-colors',
+            'hover:bg-base-transparent-hover focus-visible:outline-focus active:bg-base-transparent-pressed focus-visible:outline-2',
+            'disabled:bg-base-transparent disabled:text-disabled disabled:cursor-default',
+            className,
+          )}
+          {...buttonProps}
+        >
+          {children}
+        </button>
+      </ListItemProvider>
     );
   },
 );
 
 ListItem.displayName = 'ListItem';
+
+/**
+ * Container for the leading (left) part of the list item.
+ * Contains the visual element (ListItemSpot, Avatar, Icon) and the content (title + description).
+ */
+export const ListItemLeading = React.forwardRef<
+  HTMLDivElement,
+  ListItemLeadingProps
+>(({ children, className }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn('flex min-w-0 flex-1 items-center gap-12', className)}
+    >
+      {children}
+    </div>
+  );
+});
+
+ListItemLeading.displayName = 'ListItemLeading';
+
+/**
+ * Container for the text content (title and description) within the leading area.
+ */
+export const ListItemContent = React.forwardRef<
+  HTMLDivElement,
+  ListItemContentProps
+>(({ children, className, align = 'start' }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'flex min-w-0 flex-1 flex-col gap-4',
+        align === 'end'
+          ? 'text-end [&>*]:justify-end'
+          : 'text-start [&>*]:justify-start',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+});
+
+ListItemContent.displayName = 'ListItemContent';
+
+/**
+ * The main title of the list item.
+ */
+export const ListItemTitle = React.forwardRef<
+  HTMLDivElement,
+  ListItemTitleProps
+>(({ children, className }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn('body-2-semi-bold w-full truncate', className)}
+    >
+      {children}
+    </div>
+  );
+});
+
+ListItemTitle.displayName = 'ListItemTitle';
+
+/**
+ * Optional description text below the title. Can include inline elements like Tag.
+ * Automatically applies disabled styling when the parent ListItem is disabled.
+ */
+export const ListItemDescription = React.forwardRef<
+  HTMLDivElement,
+  ListItemDescriptionProps
+>(({ children, className }, ref) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemDescription',
+    contextRequired: true,
+  });
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'text-muted body-3 w-full items-center truncate',
+        disabled && 'text-disabled',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+});
+
+ListItemDescription.displayName = 'ListItemDescription';
+
+/**
+ * Container for the trailing (right) content of the list item.
+ * Used for icons, switches, values, tags, chevrons, etc.
+ */
+export const ListItemTrailing = React.forwardRef<
+  HTMLDivElement,
+  ListItemTrailingProps
+>(({ children, className }, ref) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemTrailing',
+    contextRequired: true,
+  });
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'flex shrink-0 items-center',
+        disabled && 'text-disabled',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+});
+
+ListItemTrailing.displayName = 'ListItemTrailing';
+
+/**
+ * Spot adapter for ListItem. Automatically inherits disabled state from parent ListItem.
+ */
+export const ListItemSpot = (props: ListItemSpotProps) => {
+  const { disabled } = useListItemContext({
+    consumerName: 'ListItemSpot',
+    contextRequired: true,
+  });
+
+  return <Spot {...props} size={48} disabled={disabled} />;
+};
+
+ListItemSpot.displayName = 'ListItemSpot';
+
+export const ListItemTruncate = ({
+  children,
+  className,
+}: ListItemTruncateProps) => {
+  return <div className={cn('min-w-0 truncate', className)}>{children}</div>;
+};
+
+ListItemTruncate.displayName = 'ListItemTruncate';

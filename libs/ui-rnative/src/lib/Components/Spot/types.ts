@@ -41,7 +41,11 @@ type StatusSpotProps = {
   appearance: Exclude<SpotAppearance, 'icon' | 'number'>;
 };
 
-type DiscriminatedSpotProps = IconSpotProps | NumberSpotProps | StatusSpotProps;
+export type DiscriminatedSpotProps =
+  | IconSpotProps
+  | NumberSpotProps
+  | StatusSpotProps;
+
 export type SpotSize = 48 | 56 | 72;
 
 export type SpotProps = {

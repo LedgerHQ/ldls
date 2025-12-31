@@ -1,5 +1,13 @@
 import React from 'react';
-import { ListItem, ListItemProps } from './ListItem';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from './ListItem';
 
 import figma from '@figma/code-connect';
 
@@ -7,15 +15,16 @@ figma.connect(
   ListItem,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7?node-id=2255%3A4155',
   {
-    imports: ["import { ListItem } from '@ledgerhq/lumen-ui-react'"],
+    imports: [
+      "import { ListItem, ListItemLeading, ListItemContent, ListItemTitle, ListItemDescription, ListItemTrailing, ListItemSpot } from '@ledgerhq/lumen-ui-react'",
+    ],
     props: {
-      // These props were automatically mapped based on your linked code:
       title: figma.string('title'),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
       }),
-      leadingContent: figma.boolean('show-leading-icon', {
+      leadingIcon: figma.boolean('show-leading-icon', {
         true: figma.instance('leading-icon'),
         false: undefined,
       }),
@@ -74,10 +83,6 @@ figma.connect(
       disabled: figma.enum('state', {
         disabled: true,
       }),
-      // disabledTag: figma.enum('disabled-tag', {
-      //   none: undefined,
-      //   tag: '{<Tag label="New" appearance="accent" />}',
-      // }),
     },
     links: [
       {
@@ -85,15 +90,24 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-listitem-overview--docs',
       },
     ],
-    example: (props: ListItemProps) => (
-      <ListItem
-        title={props.title}
-        description={props.description}
-        leadingContent={props.leadingContent}
-        descriptionTag={props.descriptionTag}
-        trailingContent={props.trailingContent}
-        disabled={props.disabled}
-      />
+    example: (props) => (
+      <ListItem disabled={props.disabled}>
+        <ListItemLeading>
+        {props.leadingIcon && <ListItemSpot appearance='icon' icon={props.leadingIcon} />}
+          <ListItemContent>
+            <ListItemTitle>{props.title}</ListItemTitle>
+            {props.description && (
+              <ListItemDescription>
+                {props.description}
+                {props.descriptionTag}
+              </ListItemDescription>
+            )}
+          </ListItemContent>
+        </ListItemLeading>
+        {props.trailingContent && (
+          <ListItemTrailing>{props.trailingContent}</ListItemTrailing>
+        )}
+      </ListItem>
     ),
   },
 );

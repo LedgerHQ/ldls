@@ -1,8 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { Apps, Settings } from '../../Symbols';
+import { Apps, Chart1 } from '../../Symbols';
 import { Button } from '../Button';
-import { ListItem } from '../ListItem';
+import {
+  ListItem,
+  ListItemContent,
+  ListItemDescription,
+  ListItemLeading,
+  ListItemSpot,
+  ListItemTitle,
+} from '../ListItem';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Spot } from '../Spot';
 import { Tile } from '../Tile';
@@ -18,13 +25,13 @@ import {
 const DialogContentTemplate = () => {
   return (
     <div className='flex flex-col gap-16'>
-      <p className='body-2 text-base'>
+      <p className='text-base body-2'>
         The content area after the DialogHeader can contain any components.
         Ensure proper padding and scrolling if needed.
       </p>
-      <div className='bg-muted rounded-sm p-12'>
+      <div className='rounded-sm bg-muted p-12'>
         <p className='text-muted body-3'>
-          <strong className='body-3-semi-bold text-base'>Note:</strong> The
+          <strong className='text-base body-3-semi-bold'>Note:</strong> The
           dialog content defaults to a width of 400px and height auto-adjusts to
           content. Use the className prop on DialogContent to customize
           dimensions if needed.
@@ -199,12 +206,15 @@ export const HeightLayouts: Story = {
             <DialogBody>
               <div className='-mx-8 flex flex-col gap-4'>
                 {Array.from({ length: 10 }).map((_, i) => (
-                  <ListItem
-                    key={i}
-                    title='Content item'
-                    description={`Content item ${i + 1}.`}
-                    leadingContent={<Spot appearance='icon' icon={Apps} />}
-                  />
+                  <ListItem>
+                    <ListItemLeading>
+                      <ListItemSpot appearance='icon' icon={Chart1} />
+                      <ListItemContent>
+                        <ListItemTitle>Content item</ListItemTitle>
+                        <ListItemDescription>{`item ${i + 1}.`}</ListItemDescription>
+                      </ListItemContent>
+                    </ListItemLeading>
+                  </ListItem>
                 ))}
               </div>
             </DialogBody>
@@ -432,7 +442,7 @@ export const WithMultiSteps: Story = {
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
           <DialogBody>
-            <p className='body-2 text-base'>
+            <p className='text-base body-2'>
               {step === 1
                 ? 'Please review the information and click Continue to proceed.'
                 : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -541,16 +551,19 @@ export const WithListsContent: Story = {
               <h4 className='heading-4-semi-bold'>Settings</h4>
 
               <div className='-mx-8 flex flex-col gap-4'>
-                <div className='bg-canvas sticky top-0 py-8'>
+                <div className='sticky top-0 bg-canvas py-8'>
                   <SearchInput className='mx-8' placeholder='Search item...' />
                 </div>
                 {Array.from({ length: 12 }).map((_, i) => (
-                  <ListItem
-                    key={i}
-                    leadingContent={<Spot appearance='icon' icon={Settings} />}
-                    title={`Setting ${i + 1}`}
-                    description={`Configure option ${i + 1}`}
-                  />
+                  <ListItem>
+                    <ListItemLeading>
+                      <ListItemSpot appearance='icon' icon={Chart1} />
+                      <ListItemContent>
+                        <ListItemTitle>Content item</ListItemTitle>
+                        <ListItemDescription>{`item ${i + 1}.`}</ListItemDescription>
+                      </ListItemContent>
+                    </ListItemLeading>
+                  </ListItem>
                 ))}
               </div>
             </div>
@@ -580,10 +593,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -611,10 +624,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>

@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { ListItem } from '../ListItem';
+import {
+  ListItem,
+  ListItemContent,
+  ListItemLeading,
+  ListItemTitle,
+} from '../ListItem';
 import { SearchInput } from './SearchInput';
 
 const meta: Meta<typeof SearchInput> = {
@@ -215,7 +220,13 @@ export const DebouncedSearchInput: Story = {
                 </p>
                 <div className='space-y-4'>
                   {filteredResults.map((result) => (
-                    <ListItem key={result} title={result} />
+                    <ListItem key={result}>
+                      <ListItemLeading>
+                        <ListItemContent>
+                          <ListItemTitle>{result}</ListItemTitle>
+                        </ListItemContent>
+                      </ListItemLeading>
+                    </ListItem>
                   ))}
                 </div>
               </div>

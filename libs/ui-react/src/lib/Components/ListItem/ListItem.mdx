@@ -1,6 +1,14 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ListItemStories from './ListItem.stories';
-import { ListItem } from './ListItem';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from './ListItem';
 import {
   CustomTabs,
   Tab,
@@ -19,7 +27,7 @@ import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/Com
 
 ## Introduction
 
-ListItems are flexible interactive elements designed for lists. They provide a structured way to display a title with optional description, leading content (usually a Spot), description tag, and flexible trailing content.
+ListItems are flexible interactive elements designed for lists. They use a composite component pattern that provides full flexibility over layout and content through composable sub-components.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=2255-4155).
 
@@ -27,11 +35,13 @@ ListItems are flexible interactive elements designed for lists. They provide a s
 
 <Canvas of={ListItemStories.Base} />
 
-- **Title**: The main label of the item (required)
-- **Leading Content (optional)**: Visually represents the item's category or action, usually using a Spot component
-- **Description (optional)**: Provides additional context
-- **Description Tag (optional)**: Small tag next to description for status or labels
-- **Trailing Content (optional)**: Arbitrary content to be displayed on the right side
+- **ListItem**: Root interactive container (button)
+- **ListItemLeading**: Left section containing visual element and content
+- **ListItemSpot**: Spot adapter that inherits disabled state from parent ListItem
+- **ListItemContent**: Container for title and description
+- **ListItemTitle**: The main label of the item (required)
+- **ListItemDescription**: Provides additional context, can include inline Tag
+- **ListItemTrailing**: Right section for trailing content (chevron, switch, value, etc.)
 
 ## Properties
 
@@ -42,21 +52,15 @@ ListItems are flexible interactive elements designed for lists. They provide a s
 
 ### Trailing Content Variants
 
-ListItems support arbitrary trailing content to suit different interaction patterns:
+ListItems follow composite component pattern to allow for maximum flexibility over layout and content through composable sub-components.
 
-- **caret**: Navigation indicator (chevron right)
-- **switch**: Switch for on/off states (requires `selected` prop)
-- **value**: Displays a primary value with optional subvalue
-- **tag**: Shows a tag for status or category
-- **icon**: Custom trailing icon
+<Canvas of={ListItemStories.VariantsShowcase} />
 
-<Canvas of={ListItemStories.TrailingContentVariantsShowcase} />
+### Disabled State
 
-### States
+When disabled, the ListItem becomes non-interactive. The disabled state is automatically propagated to ListItemSpot and ListItemDescription via context.
 
-ListItems support standard states including hover, active and disabled.
-
-<Canvas of={ListItemStories.StateShowcase} />
+<Canvas of={ListItemStories.DisabledState} />
 
 ## Responsive Layout
 
@@ -92,13 +96,25 @@ npm install @ledgerhq/lumen-ui-react
 
 ## Basic Usage
 
+The ListItem uses a composite component pattern for maximum flexibility:
+
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-react';
-import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+} from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
-    <ListItem title='Settings' trailingContent={<ChevronRight size={24} />} />
+    <ListItem onClick={() => console.log('Clicked!')}>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>Settings</ListItemTitle>
+        </ListItemContent>
+      </ListItemLeading>
+    </ListItem>
   );
 }
 ```
@@ -108,36 +124,67 @@ function MyComponent() {
 Add a description below the title for additional context:
 
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+} from '@ledgerhq/lumen-ui-react';
 import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='Account Settings'
-      description='Manage your profile and preferences'
-      trailingContent={<ChevronRight size={24} />}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>Account Settings</ListItemTitle>
+          <ListItemDescription>
+            Manage your profile and preferences
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
 
 ### With Leading Content
 
-Include a Spot component as leading icon for visual identification:
+Include a ListItemSpot component as leading icon for visual identification. It automatically inherits the disabled state from the parent ListItem:
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from '@ledgerhq/lumen-ui-react';
 import { Settings, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='Settings'
-      description='Manage your profile and preferences'
-      leadingContent={<Spot appearance='icon' icon={Settings} />}
-      trailingContent={<ChevronRight size={24} />}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemSpot appearance='icon' icon={Settings} />
+        <ListItemContent>
+          <ListItemTitle>Settings</ListItemTitle>
+          <ListItemDescription>
+            Manage your profile and preferences
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
@@ -148,14 +195,18 @@ The ListItem supports arbitrary trailing content variants. Below are some exampl
 
 ```tsx
 import { useState } from 'react';
-import { ListItem, Switch, Tag } from '@ledgerhq/lumen-ui-react';
 import {
-  Settings,
-  Check,
-  Bolt,
-  ChevronRight,
-  User,
-} from '@ledgerhq/lumen-ui-react/symbols';
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  Switch,
+  Tag,
+} from '@ledgerhq/lumen-ui-react';
+import { Settings, Check, ChevronRight, User } from '@ledgerhq/lumen-ui-react/symbols';
 
 function ListVariants() {
   const [selected, setSelected] = useState(false);
@@ -163,57 +214,88 @@ function ListVariants() {
   return (
     <div className='flex flex-col gap-2 max-w-md'>
       {/* Chevron - For navigation items */}
-      <ListItem
-        title='Chevron Variant'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<ChevronRight size={24} />}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Chevron Variant</ListItemTitle>
+            <ListItemDescription>With description</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight size={24} />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Switch - For switchable options */}
-      <ListItem
-        title='Enable Feature'
-        description='Toggle this setting on/off'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        onClick={() => setSelected(!selected)}
-        trailingContent={<Switch selected={selected} />}
-      />
+      <ListItem onClick={() => setSelected(!selected)}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Enable Feature</ListItemTitle>
+            <ListItemDescription>Toggle this setting on/off</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Switch selected={selected} />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Value - For displaying values */}
-      <ListItem
-        title='Account Balance'
-        description='Current available funds'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Account Balance</ListItemTitle>
+            <ListItemDescription>Current available funds</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
           <div className='text-right'>
             <div className='body-2-semi-bold'>42.00</div>
             <div className='text-muted body-3'>USD</div>
           </div>
-        }
-      />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Tag - For status indicators */}
-      <ListItem
-        title='New Feature'
-        description='Recently added functionality'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<Tag label='New' appearance='accent' />}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>New Feature</ListItemTitle>
+            <ListItemDescription>Recently added functionality</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Tag label='New' appearance='accent' />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* Icon - For trailing icons */}
-      <ListItem
-        title='Edit Profile'
-        description='Modify your information'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        trailingContent={<Check />}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Edit Profile</ListItemTitle>
+            <ListItemDescription>Modify your information</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <Check />
+        </ListItemTrailing>
+      </ListItem>
 
       {/* None - No trailing content */}
-      <ListItem
-        title='Simple Item'
-        description='No trailing elements'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-      />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={User} />
+          <ListItemContent>
+            <ListItemTitle>Simple Item</ListItemTitle>
+            <ListItemDescription>No trailing elements</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+      </ListItem>
     </div>
   );
 }
@@ -221,37 +303,69 @@ function ListVariants() {
 
 ### With Description Tag
 
-Add a tag to the description for additional status information:
+Add a tag inline with the description for additional status information:
 
 ```tsx
-import { ListItem, Tag } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  Tag,
+} from '@ledgerhq/lumen-ui-react';
 import { Bolt, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <ListItem
-      title='New Item'
-      description='Recently added'
-      descriptionTag={<Tag label='New' appearance='accent' icon={Bolt} />}
-      trailingContent={<ChevronRight size={24} />}
-    />
+    <ListItem>
+      <ListItemLeading>
+        <ListItemContent>
+          <ListItemTitle>New Item</ListItemTitle>
+          <ListItemDescription>
+            Recently added
+            <Tag label='New' appearance='accent' icon={Bolt} size='sm' />
+          </ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+      <ListItemTrailing>
+        <ChevronRight size={24} />
+      </ListItemTrailing>
+    </ListItem>
   );
 }
 ```
 
 ### Disabled State
 
-Disable the ListItem to prevent interaction:
+Disable the ListItem to prevent interaction. The disabled state is automatically propagated to ListItemDescription and ListItemSpot via context:
 
 ```tsx
-import { ListItem, Switch } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  Switch,
+} from '@ledgerhq/lumen-ui-react';
+import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
-<ListItem
-  title='Disabled Option'
-  description='Cannot be changed'
-  trailingContent={<Switch selected={false} disabled />}
-  disabled
-/>;
+<ListItem disabled>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Disabled Option</ListItemTitle>
+      <ListItemDescription>Cannot be changed</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <Switch selected={false} disabled />
+  </ListItemTrailing>
+</ListItem>
 ```
 
 ### Responsive Layout
@@ -259,17 +373,33 @@ import { ListItem, Switch } from '@ledgerhq/lumen-ui-react';
 ListItem handles truncation responsively. Use container widths to control behavior:
 
 ```tsx
-import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from '@ledgerhq/lumen-ui-react';
 import { User, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 <div className='w-240 bg-base p-4'>
-  <ListItem
-    title='Very Long Title That Will Truncate'
-    description='Very long description that will also truncate appropriately'
-    leadingContent={<Spot appearance='icon' icon={User} />}
-    trailingContent={<ChevronRight size={24} />}
-  />
-</div>;
+  <ListItem>
+    <ListItemLeading>
+      <ListItemSpot appearance='icon' icon={User} />
+      <ListItemContent>
+        <ListItemTitle>Very Long Title That Will Truncate</ListItemTitle>
+        <ListItemDescription>
+          Very long description that will also truncate appropriately
+        </ListItemDescription>
+      </ListItemContent>
+    </ListItemLeading>
+    <ListItemTrailing>
+      <ChevronRight size={24} />
+    </ListItemTrailing>
+  </ListItem>
+</div>
 ```
 
 ### Custom Styling
@@ -277,15 +407,29 @@ import { User, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 Use `className` for layout purposes only, such as maximum width:
 
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+} from '@ledgerhq/lumen-ui-react';
 import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
-<ListItem
-  title='Constrained Width'
-  description='This item has a maximum width applied'
-  trailingContent={<ChevronRight size={24} />}
-  className='max-w-md'
-/>;
+<ListItem className='max-w-md'>
+  <ListItemLeading>
+    <ListItemContent>
+      <ListItemTitle>Constrained Width</ListItemTitle>
+      <ListItemDescription>
+        This item has a maximum width applied
+      </ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} />
+  </ListItemTrailing>
+</ListItem>
 ```
 
 ### Virtual Lists
@@ -295,7 +439,15 @@ When rendering long lists of ListItems, we recommend using [TanStack Virtual](ht
 ```tsx
 import React from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { ListItem, Spot } from '@ledgerhq/lumen-ui-react';
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+} from '@ledgerhq/lumen-ui-react';
 import { User, ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 function VirtualListItemList({ items }) {
@@ -319,12 +471,20 @@ function VirtualListItemList({ items }) {
             className='absolute left-0 top-0 w-full'
             style={{ transform: `translateY(${virtualItem.start}px)` }}
           >
-            <ListItem
-              title={items[virtualItem.index].title}
-              description={items[virtualItem.index].description}
-              leadingContent={<Spot appearance='icon' icon={User} />}
-              trailingContent={<ChevronRight size={24} />}
-            />
+            <ListItem>
+              <ListItemLeading>
+                <ListItemSpot appearance='icon' icon={User} />
+                <ListItemContent>
+                  <ListItemTitle>{items[virtualItem.index].title}</ListItemTitle>
+                  <ListItemDescription>
+                    {items[virtualItem.index].description}
+                  </ListItemDescription>
+                </ListItemContent>
+              </ListItemLeading>
+              <ListItemTrailing>
+                <ChevronRight size={24} />
+              </ListItemTrailing>
+            </ListItem>
           </div>
         ))}
       </div>
@@ -342,35 +502,77 @@ The following guidelines ensure consistent usage of the ListItem component and m
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use descriptionTag to add Tag components'
-      description='descriptionTag prop accepts Tag components to display status or labels next to the description'
+      title='Use the composite pattern correctly'
+      description='ListItemContent should be nested inside ListItemLeading to group visual and text content together'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<ListItem
-  title='New Item'
-  description='Recently added'
-  descriptionTag={<Tag label='New' appearance='accent' icon={Bolt} />}
-/>
+<ListItem>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Settings</ListItemTitle>
+      <ListItemDescription>Manage preferences</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} />
+  </ListItemTrailing>
+</ListItem>
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use descriptionTag for other elements"
-      description='descriptionTag only accepts Tag components. Use trailingContent for other elements like icons or text'
+      title="Don't place ListItemContent outside ListItemLeading"
+      description='ListItemContent must be inside ListItemLeading for proper layout'
     >
 
 {/* prettier-ignore */}
 ```tsx
-// DON'T - descriptionTag only accepts Tag components
-<ListItem
-  title='New Item'
-  description='Recently added'
-  descriptionTag={<span>New</span>}
-/>
+// DON'T - ListItemContent outside ListItemLeading
+<ListItem>
+  <ListItemLeading>
+    <ListItemSpot appearance='icon' icon={Settings} />
+  </ListItemLeading>
+  <ListItemContent>
+    <ListItemTitle>Settings</ListItemTitle>
+  </ListItemContent>
+</ListItem>
+```
 
+    </DontBlockItem>
 
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Add Tags inline with description'
+      description='Place Tag components directly inside ListItemDescription for inline display'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<ListItemDescription>
+  Recently added
+  <Tag label='New' appearance='accent' size='sm' />
+</ListItemDescription>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't place Tags outside ListItemDescription"
+      description='Tags should be inline with description text, not separate'
+    >
+
+{/* prettier-ignore */}
+```tsx
+// DON'T - Tag outside description
+<ListItemContent>
+  <ListItemTitle>New Item</ListItemTitle>
+  <ListItemDescription>Recently added</ListItemDescription>
+  <Tag label='New' appearance='accent' />
+</ListItemContent>
 ```
 
     </DontBlockItem>
@@ -385,14 +587,10 @@ The following guidelines ensure consistent usage of the ListItem component and m
 
 {/* prettier-ignore */}
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-react';
-import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
-
-<ListItem
-  title='Account Settings'
-  description='Manage preferences'
-  trailingContent={<ChevronRight size={24} />}
-/>
+<ListItemContent>
+  <ListItemTitle>Account Settings</ListItemTitle>
+  <ListItemDescription>Manage preferences</ListItemDescription>
+</ListItemContent>
 ```
 
     </DoBlockItem>
@@ -403,14 +601,14 @@ import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 {/* prettier-ignore */}
 ```tsx
-import { ListItem } from '@ledgerhq/lumen-ui-react';
-import { ChevronRight } from '@ledgerhq/lumen-ui-react/symbols';
-
-<ListItem
-  title='This is a very long title that will be truncated and users will not be able to read the full text'
-  description='This is also a very long description that will be truncated and users will not be able to read the full text'
-  trailingContent={<ChevronRight size={24} />}
-/>
+<ListItemContent>
+  <ListItemTitle>
+    This is a very long title that will be truncated
+  </ListItemTitle>
+  <ListItemDescription>
+    This is also a very long description that will be truncated
+  </ListItemDescription>
+</ListItemContent>
 ```
 
     </DontBlockItem>

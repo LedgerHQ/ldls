@@ -1,4 +1,9 @@
-import { HTMLAttributes } from 'react';
+import React from 'react';
+import {
+  StyledPressableProps,
+  StyledTextProps,
+  StyledViewProps,
+} from '../../../styles';
 import { DiscriminatedSpotProps } from '../Spot';
 
 /**
@@ -17,18 +22,14 @@ export type ListItemProps = {
    */
   children: React.ReactNode;
   /**
-   * custom classname
-   */
-  className?: string;
-  /**
    * Whether the list item is disabled.
    */
   disabled?: boolean;
   /**
    * Callback function when the list item is pressed.
    */
-  onClick?: React.ButtonHTMLAttributes<HTMLButtonElement>['onClick'];
-} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>;
+  onPress?: StyledPressableProps['onPress'];
+} & Omit<StyledPressableProps, 'disabled' | 'children'>;
 
 /**
  * Props for the ListItemLeading component
@@ -38,11 +39,7 @@ export type ListItemLeadingProps = {
    * The content of the leading area (visual element + ListItemContent)
    */
   children: React.ReactNode;
-  /**
-   * custom classname
-   */
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<StyledViewProps, 'children'>;
 
 /**
  * Props for the ListItemContent component
@@ -53,15 +50,11 @@ export type ListItemContentProps = {
    */
   children: React.ReactNode;
   /**
-   * custom classname
-   */
-  className?: string;
-  /**
    * The alignment of the content, align on the end when used on ListItemTrailing.
    * @default 'start'
    */
   align?: 'start' | 'end';
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<StyledViewProps, 'children'>;
 
 /**
  * Props for the ListItemTitle component
@@ -71,11 +64,7 @@ export type ListItemTitleProps = {
    * The title text or custom content
    */
   children: React.ReactNode;
-  /**
-   * custom classname
-   */
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<StyledViewProps, 'children'>;
 
 /**
  * Props for the ListItemDescription component
@@ -85,11 +74,7 @@ export type ListItemDescriptionProps = {
    * The description text or custom content
    */
   children: React.ReactNode;
-  /**
-   * custom classname
-   */
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<StyledViewProps, 'children'>;
 
 /**
  * Props for the ListItemTrailing component
@@ -99,17 +84,7 @@ export type ListItemTrailingProps = {
    * The trailing content (icons, switches, values, etc.)
    */
   children: React.ReactNode;
-  /**
-   * custom classname
-   */
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
-
-/**
- * Props for ListItemSpot when appearance is 'icon'
- */
-export type ListItemSpotProps = DiscriminatedSpotProps &
-  HTMLAttributes<HTMLDivElement>;
+} & Omit<StyledViewProps, 'children'>;
 
 /**
  * Props for the ListItemTruncate component
@@ -117,11 +92,20 @@ export type ListItemSpotProps = DiscriminatedSpotProps &
  */
 export type ListItemTruncateProps = {
   /**
-   * The content to truncate
+   * The text content to truncate
    */
-  children: React.ReactNode;
+  children: string;
   /**
-   * custom classname
+   * The variant determines typography and color styling.
+   * Use 'title' inside ListItemTitle and 'description' inside ListItemDescription.
+   * @default 'description'
    */
-  className?: string;
-} & HTMLAttributes<HTMLDivElement>;
+  variant?: 'title' | 'description';
+} & Omit<StyledTextProps, 'children'>;
+
+/**
+ * Props for the ListItemSpot component
+ * Spot adapter that inherits disabled state from parent ListItem
+ */
+export type ListItemSpotProps = DiscriminatedSpotProps &
+  Omit<StyledViewProps, 'children'>;
