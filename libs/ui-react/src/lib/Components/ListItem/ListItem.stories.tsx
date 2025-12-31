@@ -34,6 +34,7 @@ const meta: Meta<typeof ListItem> = {
     ListItemDescription,
     ListItemTrailing,
     ListItemSpot,
+    ListItemTruncate,
   },
   parameters: {
     docs: {
