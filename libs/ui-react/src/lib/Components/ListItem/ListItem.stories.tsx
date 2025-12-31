@@ -1,6 +1,5 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Settings,
   Plus,
@@ -9,29 +8,33 @@ import {
   Wallet,
   Cart,
   Apps,
-  Chart1,
-  Bolt,
   ChevronRight,
+  Chart1,
 } from '../../Symbols';
-import { Spot } from '../Spot/Spot';
 import { Switch } from '../Switch';
 import { Tag } from '../Tag/Tag';
-import { ListItem } from './ListItem';
-
-const Balance = ({ disabled }: { disabled?: boolean }) => {
-  return (
-    <div className='flex flex-col items-end justify-center gap-4'>
-      <div className='body-2-semi-bold'>42.00</div>
-      <div className={cn('text-muted body-3', disabled && 'text-disabled')}>
-        USD
-      </div>
-    </div>
-  );
-};
+import {
+  ListItem,
+  ListItemLeading,
+  ListItemContent,
+  ListItemTitle,
+  ListItemDescription,
+  ListItemTrailing,
+  ListItemSpot,
+  ListItemTruncate,
+} from './ListItem';
 
 const meta: Meta<typeof ListItem> = {
   component: ListItem,
   title: 'Containment/ListItem',
+  subcomponents: {
+    ListItemLeading,
+    ListItemContent,
+    ListItemTitle,
+    ListItemDescription,
+    ListItemTrailing,
+    ListItemSpot,
+  },
   parameters: {
     docs: {
       source: {
@@ -42,35 +45,6 @@ const meta: Meta<typeof ListItem> = {
     },
   },
   argTypes: {
-    descriptionTag: {
-      control: 'select',
-      options: ['None', 'Tag'],
-      mapping: {
-        None: undefined,
-        Tag: <Tag label='New' appearance='base' icon={Bolt} size='sm' />,
-      },
-      if: { arg: 'description', exists: true },
-    },
-    leadingContent: {
-      control: 'select',
-      options: ['None', 'Settings', 'Plus'],
-      mapping: {
-        None: undefined,
-        Settings: <Spot appearance='icon' icon={Settings} />,
-        Plus: <Spot appearance='icon' icon={Plus} />,
-      },
-    },
-    trailingContent: {
-      control: 'select',
-      options: ['icon', 'switch', 'value', 'tag', 'none'],
-      mapping: {
-        icon: <PenEdit size={24} />,
-        switch: <Switch selected={false} />,
-        value: <Balance />,
-        tag: <Tag label='New' appearance='base' />,
-        none: undefined,
-      },
-    },
     onClick: {
       action: 'clicked',
     },
@@ -82,231 +56,302 @@ type Story = StoryObj<typeof ListItem>;
 
 export const Base: Story = {
   args: {
-    title: 'Item with Icon and Description',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    description: 'Additional information',
-    className: 'max-w-320',
+    className: 'max-w-320 gap-4',
   },
+  render: (args) => (
+    <ListItem {...args}>
+      <ListItemLeading>
+        <ListItemSpot appearance='icon' icon={Settings} />
+        <ListItemContent>
+          <ListItemTitle>Item with Icon and Description</ListItemTitle>
+          <ListItemDescription>Additional information</ListItemDescription>
+        </ListItemContent>
+      </ListItemLeading>
+    </ListItem>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<ListItem
-  title="Item with Icon and Description"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  description="Additional information"
-/>
+<ListItem>
+  <ListItemLeading>
+    <Spot appearance="icon" icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Item with Icon and Description</ListItemTitle>
+      <ListItemDescription>Additional information</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+</ListItem>
 `,
       },
     },
   },
 };
 
-export const WithDescriptionTag: Story = {
+export const VariantsShowcase: Story = {
+  render: () => {
+    const [selected, setSelected] = useState(false);
+
+    return (
+      <div className='flex max-w-320 flex-col gap-4'>
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Chart1} />
+            <ListItemContent>
+              <ListItemTitle>Simple composition</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={User} />
+            <ListItemContent>
+              <ListItemTitle>Caret Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ChevronRight size={24} />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem onClick={() => setSelected(!selected)}>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Wallet} />
+            <ListItemContent>
+              <ListItemTitle>Switch Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <Switch tabIndex={-1} selected={selected} />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemContent>
+              <ListItemTitle>Value Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent align='end'>
+              <ListItemTitle>42.10</ListItemTitle>
+              <ListItemDescription>USD</ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Wallet} />
+            <ListItemContent>
+              <ListItemTitle>Content Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <div className='body-2-semi-bold'>$3,000</div>
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Apps} />
+            <ListItemContent>
+              <ListItemTitle>Tag Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <Tag size='sm' label='New' appearance='accent' />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Settings} />
+            <ListItemContent>
+              <ListItemTitle>Icon Variant</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <PenEdit size={24} />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemContent>
+              <ListItemTitle className='flex gap-6'>
+                <ListItemTruncate>Complex 1</ListItemTruncate>
+                <Tag size='sm' label='New' appearance='base' />
+              </ListItemTitle>
+              <ListItemDescription className='flex gap-6'>
+                <ListItemTruncate>With description</ListItemTruncate>
+                <Tag size='sm' label='Custom Tag' appearance='gray' />
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent align='end'>
+              <ListItemTitle>42.10</ListItemTitle>
+              <ListItemDescription>USD</ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemContent>
+              <ListItemTitle>Complex 2</ListItemTitle>
+              <ListItemDescription>With description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent align='end'>
+              <ListItemTitle className='flex gap-6'>
+                <Tag size='sm' label='New' appearance='base' />
+                <ListItemTruncate>1200.12</ListItemTruncate>
+              </ListItemTitle>
+              <ListItemDescription className='flex gap-6'>
+                <Tag size='sm' label='BTC' appearance='gray' />
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
+      </div>
+    );
+  },
+};
+
+export const DisabledState: Story = {
   args: {
-    title: 'Item with Description Tag',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    description: 'Additional information',
-    descriptionTag: (
-      <Tag label='New' appearance='accent' icon={Bolt} size='sm' />
-    ),
-    className: 'max-w-320',
+    disabled: true,
   },
+  render: (args) => (
+    <div className='flex w-320 flex-col gap-4'>
+      <ListItem {...args}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={Settings} />
+          <ListItemContent>
+            <ListItemTitle>Disabled Item</ListItemTitle>
+            <ListItemDescription>This item is disabled</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight size={24} className='text-disabled' />
+        </ListItemTrailing>
+      </ListItem>
+
+      <ListItem {...args}>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={Cart} />
+          <ListItemContent>
+            <ListItemTitle>Value Variant</ListItemTitle>
+            <ListItemDescription>With description</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ListItemContent align='end'>
+            <ListItemTitle>42.10</ListItemTitle>
+            <ListItemDescription>USD</ListItemDescription>
+          </ListItemContent>
+        </ListItemTrailing>
+      </ListItem>
+    </div>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<ListItem
-  title="Item with Description Tag"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  description="Additional information"
-  descriptionTag={<Tag label="New" appearance="accent" icon={Bolt} size="sm" />}
-/>
-
+<ListItem disabled>
+  <ListItemLeading>
+    <ListItemSpot appearance="icon" icon={Settings} />
+    <ListItemContent>
+      <ListItemTitle>Disabled Item</ListItemTitle>
+      <ListItemDescription>This item is disabled</ListItemDescription>
+    </ListItemContent>
+  </ListItemLeading>
+  <ListItemTrailing>
+    <ChevronRight size={24} className="text-disabled" />
+  </ListItemTrailing>
+</ListItem>
 `,
       },
     },
-  },
-};
-
-export const TrailingContentVariantsShowcase: Story = {
-  render: () => {
-    const [selected, setSelected] = useState(false);
-
-    return (
-      <div className='flex max-w-256 flex-col'>
-        <ListItem
-          title='Caret Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={User} />}
-          trailingContent={<ChevronRight size={24} />}
-        />
-        <ListItem
-          title='Switch Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Wallet} />}
-          onClick={() => setSelected(!selected)}
-          trailingContent={<Switch tabIndex={-1} selected={selected} />}
-        />
-        <ListItem
-          title='Value Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Cart} />}
-          trailingContent={<Balance />}
-        />
-        <ListItem
-          title='Value Only Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Wallet} />}
-          trailingContent={<div className='body-2-semi-bold'>$3,000</div>}
-        />
-        <ListItem
-          title='Tag Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Apps} />}
-          trailingContent={<Tag label='New' appearance='accent' />}
-        />
-        <ListItem
-          title='Icon Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Settings} />}
-          trailingContent={<PenEdit size={24} />}
-        />
-        <ListItem
-          title='None Variant'
-          description='With description'
-          leadingContent={<Spot appearance='icon' icon={Chart1} />}
-        />
-      </div>
-    );
-  },
-};
-
-export const StateShowcase: Story = {
-  render: () => {
-    const [selected, setSelected] = useState(false);
-
-    return (
-      <div className='flex gap-32'>
-        <div className='flex max-w-256 flex-col'>
-          <ListItem
-            title='Caret Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={User} />}
-            trailingContent={<ChevronRight size={24} className='text-muted' />}
-          />
-          <ListItem
-            title='Switch Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Wallet} />}
-            onClick={() => setSelected(!selected)}
-            trailingContent={<Switch selected={selected} />}
-          />
-          <ListItem
-            title='Value Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Cart} />}
-            trailingContent={<Balance />}
-          />
-          <ListItem
-            title='Tag Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Apps} />}
-            trailingContent={<Tag label='New' appearance='accent' />}
-          />
-          <ListItem
-            title='Icon Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Settings} />}
-            trailingContent={<PenEdit size={24} />}
-          />
-          <ListItem
-            title='None Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Chart1} />}
-          />
-        </div>
-        <div className='flex max-w-256 flex-col'>
-          <ListItem
-            title='Caret Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={User} disabled />}
-            disabled
-            trailingContent={
-              <ChevronRight size={24} className='text-disabled' />
-            }
-          />
-          <ListItem
-            title='Switch Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Wallet} disabled />}
-            onClick={() => setSelected(!selected)}
-            disabled
-            trailingContent={<Switch selected={selected} disabled />}
-          />
-          <ListItem
-            title='Value Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Cart} disabled />}
-            disabled
-            trailingContent={<Balance disabled />}
-          />
-          <ListItem
-            title='Tag Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Apps} disabled />}
-            disabled
-            trailingContent={
-              <Tag
-                label='New'
-                appearance='accent'
-                className='!bg-muted-transparent !text-disabled'
-              />
-            }
-          />
-          <ListItem
-            title='Icon Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
-            disabled
-            trailingContent={<PenEdit size={24} className='text-disabled' />}
-          />
-          <ListItem
-            title='None Variant'
-            description='With description'
-            leadingContent={<Spot appearance='icon' icon={Chart1} disabled />}
-            disabled
-          />
-        </div>
-      </div>
-    );
   },
 };
 
 export const ResponsiveLayout: Story = {
   render: () => (
-    <div className='grid w-320 grid-cols-1 gap-16 bg-muted-pressed p-16'>
+    <div className='grid w-400 grid-cols-1 gap-4 border border-muted-subtle p-16'>
       <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
       <div>
-        <ListItem
-          title='Short Title'
-          description='Short description'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
-        />
-        <ListItem
-          title='Long Title that should truncate appropriately'
-          description='Long description that should truncate appropriately'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
-        />
-        <ListItem
-          title='Long Title that should truncate appropriately'
-          description='Long description that should truncate appropriately'
-          descriptionTag={<Tag label='New' appearance='accent' size='sm' />}
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-          trailingContent={<ChevronRight size={24} className='text-muted' />}
-        />
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Plus} />
+            <ListItemContent>
+              <ListItemTitle>Short Title</ListItemTitle>
+              <ListItemDescription>Short description</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ChevronRight size={24} className='text-muted' />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Plus} />
+            <ListItemContent>
+              <ListItemTitle>
+                Long Title that should truncate appropriately
+              </ListItemTitle>
+              <ListItemDescription>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quisquam, quos.
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ChevronRight size={24} className='text-muted' />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemContent>
+              <ListItemTitle className='flex gap-6'>
+                <ListItemTruncate>
+                  Long Title that should truncate appropriately
+                </ListItemTruncate>
+                <Tag size='sm' label='New' appearance='base' />
+              </ListItemTitle>
+              <ListItemDescription className='flex gap-6'>
+                <ListItemTruncate>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, quos.
+                </ListItemTruncate>
+                <Tag size='sm' label='Custom Tag' appearance='gray' />
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent align='end'>
+              <ListItemTitle>42.10</ListItemTitle>
+              <ListItemDescription>USD</ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
       </div>
     </div>
   ),

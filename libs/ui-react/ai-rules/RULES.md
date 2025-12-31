@@ -211,7 +211,18 @@ import { ChevronRight, Settings } from '@ledgerhq/lumen-ui-react/symbols';
 const InteractiveList = () => (
   <div className='flex flex-col gap-2'>
     {items.map((item) => (
-      <ListItem key={item.id} title={item.title} description={item.subtitle} leadingContent={<Spot appearance='icon' icon={Settings} />} trailingContent={<ChevronRight size={24} />} onClick={() => console.log('Clicked:', item.id)} />
+      <ListItem>
+        <ListItemLeading>
+          <ListItemSpot appearance='icon' icon={Settings} />
+          <ListItemContent>
+            <ListItemTitle>Simple composition</ListItemTitle>
+            <ListItemDescription>With description</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
+        <ListItemTrailing>
+          <ChevronRight />
+        </ListItemTrailing>
+      </ListItem>
     ))}
   </div>
 );
