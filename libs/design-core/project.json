@@ -15,14 +15,14 @@
     "figma-export": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./src/figma/export-design-tokens.ts",
+        "command": "npx tsx ./src/figma/exportDesignTokens.ts",
         "cwd": "libs/design-core"
       }
     },
     "code-syntax": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./src/figma/update-code-syntax.ts",
+        "command": "npx tsx ./src/figma/updateCodeSyntax.ts",
         "cwd": "libs/design-core"
       }
     },
@@ -36,7 +36,7 @@
     "design-tokens-etl": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./automations/design-tokens-etl.ts",
+        "command": "npx tsx ./automations/designTokensEtl.ts",
         "cwd": "libs/design-core"
       },
       "dependsOn": ["build"]
@@ -44,7 +44,7 @@
     "figma-download-svgs": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx tsx ./automations/figma-download-svgs.ts",
+        "command": "npx tsx ./automations/figmaDownloadSvgs.ts",
         "cwd": "libs/design-core"
       }
     },

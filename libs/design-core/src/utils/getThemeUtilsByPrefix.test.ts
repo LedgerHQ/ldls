@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getThemeUtilsByPrefix } from './get-theme-utils-by-prefix.js';
+import { getThemeUtilsByPrefix } from './getThemeUtilsByPrefix.js';
 
 describe('getThemeUtilsByPrefix', () => {
   const realWorldTheme = {

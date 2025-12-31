@@ -1,1 +1,1 @@
-export * from './create-custom-plugin.js';
+export * from './createCustomPlugin.js';

@@ -6,9 +6,9 @@
 
 import * as fs from 'fs';
 import figmaApi from './api.js';
-import getEnvironmentVariables from './get-environment-variables.js';
-import tokenFileNameRenamer from './token-file-name-renamer.js';
-import tokenFilesFromLocalVariables from './token-files-from-local-variables.js';
+import getEnvironmentVariables from './getEnvironmentVariables.js';
+import tokenFileNameRenamer from './tokenFileNameRenamer.js';
+import tokenFilesFromLocalVariables from './tokenFilesFromLocalVariables.js';
 
 const outputDir = 'tokens';
 

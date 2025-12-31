@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseCliArgs } from './parse-cli-args.js';
+import { parseCliArgs } from './parseCliArgs.js';
 
 describe('parseCliArgs', () => {
   it('should parse a single key-value pair', () => {
