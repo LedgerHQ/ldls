@@ -1,6 +1,6 @@
+import { toPascalCase } from '@ledgerhq/lumen-utils-shared';
 import React, { forwardRef } from 'react';
 import { Svg, SvgProps } from 'react-native-svg';
-import { toPascalCase } from '../../utils';
 import { Icon } from './Icon';
 import { IconProps } from './types';
 

@@ -1,1 +1,1 @@
-export * from './extract-text-from-children';
+export * from './extractTextFromChildren';

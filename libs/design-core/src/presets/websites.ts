@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 import { websitesCSSTheme } from '../themes/css';
-import { createAnimationsPlugin } from '../utils/create-animations-plugin.js';
-import { createPrimitivesPlugin } from '../utils/create-primitives-plugin.js';
+import { createAnimationsPlugin } from '../utils/createAnimationsPlugin.js';
+import { createPrimitivesPlugin } from '../utils/createPrimitivesPlugin.js';
 
 import {
   createGradientPlugin,

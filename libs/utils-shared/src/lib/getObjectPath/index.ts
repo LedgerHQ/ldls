@@ -1,0 +1,1 @@
+export { getObjectPath } from './getObjectPath';
