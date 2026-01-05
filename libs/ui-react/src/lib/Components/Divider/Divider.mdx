@@ -1,0 +1,255 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DividerStories from './Divider.stories';
+import { Divider } from './Divider';
+import {
+  CustomTabs,
+  Tab,
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/components';
+import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
+
+<Meta title='Layout/Divider' of={DividerStories} />
+
+# ➖ Divider
+
+<CustomTabs>
+  <Tab label="Overview ">
+
+## Introduction
+
+The Divider component provides a simple, semantic way to visually separate content sections in your interface. It creates a horizontal or vertical line that helps organize information and improve content hierarchy.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=9-28&m=dev).
+
+## Anatomy
+
+<Canvas of={DividerStories.Base} />
+
+The Divider is a simple component consisting of a single line that uses design system tokens for consistent styling.
+
+## Properties
+
+### Overview
+
+<Canvas of={DividerStories.Base} />
+<Controls of={DividerStories.Base} />
+
+### Orientation
+
+Dividers support both horizontal and vertical orientations to accommodate different layout needs:
+
+- `horizontal` (default): Creates a horizontal line spanning the full width of its container
+- `vertical`: Creates a vertical line with a height determined by its container or custom styling
+
+<Canvas of={DividerStories.OrientationShowcase} />
+
+## Usage Examples
+
+### With Spacing
+
+Dividers work seamlessly with margin and padding utilities to control spacing around the separator:
+
+<Canvas of={DividerStories.WithSpacing} />
+
+### In Lists
+
+A common use case is separating list items or sections within a card:
+
+<Canvas of={DividerStories.InList} />
+
+## Responsive Layout
+
+Dividers automatically adapt to their container's dimensions. For horizontal dividers, they span the full width. For vertical dividers, set an explicit height using the `className` prop.
+
+## Accessibility
+
+The Divider component includes proper accessibility attributes:
+
+- Uses `role="separator"` for semantic meaning
+- Includes `aria-orientation` to indicate direction
+- Works with screen readers to convey content structure
+
+</Tab>
+
+  <Tab label="Implementation ">
+
+## Installation
+
+```bash
+npm install @ledgerhq/lumen-ui-react
+```
+
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `tailwindcss`, `clsx`, etc.) are required. See our [Setup Guide →](?path=/docs/getting-started-setup-tailwind--docs#1-tailwind-config) for complete installation and Tailwind configuration.
+
+## Basic Usage
+
+```tsx
+import { Divider } from '@ledgerhq/lumen-ui-react';
+
+function MyComponent() {
+  return (
+    <div>
+      <p>Content above the divider</p>
+      <Divider />
+      <p>Content below the divider</p>
+    </div>
+  );
+}
+```
+
+### Vertical Divider
+
+For vertical separation between content:
+
+```tsx
+import { Divider } from '@ledgerhq/lumen-ui-react';
+
+function MyComponent() {
+  return (
+    <div className='flex items-center gap-16'>
+      <span>Left content</span>
+      <Divider orientation='vertical' className='h-48' />
+      <span>Right content</span>
+    </div>
+  );
+}
+```
+
+Note: For vertical dividers, you typically need to set an explicit height using the `className` prop.
+
+### With Spacing
+
+Control spacing around the divider with margin utilities:
+
+```tsx
+import { Divider } from '@ledgerhq/lumen-ui-react';
+
+function MyComponent() {
+  return (
+    <div>
+      <h2>Section Title</h2>
+      <Divider className='my-16' />
+      <p>Section content...</p>
+    </div>
+  );
+}
+```
+
+### In List Components
+
+Dividers are perfect for separating items in lists, menus, or cards:
+
+```tsx
+import { Divider } from '@ledgerhq/lumen-ui-react';
+
+function MyList() {
+  return (
+    <div className='flex flex-col rounded-lg border border-muted'>
+      <div className='p-16'>Item 1</div>
+      <Divider />
+      <div className='p-16'>Item 2</div>
+      <Divider />
+      <div className='p-16'>Item 3</div>
+    </div>
+  );
+}
+```
+
+## Do's and Don'ts
+
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use for content separation'
+      description='Use dividers to create clear visual boundaries between sections'
+    >
+
+```tsx
+<div className='flex flex-col gap-16'>
+  <section>First section</section>
+  <Divider />
+  <section>Second section</section>
+</div>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't overuse dividers"
+      description='Avoid using dividers when whitespace alone provides sufficient separation'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<div className='flex flex-col gap-16'>
+  <p>Paragraph 1</p>
+  <Divider />
+  <p>Paragraph 2</p>
+</div>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use spacing utilities'
+      description='Control spacing around dividers with margin utilities from the design system'
+    >
+
+```tsx
+<Divider className='my-16' />
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use arbitrary values"
+      description='Avoid arbitrary spacing values that break design system consistency'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Divider className='my-[13px]' />
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Set height for vertical dividers'
+      description='Vertical dividers need an explicit height to be visible'
+    >
+
+```tsx
+<Divider orientation='vertical' className='h-48' />
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't forget height on vertical"
+      description='Vertical dividers without height will not be visible'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Divider orientation='vertical' />
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+</div>
+
+<CommonRulesDoAndDont />
+
+## Performance Considerations
+
+The Divider component is extremely lightweight with minimal performance impact. It renders a simple `div` element with CSS classes, making it suitable for use in lists with many items.
+
+</Tab>
+</CustomTabs>
+
