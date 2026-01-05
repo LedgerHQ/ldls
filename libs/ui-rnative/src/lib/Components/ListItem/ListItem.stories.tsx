@@ -148,7 +148,7 @@ export const VariantsShowcase: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ListItemContent align='end'>
+            <ListItemContent>
               <ListItemTitle>42.10</ListItemTitle>
               <ListItemDescription>USD</ListItemDescription>
             </ListItemContent>
@@ -196,7 +196,7 @@ export const VariantsShowcase: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ListItemContent align='end'>
+            <ListItemContent>
               <ListItemTitle>42.10</ListItemTitle>
               <ListItemDescription>USD</ListItemDescription>
             </ListItemContent>
@@ -212,7 +212,7 @@ export const VariantsShowcase: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ListItemContent align='end'>
+            <ListItemContent>
               <ListItemTitle>
                 <Tag size='sm' label='New' appearance='base' />
                 <ListItemTruncate variant='title'>1200.12</ListItemTruncate>
@@ -269,7 +269,7 @@ export const DisabledState: Story = {
           </ListItemContent>
         </ListItemLeading>
         <ListItemTrailing>
-          <ListItemContent align='end'>
+          <ListItemContent>
             <ListItemTitle>42.10</ListItemTitle>
             <ListItemDescription>USD</ListItemDescription>
           </ListItemContent>
@@ -361,7 +361,7 @@ export const ResponsiveLayout: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ListItemContent align='end'>
+            <ListItemContent>
               <ListItemTitle>42.10</ListItemTitle>
               <ListItemDescription>USD</ListItemDescription>
             </ListItemContent>
