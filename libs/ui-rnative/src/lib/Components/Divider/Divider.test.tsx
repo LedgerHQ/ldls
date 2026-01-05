@@ -27,7 +27,7 @@ describe('Divider Component', () => {
     const flatStyle = Array.isArray(style)
       ? Object.assign({}, ...style)
       : style;
-    expect(flatStyle.borderTopWidth).toBe(1);
+    expect(flatStyle.borderWidth).toBe(1);
     expect(flatStyle.borderColor).toBe(colors.border.mutedSubtle);
   });
 
@@ -43,7 +43,7 @@ describe('Divider Component', () => {
     const flatStyle = Array.isArray(style)
       ? Object.assign({}, ...style)
       : style;
-    expect(flatStyle.borderLeftWidth).toBe(1);
+    expect(flatStyle.borderWidth).toBe(1);
     expect(flatStyle.borderColor).toBe(colors.border.mutedSubtle);
   });
 
