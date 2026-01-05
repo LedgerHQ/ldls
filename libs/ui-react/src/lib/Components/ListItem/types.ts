@@ -120,3 +120,17 @@ export type ListItemTruncateProps = {
    */
   className?: string;
 } & HTMLAttributes<HTMLDivElement>;
+
+/**
+ * Props for the ListItemIcon component
+ */
+export type ListItemIconProps = {
+  /**
+   * The icon component to render
+   */
+  icon: React.ComponentType<any>;
+  /**
+   * custom classname
+   */
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;

@@ -5,6 +5,7 @@ import {
   ListItemContextValue,
   ListItemContentProps,
   ListItemDescriptionProps,
+  ListItemIconProps,
   ListItemLeadingProps,
   ListItemProps,
   ListItemSpotProps,
@@ -215,6 +216,31 @@ export const ListItemSpot = (props: ListItemSpotProps) => {
 };
 
 ListItemSpot.displayName = 'ListItemSpot';
+
+/**
+ * Icon adapter for ListItem. Automatically applies disabled styling from parent ListItem.
+ * Fixed at size 24 for consistent list item appearance.
+ */
+export const ListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProps>(
+  ({ icon: Icon, className, ...props }, ref) => {
+    const { disabled } = useListItemContext({
+      consumerName: 'ListItemIcon',
+      contextRequired: true,
+    });
+
+    return (
+      <div
+        ref={ref}
+        className={cn('shrink-0', disabled && 'text-disabled', className)}
+        {...props}
+      >
+        <Icon size={24} />
+      </div>
+    );
+  },
+);
+
+ListItemIcon.displayName = 'ListItemIcon';
 
 export const ListItemTruncate = ({
   children,
