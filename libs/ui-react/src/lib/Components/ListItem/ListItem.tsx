@@ -100,11 +100,7 @@ export const ListItemContent = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn(
-        'flex min-w-0 flex-1 flex-col gap-4',
-
-        className,
-      )}
+      className={cn('flex min-w-0 flex-1 flex-col gap-4', className)}
     >
       {children}
     </div>
