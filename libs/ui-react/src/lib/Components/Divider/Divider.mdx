@@ -160,91 +160,9 @@ function MyList() {
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use for content separation'
-      description='Use dividers to create clear visual boundaries between sections'
-    >
-
-```tsx
-<div className='flex flex-col gap-16'>
-  <section>First section</section>
-  <Divider />
-  <section>Second section</section>
-</div>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't overuse dividers"
-      description='Avoid using dividers when whitespace alone provides sufficient separation'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<div className='flex flex-col gap-16'>
-  <p>Paragraph 1</p>
-  <Divider />
-  <p>Paragraph 2</p>
-</div>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use spacing utilities'
-      description='Control spacing around dividers with margin utilities from the design system'
-    >
-
-```tsx
-<Divider className='my-16' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use arbitrary values"
-      description='Avoid arbitrary spacing values that break design system consistency'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Divider className='my-[13px]' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Set height for vertical dividers'
-      description='Vertical dividers need an explicit height to be visible'
-    >
-
-```tsx
-<Divider orientation='vertical' className='h-48' />
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't forget height on vertical"
-      description='Vertical dividers without height will not be visible'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Divider orientation='vertical' />
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
+  <CommonRulesDoAndDont />
 </div>
 
-<CommonRulesDoAndDont />
 
 ## Performance Considerations
 
