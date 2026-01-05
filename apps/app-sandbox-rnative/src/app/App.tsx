@@ -23,6 +23,7 @@ import {
   BottomSheetsButton,
   Buttons,
   Checkboxes,
+  Dividers,
   IconButtons,
   Links,
   Selects,
@@ -164,6 +165,9 @@ const AppContent = ({
             </SandboxBlock>
             <SandboxBlock title='Link'>
               <Links />
+            </SandboxBlock>
+            <SandboxBlock title='Dividers'>
+              <Dividers />
             </SandboxBlock>
           </Box>
         </ScrollView>

@@ -5,6 +5,7 @@ export * from './BottomSheet';
 export * from './Button';
 export * from './CardButton';
 export * from './Checkbox';
+export * from './Divider';
 export * from './IconButton';
 export * from './InteractiveIcon';
 export * from './Link';
