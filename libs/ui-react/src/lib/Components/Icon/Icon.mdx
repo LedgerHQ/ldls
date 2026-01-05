@@ -106,9 +106,13 @@ function IconSizes() {
 }
 ```
 
-### Within Buttons
+### Integration with Buttons
 
-The Button component supports icons with automatic size adjustment based on the button size:
+Icons are seamlessly integrated into our button components to ensure consistent sizing and alignment.
+
+**Button with Icon**
+
+Use the [Button](?path=/docs/components-button--docs) component to combine a label with an icon. The icon size is automatically adjusted based on the button size.
 
 ```tsx
 import { Button } from '@ledgerhq/lumen-ui-react';
@@ -123,12 +127,14 @@ function MyComponent() {
 }
 ```
 
-The Button component can accept an icon and no label:
+**Icon Only**
+
+For Icon-only buttons, use the [IconButton](?path=/docs/action-iconbutton--docs) component.
 
 ```tsx
-import { Button } from '@ledgerhq/lumen-ui-react';
+import { IconButton } from '@ledgerhq/lumen-ui-react';
 import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
-<Button icon={Settings} />;
+<IconButton icon={Settings} />;
 ```
 
 ### Accessibility
