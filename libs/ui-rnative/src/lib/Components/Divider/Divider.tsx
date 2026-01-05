@@ -31,8 +31,9 @@ export const Divider = forwardRef<View, DividerProps>(
         accessibilityRole='none'
         lx={{
           ...(orientation === 'horizontal'
-            ? { width: 'full', borderTopWidth: 's1' }
-            : { height: 'full', borderLeftWidth: 's1' }),
+            ? { width: 'full' }
+            : { height: 'full' }),
+          borderWidth: 's1',
           borderColor: 'mutedSubtle',
           ...lx,
         }}
