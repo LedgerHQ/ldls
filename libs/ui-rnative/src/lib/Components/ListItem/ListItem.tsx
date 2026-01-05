@@ -274,7 +274,7 @@ export const ListItemDescription = React.forwardRef<
     contextRequired: true,
   });
   const { isInTrailing } = useListItemTrailingContext({
-    consumerName: 'ListItemContent',
+    consumerName: 'ListItemDescription',
     contextRequired: false,
   });
 
