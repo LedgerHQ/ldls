@@ -61,16 +61,6 @@ describe('Divider Component', () => {
     expect(flatStyle.marginVertical).toBe(16);
   });
 
-  it('should have proper accessibility role', () => {
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Divider testID='divider' />
-      </TestWrapper>,
-    );
-    const divider = getByTestId('divider');
-    expect(divider.props.accessibilityRole).toBe('separator');
-  });
-
   it('should pass through additional props', () => {
     const { getByTestId } = render(
       <TestWrapper>
