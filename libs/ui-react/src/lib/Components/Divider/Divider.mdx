@@ -47,12 +47,6 @@ Dividers support both horizontal and vertical orientations to accommodate differ
 
 ## Usage Examples
 
-### With Spacing
-
-Dividers work seamlessly with margin and padding utilities to control spacing around the separator:
-
-<Canvas of={DividerStories.WithSpacing} />
-
 ### In Lists
 
 A common use case is separating list items or sections within a card:
@@ -118,24 +112,6 @@ function MyComponent() {
 ```
 
 Note: For vertical dividers, you typically need to set an explicit height using the `className` prop.
-
-### With Spacing
-
-Control spacing around the divider with margin utilities:
-
-```tsx
-import { Divider } from '@ledgerhq/lumen-ui-react';
-
-function MyComponent() {
-  return (
-    <div>
-      <h2>Section Title</h2>
-      <Divider className='my-16' />
-      <p>Section content...</p>
-    </div>
-  );
-}
-```
 
 ### In List Components
 

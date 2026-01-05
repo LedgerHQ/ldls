@@ -77,49 +77,6 @@ export const OrientationShowcase: Story = {
   },
 };
 
-export const WithSpacing: Story = {
-  render: () => (
-    <div className='flex flex-col gap-32'>
-      <div className='flex flex-col gap-8'>
-        <span className='text-muted body-3'>With margin</span>
-        <div className='flex w-full flex-col'>
-          <div className='text-base body-2'>Content above</div>
-          <Divider className='my-16' />
-          <div className='text-base body-2'>Content below</div>
-        </div>
-      </div>
-
-      <div className='flex flex-col gap-8'>
-        <span className='text-muted body-3'>With padding container</span>
-        <div className='flex w-full flex-col gap-16 rounded-lg bg-muted p-16'>
-          <div className='text-base body-2'>Section 1</div>
-          <Divider />
-          <div className='text-base body-2'>Section 2</div>
-          <Divider />
-          <div className='text-base body-2'>Section 3</div>
-        </div>
-      </div>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `
-// With margin
-<Divider className="my-16" />
-
-// In a container
-<div className="flex flex-col gap-16">
-  <div>Section 1</div>
-  <Divider />
-  <div>Section 2</div>
-</div>
-`,
-      },
-    },
-  },
-};
-
 export const InList: Story = {
   render: () => (
     <div className='flex w-full max-w-400 flex-col rounded-lg border border-muted bg-canvas'>

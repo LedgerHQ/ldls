@@ -67,54 +67,6 @@ export const OrientationShowcase: Story = {
   ),
 };
 
-export const WithSpacing: Story = {
-  render: () => (
-    <Box lx={{ gap: 's32' }}>
-      <Box lx={{ gap: 's8' }}>
-        <Text typography='body3' lx={{ color: 'muted' }}>
-          With margin
-        </Text>
-        <Box lx={{ width: 'full' }}>
-          <Text typography='body2' lx={{ color: 'base' }}>
-            Content above
-          </Text>
-          <Divider lx={{ marginVertical: 's16' }} />
-          <Text typography='body2' lx={{ color: 'base' }}>
-            Content below
-          </Text>
-        </Box>
-      </Box>
-
-      <Box lx={{ gap: 's8' }}>
-        <Text typography='body3' lx={{ color: 'muted' }}>
-          With padding container
-        </Text>
-        <Box
-          lx={{
-            width: 'full',
-            gap: 's16',
-            padding: 's16',
-            backgroundColor: 'muted',
-            borderRadius: 'lg',
-          }}
-        >
-          <Text typography='body2' lx={{ color: 'base' }}>
-            Section 1
-          </Text>
-          <Divider />
-          <Text typography='body2' lx={{ color: 'base' }}>
-            Section 2
-          </Text>
-          <Divider />
-          <Text typography='body2' lx={{ color: 'base' }}>
-            Section 3
-          </Text>
-        </Box>
-      </Box>
-    </Box>
-  ),
-};
-
 export const InList: Story = {
   render: () => (
     <Box
