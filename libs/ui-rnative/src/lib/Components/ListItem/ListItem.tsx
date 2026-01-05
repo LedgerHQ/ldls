@@ -22,6 +22,11 @@ import {
 const [ListItemProvider, useListItemContext] =
   createSafeContext<ListItemContextValue>('ListItem', {});
 
+const [ListItemTrailingProvider, useListItemTrailingContext] =
+  createSafeContext<{ isInTrailing: boolean }>('ListItemTrailing', {
+    isInTrailing: false,
+  });
+
 const useRootStyles = ({ pressed }: { pressed: boolean }) => {
   return useStyleSheet(
     (t) => ({
@@ -162,7 +167,7 @@ ListItemLeading.displayName = 'ListItemLeading';
  * Container for the text content (title and description) within the leading area.
  */
 export const ListItemContent = React.forwardRef<View, ListItemContentProps>(
-  ({ children, align = 'start', lx = {}, style, ...viewProps }, ref) => {
+  ({ children, lx = {}, style, ...viewProps }, ref) => {
     const styles = useStyleSheet(
       (t) => ({
         content: {
@@ -170,10 +175,9 @@ export const ListItemContent = React.forwardRef<View, ListItemContentProps>(
           minWidth: 0,
           flexDirection: 'column',
           gap: t.spacings.s4,
-          alignItems: align === 'end' ? 'flex-end' : 'flex-start',
         },
       }),
-      [align],
+      [],
     );
 
     return (
@@ -201,6 +205,10 @@ export const ListItemTitle = React.forwardRef<View, ListItemTitleProps>(
       consumerName: 'ListItemTitle',
       contextRequired: true,
     });
+    const { isInTrailing } = useListItemTrailingContext({
+      consumerName: 'ListItemContent',
+      contextRequired: false,
+    });
 
     const styles = useStyleSheet(
       (t) => ({
@@ -209,6 +217,7 @@ export const ListItemTitle = React.forwardRef<View, ListItemTitleProps>(
           alignItems: 'center',
           gap: t.spacings.s4,
           width: '100%',
+          justifyContent: isInTrailing ? 'flex-end' : 'flex-start',
         },
         text: StyleSheet.flatten([
           t.typographies.body2SemiBold,
@@ -264,6 +273,10 @@ export const ListItemDescription = React.forwardRef<
     consumerName: 'ListItemDescription',
     contextRequired: true,
   });
+  const { isInTrailing } = useListItemTrailingContext({
+    consumerName: 'ListItemContent',
+    contextRequired: false,
+  });
 
   const styles = useStyleSheet(
     (t) => ({
@@ -272,6 +285,7 @@ export const ListItemDescription = React.forwardRef<
         alignItems: 'center',
         gap: t.spacings.s4,
         width: '100%',
+        justifyContent: isInTrailing ? 'flex-end' : 'flex-start',
       },
       text: StyleSheet.flatten([
         t.typographies.body3,
@@ -331,14 +345,16 @@ export const ListItemTrailing = React.forwardRef<View, ListItemTrailingProps>(
     );
 
     return (
-      <Box
-        ref={ref}
-        lx={lx}
-        style={StyleSheet.flatten([styles.trailing, style])}
-        {...viewProps}
-      >
-        {children}
-      </Box>
+      <ListItemTrailingProvider value={{ isInTrailing: true }}>
+        <Box
+          ref={ref}
+          lx={lx}
+          style={StyleSheet.flatten([styles.trailing, style])}
+          {...viewProps}
+        >
+          {children}
+        </Box>
+      </ListItemTrailingProvider>
     );
   },
 );

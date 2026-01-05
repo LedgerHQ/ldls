@@ -49,11 +49,6 @@ export type ListItemContentProps = {
    * The content (ListItemTitle, ListItemDescription)
    */
   children: React.ReactNode;
-  /**
-   * The alignment of the content, align on the end when used on ListItemTrailing.
-   * @default 'start'
-   */
-  align?: 'start' | 'end';
 } & Omit<StyledViewProps, 'children'>;
 
 /**
