@@ -56,11 +56,6 @@ export type ListItemContentProps = {
    * custom classname
    */
   className?: string;
-  /**
-   * The alignment of the content, align on the end when used on ListItemTrailing.
-   * @default 'start'
-   */
-  align?: 'start' | 'end';
 } & HTMLAttributes<HTMLDivElement>;
 
 /**
