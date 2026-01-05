@@ -4,9 +4,9 @@ import {
   DialogContent,
   DialogTrigger,
   DialogHeader,
-  DialogProps,
+  DialogBody,
+  DialogFooter,
 } from './Dialog';
-import { DialogHeaderProps } from '../DialogHeader/DialogHeader';
 import { Button } from '../Button/Button';
 
 import figma from '@figma/code-connect';
@@ -50,6 +50,14 @@ figma.connect(
           false: undefined,
         }),
       }),
+      dialogFooter: figma.boolean('show-button', {
+        true: <DialogFooter>
+          <Button appearance='base' isFull>
+            Confirm
+          </Button>
+        </DialogFooter>,
+        false: undefined,
+      }),
 
       // Dialog close handler
       onOpenChange: onOpenChange,
@@ -67,9 +75,7 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/components-dialog--base',
       },
     ],
-    example: (
-      props: DialogProps & { dialogHeader: Omit<DialogHeaderProps, 'onClose'> },
-    ) => (
+    example: (props) => (
       <Dialog open={props.open} onOpenChange={props.onOpenChange}>
         <DialogTrigger asChild>
           <Button>Open Dialog</Button>
@@ -82,10 +88,11 @@ figma.connect(
             onBack={props.dialogHeader.onBack}
             onClose={onClose}
           />
-          <div className='p-16'>
+          <DialogBody>
             <p>Dialog content goes here</p>
             {/* Content varies based on: {props.contentState} */}
-          </div>
+          </DialogBody>
+          {props.dialogFooter}
         </DialogContent>
       </Dialog>
     ),
