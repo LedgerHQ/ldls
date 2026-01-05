@@ -1,16 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
-import {
-  Settings,
-  Plus,
-  User,
-  PenEdit,
-  Cart,
-  Apps,
-  Chart1,
-  ChevronRight,
-  Wallet,
-} from '../../Symbols';
+import { Settings, ChevronRight, Wallet } from '../../Symbols';
 import { Switch } from '../Switch/Switch';
 import { Tag } from '../Tag/Tag';
 import { Box } from '../Utility';
@@ -22,6 +12,7 @@ import {
   ListItemDescription,
   ListItemTrailing,
   ListItemSpot,
+  ListItemIcon,
   ListItemTruncate,
 } from './ListItem';
 
@@ -35,6 +26,7 @@ const meta: Meta<typeof ListItem> = {
     ListItemDescription,
     ListItemTrailing,
     ListItemSpot,
+    ListItemIcon,
     ListItemTruncate,
   },
   parameters: {
@@ -105,25 +97,12 @@ export const VariantsShowcase: Story = {
       <Box lx={{ flexDirection: 'column', maxWidth: 's320', gap: 's8' }}>
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Chart1} />
+            <ListItemSpot appearance='icon' icon={Settings} />
             <ListItemContent>
               <ListItemTitle>Simple composition</ListItemTitle>
               <ListItemDescription>With description</ListItemDescription>
             </ListItemContent>
           </ListItemLeading>
-        </ListItem>
-
-        <ListItem>
-          <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={User} />
-            <ListItemContent>
-              <ListItemTitle>Caret Variant</ListItemTitle>
-              <ListItemDescription>With description</ListItemDescription>
-            </ListItemContent>
-          </ListItemLeading>
-          <ListItemTrailing>
-            <ChevronRight size={24} />
-          </ListItemTrailing>
         </ListItem>
 
         <ListItem onPress={() => setSelected(!selected)}>
@@ -141,9 +120,9 @@ export const VariantsShowcase: Story = {
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemSpot appearance='icon' icon={Wallet} />
             <ListItemContent>
-              <ListItemTitle>Value Variant</ListItemTitle>
+              <ListItemTitle>Content Variant</ListItemTitle>
               <ListItemDescription>With description</ListItemDescription>
             </ListItemContent>
           </ListItemLeading>
@@ -157,10 +136,46 @@ export const VariantsShowcase: Story = {
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Apps} />
+            <ListItemSpot appearance='icon' icon={Wallet} />
+            <ListItemContent>
+              <ListItemTitle>Content Variant</ListItemTitle>
+              <ListItemDescription>Custom style</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent>
+              <ListItemTitle>USD</ListItemTitle>
+              <ListItemDescription lx={{ color: 'error' }}>
+                -7.53%
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Wallet} />
+            <ListItemContent>
+              <ListItemTitle>Content Variant</ListItemTitle>
+              <ListItemDescription>Custom style</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemContent>
+              <ListItemTitle>USD</ListItemTitle>
+              <ListItemDescription lx={{ color: 'success' }}>
+                +7.53%
+              </ListItemDescription>
+            </ListItemContent>
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Settings} />
             <ListItemContent>
               <ListItemTitle>Tag Variant</ListItemTitle>
-              <ListItemDescription>With description</ListItemDescription>
+              <ListItemDescription>Custom style</ListItemDescription>
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
@@ -177,13 +192,26 @@ export const VariantsShowcase: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <PenEdit size={24} />
+            <ListItemIcon icon={ChevronRight} />
           </ListItemTrailing>
         </ListItem>
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemIcon icon={Wallet} />
+            <ListItemContent>
+              <ListItemTitle>Icon without Spot</ListItemTitle>
+              <ListItemDescription>Using ListItemIcon</ListItemDescription>
+            </ListItemContent>
+          </ListItemLeading>
+          <ListItemTrailing>
+            <ListItemIcon icon={ChevronRight} />
+          </ListItemTrailing>
+        </ListItem>
+
+        <ListItem>
+          <ListItemLeading>
+            <ListItemSpot appearance='icon' icon={Wallet} />
             <ListItemContent>
               <ListItemTitle>
                 <ListItemTruncate variant='title'>Complex 1</ListItemTruncate>
@@ -205,7 +233,7 @@ export const VariantsShowcase: Story = {
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemSpot appearance='icon' icon={Wallet} />
             <ListItemContent>
               <ListItemTitle>Complex 2</ListItemTitle>
               <ListItemDescription>With description</ListItemDescription>
@@ -256,15 +284,15 @@ export const DisabledState: Story = {
           </ListItemContent>
         </ListItemLeading>
         <ListItemTrailing>
-          <ChevronRight lx={{ color: 'disabled' }} size={24} />
+          <ListItemIcon icon={ChevronRight} />
         </ListItemTrailing>
       </ListItem>
 
       <ListItem {...args}>
         <ListItemLeading>
-          <ListItemSpot appearance='icon' icon={Cart} />
+          <ListItemSpot appearance='icon' icon={Wallet} />
           <ListItemContent>
-            <ListItemTitle>Value Variant</ListItemTitle>
+            <ListItemTitle>Content Variant</ListItemTitle>
             <ListItemDescription>With description</ListItemDescription>
           </ListItemContent>
         </ListItemLeading>
@@ -274,6 +302,16 @@ export const DisabledState: Story = {
             <ListItemDescription>USD</ListItemDescription>
           </ListItemContent>
         </ListItemTrailing>
+      </ListItem>
+
+      <ListItem {...args}>
+        <ListItemLeading>
+          <ListItemIcon icon={Wallet} />
+          <ListItemContent>
+            <ListItemTitle>Icon without Spot</ListItemTitle>
+            <ListItemDescription>Using ListItemIcon</ListItemDescription>
+          </ListItemContent>
+        </ListItemLeading>
       </ListItem>
     </Box>
   ),
@@ -312,20 +350,20 @@ export const ResponsiveLayout: Story = {
       <Box lx={{ flexDirection: 'column' }}>
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Plus} />
+            <ListItemSpot appearance='icon' icon={Settings} />
             <ListItemContent>
               <ListItemTitle>Short Title</ListItemTitle>
               <ListItemDescription>Short description</ListItemDescription>
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ChevronRight size={24} />
+            <ListItemIcon icon={ChevronRight} />
           </ListItemTrailing>
         </ListItem>
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Plus} />
+            <ListItemSpot appearance='icon' icon={Settings} />
             <ListItemContent>
               <ListItemTitle>
                 Long Title that should truncate appropriately
@@ -337,13 +375,13 @@ export const ResponsiveLayout: Story = {
             </ListItemContent>
           </ListItemLeading>
           <ListItemTrailing>
-            <ChevronRight size={24} />
+            <ListItemIcon icon={ChevronRight} />
           </ListItemTrailing>
         </ListItem>
 
         <ListItem>
           <ListItemLeading>
-            <ListItemSpot appearance='icon' icon={Cart} />
+            <ListItemSpot appearance='icon' icon={Wallet} />
             <ListItemContent>
               <ListItemTitle>
                 <ListItemTruncate variant='title'>
