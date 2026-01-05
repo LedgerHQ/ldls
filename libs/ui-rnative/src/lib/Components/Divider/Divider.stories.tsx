@@ -18,17 +18,26 @@ export const Base: Story = {
   args: {
     orientation: 'horizontal',
   },
-  render: (args) => (
-    <Box lx={{ width: 'full', gap: 's16' }}>
-      <Text typography='body2' lx={{ color: 'base' }}>
-        Content above
-      </Text>
-      <Divider {...args} />
-      <Text typography='body2' lx={{ color: 'base' }}>
-        Content below
-      </Text>
-    </Box>
-  ),
+  render: (args) => {
+    const isVertical = args.orientation === 'vertical';
+    return (
+      <Box
+        lx={
+          isVertical
+            ? { flexDirection: 'row', alignItems: 'center', gap: 's16' }
+            : { width: 'full', gap: 's16' }
+        }
+      >
+        <Text typography='body2' lx={{ color: 'base' }}>
+          {isVertical ? 'Left content' : 'Content above'}
+        </Text>
+        <Divider {...args} lx={isVertical ? { height: 's48' } : undefined} />
+        <Text typography='body2' lx={{ color: 'base' }}>
+          {isVertical ? 'Right content' : 'Content below'}
+        </Text>
+      </Box>
+    );
+  },
 };
 
 export const OrientationShowcase: Story = {
