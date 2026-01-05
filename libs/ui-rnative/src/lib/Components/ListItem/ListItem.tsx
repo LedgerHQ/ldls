@@ -206,7 +206,7 @@ export const ListItemTitle = React.forwardRef<View, ListItemTitleProps>(
       contextRequired: true,
     });
     const { isInTrailing } = useListItemTrailingContext({
-      consumerName: 'ListItemContent',
+      consumerName: 'ListItemTitle',
       contextRequired: false,
     });
 
