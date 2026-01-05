@@ -30,8 +30,8 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
         role='separator'
         aria-orientation={orientation}
         className={cn(
-          'border-muted-subtle border',
-          orientation === 'horizontal' ? 'w-full' : 'h-full',
+          'border-muted-subtle',
+          orientation === 'horizontal' ? 'w-full border-t' : 'h-full border-l',
           className,
         )}
         {...props}

@@ -12,7 +12,7 @@ describe('Divider Component', () => {
     expect(dividerElement).toHaveAttribute('aria-orientation', 'horizontal');
     expect(dividerElement).toHaveClass(
       'w-full',
-      'border',
+      'border-t',
       'border-muted-subtle',
     );
   });
@@ -24,7 +24,7 @@ describe('Divider Component', () => {
     expect(dividerElement).toHaveAttribute('aria-orientation', 'vertical');
     expect(dividerElement).toHaveClass(
       'h-full',
-      'border',
+      'border-l',
       'border-muted-subtle',
     );
   });

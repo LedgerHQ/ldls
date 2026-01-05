@@ -27,8 +27,8 @@ describe('Divider Component', () => {
     const flatStyle = Array.isArray(style)
       ? Object.assign({}, ...style)
       : style;
-    expect(flatStyle.borderWidth).toBe(1);
-    expect(flatStyle.borderColor).toBe(colors.border.mutedSubtle);
+    expect(flatStyle.borderTopWidth).toBe(1);
+    expect(flatStyle.borderTopColor).toBe(colors.border.mutedSubtle);
   });
 
   it('should render with vertical orientation', () => {
@@ -43,8 +43,8 @@ describe('Divider Component', () => {
     const flatStyle = Array.isArray(style)
       ? Object.assign({}, ...style)
       : style;
-    expect(flatStyle.borderWidth).toBe(1);
-    expect(flatStyle.borderColor).toBe(colors.border.mutedSubtle);
+    expect(flatStyle.borderLeftWidth).toBe(1);
+    expect(flatStyle.borderLeftColor).toBe(colors.border.mutedSubtle);
   });
 
   it('should apply custom lx props', () => {
@@ -68,7 +68,7 @@ describe('Divider Component', () => {
       </TestWrapper>,
     );
     const divider = getByTestId('divider');
-    expect(divider.props.accessibilityRole).toBe('none');
+    expect(divider.props.accessibilityRole).toBe('separator');
   });
 
   it('should pass through additional props', () => {
