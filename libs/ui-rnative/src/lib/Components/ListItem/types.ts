@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  LumenTextStyle,
   StyledPressableProps,
   StyledTextProps,
   StyledViewProps,
@@ -49,11 +50,6 @@ export type ListItemContentProps = {
    * The content (ListItemTitle, ListItemDescription)
    */
   children: React.ReactNode;
-  /**
-   * The alignment of the content, align on the end when used on ListItemTrailing.
-   * @default 'start'
-   */
-  align?: 'start' | 'end';
 } & Omit<StyledViewProps, 'children'>;
 
 /**
@@ -64,7 +60,7 @@ export type ListItemTitleProps = {
    * The title text or custom content
    */
   children: React.ReactNode;
-} & Omit<StyledViewProps, 'children'>;
+} & Omit<StyledTextProps, 'children'>;
 
 /**
  * Props for the ListItemDescription component
@@ -74,7 +70,7 @@ export type ListItemDescriptionProps = {
    * The description text or custom content
    */
   children: React.ReactNode;
-} & Omit<StyledViewProps, 'children'>;
+} & Omit<StyledTextProps, 'children'>;
 
 /**
  * Props for the ListItemTrailing component
@@ -109,3 +105,17 @@ export type ListItemTruncateProps = {
  */
 export type ListItemSpotProps = DiscriminatedSpotProps &
   Omit<StyledViewProps, 'children'>;
+
+/**
+ * Props for the ListItemIcon component
+ */
+export type ListItemIconProps = {
+  /**
+   * The icon component to render
+   */
+  icon: React.ComponentType<any>;
+  /**
+   * Optional color override. If not provided, uses theme color with disabled state handling.
+   */
+  color?: LumenTextStyle['color'];
+} & Omit<StyledViewProps, 'children'>;

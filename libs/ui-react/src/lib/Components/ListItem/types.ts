@@ -56,11 +56,6 @@ export type ListItemContentProps = {
    * custom classname
    */
   className?: string;
-  /**
-   * The alignment of the content, align on the end when used on ListItemTrailing.
-   * @default 'start'
-   */
-  align?: 'start' | 'end';
 } & HTMLAttributes<HTMLDivElement>;
 
 /**
@@ -120,6 +115,20 @@ export type ListItemTruncateProps = {
    * The content to truncate
    */
   children: React.ReactNode;
+  /**
+   * custom classname
+   */
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+/**
+ * Props for the ListItemIcon component
+ */
+export type ListItemIconProps = {
+  /**
+   * The icon component to render
+   */
+  icon: React.ComponentType<any>;
   /**
    * custom classname
    */

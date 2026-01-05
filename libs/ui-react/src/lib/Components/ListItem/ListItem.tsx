@@ -5,6 +5,7 @@ import {
   ListItemContextValue,
   ListItemContentProps,
   ListItemDescriptionProps,
+  ListItemIconProps,
   ListItemLeadingProps,
   ListItemProps,
   ListItemSpotProps,
@@ -15,6 +16,11 @@ import {
 
 const [ListItemProvider, useListItemContext] =
   createSafeContext<ListItemContextValue>('ListItem', {});
+
+const [ListItemTrailingProvider, useListItemTrailingContext] =
+  createSafeContext<{ isInTrailing: boolean }>('ListItemTrailing', {
+    isInTrailing: false,
+  });
 
 /**
  * A flexible list item component that provides a composable structure for displaying
@@ -91,17 +97,11 @@ ListItemLeading.displayName = 'ListItemLeading';
 export const ListItemContent = React.forwardRef<
   HTMLDivElement,
   ListItemContentProps
->(({ children, className, align = 'start' }, ref) => {
+>(({ children, className }, ref) => {
   return (
     <div
       ref={ref}
-      className={cn(
-        'flex min-w-0 flex-1 flex-col gap-4',
-        align === 'end'
-          ? 'text-end [&>*]:justify-end'
-          : 'text-start [&>*]:justify-start',
-        className,
-      )}
+      className={cn('flex min-w-0 flex-1 flex-col gap-4', className)}
     >
       {children}
     </div>
@@ -117,10 +117,19 @@ export const ListItemTitle = React.forwardRef<
   HTMLDivElement,
   ListItemTitleProps
 >(({ children, className }, ref) => {
+  const { isInTrailing } = useListItemTrailingContext({
+    consumerName: 'ListItemTitle',
+    contextRequired: false,
+  });
+
   return (
     <div
       ref={ref}
-      className={cn('body-2-semi-bold w-full truncate', className)}
+      className={cn(
+        'body-2-semi-bold w-full truncate',
+        isInTrailing ? 'justify-end text-end' : 'justify-start text-start',
+        className,
+      )}
     >
       {children}
     </div>
@@ -141,12 +150,17 @@ export const ListItemDescription = React.forwardRef<
     consumerName: 'ListItemDescription',
     contextRequired: true,
   });
+  const { isInTrailing } = useListItemTrailingContext({
+    consumerName: 'ListItemDescription',
+    contextRequired: false,
+  });
 
   return (
     <div
       ref={ref}
       className={cn(
         'text-muted body-3 w-full items-center truncate',
+        isInTrailing ? 'justify-end text-end' : 'justify-start text-start',
         disabled && 'text-disabled',
         className,
       )}
@@ -172,16 +186,18 @@ export const ListItemTrailing = React.forwardRef<
   });
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        'flex shrink-0 items-center',
-        disabled && 'text-disabled',
-        className,
-      )}
-    >
-      {children}
-    </div>
+    <ListItemTrailingProvider value={{ isInTrailing: true }}>
+      <div
+        ref={ref}
+        className={cn(
+          'flex shrink-0 items-center',
+          disabled && 'text-disabled',
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </ListItemTrailingProvider>
   );
 });
 
@@ -200,6 +216,31 @@ export const ListItemSpot = (props: ListItemSpotProps) => {
 };
 
 ListItemSpot.displayName = 'ListItemSpot';
+
+/**
+ * Icon adapter for ListItem. Automatically applies disabled styling from parent ListItem.
+ * Fixed at size 24 for consistent list item appearance.
+ */
+export const ListItemIcon = React.forwardRef<HTMLDivElement, ListItemIconProps>(
+  ({ icon: Icon, className, ...props }, ref) => {
+    const { disabled } = useListItemContext({
+      consumerName: 'ListItemIcon',
+      contextRequired: true,
+    });
+
+    return (
+      <div
+        ref={ref}
+        className={cn('shrink-0', disabled && 'text-disabled', className)}
+        {...props}
+      >
+        <Icon size={24} />
+      </div>
+    );
+  },
+);
+
+ListItemIcon.displayName = 'ListItemIcon';
 
 export const ListItemTruncate = ({
   children,

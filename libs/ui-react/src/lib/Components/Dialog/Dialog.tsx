@@ -223,7 +223,7 @@ export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
         ref={ref}
         data-slot='dialog-body'
         className={cn(
-          '-mb-24 flex min-h-0 grow flex-col overflow-y-auto px-24 pb-24',
+          '-mb-24 flex min-h-0 grow basis-0 flex-col overflow-y-auto px-24 pb-24',
           className,
         )}
         {...props}

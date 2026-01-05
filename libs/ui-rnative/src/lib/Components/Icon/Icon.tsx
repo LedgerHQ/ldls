@@ -20,8 +20,7 @@ const useStyles = (
   color: IconProps['color'],
 ) => {
   const { theme } = useTheme();
-  const resolvedStyle = useResolveTextStyle(lx || {});
-  const resolvedColor = useResolveTextStyle({ color });
+  const resolvedStyle = useResolveTextStyle({ ...(lx || {}), color });
 
   return useMemo(() => {
     return {
@@ -31,10 +30,9 @@ const useStyles = (
         height: theme.icon.height[iconSizeMap[size]],
         strokeWidth: theme.icon.borderWidth[iconSizeMap[size]],
       },
-      color:
-        resolvedColor.color || resolvedStyle.color || theme.colors.text.base,
+      color: resolvedStyle.color || theme.colors.text.base,
     };
-  }, [size, theme, resolvedStyle, resolvedColor.color]);
+  }, [size, theme, resolvedStyle]);
 };
 
 export const Icon = forwardRef<Svg, IconProps>(
