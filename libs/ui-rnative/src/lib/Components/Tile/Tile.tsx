@@ -1,12 +1,27 @@
-import React, { FC, forwardRef } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  createSafeContext,
+  isTextChildren,
+} from '@ledgerhq/lumen-utils-shared';
+import React, { forwardRef } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
+import { Spot } from '../Spot';
 import { Pressable } from '../Utility';
-import { TileProps } from './types';
+import {
+  TileContentProps,
+  TileContextValue,
+  TileDescriptionProps,
+  TileProps,
+  TileSpotProps,
+  TileTitleProps,
+} from './types';
+
+const [TileProvider, useTileContext] =
+  createSafeContext<TileContextValue>('Tile');
 
 type Appearance = NonNullable<TileProps['appearance']>;
 
-const useStyles = ({
+const useRootStyles = ({
   appearance,
   disabled,
   pressed,
@@ -35,7 +50,8 @@ const useStyles = ({
             width: '100%',
             alignItems: 'center',
             gap: t.spacings.s8,
-            padding: t.spacings.s8,
+            paddingHorizontal: t.spacings.s8,
+            paddingVertical: t.spacings.s12,
             borderRadius: t.borderRadius.sm,
             backgroundColor: bgColors[appearance],
           },
@@ -44,152 +60,240 @@ const useStyles = ({
               backgroundColor: pressedBgColors[appearance],
             },
         ]),
-        contentWrapper: {
-          width: t.sizes.full,
-          alignItems: 'center',
-          gap: t.spacings.s8,
-        },
-        leadingWrapper: {
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        textWrapper: {
-          width: t.sizes.full,
-          alignItems: 'center',
-          gap: t.spacings.s4,
-        },
-        titleWrapper: {
-          width: t.sizes.full,
-          alignItems: 'center',
-        },
-        title: StyleSheet.flatten([
-          t.typographies.body3SemiBold,
-          {
-            width: t.sizes.full,
-            textAlign: 'center',
-            color: disabled ? t.colors.text.disabled : t.colors.text.base,
-          },
-        ]),
-        description: StyleSheet.flatten([
-          t.typographies.body3,
-          {
-            width: t.sizes.full,
-            textAlign: 'center',
-            color: disabled ? t.colors.text.disabled : t.colors.text.muted,
-          },
-        ]),
       };
     },
     [appearance, disabled, pressed],
   );
 };
 
-type TileContentProps = {
-  appearance: Appearance;
-  disabled: boolean;
-  pressed: boolean;
-  leadingContent: TileProps['leadingContent'];
-  title: string;
-  description?: string;
-  trailingContent?: TileProps['trailingContent'];
-};
-
-const TileContent: FC<TileContentProps> = ({
-  appearance,
-  disabled,
-  pressed,
-  leadingContent,
-  title,
-  description,
-  trailingContent,
-}) => {
-  const styles = useStyles({ appearance, disabled, pressed });
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.contentWrapper}>
-        <View style={styles.leadingWrapper}>{leadingContent}</View>
-        <View style={styles.textWrapper}>
-          <View style={styles.titleWrapper}>
-            <Text numberOfLines={1} style={styles.title}>
-              {title}
-            </Text>
-            {description && (
-              <Text numberOfLines={1} style={styles.description}>
-                {description}
-              </Text>
-            )}
-          </View>
-          {trailingContent}
-        </View>
-      </View>
-    </View>
-  );
-};
-
 /**
- * A tile list item component that displays a spot icon at the top, title and optional description,
- * and optional trailing content at the bottom. It functions as a pressable component with active states,
- * and supports long press actions.
+ * A flexible tile component that uses a composite pattern for maximum customization.
+ * Displays content in a vertical layout with support for spots, text, and custom content.
  *
- * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs Storybook}
- * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-implementation--docs#dos-and-donts Guidelines}
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-tile--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_containment-tile--docs#dos-and-donts Guidelines}
  *
  * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
  * Do not use it to modify the tile's core appearance (colors, padding, etc). Use the `appearance` prop instead.
  *
  * @example
- * // Basic tile item
- * import { Tile, Spot } from '@ledgerhq/lumen-ui-rnative';
+ * // Basic tile with spot and content
+ * import { Tile, TileSpot, TileContent, TileTitle, TileDescription } from '@ledgerhq/lumen-ui-rnative';
  * import { Wallet } from '@ledgerhq/lumen-ui-rnative/symbols';
  *
- * <Tile
- *   title="Ethereum"
- *   description="ETH"
- *   leadingContent={<Spot appearance="coin" icon={Wallet} />}
- *   onPress={() => console.log('Pressed!')}
- *   onLongPress={() => console.log('Long pressed!')}
- * />
+ * <Tile appearance="card" onPress={() => console.log('Pressed!')}>
+ *   <TileSpot appearance="icon" icon={Wallet} />
+ *   <TileContent>
+ *     <TileTitle>My Wallet</TileTitle>
+ *     <TileDescription>Description</TileDescription>
+ *   </TileContent>
+ * </Tile>
+ *
+ * @example
+ * // With custom content and long press
+ * import { Tile, TileSpot, TileContent, TileTitle, Tag } from '@ledgerhq/lumen-ui-rnative';
+ * import { Bitcoin } from '@ledgerhq/lumen-ui-rnative/symbols';
+ *
+ * <Tile appearance="card" onLongPress={() => console.log('Long pressed')}>
+ *   <TileSpot appearance="icon" icon={Bitcoin} />
+ *   <TileContent>
+ *     <TileTitle>Bitcoin</TileTitle>
+ *   </TileContent>
+ *   <Tag label="Active" />
+ * </Tile>
  */
 export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
   (
     {
       lx = {},
       style,
-      title,
-      description,
-      leadingContent,
-      trailingContent,
       appearance = 'no-background',
       disabled = false,
+      children,
       ...props
     },
     ref,
   ) => {
     return (
-      <Pressable
-        ref={ref}
-        lx={lx}
-        style={style}
-        disabled={disabled}
-        accessibilityRole='button'
-        accessibilityState={{ disabled }}
-        {...props}
-      >
-        {({ pressed }) => (
-          <TileContent
-            appearance={appearance}
-            disabled={disabled}
-            pressed={pressed}
-            leadingContent={leadingContent}
-            title={title}
-            description={description}
-            trailingContent={trailingContent}
-          />
-        )}
-      </Pressable>
+      <TileProvider value={{ disabled }}>
+        <Pressable
+          ref={ref}
+          lx={lx}
+          style={style}
+          disabled={disabled}
+          accessibilityRole='button'
+          accessibilityState={{ disabled }}
+          {...props}
+        >
+          {({ pressed }) => {
+            const styles = useRootStyles({ appearance, disabled, pressed });
+            return <View style={styles.container}>{children}</View>;
+          }}
+        </Pressable>
+      </TileProvider>
     );
   },
 );
 
 Tile.displayName = 'Tile';
+
+/**
+ * A spot adapter for use within Tile. Automatically inherits the disabled state from the parent Tile.
+ * Always renders at a fixed size of 48.
+ *
+ * @example
+ * <Tile>
+ *   <TileSpot appearance="icon" icon={Settings} />
+ * </Tile>
+ */
+export const TileSpot = (props: TileSpotProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileSpot',
+    contextRequired: true,
+  });
+  return <Spot {...props} size={48} disabled={disabled} />;
+};
+
+const useContentStyles = () => {
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        width: t.sizes.full,
+        alignItems: 'center',
+        gap: t.spacings.s4,
+      },
+    }),
+    [],
+  );
+};
+
+/**
+ * A container for grouping TileTitle and TileDescription with consistent spacing.
+ * Use this to wrap text content within a Tile.
+ *
+ * @example
+ * <Tile>
+ *   <TileContent>
+ *     <TileTitle>My Title</TileTitle>
+ *     <TileDescription>My Description</TileDescription>
+ *   </TileContent>
+ * </Tile>
+ */
+export const TileContent = ({ children, lx, style }: TileContentProps) => {
+  const styles = useContentStyles();
+  return (
+    <View style={[styles.container, lx, style]} testID='tile-content'>
+      {children}
+    </View>
+  );
+};
+
+const useTitleStyles = ({ disabled }: { disabled: boolean }) => {
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        width: t.sizes.full,
+        alignItems: 'center',
+      },
+      text: StyleSheet.flatten([
+        t.typographies.body2SemiBold,
+        {
+          width: t.sizes.full,
+          textAlign: 'center',
+          color: disabled ? t.colors.text.disabled : t.colors.text.base,
+        },
+      ]),
+    }),
+    [disabled],
+  );
+};
+
+/**
+ * The primary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
+ * Text will truncate with ellipsis if it exceeds the available width.
+ * If children is a string, it will be automatically wrapped in a Text component.
+ */
+export const TileTitle = ({ children, lx, style }: TileTitleProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileTitle',
+    contextRequired: true,
+  });
+  const styles = useTitleStyles({ disabled });
+
+  if (isTextChildren(children)) {
+    return (
+      <View style={[styles.container, lx, style]} testID='tile-title'>
+        <Text numberOfLines={1} style={styles.text}>
+          {children}
+        </Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.container, lx, style]} testID='tile-title'>
+      {children}
+    </View>
+  );
+};
+
+const useDescriptionStyles = ({ disabled }: { disabled: boolean }) => {
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        width: t.sizes.full,
+        alignItems: 'center',
+      },
+      text: StyleSheet.flatten([
+        t.typographies.body3,
+        {
+          width: t.sizes.full,
+          textAlign: 'center',
+          color: disabled ? t.colors.text.disabled : t.colors.text.muted,
+        },
+      ]),
+    }),
+    [disabled],
+  );
+};
+
+/**
+ * The secondary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
+ * Text will truncate with ellipsis if it exceeds the available width.
+ * If children is a string, it will be automatically wrapped in a Text component.
+ *
+ * @example
+ * <Tile>
+ *   <TileContent>
+ *     <TileTitle>My Title</TileTitle>
+ *     <TileDescription>My Description</TileDescription>
+ *   </TileContent>
+ * </Tile>
+ */
+export const TileDescription = ({
+  children,
+  lx,
+  style,
+}: TileDescriptionProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileDescription',
+    contextRequired: true,
+  });
+  const styles = useDescriptionStyles({ disabled });
+
+  if (isTextChildren(children)) {
+    return (
+      <View style={[styles.container, lx, style]} testID='tile-description'>
+        <Text numberOfLines={1} style={styles.text}>
+          {children}
+        </Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.container, lx, style]} testID='tile-description'>
+      {children}
+    </View>
+  );
+};

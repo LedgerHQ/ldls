@@ -5,10 +5,15 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import { Settings } from '../../Symbols';
-import { Spot } from '../Spot';
 import { Tag } from '../Tag';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
-import { Tile } from './Tile';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from './Tile';
 
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
@@ -17,236 +22,386 @@ const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 describe('Tile Component', () => {
-  const mockSpot = <Spot appearance='icon' icon={Settings} />;
-  const mockTitle = 'Test Item';
+  describe('Basic Rendering', () => {
+    it('should render correctly with composite API', () => {
+      const { getByText, getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-  it('should render correctly with required props', () => {
-    const { getByText, getByTestId } = render(
-      <TestWrapper>
-        <Tile leadingContent={mockSpot} title={mockTitle} testID='tile' />
-      </TestWrapper>,
-    );
+      expect(getByTestId('tile')).toBeTruthy();
+      expect(getByText('Test Title')).toBeTruthy();
+    });
 
-    expect(getByTestId('tile')).toBeTruthy();
-    expect(getByText(mockTitle)).toBeTruthy();
+    it('should render description when provided', () => {
+      const { getByText } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+              <TileDescription>Test description</TileDescription>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByText('Test Title')).toBeTruthy();
+      expect(getByText('Test description')).toBeTruthy();
+    });
+
+    it('should render without description when not provided', () => {
+      const { getByText, queryByText } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByText('Test Title')).toBeTruthy();
+      expect(queryByText('Test description')).toBeNull();
+    });
+
+    it('should render custom content', () => {
+      const tagText = 'Test Tag';
+      const { getByText } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+            <Tag label={tagText} />
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByText('Test Title')).toBeTruthy();
+      expect(getByText(tagText)).toBeTruthy();
+    });
+
+    it('should render custom content with testID', () => {
+      const trailingText = 'Custom Trailing';
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+            <Text testID='custom-trailing'>{trailingText}</Text>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByTestId('custom-trailing')).toBeTruthy();
+    });
   });
 
-  it('should render description when provided', () => {
-    const description = 'Test description';
-    const { getByText } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          description={description}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
+  describe('Press Handlers', () => {
+    it('should call onPress handler when pressed', () => {
+      const handlePress = jest.fn();
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile onPress={handlePress} testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-    expect(getByText(mockTitle)).toBeTruthy();
-    expect(getByText(description)).toBeTruthy();
-  });
-
-  it('should render without description when not provided', () => {
-    const { getByText, queryByText } = render(
-      <TestWrapper>
-        <Tile leadingContent={mockSpot} title={mockTitle} testID='tile' />
-      </TestWrapper>,
-    );
-
-    expect(getByText(mockTitle)).toBeTruthy();
-    // Description should not exist
-    expect(queryByText('Test description')).toBeNull();
-  });
-
-  it('should render trailingContent when provided', () => {
-    const tagText = 'Test Tag';
-    const mockTag = <Tag label={tagText} />;
-    const { getByText } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          trailingContent={mockTag}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
-
-    expect(getByText(mockTitle)).toBeTruthy();
-    expect(getByText(tagText)).toBeTruthy();
-  });
-
-  it('should render custom trailingContent with testID', () => {
-    const trailingText = 'Custom Trailing';
-    const mockTrailing = <Text testID='custom-trailing'>{trailingText}</Text>;
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          trailingContent={mockTrailing}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
-
-    expect(getByTestId('custom-trailing')).toBeTruthy();
-  });
-
-  it('should call onPress handler when pressed', () => {
-    const handlePress = jest.fn();
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          onPress={handlePress}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
-
-    fireEvent.press(getByTestId('tile'));
-
-    expect(handlePress).toHaveBeenCalledTimes(1);
-  });
-
-  it('should not call onPress when not provided', () => {
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile leadingContent={mockSpot} title={mockTitle} testID='tile' />
-      </TestWrapper>,
-    );
-
-    // Should not throw error when pressing without onPress handler
-    expect(() => {
       fireEvent.press(getByTestId('tile'));
-    }).not.toThrow();
+
+      expect(handlePress).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not call onPress when not provided', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(() => {
+        fireEvent.press(getByTestId('tile'));
+      }).not.toThrow();
+    });
+
+    it('should call onLongPress handler when long pressed', () => {
+      const handleLongPress = jest.fn();
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile onLongPress={handleLongPress} testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      fireEvent(getByTestId('tile'), 'onLongPress');
+
+      expect(handleLongPress).toHaveBeenCalledTimes(1);
+    });
+
+    it('should support both onPress and onLongPress', () => {
+      const handlePress = jest.fn();
+      const handleLongPress = jest.fn();
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile
+            onPress={handlePress}
+            onLongPress={handleLongPress}
+            testID='tile'
+          >
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      fireEvent.press(getByTestId('tile'));
+      expect(handlePress).toHaveBeenCalledTimes(1);
+      expect(handleLongPress).not.toHaveBeenCalled();
+
+      fireEvent(getByTestId('tile'), 'onLongPress');
+      expect(handleLongPress).toHaveBeenCalledTimes(1);
+      expect(handlePress).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should call onLongPress handler when long pressed', () => {
-    const handleLongPress = jest.fn();
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          onLongPress={handleLongPress}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
+  describe('Context Propagation', () => {
+    it('should propagate disabled state to TileSpot', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile disabled testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-    fireEvent(getByTestId('tile'), 'onLongPress');
+      const pressable = getByTestId('tile');
+      expect(pressable.props.accessibilityState?.disabled).toBe(true);
+    });
 
-    expect(handleLongPress).toHaveBeenCalledTimes(1);
+    it('should propagate disabled state to text components', () => {
+      const { getByText } = render(
+        <TestWrapper>
+          <Tile disabled testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+              <TileDescription>Test Description</TileDescription>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByText('Test Title')).toBeTruthy();
+      expect(getByText('Test Description')).toBeTruthy();
+    });
   });
 
-  it('should support both onPress and onLongPress', () => {
-    const handlePress = jest.fn();
-    const handleLongPress = jest.fn();
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          onPress={handlePress}
-          onLongPress={handleLongPress}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
+  describe('Appearance Variants', () => {
+    it('should render with no-background appearance by default', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-    fireEvent.press(getByTestId('tile'));
-    expect(handlePress).toHaveBeenCalledTimes(1);
-    expect(handleLongPress).not.toHaveBeenCalled();
+      expect(getByTestId('tile')).toBeTruthy();
+    });
 
-    fireEvent(getByTestId('tile'), 'onLongPress');
-    expect(handleLongPress).toHaveBeenCalledTimes(1);
-    expect(handlePress).toHaveBeenCalledTimes(1); // Should still be 1
+    it('should render with card appearance when specified', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile appearance='card' testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByTestId('tile')).toBeTruthy();
+    });
   });
 
-  it('should forward testID prop to Pressable', () => {
-    const testId = 'custom-tile-id';
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile leadingContent={mockSpot} title={mockTitle} testID={testId} />
-      </TestWrapper>,
-    );
+  describe('Accessibility', () => {
+    it('should forward testID prop to Pressable', () => {
+      const testId = 'custom-tile-id';
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID={testId}>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-    expect(getByTestId(testId)).toBeTruthy();
+      expect(getByTestId(testId)).toBeTruthy();
+    });
+
+    it('should support custom accessibility label', () => {
+      const customLabel = 'Custom accessibility label';
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile' accessibilityLabel={customLabel}>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      const pressable = getByTestId('tile');
+      expect(pressable.props.accessibilityLabel).toBe(customLabel);
+    });
+
+    it('should set accessibility role to button', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      const pressable = getByTestId('tile');
+      expect(pressable.props.accessibilityRole).toBe('button');
+    });
   });
 
-  it('should forward additional Pressable props', () => {
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          testID='tile'
-          disabled={true}
-        />
-      </TestWrapper>,
-    );
+  describe('Sub-components', () => {
+    it('should render TileContent with testID', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
 
-    const pressable = getByTestId('tile');
-    expect(pressable.props.accessibilityState?.disabled).toBe(true);
+      expect(getByTestId('tile-content')).toBeTruthy();
+    });
+
+    it('should render TileTitle with testID', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByTestId('tile-title')).toBeTruthy();
+    });
+
+    it('should render TileDescription with testID', () => {
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+              <TileDescription>Test Description</TileDescription>
+            </TileContent>
+          </Tile>
+        </TestWrapper>,
+      );
+
+      expect(getByTestId('tile-description')).toBeTruthy();
+    });
   });
 
-  it('should support custom accessibility label', () => {
-    const customLabel = 'Custom accessibility label';
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          testID='tile'
-          accessibilityLabel={customLabel}
-        />
-      </TestWrapper>,
-    );
+  describe('Complex Scenarios', () => {
+    it('should render with all features combined', () => {
+      const description = 'Full description';
+      const tagText = 'Tag Label';
 
-    const pressable = getByTestId('tile');
-    expect(pressable.props.accessibilityLabel).toBe(customLabel);
-  });
+      const { getByText, getByTestId } = render(
+        <TestWrapper>
+          <Tile
+            appearance='card'
+            onPress={jest.fn()}
+            onLongPress={jest.fn()}
+            testID='tile'
+          >
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+              <TileDescription>{description}</TileDescription>
+            </TileContent>
+            <Tag label={tagText} />
+          </Tile>
+        </TestWrapper>,
+      );
 
-  it('should render complex leadingContent', () => {
-    const customLeading = (
-      <Text testID='custom-leading'>Custom Leading Content</Text>
-    );
-    const { getByTestId } = render(
-      <TestWrapper>
-        <Tile leadingContent={customLeading} title={mockTitle} testID='tile' />
-      </TestWrapper>,
-    );
+      expect(getByTestId('tile')).toBeTruthy();
+      expect(getByText('Test Title')).toBeTruthy();
+      expect(getByText(description)).toBeTruthy();
+      expect(getByText(tagText)).toBeTruthy();
+    });
 
-    expect(getByTestId('custom-leading')).toBeTruthy();
-  });
+    it('should render complex custom content', () => {
+      const customLeading = (
+        <Text testID='custom-leading'>Custom Leading Content</Text>
+      );
+      const { getByTestId } = render(
+        <TestWrapper>
+          <Tile testID='tile'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Test Title</TileTitle>
+            </TileContent>
+            {customLeading}
+          </Tile>
+        </TestWrapper>,
+      );
 
-  it('should render with all optional props provided', () => {
-    const description = 'Full description';
-    const tagText = 'Tag Label';
-    const mockTag = <Tag label={tagText} />;
-
-    const { getByText, getByTestId } = render(
-      <TestWrapper>
-        <Tile
-          leadingContent={mockSpot}
-          title={mockTitle}
-          description={description}
-          trailingContent={mockTag}
-          onPress={jest.fn()}
-          onLongPress={jest.fn()}
-          testID='tile'
-        />
-      </TestWrapper>,
-    );
-
-    expect(getByTestId('tile')).toBeTruthy();
-    expect(getByText(mockTitle)).toBeTruthy();
-    expect(getByText(description)).toBeTruthy();
-    expect(getByText(tagText)).toBeTruthy();
+      expect(getByTestId('custom-leading')).toBeTruthy();
+    });
   });
 });

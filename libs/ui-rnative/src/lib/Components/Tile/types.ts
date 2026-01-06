@@ -1,25 +1,12 @@
 import { ReactNode } from 'react';
-import { StyledPressableProps } from '../../../styles';
+import { StyledPressableProps, StyledViewProps } from '../../../styles';
+import { DiscriminatedSpotProps } from '../Spot/types';
+
+export type TileContextValue = {
+  disabled: boolean;
+};
 
 export type TileProps = {
-  /**
-   * Custom content to display at the top (leading area) of the tile.
-   * Accepts ReactNode such as <Spot appearance="icon" icon={Settings} />
-   */
-  leadingContent: ReactNode;
-  /**
-   * The title of the tile.
-   */
-  title: string;
-  /**
-   * The description of the tile.
-   */
-  description?: string;
-  /**
-   * Custom content to display at the bottom (trailing area) of the tile.
-   * Accepts ReactNode such as <Tag label="New" appearance="base" />
-   */
-  trailingContent?: ReactNode;
   /**
    * The visual style of the tile.
    * - `no-background`: Transparent background with pressed state
@@ -42,4 +29,32 @@ export type TileProps = {
    * Can be used to perform secondary actions.
    */
   onLongPress?: StyledPressableProps['onLongPress'];
+  /**
+   * The children to display inside the tile.
+   */
+  children: ReactNode;
 } & Omit<StyledPressableProps, 'onPress' | 'onLongPress' | 'disabled'>;
+
+export type TileSpotProps = DiscriminatedSpotProps;
+
+export type TileContentProps = {
+  /**
+   * The children to display inside the tile content area.
+   * Typically contains TileTitle and TileDescription.
+   */
+  children: ReactNode;
+} & StyledViewProps;
+
+export type TileTitleProps = {
+  /**
+   * The title text to display.
+   */
+  children: ReactNode;
+} & StyledViewProps;
+
+export type TileDescriptionProps = {
+  /**
+   * The description text to display.
+   */
+  children: ReactNode;
+} & StyledViewProps;
