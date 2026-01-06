@@ -220,7 +220,7 @@ const useTitleStyles = ({ disabled }: { disabled: boolean }) => {
         alignItems: 'center',
       },
       text: StyleSheet.flatten([
-        t.typographies.body2SemiBold,
+        t.typographies.body3SemiBold,
         {
           alignItems: 'center',
           width: t.sizes.full,
