@@ -93,7 +93,7 @@ describe('Tile Component', () => {
       const handleSecondaryClick = vi.fn();
 
       render(
-        <Tile onClick={handleTileClick}>
+        <Tile onClick={handleTileClick} aria-label='Main tile'>
           <TileSecondaryAction
             icon={MoreVertical}
             onClick={handleSecondaryClick}
@@ -106,8 +106,10 @@ describe('Tile Component', () => {
         </Tile>,
       );
 
-      const secondaryAction = screen.getByLabelText(/more actions/i);
-      fireEvent.click(secondaryAction);
+      const secondaryActionButton = screen.getByRole('button', {
+        name: /more actions/i,
+      });
+      fireEvent.click(secondaryActionButton);
 
       expect(handleSecondaryClick).toHaveBeenCalledTimes(1);
       expect(handleTileClick).not.toHaveBeenCalled();
@@ -390,6 +392,84 @@ describe('Tile Component', () => {
         'Very long description that should truncate',
       );
       expect(descriptionElement).toHaveClass('truncate');
+    });
+  });
+
+  describe('Slottable Pattern', () => {
+    it('should extract secondary action from children and render outside button', () => {
+      render(
+        <Tile aria-label='Main tile'>
+          <TileSecondaryAction
+            icon={MoreVertical}
+            onClick={() => {}}
+            aria-label='More actions'
+          />
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Test Title</TileTitle>
+          </TileContent>
+        </Tile>,
+      );
+
+      const mainButton = screen.getByRole('button', { name: /main tile/i });
+      const secondaryButton = screen.getByRole('button', {
+        name: /more actions/i,
+      });
+
+      // Secondary action should NOT be inside the main button
+      expect(mainButton.contains(secondaryButton)).toBe(false);
+
+      // Both buttons should be children of the same tile container
+      const tileContainer = mainButton.parentElement;
+      expect(tileContainer).toHaveAttribute('data-slot', 'tile');
+      expect(secondaryButton.closest('[data-slot="tile"]')).toBe(tileContainer);
+    });
+
+    it('should render secondary action with data-slot attribute', () => {
+      const { container } = render(
+        <Tile>
+          <TileSecondaryAction
+            icon={MoreVertical}
+            onClick={() => {}}
+            aria-label='More actions'
+          />
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Test Title</TileTitle>
+          </TileContent>
+        </Tile>,
+      );
+
+      const secondaryAction = container.querySelector(
+        '[data-slot="tile-secondary-action"]',
+      );
+      expect(secondaryAction).toBeInTheDocument();
+    });
+
+    it('should apply data-slot attributes to all sub-components', () => {
+      const { container } = render(
+        <Tile>
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Title</TileTitle>
+            <TileDescription>Description</TileDescription>
+          </TileContent>
+        </Tile>,
+      );
+
+      expect(container.querySelector('[data-slot="tile"]')).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-slot="tile-spot"]'),
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-slot="tile-content"]'),
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-slot="tile-title"]'),
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-slot="tile-description"]'),
+      ).toBeInTheDocument();
     });
   });
 });

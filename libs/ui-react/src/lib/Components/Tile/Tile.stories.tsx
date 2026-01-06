@@ -127,7 +127,7 @@ export const VariantsShowcase: Story = {
           <TileTitle>With Trailing Content</TileTitle>
           <TileDescription>Additional information</TileDescription>
         </TileContent>
-        <div className='body-2-semi-bold text-success'>+7.87%</div>
+        <div className='text-success body-2-semi-bold'>+7.87%</div>
       </Tile>
     </div>
   ),
@@ -136,7 +136,7 @@ export const VariantsShowcase: Story = {
 export const HorizontalList: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='bg-base w-480 flex'>
+      <div className='flex w-480 bg-base'>
         {Array.from({ length: 3 }).map((_, i) => (
           <Tile key={`list-1-${i}`}>
             <TileSecondaryAction
@@ -151,7 +151,7 @@ export const HorizontalList: Story = {
           </Tile>
         ))}
       </div>
-      <div className='bg-base w-480 flex overflow-x-auto'>
+      <div className='flex w-480 overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
           <Tile key={`list-2-${i}`} className='w-128 shrink-0'>
             <TileSecondaryAction
@@ -204,7 +204,7 @@ export const AppearanceShowcase: Story = {
   render: () => (
     <div className='flex flex-col gap-24'>
       <div>
-        <h3 className='heading-3 mb-8'>No Background</h3>
+        <h3 className='mb-8 heading-3'>No Background</h3>
         <div className='flex gap-16'>
           <Tile appearance='no-background' className='w-112'>
             <TileSpot appearance='icon' icon={Settings} />
@@ -223,7 +223,7 @@ export const AppearanceShowcase: Story = {
         </div>
       </div>
       <div>
-        <h3 className='heading-3 mb-8'>Card</h3>
+        <h3 className='mb-8 heading-3'>Card</h3>
         <div className='flex gap-16'>
           <Tile appearance='card' className='w-112'>
             <TileSpot appearance='icon' icon={User} />

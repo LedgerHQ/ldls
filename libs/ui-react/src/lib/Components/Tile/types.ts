@@ -26,6 +26,7 @@ export type TileProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
    * The children to display inside the tile.
+   * Can include TileSpot, TileContent, TileTitle, TileDescription, TileSecondaryAction, and any custom content.
    */
   children: ReactNode;
   /**
@@ -88,4 +89,4 @@ export type TileSecondaryActionProps = {
    * Additional CSS classes for the secondary action container.
    */
   className?: string;
-} & Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'>;

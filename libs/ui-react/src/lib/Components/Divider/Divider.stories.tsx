@@ -32,11 +32,11 @@ export const Base: Story = {
             : 'flex w-full flex-col gap-16'
         }
       >
-        <div className='body-2 text-base'>
+        <div className='text-base body-2'>
           {isVertical ? 'Left content' : 'Content above'}
         </div>
         <Divider {...args} className={isVertical ? 'h-48' : undefined} />
-        <div className='body-2 text-base'>
+        <div className='text-base body-2'>
           {isVertical ? 'Right content' : 'Content below'}
         </div>
       </div>
@@ -59,18 +59,18 @@ export const OrientationShowcase: Story = {
       <div className='flex flex-col gap-8'>
         <span className='text-muted body-3'>Horizontal (default)</span>
         <div className='flex w-full flex-col gap-16'>
-          <div className='body-2 text-base'>Content above</div>
+          <div className='text-base body-2'>Content above</div>
           <Divider orientation='horizontal' />
-          <div className='body-2 text-base'>Content below</div>
+          <div className='text-base body-2'>Content below</div>
         </div>
       </div>
 
       <div className='flex flex-col gap-8'>
         <span className='text-muted body-3'>Vertical</span>
         <div className='flex items-center gap-16'>
-          <div className='body-2 text-base'>Left content</div>
+          <div className='text-base body-2'>Left content</div>
           <Divider orientation='vertical' className='h-48' />
-          <div className='body-2 text-base'>Right content</div>
+          <div className='text-base body-2'>Right content</div>
         </div>
       </div>
     </div>
@@ -92,19 +92,19 @@ export const OrientationShowcase: Story = {
 
 export const InList: Story = {
   render: () => (
-    <div className='max-w-400 border-muted bg-canvas flex w-full flex-col rounded-lg border'>
+    <div className='flex w-full max-w-400 flex-col rounded-lg border border-muted bg-canvas'>
       <div className='flex items-center justify-between p-16'>
-        <span className='body-2 text-base'>Item 1</span>
+        <span className='text-base body-2'>Item 1</span>
         <span className='text-muted body-3'>$100</span>
       </div>
       <Divider />
       <div className='flex items-center justify-between p-16'>
-        <span className='body-2 text-base'>Item 2</span>
+        <span className='text-base body-2'>Item 2</span>
         <span className='text-muted body-3'>$200</span>
       </div>
       <Divider />
       <div className='flex items-center justify-between p-16'>
-        <span className='body-2 text-base'>Item 3</span>
+        <span className='text-base body-2'>Item 3</span>
         <span className='text-muted body-3'>$300</span>
       </div>
     </div>

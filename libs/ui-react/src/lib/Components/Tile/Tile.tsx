@@ -1,4 +1,8 @@
-import { cn, createSafeContext } from '@ledgerhq/lumen-utils-shared';
+import {
+  cn,
+  createSafeContext,
+  extractSlottable,
+} from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { MouseEventHandler, useCallback, useState } from 'react';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -105,47 +109,49 @@ export const Tile = ({
   disabled = false,
   'aria-label': ariaLabel,
   children,
+  onMouseDown,
+  onMouseUp,
+  onMouseLeave,
   ...props
 }: TileProps) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      // If the tile is disabled, prevent the default action (e.g., navigation).
-      if (disabled) {
-        event.preventDefault();
-        return;
-      }
-      onClick?.(event);
-    },
-    [disabled, onClick],
+  // Extract secondary action from children by component type
+  const { slotElement, remainingChildren } = extractSlottable(
+    children,
+    TileSecondaryAction,
   );
 
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
-      if (disabled) return;
       // Only set parent as active if the click is not on the secondary action container
       if (
         !(event.target as HTMLElement).closest(
           '[data-secondary-button-container]',
         )
       ) {
+        onMouseDown?.(event);
         setIsActive(true);
       }
     },
-    [disabled],
+    [onMouseDown],
   );
 
-  const handleMouseUp: MouseEventHandler<HTMLDivElement> = useCallback(() => {
-    if (disabled) return;
-    setIsActive(false);
-  }, [disabled]);
-
-  const handleMouseLeave: MouseEventHandler<HTMLDivElement> =
-    useCallback(() => {
-      if (disabled) return;
+  const handleMouseUp: MouseEventHandler<HTMLDivElement> = useCallback(
+    (event) => {
       setIsActive(false);
-    }, [disabled]);
+      onMouseUp?.(event);
+    },
+    [onMouseUp],
+  );
+
+  const handleMouseLeave: MouseEventHandler<HTMLDivElement> = useCallback(
+    (event) => {
+      setIsActive(false);
+      onMouseLeave?.(event);
+    },
+    [onMouseLeave],
+  );
 
   return (
     <TileProvider value={{ disabled }}>
@@ -157,27 +163,37 @@ export const Tile = ({
           disabled,
           className,
         })}
-        onMouseDown={(e) => {
-          props?.onMouseDown?.(e);
-          handleMouseDown(e);
-        }}
-        onMouseUp={(e) => {
-          props?.onMouseUp?.(e);
-          handleMouseUp(e);
-        }}
-        onMouseLeave={(e) => {
-          props?.onMouseLeave?.(e);
-          handleMouseLeave(e);
-        }}
+        onMouseDown={
+          disabled
+            ? undefined
+            : (e) => {
+                handleMouseDown(e);
+              }
+        }
+        onMouseUp={
+          disabled
+            ? undefined
+            : (e) => {
+                handleMouseUp(e);
+              }
+        }
+        onMouseLeave={
+          disabled
+            ? undefined
+            : (e) => {
+                handleMouseLeave(e);
+              }
+        }
       >
+        {slotElement}
         <button
           aria-label={ariaLabel}
-          onClick={handleClick}
+          onClick={disabled ? undefined : onClick}
           disabled={disabled}
           data-disabled={disabled || undefined}
           className='focus-visible:outline-focus flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2'
         >
-          {children}
+          {remainingChildren}
         </button>
       </div>
     </TileProvider>
@@ -293,6 +309,7 @@ export const TileSecondaryAction = ({
   onClick,
   icon,
   className,
+  'aria-label': ariaLabel,
   ...props
 }: TileSecondaryActionProps) => {
   const { disabled } = useTileContext({
@@ -314,17 +331,19 @@ export const TileSecondaryAction = ({
   const Icon = icon;
 
   return (
-    <div
+    <InteractiveIcon
+      data-slot='tile-secondary-action'
       className={cn(
         'absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
         className,
       )}
       data-secondary-button-container
+      iconType='stroked'
+      onClick={handleClick}
+      aria-label={ariaLabel}
       {...props}
     >
-      <InteractiveIcon iconType='stroked' onClick={handleClick}>
-        <Icon size={24} />
-      </InteractiveIcon>
-    </div>
+      <Icon size={24} />
+    </InteractiveIcon>
   );
 };
