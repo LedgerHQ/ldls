@@ -116,9 +116,7 @@ export type SelectItemTextProps = {
   children: ReactNode;
 } & StyledTextProps;
 
-export type SelectSeparatorProps = {
-  // No extra props needed
-} & BoxProps;
+export type SelectSeparatorProps = {} & BoxProps;
 
 export type SelectItemData = {
   type: 'item';

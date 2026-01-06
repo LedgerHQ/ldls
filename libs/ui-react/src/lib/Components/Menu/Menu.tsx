@@ -2,6 +2,7 @@ import { cn } from '@ledgerhq/lumen-utils-shared';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import * as React from 'react';
 import { Check, ChevronRight } from '../../Symbols';
+import { Divider } from '../Divider';
 import type {
   MenuProps,
   MenuTriggerProps,
@@ -18,7 +19,7 @@ import type {
 } from './types';
 
 const contentStyles = cn(
-  'z-menu min-w-160 overflow-hidden rounded-sm bg-muted p-8',
+  'z-menu min-w-160 bg-muted overflow-hidden rounded-sm p-8',
   'shadow-sm',
   'data-[state=open]:animate-fade-in',
   'data-[state=closed]:animate-fade-out',
@@ -27,16 +28,14 @@ const contentStyles = cn(
 const itemStyles = cn(
   'relative flex cursor-default select-none items-center gap-12',
   'h-44 rounded-sm px-8 outline-none',
-  'text-base body-2-semi-bold',
+  'body-2-semi-bold text-base',
   'transition-colors',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
+  'data-[disabled]:text-disabled data-[disabled]:pointer-events-none',
 );
 
-const labelStyles = cn('px-8 py-4 text-muted body-3-semi-bold');
-
-const separatorStyles = cn('mx-8 my-4 h-1 border-b border-muted-subtle');
+const labelStyles = cn('text-muted body-3-semi-bold px-8 py-4');
 
 const subTriggerStyles = cn(
   itemStyles,
@@ -92,7 +91,7 @@ const MenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight size={20} className='ml-auto text-muted' />
+    <ChevronRight size={20} className='text-muted ml-auto' />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 MenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
@@ -194,18 +193,16 @@ const MenuLabel = React.forwardRef<
 ));
 MenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
 
-const MenuSeparator = React.forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
-  MenuSeparatorProps
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator
-    ref={ref}
-    data-slot='menu-separator'
-    className={cn(separatorStyles, className)}
-    {...props}
-  />
-));
-MenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
+const MenuSeparator = React.forwardRef<HTMLDivElement, MenuSeparatorProps>(
+  ({ className, ...props }, ref) => (
+    <Divider
+      ref={ref}
+      className={cn('mx-8 my-4 w-auto', className)}
+      {...props}
+    />
+  ),
+);
+MenuSeparator.displayName = 'MenuSeparator';
 
 export {
   Menu,
