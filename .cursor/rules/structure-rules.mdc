@@ -17,9 +17,9 @@ alwaysApply: true
   - '/index.ts' For barrel that expose public API
 
 # Other file structure
-- Other files should use dash-case
+- Other files should use camelCase
 - Organize code into different file:
-  - '/use-controllable-state' Folder name
-  - '/use-controllable-state.ts' For implementation
-  - '/use-controllable-state.test.ts' For test
+  - '/useControllableState' Folder name
+  - '/useControllableState.ts' For implementation
+  - '/useControllableState.test.ts' For test
   - '/index.ts' For barrel that expose public API
