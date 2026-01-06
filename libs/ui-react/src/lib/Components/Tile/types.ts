@@ -1,33 +1,11 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import { DiscriminatedSpotProps } from '../Spot/types';
+
+export type TileContextValue = {
+  disabled: boolean;
+};
 
 export type TileProps = {
-  /**
-   * Custom content to display at the top (leading area) of the tile.
-   * Accepts ReactNode such as <Spot appearance="icon" icon={Settings} />
-   */
-  leadingContent: ReactNode;
-  /**
-   * The title of the list item.
-   */
-  title: string;
-  /**
-   * The description of the list item.
-   */
-  description?: string;
-  /**
-   * The InteractiveIcon component to display on the top right side of the list item.
-   * The button is rendered when the user hovers over the list item or navigates with the keyboard.
-   */
-  secondaryAction?: ReactNode;
-  /**
-   * Custom content to display at the bottom (trailing area) of the tile.
-   * Accepts ReactNode such as <Tag label="New" appearance="base" />
-   */
-  trailingContent?: ReactNode;
-  /**
-   * The function to call when the tile is clicked.
-   */
-  onClick?: React.HTMLAttributes<HTMLButtonElement>['onClick'];
   /**
    * The visual appearance of the tile background.
    * - `no-background`: Transparent background (shows hover state)
@@ -41,4 +19,72 @@ export type TileProps = {
    * @default false
    */
   disabled?: boolean;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
+  /**
+   * The function to call when the tile is clicked.
+   */
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  /**
+   * The children to display inside the tile.
+   */
+  children: ReactNode;
+  /**
+   * Additional CSS classes for the tile container.
+   * Should only be used for layout adjustments like margins or positioning.
+   */
+  className?: string;
+  /**
+   * Aria label for accessibility.
+   */
+  'aria-label'?: string;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+
+export type TileSpotProps = DiscriminatedSpotProps;
+
+export type TileContentProps = {
+  /**
+   * The children to display inside the tile content area.
+   * Typically contains TileTitle and TileDescription.
+   */
+  children: ReactNode;
+  /**
+   * Additional CSS classes for the content container.
+   */
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+export type TileTitleProps = {
+  /**
+   * The title text to display.
+   */
+  children: ReactNode;
+  /**
+   * Additional CSS classes for the title.
+   */
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+export type TileDescriptionProps = {
+  /**
+   * The description text to display.
+   */
+  children: ReactNode;
+  /**
+   * Additional CSS classes for the description.
+   */
+  className?: string;
+} & HTMLAttributes<HTMLDivElement>;
+
+export type TileSecondaryActionProps = {
+  /**
+   * The function to call when the secondary action is clicked.
+   */
+  onClick?: MouseEventHandler;
+  /**
+   * Icon component to render inside the InteractiveIcon.
+   */
+  icon: React.ComponentType<{ size?: number }>;
+  /**
+   * Additional CSS classes for the secondary action container.
+   */
+  className?: string;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;

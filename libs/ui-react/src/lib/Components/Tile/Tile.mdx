@@ -19,7 +19,7 @@ import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/Com
 
 ## Introduction
 
-Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional description, tag, and a secondary action button visible on hover.
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They use a flexible composite pattern that allows you to compose tiles with spots, text content, tags, and custom elements in a vertical layout.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
 
@@ -27,17 +27,13 @@ Tile components are compact, card-like interactive elements designed for horizon
 
 <Canvas of={TileStories.Base} />
 
-- **Leading Content**: Visual icon or element at the top
-- **Title**: The main label of the item (required)
-- **Description (optional)**: Provides additional context
-- **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
-- **Secondary Action (optional)**: Action button in the top right corner, visible on hover
+- **TileSecondaryAction (optional)**: Action button in the top right corner, visible on hover
+- **TileSpot**: Visual icon or element at the top
+- **TileContent**: Container for title and description
+  - **TileTitle**: The main label of the item (required)
+  - **TileDescription (optional)**: Provides additional context
+- **Custom Content (optional)**: Any ReactNode like Tag, div, etc.
 
-## Properties
-
-### Overview
-
-<Canvas of={TileStories.Base} />
 <Controls of={TileStories.Base} />
 
 ### Appearance
@@ -47,43 +43,15 @@ Two appearance variants are available:
 - **no-background** (default): Transparent background with hover/pressed states
 - **card**: Surface background color with hover/pressed states
 
+Both can be combined with the disabled state.
+
 <Canvas of={TileStories.AppearanceShowcase} />
 
-### States
-
-Tiles support multiple interactive states:
-
-- **Default**: Base state with no interaction
-- **Hover**: Background color changes on hover
-- **Pressed**: Darker background when clicked
-- **Focused**: Focus ring appears on keyboard navigation
-- **Disabled**: Non-interactive state with disabled styles
-
-<Canvas of={TileStories.StateShowcase} />
-
-### Disabled State
-
-When disabled, tiles become non-interactive and display with disabled styles.
-
-<Canvas of={TileStories.DisabledShowcase} />
-
-### Spot Variants
+### Variants Showcase
 
 Tile components support various spot icons to categorize or visualize the content, including coin icons.
 
-<Canvas of={TileStories.LeadingContentVariantsShowcase} />
-
-### Trailing Content Variants
-
-Optional trailing content can be added at the bottom of the tile.
-
-<Canvas of={TileStories.WithTrailingContent} />
-
-### Without Secondary Action
-
-The secondary action is optional and can be omitted.
-
-<Canvas of={TileStories.WithoutSecondaryAction} />
+<Canvas of={TileStories.VariantsShowcase} />
 
 ### Horizontal Lists
 
@@ -111,78 +79,115 @@ The `@radix-ui/react-slot` dependency enables flexible composition patterns for 
 ## Basic Usage
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from '@ledgerhq/lumen-ui-react';
 import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function MyComponent() {
   return (
-    <Tile
-      title='Settings'
-      leadingContent={<Spot appearance='icon' icon={Settings} />}
-      onClick={() => console.log('Clicked!')}
-      appearance='no-background'
-    />
+    <Tile appearance='no-background' onClick={() => console.log('Clicked!')}>
+      <TileSpot appearance='icon' icon={Settings} />
+      <TileContent>
+        <TileTitle>Settings</TileTitle>
+        <TileDescription>Manage preferences</TileDescription>
+      </TileContent>
+    </Tile>
   );
 }
 ```
 
-### Appearance Variants
+## Advanced Patterns
+
+### With Secondary Action
 
 ```tsx
-// Transparent background (default)
-<Tile
-  title='Settings'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
-  appearance='no-background'
-/>
+import {
+  Tile,
+  TileSecondaryAction,
+  TileSpot,
+  TileContent,
+  TileTitle,
+} from '@ledgerhq/lumen-ui-react';
+import { Settings, MoreVertical } from '@ledgerhq/lumen-ui-react/symbols';
 
-// Card/Surface background
-<Tile
-  title='Settings'
-  leadingContent={<Spot appearance='icon' icon={Settings} />}
-  appearance='card'
-/>
+<Tile>
+  <TileSecondaryAction
+    icon={MoreVertical}
+    onClick={(e) => console.log('More actions')}
+  />
+  <TileSpot appearance='icon' icon={Settings} />
+  <TileContent>
+    <TileTitle>Settings</TileTitle>
+  </TileContent>
+</Tile>;
+```
+
+### With Custom Content (Tags, etc.)
+
+```tsx
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+  Tag,
+} from '@ledgerhq/lumen-ui-react';
+import { Bitcoin } from '@ledgerhq/lumen-ui-react/symbols';
+
+<Tile appearance='card'>
+  <TileSpot appearance='icon' icon={Bitcoin} />
+  <TileContent>
+    <TileTitle>Bitcoin</TileTitle>
+    <TileDescription>BTC</TileDescription>
+  </TileContent>
+  <Tag label='Active' appearance='success' />
+</Tile>;
 ```
 
 ### Disabled State
 
 ```tsx
-<Tile
-  title='Settings'
-  description='Unavailable'
-  leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
-  disabled
-/>
+<Tile disabled>
+  <TileSpot appearance='icon' icon={Settings} />
+  <TileContent>
+    <TileTitle>Settings</TileTitle>
+    <TileDescription>Unavailable</TileDescription>
+  </TileContent>
+</Tile>
 ```
 
 ### With Coin Icon
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+import { Tile, TileSpot, TileContent, TileTitle } from '@ledgerhq/lumen-ui-react';
 
-function MyComponent() {
-  return (
-    <Tile
-      title='Bitcoin'
-      description='BTC'
-      leadingContent={<Spot appearance='coin' icon='btc' />}
-      onClick={() => console.log('Clicked!')}
-    />
-  );
-}
+<Tile onClick={() => console.log('Clicked!')}>
+  <TileSpot appearance='coin' icon='btc' />
+  <TileContent>
+    <TileTitle>Bitcoin</TileTitle>
+    <TileDescription>BTC</TileDescription>
+  </TileContent>
+</Tile>;
 ```
 
 ### Horizontal List
 
 ```tsx
 <div className='flex overflow-x-auto'>
-  {items.map((item, i) => (
-    <Tile
-      key={item.id}
-      title={item.title}
-      description={item.description}
-      leadingContent={<Spot appearance='icon' icon={item.icon} />}
-    />
+  {items.map((item) => (
+    <Tile key={item.id} className='w-128 shrink-0'>
+      <TileSpot appearance='icon' icon={item.icon} />
+      <TileContent>
+        <TileTitle>{item.title}</TileTitle>
+        <TileDescription>{item.description}</TileDescription>
+      </TileContent>
+    </Tile>
   ))}
 </div>
 ```
@@ -194,7 +199,13 @@ When rendering long lists or grids of Tiles, we recommend using [TanStack Virtua
 ```tsx
 import React from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from '@ledgerhq/lumen-ui-react';
 import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
 
 function VirtualTileList({ items }) {
@@ -218,11 +229,15 @@ function VirtualTileList({ items }) {
             className='absolute left-0 top-0 w-full'
             style={{ transform: `translateY(${virtualItem.start}px)` }}
           >
-            <Tile
-              title={items[virtualItem.index].title}
-              description={items[virtualItem.index].description}
-              leadingContent={<Spot appearance='icon' icon={Settings} />}
-            />
+            <Tile>
+              <TileSpot appearance='icon' icon={Settings} />
+              <TileContent>
+                <TileTitle>{items[virtualItem.index].title}</TileTitle>
+                <TileDescription>
+                  {items[virtualItem.index].description}
+                </TileDescription>
+              </TileContent>
+            </Tile>
           </div>
         ))}
       </div>
@@ -236,160 +251,6 @@ function VirtualTileList({ items }) {
 ## Do's and Don'ts
 
 <div className='flex flex-col gap-24'>
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use concise text for title and description'
-      description='Keep title and description short since they truncate to one line'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Tile
-  title='Settings'
-  description='Manage preferences'
-  leadingContent={
-    <Spot
-      appearance='icon'
-      icon={Settings}
-    />
-  }
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use long text"
-      description='Title and description truncate to one line'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Tile
-  title='This is a very long title that will be truncated and users will not be able to read the full text'
-  description='This is also a very long description that will be truncated and users will not be able to read the full text'
-  leadingContent={
-    <Spot
-      appearance='icon'
-      icon={Settings}
-    />
-  }
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='By default the tile fills the width of its container'
-      description='Control width using wrapper containers'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<div className='w-128'>
-  <Tile
-    title='Fixed Width'
-    leadingContent={
-      <Spot appearance='icon' icon={Settings} />
-      }
-  />
-</div>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use className for full width"
-      description='Do not use className for width'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<Tile
-  title='Bad Typography'
-  leadingContent={
-    <Spot
-      appearance='icon'
-      icon={Settings}
-    />
-  }
-  className='w-full'
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Pass disabled to trailing and leading content'
-      description='When the Tile is disabled, ensure trailing and leading content components also receive the disabled prop'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import { Tile, Spot, Tag } from '@ledgerhq/lumen-ui-react';
-import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
-
-<Tile
-  title='Settings'
-  description='Configure app'
-  leadingContent={
-    <Spot
-      appearance='icon'
-      icon={Settings}
-      disabled
-    />
-  }
-  trailingContent={
-    <Tag
-      label='New'
-      appearance='base'
-      size='sm'
-      disabled
-    />
-  }
-  disabled
-/>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't forget to disable trailing and leading content"
-      description='Trailing and leading content will remain interactive if you only disable the Tile'
-    >
-
-{/* prettier-ignore */}
-```tsx
-import { Tile, Spot, Tag } from '@ledgerhq/lumen-ui-react';
-import { Settings } from '@ledgerhq/lumen-ui-react/symbols';
-
-<Tile
-  title='Settings'
-  description='Configure app'
-  leadingContent={
-    <Spot
-      appearance='icon'
-      icon={Settings}
-    />
-  }
-  trailingContent={
-    <Tag
-      label='New'
-      appearance='base'
-      size='sm'
-    />
-  }
-  disabled
-/>
-```
-
-    </DontBlockItem>
-
-  </DoVsDontRow>
-
   <CommonRulesDoAndDont />
 </div>
 

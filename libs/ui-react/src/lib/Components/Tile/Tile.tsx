@@ -1,151 +1,110 @@
-import { Slot } from '@radix-ui/react-slot';
+import { cn, createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { MouseEventHandler, useCallback, useState } from 'react';
-import { TileProps } from './types';
+import { InteractiveIcon } from '../InteractiveIcon';
+import { Spot } from '../Spot';
+import {
+  TileContentProps,
+  TileContextValue,
+  TileDescriptionProps,
+  TileProps,
+  TileSecondaryActionProps,
+  TileSpotProps,
+  TileTitleProps,
+} from './types';
 
-const tileVariants = {
-  root: cva(
-    [
-      'group relative flex flex-col items-center text-base transition-colors',
-      'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
-      'gap-8 px-8 py-12',
-    ],
-    {
-      variants: {
-        appearance: {
-          'no-background': 'bg-base-transparent',
-          card: 'bg-surface',
-        },
-        isActive: {
-          true: '',
-          false: '',
-        },
-        disabled: {
-          true: '',
-          false: '',
-        },
-      },
-      compoundVariants: [
-        {
-          appearance: 'no-background',
-          isActive: false,
-          disabled: false,
-          className: 'hover:bg-base-transparent-hover',
-        },
-        {
-          appearance: 'no-background',
-          isActive: true,
-          disabled: false,
-          className: 'bg-base-transparent-pressed',
-        },
-        {
-          appearance: 'card',
-          isActive: false,
-          disabled: false,
-          className: 'hover:bg-surface-hover',
-        },
-        {
-          appearance: 'card',
-          isActive: true,
-          disabled: false,
-          className: 'bg-surface-pressed',
-        },
-      ],
-      defaultVariants: {
-        appearance: 'no-background',
-        isActive: false,
-        disabled: false,
-      },
-    },
-  ),
-  title: cva('truncate body-2-semi-bold', {
+const [TileProvider, useTileContext] =
+  createSafeContext<TileContextValue>('Tile');
+
+const tileVariants = cva(
+  [
+    'group relative flex flex-col items-center text-base transition-colors',
+    'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
+    'gap-8 px-8 py-12',
+  ],
+  {
     variants: {
+      appearance: {
+        'no-background': 'bg-base-transparent',
+        card: 'bg-surface',
+      },
+      isActive: {
+        true: '',
+        false: '',
+      },
       disabled: {
-        true: 'text-disabled',
+        true: '',
         false: '',
       },
     },
-    defaultVariants: {
-      disabled: false,
-    },
-  }),
-  description: cva('truncate body-3', {
-    variants: {
-      disabled: {
-        true: 'text-disabled',
-        false: 'text-muted',
+    compoundVariants: [
+      {
+        appearance: 'no-background',
+        isActive: false,
+        disabled: false,
+        className: 'hover:bg-base-transparent-hover',
       },
-    },
+      {
+        appearance: 'no-background',
+        isActive: true,
+        disabled: false,
+        className: 'bg-base-transparent-pressed',
+      },
+      {
+        appearance: 'card',
+        isActive: false,
+        disabled: false,
+        className: 'hover:bg-surface-hover',
+      },
+      {
+        appearance: 'card',
+        isActive: true,
+        disabled: false,
+        className: 'bg-surface-pressed',
+      },
+    ],
     defaultVariants: {
+      appearance: 'no-background',
+      isActive: false,
       disabled: false,
     },
-  }),
-};
+  },
+);
 
 /**
- * A tile list item component that displays a spot icon at the top, title and optional description,
- * and optional trailing content at the bottom. It functions as a clickable button with hover and active states,
- * and can optionally display a secondary action that appears on hover or focus.
+ * A flexible tile component that uses a composite pattern for maximum customization.
+ * Displays content in a vertical layout with support for spots, text, and custom content.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/components-Tile-implementation--docs#dos-and-donts Guidelines}
  *
- * @warning The `className` prop should only be used for layout adjustments like margins or positioning.
- * Do not use it to modify the list item's core appearance (colors, padding, etc).
- *
  * @example
- * // Basic tile item
- * import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
- * import { Wallet } from '@ledgerhq/lumen-ui-react/symbols';
+ * import {
+ *   Tile,
+ *   TileSpot,
+ *   TileContent,
+ *   TileTitle,
+ *   TileSecondaryAction,
+ *   Tag
+ * } from '@ledgerhq/lumen-ui-react';
+ * import { Bitcoin, MoreVertical } from '@ledgerhq/lumen-ui-react/symbols';
  *
- * <Tile
- *   title="My Wallet"
- *   leadingContent={<Spot appearance="icon" icon={Wallet} />}
- *   onClick={() => console.log('Clicked!')}
- * />
- *
- * // With subtitle and trailing content
- * import { Tile, Spot } from '@ledgerhq/lumen-ui-react';
- * import { Tag } from '@ledgerhq/lumen-ui-react';
- * import { Bitcoin } from '@ledgerhq/lumen-ui-react/symbols';
- *
- * <Tile
- *   title="Bitcoin"
- *   description="BTC"
- *   leadingContent={<Spot appearance="coin" icon="btc" />}
- *   trailingContent={<Tag label="Active" appearance="success" size="sm" />}
- * />
- *
- * // With secondary action
- * import { Tile } from '@ledgerhq/lumen-ui-react';
- * import { InteractiveIcon } from '@ledgerhq/lumen-ui-react';
- * import { Settings, Ethereum, MoreVertical } from '@ledgerhq/lumen-ui-react/symbols';
- *
- * <Tile
- *   title="Ethereum"
- *   description="ETH"
- *   leadingContent={<Spot appearance="coin" icon="eth" />}
- *   secondaryAction={
- *     <InteractiveIcon
- *       iconType="stroked"
- *       onClick={() => console.log('More actions clicked!')}
- *     >
- *       <MoreVertical />
- *     </InteractiveIcon>
- *   }
- * />
+ * <Tile appearance="card">
+ *   <TileSecondaryAction icon={MoreVertical} onClick={() => console.log('More')} />
+ *   <TileSpot appearance="icon" icon={Bitcoin} />
+ *   <TileContent>
+ *     <TileTitle>Bitcoin</TileTitle>
+ *   </TileContent>
+ *   <div>Custom content</div>
+ * </Tile>
  */
 export const Tile = ({
   className,
-  title,
-  description,
-  leadingContent,
-  secondaryAction,
-  trailingContent,
   onClick,
   appearance = 'no-background',
   disabled = false,
   'aria-label': ariaLabel,
+  children,
   ...props
 }: TileProps) => {
   const [isActive, setIsActive] = useState(false);
@@ -160,14 +119,6 @@ export const Tile = ({
       onClick?.(event);
     },
     [disabled, onClick],
-  );
-
-  const onSecondaryActionClickHandler = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
-      event.stopPropagation();
-      event.preventDefault();
-    },
-    [],
   );
 
   const handleMouseDown = useCallback(
@@ -197,55 +148,183 @@ export const Tile = ({
     }, [disabled]);
 
   return (
-    <div
-      {...props}
-      className={tileVariants.root({
-        appearance,
-        isActive,
-        disabled,
-        className,
-      })}
-      onMouseDown={(e) => {
-        props?.onMouseDown?.(e);
-        handleMouseDown(e);
-      }}
-      onMouseUp={(e) => {
-        props?.onMouseUp?.(e);
-        handleMouseUp(e);
-      }}
-      onMouseLeave={(e) => {
-        props?.onMouseLeave?.(e);
-        handleMouseLeave(e);
-      }}
-    >
-      <button
-        aria-label={ariaLabel || title}
-        onClick={handleClick}
-        disabled={disabled}
-        data-disabled={disabled || undefined}
-        className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
+    <TileProvider value={{ disabled }}>
+      <div
+        {...props}
+        className={tileVariants({
+          appearance,
+          isActive,
+          disabled,
+          className,
+        })}
+        onMouseDown={(e) => {
+          props?.onMouseDown?.(e);
+          handleMouseDown(e);
+        }}
+        onMouseUp={(e) => {
+          props?.onMouseUp?.(e);
+          handleMouseUp(e);
+        }}
+        onMouseLeave={(e) => {
+          props?.onMouseLeave?.(e);
+          handleMouseLeave(e);
+        }}
       >
-        <div className='flex items-center justify-center'>{leadingContent}</div>
-        <div className='flex w-full flex-col items-center gap-4'>
-          <div className='flex w-full flex-col text-center'>
-            <div className={tileVariants.title({ disabled })}>{title}</div>
-            {description && (
-              <div className={tileVariants.description({ disabled })}>
-                {description}
-              </div>
-            )}
-          </div>
-          {trailingContent}
-        </div>
-      </button>
-      {secondaryAction && !disabled && (
-        <div
-          className='absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100'
-          data-secondary-button-container
+        <button
+          aria-label={ariaLabel}
+          onClick={handleClick}
+          disabled={disabled}
+          data-disabled={disabled || undefined}
+          className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
         >
-          <Slot onClick={onSecondaryActionClickHandler}>{secondaryAction}</Slot>
-        </div>
+          {children}
+        </button>
+      </div>
+    </TileProvider>
+  );
+};
+
+/**
+ * A spot adapter for use within Tile. Automatically inherits the disabled state from the parent Tile.
+ * Always renders at a fixed size of 48.
+ */
+export const TileSpot = (props: TileSpotProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileSpot',
+    contextRequired: true,
+  });
+  return <Spot {...props} size={48} disabled={disabled} />;
+};
+
+/**
+ * A container for grouping TileTitle and TileDescription with consistent spacing.
+ * Use this to wrap text content within a Tile.
+ */
+export const TileContent = ({
+  children,
+  className,
+  ...props
+}: TileContentProps) => {
+  return (
+    <div
+      className={cn(
+        'flex w-full flex-col items-center gap-4 text-center',
+        className,
       )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+/**
+ * The primary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
+ * Text will truncate with ellipsis if it exceeds the available width.
+ */
+export const TileTitle = ({
+  children,
+  className,
+  ...props
+}: TileTitleProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileTitle',
+    contextRequired: true,
+  });
+  return (
+    <div
+      className={cn(
+        'w-full truncate body-2-semi-bold',
+        disabled && 'text-disabled',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+/**
+ * The secondary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
+ * Text will truncate with ellipsis if it exceeds the available width.
+ */
+export const TileDescription = ({
+  children,
+  className,
+  ...props
+}: TileDescriptionProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileDescription',
+    contextRequired: true,
+  });
+  return (
+    <div
+      className={cn(
+        'w-full truncate body-3',
+        disabled ? 'text-disabled' : 'text-muted',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
+
+/**
+ * A self-contained secondary action button for a Tile. Renders an InteractiveIcon that appears
+ * in the top-right corner and is visible on hover/focus. Automatically hidden when the parent Tile is disabled.
+ *
+ * @example
+ * import { MoreVertical } from '@ledgerhq/lumen-ui-react/symbols';
+ *
+ * <Tile>
+ *   <TileSecondaryAction
+ *     icon={MoreVertical}
+ *     onClick={(e) => console.log('Secondary action clicked')}
+ *   />
+ *   <TileContent>
+ *     <TileTitle>My Title</TileTitle>
+ *   </TileContent>
+ * </Tile>
+ */
+export const TileSecondaryAction = ({
+  onClick,
+  icon,
+  className,
+  ...props
+}: TileSecondaryActionProps) => {
+  const { disabled } = useTileContext({
+    consumerName: 'TileSecondaryAction',
+    contextRequired: true,
+  });
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      onClick?.(e);
+    },
+    [onClick],
+  );
+
+  if (disabled) return null;
+
+  const Icon = icon;
+
+  return (
+    <div
+      className={cn(
+        'absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
+        className,
+      )}
+      data-secondary-button-container
+      {...props}
+    >
+      <InteractiveIcon iconType='stroked' onClick={handleClick}>
+        <Icon />
+      </InteractiveIcon>
     </div>
   );
 };
