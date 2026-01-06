@@ -8,7 +8,7 @@ import { DontBlockItem } from './DontBlock';
   {/* prettier-ignore */}
   <DoBlockItem
     title='Use className for layout positioning'
-    description='Only use className for layout-related utilities (positioning, margins, display properties).'
+    description='Only use className for layout-related utilities (positioning, margins, display properties)'
   >
     ```tsx
     <Component className='mt-4 absolute top-0 md:hidden'>
@@ -18,7 +18,7 @@ import { DontBlockItem } from './DontBlock';
   </DoBlockItem>
   {/* prettier-ignore */}
   <DontBlockItem
-    title='ClassName is not allowed for core styling'
+    title='className is not allowed for core styling'
     description='Core styling, internal spacing, and typography cannot be modified using className'
   >
     ```tsx
@@ -39,7 +39,7 @@ import { DontBlockItem } from './DontBlock';
   ```tsx 
   import {Check} from '@ledgerhq/lumen-ui-react/symbols';
 
-  <Component icon={Check}> Label</Component>
+  <Component icon={Check}>Label</Component>
   ```
 </DoBlockItem>
 
@@ -50,7 +50,7 @@ import { DontBlockItem } from './DontBlock';
     ```tsx 
     import * as Icons from '@ledgerhq/lumen-ui-react/symbols';
     
-    <Component icon={Icons.Check}> Label</Component>
+    <Component icon={Icons.Check}>Label</Component>
     ```
   </DontBlockItem>
 </DoVsDontRow>

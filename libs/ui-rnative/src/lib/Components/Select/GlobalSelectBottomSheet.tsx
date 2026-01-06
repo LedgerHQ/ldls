@@ -8,6 +8,7 @@ import {
   BottomSheetView,
   useBottomSheetRef,
 } from '../BottomSheet';
+import { Divider } from '../Divider';
 import { Box, Text } from '../Utility';
 import { useGlobalSelectSafeContext } from './GlobalSelectContext';
 
@@ -16,12 +17,6 @@ const useStyles = () => {
     (t) => ({
       bottomSheetView: {
         paddingHorizontal: t.spacings.s8,
-      },
-      separator: {
-        marginVertical: t.spacings.s4,
-        marginHorizontal: t.spacings.s8,
-        height: 1,
-        backgroundColor: t.colors.bg.muted,
       },
       groupLabel: {
         marginBottom: t.spacings.s4,
@@ -133,7 +128,10 @@ export const GlobalSelectBottomSheet: React.FC = () => {
               {currentSelect.items.map((item, index) => {
                 if (item.type === 'separator') {
                   return (
-                    <Box key={`separator-${index}`} style={styles.separator} />
+                    <Divider
+                      key={`separator-${index}`}
+                      lx={{ marginVertical: 's4', marginHorizontal: 's8' }}
+                    />
                   );
                 }
                 if (item.type === 'group-label') {

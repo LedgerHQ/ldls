@@ -8,15 +8,7 @@ type SandboxBlockProps = {
 
 export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
   return (
-    <Box
-      lx={{
-        flexDirection: 'column',
-        gap: 's8',
-        borderTopWidth: 's1',
-        borderColor: 'muted',
-        paddingTop: 's16',
-      }}
-    >
+    <Box lx={{ gap: 's8' }}>
       <Text typography='heading3SemiBold' lx={{ color: 'base' }}>
         {title}
       </Text>
@@ -24,7 +16,6 @@ export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
         lx={{
           flexDirection: 'row',
           flexWrap: 'wrap',
-          alignItems: 'flex-start',
           gap: 's12',
         }}
       >

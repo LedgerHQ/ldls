@@ -458,23 +458,9 @@ export const SelectItemText: React.FC<SelectItemTextProps> = ({
 };
 SelectItemText.displayName = 'SelectItemText';
 
-export const SelectSeparator: React.FC<SelectSeparatorProps> = ({
-  lx,
-  style,
-  ...props
-}) => {
-  const styles = useStyleSheet(
-    (t) => ({
-      separator: {
-        marginHorizontal: t.spacings.s8,
-        marginVertical: t.spacings.s4,
-        height: t.sizes.s1,
-        backgroundColor: t.colors.border.mutedSubtle,
-      },
-    }),
-    [],
-  );
-
-  return <Box lx={lx} style={[styles.separator, style]} {...props} />;
+export const SelectSeparator: React.FC<SelectSeparatorProps> = () => {
+  // This component doesn't render anything - it's used for structure
+  // The actual separators are rendered in GlobalSelectBottomSheet
+  return null;
 };
 SelectSeparator.displayName = 'SelectSeparator';
