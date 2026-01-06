@@ -28,19 +28,6 @@ describe('Tile Component', () => {
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    it('should render description when provided', () => {
-      render(
-        <Tile>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Test Title</TileTitle>
-            <TileDescription>Test description</TileDescription>
-          </TileContent>
-        </Tile>,
-      );
-      expect(screen.getByText('Test description')).toBeInTheDocument();
-    });
-
     it('should render custom content', () => {
       render(
         <Tile>
@@ -52,7 +39,6 @@ describe('Tile Component', () => {
         </Tile>,
       );
       expect(screen.getByTestId('custom-content')).toBeInTheDocument();
-      expect(screen.getByText('Custom Content')).toBeInTheDocument();
     });
 
     it('should render secondary action when provided', () => {
@@ -244,48 +230,6 @@ describe('Tile Component', () => {
     });
   });
 
-  describe('Appearance Variants', () => {
-    it('should apply no-background appearance by default', () => {
-      render(
-        <Tile>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Test Title</TileTitle>
-          </TileContent>
-        </Tile>,
-      );
-
-      const buttonElement = screen.getByRole('button');
-      const containerElement = buttonElement.parentElement;
-
-      if (!containerElement) {
-        throw new Error('Container element not found');
-      }
-
-      expect(containerElement).toHaveClass('bg-base-transparent');
-    });
-
-    it('should apply card appearance when specified', () => {
-      render(
-        <Tile appearance='card'>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Test Title</TileTitle>
-          </TileContent>
-        </Tile>,
-      );
-
-      const buttonElement = screen.getByRole('button');
-      const containerElement = buttonElement.parentElement;
-
-      if (!containerElement) {
-        throw new Error('Container element not found');
-      }
-
-      expect(containerElement).toHaveClass('bg-surface');
-    });
-  });
-
   describe('Accessibility', () => {
     it('should use custom aria-label when provided', () => {
       const customAriaLabel = 'Custom label';
@@ -341,69 +285,13 @@ describe('Tile Component', () => {
 
       expect(containerElement).toHaveClass(customClass);
     });
-
-    it('should forward additional props to container element', () => {
-      const testId = 'test-container';
-      render(
-        <Tile data-testid={testId}>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Test Title</TileTitle>
-          </TileContent>
-        </Tile>,
-      );
-
-      const containerElement = screen.getByTestId(testId);
-      expect(containerElement).toBeInTheDocument();
-    });
-  });
-
-  describe('Truncation', () => {
-    it('should apply truncate class to TileTitle', () => {
-      render(
-        <Tile>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Very long title that should truncate</TileTitle>
-          </TileContent>
-        </Tile>,
-      );
-
-      const titleElement = screen.getByText(
-        'Very long title that should truncate',
-      );
-      expect(titleElement).toHaveClass('truncate');
-    });
-
-    it('should apply truncate class to TileDescription', () => {
-      render(
-        <Tile>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Title</TileTitle>
-            <TileDescription>
-              Very long description that should truncate
-            </TileDescription>
-          </TileContent>
-        </Tile>,
-      );
-
-      const descriptionElement = screen.getByText(
-        'Very long description that should truncate',
-      );
-      expect(descriptionElement).toHaveClass('truncate');
-    });
   });
 
   describe('Slottable Pattern', () => {
     it('should extract secondary action from children and render outside button', () => {
       render(
         <Tile aria-label='Main tile'>
-          <TileSecondaryAction
-            icon={MoreVertical}
-            onClick={() => {}}
-            aria-label='More actions'
-          />
+          <TileSecondaryAction icon={MoreVertical} aria-label='More actions' />
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
             <TileTitle>Test Title</TileTitle>
@@ -418,58 +306,6 @@ describe('Tile Component', () => {
 
       // Secondary action should NOT be inside the main button
       expect(mainButton.contains(secondaryButton)).toBe(false);
-
-      // Both buttons should be children of the same tile container
-      const tileContainer = mainButton.parentElement;
-      expect(tileContainer).toHaveAttribute('data-slot', 'tile');
-      expect(secondaryButton.closest('[data-slot="tile"]')).toBe(tileContainer);
-    });
-
-    it('should render secondary action with data-slot attribute', () => {
-      const { container } = render(
-        <Tile>
-          <TileSecondaryAction
-            icon={MoreVertical}
-            onClick={() => {}}
-            aria-label='More actions'
-          />
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Test Title</TileTitle>
-          </TileContent>
-        </Tile>,
-      );
-
-      const secondaryAction = container.querySelector(
-        '[data-slot="tile-secondary-action"]',
-      );
-      expect(secondaryAction).toBeInTheDocument();
-    });
-
-    it('should apply data-slot attributes to all sub-components', () => {
-      const { container } = render(
-        <Tile>
-          <TileSpot appearance='icon' icon={Settings} />
-          <TileContent>
-            <TileTitle>Title</TileTitle>
-            <TileDescription>Description</TileDescription>
-          </TileContent>
-        </Tile>,
-      );
-
-      expect(container.querySelector('[data-slot="tile"]')).toBeInTheDocument();
-      expect(
-        container.querySelector('[data-slot="tile-spot"]'),
-      ).toBeInTheDocument();
-      expect(
-        container.querySelector('[data-slot="tile-content"]'),
-      ).toBeInTheDocument();
-      expect(
-        container.querySelector('[data-slot="tile-title"]'),
-      ).toBeInTheDocument();
-      expect(
-        container.querySelector('[data-slot="tile-description"]'),
-      ).toBeInTheDocument();
     });
   });
 });

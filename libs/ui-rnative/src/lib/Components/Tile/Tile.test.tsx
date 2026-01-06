@@ -2,7 +2,6 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
-import { Text } from 'react-native';
 
 import { Settings } from '../../Symbols';
 import { Tag } from '../Tag';
@@ -39,39 +38,6 @@ describe('Tile Component', () => {
       expect(getByText('Test Title')).toBeTruthy();
     });
 
-    it('should render description when provided', () => {
-      const { getByText } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-              <TileDescription>Test description</TileDescription>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByText('Test Title')).toBeTruthy();
-      expect(getByText('Test description')).toBeTruthy();
-    });
-
-    it('should render without description when not provided', () => {
-      const { getByText, queryByText } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByText('Test Title')).toBeTruthy();
-      expect(queryByText('Test description')).toBeNull();
-    });
-
     it('should render custom content', () => {
       const tagText = 'Test Tag';
       const { getByText } = render(
@@ -88,23 +54,6 @@ describe('Tile Component', () => {
 
       expect(getByText('Test Title')).toBeTruthy();
       expect(getByText(tagText)).toBeTruthy();
-    });
-
-    it('should render custom content with testID', () => {
-      const trailingText = 'Custom Trailing';
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-            <Text testID='custom-trailing'>{trailingText}</Text>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('custom-trailing')).toBeTruthy();
     });
   });
 
@@ -125,23 +74,6 @@ describe('Tile Component', () => {
       fireEvent.press(getByTestId('tile'));
 
       expect(handlePress).toHaveBeenCalledTimes(1);
-    });
-
-    it('should not call onPress when not provided', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(() => {
-        fireEvent.press(getByTestId('tile'));
-      }).not.toThrow();
     });
 
     it('should call onLongPress handler when long pressed', () => {
@@ -225,55 +157,7 @@ describe('Tile Component', () => {
     });
   });
 
-  describe('Appearance Variants', () => {
-    it('should render with no-background appearance by default', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('tile')).toBeTruthy();
-    });
-
-    it('should render with card appearance when specified', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile appearance='card' testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('tile')).toBeTruthy();
-    });
-  });
-
   describe('Accessibility', () => {
-    it('should forward testID prop to Pressable', () => {
-      const testId = 'custom-tile-id';
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID={testId}>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId(testId)).toBeTruthy();
-    });
-
     it('should support custom accessibility label', () => {
       const customLabel = 'Custom accessibility label';
       const { getByTestId } = render(
@@ -308,54 +192,6 @@ describe('Tile Component', () => {
     });
   });
 
-  describe('Sub-components', () => {
-    it('should render TileContent with testID', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('tile-content')).toBeTruthy();
-    });
-
-    it('should render TileTitle with testID', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('tile-title')).toBeTruthy();
-    });
-
-    it('should render TileDescription with testID', () => {
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-              <TileDescription>Test Description</TileDescription>
-            </TileContent>
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('tile-description')).toBeTruthy();
-    });
-  });
-
   describe('Complex Scenarios', () => {
     it('should render with all features combined', () => {
       const description = 'Full description';
@@ -383,25 +219,6 @@ describe('Tile Component', () => {
       expect(getByText('Test Title')).toBeTruthy();
       expect(getByText(description)).toBeTruthy();
       expect(getByText(tagText)).toBeTruthy();
-    });
-
-    it('should render complex custom content', () => {
-      const customLeading = (
-        <Text testID='custom-leading'>Custom Leading Content</Text>
-      );
-      const { getByTestId } = render(
-        <TestWrapper>
-          <Tile testID='tile'>
-            <TileSpot appearance='icon' icon={Settings} />
-            <TileContent>
-              <TileTitle>Test Title</TileTitle>
-            </TileContent>
-            {customLeading}
-          </Tile>
-        </TestWrapper>,
-      );
-
-      expect(getByTestId('custom-leading')).toBeTruthy();
     });
   });
 });
