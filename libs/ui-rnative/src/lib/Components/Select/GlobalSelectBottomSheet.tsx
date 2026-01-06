@@ -131,6 +131,7 @@ export const GlobalSelectBottomSheet: React.FC = () => {
                     <Divider
                       key={`separator-${index}`}
                       lx={{
+                        width: 'auto',
                         marginVertical: 's4',
                         marginHorizontal: 's8',
                       }}

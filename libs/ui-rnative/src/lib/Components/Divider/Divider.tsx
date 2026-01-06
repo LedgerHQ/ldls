@@ -32,10 +32,12 @@ export const Divider = forwardRef<View, DividerProps>(
         lx={{
           ...(orientation === 'horizontal'
             ? {
+                width: 'full',
                 borderTopWidth: 's1',
                 borderTopColor: 'mutedSubtle',
               }
             : {
+                height: 'full',
                 borderLeftWidth: 's1',
                 borderLeftColor: 'mutedSubtle',
               }),
