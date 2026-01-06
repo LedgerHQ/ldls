@@ -19,7 +19,7 @@ const [TileProvider, useTileContext] =
 const tileVariants = cva(
   [
     'group relative flex flex-col items-center text-base transition-colors',
-    'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
+    'focus-visible:outline-focus rounded-md focus-visible:outline-2',
     'gap-8 px-8 py-12',
   ],
   {
@@ -175,7 +175,7 @@ export const Tile = ({
           onClick={handleClick}
           disabled={disabled}
           data-disabled={disabled || undefined}
-          className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
+          className='focus-visible:outline-focus flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2'
         >
           {children}
         </button>
@@ -234,7 +234,7 @@ export const TileTitle = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-2-semi-bold',
+        'body-2-semi-bold w-full truncate',
         disabled && 'text-disabled',
         className,
       )}
@@ -261,7 +261,7 @@ export const TileDescription = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-3',
+        'body-3 w-full truncate',
         disabled ? 'text-disabled' : 'text-muted',
         className,
       )}
@@ -323,7 +323,7 @@ export const TileSecondaryAction = ({
       {...props}
     >
       <InteractiveIcon iconType='stroked' onClick={handleClick}>
-        <Icon />
+        <Icon size={24} />
       </InteractiveIcon>
     </div>
   );

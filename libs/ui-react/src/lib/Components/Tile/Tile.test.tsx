@@ -23,13 +23,13 @@ describe('Tile Component', () => {
           </TileContent>
         </Tile>,
       );
-    const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toBeInTheDocument();
+      const buttonElement = screen.getByRole('button');
+      expect(buttonElement).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
-  });
+    });
 
-  it('should render description when provided', () => {
-    render(
+    it('should render description when provided', () => {
+      render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -42,7 +42,7 @@ describe('Tile Component', () => {
     });
 
     it('should render custom content', () => {
-    render(
+      render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -53,16 +53,12 @@ describe('Tile Component', () => {
       );
       expect(screen.getByTestId('custom-content')).toBeInTheDocument();
       expect(screen.getByText('Custom Content')).toBeInTheDocument();
-  });
+    });
 
-  it('should render secondary action when provided', () => {
-    render(
+    it('should render secondary action when provided', () => {
+      render(
         <Tile>
-          <TileSecondaryAction
-            icon={MoreVertical}
-            onClick={() => {}}
-            aria-label='More actions'
-          />
+          <TileSecondaryAction icon={MoreVertical} aria-label='More actions' />
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
             <TileTitle>Test Title</TileTitle>
@@ -70,27 +66,27 @@ describe('Tile Component', () => {
         </Tile>,
       );
       const secondaryAction = screen.getByLabelText(/more actions/i);
-    expect(secondaryAction).toBeInTheDocument();
+      expect(secondaryAction).toBeInTheDocument();
     });
   });
 
   describe('Click Handlers', () => {
     it('should call onClick handler when tile is clicked', () => {
-    const handleClick = vi.fn();
-    render(
+      const handleClick = vi.fn();
+      render(
         <Tile onClick={handleClick}>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
             <TileTitle>Test Title</TileTitle>
           </TileContent>
         </Tile>,
-    );
+      );
 
-    const buttonElement = screen.getByRole('button');
-    fireEvent.click(buttonElement);
+      const buttonElement = screen.getByRole('button');
+      fireEvent.click(buttonElement);
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
 
     it('should call secondary action onClick and stop propagation', () => {
       const handleTileClick = vi.fn();
@@ -119,7 +115,7 @@ describe('Tile Component', () => {
   });
 
   describe('Active State', () => {
-  it('should apply active state on mouse down', () => {
+    it('should apply active state on mouse down', () => {
       render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
@@ -128,18 +124,18 @@ describe('Tile Component', () => {
           </TileContent>
         </Tile>,
       );
-    const buttonElement = screen.getByRole('button');
-    const containerElement = buttonElement.parentElement;
+      const buttonElement = screen.getByRole('button');
+      const containerElement = buttonElement.parentElement;
 
-    if (!containerElement) {
-      throw new Error('Container element not found');
-    }
+      if (!containerElement) {
+        throw new Error('Container element not found');
+      }
 
-    fireEvent.mouseDown(containerElement);
-    expect(containerElement).toHaveClass('bg-base-transparent-pressed');
-  });
+      fireEvent.mouseDown(containerElement);
+      expect(containerElement).toHaveClass('bg-base-transparent-pressed');
+    });
 
-  it('should remove active state on mouse up', () => {
+    it('should remove active state on mouse up', () => {
       render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
@@ -148,21 +144,21 @@ describe('Tile Component', () => {
           </TileContent>
         </Tile>,
       );
-    const buttonElement = screen.getByRole('button');
-    const containerElement = buttonElement.parentElement;
+      const buttonElement = screen.getByRole('button');
+      const containerElement = buttonElement.parentElement;
 
-    if (!containerElement) {
-      throw new Error('Container element not found');
-    }
+      if (!containerElement) {
+        throw new Error('Container element not found');
+      }
 
-    fireEvent.mouseDown(containerElement);
-    expect(containerElement).toHaveClass('bg-base-transparent-pressed');
+      fireEvent.mouseDown(containerElement);
+      expect(containerElement).toHaveClass('bg-base-transparent-pressed');
 
-    fireEvent.mouseUp(containerElement);
-    expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
-  });
+      fireEvent.mouseUp(containerElement);
+      expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
+    });
 
-  it('should remove active state on mouse leave', () => {
+    it('should remove active state on mouse leave', () => {
       render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
@@ -171,19 +167,19 @@ describe('Tile Component', () => {
           </TileContent>
         </Tile>,
       );
-    const buttonElement = screen.getByRole('button');
-    const containerElement = buttonElement.parentElement;
+      const buttonElement = screen.getByRole('button');
+      const containerElement = buttonElement.parentElement;
 
-    if (!containerElement) {
-      throw new Error('Container element not found');
-    }
+      if (!containerElement) {
+        throw new Error('Container element not found');
+      }
 
-    fireEvent.mouseDown(containerElement);
-    expect(containerElement).toHaveClass('bg-base-transparent-pressed');
+      fireEvent.mouseDown(containerElement);
+      expect(containerElement).toHaveClass('bg-base-transparent-pressed');
 
-    fireEvent.mouseLeave(containerElement);
-    expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
-  });
+      fireEvent.mouseLeave(containerElement);
+      expect(containerElement).not.toHaveClass('bg-base-transparent-pressed');
+    });
   });
 
   describe('Context Propagation', () => {
@@ -233,11 +229,7 @@ describe('Tile Component', () => {
     it('should hide TileSecondaryAction when disabled', () => {
       render(
         <Tile disabled>
-          <TileSecondaryAction
-            icon={MoreVertical}
-            onClick={() => {}}
-            aria-label='More actions'
-          />
+          <TileSecondaryAction icon={MoreVertical} aria-label='More actions' />
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
             <TileTitle>Test Title</TileTitle>
@@ -252,7 +244,7 @@ describe('Tile Component', () => {
 
   describe('Appearance Variants', () => {
     it('should apply no-background appearance by default', () => {
-    render(
+      render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -284,9 +276,9 @@ describe('Tile Component', () => {
       const buttonElement = screen.getByRole('button');
       const containerElement = buttonElement.parentElement;
 
-    if (!containerElement) {
-      throw new Error('Container element not found');
-    }
+      if (!containerElement) {
+        throw new Error('Container element not found');
+      }
 
       expect(containerElement).toHaveClass('bg-surface');
     });
@@ -304,7 +296,9 @@ describe('Tile Component', () => {
         </Tile>,
       );
 
-      const buttonElement = screen.getByRole('button', { name: customAriaLabel });
+      const buttonElement = screen.getByRole('button', {
+        name: customAriaLabel,
+      });
       expect(buttonElement).toHaveAttribute('aria-label', customAriaLabel);
     });
 
@@ -325,9 +319,9 @@ describe('Tile Component', () => {
   });
 
   describe('Custom Styling', () => {
-  it('should apply custom className to container', () => {
-    const customClass = 'custom-test-class';
-    render(
+    it('should apply custom className to container', () => {
+      const customClass = 'custom-test-class';
+      render(
         <Tile className={customClass}>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -336,19 +330,19 @@ describe('Tile Component', () => {
         </Tile>,
       );
 
-    const buttonElement = screen.getByRole('button');
-    const containerElement = buttonElement.parentElement;
+      const buttonElement = screen.getByRole('button');
+      const containerElement = buttonElement.parentElement;
 
-    if (!containerElement) {
-      throw new Error('Container element not found');
-    }
+      if (!containerElement) {
+        throw new Error('Container element not found');
+      }
 
-    expect(containerElement).toHaveClass(customClass);
-  });
+      expect(containerElement).toHaveClass(customClass);
+    });
 
     it('should forward additional props to container element', () => {
-    const testId = 'test-container';
-    render(
+      const testId = 'test-container';
+      render(
         <Tile data-testid={testId}>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -357,14 +351,14 @@ describe('Tile Component', () => {
         </Tile>,
       );
 
-    const containerElement = screen.getByTestId(testId);
-    expect(containerElement).toBeInTheDocument();
+      const containerElement = screen.getByTestId(testId);
+      expect(containerElement).toBeInTheDocument();
     });
   });
 
   describe('Truncation', () => {
     it('should apply truncate class to TileTitle', () => {
-    render(
+      render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>
@@ -380,7 +374,7 @@ describe('Tile Component', () => {
     });
 
     it('should apply truncate class to TileDescription', () => {
-    render(
+      render(
         <Tile>
           <TileSpot appearance='icon' icon={Settings} />
           <TileContent>

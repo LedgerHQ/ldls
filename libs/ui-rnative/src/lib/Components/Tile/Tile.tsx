@@ -2,11 +2,11 @@ import {
   createSafeContext,
   isTextChildren,
 } from '@ledgerhq/lumen-utils-shared';
-import React, { forwardRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { forwardRef, ReactNode } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
 import { Spot } from '../Spot';
-import { Pressable } from '../Utility';
+import { Box, Pressable, Text } from '../Utility';
 import {
   TileContentProps,
   TileContextValue,
@@ -125,10 +125,15 @@ export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
           accessibilityState={{ disabled }}
           {...props}
         >
-          {({ pressed }) => {
-            const styles = useRootStyles({ appearance, disabled, pressed });
-            return <View style={styles.container}>{children}</View>;
-          }}
+          {({ pressed }) => (
+            <TilePressableContent
+              appearance={appearance}
+              disabled={disabled}
+              pressed={pressed}
+            >
+              {children}
+            </TilePressableContent>
+          )}
         </Pressable>
       </TileProvider>
     );
@@ -136,6 +141,21 @@ export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
 );
 
 Tile.displayName = 'Tile';
+
+const TilePressableContent = ({
+  appearance,
+  disabled,
+  pressed,
+  children,
+}: {
+  appearance: Appearance;
+  disabled: boolean;
+  pressed: boolean;
+  children: ReactNode;
+}) => {
+  const styles = useRootStyles({ appearance, disabled, pressed });
+  return <View style={styles.container}>{children}</View>;
+};
 
 /**
  * A spot adapter for use within Tile. Automatically inherits the disabled state from the parent Tile.
@@ -182,9 +202,13 @@ const useContentStyles = () => {
 export const TileContent = ({ children, lx, style }: TileContentProps) => {
   const styles = useContentStyles();
   return (
-    <View style={[styles.container, lx, style]} testID='tile-content'>
+    <Box
+      lx={lx}
+      style={StyleSheet.flatten([styles.container, style])}
+      testID='tile-content'
+    >
       {children}
-    </View>
+    </Box>
   );
 };
 
@@ -198,6 +222,7 @@ const useTitleStyles = ({ disabled }: { disabled: boolean }) => {
       text: StyleSheet.flatten([
         t.typographies.body2SemiBold,
         {
+          alignItems: 'center',
           width: t.sizes.full,
           textAlign: 'center',
           color: disabled ? t.colors.text.disabled : t.colors.text.base,
@@ -222,18 +247,25 @@ export const TileTitle = ({ children, lx, style }: TileTitleProps) => {
 
   if (isTextChildren(children)) {
     return (
-      <View style={[styles.container, lx, style]} testID='tile-title'>
-        <Text numberOfLines={1} style={styles.text}>
-          {children}
-        </Text>
-      </View>
+      <Text
+        testID='tile-title'
+        numberOfLines={1}
+        lx={lx}
+        style={StyleSheet.flatten([styles.text, style])}
+      >
+        {children}
+      </Text>
     );
   }
 
   return (
-    <View style={[styles.container, lx, style]} testID='tile-title'>
+    <Box
+      lx={lx}
+      style={StyleSheet.flatten([styles.container, style])}
+      testID='tile-title'
+    >
       {children}
-    </View>
+    </Box>
   );
 };
 
@@ -248,6 +280,7 @@ const useDescriptionStyles = ({ disabled }: { disabled: boolean }) => {
         t.typographies.body3,
         {
           width: t.sizes.full,
+          alignItems: 'center',
           textAlign: 'center',
           color: disabled ? t.colors.text.disabled : t.colors.text.muted,
         },
@@ -283,17 +316,24 @@ export const TileDescription = ({
 
   if (isTextChildren(children)) {
     return (
-      <View style={[styles.container, lx, style]} testID='tile-description'>
-        <Text numberOfLines={1} style={styles.text}>
-          {children}
-        </Text>
-      </View>
+      <Text
+        lx={lx}
+        numberOfLines={1}
+        style={StyleSheet.flatten([styles.text, style])}
+        testID='tile-description'
+      >
+        {children}
+      </Text>
     );
   }
 
   return (
-    <View style={[styles.container, lx, style]} testID='tile-description'>
+    <Box
+      lx={lx}
+      style={StyleSheet.flatten([styles.container, style])}
+      testID='tile-description'
+    >
       {children}
-    </View>
+    </Box>
   );
 };

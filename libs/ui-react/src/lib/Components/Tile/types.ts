@@ -1,4 +1,5 @@
 import { HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import { IconProps } from '../Icon';
 import { DiscriminatedSpotProps } from '../Spot/types';
 
 export type TileContextValue = {
@@ -82,7 +83,7 @@ export type TileSecondaryActionProps = {
   /**
    * Icon component to render inside the InteractiveIcon.
    */
-  icon: React.ComponentType<{ size?: number }>;
+  icon: React.ComponentType<Omit<IconProps, 'children'>>;
   /**
    * Additional CSS classes for the secondary action container.
    */

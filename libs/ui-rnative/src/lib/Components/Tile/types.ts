@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
-import { StyledPressableProps, StyledViewProps } from '../../../styles';
+import {
+  StyledPressableProps,
+  StyledTextProps,
+  StyledViewProps,
+} from '../../../styles';
 import { DiscriminatedSpotProps } from '../Spot/types';
 
 export type TileContextValue = {
@@ -57,4 +61,4 @@ export type TileDescriptionProps = {
    * The description text to display.
    */
   children: ReactNode;
-} & StyledViewProps;
+} & StyledTextProps;
