@@ -20,60 +20,64 @@ import {
 const [TileProvider, useTileContext] =
   createSafeContext<TileContextValue>('Tile');
 
-const tileVariants = cva(
-  [
-    'group relative flex flex-col items-center text-base transition-colors',
-    'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
-    'gap-8 px-8 py-12',
-  ],
-  {
-    variants: {
-      appearance: {
-        'no-background': 'bg-base-transparent',
-        card: 'bg-surface',
-      },
-      isActive: {
-        true: '',
-        false: '',
-      },
-      disabled: {
-        true: '',
-        false: '',
-      },
-    },
-    compoundVariants: [
-      {
-        appearance: 'no-background',
-        isActive: false,
-        disabled: false,
-        className: 'hover:bg-base-transparent-hover',
-      },
-      {
-        appearance: 'no-background',
-        isActive: true,
-        disabled: false,
-        className: 'bg-base-transparent-pressed',
-      },
-      {
-        appearance: 'card',
-        isActive: false,
-        disabled: false,
-        className: 'hover:bg-surface-hover',
-      },
-      {
-        appearance: 'card',
-        isActive: true,
-        disabled: false,
-        className: 'bg-surface-pressed',
-      },
+const tileVariants = {
+  root: cva(
+    [
+      'group relative flex flex-col items-center gap-8 text-base transition-colors',
+      'focus-visible:outline-focus rounded-md focus-visible:outline-2',
     ],
-    defaultVariants: {
-      appearance: 'no-background',
-      isActive: false,
-      disabled: false,
+    {
+      variants: {
+        appearance: {
+          'no-background': 'bg-base-transparent',
+          card: 'bg-surface',
+        },
+        isActive: {
+          true: '',
+          false: '',
+        },
+        disabled: {
+          true: '',
+          false: '',
+        },
+      },
+      compoundVariants: [
+        {
+          appearance: 'no-background',
+          isActive: false,
+          disabled: false,
+          className: 'hover:bg-base-transparent-hover',
+        },
+        {
+          appearance: 'no-background',
+          isActive: true,
+          disabled: false,
+          className: 'bg-base-transparent-pressed',
+        },
+        {
+          appearance: 'card',
+          isActive: false,
+          disabled: false,
+          className: 'hover:bg-surface-hover',
+        },
+        {
+          appearance: 'card',
+          isActive: true,
+          disabled: false,
+          className: 'bg-surface-pressed',
+        },
+      ],
+      defaultVariants: {
+        appearance: 'no-background',
+        isActive: false,
+        disabled: false,
+      },
     },
-  },
-);
+  ),
+  button: cva(
+    'focus-visible:outline-focus flex w-full flex-col  items-center gap-8 rounded-md px-8 py-12 focus-visible:outline-2',
+  ),
+};
 
 /**
  * A flexible tile component that uses a composite pattern for maximum customization.
@@ -157,7 +161,7 @@ export const Tile = ({
     <TileProvider value={{ disabled }}>
       <div
         {...props}
-        className={tileVariants({
+        className={tileVariants.root({
           appearance,
           isActive,
           disabled,
@@ -185,16 +189,16 @@ export const Tile = ({
               }
         }
       >
-        {slotElement}
         <button
           aria-label={ariaLabel}
           onClick={disabled ? undefined : onClick}
           disabled={disabled}
           data-disabled={disabled || undefined}
-          className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
+          className={tileVariants.button()}
         >
           {remainingChildren}
         </button>
+        {slotElement}
       </div>
     </TileProvider>
   );
@@ -253,7 +257,7 @@ export const TileTitle = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-2-semi-bold',
+        'body-2-semi-bold w-full truncate',
         disabled && 'text-disabled',
         className,
       )}
@@ -281,7 +285,7 @@ export const TileDescription = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-3',
+        'body-3 w-full truncate',
         disabled ? 'text-disabled' : 'text-muted',
         className,
       )}
@@ -339,7 +343,7 @@ export const TileSecondaryAction = ({
     <InteractiveIcon
       data-slot='tile-secondary-action'
       className={cn(
-        'absolute right-4 top-4 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
+        'absolute right-12 top-16 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
         className,
       )}
       data-secondary-button-container
