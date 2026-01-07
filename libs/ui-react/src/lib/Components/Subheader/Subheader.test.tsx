@@ -2,16 +2,24 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { Information } from '../../Symbols';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
-import { Subheader } from './Subheader';
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderHint,
+  SubheaderDescription,
+  SubheaderAction,
+} from './Subheader';
 import '@testing-library/jest-dom';
 
 describe('Subheader', () => {
   it('renders the title', () => {
     render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Test Title</Subheader.Title>
-        </Subheader.Row>
+        <SubheaderRow>
+          <SubheaderTitle>Test Title</SubheaderTitle>
+        </SubheaderRow>
       </Subheader>,
     );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -20,33 +28,33 @@ describe('Subheader', () => {
   it('renders the count when provided', () => {
     render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-          <Subheader.Count>30</Subheader.Count>
-        </Subheader.Row>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderCount>30</SubheaderCount>
+        </SubheaderRow>
       </Subheader>,
     );
     expect(screen.getByText('(30)')).toBeInTheDocument();
   });
 
-  it('renders the hint tooltip icon when Subheader.Hint is provided', () => {
+  it('renders the hint tooltip icon when SubheaderHint is provided', () => {
     const { container } = render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-          <Subheader.Hint>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderHint>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Information
                   size={16}
-                  className='shrink-0 text-muted'
+                  className='text-muted shrink-0'
                   aria-label='More information'
                 />
               </TooltipTrigger>
               <TooltipContent>Info</TooltipContent>
             </Tooltip>
-          </Subheader.Hint>
-        </Subheader.Row>
+          </SubheaderHint>
+        </SubheaderRow>
       </Subheader>,
     );
     expect(
@@ -57,38 +65,38 @@ describe('Subheader', () => {
   it('renders the description when provided', () => {
     render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-        </Subheader.Row>
-        <Subheader.Description>This is a description</Subheader.Description>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+        </SubheaderRow>
+        <SubheaderDescription>This is a description</SubheaderDescription>
       </Subheader>,
     );
     expect(screen.getByText('This is a description')).toBeInTheDocument();
   });
 
-  it('renders the action when Subheader.Action is provided in Row', () => {
+  it('renders the action when SubheaderAction is provided in Row', () => {
     render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-          <Subheader.Action>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderAction>
             <button>Action</button>
-          </Subheader.Action>
-        </Subheader.Row>
+          </SubheaderAction>
+        </SubheaderRow>
       </Subheader>,
     );
     expect(screen.getByText('Action')).toBeInTheDocument();
   });
 
-  it('renders the action when Subheader.Action is provided at top level', () => {
+  it('renders the action when SubheaderAction is provided at top level', () => {
     render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-        </Subheader.Row>
-        <Subheader.Action>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+        </SubheaderRow>
+        <SubheaderAction>
           <button>Action</button>
-        </Subheader.Action>
+        </SubheaderAction>
       </Subheader>,
     );
     expect(screen.getByText('Action')).toBeInTheDocument();
@@ -97,26 +105,26 @@ describe('Subheader', () => {
   it('renders all components together', () => {
     const { container } = render(
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>Title</Subheader.Title>
-          <Subheader.Count>42</Subheader.Count>
-          <Subheader.Hint>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderCount>42</SubheaderCount>
+          <SubheaderHint>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Information
                   size={16}
-                  className='shrink-0 text-muted'
+                  className='text-muted shrink-0'
                   aria-label='More information'
                 />
               </TooltipTrigger>
               <TooltipContent>Info</TooltipContent>
             </Tooltip>
-          </Subheader.Hint>
-          <Subheader.Action>
+          </SubheaderHint>
+          <SubheaderAction>
             <button>Action</button>
-          </Subheader.Action>
-        </Subheader.Row>
-        <Subheader.Description>Description text</Subheader.Description>
+          </SubheaderAction>
+        </SubheaderRow>
+        <SubheaderDescription>Description text</SubheaderDescription>
       </Subheader>,
     );
     expect(screen.getByText('Title')).toBeInTheDocument();
@@ -132,7 +140,7 @@ describe('Subheader', () => {
     expect(() => {
       render(
         <Subheader>
-          <Subheader.Title>Title</Subheader.Title>
+          <SubheaderTitle>Title</SubheaderTitle>
         </Subheader>,
       );
     }).toThrow('Subheader requires a SubheaderRow child');
@@ -142,9 +150,9 @@ describe('Subheader', () => {
     expect(() => {
       render(
         <Subheader>
-          <Subheader.Row>
-            <Subheader.Count>30</Subheader.Count>
-          </Subheader.Row>
+          <SubheaderRow>
+            <SubheaderCount>30</SubheaderCount>
+          </SubheaderRow>
         </Subheader>,
       );
     }).toThrow('SubheaderRow requires a SubheaderTitle child');

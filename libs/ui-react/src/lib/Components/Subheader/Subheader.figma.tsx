@@ -1,5 +1,10 @@
 import React from 'react';
-import { Subheader } from './Subheader';
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderAction,
+} from './Subheader';
 import { Link } from '../Link/Link';
 
 import figma from '@figma/code-connect';
@@ -26,9 +31,9 @@ figma.connect(
     ],
     example: (props) => (
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>{props.title}</Subheader.Title>
-        </Subheader.Row>
+        <SubheaderRow>
+          <SubheaderTitle>{props.title}</SubheaderTitle>
+        </SubheaderRow>
       </Subheader>
     ),
   },
@@ -46,14 +51,14 @@ figma.connect(
     },
     example: (props) => (
       <Subheader>
-        <Subheader.Row>
-          <Subheader.Title>{props.title}</Subheader.Title>
-          <Subheader.Action>
+        <SubheaderRow>
+          <SubheaderTitle>{props.title}</SubheaderTitle>
+          <SubheaderAction>
             <Link href='#' appearance='accent' size='sm'>
               Action
             </Link>
-          </Subheader.Action>
-        </Subheader.Row>
+          </SubheaderAction>
+        </SubheaderRow>
       </Subheader>
     ),
   },

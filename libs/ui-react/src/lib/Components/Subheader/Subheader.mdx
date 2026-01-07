@@ -24,12 +24,12 @@ Subheaders are section headers used to title content areas in the UI. They provi
 The Subheader uses a composite structure with the following components:
 
 - **Subheader** (container): The root component
-- **Subheader.Row** (required): Layout component to align title, count, hint, and action
-- **Subheader.Title** (required): The main heading text
-- **Subheader.Count** (optional): Displays a number in parentheses, e.g., "(30)"
-- **Subheader.Hint** (optional): Information elements like tooltips
-- **Subheader.Description** (optional): Descriptive text below the title row
-- **Subheader.Action** (optional): Action elements like links or buttons
+- **SubheaderRow** (required): Layout component to align title, count, hint, and action
+- **SubheaderTitle** (required): The main heading text
+- **SubheaderCount** (optional): Displays a number in parentheses, e.g., "(30)"
+- **SubheaderHint** (optional): Information elements like tooltips
+- **SubheaderDescription** (optional): Descriptive text below the title row
+- **SubheaderAction** (optional): Action elements like links or buttons
 
 ## Properties
 
@@ -44,14 +44,14 @@ Subheaders support various content configurations using composite components:
 
 - **Title only**: Basic heading with required Row and Title
 - **With Count**: Includes a numeric count in parentheses
-- **With Hint**: Includes information elements via `<Subheader.Hint>`
+- **With Hint**: Includes information elements via `<SubheaderHint>`
 - **With Description**: Adds descriptive text below the title row
-- **With Action**: Includes action elements via `<Subheader.Action>`
+- **With Action**: Includes action elements via `<SubheaderAction>`
 - **Complete**: All components combined
 
 <Canvas of={SubheaderStories.ContentVariations} />
 
-> **Note**: The `Subheader.Row` and `Subheader.Title` are required. All other components are optional and can be combined as needed.
+> **Note**: The `SubheaderRow` and `SubheaderTitle` are required. All other components are optional and can be combined as needed.
 
 ### Responsive Layout
 
@@ -88,14 +88,14 @@ npm install @ledgerhq/lumen-ui-react
 ## Basic Usage
 
 ```tsx
-import { Subheader } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-      </Subheader.Row>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+      </SubheaderRow>
     </Subheader>
   );
 }
@@ -108,15 +108,15 @@ The component uses a composite pattern where you build the subheader using multi
 Display a numeric count next to the title:
 
 ```tsx
-import { Subheader } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount } from '@ledgerhq/lumen-ui-react';
 
 function CountExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Accounts</Subheader.Title>
-        <Subheader.Count>30</Subheader.Count>
-      </Subheader.Row>
+      <SubheaderRow>
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount>30</SubheaderCount>
+      </SubheaderRow>
     </Subheader>
   );
 }
@@ -124,11 +124,14 @@ function CountExample() {
 
 ### With Hint Tooltip
 
-Add an informational tooltip using the `Subheader.Hint` component:
+Add an informational tooltip using the `SubheaderHint` component:
 
 ```tsx
 import {
   Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderHint,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
@@ -138,9 +141,9 @@ import { Information } from '@ledgerhq/lumen-ui-react/symbols';
 function HintExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-        <Subheader.Hint>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderHint>
           <Tooltip>
             <TooltipTrigger asChild>
               <Information
@@ -153,8 +156,8 @@ function HintExample() {
               This is additional information about the section
             </TooltipContent>
           </Tooltip>
-        </Subheader.Hint>
-      </Subheader.Row>
+        </SubheaderHint>
+      </SubheaderRow>
     </Subheader>
   );
 }
@@ -165,18 +168,18 @@ function HintExample() {
 Add descriptive text below the title row:
 
 ```tsx
-import { Subheader } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderDescription } from '@ledgerhq/lumen-ui-react';
 
 function DescriptionExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-      </Subheader.Row>
-      <Subheader.Description>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+      </SubheaderRow>
+      <SubheaderDescription>
         This is a detailed description that provides additional context about
         this section.
-      </Subheader.Description>
+      </SubheaderDescription>
     </Subheader>
   );
 }
@@ -187,14 +190,14 @@ function DescriptionExample() {
 Include an action element in the row (aligned to the right):
 
 ```tsx
-import { Subheader, Link } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderAction, Link } from '@ledgerhq/lumen-ui-react';
 
 function ActionInRowExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-        <Subheader.Action>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderAction>
           <Link
             href='https://ledger.com'
             appearance='accent'
@@ -203,8 +206,8 @@ function ActionInRowExample() {
           >
             View More
           </Link>
-        </Subheader.Action>
-      </Subheader.Row>
+        </SubheaderAction>
+      </SubheaderRow>
     </Subheader>
   );
 }
@@ -215,18 +218,18 @@ function ActionInRowExample() {
 Place the action below the description for a different layout:
 
 ```tsx
-import { Subheader, Link } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderDescription, SubheaderAction, Link } from '@ledgerhq/lumen-ui-react';
 
 function ActionOutsideRowExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-      </Subheader.Row>
-      <Subheader.Description>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+      </SubheaderRow>
+      <SubheaderDescription>
         Description text that explains the section.
-      </Subheader.Description>
-      <Subheader.Action>
+      </SubheaderDescription>
+      <SubheaderAction>
         <Link
           href='https://ledger.com'
           appearance='accent'
@@ -235,7 +238,7 @@ function ActionOutsideRowExample() {
         >
           View More
         </Link>
-      </Subheader.Action>
+      </SubheaderAction>
     </Subheader>
   );
 }
@@ -248,6 +251,12 @@ Combine all components for a fully featured subheader:
 ```tsx
 import {
   Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderHint,
+  SubheaderDescription,
+  SubheaderAction,
   Link,
   Tooltip,
   TooltipTrigger,
@@ -258,10 +267,10 @@ import { Information } from '@ledgerhq/lumen-ui-react/symbols';
 function FullExample() {
   return (
     <Subheader>
-      <Subheader.Row>
-        <Subheader.Title>Section Title</Subheader.Title>
-        <Subheader.Count>42</Subheader.Count>
-        <Subheader.Hint>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderCount>42</SubheaderCount>
+        <SubheaderHint>
           <Tooltip>
             <TooltipTrigger asChild>
               <Information
@@ -272,8 +281,8 @@ function FullExample() {
             </TooltipTrigger>
             <TooltipContent>Additional info</TooltipContent>
           </Tooltip>
-        </Subheader.Hint>
-        <Subheader.Action>
+        </SubheaderHint>
+        <SubheaderAction>
           <Link
             href='https://example.com'
             appearance='accent'
@@ -282,11 +291,11 @@ function FullExample() {
           >
             Action
           </Link>
-        </Subheader.Action>
-      </Subheader.Row>
-      <Subheader.Description>
+        </SubheaderAction>
+      </SubheaderRow>
+      <SubheaderDescription>
         This is a detailed description of the section.
-      </Subheader.Description>
+      </SubheaderDescription>
     </Subheader>
   );
 }
@@ -298,9 +307,9 @@ Subheaders automatically adjust to their parent container's width. No additional
 
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Section Title</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Section Title</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -311,9 +320,9 @@ To control width, use container elements:
   /* Full viewport width */
 }
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Full Width</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Full Width</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>;
 
 {
@@ -321,9 +330,9 @@ To control width, use container elements:
 }
 <div className='max-w-4xl mx-auto'>
   <Subheader>
-    <Subheader.Row>
-      <Subheader.Title>Constrained</Subheader.Title>
-    </Subheader.Row>
+    <SubheaderRow>
+      <SubheaderTitle>Constrained</SubheaderTitle>
+    </SubheaderRow>
   </Subheader>
 </div>;
 
@@ -332,9 +341,9 @@ To control width, use container elements:
 }
 <div className='w-full lg:max-w-2xl'>
   <Subheader>
-    <Subheader.Row>
-      <Subheader.Title>Responsive</Subheader.Title>
-    </Subheader.Row>
+    <SubheaderRow>
+      <SubheaderTitle>Responsive</SubheaderTitle>
+    </SubheaderRow>
   </Subheader>
 </div>;
 ```
@@ -345,9 +354,9 @@ While the component comes with predefined styles, you can extend them using Tail
 
 ```tsx
 <Subheader className='mb-4'>
-  <Subheader.Row>
-    <Subheader.Title>Styled Subheader</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Styled Subheader</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -364,9 +373,9 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Title</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -379,7 +388,7 @@ The following guidelines ensure consistent usage of the Subheader component and 
 {/* prettier-ignore */}
 ```tsx
 <Subheader>
-  <Subheader.Title>Title</Subheader.Title>
+  <SubheaderTitle>Title</SubheaderTitle>
 </Subheader>
 ```
 
@@ -395,10 +404,10 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Accounts</Subheader.Title>
-    <Subheader.Count>30</Subheader.Count>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Accounts</SubheaderTitle>
+    <SubheaderCount>30</SubheaderCount>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -411,9 +420,9 @@ The following guidelines ensure consistent usage of the Subheader component and 
 {/* prettier-ignore */}
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Accounts (30)</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Accounts (30)</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -429,12 +438,12 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Title</Subheader.Title>
-  </Subheader.Row>
-  <Subheader.Description>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
+  <SubheaderDescription>
     Additional context here
-  </Subheader.Description>
+  </SubheaderDescription>
 </Subheader>
 ```
 
@@ -447,12 +456,12 @@ The following guidelines ensure consistent usage of the Subheader component and 
 {/* prettier-ignore */}
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Title</Subheader.Title>
-    <Subheader.Description>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+    <SubheaderDescription>
       Wrong placement
-    </Subheader.Description>
-  </Subheader.Row>
+    </SubheaderDescription>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -468,12 +477,12 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Title</Subheader.Title>
-    <Subheader.Action>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+    <SubheaderAction>
       <Link href='#'>Link</Link>
-    </Subheader.Action>
-  </Subheader.Row>
+    </SubheaderAction>
+  </SubheaderRow>
 </Subheader>
 ```
 
@@ -486,9 +495,9 @@ The following guidelines ensure consistent usage of the Subheader component and 
 {/* prettier-ignore */}
 ```tsx
 <Subheader>
-  <Subheader.Row>
-    <Subheader.Title>Title</Subheader.Title>
-  </Subheader.Row>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
   <div>Random child</div>
 </Subheader>
 ```

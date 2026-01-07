@@ -13,14 +13,14 @@ import {
 /**
  * Title component for the Subheader. Required element that displays the main heading.
  */
-const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
-  return <h2 className='min-w-0 truncate heading-4-semi-bold'>{children}</h2>;
+export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
+  return <h2 className='heading-4-semi-bold min-w-0 truncate'>{children}</h2>;
 };
 
 /**
  * Row component for the Subheader. Layout component to align title, count, hint, and action.
  */
-const SubheaderRow = ({ children }: SubheaderRowProps) => {
+export const SubheaderRow = ({ children }: SubheaderRowProps) => {
   const childrenArray = React.Children.toArray(children);
   const titleSlot = childrenArray.find(
     (child) => React.isValidElement(child) && child.type === SubheaderTitle,
@@ -54,9 +54,9 @@ const SubheaderRow = ({ children }: SubheaderRowProps) => {
 /**
  * Count component for the Subheader. Displays a number in parentheses.
  */
-const SubheaderCount = ({ children }: SubheaderCountProps) => {
+export const SubheaderCount = ({ children }: SubheaderCountProps) => {
   return (
-    <span className='shrink-0 text-muted heading-4-semi-bold'>
+    <span className='text-muted heading-4-semi-bold shrink-0'>
       ({children})
     </span>
   );
@@ -65,21 +65,23 @@ const SubheaderCount = ({ children }: SubheaderCountProps) => {
 /**
  * Hint component for the Subheader. Used to display additional information, like tooltips.
  */
-const SubheaderHint = ({ children }: SubheaderHintProps) => {
+export const SubheaderHint = ({ children }: SubheaderHintProps) => {
   return <div className='flex shrink-0 items-center'>{children}</div>;
 };
 
 /**
  * Description component for the Subheader. Displays descriptive text below the title row.
  */
-const SubheaderDescription = ({ children }: SubheaderDescriptionProps) => {
+export const SubheaderDescription = ({
+  children,
+}: SubheaderDescriptionProps) => {
   return <p className='text-muted body-3'>{children}</p>;
 };
 
 /**
  * Action component for the Subheader. Used to display an action, like a link or button.
  */
-const SubheaderAction = ({ children }: SubheaderActionProps) => {
+export const SubheaderAction = ({ children }: SubheaderActionProps) => {
   return <div className='flex shrink-0 items-center'>{children}</div>;
 };
 
@@ -93,21 +95,21 @@ const SubheaderAction = ({ children }: SubheaderActionProps) => {
  * Do not use it to modify the subheader's core appearance (colors, padding, etc).
  *
  * @example
- * import { Subheader } from '@ledgerhq/lumen-ui-react';
+ * import { Subheader, SubheaderRow, SubheaderTitle } from '@ledgerhq/lumen-ui-react';
  *
  * // Basic subheader with title only
  * <Subheader>
- *   <Subheader.Row>
- *     <Subheader.Title>Section Title</Subheader.Title>
- *   </Subheader.Row>
+ *   <SubheaderRow>
+ *     <SubheaderTitle>Section Title</SubheaderTitle>
+ *   </SubheaderRow>
  * </Subheader>
  *
  * // Complete subheader with all features
  * <Subheader>
- *   <Subheader.Row>
- *     <Subheader.Title>Section Title</Subheader.Title>
- *     <Subheader.Count>30</Subheader.Count>
- *     <Subheader.Hint>
+ *   <SubheaderRow>
+ *     <SubheaderTitle>Section Title</SubheaderTitle>
+ *     <SubheaderCount>30</SubheaderCount>
+ *     <SubheaderHint>
  *       <Tooltip>
  *         <TooltipTrigger asChild>
  *           <Information
@@ -118,14 +120,14 @@ const SubheaderAction = ({ children }: SubheaderActionProps) => {
  *         </TooltipTrigger>
  *         <TooltipContent>Additional information</TooltipContent>
  *       </Tooltip>
- *     </Subheader.Hint>
- *   </Subheader.Row>
- *   <Subheader.Description>
+ *     </SubheaderHint>
+ *   </SubheaderRow>
+ *   <SubheaderDescription>
  *     This is a detailed description of the section.
- *   </Subheader.Description>
- *   <Subheader.Action>
+ *   </SubheaderDescription>
+ *   <SubheaderAction>
  *     <Link href="/action" appearance="accent" size="sm">Action</Link>
- *   </Subheader.Action>
+ *   </SubheaderAction>
  * </Subheader>
  */
 export const Subheader = ({
@@ -157,10 +159,3 @@ export const Subheader = ({
     </div>
   );
 };
-
-Subheader.Row = SubheaderRow;
-Subheader.Title = SubheaderTitle;
-Subheader.Count = SubheaderCount;
-Subheader.Hint = SubheaderHint;
-Subheader.Description = SubheaderDescription;
-Subheader.Action = SubheaderAction;
