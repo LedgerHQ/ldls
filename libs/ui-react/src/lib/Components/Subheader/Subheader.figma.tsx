@@ -1,5 +1,5 @@
 import React from 'react';
-import { Subheader, SubheaderProps } from './Subheader';
+import { Subheader } from './Subheader';
 import { Link } from '../Link/Link';
 
 import figma from '@figma/code-connect';
@@ -24,7 +24,13 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/communication-subheader--base',
       },
     ],
-    example: (props) => <Subheader title={props.title} />,
+    example: (props) => (
+      <Subheader>
+        <Subheader.Row>
+          <Subheader.Title>{props.title}</Subheader.Title>
+        </Subheader.Row>
+      </Subheader>
+    ),
   },
 );
 
@@ -38,13 +44,16 @@ figma.connect(
     props: {
       title: figma.string('title'),
     },
-    example: (props: SubheaderProps) => (
-      <Subheader title={props.title}>
-        <Subheader.Action>
-          <Link href='#' appearance='accent' size='sm'>
-            Action
-          </Link>
-        </Subheader.Action>
+    example: (props) => (
+      <Subheader>
+        <Subheader.Row>
+          <Subheader.Title>{props.title}</Subheader.Title>
+          <Subheader.Action>
+            <Link href='#' appearance='accent' size='sm'>
+              Action
+            </Link>
+          </Subheader.Action>
+        </Subheader.Row>
       </Subheader>
     ),
   },
