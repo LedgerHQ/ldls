@@ -23,7 +23,7 @@ const [TileProvider, useTileContext] =
 const tileVariants = cva(
   [
     'group relative flex flex-col items-center text-base transition-colors',
-    'focus-visible:outline-focus rounded-md focus-visible:outline-2',
+    'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
     'gap-8 px-8 py-12',
   ],
   {
@@ -191,7 +191,7 @@ export const Tile = ({
           onClick={disabled ? undefined : onClick}
           disabled={disabled}
           data-disabled={disabled || undefined}
-          className='focus-visible:outline-focus flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2'
+          className='flex w-full flex-col items-center gap-8 rounded-md focus-visible:outline-2 focus-visible:outline-focus'
         >
           {remainingChildren}
         </button>
@@ -199,6 +199,7 @@ export const Tile = ({
     </TileProvider>
   );
 };
+Tile.displayName = 'Tile';
 
 /**
  * A spot adapter for use within Tile. Automatically inherits the disabled state from the parent Tile.
@@ -211,6 +212,7 @@ export const TileSpot = (props: TileSpotProps) => {
   });
   return <Spot {...props} size={48} disabled={disabled} />;
 };
+TileSpot.displayName = 'TileSpot';
 
 /**
  * A container for grouping TileTitle and TileDescription with consistent spacing.
@@ -233,6 +235,7 @@ export const TileContent = ({
     </div>
   );
 };
+TileContent.displayName = 'TileContent';
 
 /**
  * The primary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
@@ -250,7 +253,7 @@ export const TileTitle = ({
   return (
     <div
       className={cn(
-        'body-2-semi-bold w-full truncate',
+        'w-full truncate body-2-semi-bold',
         disabled && 'text-disabled',
         className,
       )}
@@ -260,6 +263,7 @@ export const TileTitle = ({
     </div>
   );
 };
+TileTitle.displayName = 'TileTitle';
 
 /**
  * The secondary text label for a Tile. Automatically inherits the disabled state from the parent Tile.
@@ -277,7 +281,7 @@ export const TileDescription = ({
   return (
     <div
       className={cn(
-        'body-3 w-full truncate',
+        'w-full truncate body-3',
         disabled ? 'text-disabled' : 'text-muted',
         className,
       )}
@@ -287,6 +291,7 @@ export const TileDescription = ({
     </div>
   );
 };
+TileDescription.displayName = 'TileDescription';
 
 /**
  * A self-contained secondary action button for a Tile. Renders an InteractiveIcon that appears
@@ -347,3 +352,4 @@ export const TileSecondaryAction = ({
     </InteractiveIcon>
   );
 };
+TileSecondaryAction.displayName = 'TileSecondaryAction';

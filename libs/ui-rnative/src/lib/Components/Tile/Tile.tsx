@@ -139,7 +139,6 @@ export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
     );
   },
 );
-
 Tile.displayName = 'Tile';
 
 const TilePressableContent = ({
@@ -186,6 +185,7 @@ const useContentStyles = () => {
     [],
   );
 };
+TileSpot.displayName = 'TileSpot';
 
 /**
  * A container for grouping TileTitle and TileDescription with consistent spacing.
@@ -211,6 +211,7 @@ export const TileContent = ({ children, lx, style }: TileContentProps) => {
     </Box>
   );
 };
+TileContent.displayName = 'TileContent';
 
 const useTitleStyles = ({ disabled }: { disabled: boolean }) => {
   return useStyleSheet(
@@ -268,6 +269,7 @@ export const TileTitle = ({ children, lx, style }: TileTitleProps) => {
     </Box>
   );
 };
+TileTitle.displayName = 'TileTitle';
 
 const useDescriptionStyles = ({ disabled }: { disabled: boolean }) => {
   return useStyleSheet(
@@ -337,3 +339,4 @@ export const TileDescription = ({
     </Box>
   );
 };
+TileDescription.displayName = 'TileDescription';
