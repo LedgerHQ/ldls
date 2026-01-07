@@ -55,9 +55,9 @@ export const ListItem = React.forwardRef<HTMLButtonElement, ListItemProps>(
           type='button'
           disabled={disabled}
           className={cn(
-            'bg-base-transparent flex h-64 w-full cursor-pointer items-center gap-16 rounded-md px-8 py-12 text-base transition-colors',
-            'hover:bg-base-transparent-hover focus-visible:outline-focus active:bg-base-transparent-pressed focus-visible:outline-2',
-            'disabled:bg-base-transparent disabled:text-disabled disabled:cursor-default',
+            'flex h-64 w-full cursor-pointer items-center gap-16 rounded-md bg-base-transparent px-8 py-12 text-base transition-colors',
+            'hover:bg-base-transparent-hover focus-visible:outline-2 focus-visible:outline-focus active:bg-base-transparent-pressed',
+            'disabled:cursor-default disabled:bg-base-transparent disabled:text-disabled',
             className,
           )}
           {...buttonProps}
@@ -126,7 +126,7 @@ export const ListItemTitle = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'body-2-semi-bold w-full truncate',
+        'w-full truncate body-2-semi-bold',
         isInTrailing ? 'justify-end text-end' : 'justify-start text-start',
         className,
       )}
@@ -159,7 +159,7 @@ export const ListItemDescription = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'text-muted body-3 w-full items-center truncate',
+        'w-full items-center truncate text-muted body-3',
         isInTrailing ? 'justify-end text-end' : 'justify-start text-start',
         disabled && 'text-disabled',
         className,

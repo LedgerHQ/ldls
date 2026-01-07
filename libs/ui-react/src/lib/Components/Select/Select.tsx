@@ -25,17 +25,17 @@ function SelectGroup({ ...props }: SelectGroupProps) {
 
 const triggerStyles = cn(
   'group relative flex h-48 w-full items-center justify-between gap-8',
-  'bg-muted rounded-sm px-16',
-  'body-2 text-base',
+  'rounded-sm bg-muted px-16',
+  'text-base body-2',
   'hover:bg-muted-hover',
-  'focus:ring-focus transition-colors duration-200 focus:outline-none focus:ring-2',
-  'disabled:text-disabled disabled:cursor-not-allowed',
+  'transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-focus',
+  'disabled:cursor-not-allowed disabled:text-disabled',
 );
 
 const labelStyles = cn(
-  'text-muted pointer-events-none absolute left-16 origin-left transition-all duration-300',
-  'body-4 top-10 -translate-y-4',
-  'group-data-[placeholder]:body-2 group-data-[placeholder]:top-14 group-data-[placeholder]:translate-y-0',
+  'pointer-events-none absolute left-16 origin-left text-muted transition-all duration-300',
+  'top-10 -translate-y-4 body-4',
+  'group-data-[placeholder]:top-14 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:body-2',
   'group-data-[:disabled]:text-disabled disabled:text-disabled group-data-[disabled]:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'max-w-[calc(100%-var(--size-56))] truncate',
 );
@@ -66,7 +66,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='text-muted group-data-[disabled]:text-disabled shrink-0'
+        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -75,8 +75,8 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'z-select relative max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
-    'bg-muted rounded-sm',
+    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'rounded-sm bg-muted',
     'shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
     'data-[side=top]:animate-slide-in-from-bottom-8',
@@ -139,20 +139,20 @@ const SelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     data-slot='select-label'
-    className={cn('text-muted body-3-semi-bold mb-4 px-8 pb-0 pt-8', className)}
+    className={cn('mb-4 px-8 pb-0 pt-8 text-muted body-3-semi-bold', className)}
     {...props}
   />
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const itemStyles = cn(
-  'bg-base-transparent relative flex w-full cursor-default select-none items-center',
+  'relative flex w-full cursor-default select-none items-center bg-base-transparent',
   'rounded-sm p-8',
-  'body-2 text-base',
+  'text-base body-2',
   'outline-none',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:text-disabled data-[disabled]:cursor-not-allowed',
+  'data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
 );
 
 const SelectItem = React.forwardRef<
@@ -207,7 +207,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpButton
       data-slot='select-scroll-up-button'
       className={cn(
-        'text-muted flex cursor-default items-center justify-center py-1',
+        'flex cursor-default items-center justify-center py-1 text-muted',
         className,
       )}
       {...props}
@@ -225,7 +225,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownButton
       data-slot='select-scroll-down-button'
       className={cn(
-        'text-muted flex cursor-default items-center justify-center py-1',
+        'flex cursor-default items-center justify-center py-1 text-muted',
         className,
       )}
       {...props}

@@ -1,7 +1,13 @@
 import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as TileStories from './Tile.stories';
 import { Tile } from './Tile';
-import { CustomTabs, Tab } from '../../../../.storybook/components';
+import {
+  CustomTabs,
+  Tab,
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/components';
 import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
 import { Box } from '../Utility';
 
@@ -14,42 +20,47 @@ import { Box } from '../Utility';
 
 ## Introduction
 
-Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They feature a vertical layout with a required spot icon and title, as well as an optional description, tag, and a secondary action button visible on hover.
+Tile components are compact, card-like interactive elements designed for horizontal lists, carousels, or grids. They use a flexible composite pattern that allows you to compose tiles with spots, text content, tags, and custom elements in a vertical layout.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328).
 
 ## Anatomy
 
-<Canvas of={TileStories.Base} />
-
-- **Leading Content**: Visual icon or element at the top
-- **Title**: The main label of the item (required)
-- **Description (optional)**: Provides additional context
-- **Trailing Content (optional)**: Trailing custom content at the bottom of the tile
-- **Secondary Action (optional)**: Action button in the top right corner, visible on hover
+- **TileSpot**: Visual icon or element at the top
+- **TileContent**: Container for title and description
+  - **TileTitle**: The main label of the item (required)
+  - **TileDescription (optional)**: Provides additional context
+- **Custom Content (optional)**: Any ReactNode like Tag, View, etc.
 
 ## Properties
-
-### Overview
 
 <Canvas of={TileStories.Base} />
 <Controls of={TileStories.Base} />
 
-### Spot Variants
+### Appearance & States
 
-Tile components support various spot icons to categorize or visualize the content, including coin icons.
+Two appearance variants are available with multiple interactive states:
 
-<Canvas of={TileStories.LeadingContentVariantsShowcase} />
+**Appearances:**
+- **no-background** (default): Transparent background with pressed states
+- **card**: Surface background color with pressed states
 
-### Trailing Content Variants
+**States:**
+- **Default**: Base state with no interaction
+- **Pressed**: Darker background when pressed
+- **Disabled**: Non-interactive state with disabled styles
 
-Optional trailing content can be added at the bottom of the tile.
+<Canvas of={TileStories.AppearanceShowcase} />
 
-<Canvas of={TileStories.WithTrailingContent} />
+### Variants
 
-### Secondary Action
+Tile components support various configurations including different spot icons, with/without description, and with/without trailing content (tags).
 
-The secondary action is optional and can be omitted.
+<Canvas of={TileStories.VariantsShowcase} />
+
+### Secondary Action (Long Press)
+
+Use `onLongPress` for secondary actions on mobile devices. Try long pressing the tile below to see it in action.
 
 <Canvas of={TileStories.WithSecondaryAction} />
 
@@ -75,42 +86,124 @@ Install and set up the library with our [Setup Guide →](?path=/docs/getting-st
 ## Basic Usage
 
 ```tsx
-import { Tile, Spot, Box } from '@ledgerhq/lumen-ui-rnative';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from '@ledgerhq/lumen-ui-rnative';
 import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 
 function MyComponent() {
   return (
     <Tile
       lx={{ width: 's128' }}
-      title='Settings'
-      description='BTC'
-      leadingContent={<Spot appearance='icon' icon={Settings} />}
-      trailingContent={<Tag label='Active' appearance='success' size='sm' />}
       onPress={() => console.log('Primary action')}
       onLongPress={() => console.log('Secondary action')}
-    />
+    >
+      <TileSpot appearance='icon' icon={Settings} />
+      <TileContent>
+        <TileTitle>Settings</TileTitle>
+        <TileDescription>Manage preferences</TileDescription>
+      </TileContent>
+    </Tile>
   );
 }
+```
+
+## Advanced Patterns
+
+### With Custom Content (Tags, etc.)
+
+```tsx
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+  Tag,
+} from '@ledgerhq/lumen-ui-rnative';
+import { Bitcoin } from '@ledgerhq/lumen-ui-rnative/symbols';
+
+<Tile appearance='card'>
+  <TileSpot appearance='icon' icon={Bitcoin} />
+  <TileContent>
+    <TileTitle>Bitcoin</TileTitle>
+    <TileDescription>BTC</TileDescription>
+  </TileContent>
+  <Tag label='Active' appearance='success' />
+</Tile>;
+```
+
+### Disabled State
+
+```tsx
+<Tile disabled>
+  <TileSpot appearance='icon' icon={Settings} />
+  <TileContent>
+    <TileTitle>Settings</TileTitle>
+    <TileDescription>Unavailable</TileDescription>
+  </TileContent>
+</Tile>
 ```
 
 ### With Coin Icon
 
 ```tsx
-import { Tile, Spot } from '@ledgerhq/lumen-ui-rnative';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from '@ledgerhq/lumen-ui-rnative';
 
-function MyComponent() {
-  return (
+<Tile onPress={() => console.log('Clicked!')}>
+  <TileSpot appearance='coin' icon='btc' />
+  <TileContent>
+    <TileTitle>Bitcoin</TileTitle>
+    <TileDescription>BTC</TileDescription>
+  </TileContent>
+</Tile>;
+```
+
+### Horizontal List
+
+```tsx
+import { ScrollView } from 'react-native';
+
+<ScrollView horizontal>
+  {items.map((item) => (
+    <Tile key={item.id} lx={{ width: 's128', flexShrink: 0 }}>
+      <TileSpot appearance='icon' icon={item.icon} />
+      <TileContent>
+        <TileTitle>{item.title}</TileTitle>
+        <TileDescription>{item.description}</TileDescription>
+      </TileContent>
+    </Tile>
+  ))}
+</ScrollView>;
+```
+
+### With Secondary Action (Long Press)
+
+```tsx
     <Tile
-      title='Bitcoin'
-      description='BTC'
-      leadingContent={<Spot appearance='coin' icon='btc' />}
-      onPress={() => console.log('Clicked!')}
-    />
-  );
-}
+  onPress={() => console.log('Primary action')}
+  onLongPress={() => console.log('Secondary action - show menu')}
+>
+  <TileSpot appearance='icon' icon={Settings} />
+  <TileContent>
+    <TileTitle>Settings</TileTitle>
+    <TileDescription>Long press for options</TileDescription>
+  </TileContent>
+</Tile>
 ```
 
 ## Do's and Don'ts
+
 <Box lx={{ flexDirection: 'column', gap: 's24' }}>
   <CommonRulesDoAndDont />
 </Box>

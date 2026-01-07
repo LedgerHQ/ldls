@@ -1,41 +1,33 @@
 import React from 'react';
-import { Tile } from './Tile';
-import { Spot } from '../Spot/Spot';
-import { InteractiveIcon } from '../InteractiveIcon/InteractiveIcon';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+  TileSecondaryAction,
+} from './Tile';
 import { Settings, MoreVertical } from '../../Symbols';
 
 import figma from '@figma/code-connect';
-import { TileProps } from './types';
 
 figma.connect(
   Tile,
   'https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5783-1328',
   {
-    imports: ["import { Tile } from '@ledgerhq/lumen-ui-react'"],
+    imports: [
+      "import { Tile, TileSpot, TileContent, TileTitle, TileDescription, TileSecondaryAction } from '@ledgerhq/lumen-ui-react'",
+    ],
     props: {
       title: figma.string('title'),
       description: figma.boolean('show-description', {
         true: figma.string('description'),
         false: undefined,
       }),
-      leadingContent: <Spot appearance='icon' icon={Settings} />,
-      trailingContent: figma.boolean('show-tag', {
-        true: figma.instance('tag'),
-        false: undefined,
-      }),
-      secondaryAction: figma.enum('state', {
-        hovered: figma.boolean('show-secondary-action', {
-          true: (
-            <InteractiveIcon
-              iconType='stroked'
-              aria-label='More actions'
-              onClick={() => console.log('secondary action clicked')}
-            >
-              <MoreVertical />
-            </InteractiveIcon>
-          ),
-          false: undefined,
-        }),
+      showTag: figma.boolean('show-tag'),
+      tag: figma.instance('tag'),
+      showSecondaryAction: figma.enum('state', {
+        hovered: figma.boolean('show-secondary-action'),
       }),
       appearance: figma.enum('appearance', {
         'no-background': 'no-background',
@@ -51,17 +43,27 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/docs/components-Tile-overview--docs',
       },
     ],
-    example: (props: TileProps) => (
+    example: (props) => (
       <Tile
-        title={props.title}
-        description={props.description}
-        leadingContent={props.leadingContent}
-        trailingContent={props.trailingContent}
-        secondaryAction={props.secondaryAction}
         appearance={props.appearance}
         disabled={props.disabled}
         onClick={() => console.log('Tile clicked')}
-      />
+      >
+        {props.showSecondaryAction && (
+          <TileSecondaryAction
+            icon={MoreVertical as React.ComponentType<{ size?: number }>}
+            onClick={() => console.log('Secondary action clicked')}
+          />
+        )}
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>{props.title}</TileTitle>
+          {props.description && (
+            <TileDescription>{props.description}</TileDescription>
+          )}
+        </TileContent>
+        {props.showTag && props.tag}
+      </Tile>
     ),
   },
 );

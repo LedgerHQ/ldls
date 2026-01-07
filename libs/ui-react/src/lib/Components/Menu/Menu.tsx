@@ -19,7 +19,7 @@ import type {
 } from './types';
 
 const contentStyles = cn(
-  'z-menu min-w-160 bg-muted overflow-hidden rounded-sm p-8',
+  'z-menu min-w-160 overflow-hidden rounded-sm bg-muted p-8',
   'shadow-sm',
   'data-[state=open]:animate-fade-in',
   'data-[state=closed]:animate-fade-out',
@@ -28,14 +28,14 @@ const contentStyles = cn(
 const itemStyles = cn(
   'relative flex cursor-default select-none items-center gap-12',
   'h-44 rounded-sm px-8 outline-none',
-  'body-2-semi-bold text-base',
+  'text-base body-2-semi-bold',
   'transition-colors',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:text-disabled data-[disabled]:pointer-events-none',
+  'data-[disabled]:pointer-events-none data-[disabled]:text-disabled',
 );
 
-const labelStyles = cn('text-muted body-3-semi-bold px-8 py-4');
+const labelStyles = cn('px-8 py-4 text-muted body-3-semi-bold');
 
 const subTriggerStyles = cn(
   itemStyles,
@@ -91,7 +91,7 @@ const MenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight size={20} className='text-muted ml-auto' />
+    <ChevronRight size={20} className='ml-auto text-muted' />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 MenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;

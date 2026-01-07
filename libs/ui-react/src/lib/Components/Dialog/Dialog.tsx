@@ -19,8 +19,8 @@ const DialogContext = React.createContext<{ height: DialogHeight }>({
 
 const dialogContentVariants = cva(
   [
-    'flex w-400 max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl bg-canvas-sheet pb-24',
-    'fixed left-[50%] top-[50%] z-dialog-content translate-x-[-50%] translate-y-[-50%]',
+    'w-400 bg-canvas-sheet flex max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl pb-24',
+    'z-dialog-content fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
     'data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
   ],
   {
@@ -140,7 +140,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         data-slot='dialog-overlay'
         className={cn(
           className,
-          'fixed inset-0 z-dialog-overlay bg-canvas-overlay backdrop-blur-sm data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
+          'z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 backdrop-blur-sm',
         )}
         {...props}
       />
@@ -217,13 +217,14 @@ export function DialogContent({
  * </DialogContent>
  */
 export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, scrollbarWidth = 'none', style, ...props }, ref) => {
     return (
       <div
         ref={ref}
         data-slot='dialog-body'
+        style={{ scrollbarWidth, ...style }}
         className={cn(
-          '-mb-24 flex min-h-0 grow basis-0 flex-col overflow-y-auto px-24 pb-24',
+          '-mb-24 flex min-h-0 grow flex-col overflow-y-auto px-24 pb-24',
           className,
         )}
         {...props}
