@@ -1,3 +1,4 @@
+/** @type {import('expo/metro-config').MetroConfig} */
 const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 
@@ -21,11 +22,18 @@ config.resolver.sourceExts = [
 ];
 
 // Monorepo configuration for Nx workspace
-config.watchFolders = [workspaceRoot];
+config.watchFolders = [...(config.watchFolders || []), workspaceRoot];
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
   path.resolve(workspaceRoot, 'node_modules'),
 ];
+
+config.transformer.getTransformOptions = async () => ({
+  transform: {
+    experimentalImportSupport: false,
+    inlineRequires: true,
+  },
+});
 
 // Enable package exports resolution
 config.resolver.unstable_enablePackageExports = true;
