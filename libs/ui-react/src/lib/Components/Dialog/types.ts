@@ -136,6 +136,12 @@ export type DialogBodyProps = {
    * Additional custom CSS classes to apply.
    */
   className?: string;
+  /**
+   * The width of the scrollbar
+   * 'none' will keep the same DialogBody width and hide the scrollbar.
+   * @default 'none'
+   */
+  scrollbarWidth?: 'none' | 'auto';
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export type DialogFooterProps = {
