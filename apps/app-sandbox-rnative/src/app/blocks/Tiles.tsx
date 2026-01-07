@@ -1,5 +1,6 @@
 import {
   Box,
+  Tag,
   Tile,
   TileContent,
   TileDescription,
@@ -11,13 +12,30 @@ import { Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
 export const Tiles = () => {
   return (
     <Box lx={{ width: 'full', alignItems: 'center', gap: 's8' }}>
-      <Tile>
-        <TileSpot appearance='icon' icon={Settings} />
-        <TileContent>
-          <TileTitle>Tile</TileTitle>
-          <TileDescription>Tile description</TileDescription>
-        </TileContent>
-      </Tile>
+      <Box lx={{ flexDirection: 'row', gap: 's8' }}>
+        <Tile lx={{ width: 's112' }}>
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Tile 1</TileTitle>
+            <TileDescription>Tile description</TileDescription>
+          </TileContent>
+        </Tile>
+        <Tile lx={{ width: 's112' }}>
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Tile 2</TileTitle>
+            <TileDescription>Tile description</TileDescription>
+          </TileContent>
+        </Tile>
+        <Tile lx={{ width: 's112' }}>
+          <TileSpot appearance='icon' icon={Settings} />
+          <TileContent>
+            <TileTitle>Tile 3</TileTitle>
+            <TileDescription>Tile description</TileDescription>
+          </TileContent>
+          <Tag label='Tag' appearance='accent' />
+        </Tile>
+      </Box>
 
       <Tile>
         <TileSpot appearance='icon' icon={Settings} />

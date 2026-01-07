@@ -169,16 +169,21 @@ ListItemLeading.displayName = 'ListItemLeading';
  */
 export const ListItemContent = React.forwardRef<View, ListItemContentProps>(
   ({ children, lx = {}, style, ...viewProps }, ref) => {
+    const { isInTrailing } = useListItemTrailingContext({
+      consumerName: 'ListItemContent',
+      contextRequired: false,
+    });
+
     const styles = useStyleSheet(
       (t) => ({
         content: {
-          flex: 1,
+          flex: isInTrailing ? 0 : 1,
           minWidth: 0,
           flexDirection: 'column',
           gap: t.spacings.s4,
         },
       }),
-      [],
+      [isInTrailing],
     );
 
     return (
@@ -419,7 +424,9 @@ export const ListItemIcon = ({
       <Icon
         size={24}
         style={{
-          color: disabled ? theme.colors.text.disabled : (color ?? undefined),
+          color: disabled
+            ? theme.colors.text.disabled
+            : (color ?? theme.colors.text.base),
         }}
       />
     </Box>

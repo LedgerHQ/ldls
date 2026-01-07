@@ -119,7 +119,7 @@ export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
         <Pressable
           ref={ref}
           lx={lx}
-          style={style}
+          style={StyleSheet.flatten([{ width: '100%' }, style])}
           disabled={disabled}
           accessibilityRole='button'
           accessibilityState={{ disabled }}
