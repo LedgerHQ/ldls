@@ -309,7 +309,7 @@ export const WithFullFeatures: Story = {
           <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
           <SubheaderCount value={42} />
           <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => console.log('Action')}>
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
@@ -381,7 +381,7 @@ export const ContentVariations: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>With Action</SubheaderTitle>
-          <SubheaderAction onPress={() => {}}>
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
@@ -393,7 +393,7 @@ export const ContentVariations: Story = {
           <SubheaderTitle>Complete</SubheaderTitle>
           <SubheaderCount value={99} />
           <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => {}}>
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
@@ -414,7 +414,7 @@ export const ResponsiveLayout: Story = {
         <SubheaderRow>
           <SubheaderTitle>Title with Hint</SubheaderTitle>
           <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => {}}>
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
@@ -428,7 +428,7 @@ export const ResponsiveLayout: Story = {
           </SubheaderTitle>
           <SubheaderCount value={123} />
           <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => {}}>
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>

@@ -80,7 +80,7 @@ export const SubheaderAction = ({
   return (
     <button
       onClick={onPress}
-      className={cn('text-accent body-2 ml-auto shrink-0 pl-8', className)}
+      className={cn('text-interactive body-2 ml-auto shrink-0 pl-8', className)}
       {...props}
     >
       {children}

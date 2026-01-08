@@ -257,7 +257,7 @@ export const ResponsiveLayout: Story = {
         <div className='text-muted body-4-semi-bold mb-12'>
           Container: 300px wide
         </div>
-        <div className='w-300'>
+        <div className='w-[300px]'>
           <SectionHeader>
             <SectionHeaderRow>
               <SectionHeaderTitle>
@@ -282,7 +282,7 @@ export const ResponsiveLayout: Story = {
         <div className='text-muted body-4-semi-bold mb-12'>
           Container: 600px wide
         </div>
-        <div className='w-600'>
+        <div className='w-[600px]'>
           <SectionHeader>
             <SectionHeaderRow>
               <SectionHeaderTitle>

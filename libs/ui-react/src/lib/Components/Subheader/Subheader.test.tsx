@@ -51,7 +51,10 @@ describe('Subheader', () => {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderCount value={150} format={(n) => (n > 99 ? '99+' : `${n}`)} />
+          <SubheaderCount
+            value={150}
+            format={(n) => (n > 99 ? '99+' : `${n}`)}
+          />
         </SubheaderRow>
       </Subheader>,
     );
