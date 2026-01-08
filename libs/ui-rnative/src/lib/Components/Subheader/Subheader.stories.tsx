@@ -15,7 +15,9 @@ import {
 } from './Subheader';
 
 const Container = ({ children }: { children: React.ReactNode }) => (
-  <View style={{ padding: 8, backgroundColor: '#ffffff' }}>{children}</View>
+  <View style={{ padding: 8, backgroundColor: '#ffffff', width: '100%' }}>
+    {children}
+  </View>
 );
 
 const InfoTooltip = (
@@ -54,53 +56,6 @@ export const Base: Story = {
   ),
 };
 
-export const WithoutRow: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderTitle>Simple Title</SubheaderTitle>
-      <SubheaderDescription>
-        You can use Subheader without Row for simpler layouts
-      </SubheaderDescription>
-    </Subheader>
-  ),
-};
-
-export const WithCount: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
-        <SubheaderTitle>Accounts</SubheaderTitle>
-        <SubheaderCount value={30} />
-      </SubheaderRow>
-    </Subheader>
-  ),
-};
-
-export const WithCustomCountFormat: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
-        <SubheaderTitle>Notifications</SubheaderTitle>
-        <SubheaderCount
-          value={150}
-          format={(n) => (n > 99 ? '(99+)' : `(${n})`)}
-        />
-      </SubheaderRow>
-    </Subheader>
-  ),
-};
-
-export const WithHint: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
-        <SubheaderTitle>Subheader with Hint</SubheaderTitle>
-        <SubheaderHint content={InfoTooltip} />
-      </SubheaderRow>
-    </Subheader>
-  ),
-};
-
 export const WithDescription: Story = {
   render: () => (
     <Subheader>
@@ -115,34 +70,7 @@ export const WithDescription: Story = {
   ),
 };
 
-export const WithActionInRow: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
-        <SubheaderTitle>Subheader with Action</SubheaderTitle>
-        <SubheaderAction onPress={() => console.log('Action clicked')}>
-          Manage
-        </SubheaderAction>
-      </SubheaderRow>
-    </Subheader>
-  ),
-};
-
-export const WithInteractiveRow: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow onPress={() => console.log('Row clicked')}>
-        <SubheaderTitle>Clickable Row</SubheaderTitle>
-        <SubheaderCount value={12} />
-      </SubheaderRow>
-      <SubheaderDescription>
-        The entire row is clickable when onPress is provided
-      </SubheaderDescription>
-    </Subheader>
-  ),
-};
-
-export const WithFullFeatures: Story = {
+export const Complete: Story = {
   render: () => (
     <Subheader>
       <SubheaderRow>
@@ -161,72 +89,16 @@ export const WithFullFeatures: Story = {
   ),
 };
 
-export const ContentVariations: Story = {
+export const Interactive: Story = {
   render: () => (
-    <View style={{ gap: 16 }}>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>Title Only</SubheaderTitle>
-        </SubheaderRow>
-      </Subheader>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>With Count</SubheaderTitle>
-          <SubheaderCount value={15} />
-        </SubheaderRow>
-      </Subheader>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>With Hint</SubheaderTitle>
-          <SubheaderHint content={InfoTooltip} />
-        </SubheaderRow>
-      </Subheader>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>With Action</SubheaderTitle>
-          <SubheaderAction onPress={() => console.log('Action')}>
-            Action
-          </SubheaderAction>
-        </SubheaderRow>
-      </Subheader>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>Complete</SubheaderTitle>
-          <SubheaderCount value={99} />
-          <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => console.log('Action')}>
-            Action
-          </SubheaderAction>
-        </SubheaderRow>
-      </Subheader>
-    </View>
-  ),
-};
-
-export const ResponsiveLayout: Story = {
-  render: () => (
-    <View style={{ gap: 16 }}>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>Title with Hint</SubheaderTitle>
-          <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => console.log('Action')}>
-            Action
-          </SubheaderAction>
-        </SubheaderRow>
-      </Subheader>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>
-            Long Title That Should Truncate When Container Is Narrow
-          </SubheaderTitle>
-          <SubheaderCount value={123} />
-          <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => console.log('Action')}>
-            Action
-          </SubheaderAction>
-        </SubheaderRow>
-      </Subheader>
-    </View>
+    <Subheader>
+      <SubheaderRow onPress={() => console.log('Row clicked')}>
+        <SubheaderTitle>Clickable Row</SubheaderTitle>
+        <SubheaderCount value={12} />
+      </SubheaderRow>
+      <SubheaderDescription>
+        The entire row is clickable when onPress is provided
+      </SubheaderDescription>
+    </Subheader>
   ),
 };

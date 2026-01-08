@@ -21,7 +21,6 @@ export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
       title: StyleSheet.flatten([
         t.typographies.heading4SemiBold,
         {
-          flex: 0,
           flexShrink: 1,
           color: t.colors.text.base,
         },
@@ -207,6 +206,7 @@ export const Subheader = ({
   const styles = useStyleSheet(
     (t) => ({
       container: {
+        width: '100%',
         flexDirection: 'column',
         gap: t.spacings.s4,
       },
