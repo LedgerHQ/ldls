@@ -3,9 +3,9 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import {
-  TooltipContentProps,
-  TooltipProps,
-  TooltipTriggerProps,
+    TooltipContentProps,
+    TooltipProps,
+    TooltipTriggerProps,
 } from './types';
 
 const tooltipContentVariants = cva(
@@ -145,7 +145,7 @@ export const TooltipTrigger = ({ ...props }: TooltipTriggerProps) => {
  * // With custom styling for layout
  * <TooltipContent sideOffset={12} className="max-w-xs">
  *   <div className="space-y-2">
- *     <h4 className="heading-1">Tip Title</h4>
+ *     <h4 className="heading-2">Tip Title</h4>
  *     <p>Detailed explanation of the feature.</p>
  *   </div>
  * </TooltipContent>

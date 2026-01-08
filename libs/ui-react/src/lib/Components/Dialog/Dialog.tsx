@@ -170,7 +170,7 @@ DialogOverlay.displayName = 'DialogOverlay';
  * // With custom styling for layout
  * <DialogContent className="max-w-md">
  *   <div className="space-y-4">
- *     <h4 className="heading-4-semi-bold">Dialog Title</h4>
+ *     <h4 className="heading-5-semi-bold">Dialog Title</h4>
  *     <p>Detailed content here.</p>
  *   </div>
  * </DialogContent>

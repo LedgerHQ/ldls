@@ -17,11 +17,11 @@ const TypographySample = ({
 }) => (
   <div>
     <div
-      className={`${className} max-w-fit rounded-lg border border-muted-subtle bg-base p-24 text-base`}
+      className={`${className} border-muted-subtle bg-base max-w-fit rounded-lg border p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
-      <div className='mt-24 bg-muted-pressed p-[0.5px]' />
-      <div className='mb-4 mt-16 text-base body-2'> {title} </div>
+      <div className='bg-muted-pressed mt-24 p-[0.5px]' />
+      <div className='body-2 mb-4 mt-16 text-base'> {title} </div>
       <div className='text-muted body-4'>{className}</div>
     </div>
   </div>
@@ -43,6 +43,8 @@ const TypographyShowcase = () => {
     { className: 'heading-3-semi-bold', title: 'Heading 3 Semi Bold' },
     { className: 'heading-4', title: 'Heading 4' },
     { className: 'heading-4-semi-bold', title: 'Heading 4 Semi Bold' },
+    { className: 'heading-5', title: 'Heading 5' },
+    { className: 'heading-5-semi-bold', title: 'Heading 5 Semi Bold' },
     { className: 'body-1', title: 'Body 1' },
     { className: 'body-1-semi-bold', title: 'Body 1 Semi Bold' },
     { className: 'body-2', title: 'Body 2' },
@@ -69,7 +71,7 @@ export const Typography: Story = {
     <div className='p-24'>
       <SectionHeader
         title='Typography'
-        description='Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `responsive-display-1`, `heading-1`... for the display text.'
+        description='Tailwind classes for controlling the typography of an element. Use `body-1`, `body-2`, `responsive-display-1`, `heading-2`... for the display text.'
       />
       <TypographyShowcase />
     </div>
