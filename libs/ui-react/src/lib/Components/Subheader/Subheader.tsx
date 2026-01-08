@@ -31,14 +31,14 @@ export const SubheaderRow = ({
   return (
     <Component
       className={cn(
-        'flex items-center justify-between gap-8',
+        'flex items-center gap-4',
         onPress && 'cursor-pointer',
         className,
       )}
       onClick={onPress}
       {...props}
     >
-      <div className='flex min-w-0 flex-1 items-center gap-4'>{children}</div>
+      {children}
     </Component>
   );
 };
@@ -68,7 +68,8 @@ export const SubheaderDescription = ({
 };
 
 /**
- * Action component for the Subheader. Displays an interactive button or link.
+ * Action component for the Subheader. Displays an interactive text button.
+ * Automatically positions itself at the end of the row using ml-auto.
  */
 export const SubheaderAction = ({
   children,
@@ -79,7 +80,7 @@ export const SubheaderAction = ({
   return (
     <button
       onClick={onPress}
-      className={cn('flex shrink-0 items-center', className)}
+      className={cn('text-accent body-2 ml-auto shrink-0 pl-8', className)}
       {...props}
     >
       {children}

@@ -240,12 +240,7 @@ export const WithActionInRow: Story = {
         <SubheaderRow>
           <SubheaderTitle>Subheader with Action</SubheaderTitle>
           <SubheaderAction onPress={() => console.log('Action clicked')}>
-            <Link
-              href='https://ledger.com'
-              appearance='accent'
-              size='sm'
-              isExternal
-            >
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Manage
             </Link>
           </SubheaderAction>
@@ -261,7 +256,7 @@ export const WithActionInRow: Story = {
   <SubheaderRow>
     <SubheaderTitle>Subheader with Action</SubheaderTitle>
     <SubheaderAction onPress={handleManage}>
-      <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
+      <Link href="https://ledger.com" appearance="accent" size="sm">
         Manage
       </Link>
     </SubheaderAction>
@@ -315,12 +310,7 @@ export const WithFullFeatures: Story = {
           <SubheaderCount value={42} />
           <SubheaderHint content={InfoTooltip} />
           <SubheaderAction onPress={() => console.log('Action')}>
-            <Link
-              href='https://ledger.com'
-              appearance='accent'
-              size='sm'
-              isExternal
-            >
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
@@ -353,7 +343,7 @@ export const WithFullFeatures: Story = {
       </Tooltip>
     } />
     <SubheaderAction onPress={handleAction}>
-      <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
+      <Link href="https://ledger.com" appearance="accent" size="sm">
         Action
       </Link>
     </SubheaderAction>
@@ -392,7 +382,7 @@ export const ContentVariations: Story = {
         <SubheaderRow>
           <SubheaderTitle>With Action</SubheaderTitle>
           <SubheaderAction onPress={() => {}}>
-            <Link href='#' appearance='accent' size='sm'>
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
@@ -404,7 +394,7 @@ export const ContentVariations: Story = {
           <SubheaderCount value={99} />
           <SubheaderHint content={InfoTooltip} />
           <SubheaderAction onPress={() => {}}>
-            <Link href='#' appearance='accent' size='sm'>
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
@@ -425,7 +415,7 @@ export const ResponsiveLayout: Story = {
           <SubheaderTitle>Title with Hint</SubheaderTitle>
           <SubheaderHint content={InfoTooltip} />
           <SubheaderAction onPress={() => {}}>
-            <Link href='#' appearance='accent' size='sm'>
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
@@ -439,7 +429,7 @@ export const ResponsiveLayout: Story = {
           <SubheaderCount value={123} />
           <SubheaderHint content={InfoTooltip} />
           <SubheaderAction onPress={() => {}}>
-            <Link href='#' appearance='accent' size='sm'>
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
