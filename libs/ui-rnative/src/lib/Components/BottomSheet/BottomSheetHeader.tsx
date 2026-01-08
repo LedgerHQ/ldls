@@ -59,8 +59,8 @@ const useStyles = ({
       ]),
       title: StyleSheet.flatten([
         appearance === 'compact'
-          ? t.typographies.heading4SemiBold
-          : t.typographies.heading2SemiBold,
+          ? t.typographies.heading5SemiBold
+          : t.typographies.heading3SemiBold,
         {
           color: t.colors.text.base,
         },
