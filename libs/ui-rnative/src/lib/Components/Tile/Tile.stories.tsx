@@ -12,6 +12,12 @@ import {
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
+  subcomponents: {
+    TileSpot,
+    TileContent,
+    TileTitle,
+    TileDescription,
+  },
   title: 'Containment/Tile',
   parameters: {
     docs: {
