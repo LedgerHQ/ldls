@@ -21,7 +21,7 @@ const Container = ({
   <div className={cn('w-400 bg-canvas p-8 text-base', className)} {...props} />
 );
 
-const InfoTooltip = () => (
+const InfoTooltip = (
   <Tooltip>
     <TooltipTrigger asChild>
       <Information
@@ -32,12 +32,6 @@ const InfoTooltip = () => (
     </TooltipTrigger>
     <TooltipContent>This is additional information</TooltipContent>
   </Tooltip>
-);
-
-const ActionLink = () => (
-  <Link href='https://ledger.com' appearance='accent' size='sm' isExternal>
-    Action
-  </Link>
 );
 
 const meta: Meta<typeof Subheader> = {
@@ -82,13 +76,40 @@ export const Base: Story = {
   },
 };
 
+export const WithoutRow: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderTitle>Simple Title</SubheaderTitle>
+        <SubheaderDescription>
+          You can use Subheader without Row for simpler layouts
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderTitle>Simple Title</SubheaderTitle>
+  <SubheaderDescription>
+    You can use Subheader without Row for simpler layouts
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
 export const WithCount: Story = {
   render: () => (
     <Container>
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Accounts</SubheaderTitle>
-          <SubheaderCount>30</SubheaderCount>
+          <SubheaderCount value={30} />
         </SubheaderRow>
       </Subheader>
     </Container>
@@ -100,7 +121,40 @@ export const WithCount: Story = {
 <Subheader>
   <SubheaderRow>
     <SubheaderTitle>Accounts</SubheaderTitle>
-    <SubheaderCount>30</SubheaderCount>
+    <SubheaderCount value={30} />
+  </SubheaderRow>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const WithCustomCountFormat: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Notifications</SubheaderTitle>
+          <SubheaderCount
+            value={150}
+            format={(n) => (n > 99 ? '(99+)' : `(${n})`)}
+          />
+        </SubheaderRow>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Notifications</SubheaderTitle>
+    <SubheaderCount 
+      value={150} 
+      format={(n) => n > 99 ? '(99+)' : \`(\${n})\`} 
+    />
   </SubheaderRow>
 </Subheader>
         `,
@@ -115,9 +169,7 @@ export const WithHint: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Subheader with Hint</SubheaderTitle>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
+          <SubheaderHint content={InfoTooltip} />
         </SubheaderRow>
       </Subheader>
     </Container>
@@ -129,18 +181,18 @@ export const WithHint: Story = {
 <Subheader>
   <SubheaderRow>
     <SubheaderTitle>Subheader with Hint</SubheaderTitle>
-    <SubheaderHint>
+    <SubheaderHint content={
       <Tooltip>
         <TooltipTrigger asChild>
           <Information
             size={16}
-            className="shrink-0 text-muted"
+            className="text-muted shrink-0"
             aria-label="More information"
           />
         </TooltipTrigger>
         <TooltipContent>This is additional information</TooltipContent>
       </Tooltip>
-    </SubheaderHint>
+    } />
   </SubheaderRow>
 </Subheader>
         `,
@@ -187,8 +239,15 @@ export const WithActionInRow: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Subheader with Action</SubheaderTitle>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderAction onPress={() => console.log('Action clicked')}>
+            <Link
+              href='https://ledger.com'
+              appearance='accent'
+              size='sm'
+              isExternal
+            >
+              Manage
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
       </Subheader>
@@ -201,9 +260,9 @@ export const WithActionInRow: Story = {
 <Subheader>
   <SubheaderRow>
     <SubheaderTitle>Subheader with Action</SubheaderTitle>
-    <SubheaderAction>
+    <SubheaderAction onPress={handleManage}>
       <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-        Action
+        Manage
       </Link>
     </SubheaderAction>
   </SubheaderRow>
@@ -214,19 +273,17 @@ export const WithActionInRow: Story = {
   },
 };
 
-export const WithActionOutsideRow: Story = {
+export const WithInteractiveRow: Story = {
   render: () => (
     <Container>
       <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderRow onPress={() => console.log('Row clicked')}>
+          <SubheaderTitle>Clickable Row</SubheaderTitle>
+          <SubheaderCount value={12} />
         </SubheaderRow>
         <SubheaderDescription>
-          Description text that explains the section.
+          The entire row is clickable when onPress is provided
         </SubheaderDescription>
-        <SubheaderAction>
-          <ActionLink />
-        </SubheaderAction>
       </Subheader>
     </Container>
   ),
@@ -235,17 +292,13 @@ export const WithActionOutsideRow: Story = {
       source: {
         code: `
 <Subheader>
-  <SubheaderRow>
-    <SubheaderTitle>Section Title</SubheaderTitle>
+  <SubheaderRow onPress={handleClick}>
+    <SubheaderTitle>Clickable Row</SubheaderTitle>
+    <SubheaderCount value={12} />
   </SubheaderRow>
   <SubheaderDescription>
-    Description text that explains the section.
+    The entire row is clickable when onPress is provided
   </SubheaderDescription>
-  <SubheaderAction>
-    <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-      Action
-    </Link>
-  </SubheaderAction>
 </Subheader>
         `,
       },
@@ -259,12 +312,17 @@ export const WithFullFeatures: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
-          <SubheaderCount>42</SubheaderCount>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderCount value={42} />
+          <SubheaderHint content={InfoTooltip} />
+          <SubheaderAction onPress={() => console.log('Action')}>
+            <Link
+              href='https://ledger.com'
+              appearance='accent'
+              size='sm'
+              isExternal
+            >
+              Action
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
         <SubheaderDescription>
@@ -281,20 +339,20 @@ export const WithFullFeatures: Story = {
 <Subheader>
   <SubheaderRow>
     <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
-    <SubheaderCount>42</SubheaderCount>
-    <SubheaderHint>
+    <SubheaderCount value={42} />
+    <SubheaderHint content={
       <Tooltip>
         <TooltipTrigger asChild>
           <Information
             size={16}
-            className="shrink-0 text-muted"
+            className="text-muted shrink-0"
             aria-label="More information"
           />
         </TooltipTrigger>
         <TooltipContent>This is additional information</TooltipContent>
       </Tooltip>
-    </SubheaderHint>
-    <SubheaderAction>
+    } />
+    <SubheaderAction onPress={handleAction}>
       <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
         Action
       </Link>
@@ -321,34 +379,34 @@ export const ContentVariations: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>With Count</SubheaderTitle>
-          <SubheaderCount>15</SubheaderCount>
+          <SubheaderCount value={15} />
         </SubheaderRow>
       </Subheader>
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>With Hint</SubheaderTitle>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
+          <SubheaderHint content={InfoTooltip} />
         </SubheaderRow>
       </Subheader>
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>With Action</SubheaderTitle>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderAction onPress={() => {}}>
+            <Link href='#' appearance='accent' size='sm'>
+              Action
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
       </Subheader>
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Complete</SubheaderTitle>
-          <SubheaderCount>99</SubheaderCount>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderCount value={99} />
+          <SubheaderHint content={InfoTooltip} />
+          <SubheaderAction onPress={() => {}}>
+            <Link href='#' appearance='accent' size='sm'>
+              Action
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
       </Subheader>
@@ -365,11 +423,11 @@ export const ResponsiveLayout: Story = {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title with Hint</SubheaderTitle>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderHint content={InfoTooltip} />
+          <SubheaderAction onPress={() => {}}>
+            <Link href='#' appearance='accent' size='sm'>
+              Action
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
       </Subheader>
@@ -378,12 +436,12 @@ export const ResponsiveLayout: Story = {
           <SubheaderTitle>
             Long Title That Should Truncate When Container Is Narrow
           </SubheaderTitle>
-          <SubheaderCount>123</SubheaderCount>
-          <SubheaderHint>
-            <InfoTooltip />
-          </SubheaderHint>
-          <SubheaderAction>
-            <ActionLink />
+          <SubheaderCount value={123} />
+          <SubheaderHint content={InfoTooltip} />
+          <SubheaderAction onPress={() => {}}>
+            <Link href='#' appearance='accent' size='sm'>
+              Action
+            </Link>
           </SubheaderAction>
         </SubheaderRow>
       </Subheader>

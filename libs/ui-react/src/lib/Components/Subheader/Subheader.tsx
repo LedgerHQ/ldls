@@ -1,5 +1,4 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
-import React from 'react';
 import {
   SubheaderActionProps,
   SubheaderCountProps,
@@ -11,62 +10,52 @@ import {
 } from './types';
 
 /**
- * Title component for the Subheader. Required element that displays the main heading.
+ * Title component for the Subheader. Displays the main heading.
  */
 export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
   return <h2 className='heading-4-semi-bold min-w-0 truncate'>{children}</h2>;
 };
 
 /**
- * Row component for the Subheader. Layout component to align title, count, hint, and action.
+ * Row component for the Subheader. Layout container to horizontally align title, count, hint, and action.
+ * Can optionally be interactive with an onPress handler.
  */
-export const SubheaderRow = ({ children }: SubheaderRowProps) => {
-  const childrenArray = React.Children.toArray(children);
-  const titleSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderTitle,
-  );
-  const countSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderCount,
-  );
-  const hintSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderHint,
-  );
-  const actionSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderAction,
-  );
-
-  if (!titleSlot) {
-    throw new Error('SubheaderRow requires a SubheaderTitle child');
-  }
+export const SubheaderRow = ({
+  children,
+  onPress,
+  className,
+  ...props
+}: SubheaderRowProps) => {
+  const Component = onPress ? 'button' : 'div';
 
   return (
-    <div className='flex items-center justify-between gap-8'>
-      <div className='flex min-w-0 items-center gap-4'>
-        {titleSlot}
-        {countSlot}
-        {hintSlot}
-      </div>
-      {actionSlot}
-    </div>
+    <Component
+      className={cn(
+        'flex items-center justify-between gap-8',
+        onPress && 'cursor-pointer',
+        className,
+      )}
+      onClick={onPress}
+      {...props}
+    >
+      <div className='flex min-w-0 flex-1 items-center gap-4'>{children}</div>
+    </Component>
   );
 };
 
 /**
- * Count component for the Subheader. Displays a number in parentheses.
+ * Count component for the Subheader. Displays a formatted number.
  */
-export const SubheaderCount = ({ children }: SubheaderCountProps) => {
-  return (
-    <span className='text-muted heading-4-semi-bold shrink-0'>
-      ({children})
-    </span>
-  );
+export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
+  const formatted = format ? format(value) : `(${value})`;
+  return <span className='text-muted body-2 shrink-0'>{formatted}</span>;
 };
 
 /**
  * Hint component for the Subheader. Used to display additional information, like tooltips.
  */
-export const SubheaderHint = ({ children }: SubheaderHintProps) => {
-  return <div className='flex shrink-0 items-center'>{children}</div>;
+export const SubheaderHint = ({ content }: SubheaderHintProps) => {
+  return <div className='flex shrink-0 items-center'>{content}</div>;
 };
 
 /**
@@ -79,14 +68,28 @@ export const SubheaderDescription = ({
 };
 
 /**
- * Action component for the Subheader. Used to display an action, like a link or button.
+ * Action component for the Subheader. Displays an interactive button or link.
  */
-export const SubheaderAction = ({ children }: SubheaderActionProps) => {
-  return <div className='flex shrink-0 items-center'>{children}</div>;
+export const SubheaderAction = ({
+  children,
+  onPress,
+  className,
+  ...props
+}: SubheaderActionProps) => {
+  return (
+    <button
+      onClick={onPress}
+      className={cn('flex shrink-0 items-center', className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 };
 
 /**
  * A subheader component for displaying section titles with optional count, hints, descriptions, and action elements.
+ * Uses a composable API where you explicitly nest sub-components to define the layout.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/misc-subheader-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/misc-subheader-implementation--docs#dos-and-donts Guidelines}
@@ -95,39 +98,30 @@ export const SubheaderAction = ({ children }: SubheaderActionProps) => {
  * Do not use it to modify the subheader's core appearance (colors, padding, etc).
  *
  * @example
- * import { Subheader, SubheaderRow, SubheaderTitle } from '@ledgerhq/lumen-ui-react';
- *
- * // Basic subheader with title only
+ * // Simple subheader without row
  * <Subheader>
- *   <SubheaderRow>
- *     <SubheaderTitle>Section Title</SubheaderTitle>
- *   </SubheaderRow>
+ *   <SubheaderTitle>Section Title</SubheaderTitle>
+ *   <SubheaderDescription>Description text</SubheaderDescription>
  * </Subheader>
  *
- * // Complete subheader with all features
+ * @example
+ * // Subheader with row for horizontal layout
  * <Subheader>
  *   <SubheaderRow>
  *     <SubheaderTitle>Section Title</SubheaderTitle>
- *     <SubheaderCount>30</SubheaderCount>
- *     <SubheaderHint>
- *       <Tooltip>
- *         <TooltipTrigger asChild>
- *           <Information
- *             size={16}
- *             className="shrink-0 text-muted"
- *             aria-label="More information"
- *           />
- *         </TooltipTrigger>
- *         <TooltipContent>Additional information</TooltipContent>
- *       </Tooltip>
- *     </SubheaderHint>
+ *     <SubheaderCount value={30} />
+ *     <SubheaderHint content={<Tooltip>...</Tooltip>} />
  *   </SubheaderRow>
- *   <SubheaderDescription>
- *     This is a detailed description of the section.
- *   </SubheaderDescription>
- *   <SubheaderAction>
- *     <Link href="/action" appearance="accent" size="sm">Action</Link>
- *   </SubheaderAction>
+ *   <SubheaderDescription>Description text</SubheaderDescription>
+ * </Subheader>
+ *
+ * @example
+ * // Interactive row with action
+ * <Subheader>
+ *   <SubheaderRow onPress={handleClick}>
+ *     <SubheaderTitle>Accounts</SubheaderTitle>
+ *     <SubheaderCount value={12} />
+ *   </SubheaderRow>
  * </Subheader>
  */
 export const Subheader = ({
@@ -135,27 +129,9 @@ export const Subheader = ({
   children,
   ...props
 }: SubheaderProps) => {
-  const childrenArray = React.Children.toArray(children);
-  const rowSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderRow,
-  );
-  const descriptionSlot = childrenArray.find(
-    (child) =>
-      React.isValidElement(child) && child.type === SubheaderDescription,
-  );
-  const actionSlot = childrenArray.find(
-    (child) => React.isValidElement(child) && child.type === SubheaderAction,
-  );
-
-  if (!rowSlot) {
-    throw new Error('Subheader requires a SubheaderRow child');
-  }
-
   return (
     <div className={cn('flex flex-col gap-4', className)} {...props}>
-      {rowSlot}
-      {descriptionSlot}
-      {actionSlot}
+      {children}
     </div>
   );
 };

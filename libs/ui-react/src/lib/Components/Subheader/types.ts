@@ -1,16 +1,20 @@
 export type SubheaderProps = {
   /**
-   * The children of the subheader, which should include SubheaderRow, SubheaderDescription, and SubheaderAction.
+   * The children of the subheader, which should include SubheaderRow, SubheaderTitle, SubheaderDescription, etc.
    */
   children?: React.ReactNode;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export type SubheaderRowProps = {
   /**
-   * The children of the subheader row, which should include SubheaderTitle, SubheaderCount, and SubheaderHint.
+   * The children of the subheader row.
    */
   children: React.ReactNode;
-};
+  /**
+   * Optional click handler to make the row interactive.
+   */
+  onPress?: () => void;
+} & Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'onClick'>;
 
 export type SubheaderTitleProps = {
   /**
@@ -21,16 +25,21 @@ export type SubheaderTitleProps = {
 
 export type SubheaderCountProps = {
   /**
-   * The count value to display in parentheses.
+   * The count value to display.
    */
-  children: number;
+  value: number;
+  /**
+   * Optional formatter function to customize the display.
+   * Defaults to (n) => `(${n})`
+   */
+  format?: (value: number) => string;
 };
 
 export type SubheaderHintProps = {
   /**
-   * The hint content, typically an info icon with tooltip.
+   * The hint content to display (e.g., tooltip trigger).
    */
-  children: React.ReactNode;
+  content: React.ReactNode;
 };
 
 export type SubheaderDescriptionProps = {
@@ -42,7 +51,11 @@ export type SubheaderDescriptionProps = {
 
 export type SubheaderActionProps = {
   /**
-   * The action element to display, typically a button or link.
+   * The action element to display (e.g., button text).
    */
   children: React.ReactNode;
-};
+  /**
+   * Click handler for the action.
+   */
+  onPress: () => void;
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'onClick'>;

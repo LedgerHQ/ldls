@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { Information } from '../../Symbols';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import {
@@ -14,7 +14,16 @@ import {
 import '@testing-library/jest-dom';
 
 describe('Subheader', () => {
-  it('renders the title', () => {
+  it('renders the title without row', () => {
+    render(
+      <Subheader>
+        <SubheaderTitle>Test Title</SubheaderTitle>
+      </Subheader>,
+    );
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+  });
+
+  it('renders the title with row', () => {
     render(
       <Subheader>
         <SubheaderRow>
@@ -30,30 +39,44 @@ describe('Subheader', () => {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderCount>30</SubheaderCount>
+          <SubheaderCount value={30} />
         </SubheaderRow>
       </Subheader>,
     );
     expect(screen.getByText('(30)')).toBeInTheDocument();
   });
 
-  it('renders the hint tooltip icon when SubheaderHint is provided', () => {
+  it('renders custom formatted count', () => {
+    render(
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderCount value={150} format={(n) => (n > 99 ? '99+' : `${n}`)} />
+        </SubheaderRow>
+      </Subheader>,
+    );
+    expect(screen.getByText('99+')).toBeInTheDocument();
+  });
+
+  it('renders the hint when provided', () => {
     const { container } = render(
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderHint>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Information
-                  size={16}
-                  className='text-muted shrink-0'
-                  aria-label='More information'
-                />
-              </TooltipTrigger>
-              <TooltipContent>Info</TooltipContent>
-            </Tooltip>
-          </SubheaderHint>
+          <SubheaderHint
+            content={
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Information
+                    size={16}
+                    className='text-muted shrink-0'
+                    aria-label='More information'
+                  />
+                </TooltipTrigger>
+                <TooltipContent>Info</TooltipContent>
+              </Tooltip>
+            }
+          />
         </SubheaderRow>
       </Subheader>,
     );
@@ -74,55 +97,60 @@ describe('Subheader', () => {
     expect(screen.getByText('This is a description')).toBeInTheDocument();
   });
 
-  it('renders the action when SubheaderAction is provided in Row', () => {
+  it('renders the action in row', () => {
+    const handlePress = vi.fn();
     render(
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderAction>
-            <button>Action</button>
-          </SubheaderAction>
+          <SubheaderAction onPress={handlePress}>Action</SubheaderAction>
         </SubheaderRow>
       </Subheader>,
     );
-    expect(screen.getByText('Action')).toBeInTheDocument();
+    const button = screen.getByText('Action');
+    expect(button).toBeInTheDocument();
+    button.click();
+    expect(handlePress).toHaveBeenCalledTimes(1);
   });
 
-  it('renders the action when SubheaderAction is provided at top level', () => {
+  it('renders interactive row with onPress', () => {
+    const handlePress = vi.fn();
     render(
       <Subheader>
-        <SubheaderRow>
+        <SubheaderRow onPress={handlePress}>
           <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderCount value={5} />
         </SubheaderRow>
-        <SubheaderAction>
-          <button>Action</button>
-        </SubheaderAction>
       </Subheader>,
     );
-    expect(screen.getByText('Action')).toBeInTheDocument();
+    const row = screen.getByText('Title').closest('button');
+    expect(row).toBeInTheDocument();
+    row?.click();
+    expect(handlePress).toHaveBeenCalledTimes(1);
   });
 
   it('renders all components together', () => {
+    const handleAction = vi.fn();
     const { container } = render(
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderCount>42</SubheaderCount>
-          <SubheaderHint>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Information
-                  size={16}
-                  className='text-muted shrink-0'
-                  aria-label='More information'
-                />
-              </TooltipTrigger>
-              <TooltipContent>Info</TooltipContent>
-            </Tooltip>
-          </SubheaderHint>
-          <SubheaderAction>
-            <button>Action</button>
-          </SubheaderAction>
+          <SubheaderCount value={42} />
+          <SubheaderHint
+            content={
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Information
+                    size={16}
+                    className='text-muted shrink-0'
+                    aria-label='More information'
+                  />
+                </TooltipTrigger>
+                <TooltipContent>Info</TooltipContent>
+              </Tooltip>
+            }
+          />
+          <SubheaderAction onPress={handleAction}>Action</SubheaderAction>
         </SubheaderRow>
         <SubheaderDescription>Description text</SubheaderDescription>
       </Subheader>,
@@ -136,25 +164,14 @@ describe('Subheader', () => {
     expect(screen.getByText('Description text')).toBeInTheDocument();
   });
 
-  it('throws error when SubheaderRow is missing', () => {
-    expect(() => {
-      render(
-        <Subheader>
-          <SubheaderTitle>Title</SubheaderTitle>
-        </Subheader>,
-      );
-    }).toThrow('Subheader requires a SubheaderRow child');
-  });
-
-  it('throws error when SubheaderRow is missing SubheaderTitle', () => {
-    expect(() => {
-      render(
-        <Subheader>
-          <SubheaderRow>
-            <SubheaderCount>30</SubheaderCount>
-          </SubheaderRow>
-        </Subheader>,
-      );
-    }).toThrow('SubheaderRow requires a SubheaderTitle child');
+  it('works without row wrapper', () => {
+    render(
+      <Subheader>
+        <SubheaderTitle>Simple Title</SubheaderTitle>
+        <SubheaderDescription>Simple Description</SubheaderDescription>
+      </Subheader>,
+    );
+    expect(screen.getByText('Simple Title')).toBeInTheDocument();
+    expect(screen.getByText('Simple Description')).toBeInTheDocument();
   });
 });
