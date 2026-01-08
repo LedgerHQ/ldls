@@ -237,7 +237,7 @@ export const VariantsShowcase: Story = {
             </Tooltip>
           </SectionHeaderHint>
           <SectionHeaderAction>
-            <Button appearance='link-accent' size='sm'>
+            <Button appearance='accent' size='sm'>
               Action
             </Button>
           </SectionHeaderAction>
