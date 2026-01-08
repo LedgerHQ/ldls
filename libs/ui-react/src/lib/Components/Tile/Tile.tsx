@@ -24,7 +24,7 @@ const tileVariants = {
   root: cva(
     [
       'group relative flex flex-col items-center gap-8 text-base transition-colors',
-      'focus-visible:outline-focus rounded-md focus-visible:outline-2',
+      'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
     ],
     {
       variants: {
@@ -75,7 +75,7 @@ const tileVariants = {
     },
   ),
   button: cva(
-    'focus-visible:outline-focus flex w-full flex-col  items-center gap-8 rounded-md px-8 py-12 focus-visible:outline-2',
+    'flex w-full flex-col items-center  gap-8 rounded-md px-8 py-12 focus-visible:outline-2 focus-visible:outline-focus',
   ),
 };
 
@@ -257,7 +257,7 @@ export const TileTitle = ({
   return (
     <div
       className={cn(
-        'body-2-semi-bold w-full truncate',
+        'w-full truncate body-2-semi-bold',
         disabled && 'text-disabled',
         className,
       )}
@@ -285,7 +285,7 @@ export const TileDescription = ({
   return (
     <div
       className={cn(
-        'body-3 w-full truncate',
+        'w-full truncate body-3',
         disabled ? 'text-disabled' : 'text-muted',
         className,
       )}

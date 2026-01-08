@@ -3,9 +3,9 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 import {
-    TooltipContentProps,
-    TooltipProps,
-    TooltipTriggerProps,
+  TooltipContentProps,
+  TooltipProps,
+  TooltipTriggerProps,
 } from './types';
 
 const tooltipContentVariants = cva(

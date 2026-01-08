@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Settings, Plus, User, Apps, MoreVertical } from '../../Symbols';
 import { Tag } from '../Tag/Tag';
 import {
-    Tile,
-    TileSpot,
-    TileContent,
-    TileTitle,
-    TileDescription,
-    TileSecondaryAction,
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+  TileSecondaryAction,
 } from './Tile';
 
 const meta: Meta<typeof Tile> = {

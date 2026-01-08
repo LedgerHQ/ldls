@@ -17,11 +17,11 @@ const TypographySample = ({
 }) => (
   <div>
     <div
-      className={`${className} border-muted-subtle bg-base max-w-fit rounded-lg border p-24 text-base`}
+      className={`${className} max-w-fit rounded-lg border border-muted-subtle bg-base p-24 text-base`}
     >
       The quick brown fox jumps over the lazy dog
-      <div className='bg-muted-pressed mt-24 p-[0.5px]' />
-      <div className='body-2 mb-4 mt-16 text-base'> {title} </div>
+      <div className='mt-24 bg-muted-pressed p-[0.5px]' />
+      <div className='mb-4 mt-16 text-base body-2'> {title} </div>
       <div className='text-muted body-4'>{className}</div>
     </div>
   </div>

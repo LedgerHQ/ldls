@@ -2,11 +2,11 @@ import { cn } from '@ledgerhq/lumen-utils-shared';
 import { cva } from 'class-variance-authority';
 import { useMemo } from 'react';
 import {
-    BluetoothCircleFill,
-    CheckmarkCircleFill,
-    DeleteCircleFill,
-    InformationFill,
-    WarningFill,
+  BluetoothCircleFill,
+  CheckmarkCircleFill,
+  DeleteCircleFill,
+  InformationFill,
+  WarningFill,
 } from '../../Symbols';
 import { IconSize } from '../Icon/types';
 import { Spinner } from '../Spinner';
@@ -24,7 +24,7 @@ const spotVariants = cva(
         warning: 'text-warning',
         info: 'text-muted',
         loader: '',
-        number: 'text-base heading-5',
+        number: 'heading-5 text-base',
       },
       disabled: {
         true: 'text-disabled',

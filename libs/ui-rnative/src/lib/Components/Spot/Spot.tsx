@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { useStyleSheet } from '../../../styles';
 import {
-    BluetoothCircleFill,
-    CheckmarkCircleFill,
-    DeleteCircleFill,
-    InformationFill,
-    WarningFill,
+  BluetoothCircleFill,
+  CheckmarkCircleFill,
+  DeleteCircleFill,
+  InformationFill,
+  WarningFill,
 } from '../../Symbols';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { Box } from '../Utility';

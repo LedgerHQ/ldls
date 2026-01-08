@@ -3,23 +3,23 @@ import React from 'react';
 import { Apps, Chart1 } from '../../Symbols';
 import { Button } from '../Button';
 import {
-    ListItem,
-    ListItemContent,
-    ListItemDescription,
-    ListItemLeading,
-    ListItemSpot,
-    ListItemTitle,
+  ListItem,
+  ListItemContent,
+  ListItemDescription,
+  ListItemLeading,
+  ListItemSpot,
+  ListItemTitle,
 } from '../ListItem';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Spot } from '../Spot';
 import { Tile, TileContent, TileSpot, TileTitle } from '../Tile';
 import {
-    Dialog,
-    DialogBody,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTrigger,
+  Dialog,
+  DialogBody,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
 } from './Dialog';
 
 const DialogContentTemplate = () => {
