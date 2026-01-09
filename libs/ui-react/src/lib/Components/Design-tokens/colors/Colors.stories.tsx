@@ -304,6 +304,32 @@ export const Background: Story = {
       <ColorSection
         category='background'
         tokens={[
+          {
+            name: 'Surface Transparent',
+            className: 'bg-surface-transparent',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Surface Transparent Hover',
+            className: 'bg-surface-transparent-hover',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Surface Transparent Pressed',
+            className: 'bg-surface-transparent-pressed',
+            textClassName: 'text-base',
+          },
+          {
+            name: 'Surface Transparent Disabled',
+            className: 'bg-surface-transparent-disabled',
+            textClassName: 'text-base',
+          },
+        ]}
+      />
+
+      <ColorSection
+        category='background'
+        tokens={[
           { name: 'White', className: 'bg-white', textClassName: 'text-base' },
           { name: 'Black', className: 'bg-black', textClassName: 'text-base' },
           {
