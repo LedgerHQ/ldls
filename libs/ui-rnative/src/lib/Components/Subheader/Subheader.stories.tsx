@@ -34,6 +34,14 @@ const InfoTooltip = (
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
   title: 'Communication/Subheader',
+  subcomponents: {
+    SubheaderRow,
+    SubheaderTitle,
+    SubheaderDescription,
+    SubheaderCount,
+    SubheaderHint,
+    SubheaderAction,
+  },
   decorators: [
     (Story) => (
       <Container>
