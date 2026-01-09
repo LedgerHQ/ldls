@@ -35,8 +35,8 @@ const BackdropShowcase = () => (
               className={cn('absolute inset-24 rounded-lg', backdropClass)}
             />
           </div>
-          <div className='mt-8 text-base body-2'>{backdropClass}</div>
-          <div className='mt-8 text-muted body-4'>{name}</div>
+          <div className='mt-8 body-2 text-base'>{backdropClass}</div>
+          <div className='mt-8 body-4 text-muted'>{name}</div>
         </div>
       ))}
     </div>
@@ -48,7 +48,7 @@ export const Backdrop: Story = {
     <div className='p-24'>
       <SectionHeader
         title='Backdrop Blur'
-        description='Tailwind classes for controlling the backdrop blur of an element.'
+        description='Tailwind classes for controlling the backdrop blur-sm of an element.'
       />
       <BackdropShowcase />
     </div>

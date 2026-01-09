@@ -32,7 +32,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
           <button
             key={idx}
             className={cn(
-              'group relative flex flex-col items-center gap-8 rounded-lg p-12 transition-all duration-200 focus:outline-none',
+              'group relative flex flex-col items-center gap-8 rounded-lg p-12 transition-all duration-200 focus:outline-hidden',
               active === idx ? 'text-active' : 'text-muted hover:text-active',
             )}
             onClick={() => setActive(idx)}
@@ -52,7 +52,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({ children }) => {
             {/* Label */}
             <span
               className={cn(
-                'transition-colors duration-200 body-3',
+                'body-3 transition-colors duration-200',
                 active === idx
                   ? 'text-black'
                   : 'group-hover:text-active group-hover:opacity-80',

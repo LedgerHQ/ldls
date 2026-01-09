@@ -6,7 +6,7 @@ import { CheckboxProps } from './types';
 
 const checkboxStyles = [
   'h-20 w-20 shrink-0 rounded-xs transition-colors',
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
+  'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
 
   'data-[state=unchecked]:border data-[state=unchecked]:border-muted data-[state=unchecked]:bg-base',
   'data-[state=unchecked]:hover:bg-base-hover',

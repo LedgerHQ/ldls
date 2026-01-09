@@ -52,10 +52,10 @@ const IconCard = ({
       onClick={handleClick}
     >
       <IconComponent size={size} className={className} />
-      <span className='text-muted body-4'>{name}</span>
+      <span className='body-4 text-muted'>{name}</span>
       {copied && (
         <div className='absolute inset-0 flex items-center justify-center rounded-lg bg-muted'>
-          <span className='text-on-accent body-4'>Copied!</span>
+          <span className='body-4 text-on-accent'>Copied!</span>
         </div>
       )}
     </div>
@@ -153,7 +153,7 @@ export const Gallery: StoryObj = {
 
           {/* Results count */}
           <div className='mb-4'>
-            <span className='ml-8 text-muted body-3'>
+            <span className='ml-8 body-3 text-muted'>
               {filteredIcons.length} of {Object.keys(Icons).length} icons
               {searchTerm && ` matching "${searchTerm}"`}
             </span>
@@ -170,12 +170,12 @@ export const Gallery: StoryObj = {
         {/* No results message */}
         {filteredIcons.length === 0 && searchTerm && (
           <div className='flex flex-col items-center justify-center py-16'>
-            <p className='text-muted body-2'>
+            <p className='body-2 text-muted'>
               No icons found matching "{searchTerm}"
             </p>
             <button
               onClick={() => setSearchTerm('')}
-              className='mt-4 text-interactive body-2 hover:text-interactive-hover'
+              className='mt-4 body-2 text-interactive hover:text-interactive-hover'
             >
               Clear search
             </button>

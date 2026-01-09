@@ -14,7 +14,7 @@ StyleDictionary.registerTransform({
   name: 'name/custom/direct-css-var',
   type: 'name',
   transform: (token: TransformedToken) => {
-    return `--${token.path.join('-').toLowerCase()}`;
+    return token.path.join('-').toLowerCase();
   },
 });
 
@@ -30,6 +30,16 @@ function sanitizeTokenName(tokenName: string): string {
   }
   return newName;
 }
+
+const addPxUnitToNumber = (
+  value: string | number,
+  _tokenName: string,
+): string | number => {
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+  return value;
+};
 
 const filterPrimitives = (token: TransformedToken) =>
   !token.filePath.includes('1.primitives.value.json');
@@ -50,11 +60,11 @@ StyleDictionary.registerFormat({
     const output = { [mainKey]: {} };
 
     dictionary.allTokens.forEach((token: TransformedToken) => {
-      const tokenName = sanitizeTokenName(token.name);
-      const finalTokenName = tokenName.replace(' ', '-');
+      const tokenName = sanitizeTokenName(token.name).replace(/ /g, '-');
+      const finalTokenName = `--${tokenName}`;
       const tokenOriginalValue = token.original.$value;
 
-      let tokenFinalValue: string;
+      let tokenFinalValue: string | number;
       if (
         typeof tokenOriginalValue === 'string' &&
         tokenOriginalValue.startsWith('{') &&
@@ -73,7 +83,7 @@ StyleDictionary.registerFormat({
 
         tokenFinalValue = `var(${varName})`;
       } else {
-        tokenFinalValue = tokenOriginalValue;
+        tokenFinalValue = addPxUnitToNumber(tokenOriginalValue, tokenName);
       }
 
       output[mainKey][finalTokenName] = tokenFinalValue;
@@ -93,6 +103,33 @@ StyleDictionary.registerFormat({
  */
 
 export const tokens: ${tokensType} = ${JSON.stringify(output, null, 2)};`;
+  },
+});
+
+StyleDictionary.registerFormat({
+  name: 'css/custom-variables',
+  format: function ({ dictionary }) {
+    const variables = dictionary.allTokens
+      .map((token) => {
+        const name = sanitizeTokenName(token.name).replace(/ /g, '-');
+        let value = token.$value;
+
+        if (typeof value === 'number') {
+          value = value === 0 ? '0' : `${value}px`;
+        }
+
+        return `--${name}: ${value};`;
+      })
+      .join('\n');
+
+    return `/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+${variables}
+}
+`;
   },
 });
 
@@ -200,10 +237,7 @@ function getSDPrimitivesConfig() {
         files: [
           {
             destination: 'primitives.css',
-            format: 'css/variables',
-            options: {
-              outputReferences: true,
-            },
+            format: 'css/custom-variables',
           },
         ],
         actions: ['remove-default-suffix', 'prettier'],

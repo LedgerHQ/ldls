@@ -246,7 +246,7 @@ export const ContentVariations: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <Container className='grid grid-cols-1 gap-16'>
-      <div className='text-muted body-4-semi-bold'>
+      <div className='body-4-semi-bold text-muted'>
         Container with a fixed width
       </div>
       <Subheader title='Title with Tooltip'>
