@@ -9,7 +9,7 @@ import {
   createShadowPlugin,
 } from '../utils/index.js';
 
-export const ledgerLivePreset = {
+export const ledgerLivePreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
@@ -26,4 +26,4 @@ export const ledgerLivePreset = {
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-} satisfies Config;
+};

@@ -21,21 +21,21 @@ export const DontBlockItem: React.FC<DontBlockItemProps> = ({
     >
       {/* Header */}
       {(title || description) && (
-        <div className='!-mb-16 flex flex-col gap-4'>
+        <div className='-mb-16! flex flex-col gap-4'>
           {title && (
             <div className='flex items-center gap-8'>
               <span className='text-[#EF4444]'>✕</span>
-              <h4 className='!m-0 text-base body-2-semi-bold'>{title}</h4>
+              <h4 className='m-0! text-base body-2-semi-bold'>{title}</h4>
             </div>
           )}
           {description && (
-            <p className='!m-0 text-muted body-3'>{description}</p>
+            <p className='m-0! text-muted body-3'>{description}</p>
           )}
         </div>
       )}
 
       {/* Code Block */}
-      <div className='[&_pre]:!m-0 [&_pre]:!rounded-xs [&_pre]:!border-2 [&_pre]:!border-[#EF4444] [&_pre]:!bg-[#FEF2F2]'>
+      <div className='[&_pre]:m-0! [&_pre]:rounded-xs! [&_pre]:border-2! [&_pre]:border-[#EF4444]! [&_pre]:bg-[#FEF2F2]!'>
         {children}
       </div>
     </div>

@@ -1,11 +1,12 @@
 import plugin from 'tailwindcss/plugin.js';
-import { CSSRuleObject } from 'tailwindcss/types/config.js';
+
+type TailwindPlugin = ReturnType<typeof plugin>;
 import { primitivesTheme } from '../themes/css';
 import { createIconUtilities } from './createIconUtilities.js';
 import { createSpotUtilities } from './createSpotUtilities.js';
 import { getThemeUtilsByPrefix } from './getThemeUtilsByPrefix.js';
 
-export function createPrimitivesPlugin() {
+export function createPrimitivesPlugin(): TailwindPlugin {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');
   const size = getThemeUtilsByPrefix(primitivesTheme, '--size-');
   const borderRadius = getThemeUtilsByPrefix(
@@ -37,7 +38,7 @@ export function createPrimitivesPlugin() {
   return plugin(
     function ({ addBase, theme, addUtilities }) {
       // TODO: Remove type cast after exporting all values as strings from Figma
-      addBase(primitivesTheme as CSSRuleObject);
+      addBase(primitivesTheme as never);
       addUtilities(createIconUtilities(theme));
       addUtilities(createSpotUtilities(theme));
     },
