@@ -69,12 +69,12 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Base: Story = {
-  render: (args) => {
+  render: () => {
     const [value, setValue] = useState('');
 
     return (
       <div className='w-400'>
-        <Select value={value} onValueChange={setValue} {...args}>
+        <Select value={value} onValueChange={setValue}>
           <SelectTrigger label='Label' />
           <SelectContent>
             <SelectItem value='option1'>
