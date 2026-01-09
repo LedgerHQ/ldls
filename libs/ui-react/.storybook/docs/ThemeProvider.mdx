@@ -45,10 +45,10 @@ The ThemeProvider also manages the app’s locale using React Context.
 You can just pass the locale to the `ThemeProvider` and the translations will be lazy-loaded automatically.
 
 ```tsx
-import { ThemeProvider, type SupportedLocale } from '@ledgerhq/lumen-ui-react';
+import { ThemeProvider, type SupportedLocale, Languages } from '@ledgerhq/lumen-ui-react';
 
 function AppProviders() {
-  const [locale, setLocale] = useState<SupportedLocale>('en');
+  const [locale, setLocale] = useState<SupportedLocale>(Languages.en.id);
   return (
     <ThemeProvider locale={locale}>
       <App />
