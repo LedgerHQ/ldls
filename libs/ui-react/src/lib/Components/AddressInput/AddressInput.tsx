@@ -68,7 +68,7 @@ export const AddressInput = React.forwardRef<
   // Use custom prefix if provided, otherwise default "To:" prefix
   const effectivePrefix = (
     <span
-      className='text-nowrap text-base body-1 group-has-disabled:text-disabled'
+      className='body-1 text-nowrap text-base group-has-disabled:text-disabled'
       aria-hidden='true'
     >
       {prefix}

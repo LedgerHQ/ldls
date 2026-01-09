@@ -22,8 +22,8 @@ const GradientShowcase = () => (
               <div
                 className={`h-96 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>
@@ -41,8 +41,8 @@ const GradientShowcase = () => (
               <div
                 className={`h-224 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>
@@ -126,8 +126,8 @@ const GradientShowcase = () => (
               <div
                 className={`h-64 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>

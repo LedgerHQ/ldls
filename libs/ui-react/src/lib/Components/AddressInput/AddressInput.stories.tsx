@@ -183,7 +183,7 @@ export const Controlled: Story = {
           className='max-w-md'
         />
 
-        <div className='text-muted body-3'>
+        <div className='body-3 text-muted'>
           <p>
             Click the QR code icon when the field is empty to scan an address.
           </p>
@@ -191,10 +191,10 @@ export const Controlled: Story = {
 
         {address && !error && (
           <div className='rounded-md border border-muted bg-success p-16'>
-            <h4 className='mb-4 text-success body-2-semi-bold'>
+            <h4 className='mb-4 body-2-semi-bold text-success'>
               Valid Address
             </h4>
-            <p className='break-all text-success body-3'>{address}</p>
+            <p className='body-3 break-all text-success'>{address}</p>
           </div>
         )}
       </div>

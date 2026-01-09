@@ -21,15 +21,15 @@ export const DoBlockItem: React.FC<DoBlockItemProps> = ({
     >
       {/* Header */}
       {(title || description) && (
-        <div className='-mb-16! flex flex-col gap-4 '>
+        <div className='-mb-16! flex flex-col gap-4'>
           {title && (
-            <div className='flex items-center gap-8 '>
+            <div className='flex items-center gap-8'>
               <span className='text-[#10B981]'>✓</span>
-              <h4 className='m-0! text-base body-2-semi-bold'>{title}</h4>
+              <h4 className='m-0! body-2-semi-bold text-base'>{title}</h4>
             </div>
           )}
           {description && (
-            <p className='m-0! text-muted body-3'>{description}</p>
+            <p className='m-0! body-3 text-muted'>{description}</p>
           )}
         </div>
       )}

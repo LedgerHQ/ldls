@@ -11,7 +11,7 @@ import { AmountInputProps } from './types';
 
 const inputStyles = cva(
   [
-    'bg-transparent caret-active outline-hidden transition-colors heading-0',
+    'bg-transparent heading-0 caret-active outline-hidden transition-colors',
     'text-base placeholder:text-muted-subtle',
     'disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
     'aria-invalid:text-error',

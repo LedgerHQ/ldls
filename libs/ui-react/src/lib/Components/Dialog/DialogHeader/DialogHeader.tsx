@@ -124,7 +124,7 @@ const DialogHeaderComponent = React.forwardRef<
                 </div>
               )}
               {description && (
-                <div className='truncate text-center text-muted body-2'>
+                <div className='truncate text-center body-2 text-muted'>
                   {description}
                 </div>
               )}
@@ -144,7 +144,7 @@ const DialogHeaderComponent = React.forwardRef<
               <div className='flex flex-col gap-4'>
                 {title && <div className='heading-3-semi-bold'>{title}</div>}
                 {description && (
-                  <div className='text-muted body-2'>{description}</div>
+                  <div className='body-2 text-muted'>{description}</div>
                 )}
               </div>
             )}

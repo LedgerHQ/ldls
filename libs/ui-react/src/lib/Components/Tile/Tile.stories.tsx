@@ -127,7 +127,7 @@ export const VariantsShowcase: Story = {
           <TileTitle>With Trailing Content</TileTitle>
           <TileDescription>Additional information</TileDescription>
         </TileContent>
-        <div className='text-success body-2-semi-bold'>+7.87%</div>
+        <div className='body-2-semi-bold text-success'>+7.87%</div>
       </Tile>
     </div>
   ),

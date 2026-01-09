@@ -39,13 +39,13 @@ const SpacingShowcase = () => (
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className='flex items-center gap-8'>
           <div>
-            <div className='text-muted body-2'>{token}</div>
-            <div className='w-48 text-base body-4'>{name}</div>
+            <div className='body-2 text-muted'>{token}</div>
+            <div className='w-48 body-4 text-base'>{name}</div>
           </div>
           <div
             className={`${widthClass} rounded-md border border-muted-subtle bg-[repeating-linear-gradient(45deg,var(--border-muted-subtle)_2px,var(--border-muted-subtle)_4px,transparent_4px,transparent_12px)]`}
           >
-            <div className='size-56 rounded-sm bg-accent text-muted body-2'></div>
+            <div className='size-56 rounded-sm bg-accent body-2 text-muted'></div>
           </div>
         </div>
       ))}
