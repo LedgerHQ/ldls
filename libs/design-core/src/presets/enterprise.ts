@@ -10,7 +10,7 @@ import {
   createShadowPlugin,
 } from '../utils/index.js';
 
-export const enterprisePreset = {
+export const enterprisePreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
@@ -27,4 +27,4 @@ export const enterprisePreset = {
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-} satisfies Config;
+};

@@ -1,6 +1,8 @@
 import plugin from 'tailwindcss/plugin.js';
 
-export function createAnimationsPlugin() {
+type TailwindPlugin = ReturnType<typeof plugin>;
+
+export function createAnimationsPlugin(): TailwindPlugin {
   return plugin(
     () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     {

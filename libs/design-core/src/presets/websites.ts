@@ -10,7 +10,7 @@ import {
   createShadowPlugin,
 } from '../utils/index.js';
 
-export const websitesPreset = {
+export const websitesPreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
@@ -27,4 +27,4 @@ export const websitesPreset = {
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-} satisfies Config;
+};

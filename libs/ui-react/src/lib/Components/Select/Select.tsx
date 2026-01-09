@@ -28,15 +28,15 @@ const triggerStyles = cn(
   'rounded-sm bg-muted px-16',
   'text-base body-2',
   'hover:bg-muted-hover',
-  'transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-focus',
+  'transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-focus',
   'disabled:cursor-not-allowed disabled:text-disabled',
 );
 
 const labelStyles = cn(
   'pointer-events-none absolute left-16 origin-left text-muted transition-all duration-300',
   'top-10 -translate-y-4 body-4',
-  'group-data-[placeholder]:top-14 group-data-[placeholder]:translate-y-0 group-data-[placeholder]:body-2',
-  'group-data-[:disabled]:text-disabled disabled:text-disabled group-data-[disabled]:text-disabled group-data-[placeholder][disabled]:text-disabled',
+  'group-data-placeholder:top-14 group-data-placeholder:translate-y-0 group-data-placeholder:body-2',
+  'group-data-[:disabled]:text-disabled disabled:text-disabled group-data-disabled:text-disabled group-data-[placeholder][disabled]:text-disabled',
   'max-w-[calc(100%-var(--size-56))] truncate',
 );
 
@@ -57,7 +57,7 @@ const SelectTrigger = React.forwardRef<
       className={cn(
         'flex-1 truncate text-left ',
         label &&
-          'mt-16 opacity-100 transition-opacity delay-100 duration-300 group-data-[placeholder]:mt-0 group-data-[placeholder]:opacity-0',
+          'mt-16 opacity-100 transition-opacity delay-100 duration-300 group-data-placeholder:mt-0 group-data-placeholder:opacity-0',
         className,
       )}
     >
@@ -66,7 +66,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='shrink-0 text-muted group-data-[disabled]:text-disabled'
+        className='shrink-0 text-muted group-data-disabled:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -75,7 +75,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const contentStyles = cva(
   [
-    'relative z-select max-h-[var(--radix-select-content-available-height)] overflow-y-auto overflow-x-hidden',
+    'relative z-select max-h-(--radix-select-content-available-height) overflow-y-auto overflow-x-hidden',
     'rounded-sm bg-muted',
     'shadow-md',
     'data-[side=bottom]:animate-slide-in-from-top-8',
@@ -101,7 +101,7 @@ const viewportStyles = cva('p-8', {
   variants: {
     position: {
       popper:
-        'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+        'h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width)',
       'item-aligned': '',
     },
   },
@@ -149,10 +149,10 @@ const itemStyles = cn(
   'relative flex w-full cursor-default select-none items-center bg-base-transparent',
   'rounded-sm p-8',
   'text-base body-2',
-  'outline-none',
+  'outline-hidden',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
-  'data-[disabled]:cursor-not-allowed data-[disabled]:text-disabled',
+  'data-disabled:cursor-not-allowed data-disabled:text-disabled',
 );
 
 const SelectItem = React.forwardRef<
