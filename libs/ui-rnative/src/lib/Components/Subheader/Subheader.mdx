@@ -228,7 +228,6 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderAction,
-  Link,
 } from '@ledgerhq/lumen-ui-rnative';
 
 function ActionExample() {
@@ -237,9 +236,7 @@ function ActionExample() {
       <SubheaderRow>
         <SubheaderTitle>Section Title</SubheaderTitle>
         <SubheaderAction onPress={() => console.log('Action clicked')}>
-          <Link href='https://ledger.com' appearance='accent' size='sm'>
-            View More
-          </Link>
+          View More
         </SubheaderAction>
       </SubheaderRow>
     </Subheader>
@@ -288,7 +285,6 @@ import {
   SubheaderHint,
   SubheaderDescription,
   SubheaderAction,
-  Link,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
@@ -318,9 +314,7 @@ function FullExample() {
           }
         />
         <SubheaderAction onPress={() => console.log('Action clicked')}>
-          <Link href='https://example.com' appearance='accent' size='sm'>
-            Action
-          </Link>
+          Action
         </SubheaderAction>
       </SubheaderRow>
       <SubheaderDescription>
@@ -434,7 +428,7 @@ The following guidelines ensure consistent usage of the Subheader component and 
   <SubheaderRow>
     <SubheaderTitle>Title</SubheaderTitle>
     <SubheaderAction onPress={handleAction}>
-      <Link href='#'>Link</Link>
+      Action
     </SubheaderAction>
   </SubheaderRow>
 </Subheader>
@@ -453,7 +447,7 @@ The following guidelines ensure consistent usage of the Subheader component and 
     <SubheaderTitle>Title</SubheaderTitle>
   </SubheaderRow>
   <SubheaderAction onPress={handleAction}>
-    <Link href='#'>Link</Link>
+    Action
   </SubheaderAction>
 </Subheader>
 ```
