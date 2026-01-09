@@ -106,7 +106,7 @@ describe('Subheader', () => {
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderAction onPress={handlePress}>Action</SubheaderAction>
+          <SubheaderAction onClick={handlePress}>Action</SubheaderAction>
         </SubheaderRow>
       </Subheader>,
     );
@@ -116,11 +116,11 @@ describe('Subheader', () => {
     expect(handlePress).toHaveBeenCalledTimes(1);
   });
 
-  it('renders interactive row with onPress', () => {
+  it('renders interactive row with onClick', () => {
     const handlePress = vi.fn();
     render(
       <Subheader>
-        <SubheaderRow onPress={handlePress}>
+        <SubheaderRow onClick={handlePress}>
           <SubheaderTitle>Title</SubheaderTitle>
           <SubheaderCount value={5} />
         </SubheaderRow>
@@ -153,7 +153,7 @@ describe('Subheader', () => {
               </Tooltip>
             }
           />
-          <SubheaderAction onPress={handleAction}>Action</SubheaderAction>
+          <SubheaderAction onClick={handleAction}>Action</SubheaderAction>
         </SubheaderRow>
         <SubheaderDescription>Description text</SubheaderDescription>
       </Subheader>,

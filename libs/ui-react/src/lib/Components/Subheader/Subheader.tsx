@@ -18,24 +18,24 @@ export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
 
 /**
  * Row component for the Subheader. Layout container to horizontally align title, count, hint, and action.
- * Can optionally be interactive with an onPress handler.
+ * Can optionally be interactive with an onClick handler.
  */
 export const SubheaderRow = ({
   children,
-  onPress,
+  onClick,
   className,
   ...props
 }: SubheaderRowProps) => {
-  const Component = onPress ? 'button' : 'div';
+  const Component = onClick ? 'button' : 'div';
 
   return (
     <Component
       className={cn(
         'flex items-center gap-4',
-        onPress && 'cursor-pointer',
+        onClick && 'cursor-pointer',
         className,
       )}
-      onClick={onPress}
+      onClick={onClick}
       {...props}
     >
       {children}
@@ -73,13 +73,13 @@ export const SubheaderDescription = ({
  */
 export const SubheaderAction = ({
   children,
-  onPress,
+  onClick,
   className,
   ...props
 }: SubheaderActionProps) => {
   return (
     <button
-      onClick={onPress}
+      onClick={onClick}
       className={cn('text-interactive body-2 ml-auto shrink-0 pl-8', className)}
       {...props}
     >
@@ -119,7 +119,7 @@ export const SubheaderAction = ({
  * @example
  * // Interactive row with action
  * <Subheader>
- *   <SubheaderRow onPress={handleClick}>
+ *   <SubheaderRow onClick={handleClick}>
  *     <SubheaderTitle>Accounts</SubheaderTitle>
  *     <SubheaderCount value={12} />
  *   </SubheaderRow>

@@ -116,7 +116,7 @@ export const Complete: Story = {
           <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
           <SubheaderCount value={42} />
           <SubheaderHint content={InfoTooltip} />
-          <SubheaderAction onPress={() => console.log('Action clicked')}>
+          <SubheaderAction onClick={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
             </Link>
@@ -149,7 +149,7 @@ export const Complete: Story = {
         <TooltipContent>This is additional information</TooltipContent>
       </Tooltip>
     } />
-    <SubheaderAction onPress={handleAction}>
+    <SubheaderAction onClick={handleAction}>
       <Link href="https://ledger.com" appearance="accent" size="sm">
         Action
       </Link>
@@ -169,12 +169,12 @@ export const Interactive: Story = {
   render: () => (
     <Container>
       <Subheader>
-        <SubheaderRow onPress={() => console.log('Row clicked')}>
+        <SubheaderRow onClick={() => console.log('Row clicked')}>
           <SubheaderTitle>Clickable Row</SubheaderTitle>
           <SubheaderCount value={12} />
         </SubheaderRow>
         <SubheaderDescription>
-          The entire row is clickable when onPress is provided
+          The entire row is clickable when onClick is provided
         </SubheaderDescription>
       </Subheader>
     </Container>
@@ -184,12 +184,12 @@ export const Interactive: Story = {
       source: {
         code: `
 <Subheader>
-  <SubheaderRow onPress={handleClick}>
+  <SubheaderRow onClick={handleClick}>
     <SubheaderTitle>Clickable Row</SubheaderTitle>
     <SubheaderCount value={12} />
   </SubheaderRow>
   <SubheaderDescription>
-    The entire row is clickable when onPress is provided
+    The entire row is clickable when onClick is provided
   </SubheaderDescription>
 </Subheader>
         `,

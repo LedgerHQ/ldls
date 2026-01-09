@@ -13,7 +13,7 @@ export type SubheaderRowProps = {
   /**
    * Optional click handler to make the row interactive.
    */
-  onPress?: () => void;
+  onClick?: () => void;
 } & Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'onClick'>;
 
 export type SubheaderTitleProps = {
@@ -57,5 +57,5 @@ export type SubheaderActionProps = {
   /**
    * Click handler for the action.
    */
-  onPress: () => void;
+  onClick: () => void;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'onClick'>;

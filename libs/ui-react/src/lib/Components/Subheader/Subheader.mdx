@@ -205,7 +205,7 @@ function ActionExample() {
     <Subheader>
       <SubheaderRow>
         <SubheaderTitle>Section Title</SubheaderTitle>
-        <SubheaderAction onPress={() => console.log('Action clicked')}>
+        <SubheaderAction onClick={() => console.log('Action clicked')}>
           <Link href='https://ledger.com' appearance='accent' size='sm'>
             View More
           </Link>
@@ -218,7 +218,7 @@ function ActionExample() {
 
 ### Interactive Row
 
-Make the entire row clickable by adding an `onPress` handler to `SubheaderRow`:
+Make the entire row clickable by adding an `onClick` handler to `SubheaderRow`:
 
 ```tsx
 import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount } from '@ledgerhq/lumen-ui-react';
@@ -226,12 +226,12 @@ import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount } from '@ledger
 function InteractiveExample() {
   return (
     <Subheader>
-      <SubheaderRow onPress={() => console.log('Row clicked')}>
+      <SubheaderRow onClick={() => console.log('Row clicked')}>
         <SubheaderTitle>Clickable Row</SubheaderTitle>
         <SubheaderCount value={12} />
       </SubheaderRow>
       <SubheaderDescription>
-        The entire row is clickable when onPress is provided
+        The entire row is clickable when onClick is provided
       </SubheaderDescription>
     </Subheader>
   );
@@ -278,7 +278,7 @@ function FullExample() {
             </Tooltip>
           }
         />
-        <SubheaderAction onPress={() => console.log('Action clicked')}>
+        <SubheaderAction onClick={() => console.log('Action clicked')}>
           <Link href='https://example.com' appearance='accent' size='sm'>
             Action
           </Link>
@@ -462,15 +462,15 @@ The following guidelines ensure consistent usage of the Subheader component and 
 
   <DoVsDontRow>
     <DoBlockItem
-      title='Use Action in Row with onPress'
-      description='Action should have an onPress handler and be placed in Row for right alignment'
+      title='Use Action in Row with onClick'
+      description='Action should have an onClick handler and be placed in Row for right alignment'
     >
 
 ```tsx
 <Subheader>
   <SubheaderRow>
     <SubheaderTitle>Title</SubheaderTitle>
-    <SubheaderAction onPress={handleAction}>
+    <SubheaderAction onClick={handleAction}>
       <Link href='#'>Link</Link>
     </SubheaderAction>
   </SubheaderRow>
