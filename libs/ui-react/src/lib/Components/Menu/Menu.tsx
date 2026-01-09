@@ -26,16 +26,16 @@ const contentStyles = cn(
 );
 
 const itemStyles = cn(
-  'relative flex cursor-default select-none items-center gap-12',
+  'relative flex cursor-default items-center gap-12 select-none',
   'h-44 rounded-sm px-8 outline-hidden',
-  'text-base body-2-semi-bold',
+  'body-2-semi-bold text-base',
   'transition-colors',
   'focus:bg-base-transparent-hover',
   'active:bg-base-transparent-pressed',
   'data-disabled:pointer-events-none data-disabled:text-disabled',
 );
 
-const labelStyles = cn('px-8 py-4 text-muted body-3-semi-bold');
+const labelStyles = cn('px-8 py-4 body-3-semi-bold text-muted');
 
 const subTriggerStyles = cn(
   itemStyles,

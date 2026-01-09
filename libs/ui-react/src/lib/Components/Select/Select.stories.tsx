@@ -234,14 +234,14 @@ export const WithDescription: Story = {
               className='flex flex-col items-start justify-start gap-2'
             >
               <SelectItemText>Option 1</SelectItemText>
-              <div className='text-muted body-4'>this is a description</div>
+              <div className='body-4 text-muted'>this is a description</div>
             </SelectItem>
             <SelectItem
               value='option2'
               className='flex flex-col items-start justify-start gap-4'
             >
               <SelectItemText>Option 2</SelectItemText>
-              <div className='text-muted body-4'>this is a description</div>
+              <div className='body-4 text-muted'>this is a description</div>
             </SelectItem>
           </SelectContent>
         </Select>

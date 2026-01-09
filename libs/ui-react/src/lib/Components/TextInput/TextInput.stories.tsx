@@ -175,7 +175,7 @@ export const HiddenClearButton: Story = {
           onChange={(e) => setValue(e.target.value)}
           hideClearButton
         />
-        <div className='text-muted body-3'>
+        <div className='body-3 text-muted'>
           Use hideClearButton to prevent the clear button from appearing.
         </div>
       </div>
@@ -217,7 +217,7 @@ export const WithError: Story = {
             !isValidEmail ? 'Please enter a valid email address' : undefined
           }
         />
-        <div className='mt-12 text-muted body-3'>
+        <div className='mt-12 body-3 text-muted'>
           Try typing a valid email address or clicking the clear button to
           remove the error state
         </div>
@@ -324,7 +324,7 @@ export const WithCustomElement: Story = {
             />
           </div>
         </div>
-        <div className='mt-16 text-muted body-3'>
+        <div className='mt-16 body-3 text-muted'>
           The suffix prop allows you to add custom interactive elements like
           tooltips, or action buttons
         </div>
@@ -413,10 +413,10 @@ export const Interactive: Story = {
     if (isSubmitted) {
       return (
         <div className='rounded-md bg-success p-16 text-center'>
-          <div className='text-success body-1-semi-bold'>
+          <div className='body-1-semi-bold text-success'>
             ✓ Form submitted successfully!
           </div>
-          <div className='mt-4 text-muted body-3'>Resetting form...</div>
+          <div className='mt-4 body-3 text-muted'>Resetting form...</div>
         </div>
       );
     }
@@ -487,7 +487,7 @@ export const Interactive: Story = {
             </Button>
           </div>
 
-          <div className='text-muted body-3'>
+          <div className='body-3 text-muted'>
             This example demonstrates form validation, error handling, clear
             buttons, and right elements working together.
           </div>

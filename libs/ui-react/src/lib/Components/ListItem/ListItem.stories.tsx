@@ -345,7 +345,7 @@ export const DisabledState: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className='grid w-400 grid-cols-1 gap-4 border border-muted-subtle p-16'>
-      <div className='text-muted body-4-semi-bold'>Container: 320px wide</div>
+      <div className='body-4-semi-bold text-muted'>Container: 320px wide</div>
       <div>
         <ListItem>
           <ListItemLeading>

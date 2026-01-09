@@ -25,13 +25,13 @@ import {
 const DialogContentTemplate = () => {
   return (
     <div className='flex flex-col gap-16'>
-      <p className='text-base body-2'>
+      <p className='body-2 text-base'>
         The content area after the DialogHeader can contain any components.
         Ensure proper padding and scrolling if needed.
       </p>
       <div className='rounded-sm bg-muted p-12'>
-        <p className='text-muted body-3'>
-          <strong className='text-base body-3-semi-bold'>Note:</strong> The
+        <p className='body-3 text-muted'>
+          <strong className='body-3-semi-bold text-base'>Note:</strong> The
           dialog content defaults to a width of 400px and height auto-adjusts to
           content. Use the className prop on DialogContent to customize
           dimensions if needed.
@@ -160,7 +160,7 @@ export const HeightLayouts: Story = {
               onClose={() => setOpenHug(false)}
             />
             <DialogBody>
-              <p className='text-muted body-2'>
+              <p className='body-2 text-muted'>
                 The dialog height adjusts to fit the content, up to a maximum of
                 560px.
               </p>
@@ -180,7 +180,7 @@ export const HeightLayouts: Story = {
               onClose={() => setOpenFixed(false)}
             />
             <DialogBody>
-              <p className='text-muted body-2'>
+              <p className='body-2 text-muted'>
                 The dialog always has a fixed height of 560px, regardless of
                 content.
               </p>
@@ -442,7 +442,7 @@ export const WithMultiSteps: Story = {
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
           <DialogBody>
-            <p className='text-base body-2'>
+            <p className='body-2 text-base'>
               {step === 1
                 ? 'Please review the information and click Continue to proceed.'
                 : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -595,8 +595,8 @@ export const InfoStateVariants: Story = {
                 <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
-                  <p className='text-muted body-2'>Description</p>
+                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <p className='body-2 text-muted'>Description</p>
                 </div>
               </div>
             </DialogBody>
@@ -626,8 +626,8 @@ export const InfoStateVariants: Story = {
                 <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
-                  <p className='text-muted body-2'>Description</p>
+                  <h3 className='heading-3-semi-bold text-base'>Title</h3>
+                  <p className='body-2 text-muted'>Description</p>
                 </div>
               </div>
             </DialogBody>

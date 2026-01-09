@@ -14,7 +14,7 @@ const baseContainerStyles = cn(
 );
 
 const baseInputStyles = cn(
-  'peer w-full flex-1 bg-muted text-base caret-active outline-hidden transition-colors body-1',
+  'peer w-full flex-1 bg-muted body-1 text-base caret-active outline-hidden transition-colors',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
   'group-has-disabled:cursor-not-allowed group-has-disabled:bg-disabled group-has-disabled:text-disabled',
   'placeholder:text-muted group-has-disabled:placeholder:text-disabled',
@@ -23,7 +23,7 @@ const baseInputStyles = cn(
 );
 
 const baseLabelStyles = cn(
-  'pointer-events-none absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
+  'pointer-events-none absolute top-6 left-16 origin-left body-4 text-muted transition-all duration-300',
   'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:body-2',
   'group-has-disabled:text-disabled',
   'peer-focus:top-6 peer-focus:-translate-y-0 peer-focus:body-4',
@@ -225,7 +225,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className='mt-8 flex items-center gap-2 text-error body-3'
+            className='mt-8 flex items-center gap-2 body-3 text-error'
             role='alert'
           >
             <DeleteCircleFill size={16} className='shrink-0 text-error' />

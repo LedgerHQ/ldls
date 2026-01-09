@@ -25,11 +25,11 @@ export const DontBlockItem: React.FC<DontBlockItemProps> = ({
           {title && (
             <div className='flex items-center gap-8'>
               <span className='text-[#EF4444]'>✕</span>
-              <h4 className='m-0! text-base body-2-semi-bold'>{title}</h4>
+              <h4 className='m-0! body-2-semi-bold text-base'>{title}</h4>
             </div>
           )}
           {description && (
-            <p className='m-0! text-muted body-3'>{description}</p>
+            <p className='m-0! body-3 text-muted'>{description}</p>
           )}
         </div>
       )}

@@ -1,10 +1,10 @@
 import plugin from 'tailwindcss/plugin.js';
-
-type TailwindPlugin = ReturnType<typeof plugin>;
 import { primitivesTheme } from '../themes/css';
 import { createIconUtilities } from './createIconUtilities.js';
 import { createSpotUtilities } from './createSpotUtilities.js';
 import { getThemeUtilsByPrefix } from './getThemeUtilsByPrefix.js';
+
+type TailwindPlugin = ReturnType<typeof plugin>;
 
 export function createPrimitivesPlugin(): TailwindPlugin {
   const spacing = getThemeUtilsByPrefix(primitivesTheme, '--spacing-');

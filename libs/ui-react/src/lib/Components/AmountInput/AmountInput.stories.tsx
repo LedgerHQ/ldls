@@ -126,7 +126,7 @@ export const LargeAmountDisplay: Story = {
             currencyPosition={isEth ? 'right' : 'left'}
             aria-invalid={hasError}
           />
-          <div className='mt-16 text-center text-muted body-2'>
+          <div className='mt-16 text-center body-2 text-muted'>
             {convertedValue}
           </div>
 
@@ -139,7 +139,7 @@ export const LargeAmountDisplay: Story = {
           size='xs'
           appearance='gray'
           aria-label='Toggle currency'
-          className='absolute right-8 top-12'
+          className='absolute top-12 right-8'
           onClick={() => setIsEth(!isEth)}
         />
       </div>

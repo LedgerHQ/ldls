@@ -24,8 +24,8 @@ const BorderRadiusShowcase = () => (
         <div key={name} className=''>
           <div className={`mb-8 size-80 bg-accent ${className}`}></div>
           <div></div>
-          <div className='text-base body-2'>{name}</div>
-          <div className='text-muted body-4'>{className}</div>
+          <div className='body-2 text-base'>{name}</div>
+          <div className='body-4 text-muted'>{className}</div>
         </div>
       ))}
     </div>

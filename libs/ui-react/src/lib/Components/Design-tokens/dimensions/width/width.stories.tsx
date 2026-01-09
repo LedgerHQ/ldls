@@ -44,8 +44,8 @@ const WidthShowcase = () => (
       ].map(({ name, class: widthClass, token }) => (
         <div key={name} className='flex items-center gap-8'>
           <div>
-            <div className='w-48 text-base body-2'>{name}</div>
-            <div className='text-muted body-4'>{token}</div>
+            <div className='w-48 body-2 text-base'>{name}</div>
+            <div className='body-4 text-muted'>{token}</div>
           </div>
           <div className={`${widthClass} h-24 rounded-xs bg-accent`}></div>
         </div>

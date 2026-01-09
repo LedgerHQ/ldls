@@ -22,8 +22,8 @@ const ShadowShowcase = () => (
           <div className='flex size-192 items-center justify-center rounded-lg border border-muted-subtle text-center dark:bg-muted-strong'>
             <div className={`size-80 rounded-lg ${shadowClass}`}></div>
           </div>
-          <div className='mt-8 text-base body-2'>{name}</div>
-          <div className='mt-8 text-muted body-4'>{shadowClass}</div>
+          <div className='mt-8 body-2 text-base'>{name}</div>
+          <div className='mt-8 body-4 text-muted'>{shadowClass}</div>
         </div>
       ))}
     </div>

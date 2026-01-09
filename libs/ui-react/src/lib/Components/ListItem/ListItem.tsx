@@ -159,7 +159,7 @@ export const ListItemDescription = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'w-full items-center truncate text-muted body-3',
+        'w-full items-center truncate body-3 text-muted',
         isInTrailing ? 'justify-end text-end' : 'justify-start text-start',
         disabled && 'text-disabled',
         className,
