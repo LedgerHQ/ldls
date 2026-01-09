@@ -150,7 +150,7 @@
     "surface-transparent": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.surface-tranparent.default}",
+        "$value": "{color.background.surface-transparent.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -167,7 +167,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.background.surface-tranparent.hover}",
+        "$value": "{color.background.surface-transparent.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -182,7 +182,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.background.surface-tranparent.pressed}",
+        "$value": "{color.background.surface-transparent.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -197,7 +197,7 @@
       },
       "disabled": {
         "$type": "color",
-        "$value": "{color.background.surface-tranparent.disabled}",
+        "$value": "{color.background.surface-transparent.disabled}",
         "$description": "",
         "$extensions": {
           "com.figma": {

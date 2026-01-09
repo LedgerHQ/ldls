@@ -13,12 +13,12 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-surface': 'var(--color-dark-grey-100)',
     '--color-background-surface-hover': 'var(--color-dark-grey-200)',
     '--color-background-surface-pressed': 'var(--color-dark-grey-300)',
-    '--color-background-surface-tranparent': 'var(--color-dark-grey-950-5)',
-    '--color-background-surface-tranparent-hover':
+    '--color-background-surface-transparent': 'var(--color-dark-grey-950-5)',
+    '--color-background-surface-transparent-hover':
       'var(--color-dark-grey-950-10)',
-    '--color-background-surface-tranparent-pressed':
+    '--color-background-surface-transparent-pressed':
       'var(--color-dark-grey-950-20)',
-    '--color-background-surface-tranparent-disabled':
+    '--color-background-surface-transparent-disabled':
       'var(--color-dark-grey-950-5)',
     '--color-background-base': 'var(--color-dark-grey-050)',
     '--color-background-base-hover': 'var(--color-dark-grey-100)',
@@ -103,30 +103,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-gradient-80': 'var(--color-dark-grey-050-80)',
     '--color-background-gradient-70': 'var(--color-dark-grey-050-70)',
     '--color-background-gradient-0': 'var(--color-dark-grey-050-0)',
-    '--color-background-muted-transparent-2': 'var(--color-dark-grey-950-10)',
-    '--color-background-muted-transparent-2-hover':
-      'var(--color-dark-grey-950-20)',
-    '--color-background-muted-transparent-2-pressed':
-      'var(--color-dark-grey-950-30)',
-    '--color-background-muted-transparent-2-disabled':
-      'var(--color-dark-grey-950-10)',
-    '--color-background-muted-transparent-3': 'var(--color-dark-grey-950-10)',
-    '--color-background-muted-transparent-3-hover':
-      'var(--color-dark-grey-950-20)',
-    '--color-background-muted-transparent-3-pressed':
-      'var(--color-dark-grey-950-30)',
-    '--color-background-muted-transparent-3-disabled':
-      'var(--color-dark-grey-950-10)',
-    '--color-background-surface-transparent': 'var(--color-dark-grey-950-5)',
-    '--color-background-surface-transparent-hover':
-      'var(--color-dark-grey-950-10)',
-    '--color-background-surface-transparent-pressed':
-      'var(--color-dark-grey-950-20)',
-    '--color-background-surface-transparent-disabled':
-      'var(--color-dark-grey-950-5)',
-    '--color-background-surface-2': 'var(--color-dark-grey-100)',
-    '--color-background-surface-2-hover': 'var(--color-dark-grey-200)',
-    '--color-background-surface-2-pressed': 'var(--color-dark-grey-300)',
     '--color-text-black': 'var(--color-dark-constant-950)',
     '--color-text-white': 'var(--color-dark-constant-050)',
     '--color-text-grey': 'var(--color-dark-grey-900)',
@@ -368,13 +344,13 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-surface-hover': 'var(--color-background-surface-hover)',
     '--background-surface-pressed': 'var(--color-background-surface-pressed)',
     '--background-surface-transparent':
-      'var(--color-background-surface-tranparent)',
+      'var(--color-background-surface-transparent)',
     '--background-surface-transparent-hover':
-      'var(--color-background-surface-tranparent-hover)',
+      'var(--color-background-surface-transparent-hover)',
     '--background-surface-transparent-pressed':
-      'var(--color-background-surface-tranparent-pressed)',
+      'var(--color-background-surface-transparent-pressed)',
     '--background-surface-transparent-disabled':
-      'var(--color-background-surface-tranparent-disabled)',
+      'var(--color-background-surface-transparent-disabled)',
     '--background-base': 'var(--color-background-base)',
     '--background-base-hover': 'var(--color-background-base-hover)',
     '--background-base-pressed': 'var(--color-background-base-pressed)',
