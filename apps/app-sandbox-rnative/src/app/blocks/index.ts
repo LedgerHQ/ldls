@@ -7,6 +7,7 @@ export * from './IconButtons';
 export * from './Links';
 export * from './Selects';
 export * from './Spots';
+export * from './Subheaders';
 export * from './Switches';
 export * from './Tags';
 export * from './TextInputs';

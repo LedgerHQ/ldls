@@ -4,7 +4,15 @@ import React from 'react';
 import { Information } from '../../Symbols';
 import { Link } from '../Link/Link';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
-import { Subheader } from './Subheader';
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderHint,
+  SubheaderDescription,
+  SubheaderAction,
+} from './Subheader';
 
 const Container = ({
   className,
@@ -13,12 +21,12 @@ const Container = ({
   <div className={cn('w-400 bg-canvas p-8 text-base', className)} {...props} />
 );
 
-const InfoTooltip = () => (
+const InfoTooltip = (
   <Tooltip>
     <TooltipTrigger asChild>
       <Information
         size={16}
-        className='shrink-0 text-muted'
+        className='text-muted shrink-0'
         aria-label='More information'
       />
     </TooltipTrigger>
@@ -26,15 +34,17 @@ const InfoTooltip = () => (
   </Tooltip>
 );
 
-const ActionLink = () => (
-  <Link href='https://ledger.com' appearance='accent' size='sm' isExternal>
-    Action
-  </Link>
-);
-
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
   title: 'Communication/Subheader',
+  subcomponents: {
+    SubheaderRow,
+    SubheaderTitle,
+    SubheaderDescription,
+    SubheaderCount,
+    SubheaderHint,
+    SubheaderAction,
+  },
   parameters: {
     docs: {
       source: {
@@ -44,227 +54,154 @@ const meta: Meta<typeof Subheader> = {
       },
     },
   },
-  argTypes: {
-    children: {
-      control: 'select',
-      options: ['None', 'Info', 'Action', 'Info and Action'],
-      mapping: {
-        None: null,
-        Info: (
-          <Subheader.Info key='info'>
-            <InfoTooltip />
-          </Subheader.Info>
-        ),
-        Action: (
-          <Subheader.Action key='action'>
-            <ActionLink />
-          </Subheader.Action>
-        ),
-        'Info and Action': [
-          <Subheader.Info key='info'>
-            <InfoTooltip />
-          </Subheader.Info>,
-          <Subheader.Action key='action'>
-            <ActionLink />
-          </Subheader.Action>,
-        ],
-      },
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Subheader>;
 
 export const Base: Story = {
-  args: {
-    title: 'Subheader Title',
-    children: 'None',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader title="Subheader Title" />
-        `,
-      },
-    },
-  },
-};
-
-export const WithInfoTooltip: Story = {
-  args: {
-    title: 'Subheader with Tooltip',
-    children: 'Info',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader title="Subheader with Tooltip">
-  <Subheader.Info>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Information
-          size={12}
-          className="shrink-0 text-muted"
-          aria-label="More information"
-        />
-      </TooltipTrigger>
-      <TooltipContent>This is additional information</TooltipContent>
-    </Tooltip>
-  </Subheader.Info>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const WithAction: Story = {
-  args: {
-    title: 'Subheader with Action',
-    children: 'Action',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader title="Subheader with Action">
-  <Subheader.Action>
-    <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-      Action
-    </Link>
-  </Subheader.Action>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const WithFullFeatures: Story = {
-  args: {
-    title: 'Full Featured Subheader',
-    children: 'Info and Action',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader title="Full Featured Subheader">
-  <Subheader.Info>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Information
-          size={12}
-          className="shrink-0 text-muted"
-          aria-label="More information"
-        />
-      </TooltipTrigger>
-      <TooltipContent>This is additional information</TooltipContent>
-    </Tooltip>
-  </Subheader.Info>
-  <Subheader.Action>
-    <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-      Action
-    </Link>
-  </Subheader.Action>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const ContentVariations: Story = {
   render: () => (
-    <Container className='flex flex-col gap-16'>
-      <Subheader title='Title Only' />
-      <Subheader title='With Tooltip'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-      </Subheader>
-      <Subheader title='With Action'>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-      <Subheader title='With Tooltip and Action'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Subheader Title</SubheaderTitle>
+        </SubheaderRow>
       </Subheader>
     </Container>
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Subheader Title</SubheaderTitle>
+  </SubheaderRow>
+</Subheader>
+        `,
+      },
+    },
+  },
 };
 
-export const ResponsiveLayout: Story = {
+export const WithDescription: Story = {
   render: () => (
-    <Container className='grid grid-cols-1 gap-16'>
-      <div className='text-muted body-4-semi-bold'>
-        Container with a fixed width
-      </div>
-      <Subheader title='Title with Tooltip'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-      <Subheader title='Long Title That Should Truncate When Container Is Narrow'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Section Title</SubheaderTitle>
+        </SubheaderRow>
+        <SubheaderDescription>
+          This is a detailed description that provides additional context about
+          this section.
+        </SubheaderDescription>
       </Subheader>
     </Container>
   ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Section Title</SubheaderTitle>
+  </SubheaderRow>
+  <SubheaderDescription>
+    This is a detailed description that provides additional context about this section.
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const Complete: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
+          <SubheaderCount value={42} />
+          <SubheaderHint content={InfoTooltip} />
+          <SubheaderAction onClick={() => console.log('Action clicked')}>
+            <Link href='https://ledger.com' appearance='accent' size='sm'>
+              Action
+            </Link>
+          </SubheaderAction>
+        </SubheaderRow>
+        <SubheaderDescription>
+          This subheader demonstrates all available features including title,
+          count, hint, description, and action.
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
+    <SubheaderCount value={42} />
+    <SubheaderHint content={
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Information
+            size={16}
+            className="text-muted shrink-0"
+            aria-label="More information"
+          />
+        </TooltipTrigger>
+        <TooltipContent>This is additional information</TooltipContent>
+      </Tooltip>
+    } />
+    <SubheaderAction onClick={handleAction}>
+      <Link href="https://ledger.com" appearance="accent" size="sm">
+        Action
+      </Link>
+    </SubheaderAction>
+  </SubheaderRow>
+  <SubheaderDescription>
+    This subheader demonstrates all available features including title, count, hint, description, and action.
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const Interactive: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow onClick={() => console.log('Row clicked')}>
+          <SubheaderTitle>Clickable Row</SubheaderTitle>
+          <SubheaderCount value={12} />
+        </SubheaderRow>
+        <SubheaderDescription>
+          The entire row is clickable when onClick is provided
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow onClick={handleClick}>
+    <SubheaderTitle>Clickable Row</SubheaderTitle>
+    <SubheaderCount value={12} />
+  </SubheaderRow>
+  <SubheaderDescription>
+    The entire row is clickable when onClick is provided
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
 };

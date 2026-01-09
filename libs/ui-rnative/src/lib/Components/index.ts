@@ -13,6 +13,7 @@ export * from './ListItem';
 export * from './SearchInput';
 export * from './Select';
 export * from './Spot';
+export * from './Subheader';
 export * from './Switch';
 export * from './Tag';
 export * from './Utility';
