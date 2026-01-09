@@ -79,6 +79,7 @@ export const SubheaderAction = ({
 }: SubheaderActionProps) => {
   return (
     <button
+      type='button'
       onClick={onClick}
       className={cn('text-interactive body-2 ml-auto shrink-0 pl-8', className)}
       {...props}

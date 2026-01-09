@@ -53,7 +53,7 @@ figma.connect(
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>{props.title}</SubheaderTitle>
-          <SubheaderAction>
+          <SubheaderAction onClick={() => console.log('Action clicked')}>
             <Link href='#' appearance='accent' size='sm'>
               Action
             </Link>
