@@ -22,7 +22,7 @@ export const ColorSwatch = ({
                 'h-64 rounded-lg border border-muted p-16',
               )}
             >
-              <div className={cn('heading-4', textClassName)}>Aa</div>
+              <div className={cn('heading-5', textClassName)}>Aa</div>
             </div>
             <div className='mt-8 text-base body-1-semi-bold'>{name}</div>
             <div className='text-muted body-3'>{textClassName}</div>
@@ -89,7 +89,7 @@ export const ColorSection = ({
   category?: 'background' | 'text' | 'border';
 }) => (
   <div className='mb-32'>
-    {title && <h3 className='mb-32 text-base heading-3'>{title}</h3>}
+    {title && <h3 className='mb-32 text-base heading-4'>{title}</h3>}
     <div className='grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
       {tokens.map(({ name, className, textClassName }) => (
         <ColorSwatch

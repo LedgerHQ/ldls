@@ -204,7 +204,7 @@ export const AppearanceShowcase: Story = {
   render: () => (
     <div className='flex flex-col gap-24'>
       <div>
-        <h3 className='mb-8 heading-3'>No Background</h3>
+        <h3 className='mb-8 heading-4'>No Background</h3>
         <div className='flex gap-16'>
           <Tile appearance='no-background' className='w-112'>
             <TileSpot appearance='icon' icon={Settings} />
@@ -223,7 +223,7 @@ export const AppearanceShowcase: Story = {
         </div>
       </div>
       <div>
-        <h3 className='mb-8 heading-3'>Card</h3>
+        <h3 className='mb-8 heading-4'>Card</h3>
         <div className='flex gap-16'>
           <Tile appearance='card' className='w-112'>
             <TileSpot appearance='icon' icon={User} />

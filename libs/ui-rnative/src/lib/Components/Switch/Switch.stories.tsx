@@ -83,14 +83,14 @@ export const AllStates: Story = {
           }}
         >
           <Box style={{ gap: 16 }}>
-            <Text typography='heading4'>Enabled</Text>
+            <Text typography='heading5'>Enabled</Text>
             <Box style={{ gap: 8 }}>
               <Switch defaultChecked={false} />
               <Switch aria-labelledby='' defaultChecked />
             </Box>
           </Box>
           <Box style={{ gap: 16 }}>
-            <Text typography='heading4'>Disabled</Text>
+            <Text typography='heading5'>Disabled</Text>
             <Box style={{ gap: 8 }}>
               <Switch disabled defaultChecked={false} />
               <Switch disabled defaultChecked />

@@ -512,7 +512,7 @@
     "accent": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.default}",
+        "$value": "{color.background.accent.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -529,7 +529,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.hover}",
+        "$value": "{color.background.accent.ledger-live.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -544,7 +544,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.pressed}",
+        "$value": "{color.background.accent.ledger-live.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -788,7 +788,7 @@
     "active": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.default}",
+        "$value": "{color.background.active.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -805,7 +805,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.hover}",
+        "$value": "{color.background.active.ledger-live.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -820,7 +820,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.background.accent.enterprise.pressed}",
+        "$value": "{color.background.active.ledger-live.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -837,7 +837,7 @@
     "active-subtle": {
       "default": {
         "$type": "color",
-        "$value": "{color.background.active-subtle.enterprise.default}",
+        "$value": "{color.background.active-subtle.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -854,7 +854,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.background.active-subtle.enterprise.hover}",
+        "$value": "{color.background.active-subtle.ledger-live.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -869,7 +869,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.background.active-subtle.enterprise.pressed}",
+        "$value": "{color.background.active-subtle.ledger-live.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1172,7 +1172,7 @@
     "active": {
       "default": {
         "$type": "color",
-        "$value": "{color.text.active.enterprise.default}",
+        "$value": "{color.text.active.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1192,7 +1192,7 @@
     "interactive": {
       "default": {
         "$type": "color",
-        "$value": "{color.text.interactive.enterprise.default}",
+        "$value": "{color.text.interactive.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1208,7 +1208,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.text.interactive.enterprise.hover}",
+        "$value": "{color.text.interactive.ledger-live.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1224,7 +1224,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.text.interactive.enterprise.pressed}",
+        "$value": "{color.text.interactive.ledger-live.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1302,7 +1302,7 @@
     "on-accent": {
       "default": {
         "$type": "color",
-        "$value": "{color.text.on-accent.enterprise.default}",
+        "$value": "{color.text.on-accent.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1692,7 +1692,7 @@
     "active": {
       "default": {
         "$type": "color",
-        "$value": "{color.border.active.enterprise.default}",
+        "$value": "{color.border.active.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1708,7 +1708,7 @@
       },
       "hover": {
         "$type": "color",
-        "$value": "{color.border.active.enterprise.pressed}",
+        "$value": "{color.border.active.ledger-live.hover}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1722,7 +1722,7 @@
       },
       "pressed": {
         "$type": "color",
-        "$value": "{color.border.active.enterprise.pressed}",
+        "$value": "{color.border.active.ledger-live.pressed}",
         "$description": "",
         "$extensions": {
           "com.figma": {
@@ -1738,7 +1738,7 @@
     "focus": {
       "default": {
         "$type": "color",
-        "$value": "{color.border.focus.enterprise.default}",
+        "$value": "{color.border.focus.ledger-live.default}",
         "$description": "",
         "$extensions": {
           "com.figma": {

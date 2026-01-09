@@ -17,7 +17,7 @@ import { createStyledText } from '../../../../styles';
  * <Text typography='body1'>Hello World</Text>
  *
  * // With custom color
- * <Text typography='heading2SemiBold' lx={{ color: 'muted' }}>
+ * <Text typography='heading3SemiBold' lx={{ color: 'muted' }}>
  *   Subtitle
  * </Text>
  *

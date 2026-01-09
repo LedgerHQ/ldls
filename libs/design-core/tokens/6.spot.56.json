@@ -71,7 +71,7 @@
   },
   "number-size": {
     "$type": "number",
-    "$value": "{font-style.heading.3.size}",
+    "$value": "{font-style.heading.4.size}",
     "$description": "",
     "$extensions": {
       "com.figma": {
@@ -85,7 +85,7 @@
   },
   "number-weight": {
     "$type": "string",
-    "$value": "{font-style.heading.3.weight-medium}",
+    "$value": "{font-style.heading.4.weight-medium}",
     "$description": "",
     "$extensions": {
       "com.figma": {

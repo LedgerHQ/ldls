@@ -100,9 +100,23 @@
     }
   },
   "icon-multiple": {
-    "icon-multiple-spacing": {
+    "icon-multiple-network-spacing": {
       "$type": "number",
       "$value": -4,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": false,
+          "scopes": [
+            "GAP"
+          ],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "icon-multiple-coin-spacing": {
+      "$type": "number",
+      "$value": -9.5,
       "$description": "",
       "$extensions": {
         "com.figma": {

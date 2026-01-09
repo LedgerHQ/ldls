@@ -75,7 +75,7 @@ import { ArrowRight } from '@ledgerhq/lumen-ui-react';
 
 // ✅ With rules
 import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
-<div className='text-muted heading-2'>Text</div>;
+<div className='text-muted heading-3'>Text</div>;
 ```
 
 ## Auto-Sync Benefits

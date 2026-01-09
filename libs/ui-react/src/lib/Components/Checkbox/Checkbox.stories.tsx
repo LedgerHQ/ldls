@@ -42,7 +42,7 @@ export const AllStates: Story = {
   render: () => (
     <div className='grid grid-cols-2 gap-16 p-16 text-base'>
       <div className='space-y-16'>
-        <h3 className='heading-4'>Enabled</h3>
+        <h3 className='heading-5'>Enabled</h3>
         <div className='space-y-8'>
           <div className='flex items-center space-x-8'>
             <Checkbox checked={false} />
@@ -55,7 +55,7 @@ export const AllStates: Story = {
         </div>
       </div>
       <div className='space-y-16'>
-        <h3 className='heading-4'>Disabled</h3>
+        <h3 className='heading-5'>Disabled</h3>
         <div className='space-y-8'>
           <div className='flex items-center space-x-8'>
             <Checkbox disabled checked={false} />

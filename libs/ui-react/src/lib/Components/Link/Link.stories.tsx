@@ -326,7 +326,7 @@ export const InheritVariants: Story = {
         .
       </div>
 
-      <div className='text-interactive heading-3'>
+      <div className='text-interactive heading-4'>
         Need help?{' '}
         <Link href='#' onClick={onClick}>
           Contact Support
@@ -362,7 +362,7 @@ export const InheritVariants: Story = {
 </div>
 
 // Heading with inline link
-<div className='text-interactive heading-3'>
+<div className='text-interactive heading-4'>
   Need help? <Link href='#'>Contact Support</Link>
 </div>
 

@@ -532,7 +532,7 @@ export const WithListsContent: Story = {
           <DialogBody className='gap-32'>
             {/* Horizontal Tile List */}
             <div className='flex flex-col gap-8'>
-              <h4 className='heading-4-semi-bold'>Quick Actions</h4>
+              <h4 className='heading-5-semi-bold'>Quick Actions</h4>
               <div className='-mx-24 flex gap-8 overflow-x-auto px-24'>
                 {Array.from({ length: 12 }).map((_, i) => (
                   <Tile>
@@ -547,7 +547,7 @@ export const WithListsContent: Story = {
 
             {/* Vertical ListItem List */}
             <div className='flex flex-col gap-8'>
-              <h4 className='heading-4-semi-bold'>Settings</h4>
+              <h4 className='heading-5-semi-bold'>Settings</h4>
 
               <div className='-mx-8 flex flex-col gap-4'>
                 <div className='sticky top-0 bg-canvas py-8'>
@@ -595,7 +595,7 @@ export const InfoStateVariants: Story = {
                 <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='text-base heading-4-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -626,7 +626,7 @@ export const InfoStateVariants: Story = {
                 <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='text-base heading-4-semi-bold'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -660,7 +660,7 @@ export const InfoStateVariants: Story = {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error" />
         <Spot appearance="error" size={72} />
         <div className="flex flex-col items-center gap-12 text-center">
-          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <h3 className="heading-4-semi-bold text-base">Title</h3>
           <p className="body-2 text-muted">Description</p>
         </div>
       </div>
@@ -684,7 +684,7 @@ export const InfoStateVariants: Story = {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
         <Spot appearance="check" size={72} />
         <div className="flex flex-col items-center gap-12 text-center">
-          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <h3 className="heading-4-semi-bold text-base">Title</h3>
           <p className="body-2 text-muted">Description</p>
         </div>
     </div>

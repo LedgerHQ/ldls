@@ -13,6 +13,13 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-surface': 'var(--color-dark-grey-100)',
     '--color-background-surface-hover': 'var(--color-dark-grey-200)',
     '--color-background-surface-pressed': 'var(--color-dark-grey-300)',
+    '--color-background-surface-transparent': 'var(--color-dark-grey-950-5)',
+    '--color-background-surface-transparent-hover':
+      'var(--color-dark-grey-950-10)',
+    '--color-background-surface-transparent-pressed':
+      'var(--color-dark-grey-950-20)',
+    '--color-background-surface-transparent-disabled':
+      'var(--color-dark-grey-950-5)',
     '--color-background-base': 'var(--color-dark-grey-050)',
     '--color-background-base-hover': 'var(--color-dark-grey-100)',
     '--color-background-base-pressed': 'var(--color-dark-grey-200)',
@@ -336,6 +343,14 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-surface': 'var(--color-background-surface)',
     '--background-surface-hover': 'var(--color-background-surface-hover)',
     '--background-surface-pressed': 'var(--color-background-surface-pressed)',
+    '--background-surface-transparent':
+      'var(--color-background-surface-transparent)',
+    '--background-surface-transparent-hover':
+      'var(--color-background-surface-transparent-hover)',
+    '--background-surface-transparent-pressed':
+      'var(--color-background-surface-transparent-pressed)',
+    '--background-surface-transparent-disabled':
+      'var(--color-background-surface-transparent-disabled)',
     '--background-base': 'var(--color-background-base)',
     '--background-base-hover': 'var(--color-background-base-hover)',
     '--background-base-pressed': 'var(--color-background-base-pressed)',
@@ -451,5 +466,6 @@ export const tokens: Record<string, Record<string, string>> = {
     '--border-width': 'var(--stroke-1)',
     '--border-width-active': 'var(--stroke-2)',
     '--border-width-focus': 'var(--stroke-2)',
+    '--border-width-stepper': 'var(--stroke-4)',
   },
 };

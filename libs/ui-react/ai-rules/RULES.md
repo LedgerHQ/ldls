@@ -40,7 +40,7 @@
 - Do not use Tailwind Typography utilities (e.g., `font-bold`, `text-sm`, etc.)
 - Use Lumen custom typography utilities:
   - `responsive-display-1` to `responsive-display-4`
-  - `heading-0`, `heading-0-semi-bold` through `heading-4`, `heading-4-semi-bold`
+  - `heading-0`, `heading-0-semi-bold` through `heading-5`, `heading-5-semi-bold`
   - `body-1`, `body-1-semi-bold` through `body-4`, `body-4-semi-bold`
 
 ### Colors and Background
@@ -154,7 +154,7 @@ import { ArrowRight } from '@ledgerhq/lumen-ui-react/symbols';
 
 const Card = () => (
   <div className='bg-base border border-base rounded-lg p-16'>
-    <h2 className='heading-3'>Card Title</h2>
+    <h2 className='heading-4'>Card Title</h2>
     <p className='body-2 text-muted mt-8'>This is a description using proper spacing and typography tokens.</p>
     <Button icon={ArrowRight} className='mt-16'>
       Learn More
@@ -319,4 +319,4 @@ Use ONLY the unique part after the last hyphen of the CSS variable name.
 - Figma shows: a comment with the style name, like `/* body/3 */`
 - Transform: replace `/` with `-`
 - Result: `body-3` (transform `body/3` → `body-3`)
-- Example: `/* heading/2-semi-bold */` → `heading-2-semi-bold`
+- Example: `/* heading/2-semi-bold */` → `heading-3-semi-bold`
