@@ -1,7 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
-import { Pressable } from '../Utility/Pressable/Pressable';
-import { Text } from '../Utility/Text/Text';
+import { Box, Pressable, Text } from '../Utility';
 import {
   SubheaderActionProps,
   SubheaderCountProps,
@@ -43,7 +42,7 @@ export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
 export const SubheaderRow = ({
   children,
   onPress,
-  lx,
+  lx = {},
   style,
   ...props
 }: SubheaderRowProps) => {
@@ -60,18 +59,20 @@ export const SubheaderRow = ({
     [],
   );
 
+  const mergedStyle = StyleSheet.flatten([styles.container, style]);
+
   if (onPress) {
     return (
-      <Pressable lx={lx} style={styles.container} onPress={onPress} {...props}>
+      <Pressable lx={lx} style={mergedStyle} onPress={onPress} {...props}>
         {children}
       </Pressable>
     );
   }
 
   return (
-    <View style={[styles.container, style]} {...props}>
+    <Box lx={lx} style={mergedStyle} {...props}>
       {children}
-    </View>
+    </Box>
   );
 };
 
@@ -198,7 +199,7 @@ export const SubheaderAction = ({
  * </Subheader>
  */
 export const Subheader = ({
-  lx,
+  lx = {},
   style,
   children,
   ...props
@@ -215,8 +216,8 @@ export const Subheader = ({
   );
 
   return (
-    <View style={[styles.container, style]} {...props}>
+    <Box lx={lx} style={[styles.container, style]} {...props}>
       {children}
-    </View>
+    </Box>
   );
 };
