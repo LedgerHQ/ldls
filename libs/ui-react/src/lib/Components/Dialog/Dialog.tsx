@@ -19,8 +19,8 @@ const DialogContext = React.createContext<{ height: DialogHeight }>({
 
 const dialogContentVariants = cva(
   [
-    'w-400 bg-canvas-sheet flex max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl pb-24',
-    'z-dialog-content fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
+    'flex w-400 max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl bg-canvas-sheet pb-24',
+    'fixed left-[50%] top-[50%] z-dialog-content translate-x-[-50%] translate-y-[-50%]',
     'data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
   ],
   {
@@ -140,7 +140,7 @@ const DialogOverlay = React.forwardRef<HTMLDivElement, DialogOverlayProps>(
         data-slot='dialog-overlay'
         className={cn(
           className,
-          'z-dialog-overlay bg-canvas-overlay data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in fixed inset-0 backdrop-blur-sm',
+          'fixed inset-0 z-dialog-overlay bg-canvas-overlay backdrop-blur-sm data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
         )}
         {...props}
       />
@@ -170,7 +170,7 @@ DialogOverlay.displayName = 'DialogOverlay';
  * // With custom styling for layout
  * <DialogContent className="max-w-md">
  *   <div className="space-y-4">
- *     <h4 className="heading-4-semi-bold">Dialog Title</h4>
+ *     <h4 className="heading-5-semi-bold">Dialog Title</h4>
  *     <p>Detailed content here.</p>
  *   </div>
  * </DialogContent>

@@ -184,7 +184,7 @@ export const SizesShowcase: Story = {
       <Box lx={{ flexDirection: 'column', gap: 's32', padding: 's16' }}>
         {sizes.map((size) => (
           <Box key={size} lx={{ flexDirection: 'column', gap: 's16' }}>
-            <Text typography='heading4SemiBold'>{size}px</Text>
+            <Text typography='heading5SemiBold'>{size}px</Text>
             <Box lx={{ flexDirection: 'row', gap: 's12' }}>
               <Spot appearance='icon' icon={Settings} size={size} />
               <Spot appearance='info' size={size} />

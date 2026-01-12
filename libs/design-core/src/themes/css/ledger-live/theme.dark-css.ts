@@ -13,6 +13,13 @@ export const tokens: Record<string, Record<string, string>> = {
     '--color-background-surface': 'var(--color-dark-grey-100)',
     '--color-background-surface-hover': 'var(--color-dark-grey-200)',
     '--color-background-surface-pressed': 'var(--color-dark-grey-300)',
+    '--color-background-surface-transparent': 'var(--color-dark-grey-950-5)',
+    '--color-background-surface-transparent-hover':
+      'var(--color-dark-grey-950-10)',
+    '--color-background-surface-transparent-pressed':
+      'var(--color-dark-grey-950-20)',
+    '--color-background-surface-transparent-disabled':
+      'var(--color-dark-grey-950-5)',
     '--color-background-base': 'var(--color-dark-grey-050)',
     '--color-background-base-hover': 'var(--color-dark-grey-100)',
     '--color-background-base-pressed': 'var(--color-dark-grey-200)',

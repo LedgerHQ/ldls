@@ -672,6 +672,7 @@ export const tokens: Record<string, Record<string, string | number>> = {
     '--font-family-font': 'Inter',
     '--stroke-1': 1,
     '--stroke-2': 2,
+    '--stroke-4': 4,
     '--font-weight-bold': '700',
     '--font-weight-semi-bold': '600',
     '--font-weight-medium': '500',

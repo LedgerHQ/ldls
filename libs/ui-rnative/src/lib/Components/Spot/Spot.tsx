@@ -27,9 +27,9 @@ const spotSizeMap: Record<SpotSize, number> = {
 } as const;
 
 const numberTypographyMap = {
-  48: 'heading4',
-  56: 'heading3',
-  72: 'heading1',
+  48: 'heading5',
+  56: 'heading4',
+  72: 'heading2',
 } as const;
 
 const useStyles = ({

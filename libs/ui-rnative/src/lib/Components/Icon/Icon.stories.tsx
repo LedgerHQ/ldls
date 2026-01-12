@@ -143,7 +143,7 @@ export const IconSizes: StoryObj = {
       <Box lx={{ flexDirection: 'column', gap: 's16' }}>
         {sizes.map((size) => (
           <Box key={size} lx={{ flexDirection: 'column' }}>
-            <Text typography='heading3' lx={{ marginBottom: 's16' }}>
+            <Text typography='heading4' lx={{ marginBottom: 's16' }}>
               Size {size}px
             </Text>
             <Box

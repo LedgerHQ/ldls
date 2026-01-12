@@ -137,7 +137,7 @@ export const SizesShowcase: Story = {
       <div className='flex flex-col gap-32 p-16'>
         {sizes.map((size) => (
           <div key={size} className='flex flex-col gap-16'>
-            <h3 className='heading-4-semi-bold'>{size}px</h3>
+            <h3 className='heading-5-semi-bold'>{size}px</h3>
             <div className='flex gap-12'>
               <Spot appearance='icon' icon={Settings} size={size} />
               <Spot appearance='info' size={size} />
