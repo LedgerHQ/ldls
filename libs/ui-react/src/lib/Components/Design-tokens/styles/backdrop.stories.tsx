@@ -48,7 +48,7 @@ export const Backdrop: Story = {
     <div className='p-24'>
       <SectionHeader
         title='Backdrop Blur'
-        description='Tailwind classes for controlling the backdrop blur-sm of an element.'
+        description='Tailwind classes for controlling the backdrop blur of an element.'
       />
       <BackdropShowcase />
     </div>
