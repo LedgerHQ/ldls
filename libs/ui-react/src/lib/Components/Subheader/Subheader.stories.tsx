@@ -1,7 +1,6 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { Information } from '../../Symbols';
 import { Link } from '../Link/Link';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import {
@@ -9,7 +8,7 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -21,19 +20,6 @@ const Container = ({
   <div className={cn('w-400 bg-canvas p-8 text-base', className)} {...props} />
 );
 
-const InfoTooltip = (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Information
-        size={16}
-        className='text-muted shrink-0'
-        aria-label='More information'
-      />
-    </TooltipTrigger>
-    <TooltipContent>This is additional information</TooltipContent>
-  </Tooltip>
-);
-
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
   title: 'Communication/Subheader',
@@ -42,7 +28,7 @@ const meta: Meta<typeof Subheader> = {
     SubheaderTitle,
     SubheaderDescription,
     SubheaderCount,
-    SubheaderHint,
+    SubheaderInfo,
     SubheaderAction,
   },
   parameters: {
@@ -123,7 +109,12 @@ export const Complete: Story = {
         <SubheaderRow>
           <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
           <SubheaderCount value={42} />
-          <SubheaderHint content={InfoTooltip} />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent>This is additional information</TooltipContent>
+          </Tooltip>
           <SubheaderAction onClick={() => console.log('Action clicked')}>
             <Link href='https://ledger.com' appearance='accent' size='sm'>
               Action
@@ -145,18 +136,12 @@ export const Complete: Story = {
   <SubheaderRow>
     <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
     <SubheaderCount value={42} />
-    <SubheaderHint content={
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Information
-            size={16}
-            className="text-muted shrink-0"
-            aria-label="More information"
-          />
-        </TooltipTrigger>
-        <TooltipContent>This is additional information</TooltipContent>
-      </Tooltip>
-    } />
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <SubheaderInfo />
+      </TooltipTrigger>
+      <TooltipContent>This is additional information</TooltipContent>
+    </Tooltip>
     <SubheaderAction onClick={handleAction}>
       <Link href="https://ledger.com" appearance="accent" size="sm">
         Action

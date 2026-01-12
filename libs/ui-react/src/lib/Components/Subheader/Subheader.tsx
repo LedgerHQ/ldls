@@ -1,9 +1,10 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
+import { Information } from '../../Symbols';
 import {
   SubheaderActionProps,
   SubheaderCountProps,
   SubheaderDescriptionProps,
-  SubheaderHintProps,
+  SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
   SubheaderTitleProps,
@@ -52,10 +53,26 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
 };
 
 /**
- * Hint component for the Subheader. Used to display additional information, like tooltips.
+ * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip.
  */
-export const SubheaderHint = ({ content }: SubheaderHintProps) => {
-  return <div className='flex shrink-0 items-center'>{content}</div>;
+export const SubheaderInfo = ({
+  children,
+  className,
+  ...props
+}: SubheaderInfoProps) => {
+  const icon = (
+    <Information
+      size={16}
+      className='text-muted shrink-0'
+      aria-label='More information'
+    />
+  );
+
+  return (
+    <div className={cn('flex shrink-0 items-center', className)} {...props}>
+      {children ? children : icon}
+    </div>
+  );
 };
 
 /**
@@ -112,7 +129,12 @@ export const SubheaderAction = ({
  *   <SubheaderRow>
  *     <SubheaderTitle>Section Title</SubheaderTitle>
  *     <SubheaderCount value={30} />
- *     <SubheaderHint content={<Tooltip>...</Tooltip>} />
+ *     <Tooltip>
+ *       <TooltipTrigger asChild>
+ *         <SubheaderInfo />
+ *       </TooltipTrigger>
+ *       <TooltipContent>Additional information</TooltipContent>
+ *     </Tooltip>
  *   </SubheaderRow>
  *   <SubheaderDescription>Description text</SubheaderDescription>
  * </Subheader>

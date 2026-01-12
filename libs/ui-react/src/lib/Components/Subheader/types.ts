@@ -35,12 +35,12 @@ export type SubheaderCountProps = {
   format?: (value: number) => string;
 };
 
-export type SubheaderHintProps = {
+export type SubheaderInfoProps = {
   /**
-   * The hint content to display (e.g., tooltip trigger).
+   * The children to wrap the info icon (e.g., Tooltip wrapper).
    */
-  content: React.ReactNode;
-};
+  children?: React.ReactNode;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
 
 export type SubheaderDescriptionProps = {
   /**

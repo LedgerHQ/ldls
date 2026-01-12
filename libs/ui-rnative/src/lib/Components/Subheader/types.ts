@@ -46,12 +46,16 @@ export type SubheaderCountProps = {
   format?: (value: number) => string;
 };
 
-export type SubheaderHintProps = {
+export type SubheaderInfoProps = {
   /**
-   * The hint content to display (e.g., tooltip trigger).
+   * The children to wrap the info icon (e.g., Tooltip or BottomSheet wrapper).
    */
-  content: React.ReactNode;
-};
+  children?: React.ReactNode;
+  /**
+   * Style props using design tokens
+   */
+  lx?: LumenViewStyle;
+} & Omit<ViewProps, 'children'>;
 
 export type SubheaderDescriptionProps = {
   /**

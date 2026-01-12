@@ -1,13 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Information } from '../../Symbols';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
 import {
   Subheader,
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -61,25 +60,31 @@ describe('Subheader', () => {
     expect(screen.getByText('99+')).toBeInTheDocument();
   });
 
-  it('renders the hint when provided', () => {
+  it('renders the info icon when provided', () => {
     const { container } = render(
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
-          <SubheaderHint
-            content={
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Information
-                    size={16}
-                    className='text-muted shrink-0'
-                    aria-label='More information'
-                  />
-                </TooltipTrigger>
-                <TooltipContent>Info</TooltipContent>
-              </Tooltip>
-            }
-          />
+          <SubheaderInfo />
+        </SubheaderRow>
+      </Subheader>,
+    );
+    expect(
+      container.querySelector('[aria-label="More information"]'),
+    ).toBeInTheDocument();
+  });
+
+  it('renders the info icon wrapped in tooltip', () => {
+    const { container } = render(
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent>Info</TooltipContent>
+          </Tooltip>
         </SubheaderRow>
       </Subheader>,
     );
@@ -139,20 +144,12 @@ describe('Subheader', () => {
         <SubheaderRow>
           <SubheaderTitle>Title</SubheaderTitle>
           <SubheaderCount value={42} />
-          <SubheaderHint
-            content={
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Information
-                    size={16}
-                    className='text-muted shrink-0'
-                    aria-label='More information'
-                  />
-                </TooltipTrigger>
-                <TooltipContent>Info</TooltipContent>
-              </Tooltip>
-            }
-          />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent>Info</TooltipContent>
+          </Tooltip>
           <SubheaderAction onClick={handleAction}>Action</SubheaderAction>
         </SubheaderRow>
         <SubheaderDescription>Description text</SubheaderDescription>

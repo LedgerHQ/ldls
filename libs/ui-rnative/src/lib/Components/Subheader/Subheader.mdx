@@ -6,7 +6,7 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -42,7 +42,7 @@ The Subheader uses a composite structure with the following components:
 - **SubheaderRow**: Interactive horizontal container for title and inline elements
 - **SubheaderTitle**: The main heading text (required)
 - **SubheaderCount**: Displays a numeric count in parentheses (optional)
-- **SubheaderHint**: Container for informational elements like tooltips (optional)
+- **SubheaderInfo**: Information icon that can be wrapped in tooltips or bottom sheets (optional)
 - **SubheaderDescription**: Additional descriptive text below the row (optional)
 - **SubheaderAction**: Container for action elements, positioned at the far right (optional)
 
@@ -65,7 +65,7 @@ All features combined in one subheader:
 
 <Canvas of={SubheaderStories.Complete} />
 
-> **Note**: The `SubheaderRow` and `SubheaderTitle` are required. All other components (`SubheaderCount`, `SubheaderHint`, `SubheaderDescription`, `SubheaderAction`) are optional and can be combined as needed.
+> **Note**: The `SubheaderRow` and `SubheaderTitle` are required. All other components (`SubheaderCount`, `SubheaderInfo`, `SubheaderDescription`, `SubheaderAction`) are optional and can be combined as needed.
 
 ### Interactive Row
 
@@ -175,43 +175,33 @@ You can also provide a custom formatter:
 <SubheaderCount value={150} format={(n) => (n > 99 ? '(99+)' : `(${n})`)} />
 ```
 
-### With Hint Tooltip
+### With Info Tooltip
 
-Add an informational tooltip using the `SubheaderHint` component:
+Add an informational tooltip using the `SubheaderInfo` component (which includes an information icon by default):
 
 ```tsx
 import {
   Subheader,
   SubheaderRow,
   SubheaderTitle,
-  SubheaderHint,
+  SubheaderInfo,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@ledgerhq/lumen-ui-rnative';
-import { InteractiveIcon } from '@ledgerhq/lumen-ui-rnative';
-import { Information } from '@ledgerhq/lumen-ui-rnative/symbols';
+import { Text } from 'react-native';
 
-function HintExample() {
+function InfoExample() {
   return (
     <Subheader>
       <SubheaderRow>
         <SubheaderTitle>Section Title</SubheaderTitle>
-        <SubheaderHint
-          content={
-            <Tooltip>
-              <TooltipTrigger>
-                <InteractiveIcon
-                  Icon={Information}
-                  size={16}
-                  appearance='ghost'
-                  aria-label='More information'
-                />
-              </TooltipTrigger>
-              <TooltipContent content='This is additional information' />
-            </Tooltip>
-          }
-        />
+        <Tooltip>
+          <TooltipTrigger>
+            <SubheaderInfo />
+          </TooltipTrigger>
+          <TooltipContent content={<Text>This is additional information</Text>} />
+        </Tooltip>
       </SubheaderRow>
     </Subheader>
   );
@@ -282,15 +272,14 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  InteractiveIcon,
 } from '@ledgerhq/lumen-ui-rnative';
-import { Information } from '@ledgerhq/lumen-ui-rnative/symbols';
+import { Text } from 'react-native';
 
 function FullExample() {
   return (
@@ -298,21 +287,12 @@ function FullExample() {
       <SubheaderRow>
         <SubheaderTitle>Section Title</SubheaderTitle>
         <SubheaderCount value={42} />
-        <SubheaderHint
-          content={
-            <Tooltip>
-              <TooltipTrigger>
-                <InteractiveIcon
-                  Icon={Information}
-                  size={16}
-                  appearance='ghost'
-                  aria-label='More information'
-                />
-              </TooltipTrigger>
-              <TooltipContent content='Additional info' />
-            </Tooltip>
-          }
-        />
+        <Tooltip>
+          <TooltipTrigger>
+            <SubheaderInfo />
+          </TooltipTrigger>
+          <TooltipContent content={<Text>Additional info</Text>} />
+        </Tooltip>
         <SubheaderAction onPress={() => console.log('Action clicked')}>
           Action
         </SubheaderAction>

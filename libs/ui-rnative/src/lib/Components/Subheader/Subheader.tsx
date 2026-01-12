@@ -1,11 +1,13 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useStyleSheet } from '../../../styles';
+import { Information } from '../../Symbols';
+import { InteractiveIcon } from '../InteractiveIcon';
 import { Box, Pressable, Text } from '../Utility';
 import {
   SubheaderActionProps,
   SubheaderCountProps,
   SubheaderDescriptionProps,
-  SubheaderHintProps,
+  SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
   SubheaderTitleProps,
@@ -99,9 +101,14 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
 };
 
 /**
- * Hint component for the Subheader. Used to display additional information, like tooltips.
+ * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip or BottomSheet.
  */
-export const SubheaderHint = ({ content }: SubheaderHintProps) => {
+export const SubheaderInfo = ({
+  children,
+  lx = {},
+  style,
+  ...props
+}: SubheaderInfoProps) => {
   const styles = useStyleSheet(
     () => ({
       container: {
@@ -113,7 +120,17 @@ export const SubheaderHint = ({ content }: SubheaderHintProps) => {
     [],
   );
 
-  return <View style={styles.container}>{content}</View>;
+  const icon = (
+    <InteractiveIcon iconType='stroked'>
+      <Information />
+    </InteractiveIcon>
+  );
+
+  return (
+    <Box lx={lx} style={[styles.container, style]} {...props}>
+      {children ? children : icon}
+    </Box>
+  );
 };
 
 /**
@@ -184,7 +201,12 @@ export const SubheaderAction = ({
  *   <SubheaderRow>
  *     <SubheaderTitle>Section Title</SubheaderTitle>
  *     <SubheaderCount value={30} />
- *     <SubheaderHint content={<Tooltip>...</Tooltip>} />
+ *     <Tooltip>
+ *       <TooltipTrigger>
+ *         <SubheaderInfo />
+ *       </TooltipTrigger>
+ *       <TooltipContent content={<Text>Additional information</Text>} />
+ *     </Tooltip>
  *   </SubheaderRow>
  *   <SubheaderDescription>Description text</SubheaderDescription>
  * </Subheader>

@@ -3,7 +3,7 @@ export {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';

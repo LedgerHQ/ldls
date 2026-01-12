@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-native';
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Information } from '../../Symbols';
-import { InteractiveIcon } from '../InteractiveIcon';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip';
 import {
   Subheader,
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -20,17 +18,6 @@ const Container = ({ children }: { children: React.ReactNode }) => (
   </View>
 );
 
-const InfoTooltip = (
-  <Tooltip>
-    <TooltipTrigger>
-      <InteractiveIcon iconType='stroked'>
-        <Information />
-      </InteractiveIcon>
-    </TooltipTrigger>
-    <TooltipContent content={<Text>This is additional information</Text>} />
-  </Tooltip>
-);
-
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
   title: 'Communication/Subheader',
@@ -39,7 +26,7 @@ const meta: Meta<typeof Subheader> = {
     SubheaderTitle,
     SubheaderDescription,
     SubheaderCount,
-    SubheaderHint,
+    SubheaderInfo,
     SubheaderAction,
   },
   decorators: [
@@ -84,7 +71,14 @@ export const Complete: Story = {
       <SubheaderRow>
         <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
         <SubheaderCount value={42} />
-        <SubheaderHint content={InfoTooltip} />
+        <Tooltip>
+          <TooltipTrigger>
+            <SubheaderInfo />
+          </TooltipTrigger>
+          <TooltipContent
+            content={<Text>This is additional information</Text>}
+          />
+        </Tooltip>
         <SubheaderAction onPress={() => console.log('Action')}>
           Action
         </SubheaderAction>

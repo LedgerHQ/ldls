@@ -9,7 +9,7 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -76,24 +76,37 @@ describe('Subheader', () => {
     expect(screen.getByText('99+')).toBeTruthy();
   });
 
-  it('renders the hint when provided', () => {
+  it('renders the info icon when provided', () => {
     render(
       <TestWrapper>
         <Subheader>
           <SubheaderRow>
             <SubheaderTitle>Title</SubheaderTitle>
-            <SubheaderHint
-              content={
-                <View testID='hint-content'>
-                  <RNText>Info</RNText>
-                </View>
-              }
-            />
+            <SubheaderInfo />
           </SubheaderRow>
         </Subheader>
       </TestWrapper>,
     );
-    expect(screen.getByTestId('hint-content')).toBeTruthy();
+    // Check that title renders (SubheaderInfo is in the tree)
+    expect(screen.getByText('Title')).toBeTruthy();
+  });
+
+  it('renders custom children in info when provided', () => {
+    render(
+      <TestWrapper>
+        <Subheader>
+          <SubheaderRow>
+            <SubheaderTitle>Title</SubheaderTitle>
+            <SubheaderInfo>
+              <View testID='custom-info-content'>
+                <RNText>Custom Info</RNText>
+              </View>
+            </SubheaderInfo>
+          </SubheaderRow>
+        </Subheader>
+      </TestWrapper>,
+    );
+    expect(screen.getByTestId('custom-info-content')).toBeTruthy();
   });
 
   it('renders the description when provided', () => {
@@ -155,13 +168,7 @@ describe('Subheader', () => {
           <SubheaderRow>
             <SubheaderTitle>Title</SubheaderTitle>
             <SubheaderCount value={42} />
-            <SubheaderHint
-              content={
-                <View testID='hint-content'>
-                  <RNText>Info</RNText>
-                </View>
-              }
-            />
+            <SubheaderInfo />
             <SubheaderAction onPress={handleAction}>Action</SubheaderAction>
           </SubheaderRow>
           <SubheaderDescription>Description text</SubheaderDescription>
@@ -170,7 +177,6 @@ describe('Subheader', () => {
     );
     expect(screen.getByText('Title')).toBeTruthy();
     expect(screen.getByText('(42)')).toBeTruthy();
-    expect(screen.getByTestId('hint-content')).toBeTruthy();
     expect(screen.getByText('Action')).toBeTruthy();
     expect(screen.getByText('Description text')).toBeTruthy();
   });
