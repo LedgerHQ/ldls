@@ -35,12 +35,10 @@ export type SubheaderCountProps = {
   format?: (value: number) => string;
 };
 
-export type SubheaderInfoProps = {
-  /**
-   * The children to wrap the info icon (e.g., Tooltip wrapper).
-   */
-  children?: React.ReactNode;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
+export type SubheaderInfoProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+>;
 
 export type SubheaderDescriptionProps = {
   /**

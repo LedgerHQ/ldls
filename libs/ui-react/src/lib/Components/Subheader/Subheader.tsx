@@ -55,22 +55,14 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
 /**
  * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip.
  */
-export const SubheaderInfo = ({
-  children,
-  className,
-  ...props
-}: SubheaderInfoProps) => {
-  const icon = (
-    <Information
-      size={16}
-      className='text-muted shrink-0'
-      aria-label='More information'
-    />
-  );
-
+export const SubheaderInfo = ({ className, ...props }: SubheaderInfoProps) => {
   return (
     <div className={cn('flex shrink-0 items-center', className)} {...props}>
-      {children ? children : icon}
+      <Information
+        size={16}
+        className='text-muted shrink-0'
+        aria-label='More information'
+      />
     </div>
   );
 };
@@ -130,7 +122,7 @@ export const SubheaderAction = ({
  *     <SubheaderTitle>Section Title</SubheaderTitle>
  *     <SubheaderCount value={30} />
  *     <Tooltip>
- *       <TooltipTrigger asChild>
+ *       <TooltipTrigger>
  *         <SubheaderInfo />
  *       </TooltipTrigger>
  *       <TooltipContent>Additional information</TooltipContent>

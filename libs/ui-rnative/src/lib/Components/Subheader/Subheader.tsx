@@ -104,7 +104,6 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
  * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip or BottomSheet.
  */
 export const SubheaderInfo = ({
-  children,
   lx = {},
   style,
   ...props
@@ -120,15 +119,11 @@ export const SubheaderInfo = ({
     [],
   );
 
-  const icon = (
-    <InteractiveIcon iconType='stroked'>
-      <Information />
-    </InteractiveIcon>
-  );
-
   return (
     <Box lx={lx} style={[styles.container, style]} {...props}>
-      {children ? children : icon}
+      <InteractiveIcon iconType='stroked'>
+        <Information />
+      </InteractiveIcon>
     </Box>
   );
 };

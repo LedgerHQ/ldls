@@ -2,7 +2,6 @@ import { describe, it, expect, jest } from '@jest/globals';
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import React from 'react';
-import { View, Text as RNText } from 'react-native';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import {
   Subheader,
@@ -89,24 +88,6 @@ describe('Subheader', () => {
     );
     // Check that title renders (SubheaderInfo is in the tree)
     expect(screen.getByText('Title')).toBeTruthy();
-  });
-
-  it('renders custom children in info when provided', () => {
-    render(
-      <TestWrapper>
-        <Subheader>
-          <SubheaderRow>
-            <SubheaderTitle>Title</SubheaderTitle>
-            <SubheaderInfo>
-              <View testID='custom-info-content'>
-                <RNText>Custom Info</RNText>
-              </View>
-            </SubheaderInfo>
-          </SubheaderRow>
-        </Subheader>
-      </TestWrapper>,
-    );
-    expect(screen.getByTestId('custom-info-content')).toBeTruthy();
   });
 
   it('renders the description when provided', () => {

@@ -48,10 +48,6 @@ export type SubheaderCountProps = {
 
 export type SubheaderInfoProps = {
   /**
-   * The children to wrap the info icon (e.g., Tooltip or BottomSheet wrapper).
-   */
-  children?: React.ReactNode;
-  /**
    * Style props using design tokens
    */
   lx?: LumenViewStyle;

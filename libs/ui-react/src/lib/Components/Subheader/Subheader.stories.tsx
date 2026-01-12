@@ -110,7 +110,7 @@ export const Complete: Story = {
           <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
           <SubheaderCount value={42} />
           <Tooltip>
-            <TooltipTrigger asChild>
+            <TooltipTrigger>
               <SubheaderInfo />
             </TooltipTrigger>
             <TooltipContent>This is additional information</TooltipContent>
@@ -137,7 +137,7 @@ export const Complete: Story = {
     <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
     <SubheaderCount value={42} />
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger>
         <SubheaderInfo />
       </TooltipTrigger>
       <TooltipContent>This is additional information</TooltipContent>
