@@ -1,5 +1,7 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
+import React from 'react';
 import { Information } from '../../Symbols';
+import { InteractiveIcon } from '../InteractiveIcon';
 import {
   SubheaderActionProps,
   SubheaderCountProps,
@@ -55,17 +57,23 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
 /**
  * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip.
  */
-export const SubheaderInfo = ({ className, ...props }: SubheaderInfoProps) => {
+export const SubheaderInfo = React.forwardRef<
+  HTMLButtonElement,
+  SubheaderInfoProps
+>(({ iconType = 'stroked', className, ...props }, ref) => {
   return (
-    <div className={cn('flex shrink-0 items-center', className)} {...props}>
-      <Information
-        size={16}
-        className='text-muted shrink-0'
-        aria-label='More information'
-      />
-    </div>
+    <InteractiveIcon
+      ref={ref}
+      iconType={iconType}
+      className={cn('shrink-0 self-center', className)}
+      aria-label='More information'
+      {...props}
+    >
+      <Information size={16} />
+    </InteractiveIcon>
   );
-};
+});
+SubheaderInfo.displayName = 'SubheaderInfo';
 
 /**
  * Description component for the Subheader. Displays descriptive text below the title row.

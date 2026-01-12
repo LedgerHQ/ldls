@@ -47,9 +47,15 @@ export type SubheaderCountProps = {
 };
 
 export type SubheaderInfoProps = Omit<
-  React.ComponentProps<typeof import('../../Symbols').Information>,
-  'children'
->;
+  React.ComponentProps<typeof import('../InteractiveIcon').InteractiveIcon>,
+  'children' | 'iconType'
+> & {
+  /**
+   * The visual style of the icon button.
+   * Defaults to 'stroked'.
+   */
+  iconType?: 'filled' | 'stroked';
+};
 
 export type SubheaderDescriptionProps = {
   /**

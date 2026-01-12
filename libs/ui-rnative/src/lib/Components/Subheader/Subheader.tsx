@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { useStyleSheet } from '../../../styles';
 import { Information } from '../../Symbols';
+import { InteractiveIcon } from '../InteractiveIcon';
 import { Box, Pressable, Text } from '../Utility';
 import {
   SubheaderActionProps,
@@ -102,8 +103,21 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
 /**
  * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip or BottomSheet.
  */
-export const SubheaderInfo = (props: SubheaderInfoProps) => {
-  return <Information size={20} lx={{ color: 'muted' }} {...props} />;
+export const SubheaderInfo = ({
+  iconType = 'stroked',
+  style,
+  ...props
+}: SubheaderInfoProps) => {
+  return (
+    <InteractiveIcon
+      iconType={iconType}
+      accessibilityLabel='More information'
+      style={[{ flexShrink: 0 }, style]}
+      {...props}
+    >
+      <Information size={20} />
+    </InteractiveIcon>
+  );
 };
 
 /**

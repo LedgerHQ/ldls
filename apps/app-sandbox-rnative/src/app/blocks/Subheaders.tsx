@@ -33,7 +33,7 @@ export const Subheaders = () => {
         <SubheaderRow>
           <SubheaderTitle>With Info Tooltip</SubheaderTitle>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <SubheaderInfo />
             </TooltipTrigger>
             <TooltipContent
@@ -65,7 +65,7 @@ export const Subheaders = () => {
             format={(n: number) => (n > 99 ? '(99+)' : `(${n})`)}
           />
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <SubheaderInfo />
             </TooltipTrigger>
             <TooltipContent
