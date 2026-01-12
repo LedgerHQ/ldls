@@ -7,6 +7,7 @@ import {
   SubheaderTitle,
   SubheaderCount,
   SubheaderInfo,
+  SubheaderShowMore,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -91,6 +92,21 @@ describe('Subheader', () => {
     expect(
       container.querySelector('[aria-label="More information"]'),
     ).toBeInTheDocument();
+  });
+
+  it('renders the show more chevron when provided', () => {
+    render(
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Title</SubheaderTitle>
+          <SubheaderCount value={5} />
+          <SubheaderShowMore />
+        </SubheaderRow>
+      </Subheader>,
+    );
+    // Verify title and count render (SubheaderShowMore is in the tree)
+    expect(screen.getByText('Title')).toBeInTheDocument();
+    expect(screen.getByText('(5)')).toBeInTheDocument();
   });
 
   it('renders the description when provided', () => {

@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
-import { Information } from '../../Symbols';
+import { ChevronRight, Information } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
 import { Box, Pressable, Text } from '../Utility';
 import {
@@ -10,6 +10,7 @@ import {
   SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
+  SubheaderShowMoreProps,
   SubheaderTitleProps,
 } from './types';
 
@@ -52,6 +53,7 @@ export const SubheaderRow = ({
     (t) => ({
       container: StyleSheet.flatten([
         {
+          width: '100%',
           flexDirection: 'row',
           alignItems: 'center',
           gap: t.spacings.s4,
@@ -117,6 +119,32 @@ export const SubheaderInfo = ({
     >
       <Information size={20} />
     </InteractiveIcon>
+  );
+};
+
+/**
+ * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
+ * Position this after SubheaderCount and before other elements.
+ */
+export const SubheaderShowMore = ({ size = 20 }: SubheaderShowMoreProps) => {
+  const styles = useStyleSheet(
+    (t) => ({
+      container: {
+        flexShrink: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      icon: {
+        color: t.colors.text.muted,
+      },
+    }),
+    [],
+  );
+
+  return (
+    <View style={styles.container}>
+      <ChevronRight size={size} style={styles.icon} />
+    </View>
   );
 };
 

@@ -1,6 +1,6 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
-import { Information } from '../../Symbols';
+import { ChevronRight, Information } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
 import {
   SubheaderActionProps,
@@ -9,6 +9,7 @@ import {
   SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
+  SubheaderShowMoreProps,
   SubheaderTitleProps,
 } from './types';
 
@@ -74,6 +75,18 @@ export const SubheaderInfo = React.forwardRef<
   );
 });
 SubheaderInfo.displayName = 'SubheaderInfo';
+
+/**
+ * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
+ * Position this after SubheaderCount and before other elements.
+ */
+export const SubheaderShowMore = ({ size = 16, className }: SubheaderShowMoreProps) => {
+  return (
+    <span className={cn('text-muted shrink-0 self-center', className)}>
+      <ChevronRight size={size} />
+    </span>
+  );
+};
 
 /**
  * Description component for the Subheader. Displays descriptive text below the title row.

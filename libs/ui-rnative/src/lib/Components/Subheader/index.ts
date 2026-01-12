@@ -4,6 +4,7 @@ export {
   SubheaderTitle,
   SubheaderCount,
   SubheaderInfo,
+  SubheaderShowMore,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';

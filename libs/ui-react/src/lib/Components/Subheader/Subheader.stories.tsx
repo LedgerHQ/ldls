@@ -9,6 +9,7 @@ import {
   SubheaderTitle,
   SubheaderCount,
   SubheaderInfo,
+  SubheaderShowMore,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -29,6 +30,7 @@ const meta: Meta<typeof Subheader> = {
     SubheaderDescription,
     SubheaderCount,
     SubheaderInfo,
+    SubheaderShowMore,
     SubheaderAction,
   },
   parameters: {
@@ -183,6 +185,41 @@ export const Interactive: Story = {
   </SubheaderRow>
   <SubheaderDescription>
     The entire row is clickable when onClick is provided
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const WithShowMore: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow onClick={() => console.log('Row clicked')}>
+          <SubheaderTitle>Accounts</SubheaderTitle>
+          <SubheaderCount value={5} />
+          <SubheaderShowMore />
+        </SubheaderRow>
+        <SubheaderDescription>
+          The chevron indicates this row leads to more content
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow onClick={handleRowClick}>
+    <SubheaderTitle>Accounts</SubheaderTitle>
+    <SubheaderCount value={5} />
+    <SubheaderShowMore />
+  </SubheaderRow>
+  <SubheaderDescription>
+    The chevron indicates this row leads to more content
   </SubheaderDescription>
 </Subheader>
         `,

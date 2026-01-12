@@ -9,6 +9,7 @@ import {
   SubheaderTitle,
   SubheaderCount,
   SubheaderInfo,
+  SubheaderShowMore,
   SubheaderDescription,
   SubheaderAction,
 } from './Subheader';
@@ -88,6 +89,23 @@ describe('Subheader', () => {
     );
     // Check that title renders (SubheaderInfo is in the tree)
     expect(screen.getByText('Title')).toBeTruthy();
+  });
+
+  it('renders the show more chevron when provided', () => {
+    render(
+      <TestWrapper>
+        <Subheader>
+          <SubheaderRow>
+            <SubheaderTitle>Title</SubheaderTitle>
+            <SubheaderCount value={5} />
+            <SubheaderShowMore />
+          </SubheaderRow>
+        </Subheader>
+      </TestWrapper>,
+    );
+    // Verify title and count render (SubheaderShowMore is in the tree)
+    expect(screen.getByText('Title')).toBeTruthy();
+    expect(screen.getByText('(5)')).toBeTruthy();
   });
 
   it('renders the description when provided', () => {

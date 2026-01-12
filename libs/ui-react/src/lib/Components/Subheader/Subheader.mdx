@@ -27,6 +27,7 @@ The Subheader uses a composite structure with the following components:
 - **SubheaderRow** (required): Layout component to align title, count, info, and action
 - **SubheaderTitle** (required): The main heading text
 - **SubheaderCount** (optional): Displays a number in parentheses, e.g., "(30)"
+- **SubheaderShowMore** (optional): Static chevron right icon to indicate expandable content, positioned after the count
 - **SubheaderInfo** (optional): Information icon that can be wrapped in tooltips
 - **SubheaderDescription** (optional): Descriptive text below the title row
 - **SubheaderAction** (optional): Action elements like links or buttons
@@ -57,6 +58,12 @@ All features combined in one subheader:
 Make the entire row clickable:
 
 <Canvas of={SubheaderStories.Interactive} />
+
+### With Show More
+
+Display a chevron right icon to indicate expandable content:
+
+<Canvas of={SubheaderStories.WithShowMore} />
 
 > **Key behaviors:**
 >
@@ -206,6 +213,43 @@ function ActionExample() {
   );
 }
 ```
+
+### With Show More
+
+Display a static chevron right icon to indicate expandable content. Position it after the count to visually suggest the row is interactive:
+
+```tsx
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderShowMore,
+  SubheaderDescription,
+} from '@ledgerhq/lumen-ui-react';
+
+function ShowMoreExample() {
+  const handleRowClick = () => {
+    console.log('Row clicked');
+    // Navigate to detail view or expand content
+  };
+
+  return (
+    <Subheader>
+      <SubheaderRow onClick={handleRowClick}>
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount value={5} />
+        <SubheaderShowMore />
+      </SubheaderRow>
+      <SubheaderDescription>
+        The chevron indicates this row leads to more content
+      </SubheaderDescription>
+    </Subheader>
+  );
+}
+```
+
+> **Note**: The `SubheaderShowMore` is a static (non-interactive) chevron icon. The entire row should be made clickable using `SubheaderRow`'s `onClick` prop. Position `SubheaderShowMore` after `SubheaderCount` to maintain proper visual hierarchy.
 
 ### Interactive Row
 

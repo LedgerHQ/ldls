@@ -4,6 +4,7 @@ import {
   SubheaderTitle,
   SubheaderCount,
   SubheaderInfo,
+  SubheaderShowMore,
   SubheaderDescription,
   SubheaderAction,
   Tooltip,
@@ -93,6 +94,17 @@ export const Subheaders = () => {
         </SubheaderRow>
         <SubheaderDescription>
           Entire row is clickable when onPress is provided
+        </SubheaderDescription>
+      </Subheader>
+
+      <Subheader>
+        <SubheaderRow onPress={() => Alert.alert('Navigating to accounts')}>
+          <SubheaderTitle>Accounts</SubheaderTitle>
+          <SubheaderCount value={5} />
+          <SubheaderShowMore />
+        </SubheaderRow>
+        <SubheaderDescription>
+          The chevron indicates this row leads to more content
         </SubheaderDescription>
       </Subheader>
     </View>
