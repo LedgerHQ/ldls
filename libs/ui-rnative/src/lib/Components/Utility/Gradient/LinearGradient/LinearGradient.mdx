@@ -1,0 +1,110 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as LinearGradientStories from './LinearGradient.stories';
+import { CustomTabs, Tab } from '../../../../../../.storybook/components';
+
+<Meta title='Utility/LinearGradient' of={LinearGradientStories} />
+
+# LinearGradient
+
+<CustomTabs>
+  <Tab label="Overview ">
+
+## Introduction
+
+LinearGradient renders a linear gradient background using `react-native-svg`. 
+It extends Box, supporting all `lx` style props for layout and sizing.
+
+## Anatomy
+
+<Canvas of={LinearGradientStories.Base} />
+<Controls of={LinearGradientStories.Base} />
+
+## Properties
+
+### Direction
+
+Supports preset directions or custom angles in degrees:
+
+<Canvas of={LinearGradientStories.DirectionShowcase} />
+
+### With Children
+
+Content renders on top of the gradient:
+
+<Canvas of={LinearGradientStories.WithChildren} />
+
+### Multiple Stops
+
+The `offset` prop controls where each color appears along the gradient (0 = start, 1 = end).  
+When omitted, stops are distributed evenly.  
+For example, 3 stops without offsets will be placed at 0, 0.5, and 1.
+
+<Canvas of={LinearGradientStories.WithMultipleStops} />
+
+</Tab>
+
+  <Tab label="Implementation ">
+
+## Setup
+
+Install and set up the library with our [Setup Guide →](?path=/docs/getting-started-setup--docs).
+
+## Basic Usage
+
+The `direction` prop accepts preset strings like `to-bottom`, `to-right`, or diagonal variants. 
+Use design tokens for colors to ensure theme consistency.
+
+```tsx
+import { LinearGradient } from '@ledgerhq/lumen-ui-rnative';
+
+<LinearGradient
+  direction="to-bottom"
+  stops={[{ color: 'accent' }, { color: 'active', opacity: 0 }]}
+  lx={{ height: 's192', width: 's192', borderRadius: 'lg' }}
+/>
+```
+
+### Custom Angle
+
+Pass a number to `direction` for precise angle control. Angles follow CSS convention: 0° points up, 90° points right.
+
+```tsx
+<LinearGradient
+  direction={45}
+  stops={[{ color: 'accent' }, { color: 'active' }]}
+  lx={{ height: 's80', width: 's80' }}
+/>
+```
+
+### With Children
+
+The gradient acts as a background. Children are rendered on top and define the component's height when no explicit size is set.
+
+```tsx
+<LinearGradient
+  direction="to-bottomright"
+  stops={[{ color: 'accent' }, { color: 'active', opacity: 0 }]}
+  lx={{ padding: 's24', borderRadius: 'lg' }}
+>
+  <Text lx={{ color: 'base' }}>Content on gradient</Text>
+</LinearGradient>
+```
+
+### Stops API
+
+Each stop defines a color at a position. Use `opacity: 0` for fade-out effects. 
+Colors support both design tokens (`'accent'`) and raw values (`'#FF6B6B'`).
+
+**Default behavior when `offset` is omitted:** stops are evenly distributed. 
+With 2 stops → `[0, 1]`. With 3 stops → `[0, 0.5, 1]`. With 4 stops → `[0, 0.33, 0.66, 1]`.
+
+```tsx
+type GradientStop = {
+  color: BackgroundColorToken | string;  // Token or raw color
+  offset?: number;   // 0-1, auto-spread if omitted
+  opacity?: number;  // 0-1, defaults to 1
+}
+```
+
+</Tab>
+</CustomTabs>
