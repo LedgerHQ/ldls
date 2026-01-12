@@ -4,7 +4,7 @@ import React from 'react';
 import { InteractiveIconProps } from './types';
 
 const buttonVariants = cva(
-  'inline-flex size-fit items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',
+  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:text-muted-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:text-muted-pressed disabled:text-disabled',
   {
     variants: {
       iconType: {

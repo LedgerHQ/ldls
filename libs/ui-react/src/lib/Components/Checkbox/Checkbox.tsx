@@ -5,7 +5,7 @@ import { Check } from '../../Symbols/Icons/Check';
 import { CheckboxProps } from './types';
 
 const checkboxStyles = cn(
-  'size-20 shrink-0 rounded-xs transition-colors',
+  'size-20 shrink-0 cursor-pointer rounded-xs transition-colors',
   'focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:outline-hidden',
 
   'data-[state=unchecked]:border data-[state=unchecked]:border-muted data-[state=unchecked]:bg-base',

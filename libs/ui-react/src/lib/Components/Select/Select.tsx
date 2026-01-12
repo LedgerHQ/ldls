@@ -24,7 +24,7 @@ function SelectGroup({ ...props }: SelectGroupProps) {
 }
 
 const triggerStyles = cn(
-  'group relative flex h-48 w-full items-center justify-between gap-8',
+  'group relative flex h-48 w-full cursor-pointer items-center justify-between gap-8',
   'rounded-sm bg-muted px-16',
   'body-2 text-base',
   'hover:bg-muted-hover',
@@ -146,7 +146,7 @@ const SelectLabel = React.forwardRef<
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const itemStyles = cn(
-  'relative flex w-full cursor-default items-center bg-base-transparent select-none',
+  'relative flex w-full cursor-pointer items-center bg-base-transparent select-none',
   'rounded-sm p-8',
   'body-2 text-base',
   'outline-hidden',

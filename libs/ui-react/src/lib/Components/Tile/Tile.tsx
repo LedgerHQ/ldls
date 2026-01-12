@@ -75,7 +75,7 @@ const tileVariants = {
     },
   ),
   button: cva(
-    'flex w-full flex-col items-center gap-8 rounded-md px-8 py-12 focus-visible:outline-2 focus-visible:outline-focus',
+    'flex w-full cursor-pointer flex-col items-center gap-8 rounded-md px-8 py-12 focus-visible:outline-2 focus-visible:outline-focus',
   ),
 };
 
