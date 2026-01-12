@@ -40,6 +40,7 @@ import {
   CardButtons,
   Tooltips,
   ListItems,
+  Gradients,
 } from './blocks';
 import { SandboxBlock } from './SandboxBlock';
 
@@ -187,6 +188,9 @@ const AppContent = ({
             <Divider />
             <SandboxBlock title='Dividers'>
               <Dividers />
+            </SandboxBlock>
+            <SandboxBlock title='Gradients'>
+              <Gradients />
             </SandboxBlock>
           </Box>
         </ScrollView>

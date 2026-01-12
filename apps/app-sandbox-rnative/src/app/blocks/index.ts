@@ -18,3 +18,4 @@ export * from './InteractiveIcons';
 export * from './Banners';
 export * from './CardButtons';
 export * from './Tooltips';
+export * from './Gradients';
