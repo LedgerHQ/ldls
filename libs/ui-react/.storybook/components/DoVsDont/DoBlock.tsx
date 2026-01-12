@@ -35,7 +35,7 @@ export const DoBlockItem: React.FC<DoBlockItemProps> = ({
       )}
 
       {/* Code Block */}
-      <div className='[&_pre]:m-0! [&_pre]:rounded-xs! [&_pre]:border-2! [&_pre]:border-[#10B981]! [&_pre]:bg-[#F0FDF4]!'>
+      <div className='[&>*:first-child_pre]:m-0! [&>*:first-child_pre]:rounded-xs! [&>*:first-child_pre]:border-2! [&>*:first-child_pre]:border-[#10B981]! [&>*:first-child_pre]:bg-[#F0FDF4]!'>
         {children}
       </div>
     </div>
