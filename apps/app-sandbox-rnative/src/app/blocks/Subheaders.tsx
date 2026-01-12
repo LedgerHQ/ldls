@@ -3,16 +3,15 @@ import {
   SubheaderRow,
   SubheaderTitle,
   SubheaderCount,
-  SubheaderHint,
+  SubheaderInfo,
   SubheaderDescription,
   SubheaderAction,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  InteractiveIcon,
+  Text,
 } from '@ledgerhq/lumen-ui-rnative';
-import { Information } from '@ledgerhq/lumen-ui-rnative/symbols';
-import { View, Text, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 
 export const Subheaders = () => {
   return (
@@ -32,21 +31,20 @@ export const Subheaders = () => {
 
       <Subheader>
         <SubheaderRow>
-          <SubheaderTitle>With Hint</SubheaderTitle>
-          <SubheaderHint
-            content={
-              <Tooltip>
-                <TooltipTrigger>
-                  <InteractiveIcon iconType='stroked'>
-                    <Information />
-                  </InteractiveIcon>
-                </TooltipTrigger>
-                <TooltipContent
-                  content={<Text>This is additional information</Text>}
-                />
-              </Tooltip>
-            }
-          />
+          <SubheaderTitle>With Info Tooltip</SubheaderTitle>
+          <Tooltip>
+            <TooltipTrigger>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent
+              title='Information'
+              content={
+                <Text typography='body2'>
+                  This is additional information about this section
+                </Text>
+              }
+            />
+          </Tooltip>
         </SubheaderRow>
       </Subheader>
 
@@ -66,18 +64,19 @@ export const Subheaders = () => {
             value={200}
             format={(n: number) => (n > 99 ? '(99+)' : `(${n})`)}
           />
-          <SubheaderHint
-            content={
-              <Tooltip>
-                <TooltipTrigger>
-                  <InteractiveIcon iconType='stroked'>
-                    <Information />
-                  </InteractiveIcon>
-                </TooltipTrigger>
-                <TooltipContent content={<Text>Info tooltip</Text>} />
-              </Tooltip>
-            }
-          />
+          <Tooltip>
+            <TooltipTrigger>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent
+              title='Help'
+              content={
+                <Text typography='body2'>
+                  Additional details about this section
+                </Text>
+              }
+            />
+          </Tooltip>
           <SubheaderAction onPress={() => console.log('Action')}>
             Action
           </SubheaderAction>

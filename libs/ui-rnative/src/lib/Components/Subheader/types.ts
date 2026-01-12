@@ -46,12 +46,10 @@ export type SubheaderCountProps = {
   format?: (value: number) => string;
 };
 
-export type SubheaderInfoProps = {
-  /**
-   * Style props using design tokens
-   */
-  lx?: LumenViewStyle;
-} & Omit<ViewProps, 'children'>;
+export type SubheaderInfoProps = Omit<
+  React.ComponentProps<typeof import('../../Symbols').Information>,
+  'children'
+>;
 
 export type SubheaderDescriptionProps = {
   /**
