@@ -179,7 +179,6 @@ const useContentStyles = () => {
       container: {
         width: t.sizes.full,
         alignItems: 'center',
-        gap: t.spacings.s4,
       },
     }),
     [],
