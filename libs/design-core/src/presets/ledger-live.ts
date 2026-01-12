@@ -13,9 +13,11 @@ export const ledgerLivePreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
+    boxShadowColor: {},
     fontSize: {},
     fontWeight: {},
     lineHeight: {},
+    colors: {},
   },
   plugins: [
     createPrimitivesPlugin(),

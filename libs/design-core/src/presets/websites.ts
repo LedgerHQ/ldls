@@ -14,9 +14,11 @@ export const websitesPreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
+    boxShadowColor: {},
     fontSize: {},
     fontWeight: {},
     lineHeight: {},
+    colors: {},
   },
   plugins: [
     createPrimitivesPlugin(),

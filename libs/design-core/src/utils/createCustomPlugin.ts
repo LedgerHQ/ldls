@@ -387,7 +387,7 @@ export function createShadowPlugin(): TailwindPlugin {
     addUtilities(shadows);
     matchUtilities(
       { shadow: (value) => ({ '--tw-shadow-color': value }) },
-      { values: theme('colors') },
+      { values: theme('boxShadowColor') },
     );
   });
 }
