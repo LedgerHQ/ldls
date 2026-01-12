@@ -24,7 +24,7 @@ const tileVariants = {
   root: cva(
     [
       'group relative flex flex-col items-center gap-8 text-base transition-colors',
-      'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
+      'focus-visible:outline-focus rounded-md focus-visible:outline-2',
     ],
     {
       variants: {
@@ -75,7 +75,7 @@ const tileVariants = {
     },
   ),
   button: cva(
-    'flex w-full flex-col items-center  gap-8 rounded-md px-8 py-12 focus-visible:outline-2 focus-visible:outline-focus',
+    'focus-visible:outline-focus flex w-full flex-col  items-center gap-8 rounded-md px-8 py-12 focus-visible:outline-2',
   ),
 };
 
@@ -229,10 +229,7 @@ export const TileContent = ({
 }: TileContentProps) => {
   return (
     <div
-      className={cn(
-        'flex w-full flex-col items-center gap-4 text-center',
-        className,
-      )}
+      className={cn('flex w-full flex-col items-center text-center', className)}
       {...props}
     >
       {children}
@@ -257,7 +254,7 @@ export const TileTitle = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-2-semi-bold',
+        'body-2-semi-bold w-full truncate',
         disabled && 'text-disabled',
         className,
       )}
@@ -285,7 +282,7 @@ export const TileDescription = ({
   return (
     <div
       className={cn(
-        'w-full truncate body-3',
+        'body-3 w-full truncate',
         disabled ? 'text-disabled' : 'text-muted',
         className,
       )}
@@ -343,7 +340,7 @@ export const TileSecondaryAction = ({
     <InteractiveIcon
       data-slot='tile-secondary-action'
       className={cn(
-        'absolute right-12 top-16 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
+        'absolute right-4 top-8 opacity-0 transition-opacity duration-200 focus-within:opacity-100 group-hover:opacity-100',
         className,
       )}
       data-secondary-button-container
