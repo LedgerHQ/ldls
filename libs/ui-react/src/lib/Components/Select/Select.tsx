@@ -36,8 +36,7 @@ const labelStyles = cn(
   'pointer-events-none absolute left-16 origin-left text-muted transition-all duration-300',
   'top-10 -translate-y-4 body-4',
   'group-data-placeholder:top-14 group-data-placeholder:translate-y-0 group-data-placeholder:body-2',
-  // eslint-disable-next-line better-tailwindcss/no-unknown-classes
-  'group-data-[placeholder][disabled]:text-disabled group-data-:disabled:text-disabled group-data-disabled:text-disabled disabled:text-disabled',
+  'group-data-disabled:text-disabled disabled:text-disabled',
   'max-w-[calc(100%-var(--size-56))] truncate',
 );
 
@@ -67,7 +66,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <ChevronDown
         size={20}
-        className='shrink-0 text-muted group-data-disabled:text-disabled'
+        className='shrink-0 group-data-disabled:text-disabled'
       />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
@@ -79,10 +78,10 @@ const contentStyles = cva(
     'relative z-select max-h-(--radix-select-content-available-height) overflow-x-hidden overflow-y-auto',
     'rounded-sm bg-muted',
     'shadow-md',
-    'data-[side=bottom]:animate-slide-in-from-top-8',
-    'data-[side=top]:animate-slide-in-from-bottom-8',
-    'data-[side=left]:animate-slide-in-from-right-8',
-    'data-[side=right]:animate-slide-in-from-left-8',
+    'data-[side=bottom]:animate-slide-in-from-top',
+    'data-[side=top]:animate-slide-in-from-bottom',
+    'data-[side=left]:animate-slide-in-from-right',
+    'data-[side=right]:animate-slide-in-from-left',
   ],
   {
     variants: {
