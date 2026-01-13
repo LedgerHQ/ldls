@@ -55,17 +55,19 @@ const useStyles = ({
         },
         appearance === 'expanded' && {
           gap: t.spacings.s4,
+          flex: 0,
         },
       ]),
       title: StyleSheet.flatten([
-        appearance === 'compact'
-          ? t.typographies.heading5SemiBold
-          : t.typographies.heading3SemiBold,
         {
           color: t.colors.text.base,
         },
+        appearance === 'expanded' && {
+          ...t.typographies.heading3SemiBold,
+        },
         appearance === 'compact' && {
           textAlign: 'center',
+          ...t.typographies.heading5SemiBold,
         },
       ]),
       description: StyleSheet.flatten([
