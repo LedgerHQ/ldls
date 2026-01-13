@@ -88,6 +88,14 @@ export function createAnimationsPlugin(): TailwindPlugin {
               from: { transform: 'translateX(0px)', opacity: '1' },
               to: { transform: 'translateX(var(--spacing-10))', opacity: '0' },
             },
+            'translate-from-right': {
+              from: {
+                transform: 'translateX(4px)',
+              },
+              to: {
+                transform: 'translateX(0px)',
+              },
+            },
           },
           animation: {
             'content-show': 'content-show 300ms ease-in',
