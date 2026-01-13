@@ -6,7 +6,7 @@ import {
   GlobalTooltipBottomSheet,
   SupportedLocale,
   ThemeProvider,
-  useBottomSheetRef
+  useBottomSheetRef,
 } from '@ledgerhq/lumen-ui-rnative';
 import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 import { useState } from 'react';
