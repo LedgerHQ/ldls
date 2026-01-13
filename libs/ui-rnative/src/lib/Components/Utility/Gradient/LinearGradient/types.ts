@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { StyledViewProps } from 'src/styles';
+import { StyledViewProps } from '../../../../../styles';
 import { GradientStop } from '../gradient.types';
 
 export type GradientCoordinates = {
