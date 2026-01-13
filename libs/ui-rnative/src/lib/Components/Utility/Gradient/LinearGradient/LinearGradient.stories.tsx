@@ -45,7 +45,10 @@ export const DirectionShowcase: Story = {
       'to-bottomleft',
       'to-topright',
       'to-topleft',
-      30,
+      0,
+      90,
+      180,
+      270,
     ] as const;
 
     return (
