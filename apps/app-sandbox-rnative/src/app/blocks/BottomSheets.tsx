@@ -37,7 +37,7 @@ export const BottomSheetFlatLists = forwardRef<
       <BottomSheetHeader
         spacing
         title='Virtual List'
-        appearance='compact'
+        appearance='expanded'
         description='This bottom sheet contains a virtualized list'
       />
       <BottomSheetFlatList

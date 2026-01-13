@@ -131,19 +131,42 @@ function MyComponent() {
 }
 ```
 
-### useBottomSheetRef Hook
+### BottomSheet hooks API
 
-The `useBottomSheetRef` hook provides a typed ref for programmatic control:
+The `useBottomSheetRef` hook provides a typed ref for programmatic control outside of the BottomSheet component:
 
 ```tsx
 import { useBottomSheetRef } from '@ledgerhq/lumen-ui-rnative';
 
-function MyComponent() {
+const MyComponent = () => {
   const bottomSheetRef = useBottomSheetRef();
 
   return (
     <BottomSheet ref={bottomSheetRef} snapPoints={['25%', '50%', '90%']}>
       {/* Content */}
+    </BottomSheet>
+  );
+}
+```
+
+The `useBottomSheet` hook provides a typed ref for programmatic control inside of the BottomSheet component:
+
+```tsx
+import { useBottomSheet } from '@ledgerhq/lumen-ui-rnative';
+
+const Content = () => {
+  const { expand } = useBottomSheet();
+  return (
+    <Pressable onPress={expand}>Content</Pressable>
+  );
+};
+
+const MyComponent = () => {
+  return (
+    <BottomSheet>
+      <BottomSheetView>
+        <Content />
+      </BottomSheetView>
     </BottomSheet>
   );
 }
