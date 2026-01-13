@@ -110,7 +110,11 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
           <TextInput
             ref={inputRef}
             value={value}
-            style={[styles.input, { lineHeight: 0 }, inputStyle]}
+            style={StyleSheet.flatten([
+              styles.input,
+              { lineHeight: 0 },
+              inputStyle,
+            ])}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onChangeText={handleChangeText}

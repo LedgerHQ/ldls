@@ -36,9 +36,7 @@ const useAppearanceStyles = (appearance: 'plain' | 'transparent') => {
           ? { backgroundColor: t.colors.bg.surfaceTransparent }
           : {},
       input:
-        appearance === 'transparent'
-          ? { backgroundColor: t.colors.bg.surfaceTransparent }
-          : {},
+        appearance === 'transparent' ? { backgroundColor: 'transparent' } : {},
     }),
     [appearance],
   );
