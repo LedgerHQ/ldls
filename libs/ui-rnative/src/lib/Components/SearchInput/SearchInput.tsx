@@ -20,8 +20,8 @@ export const SearchInput = React.forwardRef<
         ref={ref}
         prefix={<SearchIcon size={20} color='muted' accessible={false} />}
         style={style}
-        containerStyle={[styles.container, containerStyle]}
-        inputStyle={[styles.input, inputStyle]}
+        containerStyle={[containerStyle, styles.container]}
+        inputStyle={[inputStyle, styles.input]}
         {...props}
       />
     );
@@ -35,8 +35,7 @@ const useAppearanceStyles = (appearance: 'plain' | 'transparent') => {
         appearance === 'transparent'
           ? { backgroundColor: t.colors.bg.surfaceTransparent }
           : {},
-      input:
-        appearance === 'transparent' ? { backgroundColor: 'transparent' } : {},
+      input: { backgroundColor: 'transparent' },
     }),
     [appearance],
   );
