@@ -6,3 +6,5 @@ export const useBottomSheetRef = () => {
 
   return bottomSheetRef;
 };
+
+export { useBottomSheet } from '@gorhom/bottom-sheet';

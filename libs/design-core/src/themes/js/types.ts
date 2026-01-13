@@ -115,6 +115,8 @@ export type TypographyTokens = {
   heading3SemiBold: TypographyDefinition;
   heading4: TypographyDefinition;
   heading4SemiBold: TypographyDefinition;
+  heading5: TypographyDefinition;
+  heading5SemiBold: TypographyDefinition;
   /**
    * body
    */

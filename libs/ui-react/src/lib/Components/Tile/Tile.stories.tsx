@@ -1,32 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import {
-  Settings,
-  Plus,
-  User,
-  Wallet,
-  Cart,
-  Apps,
-  Chart1,
-  MoreVertical,
-} from '../../Symbols';
-import { InteractiveIcon } from '../InteractiveIcon';
-import { Spot } from '../Spot/Spot';
+import { Settings, Plus, User, Apps, MoreVertical } from '../../Symbols';
 import { Tag } from '../Tag/Tag';
-import { Tile } from './Tile';
-
-const secondaryAction = (
-  <InteractiveIcon
-    iconType='stroked'
-    aria-label='More actions'
-    onClick={() => console.log('secondary action clicked')}
-  >
-    <MoreVertical />
-  </InteractiveIcon>
-);
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+  TileSecondaryAction,
+} from './Tile';
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
+  subcomponents: {
+    TileSecondaryAction,
+    TileSpot,
+    TileContent,
+    TileTitle,
+    TileDescription,
+  },
   title: 'Containment/Tile',
   parameters: {
     docs: {
@@ -38,34 +30,8 @@ const meta: Meta<typeof Tile> = {
     },
   },
   argTypes: {
-    leadingContent: {
-      control: 'select',
-      options: ['None', 'Settings', 'Plus'],
-      mapping: {
-        None: undefined,
-        Settings: <Spot appearance='icon' icon={Settings} />,
-        Plus: <Spot appearance='icon' icon={Plus} />,
-      },
-    },
     onClick: {
       action: 'clicked',
-    },
-    secondaryAction: {
-      control: 'select',
-      options: ['None', 'MoreVertical'],
-      mapping: {
-        None: undefined,
-        MoreVertical: secondaryAction,
-      },
-    },
-    trailingContent: {
-      control: 'select',
-      options: ['None', 'Tag', 'Text'],
-      mapping: {
-        None: undefined,
-        Tag: <Tag label='Tag' appearance='base' />,
-        Text: <span>Text</span>,
-      },
     },
   },
 };
@@ -74,167 +40,95 @@ export default meta;
 type Story = StoryObj<typeof Tile>;
 
 export const Base: Story = {
-  args: {
-    title: 'Item with Spot and Description',
-    description: 'Additional information',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    className: 'w-112',
-    secondaryAction,
-    appearance: 'no-background',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item with Spot and Description"
-  description="Additional information"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
-  appearance="no-background"
-  className="w-112"
-/>
-`,
-      },
-    },
-  },
-};
-
-export const Withoutdescription: Story = {
-  args: {
-    title: 'Item without Description',
-    leadingContent: <Spot appearance='icon' icon={Plus} />,
-    className: 'max-w-256',
-    secondaryAction,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item without Description"
-  leadingContent={<Spot appearance="icon" icon={Plus} />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
-  className="max-w-256"
-/>
-`,
-      },
-    },
-  },
-};
-
-export const WithTrailingContent: Story = {
-  args: {
-    title: 'Item with Trailing Content',
-    description: 'Additional information',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    trailingContent: <Tag label='New' appearance='base' />,
-    secondaryAction,
-    className: 'max-w-256',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item with Trailing Content"
-  description="Additional information"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  trailingContent={<Tag label="New" appearance="base" />}
-  secondaryAction={(
-    <InteractiveIcon
-      iconType="stroked"
-      aria-label="More actions"
-      onClick={() => console.log('secondary action clicked')}
-    >
-      <MoreVertical />
-    </InteractiveIcon>
-  )}
-  className="max-w-256"
-/>
-`,
-      },
-    },
-  },
-};
-
-export const WithoutSecondaryAction: Story = {
-  args: {
-    title: 'Item without secondary action',
-    description: 'Additional information',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    className: 'max-w-256',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item without secondary action"
-  description="Additional information"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  className="max-w-256"
-/>
-`,
-      },
-    },
-  },
-};
-
-export const LeadingContentVariantsShowcase: Story = {
   render: () => (
-    <div className='flex'>
-      <Tile
-        title='User'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        secondaryAction={secondaryAction}
-        className='max-w-128'
+    <Tile appearance='no-background' className='w-112'>
+      <TileSecondaryAction
+        icon={MoreVertical}
+        onClick={() => console.log('secondary action clicked')}
       />
-      <Tile
-        title='Wallet'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Wallet} />}
-        secondaryAction={secondaryAction}
-        className='max-w-128'
-      />
-      <Tile
-        title='Cart'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Cart} />}
-        secondaryAction={secondaryAction}
-        className='max-w-128'
-      />
-      <Tile
-        title='Apps'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Apps} />}
-        secondaryAction={secondaryAction}
-        className='max-w-128'
-      />
-      <Tile
-        title='Chart'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Chart1} />}
-        secondaryAction={secondaryAction}
-        className='max-w-128'
-      />
+      <TileSpot appearance='icon' icon={Settings} />
+      <TileContent>
+        <TileTitle>Item with Spot and Description</TileTitle>
+        <TileDescription>Additional information</TileDescription>
+      </TileContent>
+    </Tile>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Tile appearance="no-background" className="w-112">
+  <TileSecondaryAction
+    icon={MoreVertical}
+    onClick={() => console.log('secondary action clicked')}
+  />
+  <TileSpot appearance="icon" icon={Settings} />
+  <TileContent>
+    <TileTitle>Item with Spot and Description</TileTitle>
+    <TileDescription>Additional information</TileDescription>
+  </TileContent>
+</Tile>
+`,
+      },
+    },
+  },
+};
+
+export const VariantsShowcase: Story = {
+  render: () => (
+    <div className='flex flex-col gap-16'>
+      <Tile className='max-w-160'>
+        <TileSecondaryAction
+          icon={MoreVertical}
+          onClick={() => console.log('secondary action clicked')}
+        />
+        <TileSpot appearance='icon' icon={User} />
+        <TileContent>
+          <TileTitle>User</TileTitle>
+          <TileDescription>With description</TileDescription>
+        </TileContent>
+      </Tile>
+      <Tile className='max-w-160'>
+        <TileSecondaryAction
+          icon={MoreVertical}
+          onClick={() => console.log('secondary action clicked')}
+        />
+        <TileSpot appearance='icon' icon={Plus} />
+        <TileContent>
+          <TileTitle>Without Description</TileTitle>
+        </TileContent>
+      </Tile>
+      <Tile className='max-w-160'>
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>Without secondary action</TileTitle>
+          <TileDescription>Additional information</TileDescription>
+        </TileContent>
+      </Tile>
+      <Tile className='max-w-160'>
+        <TileSecondaryAction
+          icon={MoreVertical}
+          onClick={() => console.log('secondary action clicked')}
+        />
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>With Trailing Content</TileTitle>
+          <TileDescription>Additional information</TileDescription>
+        </TileContent>
+        <Tag label='Custom' appearance='base' />
+      </Tile>
+      <Tile className='max-w-160'>
+        <TileSecondaryAction
+          icon={MoreVertical}
+          onClick={() => console.log('secondary action clicked')}
+        />
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>With Trailing Content</TileTitle>
+          <TileDescription>Additional information</TileDescription>
+        </TileContent>
+        <div className='text-success body-2-semi-bold'>+7.87%</div>
+      </Tile>
     </div>
   ),
 };
@@ -242,35 +136,36 @@ export const LeadingContentVariantsShowcase: Story = {
 export const HorizontalList: Story = {
   render: () => (
     <div className='flex flex-col gap-16'>
-      <div className='flex w-[450px] bg-base'>
+      <div className='flex w-480 bg-base'>
         {Array.from({ length: 3 }).map((_, i) => (
-          <Tile
-            key={`list-1-${i}`}
-            title={`Item ${i + 1}`}
-            description={`Description ${i + 1}`}
-            leadingContent={<Spot appearance='icon' icon={Apps} />}
-            secondaryAction={secondaryAction}
-          />
+          <Tile key={`list-1-${i}`}>
+            <TileSecondaryAction
+              icon={MoreVertical}
+              onClick={() => console.log('secondary action clicked')}
+            />
+            <TileSpot appearance='icon' icon={Apps} />
+            <TileContent>
+              <TileTitle>Item {i + 1}</TileTitle>
+              <TileDescription>Description {i + 1}</TileDescription>
+            </TileContent>
+          </Tile>
         ))}
       </div>
-      <div className='flex w-[450px] overflow-x-auto bg-base'>
+      <div className='flex w-480 overflow-x-auto bg-base'>
         {Array.from({ length: 5 }).map((_, i) => (
-          <Tile
-            key={`list-2-${i}`}
-            title={
-              i === 0
-                ? 'Long Title that should truncate appropriately'
-                : `Item ${i + 1}`
-            }
-            description={
-              i === 0
-                ? 'Long description that should truncate appropriately'
-                : `Description ${i + 1}`
-            }
-            leadingContent={<Spot appearance='icon' icon={Apps} />}
-            secondaryAction={secondaryAction}
-            className='w-128 shrink-0'
-          />
+          <Tile key={`list-2-${i}`} className='w-128 shrink-0'>
+            <TileSecondaryAction
+              icon={MoreVertical}
+              onClick={() => console.log('secondary action clicked')}
+            />
+            <TileSpot appearance='icon' icon={Apps} />
+            <TileContent>
+              <TileTitle>{`Item ${i + 1}`}</TileTitle>
+              <TileDescription>
+                Long description that should truncate appropriately
+              </TileDescription>
+            </TileContent>
+          </Tile>
         ))}
       </div>
     </div>
@@ -281,19 +176,25 @@ export const ResponsiveLayout: Story = {
   render: () => (
     <div className='flex w-full flex-col gap-16'>
       <div>
-        <Tile
-          title='Item fill width'
-          description='Description fill width'
-          leadingContent={<Spot appearance='icon' icon={Apps} />}
-        />
+        <Tile>
+          <TileSpot appearance='icon' icon={Apps} />
+          <TileContent>
+            <TileTitle>Item fill width</TileTitle>
+            <TileDescription>Description fill width</TileDescription>
+          </TileContent>
+        </Tile>
       </div>
       <div className='flex items-center justify-center'>
-        <Tile
-          className='w-224'
-          title='Long Item with fixed width'
-          description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-        />
+        <Tile className='w-224'>
+          <TileSpot appearance='icon' icon={Plus} />
+          <TileContent>
+            <TileTitle>Long Item with fixed width</TileTitle>
+            <TileDescription>
+              lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+              quos.
+            </TileDescription>
+          </TileContent>
+        </Tile>
       </div>
     </div>
   ),
@@ -301,89 +202,43 @@ export const ResponsiveLayout: Story = {
 
 export const AppearanceShowcase: Story = {
   render: () => (
-    <div className='flex gap-16'>
-      <Tile
-        title='No Background'
-        description='Transparent tile'
-        leadingContent={<Spot appearance='icon' icon={Settings} />}
-        appearance='no-background'
-        className='w-112'
-      />
-      <Tile
-        title='Card'
-        description='Surface background'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        appearance='card'
-        className='w-112'
-      />
-    </div>
-  ),
-};
-
-export const DisabledShowcase: Story = {
-  render: () => (
-    <div className='flex gap-16'>
-      <Tile
-        title='Disabled Tile'
-        description='Non-interactive'
-        leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
-        disabled
-        className='w-112'
-      />
-      <Tile
-        title='Disabled Card'
-        description='Non-interactive'
-        leadingContent={<Spot appearance='icon' icon={User} disabled />}
-        secondaryAction={secondaryAction}
-        appearance='card'
-        disabled
-        className='w-112'
-      />
-    </div>
-  ),
-};
-
-export const StateShowcase: Story = {
-  render: () => (
     <div className='flex flex-col gap-24'>
       <div>
-        <h3 className='mb-8 heading-3'>No Background</h3>
+        <h3 className='mb-8 heading-4'>No Background</h3>
         <div className='flex gap-16'>
-          <Tile
-            title='Hover me'
-            description='Hover state'
-            leadingContent={<Spot appearance='icon' icon={Settings} />}
-            appearance='no-background'
-            className='w-112'
-          />
-          <Tile
-            title='Disabled'
-            description='Disabled state'
-            leadingContent={<Spot appearance='icon' icon={Settings} disabled />}
-            appearance='no-background'
-            disabled
-            className='w-112'
-          />
+          <Tile appearance='no-background' className='w-112'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Hover me</TileTitle>
+              <TileDescription>Hover state</TileDescription>
+            </TileContent>
+          </Tile>
+          <Tile appearance='no-background' disabled className='w-112'>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Disabled</TileTitle>
+              <TileDescription>Disabled state</TileDescription>
+            </TileContent>
+          </Tile>
         </div>
       </div>
       <div>
-        <h3 className='mb-8 heading-3'>Card</h3>
+        <h3 className='mb-8 heading-4'>Card</h3>
         <div className='flex gap-16'>
-          <Tile
-            title='Hover me'
-            description='Hover state'
-            leadingContent={<Spot appearance='icon' icon={User} />}
-            appearance='card'
-            className='w-112'
-          />
-          <Tile
-            title='Disabled'
-            description='Disabled state'
-            leadingContent={<Spot appearance='icon' icon={User} disabled />}
-            appearance='card'
-            disabled
-            className='w-112'
-          />
+          <Tile appearance='card' className='w-112'>
+            <TileSpot appearance='icon' icon={User} />
+            <TileContent>
+              <TileTitle>Hover me</TileTitle>
+              <TileDescription>Hover state</TileDescription>
+            </TileContent>
+          </Tile>
+          <Tile appearance='card' disabled className='w-112'>
+            <TileSpot appearance='icon' icon={User} />
+            <TileContent>
+              <TileTitle>Disabled</TileTitle>
+              <TileDescription>Disabled state</TileDescription>
+            </TileContent>
+          </Tile>
         </div>
       </div>
     </div>

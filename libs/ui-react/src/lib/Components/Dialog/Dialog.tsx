@@ -1,4 +1,4 @@
-import { cn } from '@ledgerhq/lumen-utils-shared';
+import { cn, createSafeContext } from '@ledgerhq/lumen-utils-shared';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import * as React from 'react';
@@ -13,9 +13,9 @@ import {
   DialogTriggerProps,
 } from './types';
 
-const DialogContext = React.createContext<{ height: DialogHeight }>({
-  height: 'hug',
-});
+const [DialogContextProvider, useDialogContext] = createSafeContext<{
+  height: DialogHeight;
+}>('Dialog');
 
 const dialogContentVariants = cva(
   [
@@ -70,9 +70,9 @@ const dialogContentVariants = cva(
  */
 export function Dialog({ height = 'hug', ...props }: DialogProps) {
   return (
-    <DialogContext.Provider value={{ height }}>
+    <DialogContextProvider value={{ height }}>
       <DialogPrimitive.Root data-slot='dialog' {...props} />
-    </DialogContext.Provider>
+    </DialogContextProvider>
   );
 }
 
@@ -170,7 +170,7 @@ DialogOverlay.displayName = 'DialogOverlay';
  * // With custom styling for layout
  * <DialogContent className="max-w-md">
  *   <div className="space-y-4">
- *     <h4 className="heading-4-semi-bold">Dialog Title</h4>
+ *     <h4 className="heading-5-semi-bold">Dialog Title</h4>
  *     <p>Detailed content here.</p>
  *   </div>
  * </DialogContent>
@@ -180,7 +180,10 @@ export function DialogContent({
   children,
   ...props
 }: DialogContentProps) {
-  const { height } = React.useContext(DialogContext);
+  const { height } = useDialogContext({
+    consumerName: 'DialogContent',
+    contextRequired: true,
+  });
 
   return (
     <DialogPortal data-slot='dialog-portal'>
@@ -217,13 +220,19 @@ export function DialogContent({
  * </DialogContent>
  */
 export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, scrollbarWidth = 'none', style, ...props }, ref) => {
+    const { height } = useDialogContext({
+      consumerName: 'DialogBody',
+      contextRequired: true,
+    });
     return (
       <div
         ref={ref}
         data-slot='dialog-body'
+        style={{ scrollbarWidth, ...style }}
         className={cn(
-          '-mb-24 flex min-h-0 grow basis-0 flex-col overflow-y-auto px-24 pb-24',
+          '-mb-24 flex min-h-0 grow flex-col overflow-y-auto px-24 pb-24',
+          height === 'hug' ? 'basis-auto' : 'basis-0',
           className,
         )}
         {...props}

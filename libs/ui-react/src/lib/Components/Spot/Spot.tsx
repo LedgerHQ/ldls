@@ -24,7 +24,7 @@ const spotVariants = cva(
         warning: 'text-warning',
         info: 'text-muted',
         loader: '',
-        number: 'text-base heading-4',
+        number: 'heading-5 text-base',
       },
       disabled: {
         true: 'text-disabled',
@@ -85,13 +85,13 @@ export const Spot = (props: SpotProps) => {
 
   const numberTypographyMap: Record<SpotSize, string> = {
     32: 'body-2-semi-bold',
-    48: 'heading-4',
-    56: 'heading-3',
-    72: 'heading-1',
+    48: 'heading-5',
+    56: 'heading-4',
+    72: 'heading-2',
   };
 
   const calculatedIconSize = sizeMap[size] ?? 20;
-  const calculatedNumberTypography = numberTypographyMap[size] ?? 'heading-4';
+  const calculatedNumberTypography = numberTypographyMap[size] ?? 'heading-5';
 
   const content = useMemo(() => {
     switch (props.appearance) {

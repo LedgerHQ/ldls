@@ -9,7 +9,7 @@ type SandboxBlockProps = {
 export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
   return (
     <Box lx={{ gap: 's8' }}>
-      <Text typography='heading3SemiBold' lx={{ color: 'base' }}>
+      <Text typography='heading4SemiBold' lx={{ color: 'base' }}>
         {title}
       </Text>
       <Box

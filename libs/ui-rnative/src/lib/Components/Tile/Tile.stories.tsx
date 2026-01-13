@@ -1,20 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import {
-  Settings,
-  Plus,
-  User,
-  Wallet,
-  Cart,
-  Apps,
-  Chart1,
-} from '../../Symbols';
-import { Spot } from '../Spot/Spot';
+import { Settings, Plus, User, Apps } from '../../Symbols';
 import { Tag } from '../Tag/Tag';
-import { Box } from '../Utility';
-import { Tile } from './Tile';
+import { Box, Text } from '../Utility';
+import {
+  Tile,
+  TileSpot,
+  TileContent,
+  TileTitle,
+  TileDescription,
+} from './Tile';
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
+  subcomponents: {
+    TileSpot,
+    TileContent,
+    TileTitle,
+    TileDescription,
+  },
   title: 'Containment/Tile',
   parameters: {
     docs: {
@@ -25,142 +28,107 @@ const meta: Meta<typeof Tile> = {
       },
     },
   },
-  argTypes: {
-    leadingContent: {
-      control: 'select',
-      options: ['None', 'Settings', 'Plus'],
-      mapping: {
-        None: undefined,
-        Settings: <Spot appearance='icon' icon={Settings} />,
-        Plus: <Spot appearance='icon' icon={Plus} />,
-      },
-    },
-    trailingContent: {
-      control: 'select',
-      options: ['None', 'Tag', 'Text'],
-      mapping: {
-        None: undefined,
-        Tag: <Tag label='Tag' appearance='base' />,
-        Text: <span>Text</span>,
-      },
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Tile>;
 
 export const Base: Story = {
-  args: {
-    title: 'Item with Spot and Description',
-    description: 'Additional information',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    lx: { maxWidth: 's256' },
-  },
+  render: () => (
+    <Tile lx={{ maxWidth: 's112' }}>
+      <TileSpot appearance='icon' icon={Settings} />
+      <TileContent>
+        <TileTitle>Item with Spot and Description</TileTitle>
+        <TileDescription>Additional information</TileDescription>
+      </TileContent>
+    </Tile>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<Tile
-  title="Item with Spot and Description"
-  description="Additional information"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  onLongPress={() => console.log('Secondary action')}
-  onPress={() => console.log('Primary action')}
-  lx={{ maxWidth: 's256' }}
-/>
+<Tile lx={{ maxWidth: 's112' }}>
+  <TileSpot appearance="icon" icon={Settings} />
+  <TileContent>
+    <TileTitle>Item with Spot and Description</TileTitle>
+    <TileDescription>Additional information</TileDescription>
+  </TileContent>
+</Tile>
 `,
       },
     },
   },
 };
 
-export const WithTrailingContent: Story = {
-  args: {
-    title: 'Item with Trailing Content',
-    description: 'Additional information',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    trailingContent: <Tag label='New' appearance='base' />,
-    lx: { maxWidth: 's256' },
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Tile
-  title="Item with Trailing Content"
-  description="Additional information"
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  trailingContent={<Tag label="New" appearance="base" />}
-  onLongPress={() => console.log('Long press - secondary action')}
-  lx={{ maxWidth: 's256' }}
-/>
-`,
-      },
-    },
-  },
+export const VariantsShowcase: Story = {
+  render: () => (
+    <Box lx={{ flexDirection: 'column', gap: 's16' }}>
+      <Tile lx={{ maxWidth: 's176' }}>
+        <TileSpot appearance='icon' icon={User} />
+        <TileContent>
+          <TileTitle>User</TileTitle>
+          <TileDescription>With description</TileDescription>
+        </TileContent>
+      </Tile>
+      <Tile lx={{ maxWidth: 's176' }}>
+        <TileSpot appearance='icon' icon={Plus} />
+        <TileContent>
+          <TileTitle>Without Description</TileTitle>
+        </TileContent>
+      </Tile>
+      <Tile lx={{ maxWidth: 's176' }}>
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>With Trailing Content</TileTitle>
+          <TileDescription>Additional information</TileDescription>
+        </TileContent>
+        <Tag label='Custom' appearance='base' />
+      </Tile>
+      <Tile lx={{ maxWidth: 's176' }}>
+        <TileSpot appearance='icon' icon={Settings} />
+        <TileContent>
+          <TileTitle>With Trailing Content</TileTitle>
+          <TileDescription>Additional information</TileDescription>
+        </TileContent>
+        <Text typography='body2SemiBold' lx={{ color: 'success' }}>
+          +7.87%
+        </Text>
+      </Tile>
+    </Box>
+  ),
 };
 
 export const WithSecondaryAction: Story = {
-  args: {
-    title: 'Item with secondary action',
-    description: 'LongPress to trigger secondary action',
-    leadingContent: <Spot appearance='icon' icon={Settings} />,
-    onLongPress: () => alert('Long press - secondary action'),
-    lx: { maxWidth: 's256' },
-  },
+  render: () => (
+    <Tile
+      onLongPress={() => alert('Long press - secondary action triggered!')}
+      lx={{ maxWidth: 's176' }}
+    >
+      <TileSpot appearance='icon' icon={Settings} />
+      <TileContent>
+        <TileTitle>Long Press Me</TileTitle>
+        <TileDescription>Try long pressing this tile</TileDescription>
+      </TileContent>
+    </Tile>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
 <Tile
-  title="Item secondary action"
-  description="Additional information"
-  onLongPress={() => // do stuff}
-  leadingContent={<Spot appearance="icon" icon={Settings} />}
-  lx={{ maxWidth: 's256' }}
-/>
+  onLongPress={() => alert('Long press - secondary action triggered!')}
+  lx={{ maxWidth: 's160' }}
+>
+  <TileSpot appearance="icon" icon={Settings} />
+  <TileContent>
+    <TileTitle>Long Press Me</TileTitle>
+    <TileDescription>Try long pressing this tile</TileDescription>
+  </TileContent>
+</Tile>
 `,
       },
     },
   },
-};
-
-export const LeadingContentVariantsShowcase: Story = {
-  render: () => (
-    <Box lx={{ flexDirection: 'row' }}>
-      <Tile
-        title='User'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={User} />}
-        lx={{ maxWidth: 's128' }}
-      />
-      <Tile
-        title='Wallet'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Wallet} />}
-        lx={{ maxWidth: 's128' }}
-      />
-      <Tile
-        title='Cart'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Cart} />}
-        lx={{ maxWidth: 's128' }}
-      />
-      <Tile
-        title='Apps'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Apps} />}
-        lx={{ maxWidth: 's128' }}
-      />
-      <Tile
-        title='Chart'
-        description='With description'
-        leadingContent={<Spot appearance='icon' icon={Chart1} />}
-        lx={{ maxWidth: 's128' }}
-      />
-    </Box>
-  ),
 };
 
 export const HorizontalList: Story = {
@@ -174,13 +142,14 @@ export const HorizontalList: Story = {
           backgroundColor: 'base',
         }}
       >
-        {Array.from({ length: 12 }).map((_, i) => (
-          <Tile
-            key={`list-1-${i}`}
-            title={`Item ${i + 1}`}
-            description={`Description ${i + 1}`}
-            leadingContent={<Spot appearance='icon' icon={Apps} />}
-          />
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Tile key={`list-1-${i}`}>
+            <TileSpot appearance='icon' icon={Apps} />
+            <TileContent>
+              <TileTitle>Item {i + 1}</TileTitle>
+              <TileDescription>Description {i + 1}</TileDescription>
+            </TileContent>
+          </Tile>
         ))}
       </Box>
       <Box
@@ -189,16 +158,19 @@ export const HorizontalList: Story = {
           width: 's480',
           position: 'relative',
           backgroundColor: 'base',
+          overflow: 'scroll',
         }}
       >
-        {Array.from({ length: 8 }).map((_, i) => (
-          <Tile
-            key={`list-2-${i}`}
-            title='Long Title that should truncate appropriately'
-            description='Long description that should truncate appropriately'
-            leadingContent={<Spot appearance='icon' icon={Apps} />}
-            lx={{ width: 's176', flexShrink: 0 }}
-          />
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Tile key={`list-2-${i}`} lx={{ width: 's128', flexShrink: 0 }}>
+            <TileSpot appearance='icon' icon={Apps} />
+            <TileContent>
+              <TileTitle>Item {i + 1}</TileTitle>
+              <TileDescription>
+                Long description that should truncate appropriately
+              </TileDescription>
+            </TileContent>
+          </Tile>
         ))}
       </Box>
     </Box>
@@ -209,19 +181,74 @@ export const ResponsiveLayout: Story = {
   render: () => (
     <Box lx={{ width: 'full', flexDirection: 'column', gap: 's16' }}>
       <Box>
-        <Tile
-          title='Item fill width'
-          description='Description fill width'
-          leadingContent={<Spot appearance='icon' icon={Apps} />}
-        />
+        <Tile>
+          <TileSpot appearance='icon' icon={Apps} />
+          <TileContent>
+            <TileTitle>Item fill width</TileTitle>
+            <TileDescription>Description fill width</TileDescription>
+          </TileContent>
+        </Tile>
       </Box>
       <Box lx={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Tile
-          lx={{ width: 's224' }}
-          title='Long Item with fixed width'
-          description='lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
-          leadingContent={<Spot appearance='icon' icon={Plus} />}
-        />
+        <Tile lx={{ width: 's224' }}>
+          <TileSpot appearance='icon' icon={Plus} />
+          <TileContent>
+            <TileTitle>Long Item with fixed width</TileTitle>
+            <TileDescription>
+              lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+              quos.
+            </TileDescription>
+          </TileContent>
+        </Tile>
+      </Box>
+    </Box>
+  ),
+};
+
+export const AppearanceShowcase: Story = {
+  render: () => (
+    <Box lx={{ flexDirection: 'column', gap: 's24' }}>
+      <Box>
+        <Box lx={{ marginBottom: 's8' }}>
+          <Text typography='body2SemiBold'>No Background</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'row', gap: 's16' }}>
+          <Tile appearance='no-background' lx={{ width: 's112' }}>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Press me</TileTitle>
+              <TileDescription>Press state</TileDescription>
+            </TileContent>
+          </Tile>
+          <Tile appearance='no-background' disabled lx={{ width: 's112' }}>
+            <TileSpot appearance='icon' icon={Settings} />
+            <TileContent>
+              <TileTitle>Disabled</TileTitle>
+              <TileDescription>Disabled state</TileDescription>
+            </TileContent>
+          </Tile>
+        </Box>
+      </Box>
+      <Box>
+        <Box lx={{ marginBottom: 's8' }}>
+          <Text typography='body2SemiBold'>Card</Text>
+        </Box>
+        <Box lx={{ flexDirection: 'row', gap: 's16' }}>
+          <Tile appearance='card' lx={{ width: 's112' }}>
+            <TileSpot appearance='icon' icon={User} />
+            <TileContent>
+              <TileTitle>Press me</TileTitle>
+              <TileDescription>Press state</TileDescription>
+            </TileContent>
+          </Tile>
+          <Tile appearance='card' disabled lx={{ width: 's112' }}>
+            <TileSpot appearance='icon' icon={User} />
+            <TileContent>
+              <TileTitle>Disabled</TileTitle>
+              <TileDescription>Disabled state</TileDescription>
+            </TileContent>
+          </Tile>
+        </Box>
       </Box>
     </Box>
   ),

@@ -123,6 +123,58 @@
           }
         }
       },
+      "surface-transparent": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-5%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {
+                "WEB": "var(--color-background-muted-transparent);"
+              }
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-10%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-20%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "{color.dark.grey.950-5%}",
+          "$description": "",
+          "$extensions": {
+            "com.figma": {
+              "hiddenFromPublishing": true,
+              "scopes": [],
+              "codeSyntax": {}
+            }
+          }
+        }
+      },
       "base": {
         "default": {
           "$type": "color",

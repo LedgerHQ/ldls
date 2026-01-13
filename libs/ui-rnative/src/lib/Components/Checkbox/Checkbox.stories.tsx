@@ -90,7 +90,7 @@ export const AllStates: Story = {
           }}
         >
           <Box style={{ gap: 16 }}>
-            <Text typography='heading4'>Enabled</Text>
+            <Text typography='heading5'>Enabled</Text>
             <Box style={{ gap: 8 }}>
               <Checkbox
                 label='Unchecked'
@@ -101,7 +101,7 @@ export const AllStates: Story = {
             </Box>
           </Box>
           <Box style={{ gap: 16 }}>
-            <Text typography='heading4'>Disabled</Text>
+            <Text typography='heading5'>Disabled</Text>
             <Box style={{ gap: 8 }}>
               <Checkbox label='Unchecked' disabled defaultChecked={false} />
               <Checkbox label='Checked' disabled defaultChecked />

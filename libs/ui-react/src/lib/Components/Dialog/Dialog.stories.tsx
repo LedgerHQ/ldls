@@ -12,7 +12,7 @@ import {
 } from '../ListItem';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { Spot } from '../Spot';
-import { Tile } from '../Tile';
+import { Tile, TileContent, TileSpot, TileTitle } from '../Tile';
 import {
   Dialog,
   DialogBody,
@@ -25,13 +25,13 @@ import {
 const DialogContentTemplate = () => {
   return (
     <div className='flex flex-col gap-16'>
-      <p className='text-base body-2'>
+      <p className='body-2 text-base'>
         The content area after the DialogHeader can contain any components.
         Ensure proper padding and scrolling if needed.
       </p>
-      <div className='rounded-sm bg-muted p-12'>
+      <div className='bg-muted rounded-sm p-12'>
         <p className='text-muted body-3'>
-          <strong className='text-base body-3-semi-bold'>Note:</strong> The
+          <strong className='body-3-semi-bold text-base'>Note:</strong> The
           dialog content defaults to a width of 400px and height auto-adjusts to
           content. Use the className prop on DialogContent to customize
           dimensions if needed.
@@ -442,7 +442,7 @@ export const WithMultiSteps: Story = {
             onBack={step > 1 ? () => setStep(step - 1) : undefined}
           />
           <DialogBody>
-            <p className='text-base body-2'>
+            <p className='body-2 text-base'>
               {step === 1
                 ? 'Please review the information and click Continue to proceed.'
                 : 'You are now on step 2. Use the back button to return to the previous step.'}
@@ -532,26 +532,25 @@ export const WithListsContent: Story = {
           <DialogBody className='gap-32'>
             {/* Horizontal Tile List */}
             <div className='flex flex-col gap-8'>
-              <h4 className='heading-4-semi-bold'>Quick Actions</h4>
+              <h4 className='heading-5-semi-bold'>Quick Actions</h4>
               <div className='-mx-24 flex gap-8 overflow-x-auto px-24'>
                 {Array.from({ length: 12 }).map((_, i) => (
-                  <Tile
-                    key={i}
-                    appearance='card'
-                    leadingContent={<Spot appearance='icon' icon={Apps} />}
-                    title={`Action ${i + 1}`}
-                    className='min-w-96'
-                  />
+                  <Tile>
+                    <TileSpot appearance='icon' icon={Apps} />
+                    <TileContent>
+                      <TileTitle>Action {i + 1}</TileTitle>
+                    </TileContent>
+                  </Tile>
                 ))}
               </div>
             </div>
 
             {/* Vertical ListItem List */}
             <div className='flex flex-col gap-8'>
-              <h4 className='heading-4-semi-bold'>Settings</h4>
+              <h4 className='heading-5-semi-bold'>Settings</h4>
 
               <div className='-mx-8 flex flex-col gap-4'>
-                <div className='sticky top-0 bg-canvas py-8'>
+                <div className='bg-canvas sticky top-0 py-8'>
                   <SearchInput className='mx-8' placeholder='Search item...' />
                 </div>
                 {Array.from({ length: 12 }).map((_, i) => (
@@ -593,10 +592,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error' />
+                <div className='bg-gradient-error pointer-events-none absolute inset-x-0 top-0 h-full' />
                 <Spot appearance='error' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='heading-4-semi-bold text-base'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -624,10 +623,10 @@ export const InfoStateVariants: Story = {
             />
             <DialogBody>
               <div className='flex flex-col items-center gap-24 overflow-hidden'>
-                <div className='pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success' />
+                <div className='bg-gradient-success pointer-events-none absolute inset-x-0 top-0 h-full' />
                 <Spot appearance='check' size={72} />
                 <div className='flex flex-col items-center gap-12 text-center'>
-                  <h3 className='text-base heading-3-semi-bold'>Title</h3>
+                  <h3 className='heading-4-semi-bold text-base'>Title</h3>
                   <p className='text-muted body-2'>Description</p>
                 </div>
               </div>
@@ -661,7 +660,7 @@ export const InfoStateVariants: Story = {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-error" />
         <Spot appearance="error" size={72} />
         <div className="flex flex-col items-center gap-12 text-center">
-          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <h3 className="heading-4-semi-bold text-base">Title</h3>
           <p className="body-2 text-muted">Description</p>
         </div>
       </div>
@@ -685,7 +684,7 @@ export const InfoStateVariants: Story = {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-success" />
         <Spot appearance="check" size={72} />
         <div className="flex flex-col items-center gap-12 text-center">
-          <h3 className="heading-3-semi-bold text-base">Title</h3>
+          <h3 className="heading-4-semi-bold text-base">Title</h3>
           <p className="body-2 text-muted">Description</p>
         </div>
     </div>

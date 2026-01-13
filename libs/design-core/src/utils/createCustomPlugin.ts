@@ -192,6 +192,22 @@ export function createTypographyPlugin() {
         'letter-spacing': 'var(--font-style-heading-4-letter-spacing)',
         ...fontSmoothing,
       },
+      '.heading-5': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-5-size)',
+        'font-weight': 'var(--font-style-heading-5-weight-medium)',
+        'line-height': 'var(--font-style-heading-5-line-height)',
+        'letter-spacing': 'var(--font-style-heading-5-letter-spacing)',
+        ...fontSmoothing,
+      },
+      '.heading-5-semi-bold': {
+        'font-family': 'var(--font-family-font)',
+        'font-size': 'var(--font-style-heading-5-size)',
+        'font-weight': 'var(--font-style-heading-5-weight-semi-bold)',
+        'line-height': 'var(--font-style-heading-5-line-height)',
+        'letter-spacing': 'var(--font-style-heading-5-letter-spacing)',
+        ...fontSmoothing,
+      },
     };
 
     const bodyStyles = {
