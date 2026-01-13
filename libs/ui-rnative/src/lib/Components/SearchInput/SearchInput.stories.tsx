@@ -7,6 +7,9 @@ import { SearchInputProps } from './types';
 const meta: Meta<typeof SearchInput> = {
   component: SearchInput,
   title: 'Input/SearchInput',
+  args: {
+    appearance: 'plain',
+  },
   parameters: {
     docs: {
       source: {
@@ -32,11 +35,6 @@ const meta: Meta<typeof SearchInput> = {
     hideClearButton: {
       control: 'boolean',
       description: 'Hide the clear button',
-    },
-    appearance: {
-      control: 'select',
-      options: ['plain', 'transparent'],
-      description: 'Visual appearance of the search input',
     },
   },
 };

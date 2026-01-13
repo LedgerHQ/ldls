@@ -14,12 +14,6 @@ const meta: Meta<typeof SearchInput> = {
   args: {
     appearance: 'plain',
   },
-  argTypes: {
-    appearance: {
-      control: 'select',
-      options: ['plain', 'transparent'],
-    },
-  },
   parameters: {
     docs: {
       source: {
