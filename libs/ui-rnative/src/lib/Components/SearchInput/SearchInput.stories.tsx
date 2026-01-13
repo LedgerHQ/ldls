@@ -33,6 +33,11 @@ const meta: Meta<typeof SearchInput> = {
       control: 'boolean',
       description: 'Hide the clear button',
     },
+    appearance: {
+      control: 'select',
+      options: ['plain', 'transparent'],
+      description: 'Visual appearance of the search input',
+    },
   },
 };
 

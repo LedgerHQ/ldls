@@ -18,6 +18,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     {
       lx,
       style,
+      containerStyle,
       inputStyle,
       labelStyle,
       label,
@@ -100,7 +101,7 @@ export const BaseInput = React.forwardRef<TextInput, BaseInputProps>(
     return (
       <Box lx={lx} style={style}>
         <Pressable
-          style={styles.container}
+          style={[styles.container, containerStyle]}
           onPress={() => inputRef.current?.focus()}
           disabled={!editable}
         >

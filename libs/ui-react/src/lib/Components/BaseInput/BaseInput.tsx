@@ -6,27 +6,27 @@ import { InteractiveIcon } from '../InteractiveIcon';
 import { BaseInputProps } from './types';
 
 const baseContainerStyles = cn(
-  'group relative flex h-48 w-full cursor-text items-center gap-8 rounded-sm bg-muted px-16 transition-colors',
-  'focus-within:ring-2 focus-within:ring-active hover:bg-muted-hover',
-  'has-[:disabled]:cursor-not-allowed has-[:disabled]:bg-disabled has-[:disabled]:text-disabled',
-  'has-[:invalid]:border-error has-[:invalid]:ring-1 has-[:invalid]:ring-error',
-  'has-[input[aria-invalid="true"]]:border-error has-[input[aria-invalid="true"]]:ring-1 has-[input[aria-invalid="true"]]:ring-error',
+  'bg-muted group relative flex h-48 w-full cursor-text items-center gap-8 rounded-sm px-16 transition-colors',
+  'focus-within:ring-active hover:bg-muted-hover focus-within:ring-2',
+  'has-[:disabled]:bg-disabled has-[:disabled]:text-disabled has-[:disabled]:cursor-not-allowed',
+  'has-[:invalid]:border-error has-[:invalid]:ring-error has-[:invalid]:ring-1',
+  'has-[input[aria-invalid="true"]]:border-error has-[input[aria-invalid="true"]]:ring-error has-[input[aria-invalid="true"]]:ring-1',
 );
 
 const baseInputStyles = cn(
-  'peer w-full flex-1 bg-muted text-base caret-active outline-none transition-colors body-1',
+  'bg-muted caret-active body-1 peer w-full flex-1 text-base outline-none transition-colors',
   'group-hover:bg-muted-hover group-disabled:bg-disabled',
-  'group-has-[:disabled]:cursor-not-allowed group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled',
+  'group-has-[:disabled]:bg-disabled group-has-[:disabled]:text-disabled group-has-[:disabled]:cursor-not-allowed',
   'placeholder:text-muted group-has-[:disabled]:placeholder:text-disabled',
   '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
   'truncate',
 );
 
 const baseLabelStyles = cn(
-  'pointer-events-none absolute left-16 top-6 origin-left text-muted transition-all duration-300 body-4',
-  'peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:body-2',
+  'text-muted body-4 pointer-events-none absolute left-16 top-6 origin-left transition-all duration-300',
+  'peer-placeholder-shown:body-2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100',
   'group-has-[:disabled]:text-disabled',
-  'peer-focus:top-6 peer-focus:-translate-y-0 peer-focus:body-4',
+  'peer-focus:body-4 peer-focus:top-6 peer-focus:-translate-y-0',
   'w-[calc(100%-var(--size-56))] truncate',
 );
 
@@ -54,6 +54,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
   (
     {
       className,
+      containerClassName,
       inputClassName,
       labelClassName,
       label,
@@ -155,7 +156,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
     return (
       <div className={className}>
         <div
-          className={baseContainerStyles}
+          className={cn(baseContainerStyles, containerClassName)}
           onPointerDown={(event: React.PointerEvent<HTMLDivElement>) => {
             const target = event.target as Element;
             if (target.closest('input, button, a')) return;
@@ -190,7 +191,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             aria-describedby={errorMessage ? errorId : undefined}
             className={cn(
               baseInputStyles,
-              label && 'pt-12 body-2',
+              label && 'body-2 pt-12',
               inputClassName,
             )}
             onChange={handleInput}
@@ -225,10 +226,10 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
         {errorMessage && (
           <div
             id={errorId}
-            className='mt-8 flex items-center gap-2 text-error body-3'
+            className='text-error body-3 mt-8 flex items-center gap-2'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='shrink-0 text-error' />
+            <DeleteCircleFill size={16} className='text-error shrink-0' />
             <span>{errorMessage}</span>
           </div>
         )}
