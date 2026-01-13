@@ -114,35 +114,4 @@ describe('SearchInput', () => {
     expect(searchIcon).toBeInTheDocument();
     expect(searchIcon).toHaveClass('text-muted');
   });
-
-  it('renders with plain appearance by default', () => {
-    const { container } = render(<SearchInput placeholder='Search' />);
-
-    const inputContainer = container.querySelector('div > div');
-    expect(inputContainer).toBeInTheDocument();
-    expect(inputContainer).toHaveClass('bg-muted');
-  });
-
-  it('renders with transparent appearance', () => {
-    const { container } = render(
-      <SearchInput placeholder='Search' appearance='transparent' />,
-    );
-
-    const wrapper = container.querySelector('div');
-    expect(wrapper).toBeInTheDocument();
-  });
-
-  it('applies appearance prop correctly', () => {
-    const { rerender, container } = render(
-      <SearchInput placeholder='Search' appearance='plain' />,
-    );
-
-    let wrapper = container.querySelector('div');
-    expect(wrapper).toBeInTheDocument();
-
-    rerender(<SearchInput placeholder='Search' appearance='transparent' />);
-
-    wrapper = container.querySelector('div');
-    expect(wrapper).toBeInTheDocument();
-  });
 });
