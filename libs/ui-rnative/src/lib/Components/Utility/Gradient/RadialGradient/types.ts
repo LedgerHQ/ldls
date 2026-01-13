@@ -1,9 +1,6 @@
 import { ReactNode } from 'react';
 import { LumenStyleSheetTheme, StyledViewProps } from '../../../../../styles';
-import { GradientStop } from '../gradient.types';
-
-export type BackgroundColorToken = keyof LumenStyleSheetTheme['colors']['bg'];
-
+import { GradientStop, BackgroundColorToken } from '../gradient.types';
 export type RadialGradientCenter = {
   /**
    * Horizontal position (0 = left, 1 = right)
