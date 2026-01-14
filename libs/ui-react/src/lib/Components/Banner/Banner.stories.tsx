@@ -340,7 +340,7 @@ export const ContentVariations: Story = {
 export const NaturalWidth: Story = {
   render: () => (
     <div className='space-y-4'>
-      <p className='text-muted body-3'>
+      <p className='body-3 text-muted'>
         Banner without container constraints - takes full parent width:
       </p>
       <Banner
@@ -365,7 +365,7 @@ export const NaturalWidth: Story = {
 export const ResponsiveLayout: Story = {
   render: () => (
     <div className='grid w-400 grid-cols-1 gap-16 bg-muted-pressed p-16'>
-      <div className='text-muted body-4-semi-bold'>
+      <div className='body-4-semi-bold text-muted'>
         Container with a fixed width
       </div>
       <Banner

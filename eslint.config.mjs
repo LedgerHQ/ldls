@@ -2,14 +2,12 @@ import nx from '@nx/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import tailwind from 'eslint-plugin-tailwindcss';
 
 export default defineConfig(
   ...nx.configs['flat/base'],
   ...nx.configs['flat/react'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
-  ...tailwind.configs['flat/recommended'],
   {
     ignores: [
       '**/dist',
@@ -44,10 +42,6 @@ export default defineConfig(
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
-      /**
-       * tailwind
-       */
-      'tailwindcss/no-custom-classname': 'error',
       /**
        * typescript
        */

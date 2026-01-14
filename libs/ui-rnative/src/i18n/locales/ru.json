@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "Сканировать QR-код"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "Очистить поле"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Загрузка"
+    },
+    "bottomSheetHeader": {
+      "goBackAriaLabel": "Назад",
+      "closeAriaLabel": "Закрыть"
+    },
+    "banner": {
+      "closeAriaLabel": "Закрыть"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(открывается в новой вкладке)"
+    }
+  }
 }

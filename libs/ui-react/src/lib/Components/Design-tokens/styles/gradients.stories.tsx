@@ -12,7 +12,7 @@ const GradientShowcase = () => (
   <div className='mb-32'>
     <div className='space-y-32'>
       <div>
-        <h4 className='heading-5 mb-16 text-base'>Directional Gradients</h4>
+        <h4 className='mb-16 heading-5 text-base'>Directional Gradients</h4>
         <div className='grid grid-cols-1 gap-16 sm:grid-cols-2'>
           {[
             { name: 'Top', class: 'bg-gradient-top' },
@@ -22,15 +22,15 @@ const GradientShowcase = () => (
               <div
                 className={`h-96 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <h4 className='heading-5 mb-16 text-base'>Status Gradients</h4>
+        <h4 className='mb-16 heading-5 text-base'>Status Gradients</h4>
         <div className='grid grid-cols-1 gap-16 sm:grid-cols-3'>
           {[
             { name: 'Error', class: 'bg-gradient-error' },
@@ -41,15 +41,15 @@ const GradientShowcase = () => (
               <div
                 className={`h-224 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <h4 className='heading-5 mb-16 text-base'>Asset Gradients</h4>
+        <h4 className='mb-16 heading-5 text-base'>Asset Gradients</h4>
         <div className='grid grid-cols-2 gap-16 sm:grid-cols-3 lg:grid-cols-6'>
           {[
             { name: 'Aion', class: 'bg-gradient-aion' },
@@ -126,8 +126,8 @@ const GradientShowcase = () => (
               <div
                 className={`h-64 rounded-lg border border-muted-subtle ${gradientClass}`}
               ></div>
-              <div className='mt-8 text-base body-2'>{name}</div>
-              <div className='mt-8 text-muted body-4'>{gradientClass}</div>
+              <div className='mt-8 body-2 text-base'>{name}</div>
+              <div className='mt-8 body-4 text-muted'>{gradientClass}</div>
             </div>
           ))}
         </div>

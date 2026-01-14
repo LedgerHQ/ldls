@@ -137,7 +137,7 @@ export const LongContent: Story = {
 export const CustomDelay: Story = {
   render: () => (
     <div className='flex h-256 flex-col items-center justify-center gap-8'>
-      <p className='text-muted body-2'>Compare different delay durations</p>
+      <p className='body-2 text-muted'>Compare different delay durations</p>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button>Default delay (200ms)</Button>

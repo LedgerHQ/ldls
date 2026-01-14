@@ -30,14 +30,14 @@ const SizeShowcase = () => (
             <div
               className={`${token} flex items-center justify-center rounded-xs bg-accent text-white`}
             ></div>
-            <div className=' space-y-1 text-center'>
-              <div className='text-left text-muted body-3'>{token}</div>
-              <div className='text-left text-muted body-4'>{value}px</div>
+            <div className='space-y-1 text-center'>
+              <div className='text-left body-3 text-muted'>{token}</div>
+              <div className='text-left body-4 text-muted'>{value}px</div>
             </div>
           </div>
         ))}
       </div>
-      <div className='mt-32 text-center text-muted body-2'>
+      <div className='mt-32 text-center body-2 text-muted'>
         The complete scale includes 33 tokens from{' '}
         <code className='text-warning'>size-1</code> to{' '}
         <code className='text-warning'>size-560</code>.

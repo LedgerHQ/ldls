@@ -6,10 +6,10 @@ import { SwitchProps } from './types';
 
 const switchVariants = cva(
   cn(
-    'group flex items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+    'group flex cursor-pointer items-center rounded-full p-2 transition-colors duration-200 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
     '[&[data-state=unchecked]:not([data-disabled])]:bg-muted-strong [&[data-state=unchecked]:not([data-disabled])]:hover:bg-muted-strong-hover [&[data-state=unchecked]:not([data-disabled])]:active:bg-muted-strong-pressed',
     '[&[data-state=checked]:not([data-disabled])]:bg-active [&[data-state=checked]:not([data-disabled])]:hover:bg-active-hover [&[data-state=checked]:not([data-disabled])]:active:bg-active-pressed',
-    'data-[disabled]:bg-disabled-strong',
+    'data-disabled:bg-disabled-strong',
   ),
   {
     variants: {
@@ -25,7 +25,7 @@ const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-[disabled]:bg-base',
+  'translate-x-0 rounded-full bg-white transition-transform duration-200 ease-in-out group-data-disabled:bg-base',
   {
     variants: {
       size: {

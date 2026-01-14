@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "Karekodu okut"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "Girdiyi temizle"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Yükleniyor"
+    },
+    "dialogHeader": {
+      "goBackAriaLabel": "Geri dön",
+      "closeAriaLabel": "Kapat"
+    },
+    "banner": {
+      "closeAriaLabel": "Kapat"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(yeni sekmede açılır)"
+    }
+  }
 }

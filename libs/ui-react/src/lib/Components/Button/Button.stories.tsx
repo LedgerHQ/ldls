@@ -179,7 +179,7 @@ export const ResponsiveLayout: Story = {
 export const LabelTruncate: Story = {
   render: () => (
     <>
-      <p className='text-muted body-4-semi-bold'>
+      <p className='body-4-semi-bold text-muted'>
         This container has a fixed width.
       </p>
       <div className='w-400 p-16'>

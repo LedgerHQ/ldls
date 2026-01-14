@@ -39,15 +39,15 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
       {/* Content area */}
       <div className='flex flex-1 flex-col items-center justify-between'>
         <div>
-          <h4 className='heading-5 !mb-0 block !cursor-pointer text-base group-hover:text-[#B380DD] md:hidden'>
+          <h4 className='mb-0! block cursor-pointer! heading-4 text-base group-hover:text-[#B380DD] md:hidden'>
             {emoji && <div>{emoji}</div>}
             {title}
           </h4>
-          <h3 className='heading-5 !mb-0 hidden !cursor-pointer text-base group-hover:text-[#B380DD] md:block'>
+          <h3 className='mb-0! hidden cursor-pointer! heading-4 text-base group-hover:text-[#B380DD] md:block'>
             {emoji && <div>{emoji}</div>}
             {title}
           </h3>
-          <p className='line-clamp-2 hidden text-muted body-3 md:block'>
+          <p className='line-clamp-2 hidden body-3 text-muted md:block'>
             {description}
           </p>
         </div>
