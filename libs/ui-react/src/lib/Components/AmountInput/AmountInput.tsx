@@ -11,10 +11,10 @@ import { AmountInputProps } from './types';
 
 const inputStyles = cva(
   [
-    'bg-transparent caret-active outline-none transition-colors heading-0',
+    'bg-transparent heading-0 caret-active outline-hidden transition-colors',
     'text-base placeholder:text-muted-subtle',
     'disabled:cursor-not-allowed disabled:bg-base-transparent disabled:text-disabled',
-    '[&[aria-invalid="true"]]:text-error',
+    'aria-invalid:text-error',
     '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
     'h-56',
   ],

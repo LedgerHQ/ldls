@@ -4,9 +4,9 @@ import React from 'react';
 import { Check } from '../../Symbols/Icons/Check';
 import { CheckboxProps } from './types';
 
-const checkboxStyles = [
-  'h-20 w-20 shrink-0 rounded-xs transition-colors',
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2',
+const checkboxStyles = cn(
+  'size-20 shrink-0 cursor-pointer rounded-xs transition-colors',
+  'focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:outline-hidden',
 
   'data-[state=unchecked]:border data-[state=unchecked]:border-muted data-[state=unchecked]:bg-base',
   'data-[state=unchecked]:hover:bg-base-hover',
@@ -17,7 +17,7 @@ const checkboxStyles = [
   'data-[state=checked]:hover:bg-active-hover',
   'data-[state=checked]:active:bg-active-pressed',
   'data-[state=checked]:disabled:bg-disabled data-[state=checked]:disabled:text-disabled',
-].join(' ');
+);
 
 /**
  * A customizable checkbox component built on top of Radix UI Checkbox primitive.

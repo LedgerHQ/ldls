@@ -9,13 +9,15 @@ import {
   createShadowPlugin,
 } from '../utils/index.js';
 
-export const allBrandsPreset = {
+export const allBrandsPreset: Config = {
   content: [],
   theme: {
     boxShadow: {},
+    boxShadowColor: {},
     fontSize: {},
     fontWeight: {},
     lineHeight: {},
+    colors: {},
   },
   plugins: [
     createPrimitivesPlugin(),
@@ -26,4 +28,4 @@ export const allBrandsPreset = {
     createAnimationsPlugin(),
   ],
   darkMode: 'class',
-} satisfies Config;
+};

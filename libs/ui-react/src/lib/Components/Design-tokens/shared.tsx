@@ -24,8 +24,8 @@ export const ColorSwatch = ({
             >
               <div className={cn('heading-5', textClassName)}>Aa</div>
             </div>
-            <div className='mt-8 text-base body-1-semi-bold'>{name}</div>
-            <div className='text-muted body-3'>{textClassName}</div>
+            <div className='mt-8 body-1-semi-bold text-base'>{name}</div>
+            <div className='body-3 text-muted'>{textClassName}</div>
           </>
         );
       case 'border':
@@ -37,8 +37,8 @@ export const ColorSwatch = ({
                 className.replace('bg-base', ''),
               )}
             ></div>
-            <div className='mt-8 text-base body-1-semi-bold'>{name}</div>
-            <div className='text-muted body-3'>
+            <div className='mt-8 body-1-semi-bold text-base'>{name}</div>
+            <div className='body-3 text-muted'>
               {className.replace('bg-base ', '')}
             </div>
           </>
@@ -55,7 +55,7 @@ export const ColorSwatch = ({
             <div className={cn('mt-8 body-1-semi-bold', textClassName)}>
               {name}
             </div>
-            <div className={cn('text-muted body-3', textClassName)}>
+            <div className={cn('body-3 text-muted', textClassName)}>
               {className}
             </div>
           </>
@@ -74,7 +74,7 @@ export const SectionHeader = ({
   description?: string;
 }) => (
   <div className='mb-48'>
-    <h2 className='mb-8 text-base responsive-display-4'>{title}</h2>
+    <h2 className='mb-8 responsive-display-4 text-base'>{title}</h2>
     {description && <p className='text-muted'>{description}</p>}
   </div>
 );
@@ -89,7 +89,7 @@ export const ColorSection = ({
   category?: 'background' | 'text' | 'border';
 }) => (
   <div className='mb-32'>
-    {title && <h3 className='mb-32 text-base heading-4'>{title}</h3>}
+    {title && <h3 className='mb-32 heading-4 text-base'>{title}</h3>}
     <div className='grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
       {tokens.map(({ name, className, textClassName }) => (
         <ColorSwatch

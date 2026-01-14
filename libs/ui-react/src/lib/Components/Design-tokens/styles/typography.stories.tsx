@@ -21,8 +21,8 @@ const TypographySample = ({
     >
       The quick brown fox jumps over the lazy dog
       <div className='mt-24 bg-muted-pressed p-[0.5px]' />
-      <div className='mb-4 mt-16 text-base body-2'> {title} </div>
-      <div className='text-muted body-4'>{className}</div>
+      <div className='mt-16 mb-4 body-2 text-base'> {title} </div>
+      <div className='body-4 text-muted'>{className}</div>
     </div>
   </div>
 );

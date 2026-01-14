@@ -92,7 +92,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
         size={20}
         // Todo: fix gap between search icon and input not showing input-caret on hover
         // we need to use paddings around the prefix rather then gaps ( radix ui is doing this )
-        className='text-muted group-has-[:disabled]:text-disabled'
+        className='text-muted group-has-disabled:text-disabled'
         aria-hidden='true'
       />
     );

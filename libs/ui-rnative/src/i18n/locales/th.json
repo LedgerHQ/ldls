@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "สแกน QR Code"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "ล้างอินพุต"
+    },
+    "spinner": {
+      "loadingAriaLabel": "กำลังโหลด"
+    },
+    "bottomSheetHeader": {
+      "goBackAriaLabel": "ย้อนกลับ",
+      "closeAriaLabel": "ปิด"
+    },
+    "banner": {
+      "closeAriaLabel": "ปิด"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(เปิดในแท็บใหม่)"
+    }
+  }
 }

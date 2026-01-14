@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "QR 코드 스캔"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "입력 값 지우기"
+    },
+    "spinner": {
+      "loadingAriaLabel": "로딩중"
+    },
+    "dialogHeader": {
+      "goBackAriaLabel": "돌아가기",
+      "closeAriaLabel": "닫기"
+    },
+    "banner": {
+      "closeAriaLabel": "닫기"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(새 탭에서 열기)"
+    }
+  }
 }

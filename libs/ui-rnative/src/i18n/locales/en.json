@@ -15,6 +15,9 @@
     },
     "banner": {
       "closeAriaLabel": "Close"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(opens in a new tab)"
     }
   }
 }

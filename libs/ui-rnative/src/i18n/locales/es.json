@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "Escanear código QR"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "Borrar entrada"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Cargando"
+    },
+    "bottomSheetHeader": {
+      "goBackAriaLabel": "Volver",
+      "closeAriaLabel": "Cerrar"
+    },
+    "banner": {
+      "closeAriaLabel": "Cerrar"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(se abre en una pestaña nueva)"
+    }
+  }
 }

@@ -20,7 +20,7 @@ const [DialogContextProvider, useDialogContext] = createSafeContext<{
 const dialogContentVariants = cva(
   [
     'flex w-400 max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-2xl bg-canvas-sheet pb-24',
-    'fixed left-[50%] top-[50%] z-dialog-content translate-x-[-50%] translate-y-[-50%]',
+    'fixed top-[50%] left-[50%] z-dialog-content translate-[-50%]',
     'data-[state=closed]:animate-content-hide data-[state=open]:animate-content-show',
   ],
   {

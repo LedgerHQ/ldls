@@ -210,14 +210,14 @@ export const DebouncedSearchInput: Story = {
         />
         {/* Search status indicator */}
         {isSearching && (
-          <div className='text-muted body-3 italic'>Searching...</div>
+          <div className='body-3 text-muted italic'>Searching...</div>
         )}
         {/* Results */}
         {inputValue.length > 0 && !isSearching && (
           <div className='bg-muted rounded-md p-16'>
             {filteredResults.length > 0 ? (
               <div>
-                <p className='text-muted body-3 mb-8'>
+                <p className='mb-8 body-3 text-muted'>
                   Found {filteredResults.length} result
                   {filteredResults.length !== 1 ? 's' : ''} for "{searchQuery}"
                 </p>
@@ -235,8 +235,8 @@ export const DebouncedSearchInput: Story = {
               </div>
             ) : (
               <div className='text-center'>
-                <p className='text-muted body-2'>Nothing found</p>
-                <p className='text-muted body-3 mt-4'>
+                <p className='body-2 text-muted'>Nothing found</p>
+                <p className='mt-4 body-3 text-muted'>
                   No fruits match "{searchQuery}"
                 </p>
               </div>

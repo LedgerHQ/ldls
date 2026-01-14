@@ -1,6 +1,8 @@
 import plugin from 'tailwindcss/plugin.js';
 import { getThemeUtilsByPrefix } from './getThemeUtilsByPrefix.js';
 
+type TailwindPlugin = ReturnType<typeof plugin>;
+
 const DEFAULT_COLOR_VALUES = {
   transparent: 'transparent',
   inherit: 'inherit',
@@ -16,7 +18,7 @@ function extendWithDefaultColors<T extends Record<string, string>>(colors: T) {
 
 export function createThemePlugin(
   brandTheme: Record<string, Record<string, string>>,
-) {
+): TailwindPlugin {
   const cryptoColor = getThemeUtilsByPrefix(brandTheme, '--color-crypto-', {
     customPrefix: 'crypto-',
   });
@@ -65,7 +67,7 @@ export function createThemePlugin(
   );
 }
 
-export function createTypographyPlugin() {
+export function createTypographyPlugin(): TailwindPlugin {
   return plugin(function ({ addUtilities }) {
     const fontSmoothing = {
       '-webkit-font-smoothing': 'antialiased',
@@ -315,7 +317,7 @@ function extractCryptoNames(
 
 export function createGradientPlugin(
   brandTheme?: Record<string, Record<string, string>>,
-) {
+): TailwindPlugin {
   return plugin(function ({ addUtilities }) {
     const gradientStyles = {
       '.bg-gradient-top': {
@@ -354,7 +356,7 @@ export function createGradientPlugin(
   });
 }
 
-export function createShadowPlugin() {
+export function createShadowPlugin(): TailwindPlugin {
   return plugin(function ({ theme, addUtilities, matchUtilities }) {
     const defaultColor = 'rgba(0, 0, 0, 0.10)';
     const strongDefaultColor = 'rgba(0, 0, 0, 0.25)';
@@ -385,7 +387,7 @@ export function createShadowPlugin() {
     addUtilities(shadows);
     matchUtilities(
       { shadow: (value) => ({ '--tw-shadow-color': value }) },
-      { values: theme('colors') },
+      { values: theme('boxShadowColor') },
     );
   });
 }
