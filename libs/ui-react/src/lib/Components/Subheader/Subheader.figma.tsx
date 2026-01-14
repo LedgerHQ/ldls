@@ -21,12 +21,13 @@ figma.connect(
     variant: { action: 'none' },
     props: {
       title: figma.string('title'),
+      description: figma.string('description'),
       showInfo: figma.boolean('show-info'),
       showDescription: figma.boolean('show-description'),
-      description: figma.string('description'),
     },
     imports: [
-      "import { Subheader, SubheaderRow, SubheaderTitle } from '@ledgerhq/lumen-ui-react'",
+      "import { Subheader, SubheaderRow, SubheaderTitle, SubheaderDescription } from '@ledgerhq/lumen-ui-react'",
+      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react'",
     ],
     links: [
       {
@@ -38,22 +39,22 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/communication-subheader--base',
       },
     ],
-    example: ({ title, showInfo, showDescription, description }) => (
+    example: ({ title, description, showInfo, showDescription }) => (
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>{title}</SubheaderTitle>
-          {showInfo && (
+          {showInfo ? (
             <Tooltip>
               <TooltipTrigger>
                 <SubheaderInfo />
               </TooltipTrigger>
               <TooltipContent>Additional information</TooltipContent>
             </Tooltip>
-          )}
+          ) : null}
         </SubheaderRow>
-        {showDescription && (
+        {showDescription ? (
           <SubheaderDescription>{description}</SubheaderDescription>
-        )}
+        ) : null}
       </Subheader>
     ),
   },
@@ -66,13 +67,13 @@ figma.connect(
     variant: { action: 'button' },
     props: {
       title: figma.string('title'),
+      description: figma.string('description'),
       showInfo: figma.boolean('show-info'),
       showDescription: figma.boolean('show-description'),
-      description: figma.string('description'),
     },
     imports: [
-      "import { Subheader, SubheaderRow, SubheaderTitle, SubheaderAction } from '@ledgerhq/lumen-ui-react'",
-      "import { Link } from '@ledgerhq/lumen-ui-react'",
+      "import { Subheader, SubheaderRow, SubheaderTitle, SubheaderAction, SubheaderDescription } from '@ledgerhq/lumen-ui-react'",
+      "import { Link, Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react'",
     ],
     links: [
       {
@@ -84,27 +85,27 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/communication-subheader--complete',
       },
     ],
-    example: ({ title, showInfo, showDescription, description }) => (
+    example: ({ title, description, showInfo, showDescription }) => (
       <Subheader>
         <SubheaderRow>
           <SubheaderTitle>{title}</SubheaderTitle>
-          {showInfo && (
+          {showInfo ? (
             <Tooltip>
               <TooltipTrigger>
                 <SubheaderInfo />
               </TooltipTrigger>
               <TooltipContent>Additional information</TooltipContent>
             </Tooltip>
-          )}
+          ) : null}
           <SubheaderAction onClick={() => console.log('Action clicked')}>
             <Link href='#' appearance='accent' size='sm'>
               Action
             </Link>
           </SubheaderAction>
         </SubheaderRow>
-        {showDescription && (
+        {showDescription ? (
           <SubheaderDescription>{description}</SubheaderDescription>
-        )}
+        ) : null}
       </Subheader>
     ),
   },
@@ -117,13 +118,13 @@ figma.connect(
     variant: { action: 'show-more' },
     props: {
       title: figma.string('title'),
-      showInfo: figma.boolean('show-info'),
+      description: figma.string('description'),
       showNumber: figma.boolean('show-number'),
       showDescription: figma.boolean('show-description'),
-      description: figma.string('description'),
     },
     imports: [
-      "import { Subheader, SubheaderRow, SubheaderTitle, SubheaderShowMore } from '@ledgerhq/lumen-ui-react'",
+      "import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount, SubheaderShowMore, SubheaderDescription } from '@ledgerhq/lumen-ui-react'",
+      "import { Tooltip, TooltipTrigger, TooltipContent } from '@ledgerhq/lumen-ui-react'",
     ],
     links: [
       {
@@ -135,30 +136,16 @@ figma.connect(
         url: 'https://ldls.vercel.app/?path=/story/communication-subheader--with-show-more',
       },
     ],
-    example: ({
-      title,
-      showInfo,
-      showNumber,
-      showDescription,
-      description,
-    }) => (
+    example: ({ title, description, showNumber, showDescription }) => (
       <Subheader>
         <SubheaderRow onClick={() => console.log('Row clicked')}>
           <SubheaderTitle>{title}</SubheaderTitle>
-          {showNumber && <SubheaderCount value={5} />}
-          {showInfo && (
-            <Tooltip>
-              <TooltipTrigger>
-                <SubheaderInfo />
-              </TooltipTrigger>
-              <TooltipContent>Additional information</TooltipContent>
-            </Tooltip>
-          )}
+          {showNumber ? <SubheaderCount value={5} /> : null}
           <SubheaderShowMore />
         </SubheaderRow>
-        {showDescription && (
+        {showDescription ? (
           <SubheaderDescription>{description}</SubheaderDescription>
-        )}
+        ) : null}
       </Subheader>
     ),
   },
