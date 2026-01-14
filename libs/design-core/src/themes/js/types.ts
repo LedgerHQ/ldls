@@ -12,6 +12,7 @@ export type PrimitiveColorTokens = {
     yellow: Record<string, string>;
     red: Record<string, string>;
     crypto: Record<string, string>;
+    cryptoTransparent: Record<string, string>;
     discover: Record<string, string>;
   };
   dark: {
@@ -24,7 +25,17 @@ export type PrimitiveColorTokens = {
     yellow: Record<string, string>;
     red: Record<string, string>;
     crypto: Record<string, string>;
+    cryptoTransparent: Record<string, string>;
     discover: Record<string, string>;
+  };
+};
+
+export type PrimitiveGradientTokens = {
+  light: {
+    crypto: Record<string, { color: string }[]>;
+  };
+  dark: {
+    crypto: Record<string, { color: string }[]>;
   };
 };
 
@@ -138,6 +149,9 @@ export type TypographyTokensByBreakpoint = {
 };
 
 export type ThemeColorTokens = {
+  gradients: {
+    crypto: Record<string, { color: string }[]>;
+  };
   border: Record<string, string>;
   bg: Record<string, string>;
   text: Record<string, string>;
