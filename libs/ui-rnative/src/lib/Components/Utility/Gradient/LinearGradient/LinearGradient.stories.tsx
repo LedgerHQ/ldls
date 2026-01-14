@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
+import { useTheme } from 'src/styles';
 import { Box } from '../../Box';
 import { Text } from '../../Text';
 import { LinearGradient } from './LinearGradient';
@@ -52,16 +53,16 @@ export const DirectionShowcase: Story = {
     ] as const;
 
     return (
-      <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's16' }}>
+      <Box lx={{ flexDirection: 'row', flexWrap: 'wrap', gap: 's20' }}>
         {orientations.map((orientation) => {
           return (
-            <Box key={orientation} lx={{ gap: 's4', alignItems: 'center' }}>
+            <Box key={orientation} lx={{ gap: 's4' }}>
               <LinearGradient
                 direction={orientation}
                 stops={[{ color: 'accent' }, { color: 'active', opacity: 0 }]}
-                lx={{ height: 's56', width: 's192', borderRadius: 'md' }}
+                lx={{ height: 's40', width: 's176', borderRadius: 'md' }}
               />
-              <Text typography='body3SemiBold' lx={{ color: 'muted' }}>
+              <Text typography='body4' lx={{ color: 'base' }}>
                 {orientation}
               </Text>
             </Box>
@@ -113,6 +114,8 @@ export const WithMultipleStops: Story = {
     },
   },
   render: (args) => {
+    const { theme } = useTheme();
+    console.log({ theme });
     return (
       <Box lx={{ gap: 's12' }}>
         <LinearGradient {...args} />
@@ -121,6 +124,49 @@ export const WithMultipleStops: Story = {
           <Text>warning</Text>
           <Text>errorStrong</Text>
         </Box>
+      </Box>
+    );
+  },
+};
+
+export const CryptoGradients: Story = {
+  args: {
+    direction: 'to-bottomright',
+    lx: {
+      borderRadius: 'md',
+      height: 's56',
+      width: 's288',
+    },
+  },
+  render: (args) => {
+    const { theme } = useTheme();
+
+    return (
+      <Box
+        lx={{
+          gap: 's20',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+        }}
+      >
+        {Object.entries(theme.colors.gradients.crypto).map(
+          ([key, gradient]) => (
+            <Box key={key} lx={{ gap: 's4' }}>
+              <LinearGradient
+                {...args}
+                lx={{
+                  height: 's40',
+                  width: 's176',
+                  borderRadius: 'md',
+                }}
+                stops={gradient}
+              ></LinearGradient>
+              <Text typography='body4' lx={{ color: 'base' }}>
+                {key}
+              </Text>
+            </Box>
+          ),
+        )}
       </Box>
     );
   },

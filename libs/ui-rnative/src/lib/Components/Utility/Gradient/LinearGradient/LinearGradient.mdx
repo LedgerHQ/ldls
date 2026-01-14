@@ -41,6 +41,12 @@ For example, 3 stops without offsets will be placed at 0, 0.5, and 1.
 
 <Canvas of={LinearGradientStories.WithMultipleStops} />
 
+### Crypto Gradients
+
+The `theme` object expose a `colors.gradients.crypto` object that contains gradient definitions for each crypto token.  
+
+<Canvas of={LinearGradientStories.CryptoGradients} />
+
 </Tab>
 
   <Tab label="Implementation ">
@@ -97,11 +103,14 @@ The gradient acts as a background. Children are rendered on top and define the c
 
 ### Stops API
 
-Each stop defines a color at a position. Use `opacity: 0` for fade-out effects. 
+Each stop defines a color at a position.  
+Use `opacity: 0` for fade-out effects.   
 Colors support both design tokens (`'accent'`) and raw values (`'#FF6B6B'`).
 
 **Default behavior when `offset` is omitted:** stops are evenly distributed. 
-With 2 stops → `[0, 1]`. With 3 stops → `[0, 0.5, 1]`. With 4 stops → `[0, 0.33, 0.66, 1]`.
+- With 2 stops → `[0, 1]`. 
+- With 3 stops → `[0, 0.5, 1]`. 
+- With 4 stops → `[0, 0.33, 0.66, 1]`.
 
 ```tsx
 type GradientStop = {
@@ -109,6 +118,24 @@ type GradientStop = {
   offset?: number;   // 0-1, auto-spread if omitted
   opacity?: number;  // 0-1, defaults to 1
 }
+```
+
+### Crypto Gradients
+
+The `theme` object expose a `colors.gradients.crypto` object that contains gradient definitions for each crypto token.  
+
+```tsx
+import { useTheme } from '@ledgerhq/lumen-ui-rnative';
+
+const { theme } = useTheme();
+
+return (
+  <LinearGradient
+    stops={theme.colors.gradients.crypto.bitcoin}
+    lx={{ padding: 's24', borderRadius: 'lg' }}
+    direction="to-bottomright"
+  />
+);
 ```
 
 </Tab>
