@@ -33,7 +33,7 @@ const useAppearanceStyles = (appearance: 'plain' | 'transparent') => {
     (t) => ({
       container:
         appearance === 'transparent'
-          ? { backgroundColor: t.colors.bg.surfaceTransparent }
+          ? { backgroundColor: t.colors.bg.mutedTransparent }
           : {},
       input: { backgroundColor: 'transparent' },
     }),

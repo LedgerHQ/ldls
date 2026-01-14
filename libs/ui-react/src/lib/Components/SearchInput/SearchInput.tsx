@@ -10,7 +10,7 @@ const containerVariants = cva('', {
     appearance: {
       plain: '',
       transparent:
-        'bg-surface-transparent hover:bg-surface-transparent-hover has-[:disabled]:bg-surface-transparent-disabled',
+        'bg-muted-transparent hover:bg-muted-transparent-hover has-disabled:bg-muted-transparent-disabled',
     },
   },
   defaultVariants: {
