@@ -23,7 +23,7 @@ const inputVariants = cva('', {
     appearance: {
       plain: '',
       transparent:
-        'bg-surface-transparent group-hover:bg-surface-transparent-hover group-has-[:disabled]:bg-surface-transparent-disabled',
+        'bg-transparent group-hover:bg-transparent-hover group-has-disabled:bg-transparent-disabled',
     },
   },
   defaultVariants: {
