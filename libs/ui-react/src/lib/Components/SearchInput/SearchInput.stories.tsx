@@ -214,7 +214,7 @@ export const DebouncedSearchInput: Story = {
         )}
         {/* Results */}
         {inputValue.length > 0 && !isSearching && (
-          <div className='bg-muted rounded-md p-16'>
+          <div className='rounded-md bg-muted p-16'>
             {filteredResults.length > 0 ? (
               <div>
                 <p className='mb-8 body-3 text-muted'>

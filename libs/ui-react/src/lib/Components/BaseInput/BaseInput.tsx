@@ -191,7 +191,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             aria-describedby={errorMessage ? errorId : undefined}
             className={cn(
               baseInputStyles,
-              label && 'body-2 pt-12',
+              label && 'pt-12 body-2',
               inputClassName,
             )}
             onChange={handleInput}
@@ -229,7 +229,7 @@ export const BaseInput = React.forwardRef<HTMLInputElement, BaseInputProps>(
             className='mt-8 flex items-center gap-2 body-3 text-error'
             role='alert'
           >
-            <DeleteCircleFill size={16} className='text-error shrink-0' />
+            <DeleteCircleFill size={16} className='shrink-0 text-error' />
             <span>{errorMessage}</span>
           </div>
         )}
