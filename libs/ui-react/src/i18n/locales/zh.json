@@ -1,3 +1,23 @@
 {
-  "components": {}
+  "components": {
+    "addressInput": {
+      "qrCodeAriaLabel": "扫描二维码"
+    },
+    "baseInput": {
+      "clearInputAriaLabel": "清空输入框"
+    },
+    "spinner": {
+      "loadingAriaLabel": "加载中"
+    },
+    "dialogHeader": {
+      "goBackAriaLabel": "返回",
+      "closeAriaLabel": "关闭"
+    },
+    "banner": {
+      "closeAriaLabel": "关闭"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "（在新选项卡中打开）"
+    }
+  }
 }

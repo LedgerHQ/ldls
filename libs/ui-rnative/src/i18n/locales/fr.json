@@ -1,7 +1,7 @@
 {
   "components": {
     "addressInput": {
-      "qrCodeAriaLabel": "Scanner le QR code"
+      "qrCodeAriaLabel": "Scanner le code QR"
     },
     "baseInput": {
       "clearInputAriaLabel": "Effacer la saisie"
@@ -15,6 +15,9 @@
     },
     "banner": {
       "closeAriaLabel": "Fermer"
+    },
+    "link": {
+      "opensInNewTabAriaLabel": "(s'ouvre dans un nouvel onglet)"
     }
   }
 }
