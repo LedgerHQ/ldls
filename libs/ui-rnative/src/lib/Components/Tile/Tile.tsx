@@ -48,6 +48,7 @@ const useRootStyles = ({
             position: 'relative',
             flexDirection: 'column',
             width: '100%',
+            flex: 1,
             alignItems: 'center',
             gap: t.spacings.s8,
             paddingHorizontal: t.spacings.s8,
