@@ -347,6 +347,14 @@ export const tokens: Record<string, Record<string, string>> = {
     '--background-surface': 'var(--color-background-surface)',
     '--background-surface-hover': 'var(--color-background-surface-hover)',
     '--background-surface-pressed': 'var(--color-background-surface-pressed)',
+    '--background-surface-transparent':
+      'var(--color-background-surface-transparent)',
+    '--background-surface-transparent-hover':
+      'var(--color-background-surface-transparent-hover)',
+    '--background-surface-transparent-pressed':
+      'var(--color-background-surface-transparent-pressed)',
+    '--background-surface-transparent-disabled':
+      'var(--color-background-surface-transparent-disabled)',
     '--background-base': 'var(--color-background-base)',
     '--background-base-hover': 'var(--color-background-base-hover)',
     '--background-base-pressed': 'var(--color-background-base-pressed)',

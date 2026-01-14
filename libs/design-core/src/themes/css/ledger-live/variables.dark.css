@@ -327,6 +327,18 @@
   --background-surface: var(--color-background-surface-default);
   --background-surface-hover: var(--color-background-surface-hover);
   --background-surface-pressed: var(--color-background-surface-pressed);
+  --background-surface-transparent: var(
+    --color-background-surface-transparent-default
+  );
+  --background-surface-transparent-hover: var(
+    --color-background-surface-transparent-hover
+  );
+  --background-surface-transparent-pressed: var(
+    --color-background-surface-transparent-pressed
+  );
+  --background-surface-transparent-disabled: var(
+    --color-background-surface-transparent-disabled
+  );
   --background-base: var(--color-background-base-default);
   --background-base-hover: var(--color-background-base-hover);
   --background-base-pressed: var(--color-background-base-pressed);
