@@ -9,7 +9,7 @@ import {
 } from './types';
 
 const tooltipContentVariants = cva(
-  'z-tooltip w-fit select-none text-balance rounded-xs bg-interactive px-8 py-4 text-on-interactive body-3',
+  'z-tooltip w-fit rounded-xs bg-interactive px-8 py-4 body-3 text-balance text-on-interactive select-none',
   {
     variants: {
       side: {
@@ -166,7 +166,7 @@ export const TooltipContent = ({
         className={cn(tooltipContentVariants({ side }), className)}
         {...props}
       >
-        <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
+        <TooltipPrimitive.Arrow className='size-10 translate-y-[calc(-50%-1px)] rotate-45 rounded-[1px] bg-interactive fill-interactive' />
         <div className='relative'>{children}</div>
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>

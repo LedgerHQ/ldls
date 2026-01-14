@@ -314,7 +314,7 @@ import { Link as RouterLink } from 'react-router-dom';
 export const InheritVariants: Story = {
   render: () => (
     <div className='flex flex-col gap-32 p-8'>
-      <div className='text-base body-2'>
+      <div className='body-2 text-base'>
         By continuing, you agree to our{' '}
         <Link href='#' onClick={onClick}>
           Terms & Conditions
@@ -326,14 +326,14 @@ export const InheritVariants: Story = {
         .
       </div>
 
-      <div className='text-interactive heading-4'>
+      <div className='heading-4 text-interactive'>
         Need help?{' '}
         <Link href='#' onClick={onClick}>
           Contact Support
         </Link>
       </div>
 
-      <div className='text-muted body-3'>
+      <div className='body-3 text-muted'>
         Learn more about security in our{' '}
         <Link href='#' onClick={onClick}>
           Security Guide
@@ -341,7 +341,7 @@ export const InheritVariants: Story = {
         .
       </div>
 
-      <div className='text-base body-1-semi-bold'>
+      <div className='body-1-semi-bold text-base'>
         Already have an account?{' '}
         <Link underline={false} href='#' onClick={onClick}>
           Sign in

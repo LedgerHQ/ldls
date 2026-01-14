@@ -66,7 +66,7 @@ const AnimationDemo = ({
     <div className='flex flex-col items-center gap-16 rounded-sm p-24'>
       <div className='text-center'>
         <h3 className='mb-8 heading-4'>{title}</h3>
-        <p className='mb-16 text-muted body-2'>{description}</p>
+        <p className='mb-16 body-2 text-muted'>{description}</p>
         <Tag label={animationClass} appearance='gray' />
       </div>
 
@@ -85,7 +85,7 @@ const AnimationDemo = ({
           {/* Animated element */}
           <div
             className={cn(
-              'absolute inset-0 flex items-center justify-center bg-accent text-on-accent body-2-semi-bold',
+              'absolute inset-0 flex items-center justify-center bg-accent body-2-semi-bold text-on-accent',
               // For out animations, show by default, hide when animating out
               isOutAnimation
                 ? isVisible && !isAnimating
@@ -202,7 +202,7 @@ export const SlideOut: Story = {
 export const DefaultTailwindAnimations: Story = {
   render: () => (
     <>
-      <h2 className='mb-16 mt-32 text-start heading-3'>Static animation</h2>
+      <h2 className='mt-32 mb-16 text-start heading-3'>Static animation</h2>
       <div className='rounded-2xl border border-muted-subtle bg-canvas p-16'>
         <div className='grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-4'>
           {/* Spin Animation */}
@@ -272,7 +272,7 @@ export const AllAnimations: Story = {
     <div className='space-y-48'>
       {/* Fade Animations Section */}
       <div>
-        <h2 className='mb-16 mt-32 text-start heading-3'>Fade</h2>
+        <h2 className='mt-32 mb-16 text-start heading-3'>Fade</h2>
         <div className='rounded-2xl border border-muted-subtle bg-canvas p-16'>
           <div className='grid grid-cols-1 gap-24 md:grid-cols-2'>
             <AnimationDemo
@@ -291,7 +291,7 @@ export const AllAnimations: Story = {
 
       {/* Slide In Animations Section */}
       <div>
-        <h2 className='mb-16 mt-32 text-start heading-3'>Slide in</h2>
+        <h2 className='mt-32 mb-16 text-start heading-3'>Slide in</h2>
         <div className='rounded-2xl border border-muted-subtle bg-canvas p-8'>
           <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
             <AnimationDemo
@@ -320,7 +320,7 @@ export const AllAnimations: Story = {
 
       {/* Slide Out Animations Section */}
       <div>
-        <h2 className='mb-16 mt-32 text-start heading-3'>Slide out</h2>
+        <h2 className='mt-32 mb-16 text-start heading-3'>Slide out</h2>
         <div className='rounded-2xl border border-muted-subtle bg-canvas p-8'>
           <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
             <AnimationDemo
