@@ -17,7 +17,7 @@ import {
  * Title component for the Subheader. Displays the main heading.
  */
 export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
-  return <h2 className='heading-4-semi-bold min-w-0 truncate'>{children}</h2>;
+  return <h2 className='min-w-0 truncate heading-4-semi-bold'>{children}</h2>;
 };
 
 /**
@@ -52,7 +52,7 @@ export const SubheaderRow = ({
  */
 export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
   const formatted = format ? format(value) : `(${value})`;
-  return <span className='text-muted body-2 shrink-0'>{formatted}</span>;
+  return <span className='shrink-0 body-2 text-muted'>{formatted}</span>;
 };
 
 /**
@@ -85,7 +85,7 @@ export const SubheaderShowMore = ({
   className,
 }: SubheaderShowMoreProps) => {
   return (
-    <span className={cn('text-muted shrink-0 self-center', className)}>
+    <span className={cn('shrink-0 self-center text-muted', className)}>
       <ChevronRight size={size} />
     </span>
   );
@@ -97,7 +97,7 @@ export const SubheaderShowMore = ({
 export const SubheaderDescription = ({
   children,
 }: SubheaderDescriptionProps) => {
-  return <p className='text-muted body-3'>{children}</p>;
+  return <p className='body-3 text-muted'>{children}</p>;
 };
 
 /**
@@ -114,7 +114,7 @@ export const SubheaderAction = ({
     <button
       type='button'
       onClick={onClick}
-      className={cn('text-interactive body-2 ml-auto shrink-0 pl-8', className)}
+      className={cn('ml-auto shrink-0 pl-8 body-2 text-interactive', className)}
       {...props}
     >
       {children}
