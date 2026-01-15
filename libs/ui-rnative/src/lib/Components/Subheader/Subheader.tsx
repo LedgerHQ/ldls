@@ -178,12 +178,14 @@ export const SubheaderAction = ({
 }: SubheaderActionProps) => {
   const styles = useStyleSheet(
     (t) => ({
-      action: StyleSheet.flatten([
+      container: {
+        flexShrink: 0,
+        marginLeft: 'auto',
+        paddingLeft: t.spacings.s8,
+      },
+      text: StyleSheet.flatten([
         t.typographies.body2,
         {
-          flexShrink: 0,
-          marginLeft: 'auto',
-          paddingLeft: t.spacings.s8,
           color: t.colors.text.interactive,
         },
       ]),
@@ -192,8 +194,8 @@ export const SubheaderAction = ({
   );
 
   return (
-    <Pressable onPress={onPress}>
-      <Text style={styles.action}>{children}</Text>
+    <Pressable onPress={onPress} style={styles.container}>
+      <Text style={styles.text}>{children}</Text>
     </Pressable>
   );
 };
