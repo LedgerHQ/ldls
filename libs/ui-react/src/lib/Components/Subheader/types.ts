@@ -66,11 +66,6 @@ export type SubheaderActionProps = {
 
 export type SubheaderShowMoreProps = {
   /**
-   * Optional size for the chevron icon.
-   * Defaults to 16.
-   */
-  size?: 16 | 20 | 24 | 40 | 48 | 56;
-  /**
    * Optional className for custom styling.
    */
   className?: string;

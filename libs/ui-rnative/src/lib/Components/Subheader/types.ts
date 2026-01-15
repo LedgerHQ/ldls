@@ -75,10 +75,4 @@ export type SubheaderActionProps = {
   onPress: () => void;
 };
 
-export type SubheaderShowMoreProps = {
-  /**
-   * Optional size for the chevron icon.
-   * Defaults to 20.
-   */
-  size?: 16 | 20 | 24 | 40 | 48 | 56;
-};
+export type SubheaderShowMoreProps = Record<string, never>;

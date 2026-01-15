@@ -126,7 +126,7 @@ export const SubheaderInfo = ({
  * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
  * Position this after SubheaderCount and before other elements.
  */
-export const SubheaderShowMore = ({ size = 20 }: SubheaderShowMoreProps) => {
+export const SubheaderShowMore = () => {
   const styles = useStyleSheet(
     (t) => ({
       container: {
@@ -143,7 +143,7 @@ export const SubheaderShowMore = ({ size = 20 }: SubheaderShowMoreProps) => {
 
   return (
     <View style={styles.container}>
-      <ChevronRight size={size} style={styles.icon} />
+      <ChevronRight size={16} style={styles.icon} />
     </View>
   );
 };

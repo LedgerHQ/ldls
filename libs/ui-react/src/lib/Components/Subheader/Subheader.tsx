@@ -80,13 +80,10 @@ SubheaderInfo.displayName = 'SubheaderInfo';
  * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
  * Position this after SubheaderCount and before other elements.
  */
-export const SubheaderShowMore = ({
-  size = 16,
-  className,
-}: SubheaderShowMoreProps) => {
+export const SubheaderShowMore = ({ className }: SubheaderShowMoreProps) => {
   return (
     <span className={cn('shrink-0 self-center text-muted', className)}>
-      <ChevronRight size={size} />
+      <ChevronRight size={16} />
     </span>
   );
 };
