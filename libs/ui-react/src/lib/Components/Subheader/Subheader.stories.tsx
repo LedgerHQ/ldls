@@ -118,7 +118,12 @@ export const Complete: Story = {
             <TooltipContent>This is additional information</TooltipContent>
           </Tooltip>
           <SubheaderAction onClick={() => console.log('Action clicked')}>
-            <Link href='https://ledger.com' appearance='accent' size='sm'>
+            <Link
+              href='https://ledger.com'
+              appearance='accent'
+              size='sm'
+              underline={false}
+            >
               Action
             </Link>
           </SubheaderAction>
@@ -145,7 +150,7 @@ export const Complete: Story = {
       <TooltipContent>This is additional information</TooltipContent>
     </Tooltip>
     <SubheaderAction onClick={handleAction}>
-      <Link href="https://ledger.com" appearance="accent" size="sm">
+      <Link href="https://ledger.com" appearance="accent" size="sm" underline={false}>
         Action
       </Link>
     </SubheaderAction>
