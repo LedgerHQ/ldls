@@ -63,15 +63,17 @@ export const SubheaderInfo = React.forwardRef<
   SubheaderInfoProps
 >(({ iconType = 'stroked', className, ...props }, ref) => {
   return (
-    <InteractiveIcon
-      ref={ref}
-      iconType={iconType}
-      className={cn('shrink-0 self-center', className)}
-      aria-label='More information'
-      {...props}
-    >
-      <Information size={16} />
-    </InteractiveIcon>
+    <span className='flex shrink-0 items-center'>
+      <InteractiveIcon
+        ref={ref}
+        iconType={iconType}
+        className={className}
+        aria-label='More information'
+        {...props}
+      >
+        <Information size={16} />
+      </InteractiveIcon>
+    </span>
   );
 });
 SubheaderInfo.displayName = 'SubheaderInfo';
