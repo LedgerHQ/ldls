@@ -36,20 +36,23 @@ export const Base: Story = {
     icon: Settings,
     children: 'Settings',
   },
+  render: (args) => <TileButton {...args} />,
   parameters: {
     docs: {
       source: {
-        code: `<TileButton icon={Settings}>Settings</TileButton>`,
+        code: `<TileButton icon={Settings} onPress={() => {}}>Settings</TileButton>`,
       },
     },
   },
 };
 
 export const DisabledShowcase: Story = {
-  render: () => (
+  render: (args) => (
     <View style={{ flexDirection: 'row', gap: 16 }}>
-      <TileButton icon={Settings}>Enabled</TileButton>
-      <TileButton icon={Settings} disabled>
+      <TileButton icon={Settings} onPress={args.onPress}>
+        Enabled
+      </TileButton>
+      <TileButton icon={Settings} onPress={args.onPress} disabled>
         Disabled
       </TileButton>
     </View>
@@ -57,28 +60,36 @@ export const DisabledShowcase: Story = {
 };
 
 export const IconsShowcase: Story = {
-  render: () => (
+  render: (args) => (
     <View style={{ flexDirection: 'row', gap: 16 }}>
-      <TileButton icon={Settings}>Settings</TileButton>
-      <TileButton icon={User}>Profile</TileButton>
-      <TileButton icon={Plus}>Add</TileButton>
-      <TileButton icon={Apps}>Apps</TileButton>
+      <TileButton icon={Settings} onPress={args.onPress}>
+        Settings
+      </TileButton>
+      <TileButton icon={User} onPress={args.onPress}>
+        Profile
+      </TileButton>
+      <TileButton icon={Plus} onPress={args.onPress}>
+        Add
+      </TileButton>
+      <TileButton icon={Apps} onPress={args.onPress}>
+        Apps
+      </TileButton>
     </View>
   ),
 };
 
 export const GridLayout: Story = {
-  render: () => (
+  render: (args) => (
     <View style={{ width: 343, gap: 8 }}>
       {/* 2-button row */}
       <View style={{ flexDirection: 'row', gap: 8 }}>
         <View style={{ flex: 1 }}>
-          <TileButton icon={Plus} isFull>
+          <TileButton icon={Plus} isFull onPress={args.onPress}>
             Buy
           </TileButton>
         </View>
         <View style={{ flex: 1 }}>
-          <TileButton icon={Settings} isFull>
+          <TileButton icon={Settings} isFull onPress={args.onPress}>
             Settings
           </TileButton>
         </View>
@@ -86,17 +97,17 @@ export const GridLayout: Story = {
       {/* 3-button row */}
       <View style={{ flexDirection: 'row', gap: 8 }}>
         <View style={{ flex: 1 }}>
-          <TileButton icon={User} isFull>
+          <TileButton icon={User} isFull onPress={args.onPress}>
             Profile
           </TileButton>
         </View>
         <View style={{ flex: 1 }}>
-          <TileButton icon={Apps} isFull>
+          <TileButton icon={Apps} isFull onPress={args.onPress}>
             Apps
           </TileButton>
         </View>
         <View style={{ flex: 1 }}>
-          <TileButton icon={Home} isFull>
+          <TileButton icon={Home} isFull onPress={args.onPress}>
             Home
           </TileButton>
         </View>
@@ -106,7 +117,7 @@ export const GridLayout: Story = {
 };
 
 export const WidthShowcase: Story = {
-  render: () => (
+  render: (args) => (
     <View
       style={{
         width: 320,
@@ -116,8 +127,10 @@ export const WidthShowcase: Story = {
         alignItems: 'flex-start',
       }}
     >
-      <TileButton icon={Settings}>Default width</TileButton>
-      <TileButton icon={Settings} isFull>
+      <TileButton icon={Settings} onPress={args.onPress}>
+        Default width
+      </TileButton>
+      <TileButton icon={Settings} isFull onPress={args.onPress}>
         Full width (isFull)
       </TileButton>
     </View>
