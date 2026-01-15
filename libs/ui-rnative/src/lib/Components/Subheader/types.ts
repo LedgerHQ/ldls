@@ -74,5 +74,3 @@ export type SubheaderActionProps = {
    */
   onPress: () => void;
 };
-
-export type SubheaderShowMoreProps = Record<string, never>;

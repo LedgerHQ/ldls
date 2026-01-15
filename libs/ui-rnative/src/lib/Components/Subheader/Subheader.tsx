@@ -10,7 +10,6 @@ import {
   SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
-  SubheaderShowMoreProps,
   SubheaderTitleProps,
 } from './types';
 
