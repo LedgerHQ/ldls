@@ -113,10 +113,10 @@ export const SubheaderInfo = ({
     <InteractiveIcon
       iconType={iconType}
       accessibilityLabel='More information'
-      style={[{ flexShrink: 0 }, style]}
+      style={style}
       {...props}
     >
-      <Information size={20} />
+      <Information size={16} />
     </InteractiveIcon>
   );
 };
