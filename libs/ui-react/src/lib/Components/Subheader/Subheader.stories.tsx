@@ -1,10 +1,18 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { Information } from '../../Symbols';
 import { Link } from '../Link/Link';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../Tooltip/Tooltip';
-import { Subheader } from './Subheader';
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderInfo,
+  SubheaderShowMore,
+  SubheaderDescription,
+  SubheaderAction,
+} from './Subheader';
 
 const Container = ({
   className,
@@ -13,28 +21,18 @@ const Container = ({
   <div className={cn('w-400 bg-canvas p-8 text-base', className)} {...props} />
 );
 
-const InfoTooltip = () => (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Information
-        size={16}
-        className='shrink-0 text-muted'
-        aria-label='More information'
-      />
-    </TooltipTrigger>
-    <TooltipContent>This is additional information</TooltipContent>
-  </Tooltip>
-);
-
-const ActionLink = () => (
-  <Link href='https://ledger.com' appearance='accent' size='sm' isExternal>
-    Action
-  </Link>
-);
-
 const meta: Meta<typeof Subheader> = {
   component: Subheader,
   title: 'Communication/Subheader',
+  subcomponents: {
+    SubheaderRow,
+    SubheaderTitle,
+    SubheaderDescription,
+    SubheaderCount,
+    SubheaderInfo,
+    SubheaderShowMore,
+    SubheaderAction,
+  },
   parameters: {
     docs: {
       source: {
@@ -44,96 +42,119 @@ const meta: Meta<typeof Subheader> = {
       },
     },
   },
-  argTypes: {
-    children: {
-      control: 'select',
-      options: ['None', 'Info', 'Action', 'Info and Action'],
-      mapping: {
-        None: null,
-        Info: (
-          <Subheader.Info key='info'>
-            <InfoTooltip />
-          </Subheader.Info>
-        ),
-        Action: (
-          <Subheader.Action key='action'>
-            <ActionLink />
-          </Subheader.Action>
-        ),
-        'Info and Action': [
-          <Subheader.Info key='info'>
-            <InfoTooltip />
-          </Subheader.Info>,
-          <Subheader.Action key='action'>
-            <ActionLink />
-          </Subheader.Action>,
-        ],
-      },
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Subheader>;
 
 export const Base: Story = {
-  args: {
-    title: 'Subheader Title',
-    children: 'None',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Section Title</SubheaderTitle>
+        </SubheaderRow>
+        <SubheaderDescription>
+          This is a detailed description that provides additional context about
+          this section.
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<Subheader title="Subheader Title" />
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Section Title</SubheaderTitle>
+  </SubheaderRow>
+  <SubheaderDescription>
+    This is a detailed description that provides additional context about this section.
+  </SubheaderDescription>
+</Subheader>
         `,
       },
     },
   },
 };
 
-export const WithInfoTooltip: Story = {
-  args: {
-    title: 'Subheader with Tooltip',
-    children: 'Info',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
+export const InteractiveRow: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow onClick={() => console.log('Row clicked')}>
+          <SubheaderTitle>Accounts</SubheaderTitle>
+          <SubheaderCount value={5} />
+          <SubheaderShowMore />
+        </SubheaderRow>
+        <SubheaderDescription>
+          Interactive rows always include the chevron to indicate they lead to
+          more content
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<Subheader title="Subheader with Tooltip">
-  <Subheader.Info>
+<Subheader>
+  <SubheaderRow onClick={handleRowClick}>
+    <SubheaderTitle>Accounts</SubheaderTitle>
+    <SubheaderCount value={5} />
+    <SubheaderShowMore />
+  </SubheaderRow>
+  <SubheaderDescription>
+    Interactive rows always include the chevron to indicate they lead to more content
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const WithInfoIcon: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Section with Info</SubheaderTitle>
+          <Tooltip>
+            <TooltipTrigger>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent>
+              Additional information about this section
+            </TooltipContent>
+          </Tooltip>
+        </SubheaderRow>
+        <SubheaderDescription>
+          Use the info icon to provide contextual help or additional details
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Section with Info</SubheaderTitle>
     <Tooltip>
-      <TooltipTrigger asChild>
-        <Information
-          size={12}
-          className="shrink-0 text-muted"
-          aria-label="More information"
-        />
+      <TooltipTrigger>
+        <SubheaderInfo />
       </TooltipTrigger>
-      <TooltipContent>This is additional information</TooltipContent>
+      <TooltipContent>
+        Additional information about this section
+      </TooltipContent>
     </Tooltip>
-  </Subheader.Info>
+  </SubheaderRow>
+  <SubheaderDescription>
+    Use the info icon to provide contextual help or additional details
+  </SubheaderDescription>
 </Subheader>
         `,
       },
@@ -142,129 +163,42 @@ export const WithInfoTooltip: Story = {
 };
 
 export const WithAction: Story = {
-  args: {
-    title: 'Subheader with Action',
-    children: 'Action',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Recent Activity</SubheaderTitle>
+          <SubheaderAction onClick={() => console.log('View all clicked')}>
+            <Link appearance='accent' size='sm' underline={false}>
+              View all
+            </Link>
+          </SubheaderAction>
+        </SubheaderRow>
+        <SubheaderDescription>
+          Use actions for quick access to related functionality
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
   parameters: {
     docs: {
       source: {
         code: `
-<Subheader title="Subheader with Action">
-  <Subheader.Action>
-    <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-      Action
-    </Link>
-  </Subheader.Action>
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Recent Activity</SubheaderTitle>
+    <SubheaderAction onClick={handleViewAll}>
+      <Link appearance="accent" size="sm" underline={false}>
+        View all
+      </Link>
+    </SubheaderAction>
+  </SubheaderRow>
+  <SubheaderDescription>
+    Use actions for quick access to related functionality
+  </SubheaderDescription>
 </Subheader>
         `,
       },
     },
   },
-};
-
-export const WithFullFeatures: Story = {
-  args: {
-    title: 'Full Featured Subheader',
-    children: 'Info and Action',
-  },
-  render: (args) => {
-    const { children, ...restArgs } = args;
-    return (
-      <Container>
-        <Subheader {...restArgs}>
-          {children === 'None' ? null : children}
-        </Subheader>
-      </Container>
-    );
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader title="Full Featured Subheader">
-  <Subheader.Info>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Information
-          size={12}
-          className="shrink-0 text-muted"
-          aria-label="More information"
-        />
-      </TooltipTrigger>
-      <TooltipContent>This is additional information</TooltipContent>
-    </Tooltip>
-  </Subheader.Info>
-  <Subheader.Action>
-    <Link href="https://ledger.com" appearance="accent" size="sm" isExternal>
-      Action
-    </Link>
-  </Subheader.Action>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const ContentVariations: Story = {
-  render: () => (
-    <Container className='flex flex-col gap-16'>
-      <Subheader title='Title Only' />
-      <Subheader title='With Tooltip'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-      </Subheader>
-      <Subheader title='With Action'>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-      <Subheader title='With Tooltip and Action'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-    </Container>
-  ),
-};
-
-export const ResponsiveLayout: Story = {
-  render: () => (
-    <Container className='grid grid-cols-1 gap-16'>
-      <div className='body-4-semi-bold text-muted'>
-        Container with a fixed width
-      </div>
-      <Subheader title='Title with Tooltip'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-      <Subheader title='Long Title That Should Truncate When Container Is Narrow'>
-        <Subheader.Info>
-          <InfoTooltip />
-        </Subheader.Info>
-        <Subheader.Action>
-          <ActionLink />
-        </Subheader.Action>
-      </Subheader>
-    </Container>
-  ),
 };

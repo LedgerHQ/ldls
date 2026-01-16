@@ -29,6 +29,7 @@ import {
   Links,
   Selects,
   Spots,
+  Subheaders,
   Switches,
   Tags,
   TextInputs,
@@ -133,6 +134,10 @@ const AppContent = ({
             <Divider />
             <SandboxBlock title='Tags'>
               <Tags />
+            </SandboxBlock>
+            <Divider />
+            <SandboxBlock title='Subheaders'>
+              <Subheaders />
             </SandboxBlock>
             <Divider />
             <SandboxBlock title='Switches'>

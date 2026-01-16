@@ -1,27 +1,129 @@
 import { cn } from '@ledgerhq/lumen-utils-shared';
 import React from 'react';
+import { ChevronRight, Information } from '../../Symbols';
+import { InteractiveIcon } from '../InteractiveIcon';
 import {
   SubheaderActionProps,
+  SubheaderCountProps,
+  SubheaderDescriptionProps,
   SubheaderInfoProps,
   SubheaderProps,
+  SubheaderRowProps,
+  SubheaderShowMoreProps,
+  SubheaderTitleProps,
 } from './types';
 
 /**
- * Info slot component for the Subheader. Used to display additional information, like tooltips.
+ * Title component for the Subheader. Displays the main heading.
  */
-const SubheaderInfo = ({ children }: SubheaderInfoProps) => {
-  return <div className='flex shrink-0 items-center'>{children}</div>;
+export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
+  return <h2 className='min-w-0 truncate heading-4-semi-bold'>{children}</h2>;
 };
 
 /**
- * Action slot component for the Subheader. Used to display an action, like a link or button.
+ * Row component for the Subheader. Layout container to horizontally align title, count, hint, and action.
+ * Can optionally be interactive with an onClick handler.
  */
-const SubheaderAction = ({ children }: SubheaderActionProps) => {
-  return <div className='flex shrink-0 items-center'>{children}</div>;
+export const SubheaderRow = ({
+  children,
+  onClick,
+  className,
+  ...props
+}: SubheaderRowProps) => {
+  const Component = onClick ? 'button' : 'div';
+
+  return (
+    <Component
+      className={cn(
+        'flex items-center gap-4',
+        onClick && 'cursor-pointer',
+        className,
+      )}
+      onClick={onClick}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
 };
 
 /**
- * A subheader component for displaying section titles with optional informational tooltips and action elements.
+ * Count component for the Subheader. Displays a formatted number.
+ */
+export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
+  const formatted = format ? format(value) : `(${value})`;
+  return <span className='shrink-0 body-2 text-muted'>{formatted}</span>;
+};
+
+/**
+ * Info component for the Subheader. Displays an information icon that can be wrapped in a Tooltip.
+ */
+export const SubheaderInfo = React.forwardRef<
+  HTMLButtonElement,
+  SubheaderInfoProps
+>(({ iconType = 'stroked', className, ...props }, ref) => {
+  return (
+    <span className='flex shrink-0 items-center'>
+      <InteractiveIcon
+        ref={ref}
+        iconType={iconType}
+        className={className}
+        aria-label='More information'
+        {...props}
+      >
+        <Information size={16} />
+      </InteractiveIcon>
+    </span>
+  );
+});
+SubheaderInfo.displayName = 'SubheaderInfo';
+
+/**
+ * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
+ * Position this after SubheaderCount and before other elements.
+ */
+export const SubheaderShowMore = ({ className }: SubheaderShowMoreProps) => {
+  return (
+    <span className={cn('shrink-0 self-center text-muted', className)}>
+      <ChevronRight size={16} />
+    </span>
+  );
+};
+
+/**
+ * Description component for the Subheader. Displays descriptive text below the title row.
+ */
+export const SubheaderDescription = ({
+  children,
+}: SubheaderDescriptionProps) => {
+  return <p className='body-3 text-muted'>{children}</p>;
+};
+
+/**
+ * Action component for the Subheader. Displays an interactive text button.
+ * Automatically positions itself at the end of the row using ml-auto.
+ */
+export const SubheaderAction = ({
+  children,
+  onClick,
+  className,
+  ...props
+}: SubheaderActionProps) => {
+  return (
+    <button
+      type='button'
+      onClick={onClick}
+      className={cn('ml-auto shrink-0 pl-8 body-2 text-interactive', className)}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+/**
+ * A subheader component for displaying section titles with optional count, hints, descriptions, and action elements.
+ * Uses a composable API where you explicitly nest sub-components to define the layout.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/misc-subheader-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/misc-subheader-implementation--docs#dos-and-donts Guidelines}
@@ -30,68 +132,45 @@ const SubheaderAction = ({ children }: SubheaderActionProps) => {
  * Do not use it to modify the subheader's core appearance (colors, padding, etc).
  *
  * @example
- * import { Subheader } from '@ledgerhq/lumen-ui-react';
+ * // Simple subheader without row
+ * <Subheader>
+ *   <SubheaderTitle>Section Title</SubheaderTitle>
+ *   <SubheaderDescription>Description text</SubheaderDescription>
+ * </Subheader>
  *
- * // Basic subheader with title only
- * <Subheader title="Section Title" />
- *
- * // Complete subheader with all features
- * <Subheader title="Section Title">
- *   <Subheader.Info>
+ * @example
+ * // Subheader with row for horizontal layout
+ * <Subheader>
+ *   <SubheaderRow>
+ *     <SubheaderTitle>Section Title</SubheaderTitle>
+ *     <SubheaderCount value={30} />
  *     <Tooltip>
- *       <TooltipTrigger asChild>
- *         <Information
- *           size={12}
- *           className="shrink-0 text-muted"
- *           aria-label="More information"
- *         />
+ *       <TooltipTrigger>
+ *         <SubheaderInfo />
  *       </TooltipTrigger>
  *       <TooltipContent>Additional information</TooltipContent>
  *     </Tooltip>
- *   </Subheader.Info>
- *   <Subheader.Action>
- *     <Link href="/action" appearance="accent" size="sm">Action</Link>
- *   </Subheader.Action>
+ *   </SubheaderRow>
+ *   <SubheaderDescription>Description text</SubheaderDescription>
+ * </Subheader>
+ *
+ * @example
+ * // Interactive row with action
+ * <Subheader>
+ *   <SubheaderRow onClick={handleClick}>
+ *     <SubheaderTitle>Accounts</SubheaderTitle>
+ *     <SubheaderCount value={12} />
+ *   </SubheaderRow>
  * </Subheader>
  */
 export const Subheader = ({
   className,
-  title,
   children,
   ...props
 }: SubheaderProps) => {
-  const childrenArray = React.Children.toArray(children);
-  const infoSlots = childrenArray.filter(
-    (child) => React.isValidElement(child) && child.type === SubheaderInfo,
-  );
-  const actionSlots = childrenArray.filter(
-    (child) => React.isValidElement(child) && child.type === SubheaderAction,
-  );
-
-  if (infoSlots.length > 1) {
-    throw new Error('Subheader can only have one Info slot');
-  }
-
-  if (actionSlots.length > 1) {
-    throw new Error('Subheader can only have one Action slot');
-  }
-
-  const infoSlot = infoSlots.length > 0 ? infoSlots[0] : null;
-  const actionSlot = actionSlots.length > 0 ? actionSlots[0] : null;
-
   return (
-    <div
-      className={cn('flex items-center justify-between gap-8', className)}
-      {...props}
-    >
-      <div className='flex min-w-0 items-center gap-2'>
-        <h2 className='min-w-0 truncate heading-5-semi-bold'>{title}</h2>
-        {infoSlot}
-      </div>
-      {actionSlot}
+    <div className={cn('flex flex-col gap-4', className)} {...props}>
+      {children}
     </div>
   );
 };
-
-Subheader.Info = SubheaderInfo;
-Subheader.Action = SubheaderAction;

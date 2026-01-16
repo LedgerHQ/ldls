@@ -13,17 +13,24 @@ import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/Com
 
 ## Introduction
 
-Subheaders are section headers used to title content areas in the UI. They provide a clear heading with optional informational tooltip and action elements.
+Subheaders are section headers used to title content areas in the UI. They provide a clear heading with optional count, hint, description, and action elements using a flexible composite structure.
 
 > View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=5609-1117&m=dev).
 
 ## Anatomy
 
-<Canvas of={SubheaderStories.WithFullFeatures} />
+<Canvas of={SubheaderStories.Base} />
 
-- **Title**: The main heading (required)
-- **Subheader.Info (optional)**: Slot for information elements like tooltips
-- **Subheader.Action (optional)**: Slot for action elements like links or buttons
+The Subheader uses a composite structure with the following components:
+
+- **Subheader** (container): The root component
+- **SubheaderRow** (required): Layout component to align title, count, info, and action
+- **SubheaderTitle** (required): The main heading text
+- **SubheaderCount** (optional): Displays a number in parentheses, e.g., "(30)"
+- **SubheaderShowMore** (optional): Static chevron right icon to indicate expandable content, positioned after the count
+- **SubheaderInfo** (optional): Information icon that can be wrapped in tooltips
+- **SubheaderDescription** (optional): Descriptive text below the title row
+- **SubheaderAction** (optional): Action elements like links or buttons
 
 ## Properties
 
@@ -32,31 +39,31 @@ Subheaders are section headers used to title content areas in the UI. They provi
 <Canvas of={SubheaderStories.Base} />
 <Controls of={SubheaderStories.Base} />
 
-### Content Variations
+### Interactive Row
 
-Subheaders support various content configurations using slot composition:
+Interactive rows always include the chevron to indicate they lead to more content:
 
-- **Title only**: Basic heading
-- **With Info Slot**: Includes information elements via `<Subheader.Info>`
-- **With Action Slot**: Includes action elements via `<Subheader.Action>`
-- **Complete**: All slots combined
+<Canvas of={SubheaderStories.InteractiveRow} />
 
-<Canvas of={SubheaderStories.ContentVariations} />
+### With Info Icon
 
-> **Note**: The title is required. Info and Action slots are optional and can be combined as needed using React children composition.
+Use the info icon to provide contextual help:
 
-### Responsive Layout
+<Canvas of={SubheaderStories.WithInfoIcon} />
 
-Subheaders adapt to their container constraints:
+### With Action
 
-<Canvas of={SubheaderStories.ResponsiveLayout} />
+Use actions for quick access to related functionality:
+
+<Canvas of={SubheaderStories.WithAction} />
 
 > **Key behaviors:**
 >
 > - Subheaders flow naturally to fill their parent container width
 > - Title truncates with ellipsis when too long for the available space
-> - Info and action slot elements maintain their positions
+> - Count, hint, and action elements maintain their positions
 > - Uses flex layout for responsive arrangement
+> - Action elements are positioned at the far right using `ml-auto`
 
 ## Accessibility
 
@@ -64,9 +71,9 @@ To be implemented:
 
 - **Color contrast**: Ensure readable text
 - **Text zoom**: Maintain layout integrity
-- **Keyboard navigation**: Proper tab order for interactive elements in slots
-- **Semantic labeling**: Appropriate ARIA attributes for slot elements
-- **Focus management**: Visible focus indicators on interactive slot elements
+- **Keyboard navigation**: Proper tab order for interactive elements
+- **Semantic labeling**: Appropriate ARIA attributes for hint and action elements
+- **Focus management**: Visible focus indicators on interactive elements
 
 </Tab>
 <Tab label="Implementation">
@@ -80,45 +87,97 @@ npm install @ledgerhq/lumen-ui-react
 ## Basic Usage
 
 ```tsx
-import { Subheader } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle } from '@ledgerhq/lumen-ui-react';
 
 function MyComponent() {
-  return <Subheader title='Section Title' />;
+  return (
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+      </SubheaderRow>
+    </Subheader>
+  );
 }
 ```
 
-The component uses a slot-based composition pattern where you can pass `Subheader.Info` and `Subheader.Action` as children.
+The component uses a composite pattern where you build the subheader using multiple sub-components.
+
+### With Count
+
+Display a numeric count next to the title:
+
+```tsx
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount } from '@ledgerhq/lumen-ui-react';
+
+function CountExample() {
+  return (
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount value={30} />
+      </SubheaderRow>
+    </Subheader>
+  );
+}
+```
+
+You can also provide a custom formatter:
+
+```tsx
+<SubheaderCount value={150} format={(n) => (n > 99 ? '(99+)' : `(${n})`)} />
+```
 
 ### With Info Tooltip
 
-Add an informational tooltip using the `Subheader.Info` slot:
+Add an informational tooltip using the `SubheaderInfo` component (which includes an information icon by default):
 
 ```tsx
 import {
   Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderInfo,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@ledgerhq/lumen-ui-react';
-import { Information } from '@ledgerhq/lumen-ui-react/symbols';
 
-function TooltipExample() {
+function InfoExample() {
   return (
-    <Subheader title='Section Title'>
-      <Subheader.Info>
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
         <Tooltip>
-          <TooltipTrigger asChild>
-            <Information
-              size={12}
-              className='shrink-0 text-muted'
-              aria-label='More information'
-            />
+          <TooltipTrigger>
+            <SubheaderInfo />
           </TooltipTrigger>
           <TooltipContent>
             This is additional information about the section
           </TooltipContent>
         </Tooltip>
-      </Subheader.Info>
+      </SubheaderRow>
+    </Subheader>
+  );
+}
+```
+
+### With Description
+
+Add descriptive text below the title row:
+
+```tsx
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderDescription } from '@ledgerhq/lumen-ui-react';
+
+function DescriptionExample() {
+  return (
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+      </SubheaderRow>
+      <SubheaderDescription>
+        This is a detailed description that provides additional context about
+        this section.
+      </SubheaderDescription>
     </Subheader>
   );
 }
@@ -126,68 +185,127 @@ function TooltipExample() {
 
 ### With Action
 
-Include an action element using the `Subheader.Action` slot:
+Include an action element in the row (automatically aligned to the right):
 
 ```tsx
-import { Subheader, Link } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderAction, Link } from '@ledgerhq/lumen-ui-react';
 
 function ActionExample() {
   return (
-    <Subheader title='Section Title'>
-      <Subheader.Action>
-        <Link
-          href='https://ledger.com'
-          appearance='accent'
-          size='sm'
-          isExternal
-        >
-          View More
-        </Link>
-      </Subheader.Action>
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderAction onClick={() => console.log('Action clicked')}>
+          <Link href='https://ledger.com' appearance='accent' size='sm'>
+            View More
+          </Link>
+        </SubheaderAction>
+      </SubheaderRow>
     </Subheader>
   );
 }
 ```
 
-### With Both Tooltip and Action
+### With Show More
 
-Combine both slots for a fully featured subheader:
+Display a static chevron right icon to indicate expandable content. Position it after the count to visually suggest the row is interactive:
 
 ```tsx
 import {
   Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderShowMore,
+  SubheaderDescription,
+} from '@ledgerhq/lumen-ui-react';
+
+function ShowMoreExample() {
+  const handleRowClick = () => {
+    console.log('Row clicked');
+    // Navigate to detail view or expand content
+  };
+
+  return (
+    <Subheader>
+      <SubheaderRow onClick={handleRowClick}>
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount value={5} />
+        <SubheaderShowMore />
+      </SubheaderRow>
+      <SubheaderDescription>
+        The chevron indicates this row leads to more content
+      </SubheaderDescription>
+    </Subheader>
+  );
+}
+```
+
+> **Note**: The `SubheaderShowMore` is a static (non-interactive) chevron icon. The entire row should be made clickable using `SubheaderRow`'s `onClick` prop. Position `SubheaderShowMore` after `SubheaderCount` to maintain proper visual hierarchy.
+
+### Interactive Row
+
+Make the entire row clickable by adding an `onClick` handler to `SubheaderRow`. Interactive rows should always include the chevron (`SubheaderShowMore`) to indicate they lead to more content:
+
+```tsx
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount, SubheaderShowMore, SubheaderDescription } from '@ledgerhq/lumen-ui-react';
+
+function InteractiveExample() {
+  return (
+    <Subheader>
+      <SubheaderRow onClick={() => console.log('Row clicked')}>
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount value={5} />
+        <SubheaderShowMore />
+      </SubheaderRow>
+      <SubheaderDescription>
+        Interactive rows always include the chevron to indicate they lead to more content
+      </SubheaderDescription>
+    </Subheader>
+  );
+}
+```
+
+### Combining Multiple Options
+
+You can combine different components as needed. The `SubheaderRow` and `SubheaderTitle` are required, while all other components (`SubheaderCount`, `SubheaderInfo`, `SubheaderDescription`, `SubheaderAction`) are optional:
+
+```tsx
+import {
+  Subheader,
+  SubheaderRow,
+  SubheaderTitle,
+  SubheaderCount,
+  SubheaderInfo,
+  SubheaderDescription,
+  SubheaderAction,
   Link,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@ledgerhq/lumen-ui-react';
-import { Information } from '@ledgerhq/lumen-ui-react/symbols';
 
 function FullExample() {
   return (
-    <Subheader title='Section Title'>
-      <Subheader.Info>
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section Title</SubheaderTitle>
+        <SubheaderCount value={42} />
         <Tooltip>
-          <TooltipTrigger asChild>
-            <Information
-              size={12}
-              className='shrink-0 text-muted'
-              aria-label='More information'
-            />
+          <TooltipTrigger>
+            <SubheaderInfo />
           </TooltipTrigger>
           <TooltipContent>Additional info</TooltipContent>
         </Tooltip>
-      </Subheader.Info>
-      <Subheader.Action>
-        <Link
-          href='https://example.com'
-          appearance='accent'
-          size='sm'
-          isExternal
-        >
-          Action
-        </Link>
-      </Subheader.Action>
+        <SubheaderAction onClick={() => console.log('Action clicked')}>
+          <Link href='https://example.com' appearance='accent' size='sm'>
+            Action
+          </Link>
+        </SubheaderAction>
+      </SubheaderRow>
+      <SubheaderDescription>
+        This is a detailed description of the section.
+      </SubheaderDescription>
     </Subheader>
   );
 }
@@ -198,7 +316,11 @@ function FullExample() {
 Subheaders automatically adjust to their parent container's width. No additional props are needed:
 
 ```tsx
-<Subheader title='Section Title' />
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Section Title</SubheaderTitle>
+  </SubheaderRow>
+</Subheader>
 ```
 
 To control width, use container elements:
@@ -207,20 +329,32 @@ To control width, use container elements:
 {
   /* Full viewport width */
 }
-<Subheader title='Full Width' />;
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Full Width</SubheaderTitle>
+  </SubheaderRow>
+</Subheader>;
 
 {
   /* Constrained width */
 }
 <div className='max-w-4xl mx-auto'>
-  <Subheader title='Constrained' />
+  <Subheader>
+    <SubheaderRow>
+      <SubheaderTitle>Constrained</SubheaderTitle>
+    </SubheaderRow>
+  </Subheader>
 </div>;
 
 {
   /* Responsive width */
 }
 <div className='w-full lg:max-w-2xl'>
-  <Subheader title='Responsive' />
+  <Subheader>
+    <SubheaderRow>
+      <SubheaderTitle>Responsive</SubheaderTitle>
+    </SubheaderRow>
+  </Subheader>
 </div>;
 ```
 
@@ -229,10 +363,11 @@ To control width, use container elements:
 While the component comes with predefined styles, you can extend them using Tailwind classes for layout purposes:
 
 ```tsx
-<Subheader
-  title='Styled Subheader'
-  className='mb-4' // Custom margin
-/>
+<Subheader className='mb-4'>
+  <SubheaderRow>
+    <SubheaderTitle>Styled Subheader</SubheaderTitle>
+  </SubheaderRow>
+</Subheader>
 ```
 
 ## Do's and Don'ts
@@ -242,27 +377,137 @@ The following guidelines ensure consistent usage of the Subheader component and 
 <div className='flex flex-col gap-24'>
   <DoVsDontRow>
     <DoBlockItem
-      title='Use proper slot composition'
-      description='Combine Info and Action slots as needed'
+      title='Use the composite structure'
+      description='Always wrap Title in a Row component'
     >
 
 ```tsx
-<Subheader title='With Action'>
-  <Subheader.Action>
-    <Link href='#'>Link</Link>
-  </Subheader.Action>
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
 </Subheader>
 ```
 
     </DoBlockItem>
     <DontBlockItem
-      title="Don't use non-slot children"
-      description='Only use Subheader.Info and Subheader.Action slots'
+      title="Don't use Title without Row"
+      description='Row is required to properly layout the title and other elements'
     >
 
 {/* prettier-ignore */}
 ```tsx
-<Subheader title='Wrong'>
+<Subheader>
+  <SubheaderTitle>Title</SubheaderTitle>
+</Subheader>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use Count for numeric values'
+      description='Pass numbers using the value prop'
+    >
+
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Accounts</SubheaderTitle>
+    <SubheaderCount value={30} />
+  </SubheaderRow>
+</Subheader>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't add parentheses manually"
+      description='Count component automatically formats the value'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Accounts (30)</SubheaderTitle>
+  </SubheaderRow>
+</Subheader>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use Description for additional context'
+      description='Place Description outside Row for proper layout'
+    >
+
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
+  <SubheaderDescription>
+    Additional context here
+  </SubheaderDescription>
+</Subheader>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't put Description in Row"
+      description='Description should be a direct child of Subheader'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+    <SubheaderDescription>
+      Wrong placement
+    </SubheaderDescription>
+  </SubheaderRow>
+</Subheader>
+```
+
+    </DontBlockItem>
+
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use Action in Row with onClick'
+      description='Action should have an onClick handler and be placed in Row for right alignment'
+    >
+
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+    <SubheaderAction onClick={handleAction}>
+      <Link href='#'>Link</Link>
+    </SubheaderAction>
+  </SubheaderRow>
+</Subheader>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use non-composite children"
+      description='Only use the provided sub-components'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Title</SubheaderTitle>
+  </SubheaderRow>
   <div>Random child</div>
 </Subheader>
 ```

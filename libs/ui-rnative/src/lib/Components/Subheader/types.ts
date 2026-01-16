@@ -1,9 +1,16 @@
+import { ViewProps } from 'react-native';
+import { LumenViewStyle } from '../../../styles/types/lx.types';
+
 export type SubheaderProps = {
   /**
    * The children of the subheader, which should include SubheaderRow, SubheaderTitle, SubheaderDescription, etc.
    */
   children?: React.ReactNode;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>;
+  /**
+   * Style props using design tokens
+   */
+  lx?: LumenViewStyle;
+} & Omit<ViewProps, 'children'>;
 
 export type SubheaderRowProps = {
   /**
@@ -11,10 +18,14 @@ export type SubheaderRowProps = {
    */
   children: React.ReactNode;
   /**
-   * Optional click handler to make the row interactive.
+   * Optional press handler to make the row interactive.
    */
-  onClick?: () => void;
-} & Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'onClick'>;
+  onPress?: () => void;
+  /**
+   * Style props using design tokens
+   */
+  lx?: LumenViewStyle;
+} & Omit<ViewProps, 'children'>;
 
 export type SubheaderTitleProps = {
   /**
@@ -55,18 +66,11 @@ export type SubheaderDescriptionProps = {
 
 export type SubheaderActionProps = {
   /**
-   * The action element to display (e.g., button text).
+   * The action text to display.
    */
   children: React.ReactNode;
   /**
-   * Click handler for the action.
+   * Press handler for the action.
    */
-  onClick: () => void;
-} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'onClick'>;
-
-export type SubheaderShowMoreProps = {
-  /**
-   * Optional className for custom styling.
-   */
-  className?: string;
+  onPress: () => void;
 };
