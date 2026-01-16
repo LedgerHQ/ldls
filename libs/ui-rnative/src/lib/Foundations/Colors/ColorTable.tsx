@@ -1,13 +1,35 @@
-import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
+import {
+  ledgerLiveThemes,
+  enterpriseThemes,
+  websitesThemes,
+} from '@ledgerhq/lumen-design-core';
 import { Text, View } from 'react-native';
 
 type ColorTableProps = {
   category: 'bg' | 'text' | 'border' | 'crypto' | 'discover';
-  theme?: 'light' | 'dark';
 };
 
-export const ColorTable = ({ category, theme = 'light' }: ColorTableProps) => {
-  const colors = ledgerLiveThemes[theme].colors[category];
+function getGlobals() {
+  const params = new URLSearchParams(window.location.search).get('globals');
+
+  return Object.fromEntries(
+    params?.split(';').map((param) => param.split(':')) ?? [],
+  );
+}
+
+export const ColorTable = ({ category }: ColorTableProps) => {
+  const { brand, mode } = getGlobals() as {
+    brand?: 'ledger-live' | 'enterprise' | 'websites';
+    mode?: 'light' | 'dark';
+  };
+
+  const theme = {
+    'ledger-live': ledgerLiveThemes,
+    enterprise: enterpriseThemes,
+    websites: websitesThemes,
+  }[brand || 'ledger-live'];
+
+  const colors = theme[mode || 'light'].colors[category];
 
   if (!colors) {
     return <div>Oops, no colors found for category: {category}</div>;
@@ -17,7 +39,7 @@ export const ColorTable = ({ category, theme = 'light' }: ColorTableProps) => {
     return !(category === 'crypto' && v.endsWith('00')); // filter out "[crypto] 0" tokens
   });
 
-  const renderSample = (value) => {
+  const renderSample = (value: string) => {
     if (category === 'text') {
       return (
         <Text
@@ -100,8 +122,8 @@ export const ColorTable = ({ category, theme = 'light' }: ColorTableProps) => {
         </tr>
       </thead>
       <tbody>
-        {cells.map(([key, value]) => (
-          <tr>
+        {cells.map(([key, value], i) => (
+          <tr key={i}>
             <td>
               <View style={{ alignItems: 'center' }}>
                 {renderSample(value)}
