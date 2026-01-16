@@ -184,7 +184,7 @@ export const ResponsiveLayout: Story = {
           </TileContent>
         </Tile>
       </div>
-      <div className='flex items-center justify-center'>
+      <div className='flex'>
         <Tile className='w-224'>
           <TileSpot appearance='icon' icon={Plus} />
           <TileContent>
