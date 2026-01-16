@@ -52,31 +52,6 @@ export const Base: Story = {
     <Container>
       <Subheader>
         <SubheaderRow>
-          <SubheaderTitle>Subheader Title</SubheaderTitle>
-        </SubheaderRow>
-      </Subheader>
-    </Container>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader>
-  <SubheaderRow>
-    <SubheaderTitle>Subheader Title</SubheaderTitle>
-  </SubheaderRow>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const WithDescription: Story = {
-  render: () => (
-    <Container>
-      <Subheader>
-        <SubheaderRow>
           <SubheaderTitle>Section Title</SubheaderTitle>
         </SubheaderRow>
         <SubheaderDescription>
@@ -104,101 +79,7 @@ export const WithDescription: Story = {
   },
 };
 
-export const Complete: Story = {
-  render: () => (
-    <Container>
-      <Subheader>
-        <SubheaderRow>
-          <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
-          <SubheaderCount value={42} />
-          <Tooltip>
-            <TooltipTrigger>
-              <SubheaderInfo />
-            </TooltipTrigger>
-            <TooltipContent>This is additional information</TooltipContent>
-          </Tooltip>
-          <SubheaderAction onClick={() => console.log('Action clicked')}>
-            <Link
-              href='https://ledger.com'
-              appearance='accent'
-              size='sm'
-              underline={false}
-            >
-              Action
-            </Link>
-          </SubheaderAction>
-        </SubheaderRow>
-        <SubheaderDescription>
-          This subheader demonstrates all available features including title,
-          count, hint, description, and action.
-        </SubheaderDescription>
-      </Subheader>
-    </Container>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader>
-  <SubheaderRow>
-    <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
-    <SubheaderCount value={42} />
-    <Tooltip>
-      <TooltipTrigger>
-        <SubheaderInfo />
-      </TooltipTrigger>
-      <TooltipContent>This is additional information</TooltipContent>
-    </Tooltip>
-    <SubheaderAction onClick={handleAction}>
-      <Link href="https://ledger.com" appearance="accent" size="sm" underline={false}>
-        Action
-      </Link>
-    </SubheaderAction>
-  </SubheaderRow>
-  <SubheaderDescription>
-    This subheader demonstrates all available features including title, count, hint, description, and action.
-  </SubheaderDescription>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const Interactive: Story = {
-  render: () => (
-    <Container>
-      <Subheader>
-        <SubheaderRow onClick={() => console.log('Row clicked')}>
-          <SubheaderTitle>Clickable Row</SubheaderTitle>
-          <SubheaderCount value={12} />
-        </SubheaderRow>
-        <SubheaderDescription>
-          The entire row is clickable when onClick is provided
-        </SubheaderDescription>
-      </Subheader>
-    </Container>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<Subheader>
-  <SubheaderRow onClick={handleClick}>
-    <SubheaderTitle>Clickable Row</SubheaderTitle>
-    <SubheaderCount value={12} />
-  </SubheaderRow>
-  <SubheaderDescription>
-    The entire row is clickable when onClick is provided
-  </SubheaderDescription>
-</Subheader>
-        `,
-      },
-    },
-  },
-};
-
-export const WithShowMore: Story = {
+export const InteractiveRow: Story = {
   render: () => (
     <Container>
       <Subheader>
@@ -208,7 +89,8 @@ export const WithShowMore: Story = {
           <SubheaderShowMore />
         </SubheaderRow>
         <SubheaderDescription>
-          The chevron indicates this row leads to more content
+          Interactive rows always include the chevron to indicate they lead to
+          more content
         </SubheaderDescription>
       </Subheader>
     </Container>
@@ -224,7 +106,95 @@ export const WithShowMore: Story = {
     <SubheaderShowMore />
   </SubheaderRow>
   <SubheaderDescription>
-    The chevron indicates this row leads to more content
+    Interactive rows always include the chevron to indicate they lead to more content
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const WithInfoIcon: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Section with Info</SubheaderTitle>
+          <Tooltip>
+            <TooltipTrigger>
+              <SubheaderInfo />
+            </TooltipTrigger>
+            <TooltipContent>
+              Additional information about this section
+            </TooltipContent>
+          </Tooltip>
+        </SubheaderRow>
+        <SubheaderDescription>
+          Use the info icon to provide contextual help or additional details
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Section with Info</SubheaderTitle>
+    <Tooltip>
+      <TooltipTrigger>
+        <SubheaderInfo />
+      </TooltipTrigger>
+      <TooltipContent>
+        Additional information about this section
+      </TooltipContent>
+    </Tooltip>
+  </SubheaderRow>
+  <SubheaderDescription>
+    Use the info icon to provide contextual help or additional details
+  </SubheaderDescription>
+</Subheader>
+        `,
+      },
+    },
+  },
+};
+
+export const WithAction: Story = {
+  render: () => (
+    <Container>
+      <Subheader>
+        <SubheaderRow>
+          <SubheaderTitle>Recent Activity</SubheaderTitle>
+          <SubheaderAction onClick={() => console.log('View all clicked')}>
+            <Link appearance='accent' size='sm' underline={false}>
+              View all
+            </Link>
+          </SubheaderAction>
+        </SubheaderRow>
+        <SubheaderDescription>
+          Use actions for quick access to related functionality
+        </SubheaderDescription>
+      </Subheader>
+    </Container>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<Subheader>
+  <SubheaderRow>
+    <SubheaderTitle>Recent Activity</SubheaderTitle>
+    <SubheaderAction onClick={handleViewAll}>
+      <Link appearance="accent" size="sm" underline={false}>
+        View all
+      </Link>
+    </SubheaderAction>
+  </SubheaderRow>
+  <SubheaderDescription>
+    Use actions for quick access to related functionality
   </SubheaderDescription>
 </Subheader>
         `,

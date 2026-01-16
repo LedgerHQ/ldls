@@ -19,7 +19,7 @@ Subheaders are section headers used to title content areas in the UI. They provi
 
 ## Anatomy
 
-<Canvas of={SubheaderStories.Complete} />
+<Canvas of={SubheaderStories.Base} />
 
 The Subheader uses a composite structure with the following components:
 
@@ -39,31 +39,23 @@ The Subheader uses a composite structure with the following components:
 <Canvas of={SubheaderStories.Base} />
 <Controls of={SubheaderStories.Base} />
 
-### With Description
-
-Add descriptive text below the title row:
-
-<Canvas of={SubheaderStories.WithDescription} />
-
-### Complete Example
-
-All features combined in one subheader:
-
-<Canvas of={SubheaderStories.Complete} />
-
-> **Note**: The `SubheaderRow` and `SubheaderTitle` are required. All other components (`SubheaderCount`, `SubheaderInfo`, `SubheaderDescription`, `SubheaderAction`) are optional and can be combined as needed.
-
 ### Interactive Row
 
-Make the entire row clickable:
+Interactive rows always include the chevron to indicate they lead to more content:
 
-<Canvas of={SubheaderStories.Interactive} />
+<Canvas of={SubheaderStories.InteractiveRow} />
 
-### With Show More
+### With Info Icon
 
-Display a chevron right icon to indicate expandable content:
+Use the info icon to provide contextual help:
 
-<Canvas of={SubheaderStories.WithShowMore} />
+<Canvas of={SubheaderStories.WithInfoIcon} />
+
+### With Action
+
+Use actions for quick access to related functionality:
+
+<Canvas of={SubheaderStories.WithAction} />
 
 > **Key behaviors:**
 >
@@ -253,29 +245,30 @@ function ShowMoreExample() {
 
 ### Interactive Row
 
-Make the entire row clickable by adding an `onClick` handler to `SubheaderRow`:
+Make the entire row clickable by adding an `onClick` handler to `SubheaderRow`. Interactive rows should always include the chevron (`SubheaderShowMore`) to indicate they lead to more content:
 
 ```tsx
-import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount } from '@ledgerhq/lumen-ui-react';
+import { Subheader, SubheaderRow, SubheaderTitle, SubheaderCount, SubheaderShowMore, SubheaderDescription } from '@ledgerhq/lumen-ui-react';
 
 function InteractiveExample() {
   return (
     <Subheader>
       <SubheaderRow onClick={() => console.log('Row clicked')}>
-        <SubheaderTitle>Clickable Row</SubheaderTitle>
-        <SubheaderCount value={12} />
+        <SubheaderTitle>Accounts</SubheaderTitle>
+        <SubheaderCount value={5} />
+        <SubheaderShowMore />
       </SubheaderRow>
       <SubheaderDescription>
-        The entire row is clickable when onClick is provided
+        Interactive rows always include the chevron to indicate they lead to more content
       </SubheaderDescription>
     </Subheader>
   );
 }
 ```
 
-### Complete Example
+### Combining Multiple Options
 
-Combine all components for a fully featured subheader:
+You can combine different components as needed. The `SubheaderRow` and `SubheaderTitle` are required, while all other components (`SubheaderCount`, `SubheaderInfo`, `SubheaderDescription`, `SubheaderAction`) are optional:
 
 ```tsx
 import {

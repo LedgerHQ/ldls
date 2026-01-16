@@ -47,16 +47,6 @@ export const Base: Story = {
   render: () => (
     <Subheader>
       <SubheaderRow>
-        <SubheaderTitle>Subheader Title</SubheaderTitle>
-      </SubheaderRow>
-    </Subheader>
-  ),
-};
-
-export const WithDescription: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
         <SubheaderTitle>Section Title</SubheaderTitle>
       </SubheaderRow>
       <SubheaderDescription>
@@ -67,47 +57,7 @@ export const WithDescription: Story = {
   ),
 };
 
-export const Complete: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow>
-        <SubheaderTitle>Full Featured Subheader</SubheaderTitle>
-        <SubheaderCount value={42} />
-        <Tooltip>
-          <TooltipTrigger>
-            <SubheaderInfo />
-          </TooltipTrigger>
-          <TooltipContent
-            content={<Text>This is additional information</Text>}
-          />
-        </Tooltip>
-        <SubheaderAction onPress={() => console.log('Action')}>
-          Action
-        </SubheaderAction>
-      </SubheaderRow>
-      <SubheaderDescription>
-        This subheader demonstrates all available features including title,
-        count, hint, description, and action.
-      </SubheaderDescription>
-    </Subheader>
-  ),
-};
-
-export const Interactive: Story = {
-  render: () => (
-    <Subheader>
-      <SubheaderRow onPress={() => console.log('Row clicked')}>
-        <SubheaderTitle>Clickable Row</SubheaderTitle>
-        <SubheaderCount value={12} />
-      </SubheaderRow>
-      <SubheaderDescription>
-        The entire row is clickable when onPress is provided
-      </SubheaderDescription>
-    </Subheader>
-  ),
-};
-
-export const WithShowMore: Story = {
+export const InteractiveRow: Story = {
   render: () => (
     <Subheader>
       <SubheaderRow onPress={() => console.log('Row clicked')}>
@@ -116,7 +66,45 @@ export const WithShowMore: Story = {
         <SubheaderShowMore />
       </SubheaderRow>
       <SubheaderDescription>
-        The chevron indicates this row leads to more content
+        Interactive rows always include the chevron to indicate they lead to
+        more content
+      </SubheaderDescription>
+    </Subheader>
+  ),
+};
+
+export const WithInfoIcon: Story = {
+  render: () => (
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Section with Info</SubheaderTitle>
+        <Tooltip>
+          <TooltipTrigger>
+            <SubheaderInfo />
+          </TooltipTrigger>
+          <TooltipContent
+            content={<Text>Additional information about this section</Text>}
+          />
+        </Tooltip>
+      </SubheaderRow>
+      <SubheaderDescription>
+        Use the info icon to provide contextual help or additional details
+      </SubheaderDescription>
+    </Subheader>
+  ),
+};
+
+export const WithAction: Story = {
+  render: () => (
+    <Subheader>
+      <SubheaderRow>
+        <SubheaderTitle>Recent Activity</SubheaderTitle>
+        <SubheaderAction onPress={() => console.log('View all')}>
+          View all
+        </SubheaderAction>
+      </SubheaderRow>
+      <SubheaderDescription>
+        Use actions for quick access to related functionality
       </SubheaderDescription>
     </Subheader>
   ),
