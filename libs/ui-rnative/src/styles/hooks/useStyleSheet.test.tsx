@@ -1,10 +1,14 @@
 import { describe, expect, it } from '@jest/globals';
-import { fireEvent, render, userEvent } from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  userEvent,
+  waitFor,
+} from '@testing-library/react-native';
 import React, { useState } from 'react';
 import { ColorSchemeName, Pressable, Text, View } from 'react-native';
 import { LumenStyleSheetProvider } from '../provider/LumenStyleSheetProvider';
 import { useStyleSheet } from './useStyleSheet';
-import { useTheme } from './useTheme';
 
 // Wrapper that allows testing uncontrolled theme switching
 const TestProviderWrapper = ({
@@ -16,15 +20,8 @@ const TestProviderWrapper = ({
   themes: any;
   initialColorScheme?: ColorSchemeName;
 }): React.JSX.Element => {
-  const [colorScheme, setColorScheme] =
-    useState<ColorSchemeName>(initialColorScheme);
-
   return (
-    <LumenStyleSheetProvider
-      themes={themes}
-      colorScheme={colorScheme}
-      onColorSchemeChange={setColorScheme}
-    >
+    <LumenStyleSheetProvider themes={themes} colorScheme={initialColorScheme}>
       {children}
     </LumenStyleSheetProvider>
   );
@@ -141,8 +138,13 @@ describe('useStyleSheet', () => {
     });
 
     it('updates styles when theme changes', async () => {
-      const TestComponent = (): React.JSX.Element => {
-        const { toggleColorScheme } = useTheme();
+      const Content = ({
+        colorScheme,
+        setColorScheme,
+      }: {
+        colorScheme: ColorSchemeName;
+        setColorScheme: (colorScheme: ColorSchemeName) => void;
+      }) => {
         const styles = useStyleSheet(
           (theme: any) => ({
             container: {
@@ -154,25 +156,37 @@ describe('useStyleSheet', () => {
         );
 
         return (
-          <View testID='wrapper'>
+          <>
             <View style={styles.container} testID='container' />
             <Pressable
               testID='toggle'
-              onPress={() => {
-                toggleColorScheme();
-              }}
+              onPress={() =>
+                setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')
+              }
             >
               <Text>Toggle</Text>
             </Pressable>
-          </View>
+          </>
         );
       };
 
-      const { getByTestId } = render(
-        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
-          <TestComponent />
-        </TestProviderWrapper>,
-      );
+      const TestComponent = (): React.JSX.Element => {
+        const [colorScheme, setColorScheme] = useState<ColorSchemeName>('dark');
+
+        return (
+          <TestProviderWrapper
+            themes={testThemes}
+            initialColorScheme={colorScheme}
+          >
+            <Content
+              colorScheme={colorScheme}
+              setColorScheme={setColorScheme}
+            />
+          </TestProviderWrapper>
+        );
+      };
+
+      const { getByTestId } = render(<TestComponent />);
 
       const container = getByTestId('container');
 
@@ -270,9 +284,12 @@ describe('useStyleSheet', () => {
       });
     });
 
-    it('updates dynamic styles when theme changes', () => {
-      const TestComponent = (): React.JSX.Element => {
-        const { setColorScheme } = useTheme();
+    it('updates dynamic styles when theme changes', async () => {
+      const Content = ({
+        setColorScheme,
+      }: {
+        setColorScheme: (colorScheme: ColorSchemeName) => void;
+      }) => {
         const styles = useStyleSheet(
           (theme: any) => ({
             container: (isActive: boolean) => ({
@@ -296,11 +313,20 @@ describe('useStyleSheet', () => {
         );
       };
 
-      const { getByTestId } = render(
-        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
-          <TestComponent />
-        </TestProviderWrapper>,
-      );
+      const TestComponent = (): React.JSX.Element => {
+        const [colorScheme, setColorScheme] = useState<ColorSchemeName>('dark');
+
+        return (
+          <TestProviderWrapper
+            themes={testThemes}
+            initialColorScheme={colorScheme}
+          >
+            <Content setColorScheme={setColorScheme} />
+          </TestProviderWrapper>
+        );
+      };
+
+      const { getByTestId } = render(<TestComponent />);
 
       // Dark theme
       expect(getByTestId('active').props.style).toEqual({
@@ -314,15 +340,15 @@ describe('useStyleSheet', () => {
 
       // Switch to light
       fireEvent.press(getByTestId('toggle'));
-
-      // Light theme
-      expect(getByTestId('active').props.style).toEqual({
-        backgroundColor: '#007AFF',
-        borderColor: '#E0E0E0',
-      });
-      expect(getByTestId('inactive').props.style).toEqual({
-        backgroundColor: '#FFFFFF',
-        borderColor: '#E0E0E0',
+      await waitFor(() => {
+        expect(getByTestId('active').props.style).toEqual({
+          backgroundColor: '#007AFF',
+          borderColor: '#E0E0E0',
+        });
+        expect(getByTestId('inactive').props.style).toEqual({
+          backgroundColor: '#FFFFFF',
+          borderColor: '#E0E0E0',
+        });
       });
     });
 
@@ -429,11 +455,16 @@ describe('useStyleSheet', () => {
   });
 
   describe('Memoization', () => {
-    it('recalculates styles when theme changes but not on component re-render', () => {
+    it('recalculates styles when colorScheme changes but not on component re-render', () => {
       let styleCreationCount = 0;
 
-      const TestComponent = (): React.JSX.Element => {
-        const { setColorScheme, colorScheme } = useTheme();
+      const Content = ({
+        colorScheme,
+        setColorScheme,
+      }: {
+        colorScheme: ColorSchemeName;
+        setColorScheme: (colorScheme: ColorSchemeName) => void;
+      }) => {
         const styles = useStyleSheet((theme: any) => {
           styleCreationCount++;
           return {
@@ -454,11 +485,23 @@ describe('useStyleSheet', () => {
         );
       };
 
-      const { getByTestId } = render(
-        <TestProviderWrapper themes={testThemes} initialColorScheme='dark'>
-          <TestComponent />
-        </TestProviderWrapper>,
-      );
+      const TestComponent = (): React.JSX.Element => {
+        const [colorScheme, setColorScheme] = useState<ColorSchemeName>('dark');
+
+        return (
+          <TestProviderWrapper
+            themes={testThemes}
+            initialColorScheme={colorScheme}
+          >
+            <Content
+              colorScheme={colorScheme}
+              setColorScheme={setColorScheme}
+            />
+          </TestProviderWrapper>
+        );
+      };
+
+      const { getByTestId } = render(<TestComponent />);
 
       const initialCount = styleCreationCount;
       expect(initialCount).toBeGreaterThan(0);

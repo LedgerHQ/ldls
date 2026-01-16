@@ -3,9 +3,6 @@
   "files": [],
   "references": [
     {
-      "path": "../../libs/design-core"
-    },
-    {
       "path": "../../libs/ui-rnative"
     },
     {

@@ -1,24 +1,18 @@
 import { createSafeContext } from '@ledgerhq/lumen-utils-shared';
-import { FC, useEffect, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import {
-  Appearance,
   ColorSchemeName,
   useColorScheme as useReactNativeColorScheme,
 } from 'react-native';
-import { RuntimeConstants, useControllableState } from '../../lib/utils';
 import { createStylesheetTheme } from '../theme/createStylesheetTheme';
 import { type LumenStyleSheetTheme } from '../types';
-import { type LumenStyleSheetProviderProps } from './types';
+import { COLOR_SCHEMES, type LumenStyleSheetProviderProps } from './types';
 
-const DARK_MODE = 'dark';
-const LIGHT_MODE = 'light';
-const DEFAULT_COLOR_SCHEME = DARK_MODE;
+const DEFAULT_COLOR_SCHEME = COLOR_SCHEMES.dark;
 
 export type LumenStyleSheetContextValue = {
   theme: LumenStyleSheetTheme;
   colorScheme: ColorSchemeName;
-  setColorScheme: (scheme: ColorSchemeName) => void;
-  toggleColorScheme: () => void;
 };
 
 const [LumenStyleSheetContextProvider, _useLumenStyleSheetContext] =
@@ -29,44 +23,20 @@ export const useLumenStyleSheetContext = _useLumenStyleSheetContext;
 export const LumenStyleSheetProvider: FC<LumenStyleSheetProviderProps> = ({
   themes,
   colorScheme,
-  onColorSchemeChange,
   children,
 }) => {
   const nativeColorScheme = useReactNativeColorScheme();
-  const initialColorScheme =
+  const currentColorScheme =
     colorScheme ?? nativeColorScheme ?? DEFAULT_COLOR_SCHEME;
 
-  const [colorSchemeState, setColorScheme] =
-    useControllableState<ColorSchemeName>({
-      defaultProp: initialColorScheme,
-      prop: colorScheme,
-      onChange: onColorSchemeChange,
-    });
-
-  /**
-   * Side-effect to update the color scheme of the app when the colorScheme changes.
-   */
-  useEffect(() => {
-    if (
-      colorSchemeState !== null &&
-      colorSchemeState !== undefined &&
-      RuntimeConstants.isNative
-    ) {
-      Appearance.setColorScheme(colorSchemeState as ColorSchemeName);
-    }
-  }, [colorSchemeState]);
-
   const contextValue = useMemo(() => {
-    const currentTheme = themes[colorSchemeState as 'dark' | 'light'];
+    const currentTheme =
+      themes[currentColorScheme as keyof typeof COLOR_SCHEMES];
     return {
       theme: createStylesheetTheme(currentTheme),
-      colorScheme: colorSchemeState,
-      setColorScheme,
-      toggleColorScheme: () => {
-        setColorScheme(colorSchemeState === DARK_MODE ? LIGHT_MODE : DARK_MODE);
-      },
+      colorScheme: currentColorScheme,
     };
-  }, [themes, colorSchemeState, setColorScheme]);
+  }, [themes, currentColorScheme]);
 
   return (
     <LumenStyleSheetContextProvider value={contextValue}>

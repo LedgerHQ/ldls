@@ -24,18 +24,3 @@ const MyComponent = () => {
 };
 ```
 
-### Theme Toggle Example
-
-```tsx
-import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
-
-const ThemeToggle = () => {
-  const { colorScheme, toggleColorScheme } = useTheme();
-
-  return (
-    <Button onPress={toggleColorScheme}>
-      Current: {colorScheme}
-    </Button>
-  );
-};
-```

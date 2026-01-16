@@ -1,7 +1,7 @@
 import { describe, expect, it, jest } from '@jest/globals';
 import { render, userEvent } from '@testing-library/react-native';
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ColorSchemeName, Pressable, Text, View } from 'react-native';
 import { useTheme } from '../hooks/useTheme';
 import { LumenStyleSheetProvider } from './LumenStyleSheetProvider';
 
@@ -41,33 +41,37 @@ const testThemes: any = {
   },
 };
 
-// Test component that uses theme
-const TestComponent = (): React.JSX.Element => {
-  const { theme, colorScheme, setColorScheme } = useTheme();
-
+const Content = ({ setState, state }: any) => {
+  const { theme, colorScheme } = useTheme();
   return (
     <View testID='container'>
       <Text testID='color-scheme'>{colorScheme}</Text>
       <Text testID='bg-color'>{theme.colors.bg.base}</Text>
       <Pressable
         testID='toggle-button'
-        onPress={() => {
-          return setColorScheme(colorScheme === 'light' ? 'dark' : 'light');
-        }}
-      >
-        <Text>Toggle</Text>
-      </Pressable>
+        onPress={() => setState(state === 'dark' ? 'light' : 'dark')}
+      />
     </View>
+  );
+};
+// Test component that uses theme
+const TestComponent = ({
+  initialColorScheme,
+}: {
+  initialColorScheme: ColorSchemeName;
+}): React.JSX.Element => {
+  const [state, setState] = useState(initialColorScheme);
+
+  return (
+    <LumenStyleSheetProvider colorScheme={state} themes={testThemes}>
+      <Content state={state} setState={setState} />
+    </LumenStyleSheetProvider>
   );
 };
 
 describe('LumenStyleSheetProvider', () => {
   it('provides dark theme by default', () => {
-    const { getByTestId } = render(
-      <LumenStyleSheetProvider colorScheme='dark' themes={testThemes}>
-        <TestComponent />
-      </LumenStyleSheetProvider>,
-    );
+    const { getByTestId } = render(<TestComponent initialColorScheme='dark' />);
 
     expect(getByTestId('color-scheme').props.children).toBe('dark');
     expect(getByTestId('bg-color').props.children).toBe('#000000');
@@ -75,9 +79,7 @@ describe('LumenStyleSheetProvider', () => {
 
   it('provides light theme when initialColorScheme is light', () => {
     const { getByTestId } = render(
-      <LumenStyleSheetProvider themes={testThemes} colorScheme='light'>
-        <TestComponent />
-      </LumenStyleSheetProvider>,
+      <TestComponent initialColorScheme='light' />,
     );
 
     expect(getByTestId('color-scheme').props.children).toBe('light');
@@ -86,9 +88,7 @@ describe('LumenStyleSheetProvider', () => {
 
   it('switches theme when setColorScheme is called', async () => {
     const { getByTestId } = render(
-      <LumenStyleSheetProvider themes={testThemes}>
-        <TestComponent />
-      </LumenStyleSheetProvider>,
+      <TestComponent initialColorScheme='light' />,
     );
 
     // Initially light
@@ -114,7 +114,7 @@ describe('LumenStyleSheetProvider', () => {
       .mockImplementation(() => {});
 
     expect(() => {
-      render(<TestComponent />);
+      render(<Content />);
     }).toThrow('useTheme must be used within LumenStyleSheetProvider');
 
     consoleErrorSpy.mockRestore();

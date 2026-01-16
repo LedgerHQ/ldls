@@ -76,23 +76,21 @@ If not provided, the theme will follow the device settings.
 </ThemeProvider>
 ```
 
-If the ThemeProvider is uncontrolled, you can use the [`useTheme`](/?path=/docs/style-system-usetheme--docs) hook to control theme mode at runtime:
+The ThemeProvider's colorScheme is controlled; you can use the [`useTheme`](/?path=/docs/style-system-usetheme--docs) hook to get the theme mode at runtime:
 
 ```tsx
 import { useTheme } from '@ledgerhq/lumen-ui-rnative/styles';
 
 const ThemeToggle = () => {
-  const { colorScheme, toggleColorScheme, setColorScheme } = useTheme();
+  const { colorScheme } = useTheme();
   
   return (
-    <Button onPress={toggleColorScheme}>
+    <View>
       Current: {colorScheme}
-    </Button>
+    </View>
   );
 };
 ```
-
-When the colorScheme changes, `Appearance.setColorScheme` is automatically called to update the system theme.
 
 
 ## Internationalization
