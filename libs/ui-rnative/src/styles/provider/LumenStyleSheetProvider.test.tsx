@@ -50,7 +50,7 @@ const Content = ({ setState, state }: any) => {
       <Pressable
         testID='toggle-button'
         onPress={() => setState(state === 'dark' ? 'light' : 'dark')}
-      ></Pressable>
+      />
     </View>
   );
 };
