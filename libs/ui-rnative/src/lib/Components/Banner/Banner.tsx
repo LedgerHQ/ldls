@@ -158,7 +158,7 @@ export const Banner = React.forwardRef<ViewRef, BannerProps>(
         {...props}
       >
         <View style={styles.iconWrapper}>
-          <IconComponent lx={{ color: iconColor }} />
+          <IconComponent color={iconColor} />
         </View>
         <View style={styles.contentWrapper}>
           <View style={styles.textWrapper}>
