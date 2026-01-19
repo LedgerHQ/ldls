@@ -176,68 +176,6 @@ import { Plus } from '@ledgerhq/lumen-ui-rnative/symbols';
     </DontBlockItem>
   </DoVsDontRow>
 
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Use isFull for width'
-      description='Use the isFull prop for full-width buttons'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TileButton icon={Settings} isFull onPress={() => {}}>
-  Settings
-</TileButton>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't use style for width"
-      description='Avoid using style to control button width'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TileButton
-  icon={Settings}
-  style={{ width: '100%' }}
-  onPress={() => {}}
->
-  Settings
-</TileButton>
-```
-
-    </DontBlockItem>
-  </DoVsDontRow>
-
-  <DoVsDontRow>
-    <DoBlockItem
-      title='Provide onPress handlers'
-      description='Always provide an onPress handler for interactive buttons'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TileButton icon={Settings} onPress={() => navigation.navigate('Settings')}>
-  Settings
-</TileButton>
-```
-
-    </DoBlockItem>
-    <DontBlockItem
-      title="Don't omit onPress"
-      description='Avoid creating buttons without onPress handlers'
-    >
-
-{/* prettier-ignore */}
-```tsx
-<TileButton icon={Settings}>
-  Settings
-</TileButton>
-```
-
-    </DontBlockItem>
-  </DoVsDontRow>
-
   <CommonRulesDoAndDont />
 </div>
 
