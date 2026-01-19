@@ -4,10 +4,6 @@ import { resolveTheme } from '..';
 export const ShadowTable = () => {
   const shadows = resolveTheme().shadows;
 
-  if (!shadows) {
-    return <div>Oops, no shadows found</div>;
-  }
-
   const cells = Object.entries(shadows);
 
   const formatShadow = (shadowArray: any[]): string => {
@@ -33,11 +29,11 @@ export const ShadowTable = () => {
         {cells.map(([key, value], i) => (
           <tr key={i}>
             <td>
-              <View style={{ alignItems: 'center', paddingVertical: 12 }}>
+              <View style={{ paddingVertical: 12 }}>
                 <View
                   style={{
-                    width: 78,
-                    height: 52,
+                    width: 64,
+                    height: 64,
                     backgroundColor: '#fff',
                     borderRadius: 8,
                     shadowColor: value[0].color,

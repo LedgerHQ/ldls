@@ -1,13 +1,8 @@
 import { View } from 'react-native';
-import { resolveTheme } from '..';
+import { resolveTheme, SAMPLE_BG_PRIMARY_COLOR } from '..';
 
 export const BorderRadiusTable = () => {
   const borderRadius = resolveTheme().borderRadius;
-
-  if (!borderRadius) {
-    return <div>Oops, no border radius tokens found</div>;
-  }
-
   const cells = Object.entries(borderRadius);
 
   return (
@@ -24,12 +19,12 @@ export const BorderRadiusTable = () => {
         {cells.map(([key, value], i) => (
           <tr key={i}>
             <td>
-              <View style={{ alignItems: 'center' }}>
+              <View style={{ paddingVertical: 12 }}>
                 <View
                   style={{
-                    width: 78,
-                    height: 52,
-                    backgroundColor: '#e1e1e1',
+                    width: 64,
+                    height: 64,
+                    backgroundColor: SAMPLE_BG_PRIMARY_COLOR,
                     borderRadius: value,
                   }}
                 />

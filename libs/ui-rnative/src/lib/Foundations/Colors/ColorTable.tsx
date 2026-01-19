@@ -1,10 +1,5 @@
-import {
-  ledgerLiveThemes,
-  enterpriseThemes,
-  websitesThemes,
-} from '@ledgerhq/lumen-design-core';
 import { Text, View } from 'react-native';
-import { getGlobals, resolveTheme } from '..';
+import { resolveTheme } from '..';
 
 type ColorTableProps = {
   category: 'bg' | 'text' | 'border' | 'crypto' | 'discover';
@@ -12,10 +7,6 @@ type ColorTableProps = {
 
 export const ColorTable = ({ category }: ColorTableProps) => {
   const colors = resolveTheme().colors[category];
-
-  if (!colors) {
-    return <div>Oops, no colors found for category: {category}</div>;
-  }
 
   const cells = Object.entries(colors).filter(([, v]) => {
     return !(category === 'crypto' && v.endsWith('00')); // filter out "[crypto] 0" tokens
@@ -106,13 +97,11 @@ export const ColorTable = ({ category }: ColorTableProps) => {
       <tbody>
         {cells.map(([key, value], i) => (
           <tr key={i}>
+            <td>{renderSample(value)}</td>
             <td>
-              <View style={{ alignItems: 'center' }}>
-                {renderSample(value)}
-              </View>
-            </td>
-            <td>
-              <strong>{formatTokenName(key)}</strong>
+              <Text style={{ fontWeight: 'bold', fontSize: 14 }}>
+                {formatTokenName(key)}
+              </Text>
             </td>
             <td>
               <code>{`theme.colors.${category}.${key}`}</code>
