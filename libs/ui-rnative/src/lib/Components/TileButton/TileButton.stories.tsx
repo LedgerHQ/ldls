@@ -136,3 +136,15 @@ export const WidthShowcase: Story = {
     </View>
   ),
 };
+
+export const TruncationShowcase: Story = {
+  render: (args) => (
+    <View style={{ flexDirection: 'row', gap: 16 }}>
+      <View style={{ width: 80 }}>
+        <TileButton icon={Settings} isFull onPress={args.onPress}>
+          Very long label text
+        </TileButton>
+      </View>
+    </View>
+  ),
+};

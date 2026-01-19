@@ -44,6 +44,12 @@ TileButton works with any [icon](/docs/symbols-icons--docs) from the design syst
 
 <Canvas of={TileButtonStories.IconsShowcase} />
 
+### Text Truncation
+
+Labels are truncated to 2 lines by default. Use the `numberOfLines` prop to customize:
+
+<Canvas of={TileButtonStories.TruncationShowcase} />
+
 ## Responsive Layout
 
 TileButton adapts to its content by default. Use the `isFull` prop for full-width buttons:
@@ -58,8 +64,6 @@ TileButton is ideal for grid-based action menus:
 
 ## Accessibility
 
-- Uses `accessibilityRole='button'` for proper screen reader support
-- Disabled state properly communicated via `accessibilityState`
 - Supports all standard React Native accessibility props
 - Touch targets meet minimum size requirements
 
@@ -111,6 +115,16 @@ Use the `isFull` prop to make the button take the full width of its container:
 ```tsx
 <TileButton icon={Settings} isFull onPress={() => {}}>
   Full Width
+</TileButton>
+```
+
+## Text Truncation
+
+Labels are truncated to 2 lines by default. Use the `numberOfLines` prop to customize:
+
+```tsx
+<TileButton icon={Settings} numberOfLines={1} onPress={() => {}}>
+  Single line truncation
 </TileButton>
 ```
 

@@ -86,6 +86,7 @@ export const TileButton = React.forwardRef<
       children,
       disabled = false,
       isFull = false,
+      numberOfLines = 2,
       ...props
     },
     ref,
@@ -108,6 +109,7 @@ export const TileButton = React.forwardRef<
             pressed={pressed}
             isFull={isFull}
             IconProp={IconProp}
+            numberOfLines={numberOfLines}
           >
             {children}
           </TileButtonContent>
@@ -122,6 +124,7 @@ type TileButtonContentProps = PropsWithChildren<{
   pressed: boolean;
   isFull: boolean;
   IconProp: TileButtonProps['icon'];
+  numberOfLines?: number;
 }>;
 
 const TileButtonContent: FC<TileButtonContentProps> = ({
@@ -129,6 +132,7 @@ const TileButtonContent: FC<TileButtonContentProps> = ({
   pressed,
   isFull,
   IconProp,
+  numberOfLines,
   children,
 }) => {
   const styles = useStyles({ disabled, pressed, isFull });
@@ -137,7 +141,9 @@ const TileButtonContent: FC<TileButtonContentProps> = ({
     <View style={styles.container} testID='tile-button-content'>
       <IconProp size={ICON_SIZE} style={styles.icon} />
       {isTextChildren(children) ? (
-        <Text style={styles.label}>{children}</Text>
+        <Text style={styles.label} numberOfLines={numberOfLines}>
+          {children}
+        </Text>
       ) : (
         children
       )}
