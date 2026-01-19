@@ -36,10 +36,15 @@ const tileVariants = {
           true: 'cursor-default',
           false: 'cursor-pointer',
         },
+        centered: {
+          true: 'h-full justify-center',
+          false: '',
+        },
       },
       defaultVariants: {
         appearance: 'no-background',
         disabled: false,
+        centered: false,
       },
     },
   ),
@@ -80,6 +85,8 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(
       secondaryAction,
       appearance = 'no-background',
       disabled = false,
+      centered = false,
+      'aria-label': ariaLabel,
       children,
       style,
       ...props
@@ -102,6 +109,7 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(
             className={tileVariants.inner({
               appearance,
               disabled,
+              centered,
             })}
           >
             {children}
