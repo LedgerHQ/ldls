@@ -22,7 +22,7 @@ const tileVariants = {
   ]),
   inner: cva(
     [
-      'flex w-full flex-col items-center px-8 py-12',
+      'flex w-full flex-col items-center gap-8 px-8 py-12',
       'rounded-md focus-visible:outline-2 focus-visible:outline-focus',
     ],
     {
