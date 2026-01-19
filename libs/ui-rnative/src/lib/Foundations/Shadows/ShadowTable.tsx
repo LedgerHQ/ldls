@@ -1,0 +1,69 @@
+import { View } from 'react-native';
+import { resolveTheme } from '..';
+
+export const ShadowTable = () => {
+  const shadows = resolveTheme().shadows;
+
+  if (!shadows) {
+    return <div>Oops, no shadows found</div>;
+  }
+
+  const cells = Object.entries(shadows);
+
+  const formatShadow = (shadowArray: any[]): string => {
+    return shadowArray
+      .map(
+        (shadow) =>
+          `${shadow.offsetX}px ${shadow.offsetY}px ${shadow.blurRadius}px ${shadow.spreadDistance}px ${shadow.color}`,
+      )
+      .join(', ');
+  };
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Sample</th>
+          <th>Name</th>
+          <th>Theme object</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {cells.map(([key, value], i) => (
+          <tr key={i}>
+            <td>
+              <View style={{ alignItems: 'center', paddingVertical: 12 }}>
+                <View
+                  style={{
+                    width: 78,
+                    height: 52,
+                    backgroundColor: '#fff',
+                    borderRadius: 8,
+                    shadowColor: value[0].color,
+                    shadowOffset: {
+                      width: value[0].offsetX,
+                      height: value[0].offsetY,
+                    },
+                    shadowOpacity: 1,
+                    shadowRadius: value[0].blurRadius,
+                    elevation: 8,
+                  }}
+                />
+              </View>
+            </td>
+            <td>
+              <strong>{key}</strong>
+            </td>
+            <td>
+              <code>{`theme.shadows.${key}`}</code>
+            </td>
+            <td>
+              <code style={{ fontSize: '11px' }}>{formatShadow(value)}</code>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};

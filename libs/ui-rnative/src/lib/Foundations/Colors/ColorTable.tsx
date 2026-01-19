@@ -4,32 +4,14 @@ import {
   websitesThemes,
 } from '@ledgerhq/lumen-design-core';
 import { Text, View } from 'react-native';
+import { getGlobals, resolveTheme } from '..';
 
 type ColorTableProps = {
   category: 'bg' | 'text' | 'border' | 'crypto' | 'discover';
 };
 
-function getGlobals() {
-  const params = new URLSearchParams(window.location.search).get('globals');
-
-  return Object.fromEntries(
-    params?.split(';').map((param) => param.split(':')) ?? [],
-  );
-}
-
 export const ColorTable = ({ category }: ColorTableProps) => {
-  const { brand, mode } = getGlobals() as {
-    brand?: 'ledger-live' | 'enterprise' | 'websites';
-    mode?: 'light' | 'dark';
-  };
-
-  const theme = {
-    'ledger-live': ledgerLiveThemes,
-    enterprise: enterpriseThemes,
-    websites: websitesThemes,
-  }[brand || 'ledger-live'];
-
-  const colors = theme[mode || 'light'].colors[category];
+  const colors = resolveTheme().colors[category];
 
   if (!colors) {
     return <div>Oops, no colors found for category: {category}</div>;
