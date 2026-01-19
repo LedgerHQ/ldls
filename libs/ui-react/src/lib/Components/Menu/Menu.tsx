@@ -124,7 +124,6 @@ const MenuContent = React.forwardRef<
        */
       onClick={(e) => {
         e.stopPropagation();
-        e.preventDefault();
         props.onClick?.(e);
       }}
       align={align}
