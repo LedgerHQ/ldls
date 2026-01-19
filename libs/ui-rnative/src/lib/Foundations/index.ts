@@ -4,6 +4,9 @@ import {
   websitesThemes,
 } from '@ledgerhq/lumen-design-core';
 
+export const SAMPLE_CAP = 100;
+export const SAMPLE_BG_PRIMARY_COLOR = '#6490f1';
+
 function getGlobals() {
   const params = new URLSearchParams(window.location.search).get('globals');
 

@@ -1,26 +1,28 @@
-import { View } from 'react-native';
-import { resolveTheme } from '..';
+import { Text, View } from 'react-native';
+import { resolveTheme, SAMPLE_BG_PRIMARY_COLOR } from '..';
 
 export const SizeTable = () => {
   const sizes = resolveTheme().sizes;
-
-  const cells = Object.entries(sizes).filter(([, size]) => Number(size) < 100);
+  const cells = Object.entries(sizes);
 
   const renderSample = (value: number | string) => {
     const numericValue = value === '100%' ? 100 : Number(value);
-    const displaySize = Math.min(numericValue, 64);
+
+    if (numericValue >= 100) {
+      return (
+        <Text style={{ fontSize: 10, color: 'grey' }}>Too large to show!</Text>
+      );
+    }
 
     return (
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <View
-          style={{
-            width: numericValue,
-            height: numericValue,
-            backgroundColor: '#6490F1',
-            borderRadius: 4,
-          }}
-        />
-      </View>
+      <View
+        style={{
+          width: numericValue,
+          height: numericValue,
+          backgroundColor: SAMPLE_BG_PRIMARY_COLOR,
+          borderRadius: 4,
+        }}
+      />
     );
   };
 
@@ -28,20 +30,15 @@ export const SizeTable = () => {
     <table>
       <thead>
         <tr>
-          <th>Sample</th>
           <th>Name</th>
           <th>Theme object</th>
           <th>Value</th>
+          <th>Sample</th>
         </tr>
       </thead>
       <tbody>
         {cells.map(([key, value], i) => (
           <tr key={i}>
-            <td>
-              <View style={{ alignItems: 'baseline' }}>
-                {renderSample(value)}
-              </View>
-            </td>
             <td>
               <strong>{key}</strong>
             </td>
@@ -49,8 +46,9 @@ export const SizeTable = () => {
               <code>{`theme.sizes.${key}`}</code>
             </td>
             <td>
-              <code>{`${value}px`}</code>
+              <code>{key === 'full' ? '100%' : `${value}px`}</code>
             </td>
+            <td>{renderSample(value)}</td>
           </tr>
         ))}
       </tbody>
