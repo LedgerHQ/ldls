@@ -1,0 +1,85 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AmountDisplayStories from './AmountDisplay.stories';
+import { AmountDisplay } from './AmountDisplay';
+import {
+  CustomTabs,
+  Tab,
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/components';
+
+<Meta title='Components/AmountDisplay' of={AmountDisplayStories} />
+
+# AmountDisplay
+
+<CustomTabs>
+  <Tab label="Overview ">
+
+## Introduction
+
+A placeholder component for displaying amounts.
+
+> View in [Figma](https://www.figma.com/design/TODO).
+
+## Anatomy
+
+<Canvas of={AmountDisplayStories.Base} />
+
+- **Value**: The amount to display
+
+## Properties
+
+### Overview
+
+<Canvas of={AmountDisplayStories.Base} />
+<Controls of={AmountDisplayStories.Base} />
+
+## Accessibility
+
+Placeholder for accessibility information.
+
+  </Tab>
+
+  <Tab label="Implementation ">
+
+## Installation
+
+```bash
+npm install @ledgerhq/lumen-ui-react @ledgerhq/lumen-design-core
+```
+
+## Basic Usage
+
+```tsx
+import { AmountDisplay } from '@ledgerhq/lumen-ui-react';
+
+function App() {
+  return <AmountDisplay value='1234.56' />;
+}
+```
+
+## Do's and Don'ts
+
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem title='Use proper formatting' description='Placeholder do item'>
+
+```tsx
+<AmountDisplay value='1234.56' />
+```
+
+    </DoBlockItem>
+    <DontBlockItem title="Don't use invalid values" description='Placeholder dont item'>
+
+```tsx
+<AmountDisplay value='invalid' />
+```
+
+    </DontBlockItem>
+  </DoVsDontRow>
+</div>
+
+  </Tab>
+</CustomTabs>
+
