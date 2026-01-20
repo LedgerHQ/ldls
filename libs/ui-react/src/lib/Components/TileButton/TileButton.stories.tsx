@@ -68,11 +68,19 @@ export const DisabledShowcase: Story = {
 
 export const IconsShowcase: Story = {
   render: () => (
-    <div className='flex gap-16'>
-      <TileButton icon={Settings}>Settings</TileButton>
-      <TileButton icon={User}>Profile</TileButton>
-      <TileButton icon={Plus}>Add</TileButton>
-      <TileButton icon={Apps}>Apps</TileButton>
+    <div className='grid grid-cols-4 gap-16'>
+      <TileButton icon={Settings} isFull>
+        Settings
+      </TileButton>
+      <TileButton icon={User} isFull>
+        Profile
+      </TileButton>
+      <TileButton icon={Plus} isFull>
+        Add
+      </TileButton>
+      <TileButton icon={Apps} isFull>
+        Apps
+      </TileButton>
     </div>
   ),
 };
