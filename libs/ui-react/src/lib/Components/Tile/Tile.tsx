@@ -86,7 +86,6 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(
       appearance = 'no-background',
       disabled = false,
       centered = false,
-      'aria-label': ariaLabel,
       children,
       style,
       ...props
