@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Settings, Plus, User, Apps, MoreVertical } from '../../Symbols';
-import { Menu, MenuTrigger, MenuContent, MenuItem } from '../Menu/Menu';
+import {
+  Settings,
+  Plus,
+  User,
+  Apps,
+  MoreVertical,
+  ChevronRight,
+} from '../../Symbols';
 import { Tag } from '../Tag/Tag';
 import {
   Tile,
@@ -34,6 +40,16 @@ const meta: Meta<typeof Tile> = {
     onClick: {
       action: 'clicked',
     },
+    appearance: {
+      control: 'select',
+      options: ['no-background', 'card'],
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    centered: {
+      control: 'boolean',
+    },
   },
 };
 
@@ -41,27 +57,17 @@ export default meta;
 type Story = StoryObj<typeof Tile>;
 
 export const Base: Story = {
-  render: () => (
-    <Tile
-      appearance='no-background'
-      className='w-112'
-      onClick={() => console.log('tile clicked')}
-      secondaryAction={
-        <Menu>
-          <MenuTrigger asChild>
-            <TileSecondaryAction
-              icon={MoreVertical}
-              onClick={() => console.log('secondary action clicked')}
-            />
-          </MenuTrigger>
-          <MenuContent>
-            <MenuItem>Profile</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <MenuItem>Log out</MenuItem>
-          </MenuContent>
-        </Menu>
-      }
-    >
+  args: {
+    appearance: 'no-background',
+    disabled: false,
+    centered: false,
+  },
+  render: (args) => (
+    <Tile {...args} className='w-112'>
+      <TileSecondaryAction
+        icon={MoreVertical}
+        onClick={() => console.log('secondary action clicked')}
+      />
       <TileSpot appearance='icon' icon={Settings} />
       <TileContent>
         <TileTitle>Item with Spot and Description</TileTitle>
@@ -289,6 +295,43 @@ export const AppearanceShowcase: Story = {
           </Tile>
         </div>
       </div>
+    </div>
+  ),
+};
+
+export const CenteredShowcase: Story = {
+  render: () => (
+    <div className='flex gap-8'>
+      <Tile appearance='card' className='w-128'>
+        <TileSpot appearance='icon' icon={Apps} />
+        <TileContent>
+          <TileTitle>Title</TileTitle>
+          <TileDescription>Description</TileDescription>
+        </TileContent>
+        <Tag label='Label' appearance='base' />
+      </Tile>
+      <Tile appearance='card' className='w-128'>
+        <TileSpot appearance='icon' icon={Apps} />
+        <TileContent>
+          <TileTitle>Title</TileTitle>
+          <TileDescription>Description</TileDescription>
+        </TileContent>
+        <Tag label='Label' appearance='base' />
+      </Tile>
+      <Tile appearance='card' className='w-128'>
+        <TileSpot appearance='icon' icon={Apps} />
+        <TileContent>
+          <TileTitle>Title</TileTitle>
+          <TileDescription>Description</TileDescription>
+        </TileContent>
+        <Tag label='Label' appearance='base' />
+      </Tile>
+      <Tile appearance='card' centered className='w-128'>
+        <TileSpot appearance='icon' icon={ChevronRight} />
+        <TileContent>
+          <TileTitle>Show more</TileTitle>
+        </TileContent>
+      </Tile>
     </div>
   ),
 };
