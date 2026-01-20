@@ -16,7 +16,10 @@ const createThemeDecorator = (
     }
 
     return (
-      <ThemeProvider defaultMode={context.globals.mode as ThemeMode}>
+      <ThemeProvider
+        defaultMode={context.globals.mode as ThemeMode}
+        locale={context.globals.locale}
+      >
         <Story />
       </ThemeProvider>
     );

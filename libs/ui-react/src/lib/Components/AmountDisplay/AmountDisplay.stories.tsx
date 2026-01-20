@@ -22,13 +22,14 @@ type Story = StoryObj<typeof AmountDisplay>;
 
 export const Base: Story = {
   args: {
-    value: '1234.56',
+    value: 1234.56,
+    currencyText: 'EUR',
   },
   parameters: {
     docs: {
       source: {
         code: `
-<AmountDisplay value="1234.56" />
+<AmountDisplay value={1234.56} />
         `.trim(),
       },
     },
