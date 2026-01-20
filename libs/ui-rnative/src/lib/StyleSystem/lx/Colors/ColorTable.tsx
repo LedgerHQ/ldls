@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import { resolveTheme } from '..';
+import { resolveTheme } from '../';
 
 type ColorTableProps = {
   category: 'bg' | 'text' | 'border' | 'crypto' | 'discover';

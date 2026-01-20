@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { resolveTheme } from '..';
+import { resolveTheme } from '../';
 
 export const ShadowTable = () => {
   const shadows = resolveTheme().shadows;

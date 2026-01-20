@@ -1,9 +1,14 @@
 import { View } from 'react-native';
-import { resolveTheme, SAMPLE_BG_PRIMARY_COLOR } from '..';
+import { resolveTheme, getSampleAccentColor } from '..';
 
 export const SpacingTable = () => {
   const spacings = resolveTheme().spacings;
   const cells = Object.entries(spacings);
+  const accentColor = getSampleAccentColor();
+
+  const formatCSSToken = (key: string): string => {
+    return `--spacing-${key.replace('s', '')}`;
+  };
 
   return (
     <table>
@@ -19,7 +24,7 @@ export const SpacingTable = () => {
         {cells.map(([key, value], i) => (
           <tr key={i}>
             <td>
-              <strong>{key}</strong>
+              <code>{formatCSSToken(key)}</code>
             </td>
             <td>
               <code>{`theme.spacings.${key}`}</code>
@@ -32,7 +37,7 @@ export const SpacingTable = () => {
                 style={{
                   width: value,
                   height: 16,
-                  backgroundColor: SAMPLE_BG_PRIMARY_COLOR,
+                  backgroundColor: accentColor,
                   borderRadius: 2,
                 }}
               />

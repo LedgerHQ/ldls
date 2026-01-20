@@ -1,13 +1,13 @@
 import { View } from 'react-native';
-import { resolveTheme, getSampleAccentColor } from '..';
+import { resolveTheme, getSampleAccentColor } from '../';
 
-export const BorderWidthTable = () => {
-  const borderWidth = resolveTheme().borderWidth;
-  const cells = Object.entries(borderWidth);
+export const SpacingTable = () => {
+  const spacings = resolveTheme().spacings;
+  const cells = Object.entries(spacings);
   const accentColor = getSampleAccentColor();
 
   const formatCSSToken = (key: string): string => {
-    return `--stroke-${key}`;
+    return `--spacing-${key.replace('s', '')}`;
   };
 
   return (
@@ -27,7 +27,7 @@ export const BorderWidthTable = () => {
               <code>{formatCSSToken(key)}</code>
             </td>
             <td>
-              <code>{`theme.borderWidth.${key}`}</code>
+              <code>{`theme.spacings.${key}`}</code>
             </td>
             <td>
               <code>{`${value}px`}</code>
@@ -35,12 +35,10 @@ export const BorderWidthTable = () => {
             <td>
               <View
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderWidth: value,
-                  borderColor: accentColor,
-                  borderRadius: 8,
-                  backgroundColor: 'transparent',
+                  width: value,
+                  height: 16,
+                  backgroundColor: accentColor,
+                  borderRadius: 2,
                 }}
               />
             </td>

@@ -6,8 +6,12 @@ import {
 
 export const SAMPLE_CAP = 100;
 
+/**
+ * Returns the accent color for the current theme
+ */
 export function getSampleAccentColor(): string {
-  return resolveTheme().colors.bg.accent;
+  const theme = resolveTheme();
+  return theme.colors.bg.accent;
 }
 
 function getGlobals() {

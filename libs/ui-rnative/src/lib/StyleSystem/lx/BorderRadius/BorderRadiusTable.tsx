@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import { resolveTheme, getSampleAccentColor } from '..';
+import { resolveTheme, getSampleAccentColor } from '../';
 
 export const BorderRadiusTable = () => {
   const borderRadius = resolveTheme().borderRadius;

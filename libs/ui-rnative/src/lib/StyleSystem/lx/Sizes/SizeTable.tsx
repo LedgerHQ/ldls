@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import { resolveTheme, getSampleAccentColor } from '..';
+import { resolveTheme, getSampleAccentColor } from '../';
 
 export const SizeTable = () => {
   const sizes = resolveTheme().sizes;
