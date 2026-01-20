@@ -88,19 +88,18 @@ export const ColorTable = ({ category }: ColorTableProps) => {
   };
 
   return (
-    <table>
+    <table style={{ width: '100%' }}>
       <thead>
         <tr>
-          <th>Sample</th>
           <th>Name</th>
           <th>Theme object</th>
           <th>Hex</th>
+          <th>Sample</th>
         </tr>
       </thead>
       <tbody>
         {cells.map(([key, value], i) => (
           <tr key={i}>
-            <td>{renderSample(value)}</td>
             <td>
               <code>{formatCSSToken(key, category)}</code>
             </td>
@@ -110,6 +109,7 @@ export const ColorTable = ({ category }: ColorTableProps) => {
             <td>
               <code>{value}</code>
             </td>
+            <td>{renderSample(value)}</td>
           </tr>
         ))}
       </tbody>

@@ -11,7 +11,7 @@ export const SpacingTable = () => {
   };
 
   return (
-    <table>
+    <table style={{ width: '100%' }}>
       <thead>
         <tr>
           <th>Name</th>

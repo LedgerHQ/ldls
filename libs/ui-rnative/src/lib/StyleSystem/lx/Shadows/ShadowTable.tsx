@@ -20,18 +20,27 @@ export const ShadowTable = () => {
   };
 
   return (
-    <table>
+    <table style={{ width: '100%' }}>
       <thead>
         <tr>
-          <th>Sample</th>
           <th>Name</th>
           <th>Theme object</th>
           <th>Value</th>
+          <th>Sample</th>
         </tr>
       </thead>
       <tbody>
         {cells.map(([key, value], i) => (
           <tr key={i}>
+            <td>
+              <code>{formatCSSToken(key)}</code>
+            </td>
+            <td>
+              <code>{`theme.shadows.${key}`}</code>
+            </td>
+            <td>
+              <code style={{ fontSize: '11px' }}>{formatShadow(value)}</code>
+            </td>
             <td>
               <View style={{ paddingVertical: 12 }}>
                 <View
@@ -51,15 +60,6 @@ export const ShadowTable = () => {
                   }}
                 />
               </View>
-            </td>
-            <td>
-              <code>{formatCSSToken(key)}</code>
-            </td>
-            <td>
-              <code>{`theme.shadows.${key}`}</code>
-            </td>
-            <td>
-              <code style={{ fontSize: '11px' }}>{formatShadow(value)}</code>
             </td>
           </tr>
         ))}
