@@ -8,21 +8,17 @@ export const AmountDisplay = ({
 }: AmountDisplayProps): JSX.Element => {
   const parts = formatter(value);
 
-  const [integerPart, decimalPart] = parts.formattedValue.split(
-    parts.decimalSeparator,
-  );
-
   return (
     <div className={className}>
       <span className='heading-1-semi-bold text-base' {...props}>
-        {parts.currencyPosition === 'left' && (
+        {parts.currencyPosition === 'start' && (
           <span className='mr-4'>{parts.currencyText}</span>
         )}
-        <span>{integerPart}</span>
+        <span>{parts.integerPart}</span>
       </span>
       <span className='heading-2-semi-bold text-muted'>
-        <span>{parts.decimalSeparator + decimalPart}</span>
-        {parts.currencyPosition === 'right' && (
+        <span>{parts.decimalSeparator + parts.decimalPart}</span>
+        {parts.currencyPosition === 'end' && (
           <span className='ml-4'>{parts.currencyText}</span>
         )}
       </span>

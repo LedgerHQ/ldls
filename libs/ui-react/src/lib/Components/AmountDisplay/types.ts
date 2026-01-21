@@ -1,18 +1,20 @@
 export type FormattedValue = {
-  formattedValue: string;
-  /**
-   * The character which separates integer and fractional parts.
-   */
-  decimalSeparator: '.' | ',';
+  integerPart: string;
+  decimalPart: string;
   /**
    * The currency text (e.g. USD, EUR)
    */
   currencyText: string;
   /**
-   * Position of the currency text.
-   * @default 'left'
+   * The character which separates integer and fractional parts.
+   * @default '.''
    */
-  currencyPosition?: 'left' | 'right';
+  decimalSeparator?: '.' | ',';
+  /**
+   * Position of the currency text.
+   * @default 'start'
+   */
+  currencyPosition?: 'start' | 'end';
 };
 
 export type AmountDisplayProps = {
