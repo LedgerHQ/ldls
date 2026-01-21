@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/react-vite';
-import { Languages, DEFAULT_LANGUAGE } from '../src/i18n/languages';
 import { withBrandDecorator } from './Decorator';
 import '../src/styles.css';
 import './font.css';
@@ -26,16 +25,6 @@ const preview: Preview = {
         icon: 'sun',
         title: 'Mode',
         items: ['light', 'dark'],
-        dynamicTitle: true,
-      },
-    },
-    locale: {
-      name: 'Locale',
-      defaultValue: DEFAULT_LANGUAGE,
-      toolbar: {
-        icon: 'globe',
-        title: 'Locale',
-        items: Object.keys(Languages), // TODO: find human readable mappings for this
         dynamicTitle: true,
       },
     },

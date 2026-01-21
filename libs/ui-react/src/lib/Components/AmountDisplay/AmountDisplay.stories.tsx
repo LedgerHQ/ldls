@@ -23,7 +23,12 @@ type Story = StoryObj<typeof AmountDisplay>;
 export const Base: Story = {
   args: {
     value: 1234.56,
-    currencyText: 'EUR',
+    formatter: (value) => ({
+      formattedValue: `${value.toFixed(2)}`,
+      decimalSeparator: '.',
+      currencyText: '€',
+      currencyPosition: 'left',
+    }),
   },
   parameters: {
     docs: {
