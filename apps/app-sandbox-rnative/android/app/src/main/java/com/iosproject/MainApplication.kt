@@ -1,4 +1,4 @@
-package com.reactnative
+package com.iosproject
 
 import android.app.Application
 import com.facebook.react.PackageList
@@ -22,7 +22,7 @@ class MainApplication : Application(), ReactApplication {
               // add(MyReactNativePackage())
             }
 
-        override fun getJSMainModuleName(): String = "src/main"
+        override fun getJSMainModuleName(): String = "index"
 
         override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
