@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
+import { Eye, EyeCross } from '../../Symbols';
+import { IconButton } from '../IconButton';
 import { AmountDisplay } from './AmountDisplay';
 import { type FormattedValue } from './types';
 
@@ -86,5 +89,35 @@ export const Base: Story = {
         `.trim(),
       },
     },
+  },
+};
+
+export const WithHideButton: Story = {
+  render: () => {
+    const [hidden, setHidden] = useState(false);
+
+    const hiddenFormatter = (): FormattedValue => {
+      return {
+        integerPart: '••••',
+        currencyText: '$',
+        currencyPosition: 'start',
+      };
+    };
+
+    return (
+      <div className='flex flex-row place-items-center gap-12'>
+        <AmountDisplay
+          formatter={hidden ? hiddenFormatter : usdFormatter}
+          value={1234.56}
+        />
+        <IconButton
+          appearance='transparent'
+          size='sm'
+          icon={hidden ? EyeCross : Eye}
+          aria-label={hidden ? 'Unhide amount' : 'Hide amount'}
+          onClick={() => setHidden((v) => !v)}
+        />
+      </div>
+    );
   },
 };

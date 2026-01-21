@@ -1,13 +1,12 @@
 export type FormattedValue = {
   integerPart: string;
-  decimalPart: string;
+  decimalPart?: string;
   /**
    * The currency text (e.g. USD, EUR)
    */
   currencyText: string;
   /**
    * The character which separates integer and fractional parts.
-   * @default '.''
    */
   decimalSeparator?: '.' | ',';
   /**

@@ -17,7 +17,9 @@ export const AmountDisplay = ({
         <span>{parts.integerPart}</span>
       </span>
       <span className='heading-2-semi-bold text-muted'>
-        <span>{parts.decimalSeparator + parts.decimalPart}</span>
+        {parts.decimalPart && parts.decimalSeparator && (
+          <span>{parts.decimalSeparator + parts.decimalPart}</span>
+        )}
         {parts.currencyPosition === 'end' && (
           <span className='ml-4'>{parts.currencyText}</span>
         )}
