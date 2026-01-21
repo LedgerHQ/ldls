@@ -2,7 +2,7 @@ import {
   createSafeContext,
   isTextChildren,
 } from '@ledgerhq/lumen-utils-shared';
-import React, { forwardRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useStyleSheet } from '../../../styles';
 import { Spot } from '../Spot';
@@ -109,45 +109,42 @@ const useRootStyles = ({
  *   <Tag label="Active" />
  * </Tile>
  */
-export const Tile = forwardRef<React.ElementRef<typeof Pressable>, TileProps>(
-  (
-    {
-      lx = {},
-      style,
-      appearance = 'no-background',
-      disabled = false,
-      centered = false,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <TileProvider value={{ disabled }}>
-        <Pressable
-          ref={ref}
-          lx={lx}
-          style={StyleSheet.flatten([{ width: '100%' }, style])}
-          disabled={disabled}
-          accessibilityRole='button'
-          accessibilityState={{ disabled }}
-          {...props}
-        >
-          {({ pressed }) => (
-            <TilePressableContent
-              appearance={appearance}
-              disabled={disabled}
-              pressed={pressed}
-              centered={centered}
-            >
-              {children}
-            </TilePressableContent>
-          )}
-        </Pressable>
-      </TileProvider>
-    );
-  },
-);
+export const Tile = ({
+  lx = {},
+  style,
+  appearance = 'no-background',
+  disabled = false,
+  centered = false,
+  children,
+  ref,
+  ...props
+}: TileProps) => {
+  return (
+    <TileProvider value={{ disabled }}>
+      <Pressable
+        ref={ref}
+        lx={lx}
+        style={StyleSheet.flatten([{ width: '100%' }, style])}
+        disabled={disabled}
+        accessibilityRole='button'
+        accessibilityState={{ disabled }}
+        {...props}
+      >
+        {({ pressed }) => (
+          <TilePressableContent
+            appearance={appearance}
+            disabled={disabled}
+            pressed={pressed}
+            centered={centered}
+          >
+            {children}
+          </TilePressableContent>
+        )}
+      </Pressable>
+    </TileProvider>
+  );
+};
+
 Tile.displayName = 'Tile';
 
 const TilePressableContent = ({
