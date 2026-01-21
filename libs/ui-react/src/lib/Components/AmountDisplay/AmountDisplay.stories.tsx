@@ -93,7 +93,7 @@ export const Base: Story = {
 };
 
 export const WithHideButton: Story = {
-  render: () => {
+  render: (props) => {
     const [hidden, setHidden] = useState(false);
 
     const hiddenFormatter = (): FormattedValue => {
@@ -107,7 +107,7 @@ export const WithHideButton: Story = {
     return (
       <div className='flex flex-row place-items-center gap-12'>
         <AmountDisplay
-          formatter={hidden ? hiddenFormatter : usdFormatter}
+          formatter={hidden ? hiddenFormatter : props.formatter}
           value={1234.56}
         />
         <IconButton
