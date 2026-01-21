@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorTable } from './ColorTable';
+
+<Meta title='Style System/Theme/Colors' />
+
+# 🎨 Colors
+
+Our color system relies on semantic tokens, simplifying design decisions and enabling dark theme support.
+
+## Background Colors
+
+Background colors are accessed through the `backgroundColor` prop in the `lx` style object.
+
+<ColorTable category="bg" />
+
+## Text Colors
+
+Text colors are accessed through the `color` prop in the `lx` style object.
+
+<ColorTable category="text" />
+
+## Border Colors
+
+Border colors are accessed through the `borderColor` prop in the `lx` style object.
+
+<ColorTable category="border" />
+
+## Crypto Colors
+
+Cryptocurrency brand colors are accessed through `theme.colors.crypto.*`. These colors are not available directly in the `lx` prop but can be used in custom styles.
+
+<ColorTable category="crypto" />
+
+## Discovery Colors
+
+Discovery service and partner brand colors are accessed through `theme.colors.discover.*`. These colors are not available directly in the `lx` prop but can be used in custom styles.
+
+<ColorTable category="discover" />
