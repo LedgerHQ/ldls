@@ -1,4 +1,10 @@
-import * as React from 'react';
+import {
+  ComponentRef,
+  isValidElement,
+  cloneElement,
+  Ref,
+  ComponentPropsWithoutRef,
+} from 'react';
 import {
   View,
   Pressable,
@@ -14,101 +20,101 @@ import {
   ImageStyle as RNImageStyle,
 } from 'react-native';
 
-const SlotPressable = React.forwardRef<
-  React.ElementRef<typeof Pressable>,
-  PressableProps
->((props, forwardedRef) => {
+const SlotPressable = ({
+  ref: forwardedRef,
+  ...props
+}: PressableProps & { ref?: Ref<ComponentRef<typeof Pressable>> }) => {
   const { children, ...pressableSlotProps } = props;
 
-  if (!React.isValidElement(children)) {
+  if (!isValidElement(children)) {
     console.error('Slot.Pressable - Invalid asChild element', children);
     return null;
   }
 
-  return React.cloneElement<
-    React.ComponentPropsWithoutRef<typeof Pressable>,
-    React.ElementRef<typeof Pressable>
+  return cloneElement<
+    ComponentPropsWithoutRef<typeof Pressable>,
+    ComponentRef<typeof Pressable>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(pressableSlotProps, children.props as AnyProps),
     ref: forwardedRef
       ? composeRefs(forwardedRef, (children as any).ref)
       : (children as any).ref,
   });
-});
+};
 
 SlotPressable.displayName = 'SlotPressable';
 
-const SlotView = React.forwardRef<React.ElementRef<typeof View>, ViewProps>(
-  (props, forwardedRef) => {
-    const { children, ...viewSlotProps } = props;
+const SlotView = ({
+  ref: forwardedRef,
+  ...props
+}: ViewProps & { ref?: Ref<ComponentRef<typeof View>> }) => {
+  const { children, ...viewSlotProps } = props;
 
-    if (!React.isValidElement(children)) {
-      console.error('Slot.View - Invalid asChild element', children);
-      return null;
-    }
+  if (!isValidElement(children)) {
+    console.error('Slot.View - Invalid asChild element', children);
+    return null;
+  }
 
-    return React.cloneElement<
-      React.ComponentPropsWithoutRef<typeof View>,
-      React.ElementRef<typeof View>
-    >(isTextChildren(children) ? <></> : children, {
-      ...mergeProps(viewSlotProps, children.props as AnyProps),
-      ref: forwardedRef
-        ? composeRefs(forwardedRef, (children as any).ref)
-        : (children as any).ref,
-    });
-  },
-);
+  return cloneElement<
+    React.ComponentPropsWithoutRef<typeof View>,
+    ComponentRef<typeof View>
+  >(isTextChildren(children) ? <></> : children, {
+    ...mergeProps(viewSlotProps, children.props as AnyProps),
+    ref: forwardedRef
+      ? composeRefs(forwardedRef, (children as any).ref)
+      : (children as any).ref,
+  });
+};
 
 SlotView.displayName = 'SlotView';
 
-const SlotText = React.forwardRef<React.ElementRef<typeof Text>, TextProps>(
-  (props, forwardedRef) => {
-    const { children, ...textSlotProps } = props;
+const SlotText = ({
+  ref: forwardedRef,
+  ...props
+}: TextProps & { ref?: Ref<ComponentRef<typeof Text>> }) => {
+  const { children, ...textSlotProps } = props;
 
-    if (!React.isValidElement(children)) {
-      console.error('Slot.Text - Invalid asChild element', children);
-      return null;
-    }
+  if (!isValidElement(children)) {
+    console.error('Slot.Text - Invalid asChild element', children);
+    return null;
+  }
 
-    return React.cloneElement<
-      React.ComponentPropsWithoutRef<typeof Text>,
-      React.ElementRef<typeof Text>
-    >(isTextChildren(children) ? <></> : children, {
-      ...mergeProps(textSlotProps, children.props as AnyProps),
-      ref: forwardedRef
-        ? composeRefs(forwardedRef, (children as any).ref)
-        : (children as any).ref,
-    });
-  },
-);
+  return cloneElement<
+    React.ComponentPropsWithoutRef<typeof Text>,
+    ComponentRef<typeof Text>
+  >(isTextChildren(children) ? <></> : children, {
+    ...mergeProps(textSlotProps, children.props as AnyProps),
+    ref: forwardedRef
+      ? composeRefs(forwardedRef, (children as any).ref)
+      : (children as any).ref,
+  });
+};
 
 SlotText.displayName = 'SlotText';
 
 type SlotImageSlotProps = ImageProps & {
   children?: React.ReactNode;
+  ref?: Ref<ComponentRef<typeof Image>>;
 };
 
-const SlotImage = React.forwardRef<
-  React.ElementRef<typeof Image>,
-  SlotImageSlotProps
->((props, forwardedRef) => {
+const SlotImage = ({ ref: forwardedRef, ...props }: SlotImageSlotProps) => {
   const { children, ...imageSlotProps } = props;
 
-  if (!React.isValidElement(children)) {
+  if (!isValidElement(children)) {
     console.error('Slot.Image - Invalid asChild element', children);
     return null;
   }
 
-  return React.cloneElement<
+  return cloneElement<
     React.ComponentPropsWithoutRef<typeof Image>,
-    React.ElementRef<typeof Image>
+    ComponentRef<typeof Image>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(imageSlotProps, children.props as AnyProps),
     ref: forwardedRef
       ? composeRefs(forwardedRef, (children as any).ref)
       : (children as any).ref,
   });
-});
+};
 
 SlotImage.displayName = 'SlotImage';
 
