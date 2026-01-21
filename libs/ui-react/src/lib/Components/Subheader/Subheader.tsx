@@ -15,9 +15,24 @@ import {
 
 /**
  * Title component for the Subheader. Displays the main heading.
+ * Use the `as` prop to control heading semantics and avoid multiple h2s on a page.
+ *
+ * @example
+ * <SubheaderTitle>Section Title</SubheaderTitle>
+ *
+ * @example
+ * // With custom heading level
+ * <SubheaderTitle as="h3">Section Title</SubheaderTitle>
  */
-export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
-  return <h2 className='min-w-0 truncate heading-4-semi-bold'>{children}</h2>;
+export const SubheaderTitle = ({
+  children,
+  as: Component = 'h2',
+}: SubheaderTitleProps) => {
+  return (
+    <Component className='min-w-0 truncate heading-4-semi-bold'>
+      {children}
+    </Component>
+  );
 };
 
 /**
