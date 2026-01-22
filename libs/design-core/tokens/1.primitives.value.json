@@ -7276,6 +7276,18 @@
         }
       }
     },
+    "40": {
+      "$type": "number",
+      "$value": 40,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
     "48": {
       "$type": "number",
       "$value": 48,
@@ -7317,6 +7329,18 @@
     "32": {
       "$type": "number",
       "$value": 32,
+      "$description": "",
+      "$extensions": {
+        "com.figma": {
+          "hiddenFromPublishing": true,
+          "scopes": [],
+          "codeSyntax": {}
+        }
+      }
+    },
+    "40": {
+      "$type": "number",
+      "$value": 40,
       "$description": "",
       "$extensions": {
         "com.figma": {

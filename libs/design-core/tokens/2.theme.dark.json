@@ -69,22 +69,6 @@
           }
         }
       },
-      "white-transparent": {
-        "default": {
-          "$type": "color",
-          "$value": "{color.dark.grey.950-10%}",
-          "$description": "",
-          "$extensions": {
-            "com.figma": {
-              "hiddenFromPublishing": true,
-              "scopes": [],
-              "codeSyntax": {
-                "WEB": "var(--color-background-white);"
-              }
-            }
-          }
-        }
-      },
       "black": {
         "default": {
           "$type": "color",
