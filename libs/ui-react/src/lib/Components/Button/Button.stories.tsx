@@ -160,6 +160,9 @@ export const StatesShowcase: Story = {
       <Button appearance='base' loading>
         Loading
       </Button>
+      <Button appearance='base' disabled loading>
+        Disabled Loading
+      </Button>
     </div>
   ),
 };
