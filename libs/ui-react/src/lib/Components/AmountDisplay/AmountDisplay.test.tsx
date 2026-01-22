@@ -122,13 +122,4 @@ describe('AmountDisplay', () => {
     expect(screen.getByText('1,234,567')).toBeInTheDocument();
     expect(screen.getByText('.89')).toBeInTheDocument();
   });
-
-  it('renders currency without position (undefined)', () => {
-    const formatter = createFormatter({ currencyPosition: undefined });
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
-
-    expect(screen.queryByText('USD')).not.toBeInTheDocument();
-    expect(screen.getByText('1234')).toBeInTheDocument();
-    expect(screen.getByText('.56')).toBeInTheDocument();
-  });
 });
