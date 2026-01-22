@@ -1,0 +1,90 @@
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useStyleSheet } from '../../../styles';
+import { ViewRef } from '../../types';
+import { AmountDisplayProps } from './types';
+
+const useStyles = () => {
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+      },
+      integerText: {
+        ...t.typographies.heading1SemiBold,
+        color: t.colors.text.base,
+      },
+      decimalText: {
+        ...t.typographies.heading2SemiBold,
+        color: t.colors.text.muted,
+      },
+      currencyStartText: {
+        marginRight: t.spacings.s4,
+      },
+      currencyEndText: {
+        marginLeft: t.spacings.s4,
+      },
+    }),
+    [],
+  );
+};
+
+/**
+ * AmountDisplay - Renders formatted monetary amounts with flexible currency positioning and decimal formatting.
+ *
+ * This component uses a formatter function pattern that gives you full control over how amounts are displayed,
+ * including currency position, decimal separators, precision, and privacy features.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-amountdisplay-overview--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/communication-amountdisplay-implementation--docs#dos-and-donts Guidelines}
+ *
+ * @example
+ * ```tsx
+ * import { AmountDisplay } from '@ledgerhq/lumen-ui-rnative';
+ * import type { FormattedValue } from '@ledgerhq/lumen-ui-rnative';
+ *
+ * // Create a formatter function
+ * const usdFormatter = (value: number): FormattedValue => {
+ *   const [integerPart, decimalPart] = value.toFixed(2).split('.');
+ *   return {
+ *     integerPart,
+ *     decimalPart,
+ *     currencyText: '$',
+ *     decimalSeparator: '.',
+ *     currencyPosition: 'start',
+ *   };
+ * };
+ *
+ * // Use the component
+ * <AmountDisplay value={1234.56} formatter={usdFormatter} />
+ * ```
+ */
+export const AmountDisplay = React.forwardRef<ViewRef, AmountDisplayProps>(
+  ({ value, formatter, style, ...props }, ref) => {
+    const styles = useStyles();
+    const parts = formatter(value);
+
+    return (
+      <View ref={ref} style={StyleSheet.flatten([styles.container, style])} {...props}>
+        <Text style={styles.integerText}>
+          {(parts.currencyPosition === undefined ||
+            parts.currencyPosition === 'start') && (
+            <Text style={styles.currencyStartText}>{parts.currencyText}</Text>
+          )}
+          <Text>{parts.integerPart}</Text>
+        </Text>
+        <Text style={styles.decimalText}>
+          {parts.decimalPart && (
+            <Text>{(parts.decimalSeparator || '.') + parts.decimalPart}</Text>
+          )}
+          {parts.currencyPosition === 'end' && (
+            <Text style={styles.currencyEndText}>{parts.currencyText}</Text>
+          )}
+        </Text>
+      </View>
+    );
+  },
+);
+
+AmountDisplay.displayName = 'AmountDisplay';
