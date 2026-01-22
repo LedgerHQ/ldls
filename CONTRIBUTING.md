@@ -62,11 +62,14 @@ npm install --legacy-peer-deps
 3. Start development environment:
 
 ```bash
+# Build all libraries
+npx nx run-many --target=build --all
+
 # Start React Storybook
 npx nx run @ledgerhq/lumen-ui-react:serve:storybook
 
-# Build all libraries
-npx nx run-many --target=build --all
+# Start React Native Storybook
+npx nx run @ledgerhq/lumen-ui-rnative:serve:storybook
 ```
 
 ## Development Workflow
