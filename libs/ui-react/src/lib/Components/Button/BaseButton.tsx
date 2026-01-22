@@ -52,16 +52,6 @@ const baseButtonVariants = cva(
         class:
           'cursor-default bg-disabled text-disabled hover:bg-disabled hover:text-disabled active:bg-disabled active:text-disabled',
       },
-      {
-        disabled: false,
-        loading: true,
-        class: '',
-      },
-      {
-        disabled: false,
-        loading: false,
-        class: '',
-      },
     ],
     defaultVariants: {
       appearance: 'base',
