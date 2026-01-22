@@ -21,6 +21,15 @@ export type SubheaderTitleProps = {
    * The title text of the subheader.
    */
   children: string;
+  /**
+   * The HTML element to render as.
+   * Use this to control heading semantics and avoid multiple h2s on a page.
+   * @default 'h2'
+   */
+  as?: keyof Pick<
+    HTMLElementTagNameMap,
+    'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span'
+  >;
 };
 
 export type SubheaderCountProps = {
