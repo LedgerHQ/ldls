@@ -4,11 +4,11 @@ import { AmountDisplayProps } from './types';
 export const AmountDisplay = React.forwardRef<
   HTMLDivElement,
   AmountDisplayProps
->(({ value, formatter, className, ...props }, ref) => {
+>(({ value, formatter, ...props }, ref) => {
   const parts = formatter(value);
 
   return (
-    <div ref={ref} className={className} {...props}>
+    <div ref={ref} {...props}>
       <span className='heading-1-semi-bold text-base'>
         {parts.currencyPosition === undefined ||
           (parts.currencyPosition === 'start' && (
