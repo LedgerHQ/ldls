@@ -114,7 +114,7 @@ export const WithHideButton: Story = {
           appearance='transparent'
           size='sm'
           icon={hidden ? EyeCross : Eye}
-          aria-label={hidden ? 'Unhide amount' : 'Hide amount'}
+          aria-label={hidden ? 'Show amount' : 'Hide amount'}
           onClick={() => setHidden((v) => !v)}
         />
       </div>
