@@ -97,12 +97,13 @@ NavBarTitle.displayName = 'NavBarTitle';
 export const NavBarTrailing = React.forwardRef<
   HTMLDivElement,
   NavBarTrailingProps
->(({ children, className }, ref) => {
+>(({ children, className, ...props }, ref) => {
   return (
     <div
       ref={ref}
       className={cn('flex shrink-0 items-center gap-4', className)}
       data-slot='navbar-trailing'
+      {...props}
     >
       {children}
     </div>
