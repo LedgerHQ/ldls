@@ -1,16 +1,15 @@
+import React from 'react';
 import { AmountDisplayProps } from './types';
 
-export const AmountDisplay = ({
-  value,
-  formatter,
-  className,
-  ...props
-}: AmountDisplayProps): JSX.Element => {
+export const AmountDisplay = React.forwardRef<
+  HTMLDivElement,
+  AmountDisplayProps
+>(({ value, formatter, className, ...props }, ref) => {
   const parts = formatter(value);
 
   return (
-    <div className={className}>
-      <span className='heading-1-semi-bold text-base' {...props}>
+    <div ref={ref} className={className} {...props}>
+      <span className='heading-1-semi-bold text-base'>
         {parts.currencyPosition === undefined ||
           (parts.currencyPosition === 'start' && (
             <span className='mr-4'>{parts.currencyText}</span>
@@ -27,4 +26,6 @@ export const AmountDisplay = ({
       </span>
     </div>
   );
-};
+});
+
+AmountDisplay.displayName = 'AmountDisplay';

@@ -29,7 +29,7 @@ export type FormattedValue = {
 /**
  * Props for the AmountDisplay component.
  */
-export type AmountDisplayProps = {
+export type AmountDisplayProps = React.HTMLAttributes<HTMLDivElement> & {
   /**
    * The numeric value to display.
    * Pass the raw number value (e.g., 1234.56) - the formatter will handle conversion.
@@ -39,9 +39,4 @@ export type AmountDisplayProps = {
    * Function that formats the numeric value into a FormattedValue object.
    */
   formatter: (value: number) => FormattedValue;
-  /**
-   * Additional CSS class names for the container element.
-   * @optional
-   */
-  className?: string;
 };
