@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
+  AmountDisplays,
   AmountInputs,
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
@@ -114,6 +115,10 @@ const AppContent = ({
             <Divider />
             <SandboxBlock title='Text inputs'>
               <TextInputs />
+            </SandboxBlock>
+            <Divider />
+            <SandboxBlock title='Amount displays'>
+              <AmountDisplays />
             </SandboxBlock>
             <Divider />
             <SandboxBlock title='Amount inputs'>
