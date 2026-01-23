@@ -1,8 +1,16 @@
 import { describe, it, expect } from '@jest/globals';
+import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import { render, screen } from '@testing-library/react-native';
-
+import React from 'react';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
 import { AmountDisplay } from './AmountDisplay';
 import { FormattedValue } from './types';
+
+const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <ThemeProvider themes={ledgerLiveThemes} colorScheme='dark' locale='en'>
+    {children}
+  </ThemeProvider>
+);
 
 describe('AmountDisplay', () => {
   const createFormatter =
@@ -18,7 +26,11 @@ describe('AmountDisplay', () => {
 
   it('renders with basic formatter', () => {
     const formatter = createFormatter();
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('USD')).toBeTruthy();
     expect(screen.getByText('1234')).toBeTruthy();
@@ -27,7 +39,11 @@ describe('AmountDisplay', () => {
 
   it('renders currency at start position', () => {
     const formatter = createFormatter({ currencyPosition: 'start' });
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('USD')).toBeTruthy();
     expect(screen.getByText('1234')).toBeTruthy();
@@ -35,7 +51,11 @@ describe('AmountDisplay', () => {
 
   it('renders currency at end position', () => {
     const formatter = createFormatter({ currencyPosition: 'end' });
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('USD')).toBeTruthy();
     expect(screen.getByText('.56')).toBeTruthy();
@@ -43,7 +63,11 @@ describe('AmountDisplay', () => {
 
   it('renders without decimal part', () => {
     const formatter = createFormatter({ decimalPart: undefined });
-    render(<AmountDisplay value={1234} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('1234')).toBeTruthy();
     expect(screen.queryByText(/\./)).toBeNull();
@@ -51,14 +75,22 @@ describe('AmountDisplay', () => {
 
   it('uses comma as decimal separator', () => {
     const formatter = createFormatter({ decimalSeparator: ',' });
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText(',56')).toBeTruthy();
   });
 
   it('uses default dot separator when not specified', () => {
     const formatter = createFormatter({ decimalSeparator: undefined });
-    render(<AmountDisplay value={1234.56} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('.56')).toBeTruthy();
   });
@@ -66,11 +98,13 @@ describe('AmountDisplay', () => {
   it('forwards additional props', () => {
     const formatter = createFormatter();
     render(
-      <AmountDisplay
-        value={1234.56}
-        formatter={formatter}
-        testID='amount-display'
-      />,
+      <TestWrapper>
+        <AmountDisplay
+          value={1234.56}
+          formatter={formatter}
+          testID='amount-display'
+        />
+      </TestWrapper>,
     );
 
     expect(screen.getByTestId('amount-display')).toBeTruthy();
@@ -81,7 +115,11 @@ describe('AmountDisplay', () => {
       integerPart: '0',
       decimalPart: '00',
     });
-    render(<AmountDisplay value={0} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={0} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('0')).toBeTruthy();
     expect(screen.getByText('.00')).toBeTruthy();
@@ -92,7 +130,11 @@ describe('AmountDisplay', () => {
       integerPart: '1,234,567',
       decimalPart: '89',
     });
-    render(<AmountDisplay value={1234567.89} formatter={formatter} />);
+    render(
+      <TestWrapper>
+        <AmountDisplay value={1234567.89} formatter={formatter} />
+      </TestWrapper>,
+    );
 
     expect(screen.getByText('1,234,567')).toBeTruthy();
     expect(screen.getByText('.89')).toBeTruthy();
@@ -101,7 +143,9 @@ describe('AmountDisplay', () => {
   it('displays bullet points when hidden is true', () => {
     const formatter = createFormatter();
     render(
-      <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />,
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />
+      </TestWrapper>,
     );
 
     expect(screen.getByText('••••')).toBeTruthy();
@@ -113,7 +157,9 @@ describe('AmountDisplay', () => {
   it('displays amount normally when hidden is false', () => {
     const formatter = createFormatter();
     render(
-      <AmountDisplay value={1234.56} formatter={formatter} hidden={false} />,
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} hidden={false} />
+      </TestWrapper>,
     );
 
     expect(screen.getByText('1234')).toBeTruthy();
@@ -124,7 +170,9 @@ describe('AmountDisplay', () => {
   it('hides decimal part and shows only bullets when hidden', () => {
     const formatter = createFormatter({ currencyPosition: 'end' });
     render(
-      <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />,
+      <TestWrapper>
+        <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />
+      </TestWrapper>,
     );
 
     expect(screen.getByText('••••')).toBeTruthy();
