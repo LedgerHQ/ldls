@@ -122,4 +122,31 @@ describe('AmountDisplay', () => {
     expect(screen.getByText('1,234,567')).toBeInTheDocument();
     expect(screen.getByText('.89')).toBeInTheDocument();
   });
+
+  it('displays bullet points when hidden is true', () => {
+    const formatter = createFormatter();
+    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={true} />);
+
+    expect(screen.getByText('••••')).toBeInTheDocument();
+    expect(screen.getByText('USD')).toBeInTheDocument();
+    expect(screen.queryByText('1234')).not.toBeInTheDocument();
+    expect(screen.queryByText('.56')).not.toBeInTheDocument();
+  });
+
+  it('displays amount normally when hidden is false', () => {
+    const formatter = createFormatter();
+    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={false} />);
+
+    expect(screen.getByText('1234')).toBeInTheDocument();
+    expect(screen.getByText('.56')).toBeInTheDocument();
+    expect(screen.queryByText('••••')).not.toBeInTheDocument();
+  });
+
+  it('hides decimal part and shows only bullets when hidden', () => {
+    const formatter = createFormatter({ currencyPosition: 'end' });
+    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={true} />);
+
+    expect(screen.getByText('••••')).toBeInTheDocument();
+    expect(screen.queryByText('.56')).not.toBeInTheDocument();
+  });
 });

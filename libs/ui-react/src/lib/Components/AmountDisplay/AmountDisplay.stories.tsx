@@ -46,6 +46,7 @@ const meta: Meta<typeof AmountDisplay> = {
   title: 'Communication/AmountDisplay',
   args: {
     formatter: eurFormatter,
+    hidden: false,
   },
   argTypes: {
     formatter: {
@@ -59,6 +60,12 @@ const meta: Meta<typeof AmountDisplay> = {
         type: 'select',
       },
       description: 'Example formatter',
+    },
+    hidden: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'When true, displays bullet points instead of the amount',
     },
   },
   parameters: {
@@ -96,19 +103,12 @@ export const WithHideButton: Story = {
   render: (props) => {
     const [hidden, setHidden] = useState(false);
 
-    const hiddenFormatter = (): FormattedValue => {
-      return {
-        integerPart: '••••',
-        currencyText: '$',
-        currencyPosition: 'start',
-      };
-    };
-
     return (
       <div className='flex flex-row place-items-center gap-12'>
         <AmountDisplay
-          formatter={hidden ? hiddenFormatter : props.formatter}
+          formatter={props.formatter}
           value={1234.56}
+          hidden={hidden}
         />
         <IconButton
           appearance='transparent'

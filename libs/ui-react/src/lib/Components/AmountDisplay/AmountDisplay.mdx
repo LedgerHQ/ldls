@@ -39,13 +39,11 @@ The AmountDisplay component renders formatted monetary amounts with flexible cur
 <Canvas of={AmountDisplayStories.Base} />
 <Controls of={AmountDisplayStories.Base} />
 
-### Flexible Formatting
+### Privacy
 
-The formatter function gives you complete control over how amounts are displayed. You can customize currency position, decimal separators, precision, and even implement privacy features like hiding amounts.
+The `hidden` prop allows you to toggle amount visibility for privacy-sensitive applications. When set to `true`, the component displays bullet points (••••) instead of the actual amount, while keeping the currency symbol visible. The example below demonstrates toggling amount visibility with a button.
 
 <Canvas of={AmountDisplayStories.WithHideButton} />
-
-The example above shows how the formatter pattern enables features like toggling amount visibility. By changing the formatter function, you can switch between displaying the actual amount and showing masked characters - perfect for privacy-sensitive applications.
 
 ## Accessibility
 
@@ -85,6 +83,19 @@ const usdFormatter = (value: number): FormattedValue => {
 
 function MyComponent() {
   return <AmountDisplay value={1234.56} formatter={usdFormatter} />;
+}
+
+// With privacy/hidden state
+function PrivateComponent() {
+  const [hidden, setHidden] = useState(false);
+  
+  return (
+    <AmountDisplay
+      value={1234.56}
+      formatter={usdFormatter}
+      hidden={hidden}
+    />
+  );
 }
 ```
 
@@ -139,12 +150,6 @@ import { useState } from 'react';
 function PrivateAmount() {
   const [hidden, setHidden] = useState(false);
   
-  const hiddenFormatter = (): FormattedValue => ({
-    integerPart: '••••',
-    currencyText: '$',
-    currencyPosition: 'start',
-  });
-  
   const usdFormatter = (value: number): FormattedValue => {
     const [integerPart, decimalPart] = value.toFixed(2).split('.');
     return {
@@ -159,8 +164,9 @@ function PrivateAmount() {
   return (
     <div className='flex flex-row place-items-center gap-12'>
       <AmountDisplay
-        formatter={hidden ? hiddenFormatter : usdFormatter}
+        formatter={usdFormatter}
         value={1234.56}
+        hidden={hidden}
       />
       <IconButton
         appearance='transparent'
@@ -212,6 +218,46 @@ const formattedValue = `$${value.toFixed(2)}`;
 <AmountDisplay
   value={formattedValue}
   formatter={(v) => ({ integerPart: v, currencyText: '' })}
+/>
+```
+
+    </DontBlockItem>
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the hidden prop for privacy'
+      description='Use the built-in hidden prop to toggle amount visibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const [hidden, setHidden] = useState(false);
+
+<AmountDisplay
+  value={1234.56}
+  formatter={usdFormatter}
+  hidden={hidden}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't create separate formatters for hiding"
+      description='Avoid creating custom formatters just to show bullet points'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const hiddenFormatter = () => ({
+  integerPart: '••••',
+  currencyText: '$',
+  currencyPosition: 'start',
+});
+
+<AmountDisplay
+  value={1234.56}
+  formatter={hidden ? hiddenFormatter : usdFormatter}
 />
 ```
 
