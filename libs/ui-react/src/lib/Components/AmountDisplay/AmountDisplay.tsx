@@ -45,7 +45,7 @@ export const AmountDisplay = React.forwardRef<
       <span className='heading-1-semi-bold text-base'>
         {(parts.currencyPosition === undefined ||
           parts.currencyPosition === 'start') && (
-          <span className='mr-4'>{parts.currencyText}</span>
+          <span className='me-4'>{parts.currencyText}</span>
         )}
         <span>{hidden ? '••••' : parts.integerPart}</span>
       </span>
@@ -54,7 +54,7 @@ export const AmountDisplay = React.forwardRef<
           <span>{(parts.decimalSeparator || '.') + parts.decimalPart}</span>
         )}
         {parts.currencyPosition === 'end' && (
-          <span className='ml-4'>{parts.currencyText}</span>
+          <span className='ms-4'>{parts.currencyText}</span>
         )}
       </span>
     </div>
