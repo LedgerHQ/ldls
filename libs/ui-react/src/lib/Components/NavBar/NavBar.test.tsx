@@ -14,11 +14,7 @@ describe('NavBar', () => {
   it('renders with all components', () => {
     render(
       <NavBar>
-        <NavBarBackButton
-          onClick={() => {
-            console.log('Back clicked');
-          }}
-        />
+        <NavBarBackButton onClick={vi.fn()} />
         <NavBarTitle>Test Title</NavBarTitle>
         <NavBarTrailing>
           <button>Action</button>
@@ -84,12 +80,7 @@ describe('NavBar', () => {
   it('renders with custom aria-label on back button', () => {
     render(
       <NavBar>
-        <NavBarBackButton
-          onClick={() => {
-            console.log('Back clicked');
-          }}
-          aria-label='Custom back label'
-        />
+        <NavBarBackButton onClick={vi.fn()} aria-label='Custom back label' />
         <NavBarTitle>Title</NavBarTitle>
       </NavBar>,
     );
@@ -192,11 +183,7 @@ describe('NavBar with NavBarCoinCapsule', () => {
     const MockIcon = () => <svg data-testid='btc-icon' />;
     render(
       <NavBar>
-        <NavBarBackButton
-          onClick={() => {
-            console.log('Back clicked');
-          }}
-        />
+        <NavBarBackButton onClick={vi.fn()} />
         <NavBarCoinCapsule ticker='BTC' icon={<MockIcon />} />
         <NavBarTrailing>
           <button>More</button>
