@@ -41,4 +41,10 @@ export type AmountDisplayProps = ViewProps & {
    * Function that formats the numeric value into a FormattedValue object.
    */
   formatter: (value: number) => FormattedValue;
+  /**
+   * When true, displays bullet points (••••) instead of the actual amount.
+   * Useful for privacy features where users can toggle amount visibility.
+   * @default false
+   */
+  hidden?: boolean;
 };

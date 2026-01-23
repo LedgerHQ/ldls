@@ -34,7 +34,7 @@ const useStyles = () => {
  * AmountDisplay - Renders formatted monetary amounts with flexible currency positioning and decimal formatting.
  *
  * This component uses a formatter function pattern that gives you full control over how amounts are displayed,
- * including currency position, decimal separators, precision, and privacy features.
+ * including currency position, decimal separators, and precision. Use the `hidden` prop for privacy features.
  *
  * @see {@link https://ldls.vercel.app/?path=/docs/communication-amountdisplay-overview--docs Storybook}
  * @see {@link https://ldls.vercel.app/?path=/docs/communication-amountdisplay-implementation--docs#dos-and-donts Guidelines}
@@ -56,26 +56,33 @@ const useStyles = () => {
  *   };
  * };
  *
- * // Use the component
+ * // Basic usage
  * <AmountDisplay value={1234.56} formatter={usdFormatter} />
+ *
+ * // With privacy (hidden)
+ * <AmountDisplay value={1234.56} formatter={usdFormatter} hidden={true} />
  * ```
  */
 export const AmountDisplay = React.forwardRef<ViewRef, AmountDisplayProps>(
-  ({ value, formatter, style, ...props }, ref) => {
+  ({ value, formatter, hidden = false, style, ...props }, ref) => {
     const styles = useStyles();
     const parts = formatter(value);
 
     return (
-      <View ref={ref} style={StyleSheet.flatten([styles.container, style])} {...props}>
+      <View
+        ref={ref}
+        style={StyleSheet.flatten([styles.container, style])}
+        {...props}
+      >
         <Text style={styles.integerText}>
           {(parts.currencyPosition === undefined ||
             parts.currencyPosition === 'start') && (
             <Text style={styles.currencyStartText}>{parts.currencyText}</Text>
           )}
-          <Text>{parts.integerPart}</Text>
+          <Text>{hidden ? '••••' : parts.integerPart}</Text>
         </Text>
         <Text style={styles.decimalText}>
-          {parts.decimalPart && (
+          {parts.decimalPart && !hidden && (
             <Text>{(parts.decimalSeparator || '.') + parts.decimalPart}</Text>
           )}
           {parts.currencyPosition === 'end' && (

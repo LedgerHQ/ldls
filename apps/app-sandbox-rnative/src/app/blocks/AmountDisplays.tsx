@@ -32,14 +32,6 @@ const usdFormatter = (value: number): FormattedValue => {
   };
 };
 
-const hiddenFormatter = (): FormattedValue => {
-  return {
-    integerPart: '••••',
-    currencyText: '$',
-    currencyPosition: 'start',
-  };
-};
-
 export function AmountDisplays() {
   const [hidden, setHidden] = useState(false);
   const styles = useStyles();
@@ -57,7 +49,8 @@ export function AmountDisplays() {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <AmountDisplay
               value={9876.54}
-              formatter={hidden ? hiddenFormatter : usdFormatter}
+              formatter={usdFormatter}
+              hidden={hidden}
             />
             <IconButton
               appearance='transparent'
