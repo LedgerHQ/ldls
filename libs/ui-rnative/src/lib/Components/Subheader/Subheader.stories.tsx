@@ -96,7 +96,7 @@ export const WithInfoIcon: Story = {
 
 export const WithAction: Story = {
   render: () => (
-    <Subheader>
+    <Subheader lx={{ maxWidth: 's480' }}>
       <SubheaderRow>
         <SubheaderTitle>Recent Activity</SubheaderTitle>
         <SubheaderAction onPress={() => console.log('View all')}>

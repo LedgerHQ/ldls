@@ -1,3 +1,5 @@
+import { InteractiveIconProps } from '../InteractiveIcon';
+
 export type SubheaderProps = {
   /**
    * The children of the subheader, which should include SubheaderRow, SubheaderTitle, SubheaderDescription, etc.
@@ -30,7 +32,7 @@ export type SubheaderTitleProps = {
     HTMLElementTagNameMap,
     'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span'
   >;
-};
+} & Omit<React.HTMLAttributes<HTMLHeadingElement>, 'children'>;
 
 export type SubheaderCountProps = {
   /**
@@ -42,10 +44,10 @@ export type SubheaderCountProps = {
    * Defaults to (n) => `(${n})`
    */
   format?: (value: number) => string;
-};
+} & Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'>;
 
 export type SubheaderInfoProps = Omit<
-  React.ComponentProps<typeof import('../InteractiveIcon').InteractiveIcon>,
+  InteractiveIconProps,
   'children' | 'iconType'
 > & {
   /**
@@ -60,7 +62,7 @@ export type SubheaderDescriptionProps = {
    * The description text to display below the title row.
    */
   children: React.ReactNode;
-};
+} & Omit<React.HTMLAttributes<HTMLParagraphElement>, 'children'>;
 
 export type SubheaderActionProps = {
   /**
@@ -73,9 +75,7 @@ export type SubheaderActionProps = {
   onClick: () => void;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'onClick'>;
 
-export type SubheaderShowMoreProps = {
-  /**
-   * Optional className for custom styling.
-   */
-  className?: string;
-};
+export type SubheaderShowMoreProps = Omit<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'children'
+>;

@@ -27,9 +27,14 @@ import {
 export const SubheaderTitle = ({
   children,
   as: Component = 'h2',
+  className,
+  ...props
 }: SubheaderTitleProps) => {
   return (
-    <Component className='min-w-0 truncate heading-4-semi-bold'>
+    <Component
+      className={cn('min-w-0 truncate heading-4-semi-bold', className)}
+      {...props}
+    >
       {children}
     </Component>
   );
@@ -65,9 +70,18 @@ export const SubheaderRow = ({
 /**
  * Count component for the Subheader. Displays a formatted number.
  */
-export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
+export const SubheaderCount = ({
+  value,
+  format,
+  className,
+  ...props
+}: SubheaderCountProps) => {
   const formatted = format ? format(value) : `(${value})`;
-  return <span className='shrink-0 body-2 text-muted'>{formatted}</span>;
+  return (
+    <span className={cn('shrink-0 body-2 text-muted', className)} {...props}>
+      {formatted}
+    </span>
+  );
 };
 
 /**
@@ -97,9 +111,15 @@ SubheaderInfo.displayName = 'SubheaderInfo';
  * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
  * Position this after SubheaderCount and before other elements.
  */
-export const SubheaderShowMore = ({ className }: SubheaderShowMoreProps) => {
+export const SubheaderShowMore = ({
+  className,
+  ...props
+}: SubheaderShowMoreProps) => {
   return (
-    <span className={cn('shrink-0 self-center text-muted', className)}>
+    <span
+      className={cn('shrink-0 self-center text-muted', className)}
+      {...props}
+    >
       <ChevronRight size={16} />
     </span>
   );
@@ -110,8 +130,14 @@ export const SubheaderShowMore = ({ className }: SubheaderShowMoreProps) => {
  */
 export const SubheaderDescription = ({
   children,
+  className,
+  ...props
 }: SubheaderDescriptionProps) => {
-  return <p className='body-3 text-muted'>{children}</p>;
+  return (
+    <p className={cn('body-3 text-muted', className)} {...props}>
+      {children}
+    </p>
+  );
 };
 
 /**
@@ -128,7 +154,10 @@ export const SubheaderAction = ({
     <button
       type='button'
       onClick={onClick}
-      className={cn('ml-auto shrink-0 pl-8 body-2 text-interactive', className)}
+      className={cn(
+        'ml-auto shrink-0 cursor-pointer pl-8 body-2 text-interactive',
+        className,
+      )}
       {...props}
     >
       {children}

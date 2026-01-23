@@ -1,38 +1,35 @@
-import { ViewProps } from 'react-native';
-import { LumenViewStyle } from '../../../styles/types/lx.types';
+import { ReactNode } from 'react';
+import {
+  StyledPressableProps,
+  StyledTextProps,
+  StyledViewProps,
+} from '../../../styles';
+import { InteractiveIconProps } from '../InteractiveIcon';
 
 export type SubheaderProps = {
   /**
    * The children of the subheader, which should include SubheaderRow, SubheaderTitle, SubheaderDescription, etc.
    */
-  children?: React.ReactNode;
-  /**
-   * Style props using design tokens
-   */
-  lx?: LumenViewStyle;
-} & Omit<ViewProps, 'children'>;
+  children?: ReactNode;
+} & Omit<StyledViewProps, 'children'>;
 
 export type SubheaderRowProps = {
   /**
    * The children of the subheader row.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Optional press handler to make the row interactive.
    */
   onPress?: () => void;
-  /**
-   * Style props using design tokens
-   */
-  lx?: LumenViewStyle;
-} & Omit<ViewProps, 'children'>;
+} & Omit<StyledViewProps, 'children'>;
 
 export type SubheaderTitleProps = {
   /**
    * The title text of the subheader.
    */
   children: string;
-};
+} & Omit<StyledTextProps, 'children'>;
 
 export type SubheaderCountProps = {
   /**
@@ -44,10 +41,10 @@ export type SubheaderCountProps = {
    * Defaults to (n) => `(${n})`
    */
   format?: (value: number) => string;
-};
+} & Omit<StyledTextProps, 'children'>;
 
 export type SubheaderInfoProps = Omit<
-  React.ComponentProps<typeof import('../InteractiveIcon').InteractiveIcon>,
+  InteractiveIconProps,
   'children' | 'iconType'
 > & {
   /**
@@ -61,16 +58,18 @@ export type SubheaderDescriptionProps = {
   /**
    * The description text to display below the title row.
    */
-  children: React.ReactNode;
-};
+  children: ReactNode;
+} & Omit<StyledTextProps, 'children'>;
 
 export type SubheaderActionProps = {
   /**
    * The action text to display.
    */
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * Press handler for the action.
    */
   onPress: () => void;
-};
+} & Omit<StyledPressableProps, 'children' | 'onPress'>;
+
+export type SubheaderShowMoreProps = Omit<StyledViewProps, 'children'>;
