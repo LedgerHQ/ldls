@@ -36,7 +36,7 @@ describe('AmountDisplay', () => {
     expect(currencyElement.compareDocumentPosition(integerElement)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(currencyElement).toHaveClass('mr-4');
+    expect(currencyElement).toHaveClass('me-4');
   });
 
   it('renders currency at end position', () => {
@@ -49,7 +49,7 @@ describe('AmountDisplay', () => {
     expect(decimalElement.compareDocumentPosition(currencyElement)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     );
-    expect(currencyElement).toHaveClass('ml-4');
+    expect(currencyElement).toHaveClass('ms-4');
   });
 
   it('renders without decimal part', () => {
@@ -125,7 +125,9 @@ describe('AmountDisplay', () => {
 
   it('displays bullet points when hidden is true', () => {
     const formatter = createFormatter();
-    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={true} />);
+    render(
+      <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />,
+    );
 
     expect(screen.getByText('••••')).toBeInTheDocument();
     expect(screen.getByText('USD')).toBeInTheDocument();
@@ -135,7 +137,9 @@ describe('AmountDisplay', () => {
 
   it('displays amount normally when hidden is false', () => {
     const formatter = createFormatter();
-    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={false} />);
+    render(
+      <AmountDisplay value={1234.56} formatter={formatter} hidden={false} />,
+    );
 
     expect(screen.getByText('1234')).toBeInTheDocument();
     expect(screen.getByText('.56')).toBeInTheDocument();
@@ -144,7 +148,9 @@ describe('AmountDisplay', () => {
 
   it('hides decimal part and shows only bullets when hidden', () => {
     const formatter = createFormatter({ currencyPosition: 'end' });
-    render(<AmountDisplay value={1234.56} formatter={formatter} hidden={true} />);
+    render(
+      <AmountDisplay value={1234.56} formatter={formatter} hidden={true} />,
+    );
 
     expect(screen.getByText('••••')).toBeInTheDocument();
     expect(screen.queryByText('.56')).not.toBeInTheDocument();
