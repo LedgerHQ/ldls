@@ -14,10 +14,8 @@ export type FormattedValue = {
   currencyText: string;
   /**
    * The character which separates integer and fractional parts.
-   * @optional
-   * @default '.'
    */
-  decimalSeparator?: '.' | ',';
+  decimalSeparator: '.' | ',';
   /**
    * Position of the currency text relative to the amount.
    * @optional
