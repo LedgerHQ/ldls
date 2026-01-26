@@ -114,7 +114,7 @@
     "react-native-worklets": "^0.6.1",
     "react-router-dom": "6.29.0",
     "react-test-renderer": "~18.3.1",
-    "rollup": "^4.14.0",
+    "rollup": "4.50.0",
     "storybook": "10.0.3",
     "style-dictionary": "^4.3.3",
     "swc-loader": "0.1.15",
@@ -151,5 +151,8 @@
     "react": "18.3.1",
     "react-native": "~0.77.3",
     "tailwindcss": "^4.1.17"
+  },
+  "overrides": {
+    "rollup": "4.50.0"
   }
 }
