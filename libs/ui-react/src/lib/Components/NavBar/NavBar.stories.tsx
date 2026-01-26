@@ -51,26 +51,8 @@ type Story = StoryObj<typeof NavBar>;
 export const Base: StoryObj<PlaygroundArgs> = {
   args: {
     title: 'Page Title',
-    showBackButton: true,
-    showTrailing: true,
-    showCoinCapsule: false,
   },
-  argTypes: {
-    title: {
-      control: 'text',
-      if: { arg: 'showCoinCapsule', eq: false },
-    },
-    showBackButton: {
-      control: 'boolean',
-    },
-    showTrailing: {
-      control: 'boolean',
-    },
-    showCoinCapsule: {
-      control: 'boolean',
-      description: 'Replace title with a coin capsule (e.g., for asset pages)',
-    },
-  },
+
   parameters: {
     docs: {
       source: {
@@ -91,35 +73,23 @@ export const Base: StoryObj<PlaygroundArgs> = {
       },
     },
   },
-  render: ({ title, showBackButton, showTrailing, showCoinCapsule }) => (
+  render: () => (
     <NavBar>
-      {showBackButton && (
-        <NavBarBackButton onClick={() => console.log('Back clicked')} />
-      )}
-      {showCoinCapsule ? (
-        <NavBarCoinCapsule
-          ticker='BTC'
-          icon={<CryptoIcon ledgerId='bitcoin' ticker='BTC' size='24px' />}
+      <NavBarBackButton onClick={() => console.log('Back clicked')} />
+      <NavBarTitle>Page Title</NavBarTitle>
+      <NavBarTrailing>
+        <IconButton
+          appearance='gray'
+          size='sm'
+          icon={Settings}
+          aria-label='Settings'
         />
-      ) : (
-        <NavBarTitle>{title}</NavBarTitle>
-      )}
-      {showTrailing && (
-        <NavBarTrailing>
-          <IconButton
-            appearance='gray'
-            size='sm'
-            icon={Settings}
-            aria-label='Settings'
-          />
-        </NavBarTrailing>
-      )}
+      </NavBarTrailing>
     </NavBar>
   ),
 };
 
 export const WithoutTrailing: Story = {
-  tags: ['!autodocs'],
   render: () => (
     <NavBar>
       <NavBarBackButton onClick={() => console.log('Back clicked')} />
@@ -141,7 +111,6 @@ export const WithoutTrailing: Story = {
 };
 
 export const WithMultipleTrailingActions: Story = {
-  tags: ['!autodocs'],
   render: () => (
     <NavBar>
       <NavBarBackButton onClick={() => console.log('Back clicked')} />
@@ -191,7 +160,6 @@ export const WithMultipleTrailingActions: Story = {
 };
 
 export const WithCoinCapsule: Story = {
-  tags: ['!autodocs'],
   name: 'With NavBarCoinCapsule',
   render: () => (
     <NavBar>

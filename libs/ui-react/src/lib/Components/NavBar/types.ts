@@ -15,7 +15,7 @@ export type NavBarBackButtonProps = {
   /**
    * Callback function when the back button is clicked.
    */
-  onClick: () => void;
+  onClick?: () => void;
   /**
    * Accessible label for the back button.
    * @default "Go back"

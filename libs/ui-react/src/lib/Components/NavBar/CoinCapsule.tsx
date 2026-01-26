@@ -22,7 +22,7 @@ export const CoinCapsule = React.forwardRef<HTMLDivElement, CoinCapsuleProps>(
         <span className='flex size-24 shrink-0 items-center justify-center'>
           {icon}
         </span>
-        <span className='body-1 text-base'>{ticker}</span>
+        <span className='body-1 text-base select-none'>{ticker}</span>
       </div>
     );
   },
