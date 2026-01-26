@@ -190,4 +190,86 @@ describe('Subheader', () => {
     expect(screen.getByText('Simple Title')).toBeInTheDocument();
     expect(screen.getByText('Simple Description')).toBeInTheDocument();
   });
+
+  describe('SubheaderTitle as prop', () => {
+    it('renders as h2 by default', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle>Default Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('Default Title');
+      expect(title.tagName).toBe('H2');
+    });
+
+    it('renders as h1 when as="h1"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='h1'>H1 Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('H1 Title');
+      expect(title.tagName).toBe('H1');
+    });
+
+    it('renders as h3 when as="h3"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='h3'>H3 Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('H3 Title');
+      expect(title.tagName).toBe('H3');
+    });
+
+    it('renders as h4 when as="h4"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='h4'>H4 Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('H4 Title');
+      expect(title.tagName).toBe('H4');
+    });
+
+    it('renders as h5 when as="h5"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='h5'>H5 Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('H5 Title');
+      expect(title.tagName).toBe('H5');
+    });
+
+    it('renders as h6 when as="h6"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='h6'>H6 Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('H6 Title');
+      expect(title.tagName).toBe('H6');
+    });
+
+    it('renders as div when as="div"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='div'>Div Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('Div Title');
+      expect(title.tagName).toBe('DIV');
+    });
+
+    it('renders as span when as="span"', () => {
+      render(
+        <Subheader>
+          <SubheaderTitle as='span'>Span Title</SubheaderTitle>
+        </Subheader>,
+      );
+      const title = screen.getByText('Span Title');
+      expect(title.tagName).toBe('SPAN');
+    });
+  });
 });

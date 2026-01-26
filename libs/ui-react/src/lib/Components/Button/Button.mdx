@@ -79,6 +79,10 @@ Buttons come in four different sizes:
 
 <Canvas of={ButtonStories.StatesShowcase} />
 
+> **Important Note:** The `loading` and `disabled` states are **not coupled**. When `disabled` is set, all event handlers are deactivated. When only `loading` is set (without `disabled`), the button remains clickable. Combine both props if you need to prevent interactions during loading.
+
+
+
 ## Responsive Layout
 
 Buttons dynamically adapt their width to the size of their content, while keeping the default paddings:
@@ -183,6 +187,28 @@ Use the `isFull` prop to make the button take the full width of its container:
   Full Width Button
 </Button>
 ```
+
+### Loading and Disabled States
+
+The `loading` and `disabled` props are **independent** and not coupled:
+
+- **`disabled`**: Deactivates all event handlers (`onClick`, etc.). The button becomes non-interactive.
+- **`loading`**: Shows a spinner but **does not** prevent clicks. The button remains interactive.
+
+```tsx
+// Button is non-interactive
+<Button disabled>Disabled</Button>
+
+// Button shows spinner but is still clickable
+<Button loading>Loading</Button>
+
+// Combine both to prevent interactions during loading
+<Button loading disabled>
+  Submitting...
+</Button>
+```
+
+> ⚠️ If you need to prevent user interactions while loading (e.g., form submission), always combine `loading` with `disabled`.
 
 ### Using with Routers (asChild)
 

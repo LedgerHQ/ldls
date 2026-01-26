@@ -81,25 +81,6 @@
         }
       }
     },
-    "white-transparent": {
-      "default": {
-        "$type": "color",
-        "$value": "{color.background.white-transparent.default}",
-        "$description": "",
-        "$extensions": {
-          "com.figma": {
-            "hiddenFromPublishing": false,
-            "scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ],
-            "codeSyntax": {
-              "WEB": "var(--background-white);"
-            }
-          }
-        }
-      }
-    },
     "black": {
       "default": {
         "$type": "color",
@@ -1048,7 +1029,8 @@
             "hiddenFromPublishing": false,
             "scopes": [
               "SHAPE_FILL",
-              "TEXT_FILL"
+              "TEXT_FILL",
+              "STROKE_COLOR"
             ],
             "codeSyntax": {
               "WEB": "var(--text-black);"

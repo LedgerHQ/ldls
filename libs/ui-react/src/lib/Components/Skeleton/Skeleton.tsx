@@ -8,7 +8,7 @@ type BaseSkeletonProps = React.ComponentProps<'div'>;
 function BaseSkeleton({ className, ...props }: BaseSkeletonProps) {
   return (
     <div
-      className={cn('animate-pulse rounded-md bg-surface', className)}
+      className={cn('animate-pulse rounded-md bg-muted-transparent', className)}
       {...props}
     />
   );

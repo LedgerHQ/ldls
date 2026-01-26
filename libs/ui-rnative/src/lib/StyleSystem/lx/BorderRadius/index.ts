@@ -1,0 +1,1 @@
+export { BorderRadiusTable } from './BorderRadiusTable';

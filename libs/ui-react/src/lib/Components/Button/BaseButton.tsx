@@ -7,7 +7,7 @@ import { Spinner } from '../Spinner';
 import { BaseButtonProps } from './types';
 
 const baseButtonVariants = cva(
-  'inline-flex size-fit items-center justify-center rounded-full body-1-semi-bold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus data-[disabled="true"]:bg-disabled data-[disabled="true"]:text-disabled',
+  'inline-flex size-fit cursor-pointer items-center justify-center rounded-full body-1-semi-bold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
   {
     variants: {
       appearance: {
@@ -22,8 +22,12 @@ const baseButtonVariants = cva(
         red: 'bg-error text-error hover:bg-error-hover active:bg-error-pressed',
       },
       disabled: {
-        true: 'cursor-default',
-        false: 'cursor-pointer',
+        true: '',
+        false: '',
+      },
+      loading: {
+        true: '',
+        false: '',
       },
       size: {
         xs: 'p-8',
@@ -35,6 +39,20 @@ const baseButtonVariants = cva(
         true: 'w-full',
       },
     },
+    compoundVariants: [
+      {
+        disabled: true,
+        loading: false,
+        class:
+          'cursor-default bg-disabled text-disabled hover:bg-disabled hover:text-disabled active:bg-disabled active:text-disabled',
+      },
+      {
+        disabled: true,
+        loading: true,
+        class:
+          'cursor-default bg-disabled text-disabled hover:bg-disabled hover:text-disabled active:bg-disabled active:text-disabled',
+      },
+    ],
     defaultVariants: {
       appearance: 'base',
       size: 'md',
@@ -69,7 +87,7 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       disabled = false,
       asChild = false,
       icon: Icon,
-      loading,
+      loading = false,
       children,
       onClick,
       ...props
@@ -83,19 +101,18 @@ export const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonProps>(
       lg: 24,
     };
 
-    const isDisabled = loading || disabled;
     const calculatedIconSize = size ? iconSizeMap[size] : 24;
     const Comp = asChild ? Slot : 'button';
 
     return (
       <Comp
         className={cn(
-          baseButtonVariants({ disabled, appearance, size, isFull }),
+          baseButtonVariants({ disabled, loading, appearance, size, isFull }),
           className,
         )}
         ref={ref}
-        data-disabled={isDisabled || undefined}
-        disabled={isDisabled}
+        data-disabled={disabled || undefined}
+        disabled={disabled}
         onClick={onClick}
         {...props}
       >

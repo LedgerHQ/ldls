@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useStyleSheet } from '../../../styles';
 import { ChevronRight, Information } from '../../Symbols';
 import { InteractiveIcon } from '../InteractiveIcon';
@@ -10,13 +10,19 @@ import {
   SubheaderInfoProps,
   SubheaderProps,
   SubheaderRowProps,
+  SubheaderShowMoreProps,
   SubheaderTitleProps,
 } from './types';
 
 /**
  * Title component for the Subheader. Displays the main heading.
  */
-export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
+export const SubheaderTitle = ({
+  children,
+  lx,
+  style,
+  ...props
+}: SubheaderTitleProps) => {
   const styles = useStyleSheet(
     (t) => ({
       title: StyleSheet.flatten([
@@ -31,7 +37,13 @@ export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
   );
 
   return (
-    <Text style={styles.title} numberOfLines={1} ellipsizeMode='tail'>
+    <Text
+      lx={lx}
+      style={[styles.title, style]}
+      numberOfLines={1}
+      ellipsizeMode='tail'
+      {...props}
+    >
       {children}
     </Text>
   );
@@ -44,7 +56,7 @@ export const SubheaderTitle = ({ children }: SubheaderTitleProps) => {
 export const SubheaderRow = ({
   children,
   onPress,
-  lx = {},
+  lx,
   style,
   ...props
 }: SubheaderRowProps) => {
@@ -82,7 +94,13 @@ export const SubheaderRow = ({
 /**
  * Count component for the Subheader. Displays a formatted number.
  */
-export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
+export const SubheaderCount = ({
+  value,
+  format,
+  lx,
+  style,
+  ...props
+}: SubheaderCountProps) => {
   const formatted = format ? format(value) : `(${value})`;
 
   const styles = useStyleSheet(
@@ -98,7 +116,11 @@ export const SubheaderCount = ({ value, format }: SubheaderCountProps) => {
     [],
   );
 
-  return <Text style={styles.count}>{formatted}</Text>;
+  return (
+    <Text lx={lx} style={[styles.count, style]} {...props}>
+      {formatted}
+    </Text>
+  );
 };
 
 /**
@@ -125,7 +147,11 @@ export const SubheaderInfo = ({
  * ShowMore component for the Subheader. Displays a static chevron right icon to indicate expandable content.
  * Position this after SubheaderCount and before other elements.
  */
-export const SubheaderShowMore = () => {
+export const SubheaderShowMore = ({
+  lx,
+  style,
+  ...props
+}: SubheaderShowMoreProps) => {
   const styles = useStyleSheet(
     (t) => ({
       container: {
@@ -141,9 +167,9 @@ export const SubheaderShowMore = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <Box lx={lx} style={[styles.container, style]} {...props}>
       <ChevronRight size={16} style={styles.icon} />
-    </View>
+    </Box>
   );
 };
 
@@ -152,6 +178,9 @@ export const SubheaderShowMore = () => {
  */
 export const SubheaderDescription = ({
   children,
+  lx,
+  style,
+  ...props
 }: SubheaderDescriptionProps) => {
   const styles = useStyleSheet(
     (t) => ({
@@ -165,7 +194,11 @@ export const SubheaderDescription = ({
     [],
   );
 
-  return <Text style={styles.description}>{children}</Text>;
+  return (
+    <Text lx={lx} style={[styles.description, style]} {...props}>
+      {children}
+    </Text>
+  );
 };
 
 /**
@@ -175,6 +208,9 @@ export const SubheaderDescription = ({
 export const SubheaderAction = ({
   children,
   onPress,
+  lx,
+  style,
+  ...props
 }: SubheaderActionProps) => {
   const styles = useStyleSheet(
     (t) => ({
@@ -194,7 +230,12 @@ export const SubheaderAction = ({
   );
 
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable
+      lx={lx}
+      onPress={onPress}
+      style={[styles.container, style]}
+      {...props}
+    >
       <Text style={styles.text}>{children}</Text>
     </Pressable>
   );
@@ -237,7 +278,7 @@ export const SubheaderAction = ({
  * </Subheader>
  */
 export const Subheader = ({
-  lx = {},
+  lx,
   style,
   children,
   ...props

@@ -1,0 +1,1 @@
+export { SizeTable } from './SizeTable';
