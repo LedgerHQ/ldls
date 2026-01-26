@@ -60,7 +60,13 @@ const meta: Meta<typeof AmountDisplay> = {
       control: {
         type: 'select',
       },
-      description: 'Example formatter',
+      description:
+        'Function that formats a number. Returns an object with:\n' +
+        '- `integerPart`: string\n' +
+        '- `decimalPart?`: string\n' +
+        '- `currencyText`: string\n' +
+        '- `decimalSeparator`: "." | ","\n' +
+        '- `currencyPosition?`: "start" | "end"',
     },
     hidden: {
       control: {
