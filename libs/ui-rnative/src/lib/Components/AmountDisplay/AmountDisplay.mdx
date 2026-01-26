@@ -1,0 +1,272 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AmountDisplayStories from './AmountDisplay.stories';
+import { AmountDisplay } from './AmountDisplay';
+import {
+  CustomTabs,
+  Tab,
+  DoVsDontRow,
+  DoBlockItem,
+  DontBlockItem,
+} from '../../../../.storybook/components';
+import CommonRulesDoAndDont from '../../../../.storybook/components/DoVsDont/CommonRulesDoAndDont.mdx';
+
+<Meta title='Communication/AmountDisplay' of={AmountDisplayStories} />
+
+# 🔢 AmountDisplay
+
+<CustomTabs>
+  <Tab label="Overview">
+
+## Introduction
+
+The AmountDisplay component renders formatted monetary amounts with flexible currency positioning and decimal formatting. It uses a formatter function pattern that gives you full control over how amounts are displayed.
+
+> View in [Figma](https://www.figma.com/design/JxaLVMTWirCpU0rsbZ30k7/2.-Components-Library?node-id=85-227&p=f&m=dev).
+
+## Anatomy
+
+<Canvas of={AmountDisplayStories.Base} />
+
+- **Integer Part**: Large, bold text for the main amount
+- **Decimal Part**: Smaller, muted text for fractional values
+- **Currency Symbol**: Positioned before or after based on formatter
+- **Decimal Separator**: Configurable (either `.` or `,`)
+
+## Properties
+
+### Overview
+
+<Canvas of={AmountDisplayStories.Base} />
+<Controls of={AmountDisplayStories.Base} />
+
+### Privacy
+
+The `hidden` prop allows you to toggle amount visibility for privacy-sensitive applications. When set to `true`, the component displays bullet points (••••) instead of the actual amount, while keeping the currency symbol visible. The example below demonstrates toggling amount visibility with a button.
+
+<Canvas of={AmountDisplayStories.WithHideButton} />
+
+## Accessibility
+
+- Uses semantic components for proper screen reader support
+- Maintains readable text contrast ratios
+- Works with text zoom up to 200%
+
+</Tab>
+<Tab label="Implementation">
+
+## Installation
+
+```bash
+npm install @ledgerhq/lumen-ui-rnative
+```
+
+> **Note**: `@ledgerhq/lumen-design-core` and other peer dependencies (`react`, `react-native`, etc.) are required. See our Setup Guide for complete installation.
+
+## Basic Usage
+
+```tsx
+import { AmountDisplay } from '@ledgerhq/lumen-ui-rnative';
+import type { FormattedValue } from '@ledgerhq/lumen-ui-rnative';
+
+// Create a formatter function
+const usdFormatter = (value: number): FormattedValue => {
+  const [integerPart, decimalPart] = value.toFixed(2).split('.');
+  
+  return {
+    integerPart,
+    decimalPart,
+    currencyText: '$',
+    decimalSeparator: '.',
+    currencyPosition: 'start',
+  };
+};
+
+function MyComponent() {
+  return <AmountDisplay value={1234.56} formatter={usdFormatter} />;
+}
+
+// With privacy/hidden state
+function PrivateComponent() {
+  const [hidden, setHidden] = useState(false);
+  
+  return (
+    <AmountDisplay
+      value={1234.56}
+      formatter={usdFormatter}
+      hidden={hidden}
+    />
+  );
+}
+```
+
+## Custom Formatters
+
+### EUR with Comma Separator
+
+```tsx
+const eurFormatter = (value: number): FormattedValue => {
+  const [integerPart, decimalPart] = value.toFixed(2).split('.');
+  
+  return {
+    integerPart,
+    decimalPart,
+    currencyText: '€',
+    decimalSeparator: ',',
+    currencyPosition: 'end',
+  };
+};
+
+<AmountDisplay value={999.99} formatter={eurFormatter} />
+// Displays: 999,99 €
+```
+
+### Cryptocurrency with Variable Precision
+
+```tsx
+const btcFormatter = (value: number): FormattedValue => {
+  const [integerPart, decimalPart] = value.toFixed(8).split('.');
+  
+  return {
+    integerPart,
+    decimalPart,
+    currencyText: 'BTC',
+    decimalSeparator: '.',
+    currencyPosition: 'end',
+  };
+};
+
+<AmountDisplay value={0.00123456} formatter={btcFormatter} />
+// Displays: 0.00123456 BTC
+```
+
+### Hidden Amount for Privacy
+
+```tsx
+import { AmountDisplay } from '@ledgerhq/lumen-ui-rnative';
+import { IconButton } from '@ledgerhq/lumen-ui-rnative';
+import { Eye, EyeCross } from '@ledgerhq/lumen-ui-rnative';
+import { useState } from 'react';
+import { View } from 'react-native';
+
+function PrivateAmount() {
+  const [hidden, setHidden] = useState(false);
+  
+  const usdFormatter = (value: number): FormattedValue => {
+    const [integerPart, decimalPart] = value.toFixed(2).split('.');
+    return {
+      integerPart,
+      decimalPart,
+      currencyText: '$',
+      decimalSeparator: '.',
+      currencyPosition: 'start',
+    };
+  };
+  
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+      <AmountDisplay
+        formatter={usdFormatter}
+        value={1234.56}
+        hidden={hidden}
+      />
+      <IconButton
+        appearance='transparent'
+        size='sm'
+        icon={hidden ? EyeCross : Eye}
+        accessibilityLabel={hidden ? 'Show amount' : 'Hide amount'}
+        onPress={() => setHidden(!hidden)}
+      />
+    </View>
+  );
+}
+```
+
+## Do's and Don'ts
+
+<div className='flex flex-col gap-24'>
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use formatter for all display logic'
+      description='Keep all formatting logic in the formatter function'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const formatter = (value: number): FormattedValue => {
+  const [integerPart, decimalPart] = value.toFixed(2).split('.');
+  return {
+    integerPart,
+    decimalPart,
+    currencyText: '$',
+    decimalSeparator: '.',
+    currencyPosition: 'start',
+  };
+};
+
+<AmountDisplay value={1234.56} formatter={formatter} />
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't format the value outside the component"
+      description='Pass the raw number value, not a pre-formatted string'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const formattedValue = `$${value.toFixed(2)}`;
+
+<AmountDisplay
+  value={formattedValue}
+  formatter={(v) => ({ integerPart: v, currencyText: '' })}
+/>
+```
+
+    </DontBlockItem>
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Use the hidden prop for privacy'
+      description='Use the built-in hidden prop to toggle amount visibility'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const [hidden, setHidden] = useState(false);
+
+<AmountDisplay
+  value={1234.56}
+  formatter={usdFormatter}
+  hidden={hidden}
+/>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't create separate formatters for hiding"
+      description='Avoid creating custom formatters just to show bullet points'
+    >
+
+{/* prettier-ignore */}
+```tsx
+const hiddenFormatter = () => ({
+  integerPart: '••••',
+  currencyText: '$',
+  currencyPosition: 'start',
+});
+
+<AmountDisplay
+  value={1234.56}
+  formatter={hidden ? hiddenFormatter : usdFormatter}
+/>
+```
+
+    </DontBlockItem>
+  </DoVsDontRow>
+
+  <CommonRulesDoAndDont />
+</div>
+
+</Tab>
+</CustomTabs>

@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
 import { useState } from 'react';
+import { View } from 'react-native';
 import { Eye, EyeCross } from '../../Symbols';
 import { IconButton } from '../IconButton';
 import { AmountDisplay } from './AmountDisplay';
@@ -97,9 +98,7 @@ export const Base: Story = {
   parameters: {
     docs: {
       source: {
-        code: `
-<AmountDisplay value={1234.56} />
-        `.trim(),
+        code: `<AmountDisplay value={1234.56} />`,
       },
     },
   },
@@ -110,7 +109,7 @@ export const WithHideButton: Story = {
     const [hidden, setHidden] = useState(false);
 
     return (
-      <div className='flex flex-row place-items-center gap-12'>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <AmountDisplay
           formatter={props.formatter}
           value={1234.56}
@@ -120,10 +119,10 @@ export const WithHideButton: Story = {
           appearance='transparent'
           size='sm'
           icon={hidden ? EyeCross : Eye}
-          aria-label={hidden ? 'Show amount' : 'Hide amount'}
-          onClick={() => setHidden((v) => !v)}
+          accessibilityLabel={hidden ? 'Show amount' : 'Hide amount'}
+          onPress={() => setHidden((v) => !v)}
         />
-      </div>
+      </View>
     );
   },
 };

@@ -1,7 +1,6 @@
 import { ledgerLiveThemes } from '@ledgerhq/lumen-design-core';
 import {
   Box,
-  Divider,
   GlobalSelectBottomSheet,
   GlobalTooltipBottomSheet,
   SupportedLocale,
@@ -18,6 +17,7 @@ import {
 } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
+  AmountDisplays,
   AmountInputs,
   BottomSheetDynamicSize,
   BottomSheetFlatLists,
@@ -107,51 +107,42 @@ const AppContent = ({
             <SandboxBlock title='InteractiveIcons'>
               <InteractiveIcons />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Select'>
               <Selects />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Text inputs'>
               <TextInputs />
             </SandboxBlock>
-            <Divider />
+            <SandboxBlock title='Amount displays'>
+              <AmountDisplays />
+            </SandboxBlock>
             <SandboxBlock title='Amount inputs'>
               <AmountInputs />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='CardButtons'>
               <CardButtons />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Checkboxes'>
               <Checkboxes />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Spots'>
               <Spots />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Tags'>
               <Tags />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Subheaders'>
               <Subheaders />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Switches'>
               <Switches />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Buttons'>
               <Buttons />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='IconButtons'>
               <IconButtons />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Theme Provider toggles'>
               <Box lx={{ gap: 's12' }}>
                 <ToggleThemeSwitch
@@ -161,23 +152,18 @@ const AppContent = ({
                 <ToggleLocaleSwitch locale={locale} setLocale={setLocale} />
               </Box>
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Tiles'>
               <Tiles />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='ListItems'>
               <ListItems />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Tooltips'>
               <Tooltips />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Banners'>
               <Banners />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='BottomSheets'>
               <BottomSheetsButton
                 onPress={() => bottomSheetFlatListsRef.current?.expand()}
@@ -186,15 +172,13 @@ const AppContent = ({
                 onPress={() => bottomSheetDynamicSizeRef.current?.expand()}
               />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Link'>
               <Links />
             </SandboxBlock>
-            <Divider />
             <SandboxBlock title='Dividers'>
               <Dividers />
             </SandboxBlock>
-            <SandboxBlock title='Gradients'>
+            <SandboxBlock title='Gradients' hideDivider>
               <Gradients />
             </SandboxBlock>
           </Box>

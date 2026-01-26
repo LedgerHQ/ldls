@@ -1,12 +1,17 @@
-import { Box, Text } from '@ledgerhq/lumen-ui-rnative';
+import { Box, Divider, Text } from '@ledgerhq/lumen-ui-rnative';
 import React from 'react';
 
 type SandboxBlockProps = {
   title: string;
   children: React.ReactNode;
+  hideDivider?: boolean;
 };
 
-export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
+export const SandboxBlock = ({
+  title,
+  children,
+  hideDivider = false,
+}: SandboxBlockProps) => {
   return (
     <Box lx={{ gap: 's8' }}>
       <Text typography='heading4SemiBold' lx={{ color: 'base' }}>
@@ -21,6 +26,7 @@ export const SandboxBlock = ({ title, children }: SandboxBlockProps) => {
       >
         {children}
       </Box>
+      {!hideDivider && <Divider lx={{ marginTop: 's32' }} />}
     </Box>
   );
 };
