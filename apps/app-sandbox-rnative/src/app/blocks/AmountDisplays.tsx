@@ -44,7 +44,6 @@ export function AmountDisplays() {
           <AmountDisplay value={1234.56} formatter={eurFormatter} />
           <Text style={styles.sectionDescription}>EUR formatted</Text>
         </View>
-        <View style={styles.separator} />
         <View style={styles.sectionContainer}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <AmountDisplay
@@ -70,14 +69,9 @@ export function AmountDisplays() {
 const useStyles = () => {
   return useStyleSheet(
     (t) => ({
-      separator: {
-        marginVertical: t.spacings.s24,
-        height: t.sizes.s2,
-        width: '50%',
-        backgroundColor: t.colors.bg.surface,
-      },
       sectionContainer: {
         alignItems: 'center',
+        marginTop: t.spacings.s16,
       },
       sectionDescription: {
         marginTop: t.spacings.s8,

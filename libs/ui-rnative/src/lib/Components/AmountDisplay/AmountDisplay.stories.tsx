@@ -92,9 +92,7 @@ export const Base: Story = {
   parameters: {
     docs: {
       source: {
-        code: `
-<AmountDisplay value={1234.56} />
-        `.trim(),
+        code: `<AmountDisplay value={1234.56} />`,
       },
     },
   },
