@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-native-web-vite';
-import { TabBar } from './TabBar';
+import { BasketPutIn, HomeFill, Settings } from '../../Symbols';
+import { TabBar, TabBarItem } from './TabBar';
 
 const meta = {
   title: 'Action/TabBar',
@@ -15,4 +16,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {},
+  render: () => (
+    <TabBar active='home'>
+      <TabBarItem value='home' label='Home' icon={<HomeFill />} />
+      <TabBarItem value='shop' label='Shop' icon={<BasketPutIn />} />
+      <TabBarItem value='settings' label='Settings' icon={<Settings />} />
+    </TabBar>
+  ),
 };
