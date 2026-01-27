@@ -1,12 +1,14 @@
 import { Placeholder } from '@ledgerhq/lumen-ui-rnative/symbols';
+import { BlurView } from '@react-native-community/blur';
 import React from 'react';
-import { LayoutChangeEvent, Text } from 'react-native';
+import { LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
+
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useStyleSheet } from '../../../styles';
+import { useStyleSheet, useTheme } from '../../../styles';
 import { Box, Pressable } from '../Utility';
 import { TabBarContext, useTabBarContext } from './TabBarContext';
 import { TabBarItemProps, TabBarProps } from './types';
@@ -43,6 +45,7 @@ export function TabBar({
   ...props
 }: TabBarProps): JSX.Element {
   const styles = useStyles();
+  const { theme } = useTheme();
 
   const pillProgress = useSharedValue(0);
   const itemWidth = useSharedValue(0);
@@ -65,7 +68,7 @@ export function TabBar({
 
     onTabPress?.(value);
     pillProgress.value = withTiming(index * itemWidth.value, {
-      duration: 150,
+      duration: 300,
     });
   }
 
@@ -80,10 +83,11 @@ export function TabBar({
 
   return (
     <TabBarContext.Provider value={{ active, onTabPress: handleTabPress }}>
-      <Box style={styles.container} onLayout={onLayout} {...props}>
+      <View style={styles.container} onLayout={onLayout} {...props}>
         {children}
         <Animated.View style={[styles.pill, animatedPillStyle]} />
-      </Box>
+        <BlurView style={styles.blur} blurAmount={theme.blur.md} />
+      </View>
     </TabBarContext.Provider>
   );
 }
@@ -100,15 +104,20 @@ const useStyles = () =>
         alignItems: 'center',
         borderRadius: t.borderRadius.full,
         backgroundColor: t.colors.bg.mutedTransparent,
+        overflow: 'hidden',
+      },
+      blur: {
+        ...StyleSheet.absoluteFillObject,
+        zIndex: -1,
       },
       item: {
         flex: 1,
-        justifyContent: 'center',
         paddingVertical: t.spacings.s4,
         alignItems: 'center',
-        gap: t.spacings.s4,
+        gap: t.spacings.s2,
       },
       itemText: {
+        ...t.typographies.body4SemiBold,
         color: t.colors.text.base,
       },
       pill: {
