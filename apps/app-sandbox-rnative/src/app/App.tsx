@@ -42,6 +42,7 @@ import {
   Tooltips,
   ListItems,
   Gradients,
+  TabBars,
 } from './blocks';
 import { SandboxBlock } from './SandboxBlock';
 
@@ -104,6 +105,9 @@ const AppContent = ({
               paddingVertical: 's40',
             }}
           >
+            <SandboxBlock title='Tab Bars'>
+              <TabBars />
+            </SandboxBlock>
             <SandboxBlock title='InteractiveIcons'>
               <InteractiveIcons />
             </SandboxBlock>
