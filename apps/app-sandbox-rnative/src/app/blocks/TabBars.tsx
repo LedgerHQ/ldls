@@ -8,7 +8,7 @@ import {
 } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useState } from 'react';
 
-export function TabBars() {
+export function ExampleTabBar() {
   const [active, setActive] = useState('home');
 
   return (
