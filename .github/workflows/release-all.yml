@@ -63,4 +63,4 @@ jobs:
 
       - name: Publish
         id: publish
-        run: npx nx release publish --verbose
+        run: npx nx release publish --verbose --tag next
