@@ -1,11 +1,13 @@
 import { Placeholder } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { BlurView } from '@react-native-community/blur';
-import React from 'react';
-import { LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { LayoutChangeEvent, StyleSheet, Text } from 'react-native';
 
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useSharedValue,
+  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 import { useStyleSheet, useTheme } from '../../../styles';
@@ -22,16 +24,58 @@ export function TabBarItem({
   activeIcon,
 }: TabBarItemProps) {
   const styles = useStyles();
-
   const { active, onTabPress } = useTabBarContext();
+
+  const isActive = active === value;
+  const activeProgress = useSharedValue(isActive ? 1 : 0);
+  const pressProgress = useSharedValue(1);
 
   const Icon = icon ?? Placeholder;
   const ActiveIcon = activeIcon ?? Placeholder;
 
+  useEffect(() => {
+    activeProgress.value = withTiming(isActive ? 1 : 0, {
+      duration: 200,
+      easing: Easing.bezier(0, 0, 0.2, 1),
+    });
+  }, [isActive, activeProgress]);
+
+  function onPress() {
+    pressProgress.value = withSequence(
+      withTiming(0.8, { duration: 100, easing: Easing.bezier(0, 0, 0.2, 1) }),
+      withTiming(1, { duration: 100, easing: Easing.bezier(0, 0, 0.2, 1) }),
+    );
+    onTabPress(value);
+  }
+
+  const scaleStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: pressProgress.value }],
+  }));
+
+  const activeIconStyle = useAnimatedStyle(() => ({
+    opacity: activeProgress.value,
+  }));
+
+  const inactiveIconStyle = useAnimatedStyle(() => ({
+    opacity: 1 - activeProgress.value,
+  }));
+
   return (
-    <Pressable style={styles.item} onPress={() => onTabPress(value)}>
-      {active === value ? <ActiveIcon size={20} /> : <Icon size={20} />}
-      <Text style={styles.itemText}>{label ?? value}</Text>
+    <Pressable style={styles.item} onPress={onPress}>
+      <Animated.View style={scaleStyle}>
+        {isActive ? (
+          <Animated.View style={activeIconStyle}>
+            <ActiveIcon size={20} />
+          </Animated.View>
+        ) : (
+          <Animated.View style={inactiveIconStyle}>
+            <Icon size={20} />
+          </Animated.View>
+        )}
+      </Animated.View>
+      <Text style={[styles.itemText, isActive && styles.activeItemText]}>
+        {label ?? value}
+      </Text>
     </Pressable>
   );
 }
@@ -69,6 +113,7 @@ export function TabBar({
     onTabPress?.(value);
     pillProgress.value = withTiming(index * itemWidth.value, {
       duration: 300,
+      easing: Easing.bezier(0.4, 0, 0.2, 1),
     });
   }
 
@@ -83,11 +128,11 @@ export function TabBar({
 
   return (
     <TabBarContext.Provider value={{ active, onTabPress: handleTabPress }}>
-      <View style={styles.container} onLayout={onLayout} {...props}>
+      <Box style={styles.container} onLayout={onLayout} {...props}>
         {children}
-        <Animated.View style={[styles.pill, animatedPillStyle]} />
         <BlurView style={styles.blur} blurAmount={theme.blur.md} />
-      </View>
+        <Animated.View style={[styles.pill, animatedPillStyle]} />
+      </Box>
     </TabBarContext.Provider>
   );
 }
@@ -114,11 +159,15 @@ const useStyles = () =>
         flex: 1,
         paddingVertical: t.spacings.s4,
         alignItems: 'center',
+        justifyContent: 'center',
         gap: t.spacings.s2,
       },
       itemText: {
-        ...t.typographies.body4SemiBold,
+        ...t.typographies.body4,
         color: t.colors.text.base,
+      },
+      activeItemText: {
+        ...t.typographies.body4SemiBold,
       },
       pill: {
         position: 'absolute',

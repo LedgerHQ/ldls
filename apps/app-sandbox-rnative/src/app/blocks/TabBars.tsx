@@ -4,7 +4,10 @@ import {
   HomeFill,
   CreditCard,
   CreditCardFill,
-  UserCircle,
+  Exchange,
+  ExchangeFill,
+  LifeRing,
+  LifeRingFill,
 } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { useState } from 'react';
 
@@ -15,12 +18,23 @@ export function ExampleTabBar() {
     <TabBar active={active} onTabPress={setActive}>
       <TabBarItem value='home' label='Home' icon={Home} activeIcon={HomeFill} />
       <TabBarItem
-        value='pay'
-        label='Pay'
+        value='swap'
+        label='Swap'
+        icon={Exchange}
+        activeIcon={ExchangeFill}
+      />
+      <TabBarItem
+        value='card'
+        label='Card'
         icon={CreditCard}
         activeIcon={CreditCardFill}
       />
-      <TabBarItem value='profile' label='Me' icon={UserCircle} />
+      <TabBarItem
+        value='help'
+        label='Help'
+        icon={LifeRing}
+        activeIcon={LifeRingFill}
+      />
     </TabBar>
   );
 }
