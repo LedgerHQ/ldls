@@ -13,19 +13,14 @@ export function TabBars() {
 
   return (
     <TabBar active={active} onTabPress={setActive}>
-      <TabBarItem
-        value='home'
-        label='Home'
-        icon={<Home />}
-        activeIcon={<HomeFill />}
-      />
+      <TabBarItem value='home' label='Home' icon={Home} activeIcon={HomeFill} />
       <TabBarItem
         value='pay'
         label='Pay'
-        icon={<CreditCard />}
-        activeIcon={<CreditCardFill />}
+        icon={CreditCard}
+        activeIcon={CreditCardFill}
       />
-      <TabBarItem value='profile' label='Me' icon={<UserCircle />} />
+      <TabBarItem value='profile' label='Me' icon={UserCircle} />
     </TabBar>
   );
 }

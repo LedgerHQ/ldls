@@ -22,12 +22,14 @@ export function TabBarItem({
   const styles = useStyles();
 
   const { active, onTabPress } = useTabBarContext();
-  const isActive = active === value;
+
+  const Icon = icon ?? Placeholder;
+  const ActiveIcon = activeIcon ?? Placeholder;
 
   return (
     <Pressable style={styles.item} onPress={() => onTabPress(value)}>
-      {isActive ? (activeIcon ?? <Placeholder />) : (icon ?? <Placeholder />)}
-      <Text style={styles.itemText}>{label}</Text>
+      {active === value ? <ActiveIcon size={20} /> : <Icon size={20} />}
+      <Text style={styles.itemText}>{label ?? value}</Text>
     </Pressable>
   );
 }
@@ -50,7 +52,7 @@ export function TabBar({
     const { width, height } = e.nativeEvent.layout;
 
     const count = React.Children.count(children);
-    const slotWidth = width / count;
+    const slotWidth = (width - PILL_INSET * 2) / count;
 
     itemWidth.value = slotWidth;
     itemHeight.value = height;
@@ -70,7 +72,7 @@ export function TabBar({
   const animatedPillStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateX: pillProgress.value }],
-      width: itemWidth.value - PILL_INSET * 2,
+      width: itemWidth.value,
       height: itemHeight.value - PILL_INSET * 2,
     }),
     [],
@@ -90,11 +92,12 @@ const useStyles = () =>
   useStyleSheet(
     (t) => ({
       container: {
+        width: t.sizes.full,
+        minWidth: t.sizes.s256,
         flexDirection: 'row',
         justifyContent: 'center',
         padding: t.spacings.s4,
         alignItems: 'center',
-        minWidth: t.sizes.s320, // TODO: this needs checking
         borderRadius: t.borderRadius.full,
         backgroundColor: t.colors.bg.mutedTransparent,
       },

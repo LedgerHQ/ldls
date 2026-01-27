@@ -1,12 +1,18 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement } from 'react';
+import { IconSize } from '../Icon';
 import { BoxProps } from '../Utility';
 import { TabBarItem } from './TabBar';
+
+type IconComponent = React.ComponentType<{
+  size?: IconSize;
+  className?: string;
+}>;
 
 export type TabBarItemProps = {
   value: string;
   label?: string;
-  icon?: ReactNode;
-  activeIcon?: ReactNode;
+  icon?: IconComponent;
+  activeIcon?: IconComponent;
 };
 
 export type TabBarChildren =
