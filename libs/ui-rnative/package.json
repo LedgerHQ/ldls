@@ -32,9 +32,10 @@
     "react-i18next": "^14.0.0"
   },
   "devDependencies": {
-    "@types/react": "19.0.0"
+    "@types/react": "^19.0.0"
   },
   "peerDependencies": {
+    "@types/react": "^19.0.0",
     "@gorhom/bottom-sheet": "^5.0.0",
     "@ledgerhq/lumen-design-core": "0.0.44-0",
     "react": "19.0.0",
