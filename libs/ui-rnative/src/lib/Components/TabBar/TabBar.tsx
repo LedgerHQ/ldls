@@ -5,6 +5,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { Placeholder } from '../../../lib/Symbols';
 import { useStyleSheet } from '../../../styles';
 import { Box, Pressable } from '../Utility';
 import { TabBarContext, useTabBarContext } from './TabBarContext';
@@ -19,7 +20,7 @@ export function TabBarItem({ value, label, icon }: TabBarItemProps) {
 
   return (
     <Pressable style={styles.item} onPress={() => onTabPress(value)}>
-      {icon}
+      {icon ? icon : <Placeholder size={20} />}
       <Text style={styles.itemText}>{label}</Text>
     </Pressable>
   );
