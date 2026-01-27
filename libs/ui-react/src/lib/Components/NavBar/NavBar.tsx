@@ -76,7 +76,10 @@ export const NavBarTitle = React.forwardRef<HTMLElement, NavBarTitleProps>(
       <Component
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
-        className={cn('min-w-0 flex-1 truncate heading-4-semi-bold', className)}
+        className={cn(
+          'min-w-0 flex-1 truncate heading-4-semi-bold text-base',
+          className,
+        )}
         data-slot='navbar-title'
       >
         {children}
