@@ -1,3 +1,4 @@
+import { Placeholder } from '@ledgerhq/lumen-ui-rnative/symbols';
 import React from 'react';
 import { LayoutChangeEvent, Text } from 'react-native';
 import Animated, {
@@ -5,7 +6,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { Placeholder } from '../../../lib/Symbols';
 import { useStyleSheet } from '../../../styles';
 import { Box, Pressable } from '../Utility';
 import { TabBarContext, useTabBarContext } from './TabBarContext';
@@ -13,14 +13,20 @@ import { TabBarItemProps, TabBarProps } from './types';
 
 const PILL_INSET = 4;
 
-export function TabBarItem({ value, label, icon }: TabBarItemProps) {
+export function TabBarItem({
+  value,
+  label,
+  icon,
+  activeIcon,
+}: TabBarItemProps) {
   const styles = useStyles();
 
   const { active, onTabPress } = useTabBarContext();
+  const isActive = active === value;
 
   return (
     <Pressable style={styles.item} onPress={() => onTabPress(value)}>
-      {icon ? icon : <Placeholder size={20} />}
+      {isActive ? (activeIcon ?? <Placeholder />) : (icon ?? <Placeholder />)}
       <Text style={styles.itemText}>{label}</Text>
     </Pressable>
   );

@@ -6,6 +6,7 @@ export type TabBarItemProps = {
   value: string;
   label?: string;
   icon?: ReactNode;
+  activeIcon?: ReactNode;
 };
 
 export type TabBarChildren =

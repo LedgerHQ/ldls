@@ -1,16 +1,31 @@
 import { TabBar, TabBarItem } from '@ledgerhq/lumen-ui-rnative';
 import {
+  Home,
   HomeFill,
-  BasketPutIn,
-  Settings,
+  CreditCard,
+  CreditCardFill,
+  UserCircle,
 } from '@ledgerhq/lumen-ui-rnative/symbols';
+import { useState } from 'react';
 
 export function TabBars() {
+  const [active, setActive] = useState('home');
+
   return (
-    <TabBar active='home'>
-      <TabBarItem value='home' label='Home' icon={<HomeFill />} />
-      <TabBarItem value='shop' label='Shop' icon={<BasketPutIn />} />
-      <TabBarItem value='settings' label='Settings' icon={<Settings />} />
+    <TabBar active={active} onTabPress={setActive}>
+      <TabBarItem
+        value='home'
+        label='Home'
+        icon={<Home />}
+        activeIcon={<HomeFill />}
+      />
+      <TabBarItem
+        value='pay'
+        label='Pay'
+        icon={<CreditCard />}
+        activeIcon={<CreditCardFill />}
+      />
+      <TabBarItem value='profile' label='Me' icon={<UserCircle />} />
     </TabBar>
   );
 }
