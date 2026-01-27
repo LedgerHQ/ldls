@@ -14,6 +14,7 @@ import {
   TileProps,
   TileSpotProps,
   TileTitleProps,
+  TileTrailingContentProps,
 } from './types';
 
 const [TileProvider, useTileContext] =
@@ -168,19 +169,18 @@ const TilePressableContent = ({
 
 /**
  * A spot adapter for use within Tile. Automatically inherits the disabled state from the parent Tile.
- * Always renders at a fixed size of 48.
  *
  * @example
  * <Tile>
  *   <TileSpot appearance="icon" icon={Settings} />
  * </Tile>
  */
-export const TileSpot = (props: TileSpotProps) => {
+export const TileSpot = ({ size = 48, ...props }: TileSpotProps) => {
   const { disabled } = useTileContext({
     consumerName: 'TileSpot',
     contextRequired: true,
   });
-  return <Spot {...props} size={48} disabled={disabled} />;
+  return <Spot {...props} size={size} disabled={disabled} />;
 };
 
 const useContentStyles = () => {
@@ -230,7 +230,7 @@ const useTitleStyles = ({ disabled }: { disabled: boolean }) => {
         alignItems: 'center',
       },
       text: StyleSheet.flatten([
-        t.typographies.body3SemiBold,
+        t.typographies.body2SemiBold,
         {
           alignItems: 'center',
           width: t.sizes.full,
@@ -349,3 +349,52 @@ export const TileDescription = ({
   );
 };
 TileDescription.displayName = 'TileDescription';
+
+const useTrailingContentStyles = () => {
+  return useStyleSheet(
+    (t) => ({
+      container: {
+        width: t.sizes.full,
+        alignItems: 'center',
+        marginTop: t.spacings.s4,
+        gap: t.spacings.s8,
+      },
+    }),
+    [],
+  );
+};
+
+/**
+ * A container for trailing content inside TileContent.
+ * Use this to wrap Tags, labels, or other supplementary information after title and description.
+ * Multiple items inside will have 8px spacing between them.
+ *
+ * @example
+ * <Tile>
+ *   <TileSpot appearance="icon" icon={Settings} />
+ *   <TileContent>
+ *     <TileTitle>My Title</TileTitle>
+ *     <TileDescription>Description</TileDescription>
+ *     <TileTrailingContent>
+ *       <Tag label="Active" />
+ *     </TileTrailingContent>
+ *   </TileContent>
+ * </Tile>
+ */
+export const TileTrailingContent = ({
+  children,
+  lx,
+  style,
+}: TileTrailingContentProps) => {
+  const styles = useTrailingContentStyles();
+  return (
+    <Box
+      lx={lx}
+      style={StyleSheet.flatten([styles.container, style])}
+      testID='tile-trailing-content'
+    >
+      {children}
+    </Box>
+  );
+};
+TileTrailingContent.displayName = 'TileTrailingContent';
