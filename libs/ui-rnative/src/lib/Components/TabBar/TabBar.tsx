@@ -31,7 +31,7 @@ export function TabBarItem({
   const pressProgress = useSharedValue(1);
 
   const Icon = icon ?? Placeholder;
-  const ActiveIcon = activeIcon ?? Placeholder;
+  const ActiveIcon = activeIcon ?? Icon;
 
   useEffect(() => {
     activeProgress.value = withTiming(isActive ? 1 : 0, {

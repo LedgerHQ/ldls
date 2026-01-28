@@ -8,12 +8,21 @@ import {
   Chart1,
   Bell,
   CoinPercent,
+  Home,
+  CreditCard,
+  CreditCardFill,
+  LifeRing,
+  LifeRingFill,
+  Cart,
 } from '../../Symbols';
 import { TabBar, TabBarItem } from './TabBar';
 
 const meta = {
   title: 'Action/TabBar',
   component: TabBar,
+  subcomponents: {
+    TabBarItem,
+  },
   parameters: {
     layout: 'centered',
     backgrounds: { default: 'light' },
@@ -29,9 +38,24 @@ export const Base: Story = {
     const [active, setActive] = useState('home');
     return (
       <TabBar active={active} onTabPress={setActive}>
-        <TabBarItem value='home' label='Home' icon={HomeFill} />
-        <TabBarItem value='shop' label='Shop' icon={BasketPutIn} />
-        <TabBarItem value='settings' label='Settings' icon={Settings} />
+        <TabBarItem
+          value='home'
+          label='Home'
+          icon={Home}
+          activeIcon={HomeFill}
+        />
+        <TabBarItem
+          value='pay'
+          label='Pay'
+          icon={CreditCard}
+          activeIcon={CreditCardFill}
+        />
+        <TabBarItem
+          value='help'
+          label='Help'
+          icon={LifeRing}
+          activeIcon={LifeRingFill}
+        />
       </TabBar>
     );
   },
@@ -66,7 +90,7 @@ export const MissingLabel: Story = {
       <TabBar active={active} onTabPress={setActive}>
         <TabBarItem value='tab1' />
         <TabBarItem value='tab2' label='Named Tab' icon={Placeholder} />
-        <TabBarItem value='tab3' icon={HomeFill} />
+        <TabBarItem value='tab3' icon={Cart} />
       </TabBar>
     );
   },

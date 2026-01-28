@@ -20,7 +20,7 @@ export type TabBarChildren =
   | ReactElement<TabBarItemProps, typeof TabBarItem>[];
 
 export type TabBarProps = {
-  active?: string;
-  onTabPress?: (active: string) => void;
+  active: string;
+  onTabPress: (active: string) => void;
   children: TabBarChildren;
 } & Omit<BoxProps, 'children'>;
