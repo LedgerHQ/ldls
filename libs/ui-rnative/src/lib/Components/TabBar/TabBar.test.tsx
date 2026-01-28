@@ -5,8 +5,9 @@ import { TabBar, TabBarItem } from './TabBar';
 
 describe('TabBar', () => {
   it('should render tab items with labels', () => {
+    const onTabPress = jest.fn();
     const { getByText } = render(
-      <TabBar active='home'>
+      <TabBar active='home' onTabPress={onTabPress}>
         <TabBarItem value='home' label='Home' icon={HomeFill} />
         <TabBarItem value='settings' label='Settings' icon={Settings} />
       </TabBar>,
@@ -30,8 +31,9 @@ describe('TabBar', () => {
   });
 
   it('should fallback to value when label is not provided', () => {
+    const onTabPress = jest.fn();
     const { getByText } = render(
-      <TabBar active='tab1'>
+      <TabBar active='tab1' onTabPress={onTabPress}>
         <TabBarItem value='tab1' icon={HomeFill} />
         <TabBarItem value='tab2' icon={Settings} />
       </TabBar>,
@@ -42,8 +44,9 @@ describe('TabBar', () => {
   });
 
   it('should render multiple tabs correctly', () => {
+    const onTabPress = jest.fn();
     const { getByText } = render(
-      <TabBar active='home'>
+      <TabBar active='home' onTabPress={onTabPress}>
         <TabBarItem value='home' label='Home' icon={HomeFill} />
         <TabBarItem value='shop' label='Shop' icon={BasketPutIn} />
         <TabBarItem value='settings' label='Settings' icon={Settings} />

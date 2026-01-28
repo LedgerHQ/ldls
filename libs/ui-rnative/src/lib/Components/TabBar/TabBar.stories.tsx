@@ -27,13 +27,36 @@ const meta = {
     layout: 'centered',
     backgrounds: { default: 'light' },
   },
+  argTypes: {
+    active: {
+      control: 'text',
+      description: 'The currently active tab value',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    onTabPress: {
+      action: 'tab pressed',
+      description: 'Callback function when a tab is pressed',
+      table: {
+        type: { summary: '(active: string) => void' },
+      },
+    },
+    children: {
+      control: false,
+      description: 'TabBarItem children (minimum 2 required)',
+      table: {
+        type: { summary: 'TabBarChildren' },
+      },
+    },
+  },
 } satisfies Meta<typeof TabBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
-  args: {},
+  args: {} as React.ComponentProps<typeof TabBar>,
   render: () => {
     const [active, setActive] = useState('home');
     return (
@@ -62,7 +85,7 @@ export const Base: Story = {
 };
 
 export const Complex: Story = {
-  args: {},
+  args: {} as React.ComponentProps<typeof TabBar>,
   render: () => {
     const [active, setActive] = useState('portfolio');
     return (
@@ -83,7 +106,7 @@ export const Complex: Story = {
 };
 
 export const MissingLabel: Story = {
-  args: {},
+  args: {} as React.ComponentProps<typeof TabBar>,
   render: () => {
     const [active, setActive] = useState('tab1');
     return (
