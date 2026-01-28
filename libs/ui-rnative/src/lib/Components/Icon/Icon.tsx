@@ -48,7 +48,7 @@ export const Icon = forwardRef<Svg, IconProps>(
         viewBox={viewBox}
         color={styles.color}
         fill='none'
-        pointerEvents='none'
+        style={{ pointerEvents: 'none' }}
         {...props}
       >
         {children}
