@@ -124,7 +124,7 @@ export function TabBar({
   ...props
 }: TabBarProps): JSX.Element {
   const styles = useStyles();
-  const { theme } = useTheme();
+  const { theme, colorScheme } = useTheme();
 
   const pillProgress = useSharedValue(0);
   const itemWidth = useSharedValue(0);
@@ -194,7 +194,11 @@ export function TabBar({
         {...props}
       >
         {children}
-        <BlurView style={styles.blur} blurAmount={theme.blur.md} />
+        <BlurView
+          style={styles.blur}
+          blurAmount={theme.blur.md}
+          blurType={colorScheme === 'dark' ? 'dark' : 'light'}
+        />
         <Animated.View style={[styles.pill, animatedPillStyle]} />
       </Box>
     </TabBarContext.Provider>
