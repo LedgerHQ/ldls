@@ -36,7 +36,7 @@ export function TabBarItem({
 
   useEffect(() => {
     activeProgress.value = withDelay(
-      100,
+      50,
       withTiming(isActive ? 1 : 0, {
         duration: 200,
         easing: Easing.bezier(0.4, 0, 0.2, 1),
@@ -45,11 +45,26 @@ export function TabBarItem({
   }, [isActive, activeProgress]);
 
   function onPress() {
-    pressProgress.value = withSequence(
-      withTiming(0.8, { duration: 100, easing: Easing.bezier(0, 0, 0.2, 1) }),
-      withTiming(1, { duration: 100, easing: Easing.bezier(0, 0, 0.2, 1) }),
-    );
     onTabPress(value);
+  }
+
+  function onPressIn() {
+    pressProgress.value = withTiming(0.9, {
+      duration: 100,
+      easing: Easing.bezier(0, 0, 0.2, 1),
+    });
+  }
+
+  function onPressOut() {
+    pressProgress.value = withSequence(
+      withTiming(0.95, {
+        duration: 0,
+      }),
+      withTiming(1, {
+        duration: 120,
+        easing: Easing.out(Easing.quad),
+      }),
+    );
   }
 
   const scaleStyle = useAnimatedStyle(
@@ -77,6 +92,8 @@ export function TabBarItem({
     <Pressable
       style={styles.item}
       onPress={onPress}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
       accessibilityRole='tab'
       accessibilityLabel={label ?? value}
       accessibilityState={{ selected: isActive }}
