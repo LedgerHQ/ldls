@@ -11,11 +11,13 @@ import { Box } from '../Utility';
 # 🔘 TabBar
 
 <CustomTabs>
-  <Tab label="Overview ">
+  <Tab label="Overview">
 
 ## Introduction
 
 TabBar is an animated navigation component that allows users to switch between different pages, views and sections. It features smooth transitions, blur effects, and customizable icons for each tab. Designed specifically for React Native applications, it seamlessly integrates with React Navigation and Expo Router.
+
+> **Important:** TabBar requires a minimum of **2 TabBarItem children**. Using fewer than 2 items will result in a TypeScript error. This ensures a meaningful navigation experience for users.
 
 > **Note:** This component uses `react-native-reanimated` for animations and `@react-native-community/blur` for visual effects. These native libraries have limited support in web-based Storybook environments and may not render with full fidelity. For the complete experience with all animations and blur effects, please test the component in the native sandbox app on iOS or Android.
 
@@ -56,13 +58,16 @@ The TabBar automatically adjusts to accommodate different numbers of tabs while 
 
 ## Accessibility
 
-- Each tab item is fully pressable with appropriate touch targets
-- Active state is clearly indicated through bold text and icon changes
+- Each tab item includes proper `accessibilityRole="tab"` with `accessibilityLabel` for screen readers
+- Active state is communicated through `accessibilityState={{ selected: true }}` for assistive technologies
+- The TabBar container uses `accessibilityRole="tablist"` to semantically group tab items
 - Labels automatically fallback to `value` prop ensuring all tabs have accessible names
+- Each tab item is fully pressable with appropriate touch targets
+- Active state is visually indicated through bold text and icon changes
 - Smooth animations provide visual feedback for user interactions
 
 </Tab>
-<Tab label="Implementation ">
+<Tab label="Implementation">
 
 ## Setup
 
@@ -293,6 +298,36 @@ const [active, setActive] = useState('home');
   <TabBarItem value='tab1' label='Tab 1' icon={Icon1} />
   <TabBarItem value='tab2' label='Tab 2' icon={Icon2} />
   {/* ... 6+ more tabs ... */}
+</TabBar>
+```
+
+    </DontBlockItem>
+  </DoVsDontRow>
+
+  <DoVsDontRow>
+    <DoBlockItem
+      title='Include at least 2 tabs'
+      description='TabBar requires a minimum of 2 items to function properly'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<TabBar active={active} onTabPress={setActive}>
+  <TabBarItem value='home' label='Home' icon={Home} />
+  <TabBarItem value='settings' label='Settings' icon={Settings} />
+</TabBar>
+```
+
+    </DoBlockItem>
+    <DontBlockItem
+      title="Don't use only 1 tab"
+      description='Single tab navigation is not supported and will cause a TypeScript error'
+    >
+
+{/* prettier-ignore */}
+```tsx
+<TabBar active={active} onTabPress={setActive}>
+  <TabBarItem value='home' label='Home' icon={Home} />
 </TabBar>
 ```
 

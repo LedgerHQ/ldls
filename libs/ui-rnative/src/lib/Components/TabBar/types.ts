@@ -15,9 +15,8 @@ export type TabBarItemProps = {
   activeIcon?: IconComponent;
 };
 
-export type TabBarChildren =
-  | ReactElement<TabBarItemProps, typeof TabBarItem>
-  | ReactElement<TabBarItemProps, typeof TabBarItem>[];
+export type TabBarChild = ReactElement<TabBarItemProps, typeof TabBarItem>;
+export type TabBarChildren = [TabBarChild, TabBarChild, ...TabBarChild[]];
 
 export type TabBarProps = {
   active: string;
