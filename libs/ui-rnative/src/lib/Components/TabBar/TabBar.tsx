@@ -74,7 +74,13 @@ export function TabBarItem({
   );
 
   return (
-    <Pressable style={styles.item} onPress={onPress}>
+    <Pressable
+      style={styles.item}
+      onPress={onPress}
+      accessibilityRole='tab'
+      accessibilityLabel={label ?? value}
+      accessibilityState={{ selected: isActive }}
+    >
       <Animated.View style={scaleStyle}>
         <Box style={styles.itemIconContainer}>
           <Animated.View style={[styles.itemIcon, inactiveIconStyle]}>
@@ -164,7 +170,12 @@ export function TabBar({
 
   return (
     <TabBarContext.Provider value={{ active, onTabPress: handleTabPress }}>
-      <Box style={styles.container} onLayout={onLayout} {...props}>
+      <Box
+        style={styles.container}
+        onLayout={onLayout}
+        accessibilityRole='tablist'
+        {...props}
+      >
         {children}
         <BlurView style={styles.blur} blurAmount={theme.blur.md} />
         <Animated.View style={[styles.pill, animatedPillStyle]} />
@@ -177,7 +188,6 @@ const useStyles = () =>
   useStyleSheet(
     (t) => ({
       container: {
-        width: t.sizes.full,
         flexDirection: 'row',
         justifyContent: 'center',
         padding: t.spacings.s4,

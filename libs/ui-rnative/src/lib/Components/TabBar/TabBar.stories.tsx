@@ -9,11 +9,11 @@ import {
   Bell,
   CoinPercent,
   Home,
-  CreditCard,
-  CreditCardFill,
   LifeRing,
   LifeRingFill,
   Cart,
+  CreditCard,
+  CreditCardFill,
 } from '../../Symbols';
 import { TabBar, TabBarItem } from './TabBar';
 
