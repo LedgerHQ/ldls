@@ -1,6 +1,6 @@
 import { Placeholder } from '@ledgerhq/lumen-ui-rnative/symbols';
 import { BlurView } from '@react-native-community/blur';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { LayoutChangeEvent, StyleSheet, Text } from 'react-native';
 
 import Animated, {
@@ -106,6 +106,16 @@ export function TabBar({
   const pillProgress = useSharedValue(0);
   const itemWidth = useSharedValue(0);
   const itemHeight = useSharedValue(0);
+  const hasLayoutRef = useRef(false);
+
+  const getActiveIndex = useCallback((): number => {
+    return React.Children.toArray(children).findIndex((child) => {
+      if (React.isValidElement<TabBarItemProps>(child)) {
+        return child.props.value === active;
+      }
+      return false;
+    });
+  }, [active, children]);
 
   function onLayout(e: LayoutChangeEvent) {
     const { width, height } = e.nativeEvent.layout;
@@ -115,6 +125,14 @@ export function TabBar({
 
     itemWidth.value = slotWidth;
     itemHeight.value = height;
+
+    if (!hasLayoutRef.current) {
+      hasLayoutRef.current = true;
+      const index = getActiveIndex();
+      if (index >= 0) {
+        pillProgress.value = index * slotWidth;
+      }
+    }
   }
 
   function handleTabPress(value: string) {
@@ -122,17 +140,18 @@ export function TabBar({
   }
 
   useEffect(() => {
-    const index = React.Children.toArray(children).findIndex(
-      (child: any) => child.props.value === active,
-    );
+    if (!hasLayoutRef.current) {
+      return;
+    }
+    const index = getActiveIndex();
 
-    if (index >= 0) {
+    if (index >= 0 && itemWidth.value > 0) {
       pillProgress.value = withTiming(index * itemWidth.value, {
         duration: 300,
         easing: Easing.bezier(0.4, 0, 0.2, 1),
       });
     }
-  }, [active, children, itemWidth, pillProgress]);
+  }, [itemWidth, pillProgress, getActiveIndex]);
 
   const animatedPillStyle = useAnimatedStyle(
     () => ({
@@ -159,7 +178,6 @@ const useStyles = () =>
     (t) => ({
       container: {
         width: t.sizes.full,
-        minWidth: t.sizes.s256,
         flexDirection: 'row',
         justifyContent: 'center',
         padding: t.spacings.s4,

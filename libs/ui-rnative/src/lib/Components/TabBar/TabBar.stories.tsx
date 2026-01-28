@@ -37,7 +37,7 @@ export const Base: Story = {
   render: () => {
     const [active, setActive] = useState('home');
     return (
-      <TabBar active={active} onTabPress={setActive}>
+      <TabBar active={active} onTabPress={setActive} lx={{ width: 's320' }}>
         <TabBarItem
           value='home'
           label='Home'
@@ -66,7 +66,7 @@ export const Complex: Story = {
   render: () => {
     const [active, setActive] = useState('portfolio');
     return (
-      <TabBar active={active} onTabPress={setActive}>
+      <TabBar active={active} onTabPress={setActive} lx={{ width: 's320' }}>
         <TabBarItem value='market' label='Market' icon={Chart1} />
         <TabBarItem
           value='portfolio'
@@ -87,7 +87,7 @@ export const MissingLabel: Story = {
   render: () => {
     const [active, setActive] = useState('tab1');
     return (
-      <TabBar active={active} onTabPress={setActive}>
+      <TabBar active={active} onTabPress={setActive} lx={{ width: 's320' }}>
         <TabBarItem value='tab1' />
         <TabBarItem value='tab2' label='Named Tab' icon={Placeholder} />
         <TabBarItem value='tab3' icon={Cart} />
