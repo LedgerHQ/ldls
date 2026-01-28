@@ -18,6 +18,13 @@ import { TabBarItemProps, TabBarProps } from './types';
 
 const PILL_INSET = 4;
 
+/**
+ * Individual tab item component that displays an icon and label.
+ * Must be used as a child of TabBar.
+ *
+ * @example
+ * <TabBarItem value="home" label="Home" icon={HomeFill} activeIcon={HomeActive} />
+ */
 export function TabBarItem({
   value,
   label,
@@ -117,6 +124,26 @@ export function TabBarItem({
 
 TabBarItem.displayName = 'TabBarItem';
 
+/**
+ * A horizontal tab bar with animated pill background and icon transitions.
+ * Provides smooth animations for active state changes and press interactions.
+ *
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_navigation-tabbar--docs Storybook}
+ * @see {@link https://ldls.vercel.app/?path=/docs/react-native_navigation-tabbar--docs#dos-and-donts Guidelines}
+ *
+ * @warning Requires at least two TabBarItem children to function properly.
+ * @warning The `lx` prop should only be used for layout adjustments like margins or positioning.
+ *
+ * @example
+ * import { TabBar, TabBarItem } from '@ledgerhq/lumen-ui-rnative';
+ * import { HomeFill, Settings } from '@ledgerhq/lumen-ui-rnative/symbols';
+ *
+ * const [activeTab, setActiveTab] = useState('home');
+ * <TabBar active={activeTab} onTabPress={setActiveTab}>
+ *   <TabBarItem value="home" label="Home" icon={HomeFill} />
+ *   <TabBarItem value="settings" label="Settings" icon={Settings} />
+ * </TabBar>
+ */
 export function TabBar({
   active,
   onTabPress,
