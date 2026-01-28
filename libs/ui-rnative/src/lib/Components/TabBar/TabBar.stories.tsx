@@ -37,19 +37,19 @@ export const Base: Story = {
   },
 };
 
-export const ComplexWithManyTabs: Story = {
+export const Complex: Story = {
   args: {},
   render: () => {
     const [active, setActive] = useState('portfolio');
     return (
       <TabBar active={active} onTabPress={setActive}>
+        <TabBarItem value='market' label='Market' icon={Chart1} />
         <TabBarItem
           value='portfolio'
           label='Portfolio'
           icon={CoinPercent}
           activeIcon={CoinPercent}
         />
-        <TabBarItem value='market' label='Market' icon={Chart1} />
         <TabBarItem value='shop' label='Shop' icon={BasketPutIn} />
         <TabBarItem value='notifications' label='Alerts' icon={Bell} />
         <TabBarItem value='settings' label='Settings' icon={Settings} />
@@ -58,7 +58,7 @@ export const ComplexWithManyTabs: Story = {
   },
 };
 
-export const WithPlaceholdersAndMissingLabel: Story = {
+export const MissingLabel: Story = {
   args: {},
   render: () => {
     const [active, setActive] = useState('tab1');
