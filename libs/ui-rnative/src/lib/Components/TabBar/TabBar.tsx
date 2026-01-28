@@ -106,16 +106,21 @@ export function TabBar({
   }
 
   function handleTabPress(value: string) {
+    onTabPress?.(value);
+  }
+
+  useEffect(() => {
     const index = React.Children.toArray(children).findIndex(
-      (child: any) => child.props.value === value,
+      (child: any) => child.props.value === active,
     );
 
-    onTabPress?.(value);
-    pillProgress.value = withTiming(index * itemWidth.value, {
-      duration: 300,
-      easing: Easing.bezier(0.4, 0, 0.2, 1),
-    });
-  }
+    if (index >= 0) {
+      pillProgress.value = withTiming(index * itemWidth.value, {
+        duration: 300,
+        easing: Easing.bezier(0.4, 0, 0.2, 1),
+      });
+    }
+  }, [active, children, itemWidth.value, pillProgress]);
 
   const animatedPillStyle = useAnimatedStyle(
     () => ({
