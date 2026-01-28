@@ -52,21 +52,21 @@ export function TabBarItem({
     () => ({
       transform: [{ scale: pressProgress.value }],
     }),
-    [],
+    [pressProgress],
   );
 
   const activeIconStyle = useAnimatedStyle(
     () => ({
       opacity: activeProgress.value,
     }),
-    [],
+    [activeProgress],
   );
 
   const inactiveIconStyle = useAnimatedStyle(
     () => ({
       opacity: 1 - activeProgress.value,
     }),
-    [],
+    [activeProgress],
   );
 
   return (
@@ -129,7 +129,7 @@ export function TabBar({
         easing: Easing.bezier(0.4, 0, 0.2, 1),
       });
     }
-  }, [active, children, itemWidth.value, pillProgress]);
+  }, [active, children, itemWidth, pillProgress]);
 
   const animatedPillStyle = useAnimatedStyle(
     () => ({
@@ -137,7 +137,7 @@ export function TabBar({
       width: itemWidth.value,
       height: itemHeight.value - PILL_INSET * 2,
     }),
-    [],
+    [pillProgress, itemWidth, itemHeight],
   );
 
   return (
