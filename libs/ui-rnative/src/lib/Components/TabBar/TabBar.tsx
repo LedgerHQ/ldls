@@ -48,17 +48,26 @@ export function TabBarItem({
     onTabPress(value);
   }
 
-  const scaleStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: pressProgress.value }],
-  }));
+  const scaleStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ scale: pressProgress.value }],
+    }),
+    [],
+  );
 
-  const activeIconStyle = useAnimatedStyle(() => ({
-    opacity: activeProgress.value,
-  }));
+  const activeIconStyle = useAnimatedStyle(
+    () => ({
+      opacity: activeProgress.value,
+    }),
+    [],
+  );
 
-  const inactiveIconStyle = useAnimatedStyle(() => ({
-    opacity: 1 - activeProgress.value,
-  }));
+  const inactiveIconStyle = useAnimatedStyle(
+    () => ({
+      opacity: 1 - activeProgress.value,
+    }),
+    [],
+  );
 
   return (
     <Pressable style={styles.item} onPress={onPress}>
