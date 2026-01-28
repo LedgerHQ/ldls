@@ -2,8 +2,8 @@ import {
   ComponentRef,
   isValidElement,
   cloneElement,
-  Ref,
   ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
 } from 'react';
 import {
   View,
@@ -21,9 +21,9 @@ import {
 } from 'react-native';
 
 const SlotPressable = ({
-  ref: forwardedRef,
+  ref,
   ...props
-}: PressableProps & { ref?: Ref<ComponentRef<typeof Pressable>> }) => {
+}: PressableProps & ComponentPropsWithRef<typeof Pressable>) => {
   const { children, ...pressableSlotProps } = props;
 
   if (!isValidElement(children)) {
@@ -36,18 +36,16 @@ const SlotPressable = ({
     ComponentRef<typeof Pressable>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(pressableSlotProps, children.props as AnyProps),
-    ref: forwardedRef
-      ? composeRefs(forwardedRef, (children as any).ref)
-      : (children as any).ref,
+    ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
   });
 };
 
 SlotPressable.displayName = 'SlotPressable';
 
 const SlotView = ({
-  ref: forwardedRef,
+  ref,
   ...props
-}: ViewProps & { ref?: Ref<ComponentRef<typeof View>> }) => {
+}: ViewProps & ComponentPropsWithRef<typeof View>) => {
   const { children, ...viewSlotProps } = props;
 
   if (!isValidElement(children)) {
@@ -60,18 +58,16 @@ const SlotView = ({
     ComponentRef<typeof View>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(viewSlotProps, children.props as AnyProps),
-    ref: forwardedRef
-      ? composeRefs(forwardedRef, (children as any).ref)
-      : (children as any).ref,
+    ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
   });
 };
 
 SlotView.displayName = 'SlotView';
 
 const SlotText = ({
-  ref: forwardedRef,
+  ref,
   ...props
-}: TextProps & { ref?: Ref<ComponentRef<typeof Text>> }) => {
+}: TextProps & ComponentPropsWithRef<typeof Text>) => {
   const { children, ...textSlotProps } = props;
 
   if (!isValidElement(children)) {
@@ -84,9 +80,7 @@ const SlotText = ({
     ComponentRef<typeof Text>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(textSlotProps, children.props as AnyProps),
-    ref: forwardedRef
-      ? composeRefs(forwardedRef, (children as any).ref)
-      : (children as any).ref,
+    ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
   });
 };
 
@@ -94,10 +88,9 @@ SlotText.displayName = 'SlotText';
 
 type SlotImageSlotProps = ImageProps & {
   children?: React.ReactNode;
-  ref?: Ref<ComponentRef<typeof Image>>;
-};
+} & ComponentPropsWithRef<typeof Image>;
 
-const SlotImage = ({ ref: forwardedRef, ...props }: SlotImageSlotProps) => {
+const SlotImage = ({ ref, ...props }: SlotImageSlotProps) => {
   const { children, ...imageSlotProps } = props;
 
   if (!isValidElement(children)) {
@@ -110,9 +103,7 @@ const SlotImage = ({ ref: forwardedRef, ...props }: SlotImageSlotProps) => {
     ComponentRef<typeof Image>
   >(isTextChildren(children) ? <></> : children, {
     ...mergeProps(imageSlotProps, children.props as AnyProps),
-    ref: forwardedRef
-      ? composeRefs(forwardedRef, (children as any).ref)
-      : (children as any).ref,
+    ref: ref ? composeRefs(ref, (children as any).ref) : (children as any).ref,
   });
 };
 
