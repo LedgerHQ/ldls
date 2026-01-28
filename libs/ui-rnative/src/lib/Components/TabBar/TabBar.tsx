@@ -7,6 +7,7 @@ import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
@@ -34,10 +35,13 @@ export function TabBarItem({
   const ActiveIcon = activeIcon ?? Icon;
 
   useEffect(() => {
-    activeProgress.value = withTiming(isActive ? 1 : 0, {
-      duration: 200,
-      easing: Easing.bezier(0, 0, 0.2, 1),
-    });
+    activeProgress.value = withDelay(
+      100,
+      withTiming(isActive ? 1 : 0, {
+        duration: 200,
+        easing: Easing.bezier(0.4, 0, 0.2, 1),
+      }),
+    );
   }, [isActive, activeProgress]);
 
   function onPress() {
@@ -72,15 +76,14 @@ export function TabBarItem({
   return (
     <Pressable style={styles.item} onPress={onPress}>
       <Animated.View style={scaleStyle}>
-        {isActive ? (
-          <Animated.View style={activeIconStyle}>
-            <ActiveIcon size={20} />
-          </Animated.View>
-        ) : (
-          <Animated.View style={inactiveIconStyle}>
+        <Box style={styles.itemIconContainer}>
+          <Animated.View style={[styles.itemIcon, inactiveIconStyle]}>
             <Icon size={20} />
           </Animated.View>
-        )}
+          <Animated.View style={[styles.itemIcon, activeIconStyle]}>
+            <ActiveIcon size={20} />
+          </Animated.View>
+        </Box>
       </Animated.View>
       <Text style={[styles.itemText, isActive && styles.activeItemText]}>
         {label ?? value}
@@ -179,6 +182,14 @@ const useStyles = () =>
       itemText: {
         ...t.typographies.body4,
         color: t.colors.text.base,
+      },
+      itemIcon: {
+        position: 'absolute',
+      },
+      itemIconContainer: {
+        width: 20,
+        height: 20,
+        position: 'relative',
       },
       activeItemText: {
         ...t.typographies.body4SemiBold,
